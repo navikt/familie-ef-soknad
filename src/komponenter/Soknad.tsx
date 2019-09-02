@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import {Hovedknapp} from "nav-frontend-knapper";
 import {sendInnSøknad} from '../innsending/api'
 
-
 interface SoknadProps {
     message: string,
 }
@@ -13,7 +12,7 @@ interface IState {
 
 const Soknad: React.FC<SoknadProps> = ({ message }) => {
 
-    const [hocState, setHocState] = React.useState<IState>({status: `Søknad kan sendes`});
+    const [hocState, setHocState] = useState<IState>({status: `Søknad kan sendes`});
 
     return (
         <>
@@ -24,8 +23,11 @@ const Soknad: React.FC<SoknadProps> = ({ message }) => {
     );
 
     function send() {
-        sendInnSøknad("Hello API")
-            .then(result => setHocState({...hocState, status: "Vi har kontakt"}))
+        let søknadsStreng = JSON.stringify({
+            text: message
+        });
+        sendInnSøknad(søknadsStreng)
+            .then(resultat => setHocState({...hocState, status: `Vi har kontakt: ${resultat.text}`}))
             .catch(e => setHocState({...hocState, status: `Noe gikk galt: ${e}`}));
     }
 }

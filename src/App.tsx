@@ -1,13 +1,11 @@
 import React from 'react';
-import { Knapp } from 'nav-frontend-knapper';
-
-import Soknad from "./components/Soknad";
+import Soknad from "./komponenter/Soknad";
 
 const App = () => {
   return (
     <div className="app">
       <div className="sporsmal-container">
-            <Soknad message={"Soknadsmelding"} />
+            <Soknad message={"Hei API"} />
       </div>
     </div>
   );
