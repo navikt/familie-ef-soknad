@@ -88,7 +88,7 @@ commands:
                 --var reponame=$REPO_NAME \
                 --var version=$IMAGE_VERSION \
                 --appid=20250 \
-                --key-base64=$GH_DEPLOY_KEY
+                --key=gh_deploy_key.pem
 
   sett-miljovariabler:
     steps:
