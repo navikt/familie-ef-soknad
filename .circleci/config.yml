@@ -62,7 +62,7 @@ jobs:
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push $IMAGE_NAME
       - deploy:
-          til: dev-ffs
+          til: dev-fss
           ingress1: https://$REPO_NAME.nais.oera-q.local
           ingress2: https://www-q0.nav.no/familie/$REPO_NAME
 
@@ -73,7 +73,7 @@ jobs:
       - checkout
       - sett-miljovariabler
       - deploy:
-          til: prod-ffs
+          til: prod-fss
           ingress1: https://$REPO_NAME.nais.oera.no
           ingress2: https://www.nav.no/familie/$REPO_NAME
 

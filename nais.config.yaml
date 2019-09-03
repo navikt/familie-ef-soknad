@@ -2,12 +2,12 @@
 apiVersion: nais.io/v1alpha1
 kind: Application
 metadata:
-  name: {{reponame}}
+  name: familie-ef-soknad
   namespace: default
   labels:
-    team: {{team}}
+    team: teamfamilie
 spec:
-  image: navikt/{{reponame}}:{{version}}
+  image: navikt/familie-ef-soknad:{{version}}
   team: {{team}}
   port: 8080
   ingresses:
