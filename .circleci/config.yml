@@ -66,17 +66,6 @@ jobs:
           ingress1: https://$REPO_NAME.nais.oera-q.local
           ingress2: https://www-q0.nav.no/familie/$REPO_NAME
 
-  deploy-til-prod:
-    docker:
-      - image: navikt/deployment-cli:latest
-    steps:
-      - checkout
-      - sett-miljovariabler
-      - deploy:
-          til: prod-sbs
-          ingress1: https://$REPO_NAME.nais.oera.no
-          ingress2: https://www.nav.no/familie/$REPO_NAME
-
 commands:
   deploy:
     parameters:
@@ -96,14 +85,9 @@ commands:
                 --resource=nais.config.yaml \
                 --cluster=<< parameters.til >> \
                 --repository=$CIRCLE_PROJECT_USERNAME/$REPO_NAME \
-                --var baseurl=/familie/$REPO_NAME \
-                --var ingress1=<< parameters.ingress1 >> \
-                --var ingress2=<< parameters.ingress2 >> \
                 --var reponame=$REPO_NAME \
                 --var version=$IMAGE_VERSION \
                 --key=gh_deploy_key.pem \
-                --ref=$COMMIT_SHORT \
-                --appid=${GITHUB_APP_ID}
   sett-miljovariabler:
     steps:
       - run:
@@ -123,17 +107,6 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - bekreft-deploy-til-dev:
-          type: approval
-          requires:
-            - build
-          filters:
-            branches:
-              ignore: master
-      - deploy-til-dev:
-          name: manuell-deploy-til-dev
-          requires:
-            - bekreft-deploy-til-dev
       - deploy-til-dev:
           name: automatisk-deploy-til-dev
           requires:
@@ -143,20 +116,3 @@ workflows:
               only: /^v.*/
             branches:
               only: master
-      - bekreft-deploy-til-prod:
-          type: approval
-          requires:
-            - automatisk-deploy-til-dev
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
-      - deploy-til-prod:
-          requires:
-            - bekreft-deploy-til-prod
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
