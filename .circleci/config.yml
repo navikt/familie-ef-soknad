@@ -113,6 +113,7 @@ workflows:
           name: automatisk-deploy-til-dev
           requires:
             - build
+          context: familie-ci
           filters:
             tags:
               only: /^v.*/
