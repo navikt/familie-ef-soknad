@@ -1,5 +1,12 @@
 version: 2.1
 
+executors:
+  nais-deployer:
+    environment:
+      TEAM: teamfamilie
+    docker:
+      - image: navikt/deployment-cli:latest
+
 jobs:
   build:
     docker:
@@ -85,7 +92,7 @@ commands:
           command: |
             echo $GH_DEPLOY_KEY | base64 -d | dos2unix > gh_deploy_key.pem
             deployment-cli deploy create \
-                --team=familie \
+                --team=teamfamilie \
                 --resource=nais.config.yaml \
                 --cluster=<< parameters.til >> \
                 --repository=$CIRCLE_PROJECT_USERNAME/$REPO_NAME \
