@@ -87,7 +87,7 @@ commands:
                 --repository=$CIRCLE_PROJECT_USERNAME/$REPO_NAME \
                 --var reponame=$REPO_NAME \
                 --var version=$IMAGE_VERSION \
-                --appid=20250
+                --appid=20250 \
                 --key-base64=$GH_DEPLOY_KEY
 
   sett-miljovariabler:
