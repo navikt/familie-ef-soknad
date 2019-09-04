@@ -23,6 +23,15 @@ jobs:
           fingerprints:
             - "d4:c2:10:f7:91:30:c2:f0:55:93:8b:8f:b5:cd:6c:49"
       - checkout
+      - setup_remote_docker:
+            docker_layer_caching: true
+        - run:
+            name: Generate version number, github token and docker image tags
+            command: |
+              export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
+              echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
+              echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
+              cat properties.env >> $BASH_ENV
       - run:
           name: Installer npm pakker
           command: |
@@ -46,12 +55,8 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Generate version number, github token and docker image tags
-          command: |
-            export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
-            echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
-            echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
-            cat properties.env >> $BASH_ENV
+          name: Set up environment variables
+          command: cat /home/circleci/project/properties.env >> $BASH_ENV
       - run:
           name: Slett test resources
           command: rm -rf development
