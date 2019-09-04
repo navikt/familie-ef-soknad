@@ -99,9 +99,6 @@ workflows:
               only: /^v[0-9]+\.[0-9]+$/
       - deploy_docker:
           context: NAIS deployment
-          requires:
-            - test-unit
-            - test-ci
           filters:
             tags:
               only: /^v[0-9]+\.[0-9]+$/
