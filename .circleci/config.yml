@@ -14,24 +14,16 @@ jobs:
     docker:
       - image: circleci/node:11.7.0
     steps:
-      - run:
-          name: Add github to known hosts
-          command: |
-            mkdir ~/.ssh
-            echo "github.com,140.82.118.3 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==" >> ~/.ssh/known_hosts
-      - add_ssh_keys:
-          fingerprints:
-            - "d4:c2:10:f7:91:30:c2:f0:55:93:8b:8f:b5:cd:6c:49"
       - checkout
       - setup_remote_docker:
             docker_layer_caching: true
-        - run:
-            name: Generate version number, github token and docker image tags
-            command: |
-              export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
-              echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
-              echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
-              cat properties.env >> $BASH_ENV
+      - run:
+          name: Generate version number, github token and docker image tags
+          command: |
+            export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
+            echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
+            echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
+            cat properties.env >> $BASH_ENV
       - run:
           name: Installer npm pakker
           command: |
