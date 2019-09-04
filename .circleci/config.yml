@@ -62,31 +62,18 @@ jobs:
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push $IMAGE_NAME
       - deploy:
-          til: dev-sbs
-          ingress1: https://$REPO_NAME.nais.oera-q.local
-          ingress2: https://www-q0.nav.no/familie/$REPO_NAME
-
-commands:
-  deploy:
-    parameters:
-      til:
-        type: string
-      ingress1:
-        type: string
-      ingress2:
-        type: string
-    steps:
       - run:
-          name: Deployer til << parameters.til >>
+          name: Deployer til dev-sbs
           command: |
             deployment-cli deploy create \
-            --cluster=<< parameters.til >>  \
-           --repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
-           --appid=${GITHUB_APP_ID} \
-           --key-base64=${GITHUB_PRIVATE_KEY} \
-           --team=${TEAM} \
-           --version=${VERSION} \
-           --resource=./nais.config.yaml
+            --cluster=dev-sbs \
+            --repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
+            --appid=${GITHUB_APP_ID} \
+            --key-base64=${GITHUB_PRIVATE_KEY} \
+            --team=${TEAM} \
+            --version=${VERSION} \
+            --resource=./nais.config.yaml
+
 
   sett-miljovariabler:
     steps:
