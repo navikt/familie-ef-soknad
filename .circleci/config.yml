@@ -89,7 +89,6 @@ jobs:
             --version=${VERSION} \
             --resource=./nais.config.yaml
 
-
 workflows:
   version: 2
   build_n_deploy:
@@ -100,6 +99,8 @@ workflows:
               only: /^v[0-9]+\.[0-9]+$/
       - deploy_docker:
           context: NAIS deployment
+          requires:
+            - build
           filters:
             tags:
               only: /^v[0-9]+\.[0-9]+$/
