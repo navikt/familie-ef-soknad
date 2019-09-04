@@ -79,29 +79,25 @@ commands:
       - run:
           name: Deployer til << parameters.til >>
           command: |
-            echo $GH_DEPLOY_KEY | base64 -d | dos2unix > gh_deploy_key.pem
             deployment-cli deploy create \
-                --team=teamfamilie \
-                --resource=nais.config.yaml \
-                --cluster=<< parameters.til >> \
-                --repository=$CIRCLE_PROJECT_USERNAME/$REPO_NAME \
-                --var reponame=$REPO_NAME \
-                --var version=$IMAGE_VERSION \
-                --appid=20250 \
-                --key=gh_deploy_key.pem
+            --cluster=<< parameters.til >>  \
+           --repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
+           --appid=${GITHUB_APP_ID} \
+           --key-base64=${GITHUB_PRIVATE_KEY} \
+           --team=${TEAM} \
+           --version=${VERSION} \
+           --resource=./nais.config.yaml
 
   sett-miljovariabler:
     steps:
       - run:
-          name:  Definerer git-referanse, versjonsnummer og repo-navn
+          name: Generate version number, github token and docker image tags
           command: |
-            echo "export COMMIT_SHORT='$(git rev-parse --short HEAD)'" >> $BASH_ENV
-            echo "export IMAGE_VERSION='$CIRCLE_WORKFLOW_ID-${CIRCLE_BRANCH////-}$CIRCLE_TAG'" >> $BASH_ENV
-            echo "export REPO_NAME='$CIRCLE_PROJECT_REPONAME'" >> $BASH_ENV
-      - run:
-          name: Definerer navn på docker-image
-          command: |
-            echo "export IMAGE_NAME='$CIRCLE_PROJECT_USERNAME/$REPO_NAME:$IMAGE_VERSION'" >> $BASH_ENV
+            export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
+            echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
+            echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
+            cat properties.env >> $BASH_ENV
+
 workflows:
   bygg-og-deploy:
     jobs:
@@ -111,6 +107,7 @@ workflows:
               only: /.*/
       - deploy-til-dev:
           name: automatisk-deploy-til-dev
+          context: familie-ci
           requires:
             - build
           filters:
