@@ -46,8 +46,12 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
-          name: Set up environment variables
-          command: cat /home/circleci/project/properties.env >> $BASH_ENV
+          name: Generate version number, github token and docker image tags
+          command: |
+            export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"
+            echo "export VERSION="$(node -p "require('./package').version")-$CIRCLE_SHA1"" >> properties.env
+            echo "export DOCKER_TAG=\"$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME:$VERSION\"" >> properties.env
+            cat properties.env >> $BASH_ENV
       - run:
           name: Slett test resources
           command: rm -rf development
@@ -86,7 +90,7 @@ jobs:
             --key-base64=${GITHUB_PRIVATE_KEY} \
             --team=${TEAM} \
             --version=${VERSION} \
-            --resource=./build_n_deploy/naiserator/app-preprod.yaml
+            --resource=./nais.config.yaml
 
 
 workflows:
