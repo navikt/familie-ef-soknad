@@ -61,7 +61,6 @@ jobs:
           command: |
             echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             docker push $IMAGE_NAME
-      - deploy:
       - run:
           name: Deployer til dev-sbs
           command: |
@@ -73,7 +72,6 @@ jobs:
             --team=${TEAM} \
             --version=${VERSION} \
             --resource=./nais.config.yaml
-
 
   sett-miljovariabler:
     steps:
