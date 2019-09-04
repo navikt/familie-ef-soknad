@@ -25,8 +25,6 @@ jobs:
       - checkout
       - setup_remote_docker:
             docker_layer_caching: true
-      - attach_workspace:
-        at: /home/circleci/project
       - run:
           name: Generate version number, github token and docker image tags
           command: |
