@@ -56,7 +56,7 @@ jobs:
           docker_layer_caching: true
       - run:
           command:
-            echo ls /home/circleci/project/
+            ls /home/circleci/project/
       - run:
           name: Sett opp environment for docker
           command: cat /home/circleci/project/properties.env >> $BASH_ENV
