@@ -1,31 +1,55 @@
----
-apiVersion: nais.io/v1alpha1
-kind: Application
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
 metadata:
   name: familie-ef-soknad
   namespace: default
   labels:
     team: teamfamilie
+
 spec:
   image: navikt/familie-ef-soknad:{{version}}
-  team: {{team}}
   port: 8080
-  ingresses:
-    - {{ingress1}}
-    - {{ingress2}}
   liveness:
-    path: {{baseurl}}/internal/isAlive
-    initialDelay: 10
+    path: /internal/isAlive
   readiness:
-    path: {{baseurl}}/internal/isReady
-    initialDelay: 10
+    path: /internal/isAlive
+  prometheus:
+    enabled: true
+    path: /internal/metrics
   replicas:
     min: 2
     max: 4
-  webproxy: true
+    cpuThresholdPercentage: 50
+  ingresses:
+    - "https://familie-ef-soknad-q.nav.no"
+  vault:
+    enabled: true
   resources:
     limits:
-      cpu: '3'
-      memory: 768Mi
+      cpu: "3"
+      memory: 786Mi
     requests:
       memory: 512Mi
+  env:
+    - name: NAV_TRUSTSTORE_KEYSTOREALIAS
+      value: na
+    - name: NAV_TRUSTSTORE_PATH
+      value: /var/run/secrets/naisd.io/nav_truststore_path
+    - name: APPRES_CMS_URL
+      value: https://appres-q0.nav.no
+    - name: LOGINSERVICE_URL
+      value: https://loginservice-q.nav.no/login
+    - name: APPDYNAMICS_CONTROLLER_HOST_NAME
+      value: appdynamics.adeo.no
+    - name: APPDYNAMICS_CONTROLLER_PORT
+      value: "443"
+    - name: APPDYNAMICS_CONTROLLER_SSL_ENABLED
+      value: "true"
+    - name: APPDYNAMICS_AGENT_ACCOUNT_NAME
+      value: NON-PROD
+    - name: UNLEASH_API_URL
+      value: https://unleashproxy.nais.oera.no/api/
+    - name: LOADBALANCER_SOKNAD_KONTANTSTOTTE_URL
+      value: familie-ef-soknad-q.nav.no
+    - name: LOADBALANCER_SOKNAD_KONTANTSTOTTE_POOLNAME
+      value: na
