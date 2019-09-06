@@ -45,7 +45,6 @@ jobs:
           root: /home/circleci/project
           paths:
             - .
-            - build/*
 
   deploy_docker:
     docker:
@@ -55,6 +54,9 @@ jobs:
           at: /home/circleci/project
       - setup_remote_docker:
           docker_layer_caching: true
+      - run:
+          command:
+            echo ls /home/circleci/project/
       - run:
           name: Sett opp environment for docker
           command: cat /home/circleci/project/properties.env >> $BASH_ENV
