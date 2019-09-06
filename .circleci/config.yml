@@ -55,8 +55,10 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          name: test
           command:
-            ls /home/circleci/project/
+            ls /home/circleci/project/ >> $TEST
+            echo "ls: $TEST"
       - run:
           name: Sett opp environment for docker
           command: cat /home/circleci/project/properties.env >> $BASH_ENV
