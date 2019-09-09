@@ -42,8 +42,7 @@
   "scripts": {
     "start": "NODE_ENV=development craco start",
     "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "test": "craco test"
   },
   "eslintConfig": {
     "extends": "react-app"

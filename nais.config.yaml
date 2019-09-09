@@ -14,10 +14,10 @@ spec:
     cpuThresholdPercentage: 50
   port: 3000
   liveness:
-    path: /isAlive
+    path: /
     initialDelay: 5
   readiness:
-    path: /isReady
+    path: /
     initialDelay: 5
   prometheus:
     enabled: false
@@ -27,7 +27,7 @@ spec:
   ingresses:
     - https://familie-ef-soknad.nais.preprod.local
   vault:
-    enabled: true
+    enabled: false
   webproxy: true
   env:
     - name: APP_VERSION
