@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .post(`/api/soknad/sendInn`, soknad, {
-        headers: {"content-type": "application/json;charset=utf-8"},
+    .get(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`,  {
         withCredentials: true
     })
     .then((response: { data: any; }) => {
@@ -10,3 +9,9 @@ const sendInnSøknad = (soknad: string) => axios
     });
 
 export { sendInnSøknad };
+
+//
+// .post(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`, soknad, {
+//     headers: {"content-type": "application/json;charset=utf-8"},
+//     withCredentials: true
+// })
