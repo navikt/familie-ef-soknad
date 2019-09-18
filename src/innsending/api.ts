@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`,  {
+    .get(`https://familie-ef-soknad-api.nais.preprod.local/internal/status/isAlive`,  {
         withCredentials: true
     })
     .then((response: { data: any; }) => {
@@ -11,7 +11,11 @@ const sendInnSøknad = (soknad: string) => axios
 export { sendInnSøknad };
 
 //
-// .post(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`, soknad, {
+// .post(`/api/soknad/sendInn`, soknad, {
 //     headers: {"content-type": "application/json;charset=utf-8"},
+//     withCredentials: true
+// })
+
+// .get(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`,  {
 //     withCredentials: true
 // })
