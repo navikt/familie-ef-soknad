@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://familie-ef-soknad-api-q.nav.no/internal/status/isAlive`,  {
+    .get(`https://soknad-kontantstotte-api-q.nav.no/internal/status/isAlive`,  {
         withCredentials: true
     })
     .then((response: { data: any; }) => {
@@ -17,5 +17,9 @@ export { sendInnSøknad };
 // })
 
 // .get(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`,  {
+//     withCredentials: true
+// })
+//
+// .get(`https://familie-ef-soknad-api-q.nav.no/internal/status/isAlive`,  {
 //     withCredentials: true
 // })
