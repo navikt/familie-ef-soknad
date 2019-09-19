@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://soknad-kontantstotte-api/api/tekster`,  {
+    .get(`https://soknad-kontantstotte-api-q.nav.no/api/tekster`,  {
         withCredentials: true
 })
     .then((response: { data: any; }) => {
