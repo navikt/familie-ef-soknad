@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://soknad-kontantstotte-api-q.nav.no/internal/status/isAlive`,  {
+    .post(`https://familie-ef-soknad-api-q.nav.no/api/soknad/sendInn`, soknad, {
+        headers: {"content-type": "application/json;charset=utf-8"},
         withCredentials: true
     })
     .then((response: { data: any; }) => {
