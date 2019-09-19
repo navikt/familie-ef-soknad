@@ -23,9 +23,9 @@ spec:
     enabled: false
     path: /metrics
   istio:
-    enabled: false
+    enabled: true
   ingresses:
-    - https://familie-ef-soknad.nais.preprod.local
+    - https://familie-ef-soknad.nais.aura-q.no
   vault:
     enabled: false
   webproxy: true
