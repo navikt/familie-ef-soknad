@@ -1,10 +1,9 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`http://familie-ef-soknad-api/internal/status/isAlive`,
-        {
+    .get(`https://soknad-kontantstotte-api/api/tekster`,  {
         withCredentials: true
-    })
+})
     .then((response: { data: any; }) => {
         return response.data;
     });
