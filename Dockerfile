@@ -1,5 +1,5 @@
 FROM navikt/node-express:1.0.0
-ENV APPLICATION_NAME=familie-ef-veiviser
+ENV APPLICATION_NAME=familie-ef-soknad
 COPY . /app
 
 #FROM node

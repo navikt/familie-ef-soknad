@@ -1,8 +1,7 @@
 import axios from 'axios';
 
-const sendInnSøknad = (soknad: string) =>
-  axios
-    .get(`https://soknad-kontantstotte/api/tekster`,  {
+const sendInnSøknad = (soknad: string) => axios
+    .get(`https://familie-ef-soknad-api.nais.oera-q.no/internal/status/isAlive`,  {
         withCredentials: true
 })
     .then((response: { data: any }) => {
