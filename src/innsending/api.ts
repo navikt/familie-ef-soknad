@@ -4,8 +4,8 @@ const sendInnSøknad = (soknad: string) => axios
     .get(`https://familie-ef-soknad-api.nais.oera-q.no/internal/status/isAlive`,  {
         withCredentials: true
 })
-    .then((response: { data: any; }) => {
-        return response.data;
+    .then((response: { data: any }) => {
+      return response.data;
     });
 
 export { sendInnSøknad };
