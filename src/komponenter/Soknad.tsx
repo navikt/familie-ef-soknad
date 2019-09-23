@@ -1,27 +1,44 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { sendInnSøknad } from '../innsending/api';
+import {pingApi, sendInnSøknad} from '../innsending/api';
 
 interface SoknadProps {
   message: string;
 }
 
 interface IState {
-  status: string;
+  status: string,
+  pingReturn: string;
 }
 
 const Soknad: React.FC<SoknadProps> = ({ message }) => {
   const [hocState, setHocState] = useState<IState>({
-    status: `Søknad kan sendes`
+    status: `Søknad kan sendes`, pingReturn:""
   });
+
+  const ping = () =>  {
+    pingApi()
+        .then((resultat) =>
+            setHocState({ ...hocState, pingReturn: ` ${resultat.text}` })
+        )
+        .catch((e) =>
+            setHocState({ ...hocState, pingReturn: `??????: ${e}` })
+        );
+  }
 
   return (
     <>
       <h1>{message}</h1>
       <Hovedknapp onClick={send}>Send søknad</Hovedknapp>
       <p>Status: {hocState.status}</p>
+
+      <Hovedknapp onClick={ping}>Ping api</Hovedknapp>
+      <p>{hocState.pingReturn}</p>
+
     </>
   );
+
+
 
   function send() {
     let søknadsStreng = JSON.stringify({

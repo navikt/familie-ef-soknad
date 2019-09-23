@@ -1,14 +1,28 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://familie-ef-soknad-api.nais.oera-q.local/api/soknad/sendInn`,  {
+    .post(`https://familie-ef-soknad-api.nais.oera-q.local/api/soknad/sendInn`, soknad, {
+        headers: {"content-type": "application/json;charset=utf-8"},
         withCredentials: true
-})
+    })
     .then((response: { data: any }) => {
       return response.data;
     });
 
-export { sendInnSøknad };
+const pingApi = () => axios
+    .get(`https://familie-ef-soknad-api.nais.oera-q.local/api/ping`,  {
+        withCredentials: true
+    })
+    .then((response: { data: any }) => {
+        return response.data;
+    });
+
+export { sendInnSøknad, pingApi };
+
+
+//     .get(`https://familie-ef-soknad-api.nais.oera-q.local/api/soknad/sendInn`,  {
+//         withCredentials: true
+// })
 
 // .post(`/api/soknad/sendInn`, soknad, {
 //     headers: {"content-type": "application/json;charset=utf-8"},
