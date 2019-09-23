@@ -26,7 +26,6 @@ spec:
     enabled: true
   ingresses:
     - https://familie-ef-soknad.nais.oera-q.no
-    - https://familie-ef-soknad-q.nav.no
   vault:
     enabled: false
   webproxy: true

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const sendInnSøknad = (soknad: string) => axios
-    .get(`https://familie-ef-soknad-api.nais.oera-q.no/internal/status/isAlive`,  {
+    .get(`https://familie-ef-soknad-api.nais.oera-q.local/api/soknad/sendInn`,  {
         withCredentials: true
 })
     .then((response: { data: any; }) => {
