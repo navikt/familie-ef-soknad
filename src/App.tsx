@@ -27,8 +27,6 @@ const App = () => {
     fetchData();
   }, []);
 
-  console.log('testing app sporsmal', sporsmal);
-
   if (!fetching) {
     if (!error && sporsmal && sporsmal.length) {
       return (

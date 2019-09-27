@@ -1,8 +1,8 @@
+import { LocaleString } from './sprak';
+
 export interface ISporsmal {
   sporsmal_id: number;
-  sporsmal_tekst: string;
-  hjelpetekst_overskrift: string;
-  hjelpetekst_innhold: string;
+  tittel: LocaleString;
 }
 
 export interface ISvar {

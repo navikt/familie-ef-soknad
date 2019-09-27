@@ -19,7 +19,7 @@ const Soknad: React.FC<SoknadProps> = ({ message }) => {
     <>
       <h1>{message}</h1>
       <Hovedknapp onClick={send}>Send søknad</Hovedknapp>
-      <p>Status: {hocState.status}</p>
+      <p>Status: {hocState.status} </p>
     </>
   );
 
