@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = window.location.origin;
+axios.defaults.baseURL = window.location.origin + '-api';
 
 const sendInnSøknad = (soknad: string) =>
   axios
