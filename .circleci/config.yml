@@ -98,6 +98,7 @@ jobs:
           command: |
             deployment-cli deploy create \
             --cluster=dev-sbs \
+            --var ingress= https://familie-ef-soknad.nais.oera-q.local\
             --repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
             --appid=${GITHUB_APP_ID} \
             --key-base64=${GITHUB_PRIVATE_KEY} \
@@ -127,12 +128,13 @@ jobs:
           command: |
             deployment-cli deploy create \
             --cluster=prod-sbs \
+            --var ingress= https://familie-ef-soknad.nais.oera.no/\
             --repository=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME \
             --appid=${GITHUB_APP_ID} \
             --key-base64=${GITHUB_PRIVATE_KEY} \
             --team=${TEAM} \
             --version=${VERSION} \
-            --resource=./nais.config-prod.yaml
+            --resource=./nais.config.yaml
 
 workflows:
   version: 2

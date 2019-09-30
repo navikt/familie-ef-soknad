@@ -25,7 +25,7 @@ spec:
   istio:
     enabled: true
   ingresses:
-    - https://familie-ef-soknad.nais.oera-q.local
+    - {{ingress}}
   vault:
     enabled: false
   webproxy: true
