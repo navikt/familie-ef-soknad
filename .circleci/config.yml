@@ -166,4 +166,4 @@ workflows:
             tags:
               only: /^.*/
             branches:
-              only: DeployTilProduksjon
+              only: master
