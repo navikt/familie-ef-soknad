@@ -132,7 +132,7 @@ jobs:
             --key-base64=${GITHUB_PRIVATE_KEY} \
             --team=${TEAM} \
             --version=${VERSION} \
-            --resource=./nais.config.yaml
+            --resource=./nais.config-prod.yaml
 
 workflows:
   version: 2
