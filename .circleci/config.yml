@@ -138,8 +138,6 @@ workflows:
           requires:
             - deploy_docker
           filters:
-            tags:
-              only: /^.*/
             branches:
               only: /.*/
       - deploy_prod:
@@ -147,7 +145,5 @@ workflows:
           requires:
             - deploy_docker
           filters:
-            tags:
-              only: /^.*/
             branches:
               only: DeployTilProduksjon
