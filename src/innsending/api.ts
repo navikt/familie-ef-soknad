@@ -17,4 +17,4 @@ const sendInnSøknad = (soknad: string) =>
       return response.data;
     });
 
-export { sendInnSøknad };
+export { sendInnSoknad };
