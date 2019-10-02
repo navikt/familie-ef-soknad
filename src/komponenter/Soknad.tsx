@@ -22,10 +22,10 @@ const Soknad = () => {
       text: 'Hei API!',
     });
     sendInnSoknad(søknadsTekst)
-      .then((resultat) =>
+      .then((kvittering) =>
         setHocState({
           ...hocState,
-          status: `Vi har kontakt: ${resultat}`,
+          status: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         })
       )
