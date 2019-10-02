@@ -95,7 +95,7 @@ jobs:
             --key-base64=${GITHUB_PRIVATE_KEY} \
             --team=${TEAM} \
             --version=${VERSION} \
-            --resource=./nais.config.yaml
+            --resource=./nais.config-dev.yaml
 
   deploy_prod:
     executor: nais-deployer
