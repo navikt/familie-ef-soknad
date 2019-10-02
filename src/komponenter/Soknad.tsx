@@ -31,7 +31,6 @@ const Soknad = () => {
     <>
       <Veilederpanel fargetema="advarsel" type={'plakat'} kompakt svg={svg}>
         <h1>Dette er en testside som er under utvikling</h1>
-        <p>Ingenting vil skje om du trykker på knappen.</p>
         <p>
           Hvis du kom til denne siden fordi du hadde behov for informasjon om
           stønader til enslig mor eller far, kan du finne mer informasjon om
@@ -47,7 +46,9 @@ const Soknad = () => {
           </a>
         </p>
       </Veilederpanel>
-      <Panel className="innholdspanel">
+      <Panel className="innholdspanel" border>
+        <p>Ingenting vil skje om du trykker på denne knappen.</p>
+
         <Hovedknapp onClick={send}>Dette er en testknapp</Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
