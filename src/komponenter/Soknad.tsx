@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import sendInnSoknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 
@@ -61,10 +60,10 @@ const Soknad = () => {
       <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
 
-        <Hovedknapp onClick={send}>Dette er en testknapp</Hovedknapp>
-        <p>
-          Status: {hocState.venter ? <NavFrontendSpinner /> : hocState.status}
-        </p>
+        <Hovedknapp onClick={send} spinner={hocState.venter}>
+          Dette er en testknapp
+        </Hovedknapp>
+        <p>Status: {hocState.status}</p>
       </Panel>
     </>
   );
