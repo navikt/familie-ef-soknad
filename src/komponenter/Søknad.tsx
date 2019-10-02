@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
-import sendInnSoknad from '../innsending/api';
+import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 
 import svg from './VeilederSvg';
@@ -11,7 +11,8 @@ interface IState {
   venter: boolean;
 }
 
-const Soknad = () => {
+//eslint-disable-next-line
+const Søknad = () => {
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
     venter: false,
@@ -21,7 +22,7 @@ const Soknad = () => {
     const søknadsTekst = JSON.stringify({
       text: 'Hei API!',
     });
-    sendInnSoknad(søknadsTekst)
+    sendInnSøknad(søknadsTekst)
       .then((kvittering) =>
         setHocState({
           ...hocState,
@@ -69,4 +70,4 @@ const Soknad = () => {
   );
 };
 
-export default Soknad;
+export default Søknad;

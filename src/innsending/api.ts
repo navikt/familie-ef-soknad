@@ -7,14 +7,15 @@ else if (window.location.hostname.indexOf('nais.oera.no') > -1)
 else {
   axios.defaults.baseURL = 'http://localhost:8091/';
 }
-const sendInnSoknad = (soknad: string) =>
-  axios
-    .post(`/api/soknad/sendInn`, soknad, {
+const sendInnSøknad = (søknad: string) => {
+  return axios
+    .post(`/api/soknad/sendInn`, søknad, {
       headers: { 'content-type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
     .then((response: { data: any }) => {
       return response.data;
     });
+};
 
-export default sendInnSoknad;
+export default sendInnSøknad;
