@@ -1,5 +1,8 @@
-FROM navikt/node-express:1.0.0
+#FROM navikt/node-express:1.0.0
+FROM navikt/pus-decorator:216.20190522.1711
 ENV APPLICATION_NAME=familie-ef-soknad
+ENV HEADER_TYPE=WITHOUT_MENU
+ENV CONTEXT_PATH=/
 COPY . /app
 
 #FROM node
