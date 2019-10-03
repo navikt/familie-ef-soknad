@@ -1,6 +1,6 @@
 # familie-ef-soknad
 
-Frontend - soknad for enslig forsørger.
+Frontend - søknad for enslig forsørger.
 
 ## Kjør lokalt
 

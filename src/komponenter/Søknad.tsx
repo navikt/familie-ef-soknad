@@ -1,29 +1,41 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
-import { sendInnSøknad } from '../innsending/api';
+import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 
 import svg from './VeilederSvg';
 
 interface IState {
   status: string;
+  venter: boolean;
 }
 
-const Soknad = () => {
+//eslint-disable-next-line
+const Søknad = () => {
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
+    venter: false,
   });
   const send = () => {
-    const søknadsStreng = JSON.stringify({
+    setHocState({ ...hocState, venter: true });
+    const søknadsTekst = JSON.stringify({
       text: 'Hei API!',
     });
-    sendInnSøknad(søknadsStreng)
-      .then((resultat) =>
-        setHocState({ ...hocState, status: `Vi har kontakt: ${resultat}` })
+    sendInnSøknad(søknadsTekst)
+      .then((kvittering) =>
+        setHocState({
+          ...hocState,
+          status: `Vi har kontakt: ${kvittering.text}`,
+          venter: false,
+        })
       )
       .catch((e) =>
-        setHocState({ ...hocState, status: `Noe gikk galt: ${e}` })
+        setHocState({
+          ...hocState,
+          status: `Noe gikk galt: ${e}`,
+          venter: false,
+        })
       );
   };
 
@@ -49,11 +61,13 @@ const Soknad = () => {
       <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
 
-        <Hovedknapp onClick={send}>Dette er en testknapp</Hovedknapp>
+        <Hovedknapp onClick={send} spinner={hocState.venter}>
+          Dette er en testknapp
+        </Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
     </>
   );
 };
 
-export default Soknad;
+export default Søknad;
