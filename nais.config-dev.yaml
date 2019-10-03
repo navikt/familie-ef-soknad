@@ -32,6 +32,8 @@ spec:
   env:
     - name: APP_VERSION
       value: '{{version}}'
+    - name: APPRES_CMS_URL
+      value: https://appres-q0.nav.no
   resources:
     limits:
       cpu: 2000m
