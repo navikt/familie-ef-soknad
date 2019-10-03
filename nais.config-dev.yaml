@@ -12,18 +12,14 @@ spec:
     min: 1
     max: 2
     cpuThresholdPercentage: 50
-  port: 9000
+  port: 8080
   liveness:
     path: /
-    initialDelay: 5
   readiness:
     path: /
-    initialDelay: 5
   prometheus:
-    enabled: false
-    path: /metrics
-  istio:
     enabled: true
+    path: /metrics
   ingresses:
     - https://familie-ef-soknad.nais.oera-q.local
   vault:
@@ -36,18 +32,6 @@ spec:
       value: https://appres-q0.nav.no
     - name: LOGINSERVICE_URL
       value: https://loginservice-q.nav.no/login
-    - name: NAV_TRUSTSTORE_KEYSTOREALIAS
-      value: na
-    - name: NAV_TRUSTSTORE_PATH
-      value: /var/run/secrets/naisd.io/nav_truststore_path
-    - name: APPDYNAMICS_CONTROLLER_HOST_NAME
-      value: appdynamics.adeo.no
-    - name: APPDYNAMICS_CONTROLLER_PORT
-      value: "443"
-    - name: APPDYNAMICS_CONTROLLER_SSL_ENABLED
-      value: "true"
-    - name: APPDYNAMICS_AGENT_ACCOUNT_NAME
-      value: NON-PROD
     - name: UNLEASH_API_URL
       value: https://unleashproxy.nais.oera.no/api/
   resources:
