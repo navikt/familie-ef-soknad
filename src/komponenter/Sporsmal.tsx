@@ -13,7 +13,7 @@ type MergedProps = ISporsmalProps;
 const Sporsmal: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
   const sporsmal = sporsmalListe[steg];
   console.log(sporsmal);
-  const [setLocale] = useSpråkContext();
+  const [locale, setLocale] = useSpråkContext();
 
   return (
     <div>

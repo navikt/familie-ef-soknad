@@ -52,15 +52,20 @@
     "nav-frontend-skjema-style": "^1.0.41",
     "nav-frontend-spinner": "^1.0.19",
     "nav-frontend-spinner-style": "^0.2.5",
-    "nav-frontend-typografi": "^2.0.13",
-    "nav-frontend-typografi-style": "^1.0.14",
+    "nav-frontend-typografi": "^2.0.14",
+    "nav-frontend-typografi-style": "^1.0.15",
+    "nav-frontend-veileder": "^2.0.12",
+    "nav-frontend-veileder-style": "^2.0.9",
+    "nav-frontend-veilederpanel": "^0.1.15",
+    "nav-frontend-veilederpanel-style": "0.0.18",
     "prop-types": "^15.7.2",
-    "react": "^16.9.0",
+    "react": "^16.10.1",
     "react-aria-menubutton": "^6.2.0",
     "react-day-picker": "^7.3.2",
     "react-dom": "^16.9.0",
     "react-intl": "^3.3.1",
-    "react-scripts": "3.1.1"
+    "react-scripts": "3.1.1",
+    "webpack": "4.39.1"
   },
   "eslintConfig": {
     "extends": "react-app"
