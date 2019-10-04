@@ -6,10 +6,11 @@ import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import { locale } from 'moment';
 
 interface Props {
-  locale: string;
+  byttSprak: (sprak: string) => void;
+  valgtSprak: string;
 }
 
-const Sprakvelger: React.FC<Props> = (props) => {
+const Sprakvelger: React.FC<Props> = ({ byttSprak, valgtSprak }) => {
   return <div className="sprakvelger"></div>;
 };
 

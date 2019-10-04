@@ -5,7 +5,7 @@ import Sporsmal from './komponenter/Sporsmal';
 import Soknad from './komponenter/Soknad';
 import { client } from './utils/sanity';
 
-const App = () => {
+const App: React.FC<any> = () => {
   const [sporsmal, settSporsmal] = useState<any>([]);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
