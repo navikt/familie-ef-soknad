@@ -1,4 +1,5 @@
 const CracoLessPlugin = require('craco-less');
+const norskeOrdMedÆØÅ = ['Søknad', 'Språk', 'SpråkContext', 'SpråkProvider'];
 
 module.exports = {
   plugins: [{ plugin: CracoLessPlugin }],
@@ -11,7 +12,10 @@ module.exports = {
         // Det er en bug i denne sjekken som automatisk feiler på ÆØÅ: https://github.com/yannickcr/eslint-plugin-react/issues/1654
         'react/jsx-pascal-case': [
           'warn',
-          { allowAllCaps: true, ignore: ['Søknad'] },
+          {
+            allowAllCaps: true,
+            ignore: norskeOrdMedÆØÅ,
+          },
         ],
       },
     },

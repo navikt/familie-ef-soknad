@@ -13,6 +13,7 @@ type MergedProps = ISporsmalProps;
 const Sporsmal: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
   const sporsmal = sporsmalListe[steg];
   console.log(sporsmal);
+  // eslint-disable-next-line
   const [locale, setLocale] = useSpråkContext();
 
   return (
