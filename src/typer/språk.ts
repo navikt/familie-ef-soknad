@@ -4,3 +4,8 @@ export interface LocaleString {
   en?: string;
   nn?: string;
 }
+
+export interface Språk {
+  tittel: string;
+  locale: string;
+}

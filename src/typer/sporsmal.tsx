@@ -1,4 +1,4 @@
-import { LocaleString } from './sprak';
+import { LocaleString } from './språk';
 
 export interface ISporsmal {
   sporsmal_id: number;

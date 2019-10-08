@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Feilside from './komponenter/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Sporsmal from './komponenter/Sporsmal';
+import Sporsmal from './komponenter/Spørsmal';
 import Søknad from './komponenter/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
