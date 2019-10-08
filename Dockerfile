@@ -1,4 +1,4 @@
-FROM navikt/pus-decorator:216.20190522.1711
+FROM navikt/pus-decorator:228.20190926.1521
 ENV APPLICATION_NAME=familie-ef-soknad
 ENV HEADER_TYPE=WITHOUT_MENU
 ENV CONTEXT_PATH=/
