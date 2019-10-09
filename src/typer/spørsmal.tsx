@@ -1,6 +1,6 @@
 import { LocaleString } from './språk';
 
-export interface ISporsmal {
+export interface ISpørsmål {
   sporsmal_id: number;
   tittel: LocaleString;
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Feilside from './komponenter/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Sporsmal from './komponenter/Spørsmal';
+import Spørsmål from './komponenter/Spørsmal';
 import Søknad from './komponenter/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
 
 const App = () => {
-  const [sporsmal, settSporsmal] = useState<any>([]);
+  const [spørsmal, settSpørsmal] = useState<any>([]);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
@@ -17,7 +17,7 @@ const App = () => {
         .fetch('*[_type == $type]', { type: 'sporsmal' })
         .then((res: any) => {
           console.log(res);
-          settSporsmal(res);
+          settSpørsmal(res);
         })
         .catch((err: any) => {
           console.error('Oh no, error occured: ', err);
@@ -28,7 +28,7 @@ const App = () => {
     fetchData();
   }, []);
 
-  const erSpørsmålDataHentet = sporsmal && sporsmal.length;
+  const erSpørsmålDataHentet = spørsmal && spørsmal.length;
 
   if (!fetching) {
     if (!error && erSpørsmålDataHentet) {
@@ -37,7 +37,7 @@ const App = () => {
           <Panel className="innholdspanel">
             <div>
               <Søknad />
-              <Sporsmal sporsmalListe={sporsmal} steg={1} />
+              <Spørsmål sporsmalListe={spørsmal} steg={1} />
             </div>
           </Panel>
         </div>

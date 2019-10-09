@@ -1,16 +1,16 @@
 import React from 'react';
-import { ISporsmal } from '../typer/spørsmal';
+import { ISpørsmål } from '../typer/spørsmal';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../språk/LocaleTekst';
 import SpråkVelger from './språkvelger/Språkvelger';
 
 interface ISporsmalProps {
-  sporsmalListe: ISporsmal[];
+  sporsmalListe: ISpørsmål[];
   steg: number;
 }
 
 type MergedProps = ISporsmalProps;
-const Sporsmal: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
+const Spørsmål: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
   const sporsmal = sporsmalListe[steg];
   // eslint-disable-next-line
 
@@ -29,4 +29,4 @@ const Sporsmal: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
   );
 };
 
-export default Sporsmal;
+export default Spørsmål;
