@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { Språk } from '../../typer/språk';
 import { MenuItem } from 'react-aria-menubutton';
-import EngelskFlaggSVG from './EngelskFlaggSVG';
-import NorskFlaggSVG from './NorskFlaggSVG';
+import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
+import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 
 export const renderMenuItem = (valgtSpråkLocale: string, sprakobj: Språk) => {
   const erSprakObjValgtSprakObj = sprakobj.locale === valgtSpråkLocale;

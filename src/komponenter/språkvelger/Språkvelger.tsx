@@ -1,6 +1,6 @@
 import * as React from 'react';
-import EngelskFlaggSVG from './EngelskFlaggSVG';
-import NorskFlaggSVG from './NorskFlaggSVG';
+import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
+import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 import { Wrapper, Button, Menu } from 'react-aria-menubutton';
 import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -14,7 +14,9 @@ const Språkvelger: React.FC<any> = () => {
   const handleSelection = (value: JSX.Element[]) => {
     const språk = value[1].props.children;
     const loc = språkObjekter.find((språkobj) => språkobj.tittel === språk);
-    loc ? setLocale(loc.locale) : console.log(loc);
+    if (loc) {
+      setLocale(loc.locale);
+    }
   };
 
   return (
@@ -37,9 +39,9 @@ const Språkvelger: React.FC<any> = () => {
           </Button>
           <Menu className="languageToggle__menu">
             <ul>
-              {språkObjekter.map((språkObj) => (
+              {språkObjekter.map((språkObj) =>
                 renderMenuItem(locale, språkObj)
-              ))}
+              )}
             </ul>
           </Menu>
         </Wrapper>

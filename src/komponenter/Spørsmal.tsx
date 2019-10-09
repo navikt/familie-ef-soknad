@@ -1,8 +1,8 @@
 import React from 'react';
-import { ISporsmal } from '../typer/sporsmal';
+import { ISporsmal } from '../typer/spørsmal';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../språk/LocaleTekst';
-import SpråkVelger from './sprakvelger/Språkvelger';
+import SpråkVelger from './språkvelger/Språkvelger';
 
 interface ISporsmalProps {
   sporsmalListe: ISporsmal[];
@@ -24,7 +24,7 @@ const Sporsmal: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
       <Normaltekst>
         <LocaleTekst tekst={'app.tekst'} />
       </Normaltekst>
-      <SpråkVelger/>
+      <SpråkVelger />
     </div>
   );
 };
