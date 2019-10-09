@@ -28,8 +28,10 @@ const App = () => {
     fetchData();
   }, []);
 
+  const erSpørsmålDataHentet = sporsmal && sporsmal.length;
+
   if (!fetching) {
-    if (!error && sporsmal && sporsmal.length) {
+    if (!error && erSpørsmålDataHentet) {
       return (
         <div className="app">
           <Panel className="innholdspanel">
@@ -40,8 +42,10 @@ const App = () => {
           </Panel>
         </div>
       );
-    } else {
+    } else if (error) {
       return <Feilside />;
+    } else {
+      return <NavFrontendSpinner className="spinner" />;
     }
   } else {
     return <NavFrontendSpinner className="spinner" />;
