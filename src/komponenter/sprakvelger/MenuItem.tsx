@@ -25,4 +25,3 @@ export const renderMenuItem = (valgtSpråkLocale: string, sprakobj: Språk) => {
     )
   );
 };
-

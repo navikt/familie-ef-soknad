@@ -5,7 +5,7 @@ import { Wrapper, Button, Menu } from 'react-aria-menubutton';
 import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { hentListeMedSpråk, hentValgtSpråk } from '../../utils/språk';
-import { renderMenuItem } from './SpråkvelgerItem';
+import { renderMenuItem } from './MenuItem';
 
 const Språkvelger: React.FC<any> = () => {
   const [locale, setLocale] = useSpråkContext();

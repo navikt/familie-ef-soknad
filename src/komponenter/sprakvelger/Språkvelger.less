@@ -3,7 +3,7 @@
   // justify-content: flex-end;
 
   &__wrapper {
-    min-width: 165px;
+    min-width: 135px;
     position: relative;
     outline: none;
 
@@ -36,6 +36,9 @@
       text-align: left;
       width: 65%;
     }
+
+    .nav-frontend-chevron {
+    }
   }
 
   &__menu {
@@ -45,11 +48,8 @@
 
     ul {
       margin: 0;
-      padding: 0;
-      background-color: #ffffff;
-      border-bottom: 1px solid @navGra40;
-      border-left: 1px solid @navGra40;
-      border-right: 1px solid @navGra40;
+      padding-left: 0;
+
       position: absolute;
       width: 100%;
       z-index: 100;
@@ -64,9 +64,13 @@
 
     &__item {
       display: flex;
-      padding: 0.5rem 2rem 0.5rem 1rem;
+      padding: 0.5rem 1rem 0.5rem 1rem;
       width: 100%;
       outline: none;
+      background-color: #ffffff;
+      border-bottom: 1px solid @navGra40;
+      border-left: 1px solid @navGra40;
+      border-right: 1px solid @navGra40;
 
       &:hover {
         outline: none;
