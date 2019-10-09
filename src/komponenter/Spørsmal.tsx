@@ -3,6 +3,7 @@ import { ISpørsmål } from '../typer/spørsmal';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../språk/LocaleTekst';
 import SpråkVelger from './språkvelger/Språkvelger';
+import { Panel } from 'nav-frontend-paneler';
 
 interface ISporsmalProps {
   sporsmalListe: ISpørsmål[];
@@ -15,7 +16,7 @@ const Spørsmål: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
   // eslint-disable-next-line
 
   return (
-    <div>
+    <Panel className="innholdspanel" border>
       <Undertittel>Dynamisk tekst fra Sanity: </Undertittel>
       <Normaltekst>
         <LocaleTekst tekst={sporsmal.tittel} />
@@ -25,7 +26,7 @@ const Spørsmål: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
         <LocaleTekst tekst={'app.tekst'} />
       </Normaltekst>
       <SpråkVelger />
-    </div>
+    </Panel>
   );
 };
 
