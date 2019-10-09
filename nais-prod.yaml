@@ -26,9 +26,9 @@ spec:
     - name: APP_VERSION
       value: '{{version}}'
     - name: APPRES_CMS_URL
-      value: https://appres-q0.nav.no
+      value: https://appres.nav.no
     - name: LOGINSERVICE_URL
-      value: https://loginservice-q.nav.no/login
+      value: https://loginservice.nav.no/login
     - name: UNLEASH_API_URL
       value: https://unleashproxy.nais.oera.no/api/
   resources:
