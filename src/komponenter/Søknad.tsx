@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import sendInnSøknad from '../innsending/api';
+import hentToggles from '../toggles/api';
 import { Panel } from 'nav-frontend-paneler';
 
 import svg from './VeilederSvg';
@@ -22,6 +23,7 @@ const Søknad = () => {
     const søknadsTekst = JSON.stringify({
       text: 'Hei API!',
     });
+    hentToggles();
     sendInnSøknad(søknadsTekst)
       .then((kvittering) =>
         setHocState({
