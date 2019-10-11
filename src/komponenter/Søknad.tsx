@@ -5,7 +5,7 @@ import sendInnSøknad from '../innsending/api';
 import hentToggles from '../toggles/api';
 import { Panel } from 'nav-frontend-paneler';
 
-import svg from './VeilederSvg';
+import svg from '../assets/VeilederSvg';
 
 interface IState {
   status: string;
