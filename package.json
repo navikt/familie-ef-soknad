@@ -21,7 +21,7 @@
     "@types/react-aria-menubutton": "^6.2.2",
     "@types/react-dom": "^16.8.5",
     "@types/react-intl": "^2.3.11",
-    "@types/react-redux": "^7.1.1",
+    "@types/react-redux": "^7.1.4",
     "@types/redux": "^3.6.0",
     "axios": "^0.19.0",
     "babel-polyfill": "^6.26.0",
