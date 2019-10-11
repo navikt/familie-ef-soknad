@@ -62,7 +62,7 @@
     "react": "^16.10.1",
     "react-aria-menubutton": "^6.2.0",
     "react-day-picker": "^7.3.2",
-    "react-dom": "^16.9.0",
+    "react-dom": "^16.10.2",
     "react-intl": "^3.3.1",
     "react-scripts": "3.2.0",
     "webpack": "4.41.0"
