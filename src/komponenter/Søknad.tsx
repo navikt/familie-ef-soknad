@@ -4,7 +4,7 @@ import Veilederpanel from 'nav-frontend-veilederpanel';
 import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 
-import svg from './VeilederSvg';
+import svg from '../assets/VeilederSvg';
 
 interface IState {
   status: string;

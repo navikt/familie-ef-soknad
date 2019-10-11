@@ -1,0 +1,96 @@
+.languageToggle {
+  display: flex;
+  // justify-content: flex-end;
+
+  &__wrapper {
+    min-width: 135px;
+    position: relative;
+    outline: none;
+
+    &:hover {
+      background-color: #ffffff;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    border: 1px solid @navGra40;
+    border-radius: 0.25rem;
+    align-content: center;
+    flex-wrap: nowrap;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px @orangeFocus;
+      border-color: transparent;
+    }
+
+    &__flag {
+      max-height: 18px;
+      padding-right: 0.5rem;
+    }
+
+    &__language {
+      text-align: left;
+      width: 65%;
+    }
+
+    .nav-frontend-chevron {
+    }
+  }
+
+  &__menu {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+
+    ul {
+      margin: 0;
+      padding-left: 0;
+
+      position: absolute;
+      width: 100%;
+      z-index: 100;
+      left: 0;
+      top: 100%;
+    }
+
+    ul li {
+      width: 100%;
+      list-style: none;
+    }
+
+    &__item {
+      display: flex;
+      padding: 0.5rem 1rem 0.5rem 1rem;
+      width: 100%;
+      outline: none;
+      background-color: #ffffff;
+      border-bottom: 1px solid @navGra40;
+      border-left: 1px solid @navGra40;
+      border-right: 1px solid @navGra40;
+
+      &:hover {
+        outline: none;
+        box-shadow: 0 0 0 3px @orangeFocus;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px @orangeFocus;
+      }
+    }
+  }
+
+  @media @mobile {
+    &__wrapper {
+      min-width: 130px;
+    }
+
+    &__button {
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+    }
+  }
+}
