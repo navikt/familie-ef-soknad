@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { IToggleName } from './types';
+import Environment from '../Environment';
 
 const hentToggles = () => {
-  const toggleNames = Object.values(IToggleName).join('&feature=');
   return axios
-    .get(`/api/feature?feature=${toggleNames}&test=hei`)
+    .get(`${Environment().apiUrl}/api/featuretoggle`, {
+      withCredentials: true,
+    })
     .then((response) => {
       return response.data;
     });
