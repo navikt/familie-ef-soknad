@@ -5,9 +5,12 @@ import Spørsmål from './komponenter/Spørsmal';
 import Søknad from './komponenter/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
+import hentToggles from './toggles/api';
+import { ToggleName } from './typer/toggles';
 
 const App = () => {
   const [spørsmal, settSpørsmal] = useState<any>([]);
+  const [toggles, settToggles] = useState<any>({});
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
@@ -22,6 +25,7 @@ const App = () => {
           console.error('Oh no, error occured: ', err);
           settError(true);
         });
+      settToggles(hentToggles());
       settFetching(false);
     };
     fetchData();
@@ -30,7 +34,7 @@ const App = () => {
   const erSpørsmålDataHentet = spørsmal && spørsmal.length;
 
   if (!fetching) {
-    if (!error && erSpørsmålDataHentet) {
+    if (!error && erSpørsmålDataHentet && toggles[ToggleName.vis_innsending]) {
       return (
         <div className="app">
           <Panel className="innholdspanel">
