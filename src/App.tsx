@@ -16,7 +16,6 @@ const App = () => {
       client
         .fetch('*[_type == $type]', { type: 'sporsmal' })
         .then((res: any) => {
-          console.log(res);
           settSpørsmal(res);
         })
         .catch((err: any) => {
