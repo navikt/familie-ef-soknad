@@ -22,6 +22,7 @@ spec:
     path: /metrics
   ingresses:
     - https://familie-ef-soknad.nais.oera.no/
+  webproxy: true
   env:
     - name: APP_VERSION
       value: '{{version}}'
