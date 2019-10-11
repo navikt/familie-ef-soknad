@@ -5,6 +5,7 @@ import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 
 import svg from '../assets/VeilederSvg';
+import hentToggles from '../toggles/api';
 
 interface IState {
   status: string;
@@ -22,6 +23,7 @@ const Søknad = () => {
     const søknadsTekst = JSON.stringify({
       text: 'Hei API!',
     });
+    hentToggles();
     sendInnSøknad(søknadsTekst)
       .then((kvittering) =>
         setHocState({

@@ -13,7 +13,7 @@ const Environment = (): IEnvUrls => {
     };
   } else {
     return {
-      apiUrl: 'http://localhost:8091/',
+      apiUrl: 'http://localhost:8091',
     };
   }
 };
