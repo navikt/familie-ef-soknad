@@ -6,11 +6,11 @@ import Søknad from './komponenter/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
 import hentToggles from './toggles/api';
-import { ToggleName } from './typer/toggles';
+import { ToggleName, Toggles } from './typer/toggles';
 
 const App = () => {
   const [spørsmal, settSpørsmal] = useState<any>([]);
-  const [toggles, settToggles] = useState<any>({});
+  const [toggles, settToggles] = useState<Toggles>({});
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
@@ -22,7 +22,6 @@ const App = () => {
           settSpørsmal(res);
         })
         .catch((err: any) => {
-          console.error('Oh no, error occured: ', err);
           settError(true);
         });
       hentToggles(settToggles);
@@ -34,8 +33,6 @@ const App = () => {
   const erSpørsmålDataHentet = spørsmal && spørsmal.length;
 
   if (!fetching) {
-    console.log('Vis innsending-toggle: ' + toggles[ToggleName.vis_innsending]);
-    console.log('hele ' + JSON.stringify(toggles));
     if (!error && erSpørsmålDataHentet) {
       return (
         <div className="app">
