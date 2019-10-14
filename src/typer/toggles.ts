@@ -3,5 +3,5 @@ export interface Toggles {
 }
 
 export enum ToggleName {
-  vis_innsending = 'familie.ef.soknad.send-inn',
+  vis_innsending = 'familie.ef.soknad.send-soknad',
 }
