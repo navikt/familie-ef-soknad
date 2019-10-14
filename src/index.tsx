@@ -1,8 +1,10 @@
-import React from 'react';
+import 'babel-polyfill';
+
 import './index.less';
-import ReactDOM from 'react-dom';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import App from './App';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
 
 ReactDOM.render(
