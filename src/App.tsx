@@ -38,10 +38,8 @@ const App = () => {
         <div className="app">
           <Panel className="innholdspanel">
             <div>
-              <Søknad />
-              {toggles[ToggleName.vis_innsending] && (
-                <Spørsmål sporsmalListe={spørsmal} steg={1} />
-              )}
+              {toggles[ToggleName.vis_innsending] && <Søknad />}
+              <Spørsmål sporsmalListe={spørsmal} steg={1} />
             </div>
           </Panel>
         </div>
