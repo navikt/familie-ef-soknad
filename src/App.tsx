@@ -6,11 +6,13 @@ import Søknad from './komponenter/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
 import hentToggles from './toggles/api';
+import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './typer/toggles';
 
 const App = () => {
   const [spørsmal, settSpørsmal] = useState<any>([]);
   const [toggles, settToggles] = useState<Toggles>({});
+  const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
@@ -24,6 +26,7 @@ const App = () => {
         .catch((err: any) => {
           settError(true);
         });
+      autentiser(settAutentisering);
       hentToggles(settToggles);
       settFetching(false);
     };
@@ -32,7 +35,7 @@ const App = () => {
 
   const erSpørsmålDataHentet = spørsmal && spørsmal.length;
 
-  if (!fetching) {
+  if (!fetching && autentisert) {
     if (!error && erSpørsmålDataHentet) {
       return (
         <div className="app">
