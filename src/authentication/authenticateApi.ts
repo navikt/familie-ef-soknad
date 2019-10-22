@@ -1,6 +1,5 @@
 import Environment from '../Environment';
 import pingApi from './pingApi';
-import { response } from 'express';
 
 const autentiserBruker = (
   settAutentisering: (autentisering: boolean) => void,
