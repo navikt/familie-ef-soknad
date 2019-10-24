@@ -1,8 +1,8 @@
 import React from 'react';
-import { ISpørsmål } from '../typer/spørsmal';
+import { ISpørsmål } from '../../models/spørsmal';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import LocaleTekst from '../språk/LocaleTekst';
-import SpråkVelger from './språkvelger/Språkvelger';
+import LocaleTekst from '../../language/LocaleTekst';
+import SpråkVelger from '../språkvelger/Språkvelger';
 import { Panel } from 'nav-frontend-paneler';
 
 interface ISporsmalProps {
@@ -21,11 +21,6 @@ const Spørsmål: React.FC<MergedProps> = ({ sporsmalListe, steg }) => {
       <Normaltekst>
         <LocaleTekst tekst={sporsmal.tittel} />
       </Normaltekst>
-      <Undertittel>Statisk tekst fra appen:</Undertittel>
-      <Normaltekst>
-        <LocaleTekst tekst={'app.tekst'} />
-      </Normaltekst>
-      <SpråkVelger />
     </Panel>
   );
 };

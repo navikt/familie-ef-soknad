@@ -1,5 +1,5 @@
-import tekster from '../språk/tekster';
-import { Språk } from '../typer/språk';
+import tekster from '../language/tekster';
+import { Språk } from '../models/språk';
 
 export const getMessages = (locale: string) => {
   if (locale === 'en') {

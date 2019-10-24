@@ -1,10 +1,13 @@
 import React from 'react';
 import { SpørsmålProvider } from './SpørsmålContext';
+import { SvarProvider } from './SvarContext';
 
 const ContextProviders: React.FC = ({ children }) => {
-  console.log('kake');
-  return <h1>cake</h1>;
-  return <SpørsmålProvider>{children}</SpørsmålProvider>;
+  return (
+    <SpørsmålProvider>
+      <SvarProvider>{children}</SvarProvider>
+    </SpørsmålProvider>
+  );
 };
 
 export default ContextProviders;

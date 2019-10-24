@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './komponenter/Feilside';
+import Feilside from './components/feilside/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Spørsmål from './komponenter/Spørsmal';
-import Søknad from './komponenter/Søknad';
+import Spørsmål from './components/spørsmål/Spørsmål';
+import Søknad from './components/søknad/Søknad';
 import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
 import hentToggles from './toggles/api';
-import { ToggleName, Toggles } from './typer/toggles';
+import { ToggleName, Toggles } from './models/toggles';
+import Språkvelger from './components/språkvelger/Språkvelger';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import LocaleTekst from './language/LocaleTekst';
 
 const App = () => {
   const [spørsmal, settSpørsmal] = useState<any>([]);
@@ -36,12 +39,27 @@ const App = () => {
     if (!error && erSpørsmålDataHentet) {
       return (
         <div className="app">
-          <Panel className="innholdspanel">
-            <div>
-              {toggles[ToggleName.vis_innsending] && <Søknad />}
+          <section>
+            <Språkvelger />
+
+            <Undertittel>Statisk tekst fra appen:</Undertittel>
+            <Normaltekst>
+              <LocaleTekst tekst={'app.tekst'} />
+            </Normaltekst>
+            <Panel className="innholdspanel">
+              <div>
+                {toggles[ToggleName.vis_innsending] && <Søknad />}
+                <Spørsmål sporsmalListe={spørsmal} steg={1} />
+              </div>
+            </Panel>
+          </section>
+          <Søknad />
+
+          <section>
+            <Panel>
               <Spørsmål sporsmalListe={spørsmal} steg={1} />
-            </div>
-          </Panel>
+            </Panel>
+          </section>
         </div>
       );
     } else if (error) {

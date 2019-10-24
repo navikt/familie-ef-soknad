@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Språk } from '../../typer/språk';
+import { Språk } from '../../models/språk';
 import { MenuItem } from 'react-aria-menubutton';
 import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
