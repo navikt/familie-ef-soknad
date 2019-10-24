@@ -7,9 +7,8 @@ import { client } from './utils/sanity';
 import { Panel } from 'nav-frontend-paneler';
 import hentToggles from './toggles/api';
 import { ToggleName, Toggles } from './models/toggles';
+import Banner from './components/Banner';
 import Språkvelger from './components/språkvelger/Språkvelger';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import LocaleTekst from './language/LocaleTekst';
 
 const App = () => {
   const [spørsmal, settSpørsmal] = useState<any>([]);
@@ -39,25 +38,14 @@ const App = () => {
     if (!error && erSpørsmålDataHentet) {
       return (
         <div className="app">
+          <Banner tittel={'Enslig forsørger'} />
+          <Språkvelger />
           <section>
-            <Språkvelger />
-
-            <Undertittel>Statisk tekst fra appen:</Undertittel>
-            <Normaltekst>
-              <LocaleTekst tekst={'app.tekst'} />
-            </Normaltekst>
             <Panel className="innholdspanel">
               <div>
                 {toggles[ToggleName.vis_innsending] && <Søknad />}
                 <Spørsmål sporsmalListe={spørsmal} steg={1} />
               </div>
-            </Panel>
-          </section>
-          <Søknad />
-
-          <section>
-            <Panel>
-              <Spørsmål sporsmalListe={spørsmal} steg={1} />
             </Panel>
           </section>
         </div>

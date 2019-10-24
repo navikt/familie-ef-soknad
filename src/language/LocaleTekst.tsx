@@ -20,7 +20,7 @@ const LocaleTekst = ({ tekst }: Props) => {
             </span>
           )
         ) : (
-          <FormattedMessage id={'app.tekst'} />
+          <FormattedMessage id={tekst} />
         )
       ) : (
         <FormattedMessage id={'feil.udefinerttekst'} />

@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Innholdstittel } from 'nav-frontend-typografi';
-
-interface Props {
-  tittel: string;
-}
+import LocaleTekst from '../language/LocaleTekst';
 
 const StyledBanner = styled.header`
   width: 100%;
@@ -16,10 +13,12 @@ const StyledBanner = styled.header`
   justify-content: center;
 `;
 
-const Banner: React.FC<Props> = ({ tittel }) => {
+const Banner: React.FC<any> = () => {
   return (
     <StyledBanner>
-      <Innholdstittel>{tittel}</Innholdstittel>
+      <Innholdstittel>
+        <LocaleTekst tekst={'banner.tittel'} />
+      </Innholdstittel>
     </StyledBanner>
   );
 };

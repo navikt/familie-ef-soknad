@@ -3,6 +3,7 @@
 export default {
   nb: {
     'app.tekst': 'react intl er ganske nice BOKMÅL',
+    'banner.tittel': 'Enslig forsørger',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
@@ -12,6 +13,7 @@ export default {
   },
   nn: {
     'app.tekst': 'react intl er ganske nice NYNORSK',
+    'banner.tittel': 'Einsleg forsørgjer',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.udefinerttekst': 'Idefinert tekst - tom streng (NN)',
@@ -21,6 +23,7 @@ export default {
   },
   en: {
     'app.tekst': 'react intl is pretty nice',
+    'banner.tittel': 'Single parent',
     'feil.ingentekst.sanity': 'No dynamic text found in Sanity.',
     'feil.ingentekst.app': 'No static text found in app.',
     'feil.udefinerttekst': 'Text undefined.',
