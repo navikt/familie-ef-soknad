@@ -5,7 +5,7 @@ const norskeOrdMedÆØÅ = [
   'Språk',
   'SpråkContext',
   'SpråkProvider',
-  'SpråkVelger',
+  'Språkvelger',
   'Spørsmål',
   'SpørsmålContext',
   'SpørsmålProvider',
