@@ -2,8 +2,7 @@ import Environment from '../Environment';
 import pingApi from './pingApi';
 
 const autentiserBruker = (
-  settAutentisering: (autentisering: boolean) => void,
-  context: { useAuthentication: boolean; useToggles: boolean }
+  settAutentisering: (autentisering: boolean) => void
 ) => {
   return pingApi()
     .then((response) => {

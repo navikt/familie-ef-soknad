@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       if (applicationContext.useAuthentication) {
-        autentiser(settAutentisering, applicationContext);
+        autentiser(settAutentisering);
       }
       client
         .fetch('*[_type == $type]', { type: 'sporsmal' })
