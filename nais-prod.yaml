@@ -22,6 +22,7 @@ spec:
     path: /metrics
   ingresses:
     - https://www.nav.no/familie/alene-med-barn/soknad
+    - https://familie-ef-soknad.nais.oera.no/
   webproxy: true
   env:
     - name: APP_VERSION
