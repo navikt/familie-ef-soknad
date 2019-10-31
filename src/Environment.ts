@@ -9,7 +9,7 @@ const Environment = (): IEnvUrls => {
     ) > -1
   ) {
     return {
-      apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://familie-ef-soknad-api.nais.oera-q.local',
     };
   } else if (
     window.location.hostname.indexOf(
@@ -17,7 +17,7 @@ const Environment = (): IEnvUrls => {
     ) > -1
   ) {
     return {
-      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://familie-ef-soknad-api.nais.oera.no',
     };
   } else {
     return {
