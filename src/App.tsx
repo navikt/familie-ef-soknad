@@ -14,7 +14,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: any) => {
-        settError(true);
+        //settError(true);
       });
       settFetching(false);
     };
