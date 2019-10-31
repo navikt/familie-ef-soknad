@@ -9,15 +9,17 @@ import { ToggleName, Toggles } from './typer/toggles';
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
   const [fetching, settFetching] = useState<boolean>(true);
+
   const [error, settError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = () => {
-      hentToggles(settToggles).catch((err: any) => {
-        //settError(true);
+      hentToggles(settToggles).catch((err: Error) => {
+        settError(true);
       });
       settFetching(false);
     };
+    settError(false);
     fetchData();
   }, []);
 
