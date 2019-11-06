@@ -7,20 +7,21 @@ import { Panel } from 'nav-frontend-paneler';
 import hentToggles from './toggles/api';
 import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './typer/toggles';
+import DevelopmentInfoBox from './komponenter/DevelopmentInfoBox';
 
-const useToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
-const useAuthentication = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
+const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
+const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(
-    !useAuthentication
+    !brukAutentisering
   );
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
   const checkToggle = (toggles: Toggles, toggleName: string) => {
-    if (useToggles) {
+    if (brukToggles) {
       return toggles[toggleName];
     }
     return true;
@@ -28,10 +29,10 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      if (useAuthentication) {
+      if (brukAutentisering) {
         autentiser(settAutentisering);
       }
-      if (useToggles) {
+      if (brukToggles) {
         hentToggles(settToggles);
       }
       settFetching(false);
@@ -46,6 +47,7 @@ const App = () => {
         <div className="app">
           <Panel className="innholdspanel">
             <div>
+              <DevelopmentInfoBox />
               {checkToggle(toggles, ToggleName.vis_innsending) ? (
                 <Søknad />
               ) : (
