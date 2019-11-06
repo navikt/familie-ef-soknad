@@ -4,7 +4,7 @@ import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Språkvelger from './components/språkvelger/Språkvelger';
-import Søknad from './components/søknad/Søknad';
+import Søknad from './søknad/Søknad';
 import { ToggleName, Toggles } from './models/toggles';
 
 const App = () => {

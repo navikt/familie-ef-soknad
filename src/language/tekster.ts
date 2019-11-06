@@ -16,7 +16,6 @@ export default {
     'personopplysninger.tittel': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
-    'personopplysninger.manglerinfo': 'Vi mangler litt informasjon',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -39,7 +38,6 @@ export default {
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.infohentet':
       'Informasjonen er hentet fra Folkeregisteret og NAVS register',
-    'personopplysninger.manglerinfo': 'Vi mangler litt informasjon',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.tittel': 'Om deg',
     'språk.bokmål': 'Bokmål',
@@ -64,7 +62,6 @@ export default {
     'personopplysninger.fnr': 'Social security number',
     'personopplysninger.infohentet':
       'The information is provided by the Folkeregister and NAVs register. If the information is incorrect, then you have to make changes to the Folkeregister, derp. ',
-    'personopplysninger.manglerinfo': 'We are missing some information..',
     'personopplysninger.telefonnr': 'Telephone number',
     'personopplysninger.tittel': 'About you',
     'språk.bokmål': 'Bokmål',

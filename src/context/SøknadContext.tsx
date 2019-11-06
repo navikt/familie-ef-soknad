@@ -2,10 +2,9 @@ import { useReducer } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 
-// ----------- MODELS -----------
+// ----------- ACTIONS & TYPES -----------
 export enum SøknadActionType {
   settSøknad = 'settSøknad',
-  settMedlemskap = 'settMedlemskap',
 }
 
 export type IAction = {
@@ -16,24 +15,10 @@ export type IAction = {
 // ----------- REDUCER -----------
 const reducer = (state: ISøknad, action: IAction): ISøknad => {
   const søknad: ISøknad = action.payload;
-  const {
-    søkerOppholderSegINorge,
-    søkerBosattINorgeSisteTreÅr,
-    søkerErFlyktning,
-  } = søknad;
 
   switch (action.type) {
     case SøknadActionType.settSøknad: {
       return { ...søknad };
-    }
-
-    case SøknadActionType.settMedlemskap: {
-      return {
-        ...søknad,
-        søkerOppholderSegINorge: søkerOppholderSegINorge,
-        søkerBosattINorgeSisteTreÅr: søkerBosattINorgeSisteTreÅr,
-        søkerErFlyktning: søkerErFlyktning,
-      };
     }
 
     default:
@@ -62,10 +47,7 @@ const useSøknad = () => {
     dispatch({ type: SøknadActionType.settSøknad, payload: søknad });
   };
 
-  const settMedlemskap = (søknad: ISøknad) => {
-    dispatch({ type: SøknadActionType.settMedlemskap, payload: søknad });
-  };
-  return { søknad, settSøknad, settMedlemskap };
+  return { søknad, settSøknad };
 };
 
 export default createUseContext(useSøknad);

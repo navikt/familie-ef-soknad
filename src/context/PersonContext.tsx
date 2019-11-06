@@ -2,7 +2,7 @@ import React, { createContext, useContext, Reducer, useReducer } from 'react';
 import { IPerson } from '../models/person';
 import mockPerson from '../mock/person.json';
 
-// ACTIONS
+// ----------- ACTIONS & TYPES -----------
 export enum ActionType {
   settPerson = 'settPerson',
 }
@@ -12,7 +12,7 @@ type IAction = {
   payload: IPerson;
 };
 
-// REDUCER - similar to redux
+// ----------- REDUCER -----------
 const initialState: IPerson = mockPerson;
 const reducer: Reducer<IPerson, IAction> = (state, action) => {
   switch (action.type) {
@@ -25,7 +25,7 @@ const reducer: Reducer<IPerson, IAction> = (state, action) => {
   }
 };
 
-// CONTEXT SETUP
+// -----------  CONTEXT  -----------
 const PersonContext = createContext<{
   person: IPerson;
   settPerson: (action: IAction) => void;

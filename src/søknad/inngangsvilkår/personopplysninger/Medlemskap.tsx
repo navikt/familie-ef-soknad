@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from 'react';
-import useSøknadContext from './../../context/SøknadContext';
+import useSøknadContext from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
-import { hentSvar } from '../../utils/søknad';
+import { hentSvar } from '../../../utils/søknad';
 import { injectIntl } from 'react-intl';
-import { ISpørsmål, ISvar } from '../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { SpørsmålOgSvar } from '../../config/MedlemskapConfig';
+import { SpørsmålOgSvar } from '../../../config/MedlemskapConfig';
 
 const Medlemskap: React.FC<any> = ({ intl }) => {
   const medlemskapSpørsmålSvar: ISpørsmål[] = SpørsmålOgSvar;

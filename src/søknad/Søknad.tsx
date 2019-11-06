@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import sendInnSøknad from '../../innsending/api';
+import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
-import svg from '../../assets/VeilederSvg';
-import Medlemskap from '../../inngangsvilkår/personopplysninger/Medlemskap';
-import Personopplysninger from '../../inngangsvilkår/personopplysninger/Personopplysninger';
+import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
+import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 
 interface IState {
   status: string;
   venter: boolean;
 }
 
-//eslint-disable-next-line
 const Søknad = () => {
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
@@ -41,26 +38,7 @@ const Søknad = () => {
   };
 
   return (
-    <>
-      <Panel className={'innholdspanel'}>
-        <Veilederpanel fargetema="advarsel" type={'plakat'} kompakt svg={svg}>
-          <h1>Dette er en testside som er under utvikling</h1>
-          <p>
-            Hvis du kom til denne siden fordi du hadde behov for informasjon om
-            stønader til enslig mor eller far, kan du finne mer informasjon om
-            dette her:
-          </p>
-          <p>
-            <a
-              href={
-                'https://www.nav.no/no/Person/Familie/Enslig+mor+eller+far/Nyttig+a+vite/oversikt-over-st%C3%B8nader-til-enslig-mor-eller-far'
-              }
-            >
-              Oversikt over stønader til enslig mor eller far
-            </a>
-          </p>
-        </Veilederpanel>
-      </Panel>
+    <div className={'søknadsdialog'}>
       <Panel className={'innholdspanel'}>
         <div className={'innholdscontainer personopplysninger'}>
           <Personopplysninger />
@@ -75,7 +53,7 @@ const Søknad = () => {
         </Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
-    </>
+    </div>
   );
 };
 
