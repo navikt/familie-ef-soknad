@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Environment from '../Environment';
 
-const sendInnSøknad = (søknad: string, bearerInput: string) => {
+export const sendInnSøknad = (søknad: string, bearerInput: string) => {
   return axios
     .post(`${Environment().apiUrl}/api/soknad/sendInn`, søknad, {
       headers: {
@@ -14,5 +14,3 @@ const sendInnSøknad = (søknad: string, bearerInput: string) => {
       return response.data;
     });
 };
-
-export default sendInnSøknad;

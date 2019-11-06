@@ -10,9 +10,14 @@ import { ToggleName, Toggles } from './typer/toggles';
 import DevelopmentInfoBox from './komponenter/DevelopmentInfoBox';
 import axios from 'axios';
 import Environment from './Environment';
+import PingPanel from './komponenter/PingPanel';
 
 const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
+
+function er401Feil(error: any) {
+  return error && error.response && error.response.status === 401;
+}
 
 const App = () => {
   axios.interceptors.response.use(
@@ -20,18 +25,14 @@ const App = () => {
       return response;
     },
     (error) => {
-      console.log('Error in intercept');
-      if (!brukAutentisering) {
-        settAutentisering(true);
-        return error;
-      } else if (error.response.status === 401) {
+      if (er401Feil(error) && brukAutentisering) {
         settAutentisering(false);
-        if (error && error.response && 401 === error.response.status) {
-          window.location.href =
-            Environment().loginService + '?redirect=' + window.location.href;
-        }
+        window.location.href =
+          Environment().loginService + '?redirect=' + window.location.href;
+      } else {
+        throw error;
       }
-      return error;
+      throw error;
     }
   );
 
@@ -61,13 +62,10 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    console.log('Use effect! brukAutentisering: ', brukAutentisering);
-
     const fetchData = () => {
       if (brukAutentisering && !autentisert) {
         autentiser(settAutentisering);
       } else {
-        console.log('Sett autentisert = tru på localhost only');
         settAutentisering(true);
       }
     };
@@ -83,7 +81,10 @@ const App = () => {
             <div>
               <DevelopmentInfoBox />
               {checkToggle(toggles, ToggleName.vis_innsending) ? (
-                <Søknad />
+                <>
+                  <Søknad />
+                  <PingPanel />
+                </>
               ) : (
                 <></>
               )}

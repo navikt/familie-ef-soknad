@@ -1,31 +1,28 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { sendInnSøknad } from '../innsending/api';
+import pingApi from '../authentication/pingApi';
 import { Panel } from 'nav-frontend-paneler';
 
-interface IState {
+interface IPingState {
   status: string;
   venter: boolean;
   input: string;
 }
 
-const Søknad = () => {
-  const [hocState, setHocState] = useState<IState>({
-    status: `Søknad kan sendes`,
+const PingPanel = () => {
+  const [hocState, setHocState] = useState<IPingState>({
+    status: `Klar for ping`,
     venter: false,
     input: '',
   });
   const send = () => {
     setHocState({ ...hocState, venter: true });
-    const søknadsTekst = JSON.stringify({
-      text: 'Hei API!',
-    });
 
-    sendInnSøknad(søknadsTekst, hocState.input)
-      .then((kvittering) =>
+    pingApi()
+      .then((svar: { data: any }) =>
         setHocState({
           ...hocState,
-          status: `Vi har kontakt: ${kvittering.text}`,
+          status: `Vi har kontakt: ${svar.data.message}`,
           venter: false,
         })
       )
@@ -40,14 +37,14 @@ const Søknad = () => {
 
   return (
     <>
-      <Panel className="innholdspanel" border>
+      <Panel className="pingpanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
         <Hovedknapp onClick={send} spinner={hocState.venter}>
-          Dette er en testknapp
+          Dette er også en testknapp (Ping)
         </Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
     </>
   );
 };
-export default Søknad;
+export default PingPanel;
