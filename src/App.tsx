@@ -11,6 +11,7 @@ import DevelopmentInfoBox from './komponenter/DevelopmentInfoBox';
 import axios from 'axios';
 import Environment from './Environment';
 import PingPanel from './komponenter/PingPanel';
+import Person from './komponenter/Person';
 
 const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
@@ -30,9 +31,8 @@ const App = () => {
         window.location.href =
           Environment().loginService + '?redirect=' + window.location.href;
       } else {
-        throw error;
+        return error;
       }
-      throw error;
     }
   );
 
@@ -69,7 +69,6 @@ const App = () => {
         settAutentisering(true);
       }
     };
-
     fetchData();
   }, [autentisert]);
 
@@ -84,6 +83,7 @@ const App = () => {
                 <>
                   <Søknad />
                   <PingPanel />
+                  <Person />
                 </>
               ) : (
                 <></>

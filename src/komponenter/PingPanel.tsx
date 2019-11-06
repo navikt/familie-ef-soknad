@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import pingApi from '../authentication/pingApi';
 import { Panel } from 'nav-frontend-paneler';
+import axios from 'axios';
+import Environment from '../Environment';
 
 interface IPingState {
   status: string;
   venter: boolean;
   input: string;
 }
+
+const getToken = () => {
+  return axios.get(`${Environment().apiUrl}/api/getToken`, {
+    withCredentials: true,
+  });
+};
 
 const PingPanel = () => {
   const [hocState, setHocState] = useState<IPingState>({
@@ -18,11 +25,11 @@ const PingPanel = () => {
   const send = () => {
     setHocState({ ...hocState, venter: true });
 
-    pingApi()
+    getToken()
       .then((svar: { data: any }) =>
         setHocState({
           ...hocState,
-          status: `Vi har kontakt: ${svar.data.message}`,
+          status: `Vi har kontakt med innlogget bruker: ${svar.data.message}`,
           venter: false,
         })
       )
