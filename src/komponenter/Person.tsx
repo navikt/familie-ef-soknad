@@ -19,7 +19,6 @@ const getUser = () => {
 
 const Person = () => {
   let [loading, setLoading] = useState(false);
-  //let [bearer, setBearer] = useState('');
   let [person, setPerson] = useState();
   let [barn, setBarn] = useState();
   let [feil, setFeil] = useState('');
