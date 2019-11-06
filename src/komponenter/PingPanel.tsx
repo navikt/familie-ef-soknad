@@ -44,7 +44,7 @@ const PingPanel = () => {
 
   return (
     <>
-      <Panel className="pingpanel" border>
+      <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
         <Hovedknapp onClick={send} spinner={hocState.venter}>
           Dette er også en testknapp (Ping)
