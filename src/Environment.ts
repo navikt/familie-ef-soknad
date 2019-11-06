@@ -3,17 +3,17 @@ interface IEnvUrls {
 }
 
 const Environment = (): IEnvUrls => {
-  if (window.location.hostname.indexOf('nais.oera-q.local') > -1) {
+  if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
-      apiUrl: 'https://familie-ef-soknad-api.nais.oera-q.local',
+      apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
     };
-  } else if (window.location.hostname.indexOf('nais.oera.no') > -1) {
+  } else if (window.location.hostname.indexOf('www') > -1) {
     return {
-      apiUrl: 'https://familie-ef-soknad-api.nais.oera.no',
+      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
     };
   } else {
     return {
-      apiUrl: 'http://localhost:8091',
+      apiUrl: 'http://localhost:8091/familie/alene-med-barn/soknad-api',
     };
   }
 };

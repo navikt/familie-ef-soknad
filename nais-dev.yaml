@@ -21,7 +21,7 @@ spec:
     enabled: true
     path: /metrics
   ingresses:
-    - https://familie-ef-soknad.nais.oera-q.local
+    - https://www-q0.nav.no/familie/alene-med-barn/soknad
   webproxy: true
   env:
     - name: APP_VERSION
