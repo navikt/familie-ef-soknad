@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Veilederpanel from 'nav-frontend-veilederpanel';
 import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
-
-import svg from '../assets/VeilederSvg';
 
 interface IState {
   status: string;
@@ -53,5 +50,4 @@ const Søknad = () => {
     </>
   );
 };
-
 export default Søknad;
