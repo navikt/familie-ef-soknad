@@ -1,53 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './components/feilside/Feilside';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import Spørsmål from './components/spørsmål/Spørsmål';
-import Søknad from './components/søknad/Søknad';
-import { client } from './utils/sanity';
-import { Panel } from 'nav-frontend-paneler';
-import hentToggles from './toggles/api';
-import { ToggleName, Toggles } from './models/toggles';
 import Banner from './components/Banner';
+import Feilside from './components/feilside/Feilside';
+import hentToggles from './toggles/api';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import Språkvelger from './components/språkvelger/Språkvelger';
+import Søknad from './components/søknad/Søknad';
+import { ToggleName, Toggles } from './models/toggles';
 
 const App = () => {
-  const [spørsmal, settSpørsmal] = useState<any>([]);
   const [toggles, settToggles] = useState<Toggles>({});
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchData = () => {
-      client
-        .fetch('*[_type == $type]', { type: 'sporsmal' })
-        .then((res: any) => {
-          settSpørsmal(res);
-        })
-        .catch((err: any) => {
-          settError(true);
-        });
       hentToggles(settToggles);
       settFetching(false);
     };
+    settError(false);
     fetchData();
   }, []);
 
-  const erSpørsmålDataHentet = spørsmal && spørsmal.length;
-
   if (!fetching) {
-    if (!error && erSpørsmålDataHentet) {
+    if (!error) {
       return (
         <div className="app">
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
-          <section>
-            <Panel className="innholdspanel">
-              <div>
-                {toggles[ToggleName.vis_innsending] && <Søknad />}
-                <Spørsmål sporsmalListe={spørsmal} steg={1} />
-              </div>
-            </Panel>
-          </section>
+          <Søknad />
+          {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
     } else if (error) {

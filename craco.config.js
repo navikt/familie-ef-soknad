@@ -1,6 +1,7 @@
 const CracoLessPlugin = require('craco-less');
 const norskeOrdMedÆØÅ = [
   'Søknad',
+  'ISøknad',
   'søknad',
   'Språk',
   'SpråkContext',

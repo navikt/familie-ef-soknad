@@ -3,8 +3,9 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import sendInnSøknad from '../../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
-
 import svg from '../../assets/VeilederSvg';
+import Medlemskap from '../../inngangsvilkår/personopplysninger/Medlemskap';
+import Personopplysninger from '../../inngangsvilkår/personopplysninger/Personopplysninger';
 
 interface IState {
   status: string;
@@ -41,23 +42,31 @@ const Søknad = () => {
 
   return (
     <>
-      <Veilederpanel fargetema="advarsel" type={'plakat'} kompakt svg={svg}>
-        <h1>Dette er en testside som er under utvikling</h1>
-        <p>
-          Hvis du kom til denne siden fordi du hadde behov for informasjon om
-          stønader til enslig mor eller far, kan du finne mer informasjon om
-          dette her:
-        </p>
-        <p>
-          <a
-            href={
-              'https://www.nav.no/no/Person/Familie/Enslig+mor+eller+far/Nyttig+a+vite/oversikt-over-st%C3%B8nader-til-enslig-mor-eller-far'
-            }
-          >
-            Oversikt over stønader til enslig mor eller far
-          </a>
-        </p>
-      </Veilederpanel>
+      <Panel className={'innholdspanel'}>
+        <Veilederpanel fargetema="advarsel" type={'plakat'} kompakt svg={svg}>
+          <h1>Dette er en testside som er under utvikling</h1>
+          <p>
+            Hvis du kom til denne siden fordi du hadde behov for informasjon om
+            stønader til enslig mor eller far, kan du finne mer informasjon om
+            dette her:
+          </p>
+          <p>
+            <a
+              href={
+                'https://www.nav.no/no/Person/Familie/Enslig+mor+eller+far/Nyttig+a+vite/oversikt-over-st%C3%B8nader-til-enslig-mor-eller-far'
+              }
+            >
+              Oversikt over stønader til enslig mor eller far
+            </a>
+          </p>
+        </Veilederpanel>
+      </Panel>
+      <Panel className={'innholdspanel'}>
+        <div className={'innholdscontainer personopplysninger'}>
+          <Personopplysninger />
+          <Medlemskap />
+        </div>
+      </Panel>
       <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
 

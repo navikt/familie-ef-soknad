@@ -1,12 +1,12 @@
 import React from 'react';
-import { SpørsmålProvider } from './SpørsmålContext';
-import { SvarProvider } from './SvarContext';
+import useSøknadContext from './SøknadContext';
+import { PersonProvider } from './PersonContext';
 
 const ContextProviders: React.FC = ({ children }) => {
   return (
-    <SpørsmålProvider>
-      <SvarProvider>{children}</SvarProvider>
-    </SpørsmålProvider>
+    <PersonProvider>
+      <useSøknadContext.Provider>{children}</useSøknadContext.Provider>
+    </PersonProvider>
   );
 };
 

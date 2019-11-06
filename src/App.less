@@ -13,3 +13,51 @@ body {
     margin-bottom: 2rem;
   }
 }
+
+.innholdspanel {
+  > * {
+    margin-bottom: 2rem;
+  }
+}
+
+.innholdscontainer {
+  padding: 2rem;
+
+  @media @mobile {
+    padding: 0;
+  }
+}
+
+.spørsmålsgruppe {
+  padding-bottom: 2rem;
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.panel {
+  width: 800px;
+
+  @media @tablet {
+    width: 100%;
+  }
+
+  @media @mobile {
+    width: 100%;
+  }
+}
+
+.gridSvar {
+  .skjema__fieldset {
+    .inputPanelGruppe__inner {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: min-content;
+      grid-gap: 1rem;
+
+      @media @mobile {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

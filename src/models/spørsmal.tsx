@@ -1,15 +1,23 @@
-import { LocaleString } from './språk';
+export enum IKategori {
+  Medlemskap = 'medlemskap',
+  Barn = 'barn',
+}
+
+export enum Medlemskap {
+  søkerBosattINorgeTreSisteÅr = 'søkerBosattINorgeTreSisteÅr',
+  søkerOppholderSegINorge = 'søkerOppholderSegINorge',
+  søkerErFlyktning = 'søkerErFlyktning',
+}
 
 export interface ISpørsmål {
-  sporsmal_id: number;
-  tittel: LocaleString;
+  spørsmål_id: string;
+  tekstid: string;
+  kategori: IKategori;
+  svaralternativer: ISvar[];
 }
 
 export interface ISvar {
-  _id: string;
-  goto: number;
-  tekst: string;
-  done?: boolean;
-  done_complete?: boolean;
+  value: string;
+  tekstid: string;
   checked?: boolean;
 }

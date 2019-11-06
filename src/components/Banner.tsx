@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Sidetittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../language/LocaleTekst';
 
 const StyledBanner = styled.header`
@@ -16,9 +16,9 @@ const StyledBanner = styled.header`
 const Banner: React.FC<any> = () => {
   return (
     <StyledBanner>
-      <Innholdstittel>
+      <Sidetittel>
         <LocaleTekst tekst={'banner.tittel'} />
-      </Innholdstittel>
+      </Sidetittel>
     </StyledBanner>
   );
 };
