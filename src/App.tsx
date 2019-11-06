@@ -8,11 +8,33 @@ import hentToggles from './toggles/api';
 import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './typer/toggles';
 import DevelopmentInfoBox from './komponenter/DevelopmentInfoBox';
+import axios from 'axios';
+import Environment from './Environment';
 
 const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
 
 const App = () => {
+  axios.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      console.log('Error in intercept');
+      if (!brukAutentisering) {
+        settAutentisering(true);
+        return error;
+      } else if (error.response.status === 401) {
+        settAutentisering(false);
+        if (error && error.response && 401 === error.response.status) {
+          window.location.href =
+            Environment().loginService + '?redirect=' + window.location.href;
+        }
+      }
+      return error;
+    }
+  );
+
   const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(
     !brukAutentisering
@@ -29,9 +51,6 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      if (brukAutentisering) {
-        autentiser(settAutentisering);
-      }
       if (brukToggles) {
         hentToggles(settToggles);
       }
@@ -40,6 +59,21 @@ const App = () => {
     settError(false);
     fetchData();
   }, []);
+
+  useEffect(() => {
+    console.log('Use effect! brukAutentisering: ', brukAutentisering);
+
+    const fetchData = () => {
+      if (brukAutentisering && !autentisert) {
+        autentiser(settAutentisering);
+      } else {
+        console.log('Sett autentisert = tru på localhost only');
+        settAutentisering(true);
+      }
+    };
+
+    fetchData();
+  }, [autentisert]);
 
   if (!fetching && autentisert) {
     if (!error) {
