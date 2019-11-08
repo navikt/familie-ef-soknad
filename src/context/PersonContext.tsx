@@ -1,34 +1,37 @@
-import React, { createContext, useContext, Reducer, useReducer } from 'react';
+import React, { createContext, useContext, useReducer } from 'react';
 import { IPerson } from '../models/person';
 import mockPerson from '../mock/person.json';
 
 // ----------- ACTIONS & TYPES -----------
-export enum ActionType {
-  settPerson = 'settPerson',
+export enum PersonActionTypes {
+  HENT_PERSON = 'HENT_PERSON',
 }
 
-type IAction = {
-  type: ActionType;
+type IPersonAction = {
+  type: PersonActionTypes;
   payload: IPerson;
 };
 
 // ----------- REDUCER -----------
-const initialState: IPerson = mockPerson;
-const reducer: Reducer<IPerson, IAction> = (state, action) => {
+const reducer = (state: IPerson, action: IPersonAction) => {
+  const person: IPerson = action.payload;
+
   switch (action.type) {
-    case ActionType.settPerson: {
-      return { ...action.payload };
+    case PersonActionTypes.HENT_PERSON: {
+      return { ...person };
     }
 
     default:
-      throw new Error();
+      return state;
   }
 };
 
 // -----------  CONTEXT  -----------
+const initialState: IPerson = mockPerson;
+
 const PersonContext = createContext<{
   person: IPerson;
-  settPerson: (action: IAction) => void;
+  settPerson: (action: IPersonAction) => void;
 }>({
   person: initialState,
   settPerson: () => {},

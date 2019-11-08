@@ -1,6 +1,7 @@
 import { useReducer } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
+import mockPerson from '../mock/person.json';
 
 // ----------- ACTIONS & TYPES -----------
 export enum SøknadActionType {
@@ -28,12 +29,7 @@ const reducer = (state: ISøknad, action: IAction): ISøknad => {
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
-  fnr: '220384 12345',
-  fornavn: 'Lise',
-  etternavn: 'Nordmann',
-  statsborgerskap: 'Norsk',
-  adresse: 'Gateveien 1, 1234',
-  telefonnr: '',
+  person: mockPerson,
   søkerOppholderSegINorge: undefined,
   søkerBosattINorgeSisteTreÅr: undefined,
   søkerErFlyktning: undefined,

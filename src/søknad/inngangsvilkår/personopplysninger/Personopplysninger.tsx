@@ -9,6 +9,7 @@ import { injectIntl } from 'react-intl';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
+  const { søker } = person;
   const { søknad, settSøknad } = useSøknadContext();
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
     undefined
@@ -18,7 +19,14 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
     const telefonnr = e.currentTarget.value;
     if (telefonnr.length >= 8) {
       settFeilTelefonnr(undefined);
-      settSøknad({ ...søknad, telefonnr: telefonnr });
+
+      settSøknad({
+        ...søknad,
+        person: {
+          ...søknad.person,
+          søker: { ...søker, mobiltelefon: telefonnr },
+        },
+      });
     } else {
       settFeilTelefonnr('Feil format');
     }
@@ -34,11 +42,11 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
       <Element>
         <LocaleTekst tekst={'personopplysninger.fnr'} />
       </Element>
-      <Normaltekst>{person.fnr}</Normaltekst>
+      <Normaltekst>{søker.fnr}</Normaltekst>
       <Element>
         <LocaleTekst tekst={'personopplysninger.adresse'} />
       </Element>
-      <Normaltekst>{person.adresse}</Normaltekst>
+      <Normaltekst>{søker.adresse.adresse}</Normaltekst>
 
       <Input
         key={'tlf'}

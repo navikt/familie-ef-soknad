@@ -1,5 +1,7 @@
 import { ISpørsmål, ISvar } from '../models/spørsmal';
 import { ISøknad } from '../models/søknad';
+import Environment from '../Environment';
+import axios from 'axios';
 
 export const hentSvar = (
   spørsmål: ISpørsmål,
@@ -12,4 +14,17 @@ export const hentSvar = (
     }
   }
   return false;
+};
+
+export const hentPersonData = () => {
+  return axios
+    .get(`${Environment().apiUrl}/api/oppslag/sokerinfo`, {
+      headers: {
+        'content-type': 'application/json;charset=utf-8',
+      },
+      withCredentials: true,
+    })
+    .then((response: { data: any }) => {
+      return response.data;
+    });
 };

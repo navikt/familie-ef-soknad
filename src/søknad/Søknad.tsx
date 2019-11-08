@@ -4,6 +4,8 @@ import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
+import useSøknadContext from '../context/SøknadContext';
+import { usePersonContext } from '../context/PersonContext';
 
 interface IState {
   status: string;
@@ -11,10 +13,14 @@ interface IState {
 }
 
 const Søknad = () => {
+  const { søknad, settSøknad } = useSøknadContext();
+  const { person } = usePersonContext();
+
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
     venter: false,
   });
+
   const send = () => {
     setHocState({ ...hocState, venter: true });
     const søknadsTekst = JSON.stringify({
@@ -49,7 +55,7 @@ const Søknad = () => {
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
 
         <Hovedknapp onClick={send} spinner={hocState.venter}>
-          Dette er en testknapp
+          Send Søknad
         </Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
