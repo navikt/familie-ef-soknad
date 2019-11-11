@@ -5,7 +5,6 @@ import { Panel } from 'nav-frontend-paneler';
 import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
-import { usePersonContext } from '../context/PersonContext';
 
 interface IState {
   status: string;
@@ -13,8 +12,7 @@ interface IState {
 }
 
 const Søknad = () => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const { person } = usePersonContext();
+  const { søknad } = useSøknadContext();
 
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
@@ -24,7 +22,7 @@ const Søknad = () => {
   const send = () => {
     setHocState({ ...hocState, venter: true });
     const søknadsTekst = JSON.stringify({
-      text: 'Hei API!',
+      text: JSON.stringify(søknad),
     });
     sendInnSøknad(søknadsTekst)
       .then((kvittering) =>

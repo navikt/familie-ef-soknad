@@ -39,6 +39,7 @@ const App = () => {
 
     settError(false);
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   if (!fetching) {
@@ -47,6 +48,7 @@ const App = () => {
         <div className="app">
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
+          <Søknad />
           {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
