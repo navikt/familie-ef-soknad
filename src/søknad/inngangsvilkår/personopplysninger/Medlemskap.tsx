@@ -22,7 +22,6 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
     const medlemskapKey = medlemskapKeys.find((key: string) => {
       return spørsmål.spørsmål_id === key;
     });
-    console.log('svar:', svar);
     medlemskapKey !== undefined &&
       settSøknad({ ...søknad, [medlemskapKey]: svar === ISvar.JA });
   };
@@ -36,17 +35,11 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
             <div className={'radioknapp__wrapper'}>
               {spørsmål.svaralternativer.map((svar: ISvar) => {
                 const svarISøknad = hentSvar(spørsmål, svar, søknad);
-                console.log(
-                  spørsmål.spørsmål_id,
-                  svar,
-                  'checked:',
-                  svarISøknad
-                );
                 return (
                   <div key={svar} className={'radioknapp__item'}>
                     <RadioPanel
                       key={svar}
-                      name={svar}
+                      name={spørsmål.spørsmål_id + svar}
                       label={intl.formatMessage({
                         id: hentTekstidTilJaNeiSvar(svar),
                       })}
