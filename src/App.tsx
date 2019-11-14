@@ -9,6 +9,7 @@ import { ToggleName, Toggles } from './models/toggles';
 import { hentPersonData } from './utils/søknad';
 import useSøknadContext from './context/SøknadContext';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import TestsideInformasjon from './components/TestsideInformasjon';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -47,6 +48,7 @@ const App = () => {
         <div className="app">
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
+          <TestsideInformasjon />
           {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
