@@ -40,7 +40,8 @@ const App = () => {
 
     settError(false);
     fetchData();
-  }, [person, settPerson, søknad, settSøknad]);
+    // eslint-disable-next-line
+  }, []);
 
   if (!fetching) {
     if (!error) {
