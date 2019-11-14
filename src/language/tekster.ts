@@ -1,0 +1,73 @@
+// tslint:disable:max-line-length
+export default {
+  nb: {
+    'app.tekst': 'react intl er ganske nice BOKMÅL',
+    'banner.tittel': 'Enslig forsørger',
+    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
+    'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
+    'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
+    'medlemskap.spm.bosatt.hjelpetekst':
+      'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
+    'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
+    'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+    'personopplysninger.infohentet':
+      'Informasjonen er hentet fra Folkeregisteret og NAVS register. Dersom informasjonen skulle være feil, så må du endre de i Folkeregisteret',
+    'personopplysninger.tittel': 'Om deg',
+    'personopplysninger.adresse': 'Adresse',
+    'personopplysninger.fnr': 'Fødselsnr',
+    'personopplysninger.telefonnr': 'Telefonnummer',
+    'språk.bokmål': 'Bokmål',
+    'språk.engelsk': 'English',
+    'språk.nynorsk': 'Nynorsk',
+    'svar.ja': 'Ja',
+    'svar.nei': 'Nei',
+  },
+  nn: {
+    'app.tekst': 'react intl er ganske nice NYNORSK',
+    'banner.tittel': 'Einsleg forsørgjer',
+    'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
+    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
+    'feil.udefinerttekst': 'Idefinert tekst - tom streng (NN)',
+    'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
+    'medlemskap.spm.bosatt.hjelpetekst':
+      'Hvis du har studert i utlandet med støtte fra Lånekassen i denne perioden, regnes du som bosatt i Norge.',
+    'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
+    'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+    'personopplysninger.adresse': 'Adresse',
+    'personopplysninger.fnr': 'Fødselsnr',
+    'personopplysninger.infohentet':
+      'Informasjonen er hentet fra Folkeregisteret og NAVS register',
+    'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.tittel': 'Om deg',
+    'språk.bokmål': 'Bokmål',
+    'språk.engelsk': 'English',
+    'språk.nynorsk': 'Nynorsk',
+    'svar.ja': 'Ja',
+    'svar.nei': 'Nei',
+  },
+  en: {
+    'app.tekst': 'react intl is pretty nice',
+    'banner.tittel': 'Single parent',
+    'feil.ingentekst.app': 'No static text found in app.',
+    'feil.ingentekst.sanity': 'No dynamic text found in Sanity.',
+    'feil.udefinerttekst': 'Text undefined.',
+    'medlemskap.spm.bosatt':
+      'Have you been staying in Norway the last three years?',
+    'medlemskap.spm.bosatt.hjelpetekst':
+      'If you have been studying overseas and are receiving support from Lånekassen in this period, then you are considered as staying in Norway.',
+    'medlemskap.spm.flyktning': 'Are you registered as a refugee at UDI?',
+    'medlemskap.spm.opphold': 'Are you currently staying in Norway?',
+    'personopplysninger.adresse': 'Address',
+    'personopplysninger.fnr': 'Social security number',
+    'personopplysninger.infohentet':
+      'The information is provided by the Folkeregister and NAVs register. If the information is incorrect, then you have to make changes to the Folkeregister, derp. ',
+    'personopplysninger.telefonnr': 'Telephone number',
+    'personopplysninger.tittel': 'About you',
+    'språk.bokmål': 'Bokmål',
+    'språk.engelsk': 'English',
+    'språk.nynorsk': 'Nynorsk',
+    'svar.ja': 'Yes',
+    'svar.nei': 'No',
+  },
+};

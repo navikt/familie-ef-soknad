@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocaleString } from '../typer/språk';
+import { LocaleString } from '../models/språk';
 import { FormattedMessage } from 'react-intl';
 import { useSpråkContext } from '../context/SpråkContext';
 
@@ -20,7 +20,7 @@ const LocaleTekst = ({ tekst }: Props) => {
             </span>
           )
         ) : (
-          <FormattedMessage id={'app.tekst'} />
+          <FormattedMessage id={tekst} />
         )
       ) : (
         <FormattedMessage id={'feil.udefinerttekst'} />

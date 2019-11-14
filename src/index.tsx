@@ -6,10 +6,13 @@ import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
+import ContextProviders from './context/ContextProviders';
 
 ReactDOM.render(
   <SpråkProvider>
-    <App />
+    <ContextProviders>
+      <App />
+    </ContextProviders>
   </SpråkProvider>,
   document.getElementById('root')
 );

@@ -1,35 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './komponenter/Feilside';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import Søknad from './komponenter/Søknad';
-import { Panel } from 'nav-frontend-paneler';
+import Banner from './components/Banner';
+import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
-import { ToggleName, Toggles } from './typer/toggles';
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import Språkvelger from './components/språkvelger/Språkvelger';
+import Søknad from './søknad/Søknad';
+import { ToggleName, Toggles } from './models/toggles';
+import { hentPersonData } from './utils/søknad';
+import useSøknadContext from './context/SøknadContext';
+import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import TestsideInformasjon from './components/TestsideInformasjon';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
   const [fetching, settFetching] = useState<boolean>(true);
-
   const [error, settError] = useState<boolean>(false);
+  const { person, settPerson } = usePersonContext();
+  const { søknad, settSøknad } = useSøknadContext();
 
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(true);
+        // settError(true);
       });
+      const fetchPersonData = () => {
+        hentPersonData().then((response) => {
+          settPerson({
+            type: PersonActionTypes.HENT_PERSON,
+            payload: response,
+          });
+          settSøknad({ ...søknad, person: response });
+        });
+      };
+      if (person) {
+        fetchPersonData();
+      }
       settFetching(false);
     };
+
     settError(false);
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   if (!fetching) {
     if (!error) {
       return (
         <div className="app">
-          <Panel className="innholdspanel">
-            <div>{toggles[ToggleName.vis_innsending] && <Søknad />}</div>
-          </Panel>
+          <Banner tittel={'Enslig forsørger'} />
+          <Språkvelger />
+          <TestsideInformasjon />
+          {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
     } else if (error) {
