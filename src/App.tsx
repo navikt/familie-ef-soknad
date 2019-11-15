@@ -53,10 +53,8 @@ const App = () => {
       fetchPersonData();
       settFetching(false);
     };
-    settError(false);
     fetchData();
-    // eslint-disable-next-line
-  }, []);
+  });
 
   useEffect(() => {
     settSøknad({ ...søknad, person: person });
