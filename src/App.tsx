@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios, { AxiosError } from 'axios';
 import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
 import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './models/toggles';
-import Environment from './Environment';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Språkvelger from './components/språkvelger/Språkvelger';
 import Søknad from './søknad/Søknad';
@@ -13,46 +11,29 @@ import { hentPersonData } from './utils/søknad';
 import useSøknadContext from './context/SøknadContext';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import TestsideInformasjon from './components/TestsideInformasjon';
+import { authInterceptor } from './utils/auth';
+import { checkToggle } from './utils/toggle';
 
 const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
 
-function er401Feil(error: any) {
-  return error && error.response && error.response.status === 401;
-}
-
 const App = () => {
-  axios.interceptors.response.use(
-    (response) => {
-      return response;
-    },
-    (error: AxiosError) => {
-      if (er401Feil(error) && brukAutentisering) {
-        settAutentisering(false);
-        window.location.href =
-          Environment().loginService + '?redirect=' + window.location.href;
-      } else {
-        return error;
-      }
-    }
-  );
-
   const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(
     !brukAutentisering
   );
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
-
   const { person, settPerson } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
 
-  const checkToggle = (toggles: Toggles, toggleName: string) => {
-    if (brukToggles) {
-      return toggles[toggleName];
+  authInterceptor(brukAutentisering, settAutentisering);
+
+  useEffect(() => {
+    if (brukAutentisering && !autentisert) {
+      autentiser(settAutentisering);
     }
-    return true;
-  };
+  }, [autentisert]);
 
   useEffect(() => {
     const fetchData = () => {
@@ -80,12 +61,6 @@ const App = () => {
     // eslint-disable-next-line
   }, [person]);
 
-  useEffect(() => {
-    if (brukAutentisering && !autentisert) {
-      autentiser(settAutentisering);
-    }
-  }, [autentisert]);
-
   if (!fetching && autentisert) {
     if (!error) {
       return (
@@ -93,7 +68,7 @@ const App = () => {
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
           <TestsideInformasjon />
-          {checkToggle(toggles, ToggleName.vis_innsending) ? <Søknad /> : <></>}
+          {checkToggle(toggles, ToggleName.vis_innsending) && <Søknad />}
         </div>
       );
     } else if (error) {
