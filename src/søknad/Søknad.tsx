@@ -1,27 +1,31 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { sendInnSøknad } from '../innsending/api';
+import sendInnSøknad from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
+import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
+import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
+import useSøknadContext from '../context/SøknadContext';
 
 interface IState {
   status: string;
   venter: boolean;
-  input: string;
 }
 
+//eslint-disable-next-line
 const Søknad = () => {
+  const { søknad } = useSøknadContext();
+
   const [hocState, setHocState] = useState<IState>({
     status: `Søknad kan sendes`,
     venter: false,
-    input: '',
   });
+
   const send = () => {
     setHocState({ ...hocState, venter: true });
     const søknadsTekst = JSON.stringify({
-      text: 'Hei API!',
+      text: JSON.stringify(søknad),
     });
-
-    sendInnSøknad(søknadsTekst, hocState.input)
+    sendInnSøknad(søknadsTekst)
       .then((kvittering) =>
         setHocState({
           ...hocState,
@@ -39,15 +43,23 @@ const Søknad = () => {
   };
 
   return (
-    <>
+    <div className={'søknadsdialog'}>
+      <Panel className={'innholdspanel'}>
+        <div className={'innholdscontainer personopplysninger'}>
+          <Personopplysninger />
+          <Medlemskap />
+        </div>
+      </Panel>
       <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
+
         <Hovedknapp onClick={send} spinner={hocState.venter}>
-          Dette er en testknapp
+          Send Søknad
         </Hovedknapp>
         <p>Status: {hocState.status}</p>
       </Panel>
-    </>
+    </div>
   );
 };
+
 export default Søknad;

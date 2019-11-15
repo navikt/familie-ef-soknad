@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './komponenter/Feilside';
-import NavFrontendSpinner from 'nav-frontend-spinner';
-import Søknad from './komponenter/Søknad';
-
-import { Panel } from 'nav-frontend-paneler';
+import Banner from './components/Banner';
+import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
 import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './typer/toggles';
@@ -15,6 +12,15 @@ import Person from './komponenter/Person';
 
 const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
+
+import NavFrontendSpinner from 'nav-frontend-spinner';
+import Språkvelger from './components/språkvelger/Språkvelger';
+import Søknad from './søknad/Søknad';
+import { ToggleName, Toggles } from './models/toggles';
+import { hentPersonData } from './utils/søknad';
+import useSøknadContext from './context/SøknadContext';
+import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import TestsideInformasjon from './components/TestsideInformasjon';
 
 function er401Feil(error: any) {
   return error && error.response && error.response.status === 401;
@@ -42,6 +48,8 @@ const App = () => {
   );
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+  const { person, settPerson } = usePersonContext();
+  const { søknad, settSøknad } = useSøknadContext();
 
   const checkToggle = (toggles: Toggles, toggleName: string) => {
     if (brukToggles) {
@@ -55,10 +63,22 @@ const App = () => {
       if (brukToggles) {
         hentToggles(settToggles);
       }
+      const fetchPersonData = () => {
+        hentPersonData().then((response) => {
+          settPerson({
+            type: PersonActionTypes.HENT_PERSON,
+            payload: response,
+          });
+          settSøknad({ ...søknad, person: response });
+        });
+      };
+      fetchPersonData();
       settFetching(false);
     };
+
     settError(false);
     fetchData();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -76,20 +96,10 @@ const App = () => {
     if (!error) {
       return (
         <div className="app">
-          <Panel className="innholdspanel">
-            <div>
-              <DevelopmentInfoBox />
-              {checkToggle(toggles, ToggleName.vis_innsending) ? (
-                <>
-                  <Søknad />
-                  <PingPanel />
-                  <Person />
-                </>
-              ) : (
-                <></>
-              )}
-            </div>
-          </Panel>
+          <Banner tittel={'Enslig forsørger'} />
+          <Språkvelger />
+          <TestsideInformasjon />
+          {checkToggle(toggles, ToggleName.vis_innsending) ? <Søknad /> : <></>}
         </div>
       );
     } else if (error) {

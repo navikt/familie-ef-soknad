@@ -11,7 +11,9 @@ const SpråkProvider: React.FC = ({ children }) => {
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>
-      <IntlProvider locale={locale} messages={tekster}>{children}</IntlProvider>
+      <IntlProvider locale={locale} messages={tekster}>
+        {children}
+      </IntlProvider>
     </SpråkContext.Provider>
   );
 };
