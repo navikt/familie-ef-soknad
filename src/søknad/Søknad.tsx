@@ -5,6 +5,7 @@ import { Panel } from 'nav-frontend-paneler';
 import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
+import Sivilstatus from './inngangsvilkår/personopplysninger/Sivilstatus';
 
 interface IState {
   status: string;
@@ -46,6 +47,7 @@ const Søknad = () => {
       <Panel className={'innholdspanel'}>
         <div className={'innholdscontainer personopplysninger'}>
           <Personopplysninger />
+          <Sivilstatus />
           <Medlemskap />
         </div>
       </Panel>

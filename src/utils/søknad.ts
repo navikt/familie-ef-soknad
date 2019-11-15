@@ -1,24 +1,6 @@
-import { ISpørsmål, ISvar } from '../models/spørsmal';
-import { ISøknad } from '../models/søknad';
 import Environment from '../Environment';
 import axios from 'axios';
-
-export const hentSvar = (
-  spørsmål: ISpørsmål,
-  svar: ISvar,
-  søknadobj: ISøknad
-) => {
-  for (const [key, value] of Object.entries(søknadobj)) {
-    if (key === spørsmål.spørsmål_id && value !== undefined) {
-      return (value && svar === ISvar.JA) || (!value && svar === ISvar.NEI);
-    }
-  }
-  return false;
-};
-
-export const hentTekstidTilJaNeiSvar = (svar: ISvar) => {
-  return svar === ISvar.JA ? 'svar.ja' : 'svar.nei';
-};
+import { IPerson, ISivilstand } from '../models/person';
 
 export const hentPersonData = () => {
   return axios
@@ -31,4 +13,17 @@ export const hentPersonData = () => {
     .then((response: { data: any }) => {
       return response.data;
     });
+};
+
+export const hentSivilstatus = (statuskode: string) => {
+  switch (statuskode) {
+    case 'GIFT':
+      return 'Gift';
+
+    case 'UGIF':
+      return 'Ugift';
+
+    default:
+      return 'Annen sivilstatus enn GIFT og UGIF';
+  }
 };

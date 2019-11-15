@@ -1,7 +1,10 @@
 import React, { SyntheticEvent } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
-import { hentSvar, hentTekstidTilJaNeiSvar } from '../../../utils/søknad';
+import {
+  hentSvar,
+  hentTekstidTilJaNeiSvar,
+} from '../../../utils/spørsmålogsvar';
 import { injectIntl } from 'react-intl';
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import { RadioPanel } from 'nav-frontend-skjema';
