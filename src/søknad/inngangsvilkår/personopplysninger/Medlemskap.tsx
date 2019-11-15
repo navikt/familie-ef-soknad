@@ -27,7 +27,7 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
   };
 
   return (
-    <section>
+    <section className={'seksjon'}>
       {medlemskapSpørsmålSvar.map((spørsmål: ISpørsmål) => {
         return (
           <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">

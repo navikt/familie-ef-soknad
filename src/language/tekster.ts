@@ -12,7 +12,7 @@ export default {
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'personopplysninger.infohentet':
-      'Informasjonen er hentet fra Folkeregisteret og NAVS register. Dersom informasjonen skulle være feil, så må du endre de i Folkeregisteret',
+      'Informasjonen er hentet fra Folkeregisteret og NAVS register.',
     'personopplysninger.tittel': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
@@ -61,7 +61,7 @@ export default {
     'personopplysninger.adresse': 'Address',
     'personopplysninger.fnr': 'Social security number',
     'personopplysninger.infohentet':
-      'The information is provided by the Folkeregister and NAVs register. If the information is incorrect, then you have to make changes to the Folkeregister, derp. ',
+      'The information is provided by the Folkeregister and NAVs register.',
     'personopplysninger.telefonnr': 'Telephone number',
     'personopplysninger.tittel': 'About you',
     'språk.bokmål': 'Bokmål',
