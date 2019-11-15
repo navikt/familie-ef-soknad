@@ -29,7 +29,8 @@ const App = () => {
     (error: AxiosError) => {
       if (er401Feil(error) && brukAutentisering) {
         settAutentisering(false);
-        window.location.href = Environment().loginService; //+ '?redirect=' + window.location.href;
+        window.location.href =
+          Environment().loginService + '?redirect=' + window.location.href;
       } else {
         return error;
       }
