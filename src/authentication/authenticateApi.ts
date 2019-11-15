@@ -1,23 +1,13 @@
-import Environment from '../Environment';
 import pingApi from './pingApi';
 
-const autentiserBruker = (
+const verifiserAtBrukerErAutentisert = (
   settAutentisering: (autentisering: boolean) => void
 ) => {
-  return pingApi()
-    .then((response) => {
-      if (200 === response.status) {
-        settAutentisering(true);
-      }
-      return;
-    })
-    .catch((error) => {
-      if (error && error.response && 401 === error.response.status) {
-        window.location.href =
-          Environment().loginService + '?redirect=' + window.location.href;
-      }
-      return error;
-    });
+  return pingApi().then((response) => {
+    if (response && 200 === response.status) {
+      settAutentisering(true);
+    }
+  });
 };
 
-export default autentiserBruker;
+export default verifiserAtBrukerErAutentisert;

@@ -1,12 +1,11 @@
 import axios from 'axios';
 import Environment from '../Environment';
 
-export const sendInnSøknad = (søknad: string, bearerInput: string) => {
+export const sendInnSøknad = (søknad: string) => {
   return axios
     .post(`${Environment().apiUrl}/api/soknad/sendInn`, søknad, {
       headers: {
         'content-type': 'application/json;charset=utf-8',
-        Authorization: `Bearer ${bearerInput}`,
       },
       withCredentials: true,
     })

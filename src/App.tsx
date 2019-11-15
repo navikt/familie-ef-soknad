@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import axios, { AxiosError } from 'axios';
 import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
 import autentiser from './authentication/authenticateApi';
-import { ToggleName, Toggles } from './typer/toggles';
-import DevelopmentInfoBox from './komponenter/DevelopmentInfoBox';
-import axios from 'axios';
+import { ToggleName, Toggles } from './models/toggles';
 import Environment from './Environment';
-import PingPanel from './komponenter/PingPanel';
-import Person from './komponenter/Person';
-
-const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
-const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
-
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Språkvelger from './components/språkvelger/Språkvelger';
 import Søknad from './søknad/Søknad';
-import { ToggleName, Toggles } from './models/toggles';
 import { hentPersonData } from './utils/søknad';
 import useSøknadContext from './context/SøknadContext';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import TestsideInformasjon from './components/TestsideInformasjon';
+
+const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
+const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
 
 function er401Feil(error: any) {
   return error && error.response && error.response.status === 401;
@@ -31,11 +26,10 @@ const App = () => {
     (response) => {
       return response;
     },
-    (error) => {
+    (error: AxiosError) => {
       if (er401Feil(error) && brukAutentisering) {
         settAutentisering(false);
-        window.location.href =
-          Environment().loginService + '?redirect=' + window.location.href;
+        window.location.href = Environment().loginService; //+ '?redirect=' + window.location.href;
       } else {
         return error;
       }
@@ -48,6 +42,7 @@ const App = () => {
   );
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+
   const { person, settPerson } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
 
@@ -69,27 +64,25 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
-          settSøknad({ ...søknad, person: response });
         });
       };
       fetchPersonData();
       settFetching(false);
     };
-
     settError(false);
     fetchData();
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    const fetchData = () => {
-      if (brukAutentisering && !autentisert) {
-        autentiser(settAutentisering);
-      } else {
-        settAutentisering(true);
-      }
-    };
-    fetchData();
+    settSøknad({ ...søknad, person: person });
+    // eslint-disable-next-line
+  }, [person]);
+
+  useEffect(() => {
+    if (brukAutentisering && !autentisert) {
+      autentiser(settAutentisering);
+    }
   }, [autentisert]);
 
   if (!fetching && autentisert) {
