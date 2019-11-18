@@ -12,9 +12,7 @@ import useSøknadContext from './context/SøknadContext';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import TestsideInformasjon from './components/TestsideInformasjon';
 import { authInterceptor } from './utils/auth';
-import { checkToggle } from './utils/toggle';
 
-const brukToggles = process.env.REACT_APP_BRUK_TOGGLES === 'true';
 const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
 
 const App = () => {
@@ -37,11 +35,10 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      if (brukToggles) {
-        hentToggles(settToggles).catch((err: Error) => {
-          settError(true);
-        });
-      }
+      hentToggles(settToggles).catch((err: Error) => {
+        settError(true);
+      });
+
       const fetchPersonData = () => {
         hentPersonData().then((response) => {
           settPerson({
@@ -54,7 +51,8 @@ const App = () => {
       settFetching(false);
     };
     fetchData();
-  });
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     settSøknad({ ...søknad, person: person });
@@ -68,7 +66,7 @@ const App = () => {
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
           <TestsideInformasjon />
-          {checkToggle(toggles, ToggleName.vis_innsending) && <Søknad />}
+          {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
     } else if (error) {
