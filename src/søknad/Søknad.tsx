@@ -11,7 +11,6 @@ interface IState {
   venter: boolean;
 }
 
-//eslint-disable-next-line
 const Søknad = () => {
   const { søknad } = useSøknadContext();
 
