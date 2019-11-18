@@ -1,6 +1,5 @@
 import Environment from '../Environment';
 import axios from 'axios';
-import { IPerson, ISivilstand } from '../models/person';
 
 export const hentPersonData = () => {
   return axios
