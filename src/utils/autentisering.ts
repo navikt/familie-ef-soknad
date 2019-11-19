@@ -30,7 +30,7 @@ export const verifiserAtBrukerErAutentisert = (
   settAutentisering: (autentisering: boolean) => void
 ) => {
   if (loggInn()) {
-    return pingApi().then((response) => {
+    return verifiserInnloggetApi().then((response) => {
       if (response && 200 === response.status) {
         settAutentisering(true);
       }
@@ -40,8 +40,8 @@ export const verifiserAtBrukerErAutentisert = (
   }
 };
 
-const pingApi = () => {
-  return axios.get(`${Environment().apiUrl}/api/ping`, {
+const verifiserInnloggetApi = () => {
+  return axios.get(`${Environment().apiUrl}/api/innlogget`, {
     withCredentials: true,
   });
 };
