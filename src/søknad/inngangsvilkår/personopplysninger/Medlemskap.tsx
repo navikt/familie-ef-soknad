@@ -34,7 +34,7 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
     <section className={'seksjon'}>
       {medlemskapSpørsmålSvar.map((spørsmål: ISpørsmål) => {
         return (
-          <FeltGruppe>
+          <FeltGruppe key={spørsmål.spørsmål_id}>
             <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
               <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
               <div className={'radioknapp__wrapper'}>
@@ -43,7 +43,7 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
                   return (
                     <div key={svar} className={'radioknapp__item'}>
                       <RadioPanel
-                        key={svar}
+                        key={spørsmål.spørsmål_id}
                         name={spørsmål.spørsmål_id + svar}
                         label={intl.formatMessage({
                           id: hentTekstidTilJaNeiSvar(svar),
