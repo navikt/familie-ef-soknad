@@ -13,7 +13,7 @@ import TestsideInformasjon from './components/TestsideInformasjon';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
-} from './utils/auth';
+} from './utils/autentisering';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
