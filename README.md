@@ -7,6 +7,9 @@ Frontend - søknad for enslig forsørger.
 1. `npm install`
 2. `npm start`
 
+Kjør uten redirect til autentisering lokalt: 
+sett .env variabel: 
+REACT_APP_BRUK_AUTENTISERING_I_DEV=false
 
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
