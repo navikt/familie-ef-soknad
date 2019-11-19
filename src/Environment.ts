@@ -20,8 +20,8 @@ const Environment = (): IEnvUrls => {
   } else {
     return {
       veiviserUrl: '',
-      apiUrl: 'http://localhost:8091/familie/alene-med-barn/soknad-api',
-      loginService: `http://localhost:8091/familie/alene-med-barn/soknad-api/local/cookie`,
+      apiUrl: 'http://localhost:8091',
+      loginService: `http://localhost:8091/local/cookie`,
     };
   }
 };

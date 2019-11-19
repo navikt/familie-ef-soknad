@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
-import autentiser from './authentication/authenticateApi';
 import { ToggleName, Toggles } from './models/toggles';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Språkvelger from './components/språkvelger/Språkvelger';
@@ -11,26 +10,23 @@ import { hentPersonData } from './utils/søknad';
 import useSøknadContext from './context/SøknadContext';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import TestsideInformasjon from './components/TestsideInformasjon';
-import { authInterceptor } from './utils/auth';
-
-const brukAutentisering = process.env.REACT_APP_BRUK_AUTENTISERING === 'true';
+import {
+  autentiseringsInterceptor,
+  verifiserAtBrukerErAutentisert,
+} from './utils/auth';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
-  const [autentisert, settAutentisering] = useState<boolean>(
-    !brukAutentisering
-  );
+  const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
 
-  authInterceptor(brukAutentisering, settAutentisering);
+  autentiseringsInterceptor();
 
   useEffect(() => {
-    if (brukAutentisering && !autentisert) {
-      autentiser(settAutentisering);
-    }
+    verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
   useEffect(() => {

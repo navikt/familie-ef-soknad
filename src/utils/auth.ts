@@ -1,26 +1,47 @@
 import axios, { AxiosError } from 'axios';
 import Environment from '../Environment';
 
-export function er401Feil(error: any) {
-  return error && error.response && error.response.status === 401;
-}
+const er401Feil = (error: any) =>
+  error && error.response && error.response.status === 401;
 
-export const authInterceptor = (
-  brukAutentisering: any,
-  settAutentisering: any
-) => {
+const loggInn = () =>
+  process.env.NODE_ENV !== 'development' ||
+  process.env.REACT_APP_BRUK_AUTENTISERING_I_DEV === 'true';
+
+const getLoginUrl = () =>
+  Environment().loginService + '?redirect=' + window.location.href;
+
+export const autentiseringsInterceptor = () => {
   axios.interceptors.response.use(
     (response) => {
       return response;
     },
     (error: AxiosError) => {
-      if (er401Feil(error) && brukAutentisering) {
-        settAutentisering(false);
-        window.location.href =
-          Environment().loginService + '?redirect=' + window.location.href;
+      if (er401Feil(error) && loggInn()) {
+        window.location.href = getLoginUrl();
       } else {
-        return error;
+        throw error;
       }
     }
   );
+};
+
+export const verifiserAtBrukerErAutentisert = (
+  settAutentisering: (autentisering: boolean) => void
+) => {
+  if (loggInn()) {
+    return pingApi().then((response) => {
+      if (response && 200 === response.status) {
+        settAutentisering(true);
+      }
+    });
+  } else {
+    settAutentisering(true);
+  }
+};
+
+const pingApi = () => {
+  return axios.get(`${Environment().apiUrl}/api/ping`, {
+    withCredentials: true,
+  });
 };
