@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 import Environment from '../Environment';
 
-const er401Feil = (error: any) =>
+const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
 
 const loggInn = () =>
