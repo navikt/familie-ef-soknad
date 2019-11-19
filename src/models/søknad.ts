@@ -6,5 +6,5 @@ export interface ISøknad {
   søkerBosattINorgeSisteTreÅr?: boolean;
   søkerErFlyktning?: boolean;
   harSøktSeparasjon?: boolean;
-  datoSøktSeparasjon?: string;
+  datoSøktSeparasjon?: Date;
 }

@@ -9,6 +9,7 @@ import { injectIntl } from 'react-intl';
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { SpørsmålOgSvar } from '../../../config/MedlemskapConfig';
+import FeltGruppe from '../../../components/FeltGruppe';
 
 const Medlemskap: React.FC<any> = ({ intl }) => {
   const medlemskapSpørsmålSvar: ISpørsmål[] = SpørsmålOgSvar;
@@ -33,28 +34,30 @@ const Medlemskap: React.FC<any> = ({ intl }) => {
     <section className={'seksjon'}>
       {medlemskapSpørsmålSvar.map((spørsmål: ISpørsmål) => {
         return (
-          <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
-            <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
-            <div className={'radioknapp__wrapper'}>
-              {spørsmål.svaralternativer.map((svar: ISvar) => {
-                const svarISøknad = hentSvar(spørsmål, svar, søknad);
-                return (
-                  <div key={svar} className={'radioknapp__item'}>
-                    <RadioPanel
-                      key={svar}
-                      name={spørsmål.spørsmål_id + svar}
-                      label={intl.formatMessage({
-                        id: hentTekstidTilJaNeiSvar(svar),
-                      })}
-                      value={svar}
-                      checked={svarISøknad ? svarISøknad : false}
-                      onChange={(e) => onClickHandle(e, spørsmål, svar)}
-                    />
-                  </div>
-                );
-              })}
+          <FeltGruppe>
+            <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
+              <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
+              <div className={'radioknapp__wrapper'}>
+                {spørsmål.svaralternativer.map((svar: ISvar) => {
+                  const svarISøknad = hentSvar(spørsmål, svar, søknad);
+                  return (
+                    <div key={svar} className={'radioknapp__item'}>
+                      <RadioPanel
+                        key={svar}
+                        name={spørsmål.spørsmål_id + svar}
+                        label={intl.formatMessage({
+                          id: hentTekstidTilJaNeiSvar(svar),
+                        })}
+                        value={svar}
+                        checked={svarISøknad ? svarISøknad : false}
+                        onChange={(e) => onClickHandle(e, spørsmål, svar)}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          </FeltGruppe>
         );
       })}
     </section>

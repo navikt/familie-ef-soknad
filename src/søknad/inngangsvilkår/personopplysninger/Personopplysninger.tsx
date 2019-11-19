@@ -39,7 +39,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
         <LocaleTekst tekst={'personopplysninger.tittel'} />
       </Systemtittel>
       <FeltGruppe>
-        <AlertStripeInfo>
+        <AlertStripeInfo className={'fjernbakgrunn'}>
           <LocaleTekst tekst={'personopplysninger.infohentet'} />
         </AlertStripeInfo>
       </FeltGruppe>

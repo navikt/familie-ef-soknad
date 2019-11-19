@@ -7,6 +7,11 @@ const StyledFeltGruppe = styled.div`
   &:first-child {
     padding-top: 25px;
   }
+
+  .alertstripe.fjernbakgrunn {
+    background: transparent;
+    border: none;
+  }
 `;
 
 const FeltGruppe: React.FC = ({ children }) => {
