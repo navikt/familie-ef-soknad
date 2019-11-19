@@ -13,7 +13,7 @@ import {
 import { RadioPanel } from 'nav-frontend-skjema';
 import useSøknadContext from '../../../context/SøknadContext';
 import { SpørsmålOgSvar } from '../../../config/SivilstatusConfig';
-import Datovelger from '../../../components/Datovelger';
+import Datovelger from '../../../components/datovelger/Datovelger';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
