@@ -35,7 +35,7 @@ const Datovelger: React.FC<Props> = ({ tekstid }) => {
               className={'datovelger__input'}
             />
           </div>
-          <div className={'datovelger__ikon'}>
+          <div className={'ikon__wrapper'}>
             <KalenderIkonSVG />
           </div>
         </label>
