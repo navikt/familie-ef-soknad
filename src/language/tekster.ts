@@ -1,7 +1,6 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
-    'app.tekst': 'react intl er ganske nice BOKMÅL',
     'banner.tittel': 'Enslig forsørger',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
@@ -18,9 +17,11 @@ export default {
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjonfor å ha rett til overgangsstønad',
+      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
@@ -32,7 +33,6 @@ export default {
     'svar.nei': 'Nei',
   },
   nn: {
-    'app.tekst': 'react intl er ganske nice NYNORSK',
     'banner.tittel': 'Einsleg forsørgjer',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
@@ -49,9 +49,11 @@ export default {
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.tittel': 'Om deg',
     'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjonfor å ha rett til overgangsstønad',
+      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
@@ -63,7 +65,6 @@ export default {
     'svar.nei': 'Nei',
   },
   en: {
-    'app.tekst': 'react intl is pretty nice',
     'banner.tittel': 'Single parent',
     'feil.ingentekst.app': 'No static text found in app.',
     'feil.ingentekst.sanity': 'No dynamic text found in Sanity.',
@@ -84,6 +85,9 @@ export default {
       'as married you must have applied for separation in order to have access to overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
+
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',

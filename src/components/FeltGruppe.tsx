@@ -8,9 +8,10 @@ const StyledFeltGruppe = styled.div`
     padding-top: 25px;
   }
 
-  .alertstripe.fjernbakgrunn {
+  .alertstripe.fjernBakgrunn {
     background: transparent;
     border: none;
+    padding-left: 0;
   }
 `;
 

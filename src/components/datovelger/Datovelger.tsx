@@ -7,8 +7,15 @@ import FeltGruppe from '../FeltGruppe';
 import useSøknadContext from '../../context/SøknadContext';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 
+export enum DatoBegrensning {
+  AlleDatoer = 'AlleDatoer',
+  FremtidigeDatoer = 'FremtidigeDatoer',
+  TidligereDatoer = 'TidligereDatoer',
+}
+
 interface Props {
   tekstid: string;
+  datobegrensning: DatoBegrensning;
 }
 
 const Datovelger: React.FC<Props> = ({ tekstid }) => {
