@@ -17,11 +17,13 @@ export default {
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
-    'sivilstatus.ergift':
+    'sivilstatus.somgift':
       'Som gift må du ha søkt separasjonfor å ha rett til overgangsstønad',
-    'sivilstatus.giftmed': 'Gift med ',
-    'sivilstatus.søkedato': 'Når søkte dere separasjon?',
-    'sivilstatus.søktseparasjon': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -46,11 +48,13 @@ export default {
       'Informasjonen er hentet fra Folkeregisteret og NAVS register',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.tittel': 'Om deg',
-    'sivilstatus.ergift':
+    'sivilstatus.somgift':
       'Som gift må du ha søkt separasjonfor å ha rett til overgangsstønad',
-    'sivilstatus.giftmed': 'Gift med ',
-    'sivilstatus.søkedato': 'Når søkte dere separasjon?',
-    'sivilstatus.søktseparasjon': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -76,11 +80,13 @@ export default {
       'The information is provided by the Folkeregister and NAVs register.',
     'personopplysninger.telefonnr': 'Telephone number',
     'personopplysninger.tittel': 'About you',
-    'sivilstatus.ergift':
+    'sivilstatus.somgift':
       'as married you must have applied for separation in order to have access to overgangsstønad',
-    'sivilstatus.giftmed': 'Married to ',
-    'sivilstatus.søkedato': 'When have you applied for separation?',
-    'sivilstatus.søktseparasjon': 'Have you applied for separation?',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Relationship status',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',

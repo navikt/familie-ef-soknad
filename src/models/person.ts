@@ -34,8 +34,3 @@ export interface IBarn {
   harSammeAdresse: boolean;
   navn: string;
 }
-
-export enum ISivilstand {
-  GIFT = 'Gift',
-  UGIF = 'Ugift',
-}

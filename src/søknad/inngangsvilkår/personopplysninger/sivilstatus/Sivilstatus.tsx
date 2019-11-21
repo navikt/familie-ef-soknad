@@ -5,15 +5,20 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import { SpørsmålOgSvar } from '../../../../config/SivilstatusConfig';
+import {
+  SeparasjonSpørsmål,
+  SkiltEllerEnkeSpørsmål,
+} from '../../../../config/SivilstatusConfig';
 import Datovelger from '../../../../components/datovelger/Datovelger';
 import JaNeiSpørsmål from '../../../../components/JaNeiSpørsmål';
 
 const Sivilstatus: React.FC<any> = () => {
   const { person } = usePersonContext();
-  const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const sivilstand = person.søker.sivilstand;
-  const spørsmål: ISpørsmål = SpørsmålOgSvar;
+  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
+  const skiltEllerSeparertSpørsmål: ISpørsmål[] = SkiltEllerEnkeSpørsmål;
+  const erSøkerSeparertEllerSkilt =
+    person.søker.sivilstand === 'SKIL' || person.søker.sivilstand === 'SEPA';
 
   return (
     <>
@@ -24,14 +29,31 @@ const Sivilstatus: React.FC<any> = () => {
           </Element>
           <Normaltekst>{hentSivilstatus(sivilstand)}</Normaltekst>
         </FeltGruppe>
-        {erSøkerGift ? (
+        {person.søker.sivilstand === 'GIFT' ? (
           <>
             <FeltGruppe>
-              <JaNeiSpørsmål spørsmål={spørsmål} tekstid={spørsmål.tekstid} />
+              <JaNeiSpørsmål
+                spørsmål={separasjonsSpørsmål}
+                tekstid={separasjonsSpørsmål.tekstid}
+              />
             </FeltGruppe>
             <FeltGruppe>
-              <Datovelger tekstid={'sivilstatus.søkedato'} />
+              <Datovelger tekstid={'sivilstatus.separasjon.datosøkt'} />
             </FeltGruppe>
+          </>
+        ) : null}
+        {erSøkerSeparertEllerSkilt ? (
+          <>
+            {skiltEllerSeparertSpørsmål.map((spørsmål) => {
+              return (
+                <FeltGruppe>
+                  <JaNeiSpørsmål
+                    spørsmål={spørsmål}
+                    tekstid={spørsmål.tekstid}
+                  />
+                </FeltGruppe>
+              );
+            })}
           </>
         ) : null}
       </section>

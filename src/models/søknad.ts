@@ -7,4 +7,6 @@ export interface ISøknad {
   søkerErFlyktning?: boolean;
   søkerHarSøktSeparasjon?: boolean;
   datoSøktSeparasjon?: Date;
+  søkerGiftIUtlandet?: boolean;
+  søkerSeparertEllerSkiltIUtlandet?: boolean;
 }
