@@ -52,14 +52,14 @@ const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
                 minDate={subDays(new Date(), 0)}
                 className={'datovelger__input'}
               />
-            ) : (
+            ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
                 onChange={(e) => settDato(e)}
                 selected={valgtDato !== undefined ? valgtDato : dagensDato}
                 dateFormat={'dd.MM.yyyy'}
                 className={'datovelger__input'}
               />
-            )}
+            ) : null}
           </div>
           <div className={'ikon__wrapper'}>
             <KalenderIkonSVG />
