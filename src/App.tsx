@@ -50,7 +50,6 @@ const App = () => {
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
           <TestsideInformasjon />
-          <Søknad />
           {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
