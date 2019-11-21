@@ -22,7 +22,16 @@ export const hentSivilstatus = (statuskode: string) => {
     case 'UGIF':
       return 'Ugift';
 
+    case 'SAMB':
+      return 'Samboer';
+
+    case 'SEPA':
+      return 'Separert';
+
+    case 'SKIL':
+      return 'Skilt';
+
     default:
-      return 'Annen sivilstatus enn GIFT og UGIF';
+      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
   }
 };
