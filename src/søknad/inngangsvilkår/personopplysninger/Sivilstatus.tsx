@@ -18,13 +18,15 @@ import Datovelger, {
 
 const Sivilstatus: React.FC<any> = () => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const skiltEllerSeparertSpørsmål: ISpørsmål[] = SkiltEllerEnkeSpørsmål;
+  const enkeUgiftEllerSkiltSpørsmål: ISpørsmål[] = SkiltEllerEnkeSpørsmål;
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = søknad;
+  const sivilstand = person.søker.sivilstand;
+
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
-  const erSøkerSeparertEllerSkilt =
-    person.søker.sivilstand === 'SKIL' || person.søker.sivilstand === 'SEPA';
+  const erSøkerEnkeUgiftEllerSkilt =
+    sivilstand === 'SKIL' || sivilstand === 'ENKE' || sivilstand === 'UGIF';
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const key = 'datoSøktSeparasjon';
@@ -72,10 +74,9 @@ const Sivilstatus: React.FC<any> = () => {
               </FeltGruppe>
             ) : null}
           </>
-        ) : null}
-        {erSøkerSeparertEllerSkilt ? (
+        ) : erSøkerEnkeUgiftEllerSkilt ? (
           <>
-            {skiltEllerSeparertSpørsmål.map((spørsmål) => {
+            {enkeUgiftEllerSkiltSpørsmål.map((spørsmål) => {
               return (
                 <FeltGruppe>
                   <JaNeiSpørsmål
