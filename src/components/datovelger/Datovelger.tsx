@@ -6,6 +6,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../FeltGruppe';
 import useSøknadContext from '../../context/SøknadContext';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
+import { addDays, subDays } from 'date-fns';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -18,7 +19,7 @@ interface Props {
   datobegrensning: DatoBegrensning;
 }
 
-const Datovelger: React.FC<Props> = ({ tekstid }) => {
+const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const valgtDato = søknad.datoSøktSeparasjon;
   const dagensDato = new Date();
@@ -35,12 +36,30 @@ const Datovelger: React.FC<Props> = ({ tekstid }) => {
         </Normaltekst>
         <label className={'datovelger__wrapper'}>
           <div className={'datepicker__container'}>
-            <DatePicker
-              onChange={(e) => settDato(e)}
-              selected={valgtDato !== undefined ? valgtDato : dagensDato}
-              dateFormat={'dd.MM.yyyy'}
-              className={'datovelger__input'}
-            />
+            {datobegrensning === DatoBegrensning.TidligereDatoer ? (
+              <DatePicker
+                onChange={(e) => settDato(e)}
+                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                dateFormat={'dd.MM.yyyy'}
+                maxDate={addDays(new Date(), 0)}
+                className={'datovelger__input'}
+              />
+            ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
+              <DatePicker
+                onChange={(e) => settDato(e)}
+                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                dateFormat={'dd.MM.yyyy'}
+                minDate={subDays(new Date(), 0)}
+                className={'datovelger__input'}
+              />
+            ) : (
+              <DatePicker
+                onChange={(e) => settDato(e)}
+                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                dateFormat={'dd.MM.yyyy'}
+                className={'datovelger__input'}
+              />
+            )}
           </div>
           <div className={'ikon__wrapper'}>
             <KalenderIkonSVG />
