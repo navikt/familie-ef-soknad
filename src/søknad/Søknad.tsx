@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import sendInnSøknad from '../innsending/api';
+import { sendInnSøknad } from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
 import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';

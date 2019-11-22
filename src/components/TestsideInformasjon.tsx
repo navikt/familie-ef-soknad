@@ -2,6 +2,7 @@ import React from 'react';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import svg from '../assets/VeilederSvg';
 import { Panel } from 'nav-frontend-paneler';
+import Environment from '../Environment';
 
 const TestsideInformasjon = () => {
   return (
@@ -21,6 +22,9 @@ const TestsideInformasjon = () => {
           >
             Oversikt over stønader til enslig mor eller far
           </a>
+        </p>
+        <p>
+          <a href={Environment().veiviserUrl}>Veiviser</a>
         </p>
       </Veilederpanel>
     </Panel>
