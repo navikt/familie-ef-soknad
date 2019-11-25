@@ -1,0 +1,35 @@
+.søknadsdialog > .side {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, auto));
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    "stegindikator stegindikator stegindikator"
+    "tilbake . ."
+    "tittel tittel tittel"
+    "innhold innhold innhold"
+    "knapper knapper knapper";
+
+  .stegindikator {
+    grid-area: stegindikator;
+    padding: 1rem 0 1rem 0;
+  }
+
+  .typo-innholdstittel {
+    grid-area: tittel;
+    justify-self: center;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+  }
+}
+.side {
+  &__innhold {
+    grid-area: innhold;
+  }
+
+  &__knapper {
+    padding-top: 1rem;
+    grid-area: knapper;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+  }
+}

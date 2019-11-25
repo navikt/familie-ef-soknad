@@ -6,6 +6,7 @@ import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
 import Sivilstatus from './inngangsvilkår/personopplysninger/Sivilstatus';
+import Side from '../components/side/Side';
 
 interface IState {
   status: string;
@@ -44,13 +45,21 @@ const Søknad = () => {
 
   return (
     <div className={'søknadsdialog'}>
-      <Panel className={'innholdspanel'}>
-        <div className={'innholdscontainer personopplysninger'}>
-          <Personopplysninger />
-          <Sivilstatus />
-          <Medlemskap />
-        </div>
-      </Panel>
+      <Side
+        tittel={'Om deg'}
+        id={'1'}
+        tilbakePath={'/forrige side'}
+        nestePath={'/neste'}
+        avbrytPath={'/forsiden?'}
+      >
+        <Panel className={'innholdspanel'}>
+          <div className={'innholdscontainer personopplysninger'}>
+            <Personopplysninger />
+            <Sivilstatus />
+            <Medlemskap />
+          </div>
+        </Panel>
+      </Side>
       <Panel className="innholdspanel" border>
         <p>Ingenting vil skje om du trykker på denne knappen.</p>
 

@@ -35,9 +35,6 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   };
   return (
     <section className={'seksjon'}>
-      <Systemtittel>
-        <LocaleTekst tekst={'personopplysninger.tittel'} />
-      </Systemtittel>
       <FeltGruppe>
         <AlertStripeInfo className={'fjernBakgrunn'}>
           <LocaleTekst tekst={'personopplysninger.infohentet'} />

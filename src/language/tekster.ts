@@ -1,7 +1,8 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
-    'banner.tittel': 'Enslig forsørger',
+    'banner.tittel': 'Søknad om overgangsstønad',
+    'knapp.tilbake': 'Tilbake',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
@@ -34,6 +35,7 @@ export default {
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
+    'knapp.tilbake': 'Tilbake',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
     'feil.udefinerttekst': 'Idefinert tekst - tom streng (NN)',
@@ -66,6 +68,7 @@ export default {
   },
   en: {
     'banner.tittel': 'Single parent',
+    'knapp.tilbake': 'Back',
     'feil.ingentekst.app': 'No static text found in app.',
     'feil.ingentekst.sanity': 'No dynamic text found in Sanity.',
     'feil.udefinerttekst': 'Text undefined.',

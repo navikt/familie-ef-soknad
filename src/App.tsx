@@ -55,11 +55,11 @@ const App = () => {
     // eslint-disable-next-line
   }, [person]);
 
-  if (!fetching) {
+  if (!fetching && autentisert) {
     if (!error) {
       return (
         <div className="app">
-          <Banner tittel={'Enslig forsørger'} />
+          <Banner />
           <Språkvelger />
           <TestsideInformasjon />
           <Søknad />
