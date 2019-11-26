@@ -8,6 +8,7 @@ import TilbakeKnapp from '../TilbakeKnapp';
 const Side: React.FC<ISide> = ({
   tittel,
   id,
+  steg,
   avbrytPath,
   nestePath,
   tilbakePath,
@@ -21,7 +22,12 @@ const Side: React.FC<ISide> = ({
     <div className={'side'}>
       <Stegindikator
         autoResponsiv={true}
-        steg={[{ label: 'First', index: 1 }, { label: 'First', index: 2 }]}
+        aktivtSteg={1}
+        steg={[
+          { label: 'First', index: 1 },
+          { label: 'First', index: 2 },
+          { label: 'First', index: 3 },
+        ]}
       />
       <TilbakeKnapp
         path={tilbakePath}

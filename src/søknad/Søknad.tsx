@@ -48,6 +48,7 @@ const Søknad = () => {
       <Side
         tittel={'Om deg'}
         id={'1'}
+        steg={2}
         tilbakePath={'/forrige side'}
         nestePath={'/neste'}
         avbrytPath={'/forsiden?'}

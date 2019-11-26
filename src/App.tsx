@@ -32,8 +32,9 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        //settError(true);
+        // settError(true);
       });
+      settError(false);
 
       const fetchPersonData = () => {
         hentPersonData().then((response) => {
