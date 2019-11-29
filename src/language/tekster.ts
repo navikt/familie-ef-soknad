@@ -1,7 +1,6 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
-    'app.tekst': 'react intl er ganske nice BOKMÅL',
     'banner.tittel': 'Enslig forsørger',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
@@ -12,11 +11,21 @@ export default {
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'personopplysninger.infohentet':
-      'Informasjonen er hentet fra Folkeregisteret og NAVS register. Dersom informasjonen skulle være feil, så må du endre de i Folkeregisteret',
+      'Informasjonen er hentet fra Folkeregisteret og NAVS register.',
     'personopplysninger.tittel': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'sivilstatus.somgift':
+      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
+    'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
@@ -24,7 +33,6 @@ export default {
     'svar.nei': 'Nei',
   },
   nn: {
-    'app.tekst': 'react intl er ganske nice NYNORSK',
     'banner.tittel': 'Einsleg forsørgjer',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
@@ -40,6 +48,16 @@ export default {
       'Informasjonen er hentet fra Folkeregisteret og NAVS register',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.tittel': 'Om deg',
+    'sivilstatus.somgift':
+      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
+    'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
@@ -47,7 +65,6 @@ export default {
     'svar.nei': 'Nei',
   },
   en: {
-    'app.tekst': 'react intl is pretty nice',
     'banner.tittel': 'Single parent',
     'feil.ingentekst.app': 'No static text found in app.',
     'feil.ingentekst.sanity': 'No dynamic text found in Sanity.',
@@ -61,9 +78,20 @@ export default {
     'personopplysninger.adresse': 'Address',
     'personopplysninger.fnr': 'Social security number',
     'personopplysninger.infohentet':
-      'The information is provided by the Folkeregister and NAVs register. If the information is incorrect, then you have to make changes to the Folkeregister, derp. ',
+      'The information is provided by the Folkeregister and NAVs register.',
     'personopplysninger.telefonnr': 'Telephone number',
     'personopplysninger.tittel': 'About you',
+    'sivilstatus.somgift':
+      'as married you must have applied for separation in order to have access to overgangsstønad',
+    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
+    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
+    'sivilstatus.separasjon.advarsel':
+      'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
+
+    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.separertEllerSkilt.utlandet':
+      'Er du skilt eller separert i utlandet?',
+    'sivilstatus.tittel': 'Relationship status',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',

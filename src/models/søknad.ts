@@ -5,4 +5,8 @@ export interface ISøknad {
   søkerOppholderSegINorge?: boolean;
   søkerBosattINorgeSisteTreÅr?: boolean;
   søkerErFlyktning?: boolean;
+  søkerHarSøktSeparasjon?: boolean;
+  datoSøktSeparasjon?: Date;
+  søkerGiftIUtlandet?: boolean;
+  søkerSeparertEllerSkiltIUtlandet?: boolean;
 }
