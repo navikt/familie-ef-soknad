@@ -11,25 +11,59 @@
 
   .stegindikator {
     grid-area: stegindikator;
-    padding: 1rem 0 1rem 0;
+    margin: 1rem 0 1rem;
   }
 
-  .typo-innholdstittel {
+  .typo-systemtittel {
     grid-area: tittel;
     justify-self: center;
     padding: 0.5rem 0.5rem 1rem 0.5rem;
   }
 }
 .side {
+  margin: auto;
+  width: @panel-bredde;
+
+  @media @tablet {
+    width: 100%;
+  }
+
+  @media @mobile {
+    width: 100%;
+  }
+
   &__innhold {
     grid-area: innhold;
   }
 
   &__knapper {
-    padding-top: 1rem;
+    padding: 2rem;
     grid-area: knapper;
-    justify-self: center;
     display: flex;
+    justify-self: center;
     flex-direction: column;
+
+    .navknapp {
+      padding-bottom: 1rem;
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+  }
+}
+
+.innholdscontainer {
+  padding: 2rem;
+
+  .typo-systemtittel:first-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media @tablet {
+  }
+
+  @media @mobile {
+    padding: 0;
   }
 }

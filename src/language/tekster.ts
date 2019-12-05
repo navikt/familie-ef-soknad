@@ -17,6 +17,10 @@ export default {
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'side.bekreftelse':
+      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
+    'side.info.overgangsstønad':
+      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
       'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
@@ -50,6 +54,10 @@ export default {
       'Informasjonen er hentet fra Folkeregisteret og NAVS register',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.tittel': 'Om deg',
+    'side.bekreftelse':
+      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
+    'side.info.overgangsstønad':
+      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
       'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
@@ -84,6 +92,11 @@ export default {
       'The information is provided by the Folkeregister and NAVs register.',
     'personopplysninger.telefonnr': 'Telephone number',
     'personopplysninger.tittel': 'About you',
+    'side.bekreftelse':
+      'I, [0], swear to give as much as possible correct information.',
+    'side.info.overgangsstønad':
+      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
+
     'sivilstatus.somgift':
       'as married you must have applied for separation in order to have access to overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',

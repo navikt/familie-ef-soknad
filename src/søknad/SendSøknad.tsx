@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { sendInnSøknad } from '../innsending/api';
-import { Panel } from 'nav-frontend-paneler';
-import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
-import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
-import Sivilstatus from './inngangsvilkår/personopplysninger/Sivilstatus';
 import Side from '../components/side/Side';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { Routes, IRoute } from '../config/Routes';
+import { hentForrigeRoute } from '../utils/routing';
+import { useLocation } from 'react-router';
 
 interface IState {
   status: string;
   venter: boolean;
 }
 
-const Søknad = () => {
+const SendSøknad = () => {
   const { søknad } = useSøknadContext();
 
   const [hocState, setHocState] = useState<IState>({
@@ -43,34 +43,22 @@ const Søknad = () => {
       );
   };
 
-  return (
-    <div className={'søknadsdialog'}>
-      <Side
-        tittel={'Om deg'}
-        id={'1'}
-        steg={2}
-        tilbakePath={'/forrige side'}
-        nestePath={'/neste'}
-        avbrytPath={'/forsiden?'}
-      >
-        <Panel className={'innholdspanel'}>
-          <div className={'innholdscontainer personopplysninger'}>
-            <Personopplysninger />
-            <Sivilstatus />
-            <Medlemskap />
-          </div>
-        </Panel>
-      </Side>
-      <Panel className="innholdspanel" border>
-        <p>Ingenting vil skje om du trykker på denne knappen.</p>
+  const location = useLocation();
+  const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
 
+  return (
+    <>
+      <Side tittel={'Oppsummering'} tilbakePath={forrigeRoute.path}>
+        <Normaltekst>
+          Ingenting vil skje om du trykker på denne knappen.
+        </Normaltekst>
         <Hovedknapp onClick={send} spinner={hocState.venter}>
           Send Søknad
         </Hovedknapp>
-        <p>Status: {hocState.status}</p>
-      </Panel>
-    </div>
+        <Normaltekst>Status: {hocState.status}</Normaltekst>
+      </Side>
+    </>
   );
 };
 
-export default Søknad;
+export default SendSøknad;

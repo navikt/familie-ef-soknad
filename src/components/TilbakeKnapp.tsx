@@ -1,14 +1,20 @@
 import React from 'react';
-import Lenke from 'nav-frontend-lenker';
 import { VenstreChevron } from 'nav-frontend-chevron';
 import styled from 'styled-components';
 import LocaleTekst from '../language/LocaleTekst';
+import { Link } from 'react-router-dom';
 
 const StyledTilbakeKnapp = styled.div`
-  .lenke {
-    text-decoration: none;
+  padding: 1rem 0 1rem 0;
 
-    &:hover {
+  .lenke {
+    color: #0067C5;
+    background: none;
+    text-decoration: none;
+    cursor: pointer;
+    }
+
+    .lenke:hover {
       text-decoration: underline;
     }
   }
@@ -16,16 +22,15 @@ const StyledTilbakeKnapp = styled.div`
 
 interface Props {
   path: string;
-  onClick: () => void;
 }
 
-const TilbakeKnapp: React.FC<Props> = ({ path, onClick }) => {
+const TilbakeKnapp: React.FC<Props> = ({ path }) => {
   return (
     <StyledTilbakeKnapp>
-      <Lenke href={path} onChange={() => onClick()}>
+      <Link to={path} className={'lenke'}>
         <VenstreChevron />
         <LocaleTekst tekst={'knapp.tilbake'} />
-      </Lenke>
+      </Link>
     </StyledTilbakeKnapp>
   );
 };

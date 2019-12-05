@@ -11,6 +11,7 @@ const norskeOrdMedÆØÅ = [
   'SpørsmålContext',
   'SpørsmålProvider',
   'Søknad',
+  'Søknadsdialog',
 ];
 
 module.exports = {
