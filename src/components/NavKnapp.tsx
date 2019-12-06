@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Link } from 'react-router-dom';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import { useHistory } from 'react-router-dom';
 
 export enum knapptype {
   Hoved = 'Hovedknapp',
@@ -14,14 +14,15 @@ interface Props {
 }
 
 const NavKnapp: FC<Props> = ({ tekstid, nyPath, type }) => {
+  const history = useHistory();
   return (
-    <Link to={nyPath} className={'navknapp'}>
+    <div className={'navknapp'}>
       {type === knapptype.Hoved ? (
-        <Hovedknapp>{tekstid}</Hovedknapp>
+        <Hovedknapp onClick={() => history.push(nyPath)}>{tekstid}</Hovedknapp>
       ) : (
-        <Flatknapp>{tekstid}</Flatknapp>
+        <Flatknapp onClick={() => history.push(nyPath)}>{tekstid}</Flatknapp>
       )}
-    </Link>
+    </div>
   );
 };
 

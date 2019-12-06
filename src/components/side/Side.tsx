@@ -7,19 +7,15 @@ import NavKnapp, { knapptype } from '../NavKnapp';
 import { useLocation } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Routes } from '../../config/Routes';
+import { hentForrigeRoute } from '../../utils/routing';
 
 interface ISide {
   tittel: string;
-  tilbakePath: string;
+  tilbakePath?: string;
   nestePath?: string;
 }
 
-const Side: React.FC<ISide> = ({
-  tittel,
-  nestePath,
-  tilbakePath,
-  children,
-}) => {
+const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
   const location = useLocation();
 
   let stegobjekter = [];
@@ -36,6 +32,8 @@ const Side: React.FC<ISide> = ({
     });
     stegobjekter.push(steg);
   }
+
+  const forrigePath = hentForrigeRoute(routes, location.pathname);
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
@@ -45,7 +43,7 @@ const Side: React.FC<ISide> = ({
           aktivtSteg={aktivtSteg}
           steg={stegobjekter}
         />
-        <TilbakeKnapp path={tilbakePath} />
+        <TilbakeKnapp path={forrigePath.path} />
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>

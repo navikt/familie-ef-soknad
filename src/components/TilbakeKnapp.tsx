@@ -3,19 +3,35 @@ import { VenstreChevron } from 'nav-frontend-chevron';
 import styled from 'styled-components';
 import LocaleTekst from '../language/LocaleTekst';
 import { Link } from 'react-router-dom';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { hentForrigeRoute } from '../utils/routing';
 
 const StyledTilbakeKnapp = styled.div`
-  padding: 1rem 0 1rem 0;
+padding: 1rem 0 1rem;
 
   .lenke {
     color: #0067C5;
     background: none;
     text-decoration: none;
     cursor: pointer;
+    display:grid;
+    grid-template:columns: 20px auto;
+    border: none;
     }
 
     .lenke:hover {
       text-decoration: underline;
+    }
+    
+    .lenke > .ikon {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      padding-top: 2px;
+    }
+    
+    .lenke > .typo-normal {
+      grid-column-start: 2;
+      grid-column-end: 3;
     }
   }
 `;
@@ -27,9 +43,13 @@ interface Props {
 const TilbakeKnapp: React.FC<Props> = ({ path }) => {
   return (
     <StyledTilbakeKnapp>
-      <Link to={path} className={'lenke'}>
-        <VenstreChevron />
-        <LocaleTekst tekst={'knapp.tilbake'} />
+      <Link className={'lenke'} to={path}>
+        <div className={'ikon'}>
+          <VenstreChevron />
+        </div>
+        <Normaltekst>
+          <LocaleTekst tekst={'knapp.tilbake'} />
+        </Normaltekst>
       </Link>
     </StyledTilbakeKnapp>
   );

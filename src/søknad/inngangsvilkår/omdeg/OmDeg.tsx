@@ -13,11 +13,7 @@ const OmDeg: FC = () => {
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
 
   return (
-    <Side
-      tittel={'Om deg'}
-      tilbakePath={forrigeRoute.path}
-      nestePath={nesteRoute.path}
-    >
+    <Side tittel={'Om deg'} nestePath={nesteRoute.path}>
       <Personopplysninger />
       <Sivilstatus />
       <Medlemskap />
