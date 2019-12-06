@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { sendInnSøknad } from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
@@ -6,6 +6,7 @@ import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
 import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
 import Sivilstatus from './inngangsvilkår/personopplysninger/Sivilstatus';
+import Filopplaster from '../components/filopplaster/Filopplaster';
 
 interface IState {
   status: string;
@@ -49,6 +50,7 @@ const Søknad = () => {
           <Personopplysninger />
           <Sivilstatus />
           <Medlemskap />
+          <Filopplaster />
         </div>
       </Panel>
       <Panel className="innholdspanel" border>
