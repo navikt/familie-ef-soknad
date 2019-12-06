@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -27,6 +27,11 @@ const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
   const settDato = (date: Date | null): void => {
     date !== null && settSøknad({ ...søknad, datoSøktSeparasjon: date });
   };
+
+  useEffect(() => {
+    settDato(dagensDato);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className={'datovelger'}>
