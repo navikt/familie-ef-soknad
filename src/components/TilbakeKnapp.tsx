@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 const StyledTilbakeKnapp = styled.div`
-padding: 1rem 0 1rem;
+  padding: 1rem 0 1rem;
+  width: 75px;
 
   .lenke {
     color: #0067C5;
@@ -14,7 +15,7 @@ padding: 1rem 0 1rem;
     text-decoration: none;
     cursor: pointer;
     display:grid;
-    grid-template:columns: 20px auto;
+    grid-template:columns: auto auto;
     border: none;
     }
 
