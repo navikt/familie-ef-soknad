@@ -1,9 +1,13 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import useSøknadContext from '../../context/SøknadContext';
-import { injectIntl } from 'react-intl';
+import { injectIntl, IntlShape } from 'react-intl';
 
-const Filopplaster = () => {
+interface Props {
+  intl: IntlShape;
+}
+
+const Filopplaster: React.FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -13,13 +17,15 @@ const Filopplaster = () => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Slipp filene her...</p>
-      ) : (
-        <p>Dra og dropp filene her, eller klikk for å velge.</p>
-      )}
+    <div className="filopplaster">
+      <div {...getRootProps()}>
+        <input {...getInputProps()} />
+        {isDragActive ? (
+          <p>{intl.formatMessage({ id: 'filopplaster.slipp' })}</p>
+        ) : (
+          <p>{intl.formatMessage({ id: 'filopplaster.dra' })}</p>
+        )}
+      </div>
     </div>
   );
 };

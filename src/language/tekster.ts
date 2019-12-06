@@ -31,6 +31,8 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
+    'filopplaster.dra': 'Dra og dropp filene her, eller klikk for å velge.',
+    'filopplaster.slipp': 'Slipp filene her...',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -63,6 +65,8 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
+    'filopplaster.dra': 'Dra og draupp filane her, eller klikkj for å velje.',
+    'filopplaster.slipp': 'Slepp filane her...',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -97,5 +101,7 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Yes',
     'svar.nei': 'No',
+    'filopplaster.dra': 'Drag and drop the files here, or click to choose.',
+    'filopplaster.slipp': 'Release...',
   },
 };
