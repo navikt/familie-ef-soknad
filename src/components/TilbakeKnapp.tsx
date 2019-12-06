@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import LocaleTekst from '../language/LocaleTekst';
 import { Link } from 'react-router-dom';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { hentForrigeRoute } from '../utils/routing';
 
 const StyledTilbakeKnapp = styled.div`
 padding: 1rem 0 1rem;
