@@ -11,11 +11,12 @@ export default {
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'personopplysninger.infohentet':
-      'Informasjonen er hentet fra Folkeregisteret og NAVS register.',
+      'Informasjonen er hentet fra Folkeregisteret og NAVS register. Hvis dette ikke stemmer, må du endre informasjonen hos Folkeregisteret.',
     'personopplysninger.tittel': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'sivilstatus.somgift':
       'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',

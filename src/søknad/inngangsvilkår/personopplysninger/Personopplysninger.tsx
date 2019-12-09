@@ -51,6 +51,12 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
       </FeltGruppe>
       <FeltGruppe>
         <Element>
+          <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
+        </Element>
+        <Normaltekst>{søker.statsborgerskap}</Normaltekst>
+      </FeltGruppe>
+      <FeltGruppe>
+        <Element>
           <LocaleTekst tekst={'personopplysninger.adresse'} />
         </Element>
         <Normaltekst>{søker.adresse.adresse}</Normaltekst>
