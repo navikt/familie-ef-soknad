@@ -32,8 +32,9 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(true);
+        //settError(true);
       });
+      settError(false);
 
       const fetchPersonData = () => {
         hentPersonData().then((response) => {
@@ -55,13 +56,14 @@ const App = () => {
     // eslint-disable-next-line
   }, [person]);
 
-  if (!fetching && autentisert) {
+  if (!fetching) {
     if (!error) {
       return (
         <div className="app">
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
           <TestsideInformasjon />
+          <Søknad />
           {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
