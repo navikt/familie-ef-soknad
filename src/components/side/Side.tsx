@@ -30,7 +30,7 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
       label: routes[i].label,
       path: routes[i].path,
     });
-    stegobjekter.push(steg);
+    i !== 0 && stegobjekter.push(steg);
   }
 
   const forrigePath = hentForrigeRoute(routes, location.pathname);
