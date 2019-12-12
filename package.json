@@ -66,7 +66,7 @@
     "nav-frontend-veileder-style": "^2.0.12",
     "nav-frontend-veilederpanel": "^0.1.15",
     "nav-frontend-veilederpanel-style": "0.0.20",
-    "npm": "^6.13.1",
+    "npm": "^6.13.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-aria-menubutton": "^6.2.0",
@@ -75,7 +75,7 @@
     "react-dom": "^16.10.2",
     "react-intl": "^3.3.1",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
+    "react-scripts": "^3.3.0",
     "styled-components": "^4.4.0",
     "webpack": "4.41.0"
   },
