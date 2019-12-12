@@ -1,5 +1,4 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
-import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/datovelger/Datovelger';
@@ -17,13 +16,14 @@ import { returnerMultiSvar } from '../../../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import FeltGruppe from '../../../../components/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
 
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
   const { søknad, settSøknad } = useSøknadContext();
   const {
     begrunnelseForSøknad,
-    datoEndringISamvær,
+    datoEndretSamvær,
     datoFlyttetFraHverandre,
   } = søknad;
   const [alertTekst, settAlertTekst] = useState('');
@@ -35,7 +35,13 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const samlivsbruddAndreTekstid =
     BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
 
-  const endringISamvær =
+  console.log(
+    endringIsamværsordningTekstid,
+    intl.formatMessage({ id: endringIsamværsordningTekstid }),
+    begrunnelseForSøknad
+  );
+
+  const endretSamvær =
     begrunnelseForSøknad ===
     intl.formatMessage({ id: endringIsamværsordningTekstid });
   const samlivsbrudd =
@@ -44,63 +50,32 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddAndreTekstid });
 
-  const onClickHandle = (
-    e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: ISpørsmål,
-    svar: ISvar
-  ): void => {
-    svar !== undefined &&
-      settSøknad({
-        ...søknad,
-        [spørsmål.spørsmål_id]: intl.formatMessage({ id: svar.svar_tekstid }),
-      });
-    if (svar.alert_tekstid !== undefined) {
-      settAlertTekst(intl.formatMessage({ id: svar.alert_tekstid }));
-    } else {
-      settAlertTekst('');
-    }
-  };
+  // Er klar over at disse to if-setningene kan/bør skrives til en gjenbrukbar funksjon. Men å fjerne dato (deconstructe datoene ut og sette et nytt objekt uten datoene) funker ikke med mindre strengen med dato nøkkel navnet er rett over der man setter det nye objektet. Prøvd mye rart noe som har kræsjet. Så endte opp med denne løsningen som ikke kræsjet men med litt mindre penere kode.
+  if (!samlivsbrudd && datoFlyttetFraHverandre) {
+    const objektnavn = 'datoFlyttetFraHverandre';
+    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
+    settSøknad({ ...nyttSøknadObjekt });
+  }
+  if (!endretSamvær && datoEndretSamvær) {
+    const objektnavn = 'datoEndretSamvær';
+    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
+    settSøknad({ ...nyttSøknadObjekt });
+  }
 
   return (
     <SeksjonGruppe>
-      <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
-        <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
-        <div className={'radioknapp__multiSvar'}>
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad = returnerMultiSvar(spørsmål, svar, søknad, intl);
-            return (
-              <div key={svar.svar_tekstid} className={'radioknapp__item'}>
-                <RadioPanel
-                  key={svar.svar_tekstid}
-                  name={spørsmål.spørsmål_id + svar}
-                  label={intl.formatMessage({
-                    id: svar.svar_tekstid,
-                  })}
-                  value={svar.svar_tekstid}
-                  checked={svarISøknad ? svarISøknad : false}
-                  onChange={(e) => onClickHandle(e, spørsmål, svar)}
-                />
-              </div>
-            );
-          })}
-        </div>
-        {alertTekst && alertTekst !== '' ? (
-          <FeltGruppe>
-            <AlertStripeInfo className={'fjernBakgrunn'}>
-              {alertTekst}
-            </AlertStripeInfo>
-          </FeltGruppe>
-        ) : null}
-      </div>
-      {endringISamvær ? (
-        <Datovelger
-          objektnøkkel={'datoEndringISamvær'}
-          valgtDato={
-            søknad.datoEndringISamvær ? søknad.datoEndringISamvær : undefined
-          }
-          tekstid={'sivilstatus.begrunnelse.endring'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
-        />
+      <MultiSvarSpørsmål spørsmål={spørsmål} />
+      {endretSamvær ? (
+        <>
+          <Datovelger
+            objektnøkkel={'datoEndretSamvær'}
+            valgtDato={
+              søknad.datoEndretSamvær ? søknad.datoEndretSamvær : undefined
+            }
+            tekstid={'sivilstatus.begrunnelse.endring'}
+            datobegrensning={DatoBegrensning.AlleDatoer}
+          />
+        </>
       ) : null}
       {samlivsbrudd ? (
         <Datovelger

@@ -1,6 +1,5 @@
 import React, { FC, SyntheticEvent, useState } from 'react';
 import {
-  IMultiSpørsmål,
   IMultiSpørsmål as ISpørsmål,
   IMultiSvar as ISvar,
 } from '../models/spørsmal';
@@ -11,32 +10,14 @@ import { returnerMultiSvar } from '../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import FeltGruppe from './FeltGruppe';
-import { BegrunnelseSpørsmål } from '../config/SivilstatusConfig';
 
 interface Props {
   spørsmål: ISpørsmål;
-  tekstid: string;
   intl: IntlShape;
 }
 
-const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, tekstid, intl }) => {
+const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const { begrunnelseForSøknad, datoFlyttetFraHverandre } = søknad;
-  const endringIsamværsordningTekstid = BegrunnelseSpørsmål.svaralternativer[3].svar_tekstid;
-
-  const samlivsbruddForelderTekstid = BegrunnelseSpørsmål.svaralternativer[0].svar_tekstid;
-  const samlivsbruddAndreTekstid = BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
-
-  const endringISamvær = begrunnelseForSøknad === intl.formatMessage({ id: endringIsamværsordningTekstid});
-  const samlivsbrudd = (begrunnelseForSøknad === intl.formatMessage(
-    {id: samlivsbruddForelderTekstid})) || (begrunnelseForSøknad === intl.formatMessage({ id: samlivsbruddAndreTekstid}));
-
-  const resetDatoISøknad = (dato: Date | undefined) => {
-    console.log('resetDatoISøknad',samlivsbrudd)
-    const objektnavn = samlivsbrudd ? 'datoFlyttetFraHverandre':'datoEndringISamvær';
-    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
-    dato !== undefined && settSøknad({ ...nyttSøknadObjekt });
-  };
 
   const [alertTekst, settAlertTekst] = useState('');
 
@@ -45,7 +26,6 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, tekstid, intl }) => {
     spørsmål: ISpørsmål,
     svar: ISvar
   ): void => {
-    console.log('clicked', svar.svar_tekstid, spørsmål.spørsmål_id);
     svar !== undefined &&
       settSøknad({
         ...søknad,
@@ -56,19 +36,11 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, tekstid, intl }) => {
     } else {
       settAlertTekst('');
     }
-
-    console.log('begrunnelse i søknad: ', søknad.begrunnelseForSøknad)
-    console.log('samlivsbrudd begrunnelser?', samlivsbrudd);
-
-    samlivsbrudd && resetDatoISøknad(datoFlyttetFraHverandre);
-    endringISamvær && søknad.datoEndringISamvær && resetDatoISøknad(søknad.datoEndringISamvær);
-
   };
 
-    console.log('begrunnelse i søknad: ', søknad.begrunnelseForSøknad)
   return (
     <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
-      <Element>{intl.formatMessage({ id: tekstid })}</Element>
+      <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad = returnerMultiSvar(spørsmål, svar, søknad, intl);

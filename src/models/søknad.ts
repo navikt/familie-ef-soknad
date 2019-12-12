@@ -10,6 +10,6 @@ export interface ISøknad {
   søkerGiftIUtlandet?: boolean;
   søkerSeparertEllerSkiltIUtlandet?: boolean;
   begrunnelseForSøknad?: string;
-  datoEndringISamvær?: Date;
+  datoEndretSamvær?: Date;
   datoFlyttetFraHverandre?: Date;
 }
