@@ -18,14 +18,29 @@ export default {
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
+      'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
+    'sivilstatus.alert.samlivsbrudd':
+      'Du må legge ved erklæring om samlivsbrudd',
+    'sivilstatus.begrunnelse.endring':
+      'Når skjedde endringen/ når skal endringen skje?',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
     'sivilstatus.separasjon.advarsel':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.gift.utlandet':
+      'Er du gift i utlandet eller etter utenlandske tradisjoner i Norge?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
+    'sivilstatus.begrunnelse': 'Hvorfor søker du overgangsstønad nå?',
+    'sivilstatus.sporsmal.datoFlyttetFraHverandre':
+      'Når flyttet dere fra hverandre?',
+    'sivilstatus.svar.samlivsbruddForeldre':
+      'Samlivsbrudd fra den andre forelderen',
+    'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd fra noen andre',
+    'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
+    'sivilstatus.svar.endringISamværsordning':
+      'Endring i samværsordning, aktivitet eller inntekt',
+    'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -56,6 +71,8 @@ export default {
     'sivilstatus.separasjon.advarsel':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.alert.samlivsbrudd':
+      'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Sivilstatus',

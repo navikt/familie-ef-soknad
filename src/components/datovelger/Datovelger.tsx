@@ -15,17 +15,23 @@ export enum DatoBegrensning {
 }
 
 interface Props {
+  objektnøkkel: string;
+  valgtDato: Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
 }
 
-const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
+const Datovelger: React.FC<Props> = ({
+  tekstid,
+  datobegrensning,
+  valgtDato,
+  objektnøkkel,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const valgtDato = søknad.datoSøktSeparasjon;
   const dagensDato = new Date();
 
   const settDato = (date: Date | null): void => {
-    date !== null && settSøknad({ ...søknad, datoSøktSeparasjon: date });
+    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
   };
 
   useEffect(() => {

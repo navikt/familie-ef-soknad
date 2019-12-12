@@ -1,7 +1,10 @@
 import React, { SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar } from '../models/spørsmal';
+import { IJaNeiSpørsmål as ISpørsmål, ISvar } from '../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
-import { hentSvar, hentTekstidTilJaNeiSvar } from '../utils/spørsmålogsvar';
+import {
+  returnerJaNeiSvar,
+  hentTekstidTilJaNeiSvar,
+} from '../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../context/SøknadContext';
@@ -25,9 +28,9 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, tekstid, intl }) => {
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
       <Element>{intl.formatMessage({ id: tekstid })}</Element>
-      <div className={'radioknapp__wrapper'}>
+      <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
-          const svarISøknad = hentSvar(spørsmål, svar, søknad);
+          const svarISøknad = returnerJaNeiSvar(spørsmål, svar, søknad);
           return (
             <div key={svar} className={'radioknapp__item'}>
               <RadioPanel

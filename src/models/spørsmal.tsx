@@ -3,8 +3,19 @@ export enum ISvar {
   NEI = 'NEI',
 }
 
-export interface ISpørsmål {
+export interface IJaNeiSpørsmål {
   spørsmål_id: string;
   tekstid: string;
   svaralternativer: ISvar[];
+}
+
+export interface IMultiSvar {
+  svar_tekstid: string;
+  alert_tekstid?: string;
+}
+
+export interface IMultiSpørsmål {
+  spørsmål_id: string;
+  tekstid: string;
+  svaralternativer: IMultiSvar[];
 }

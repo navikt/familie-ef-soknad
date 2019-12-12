@@ -1,24 +1,30 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import FeltGruppe from '../../../components/FeltGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
-import { usePersonContext } from '../../../context/PersonContext';
-import { hentSivilstatus } from '../../../utils/søknad';
-import { ISpørsmål } from '../../../models/spørsmal';
+import FeltGruppe from '../../../../components/FeltGruppe';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import { usePersonContext } from '../../../../context/PersonContext';
+import useSøknadContext from '../../../../context/SøknadContext';
+import { hentSivilstatus } from '../../../../utils/søknad';
+import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
 import {
   SeparasjonSpørsmål,
   SkiltEllerEnkeSpørsmål,
-} from '../../../config/SivilstatusConfig';
-import JaNeiSpørsmål from '../../../components/JaNeiSpørsmål';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import useSøknadContext from '../../../context/SøknadContext';
+} from '../../../../config/SivilstatusConfig';
+import JaNeiSpørsmål from '../../../../components/JaNeiSpørsmål';
+import {
+  AlertStripeAdvarsel,
+  AlertStripeInfo,
+} from 'nav-frontend-alertstriper';
 import Datovelger, {
   DatoBegrensning,
-} from '../../../components/datovelger/Datovelger';
+} from '../../../../components/datovelger/Datovelger';
+import { injectIntl } from 'react-intl';
+import Søknadsbegrunnelse from './SøknadsBegrunnelse';
 
-const Sivilstatus: React.FC<any> = () => {
+const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
   const enkeUgiftEllerSkiltSpørsmål: ISpørsmål[] = SkiltEllerEnkeSpørsmål;
+
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = søknad;
@@ -29,8 +35,8 @@ const Sivilstatus: React.FC<any> = () => {
     sivilstand === 'SKIL' || sivilstand === 'ENKE' || sivilstand === 'UGIF';
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
-    const key = 'datoSøktSeparasjon';
-    const { [key]: _, ...nyttSøknadObjekt } = søknad;
+    const objektnavn = 'datoSøktSeparasjon';
+    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
     dato !== undefined && settSøknad({ ...nyttSøknadObjekt });
   };
 
@@ -48,11 +54,6 @@ const Sivilstatus: React.FC<any> = () => {
         {erSøkerGift ? (
           <>
             <FeltGruppe>
-              <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-                <LocaleTekst tekst={'sivilstatus.somgift'} />
-              </AlertStripeAdvarsel>
-            </FeltGruppe>
-            <FeltGruppe>
               <JaNeiSpørsmål
                 spørsmål={separasjonsSpørsmål}
                 tekstid={separasjonsSpørsmål.tekstid}
@@ -61,9 +62,18 @@ const Sivilstatus: React.FC<any> = () => {
             {søkerHarSøktSeparasjon ? (
               <FeltGruppe>
                 <Datovelger
+                  objektnøkkel={'datoSøktSeparasjon'}
+                  valgtDato={
+                    søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
+                  }
                   tekstid={'sivilstatus.separasjon.datosøkt'}
                   datobegrensning={DatoBegrensning.TidligereDatoer}
                 />
+                <FeltGruppe>
+                  <AlertStripeInfo className={'fjernBakgrunn'}>
+                    <LocaleTekst tekst={'sivilstatus.somgift'} />
+                  </AlertStripeInfo>
+                </FeltGruppe>
               </FeltGruppe>
             ) : !søkerHarSøktSeparasjon &&
               søkerHarSøktSeparasjon !== undefined ? (
@@ -78,7 +88,7 @@ const Sivilstatus: React.FC<any> = () => {
           <>
             {enkeUgiftEllerSkiltSpørsmål.map((spørsmål) => {
               return (
-                <FeltGruppe>
+                <FeltGruppe key={spørsmål.spørsmål_id}>
                   <JaNeiSpørsmål
                     spørsmål={spørsmål}
                     tekstid={spørsmål.tekstid}
@@ -88,9 +98,11 @@ const Sivilstatus: React.FC<any> = () => {
             })}
           </>
         ) : null}
+
+        {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
       </section>
     </>
   );
 };
 
-export default Sivilstatus;
+export default injectIntl(Sivilstatus);

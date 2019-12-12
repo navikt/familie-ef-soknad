@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { IJaNeiSpørsmål as ISpørsmål } from '../../../models/spørsmal';
 import { SpørsmålOgSvar } from '../../../config/MedlemskapConfig';
 import FeltGruppe from '../../../components/FeltGruppe';
 import JaNeiSpørsmål from '../../../components/JaNeiSpørsmål';

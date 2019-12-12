@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { sendInnSøknad } from '../innsending/api';
 import { Panel } from 'nav-frontend-paneler';
-import Medlemskap from './inngangsvilkår/personopplysninger/Medlemskap';
-import Personopplysninger from './inngangsvilkår/personopplysninger/Personopplysninger';
+import Medlemskap from './inngangsvilkår/omDeg/Medlemskap';
+import Personopplysninger from './inngangsvilkår/omDeg/Personopplysninger';
 import useSøknadContext from '../context/SøknadContext';
-import Sivilstatus from './inngangsvilkår/personopplysninger/Sivilstatus';
+import Sivilstatus from './inngangsvilkår/omDeg/Sivilstatus/Sivilstatus';
 
 interface IState {
   status: string;

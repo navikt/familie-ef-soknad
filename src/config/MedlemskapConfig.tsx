@@ -1,6 +1,6 @@
-import { ISpørsmål, ISvar } from '../models/spørsmal';
+import { IJaNeiSpørsmål, ISvar } from '../models/spørsmal';
 
-export const SpørsmålOgSvar: ISpørsmål[] = [
+export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
   {
     spørsmål_id: 'søkerOppholderSegINorge',
     tekstid: 'medlemskap.spm.opphold',
