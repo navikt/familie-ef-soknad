@@ -1,21 +1,12 @@
-import React, { FC, SyntheticEvent, useState } from 'react';
+import React, { FC } from 'react';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/datovelger/Datovelger';
-import {
-  IMultiSpørsmål as ISpørsmål,
-  IMultiSpørsmål,
-  IMultiSvar as ISvar,
-} from '../../../../models/spørsmal';
+import { IMultiSpørsmål } from '../../../../models/spørsmal';
 import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
 import SeksjonGruppe from '../../../../components/SeksjonGruppe';
-import { Element } from 'nav-frontend-typografi';
-import { returnerMultiSvar } from '../../../../utils/spørsmålogsvar';
-import { RadioPanel } from 'nav-frontend-skjema';
-import FeltGruppe from '../../../../components/FeltGruppe';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
 
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
@@ -23,10 +14,10 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const {
     begrunnelseForSøknad,
+
     datoEndretSamvær,
     datoFlyttetFraHverandre,
   } = søknad;
-  const [alertTekst, settAlertTekst] = useState('');
 
   const endringIsamværsordningTekstid =
     BegrunnelseSpørsmål.svaralternativer[3].svar_tekstid;
