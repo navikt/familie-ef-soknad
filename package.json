@@ -65,7 +65,7 @@
     "nav-frontend-veileder": "^2.0.15",
     "nav-frontend-veileder-style": "^2.0.12",
     "nav-frontend-veilederpanel": "^0.1.15",
-    "nav-frontend-veilederpanel-style": "0.0.20",
+    "nav-frontend-veilederpanel-style": "0.0.23",
     "npm": "^6.13.4",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -76,8 +76,7 @@
     "react-intl": "^3.3.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
-    "styled-components": "^4.4.0",
-    "webpack": "4.41.0"
+    "styled-components": "^4.4.0"
   },
   "eslintConfig": {
     "extends": "react-app"
