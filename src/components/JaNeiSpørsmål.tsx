@@ -8,6 +8,7 @@ import {
 import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../context/SøknadContext';
+import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -28,6 +29,14 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, tekstid, intl }) => {
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
       <Element>{intl.formatMessage({ id: tekstid })}</Element>
+      {spørsmål.lesmer ? (
+        <Lesmerpanel
+          apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}
+          className={'hjelpetekst'}
+        >
+          {intl.formatMessage({ id: spørsmål.lesmer.innholdTekstid })}
+        </Lesmerpanel>
+      ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad = returnerJaNeiSvar(spørsmål, svar, søknad);

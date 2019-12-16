@@ -3,9 +3,16 @@ export enum ISvar {
   NEI = 'NEI',
 }
 
+export interface LesMer {
+  åpneTekstid: string;
+  lukkeTekstid: string;
+  innholdTekstid: string;
+}
+
 export interface IJaNeiSpørsmål {
   spørsmål_id: string;
   tekstid: string;
+  lesmer?: LesMer;
   svaralternativer: ISvar[];
 }
 

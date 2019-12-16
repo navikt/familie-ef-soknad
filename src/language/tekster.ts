@@ -6,7 +6,9 @@ export default {
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
-    'medlemskap.spm.bosatt.hjelpetekst':
+    'medlemskap.hjelpetekst.bosatt.apne':
+      'Hva vil det si å være bosatt i Norge?',
+    'medlemskap.hjelpetekst.bosatt.innhold':
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',

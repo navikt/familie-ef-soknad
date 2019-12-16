@@ -9,6 +9,11 @@ export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
   {
     spørsmål_id: 'søkerBosattINorgeSisteTreÅr',
     tekstid: 'medlemskap.spm.bosatt',
+    lesmer: {
+      åpneTekstid: 'medlemskap.hjelpetekst.bosatt.apne',
+      lukkeTekstid: '',
+      innholdTekstid: 'medlemskap.hjelpetekst.bosatt.innhold',
+    },
     svaralternativer: [ISvar.JA, ISvar.NEI],
   },
   {

@@ -49,6 +49,8 @@
     "nav-frontend-knapper-style": "^0.3.31",
     "nav-frontend-lenker": "^1.0.31",
     "nav-frontend-lenker-style": "^0.2.23",
+    "nav-frontend-lesmerpanel": "0.0.32",
+    "nav-frontend-lesmerpanel-style": "0.0.27",
     "nav-frontend-paneler": "^1.0.20",
     "nav-frontend-paneler-style": "^0.3.17",
     "nav-frontend-skjema": "^1.0.75",
@@ -62,15 +64,16 @@
     "nav-frontend-veileder-style": "^2.0.9",
     "nav-frontend-veilederpanel": "^0.1.15",
     "nav-frontend-veilederpanel-style": "0.0.20",
-    "react": "^16.11.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
     "react-aria-menubutton": "^6.2.0",
+    "react-collapse": "^5.0.0",
     "react-datepicker": "^2.10.0",
     "react-day-picker": "^7.3.2",
     "react-dom": "^16.10.2",
     "react-intl": "^3.3.1",
-    "react-scripts": "3.2.0",
-    "styled-components": "^4.4.0",
-    "webpack": "4.41.0"
+    "react-scripts": "^3.3.0",
+    "styled-components": "^4.4.0"
   },
   "eslintConfig": {
     "extends": "react-app"
