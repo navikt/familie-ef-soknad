@@ -12,6 +12,14 @@ const Filopplaster: React.FC<Props> = ({ intl }) => {
 
   const onDrop = useCallback((acceptedFiles) => {
     søknad.vedlegg.append('vedlegg', acceptedFiles[0]);
+
+    fetch(
+      'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
+      {
+        method: 'post',
+        body: søknad.vedlegg,
+      }
+    );
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

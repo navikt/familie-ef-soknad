@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
@@ -62,6 +62,7 @@ const App = () => {
           <Banner tittel={'Enslig forsørger'} />
           <Språkvelger />
           <TestsideInformasjon />
+          <Søknad />
           {toggles[ToggleName.vis_innsending] && <Søknad />}
         </div>
       );
