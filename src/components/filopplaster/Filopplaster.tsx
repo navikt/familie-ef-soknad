@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Filopplaster: React.FC<Props> = ({ intl }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad } = useSøknadContext();
 
   const onDrop = useCallback((acceptedFiles) => {
     søknad.vedlegg.append('vedlegg', acceptedFiles[0]);
@@ -20,6 +20,7 @@ const Filopplaster: React.FC<Props> = ({ intl }) => {
         body: søknad.vedlegg,
       }
     );
+    // eslint-disable-next-line
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
