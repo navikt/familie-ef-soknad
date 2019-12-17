@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        //settError(true);
+        settError(true);
       });
 
       const fetchPersonData = () => {
@@ -54,14 +54,13 @@ const App = () => {
     // eslint-disable-next-line
   }, [person]);
 
-  if (!fetching) {
+  if (!fetching && autentisert) {
     if (!error) {
       return (
         <>
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
-              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>
