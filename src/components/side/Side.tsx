@@ -18,22 +18,19 @@ interface ISide {
 const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
   const location = useLocation();
 
-  let stegobjekter = [];
-  const routes = Routes;
-  const aktivtSteg = routes.findIndex(
+  const aktivtSteg = Routes.findIndex(
     (steg) => steg.path === location.pathname
   );
+  const routes = Object.values(Routes);
+  routes.shift();
+  const stegobjekter = routes.map((steg, index) => {
+    return {
+      ...steg,
+      index: index,
+    };
+  });
 
-  for (let i = 0; i < routes.length; i++) {
-    const steg = Object.assign({
-      index: i + 1,
-      label: routes[i].label,
-      path: routes[i].path,
-    });
-    i !== 0 && stegobjekter.push(steg);
-  }
-
-  const forrigePath = hentForrigeRoute(routes, location.pathname);
+  const forrigePath = hentForrigeRoute(Routes, location.pathname);
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
