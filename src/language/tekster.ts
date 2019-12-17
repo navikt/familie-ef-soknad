@@ -3,6 +3,9 @@ export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
     'knapp.tilbake': 'Tilbake',
+    'knapp.neste': 'Neste',
+    'knapp.avbryt': 'Avbryt',
+    'knapp.start': 'Start søknad',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',

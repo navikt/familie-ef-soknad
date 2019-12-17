@@ -10,9 +10,12 @@ import { useLocation } from 'react-router';
 const OmDeg: FC = () => {
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
-
   return (
-    <Side tittel={'Om deg'} nestePath={nesteRoute.path}>
+    <Side
+      tittel={'Om deg'}
+      nestePath={nesteRoute.path}
+      tilbakePath={Routes[0].path}
+    >
       <Personopplysninger />
       <Sivilstatus />
       <Medlemskap />

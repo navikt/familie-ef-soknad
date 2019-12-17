@@ -1,26 +1,26 @@
 import React from 'react';
-import Stegindikator from 'nav-frontend-stegindikator/lib/stegindikator';
+import Stegindikator from 'nav-frontend-stegindikator';
+import classNames from 'classnames';
 import TilbakeKnapp from '../TilbakeKnapp';
 import Banner from '../Banner';
 import { Panel } from 'nav-frontend-paneler';
-import NavKnapp, { knapptype } from '../NavKnapp';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Routes } from '../../config/Routes';
 import { hentForrigeRoute } from '../../utils/routing';
+import KnappBase from 'nav-frontend-knapper';
+import LocaleTekst from '../../language/LocaleTekst';
 
 interface ISide {
   tittel: string;
-  tilbakePath?: string;
-  nestePath?: string;
+  tilbakePath: string;
+  nestePath: string;
 }
 
 const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
   const location = useLocation();
+  const history = useHistory();
 
-  const aktivtSteg = Routes.findIndex(
-    (steg) => steg.path === location.pathname
-  );
   const routes = Object.values(Routes);
   routes.shift();
   const stegobjekter = routes.map((steg, index) => {
@@ -29,8 +29,13 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
       index: index,
     };
   });
-
+  const aktivtSteg = stegobjekter.findIndex(
+    (steg) => steg.path === location.pathname
+  );
   const forrigePath = hentForrigeRoute(Routes, location.pathname);
+  const knappStyling = classNames({
+    hideButton: nestePath.length === 0,
+  });
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
@@ -48,26 +53,21 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
           </main>
         </Panel>
         <div className={'side__knapper'}>
-          {nestePath ? (
-            <>
-              <NavKnapp
-                tekstid={'Neste'}
-                type={knapptype.Hoved}
-                nyPath={nestePath}
-              />
-              <NavKnapp
-                tekstid={'Avbryt'}
-                type={knapptype.Flat}
-                nyPath={Routes[0].path}
-              />
-            </>
-          ) : (
-            <NavKnapp
-              tekstid={'Avbryt'}
-              type={knapptype.Flat}
-              nyPath={Routes[0].path}
-            />
-          )}
+          <>
+            <KnappBase
+              type={'hoved'}
+              onClick={() => history.push(nestePath)}
+              className={knappStyling}
+            >
+              <LocaleTekst tekst={'knapp.neste'} />
+            </KnappBase>
+            <KnappBase
+              type={'flat'}
+              onClick={() => history.push(Routes[0].path)}
+            >
+              <LocaleTekst tekst={'knapp.avbryt'} />
+            </KnappBase>
+          </>
         </div>
       </div>
     </div>

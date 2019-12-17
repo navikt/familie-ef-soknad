@@ -48,7 +48,11 @@ const SendSøknad = () => {
 
   return (
     <>
-      <Side tittel={'Oppsummering'} tilbakePath={forrigeRoute.path}>
+      <Side
+        tittel={'Oppsummering'}
+        tilbakePath={forrigeRoute.path}
+        nestePath={''}
+      >
         <Normaltekst>
           Ingenting vil skje om du trykker på denne knappen.
         </Normaltekst>

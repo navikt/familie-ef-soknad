@@ -7,18 +7,20 @@ import Veileder from 'nav-frontend-veileder';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
-import NavKnapp, { knapptype } from '../components/NavKnapp';
 import { Routes } from '../config/Routes';
 import useSøknadContext from '../context/SøknadContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { FormattedHTMLMessage, injectIntl } from 'react-intl';
 import { hentNesteRoute } from '../utils/routing';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
+import KnappBase from 'nav-frontend-knapper';
+import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const location = useLocation();
+  const history = useHistory();
   const nestePath = hentNesteRoute(Routes, location.pathname);
 
   const onChange = () => {
@@ -67,11 +69,12 @@ const Forside: React.FC<any> = ({ intl }) => {
 
           {søknad.bekreftet ? (
             <FeltGruppe classname={'sentrert'}>
-              <NavKnapp
-                tekstid={'Start søknad'}
-                type={knapptype.Hoved}
-                nyPath={nestePath.path}
-              />
+              <KnappBase
+                onClick={() => history.push(nestePath.path)}
+                type={'hoved'}
+              >
+                <LocaleTekst tekst={'knapp.start'} />
+              </KnappBase>
             </FeltGruppe>
           ) : null}
         </Panel>
