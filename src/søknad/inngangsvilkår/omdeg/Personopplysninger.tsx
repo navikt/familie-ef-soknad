@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../context/PersonContext';
@@ -35,9 +35,6 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   };
   return (
     <section className={'seksjon'}>
-      <Systemtittel>
-        <LocaleTekst tekst={'personopplysninger.tittel'} />
-      </Systemtittel>
       <FeltGruppe>
         <AlertStripeInfo className={'fjernBakgrunn'}>
           <LocaleTekst tekst={'personopplysninger.infohentet'} />

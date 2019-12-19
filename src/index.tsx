@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
@@ -11,7 +11,9 @@ import ContextProviders from './context/ContextProviders';
 ReactDOM.render(
   <SpråkProvider>
     <ContextProviders>
-      <App />
+      <Router>
+        <Route path={'/'} component={App} />
+      </Router>
     </ContextProviders>
   </SpråkProvider>,
   document.getElementById('root')

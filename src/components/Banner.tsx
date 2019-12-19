@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Sidetittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../language/LocaleTekst';
 
 const StyledBanner = styled.header`
@@ -13,12 +13,12 @@ const StyledBanner = styled.header`
   justify-content: center;
 `;
 
-const Banner: React.FC<any> = () => {
+const Banner: React.FC<{ tekstid: string }> = ({ tekstid }) => {
   return (
     <StyledBanner>
-      <Sidetittel>
-        <LocaleTekst tekst={'banner.tittel'} />
-      </Sidetittel>
+      <Undertittel>
+        <LocaleTekst tekst={tekstid} />
+      </Undertittel>
     </StyledBanner>
   );
 };

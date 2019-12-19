@@ -26,3 +26,8 @@ export const hentValgtSpråk = (locale: string) => {
     : (språk = 'Bokmål');
   return språk;
 };
+
+export const hentBeskjedMedNavn = (navn: string, tekststreng: string) => {
+  const tekst = tekststreng.replace('[0]', navn);
+  return tekst;
+};
