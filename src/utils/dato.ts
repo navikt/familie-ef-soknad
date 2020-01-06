@@ -8,7 +8,7 @@ export const GYLDIGE_DATOFORMAT = [
   'DD.MM.YYYY',
   'DDMMYYYY',
   'DD.MM.YY',
-  'DDMMYY'
+  'DDMMYY',
 ];
 
 export const formatDate = (date: Date, locale: string = 'nb') => {

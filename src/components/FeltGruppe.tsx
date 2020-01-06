@@ -5,7 +5,7 @@ const StyledFeltGruppe = styled.div`
   padding-bottom: 25px;
 
   &:first-child {
-    padding-top: 25px;
+    padding-top: 0.5rem;
   }
 
   .alertstripe.fjernBakgrunn {
@@ -15,8 +15,11 @@ const StyledFeltGruppe = styled.div`
   }
 `;
 
-const FeltGruppe: React.FC = ({ children }) => {
-  return <StyledFeltGruppe>{children}</StyledFeltGruppe>;
+const FeltGruppe: React.FC<{ classname?: string }> = ({
+  classname,
+  children,
+}) => {
+  return <StyledFeltGruppe className={classname}>{children}</StyledFeltGruppe>;
 };
 
 export default FeltGruppe;

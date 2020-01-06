@@ -1,0 +1,58 @@
+.forside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  & > div,
+  h1 {
+    margin-bottom: 2rem;
+  }
+  .header {
+    width: 100%;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas:
+      "."
+      "veileder"
+      "veileder"
+      "veileder"
+      "veileder";
+
+    .banner {
+      height: 199px;
+      background-color: @navLillaLighten60;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    .nav-veileder {
+      grid-area: veileder;
+    }
+    .nav-veileder__snakkeboble {
+      grid-area: snakkeboble;
+    }
+
+    .nav-veileder > .nav-veileder__frame {
+      background: @navLillaDarken20;
+    }
+  }
+
+  .forside__innhold {
+    margin: auto;
+    width: @panel-bredde;
+    @media @tablet {
+      width: 100%;
+    }
+
+    @media @mobile {
+      width: 100%;
+    }
+  }
+  .forside__panel {
+    padding: 2rem;
+  }
+}

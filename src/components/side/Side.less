@@ -1,0 +1,66 @@
+.søknadsdialog > .side {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, auto));
+  grid-template-rows: repeat(5, auto);
+  grid-template-areas:
+    "stegindikator stegindikator stegindikator"
+    "tilbake . ."
+    "tittel tittel tittel"
+    "innhold innhold innhold"
+    "knapper knapper knapper";
+
+  .stegindikator {
+    grid-area: stegindikator;
+    margin: 1rem 0 1rem;
+  }
+
+  .typo-systemtittel {
+    grid-area: tittel;
+    justify-self: center;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+  }
+}
+.side {
+  margin: auto;
+  width: @panel-bredde;
+
+  @media @tablet {
+    width: 100%;
+  }
+
+  @media @mobile {
+    width: 100%;
+  }
+
+  &__innhold {
+    grid-area: innhold;
+  }
+
+  &__knapper {
+    padding: 2rem;
+    grid-area: knapper;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+
+    .hideButton {
+      display: none;
+    }
+  }
+}
+
+.innholdscontainer {
+  padding: 2rem;
+
+  .typo-systemtittel:first-child {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media @tablet {
+  }
+
+  @media @mobile {
+    padding: 0;
+  }
+}

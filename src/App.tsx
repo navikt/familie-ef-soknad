@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Banner from './components/Banner';
 import Feilside from './components/feilside/Feilside';
 import hentToggles from './toggles/api';
-import { ToggleName, Toggles } from './models/toggles';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Språkvelger from './components/språkvelger/Språkvelger';
-import Søknad from './søknad/Søknad';
-import { hentPersonData } from './utils/søknad';
-import useSøknadContext from './context/SøknadContext';
-import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import Søknadsdialog from './søknad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
+import useSøknadContext from './context/SøknadContext';
+import { hentPersonData } from './utils/søknad';
+import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import { Switch, Route } from 'react-router-dom';
+import { ToggleName, Toggles } from './models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -58,13 +57,14 @@ const App = () => {
   if (!fetching && autentisert) {
     if (!error) {
       return (
-        <div className="app">
-          <Banner tittel={'Enslig forsørger'} />
-          <Språkvelger />
+        <>
           <TestsideInformasjon />
-          <Søknad />
-          {toggles[ToggleName.vis_innsending] && <Søknad />}
-        </div>
+          <Switch>
+            <Route path={'/'}>
+              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+            </Route>
+          </Switch>
+        </>
       );
     } else if (error) {
       return <Feilside />;

@@ -1,6 +1,7 @@
 import { IPerson } from './person';
 
 export interface ISøknad {
+  bekreftet?: boolean;
   person: IPerson;
   søkerOppholderSegINorge?: boolean;
   søkerBosattINorgeSisteTreÅr?: boolean;
