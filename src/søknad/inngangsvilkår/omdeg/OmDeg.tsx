@@ -16,7 +16,7 @@ const OmDeg: FC = () => {
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const yo = søknad.vedlegg.get('vedlegg') ? "ha" : "nope";
-
+  
   console.log(yo);
   return (
     <Side
@@ -28,7 +28,7 @@ const OmDeg: FC = () => {
       <Sivilstatus />
       <Medlemskap />
       <Filopplaster />
-      {søknad.vedlegg.get('vedlegg') ? <Fil fil={søknad.vedlegg.get('vedlegg')}/> : <h3>Nei</h3>}
+      {søknad.vedlegg.get('vedlegg') ? <Fil fil={søknad.vedlegg.get('vedlegg')}/> : null}
     </Side>
   );
 };
