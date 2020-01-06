@@ -8,18 +8,14 @@ interface Props {
 }
 
 const Filopplaster: React.FC<Props> = ({ intl }) => {
-  const { søknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknadContext();
 
   const onDrop = useCallback((acceptedFiles) => {
-    søknad.vedlegg.append('vedlegg', acceptedFiles[0]);
+    const data = new FormData();
 
-    fetch(
-      'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
-      {
-        method: 'post',
-        body: søknad.vedlegg,
-      }
-    );
+    data.append('vedlegg', acceptedFiles[0]);
+
+    settSøknad({ ...søknad, vedlegg: data });
     // eslint-disable-next-line
   }, []);
 
