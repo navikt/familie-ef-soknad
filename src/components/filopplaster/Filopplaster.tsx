@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
@@ -7,13 +7,26 @@ interface Props {
   intl: IntlShape;
 }
 
+const tillatte_filtyper = ['image/png'];
+
 const Filopplaster: React.FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
+  const [feilmelding, settFeilmelding] = useState('');
 
-  const onDrop = useCallback((acceptedFiles) => {
+  const onDrop = useCallback((filer) => {
+    const fil = filer[0];
+
+    if (!tillatte_filtyper.includes(fil.type)) {
+      settFeilmelding('Ikke en gyldig filtype');
+      settSøknad({ ...søknad, vedlegg: new FormData() });
+      return;
+    }
+
+    settFeilmelding('');
+
     const data = new FormData();
 
-    data.append('vedlegg', acceptedFiles[0]);
+    data.append('vedlegg', filer[0]);
 
     settSøknad({ ...søknad, vedlegg: data });
     // eslint-disable-next-line
@@ -31,6 +44,7 @@ const Filopplaster: React.FC<Props> = ({ intl }) => {
           <p>{intl.formatMessage({ id: 'filopplaster.dra' })}</p>
         )}
       </div>
+      <div className="feilmelding">{feilmelding ? feilmelding : null}</div>
     </div>
   );
 };

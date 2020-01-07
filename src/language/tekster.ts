@@ -39,8 +39,8 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
-    'filopplaster.dra': 'Dra og dropp filene her, eller klikk for å velge.',
-    'filopplaster.slipp': 'Slipp filene her...',
+    'filopplaster.dra': 'Dra og dropp filen her, eller klikk for å velge.',
+    'filopplaster.slipp': 'Slipp filen her...',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

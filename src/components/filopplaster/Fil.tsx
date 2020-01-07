@@ -6,6 +6,7 @@ const StyledFil = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-weight: bold;
 `;
 
 const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
