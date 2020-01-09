@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
+import { Normaltekst, Undertittel, Undertekst } from 'nav-frontend-typografi';
 
 interface Props {
   intl: IntlShape;
@@ -35,16 +36,27 @@ const Filopplaster: React.FC<Props> = ({ intl }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div className="filopplaster">
-      <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>{intl.formatMessage({ id: 'filopplaster.slipp' })}</p>
-        ) : (
-          <p>{intl.formatMessage({ id: 'filopplaster.dra' })}</p>
-        )}
+    <div className="filopplaster-wrapper">
+      <div className="tittel-wrapper">
+        <Undertittel className="tittel">
+          Bekreftelse fra Fylkesmannen om søknad om separasjon
+        </Undertittel>
       </div>
-      <div className="feilmelding">{feilmelding ? feilmelding : null}</div>
+      <div className="filopplaster">
+        <div {...getRootProps()}>
+          <input {...getInputProps()} />
+          {isDragActive ? (
+            <Normaltekst className="tekst">
+              {intl.formatMessage({ id: 'filopplaster.slipp' })}
+            </Normaltekst>
+          ) : (
+            <Normaltekst className="tekst">
+              {intl.formatMessage({ id: 'filopplaster.dra' })}
+            </Normaltekst>
+          )}
+        </div>
+        <div className="feilmelding">{feilmelding ? feilmelding : null}</div>
+      </div>
     </div>
   );
 };

@@ -39,7 +39,7 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
-    'filopplaster.dra': 'Dra og dropp filen her, eller klikk for å velge.',
+    'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
   },
   nn: {
