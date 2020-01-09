@@ -1,13 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const StyledFil = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-weight: bold;
-`;
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
   if (bytes === 0) return '0 Bytes';
@@ -25,10 +17,12 @@ const Fil: React.FC<{ fil: string | File | null }> = ({ fil }) => {
   if (!fil || typeof fil === 'string') return null;
 
   return (
-    <StyledFil>
-      <span>{fil.name}</span>
-      <span>{formaterFilstørrelse(fil.size)}</span>
-    </StyledFil>
+    <div className="fil">
+      <Normaltekst>{fil.name}</Normaltekst>
+      <Normaltekst className="filstørrelse">
+        ({formaterFilstørrelse(fil.size)})
+      </Normaltekst>
+    </div>
   );
 };
 

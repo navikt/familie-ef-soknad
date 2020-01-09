@@ -2,8 +2,9 @@ import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
-import { Normaltekst, Undertittel, Undertekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
+import Fil from './Fil';
 
 interface Props {
   intl: IntlShape;
@@ -40,6 +41,12 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
         <Undertittel className="tittel">{tittel}</Undertittel>
+
+        {søknad.vedlegg.get('vedlegg') ? (
+          <div className="opplastede-filer">
+            <Fil fil={søknad.vedlegg.get('vedlegg')} />
+          </div>
+        ) : null}
       </div>
 
       <div className="filopplaster">
