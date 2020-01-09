@@ -3,21 +3,22 @@ import { useDropzone } from 'react-dropzone';
 import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Normaltekst, Undertittel, Undertekst } from 'nav-frontend-typografi';
+import opplasting from '../../assets/opplasting.svg';
 
 interface Props {
   intl: IntlShape;
+  tittel: string;
+  tillatteFiltyper: string[];
 }
 
-const tillatte_filtyper = ['image/png'];
-
-const Filopplaster: React.FC<Props> = ({ intl }) => {
+const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [feilmelding, settFeilmelding] = useState('');
 
   const onDrop = useCallback((filer) => {
     const fil = filer[0];
 
-    if (!tillatte_filtyper.includes(fil.type)) {
+    if (!tillatteFiltyper.includes(fil.type)) {
       settFeilmelding('Ikke en gyldig filtype');
       settSøknad({ ...søknad, vedlegg: new FormData() });
       return;
@@ -38,21 +39,26 @@ const Filopplaster: React.FC<Props> = ({ intl }) => {
   return (
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
-        <Undertittel className="tittel">
-          Bekreftelse fra Fylkesmannen om søknad om separasjon
-        </Undertittel>
+        <Undertittel className="tittel">{tittel}</Undertittel>
       </div>
+
       <div className="filopplaster">
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (
-            <Normaltekst className="tekst">
-              {intl.formatMessage({ id: 'filopplaster.slipp' })}
-            </Normaltekst>
+            <>
+              <img src={opplasting} className="opplastingsikon" />
+              <Normaltekst className="tekst">
+                {intl.formatMessage({ id: 'filopplaster.slipp' })}
+              </Normaltekst>
+            </>
           ) : (
-            <Normaltekst className="tekst">
-              {intl.formatMessage({ id: 'filopplaster.dra' })}
-            </Normaltekst>
+            <>
+              <img src={opplasting} className="opplastingsikon" />
+              <Normaltekst className="tekst">
+                {intl.formatMessage({ id: 'filopplaster.dra' })}
+              </Normaltekst>
+            </>
           )}
         </div>
         <div className="feilmelding">{feilmelding ? feilmelding : null}</div>

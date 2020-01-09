@@ -27,7 +27,10 @@ const OmDeg: FC = () => {
       <Personopplysninger />
       <Sivilstatus />
       <Medlemskap />
-      <Filopplaster />
+      <Filopplaster 
+        tittel={"Bekreftelse fra Fylkesmannen om søknad om separasjon"} 
+        tillatteFiltyper={['image/png']}
+      />
       {søknad.vedlegg.get('vedlegg') ? <Fil fil={søknad.vedlegg.get('vedlegg')}/> : null}
     </Side>
   );
