@@ -4,7 +4,7 @@ import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
-import Fil from './Fil';
+import OpplastedeFiler from './OpplastedeFiler';
 
 interface Props {
   intl: IntlShape;
@@ -14,22 +14,24 @@ interface Props {
 
 const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const [feilmelding, settFeilmelding] = useState('');
+  const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
 
   const onDrop = useCallback((filer) => {
-    const fil = filer[0];
+    settFeilmeldinger([]);
 
-    if (!tillatteFiltyper.includes(fil.type)) {
-      settFeilmelding('Ikke en gyldig filtype');
-      settSøknad({ ...søknad, vedlegg: new FormData() });
-      return;
-    }
-
-    settFeilmelding('');
+    console.log(filer);
 
     const data = new FormData();
 
-    data.append('vedlegg', filer[0]);
+    filer.forEach((fil: File) => {
+      if (!tillatteFiltyper.includes(fil.type)) {
+        settFeilmeldinger(['Ikke en gyldig filtype']);
+        settSøknad({ ...søknad, vedlegg: new FormData() });
+        return;
+      }
+
+      data.append(fil.name, fil);
+    });
 
     settSøknad({ ...søknad, vedlegg: data });
     // eslint-disable-next-line
@@ -42,11 +44,9 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
       <div className="tittel-wrapper">
         <Undertittel className="tittel">{tittel}</Undertittel>
 
-        {søknad.vedlegg.get('vedlegg') ? (
-          <div className="opplastede-filer">
-            <Fil fil={søknad.vedlegg.get('vedlegg')} />
-          </div>
-        ) : null}
+        <div className="opplastede-filer">
+          <OpplastedeFiler />
+        </div>
       </div>
 
       <div className="filopplaster">
@@ -68,7 +68,6 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
             </>
           )}
         </div>
-        <div className="feilmelding">{feilmelding ? feilmelding : null}</div>
       </div>
     </div>
   );

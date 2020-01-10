@@ -19,7 +19,10 @@
 
   .opplastede-filer {
     .fil {
+      position: relative;
       margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
 
       .typo-normal {
         display: inline-block;
@@ -27,6 +30,24 @@
 
       .filstørrelse {
         margin-left: 10px;
+      }
+
+      .filnavn {
+        margin-left: 1rem;
+      }
+
+      .vedleggsikon {
+        position: relative;
+        top: 5px;
+      }
+
+      .slett {
+        position: relative;
+        top: 5px;
+
+        .slettikon {
+          margin-left: 10px;
+        }
       }
     }
   }

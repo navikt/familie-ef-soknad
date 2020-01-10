@@ -8,16 +8,13 @@ import { hentNesteRoute } from '../../../utils/routing';
 import { useLocation } from 'react-router';
 import useSøknadContext, { SøknadActionType } from '../../../context/SøknadContext';
 import Filopplaster from '../../../components/filopplaster/Filopplaster';
-import Fil from '../../../components/filopplaster/Fil';
 
 
 const OmDeg: FC = () => {
   const { søknad } = useSøknadContext();
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
-  const yo = søknad.vedlegg.get('vedlegg') ? "ha" : "nope";
-  
-  console.log(yo);
+
   return (
     <Side
       tittel={'Om deg'}
