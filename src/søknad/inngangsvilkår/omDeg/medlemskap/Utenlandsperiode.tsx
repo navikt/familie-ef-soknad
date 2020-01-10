@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Textarea, Select } from 'nav-frontend-skjema';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import useSøknadContext from '../../../../context/SøknadContext';
+//import useSøknadContext from '../../../../context/SøknadContext';
 import { hentÅrstall } from '../../../../utils/dato';
 import { Normaltekst, Element, Undertittel } from 'nav-frontend-typografi';
 import { måneder } from '../../../../config/datoConfig';
@@ -17,8 +17,8 @@ interface Props {
 }
 
 const Utenlandsperiode: FC<Props> = ({ nummer, periode, intl }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const { perioderBoddIUtlandet } = søknad;
+  // const { søknad, settSøknad } = useSøknadContext();
+  // const { perioderBoddIUtlandet } = søknad;
   const fratilTekst = ['periode.fra', 'periode.til'];
   const [fritekst, settFritekst] = useState('');
 
