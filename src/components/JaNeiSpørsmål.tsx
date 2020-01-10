@@ -12,10 +12,9 @@ import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
 interface Props {
   spørsmål: ISpørsmål;
-  tekstid: string;
   intl: IntlShape;
 }
-const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, tekstid, intl }) => {
+const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
 
   const onClickHandle = (
@@ -28,7 +27,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, tekstid, intl }) => {
 
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
-      <Element>{intl.formatMessage({ id: tekstid })}</Element>
+      <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       {spørsmål.lesmer ? (
         <Lesmerpanel
           apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}

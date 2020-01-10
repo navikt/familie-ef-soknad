@@ -1,0 +1,64 @@
+.utenlandsopphold {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: max-content;
+    grid-template-areas:
+      "tittel slett"
+      "spm spm"
+      "fraperiode fraperiode"
+      "tilperiode tilperiode"
+      "fritekst fritekst";
+  }
+
+  &__tittel {
+    padding-bottom: 2rem;
+    grid-area: tittel;
+  }
+
+  &__slettknapp {
+    grid-area: slett;
+
+    &:hover {
+      text-decoration: underline;
+      border: none;
+    }
+  }
+
+  &__spørsmål {
+    padding-bottom: 1rem;
+    grid-area: spm;
+  }
+
+  .periode-fra {
+    grid-area: fraperiode;
+  }
+  .periode-til {
+    grid-area: tilperiode;
+  }
+
+  .textarea__container {
+    grid-area: fritekst;
+  }
+
+  .periodegruppe {
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, max-content);
+    grid-template-areas:
+      "fratil ."
+      "mnd ar";
+  }
+
+  .periodegruppe > .fratil {
+    grid-area: fratil;
+  }
+
+  .periodegruppe > .måned {
+    grid-area: mnd;
+    padding-right: 1rem;
+  }
+  .periodegruppe > .år {
+    grid-area: ar;
+  }
+}

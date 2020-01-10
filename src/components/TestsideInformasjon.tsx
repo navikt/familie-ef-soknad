@@ -3,6 +3,7 @@ import Veilederpanel from 'nav-frontend-veilederpanel';
 import svg from '../assets/VeilederSvg';
 import { Panel } from 'nav-frontend-paneler';
 import Environment from '../Environment';
+//import { ReactComponent as Logo } from '../assets/VeilederKvinne.svg';
 
 const TestsideInformasjon = () => {
   return (

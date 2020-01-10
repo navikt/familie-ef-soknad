@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledFeltGruppe = styled.div`
-  padding-top: 50px;
-  padding-bottom: 50px;
+const StyledFeltGruppe = styled.section`
+  padding-bottom: 75px;
 
   .alertstripe.fjernBakgrunn {
     background: transparent;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst, Systemtittel } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../context/PersonContext';
@@ -8,6 +8,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
 import FeltGruppe from '../../../components/FeltGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
+import SeksjonGruppe from '../../../components/SeksjonGruppe';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -34,10 +35,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
     }
   };
   return (
-    <section className={'seksjon'}>
-      <Systemtittel>
-        <LocaleTekst tekst={'personopplysninger.tittel'} />
-      </Systemtittel>
+    <SeksjonGruppe>
       <FeltGruppe>
         <AlertStripeInfo className={'fjernBakgrunn'}>
           <LocaleTekst tekst={'personopplysninger.infohentet'} />
@@ -85,7 +83,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
           <Normaltekst>{person.søker.mobiltelefon}</Normaltekst>
         </FeltGruppe>
       )}
-    </section>
+    </SeksjonGruppe>
   );
 };
 

@@ -1,7 +1,11 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
-    'banner.tittel': 'Enslig forsørger',
+    'banner.tittel': 'Søknad om overgangsstønad',
+    'knapp.tilbake': 'Tilbake',
+    'knapp.neste': 'Neste',
+    'knapp.avbryt': 'Avbryt',
+    'knapp.start': 'Start søknad',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
@@ -12,6 +16,30 @@ export default {
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+    'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+    'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsopphold',
+    'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.begrunnelse':
+      'Hvorfor bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
+      'Har du hatt flere utenlandsopphold de siste 3 årene?',
+    'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+    måned: 'Velg måned',
+    'måned.jan': 'Januar',
+    'måned.feb': 'Februar',
+    'måned.mar': 'Mars',
+    'måned.apr': 'April',
+    'måned.mai': 'Mai',
+    'måned.jun': 'Juni',
+    'måned.jul': 'Juli',
+    'måned.aug': 'August',
+    'måned.sep': 'September',
+    'måned.okt': 'Oktober',
+    'måned.nov': 'November',
+    'måned.des': 'Desember',
+    år: 'Velg år',
+    'periode.fra': 'Fra',
+    'periode.til': 'Til',
     'personopplysninger.infohentet':
       'Informasjonen er hentet fra Folkeregisteret og NAVS register. Hvis dette ikke stemmer, må du endre informasjonen hos Folkeregisteret.',
     'personopplysninger.tittel': 'Om deg',
@@ -19,6 +47,10 @@ export default {
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
+    'side.bekreftelse':
+      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
+    'side.info.overgangsstønad':
+      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
       'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
     'sivilstatus.alert.samlivsbrudd':

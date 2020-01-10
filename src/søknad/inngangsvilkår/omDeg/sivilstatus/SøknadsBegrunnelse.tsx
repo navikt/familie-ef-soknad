@@ -6,8 +6,9 @@ import { IMultiSpørsmål } from '../../../../models/spørsmal';
 import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
-import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import KomponentGruppe from '../../../../components/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
+import FeltGruppe from '../../../../components/FeltGruppe';
 
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
@@ -26,12 +27,6 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const samlivsbruddAndreTekstid =
     BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
 
-  console.log(
-    endringIsamværsordningTekstid,
-    intl.formatMessage({ id: endringIsamværsordningTekstid }),
-    begrunnelseForSøknad
-  );
-
   const endretSamvær =
     begrunnelseForSøknad ===
     intl.formatMessage({ id: endringIsamværsordningTekstid });
@@ -41,7 +36,10 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddAndreTekstid });
 
-  // Er klar over at disse to if-setningene kan/bør skrives til en gjenbrukbar funksjon. Men å fjerne dato (deconstructe datoene ut og sette et nytt objekt uten datoene) funker ikke med mindre strengen med dato nøkkel navnet er rett over der man setter det nye objektet. Prøvd mye rart noe som har kræsjet. Så endte opp med denne løsningen som ikke kræsjet men med litt mindre penere kode.
+  // Er klar over at disse to if-setningene kan/bør skrives til en gjenbrukbar funksjon.
+  // Men å fjerne dato (deconstructe datoene ut og sette et nytt objekt uten datoene)
+  // funker ikke med mindre strengen med dato nøkkel navnet er rett over der man setter det nye objektet.
+  // Prøvd mye rart noe som har kræsjet. Så endte opp med denne løsningen som ikke kræsjet men med litt mindre penere kode.
   if (!samlivsbrudd && datoFlyttetFraHverandre) {
     const objektnavn = 'datoFlyttetFraHverandre';
     const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
@@ -54,10 +52,10 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   }
 
   return (
-    <SeksjonGruppe>
+    <KomponentGruppe>
       <MultiSvarSpørsmål spørsmål={spørsmål} />
       {endretSamvær ? (
-        <>
+        <FeltGruppe>
           <Datovelger
             objektnøkkel={'datoEndretSamvær'}
             valgtDato={
@@ -66,21 +64,23 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
             tekstid={'sivilstatus.begrunnelse.endring'}
             datobegrensning={DatoBegrensning.AlleDatoer}
           />
-        </>
+        </FeltGruppe>
       ) : null}
       {samlivsbrudd ? (
-        <Datovelger
-          objektnøkkel={'datoFlyttetFraHverandre'}
-          valgtDato={
-            søknad.datoFlyttetFraHverandre
-              ? søknad.datoFlyttetFraHverandre
-              : undefined
-          }
-          tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
-        />
+        <FeltGruppe>
+          <Datovelger
+            objektnøkkel={'datoFlyttetFraHverandre'}
+            valgtDato={
+              søknad.datoFlyttetFraHverandre
+                ? søknad.datoFlyttetFraHverandre
+                : undefined
+            }
+            tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
+            datobegrensning={DatoBegrensning.AlleDatoer}
+          />
+        </FeltGruppe>
       ) : null}
-    </SeksjonGruppe>
+    </KomponentGruppe>
   );
 };
 

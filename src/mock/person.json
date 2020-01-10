@@ -1,9 +1,9 @@
 {
   "søker": {
     "fnr": "01018212345",
-    "forkortetNavn": "Mock Mockensen",
+    "forkortetNavn": "Nyan Cat",
     "adresse": {
-      "adresse": "Gateveien 1",
+      "adresse": "Meowt street 1",
       "adressetillegg": "",
       "kommune": "0104",
       "postnummer": "1533"
@@ -12,7 +12,7 @@
     "innvandretDato": "1991-12-28",
     "utvandretDato": "",
     "oppholdstillatelse": "",
-    "sivilstand": "UGIF",
+    "sivilstand": "GIFT",
     "språk": "NB",
     "statsborgerskap": "NOR",
     "privattelefon": "",
@@ -23,7 +23,14 @@
   "barn": [
     {
       "fnr": "28021078036",
-      "navn": "KARAFFEL STERK",
+      "navn": "SHIBA INU",
+      "alder": 9,
+      "fødselsdato": "2010-02-28",
+      "harSammeAdresse": true
+    },
+    {
+      "fnr": "28021078038",
+      "navn": "HACHI KO",
       "alder": 9,
       "fødselsdato": "2010-02-28",
       "harSammeAdresse": true

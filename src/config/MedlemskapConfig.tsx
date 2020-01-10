@@ -16,9 +16,10 @@ export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
     },
     svaralternativer: [ISvar.JA, ISvar.NEI],
   },
-  {
-    spørsmål_id: 'søkerErFlyktning',
-    tekstid: 'medlemskap.spm.flyktning',
-    svaralternativer: [ISvar.JA, ISvar.NEI],
-  },
 ];
+
+export const registrertSomFlykting: IJaNeiSpørsmål = {
+  spørsmål_id: 'søkerErFlyktning',
+  tekstid: 'medlemskap.spm.flyktning',
+  svaralternativer: [ISvar.JA, ISvar.NEI],
+};
