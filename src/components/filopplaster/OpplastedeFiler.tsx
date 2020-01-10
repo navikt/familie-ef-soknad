@@ -19,6 +19,15 @@ const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
 
 const OpplastedeFiler = () => {
   const { søknad, settSøknad } = useSøknadContext();
+
+  const slettFil = (fil: File) => {
+    const data = søknad.vedlegg;
+
+    data.delete(fil.name);
+
+    settSøknad({ ...søknad, vedlegg: data });
+  };
+
   if (!søknad.vedlegg || typeof søknad.vedlegg === 'string') return null;
 
   const filer = [];
@@ -26,8 +35,6 @@ const OpplastedeFiler = () => {
   for (var pair of søknad.vedlegg.entries()) {
     filer.push(pair[1] as File);
   }
-
-  console.log(filer);
 
   return (
     <>
@@ -43,7 +50,7 @@ const OpplastedeFiler = () => {
           <div
             className="slett"
             onClick={() => {
-              console.log('Slett');
+              slettFil(fil);
             }}
           >
             <Normaltekst>slett</Normaltekst>

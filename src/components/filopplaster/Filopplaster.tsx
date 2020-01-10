@@ -19,9 +19,7 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
   const onDrop = useCallback((filer) => {
     settFeilmeldinger([]);
 
-    console.log(filer);
-
-    const data = new FormData();
+    const data = søknad.vedlegg;
 
     filer.forEach((fil: File) => {
       if (!tillatteFiltyper.includes(fil.type)) {
