@@ -23,7 +23,9 @@ const OpplastedeFiler = () => {
   const slettFil = (fil: File) => {
     const data = søknad.vedlegg;
 
-    data.delete(fil.name);
+    const filKey = fil.name + fil.size;
+
+    data.delete(filKey);
 
     settSøknad({ ...søknad, vedlegg: data });
   };
@@ -39,23 +41,26 @@ const OpplastedeFiler = () => {
   return (
     <>
       {filer.map((fil) => (
-        <div className="fil" key={fil.lastModified}>
-          <div>
-            <img className="vedleggsikon" src={vedlegg} />
-            <Normaltekst className="filnavn">{fil.name}</Normaltekst>
-            <Normaltekst className="filstørrelse">
-              ({formaterFilstørrelse(fil.size)})
-            </Normaltekst>
+        <div key={fil.name + fil.size}>
+          <div className="fil">
+            <div>
+              <img className="vedleggsikon" src={vedlegg} />
+              <Normaltekst className="filnavn">{fil.name}</Normaltekst>
+              <Normaltekst className="filstørrelse">
+                ({formaterFilstørrelse(fil.size)})
+              </Normaltekst>
+            </div>
+            <div
+              className="slett"
+              onClick={() => {
+                slettFil(fil);
+              }}
+            >
+              <Normaltekst>slett</Normaltekst>
+              <img className="slettikon" src={slett} />
+            </div>
           </div>
-          <div
-            className="slett"
-            onClick={() => {
-              slettFil(fil);
-            }}
-          >
-            <Normaltekst>slett</Normaltekst>
-            <img className="slettikon" src={slett} />
-          </div>
+          <hr />
         </div>
       ))}
     </>
