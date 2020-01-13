@@ -42,6 +42,12 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
       <div className="tittel-wrapper">
         <Undertittel className="tittel">{tittel}</Undertittel>
 
+        <ul className="opplasting-liste">
+          <li><Normaltekst>Redegjørelse for hvor den tidligere samboeren bor nå</Normaltekst></li>
+          <li><Normaltekst>Kopi av flyttemelding/tips til Folkeregisteret</Normaltekst></li>
+          <li><Normaltekst>Husleiekontrakt for begge parter</Normaltekst></li>
+        </ul>
+
         <div className="opplastede-filer">
           <OpplastedeFiler />
         </div>
