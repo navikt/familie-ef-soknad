@@ -39,7 +39,7 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
       {perioderBoddIUtlandet?.map((periode, index) => {
         return (
           <KomponentGruppe key={index}>
-            <Utenlandsperiode nummer={index} periode={periode} />
+            <Utenlandsperiode periodenr={index} periode={periode} />
           </KomponentGruppe>
         );
       })}

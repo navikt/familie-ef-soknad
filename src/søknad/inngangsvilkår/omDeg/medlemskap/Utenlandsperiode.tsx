@@ -21,7 +21,6 @@ const Utenlandsperiode: FC<Props> = ({ periodenr, periode, intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad;
   const fratilTekst = ['periode.fra', 'periode.til'];
-  const [fritekst, settFritekst] = useState('');
 
   const { årstall } = hentÅrstall();
   const settMåned = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -31,16 +30,23 @@ const Utenlandsperiode: FC<Props> = ({ periodenr, periode, intl }) => {
     console.log(e.target.value, e);
   };
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    settFritekst(e.target.value);
-    console.log(e.target.value);
-    // settSøknad({
-    //   ...søknad,
-    //   perioderBoddIUtlandet: {
-    //     ...perioderBoddIUtlandet,
-    //     begrunnelse: fritekst
-    //   }
-
-    // });
+    const perioderMedNyBegrunnelse = perioderBoddIUtlandet?.map(
+      (periode, index) => {
+        if (index === periodenr) {
+          return {
+            ...periode,
+            begrunnelse: e.target.value,
+          };
+        } else {
+          return periode;
+        }
+      }
+    );
+    perioderBoddIUtlandet &&
+      settSøknad({
+        ...søknad,
+        perioderBoddIUtlandet: perioderMedNyBegrunnelse,
+      });
   };
 
   const fjernUtenlandsperiode = () => {
@@ -48,9 +54,7 @@ const Utenlandsperiode: FC<Props> = ({ periodenr, periode, intl }) => {
       const utenlandsopphold = perioderBoddIUtlandet?.filter(
         (periode, index) => index !== periodenr
       );
-
       settSøknad({ ...søknad, perioderBoddIUtlandet: utenlandsopphold });
-      console.log(perioderBoddIUtlandet, utenlandsopphold);
     }
   };
 
@@ -127,7 +131,7 @@ const Utenlandsperiode: FC<Props> = ({ periodenr, periode, intl }) => {
           id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
         })}
         placeholder={'...'}
-        value={fritekst}
+        value={periode.begrunnelse}
         maxLength={1000}
         onChange={(e) => settBegrunnelse(e)}
       />
