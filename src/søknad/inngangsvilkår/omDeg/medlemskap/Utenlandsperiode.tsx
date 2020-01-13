@@ -2,23 +2,24 @@ import React, { FC, useState } from 'react';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Textarea, Select } from 'nav-frontend-skjema';
 import LocaleTekst from '../../../../language/LocaleTekst';
-//import useSøknadContext from '../../../../context/SøknadContext';
+import useSøknadContext from '../../../../context/SøknadContext';
 import { hentÅrstall } from '../../../../utils/dato';
 import { Normaltekst, Element, Undertittel } from 'nav-frontend-typografi';
 import { måneder } from '../../../../config/datoConfig';
 import { IPeriode } from '../../../../models/søknad';
 import { Flatknapp } from 'nav-frontend-knapper';
 import { ReactComponent as Slett } from '../../../../assets/Slett.svg';
+import classnames from 'classnames';
 
 interface Props {
   periode: IPeriode;
-  nummer: number;
+  periodenr: number;
   intl: IntlShape;
 }
 
-const Utenlandsperiode: FC<Props> = ({ nummer, periode, intl }) => {
-  // const { søknad, settSøknad } = useSøknadContext();
-  // const { perioderBoddIUtlandet } = søknad;
+const Utenlandsperiode: FC<Props> = ({ periodenr, periode, intl }) => {
+  const { søknad, settSøknad } = useSøknadContext();
+  const { perioderBoddIUtlandet } = søknad;
   const fratilTekst = ['periode.fra', 'periode.til'];
   const [fritekst, settFritekst] = useState('');
 
@@ -42,26 +43,33 @@ const Utenlandsperiode: FC<Props> = ({ nummer, periode, intl }) => {
     // });
   };
 
-  const fjernUtenlandsperiode = (nummer: number) => {
-    /*const nyttUtenlandsopphold: IPeriode = nyPeriode;
-    const alleUtenlandsopphold = perioderBoddIUtlandet;
-    alleUtenlandsopphold && alleUtenlandsopphold.push(nyttUtenlandsopphold);
-    alleUtenlandsopphold &&
-      settSøknad({ ...søknad, perioderBoddIUtlandet: alleUtenlandsopphold });*/
+  const fjernUtenlandsperiode = () => {
+    if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
+      const utenlandsopphold = perioderBoddIUtlandet?.filter(
+        (periode, index) => index !== periodenr
+      );
+
+      settSøknad({ ...søknad, perioderBoddIUtlandet: utenlandsopphold });
+      console.log(perioderBoddIUtlandet, utenlandsopphold);
+    }
   };
 
   const periodeTittel = intl.formatMessage({
     id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
   });
 
+  const slettKnappStyling = classnames('utenlandsopphold__slettknapp', {
+    kunEttUtenlandsopphold: perioderBoddIUtlandet?.length === 1,
+  });
+
   return (
     <div className="utenlandsopphold utenlandsopphold__container">
       <Undertittel className={'utenlandsopphold__tittel'}>
-        {periodeTittel + ' ' + (nummer + 1)}
+        {periodeTittel + ' ' + (periodenr + 1)}
       </Undertittel>
       <Flatknapp
-        className="utenlandsopphold__slettknapp"
-        onClick={() => fjernUtenlandsperiode(nummer)}
+        className={slettKnappStyling}
+        onClick={() => fjernUtenlandsperiode()}
       >
         <span>
           {intl.formatMessage({ id: 'medlemskap.periodeBoddIUtlandet.slett' })}
