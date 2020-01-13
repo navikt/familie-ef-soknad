@@ -17,8 +17,15 @@ const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-const OpplastedeFiler = () => {
+interface OpplastedeFilerProps {
+  feilmeldinger: any;
+}
+
+const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
   const { søknad, settSøknad } = useSøknadContext();
+
+  console.log('feilmeldinger');
+  console.log(feilmeldinger);
 
   const slettFil = (fil: File) => {
     const data = søknad.vedlegg;
@@ -40,29 +47,39 @@ const OpplastedeFiler = () => {
 
   return (
     <>
-      {filer.map((fil) => (
-        <div key={fil.name + fil.size}>
-          <div className="fil">
-            <div>
-              <img className="vedleggsikon" src={vedlegg} />
-              <Normaltekst className="filnavn">{fil.name}</Normaltekst>
-              <Normaltekst className="filstørrelse">
-                ({formaterFilstørrelse(fil.size)})
-              </Normaltekst>
+      {filer.map((fil) => {
+        const filKey = fil.name + fil.size;
+        const feilmelding = feilmeldinger[filKey];
+
+        return (
+          <div key={fil.name + fil.size}>
+            <div className="fil">
+              <div>
+                <img className="vedleggsikon" src={vedlegg} />
+                <Normaltekst className="filnavn">{fil.name}</Normaltekst>
+                <Normaltekst className="filstørrelse">
+                  ({formaterFilstørrelse(fil.size)})
+                </Normaltekst>
+              </div>
+              <div
+                className="slett"
+                onClick={() => {
+                  slettFil(fil);
+                }}
+              >
+                <Normaltekst>slett</Normaltekst>
+                <img className="slettikon" src={slett} />
+              </div>
             </div>
-            <div
-              className="slett"
-              onClick={() => {
-                slettFil(fil);
-              }}
-            >
-              <Normaltekst>slett</Normaltekst>
-              <img className="slettikon" src={slett} />
-            </div>
+            {feilmelding ? (
+              <div className="feilmelding">
+                <Normaltekst>{feilmelding}</Normaltekst>
+              </div>
+            ) : null}
+            <hr />
           </div>
-          <hr />
-        </div>
-      ))}
+        );
+      })}
     </>
   );
 };

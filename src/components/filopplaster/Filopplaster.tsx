@@ -14,23 +14,23 @@ interface Props {
 
 const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
+  const [feilmeldinger, settFeilmeldinger] = useState({});
   const [alleredeOpplastet, settAlleredeOpplastet] = useState<boolean>(false);
 
   const onDrop = useCallback((filer) => {
-    settFeilmeldinger([]);
     settAlleredeOpplastet(false);
 
     const data = søknad.vedlegg;
 
     filer.forEach((fil: File) => {
-      if (!tillatteFiltyper.includes(fil.type)) {
-        settFeilmeldinger(['Ikke en gyldig filtype']);
-        settSøknad({ ...søknad, vedlegg: new FormData() });
-        return;
-      }
-
       const filKey = fil.name + fil.size;
+
+      if (!tillatteFiltyper.includes(fil.type)) {
+        settFeilmeldinger({
+          ...settFeilmeldinger,
+          [filKey]: 'Ikke en gyldig filtype',
+        });
+      }
 
       if (!data.get(filKey)) {
         data.append(filKey, fil);
@@ -67,7 +67,7 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
         </ul>
 
         <div className="opplastede-filer">
-          <OpplastedeFiler />
+          <OpplastedeFiler feilmeldinger={feilmeldinger} />
         </div>
       </div>
 
