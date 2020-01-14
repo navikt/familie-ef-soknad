@@ -4,6 +4,7 @@ import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
 import { ISøknad } from '../../models/søknad';
 import useSøknadContext from '../../context/SøknadContext';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 
 const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
   if (bytes === 0) return '0 Bytes';
@@ -73,7 +74,9 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
             </div>
             {feilmelding ? (
               <div className="feilmelding">
-                <Normaltekst>{feilmelding}</Normaltekst>
+                <AlertStripeFeil className="feilmelding-alert">
+                  {feilmelding}
+                </AlertStripeFeil>
               </div>
             ) : null}
             <hr />
