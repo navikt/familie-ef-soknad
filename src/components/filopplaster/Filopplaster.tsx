@@ -10,29 +10,28 @@ import { formaterFilstørrelse } from './utils';
 interface Props {
   intl: IntlShape;
   tittel: string;
-  tillatteFiltyper: string[];
-  maxFilstørrelse: number;
+  beskrivelsesListe?: string[];
+  tillatteFiltyper?: string[];
+  maxFilstørrelse?: number;
 }
 
 const Filopplaster: React.FC<Props> = ({
   intl,
   tittel,
+  beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [feilmeldinger, settFeilmeldinger] = useState({});
-  const [alleredeOpplastet, settAlleredeOpplastet] = useState<boolean>(false);
 
   const onDrop = useCallback((filer) => {
-    settAlleredeOpplastet(false);
-
     const data = søknad.vedlegg;
 
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
 
-      if (fil.size > maxFilstørrelse) {
+      if (maxFilstørrelse && fil.size > maxFilstørrelse) {
         const maks = formaterFilstørrelse(maxFilstørrelse);
 
         settFeilmeldinger((prevState) => {
@@ -40,7 +39,7 @@ const Filopplaster: React.FC<Props> = ({
         });
       }
 
-      if (!tillatteFiltyper.includes(fil.type)) {
+      if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
         settFeilmeldinger((prevState) => {
           return { ...prevState, [filKey]: 'Ikke en gyldig filtype' };
         });
@@ -48,8 +47,6 @@ const Filopplaster: React.FC<Props> = ({
 
       if (!data.get(filKey)) {
         data.append(filKey, fil);
-      } else {
-        settAlleredeOpplastet(true);
       }
     });
 
@@ -64,21 +61,15 @@ const Filopplaster: React.FC<Props> = ({
       <div className="tittel-wrapper">
         <Undertittel className="tittel">{tittel}</Undertittel>
 
-        <ul className="opplasting-liste">
-          <li>
-            <Normaltekst>
-              Redegjørelse for hvor den tidligere samboeren bor nå
-            </Normaltekst>
-          </li>
-          <li>
-            <Normaltekst>
-              Kopi av flyttemelding/tips til Folkeregisteret
-            </Normaltekst>
-          </li>
-          <li>
-            <Normaltekst>Husleiekontrakt for begge parter</Normaltekst>
-          </li>
-        </ul>
+        {beskrivelsesListe ? (
+          <ul className="opplasting-liste">
+            {beskrivelsesListe.map((el) => (
+              <li>
+                <Normaltekst>{el}</Normaltekst>
+              </li>
+            ))}
+          </ul>
+        ) : null}
 
         <div className="opplastede-filer">
           <OpplastedeFiler feilmeldinger={feilmeldinger} />
@@ -90,14 +81,22 @@ const Filopplaster: React.FC<Props> = ({
           <input {...getInputProps()} />
           {isDragActive ? (
             <>
-              <img src={opplasting} className="opplastingsikon" />
+              <img
+                src={opplasting}
+                className="opplastingsikon"
+                alt="Opplastingsikon"
+              />
               <Normaltekst className="tekst">
                 {intl.formatMessage({ id: 'filopplaster.slipp' })}
               </Normaltekst>
             </>
           ) : (
             <>
-              <img src={opplasting} className="opplastingsikon" />
+              <img
+                src={opplasting}
+                className="opplastingsikon"
+                alt="Opplastingsikon"
+              />
               <Normaltekst className="tekst">
                 {intl.formatMessage({ id: 'filopplaster.dra' })}
               </Normaltekst>

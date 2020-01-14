@@ -2,7 +2,6 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
-import { ISøknad } from '../../models/søknad';
 import useSøknadContext from '../../context/SøknadContext';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { formaterFilstørrelse } from './utils';
@@ -42,7 +41,11 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
           <div key={fil.name + fil.size}>
             <div className="fil">
               <div>
-                <img className="vedleggsikon" src={vedlegg} />
+                <img
+                  className="vedleggsikon"
+                  src={vedlegg}
+                  alt="Vedleggsikon"
+                />
                 <Normaltekst className="filnavn">{fil.name}</Normaltekst>
                 <Normaltekst className="filstørrelse">
                   ({formaterFilstørrelse(fil.size)})
@@ -55,7 +58,7 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
                 }}
               >
                 <Normaltekst>slett</Normaltekst>
-                <img className="slettikon" src={slett} />
+                <img className="slettikon" src={slett} alt="Rødt kryss" />
               </div>
             </div>
             {feilmelding ? (

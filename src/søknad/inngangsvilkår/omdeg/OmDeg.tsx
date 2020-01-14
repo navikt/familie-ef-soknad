@@ -6,12 +6,8 @@ import Side from '../../../components/side/Side';
 import { IRoute, Routes } from '../../../config/Routes';
 import { hentNesteRoute } from '../../../utils/routing';
 import { useLocation } from 'react-router';
-import useSøknadContext, { SøknadActionType } from '../../../context/SøknadContext';
-import Filopplaster from '../../../components/filopplaster/Filopplaster';
-
 
 const OmDeg: FC = () => {
-  const { søknad } = useSøknadContext();
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
 
@@ -24,11 +20,6 @@ const OmDeg: FC = () => {
       <Personopplysninger />
       <Sivilstatus />
       <Medlemskap />
-      <Filopplaster 
-        tittel={"Bekreftelse fra Fylkesmannen om søknad om separasjon"} 
-        tillatteFiltyper={['image/png']}
-        maxFilstørrelse={1073}
-      />
     </Side>
   );
 };
