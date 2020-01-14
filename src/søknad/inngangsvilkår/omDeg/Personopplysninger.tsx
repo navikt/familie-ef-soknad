@@ -14,6 +14,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const { søker } = person;
   const { søknad, settSøknad } = useSøknadContext();
+  const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
     undefined
   );
@@ -34,6 +35,16 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
       settFeilTelefonnr('Feil format');
     }
   };
+
+  const telefonnr =
+    mobiltelefon !== ''
+      ? mobiltelefon
+      : privattelefon !== ''
+      ? privattelefon
+      : jobbtelefon !== ''
+      ? jobbtelefon
+      : '';
+
   return (
     <SeksjonGruppe>
       <FeltGruppe>
@@ -60,7 +71,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
         <Normaltekst>{søker.adresse.adresse}</Normaltekst>
       </FeltGruppe>
 
-      {person.søker.mobiltelefon === '' ? (
+      {telefonnr === '' ? (
         <Input
           key={'tlf'}
           label={intl
@@ -80,7 +91,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
           <Element>
             <LocaleTekst tekst={'personopplysninger.telefonnr'} />
           </Element>
-          <Normaltekst>{person.søker.mobiltelefon}</Normaltekst>
+          <Normaltekst>{telefonnr}</Normaltekst>
         </FeltGruppe>
       )}
     </SeksjonGruppe>
