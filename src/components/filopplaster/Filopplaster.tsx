@@ -5,14 +5,21 @@ import { injectIntl, IntlShape } from 'react-intl';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
+import { formaterFilstørrelse } from './utils';
 
 interface Props {
   intl: IntlShape;
   tittel: string;
   tillatteFiltyper: string[];
+  maxFilstørrelse: number;
 }
 
-const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
+const Filopplaster: React.FC<Props> = ({
+  intl,
+  tittel,
+  tillatteFiltyper,
+  maxFilstørrelse,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [feilmeldinger, settFeilmeldinger] = useState({});
   const [alleredeOpplastet, settAlleredeOpplastet] = useState<boolean>(false);
@@ -25,10 +32,17 @@ const Filopplaster: React.FC<Props> = ({ intl, tittel, tillatteFiltyper }) => {
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
 
+      if (fil.size > maxFilstørrelse) {
+        const maks = formaterFilstørrelse(maxFilstørrelse);
+
+        settFeilmeldinger((prevState) => {
+          return { ...prevState, [filKey]: 'Filer må være under ' + maks };
+        });
+      }
+
       if (!tillatteFiltyper.includes(fil.type)) {
-        settFeilmeldinger({
-          ...settFeilmeldinger,
-          [filKey]: 'Ikke en gyldig filtype',
+        settFeilmeldinger((prevState) => {
+          return { ...prevState, [filKey]: 'Ikke en gyldig filtype' };
         });
       }
 

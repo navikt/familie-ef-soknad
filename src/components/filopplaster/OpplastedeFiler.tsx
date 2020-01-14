@@ -5,18 +5,7 @@ import slett from '../../assets/slett.svg';
 import { ISøknad } from '../../models/søknad';
 import useSøknadContext from '../../context/SøknadContext';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
-
-const formaterFilstørrelse = (bytes: number, decimals: number = 2) => {
-  if (bytes === 0) return '0 Bytes';
-
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-};
+import { formaterFilstørrelse } from './utils';
 
 interface OpplastedeFilerProps {
   feilmeldinger: any;
@@ -24,9 +13,6 @@ interface OpplastedeFilerProps {
 
 const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
   const { søknad, settSøknad } = useSøknadContext();
-
-  console.log('feilmeldinger');
-  console.log(feilmeldinger);
 
   const slettFil = (fil: File) => {
     const data = søknad.vedlegg;

@@ -27,6 +27,7 @@ const OmDeg: FC = () => {
       <Filopplaster 
         tittel={"Bekreftelse fra Fylkesmannen om søknad om separasjon"} 
         tillatteFiltyper={['image/png']}
+        maxFilstørrelse={1073}
       />
     </Side>
   );
