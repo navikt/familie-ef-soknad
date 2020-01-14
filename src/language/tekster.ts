@@ -40,10 +40,13 @@ export default {
     år: 'Velg år',
     'periode.fra': 'Fra',
     'periode.til': 'Til',
-    'personopplysninger.infohentet':
-      'Informasjonen er hentet fra Folkeregisteret og NAVS register. Hvis dette ikke stemmer, må du endre informasjonen hos Folkeregisteret.',
-    'personopplysninger.tittel': 'Om deg',
+    'personopplysninger.alert.infohentet':
+      'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
+    'stegtittel.omDeg': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
+    'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
+    'personopplysninger.alert.riktigAdresse':
+      'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',

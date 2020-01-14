@@ -6,7 +6,6 @@ const StyledFeltGruppe = styled.div`
 
   &:last-child {
     padding-bottom: 0;
-    padding-top: 25px;
   }
 
   .alertstripe.fjernBakgrunn {

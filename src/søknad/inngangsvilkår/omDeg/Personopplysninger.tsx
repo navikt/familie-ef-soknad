@@ -7,8 +7,12 @@ import useSøknadContext from '../../../context/SøknadContext';
 
 import { injectIntl } from 'react-intl';
 import FeltGruppe from '../../../components/FeltGruppe';
+import KomponentGruppe from '../../../components/KomponentGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SeksjonGruppe from '../../../components/SeksjonGruppe';
+import JaNeiSpørsmål from '../../../components/JaNeiSpørsmål';
+import { borDuPåDenneAdressen } from '../../../config/PersonopplysningerConfig';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -47,29 +51,40 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
 
   return (
     <SeksjonGruppe>
-      <FeltGruppe>
-        <AlertStripeInfo className={'fjernBakgrunn'}>
-          <LocaleTekst tekst={'personopplysninger.infohentet'} />
-        </AlertStripeInfo>
-      </FeltGruppe>
-      <FeltGruppe>
-        <Element>
-          <LocaleTekst tekst={'personopplysninger.fnr'} />
-        </Element>
-        <Normaltekst>{søker.fnr}</Normaltekst>
-      </FeltGruppe>
-      <FeltGruppe>
-        <Element>
-          <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
-        </Element>
-        <Normaltekst>{søker.statsborgerskap}</Normaltekst>
-      </FeltGruppe>
-      <FeltGruppe>
-        <Element>
-          <LocaleTekst tekst={'personopplysninger.adresse'} />
-        </Element>
-        <Normaltekst>{søker.adresse.adresse}</Normaltekst>
-      </FeltGruppe>
+      <KomponentGruppe>
+        <FeltGruppe>
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
+          </AlertStripeInfo>
+        </FeltGruppe>
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst tekst={'personopplysninger.fnr'} />
+          </Element>
+          <Normaltekst>{søker.fnr}</Normaltekst>
+        </FeltGruppe>
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
+          </Element>
+          <Normaltekst>{søker.statsborgerskap}</Normaltekst>
+        </FeltGruppe>
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst tekst={'personopplysninger.adresse'} />
+          </Element>
+          <Normaltekst>{søker.adresse.adresse}</Normaltekst>
+        </FeltGruppe>
+      </KomponentGruppe>
+
+      <KomponentGruppe>
+        <JaNeiSpørsmål spørsmål={borDuPåDenneAdressen} />
+        {søknad.søkerBorPåRegistrertAdresse === false ? (
+          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+            <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
+          </AlertStripeAdvarsel>
+        ) : null}
+      </KomponentGruppe>
 
       {telefonnr === '' ? (
         <Input
