@@ -30,9 +30,6 @@ const reducer = (state: ISøknad, action: IAction): ISøknad => {
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
   person: mockPerson,
-  søkerOppholderSegINorge: undefined,
-  søkerBosattINorgeSisteTreÅr: undefined,
-  søkerErFlyktning: undefined,
 };
 
 const useSøknad = () => {
