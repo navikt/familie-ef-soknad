@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
 import useSøknadContext from '../../context/SøknadContext';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { formaterFilstørrelse } from './utils';
 
 interface OpplastedeFilerProps {
@@ -61,13 +60,6 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
                 <img className="slettikon" src={slett} alt="Rødt kryss" />
               </div>
             </div>
-            {feilmelding ? (
-              <div className="feilmelding">
-                <AlertStripeFeil className="feilmelding-alert">
-                  {feilmelding}
-                </AlertStripeFeil>
-              </div>
-            ) : null}
             <hr />
           </div>
         );

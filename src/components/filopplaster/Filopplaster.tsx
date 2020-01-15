@@ -6,6 +6,8 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import Modal from 'nav-frontend-modal';
 
 interface Props {
   intl: IntlShape;
@@ -23,10 +25,17 @@ const Filopplaster: React.FC<Props> = ({
   maxFilstørrelse,
 }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const [feilmeldinger, settFeilmeldinger] = useState({});
+  const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
+  const [åpenModal, settÅpenModal] = useState<boolean>(false);
+
+  const lukkModal = () => {
+    settFeilmeldinger([]);
+    settÅpenModal(false);
+  }
 
   const onDrop = useCallback((filer) => {
     const data = søknad.vedlegg;
+    let feil = false;
 
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
@@ -34,15 +43,22 @@ const Filopplaster: React.FC<Props> = ({
       if (maxFilstørrelse && fil.size > maxFilstørrelse) {
         const maks = formaterFilstørrelse(maxFilstørrelse);
 
-        settFeilmeldinger((prevState) => {
-          return { ...prevState, [filKey]: 'Filer må være under ' + maks };
-        });
+        const liste = feilmeldinger;
+        liste.push(fil.name + " er for stor. Den må være under " + maks);
+
+        settFeilmeldinger(liste);
+        settÅpenModal(true);
+        return;
       }
 
       if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-        settFeilmeldinger((prevState) => {
-          return { ...prevState, [filKey]: 'Ikke en gyldig filtype' };
-        });
+        const liste = feilmeldinger;
+        liste.push(fil.name + " har feil filtype");
+
+
+        settFeilmeldinger(liste);
+        settÅpenModal(true);
+        return;
       }
 
       if (!data.get(filKey)) {
@@ -77,6 +93,19 @@ const Filopplaster: React.FC<Props> = ({
       </div>
 
       <div className="filopplaster">
+                    <Modal
+            isOpen={åpenModal}
+            onRequestClose={() => lukkModal()}
+            closeButton={true}
+            contentLabel="Modal"
+            >
+              <div className="feilmelding">
+                {feilmeldinger.map(feilmelding => 
+                  (<AlertStripeFeil key={Math.random()} className="feilmelding-alert">
+                  {feilmelding}
+                </AlertStripeFeil>))}
+              </div>
+            </Modal>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (
