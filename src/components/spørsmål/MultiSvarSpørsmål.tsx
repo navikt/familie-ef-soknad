@@ -2,14 +2,14 @@ import React, { FC, SyntheticEvent, useState } from 'react';
 import {
   IMultiSpørsmål as ISpørsmål,
   IMultiSvar as ISvar,
-} from '../models/spørsmal';
+} from '../../models/spørsmal';
 import { injectIntl, IntlShape } from 'react-intl';
-import useSøknadContext from '../context/SøknadContext';
+import useSøknadContext from '../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
-import { returnerMultiSvar } from '../utils/spørsmålogsvar';
+import { returnerMultiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import FeltGruppe from './FeltGruppe';
+import FeltGruppe from '../FeltGruppe';
 
 interface Props {
   spørsmål: ISpørsmål;

@@ -1,13 +1,13 @@
 import React, { SyntheticEvent } from 'react';
-import { IJaNeiSpørsmål as ISpørsmål, ISvar } from '../models/spørsmal';
+import { IJaNeiSpørsmål as ISpørsmål, ISvar } from '../../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
 import {
   returnerJaNeiSvar,
   hentTekstidTilJaNeiSvar,
-} from '../utils/spørsmålogsvar';
+} from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
-import useSøknadContext from '../context/SøknadContext';
+import useSøknadContext from '../../context/SøknadContext';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
 interface Props {

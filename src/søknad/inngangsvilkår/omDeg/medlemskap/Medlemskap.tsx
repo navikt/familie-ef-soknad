@@ -5,7 +5,7 @@ import {
   registrertSomFlykting,
 } from '../../../../config/MedlemskapConfig';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
-import JaNeiSpørsmål from '../../../../components/JaNeiSpørsmål';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';

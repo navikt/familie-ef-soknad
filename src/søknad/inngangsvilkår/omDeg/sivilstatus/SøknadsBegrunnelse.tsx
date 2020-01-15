@@ -5,7 +5,7 @@ import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
-import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
+import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import FeltGruppe from '../../../../components/FeltGruppe';
 import Datovelger, {
   DatoBegrensning,

@@ -12,6 +12,7 @@ import FeltGruppe from '../../../../components/FeltGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
+import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
@@ -56,8 +57,6 @@ const Utenlandsopphold: FC<Props> = ({
       });
   };
 
-  console.log(utenlandsopphold);
-
   const settPeriode = (date: Date | null, objektnøkkel: string): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
@@ -94,40 +93,34 @@ const Utenlandsopphold: FC<Props> = ({
       <Undertittel className={'utenlandsopphold__tittel'}>
         {periodeTittel}
       </Undertittel>
-      <Flatknapp
+      <SlettKnapp
         className={classnames('utenlandsopphold__slettknapp', {
           kunEttUtenlandsopphold: perioderBoddIUtlandet?.length === 1,
         })}
         onClick={() => fjernUtenlandsperiode()}
-      >
-        <span>
-          {intl.formatMessage({ id: 'medlemskap.periodeBoddIUtlandet.slett' })}
-        </span>
-        <Slett />
-      </Flatknapp>
+        tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
+      />
+
+      <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
+        <Element>
+          <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet'} />
+        </Element>
+      </FeltGruppe>
 
       <div className={'utenlandsopphold__periodegruppe'}>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet'} />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <Datovelger
-            settDato={(e) => settPeriode(e, 'fra')}
-            valgtDato={utenlandsopphold.periode.fra ? periode.fra : undefined}
-            tekstid={'periode.fra'}
-            datobegrensning={DatoBegrensning.AlleDatoer}
-          />
-        </FeltGruppe>
-        <FeltGruppe>
-          <Datovelger
-            settDato={(e) => settPeriode(e, 'til')}
-            valgtDato={periode.til ? periode.til : undefined}
-            tekstid={'periode.til'}
-            datobegrensning={DatoBegrensning.AlleDatoer}
-          />
-        </FeltGruppe>
+        <Datovelger
+          settDato={(e) => settPeriode(e, 'fra')}
+          valgtDato={utenlandsopphold.periode.fra ? periode.fra : undefined}
+          tekstid={'periode.fra'}
+          datobegrensning={DatoBegrensning.AlleDatoer}
+        />
+
+        <Datovelger
+          settDato={(e) => settPeriode(e, 'til')}
+          valgtDato={periode.til ? periode.til : undefined}
+          tekstid={'periode.til'}
+          datobegrensning={DatoBegrensning.AlleDatoer}
+        />
       </div>
 
       <Textarea

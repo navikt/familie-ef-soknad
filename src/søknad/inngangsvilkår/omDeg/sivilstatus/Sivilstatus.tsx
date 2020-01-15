@@ -11,7 +11,7 @@ import {
   SeparasjonSpørsmål,
   SkiltEllerEnkeSpørsmål,
 } from '../../../../config/SivilstatusConfig';
-import JaNeiSpørsmål from '../../../../components/JaNeiSpørsmål';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
   AlertStripeInfo,

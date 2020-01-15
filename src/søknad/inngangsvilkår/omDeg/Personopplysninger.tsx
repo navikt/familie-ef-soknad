@@ -10,7 +10,7 @@ import FeltGruppe from '../../../components/FeltGruppe';
 import KomponentGruppe from '../../../components/KomponentGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SeksjonGruppe from '../../../components/SeksjonGruppe';
-import JaNeiSpørsmål from '../../../components/JaNeiSpørsmål';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from '../../../config/PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
