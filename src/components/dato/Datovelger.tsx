@@ -4,7 +4,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../FeltGruppe';
-import useSøknadContext from '../../context/SøknadContext';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import { addDays, subDays } from 'date-fns';
 import { dagensDato } from '../../utils/dato';

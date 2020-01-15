@@ -5,9 +5,7 @@
     grid-auto-rows: max-content;
     grid-template-areas:
       "tittel slett"
-      "spm spm"
-      "fraperiode fraperiode"
-      "tilperiode tilperiode"
+      "periodegruppe periodegruppe"
       "fritekst fritekst";
   }
 
@@ -29,40 +27,12 @@
     }
   }
 
-  &__spørsmål {
+  &__periodegruppe {
     padding-bottom: 1rem;
-    grid-area: spm;
+    grid-area: periodegruppe;
   }
 
-  .periode-fra {
-    grid-area: fraperiode;
-  }
-  .periode-til {
-    grid-area: tilperiode;
-  }
-
-  .textarea__container {
+  & > .skjemaelement.textarea__container {
     grid-area: fritekst;
-  }
-
-  .periodegruppe {
-    display: grid;
-    grid-template-columns: repeat(2, min-content);
-    grid-template-rows: repeat(2, max-content);
-    grid-template-areas:
-      "fratil ."
-      "mnd ar";
-  }
-
-  .periodegruppe > .fratil {
-    grid-area: fratil;
-  }
-
-  .periodegruppe > .måned {
-    grid-area: mnd;
-    padding-right: 1rem;
-  }
-  .periodegruppe > .år {
-    grid-area: ar;
   }
 }

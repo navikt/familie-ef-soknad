@@ -3,11 +3,12 @@ import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../../../context/SøknadContext';
-import Utenlandsperiode from './Utenlandsperiode';
 import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
 import FeltGruppe from '../../../../components/FeltGruppe';
-import { IPeriode } from '../../../../models/søknad';
+import { IUtenlandsopphold } from '../../../../models/søknad';
+import Utenlandsopphold from './Utenlandsopphold';
+import { dagensDato } from '../../../../utils/dato';
 
 interface Props {
   intl: IntlShape;
@@ -16,7 +17,11 @@ interface Props {
 const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad;
-  const nyPeriode = { fra: '', til: '', ugyldig: false, begrunnelse: '' };
+  const nyPeriode = {
+    periode: { fra: dagensDato, til: dagensDato },
+    ugyldig: false,
+    begrunnelse: '',
+  };
 
   useEffect(() => {
     settSøknad({
@@ -27,7 +32,7 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
   }, []);
 
   const leggTilUtenlandsperiode = () => {
-    const nyttUtenlandsopphold: IPeriode = nyPeriode;
+    const nyttUtenlandsopphold: IUtenlandsopphold = nyPeriode;
     const alleUtenlandsopphold = perioderBoddIUtlandet;
     alleUtenlandsopphold && alleUtenlandsopphold.push(nyttUtenlandsopphold);
     alleUtenlandsopphold &&
@@ -39,7 +44,7 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
       {perioderBoddIUtlandet?.map((periode, index) => {
         return (
           <KomponentGruppe key={index}>
-            <Utenlandsperiode periodenr={index} periode={periode} />
+            <Utenlandsopphold utenlandsopphold={periode} oppholdsnr={index} />
           </KomponentGruppe>
         );
       })}

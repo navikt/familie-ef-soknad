@@ -1,4 +1,3 @@
-import { IPeriode } from './../models/søknad';
 export const hentÅrstall = () => {
   let årstall = [];
   const dato = new Date().getFullYear();
