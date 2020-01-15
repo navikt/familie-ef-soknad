@@ -7,6 +7,7 @@ import FeltGruppe from '../FeltGruppe';
 import useSøknadContext from '../../context/SøknadContext';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import { addDays, subDays } from 'date-fns';
+import { dagensDato } from '../../utils/dato';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -15,25 +16,18 @@ export enum DatoBegrensning {
 }
 
 interface Props {
-  objektnøkkel: string;
   valgtDato: Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
+  settDato: (date: Date | null) => void;
 }
 
 const Datovelger: React.FC<Props> = ({
   tekstid,
   datobegrensning,
   valgtDato,
-  objektnøkkel,
+  settDato,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const dagensDato = new Date();
-
-  const settDato = (date: Date | null): void => {
-    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
-  };
-
   useEffect(() => {
     settDato(dagensDato);
     // eslint-disable-next-line

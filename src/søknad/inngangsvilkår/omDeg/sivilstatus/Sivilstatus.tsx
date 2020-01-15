@@ -16,12 +16,13 @@ import {
   AlertStripeAdvarsel,
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/datovelger/Datovelger';
+
 import { injectIntl } from 'react-intl';
 import Søknadsbegrunnelse from './SøknadsBegrunnelse';
 import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../../components/dato/Datovelger';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
@@ -42,6 +43,10 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
     dato !== undefined && settSøknad({ ...nyttSøknadObjekt });
   };
 
+  const settDato = (date: Date | null, objektnøkkel: string): void => {
+    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
+  };
+
   !søkerHarSøktSeparasjon && resetDatoSøktSeparasjon(datoSøktSeparasjon);
 
   return (
@@ -60,7 +65,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
           {søkerHarSøktSeparasjon ? (
             <KomponentGruppe>
               <Datovelger
-                objektnøkkel={'datoSøktSeparasjon'}
+                settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
                 valgtDato={
                   søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
                 }

@@ -1,7 +1,5 @@
 import React, { FC } from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/datovelger/Datovelger';
+
 import { IMultiSpørsmål } from '../../../../models/spørsmal';
 import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
 import useSøknadContext from '../../../../context/SøknadContext';
@@ -9,6 +7,9 @@ import { injectIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../components/MultiSvarSpørsmål';
 import FeltGruppe from '../../../../components/FeltGruppe';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../../components/dato/Datovelger';
 
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
@@ -51,13 +52,17 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     settSøknad({ ...nyttSøknadObjekt });
   }
 
+  const settDato = (date: Date | null, objektnøkkel: string): void => {
+    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
+  };
+
   return (
     <KomponentGruppe>
       <MultiSvarSpørsmål spørsmål={spørsmål} />
       {endretSamvær ? (
         <FeltGruppe>
           <Datovelger
-            objektnøkkel={'datoEndretSamvær'}
+            settDato={(e) => settDato(e, 'datoEndretSamvær')}
             valgtDato={
               søknad.datoEndretSamvær ? søknad.datoEndretSamvær : undefined
             }
@@ -69,7 +74,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
       {samlivsbrudd ? (
         <FeltGruppe>
           <Datovelger
-            objektnøkkel={'datoFlyttetFraHverandre'}
+            settDato={(e) => settDato(e, 'datoFlyttetFraHverandre')}
             valgtDato={
               søknad.datoFlyttetFraHverandre
                 ? søknad.datoFlyttetFraHverandre
