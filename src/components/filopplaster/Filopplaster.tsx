@@ -29,22 +29,20 @@ const Filopplaster: React.FC<Props> = ({
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
 
   const lukkModal = () => {
-    settFeilmeldinger([]);
     settÅpenModal(false);
-  }
+  };
 
   const onDrop = useCallback((filer) => {
     const data = søknad.vedlegg;
     let feil = false;
+    const liste: string[] = [];
 
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
 
       if (maxFilstørrelse && fil.size > maxFilstørrelse) {
         const maks = formaterFilstørrelse(maxFilstørrelse);
-
-        const liste = feilmeldinger;
-        liste.push(fil.name + " er for stor. Den må være under " + maks);
+        liste.push(fil.name + ' er for stor. Den må være under ' + maks + '.');
 
         settFeilmeldinger(liste);
         settÅpenModal(true);
@@ -52,9 +50,7 @@ const Filopplaster: React.FC<Props> = ({
       }
 
       if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-        const liste = feilmeldinger;
-        liste.push(fil.name + " har feil filtype");
-
+        liste.push(fil.name + ' har feil filtype.');
 
         settFeilmeldinger(liste);
         settÅpenModal(true);
@@ -93,19 +89,23 @@ const Filopplaster: React.FC<Props> = ({
       </div>
 
       <div className="filopplaster">
-                    <Modal
-            isOpen={åpenModal}
-            onRequestClose={() => lukkModal()}
-            closeButton={true}
-            contentLabel="Modal"
-            >
-              <div className="feilmelding">
-                {feilmeldinger.map(feilmelding => 
-                  (<AlertStripeFeil key={Math.random()} className="feilmelding-alert">
-                  {feilmelding}
-                </AlertStripeFeil>))}
-              </div>
-            </Modal>
+        <Modal
+          isOpen={åpenModal}
+          onRequestClose={() => lukkModal()}
+          closeButton={true}
+          contentLabel="Modal"
+        >
+          <div className="feilmelding">
+            {feilmeldinger.map((feilmelding) => (
+              <AlertStripeFeil
+                key={Math.random()}
+                className="feilmelding-alert"
+              >
+                {feilmelding}
+              </AlertStripeFeil>
+            ))}
+          </div>
+        </Modal>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (
