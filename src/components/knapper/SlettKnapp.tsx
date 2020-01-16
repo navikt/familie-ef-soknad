@@ -24,6 +24,11 @@ const StyledSlettKnapp = styled.button`
   & > span {
     padding-right: 5px;
   }
+  
+  svg {
+  height: 16px;
+  width: 16px;
+  }
 `;
 
 interface Props {
