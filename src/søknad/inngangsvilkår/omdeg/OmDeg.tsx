@@ -6,7 +6,7 @@ import Side from '../../../components/side/Side';
 import { IRoute, Routes } from '../../../config/Routes';
 import { hentNesteRoute } from '../../../utils/routing';
 import { useLocation } from 'react-router';
-import { Filopplaster } from '../../../components/filopplaster/Filopplaster';
+import Filopplaster from '../../../components/filopplaster/Filopplaster';
 
 const OmDeg: FC = () => {
   const location = useLocation();
