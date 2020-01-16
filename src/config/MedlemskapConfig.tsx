@@ -1,10 +1,10 @@
-import { IJaNeiSpørsmål, ISvar } from '../models/spørsmal';
+import { IJaNeiSpørsmål, standardJaNeiSvar } from '../models/spørsmal';
 
 export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
   {
     spørsmål_id: 'søkerOppholderSegINorge',
     tekstid: 'medlemskap.spm.opphold',
-    svaralternativer: [ISvar.JA, ISvar.NEI],
+    svaralternativer: standardJaNeiSvar,
   },
   {
     spørsmål_id: 'søkerBosattINorgeSisteTreÅr',
@@ -14,12 +14,12 @@ export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
       lukkeTekstid: '',
       innholdTekstid: 'medlemskap.hjelpetekst.bosatt.innhold',
     },
-    svaralternativer: [ISvar.JA, ISvar.NEI],
+    svaralternativer: standardJaNeiSvar,
   },
 ];
 
 export const registrertSomFlykting: IJaNeiSpørsmål = {
   spørsmål_id: 'søkerErFlyktning',
   tekstid: 'medlemskap.spm.flyktning',
-  svaralternativer: [ISvar.JA, ISvar.NEI],
+  svaralternativer: standardJaNeiSvar,
 };

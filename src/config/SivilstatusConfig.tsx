@@ -1,27 +1,49 @@
-import { IJaNeiSpørsmål, IMultiSpørsmål, ISvar } from '../models/spørsmal';
+import {
+  IJaNeiSpørsmål,
+  IMultiSpørsmål,
+  ISvar,
+  standardJaNeiSvar,
+} from '../models/spørsmal';
 
 export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
   spørsmål_id: 'søkerHarSøktSeparasjon',
   tekstid: 'sivilstatus.separasjon.harsøkersøkt',
-  svaralternativer: [ISvar.JA, ISvar.NEI],
+  svaralternativer: standardJaNeiSvar,
 };
 
 export const SkiltEllerEnkeSpørsmål: IJaNeiSpørsmål[] = [
   {
     spørsmål_id: 'søkerGiftIUtlandet',
-    tekstid: 'sivilstatus.gift.utlandet',
-    svaralternativer: [ISvar.JA, ISvar.NEI],
+    tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
+    lesmer: {
+      åpneTekstid: 'sivilstatus.lesmer-åpne.søkerGiftIUtlandet',
+      lukkeTekstid: '',
+      innholdTekstid: 'sivilstatus.lesmer-innhold.søkerGiftIUtlandet',
+    },
+    svaralternativer: [
+      {
+        svar_tekstid: ISvar.JA,
+        alert_tekstid: 'sivilstatus.dok.søkerGiftIUtlandet',
+      },
+      { svar_tekstid: ISvar.NEI },
+    ],
   },
   {
     spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
-    tekstid: 'sivilstatus.separertEllerSkilt.utlandet',
-    svaralternativer: [ISvar.JA, ISvar.NEI],
+    tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
+    svaralternativer: [
+      {
+        svar_tekstid: ISvar.JA,
+        alert_tekstid: 'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet',
+      },
+      { svar_tekstid: ISvar.NEI },
+    ],
   },
 ];
 
 export const BegrunnelseSpørsmål: IMultiSpørsmål = {
   spørsmål_id: 'begrunnelseForSøknad',
-  tekstid: 'sivilstatus.begrunnelse',
+  tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',

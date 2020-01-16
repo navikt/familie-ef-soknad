@@ -50,11 +50,13 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
         );
       })}
       <KomponentGruppe>
-        <Element>
-          <LocaleTekst
-            tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
-          />
-        </Element>
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst
+              tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
+            />
+          </Element>
+        </FeltGruppe>
         <FeltGruppe>
           <KnappBase
             type={'standard'}

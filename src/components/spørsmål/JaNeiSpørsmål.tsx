@@ -1,14 +1,18 @@
-import React, { SyntheticEvent } from 'react';
-import { IJaNeiSpørsmål as ISpørsmål, ISvar } from '../../models/spørsmal';
-import { Element } from 'nav-frontend-typografi';
+import React, { SyntheticEvent, useState } from 'react';
 import {
-  returnerJaNeiSvar,
-  hentTekstidTilJaNeiSvar,
-} from '../../utils/spørsmålogsvar';
+  IJaNeiSpørsmål as ISpørsmål,
+  IJaNeiSvar,
+  ISvar,
+} from '../../models/spørsmal';
+import { Element } from 'nav-frontend-typografi';
+import { returnerJaNeiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../context/SøknadContext';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
+import FeltGruppe from '../FeltGruppe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -16,13 +20,25 @@ interface Props {
 }
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
+  const [harAlert, settAlert] = useState(false);
+  const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
 
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
-    svar: ISvar
+    svar: IJaNeiSvar
   ): void => {
-    settSøknad({ ...søknad, [spørsmål.spørsmål_id]: svar === ISvar.JA });
+    settSøknad({
+      ...søknad,
+      [spørsmål.spørsmål_id]: svar.svar_tekstid === ISvar.JA,
+    });
+    if (svar.alert_tekstid) {
+      settAlert(true);
+      settValgtSvarAlertTekst(svar.alert_tekstid);
+    } else {
+      settAlert(false);
+      settValgtSvarAlertTekst('');
+    }
   };
 
   return (
@@ -37,17 +53,17 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
         </Lesmerpanel>
       ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
-        {spørsmål.svaralternativer.map((svar: ISvar) => {
+        {spørsmål.svaralternativer.map((svar: IJaNeiSvar) => {
           const svarISøknad = returnerJaNeiSvar(spørsmål, svar, søknad);
           return (
-            <div key={svar} className={'radioknapp__item'}>
+            <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel
-                key={svar}
+                key={svar.svar_tekstid}
                 name={spørsmål.spørsmål_id + svar}
                 label={intl.formatMessage({
-                  id: hentTekstidTilJaNeiSvar(svar),
+                  id: svar.svar_tekstid,
                 })}
-                value={svar}
+                value={svar.svar_tekstid}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={(e) => onClickHandle(e, spørsmål, svar)}
               />
@@ -55,6 +71,13 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
           );
         })}
       </div>
+      {harAlert ? (
+        <FeltGruppe>
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <LocaleTekst tekst={valgtSvarAlertTekst} />
+          </AlertStripeInfo>
+        </FeltGruppe>
+      ) : null}
     </div>
   );
 };

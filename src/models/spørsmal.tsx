@@ -1,7 +1,12 @@
 export enum ISvar {
-  JA = 'JA',
-  NEI = 'NEI',
+  JA = 'svar.ja',
+  NEI = 'svar.nei',
 }
+
+export const standardJaNeiSvar = [
+  { svar_tekstid: ISvar.JA },
+  { svar_tekstid: ISvar.NEI },
+];
 
 export interface LesMer {
   åpneTekstid: string;
@@ -9,11 +14,16 @@ export interface LesMer {
   innholdTekstid: string;
 }
 
+export interface IJaNeiSvar {
+  svar_tekstid: ISvar;
+  alert_tekstid?: string;
+}
+
 export interface IJaNeiSpørsmål {
   spørsmål_id: string;
   tekstid: string;
   lesmer?: LesMer;
-  svaralternativer: ISvar[];
+  svaralternativer: IJaNeiSvar[];
 }
 
 export interface IMultiSvar {

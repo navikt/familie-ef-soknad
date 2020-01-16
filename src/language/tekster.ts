@@ -68,11 +68,18 @@ export default {
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
     'sivilstatus.separasjon.advarsel':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.gift.utlandet':
+    'sivilstatus.spm.søkerGiftIUtlandet':
       'Er du gift i utlandet eller etter utenlandske tradisjoner i Norge?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.begrunnelse': 'Hvorfor søker du overgangsstønad nå?',
+    'sivilstatus.dok.søkerGiftIUtlandet':
+      'Du må legge ved dokumentasjon på inngått ekteskap',
+    'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
+    'sivilstatus.lesmer-innhold.søkerGiftIUtlandet': 'Let me tell you why',
+    'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet':
+      'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
+    'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet':
+      'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
+    'sivilstatus.spm.begrunnelse':
+      'Hva er grunnen til at du er alene med barn?',
     'sivilstatus.sporsmal.datoFlyttetFraHverandre':
       'Når flyttet dere fra hverandre?',
     'sivilstatus.svar.samlivsbruddForeldre':
