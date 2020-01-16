@@ -26,8 +26,8 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
 
   const filer = [];
 
-  for (var pair of søknad.vedlegg.entries()) {
-    filer.push(pair[1] as File);
+  for (const fil of søknad.vedlegg.values()) {
+    filer.push(fil as File);
   }
 
   return (
