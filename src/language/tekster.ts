@@ -40,6 +40,10 @@ export default {
     år: 'Velg år',
     'periode.fra': 'Fra',
     'periode.til': 'Til',
+    'datovelger.periode.feilFormat':
+      'Startsdato må være tidligere enn sluttdato.',
+    'datovelger.periode.likeDatoer':
+      'Valgte datoer for perioden kan ikke være like',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
     'stegtittel.omDeg': 'Om deg',

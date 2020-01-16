@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -11,7 +11,9 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-
+import Feilmelding from '../../../../components/feil/Feilmelding';
+import classNames from 'classnames';
+import { compareAsc } from 'date-fns';
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
@@ -26,6 +28,7 @@ const Utenlandsopphold: FC<Props> = ({
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad;
   const { periode, begrunnelse } = utenlandsopphold;
+  const [feilmelding, settFeilmelding] = useState('');
 
   const fjernUtenlandsperiode = () => {
     if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
@@ -55,6 +58,20 @@ const Utenlandsopphold: FC<Props> = ({
       });
   };
 
+  const sammenlignDatoerOgOppdaterFeilmelding = (fom: Date, tom: Date) => {
+    const val = compareAsc(fom, tom);
+    val === 1
+      ? settFeilmelding('datovelger.periode.feilFormat')
+      : val === 0
+      ? settFeilmelding('datovelger.periode.likeDatoer')
+      : settFeilmelding('');
+  };
+  useEffect(() => {
+    sammenlignDatoerOgOppdaterFeilmelding(
+      utenlandsopphold.periode.fra,
+      utenlandsopphold.periode.til
+    );
+  });
   const settPeriode = (date: Date | null, objektnøkkel: string): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
@@ -119,6 +136,15 @@ const Utenlandsopphold: FC<Props> = ({
           tekstid={'periode.til'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
+        {feilmelding !== '' ? (
+          <div
+            className={classNames('datovelger__feilmelding ', {
+              gjemFeilmelding: feilmelding === '',
+            })}
+          >
+            <Feilmelding tekstid={feilmelding} />
+          </div>
+        ) : null}
       </div>
 
       <Textarea

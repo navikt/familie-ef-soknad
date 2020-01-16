@@ -1,17 +1,17 @@
 import React, { useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
-import nb from 'date-fns/locale/nb';
-import nn from 'date-fns/locale/nn';
-import en from 'date-fns/locale/en-US';
-import { Normaltekst } from 'nav-frontend-typografi';
-import LocaleTekst from '../../language/LocaleTekst';
-import FeltGruppe from '../FeltGruppe';
-import KalenderIkonSVG from '../../assets/KalenderSVG';
 import { addDays, subDays } from 'date-fns';
 import { dagensDato } from '../../utils/dato';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+import en from 'date-fns/locale/en-US';
+import nb from 'date-fns/locale/nb';
+import nn from 'date-fns/locale/nn';
+import FeltGruppe from '../FeltGruppe';
+import KalenderIkonSVG from '../../assets/KalenderSVG';
+import LocaleTekst from '../../language/LocaleTekst';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -43,7 +43,7 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    settDato(dagensDato);
+    settDato(valgtDato ? valgtDato : null);
     setDefaultLocale('nb');
 
     // eslint-disable-next-line

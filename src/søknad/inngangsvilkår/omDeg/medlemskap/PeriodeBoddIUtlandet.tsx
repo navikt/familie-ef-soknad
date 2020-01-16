@@ -19,7 +19,7 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad;
   const nyPeriode = {
-    periode: { fra: dagensDato, til: subDays(dagensDato, 1) },
+    periode: { fra: subDays(dagensDato, 1), til: dagensDato },
     ugyldig: false,
     begrunnelse: '',
   };

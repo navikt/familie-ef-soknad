@@ -44,7 +44,7 @@
     display: grid;
     grid-template-columns: repeat(2, max-content);
     grid-template-rows: 1fr;
-    grid-template-areas: "fra til";
+    grid-template-areas: "fra til" "feilmelding feilmelding";
     grid-gap: 2rem;
 
     & > .datovelger:nth-child(1) {
@@ -59,6 +59,10 @@
       grid-template-rows: repeat(2, 2fr);
       grid-template-areas: "fra" "til";
       grid-gap: 1rem;
+    }
+
+    .datovelger__feilmelding {
+      grid-area: feilmelding;
     }
   }
 
