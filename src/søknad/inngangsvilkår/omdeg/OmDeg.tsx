@@ -21,7 +21,7 @@ const OmDeg: FC = () => {
       <Personopplysninger />
       <Sivilstatus />
       <Medlemskap />
-      <Filopplaster title="Test" />
+      <Filopplaster tittel="Test" />
     </Side>
   );
 };
