@@ -32,7 +32,7 @@ const OpplastedeFiler = () => {
         const filKey = fil.name + fil.size;
 
         return (
-          <div key={fil.name + fil.size}>
+          <div key={filKey}>
             <div className="fil">
               <div>
                 <img
