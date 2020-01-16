@@ -5,8 +5,6 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IUtenlandsopphold } from '../../../../models/søknad';
-import { Flatknapp } from 'nav-frontend-knapper';
-import { ReactComponent as Slett } from '../../../../assets/Slett.svg';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/FeltGruppe';
 import Datovelger, {
@@ -112,14 +110,14 @@ const Utenlandsopphold: FC<Props> = ({
           settDato={(e) => settPeriode(e, 'fra')}
           valgtDato={utenlandsopphold.periode.fra ? periode.fra : undefined}
           tekstid={'periode.fra'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
         />
 
         <Datovelger
           settDato={(e) => settPeriode(e, 'til')}
           valgtDato={periode.til ? periode.til : undefined}
           tekstid={'periode.til'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
         />
       </div>
 

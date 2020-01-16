@@ -9,6 +9,7 @@ import FeltGruppe from '../../../../components/FeltGruppe';
 import { IUtenlandsopphold } from '../../../../models/søknad';
 import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
+import subDays from 'date-fns/subDays';
 
 interface Props {
   intl: IntlShape;
@@ -18,7 +19,7 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad;
   const nyPeriode = {
-    periode: { fra: dagensDato, til: dagensDato },
+    periode: { fra: dagensDato, til: subDays(dagensDato, 1) },
     ugyldig: false,
     begrunnelse: '',
   };
