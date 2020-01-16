@@ -97,10 +97,7 @@ const Filopplaster: React.FC<Props> = ({
         >
           <div className="feilmelding">
             {feilmeldinger.map((feilmelding) => (
-              <AlertStripeFeil
-                key={Math.random()}
-                className="feilmelding-alert"
-              >
+              <AlertStripeFeil key={feilmelding} className="feilmelding-alert">
                 {feilmelding}
               </AlertStripeFeil>
             ))}

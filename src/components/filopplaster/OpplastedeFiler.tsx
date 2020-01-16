@@ -5,11 +5,7 @@ import slett from '../../assets/slett.svg';
 import useSøknadContext from '../../context/SøknadContext';
 import { formaterFilstørrelse } from './utils';
 
-interface OpplastedeFilerProps {
-  feilmeldinger: any;
-}
-
-const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
+const OpplastedeFiler = () => {
   const { søknad, settSøknad } = useSøknadContext();
 
   const slettFil = (fil: File) => {
@@ -34,7 +30,6 @@ const OpplastedeFiler: React.FC<OpplastedeFilerProps> = ({ feilmeldinger }) => {
     <>
       {filer.map((fil) => {
         const filKey = fil.name + fil.size;
-        const feilmelding = feilmeldinger[filKey];
 
         return (
           <div key={fil.name + fil.size}>
