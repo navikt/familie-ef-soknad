@@ -34,7 +34,6 @@ const Filopplaster: React.FC<Props> = ({
 
   const onDrop = useCallback((filer) => {
     const data = søknad.vedlegg;
-    let feil = false;
     const liste: string[] = [];
 
     filer.forEach((fil: File) => {

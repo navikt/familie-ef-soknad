@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
