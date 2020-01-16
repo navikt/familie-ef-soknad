@@ -60,6 +60,19 @@ const Filopplaster: React.FC<Props> = ({
       if (!data.get(filKey)) {
         data.append(filKey, fil);
       }
+
+      const options = {
+        method: 'POST',
+        body: data,
+      };
+
+      console.log('data');
+      console.log(data);
+
+      fetch(
+        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
+        options
+      );
     });
 
     settSøknad({ ...søknad, vedlegg: data });
@@ -84,7 +97,7 @@ const Filopplaster: React.FC<Props> = ({
         ) : null}
 
         <div className="opplastede-filer">
-          <OpplastedeFiler feilmeldinger={feilmeldinger} />
+          <OpplastedeFiler />
         </div>
       </div>
 
