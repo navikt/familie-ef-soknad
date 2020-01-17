@@ -14,7 +14,9 @@ export interface ISøknad {
   perioderBoddIUtlandet?: IUtenlandsopphold[];
   begrunnelseForSøknad?: string;
   datoEndretSamvær?: Date;
+  datoForSamlivsbrudd?: Date;
   datoFlyttetFraHverandre?: Date;
+  begrunnelseAnnet?: string;
 }
 
 export interface IUtenlandsopphold {

@@ -80,6 +80,7 @@ export default {
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse':
       'Hva er grunnen til at du er alene med barn?',
+    'sivilstatus.sporsmål.datoForSamlivsbrudd': 'Dato for samlivsbrudd',
     'sivilstatus.sporsmal.datoFlyttetFraHverandre':
       'Når flyttet dere fra hverandre?',
     'sivilstatus.svar.samlivsbruddForeldre':

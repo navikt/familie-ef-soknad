@@ -60,13 +60,6 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
           );
         })}
       </div>
-      {alertTekst && alertTekst !== '' ? (
-        <FeltGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
-            {alertTekst}
-          </AlertStripeInfo>
-        </FeltGruppe>
-      ) : null}
     </div>
   );
 };

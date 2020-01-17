@@ -51,12 +51,12 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
 
   return (
     <SeksjonGruppe>
-      <FeltGruppe>
+      <KomponentGruppe>
         <Element>
           <LocaleTekst tekst={'sivilstatus.tittel'} />
         </Element>
         <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
-      </FeltGruppe>
+      </KomponentGruppe>
       {erSøkerGift ? (
         <>
           <KomponentGruppe>

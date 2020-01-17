@@ -6,19 +6,22 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
-import FeltGruppe from '../../../../components/FeltGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
+import { Textarea } from 'nav-frontend-skjema';
+import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import LocaleTekst from '../../../../language/LocaleTekst';
 
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
   const { søknad, settSøknad } = useSøknadContext();
   const {
     begrunnelseForSøknad,
-
     datoEndretSamvær,
     datoFlyttetFraHverandre,
+    begrunnelseAnnet,
   } = søknad;
 
   const endringIsamværsordningTekstid =
@@ -27,25 +30,29 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     BegrunnelseSpørsmål.svaralternativer[0].svar_tekstid;
   const samlivsbruddAndreTekstid =
     BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
+  const annetSvarTekst = BegrunnelseSpørsmål.svaralternativer[4].svar_tekstid;
 
-  const endretSamvær =
-    begrunnelseForSøknad ===
-    intl.formatMessage({ id: endringIsamværsordningTekstid });
   const samlivsbrudd =
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddForelderTekstid }) ||
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddAndreTekstid });
+  const samlivsbruddMedAndreForelder =
+    begrunnelseForSøknad ===
+    intl.formatMessage({ id: samlivsbruddForelderTekstid });
 
-  // Er klar over at disse to if-setningene kan/bør skrives til en gjenbrukbar funksjon.
-  // Men å fjerne dato (deconstructe datoene ut og sette et nytt objekt uten datoene)
-  // funker ikke med mindre strengen med dato nøkkel navnet er rett over der man setter det nye objektet.
-  // Prøvd mye rart noe som har kræsjet. Så endte opp med denne løsningen som ikke kræsjet men med litt mindre penere kode.
+  const endretSamvær =
+    begrunnelseForSøknad ===
+    intl.formatMessage({ id: endringIsamværsordningTekstid });
+  const annet =
+    begrunnelseForSøknad === intl.formatMessage({ id: annetSvarTekst });
+
   if (!samlivsbrudd && datoFlyttetFraHverandre) {
     const objektnavn = 'datoFlyttetFraHverandre';
     const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
     settSøknad({ ...nyttSøknadObjekt });
   }
+
   if (!endretSamvær && datoEndretSamvær) {
     const objektnavn = 'datoEndretSamvær';
     const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
@@ -56,11 +63,22 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
   };
 
+  const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+    begrunnelseForSøknad &&
+      annet &&
+      settSøknad({
+        ...søknad,
+        begrunnelseAnnet: e.target.value,
+      });
+  };
+
   return (
-    <KomponentGruppe>
-      <MultiSvarSpørsmål spørsmål={spørsmål} />
+    <SeksjonGruppe>
+      <KomponentGruppe>
+        <MultiSvarSpørsmål spørsmål={spørsmål} />
+      </KomponentGruppe>
       {endretSamvær ? (
-        <FeltGruppe>
+        <KomponentGruppe>
           <Datovelger
             settDato={(e) => settDato(e, 'datoEndretSamvær')}
             valgtDato={
@@ -69,10 +87,29 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
             tekstid={'sivilstatus.begrunnelse.endring'}
             datobegrensning={DatoBegrensning.AlleDatoer}
           />
-        </FeltGruppe>
+        </KomponentGruppe>
       ) : null}
+
+      {samlivsbruddMedAndreForelder ? (
+        <KomponentGruppe>
+          <Datovelger
+            settDato={(e) => settDato(e, 'datoForSamlivsbrudd')}
+            valgtDato={
+              søknad.datoForSamlivsbrudd
+                ? søknad.datoForSamlivsbrudd
+                : undefined
+            }
+            tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
+            datobegrensning={DatoBegrensning.AlleDatoer}
+          />
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
+          </AlertStripeInfo>
+        </KomponentGruppe>
+      ) : null}
+
       {samlivsbrudd ? (
-        <FeltGruppe>
+        <KomponentGruppe>
           <Datovelger
             settDato={(e) => settDato(e, 'datoFlyttetFraHverandre')}
             valgtDato={
@@ -83,9 +120,22 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
             tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
             datobegrensning={DatoBegrensning.AlleDatoer}
           />
-        </FeltGruppe>
+        </KomponentGruppe>
       ) : null}
-    </KomponentGruppe>
+      {annet ? (
+        <KomponentGruppe>
+          <Textarea
+            label={intl.formatMessage({
+              id: spørsmål.tekstid,
+            })}
+            placeholder={''}
+            value={begrunnelseAnnet ? begrunnelseAnnet : ''}
+            maxLength={2000}
+            onChange={(e) => settBegrunnelse(e)}
+          />
+        </KomponentGruppe>
+      ) : null}
+    </SeksjonGruppe>
   );
 };
 
