@@ -99,7 +99,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
                 ? søknad.datoForSamlivsbrudd
                 : undefined
             }
-            tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
+            tekstid={'sivilstatus.sporsmål.datoForSamlivsbrudd'}
             datobegrensning={DatoBegrensning.AlleDatoer}
           />
           <AlertStripeInfo className={'fjernBakgrunn'}>

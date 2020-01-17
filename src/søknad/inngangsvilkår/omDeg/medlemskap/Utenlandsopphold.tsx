@@ -14,6 +14,7 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import Feilmelding from '../../../../components/feil/Feilmelding';
 import classNames from 'classnames';
 import { compareAsc } from 'date-fns';
+import { hentPeriodeTittelMedTall } from '../../../../utils/tekster';
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
@@ -96,12 +97,13 @@ const Utenlandsopphold: FC<Props> = ({
       });
   };
 
-  const periodeTittel =
+  const periodeTittel = hentPeriodeTittelMedTall(
+    perioderBoddIUtlandet!,
+    oppholdsnr,
     intl.formatMessage({
       id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
-    }) +
-    ' ' +
-    (oppholdsnr + 1);
+    })
+  );
 
   return (
     <div className="utenlandsopphold utenlandsopphold__container">
