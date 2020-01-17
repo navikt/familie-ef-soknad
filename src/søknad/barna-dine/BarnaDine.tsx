@@ -33,6 +33,7 @@ const BarnaDine = () => {
               >
                 Halla
               </Lesmerpanel>
+              <Normaltekst className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</Normaltekst>
         <div className="barnekort-wrapper">
         {barn?.map(b => <Barnekort navn={b.navn} fnr={b.fnr} alder={b.alder} harSammeAdresse={b.harSammeAdresse} />)}
         <div className="barnekort">
