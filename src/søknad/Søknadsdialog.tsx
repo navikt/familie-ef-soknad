@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { Route, Switch } from 'react-router';
-import OmDeg from './inngangsvilkår/omDeg/OmDeg';
+import OmDeg from './inngangsvilkår/omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
 import Forside from './Forside';
 
