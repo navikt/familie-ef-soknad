@@ -9,7 +9,7 @@ import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
 import {
   SeparasjonSpørsmål,
-  SkiltEllerEnkeSpørsmål,
+  UgiftSpørsmål,
 } from '../../../../config/SivilstatusConfig';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
@@ -26,7 +26,7 @@ import Datovelger, {
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const enkeUgiftEllerSkiltSpørsmål: ISpørsmål[] = SkiltEllerEnkeSpørsmål;
+  const ugiftSpørsmål: ISpørsmål[] = UgiftSpørsmål;
 
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
@@ -34,8 +34,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
   const sivilstand = person.søker.sivilstand;
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
-  const erSøkerEnkeUgiftEllerSkilt =
-    sivilstand === 'SKIL' || sivilstand === 'ENKE' || sivilstand === 'UGIF';
+  const erSøkerUgift = sivilstand === 'UGIF';
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const objektnavn = 'datoSøktSeparasjon';
@@ -87,9 +86,9 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
             </KomponentGruppe>
           ) : null}
         </>
-      ) : erSøkerEnkeUgiftEllerSkilt ? (
+      ) : erSøkerUgift ? (
         <>
-          {enkeUgiftEllerSkiltSpørsmål.map((spørsmål) => {
+          {ugiftSpørsmål.map((spørsmål) => {
             return (
               <KomponentGruppe key={spørsmål.spørsmål_id}>
                 <JaNeiSpørsmål spørsmål={spørsmål} />

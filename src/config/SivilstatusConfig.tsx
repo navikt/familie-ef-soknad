@@ -11,7 +11,7 @@ export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
   svaralternativer: standardJaNeiSvar,
 };
 
-export const SkiltEllerEnkeSpørsmål: IJaNeiSpørsmål[] = [
+export const UgiftSpørsmål: IJaNeiSpørsmål[] = [
   {
     spørsmål_id: 'søkerGiftIUtlandet',
     tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
