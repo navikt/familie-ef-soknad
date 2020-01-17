@@ -1,64 +1,106 @@
-.barnekort-wrapper {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
+.barna-dine {
     width: 620px;
     margin: 0 auto;
 
-    .barnekort {
-        padding: 10px;
-        position: relative;
-        height: 400px;
-        width: 276px;
-        border-radius: 5px;
-    
-        .header {
-            position: relative;
-            box-sizing: border-box;
-            height: 128px;
-            background-color: #4d3e55;
-            border-top-right-radius: 5px;
-            border-top-left-radius: 5px;
-            border-bottom: 4px solid #826ba1;
-            display: flex;
-            align-items: flex-end;
-    
-            img {
-                display: block;
-                margin: 0 auto;
+    .hjelpetekst {
+        .lesMerPanel {
+          &__toggle {
+            justify-content: flex-start;
+            padding-left: 1rem;
+  
+            @media @mobile {
+              padding-left: 0;
             }
+          }
+  
+          &__togglelink {
+            flex-direction: row-reverse;
+  
+            .chevron--ned {
+              margin-top: 0.2rem;
+            }
+  
+            .chevron--opp {
+              margin-top: 0.3rem;
+            }
+          }
+  
+          &__toggleTekst {
+            font-size: 16px;
+          }
+
+          &__mer {
+              margin-left: 1rem;
+          }
         }
+      }
+
+    .barnekort-wrapper {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+        margin: 0 auto;
+        width: 620px;
     
-        .informasjonsboks {
+        .barnekort {
+            padding: 10px;
             position: relative;
-            text-align: center;
-            height: 272px;
-            background-color: #e7e9e9;
-    
-            .informasjonsboks-innhold {
+            height: 400px;
+            width: 276px;
+            border-radius: 5px;
+        
+            .header {
                 position: relative;
-    
-                height: 100%;
-                
+                box-sizing: border-box;
+                height: 128px;
+                background-color: #4d3e55;
+                border-top-right-radius: 5px;
+                border-top-left-radius: 5px;
+                border-bottom: 4px solid #826ba1;
                 display: flex;
-                flex-direction: column;
-                justify-content: space-evenly;
-    
-                .navn {
-                    font-weight: bold;
+                align-items: flex-end;
+        
+                img {
+                    display: block;
+                    margin: 0 auto;
                 }
             }
-        }
-
-        .legg-til-barn-kort {
-            border-top-right-radius: 5px;
-            border-radius: 5px;
-            height: 200px;
-
-            .typo-normal {
-                font-weight: bold;
-                padding: 30px;
+        
+            .informasjonsboks {
+                position: relative;
+                text-align: center;
+                height: 272px;
+                background-color: #e7e9e9;
+    
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+        
+                .informasjonsboks-innhold {
+                    position: relative;
+        
+                    height: 100%;
+                    
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-evenly;
+        
+                    .navn {
+                        font-weight: bold;
+                    }
+                }
+            }
+    
+            .legg-til-barn-kort {
+                border-top-right-radius: 5px;
+                border-radius: 5px;
+                height: 200px;
+    
+                .typo-normal {
+                    font-weight: bold;
+                    padding: 30px;
+                }
             }
         }
     }
 }
+
