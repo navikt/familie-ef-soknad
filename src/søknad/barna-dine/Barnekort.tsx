@@ -9,7 +9,7 @@ interface Props {
     fnr: string;
     alder: number;
     harSammeAdresse: boolean;
-  }  
+}
 
 const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse }) => {
 
