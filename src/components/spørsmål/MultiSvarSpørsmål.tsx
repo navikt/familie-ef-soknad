@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useState } from 'react';
+import React, { FC, SyntheticEvent } from 'react';
 import {
   IMultiSpørsmål as ISpørsmål,
   IMultiSvar as ISvar,
@@ -8,8 +8,6 @@ import useSøknadContext from '../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
 import { returnerMultiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import FeltGruppe from '../FeltGruppe';
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -18,8 +16,6 @@ interface Props {
 
 const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
-
-  const [alertTekst, settAlertTekst] = useState('');
 
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
@@ -31,11 +27,6 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
         ...søknad,
         [spørsmål.spørsmål_id]: intl.formatMessage({ id: svar.svar_tekstid }),
       });
-    if (svar.alert_tekstid !== undefined) {
-      settAlertTekst(intl.formatMessage({ id: svar.alert_tekstid }));
-    } else {
-      settAlertTekst('');
-    }
   };
 
   return (

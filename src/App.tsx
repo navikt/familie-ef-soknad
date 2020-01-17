@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './components/feilside/Feilside';
+import Feilside from './components/feil/Feilside';
 import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './søknad/Søknadsdialog';
