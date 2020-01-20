@@ -60,7 +60,7 @@ const App = () => {
         <>
           <TestsideInformasjon />
           <Switch>
-            <Route path={'/familie/alene-med-barn'}>
+            <Route path={'/'}>
               <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
