@@ -8,6 +8,7 @@ import Barnekort from './Barnekort';
 import { Routes, IRoute } from '../../config/Routes';
 import { hentForrigeRoute } from '../../utils/routing';
 import { useLocation } from 'react-router';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 
@@ -33,7 +34,7 @@ const BarnaDine = () => {
               >
                 Halla
               </Lesmerpanel>
-              <Normaltekst className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</Normaltekst>
+              <AlertStripeInfo className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</AlertStripeInfo>
         <div className="barnekort-wrapper">
         {barn?.map(b => <Barnekort navn={b.navn} fnr={b.fnr} alder={b.alder} harSammeAdresse={b.harSammeAdresse} />)}
         <div className="barnekort">
