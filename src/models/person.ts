@@ -1,6 +1,6 @@
 export interface IPerson {
   søker: ISøker;
-  barn?: IBarn[];
+  barn: IBarn[];
 }
 
 export interface ISøker {
