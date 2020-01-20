@@ -13,6 +13,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
+import { Element } from 'nav-frontend-typografi';
 
 const BarnaDine = () => {
   const { søknad, settSøknad } = useSøknadContext();
@@ -22,30 +23,7 @@ const BarnaDine = () => {
 
   const location = useLocation();
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
-
-  const nyttBarn = {
-    "fnr": "12345678911",
-    "navn": "JUSTIN BIEBER",
-    "alder": 10,
-    "fødselsdato": "2014-02-02",
-    "harSammeAdresse": true
-  };
-
-  const settDato = (date: Date | null): void => {
-    date !== null && settSøknad({ ...søknad, datoSøktSeparasjon: date });
-  };
-
-  const leggTilBarn = (barn: any) => {
-    settÅpenModal(true);
-    const nyBarneListe = []
-
-    søknad.person.barn.forEach(barn => nyBarneListe.push(barn));
-
-    nyBarneListe.push(nyttBarn);
-
-    settSøknad({ ...søknad, person: {...søknad.person, barn: nyBarneListe} })
-  }
-
+  
   console.log(søknad);
 
   return (
@@ -68,7 +46,7 @@ const BarnaDine = () => {
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
             <Normaltekst>Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?</Normaltekst>
-            <Knapp onClick={leggTilBarn}>Legg til barn</Knapp>
+            <Knapp onClick={() => settÅpenModal(true)}>Legg til barn</Knapp>
             </div>
           </div>
         </div>
@@ -78,7 +56,9 @@ const BarnaDine = () => {
           closeButton={true}
           contentLabel="Halla"
           >
-        <div style={{padding:'2rem 2.5rem'}}>Innhold her</div>
+        <div style={{padding:'2rem 2.5rem'}}>
+          <LeggTilBarn />
+        </div>
       </Modal>
         </div>
       </Side>
