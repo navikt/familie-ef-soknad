@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(true);
+        // settError(true);
       });
 
       const fetchPersonData = () => {
@@ -42,7 +42,7 @@ const App = () => {
           });
         });
       };
-      fetchPersonData();
+      // fetchPersonData();
       settFetching(false);
     };
     fetchData();
@@ -60,7 +60,8 @@ const App = () => {
         <>
           <TestsideInformasjon />
           <Switch>
-            <Route path={'/'}>
+            <Route path={'/familie/alene-med-barn'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>

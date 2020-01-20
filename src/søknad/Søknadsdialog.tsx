@@ -8,9 +8,12 @@ const Søknadsdialog: FC = () => {
   return (
     <>
       <Switch>
-        <Route path={'/om-deg'} component={OmDeg} />
-        <Route path={'/send-soknad'} component={SendSøknad} />
-        <Route path={'/'} component={Forside} />
+        <Route path={'/familie/alene-med-barn/om-deg'} component={OmDeg} />
+        <Route
+          path={'/familie/alene-med-barn/send-soknad'}
+          component={SendSøknad}
+        />
+        <Route path={'/familie/alene-med-barn'} component={Forside} />
       </Switch>
     </>
   );
