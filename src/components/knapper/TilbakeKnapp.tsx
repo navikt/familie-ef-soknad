@@ -10,7 +10,7 @@ const StyledTilbakeKnapp = styled.div`
   width: 75px;
 
   .lenke {
-    color: #0067C5;
+    color: @navBla;
     background: none;
     text-decoration: none;
     cursor: pointer;
