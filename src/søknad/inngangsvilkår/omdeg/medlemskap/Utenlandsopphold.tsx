@@ -14,7 +14,7 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import Feilmelding from '../../../../components/feil/Feilmelding';
 import classNames from 'classnames';
 import { compareAsc } from 'date-fns';
-import { hentPeriodeTittelMedTall } from '../../../../utils/tekster';
+import { hentPeriodeTittelMedTall } from '../../../../language/utils';
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
