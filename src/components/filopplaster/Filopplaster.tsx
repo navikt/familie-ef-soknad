@@ -57,7 +57,7 @@ const Filopplaster: React.FC<Props> = ({
       }
 
       if (!data.get(filKey)) {
-        data.append(filKey, fil);
+        data.append('file', fil);
       }
 
       const options = {
