@@ -94,6 +94,7 @@ export default {
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
+    'stegtittel.bosituasjon': 'Bosituasjonen din',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
   },
