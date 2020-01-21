@@ -33,4 +33,5 @@ export interface IBarn {
   fødselsdato: string;
   harSammeAdresse: boolean;
   navn: string;
+  ufødt?: boolean;
 }

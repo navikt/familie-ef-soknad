@@ -13,7 +13,6 @@ import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
-import { Element } from 'nav-frontend-typografi';
 
 const BarnaDine = () => {
   const { søknad, settSøknad } = useSøknadContext();
@@ -23,8 +22,6 @@ const BarnaDine = () => {
 
   const location = useLocation();
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
-  
-  console.log(søknad);
 
   return (
     <>
@@ -42,7 +39,7 @@ const BarnaDine = () => {
               </Lesmerpanel>
               <AlertStripeInfo className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</AlertStripeInfo>
         <div className="barnekort-wrapper">
-        {barn?.map(b => <Barnekort navn={b.navn} fnr={b.fnr} alder={b.alder} harSammeAdresse={b.harSammeAdresse} />)}
+        {barn?.map(b => <Barnekort navn={b.navn} fnr={b.fnr} alder={b.alder} harSammeAdresse={b.harSammeAdresse} ufødt={b.ufødt ? b.ufødt: false} />)}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
             <Normaltekst>Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?</Normaltekst>
