@@ -1,0 +1,72 @@
+.utenlandsopphold {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: max-content;
+    grid-template-areas:
+      "tittel slett"
+      "spm spm"
+      "periodegruppe periodegruppe"
+      "fritekst fritekst";
+
+    @media @mobile {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__tittel {
+    padding-bottom: 2rem;
+    grid-area: tittel;
+  }
+
+  &__slettknapp {
+    grid-area: slett;
+    justify-self: end;
+
+    &.kunEttUtenlandsopphold {
+      display: none;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      border: none;
+    }
+  }
+  &__spørsmål {
+    grid-area: spm;
+  }
+
+  &__periodegruppe {
+    grid-area: periodegruppe;
+    padding-bottom: 1rem;
+
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: 1fr;
+    grid-template-areas: "fra til" "feilmelding feilmelding";
+    grid-gap: 2rem;
+
+    & > .datovelger:nth-child(1) {
+      grid-area: fra;
+    }
+    & > .datovelger:nth-child(2) {
+      grid-area: til;
+    }
+
+    @media @mobile {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(2, 2fr);
+      grid-template-areas: "fra" "til";
+      grid-gap: 1rem;
+    }
+
+    .datovelger__feilmelding {
+      grid-area: feilmelding;
+    }
+  }
+
+  & > .skjemaelement.textarea__container {
+    grid-area: fritekst;
+  }
+}
