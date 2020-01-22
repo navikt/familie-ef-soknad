@@ -80,6 +80,11 @@ const Filopplaster: React.FC<Props> = ({
           console.log('data', data);
           vedleggsliste.push(data);
           settFilliste((prevListe) => [fil, ...prevListe]);
+
+          settSøknad({
+            ...søknad,
+            vedleggsliste: søknad.vedleggsliste.concat(vedleggsliste),
+          });
         })
         .catch((error) => {
           console.log('Feil', error);
@@ -87,11 +92,6 @@ const Filopplaster: React.FC<Props> = ({
             'Det skjedde noe galt under opplasting av filen'
           );
         });
-    });
-
-    settSøknad({
-      ...søknad,
-      vedleggsliste: søknad.vedleggsliste.concat(vedleggsliste),
     });
 
     // eslint-disable-next-line
