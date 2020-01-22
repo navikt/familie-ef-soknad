@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
@@ -8,7 +7,6 @@ import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
-import { IVedlegg } from '../../models/vedlegg';
 
 interface Props {
   intl: IntlShape;
