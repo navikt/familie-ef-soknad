@@ -17,6 +17,7 @@ export interface ISøknad {
   datoForSamlivsbrudd?: Date;
   datoFlyttetFraHverandre?: Date;
   begrunnelseAnnet?: string;
+  bosituasjon: IBosituasjon;
 }
 
 export interface IUtenlandsopphold {
@@ -28,4 +29,13 @@ export interface IUtenlandsopphold {
 export interface IPeriode {
   fra: Date;
   til: Date;
+}
+
+export interface ISpørsmålOgSvar {
+  spørsmål: string;
+  svar: string;
+}
+
+export interface IBosituasjon {
+  søkerDelerBoligMedAndreVoksne: ISpørsmålOgSvar;
 }

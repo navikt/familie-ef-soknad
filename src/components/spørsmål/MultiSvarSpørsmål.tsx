@@ -12,9 +12,16 @@ import { RadioPanel } from 'nav-frontend-skjema';
 interface Props {
   spørsmål: ISpørsmål;
   intl: IntlShape;
+  onChange?: (svar: string) => void;
+  valgtSvar?: string;
 }
 
-const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
+const MultiSvarSpørsmål: FC<Props> = ({
+  spørsmål,
+  intl,
+  onChange,
+  valgtSvar,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
 
   const onClickHandle = (
@@ -23,10 +30,15 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
     svar: ISvar
   ): void => {
     svar !== undefined &&
+      onChange === undefined &&
       settSøknad({
         ...søknad,
         [spørsmål.spørsmål_id]: intl.formatMessage({ id: svar.svar_tekstid }),
       });
+
+    svar !== undefined &&
+      onChange !== undefined &&
+      onChange(intl.formatMessage({ id: svar.svar_tekstid }));
   };
 
   return (
@@ -34,7 +46,9 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, intl }) => {
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
-          const svarISøknad = returnerMultiSvar(spørsmål, svar, søknad, intl);
+          const svarISøknad = valgtSvar
+            ? intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar
+            : returnerMultiSvar(spørsmål, svar, søknad, intl);
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel
