@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import useSøknadContext from '../../context/SøknadContext';
 import { useDropzone } from 'react-dropzone';
 import { injectIntl, IntlShape } from 'react-intl';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
@@ -7,6 +8,7 @@ import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
+import { IVedlegg } from '../../models/vedlegg';
 
 interface Props {
   intl: IntlShape;
@@ -23,7 +25,7 @@ const Filopplaster: React.FC<Props> = ({
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
-  //const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknadContext();
   const [filliste, settFilliste] = useState<File[]>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
@@ -34,7 +36,7 @@ const Filopplaster: React.FC<Props> = ({
 
   const onDrop = useCallback((filer) => {
     const feilmeldingsliste: string[] = [];
-    //const vedleggsliste: IVedlegg[] = [];
+    const vedleggsliste: IVedlegg[] = [];
 
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
@@ -77,12 +79,18 @@ const Filopplaster: React.FC<Props> = ({
         options
       )
         .then((response) => response.json())
-        .then((data) => console.log('DATA', data));
-
-      settFilliste((prevListe) => [fil, ...prevListe]);
+        .then((data) => {
+          console.log('data', data);
+          vedleggsliste.push(data);
+          settFilliste((prevListe) => [fil, ...prevListe]);
+        })
+        .catch((error) => {
+          console.log('Feil', error);
+          feilmeldingsliste.push(
+            'Det skjedde noe galt under opplasting av filen'
+          );
+        });
     });
-
-    //settSøknad({ ...søknad, vedlegg: data });
 
     // eslint-disable-next-line
   }, []);
