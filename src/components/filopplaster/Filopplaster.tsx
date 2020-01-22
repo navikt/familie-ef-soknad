@@ -25,7 +25,7 @@ const Filopplaster: React.FC<Props> = ({
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  //const { søknad, settSøknad } = useSøknadContext();
   const [filliste, settFilliste] = useState<File[]>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
@@ -36,11 +36,9 @@ const Filopplaster: React.FC<Props> = ({
 
   const onDrop = useCallback((filer) => {
     const feilmeldingsliste: string[] = [];
-    const vedleggsliste: IVedlegg[] = [];
+    //const vedleggsliste: IVedlegg[] = [];
 
     filer.forEach((fil: File) => {
-      settFilliste((prevListe) => [fil, ...prevListe]);
-
       const filKey = fil.name + fil.size;
 
       if (maxFilstørrelse && fil.size > maxFilstørrelse) {
@@ -82,6 +80,8 @@ const Filopplaster: React.FC<Props> = ({
       )
         .then((response) => response.json())
         .then((json) => console.log(json));
+
+      settFilliste((prevListe) => [fil, ...prevListe]);
     });
 
     //settSøknad({ ...søknad, vedlegg: data });
