@@ -75,7 +75,9 @@ const Filopplaster: React.FC<Props> = ({
       fetch(
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
         options
-      ).then((response) => console.log('RESPONSE', response));
+      )
+        .then((response) => response.json())
+        .then((data) => console.log('DATA', data));
 
       settFilliste((prevListe) => [fil, ...prevListe]);
     });
