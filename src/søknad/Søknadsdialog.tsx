@@ -4,16 +4,8 @@ import OmDeg from './steg/1-omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
 import Forside from './Forside';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
-import { injectIntl, IntlShape } from 'react-intl';
-import useSøknadContext from '../context/SøknadContext';
 
-interface Props {
-  intl: IntlShape;
-}
-
-const Søknadsdialog: FC<Props> = ({ intl }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-
+const Søknadsdialog: FC = () => {
   useEffect(() => {
     // eslint-disable-next-line
   }, []);
@@ -30,4 +22,4 @@ const Søknadsdialog: FC<Props> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Søknadsdialog);
+export default Søknadsdialog;
