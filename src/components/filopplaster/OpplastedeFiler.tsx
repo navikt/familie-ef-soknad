@@ -1,34 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
 import useSøknadContext from '../../context/SøknadContext';
 import { formaterFilstørrelse } from './utils';
 
-const OpplastedeFiler = () => {
-  const { søknad, settSøknad } = useSøknadContext();
+interface Props {
+  filliste: File[];
+}
 
+const OpplastedeFiler: React.FC<Props> = ({ filliste }) => {
   const slettFil = (fil: File) => {
-    const data = søknad.vedlegg;
-
-    const filKey = fil.name + fil.size;
-
-    data.delete(filKey);
-
-    settSøknad({ ...søknad, vedlegg: data });
+    // settFiler
   };
-
-  if (!søknad.vedlegg || typeof søknad.vedlegg === 'string') return null;
-
-  const filer = [];
-
-  for (const fil of søknad.vedlegg.values()) {
-    filer.push(fil as File);
-  }
 
   return (
     <>
-      {filer.map((fil) => {
+      {filliste.map((fil: File) => {
         const filKey = fil.name + fil.size;
 
         return (

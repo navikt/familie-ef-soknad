@@ -8,6 +8,7 @@ import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
+import { IVedlegg } from '../../models/vedlegg';
 
 interface Props {
   intl: IntlShape;
@@ -25,6 +26,7 @@ const Filopplaster: React.FC<Props> = ({
   maxFilstørrelse,
 }) => {
   const { søknad, settSøknad } = useSøknadContext();
+  const [filliste, settFilliste] = useState<File[]>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
 
@@ -33,28 +35,34 @@ const Filopplaster: React.FC<Props> = ({
   };
 
   const onDrop = useCallback((filer) => {
-    const data = søknad.vedlegg;
-    const liste: string[] = [];
+    const feilmeldingsliste: string[] = [];
+    const vedleggsliste: IVedlegg[] = [];
 
     filer.forEach((fil: File) => {
+      settFilliste((prevListe) => [fil, ...prevListe]);
+
       const filKey = fil.name + fil.size;
 
       if (maxFilstørrelse && fil.size > maxFilstørrelse) {
         const maks = formaterFilstørrelse(maxFilstørrelse);
-        liste.push(fil.name + ' er for stor. Den må være under ' + maks + '.');
+        feilmeldingsliste.push(
+          fil.name + ' er for stor. Den må være under ' + maks + '.'
+        );
 
-        settFeilmeldinger(liste);
+        settFeilmeldinger(feilmeldingsliste);
         settÅpenModal(true);
         return;
       }
 
       if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-        liste.push(fil.name + ' har feil filtype.');
+        feilmeldingsliste.push(fil.name + ' har feil filtype.');
 
-        settFeilmeldinger(liste);
+        settFeilmeldinger(feilmeldingsliste);
         settÅpenModal(true);
         return;
       }
+
+      const data = new FormData();
 
       if (!data.get(filKey)) {
         data.append('file', fil);
@@ -71,14 +79,20 @@ const Filopplaster: React.FC<Props> = ({
       fetch(
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
         options
-      );
+      )
+        .then((response) => response.json())
+        .then((json) => console.log(json));
     });
 
-    settSøknad({ ...søknad, vedlegg: data });
+    //settSøknad({ ...søknad, vedlegg: data });
+
     // eslint-disable-next-line
   }, []);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  console.log('filliste');
+  console.log(filliste);
 
   return (
     <div className="filopplaster-wrapper">
@@ -96,7 +110,7 @@ const Filopplaster: React.FC<Props> = ({
         ) : null}
 
         <div className="opplastede-filer">
-          <OpplastedeFiler />
+          <OpplastedeFiler filliste={filliste} />
         </div>
       </div>
 

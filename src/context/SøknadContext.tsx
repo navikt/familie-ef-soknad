@@ -33,7 +33,7 @@ const initialState: ISøknad = {
   søkerOppholderSegINorge: undefined,
   søkerBosattINorgeSisteTreÅr: undefined,
   søkerErFlyktning: undefined,
-  vedlegg: new FormData()
+  vedleggsliste: []
 };
 
 const useSøknad = () => {
