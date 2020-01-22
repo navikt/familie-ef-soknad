@@ -40,9 +40,10 @@ export const hentSivilstatus = (statuskode: string) => {
   }
 };
 
-export const hentValgtBosituasjonITekst = (
-  tekstid: string,
+export const erValgtSvarLiktSomSvar = (
+  valgtSvar: string,
+  annetSvarTekstid: string,
   intl: IntlShape
 ) => {
-  return intl.formatMessage({ id: tekstid });
+  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
 };

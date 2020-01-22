@@ -1,8 +1,9 @@
 {
   "bosituasjon": {
     "søkerDelerBoligMedAndreVoksne": {
-      "spørsmål": "",
-      "svar": ""
+      "nøkkel": "",
+      "spørsmål_tekst": "",
+      "svar_tekst": ""
     }
   }
 }

@@ -1,24 +1,23 @@
-import React, { FC, SyntheticEvent } from 'react';
+import React, { FC } from 'react';
 import { IRoute, Routes } from '../../../config/Routes';
 
+import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
 import { hentNesteRoute } from '../../../utils/routing';
-import { injectIntl, IntlShape } from 'react-intl';
+import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 import SeksjonGruppe from '../../../components/SeksjonGruppe';
 import KomponentGruppe from '../../../components/KomponentGruppe';
+import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import {
   delerSøkerBoligMedAndreVoksne,
   skalSøkerGifteSegMedSamboer,
 } from '../../../config/BosituasjonConfig';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import LocaleTekst from '../../../language/LocaleTekst';
 import useSøknadContext from '../../../context/SøknadContext';
-import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
-import { hentValgtBosituasjonITekst } from '../../../utils/søknad';
-import { IBosituasjon, ISpørsmålOgSvar } from '../../../models/søknad';
+import { IMultiSpørsmål } from '../../../models/spørsmal';
 
 interface Props {
   intl: IntlShape;
@@ -28,19 +27,13 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
 
+  const hovedSpørsmål: IMultiSpørsmål = delerSøkerBoligMedAndreVoksne;
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
-    .svar
-    ? bosituasjon.søkerDelerBoligMedAndreVoksne.svar
+    .svar_tekst
+    ? bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst
     : '';
-
-  const neiBorMidlertidigFraHverandre =
-    valgtBosituasjon ===
-    hentValgtBosituasjonITekst(
-      'bosituasjon.svar.neiBorMidlertidigFraHverandre',
-      intl
-    );
 
   const settBosituasjon = (svar: string) => {
     settSøknad({
@@ -48,14 +41,21 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       bosituasjon: {
         ...bosituasjon,
         søkerDelerBoligMedAndreVoksne: {
-          spørsmål: intl.formatMessage({
-            id: delerSøkerBoligMedAndreVoksne.spørsmål_id,
+          nøkkel: delerSøkerBoligMedAndreVoksne.spørsmål_id,
+          spørsmål_tekst: intl.formatMessage({
+            id: delerSøkerBoligMedAndreVoksne.tekstid,
           }),
-          svar: svar,
+          svar_tekst: svar,
         },
       },
     });
   };
+
+  const valgtSvarsalternativ = hovedSpørsmål.svaralternativer.find(
+    (svar) =>
+      svar.alert_tekstid &&
+      erValgtSvarLiktSomSvar(valgtBosituasjon, svar.svar_tekstid, intl)
+  );
 
   return (
     <Side
@@ -65,20 +65,20 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
-          key={delerSøkerBoligMedAndreVoksne.spørsmål_id}
-          spørsmål={delerSøkerBoligMedAndreVoksne}
-          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.svar}
+          key={hovedSpørsmål.spørsmål_id}
+          spørsmål={hovedSpørsmål}
+          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst}
           onChange={settBosituasjon}
         />
-        {neiBorMidlertidigFraHverandre ? (
+        {valgtSvarsalternativ && valgtSvarsalternativ.alert_tekstid ? (
           <KomponentGruppe>
             <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-              <LocaleTekst
-                tekst={
-                  delerSøkerBoligMedAndreVoksne.svaralternativer[1]
-                    .alert_tekstid!
-                }
-              />
+              {valgtSvarsalternativ.svar_tekstid.split('.')[2] ===
+              'neiMenTidligereSamboerRegistrert' ? (
+                <FormattedHTMLMessage id={valgtSvarsalternativ.alert_tekstid} />
+              ) : (
+                <LocaleTekst tekst={valgtSvarsalternativ.alert_tekstid} />
+              )}
             </AlertStripeAdvarsel>
           </KomponentGruppe>
         ) : null}

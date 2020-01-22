@@ -23,19 +23,19 @@ export default {
     'bosituasjon.svar.neiMenTidligereSamboerRegistrert':
       'Nei, men en tidligere samboer er fortsatt registrert på adressen min',
     'bosituasjon.alert.neiMenTidligereSamboerRegistrert':
-      '"Den tidligere samboeren må registrere ny adresse i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon. \n' +
+      '<strong>Den tidligere samboeren må registrere ny adresse i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon. </strong> <br/>' +
       '\n' +
-      'Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
+      '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
       '\n' +
-      'For at vi skal kunne behandle søknaden raskere, må du legge ved for eksempel:\n' +
-      '\n' +
-      '- Redegjørelse for hvor den tidligere samboeren bor nå\n' +
-      '- Kopi av flyttemelding/tips til folkeregisteret\n' +
-      '- Husleiekontrakt for begge parter\n' +
-      '- Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.\n' +
-      '- Bekreftelse fra nøytral tredjepart, for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.\n' +
-      '- Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv\n' +
-      '"',
+      '<br/><br/>For at vi skal kunne behandle søknaden raskere, må du legge ved for eksempel:<br/>' +
+      '\n <ul>' +
+      ' <li>Redegjørelse for hvor den tidligere samboeren bor nå</li> ' +
+      ' <li>Kopi av flyttemelding/tips til folkeregisteret </li>' +
+      '<li>Husleiekontrakt for begge parter</li>' +
+      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Bekreftelse fra nøytral tredjepart, for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
+      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv </li>' +
+      '</ul>',
     'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
       'Har du konkrete planer om å gifte deg eller bli samboer?',
     'knapp.tilbake': 'Tilbake',

@@ -32,8 +32,9 @@ export interface IPeriode {
 }
 
 export interface ISpørsmålOgSvar {
-  spørsmål: string;
-  svar: string;
+  nøkkel: string;
+  spørsmål_tekst: string;
+  svar_tekst: string;
 }
 
 export interface IBosituasjon {
