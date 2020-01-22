@@ -71,9 +71,6 @@ const Filopplaster: React.FC<Props> = ({
         body: data,
       };
 
-      console.log('data');
-      console.log(data);
-
       fetch(
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
         options
@@ -100,6 +97,8 @@ const Filopplaster: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
+  console.log('SØKNAD', søknad);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   console.log('filliste');
@@ -121,7 +120,7 @@ const Filopplaster: React.FC<Props> = ({
         ) : null}
 
         <div className="opplastede-filer">
-          <OpplastedeFiler filliste={filliste} />
+          <OpplastedeFiler filliste={filliste} settFilliste={settFilliste} />
         </div>
       </div>
 

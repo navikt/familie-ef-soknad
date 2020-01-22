@@ -6,11 +6,20 @@ import { formaterFilstørrelse } from './utils';
 
 interface Props {
   filliste: File[];
+  settFilliste: Function;
 }
 
-const OpplastedeFiler: React.FC<Props> = ({ filliste }) => {
+const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
   const slettFil = (fil: File) => {
-    // settFiler
+    const temp = filliste.slice();
+
+    const index = temp.indexOf(fil);
+
+    if (index > -1) {
+      temp.splice(index, 1);
+    }
+
+    settFilliste(temp);
   };
 
   return (
