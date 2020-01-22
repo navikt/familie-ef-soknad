@@ -61,7 +61,7 @@ const Filopplaster: React.FC<Props> = ({
       const data = new FormData();
 
       if (!data.get(filKey)) {
-        data.append('testfile', fil);
+        data.append('file', fil);
       }
 
       const options = {
@@ -75,9 +75,7 @@ const Filopplaster: React.FC<Props> = ({
       fetch(
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
         options
-      )
-        .then((response) => response.json())
-        .then((json) => console.log(json));
+      ).then((response) => console.log('RESPONSE', response));
 
       settFilliste((prevListe) => [fil, ...prevListe]);
     });
