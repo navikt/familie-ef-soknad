@@ -92,6 +92,11 @@ const Filopplaster: React.FC<Props> = ({
         });
     });
 
+    settSøknad({
+      ...søknad,
+      vedleggsliste: søknad.vedleggsliste.concat(vedleggsliste),
+    });
+
     // eslint-disable-next-line
   }, []);
 
