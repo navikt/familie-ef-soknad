@@ -13,22 +13,22 @@ interface Props {
 const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
   const { søknad, settSøknad } = useSøknadContext();
 
-  const slettFil = (fil: any) => {
-    const temp = filliste.slice();
-
-    const index = temp.indexOf(fil);
-
-    if (index > -1) {
-      temp.splice(index, 1);
-    }
+  const slettFil = (filwrapper: any) => {
+    const fil = filwrapper.filObjekt;
 
     const nyListe = filliste.filter((obj: any) => {
       return obj.filObjekt !== fil;
     });
 
     const nyVedleggsliste = søknad.vedleggsliste.filter((obj: any) => {
-      return obj.dokumentId !== fil.dokumentId;
+      return obj.dokumentId !== filwrapper.dokumentId;
     });
+
+    console.log('filwrapper');
+    console.log(filwrapper);
+
+    console.log('fil');
+    console.log('fil');
 
     settFilliste(nyListe);
 
@@ -44,8 +44,6 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
   return (
     <>
       {filliste.map((filwrapper: any) => {
-        console.log('filwrapper');
-        console.log(filwrapper);
         const fil = filwrapper.filObjekt;
         const filKey = fil.name + fil.size;
 
@@ -66,7 +64,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
               <div
                 className="slett"
                 onClick={() => {
-                  slettFil(fil);
+                  slettFil(filwrapper);
                 }}
               >
                 <Normaltekst>slett</Normaltekst>
