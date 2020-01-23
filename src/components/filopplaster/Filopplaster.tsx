@@ -36,7 +36,7 @@ const Filopplaster: React.FC<Props> = ({
 
   const onDrop = useCallback((filer) => {
     const feilmeldingsliste: string[] = [];
-    const vedleggsliste: IVedlegg[] = [];
+    const nyeVedlegg: IVedlegg[] = [];
 
     filer.forEach((fil: File) => {
       const filKey = fil.name + fil.size;
@@ -62,28 +62,27 @@ const Filopplaster: React.FC<Props> = ({
 
       const data = new FormData();
 
-      if (!data.get(filKey)) {
-        data.append('file', fil);
-      }
-
-      const options = {
-        method: 'POST',
-        body: data,
-      };
+      data.append('file', fil);
 
       fetch(
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
-        options
+        {
+          method: 'POST',
+          body: data,
+        }
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log('data', data);
-          vedleggsliste.push(data);
+          nyeVedlegg.push(data);
           settFilliste((prevListe) => [fil, ...prevListe]);
+
+          const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
+          console.log('NY VEDLEGGSLISTE');
+          console.log(nyVedleggsliste);
 
           settSøknad({
             ...søknad,
-            vedleggsliste: søknad.vedleggsliste.concat(vedleggsliste),
+            vedleggsliste: nyVedleggsliste,
           });
         })
         .catch((error) => {
