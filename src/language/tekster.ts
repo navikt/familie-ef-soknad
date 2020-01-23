@@ -38,13 +38,20 @@ export default {
       '</ul>',
     'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
       'Har du konkrete planer om å gifte deg eller bli samboer?',
+    'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
+    'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
+    'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
+    'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'datovelger.periode.feilFormat':
+      'Startsdato må være tidligere enn sluttdato.',
+    'datovelger.periode.likeDatoer':
+      'Valgte datoer for perioden kan ikke være like',
+    'datovelger.fødselsdato': 'Fødselsdato',
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
     'knapp.start': 'Start søknad',
-    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
-    'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
-    'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
     'medlemskap.hjelpetekst.bosatt.apne':
       'Hva vil det si å være bosatt i Norge?',
@@ -62,10 +69,8 @@ export default {
     'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
     'periode.fra': 'Fra',
     'periode.til': 'Til',
-    'datovelger.periode.feilFormat':
-      'Startsdato må være tidligere enn sluttdato.',
-    'datovelger.periode.likeDatoer':
-      'Valgte datoer for perioden kan ikke være like',
+    'person.navn': 'Navn',
+    'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
     'stegtittel.omDeg': 'Om deg',

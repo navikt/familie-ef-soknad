@@ -39,4 +39,12 @@ export interface ISpørsmålOgSvar {
 
 export interface IBosituasjon {
   søkerDelerBoligMedAndreVoksne: ISpørsmålOgSvar;
+  datoFlyttetSammenMedSamboer?: Date;
+  samboerDetaljer?: ISamboerDetaljer;
+}
+
+export interface ISamboerDetaljer {
+  navn: string;
+  fødselsdato: Date;
+  fødselsnummer: string;
 }

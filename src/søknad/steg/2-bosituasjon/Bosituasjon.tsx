@@ -18,6 +18,7 @@ import {
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import useSøknadContext from '../../../context/SøknadContext';
 import { IMultiSpørsmål } from '../../../models/spørsmal';
+import OmSamboerenDin from './OmSamboerenDin';
 
 interface Props {
   intl: IntlShape;
@@ -85,6 +86,10 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       </SeksjonGruppe>
       <SeksjonGruppe>
         <JaNeiSpørsmål spørsmål={skalSøkerGifteSegMedSamboer} />
+      </SeksjonGruppe>
+
+      <SeksjonGruppe>
+        <OmSamboerenDin />
       </SeksjonGruppe>
     </Side>
   );

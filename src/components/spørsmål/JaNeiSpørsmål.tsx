@@ -17,8 +17,15 @@ import LocaleTekst from '../../language/LocaleTekst';
 interface Props {
   spørsmål: ISpørsmål;
   intl: IntlShape;
+  onChange?: (svar: boolean) => void;
+  valgtSvar?: boolean;
 }
-const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
+const JaNeiSpørsmål: React.FC<Props> = ({
+  spørsmål,
+  intl,
+  onChange,
+  valgtSvar,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
