@@ -36,9 +36,6 @@ const Filopplaster: React.FC<Props> = ({
 
   const onDrop = useCallback(
     (filer) => {
-      console.log('GAMMEL SØKNAD');
-      console.log(søknad);
-
       const feilmeldingsliste: string[] = [];
       const nyeVedlegg: IVedlegg[] = [];
 
@@ -77,14 +74,7 @@ const Filopplaster: React.FC<Props> = ({
           .then((data) => {
             nyeVedlegg.push(data);
             settFilliste((prevListe) => [fil, ...prevListe]);
-            console.log('GAMMEL ...SØKNAD.VEDLEGGSLISTE');
-            console.log(søknad.vedleggsliste);
-            console.log('...NYEVEDLEGG');
-            console.log(nyeVedlegg);
-
             const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
-            console.log('NY VEDLEGGSLISTE');
-            console.log(nyVedleggsliste);
 
             settSøknad({
               ...søknad,
