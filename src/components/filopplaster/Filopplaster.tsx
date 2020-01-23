@@ -39,8 +39,6 @@ const Filopplaster: React.FC<Props> = ({
     const nyeVedlegg: IVedlegg[] = [];
 
     filer.forEach((fil: File) => {
-      const filKey = fil.name + fil.size;
-
       if (maxFilstørrelse && fil.size > maxFilstørrelse) {
         const maks = formaterFilstørrelse(maxFilstørrelse);
         feilmeldingsliste.push(
