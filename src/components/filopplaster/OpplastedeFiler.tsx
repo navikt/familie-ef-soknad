@@ -24,12 +24,6 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
       return obj.dokumentId !== filwrapper.dokumentId;
     });
 
-    console.log('filwrapper');
-    console.log(filwrapper);
-
-    console.log('fil');
-    console.log('fil');
-
     settFilliste(nyListe);
 
     settSøknad({
@@ -37,9 +31,6 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
       vedleggsliste: nyVedleggsliste,
     });
   };
-
-  console.log('SØKNAD OPPLASTEDEFILER');
-  console.log(søknad);
 
   return (
     <>
