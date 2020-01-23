@@ -34,73 +34,75 @@ const Filopplaster: React.FC<Props> = ({
     settÅpenModal(false);
   };
 
-  const onDrop = useCallback((filer) => {
-    const feilmeldingsliste: string[] = [];
-    const nyeVedlegg: IVedlegg[] = [];
+  const onDrop = useCallback(
+    (filer) => {
+      console.log('GAMMEL SØKNAD');
+      console.log(søknad);
 
-    filer.forEach((fil: File) => {
-      if (maxFilstørrelse && fil.size > maxFilstørrelse) {
-        const maks = formaterFilstørrelse(maxFilstørrelse);
-        feilmeldingsliste.push(
-          fil.name + ' er for stor. Den må være under ' + maks + '.'
-        );
+      const feilmeldingsliste: string[] = [];
+      const nyeVedlegg: IVedlegg[] = [];
 
-        settFeilmeldinger(feilmeldingsliste);
-        settÅpenModal(true);
-        return;
-      }
-
-      if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-        feilmeldingsliste.push(fil.name + ' har feil filtype.');
-
-        settFeilmeldinger(feilmeldingsliste);
-        settÅpenModal(true);
-        return;
-      }
-
-      const data = new FormData();
-
-      data.append('file', fil);
-
-      fetch(
-        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
-        {
-          method: 'POST',
-          body: data,
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          nyeVedlegg.push(data);
-          settFilliste((prevListe) => [fil, ...prevListe]);
-
-          console.log('GAMMEL SØKNAD');
-          console.log(søknad);
-
-          console.log('GAMMEL ...SØKNAD.VEDLEGGSLISTE');
-          console.log(søknad.vedleggsliste);
-          console.log('...NYEVEDLEGG');
-          console.log(nyeVedlegg);
-
-          const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
-          console.log('NY VEDLEGGSLISTE');
-          console.log(nyVedleggsliste);
-
-          settSøknad({
-            ...søknad,
-            vedleggsliste: nyVedleggsliste,
-          });
-        })
-        .catch((error) => {
-          console.log('Feil', error);
+      filer.forEach((fil: File) => {
+        if (maxFilstørrelse && fil.size > maxFilstørrelse) {
+          const maks = formaterFilstørrelse(maxFilstørrelse);
           feilmeldingsliste.push(
-            'Det skjedde noe galt under opplasting av filen'
+            fil.name + ' er for stor. Den må være under ' + maks + '.'
           );
-        });
-    });
 
-    // eslint-disable-next-line
-  }, []);
+          settFeilmeldinger(feilmeldingsliste);
+          settÅpenModal(true);
+          return;
+        }
+
+        if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
+          feilmeldingsliste.push(fil.name + ' har feil filtype.');
+
+          settFeilmeldinger(feilmeldingsliste);
+          settÅpenModal(true);
+          return;
+        }
+
+        const data = new FormData();
+
+        data.append('file', fil);
+
+        fetch(
+          'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
+          {
+            method: 'POST',
+            body: data,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            nyeVedlegg.push(data);
+            settFilliste((prevListe) => [fil, ...prevListe]);
+            console.log('GAMMEL ...SØKNAD.VEDLEGGSLISTE');
+            console.log(søknad.vedleggsliste);
+            console.log('...NYEVEDLEGG');
+            console.log(nyeVedlegg);
+
+            const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
+            console.log('NY VEDLEGGSLISTE');
+            console.log(nyVedleggsliste);
+
+            settSøknad({
+              ...søknad,
+              vedleggsliste: nyVedleggsliste,
+            });
+          })
+          .catch((error) => {
+            console.log('Feil', error);
+            feilmeldingsliste.push(
+              'Det skjedde noe galt under opplasting av filen'
+            );
+          });
+      });
+
+      // eslint-disable-next-line
+    },
+    [søknad]
+  );
 
   console.log('SØKNAD', søknad);
 
