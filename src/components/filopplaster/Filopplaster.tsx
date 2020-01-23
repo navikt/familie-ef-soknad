@@ -26,7 +26,7 @@ const Filopplaster: React.FC<Props> = ({
   maxFilstørrelse,
 }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const [filliste, settFilliste] = useState<File[]>([]);
+  const [filliste, settFilliste] = useState<any>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
 
@@ -73,7 +73,10 @@ const Filopplaster: React.FC<Props> = ({
           .then((response) => response.json())
           .then((data) => {
             nyeVedlegg.push(data);
-            settFilliste((prevListe) => [fil, ...prevListe]);
+            settFilliste((prevListe: any) => [
+              { filObjekt: fil, dokumentId: data.dokumentId },
+              ...prevListe,
+            ]);
             const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
 
             settSøknad({
@@ -93,12 +96,7 @@ const Filopplaster: React.FC<Props> = ({
     [søknad]
   );
 
-  console.log('SØKNAD', søknad);
-
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
-  console.log('filliste');
-  console.log(filliste);
 
   return (
     <div className="filopplaster-wrapper">

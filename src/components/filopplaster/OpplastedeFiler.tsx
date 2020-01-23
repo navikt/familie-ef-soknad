@@ -3,13 +3,16 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
 import { formaterFilstørrelse } from './utils';
+//import useSøknadContext from '../../context/SøknadContext';
 
 interface Props {
-  filliste: File[];
+  filliste: any;
   settFilliste: Function;
 }
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
+  //const { søknad, settSøknad } = useSøknadContext();
+
   const slettFil = (fil: File) => {
     const temp = filliste.slice();
 
@@ -24,7 +27,8 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
 
   return (
     <>
-      {filliste.map((fil: File) => {
+      {filliste.map((filwrapper: any) => {
+        const fil = filwrapper.filObjekt;
         const filKey = fil.name + fil.size;
 
         return (
