@@ -74,8 +74,11 @@ const Filopplaster: React.FC<Props> = ({
           nyeVedlegg.push(data);
           settFilliste((prevListe) => [fil, ...prevListe]);
 
+          console.log('GAMMEL SØKNAD');
+          console.log(søknad);
+
           console.log('GAMMEL ...SØKNAD.VEDLEGGSLISTE');
-          console.log(...søknad.vedleggsliste);
+          console.log(søknad.vedleggsliste);
           console.log('...NYEVEDLEGG');
           console.log(nyeVedlegg);
 
