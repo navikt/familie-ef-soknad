@@ -13,7 +13,7 @@ interface Props {
 const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
   //const { søknad, settSøknad } = useSøknadContext();
 
-  const slettFil = (fil: File) => {
+  const slettFil = (fil: any) => {
     const temp = filliste.slice();
 
     const index = temp.indexOf(fil);
@@ -22,12 +22,21 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
       temp.splice(index, 1);
     }
 
-    settFilliste(temp);
+    const nyListe = filliste.filter((obj: any) => {
+      return obj.filObjekt !== fil;
+    });
+
+    console.log('nyListe');
+    console.log(nyListe);
+
+    settFilliste(nyListe);
   };
 
   return (
     <>
       {filliste.map((filwrapper: any) => {
+        console.log('filwrapper');
+        console.log(filwrapper);
         const fil = filwrapper.filObjekt;
         const filKey = fil.name + fil.size;
 
