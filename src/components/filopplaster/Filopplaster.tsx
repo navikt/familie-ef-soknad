@@ -98,9 +98,8 @@ const Filopplaster: React.FC<Props> = ({
             );
           });
       });
-
-      // eslint-disable-next-line
     },
+    // eslint-disable-next-line
     [søknad]
   );
 
