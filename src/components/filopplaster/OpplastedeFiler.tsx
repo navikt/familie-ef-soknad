@@ -3,7 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
 import { formaterFilstørrelse } from './utils';
-//import useSøknadContext from '../../context/SøknadContext';
+import useSøknadContext from '../../context/SøknadContext';
 
 interface Props {
   filliste: any;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
-  //const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknadContext();
 
   const slettFil = (fil: any) => {
     const temp = filliste.slice();
@@ -26,11 +26,20 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
       return obj.filObjekt !== fil;
     });
 
-    console.log('nyListe');
-    console.log(nyListe);
+    const nyVedleggsliste = søknad.vedleggsliste.filter((obj: any) => {
+      return obj.dokumentId !== fil.dokumentId;
+    });
 
     settFilliste(nyListe);
+
+    settSøknad({
+      ...søknad,
+      vedleggsliste: nyVedleggsliste,
+    });
   };
+
+  console.log('SØKNAD OPPLASTEDEFILER');
+  console.log(søknad);
 
   return (
     <>
