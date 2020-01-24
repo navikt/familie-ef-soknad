@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Feilside from './components/feilside/Feilside';
-import hentToggles from './toggles/api';
+import hentToggles from './api/toggles';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './søknad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';

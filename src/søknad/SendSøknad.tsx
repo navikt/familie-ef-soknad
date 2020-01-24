@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { sendInnSøknad } from '../innsending/api';
+import { sendInnSøknad } from '../api/innsending';
 import useSøknadContext from '../context/SøknadContext';
 import Side from '../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';

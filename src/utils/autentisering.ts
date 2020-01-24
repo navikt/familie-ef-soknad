@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import Environment from '../Environment';
+import { preferredAxios } from '../api/axios';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
@@ -41,7 +42,7 @@ export const verifiserAtBrukerErAutentisert = (
 };
 
 const verifiserInnloggetApi = () => {
-  return axios.get(`${Environment().apiUrl}/api/innlogget`, {
+  return preferredAxios.get(`/api/innlogget`, {
     withCredentials: true,
   });
 };

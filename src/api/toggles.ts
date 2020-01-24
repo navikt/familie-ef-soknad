@@ -1,10 +1,9 @@
-import axios from 'axios';
-import Environment from '../Environment';
 import { Toggles } from '../models/toggles';
+import { preferredAxios } from './axios';
 
 const hentToggles = (settToggles: (toggles: Toggles) => void) => {
-  return axios
-    .get(`${Environment().apiUrl}/api/featuretoggle`, {
+  return preferredAxios
+    .get('/api/featuretoggle', {
       withCredentials: true,
     })
     .then((response: { data: any }) => {

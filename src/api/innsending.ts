@@ -1,9 +1,8 @@
-import axios from 'axios';
-import Environment from '../Environment';
+import { preferredAxios } from './axios';
 
 export const sendInnSøknad = (søknad: string) => {
-  return axios
-    .post(`${Environment().apiUrl}/api/soknad`, søknad, {
+  return preferredAxios
+    .post('/api/soknad', søknad, {
       headers: { 'content-type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })

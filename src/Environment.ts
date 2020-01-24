@@ -8,13 +8,13 @@ const Environment = (): IEnvUrls => {
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'http://familie-ef-soknad-api/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice-q.nav.no/login',
     };
   } else if (window.location.hostname.indexOf('www') > -1) {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'http://familie-ef-soknad-api/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice.nav.no/login',
     };
   } else {
