@@ -1,4 +1,5 @@
 import { IPerson } from './person';
+import { IVedlegg } from './vedlegg';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -10,4 +11,5 @@ export interface ISøknad {
   datoSøktSeparasjon?: Date;
   søkerGiftIUtlandet?: boolean;
   søkerSeparertEllerSkiltIUtlandet?: boolean;
+  vedleggsliste: IVedlegg[];
 }
