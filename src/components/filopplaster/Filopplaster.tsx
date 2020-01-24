@@ -2,6 +2,10 @@ import React, { useCallback, useState } from 'react';
 import useSøknadContext from '../../context/SøknadContext';
 import { useDropzone } from 'react-dropzone';
 import { injectIntl, IntlShape } from 'react-intl';
+import {
+  hentBeskjedMedNavn,
+  hentBeskjedMedToParametre,
+} from '../../utils/språk';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
@@ -43,7 +47,11 @@ const Filopplaster: React.FC<Props> = ({
         if (maxFilstørrelse && fil.size > maxFilstørrelse) {
           const maks = formaterFilstørrelse(maxFilstørrelse);
           feilmeldingsliste.push(
-            fil.name + ' er for stor. Den må være under ' + maks + '.'
+            hentBeskjedMedToParametre(
+              fil.name,
+              maks,
+              intl.formatMessage({ id: 'filopplaster.feilmelding.maks' })
+            )
           );
 
           settFeilmeldinger(feilmeldingsliste);
@@ -52,15 +60,18 @@ const Filopplaster: React.FC<Props> = ({
         }
 
         if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-          feilmeldingsliste.push(fil.name + ' har feil filtype.');
-
+          feilmeldingsliste.push(
+            hentBeskjedMedNavn(
+              fil.name,
+              intl.formatMessage({ id: 'filopplaster.feilmelding.filtype' })
+            )
+          );
           settFeilmeldinger(feilmeldingsliste);
           settÅpenModal(true);
           return;
         }
 
         const data = new FormData();
-
         data.append('file', fil);
 
         fetch(
@@ -87,7 +98,7 @@ const Filopplaster: React.FC<Props> = ({
           .catch((error) => {
             console.log('Feil', error);
             feilmeldingsliste.push(
-              'Det skjedde noe galt under opplasting av filen'
+              intl.formatMessage({ id: 'filopplaster.dra' })
             );
           });
       });

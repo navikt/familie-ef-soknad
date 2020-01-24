@@ -41,6 +41,10 @@ export default {
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
+    'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',
+    'filopplaster.feilmelding.maks':
+      '[0] er for stor (maksimal filstørrelse er [1]).',
+    'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -80,6 +84,10 @@ export default {
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Dra og draupp filane her, eller klikkj for å velje.',
     'filopplaster.slipp': 'Slepp filane her...',
+    'filopplaster.feilmelding.filtype': '[0] – Ugyldeg filtype.',
+    'filopplaster.feilmelding.maks':
+      '[0] er for stor (maksimal filstørrelse er [1]).',
+    'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -122,5 +130,8 @@ export default {
     'svar.nei': 'No',
     'filopplaster.dra': 'Drag and drop the files here, or click to choose.',
     'filopplaster.slipp': 'Release...',
+    'filopplaster.feilmelding.filtype': '[0] – Invalid file type.',
+    'filopplaster.feilmelding.maks': '[0] is too large (max size [1]).',
+    'filopplaster.feilmelding.generisk': 'Error uploading file.',
   },
 };
