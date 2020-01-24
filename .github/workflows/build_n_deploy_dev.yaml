@@ -18,6 +18,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          npm install
+          npm build
           docker build . -t ${IMAGE}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
