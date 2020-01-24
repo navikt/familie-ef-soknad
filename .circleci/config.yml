@@ -146,4 +146,4 @@ workflows:
             - deploy_docker
           filters:
             branches:
-              only: /.*/
+              only: master
