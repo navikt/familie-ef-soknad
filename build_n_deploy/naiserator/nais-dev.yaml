@@ -30,6 +30,8 @@ spec:
         - host: appres-q0.nav.no
         - host: loginservice-q.nav.no
         - host: unleashproxy.nais.oera.no
+  envFrom:
+    - secret: familie
   env:
     - name: APP_VERSION
       value: '{{version}}'
