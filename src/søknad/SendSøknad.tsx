@@ -4,8 +4,8 @@ import { sendInnSøknad } from '../innsending/api';
 import useSøknadContext from '../context/SøknadContext';
 import Side from '../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Routes, IRoute } from '../config/Routes';
-import { hentForrigeRoute } from '../utils/routing';
+import { Routes, IRoute } from '../routing/Routes';
+import { hentForrigeRoute } from '../routing/utils';
 import { useLocation } from 'react-router';
 
 interface IState {

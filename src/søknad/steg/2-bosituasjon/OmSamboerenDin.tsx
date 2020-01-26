@@ -1,62 +1,72 @@
 import React, { FC } from 'react';
-import KomponentGruppe from '../../../components/KomponentGruppe';
-import { Element } from 'nav-frontend-typografi';
-import FeltGruppe from '../../../components/FeltGruppe';
-import { Input } from 'nav-frontend-skjema';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { injectIntl, IntlShape } from 'react-intl';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
+import useSøknadContext from '../../../context/SøknadContext';
+import { IPersonDetaljer } from '../../../models/søknad';
 
 interface Props {
   intl: IntlShape;
+  samboerDetaljer: IPersonDetaljer;
 }
 
-const OmSamboerenDin: FC<Props> = ({ intl }) => {
-  const settSamboerInfo = () => {
-    console.log('setter samboer info');
+const OmSamboerenDin: FC<Props> = ({ intl, samboerDetaljer }) => {
+  const { søknad, settSøknad } = useSøknadContext();
+  const { bosituasjon } = søknad;
+
+  const settFødselsdato = (date: Date | null) => {
+    date !== null &&
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          ...bosituasjon,
+          samboerDetaljer: { ...samboerDetaljer, fødselsdato: date },
+        },
+      });
+  };
+
+  const settSamboerInfo = (
+    e: React.FormEvent<HTMLInputElement>,
+    objektnøkkel: string
+  ) => {
+    samboerDetaljer &&
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          ...bosituasjon,
+          samboerDetaljer: {
+            ...samboerDetaljer,
+            [objektnøkkel]: e.currentTarget.value,
+          },
+        },
+      });
   };
 
   const datofornå = new Date();
-  const settFødselsdato = () => {
-    console.log('setter dato');
+  const settDatoFlyttetSammen = (dato: Date | null, objektnøkkel: string) => {
+    console.log('setter dato', dato);
   };
 
   return (
     <KomponentGruppe>
-      <FeltGruppe>
-        <Element>Om samboeren din</Element>
-      </FeltGruppe>
-      <FeltGruppe>
-        <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.navn' }).trim()}
-          type="text"
-          bredde={'L'}
-          onChange={(e) => settSamboerInfo()}
-        />
-      </FeltGruppe>
-      <FeltGruppe classname={'datoOgPersonnummer'}>
-        <Datovelger
-          valgtDato={datofornå}
-          tekstid={'datovelger.fødselsdato'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-          settDato={(e) => settFødselsdato()}
-        />
-        <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.nr' }).trim()}
-          type="text"
-          bredde={'S'}
-          onChange={(e) => settSamboerInfo()}
-        />
-      </FeltGruppe>
+      <PersonInfoGruppe
+        tekstid={'bosituasjon.tittel.omSamboer'}
+        settPersonInfo={settSamboerInfo}
+        settFødselsdato={settFødselsdato}
+        valgtPersonInfo={samboerDetaljer}
+      />
       <FeltGruppe>
         <Datovelger
           valgtDato={datofornå}
           tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
-          settDato={(e) => settFødselsdato()}
+          settDato={(e) =>
+            settDatoFlyttetSammen(e, 'datoFlyttetSammenMedSamboer')
+          }
         />
       </FeltGruppe>
     </KomponentGruppe>

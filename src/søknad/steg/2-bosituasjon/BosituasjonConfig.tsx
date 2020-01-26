@@ -2,7 +2,7 @@ import {
   IJaNeiSpørsmål,
   IMultiSpørsmål,
   standardJaNeiSvar,
-} from '../models/spørsmal';
+} from '../../../models/spørsmal';
 
 export const delerSøkerBoligMedAndreVoksne: IMultiSpørsmål = {
   spørsmål_id: 'søkerDelerBoligMedAndreVoksne',

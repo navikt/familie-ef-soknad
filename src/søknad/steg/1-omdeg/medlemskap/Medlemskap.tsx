@@ -1,15 +1,12 @@
 import React from 'react';
 import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
-import {
-  SpørsmålOgSvar,
-  registrertSomFlykting,
-} from '../../../../config/MedlemskapConfig';
-import KomponentGruppe from '../../../../components/KomponentGruppe';
+import { SpørsmålOgSvar, registrertSomFlykting } from './MedlemskapConfig';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
-import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 
 const Medlemskap: React.FC = () => {
   const { person } = usePersonContext();

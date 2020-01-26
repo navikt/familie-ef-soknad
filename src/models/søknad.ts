@@ -31,19 +31,26 @@ export interface IPeriode {
   til: Date;
 }
 
-export interface ISpørsmålOgSvar {
+export interface ISpørsmålOgMultiSvar {
   nøkkel: string;
   spørsmål_tekst: string;
   svar_tekst: string;
 }
 
-export interface IBosituasjon {
-  søkerDelerBoligMedAndreVoksne: ISpørsmålOgSvar;
-  datoFlyttetSammenMedSamboer?: Date;
-  samboerDetaljer?: ISamboerDetaljer;
+export interface ISpørsmålOgJaNeiSvar {
+  nøkkel: string;
+  spørsmål_tekst: string;
+  svar: boolean;
 }
 
-export interface ISamboerDetaljer {
+export interface IBosituasjon {
+  søkerDelerBoligMedAndreVoksne: ISpørsmålOgMultiSvar;
+  søkerSkalGifteSegEllerBliSamboer?: ISpørsmålOgJaNeiSvar;
+  datoFlyttetSammenMedSamboer?: Date;
+  samboerDetaljer?: IPersonDetaljer;
+}
+
+export interface IPersonDetaljer {
   navn: string;
   fødselsdato: Date;
   fødselsnummer: string;

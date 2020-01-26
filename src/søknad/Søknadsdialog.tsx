@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { Route, Switch } from 'react-router';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
-import Forside from './Forside';
+import Forside from './forside/Forside';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 
 const Søknadsdialog: FC = () => {

@@ -3,7 +3,7 @@ import {
   IMultiSpørsmål,
   ISvar,
   standardJaNeiSvar,
-} from '../models/spørsmal';
+} from '../../../../models/spørsmal';
 
 export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
   spørsmål_id: 'søkerHarSøktSeparasjon',

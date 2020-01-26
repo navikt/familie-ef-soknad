@@ -10,7 +10,7 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../context/SøknadContext';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
-import FeltGruppe from '../FeltGruppe';
+import FeltGruppe from '../gruppe/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 
@@ -35,10 +35,18 @@ const JaNeiSpørsmål: React.FC<Props> = ({
     spørsmål: ISpørsmål,
     svar: IJaNeiSvar
   ): void => {
-    settSøknad({
-      ...søknad,
-      [spørsmål.spørsmål_id]: svar.svar_tekstid === ISvar.JA,
-    });
+    const erSvarJa = svar.svar_tekstid === ISvar.JA;
+
+    if (onChange !== undefined && svar) {
+      onChange(erSvarJa);
+      console.log('erSvarJa: ', erSvarJa, svar, 'valgtSvar: ', valgtSvar);
+    } else {
+      settSøknad({
+        ...søknad,
+        [spørsmål.spørsmål_id]: erSvarJa,
+      });
+    }
+
     if (svar.alert_tekstid) {
       settAlert(true);
       settValgtSvarAlertTekst(svar.alert_tekstid);
@@ -61,7 +69,9 @@ const JaNeiSpørsmål: React.FC<Props> = ({
       ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: IJaNeiSvar) => {
-          const svarISøknad = returnerJaNeiSvar(spørsmål, svar, søknad);
+          const svarISøknad = valgtSvar
+            ? valgtSvar
+            : returnerJaNeiSvar(spørsmål, svar, søknad);
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel

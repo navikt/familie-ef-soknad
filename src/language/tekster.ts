@@ -40,6 +40,7 @@ export default {
       'Har du konkrete planer om å gifte deg eller bli samboer?',
     'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'bosituasjon.tittel.omSamboer': 'Om samboeren din',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',

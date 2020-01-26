@@ -6,7 +6,7 @@ import { dagensDato } from '../../utils/dato';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import { IPeriode } from '../../models/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
-import FeltGruppe from '../FeltGruppe';
+import FeltGruppe from '../gruppe/FeltGruppe';
 
 interface Props {
   tekstid: string;

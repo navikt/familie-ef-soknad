@@ -1,4 +1,4 @@
-import { IJaNeiSpørsmål, standardJaNeiSvar } from '../models/spørsmal';
+import { IJaNeiSpørsmål, standardJaNeiSvar } from '../../../../models/spørsmal';
 
 export const SpørsmålOgSvar: IJaNeiSpørsmål[] = [
   {
