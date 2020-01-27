@@ -11,8 +11,8 @@ import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
-import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
+import LeggTilBarn from './LeggTilBarn';
 
 const BarnaDine = () => {
   const { søknad, settSøknad } = useSøknadContext();
@@ -54,7 +54,7 @@ const BarnaDine = () => {
           contentLabel="Halla"
           >
         <div style={{padding:'2rem 2.5rem'}}>
-          <LeggTilBarn />
+          <LeggTilBarn settÅpenModal={settÅpenModal} navn={"Halla"} />
         </div>
       </Modal>
         </div>
