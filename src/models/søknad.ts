@@ -19,7 +19,6 @@ export interface ISøknad {
   datoFlyttetFraHverandre?: Date;
   begrunnelseAnnet?: string;
   vedleggsliste: IVedlegg[];
-
 }
 
 export interface IUtenlandsopphold {
