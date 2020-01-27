@@ -31,3 +31,8 @@ export const hentBeskjedMedNavn = (navn: string, tekststreng: string) => {
   const tekst = tekststreng.replace('[0]', navn);
   return tekst;
 };
+
+export const hentBeskjedMedToParametre = (en: string, to: string, tekststreng: string) => {
+  let tekst = tekststreng.replace('[0]', en).replace('[1]', to);
+  return tekst;
+};

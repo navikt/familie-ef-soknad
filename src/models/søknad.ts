@@ -1,4 +1,5 @@
 import { IPerson } from './person';
+import { IVedlegg } from './vedlegg';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -17,6 +18,8 @@ export interface ISøknad {
   datoForSamlivsbrudd?: Date;
   datoFlyttetFraHverandre?: Date;
   begrunnelseAnnet?: string;
+  vedleggsliste: IVedlegg[];
+
 }
 
 export interface IUtenlandsopphold {

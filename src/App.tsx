@@ -61,6 +61,7 @@ const App = () => {
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>
