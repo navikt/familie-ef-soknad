@@ -11,6 +11,7 @@ import { IntlShape, injectIntl } from 'react-intl';
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
+
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
