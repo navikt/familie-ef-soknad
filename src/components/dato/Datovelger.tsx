@@ -1,12 +1,17 @@
 import React, { useEffect } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { Normaltekst } from 'nav-frontend-typografi';
-import LocaleTekst from '../../language/LocaleTekst';
-import FeltGruppe from '../FeltGruppe';
-import useSøknadContext from '../../context/SøknadContext';
-import KalenderIkonSVG from '../../assets/KalenderSVG';
 import { addDays, subDays } from 'date-fns';
+import { dagensDato } from '../../utils/dato';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { useSpråkContext } from '../../context/SpråkContext';
+import 'react-datepicker/dist/react-datepicker.css';
+import DatePicker from 'react-datepicker';
+import en from 'date-fns/locale/en-US';
+import nb from 'date-fns/locale/nb';
+import nn from 'date-fns/locale/nn';
+import FeltGruppe from '../FeltGruppe';
+import KalenderIkonSVG from '../../assets/KalenderSVG';
+import LocaleTekst from '../../language/LocaleTekst';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -15,23 +20,36 @@ export enum DatoBegrensning {
 }
 
 interface Props {
+  valgtDato: Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
+  settDato: (date: Date | null) => void;
 }
 
-const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const valgtDato = søknad.datoSøktSeparasjon;
-  const dagensDato = new Date();
+const Datovelger: React.FC<Props> = ({
+  tekstid,
+  datobegrensning,
+  valgtDato,
+  settDato,
+}) => {
+  const [locale] = useSpråkContext();
 
-  const settDato = (date: Date | null): void => {
-    date !== null && settSøknad({ ...søknad, datoSøktSeparasjon: date });
+  const settLocaleForDatePicker = () => {
+    locale === 'nn'
+      ? registerLocale('nn', nn)
+      : locale === 'nb'
+      ? registerLocale('nb', nb)
+      : registerLocale('en-US', en);
   };
 
   useEffect(() => {
-    settDato(dagensDato);
+    settDato(valgtDato ? valgtDato : null);
+    setDefaultLocale('nb');
+
     // eslint-disable-next-line
   }, []);
+
+  settLocaleForDatePicker();
 
   return (
     <div className={'datovelger'}>
@@ -43,26 +61,29 @@ const Datovelger: React.FC<Props> = ({ tekstid, datobegrensning }) => {
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
+                className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 selected={valgtDato !== undefined ? valgtDato : dagensDato}
                 dateFormat={'dd.MM.yyyy'}
+                locale={locale}
                 maxDate={addDays(new Date(), 0)}
-                className={'datovelger__input'}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
+                className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 selected={valgtDato !== undefined ? valgtDato : dagensDato}
                 dateFormat={'dd.MM.yyyy'}
                 minDate={subDays(new Date(), 0)}
-                className={'datovelger__input'}
+                locale={locale}
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
+                className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 selected={valgtDato !== undefined ? valgtDato : dagensDato}
                 dateFormat={'dd.MM.yyyy'}
-                className={'datovelger__input'}
+                locale={locale}
               />
             ) : null}
           </div>

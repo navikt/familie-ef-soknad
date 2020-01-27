@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { sendInnSøknad } from '../innsending/api';
 import useSøknadContext from '../context/SøknadContext';
