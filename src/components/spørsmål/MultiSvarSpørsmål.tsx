@@ -1,8 +1,5 @@
 import React, { FC, SyntheticEvent } from 'react';
-import {
-  IMultiSpørsmål as ISpørsmål,
-  IMultiSvar as ISvar,
-} from '../../models/spørsmal';
+import { IMultiSpørsmål as ISpørsmål, IMultiSvar } from '../../models/spørsmal';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
@@ -27,7 +24,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
-    svar: ISvar
+    svar: IMultiSvar
   ): void => {
     svar !== undefined &&
       onChange === undefined &&
@@ -45,7 +42,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
     <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
-        {spørsmål.svaralternativer.map((svar: ISvar) => {
+        {spørsmål.svaralternativer.map((svar: IMultiSvar) => {
           const svarISøknad = valgtSvar
             ? intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar
             : returnerMultiSvar(spørsmål, svar, søknad, intl);

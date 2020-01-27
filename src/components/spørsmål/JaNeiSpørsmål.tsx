@@ -39,7 +39,6 @@ const JaNeiSpørsmål: React.FC<Props> = ({
 
     if (onChange !== undefined && svar) {
       onChange(erSvarJa);
-      console.log('erSvarJa: ', erSvarJa, svar, 'valgtSvar: ', valgtSvar);
     } else {
       settSøknad({
         ...søknad,
@@ -55,6 +54,17 @@ const JaNeiSpørsmål: React.FC<Props> = ({
       settValgtSvarAlertTekst('');
     }
   };
+  const erValgtSvarRadioKnapp = (
+    svar: IJaNeiSvar,
+    valgtSvar: boolean
+  ): boolean => {
+    if (
+      (svar.svar_tekstid === ISvar.JA && valgtSvar === true) ||
+      (svar.svar_tekstid === ISvar.NEI && valgtSvar === false)
+    )
+      return true;
+    else return false;
+  };
 
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
@@ -69,9 +79,10 @@ const JaNeiSpørsmål: React.FC<Props> = ({
       ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: IJaNeiSvar) => {
-          const svarISøknad = valgtSvar
-            ? valgtSvar
-            : returnerJaNeiSvar(spørsmål, svar, søknad);
+          const svarISøknad =
+            valgtSvar !== undefined
+              ? erValgtSvarRadioKnapp(svar, valgtSvar)
+              : returnerJaNeiSvar(spørsmål, svar, søknad);
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel

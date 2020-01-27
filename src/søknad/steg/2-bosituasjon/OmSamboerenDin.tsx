@@ -11,10 +11,17 @@ import { IPersonDetaljer } from '../../../models/søknad';
 
 interface Props {
   intl: IntlShape;
+  tittel: string;
   samboerDetaljer: IPersonDetaljer;
+  ekteskapsLiknendeForhold?: boolean;
 }
 
-const OmSamboerenDin: FC<Props> = ({ intl, samboerDetaljer }) => {
+const OmSamboerenDin: FC<Props> = ({
+  intl,
+  samboerDetaljer,
+  tittel,
+  ekteskapsLiknendeForhold,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
 
@@ -54,21 +61,24 @@ const OmSamboerenDin: FC<Props> = ({ intl, samboerDetaljer }) => {
   return (
     <KomponentGruppe>
       <PersonInfoGruppe
-        tekstid={'bosituasjon.tittel.omSamboer'}
+        tekstid={tittel}
         settPersonInfo={settSamboerInfo}
         settFødselsdato={settFødselsdato}
         valgtPersonInfo={samboerDetaljer}
       />
-      <FeltGruppe>
-        <Datovelger
-          valgtDato={datofornå}
-          tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-          settDato={(e) =>
-            settDatoFlyttetSammen(e, 'datoFlyttetSammenMedSamboer')
-          }
-        />
-      </FeltGruppe>
+
+      {ekteskapsLiknendeForhold ? (
+        <FeltGruppe>
+          <Datovelger
+            valgtDato={datofornå}
+            tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
+            datobegrensning={DatoBegrensning.TidligereDatoer}
+            settDato={(e) =>
+              settDatoFlyttetSammen(e, 'datoFlyttetSammenMedSamboer')
+            }
+          />
+        </FeltGruppe>
+      ) : null}
     </KomponentGruppe>
   );
 };

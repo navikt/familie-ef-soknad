@@ -20,6 +20,10 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import { tomPersonInfo } from '../../../utils/person';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
+import { dagensDato } from '../../../utils/dato';
 
 interface Props {
   intl: IntlShape;
@@ -55,7 +59,6 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   };
 
   const settSøkerSkalGifteSegEllerBliSamboer = (svar: boolean) => {
-    console.log('settSøkermetode fyrer');
     settSøknad({
       ...søknad,
       bosituasjon: {
@@ -69,6 +72,10 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         },
       },
     });
+  };
+
+  const settDatoSøkerSkalGifteSegEllerBliSamboer = (dato: Date | null) => {
+    console.log('sett Dato søker skl bli samboer');
   };
 
   const valgtSvar:
@@ -102,8 +109,6 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
     // eslint-disable-next-line
   }, []);
 
-  console.log('marry', søkerSkalGifteSegEllerBliSamboer);
-
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
@@ -133,28 +138,53 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       {planerOmÅFlytteSammenEllerFåSamboer ? (
         <>
           <SeksjonGruppe>
-            <JaNeiSpørsmål
-              spørsmål={skalSøkerGifteSegMedSamboer}
-              onChange={settSøkerSkalGifteSegEllerBliSamboer}
-              valgtSvar={
-                søkerSkalGifteSegEllerBliSamboer
-                  ? søkerSkalGifteSegEllerBliSamboer.svar
-                  : undefined
-              }
-            />
+            <KomponentGruppe>
+              <JaNeiSpørsmål
+                spørsmål={skalSøkerGifteSegMedSamboer}
+                onChange={settSøkerSkalGifteSegEllerBliSamboer}
+                valgtSvar={
+                  søkerSkalGifteSegEllerBliSamboer
+                    ? søkerSkalGifteSegEllerBliSamboer.svar
+                    : undefined
+                }
+              />
+            </KomponentGruppe>
+            {søkerSkalGifteSegEllerBliSamboer?.svar === true &&
+            samboerDetaljer ? (
+              <>
+                <KomponentGruppe>
+                  <Datovelger
+                    valgtDato={dagensDato}
+                    tekstid={'datovelger.nårSkalDetteSkje'}
+                    datobegrensning={DatoBegrensning.FremtidigeDatoer}
+                    settDato={(e) =>
+                      settDatoSøkerSkalGifteSegEllerBliSamboer(e)
+                    }
+                  />
+                </KomponentGruppe>
+                <KomponentGruppe>
+                  <OmSamboerenDin
+                    tittel={
+                      'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
+                    }
+                    samboerDetaljer={samboerDetaljer}
+                  />
+                </KomponentGruppe>
+              </>
+            ) : null}
           </SeksjonGruppe>
-
-          {samboerDetaljer && borMidlertidigFraHverandre ? (
-            <SeksjonGruppe>
-              <OmSamboerenDin samboerDetaljer={samboerDetaljer} />
-            </SeksjonGruppe>
-          ) : null}
         </>
       ) : null}
 
       {samboerDetaljer && harSøkerSamboerOgLeverIEkteskapsliknendeForhold ? (
         <SeksjonGruppe>
-          <OmSamboerenDin samboerDetaljer={samboerDetaljer} />
+          <OmSamboerenDin
+            tittel={'bosituasjon.tittel.omSamboer'}
+            samboerDetaljer={samboerDetaljer}
+            ekteskapsLiknendeForhold={
+              harSøkerSamboerOgLeverIEkteskapsliknendeForhold
+            }
+          />
         </SeksjonGruppe>
       ) : null}
     </Side>

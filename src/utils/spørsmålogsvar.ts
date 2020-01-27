@@ -15,7 +15,6 @@ export const returnerJaNeiSvar = (
 ) => {
   for (const [key, value] of Object.entries(søknadobj)) {
     if (key === spørsmål.spørsmål_id && value !== undefined) {
-      console.log('inni hent janeisvar', søknadobj, value, svar);
       return (
         (value && svar.svar_tekstid === ISvar.JA) ||
         (!value && svar.svar_tekstid === ISvar.NEI)

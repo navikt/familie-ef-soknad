@@ -41,6 +41,8 @@ export default {
     'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
     'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+    'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
+      'Hvem skal du gifte deg med eller bli samboer med?',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
@@ -49,6 +51,7 @@ export default {
     'datovelger.periode.likeDatoer':
       'Valgte datoer for perioden kan ikke være like',
     'datovelger.fødselsdato': 'Fødselsdato',
+    'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
