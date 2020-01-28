@@ -9,15 +9,16 @@ import LeggTilBarnModal from './LeggTilBarnModal';
 import { Input } from 'nav-frontend-skjema';
 
 interface Props {
-    navn: string;
     settÅpenModal: Function;
 }
 
-const LeggTilBarn: React.FC<Props> = ( { navn, settÅpenModal }) => {
+const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [barnDato, settBarnDato] = useState<Date>(new Date());
   const [født, settBarnFødt] = useState("");
-  const [nyttNavn, settNyttNavn] = useState("Barn");
+  const [navn, settNavn] = useState("Barn");
+  const [personnummer, settPersonnummer] = useState("");
+  const [boHosDeg, settBoHosDeg] = useState("");
 
   const settDato = (date: Date | null): void => {
     date !== null && settBarnDato(date);
@@ -27,15 +28,17 @@ const LeggTilBarn: React.FC<Props> = ( { navn, settÅpenModal }) => {
     settBarnFødt(event.target.value);
   }
 
-  console.log(søknad);
+  const settBo = (event: any) => {
+    settBoHosDeg(event.target.value);
+  }
 
   const barn = {
       fnr: "0123456789",
       alder: differenceInYears(new Date(), barnDato),
-      navn: nyttNavn,
+      navn: navn,
       fødselsdato: barnDato.toString(),
-      harSammeAdresse: false,
-      ufødt: true,
+      harSammeAdresse: boHosDeg === "ja",
+      nytt: true,
   }
 
   const leggTilBarn = () => {
@@ -72,7 +75,7 @@ const LeggTilBarn: React.FC<Props> = ( { navn, settÅpenModal }) => {
             </div>
         {født === "ja" ?
         <>
-        <Input onChange={(e) => settNyttNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
+        <Input onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
 
           <Normaltekst>Fødselsdato</Normaltekst>
           <div className="barn-datovelger">
@@ -85,7 +88,32 @@ const LeggTilBarn: React.FC<Props> = ( { navn, settÅpenModal }) => {
                 />
                 </div>
             </div>
-            <br/></> : null}
+            <br/>
+            <Input onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
+
+            <Normaltekst>Bor barnet hos deg?</Normaltekst>
+
+          <div className="radiogruppe-2">
+
+          <RadioPanel
+                key={"ja"}
+                name={"radio-bosted"}
+                label="Ja"
+                value={"ja"}
+                checked={boHosDeg === "ja"}
+                onChange={(e) => settBo(e)}
+            />
+            <RadioPanel
+                key={"nei"}
+                name={"radio-bosted"}
+                label="Nei"
+                value={"nei"}
+                checked={boHosDeg === "nei"}
+                onChange={(e) => settBo(e)}
+            />
+            </div>
+
+            </> : null}
           <Knapp onClick={leggTilBarn}>Legg til</Knapp>
         </div>
   );

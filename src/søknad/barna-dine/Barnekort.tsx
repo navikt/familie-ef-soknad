@@ -10,10 +10,11 @@ interface Props {
     fnr: string;
     alder: number;
     harSammeAdresse: boolean;
+    nytt: boolean;
     ufødt: boolean;
 }
 
-const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, ufødt }) => {
+const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, ufødt }) => {
 
     const formaterFnr = (fnr: string) => {
         return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
