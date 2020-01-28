@@ -9,6 +9,7 @@ import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
 import useSøknadContext from '../../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
+import { IJaNeiSpørsmål, IJaNeiSvar } from '../../../models/spørsmal';
 
 const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
   intl,
@@ -22,15 +23,17 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     samboerDetaljer,
   } = bosituasjon;
 
+  const spørsmål: IJaNeiSpørsmål = skalSøkerGifteSegMedSamboer;
+
   const settSøkerSkalGifteSegEllerBliSamboer = (svar: boolean) => {
     settSøknad({
       ...søknad,
       bosituasjon: {
         ...bosituasjon,
         søkerSkalGifteSegEllerBliSamboer: {
-          nøkkel: skalSøkerGifteSegMedSamboer.spørsmål_id,
+          nøkkel: spørsmål.spørsmål_id,
           spørsmål_tekst: intl.formatMessage({
-            id: skalSøkerGifteSegMedSamboer.tekstid,
+            id: spørsmål.tekstid,
           }),
           svar: svar,
         },
@@ -67,7 +70,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     <>
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={skalSøkerGifteSegMedSamboer}
+          spørsmål={spørsmål}
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
           valgtSvar={
             søkerSkalGifteSegEllerBliSamboer
