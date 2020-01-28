@@ -4,37 +4,37 @@ export default {
     'banner.tittel': 'Søknad om overgangsstønad',
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
-    'bosituasjon.svar.neiBorAleneMedBarnEllerGravid':
+    'bosituasjon.svar.borAleneMedBarnEllerGravid':
       'Nei, jeg bor alene med barn eller jeg er gravid og bor alene',
-    'bosituasjon.svar.neiBorMidlertidigFraHverandre':
-      'Nei, jeg og den andre forelderen bor midlertidig fra hverandre',
-    'bosituasjon.alert.neiBorMidlertidigFraHverandre':
-      'Når dere bor midlertidig fra hverandre uten at det er brudd i forholdet, har du ikke rett til stønad.',
-    'bosituasjon.svar.jaBorSammenOgVenterBarn':
+    'bosituasjon.svar.borMidlertidigFraHverandre':
+      'Ja, jeg og den andre forelderen bor midlertidig fra hverandre',
+    'bosituasjon.alert.borMidlertidigFraHverandre':
+      'Når dere bor midlertidig fra hverandre, har du ikke rett til stønad.',
+    'bosituasjon.svar.borSammenOgVenterBarn':
       'Ja, jeg bor sammen med en jeg har eller venter barn med',
-    'bosituasjon.alert.jaBorSammenOgVenterBarn':
+    'bosituasjon.alert.borSammenOgVenterBarn':
       'Når dere bor sammen, har du ikke rett til stønad til enslig mor eller far',
-    'bosituasjon.svar.jaHarSamboerOgEkteskapsliknendeForhold':
+    'bosituasjon.svar.harEkteskapsliknendeForhold':
       'Ja, jeg har samboer og lever i et ekteskapslignende forhold',
-    'bosituasjon.alert.jaHarSamboerOgEkteskapsliknendeForhold':
+    'bosituasjon.alert.harEkteskapsliknendeForhold':
       'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
-    'bosituasjon.svar.jaDelerBoligMedAndreVoksne':
-      'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn eller egne foreldre',
-    'bosituasjon.svar.neiMenTidligereSamboerRegistrert':
+    'bosituasjon.svar.delerBoligMedAndreVoksne':
+      'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn, søsken eller egne foreldre',
+    'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':
       'Nei, men en tidligere samboer er fortsatt registrert på adressen min',
-    'bosituasjon.alert.neiMenTidligereSamboerRegistrert':
+    'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
       '<strong>Den tidligere samboeren må registrere ny adresse i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon. </strong> <br/>' +
       '\n' +
       '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
       '\n' +
-      '<br/><br/>For at vi skal kunne behandle søknaden raskere, må du legge ved for eksempel:<br/>' +
+      '<br/><br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
-      ' <li>Redegjørelse for hvor den tidligere samboeren bor nå</li> ' +
-      ' <li>Kopi av flyttemelding/tips til folkeregisteret </li>' +
+      ' <li> Informasjon om hvor den tidligere samboeren bor nå </li>' +
+      '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
       '<li>Husleiekontrakt for begge parter</li>' +
       '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
       '<li>Bekreftelse fra nøytral tredjepart, for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
-      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv </li>' +
+      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li>' +
       '</ul>',
     'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
       'Har du konkrete planer om å gifte deg eller bli samboer?',

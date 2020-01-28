@@ -8,23 +8,25 @@ export const delerSøkerBoligMedAndreVoksne: IMultiSpørsmål = {
   spørsmål_id: 'søkerDelerBoligMedAndreVoksne',
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
   svaralternativer: [
-    { svar_tekstid: 'bosituasjon.svar.neiBorAleneMedBarnEllerGravid' },
+    { svar_tekstid: 'bosituasjon.svar.borAleneMedBarnEllerGravid' },
     {
-      svar_tekstid: 'bosituasjon.svar.neiBorMidlertidigFraHverandre',
-      alert_tekstid: 'bosituasjon.alert.neiBorMidlertidigFraHverandre',
+      svar_tekstid: 'bosituasjon.svar.borMidlertidigFraHverandre',
+      alert_tekstid: 'bosituasjon.alert.borMidlertidigFraHverandre',
     },
     {
-      svar_tekstid: 'bosituasjon.svar.jaBorSammenOgVenterBarn',
-      alert_tekstid: 'bosituasjon.alert.jaBorSammenOgVenterBarn',
+      svar_tekstid: 'bosituasjon.svar.borSammenOgVenterBarn',
+      alert_tekstid: 'bosituasjon.alert.borSammenOgVenterBarn',
     },
     {
-      svar_tekstid: 'bosituasjon.svar.jaHarSamboerOgEkteskapsliknendeForhold',
-      alert_tekstid: 'bosituasjon.alert.jaHarSamboerOgEkteskapsliknendeForhold',
+      svar_tekstid: 'bosituasjon.svar.harEkteskapsliknendeForhold',
+      alert_tekstid: 'bosituasjon.alert.harEkteskapsliknendeForhold',
     },
-    { svar_tekstid: 'bosituasjon.svar.jaDelerBoligMedAndreVoksne' },
+    { svar_tekstid: 'bosituasjon.svar.delerBoligMedAndreVoksne' },
     {
-      svar_tekstid: 'bosituasjon.svar.neiMenTidligereSamboerRegistrert',
-      alert_tekstid: 'bosituasjon.alert.neiMenTidligereSamboerRegistrert',
+      svar_tekstid:
+        'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
+      alert_tekstid:
+        'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',
     },
   ],
 };

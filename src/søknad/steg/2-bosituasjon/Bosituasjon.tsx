@@ -87,25 +87,35 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
 
   const harSøkerSamboerOgLeverIEkteskapsliknendeForhold =
-    valgtSvarNøkkel === 'jaHarSamboerOgEkteskapsliknendeForhold';
+    valgtSvarNøkkel === 'harEkteskapsliknendeForhold';
 
   const borAleneMedBarnEllerGravid =
-    valgtSvarNøkkel === 'neiBorAleneMedBarnEllerGravid';
+    valgtSvarNøkkel === 'borAleneMedBarnEllerGravid';
   const borMidlertidigFraHverandre =
-    valgtSvarNøkkel === 'neiBorMidlertidigFraHverandre';
+    valgtSvarNøkkel === 'borMidlertidigFraHverandre';
   const delerBoligMedAndreVoksne =
-    valgtSvarNøkkel === 'jaDelerBoligMedAndreVoksne';
+    valgtSvarNøkkel === 'delerBoligMedAndreVoksne';
 
   const planerOmÅFlytteSammenEllerFåSamboer =
     borAleneMedBarnEllerGravid ||
     borMidlertidigFraHverandre ||
-    delerBoligMedAndreVoksne;
+    delerBoligMedAndreVoksne ||
+    valgtSvarNøkkel === 'tidligereSamboerFortsattRegistrertPåAdresse';
 
   useEffect(() => {
     settSøknad({
       ...søknad,
       bosituasjon: { ...bosituasjon, samboerDetaljer: tomPersonInfo },
     });
+    /*const objektnøkkel = 'samboerDetaljer';
+      const {
+        [objektnøkkel]: _,
+        ...nyBosituasjonUtenSamboerDetaljer
+      } = bosituasjon;
+      settSøknad({
+        ...søknad,
+        bosituasjon: { ...nyBosituasjonUtenSamboerDetaljer },*/
+
     // eslint-disable-next-line
   }, []);
 
@@ -123,16 +133,14 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
           onChange={settSøkerDelerBoligMedAndreVoksne}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
-          <KomponentGruppe>
-            <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-              {valgtSvar.svar_tekstid.split('.')[2] ===
-              'neiMenTidligereSamboerRegistrert' ? (
-                <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
-              ) : (
-                <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-              )}
-            </AlertStripeAdvarsel>
-          </KomponentGruppe>
+          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+            {valgtSvar.svar_tekstid.split('.')[2] ===
+            'tidligereSamboerFortsattRegistrertPåAdresse' ? (
+              <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
+            ) : (
+              <LocaleTekst tekst={valgtSvar.alert_tekstid} />
+            )}
+          </AlertStripeAdvarsel>
         ) : null}
       </SeksjonGruppe>
       {planerOmÅFlytteSammenEllerFåSamboer ? (
