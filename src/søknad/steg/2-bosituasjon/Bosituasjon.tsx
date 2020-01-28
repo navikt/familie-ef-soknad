@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
 
 import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
@@ -7,23 +7,14 @@ import { useLocation } from 'react-router';
 import { hentNesteRoute } from '../../../routing/utils';
 import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import {
-  delerSøkerBoligMedAndreVoksne,
-  skalSøkerGifteSegMedSamboer,
-} from './BosituasjonConfig';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import useSøknadContext from '../../../context/SøknadContext';
 import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
-import { tomPersonInfo } from '../../../utils/person';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import { dagensDato } from '../../../utils/dato';
+import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 
 interface Props {
   intl: IntlShape;
@@ -32,7 +23,8 @@ interface Props {
 const Bosituasjon: FC<Props> = ({ intl }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
-  const { samboerDetaljer, søkerSkalGifteSegEllerBliSamboer } = bosituasjon;
+  const { søkerDelerBoligMedAndreVoksne } = bosituasjon;
+  const [svarPåHovedspørsmål, settSvarPåHovedspørsmål] = useState('');
 
   const hovedSpørsmål: IMultiSpørsmål = delerSøkerBoligMedAndreVoksne;
   const location = useLocation();
@@ -56,26 +48,7 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         },
       },
     });
-  };
-
-  const settSøkerSkalGifteSegEllerBliSamboer = (svar: boolean) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        ...bosituasjon,
-        søkerSkalGifteSegEllerBliSamboer: {
-          nøkkel: skalSøkerGifteSegMedSamboer.spørsmål_id,
-          spørsmål_tekst: intl.formatMessage({
-            id: skalSøkerGifteSegMedSamboer.tekstid,
-          }),
-          svar: svar,
-        },
-      },
-    });
-  };
-
-  const settDatoSøkerSkalGifteSegEllerBliSamboer = (dato: Date | null) => {
-    console.log('sett Dato søker skl bli samboer');
+    svarPåHovedspørsmål === '' && settSvarPåHovedspørsmål(svar);
   };
 
   const valgtSvar:
@@ -89,41 +62,38 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const harSøkerSamboerOgLeverIEkteskapsliknendeForhold =
     valgtSvarNøkkel === 'harEkteskapsliknendeForhold';
 
-  const borAleneMedBarnEllerGravid =
-    valgtSvarNøkkel === 'borAleneMedBarnEllerGravid';
-  const borMidlertidigFraHverandre =
-    valgtSvarNøkkel === 'borMidlertidigFraHverandre';
-  const delerBoligMedAndreVoksne =
-    valgtSvarNøkkel === 'delerBoligMedAndreVoksne';
-
   const planerOmÅFlytteSammenEllerFåSamboer =
-    borAleneMedBarnEllerGravid ||
-    borMidlertidigFraHverandre ||
-    delerBoligMedAndreVoksne ||
+    valgtSvarNøkkel === 'borAleneMedBarnEllerGravid' ||
+    valgtSvarNøkkel === 'borMidlertidigFraHverandre' ||
+    valgtSvarNøkkel === 'delerBoligMedAndreVoksne' ||
     valgtSvarNøkkel === 'tidligereSamboerFortsattRegistrertPåAdresse';
 
-  useEffect(() => {
+  const erSpørsmålOgSvarTomme =
+    søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
+    svarPåHovedspørsmål === '';
+
+  const resetBosituasjon = (svar: string) => {
     settSøknad({
       ...søknad,
-      bosituasjon: { ...bosituasjon, samboerDetaljer: tomPersonInfo },
+      bosituasjon: {
+        søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+      },
     });
-    /*const objektnøkkel = 'samboerDetaljer';
-      const {
-        [objektnøkkel]: _,
-        ...nyBosituasjonUtenSamboerDetaljer
-      } = bosituasjon;
-      settSøknad({
-        ...søknad,
-        bosituasjon: { ...nyBosituasjonUtenSamboerDetaljer },*/
+    settSvarPåHovedspørsmål(svar);
+  };
 
-    // eslint-disable-next-line
-  }, []);
+  const harValgtNyttSvarsalternativ =
+    søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
+
+  !erSpørsmålOgSvarTomme &&
+    harValgtNyttSvarsalternativ &&
+    resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       nestePath={nesteRoute.path}
-      tilbakePath={Routes[0].path}
+      tilbakePath={Routes[1].path}
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
@@ -143,52 +113,17 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
           </AlertStripeAdvarsel>
         ) : null}
       </SeksjonGruppe>
+
       {planerOmÅFlytteSammenEllerFåSamboer ? (
-        <>
-          <SeksjonGruppe>
-            <KomponentGruppe>
-              <JaNeiSpørsmål
-                spørsmål={skalSøkerGifteSegMedSamboer}
-                onChange={settSøkerSkalGifteSegEllerBliSamboer}
-                valgtSvar={
-                  søkerSkalGifteSegEllerBliSamboer
-                    ? søkerSkalGifteSegEllerBliSamboer.svar
-                    : undefined
-                }
-              />
-            </KomponentGruppe>
-            {søkerSkalGifteSegEllerBliSamboer?.svar === true &&
-            samboerDetaljer ? (
-              <>
-                <KomponentGruppe>
-                  <Datovelger
-                    valgtDato={dagensDato}
-                    tekstid={'datovelger.nårSkalDetteSkje'}
-                    datobegrensning={DatoBegrensning.FremtidigeDatoer}
-                    settDato={(e) =>
-                      settDatoSøkerSkalGifteSegEllerBliSamboer(e)
-                    }
-                  />
-                </KomponentGruppe>
-                <KomponentGruppe>
-                  <OmSamboerenDin
-                    tittel={
-                      'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
-                    }
-                    samboerDetaljer={samboerDetaljer}
-                  />
-                </KomponentGruppe>
-              </>
-            ) : null}
-          </SeksjonGruppe>
-        </>
+        <SeksjonGruppe>
+          <SøkerSkalFlytteSammenEllerFåSamboer />
+        </SeksjonGruppe>
       ) : null}
 
-      {samboerDetaljer && harSøkerSamboerOgLeverIEkteskapsliknendeForhold ? (
+      {harSøkerSamboerOgLeverIEkteskapsliknendeForhold ? (
         <SeksjonGruppe>
           <OmSamboerenDin
             tittel={'bosituasjon.tittel.omSamboer'}
-            samboerDetaljer={samboerDetaljer}
             ekteskapsLiknendeForhold={
               harSøkerSamboerOgLeverIEkteskapsliknendeForhold
             }

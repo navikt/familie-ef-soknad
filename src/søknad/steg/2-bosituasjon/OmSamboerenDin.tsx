@@ -1,32 +1,27 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { injectIntl, IntlShape } from 'react-intl';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import useSøknadContext from '../../../context/SøknadContext';
-import { IPersonDetaljer } from '../../../models/søknad';
+import { dagensDato } from '../../../utils/dato';
+import { tomPersonInfo } from '../../../utils/person';
 
 interface Props {
-  intl: IntlShape;
   tittel: string;
-  samboerDetaljer: IPersonDetaljer;
-  ekteskapsLiknendeForhold?: boolean;
+  ekteskapsLiknendeForhold: boolean;
 }
 
-const OmSamboerenDin: FC<Props> = ({
-  intl,
-  samboerDetaljer,
-  tittel,
-  ekteskapsLiknendeForhold,
-}) => {
+const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
+  const { samboerDetaljer } = bosituasjon;
 
   const settFødselsdato = (date: Date | null) => {
     date !== null &&
+      samboerDetaljer &&
       settSøknad({
         ...søknad,
         bosituasjon: {
@@ -53,10 +48,24 @@ const OmSamboerenDin: FC<Props> = ({
       });
   };
 
-  const datofornå = new Date();
-  const settDatoFlyttetSammen = (dato: Date | null, objektnøkkel: string) => {
-    console.log('setter dato', dato);
+  const settDatoFlyttetSammen = (dato: Date | null) => {
+    dato !== null &&
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          ...bosituasjon,
+          datoFlyttetSammenMedSamboer: dato,
+        },
+      });
   };
+
+  useEffect(() => {
+    settSøknad({
+      ...søknad,
+      bosituasjon: { ...bosituasjon, samboerDetaljer: tomPersonInfo },
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <KomponentGruppe>
@@ -64,18 +73,20 @@ const OmSamboerenDin: FC<Props> = ({
         tekstid={tittel}
         settPersonInfo={settSamboerInfo}
         settFødselsdato={settFødselsdato}
-        valgtPersonInfo={samboerDetaljer}
+        valgtPersonInfo={samboerDetaljer ? samboerDetaljer : tomPersonInfo}
       />
 
-      {ekteskapsLiknendeForhold ? (
+      {ekteskapsLiknendeForhold === true ? (
         <FeltGruppe>
           <Datovelger
-            valgtDato={datofornå}
+            valgtDato={
+              bosituasjon.datoFlyttetSammenMedSamboer
+                ? bosituasjon.datoFlyttetSammenMedSamboer
+                : dagensDato
+            }
             tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
-            settDato={(e) =>
-              settDatoFlyttetSammen(e, 'datoFlyttetSammenMedSamboer')
-            }
+            settDato={(e) => settDatoFlyttetSammen(e)}
           />
         </FeltGruppe>
       ) : null}
@@ -83,4 +94,4 @@ const OmSamboerenDin: FC<Props> = ({
   );
 };
 
-export default injectIntl(OmSamboerenDin);
+export default OmSamboerenDin;

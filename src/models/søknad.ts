@@ -49,6 +49,7 @@ export interface IBosituasjon {
   søkerDelerBoligMedAndreVoksne: ISpørsmålOgMultiSvar;
   søkerSkalGifteSegEllerBliSamboer?: ISpørsmålOgJaNeiSvar;
   datoFlyttetSammenMedSamboer?: Date;
+  datoSkalGifteSegEllerBliSamboer?: Date;
   samboerDetaljer?: IPersonDetaljer;
 }
 

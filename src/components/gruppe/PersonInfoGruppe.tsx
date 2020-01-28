@@ -15,7 +15,7 @@ interface Props {
   settFødselsdato: (date: Date | null) => void;
   settPersonInfo: (
     e: React.FormEvent<HTMLInputElement>,
-    navnEllerFødselsnummer: string
+    navnEllerFødselsnummer: 'navn' | 'fødselsnummer'
   ) => void;
 }
 
