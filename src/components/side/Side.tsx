@@ -1,7 +1,7 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import classNames from 'classnames';
-import TilbakeKnapp from '../TilbakeKnapp';
+import TilbakeKnapp from '../knapper/TilbakeKnapp';
 import Banner from '../Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './components/feilside/Feilside';
 import hentToggles from './api/toggles';
+import Feilside from './components/feil/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './søknad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
@@ -61,6 +61,7 @@ const App = () => {
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>
