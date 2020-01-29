@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "/familie/alene-med-barn/soknad",
   "scripts": {
-    "start": "craco start --verbose",
+    "start": "craco start",
     "build": "craco build",
     "test": "craco test",
     "serve": "NODE_ENV=production node server.js"
