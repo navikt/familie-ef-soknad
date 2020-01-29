@@ -20,6 +20,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
+import InnholdWrapper from '../../../../components/innholdWrapper';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
@@ -47,55 +48,63 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
 
   return (
     <SeksjonGruppe>
-      <KomponentGruppe>
-        <Element>
-          <LocaleTekst tekst={'sivilstatus.tittel'} />
-        </Element>
-        <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
-      </KomponentGruppe>
-      {erSøkerGift ? (
-        <>
-          <KomponentGruppe>
-            <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
-          </KomponentGruppe>
-          {søkerHarSøktSeparasjon ? (
+      <InnholdWrapper
+        erBesvart={
+          søknad.søkerBorPåRegistrertAdresse
+            ? søknad.søkerBorPåRegistrertAdresse
+            : false
+        }
+      >
+        <KomponentGruppe>
+          <Element>
+            <LocaleTekst tekst={'sivilstatus.tittel'} />
+          </Element>
+          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+        </KomponentGruppe>
+        {erSøkerGift ? (
+          <>
             <KomponentGruppe>
-              <Datovelger
-                settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
-                valgtDato={
-                  søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
-                }
-                tekstid={'sivilstatus.separasjon.datosøkt'}
-                datobegrensning={DatoBegrensning.TidligereDatoer}
-              />
-              <FeltGruppe>
-                <AlertStripeInfo className={'fjernBakgrunn'}>
-                  <LocaleTekst tekst={'sivilstatus.somgift'} />
-                </AlertStripeInfo>
-              </FeltGruppe>
+              <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
             </KomponentGruppe>
-          ) : !søkerHarSøktSeparasjon &&
-            søkerHarSøktSeparasjon !== undefined ? (
-            <KomponentGruppe>
-              <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-                <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-              </AlertStripeAdvarsel>
-            </KomponentGruppe>
-          ) : null}
-        </>
-      ) : erSøkerUgift ? (
-        <>
-          {ugiftSpørsmål.map((spørsmål) => {
-            return (
-              <KomponentGruppe key={spørsmål.spørsmål_id}>
-                <JaNeiSpørsmål spørsmål={spørsmål} />
+            {søkerHarSøktSeparasjon ? (
+              <KomponentGruppe>
+                <Datovelger
+                  settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
+                  valgtDato={
+                    søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
+                  }
+                  tekstid={'sivilstatus.separasjon.datosøkt'}
+                  datobegrensning={DatoBegrensning.TidligereDatoer}
+                />
+                <FeltGruppe>
+                  <AlertStripeInfo className={'fjernBakgrunn'}>
+                    <LocaleTekst tekst={'sivilstatus.somgift'} />
+                  </AlertStripeInfo>
+                </FeltGruppe>
               </KomponentGruppe>
-            );
-          })}
-        </>
-      ) : null}
+            ) : !søkerHarSøktSeparasjon &&
+              søkerHarSøktSeparasjon !== undefined ? (
+              <KomponentGruppe>
+                <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+                  <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
+                </AlertStripeAdvarsel>
+              </KomponentGruppe>
+            ) : null}
+          </>
+        ) : erSøkerUgift ? (
+          <>
+            {ugiftSpørsmål.map((spørsmål) => {
+              return (
+                <KomponentGruppe key={spørsmål.spørsmål_id}>
+                  <JaNeiSpørsmål spørsmål={spørsmål} />
+                </KomponentGruppe>
+              );
+            })}
+          </>
+        ) : null}
 
-      {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
+        {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
+      </InnholdWrapper>
     </SeksjonGruppe>
   );
 };
