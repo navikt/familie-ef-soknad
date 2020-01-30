@@ -27,7 +27,6 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const [svarPåHovedspørsmål, settSvarPåHovedspørsmål] = useState('');
 
   const hovedSpørsmål: IMultiSpørsmål = delerSøkerBoligMedAndreVoksne;
-  const hovedSvar: IMultiSvar[] = hovedSpørsmål.svaralternativer;
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne

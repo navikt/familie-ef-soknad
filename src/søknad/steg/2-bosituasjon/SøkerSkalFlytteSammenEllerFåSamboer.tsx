@@ -9,7 +9,7 @@ import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
 import useSøknadContext from '../../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
-import { IJaNeiSpørsmål, IJaNeiSvar } from '../../../models/spørsmal';
+import { IJaNeiSpørsmål } from '../../../models/spørsmal';
 
 const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
   intl,
