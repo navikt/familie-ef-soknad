@@ -8,17 +8,19 @@ import ufødtIkon from '../../assets/ufodt.svg';
 interface Props {
     navn: string;
     fnr: string;
+    fødselsdato: string;
+    personnummer: string;
     alder: number;
     harSammeAdresse: boolean;
     nytt: boolean;
     ufødt: boolean;
 }
 
-const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, ufødt }) => {
+const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, ufødt, fødselsdato }) => {
 
-    const formaterFnr = (fnr: string) => {
-        return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
-    }
+    const formatFnr = (fnr: string) => {
+      return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
+    };
 
     const ikoner = [barn1, barn2, barn3];
     const ikon = ufødt ? ufødtIkon : ikoner[Math.floor(Math.random() * ikoner.length)];
@@ -34,12 +36,14 @@ const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, 
             <div className="informasjonsboks-innhold">
               <Normaltekst className="navn">{navn}</Normaltekst>
               <div className="informasjonselement">
-                <Normaltekst>FØDSELSNUMMER</Normaltekst>
-                <Normaltekst>{formaterFnr(fnr)}</Normaltekst>
+                {fnr ? <><Normaltekst>FØDSELSNUMMER</Normaltekst>
+                <Normaltekst>{formatFnr(fnr)}</Normaltekst></> :
+                <><Normaltekst>{ufødt ? "TERMINDATO" : "FØDSELSDATO"}</Normaltekst>
+                <Normaltekst>{fødselsdato}</Normaltekst></>}
               </div>
               <div className="informasjonselement">
                 <Normaltekst>ALDER</Normaltekst>
-                <Normaltekst>{alder} år</Normaltekst>
+                <Normaltekst>{ufødt ? "Ufødt" : alder}</Normaltekst>
               </div>
               <div className="informasjonselement">
                 <Normaltekst>BOSTED</Normaltekst>

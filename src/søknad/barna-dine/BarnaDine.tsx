@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { sendInnSøknad } from '../../innsending/api';
 import useSøknadContext from '../../context/SøknadContext';
 import Side from '../../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -39,7 +37,16 @@ const BarnaDine = () => {
               </Lesmerpanel>
               <AlertStripeInfo className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</AlertStripeInfo>
         <div className="barnekort-wrapper">
-        {barn?.map(b => <Barnekort navn={b.navn} fnr={b.fnr} alder={b.alder} harSammeAdresse={b.harSammeAdresse} ufødt={b.ufødt ? b.ufødt : false} nytt={b.nytt ? b.nytt: false} />)}
+        {barn?.map(b => <Barnekort 
+        navn={b.navn} 
+        fnr={b.fnr} 
+        fødselsdato={b.fødselsdato} 
+        personnummer={b.personnummer? b.personnummer : ""} 
+        alder={b.alder} 
+        harSammeAdresse={b.harSammeAdresse} 
+        ufødt={b.ufødt ? b.ufødt : false} 
+        nytt={b.nytt ? b.nytt: false} />
+        )}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
             <Normaltekst>Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?</Normaltekst>

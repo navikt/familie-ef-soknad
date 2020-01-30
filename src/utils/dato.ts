@@ -4,6 +4,7 @@ import 'moment/locale/nb';
 moment.locale('nb');
 
 export const STANDARD_DATOFORMAT = 'DD.MM.YYYY';
+export const FØDSELSNUMMER_DATOFORMAT = 'DDMMYY';
 export const GYLDIGE_DATOFORMAT = [
   'DD.MM.YYYY',
   'DDMMYYYY',
@@ -13,6 +14,14 @@ export const GYLDIGE_DATOFORMAT = [
 
 export const formatDate = (date: Date, locale: string = 'nb') => {
   const format = STANDARD_DATOFORMAT;
+
+  return moment(date)
+    .locale(locale)
+    .format(Array.isArray(format) ? format[0] : format);
+};
+
+export const formatDateFnr = (date: Date, locale: string = 'nb') => {
+  const format = FØDSELSNUMMER_DATOFORMAT;
 
   return moment(date)
     .locale(locale)

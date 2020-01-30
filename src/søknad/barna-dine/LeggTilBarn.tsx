@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import useSøknadContext from '../../context/SøknadContext';
-import DatePicker from 'react-datepicker';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
-import LeggTilBarnModal from './LeggTilBarnModal';
-import { Input } from 'nav-frontend-skjema';
+import { formatDate, formatDateFnr } from '../../utils/dato';
+import LeggTilBarnFødt from './LeggTilBarnFødt';
+import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 
 interface Props {
     settÅpenModal: Function;
@@ -32,16 +32,20 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
     settBoHosDeg(event.target.value);
   }
 
-  const barn = {
-      fnr: "0123456789",
+  const leggTilBarn = () => {
+    const fødselsnummer = barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : "";
+
+    const barn = {
+      fnr: fødselsnummer,
+      personnummer: personnummer,
       alder: differenceInYears(new Date(), barnDato),
       navn: navn,
-      fødselsdato: barnDato.toString(),
+      fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === "ja",
+      ufødt: født === "nei",
       nytt: true,
-  }
+    }
 
-  const leggTilBarn = () => {
     const nyBarneListe = [...søknad.person.barn, barn];
 
     settSøknad({...søknad, person: {...søknad.person, barn: nyBarneListe}});
@@ -74,46 +78,19 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
             />
             </div>
         {født === "ja" ?
-        <>
-        <Input onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
-
-          <Normaltekst>Fødselsdato</Normaltekst>
-          <div className="barn-datovelger">
-          <div className={'datepicker__container'}>
-            <DatePicker
-                    onChange={(e) => settDato(e)}
-                    selected={barnDato}
-                    dateFormat={'dd.MM.yyyy'}
-                    className={'datovelger__input'}
-                />
-                </div>
-            </div>
-            <br/>
-            <Input onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
-
-            <Normaltekst>Bor barnet hos deg?</Normaltekst>
-
-          <div className="radiogruppe-2">
-
-          <RadioPanel
-                key={"ja"}
-                name={"radio-bosted"}
-                label="Ja"
-                value={"ja"}
-                checked={boHosDeg === "ja"}
-                onChange={(e) => settBo(e)}
-            />
-            <RadioPanel
-                key={"nei"}
-                name={"radio-bosted"}
-                label="Nei"
-                value={"nei"}
-                checked={boHosDeg === "nei"}
-                onChange={(e) => settBo(e)}
-            />
-            </div>
-
-            </> : null}
+        <LeggTilBarnFødt
+          settNavn={settNavn}
+          settPersonnummer={settPersonnummer}
+          settBo={settBo}
+          boHosDeg={boHosDeg}
+          settDato={settDato}
+          barnDato={barnDato}
+         /> : født === "nei" ? <LeggTilBarnUfødt
+          settBo={settBo}
+          boHosDeg={boHosDeg}
+          settDato={settDato}
+          barnDato={barnDato}
+         /> : null}
           <Knapp onClick={leggTilBarn}>Legg til</Knapp>
         </div>
   );

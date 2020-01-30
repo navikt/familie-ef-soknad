@@ -31,6 +31,7 @@ export interface IBarn {
   alder: number;
   fnr: string;
   fødselsdato: string;
+  personnummer?: string;
   harSammeAdresse: boolean;
   navn: string;
   ufødt?: boolean;
