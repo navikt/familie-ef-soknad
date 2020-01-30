@@ -15,6 +15,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
+import { ESøkerDelerBolig } from '../../../models/bosituasjon';
 
 interface Props {
   intl: IntlShape;
@@ -60,13 +61,13 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
 
   const harSøkerEkteskapsliknendeForhold =
-    valgtSvarNøkkel === 'harEkteskapsliknendeForhold';
+    valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
-  const planerOmÅFlytteSammenEllerFåSamboer =
-    valgtSvarNøkkel === 'borAleneMedBarnEllerGravid' ||
-    valgtSvarNøkkel === 'borMidlertidigFraHverandre' ||
-    valgtSvarNøkkel === 'delerBoligMedAndreVoksne' ||
-    valgtSvarNøkkel === 'tidligereSamboerFortsattRegistrertPåAdresse';
+  const planerOmÅFlytteSammenEllerFåSamboer = hovedSpørsmål.svaralternativer.find(
+    (svar: IMultiSvar) => {
+      return valgtSvarNøkkel === svar.nøkkel;
+    }
+  );
 
   const erSpørsmålOgSvarTomme =
     søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
@@ -105,7 +106,7 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             {valgtSvar.svar_tekstid.split('.')[2] ===
-            'tidligereSamboerFortsattRegistrertPåAdresse' ? (
+            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
             ) : (
               <LocaleTekst tekst={valgtSvar.alert_tekstid} />

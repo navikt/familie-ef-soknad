@@ -1,5 +1,6 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
+import { IBosituasjon } from './bosituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -43,18 +44,4 @@ export interface ISpørsmålOgJaNeiSvar {
   nøkkel: string;
   spørsmål_tekst: string;
   svar: boolean;
-}
-
-export interface IBosituasjon {
-  søkerDelerBoligMedAndreVoksne: ISpørsmålOgMultiSvar;
-  søkerSkalGifteSegEllerBliSamboer?: ISpørsmålOgJaNeiSvar;
-  datoFlyttetSammenMedSamboer?: Date;
-  datoSkalGifteSegEllerBliSamboer?: Date;
-  samboerDetaljer?: IPersonDetaljer;
-}
-
-export interface IPersonDetaljer {
-  navn: string;
-  fødselsdato: Date;
-  fødselsnummer: string;
 }
