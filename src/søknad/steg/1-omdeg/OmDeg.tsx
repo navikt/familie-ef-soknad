@@ -7,8 +7,12 @@ import { IRoute, Routes } from '../../../routing/Routes';
 import { hentNesteRoute } from '../../../routing/utils';
 import { useLocation } from 'react-router';
 import { IntlShape, injectIntl } from 'react-intl';
+import useSøknadContext from '../../../context/SøknadContext';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const { søknad } = useSøknadContext();
+  const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad;
+
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
 
@@ -19,8 +23,19 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       tilbakePath={Routes[0].path}
     >
       <Personopplysninger />
-      <Sivilstatus />
-      <Medlemskap />
+
+      {søknad.søkerBorPåRegistrertAdresse &&
+      søknad.søkerBorPåRegistrertAdresse === true ? (
+        <>
+          <Sivilstatus />
+
+          {søkerHarSøktSeparasjon ||
+          søkerHarSøktSeparasjon === false ||
+          begrunnelseForSøknad ? (
+            <Medlemskap />
+          ) : null}
+        </>
+      ) : null}
     </Side>
   );
 };

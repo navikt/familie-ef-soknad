@@ -10,7 +10,6 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import { Textarea } from 'nav-frontend-skjema';
-import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 
@@ -73,7 +72,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   };
 
   return (
-    <SeksjonGruppe>
+    <>
       <KomponentGruppe>
         <MultiSvarSpørsmål spørsmål={spørsmål} />
       </KomponentGruppe>
@@ -135,7 +134,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
           />
         </KomponentGruppe>
       ) : null}
-    </SeksjonGruppe>
+    </>
   );
 };
 

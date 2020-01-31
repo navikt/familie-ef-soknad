@@ -11,35 +11,34 @@ export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
   svaralternativer: standardJaNeiSvar,
 };
 
-export const UgiftSpørsmål: IJaNeiSpørsmål[] = [
-  {
-    spørsmål_id: 'søkerGiftIUtlandet',
-    tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
-    lesmer: {
-      åpneTekstid: 'sivilstatus.lesmer-åpne.søkerGiftIUtlandet',
-      lukkeTekstid: '',
-      innholdTekstid: 'sivilstatus.lesmer-innhold.søkerGiftIUtlandet',
+export const søkerGiftIUtlandet: IJaNeiSpørsmål = {
+  spørsmål_id: 'søkerGiftIUtlandet',
+  tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
+  lesmer: {
+    åpneTekstid: 'sivilstatus.lesmer-åpne.søkerGiftIUtlandet',
+    lukkeTekstid: '',
+    innholdTekstid: 'sivilstatus.lesmer-innhold.søkerGiftIUtlandet',
+  },
+  svaralternativer: [
+    {
+      svar_tekstid: ISvar.JA,
+      alert_tekstid: 'sivilstatus.dok.søkerGiftIUtlandet',
     },
-    svaralternativer: [
-      {
-        svar_tekstid: ISvar.JA,
-        alert_tekstid: 'sivilstatus.dok.søkerGiftIUtlandet',
-      },
-      { svar_tekstid: ISvar.NEI },
-    ],
-  },
-  {
-    spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
-    tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
-    svaralternativer: [
-      {
-        svar_tekstid: ISvar.JA,
-        alert_tekstid: 'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet',
-      },
-      { svar_tekstid: ISvar.NEI },
-    ],
-  },
-];
+    { svar_tekstid: ISvar.NEI },
+  ],
+};
+
+export const søkerSeparertEllerSKiltIUtlandet: IJaNeiSpørsmål = {
+  spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
+  tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
+  svaralternativer: [
+    {
+      svar_tekstid: ISvar.JA,
+      alert_tekstid: 'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet',
+    },
+    { svar_tekstid: ISvar.NEI },
+  ],
+};
 
 export const BegrunnelseSpørsmål: IMultiSpørsmål = {
   spørsmål_id: 'begrunnelseForSøknad',

@@ -7,7 +7,11 @@ import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
-import { SeparasjonSpørsmål, UgiftSpørsmål } from './SivilstatusConfig';
+import {
+  SeparasjonSpørsmål,
+  søkerGiftIUtlandet,
+  søkerSeparertEllerSKiltIUtlandet,
+} from './SivilstatusConfig';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
@@ -20,11 +24,9 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
-import InnholdWrapper from '../../../../components/innholdWrapper';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const ugiftSpørsmål: ISpørsmål[] = UgiftSpørsmål;
 
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
@@ -33,6 +35,8 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
+  const erSøkerEnke = sivilstand === 'ENKE';
+  const erSøkerSeparert = sivilstand === 'SEPA';
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const objektnavn = 'datoSøktSeparasjon';
@@ -48,63 +52,62 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
 
   return (
     <SeksjonGruppe>
-      <InnholdWrapper
-        erBesvart={
-          søknad.søkerBorPåRegistrertAdresse
-            ? søknad.søkerBorPåRegistrertAdresse
-            : false
-        }
-      >
-        <KomponentGruppe>
-          <Element>
-            <LocaleTekst tekst={'sivilstatus.tittel'} />
-          </Element>
-          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
-        </KomponentGruppe>
-        {erSøkerGift ? (
-          <>
+      <KomponentGruppe>
+        <Element>
+          <LocaleTekst tekst={'sivilstatus.tittel'} />
+        </Element>
+        <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+      </KomponentGruppe>
+      {erSøkerGift ? (
+        <>
+          <KomponentGruppe>
+            <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
+          </KomponentGruppe>
+          {søkerHarSøktSeparasjon !== undefined ? (
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
+              <Datovelger
+                settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
+                valgtDato={
+                  søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
+                }
+                tekstid={'sivilstatus.separasjon.datosøkt'}
+                datobegrensning={DatoBegrensning.TidligereDatoer}
+              />
+              <FeltGruppe>
+                <AlertStripeInfo className={'fjernBakgrunn'}>
+                  <LocaleTekst tekst={'sivilstatus.somgift'} />
+                </AlertStripeInfo>
+              </FeltGruppe>
             </KomponentGruppe>
-            {søkerHarSøktSeparasjon ? (
-              <KomponentGruppe>
-                <Datovelger
-                  settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
-                  valgtDato={
-                    søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
-                  }
-                  tekstid={'sivilstatus.separasjon.datosøkt'}
-                  datobegrensning={DatoBegrensning.TidligereDatoer}
-                />
-                <FeltGruppe>
-                  <AlertStripeInfo className={'fjernBakgrunn'}>
-                    <LocaleTekst tekst={'sivilstatus.somgift'} />
-                  </AlertStripeInfo>
-                </FeltGruppe>
-              </KomponentGruppe>
-            ) : !søkerHarSøktSeparasjon &&
-              søkerHarSøktSeparasjon !== undefined ? (
-              <KomponentGruppe>
-                <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-                  <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-                </AlertStripeAdvarsel>
-              </KomponentGruppe>
-            ) : null}
-          </>
-        ) : erSøkerUgift ? (
-          <>
-            {ugiftSpørsmål.map((spørsmål) => {
-              return (
-                <KomponentGruppe key={spørsmål.spørsmål_id}>
-                  <JaNeiSpørsmål spørsmål={spørsmål} />
-                </KomponentGruppe>
-              );
-            })}
-          </>
-        ) : null}
+          ) : !søkerHarSøktSeparasjon &&
+            søkerHarSøktSeparasjon !== undefined ? (
+            <KomponentGruppe>
+              <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+                <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
+              </AlertStripeAdvarsel>
+            </KomponentGruppe>
+          ) : null}
+        </>
+      ) : erSøkerUgift ? (
+        <>
+          <KomponentGruppe>
+            <JaNeiSpørsmål spørsmål={søkerGiftIUtlandet} />
+          </KomponentGruppe>
 
-        {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
-      </InnholdWrapper>
+          {typeof søknad.søkerGiftIUtlandet === 'boolean' ? (
+            <KomponentGruppe>
+              <JaNeiSpørsmål spørsmål={søkerSeparertEllerSKiltIUtlandet} />
+            </KomponentGruppe>
+          ) : null}
+        </>
+      ) : null}
+
+      {(erSøkerUgift &&
+        søknad.søkerSeparertEllerSkiltIUtlandet !== undefined) ||
+      erSøkerSeparert ||
+      erSøkerEnke ? (
+        <Søknadsbegrunnelse />
+      ) : null}
     </SeksjonGruppe>
   );
 };
