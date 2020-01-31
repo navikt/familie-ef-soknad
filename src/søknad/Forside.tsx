@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/FeltGruppe';
 import Språkvelger from '../components/språkvelger/Språkvelger';
-import svg from '../assets/VeilederSvg';
+import { ReactComponent as Veilederkvinne } from '../assets/VeilederKvinne.svg';
 import Veileder from 'nav-frontend-veileder';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
@@ -31,6 +31,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <div className={'header'}>
         <div className={'banner'}></div>
+
         <Veileder
           storrelse={'M'}
           posisjon={'topp'}
@@ -41,7 +42,7 @@ const Forside: React.FC<any> = ({ intl }) => {
             </span>
           }
         >
-          {svg}
+          <Veilederkvinne />
         </Veileder>
       </div>
       <Sidetittel>Søknad om overgangsstønad</Sidetittel>

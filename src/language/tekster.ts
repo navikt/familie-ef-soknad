@@ -10,35 +10,98 @@ export default {
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
-    'medlemskap.spm.bosatt.hjelpetekst':
+    'medlemskap.hjelpetekst.bosatt.apne':
+      'Hva vil det si å være bosatt i Norge?',
+    'medlemskap.hjelpetekst.bosatt.innhold':
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
-    'personopplysninger.infohentet':
-      'Informasjonen er hentet fra Folkeregisteret og NAVS register.',
-    'personopplysninger.tittel': 'Om deg',
+    'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+    'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsopphold',
+    'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.begrunnelse':
+      'Hvorfor bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
+      'Har du hatt flere utenlandsopphold de siste 3 årene?',
+    'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+    måned: 'Velg måned',
+    'måned.jan': 'Januar',
+    'måned.feb': 'Februar',
+    'måned.mar': 'Mars',
+    'måned.apr': 'April',
+    'måned.mai': 'Mai',
+    'måned.jun': 'Juni',
+    'måned.jul': 'Juli',
+    'måned.aug': 'August',
+    'måned.sep': 'September',
+    'måned.okt': 'Oktober',
+    'måned.nov': 'November',
+    'måned.des': 'Desember',
+    år: 'Velg år',
+    'periode.fra': 'Fra',
+    'periode.til': 'Til',
+    'datovelger.periode.feilFormat':
+      'Startsdato må være tidligere enn sluttdato.',
+    'datovelger.periode.likeDatoer':
+      'Valgte datoer for perioden kan ikke være like',
+    'personopplysninger.alert.infohentet':
+      'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
+    'stegtittel.omDeg': 'Om deg',
     'personopplysninger.adresse': 'Adresse',
+    'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
+    'personopplysninger.alert.riktigAdresse':
+      'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'side.bekreftelse':
       'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
+      'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
+    'sivilstatus.alert.samlivsbrudd':
+      'Du må legge ved erklæring om samlivsbrudd',
+    'sivilstatus.begrunnelse.endring':
+      'Når skjedde endringen/ når skal endringen skje?',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
     'sivilstatus.separasjon.advarsel':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
+    'sivilstatus.spm.søkerGiftIUtlandet':
+      'Er du gift i utlandet eller etter utenlandske tradisjoner i Norge?',
+    'sivilstatus.dok.søkerGiftIUtlandet':
+      'Du må legge ved dokumentasjon på inngått ekteskap',
+    'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
+    'sivilstatus.lesmer-innhold.søkerGiftIUtlandet': 'Let me tell you why',
+    'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet':
+      'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
+    'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet':
+      'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
+    'sivilstatus.spm.begrunnelse':
+      'Hva er grunnen til at du er alene med barn?',
+    'sivilstatus.sporsmål.datoForSamlivsbrudd': 'Dato for samlivsbrudd',
+    'sivilstatus.sporsmal.datoFlyttetFraHverandre':
+      'Når flyttet dere fra hverandre?',
+    'sivilstatus.svar.samlivsbruddForeldre':
+      'Samlivsbrudd fra den andre forelderen',
+    'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd fra noen andre',
+    'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
+    'sivilstatus.svar.endringISamværsordning':
+      'Endring i samværsordning, aktivitet eller inntekt',
+    'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
+    'filopplaster.dra': 'Last opp dokumentasjon',
+    'filopplaster.slipp': 'Slipp filen her...',
+    'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',
+    'filopplaster.feilmelding.maks':
+      '[0] er for stor (maksimal filstørrelse er [1]).',
+    'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -68,6 +131,8 @@ export default {
     'sivilstatus.separasjon.advarsel':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
+    'sivilstatus.alert.samlivsbrudd':
+      'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Sivilstatus',
@@ -76,6 +141,12 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
+    'filopplaster.dra': 'Dra og draupp filane her, eller klikkj for å velje.',
+    'filopplaster.slipp': 'Slepp filane her...',
+    'filopplaster.feilmelding.filtype': '[0] – Ugyldeg filtype.',
+    'filopplaster.feilmelding.maks':
+      '[0] er for stor (maksimal filstørrelse er [1]).',
+    'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -116,5 +187,10 @@ export default {
     'språk.nynorsk': 'Nynorsk',
     'svar.ja': 'Yes',
     'svar.nei': 'No',
+    'filopplaster.dra': 'Drag and drop the files here, or click to choose.',
+    'filopplaster.slipp': 'Release...',
+    'filopplaster.feilmelding.filtype': '[0] – Invalid file type.',
+    'filopplaster.feilmelding.maks': '[0] is too large (max size [1]).',
+    'filopplaster.feilmelding.generisk': 'Error uploading file.',
   },
 };

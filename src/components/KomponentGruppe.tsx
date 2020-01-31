@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledFeltGruppe = styled.div`
-  padding-bottom: 25px;
+  padding-bottom: 50px;
 
   &:last-child {
     padding-bottom: 0;
@@ -15,11 +15,8 @@ const StyledFeltGruppe = styled.div`
   }
 `;
 
-const FeltGruppe: React.FC<{ classname?: string }> = ({
-  classname,
-  children,
-}) => {
-  return <StyledFeltGruppe className={classname}>{children}</StyledFeltGruppe>;
+const FeltGruppe: React.FC = ({ children }) => {
+  return <StyledFeltGruppe>{children}</StyledFeltGruppe>;
 };
 
 export default FeltGruppe;

@@ -42,6 +42,13 @@ export const parseDate = (
   return undefined;
 };
 
-export const beregnAlderFraFodselsdato = (date: Date) => {
-  return moment().diff(moment(date), 'years');
+export const hentÅrstall = () => {
+  let årstall = [];
+  const dato = new Date().getFullYear();
+  for (let i = 0; i < 125; i++) {
+    årstall.push(dato - i);
+  }
+  return { årstall };
 };
+
+export const dagensDato = new Date();
