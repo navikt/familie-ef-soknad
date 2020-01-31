@@ -102,6 +102,10 @@ export default {
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': '',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -147,6 +151,9 @@ export default {
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -192,5 +199,8 @@ export default {
     'filopplaster.feilmelding.filtype': '[0] – Invalid file type.',
     'filopplaster.feilmelding.maks': '[0] is too large (max size [1]).',
     'filopplaster.feilmelding.generisk': 'Error uploading file.',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
   },
 };

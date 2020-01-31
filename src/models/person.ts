@@ -35,5 +35,5 @@ export interface IBarn {
   harSammeAdresse: boolean;
   navn: string;
   ufødt?: boolean;
-  nytt?: boolean;
+  lagtTil?: boolean;
 }

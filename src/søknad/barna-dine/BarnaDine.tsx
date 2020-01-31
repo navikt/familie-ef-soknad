@@ -13,7 +13,7 @@ import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
 
 const BarnaDine = () => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
   const barn = søknad.person.barn;
@@ -41,11 +41,11 @@ const BarnaDine = () => {
         navn={b.navn} 
         fnr={b.fnr} 
         fødselsdato={b.fødselsdato} 
-        personnummer={b.personnummer? b.personnummer : ""} 
-        alder={b.alder} 
+        personnummer={b.personnummer? b.personnummer : ""}
+        alder={b.alder}
         harSammeAdresse={b.harSammeAdresse} 
         ufødt={b.ufødt ? b.ufødt : false} 
-        nytt={b.nytt ? b.nytt: false} />
+        nytt={b.lagtTil ? b.lagtTil: false} />
         )}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">

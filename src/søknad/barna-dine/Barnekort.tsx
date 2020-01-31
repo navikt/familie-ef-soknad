@@ -4,8 +4,10 @@ import barn1 from '../../assets/barn1.svg';
 import barn2 from '../../assets/barn2.svg';
 import barn3 from '../../assets/barn3.svg';
 import ufødtIkon from '../../assets/ufodt.svg';
+import { injectIntl, IntlShape } from 'react-intl';
 
 interface Props {
+  intl: IntlShape;
     navn: string;
     fnr: string;
     fødselsdato: string;
@@ -16,7 +18,7 @@ interface Props {
     ufødt: boolean;
 }
 
-const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, ufødt, fødselsdato }) => {
+const Barnekort: React.FC<Props> = ( { intl, navn, fnr, alder, harSammeAdresse, nytt, ufødt, fødselsdato }) => {
 
     const formatFnr = (fnr: string) => {
       return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
@@ -30,23 +32,23 @@ const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, 
   return (
         <div className="barnekort">
           <div className="header">
-              <img className="barneikon" src={ikon} />
+              <img alt="barn" className="barneikon" src={ikon} />
           </div>
           <div className="informasjonsboks">
             <div className="informasjonsboks-innhold">
               <Normaltekst className="navn">{navn}</Normaltekst>
               <div className="informasjonselement">
-                {fnr ? <><Normaltekst>FØDSELSNUMMER</Normaltekst>
+                {fnr ? <><Normaltekst>{intl.formatMessage({ id: 'barnekort.fødselsnummer' })}</Normaltekst>
                 <Normaltekst>{formatFnr(fnr)}</Normaltekst></> :
                 <><Normaltekst>{ufødt ? "TERMINDATO" : "FØDSELSDATO"}</Normaltekst>
                 <Normaltekst>{fødselsdato}</Normaltekst></>}
               </div>
               <div className="informasjonselement">
-                <Normaltekst>ALDER</Normaltekst>
+                <Normaltekst>{intl.formatMessage({ id: 'barnekort.alder' })}</Normaltekst>
                 <Normaltekst>{ufødt ? "Ufødt" : alder}</Normaltekst>
               </div>
               <div className="informasjonselement">
-                <Normaltekst>BOSTED</Normaltekst>
+                <Normaltekst>{intl.formatMessage({ id: 'barnekort.bosted' })}</Normaltekst>
                 <Normaltekst>{bosted}</Normaltekst>
               </div>
             </div>
@@ -55,4 +57,4 @@ const Barnekort: React.FC<Props> = ( { navn, fnr, alder, harSammeAdresse, nytt, 
   );
 };
 
-export default Barnekort;
+export default injectIntl(Barnekort);

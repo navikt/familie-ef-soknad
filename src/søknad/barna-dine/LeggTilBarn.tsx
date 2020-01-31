@@ -32,6 +32,13 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
     settBoHosDeg(event.target.value);
   }
 
+  const tilbakestillFelt = () => {
+    settBarnDato(new Date());
+    settNavn("Barn");
+    settPersonnummer("");
+    settBoHosDeg("");
+  }
+
   const leggTilBarn = () => {
     const fødselsnummer = barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : "";
 
@@ -62,19 +69,25 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
           <div className="radiogruppe-2">
           <RadioPanel
                 key={"ja"}
-                name={"halla"}
+                name={"radio-født"}
                 label="Ja"
                 value={"ja"}
                 checked={født === "ja"}
-                onChange={(e) => settFødt(e)}
+                onChange={(e) => {
+                  tilbakestillFelt();
+                  settFødt(e);
+                }}
             />
           <RadioPanel
                 key={"nei"}
-                name={"halla"}
+                name={"radio-født"}
                 label="Nei"
                 value={"nei"}
                 checked={født === "nei"}
-                onChange={(e) => settFødt(e)}
+                onChange={(e) => {
+                  tilbakestillFelt();
+                  settFødt(e);
+                }}
             />
             </div>
         {født === "ja" ?
