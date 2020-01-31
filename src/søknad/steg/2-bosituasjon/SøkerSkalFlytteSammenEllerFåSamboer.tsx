@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { skalSøkerGifteSegMedSamboer } from './BosituasjonConfig';
@@ -52,19 +52,27 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
       });
   };
 
-  const resetSamboerDetaljer = () => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-      },
-    });
-  };
-
-  søkerSkalGifteSegEllerBliSamboer &&
-    søkerSkalGifteSegEllerBliSamboer.svar === false &&
-    samboerDetaljer &&
-    resetSamboerDetaljer();
+  useEffect(() => {
+    const resetSamboerDetaljer = () => {
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+          søkerSkalGifteSegEllerBliSamboer: søkerSkalGifteSegEllerBliSamboer,
+        },
+      });
+    };
+    søkerSkalGifteSegEllerBliSamboer &&
+      søkerSkalGifteSegEllerBliSamboer.svar === false &&
+      samboerDetaljer &&
+      resetSamboerDetaljer();
+  }, [
+    søkerSkalGifteSegEllerBliSamboer,
+    samboerDetaljer,
+    settSøknad,
+    søknad,
+    søkerDelerBoligMedAndreVoksne,
+  ]);
 
   return (
     <>

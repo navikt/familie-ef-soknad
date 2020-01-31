@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
 
 import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
@@ -65,30 +65,31 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
 
   const planerOmÅFlytteSammenEllerFåSamboer = hovedSpørsmål.svaralternativer.find(
     (svar: IMultiSvar) => {
-      return valgtSvarNøkkel === svar.nøkkel;
+      return valgtSvarNøkkel === svar.svar_tekstid.split('.')[2];
     }
   );
 
-  const erSpørsmålOgSvarTomme =
-    søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
-    svarPåHovedspørsmål === '';
+  useEffect(() => {
+    const erSpørsmålOgSvarTomme =
+      søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
+      svarPåHovedspørsmål === '';
 
-  const resetBosituasjon = (svar: string) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-      },
-    });
-    settSvarPåHovedspørsmål(svar);
-  };
+    const resetBosituasjon = (svar: string) => {
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+        },
+      });
+      settSvarPåHovedspørsmål(svar);
+    };
+    const harValgtNyttSvarsalternativ =
+      søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
 
-  const harValgtNyttSvarsalternativ =
-    søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
-
-  !erSpørsmålOgSvarTomme &&
-    harValgtNyttSvarsalternativ &&
-    resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+    !erSpørsmålOgSvarTomme &&
+      harValgtNyttSvarsalternativ &&
+      resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+  }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
     <Side
