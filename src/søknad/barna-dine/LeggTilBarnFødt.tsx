@@ -19,8 +19,10 @@ interface Props {
 const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo, boHosDeg, settDato, barnDato }) => {
   return (
     <>
-    <Input onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
+    <Input className="input-navn" onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
 
+      <div className="fødselsnummer">
+        <div className="fødselsdato">
       <Normaltekst>Fødselsdato</Normaltekst>
       <div className="barn-datovelger">
       <div className={'datepicker__container'}>
@@ -32,13 +34,13 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
             />
             </div>
         </div>
-        <br/>
+        </div>
         <Input onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
+        </div>
 
-        <Normaltekst>Bor barnet hos deg?</Normaltekst>
-
+      <div className="bo-hos-deg-spørsmål">
+      <Normaltekst>Bor barnet hos deg?</Normaltekst>
       <div className="radiogruppe-2">
-
       <RadioPanel
             key={"ja"}
             name={"radio-bosted"}
@@ -55,6 +57,7 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
             checked={boHosDeg === "nei"}
             onChange={(e) => settBo(e)}
         />
+        </div>
         </div>
 
         </>

@@ -17,7 +17,6 @@ interface Props {
 const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnDato }) => {
   return (
     <>
-
       <Normaltekst>Termindato</Normaltekst>
       <div className="barn-datovelger">
       <div className={'datepicker__container'}>
@@ -32,9 +31,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnD
         <br/>
 
         <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
-
       <div className="radiogruppe-2">
-
       <RadioPanel
             key={"ja"}
             name={"radio-bosted"}
@@ -52,7 +49,6 @@ const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnD
             onChange={(e) => settBo(e)}
         />
         </div>
-
         </>
   );
 };

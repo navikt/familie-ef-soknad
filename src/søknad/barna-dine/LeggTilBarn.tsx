@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Knapp } from 'nav-frontend-knapper';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -55,9 +55,9 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
 
   return (
         <div className="legg-til-barn">
-          <h2>Legg til barn</h2>
+          <Undertittel>Legg til barn</Undertittel>
 
-          <Normaltekst>Er barnet født?</Normaltekst>
+          <Normaltekst className="spørsmål">Er barnet født?</Normaltekst>
 
           <div className="radiogruppe-2">
           <RadioPanel
@@ -91,7 +91,7 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
           settDato={settDato}
           barnDato={barnDato}
          /> : null}
-          <Knapp onClick={leggTilBarn}>Legg til</Knapp>
+          <Hovedknapp className="legg-til-barn-knapp" onClick={leggTilBarn}>Legg til barn</Hovedknapp>
         </div>
   );
 };
