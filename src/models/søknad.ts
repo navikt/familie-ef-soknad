@@ -1,5 +1,6 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
+import { IUtenlandsopphold } from './omDeg';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -19,12 +20,6 @@ export interface ISøknad {
   datoFlyttetFraHverandre?: Date;
   begrunnelseAnnet?: string;
   vedleggsliste: IVedlegg[];
-}
-
-export interface IUtenlandsopphold {
-  periode: IPeriode;
-  ugyldig: boolean;
-  begrunnelse: string;
 }
 
 export interface IPeriode {

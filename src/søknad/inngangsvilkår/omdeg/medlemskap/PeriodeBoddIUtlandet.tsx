@@ -6,10 +6,10 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
 import FeltGruppe from '../../../../components/FeltGruppe';
-import { IUtenlandsopphold } from '../../../../models/søknad';
 import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
+import { IUtenlandsopphold } from '../../../../models/omDeg';
 
 interface Props {
   intl: IntlShape;

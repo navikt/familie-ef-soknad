@@ -4,7 +4,6 @@ import { Textarea } from 'nav-frontend-skjema';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import { IUtenlandsopphold } from '../../../../models/søknad';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/FeltGruppe';
 import Datovelger, {
@@ -15,6 +14,8 @@ import Feilmelding from '../../../../components/feil/Feilmelding';
 import classNames from 'classnames';
 import { compareAsc } from 'date-fns';
 import { hentPeriodeTittelMedTall } from '../../../../language/utils';
+import { IUtenlandsopphold } from '../../../../models/omDeg';
+
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
