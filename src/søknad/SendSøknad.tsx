@@ -23,10 +23,7 @@ const SendSøknad = () => {
 
   const send = () => {
     setHocState({ ...hocState, venter: true });
-    const søknadsTekst = JSON.stringify({
-      text: JSON.stringify(søknad),
-    });
-    sendInnSøknad(søknadsTekst)
+    sendInnSøknad(søknad)
       .then((kvittering) =>
         setHocState({
           ...hocState,
