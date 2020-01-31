@@ -17,21 +17,35 @@ import LocaleTekst from '../../language/LocaleTekst';
 interface Props {
   spørsmål: ISpørsmål;
   intl: IntlShape;
+  onChange?: (spørsmål: string, svar: boolean) => void;
+  valgtSvar?: boolean;
 }
-const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
+const JaNeiSpørsmål: React.FC<Props> = ({
+  spørsmål,
+  intl,
+  onChange,
+  valgtSvar,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
-
+  const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
     svar: IJaNeiSvar
   ): void => {
-    settSøknad({
-      ...søknad,
-      [spørsmål.spørsmål_id]: svar.svar_tekstid === ISvar.JA,
-    });
+    const erSvarJa = svar.svar_tekstid === ISvar.JA;
+
+    if (onChange !== undefined && svar) {
+      onChange(spørsmålTekst, erSvarJa);
+    } else {
+      settSøknad({
+        ...søknad,
+        [spørsmål.spørsmål_id]: erSvarJa,
+      });
+    }
+
     if (svar.alert_tekstid) {
       settAlert(true);
       settValgtSvarAlertTekst(svar.alert_tekstid);
@@ -41,9 +55,21 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
     }
   };
 
+  const erValgtSvarRadioKnapp = (
+    svar: IJaNeiSvar,
+    valgtSvar: boolean
+  ): boolean => {
+    if (
+      (svar.svar_tekstid === ISvar.JA && valgtSvar === true) ||
+      (svar.svar_tekstid === ISvar.NEI && valgtSvar === false)
+    )
+      return true;
+    else return false;
+  };
+
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
-      <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
+      <Element>{spørsmålTekst}</Element>
       {spørsmål.lesmer ? (
         <Lesmerpanel
           apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}
@@ -54,7 +80,10 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, intl }) => {
       ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: IJaNeiSvar) => {
-          const svarISøknad = returnerJaNeiSvar(spørsmål, svar, søknad);
+          const svarISøknad =
+            valgtSvar !== undefined
+              ? erValgtSvarRadioKnapp(svar, valgtSvar)
+              : returnerJaNeiSvar(spørsmål, svar, søknad);
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel

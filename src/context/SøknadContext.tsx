@@ -33,6 +33,8 @@ const initialState: ISøknad = {
   søkerOppholderSegINorge: undefined,
   søkerBosattINorgeSisteTreÅr: undefined,
   søkerErFlyktning: undefined,
+  sivilstatus: {},
+  medlemskap: {},
   vedleggsliste: [],
 };
 

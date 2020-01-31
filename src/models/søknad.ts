@@ -1,11 +1,14 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
-import { IUtenlandsopphold } from './omDeg';
+import { IMedlemskap, ISivilstatus, IUtenlandsopphold } from './omDeg';
+import { IBooleanFelt } from './søknadsfelter';
 
 export interface ISøknad {
   bekreftet?: boolean;
   person: IPerson;
-  søkerBorPåRegistrertAdresse?: boolean;
+  søkerBorPåRegistrertAdresse?: IBooleanFelt;
+  sivilstatus: ISivilstatus;
+  medlemskap: IMedlemskap;
   søkerOppholderSegINorge?: boolean;
   søkerBosattINorgeSisteTreÅr?: boolean;
   søkerErFlyktning?: boolean;

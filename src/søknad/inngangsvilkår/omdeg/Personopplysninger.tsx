@@ -18,10 +18,21 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const { søker } = person;
   const { søknad, settSøknad } = useSøknadContext();
+  const { søkerBorPåRegistrertAdresse } = søknad;
   const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
     undefined
   );
+
+  const settFeltSøkerBorPåRegistrertAdresse = (
+    spørsmål: string,
+    svar: boolean
+  ) => {
+    settSøknad({
+      ...søknad,
+      søkerBorPåRegistrertAdresse: { label: spørsmål, verdi: svar },
+    });
+  };
 
   const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
@@ -57,18 +68,21 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
           </AlertStripeInfo>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.fnr'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
           </Element>
           <Normaltekst>{søker.statsborgerskap}</Normaltekst>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.adresse'} />
@@ -78,8 +92,16 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <JaNeiSpørsmål spørsmål={borDuPåDenneAdressen} />
-        {søknad.søkerBorPåRegistrertAdresse === false ? (
+        <JaNeiSpørsmål
+          spørsmål={borDuPåDenneAdressen}
+          valgtSvar={
+            søkerBorPåRegistrertAdresse
+              ? søkerBorPåRegistrertAdresse.verdi
+              : undefined
+          }
+          onChange={settFeltSøkerBorPåRegistrertAdresse}
+        />
+        {søkerBorPåRegistrertAdresse?.verdi === false ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
           </AlertStripeAdvarsel>
