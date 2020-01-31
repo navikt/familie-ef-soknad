@@ -35,7 +35,7 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
             </div>
         </div>
         </div>
-        <Input onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
+        <Input className="personnummer" onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
         </div>
 
       <div className="bo-hos-deg-spørsmål">
