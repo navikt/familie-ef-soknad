@@ -1,5 +1,6 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
+import { IBosituasjon } from './bosituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -19,6 +20,7 @@ export interface ISøknad {
   datoFlyttetFraHverandre?: Date;
   begrunnelseAnnet?: string;
   vedleggsliste: IVedlegg[];
+  bosituasjon: IBosituasjon;
 }
 
 export interface IUtenlandsopphold {
@@ -30,4 +32,16 @@ export interface IUtenlandsopphold {
 export interface IPeriode {
   fra: Date;
   til: Date;
+}
+
+export interface ISpørsmålOgMultiSvar {
+  nøkkel: string;
+  spørsmål_tekst: string;
+  svar_tekst: string;
+}
+
+export interface ISpørsmålOgJaNeiSvar {
+  nøkkel: string;
+  spørsmål_tekst: string;
+  svar: boolean;
 }

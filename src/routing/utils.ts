@@ -1,4 +1,4 @@
-import { IRoute } from '../config/Routes';
+import { IRoute } from './Routes';
 
 export const hentForrigeRoute = (routes: IRoute[], currentPath: string) => {
   const routeIndex = routes.findIndex((route) => route.path === currentPath);

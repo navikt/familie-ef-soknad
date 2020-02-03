@@ -1,16 +1,13 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import FeltGruppe from '../../../../components/FeltGruppe';
-import KomponentGruppe from '../../../../components/KomponentGruppe';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
-import {
-  SeparasjonSpørsmål,
-  UgiftSpørsmål,
-} from '../../../../config/SivilstatusConfig';
+import { SeparasjonSpørsmål, UgiftSpørsmål } from './SivilstatusConfig';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
@@ -19,7 +16,7 @@ import {
 
 import { injectIntl } from 'react-intl';
 import Søknadsbegrunnelse from './SøknadsBegrunnelse';
-import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';

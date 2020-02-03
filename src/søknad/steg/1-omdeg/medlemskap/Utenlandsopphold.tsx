@@ -6,7 +6,7 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IUtenlandsopphold } from '../../../../models/søknad';
 import classnames from 'classnames';
-import FeltGruppe from '../../../../components/FeltGruppe';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';

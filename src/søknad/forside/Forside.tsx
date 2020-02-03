@@ -1,20 +1,20 @@
 import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
-import FeltGruppe from '../components/FeltGruppe';
-import Språkvelger from '../components/språkvelger/Språkvelger';
-import { ReactComponent as Veilederkvinne } from '../assets/VeilederKvinne.svg';
+import FeltGruppe from '../../components/gruppe/FeltGruppe';
+import Språkvelger from '../../components/språkvelger/Språkvelger';
+import { ReactComponent as Veilederkvinne } from '../../assets/VeilederKvinne.svg';
 import Veileder from 'nav-frontend-veileder';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-import { usePersonContext } from '../context/PersonContext';
-import { Routes } from '../config/Routes';
-import useSøknadContext from '../context/SøknadContext';
-import { hentBeskjedMedNavn } from '../utils/språk';
+import { usePersonContext } from '../../context/PersonContext';
+import { Routes } from '../../routing/Routes';
+import useSøknadContext from '../../context/SøknadContext';
+import { hentBeskjedMedNavn } from '../../utils/språk';
 import { FormattedHTMLMessage, injectIntl } from 'react-intl';
-import { hentNesteRoute } from '../utils/routing';
+import { hentNesteRoute } from '../../routing/utils';
 import { useLocation, useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
-import LocaleTekst from '../language/LocaleTekst';
+import LocaleTekst from '../../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();

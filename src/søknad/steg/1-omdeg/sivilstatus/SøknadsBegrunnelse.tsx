@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 
 import { IMultiSpørsmål } from '../../../../models/spørsmal';
-import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
+import { BegrunnelseSpørsmål } from './SivilstatusConfig';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { injectIntl } from 'react-intl';
-import KomponentGruppe from '../../../../components/KomponentGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import { Textarea } from 'nav-frontend-skjema';
-import SeksjonGruppe from '../../../../components/SeksjonGruppe';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 

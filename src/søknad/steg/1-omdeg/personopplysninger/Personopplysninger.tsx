@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import LocaleTekst from '../../../language/LocaleTekst';
+import LocaleTekst from '../../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
-import { usePersonContext } from '../../../context/PersonContext';
-import useSøknadContext from '../../../context/SøknadContext';
+import { usePersonContext } from '../../../../context/PersonContext';
+import useSøknadContext from '../../../../context/SøknadContext';
 
 import { injectIntl } from 'react-intl';
-import FeltGruppe from '../../../components/FeltGruppe';
-import KomponentGruppe from '../../../components/KomponentGruppe';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
-import SeksjonGruppe from '../../../components/SeksjonGruppe';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import { borDuPåDenneAdressen } from '../../../config/PersonopplysningerConfig';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
+import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {

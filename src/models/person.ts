@@ -34,3 +34,9 @@ export interface IBarn {
   harSammeAdresse: boolean;
   navn: string;
 }
+
+export interface IPersonDetaljer {
+  navn: string;
+  fødselsdato: Date;
+  fødselsnummer: string;
+}
