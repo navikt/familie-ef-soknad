@@ -17,13 +17,14 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
   const { søknad, settSøknad } = useSøknadContext();
+  const { sivilstatus } = søknad;
   const {
-    sivilstatus,
     begrunnelseForSøknad,
+    begrunnelseAnnet,
     datoEndretSamvær,
     datoFlyttetFraHverandre,
-    begrunnelseAnnet,
-  } = søknad;
+    datoForSamlivsbrudd,
+  } = sivilstatus;
 
   const endringIsamværsordningTekstid =
     BegrunnelseSpørsmål.svaralternativer[3].svar_tekstid;
@@ -34,31 +35,40 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const annetSvarTekst = BegrunnelseSpørsmål.svaralternativer[4].svar_tekstid;
 
   const annet =
-    begrunnelseForSøknad === intl.formatMessage({ id: annetSvarTekst });
+    begrunnelseForSøknad?.verdi === intl.formatMessage({ id: annetSvarTekst });
 
   const samlivsbrudd =
-    begrunnelseForSøknad ===
+    begrunnelseForSøknad?.verdi ===
       intl.formatMessage({ id: samlivsbruddForelderTekstid }) ||
-    begrunnelseForSøknad ===
+    begrunnelseForSøknad?.verdi ===
       intl.formatMessage({ id: samlivsbruddAndreTekstid });
 
   const samlivsbruddMedAndreForelder =
-    begrunnelseForSøknad ===
+    begrunnelseForSøknad?.verdi ===
     intl.formatMessage({ id: samlivsbruddForelderTekstid });
 
   const endretSamvær =
-    begrunnelseForSøknad ===
+    begrunnelseForSøknad?.verdi ===
     intl.formatMessage({ id: endringIsamværsordningTekstid });
 
-  const settDato = (date: Date | null, objektnøkkel: string): void => {
+  const settDato = (
+    date: Date | null,
+    objektnøkkel: string,
+    tekst: string
+  ): void => {
     date !== null &&
       settSøknad({
         ...søknad,
-        sivilstatus: { ...sivilstatus, [objektnøkkel]: date },
+        sivilstatus: {
+          ...sivilstatus,
+          [objektnøkkel]: { label: tekst, verdi: date },
+        },
       });
   };
 
-  const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
+  const settTekstfeltBegrunnelseAnnet = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     begrunnelseForSøknad &&
       annet &&
       settSøknad({
@@ -73,20 +83,25 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
       });
   };
 
+  const settBegrunnelseForSøknad = (spørsmål: string, svar: string) => {
+    settSøknad({
+      ...søknad,
+      sivilstatus: {
+        ...sivilstatus,
+        begrunnelseForSøknad: { label: spørsmål, verdi: svar },
+      },
+    });
+  };
+
   useEffect(() => {
+    console.log(!samlivsbrudd, datoFlyttetFraHverandre, !endretSamvær);
     if (!samlivsbrudd && datoFlyttetFraHverandre) {
       const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
-      console.log(
-        'hvis ikke samlivsbrudd',
-        !samlivsbrudd,
-        datoFlyttetFraHverandre
-      );
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
     }
 
     if (!endretSamvær && datoEndretSamvær) {
       const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
-      console.log('hvis ikke endret samvær', endretSamvær, datoEndretSamvær);
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
     }
   }, [
@@ -102,15 +117,24 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <MultiSvarSpørsmål spørsmål={spørsmål} />
+        <MultiSvarSpørsmål
+          key={spørsmål.tekstid}
+          spørsmål={spørsmål}
+          valgtSvar={sivilstatus.begrunnelseForSøknad?.verdi}
+          onChange={settBegrunnelseForSøknad}
+        />
       </KomponentGruppe>
       {endretSamvær ? (
         <KomponentGruppe>
           <Datovelger
-            settDato={(e) => settDato(e, 'datoEndretSamvær')}
-            valgtDato={
-              søknad.datoEndretSamvær ? søknad.datoEndretSamvær : undefined
+            settDato={(e) =>
+              settDato(
+                e,
+                'datoEndretSamvær',
+                intl.formatMessage({ id: 'sivilstatus.begrunnelse.endring' })
+              )
             }
+            valgtDato={datoEndretSamvær ? datoEndretSamvær.verdi : undefined}
             tekstid={'sivilstatus.begrunnelse.endring'}
             datobegrensning={DatoBegrensning.AlleDatoer}
           />
@@ -120,11 +144,17 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
       {samlivsbruddMedAndreForelder ? (
         <KomponentGruppe>
           <Datovelger
-            settDato={(e) => settDato(e, 'datoForSamlivsbrudd')}
+            settDato={(e) =>
+              settDato(
+                e,
+                'datoForSamlivsbrudd',
+                intl.formatMessage({
+                  id: 'sivilstatus.sporsmål.datoForSamlivsbrudd',
+                })
+              )
+            }
             valgtDato={
-              søknad.datoForSamlivsbrudd
-                ? søknad.datoForSamlivsbrudd
-                : undefined
+              datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
             }
             tekstid={'sivilstatus.sporsmål.datoForSamlivsbrudd'}
             datobegrensning={DatoBegrensning.AlleDatoer}
@@ -138,10 +168,18 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
       {samlivsbrudd ? (
         <KomponentGruppe>
           <Datovelger
-            settDato={(e) => settDato(e, 'datoFlyttetFraHverandre')}
+            settDato={(e) =>
+              settDato(
+                e,
+                'datoFlyttetFraHverandre',
+                intl.formatMessage({
+                  id: 'sivilstatus.sporsmal.datoFlyttetFraHverandre',
+                })
+              )
+            }
             valgtDato={
-              søknad.datoFlyttetFraHverandre
-                ? søknad.datoFlyttetFraHverandre
+              datoFlyttetFraHverandre
+                ? datoFlyttetFraHverandre.verdi
                 : undefined
             }
             tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
@@ -156,9 +194,9 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
               id: spørsmål.tekstid,
             })}
             placeholder={''}
-            value={begrunnelseAnnet ? begrunnelseAnnet : ''}
+            value={begrunnelseAnnet ? begrunnelseAnnet.verdi : ''}
             maxLength={2000}
-            onChange={(e) => settBegrunnelse(e)}
+            onChange={(e) => settTekstfeltBegrunnelseAnnet(e)}
           />
         </KomponentGruppe>
       ) : null}

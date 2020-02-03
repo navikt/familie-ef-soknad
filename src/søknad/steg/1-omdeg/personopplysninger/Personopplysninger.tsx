@@ -13,7 +13,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { IJaNeiSpørsmål } from '../../../models/spørsmal';
+import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();

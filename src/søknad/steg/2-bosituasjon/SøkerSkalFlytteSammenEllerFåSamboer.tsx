@@ -25,7 +25,10 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
 
   const spørsmål: IJaNeiSpørsmål = skalSøkerGifteSegMedSamboer;
 
-  const settSøkerSkalGifteSegEllerBliSamboer = (svar: boolean) => {
+  const settSøkerSkalGifteSegEllerBliSamboer = (
+    spørsmål: IJaNeiSpørsmål,
+    svar: boolean
+  ) => {
     settSøknad({
       ...søknad,
       bosituasjon: {

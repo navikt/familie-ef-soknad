@@ -7,10 +7,7 @@ import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
-import {
-  SeparasjonSpørsmål,
-  sivilstatusIUtlandetSpørsmål,
-} from '../../../../config/SivilstatusConfig';
+
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
@@ -24,6 +21,10 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import { ISivilstatus } from '../../../../models/omDeg';
+import {
+  SeparasjonSpørsmål,
+  sivilstatusIUtlandetSpørsmål,
+} from './SivilstatusConfig';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: IJaNeiSpørsmål = SeparasjonSpørsmål;

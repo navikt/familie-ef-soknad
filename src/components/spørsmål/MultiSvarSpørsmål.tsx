@@ -9,7 +9,7 @@ import { RadioPanel } from 'nav-frontend-skjema';
 interface Props {
   spørsmål: ISpørsmål;
   intl: IntlShape;
-  onChange?: (svar: string) => void;
+  onChange?: (spørsmål: string, svar: string) => void;
   valgtSvar?: string;
 }
 
@@ -35,7 +35,10 @@ const MultiSvarSpørsmål: FC<Props> = ({
 
     svar !== undefined &&
       onChange !== undefined &&
-      onChange(intl.formatMessage({ id: svar.svar_tekstid }));
+      onChange(
+        intl.formatMessage({ id: spørsmål.tekstid }),
+        intl.formatMessage({ id: svar.svar_tekstid })
+      );
   };
 
   return (
