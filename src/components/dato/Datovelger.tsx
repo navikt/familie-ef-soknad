@@ -43,7 +43,7 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    settDato(valgtDato ? valgtDato : null);
+    settDato(valgtDato ? valgtDato : dagensDato);
     setDefaultLocale('nb');
 
     // eslint-disable-next-line

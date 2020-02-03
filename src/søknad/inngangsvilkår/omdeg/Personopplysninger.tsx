@@ -13,6 +13,7 @@ import SeksjonGruppe from '../../../components/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from '../../../config/PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { IJaNeiSpørsmål } from '../../../models/spørsmal';
 
 const Personopplysninger: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -24,13 +25,13 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
     undefined
   );
 
-  const settFeltSøkerBorPåRegistrertAdresse = (
-    spørsmål: string,
+  const settPersonopplysningerFelt = (
+    spørsmål: IJaNeiSpørsmål,
     svar: boolean
   ) => {
     settSøknad({
       ...søknad,
-      søkerBorPåRegistrertAdresse: { label: spørsmål, verdi: svar },
+      søkerBorPåRegistrertAdresse: { label: spørsmål.spørsmål_id, verdi: svar },
     });
   };
 
@@ -99,7 +100,7 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
               ? søkerBorPåRegistrertAdresse.verdi
               : undefined
           }
-          onChange={settFeltSøkerBorPåRegistrertAdresse}
+          onChange={settPersonopplysningerFelt}
         />
         {søkerBorPåRegistrertAdresse?.verdi === false ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>

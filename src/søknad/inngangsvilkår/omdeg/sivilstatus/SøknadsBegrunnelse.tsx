@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import { IMultiSpørsmål } from '../../../../models/spørsmal';
 import { BegrunnelseSpørsmål } from '../../../../config/SivilstatusConfig';
@@ -18,6 +18,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
   const { søknad, settSøknad } = useSøknadContext();
   const {
+    sivilstatus,
     begrunnelseForSøknad,
     datoEndretSamvær,
     datoFlyttetFraHverandre,
@@ -32,11 +33,15 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
     BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
   const annetSvarTekst = BegrunnelseSpørsmål.svaralternativer[4].svar_tekstid;
 
+  const annet =
+    begrunnelseForSøknad === intl.formatMessage({ id: annetSvarTekst });
+
   const samlivsbrudd =
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddForelderTekstid }) ||
     begrunnelseForSøknad ===
       intl.formatMessage({ id: samlivsbruddAndreTekstid });
+
   const samlivsbruddMedAndreForelder =
     begrunnelseForSøknad ===
     intl.formatMessage({ id: samlivsbruddForelderTekstid });
@@ -44,23 +49,13 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
   const endretSamvær =
     begrunnelseForSøknad ===
     intl.formatMessage({ id: endringIsamværsordningTekstid });
-  const annet =
-    begrunnelseForSøknad === intl.formatMessage({ id: annetSvarTekst });
-
-  if (!samlivsbrudd && datoFlyttetFraHverandre) {
-    const objektnavn = 'datoFlyttetFraHverandre';
-    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
-    settSøknad({ ...nyttSøknadObjekt });
-  }
-
-  if (!endretSamvær && datoEndretSamvær) {
-    const objektnavn = 'datoEndretSamvær';
-    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
-    settSøknad({ ...nyttSøknadObjekt });
-  }
 
   const settDato = (date: Date | null, objektnøkkel: string): void => {
-    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
+    date !== null &&
+      settSøknad({
+        ...søknad,
+        sivilstatus: { ...sivilstatus, [objektnøkkel]: date },
+      });
   };
 
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -68,9 +63,41 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
       annet &&
       settSøknad({
         ...søknad,
-        begrunnelseAnnet: e.target.value,
+        sivilstatus: {
+          ...sivilstatus,
+          begrunnelseAnnet: {
+            label: intl.formatMessage({ id: spørsmål.tekstid }),
+            verdi: e.target.value,
+          },
+        },
       });
   };
+
+  useEffect(() => {
+    if (!samlivsbrudd && datoFlyttetFraHverandre) {
+      const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
+      console.log(
+        'hvis ikke samlivsbrudd',
+        !samlivsbrudd,
+        datoFlyttetFraHverandre
+      );
+      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+    }
+
+    if (!endretSamvær && datoEndretSamvær) {
+      const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
+      console.log('hvis ikke endret samvær', endretSamvær, datoEndretSamvær);
+      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+    }
+  }, [
+    datoEndretSamvær,
+    datoFlyttetFraHverandre,
+    settSøknad,
+    sivilstatus,
+    søknad,
+    endretSamvær,
+    samlivsbrudd,
+  ]);
 
   return (
     <SeksjonGruppe>

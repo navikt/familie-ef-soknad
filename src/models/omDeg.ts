@@ -2,7 +2,7 @@ import { IBooleanFelt, IDatoFelt, ITekstFelt } from './søknadsfelter';
 import { IPeriode } from './søknad';
 
 export interface ISivilstatus {
-  søkerHarSøktSeparasjon?: ITekstFelt;
+  søkerHarSøktSeparasjon?: IBooleanFelt;
   datoSøktSeparasjon?: IDatoFelt;
   søkerGiftIUtlandet?: IBooleanFelt;
   søkerSeparertEllerSkiltIUtlandet?: IBooleanFelt;

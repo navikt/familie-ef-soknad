@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../components/FeltGruppe';
 import KomponentGruppe from '../../../../components/KomponentGruppe';
@@ -6,10 +6,10 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
-import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
+import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import {
   SeparasjonSpørsmål,
-  UgiftSpørsmål,
+  sivilstatusIUtlandetSpørsmål,
 } from '../../../../config/SivilstatusConfig';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
@@ -23,30 +23,77 @@ import SeksjonGruppe from '../../../../components/SeksjonGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
+import { ISivilstatus } from '../../../../models/omDeg';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
-  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const ugiftSpørsmål: ISpørsmål[] = UgiftSpørsmål;
+  const separasjonsSpørsmål: IJaNeiSpørsmål = SeparasjonSpørsmål;
 
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
-  const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = søknad;
+  const { sivilstatus } = søknad;
+  const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = sivilstatus;
   const sivilstand = person.søker.sivilstand;
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
 
-  const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
-    const objektnavn = 'datoSøktSeparasjon';
-    const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
-    dato !== undefined && settSøknad({ ...nyttSøknadObjekt });
+  const settSivilstatusFelt = (spørsmål: IJaNeiSpørsmål, svar: boolean) => {
+    settSøknad({
+      ...søknad,
+      sivilstatus: {
+        ...sivilstatus,
+        [spørsmål.spørsmål_id]: {
+          label: intl.formatMessage({ id: spørsmål.tekstid }),
+          verdi: svar,
+        },
+      },
+    });
   };
 
-  const settDato = (date: Date | null, objektnøkkel: string): void => {
-    date !== null && settSøknad({ ...søknad, [objektnøkkel]: date });
+  const settDato = (
+    date: Date | null,
+    objektnøkkel: string,
+    tekst: string
+  ): void => {
+    date !== null &&
+      settSøknad({
+        ...søknad,
+        sivilstatus: {
+          ...sivilstatus,
+          [objektnøkkel]: {
+            label: intl.formatMessage({ id: tekst }),
+            verdi: date,
+          },
+        },
+      });
   };
 
-  !søkerHarSøktSeparasjon && resetDatoSøktSeparasjon(datoSøktSeparasjon);
+  const hentValgtSvar = (
+    spørsmål: IJaNeiSpørsmål,
+    sivilstatus: ISivilstatus
+  ) => {
+    for (const [key, value] of Object.entries(sivilstatus)) {
+      if (key === spørsmål.spørsmål_id && value !== undefined) {
+        return value.verdi;
+      }
+    }
+  };
+
+  useEffect(() => {
+    const resetDatoSøktSeparasjon = () => {
+      const { datoSøktSeparasjon, ...nyttObjekt } = sivilstatus;
+      settSøknad({ ...søknad, sivilstatus: nyttObjekt });
+    };
+    !søkerHarSøktSeparasjon?.verdi &&
+      datoSøktSeparasjon !== undefined &&
+      resetDatoSøktSeparasjon();
+  }, [
+    datoSøktSeparasjon,
+    settSøknad,
+    sivilstatus,
+    søkerHarSøktSeparasjon,
+    søknad,
+  ]);
 
   return (
     <SeksjonGruppe>
@@ -59,14 +106,28 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
       {erSøkerGift ? (
         <>
           <KomponentGruppe>
-            <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
+            <JaNeiSpørsmål
+              spørsmål={separasjonsSpørsmål}
+              onChange={settSivilstatusFelt}
+              valgtSvar={
+                søkerHarSøktSeparasjon
+                  ? søkerHarSøktSeparasjon.verdi
+                  : undefined
+              }
+            />
           </KomponentGruppe>
-          {søkerHarSøktSeparasjon ? (
+          {søkerHarSøktSeparasjon?.verdi ? (
             <KomponentGruppe>
               <Datovelger
-                settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
+                settDato={(e) =>
+                  settDato(
+                    e,
+                    'datoSøktSeparasjon',
+                    'sivilstatus.separasjon.datosøkt'
+                  )
+                }
                 valgtDato={
-                  søknad.datoSøktSeparasjon ? datoSøktSeparasjon : undefined
+                  datoSøktSeparasjon ? datoSøktSeparasjon.verdi : undefined
                 }
                 tekstid={'sivilstatus.separasjon.datosøkt'}
                 datobegrensning={DatoBegrensning.TidligereDatoer}
@@ -88,10 +149,14 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         </>
       ) : erSøkerUgift ? (
         <>
-          {ugiftSpørsmål.map((spørsmål) => {
+          {sivilstatusIUtlandetSpørsmål.map((spørsmål) => {
             return (
               <KomponentGruppe key={spørsmål.spørsmål_id}>
-                <JaNeiSpørsmål spørsmål={spørsmål} />
+                <JaNeiSpørsmål
+                  spørsmål={spørsmål}
+                  onChange={settSivilstatusFelt}
+                  valgtSvar={hentValgtSvar(spørsmål, søknad.sivilstatus)}
+                />
               </KomponentGruppe>
             );
           })}

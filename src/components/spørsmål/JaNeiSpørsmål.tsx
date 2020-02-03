@@ -1,9 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
-import {
-  IJaNeiSpørsmål as ISpørsmål,
-  IJaNeiSvar,
-  ISvar,
-} from '../../models/spørsmal';
+import { IJaNeiSpørsmål, IJaNeiSvar, ISvar } from '../../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
 import { returnerJaNeiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -15,9 +11,9 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
-  spørsmål: ISpørsmål;
   intl: IntlShape;
-  onChange?: (spørsmål: string, svar: boolean) => void;
+  spørsmål: IJaNeiSpørsmål;
+  onChange?: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
   valgtSvar?: boolean;
 }
 const JaNeiSpørsmål: React.FC<Props> = ({
@@ -32,13 +28,13 @@ const JaNeiSpørsmål: React.FC<Props> = ({
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: ISpørsmål,
+    spørsmål: IJaNeiSpørsmål,
     svar: IJaNeiSvar
   ): void => {
     const erSvarJa = svar.svar_tekstid === ISvar.JA;
 
     if (onChange !== undefined && svar) {
-      onChange(spørsmålTekst, erSvarJa);
+      onChange(spørsmål, erSvarJa);
     } else {
       settSøknad({
         ...søknad,
