@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
-import { IRoute, Routes } from '../../../routing/Routes';
 
+import React, { FC, useEffect, useState } from 'react';
+import { IRoute, Routes } from '../../../routing/Routes';
 import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
@@ -15,6 +15,8 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
+import { ESøkerDelerBolig } from '../../../models/bosituasjon';
+
 
 interface Props {
   intl: IntlShape;
@@ -60,34 +62,35 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
 
   const harSøkerEkteskapsliknendeForhold =
-    valgtSvarNøkkel === 'harEkteskapsliknendeForhold';
+    valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
-  const planerOmÅFlytteSammenEllerFåSamboer =
-    valgtSvarNøkkel === 'borAleneMedBarnEllerGravid' ||
-    valgtSvarNøkkel === 'borMidlertidigFraHverandre' ||
-    valgtSvarNøkkel === 'delerBoligMedAndreVoksne' ||
-    valgtSvarNøkkel === 'tidligereSamboerFortsattRegistrertPåAdresse';
+  const planerOmÅFlytteSammenEllerFåSamboer = hovedSpørsmål.svaralternativer.find(
+    (svar: IMultiSvar) => {
+      return valgtSvarNøkkel === svar.svar_tekstid.split('.')[2];
+    }
+  );
 
-  const erSpørsmålOgSvarTomme =
-    søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
-    svarPåHovedspørsmål === '';
+  useEffect(() => {
+    const erSpørsmålOgSvarTomme =
+      søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
+      svarPåHovedspørsmål === '';
 
-  const resetBosituasjon = (svar: string) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-      },
-    });
-    settSvarPåHovedspørsmål(svar);
-  };
+    const resetBosituasjon = (svar: string) => {
+      settSøknad({
+        ...søknad,
+        bosituasjon: {
+          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+        },
+      });
+      settSvarPåHovedspørsmål(svar);
+    };
+    const harValgtNyttSvarsalternativ =
+      søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
 
-  const harValgtNyttSvarsalternativ =
-    søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
-
-  !erSpørsmålOgSvarTomme &&
-    harValgtNyttSvarsalternativ &&
-    resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+    !erSpørsmålOgSvarTomme &&
+      harValgtNyttSvarsalternativ &&
+      resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+  }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
     <Side
@@ -105,7 +108,8 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             {valgtSvar.svar_tekstid.split('.')[2] ===
-            'tidligereSamboerFortsattRegistrertPåAdresse' ? (
+
+            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
             ) : (
               <LocaleTekst tekst={valgtSvar.alert_tekstid} />

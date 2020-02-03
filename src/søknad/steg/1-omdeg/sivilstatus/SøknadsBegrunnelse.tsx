@@ -73,6 +73,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
 
   return (
     <>
+
       <KomponentGruppe>
         <MultiSvarSpørsmål spørsmål={spørsmål} />
       </KomponentGruppe>
@@ -135,6 +136,7 @@ const Søknadsbegrunnelse: FC<any> = ({ intl }) => {
         </KomponentGruppe>
       ) : null}
     </>
+
   );
 };
 

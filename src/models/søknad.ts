@@ -1,5 +1,6 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
+import { IBosituasjon } from './bosituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -58,3 +59,4 @@ export interface IPersonDetaljer {
   fødselsdato: Date;
   fødselsnummer: string;
 }
+

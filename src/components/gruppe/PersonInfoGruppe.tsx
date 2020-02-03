@@ -6,7 +6,7 @@ import { Input } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { injectIntl, IntlShape } from 'react-intl';
 import LocaleTekst from '../../language/LocaleTekst';
-import { IPersonDetaljer } from '../../models/søknad';
+import { IPersonDetaljer } from '../../models/person';
 
 interface Props {
   intl: IntlShape;

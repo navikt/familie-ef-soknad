@@ -12,6 +12,7 @@ import {
   søkerGiftIUtlandet,
   søkerSeparertEllerSKiltIUtlandet,
 } from './SivilstatusConfig';
+
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
@@ -27,7 +28,6 @@ import Datovelger, {
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = søknad;
@@ -37,6 +37,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
   const erSøkerUgift = sivilstand === 'UGIF';
   const erSøkerEnke = sivilstand === 'ENKE';
   const erSøkerSeparert = sivilstand === 'SEPA';
+
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const objektnavn = 'datoSøktSeparasjon';
@@ -64,6 +65,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
             <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
           </KomponentGruppe>
           {søkerHarSøktSeparasjon !== undefined ? (
+
             <KomponentGruppe>
               <Datovelger
                 settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
@@ -108,6 +110,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
       erSøkerEnke ? (
         <Søknadsbegrunnelse />
       ) : null}
+
     </SeksjonGruppe>
   );
 };
