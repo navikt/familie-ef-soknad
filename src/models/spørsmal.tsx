@@ -27,6 +27,7 @@ export interface IJaNeiSpørsmål {
 }
 
 export interface IMultiSvar {
+  nøkkel?: string;
   svar_tekstid: string;
   alert_tekstid?: string;
 }

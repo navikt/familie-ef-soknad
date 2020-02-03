@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import Personopplysninger from './Personopplysninger';
+import Personopplysninger from './personopplysninger/Personopplysninger';
 import Sivilstatus from './sivilstatus/Sivilstatus';
 import Medlemskap from './medlemskap/Medlemskap';
 import Side from '../../../components/side/Side';
-import { IRoute, Routes } from '../../../config/Routes';
-import { hentNesteRoute } from '../../../utils/routing';
+import { IRoute, Routes } from '../../../routing/Routes';
+import { hentNesteRoute } from '../../../routing/utils';
 import { useLocation } from 'react-router';
 import { IntlShape, injectIntl } from 'react-intl';
 

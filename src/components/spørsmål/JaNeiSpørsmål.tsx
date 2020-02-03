@@ -6,7 +6,7 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../context/SøknadContext';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
-import FeltGruppe from '../FeltGruppe';
+import FeltGruppe from '../gruppe/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 
@@ -84,7 +84,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel
                 key={svar.svar_tekstid}
-                name={spørsmål.spørsmål_id + svar}
+                name={svar.svar_tekstid}
                 label={intl.formatMessage({
                   id: svar.svar_tekstid,
                 })}

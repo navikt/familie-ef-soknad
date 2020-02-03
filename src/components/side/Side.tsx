@@ -6,8 +6,8 @@ import Banner from '../Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Routes } from '../../config/Routes';
-import { hentForrigeRoute } from '../../utils/routing';
+import { Routes } from '../../routing/Routes';
+import { hentForrigeRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 

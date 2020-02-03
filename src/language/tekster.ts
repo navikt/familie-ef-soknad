@@ -2,13 +2,60 @@
 export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
+    'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
+      'Deler du bolig med andre voksne?',
+    'bosituasjon.svar.borAleneMedBarnEllerGravid':
+      'Nei, jeg bor alene med barn eller jeg er gravid og bor alene',
+    'bosituasjon.svar.borMidlertidigFraHverandre':
+      'Ja, jeg og den andre forelderen bor midlertidig fra hverandre',
+    'bosituasjon.alert.borMidlertidigFraHverandre':
+      'Når dere bor midlertidig fra hverandre, har du ikke rett til stønad.',
+    'bosituasjon.svar.borSammenOgVenterBarn':
+      'Ja, jeg bor sammen med en jeg har eller venter barn med',
+    'bosituasjon.alert.borSammenOgVenterBarn':
+      'Når dere bor sammen, har du ikke rett til stønad til enslig mor eller far',
+    'bosituasjon.svar.harEkteskapsliknendeForhold':
+      'Ja, jeg har samboer og lever i et ekteskapslignende forhold',
+    'bosituasjon.alert.harEkteskapsliknendeForhold':
+      'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
+    'bosituasjon.svar.delerBoligMedAndreVoksne':
+      'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn, søsken eller egne foreldre',
+    'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':
+      'Nei, men en tidligere samboer er fortsatt registrert på adressen min',
+    'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
+      '<strong>Den tidligere samboeren må registrere ny adresse i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon. </strong> <br/>' +
+      '\n' +
+      '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
+      '\n' +
+      '<br/><br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
+      '\n <ul>' +
+      ' <li> Informasjon om hvor den tidligere samboeren bor nå </li>' +
+      '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
+      '<li>Husleiekontrakt for begge parter</li>' +
+      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Bekreftelse fra nøytral tredjepart, for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
+      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li>' +
+      '</ul>',
+    'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
+      'Har du konkrete planer om å gifte deg eller bli samboer?',
+    'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
+    'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+    'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
+      'Hvem skal du gifte deg med eller bli samboer med?',
+    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
+    'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
+    'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'datovelger.periode.feilFormat':
+      'Startsdato må være tidligere enn sluttdato.',
+    'datovelger.periode.likeDatoer':
+      'Valgte datoer for perioden kan ikke være like',
+    'datovelger.fødselsdato': 'Fødselsdato',
+    'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
     'knapp.start': 'Start søknad',
-    'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
-    'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
-    'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
     'medlemskap.hjelpetekst.bosatt.apne':
       'Hva vil det si å være bosatt i Norge?',
@@ -24,26 +71,10 @@ export default {
     'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
       'Har du hatt flere utenlandsopphold de siste 3 årene?',
     'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
-    måned: 'Velg måned',
-    'måned.jan': 'Januar',
-    'måned.feb': 'Februar',
-    'måned.mar': 'Mars',
-    'måned.apr': 'April',
-    'måned.mai': 'Mai',
-    'måned.jun': 'Juni',
-    'måned.jul': 'Juli',
-    'måned.aug': 'August',
-    'måned.sep': 'September',
-    'måned.okt': 'Oktober',
-    'måned.nov': 'November',
-    'måned.des': 'Desember',
-    år: 'Velg år',
     'periode.fra': 'Fra',
     'periode.til': 'Til',
-    'datovelger.periode.feilFormat':
-      'Startsdato må være tidligere enn sluttdato.',
-    'datovelger.periode.likeDatoer':
-      'Valgte datoer for perioden kan ikke være like',
+    'person.navn': 'Navn',
+    'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
     'stegtittel.omDeg': 'Om deg',
@@ -94,6 +125,7 @@ export default {
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
+    'stegtittel.bosituasjon': 'Bosituasjonen din',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Last opp dokumentasjon',
