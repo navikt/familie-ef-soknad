@@ -38,7 +38,6 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
   const erSøkerEnke = sivilstand === 'ENKE';
   const erSøkerSeparert = sivilstand === 'SEPA';
 
-
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const objektnavn = 'datoSøktSeparasjon';
     const { [objektnavn]: _, ...nyttSøknadObjekt } = søknad;
@@ -65,7 +64,6 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
             <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
           </KomponentGruppe>
           {søkerHarSøktSeparasjon !== undefined ? (
-
             <KomponentGruppe>
               <Datovelger
                 settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
@@ -110,7 +108,6 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
       erSøkerEnke ? (
         <Søknadsbegrunnelse />
       ) : null}
-
     </SeksjonGruppe>
   );
 };

@@ -34,7 +34,6 @@ const Medlemskap: React.FC = () => {
       {statsborgerskap !== 'NOR' &&
       søkerBosattINorgeSisteTreÅr === false &&
       typeof søkerBosattINorgeSisteTreÅr === 'boolean' ? (
-
         <KomponentGruppe key={registrertSomFlykting.spørsmål_id}>
           <JaNeiSpørsmål spørsmål={registrertSomFlykting} />
         </KomponentGruppe>

@@ -13,7 +13,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknadContext();
   const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad;
 
-
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
 
@@ -37,7 +36,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
           ) : null}
         </>
       ) : null}
-
     </Side>
   );
 };

@@ -1,4 +1,3 @@
-
 import React, { FC, useEffect, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
 import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
@@ -16,7 +15,6 @@ import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { ESøkerDelerBolig } from '../../../models/bosituasjon';
-
 
 interface Props {
   intl: IntlShape;
@@ -108,7 +106,6 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             {valgtSvar.svar_tekstid.split('.')[2] ===
-
             ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
             ) : (

@@ -45,18 +45,3 @@ export interface ISpørsmålOgJaNeiSvar {
   spørsmål_tekst: string;
   svar: boolean;
 }
-
-export interface IBosituasjon {
-  søkerDelerBoligMedAndreVoksne: ISpørsmålOgMultiSvar;
-  søkerSkalGifteSegEllerBliSamboer?: ISpørsmålOgJaNeiSvar;
-  datoFlyttetSammenMedSamboer?: Date;
-  datoSkalGifteSegEllerBliSamboer?: Date;
-  samboerDetaljer?: IPersonDetaljer;
-}
-
-export interface IPersonDetaljer {
-  navn: string;
-  fødselsdato: Date;
-  fødselsnummer: string;
-}
-

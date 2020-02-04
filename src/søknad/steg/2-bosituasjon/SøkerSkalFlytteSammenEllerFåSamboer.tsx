@@ -52,7 +52,6 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
       });
   };
 
-
   useEffect(() => {
     const resetSamboerDetaljer = () => {
       settSøknad({
