@@ -38,14 +38,16 @@ const BarnaDine = () => {
               <AlertStripeInfo className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</AlertStripeInfo>
         <div className="barnekort-wrapper">
         {barn?.map(b => <Barnekort 
-        navn={b.navn} 
-        fnr={b.fnr} 
-        fødselsdato={b.fødselsdato} 
+        settÅpenModal={settÅpenModal}
+        id={b.id ? b.id: ""}
+        navn={b.navn}
+        fnr={b.fnr}
+        fødselsdato={b.fødselsdato}
         personnummer={b.personnummer? b.personnummer : ""}
         alder={b.alder}
         harSammeAdresse={b.harSammeAdresse} 
         ufødt={b.ufødt ? b.ufødt : false} 
-        nytt={b.lagtTil ? b.lagtTil: false} />
+        lagtTil={b.lagtTil ? b.lagtTil: false} />
         )}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">

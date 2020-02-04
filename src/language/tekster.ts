@@ -105,7 +105,8 @@ export default {
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
-    'barnekort.adresse.registrert': '',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -154,6 +155,8 @@ export default {
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -177,14 +180,12 @@ export default {
       'I, [0], swear to give as much as possible correct information.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-
     'sivilstatus.somgift':
       'as married you must have applied for separation in order to have access to overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
     'sivilstatus.separasjon.advarsel':
       'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
-
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
@@ -202,5 +203,7 @@ export default {
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
   },
 };

@@ -7,6 +7,8 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { formatDate, formatDateFnr } from '../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
+import { IBarn } from '../../models/person';
+const uuidv4 = require('uuid/v4');
 
 interface Props {
     settÅpenModal: Function;
@@ -50,7 +52,8 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
       fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === "ja",
       ufødt: født === "nei",
-      nytt: true,
+      lagtTil: true,
+      id: uuidv4(),
     }
 
     const nyBarneListe = [...søknad.person.barn, barn];

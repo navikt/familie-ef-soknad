@@ -1,6 +1,9 @@
 import React from 'react';
+import { Knapp } from 'nav-frontend-knapper';
 import { Normaltekst } from 'nav-frontend-typografi';
+import useSøknadContext from '../../context/SøknadContext';
 import DatePicker from 'react-datepicker';
+import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { Input } from 'nav-frontend-skjema';
 

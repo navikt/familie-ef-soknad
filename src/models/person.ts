@@ -28,6 +28,7 @@ export interface IAdresse {
 }
 
 export interface IBarn {
+  id?: string;
   alder: number;
   fnr: string;
   fødselsdato: string;

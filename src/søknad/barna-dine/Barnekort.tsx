@@ -1,24 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import barn1 from '../../assets/barn1.svg';
 import barn2 from '../../assets/barn2.svg';
 import barn3 from '../../assets/barn3.svg';
 import ufødtIkon from '../../assets/ufodt.svg';
+import useSøknadContext from '../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
+import LeggTilBarn from '../barna-dine/LeggTilBarn';
+import Modal from 'nav-frontend-modal';
 
 interface Props {
-  intl: IntlShape;
+    intl: IntlShape;
     navn: string;
     fnr: string;
     fødselsdato: string;
     personnummer: string;
     alder: number;
     harSammeAdresse: boolean;
-    nytt: boolean;
+    lagtTil: boolean;
     ufødt: boolean;
+    id?: string;
+    settÅpenModal: Function;
 }
 
-const Barnekort: React.FC<Props> = ( { intl, navn, fnr, alder, harSammeAdresse, nytt, ufødt, fødselsdato }) => {
+const Barnekort: React.FC<Props> = ( { settÅpenModal, id, intl, navn, fnr, alder, harSammeAdresse, lagtTil, ufødt, fødselsdato }) => {
+    const { søknad, settSøknad } = useSøknadContext();
+    const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
     const formatFnr = (fnr: string) => {
       return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
@@ -27,7 +34,21 @@ const Barnekort: React.FC<Props> = ( { intl, navn, fnr, alder, harSammeAdresse, 
     const ikoner = [barn1, barn2, barn3];
     const ikon = ufødt ? ufødtIkon : ikoner[Math.floor(Math.random() * ikoner.length)];
 
-    const bosted = harSammeAdresse ? "Registrert på adressen din" : "Ikke registrert på adressen din";
+    const bosted = harSammeAdresse ? intl.formatMessage({ id: 'barnekort.adresse.registrert' }) : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
+
+    const fjernFraSøknad = (id: string) => {
+      const nyBarneListe = søknad.person.barn.filter(b => b.id !== id);
+
+      settSøknad({...søknad, person: {...søknad.person, barn: nyBarneListe}});
+    }
+
+    const endre = (id: string) => {
+      const nyBarneListe = søknad.person.barn.filter(b => b.id !== id);
+
+      settSøknad({...søknad, person: {...søknad.person, barn: nyBarneListe}});
+
+      settÅpenModal(true);
+    }
 
   return (
         <div className="barnekort">
@@ -51,7 +72,23 @@ const Barnekort: React.FC<Props> = ( { intl, navn, fnr, alder, harSammeAdresse, 
                 <Normaltekst>{intl.formatMessage({ id: 'barnekort.bosted' })}</Normaltekst>
                 <Normaltekst>{bosted}</Normaltekst>
               </div>
+              {lagtTil && id ? <div className="endre-barnekort" onClick={() => endre(id)}>
+                <Normaltekst>Endre</Normaltekst>
+              </div> : null}
+              {lagtTil && id ? <div className="endre-barnekort" onClick={() => fjernFraSøknad(id)}>
+                <Normaltekst>Fjern fra søknad</Normaltekst>
+              </div> : null}
             </div>
+            <Modal
+          isOpen={åpenEndreModal}
+          onRequestClose={() => settÅpenModal(false)}
+          closeButton={true}
+          contentLabel="Halla"
+          >
+        <div style={{padding:'2rem 2.5rem'}}>
+          <LeggTilBarn settÅpenModal={settÅpenEndreModal} />
+        </div>
+      </Modal>
           </div>
         </div>
   );
