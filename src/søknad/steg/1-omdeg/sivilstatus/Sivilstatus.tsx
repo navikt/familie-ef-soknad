@@ -1,34 +1,23 @@
 import React, { useEffect } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { usePersonContext } from '../../../../context/PersonContext';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
+import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
-
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import {
-  AlertStripeAdvarsel,
-  AlertStripeInfo,
-} from 'nav-frontend-alertstriper';
-
 import { injectIntl } from 'react-intl';
-import Søknadsbegrunnelse from './SøknadsBegrunnelse';
-import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/dato/Datovelger';
 import { ISivilstatus } from '../../../../models/omDeg';
+import { usePersonContext } from '../../../../context/PersonContext';
 import {
   SeparasjonSpørsmål,
   sivilstatusIUtlandetSpørsmål,
 } from './SivilstatusConfig';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
-  const separasjonsSpørsmål: IJaNeiSpørsmål = SeparasjonSpørsmål;
-
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { sivilstatus } = søknad;
@@ -54,7 +43,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
   const settDato = (
     date: Date | null,
     objektnøkkel: string,
-    tekst: string
+    tekstid: string
   ): void => {
     date !== null &&
       settSøknad({
@@ -62,7 +51,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         sivilstatus: {
           ...sivilstatus,
           [objektnøkkel]: {
-            label: intl.formatMessage({ id: tekst }),
+            label: intl.formatMessage({ id: tekstid }),
             verdi: date,
           },
         },
@@ -105,49 +94,11 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
       </KomponentGruppe>
       {erSøkerGift ? (
-        <>
-          <KomponentGruppe>
-            <JaNeiSpørsmål
-              spørsmål={separasjonsSpørsmål}
-              onChange={settSivilstatusFelt}
-              valgtSvar={
-                søkerHarSøktSeparasjon
-                  ? søkerHarSøktSeparasjon.verdi
-                  : undefined
-              }
-            />
-          </KomponentGruppe>
-          {søkerHarSøktSeparasjon?.verdi ? (
-            <KomponentGruppe>
-              <Datovelger
-                settDato={(e) =>
-                  settDato(
-                    e,
-                    'datoSøktSeparasjon',
-                    'sivilstatus.separasjon.datosøkt'
-                  )
-                }
-                valgtDato={
-                  datoSøktSeparasjon ? datoSøktSeparasjon.verdi : undefined
-                }
-                tekstid={'sivilstatus.separasjon.datosøkt'}
-                datobegrensning={DatoBegrensning.TidligereDatoer}
-              />
-              <FeltGruppe>
-                <AlertStripeInfo className={'fjernBakgrunn'}>
-                  <LocaleTekst tekst={'sivilstatus.somgift'} />
-                </AlertStripeInfo>
-              </FeltGruppe>
-            </KomponentGruppe>
-          ) : !søkerHarSøktSeparasjon &&
-            søkerHarSøktSeparasjon !== undefined ? (
-            <KomponentGruppe>
-              <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-                <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-              </AlertStripeAdvarsel>
-            </KomponentGruppe>
-          ) : null}
-        </>
+        <SøkerErGift
+          settJaNeiFelt={settSivilstatusFelt}
+          settDato={settDato}
+          sivilstatusObjekt={sivilstatus}
+        />
       ) : erSøkerUgift ? (
         <>
           {sivilstatusIUtlandetSpørsmål.map((spørsmål) => {
@@ -164,7 +115,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         </>
       ) : null}
 
-      {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
+      {!erSøkerGift ? <Søknadsbegrunnelse settDato={settDato} /> : null}
     </SeksjonGruppe>
   );
 };

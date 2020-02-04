@@ -15,6 +15,9 @@ const norskeOrdMedÆØÅ = [
   'MultiSvarSpørsmål',
   'Søknadsbegrunnelse',
   'SøkerSkalFlytteSammenEllerFåSamboer',
+  'EndringISamvær',
+  'NårFlyttetDereFraHverande',
+  'SøkerErGift',
 ];
 
 module.exports = {
