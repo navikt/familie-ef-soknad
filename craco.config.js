@@ -16,7 +16,7 @@ const norskeOrdMedÆØÅ = [
   'Søknadsbegrunnelse',
   'SøkerSkalFlytteSammenEllerFåSamboer',
   'EndringISamvær',
-  'NårFlyttetDereFraHverande',
+  'NårFlyttetDereFraHverandre',
   'SøkerErGift',
 ];
 

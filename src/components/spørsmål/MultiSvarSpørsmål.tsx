@@ -1,16 +1,14 @@
 import React, { FC, SyntheticEvent } from 'react';
 import { IMultiSpørsmål as ISpørsmål, IMultiSvar } from '../../models/spørsmal';
 import { injectIntl, IntlShape } from 'react-intl';
-import useSøknadContext from '../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
-import { returnerMultiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
 
 interface Props {
   spørsmål: ISpørsmål;
   intl: IntlShape;
-  onChange?: (spørsmål: string, svar: string) => void;
-  valgtSvar?: string;
+  onChange: (spørsmål: string, svar: string) => void;
+  valgtSvar: string | undefined;
 }
 
 const MultiSvarSpørsmål: FC<Props> = ({
@@ -19,20 +17,11 @@ const MultiSvarSpørsmål: FC<Props> = ({
   onChange,
   valgtSvar,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
     svar: IMultiSvar
   ): void => {
-    svar !== undefined &&
-      onChange === undefined &&
-      settSøknad({
-        ...søknad,
-        [spørsmål.spørsmål_id]: intl.formatMessage({ id: svar.svar_tekstid }),
-      });
-
     svar !== undefined &&
       onChange !== undefined &&
       onChange(
@@ -46,9 +35,8 @@ const MultiSvarSpørsmål: FC<Props> = ({
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: IMultiSvar) => {
-          const svarISøknad = valgtSvar
-            ? intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar
-            : returnerMultiSvar(spørsmål, svar, søknad, intl);
+          const svarISøknad =
+            intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel

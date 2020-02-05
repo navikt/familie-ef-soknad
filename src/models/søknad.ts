@@ -10,36 +10,12 @@ export interface ISøknad {
   søkerBorPåRegistrertAdresse?: IBooleanFelt;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
-  søkerOppholderSegINorge?: boolean;
-  søkerBosattINorgeSisteTreÅr?: boolean;
-  søkerErFlyktning?: boolean;
-  søkerHarSøktSeparasjon?: boolean;
-  datoSøktSeparasjon?: Date;
-  søkerGiftIUtlandet?: boolean;
-  søkerSeparertEllerSkiltIUtlandet?: boolean;
   perioderBoddIUtlandet?: IUtenlandsopphold[];
-  begrunnelseForSøknad?: string;
-  datoEndretSamvær?: Date;
-  datoForSamlivsbrudd?: Date;
-  datoFlyttetFraHverandre?: Date;
-  begrunnelseAnnet?: string;
-  vedleggsliste: IVedlegg[];
   bosituasjon: IBosituasjon;
+  vedleggsliste: IVedlegg[];
 }
 
 export interface IPeriode {
   fra: Date;
   til: Date;
-}
-
-export interface ISpørsmålOgMultiSvar {
-  nøkkel: string;
-  spørsmål_tekst: string;
-  svar_tekst: string;
-}
-
-export interface ISpørsmålOgJaNeiSvar {
-  nøkkel: string;
-  spørsmål_tekst: string;
-  svar: boolean;
 }

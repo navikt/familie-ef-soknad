@@ -31,8 +31,8 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
-    .svar_tekst
-    ? bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst
+    .verdi
+    ? bosituasjon.søkerDelerBoligMedAndreVoksne.verdi
     : '';
 
   const settSøkerDelerBoligMedAndreVoksne = (svar: string) => {
@@ -41,11 +41,10 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       bosituasjon: {
         ...bosituasjon,
         søkerDelerBoligMedAndreVoksne: {
-          nøkkel: delerSøkerBoligMedAndreVoksne.spørsmål_id,
-          spørsmål_tekst: intl.formatMessage({
+          label: intl.formatMessage({
             id: delerSøkerBoligMedAndreVoksne.tekstid,
           }),
-          svar_tekst: svar,
+          verdi: svar,
         },
       },
     });
@@ -71,8 +70,7 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
 
   useEffect(() => {
     const erSpørsmålOgSvarTomme =
-      søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
-      svarPåHovedspørsmål === '';
+      søkerDelerBoligMedAndreVoksne.label === '' && svarPåHovedspørsmål === '';
 
     const resetBosituasjon = (svar: string) => {
       settSøknad({
@@ -84,11 +82,11 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       settSvarPåHovedspørsmål(svar);
     };
     const harValgtNyttSvarsalternativ =
-      søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
+      søkerDelerBoligMedAndreVoksne.verdi !== svarPåHovedspørsmål;
 
     !erSpørsmålOgSvarTomme &&
       harValgtNyttSvarsalternativ &&
-      resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+      resetBosituasjon(søkerDelerBoligMedAndreVoksne.verdi);
   }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
@@ -101,7 +99,7 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         <MultiSvarSpørsmål
           key={hovedSpørsmål.spørsmål_id}
           spørsmål={hovedSpørsmål}
-          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst}
+          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
           onChange={settSøkerDelerBoligMedAndreVoksne}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (

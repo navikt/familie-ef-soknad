@@ -7,9 +7,9 @@ export interface ISivilstatus {
   søkerGiftIUtlandet?: IBooleanFelt;
   søkerSeparertEllerSkiltIUtlandet?: IBooleanFelt;
   begrunnelseForSøknad?: ITekstFelt;
-  datoEndretSamvær?: IDatoFelt;
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
+  datoEndretSamvær?: IDatoFelt;
   begrunnelseAnnet?: ITekstFelt;
 }
 

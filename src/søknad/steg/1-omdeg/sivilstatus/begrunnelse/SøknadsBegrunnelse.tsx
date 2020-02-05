@@ -79,6 +79,11 @@ const Søknadsbegrunnelse: FC<Props> = ({ intl, settDato }) => {
   };
 
   useEffect(() => {
+    if (!samlivsbruddMedAndreForelder && datoForSamlivsbrudd) {
+      const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
+      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+    }
+
     if (
       !samlivsbruddAndre &&
       datoFlyttetFraHverandre &&
@@ -93,6 +98,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ intl, settDato }) => {
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
     }
   }, [
+    datoForSamlivsbrudd,
     datoEndretSamvær,
     datoFlyttetFraHverandre,
     endretSamvær,
@@ -102,8 +108,6 @@ const Søknadsbegrunnelse: FC<Props> = ({ intl, settDato }) => {
     sivilstatus,
     søknad,
   ]);
-
-  console.log('svar:', begrunnelseForSøknad?.verdi);
 
   return (
     <SeksjonGruppe>

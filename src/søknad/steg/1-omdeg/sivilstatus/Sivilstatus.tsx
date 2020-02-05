@@ -12,10 +12,7 @@ import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import { injectIntl } from 'react-intl';
 import { ISivilstatus } from '../../../../models/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
-import {
-  SeparasjonSpørsmål,
-  sivilstatusIUtlandetSpørsmål,
-} from './SivilstatusConfig';
+import { sivilstatusIUtlandetSpørsmål } from './SivilstatusConfig';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();

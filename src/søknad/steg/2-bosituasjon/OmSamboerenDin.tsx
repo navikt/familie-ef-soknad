@@ -6,15 +6,20 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import useSøknadContext from '../../../context/SøknadContext';
-import { dagensDato } from '../../../utils/dato';
 import { tomPersonInfo } from '../../../utils/person';
+import { injectIntl, IntlShape } from 'react-intl';
 
 interface Props {
+  intl: IntlShape;
   tittel: string;
   ekteskapsLiknendeForhold: boolean;
 }
 
-const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
+const OmSamboerenDin: FC<Props> = ({
+  tittel,
+  ekteskapsLiknendeForhold,
+  intl,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
   const { samboerDetaljer } = bosituasjon;
@@ -54,7 +59,10 @@ const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
         ...søknad,
         bosituasjon: {
           ...bosituasjon,
-          datoFlyttetSammenMedSamboer: dato,
+          datoFlyttetSammenMedSamboer: {
+            label: datovelgerTekst,
+            verdi: dato,
+          },
         },
       });
   };
@@ -67,6 +75,9 @@ const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
     // eslint-disable-next-line
   }, []);
 
+  const datovelgerTekst = intl.formatMessage({
+    id: 'bosituasjon.datovelger.nårFlyttetDereSammen',
+  });
   return (
     <KomponentGruppe>
       <PersonInfoGruppe
@@ -81,8 +92,8 @@ const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
           <Datovelger
             valgtDato={
               bosituasjon.datoFlyttetSammenMedSamboer
-                ? bosituasjon.datoFlyttetSammenMedSamboer
-                : dagensDato
+                ? bosituasjon.datoFlyttetSammenMedSamboer.verdi
+                : undefined
             }
             tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
@@ -94,4 +105,4 @@ const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
   );
 };
 
-export default OmSamboerenDin;
+export default injectIntl(OmSamboerenDin);

@@ -34,23 +34,28 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
       bosituasjon: {
         ...bosituasjon,
         søkerSkalGifteSegEllerBliSamboer: {
-          nøkkel: spørsmål.spørsmål_id,
-          spørsmål_tekst: intl.formatMessage({
+          label: intl.formatMessage({
             id: spørsmål.tekstid,
           }),
-          svar: svar,
+          verdi: svar,
         },
       },
     });
   };
 
-  const settDatoSøkerSkalGifteSegEllerBliSamboer = (dato: Date | null) => {
+  const settDatoSøkerSkalGifteSegEllerBliSamboer = (
+    dato: Date | null,
+    label: string
+  ) => {
     dato !== null &&
       settSøknad({
         ...søknad,
         bosituasjon: {
           ...bosituasjon,
-          datoSkalGifteSegEllerBliSamboer: dato,
+          datoSkalGifteSegEllerBliSamboer: {
+            label: label,
+            verdi: dato,
+          },
         },
       });
   };
@@ -66,7 +71,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
       });
     };
     søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.svar === false &&
+      søkerSkalGifteSegEllerBliSamboer.verdi === false &&
       samboerDetaljer &&
       resetSamboerDetaljer();
   }, [
@@ -77,6 +82,10 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     søkerDelerBoligMedAndreVoksne,
   ]);
 
+  const datovelgerTekst = intl.formatMessage({
+    id: 'datovelger.nårSkalDetteSkje',
+  });
+
   return (
     <>
       <KomponentGruppe>
@@ -85,24 +94,26 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
           valgtSvar={
             søkerSkalGifteSegEllerBliSamboer
-              ? søkerSkalGifteSegEllerBliSamboer.svar
+              ? søkerSkalGifteSegEllerBliSamboer.verdi
               : undefined
           }
         />
       </KomponentGruppe>
       {søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.svar === true ? (
+      søkerSkalGifteSegEllerBliSamboer.verdi === true ? (
         <>
           <KomponentGruppe>
             <Datovelger
               valgtDato={
                 datoSkalGifteSegEllerBliSamboer
-                  ? datoSkalGifteSegEllerBliSamboer
+                  ? datoSkalGifteSegEllerBliSamboer.verdi
                   : dagensDato
               }
               tekstid={'datovelger.nårSkalDetteSkje'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
-              settDato={(e) => settDatoSøkerSkalGifteSegEllerBliSamboer(e)}
+              settDato={(e) =>
+                settDatoSøkerSkalGifteSegEllerBliSamboer(e, datovelgerTekst)
+              }
             />
           </KomponentGruppe>
           <KomponentGruppe>
