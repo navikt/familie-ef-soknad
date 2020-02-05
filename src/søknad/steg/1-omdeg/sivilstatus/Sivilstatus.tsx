@@ -12,17 +12,27 @@ import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import { injectIntl } from 'react-intl';
 import { ISivilstatus } from '../../../../models/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
-import { sivilstatusIUtlandetSpørsmål } from './SivilstatusConfig';
+import {
+  søkerSeparertEllerSKiltIUtlandetSpørsmål,
+  søkerGiftIUtlandetSpørsmål,
+} from './SivilstatusConfig';
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { sivilstatus } = søknad;
-  const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = sivilstatus;
+  const {
+    søkerHarSøktSeparasjon,
+    datoSøktSeparasjon,
+    søkerSeparertEllerSkiltIUtlandet,
+    søkerGiftIUtlandet,
+  } = sivilstatus;
   const sivilstand = person.søker.sivilstand;
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
+  const erSøkerEnke = sivilstand === 'ENKE';
+  const erSøkerSeparert = sivilstand === 'SEPA';
 
   const settSivilstatusFelt = (spørsmål: IJaNeiSpørsmål, svar: boolean) => {
     settSøknad({
@@ -98,21 +108,38 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         />
       ) : erSøkerUgift ? (
         <>
-          {sivilstatusIUtlandetSpørsmål.map((spørsmål) => {
-            return (
-              <KomponentGruppe key={spørsmål.spørsmål_id}>
-                <JaNeiSpørsmål
-                  spørsmål={spørsmål}
-                  onChange={settSivilstatusFelt}
-                  valgtSvar={hentValgtSvar(spørsmål, søknad.sivilstatus)}
-                />
-              </KomponentGruppe>
-            );
-          })}
+          <KomponentGruppe>
+            <JaNeiSpørsmål
+              spørsmål={søkerGiftIUtlandetSpørsmål}
+              onChange={settSivilstatusFelt}
+              valgtSvar={hentValgtSvar(
+                søkerGiftIUtlandetSpørsmål,
+                søknad.sivilstatus
+              )}
+            />
+          </KomponentGruppe>
+
+          {typeof søkerGiftIUtlandet?.verdi === 'boolean' ? (
+            <KomponentGruppe>
+              <JaNeiSpørsmål
+                spørsmål={søkerSeparertEllerSKiltIUtlandetSpørsmål}
+                onChange={settSivilstatusFelt}
+                valgtSvar={hentValgtSvar(
+                  søkerSeparertEllerSKiltIUtlandetSpørsmål,
+                  søknad.sivilstatus
+                )}
+              />
+            </KomponentGruppe>
+          ) : null}
         </>
       ) : null}
 
-      {!erSøkerGift ? <Søknadsbegrunnelse settDato={settDato} /> : null}
+      {(erSøkerUgift &&
+        søkerSeparertEllerSkiltIUtlandet?.verdi !== undefined) ||
+      erSøkerSeparert ||
+      erSøkerEnke ? (
+        <Søknadsbegrunnelse settDato={settDato} />
+      ) : null}
     </SeksjonGruppe>
   );
 };

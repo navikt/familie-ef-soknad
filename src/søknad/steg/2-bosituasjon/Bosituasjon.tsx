@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
-
 import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
