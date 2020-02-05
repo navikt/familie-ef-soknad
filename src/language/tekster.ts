@@ -107,6 +107,13 @@ export default {
     'barnekort.bosted': 'BOSTED',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -157,6 +164,13 @@ export default {
     'barnekort.bosted': 'BOSTED',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -205,5 +219,12 @@ export default {
     'barnekort.bosted': 'BOSTED',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
 };

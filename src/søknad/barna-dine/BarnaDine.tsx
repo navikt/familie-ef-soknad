@@ -9,10 +9,15 @@ import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
+import { injectIntl, IntlShape } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
 
-const BarnaDine = () => {
+interface Props {
+  intl: IntlShape;
+}
+
+const BarnaDine: React.FC<Props> = ( { intl } ) => {
   const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -24,18 +29,18 @@ const BarnaDine = () => {
   return (
     <>
       <Side
-        tittel={'Barna dine'}
+        tittel={intl.formatMessage({ id: 'barnadine.sidetittel'})}
         tilbakePath={forrigeRoute.path}
         nestePath={''}
       >
         <div className="barna-dine">
                       <Lesmerpanel
                 className="hjelpetekst"
-                apneTekst={"Hvilke barn kan du få stønad for?"}
+                apneTekst={intl.formatMessage({ id: 'barnadine.hjelpetekst.åpne'})}
               >
-                <Normaltekst>Halla</Normaltekst>
+                <Normaltekst>{intl.formatMessage({ id: 'barnadine.hjelpetekst.innhold'})}</Normaltekst>
               </Lesmerpanel>
-              <AlertStripeInfo className="informasjonstekst">Informasjonen er hentet fra Folkeregisteret</AlertStripeInfo>
+              <AlertStripeInfo className="informasjonstekst">{intl.formatMessage({id: 'barnadine.infohentet'})}</AlertStripeInfo>
         <div className="barnekort-wrapper">
         {barn?.map(b => <Barnekort 
         settÅpenModal={settÅpenModal}
@@ -51,8 +56,8 @@ const BarnaDine = () => {
         )}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
-            <Normaltekst>Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?</Normaltekst>
-            <Knapp onClick={() => settÅpenModal(true)}>Legg til barn</Knapp>
+            <Normaltekst>{intl.formatMessage({id: 'barnadine.leggtil.info'})}</Normaltekst>
+            <Knapp onClick={() => settÅpenModal(true)}>{intl.formatMessage({id: 'barnadine.leggtil'})}</Knapp>
             </div>
           </div>
         </div>
@@ -72,4 +77,4 @@ const BarnaDine = () => {
   );
 };
 
-export default BarnaDine;
+export default injectIntl(BarnaDine);
