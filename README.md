@@ -11,6 +11,12 @@ Kjør uten redirect til autentisering lokalt:
 sett .env variabel: 
 REACT_APP_BRUK_AUTENTISERING_I_DEV=false
 
+## Deploy
+
+`npm run deploy` deployer til test (https://navikt.github.io/familie-ef-veiviser/). Homepage-variablen i `package.json` må være satt til denne URLen før deploy: ´"homepage": "https://navikt.github.io/familie-ef-veiviser/"`.
+
+Prod bygges fra master. homepage-variabelen må være satt til `"/familie/alene-med-barn/veiviser"` før push til master.
+
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
 1. I IntelliJ, åpne `Preferences/Plugins` for så å søke opp og installere `File Watchers` og `Prettier` hvis dette ikke allerede er gjort.  
