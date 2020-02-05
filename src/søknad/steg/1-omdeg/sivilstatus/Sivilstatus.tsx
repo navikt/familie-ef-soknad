@@ -7,7 +7,12 @@ import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål as ISpørsmål } from '../../../../models/spørsmal';
-import { SeparasjonSpørsmål, UgiftSpørsmål } from './SivilstatusConfig';
+import {
+  SeparasjonSpørsmål,
+  søkerGiftIUtlandet,
+  søkerSeparertEllerSKiltIUtlandet,
+} from './SivilstatusConfig';
+
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   AlertStripeAdvarsel,
@@ -23,8 +28,6 @@ import Datovelger, {
 
 const Sivilstatus: React.FC<any> = ({ intl }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const ugiftSpørsmål: ISpørsmål[] = UgiftSpørsmål;
-
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = søknad;
@@ -32,6 +35,8 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
+  const erSøkerEnke = sivilstand === 'ENKE';
+  const erSøkerSeparert = sivilstand === 'SEPA';
 
   const resetDatoSøktSeparasjon = (dato: Date | undefined) => {
     const objektnavn = 'datoSøktSeparasjon';
@@ -58,7 +63,7 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
           <KomponentGruppe>
             <JaNeiSpørsmål spørsmål={separasjonsSpørsmål} />
           </KomponentGruppe>
-          {søkerHarSøktSeparasjon ? (
+          {søkerHarSøktSeparasjon !== undefined ? (
             <KomponentGruppe>
               <Datovelger
                 settDato={(e) => settDato(e, 'datoSøktSeparasjon')}
@@ -85,17 +90,24 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
         </>
       ) : erSøkerUgift ? (
         <>
-          {ugiftSpørsmål.map((spørsmål) => {
-            return (
-              <KomponentGruppe key={spørsmål.spørsmål_id}>
-                <JaNeiSpørsmål spørsmål={spørsmål} />
-              </KomponentGruppe>
-            );
-          })}
+          <KomponentGruppe>
+            <JaNeiSpørsmål spørsmål={søkerGiftIUtlandet} />
+          </KomponentGruppe>
+
+          {typeof søknad.søkerGiftIUtlandet === 'boolean' ? (
+            <KomponentGruppe>
+              <JaNeiSpørsmål spørsmål={søkerSeparertEllerSKiltIUtlandet} />
+            </KomponentGruppe>
+          ) : null}
         </>
       ) : null}
 
-      {!erSøkerGift ? <Søknadsbegrunnelse /> : null}
+      {(erSøkerUgift &&
+        søknad.søkerSeparertEllerSkiltIUtlandet !== undefined) ||
+      erSøkerSeparert ||
+      erSøkerEnke ? (
+        <Søknadsbegrunnelse />
+      ) : null}
     </SeksjonGruppe>
   );
 };
