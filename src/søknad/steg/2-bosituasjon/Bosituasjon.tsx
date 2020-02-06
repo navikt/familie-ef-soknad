@@ -4,7 +4,6 @@ import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
 import { hentNesteRoute } from '../../../routing/utils';
-import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -15,6 +14,7 @@ import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { ESøkerDelerBolig } from '../../../models/bosituasjon';
+import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 
 interface Props {
   intl: IntlShape;
@@ -34,15 +34,13 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
     ? bosituasjon.søkerDelerBoligMedAndreVoksne.verdi
     : '';
 
-  const settSøkerDelerBoligMedAndreVoksne = (svar: string) => {
+  const settBosituasjonFelt = (spørsmål: string, svar: string) => {
     settSøknad({
       ...søknad,
       bosituasjon: {
         ...bosituasjon,
         søkerDelerBoligMedAndreVoksne: {
-          label: intl.formatMessage({
-            id: delerSøkerBoligMedAndreVoksne.tekstid,
-          }),
+          label: spørsmål,
           verdi: svar,
         },
       },
@@ -99,7 +97,7 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
           key={hovedSpørsmål.spørsmål_id}
           spørsmål={hovedSpørsmål}
           valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
-          onChange={settSøkerDelerBoligMedAndreVoksne}
+          onChange={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>

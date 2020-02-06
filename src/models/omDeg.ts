@@ -22,6 +22,5 @@ export interface IMedlemskap {
 
 export interface IUtenlandsopphold {
   periode: IPeriode;
-  ugyldig: boolean;
-  begrunnelse: string;
+  begrunnelse: ITekstFelt;
 }

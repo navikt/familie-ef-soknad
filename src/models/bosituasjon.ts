@@ -1,5 +1,5 @@
-import { IPersonDetaljer } from './person';
 import { IBooleanFelt, IDatoFelt, ITekstFelt } from './søknadsfelter';
+import { IPersonDetaljer } from './person';
 
 export interface IBosituasjon {
   søkerDelerBoligMedAndreVoksne: ITekstFelt;

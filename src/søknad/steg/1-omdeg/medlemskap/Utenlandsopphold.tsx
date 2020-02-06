@@ -1,43 +1,51 @@
 import React, { FC, useEffect, useState } from 'react';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
-import LocaleTekst from '../../../../language/LocaleTekst';
 import useSøknadContext from '../../../../context/SøknadContext';
-import { Element, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/dato/Datovelger';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import Feilmelding from '../../../../components/feil/Feilmelding';
-import classNames from 'classnames';
 import { compareAsc } from 'date-fns';
 import { hentPeriodeTittelMedTall } from '../../../../language/utils';
 import { IUtenlandsopphold } from '../../../../models/omDeg';
+import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
-  intl: IntlShape;
 }
 
-const Utenlandsopphold: FC<Props> = ({
-  oppholdsnr,
-  utenlandsopphold,
-  intl,
-}) => {
+const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const { perioderBoddIUtlandet } = søknad;
+  const { perioderBoddIUtlandet } = søknad.medlemskap;
   const { periode, begrunnelse } = utenlandsopphold;
+  const intl = useIntl();
   const [feilmelding, settFeilmelding] = useState('');
+  const hentTekst = (id: string) => intl.formatMessage({ id: id });
+  const begrunnelseTekst = intl.formatMessage({
+    id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
+  });
+
+  const periodeTittel = hentPeriodeTittelMedTall(
+    perioderBoddIUtlandet!,
+    oppholdsnr,
+    intl.formatMessage({
+      id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
+    })
+  );
 
   const fjernUtenlandsperiode = () => {
     if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
       const utenlandsopphold = perioderBoddIUtlandet?.filter(
         (periode, index) => index !== oppholdsnr
       );
-      settSøknad({ ...søknad, perioderBoddIUtlandet: utenlandsopphold });
+      settSøknad({
+        ...søknad,
+        medlemskap: {
+          ...søknad.medlemskap,
+          perioderBoddIUtlandet: utenlandsopphold,
+        },
+      });
     }
   };
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -46,7 +54,7 @@ const Utenlandsopphold: FC<Props> = ({
         if (index === oppholdsnr) {
           return {
             ...utenlandsopphold,
-            begrunnelse: e.target.value,
+            begrunnelse: { label: begrunnelseTekst, verdi: e.target.value },
           };
         } else {
           return utenlandsopphold;
@@ -56,7 +64,10 @@ const Utenlandsopphold: FC<Props> = ({
     perioderBoddIUtlandet &&
       settSøknad({
         ...søknad,
-        perioderBoddIUtlandet: perioderMedNyBegrunnelse,
+        medlemskap: {
+          ...søknad.medlemskap,
+          perioderBoddIUtlandet: perioderMedNyBegrunnelse,
+        },
       });
   };
 
@@ -68,12 +79,7 @@ const Utenlandsopphold: FC<Props> = ({
       ? settFeilmelding('datovelger.periode.likeDatoer')
       : settFeilmelding('');
   };
-  useEffect(() => {
-    sammenlignDatoerOgOppdaterFeilmelding(
-      utenlandsopphold.periode.fra,
-      utenlandsopphold.periode.til
-    );
-  });
+
   const settPeriode = (date: Date | null, objektnøkkel: string): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
@@ -82,7 +88,10 @@ const Utenlandsopphold: FC<Props> = ({
             ...utenlandsopphold,
             periode: {
               ...periode,
-              [objektnøkkel]: date !== null ? date : undefined,
+              [objektnøkkel]: {
+                label: hentTekst('periode.' + objektnøkkel),
+                verdi: date !== null ? date : undefined,
+              },
             },
           };
         } else {
@@ -94,17 +103,19 @@ const Utenlandsopphold: FC<Props> = ({
       endretPeriodeIUtenlandsopphold &&
       settSøknad({
         ...søknad,
-        perioderBoddIUtlandet: endretPeriodeIUtenlandsopphold,
+        medlemskap: {
+          ...søknad.medlemskap,
+          perioderBoddIUtlandet: endretPeriodeIUtenlandsopphold,
+        },
       });
   };
 
-  const periodeTittel = hentPeriodeTittelMedTall(
-    perioderBoddIUtlandet!,
-    oppholdsnr,
-    intl.formatMessage({
-      id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
-    })
-  );
+  useEffect(() => {
+    sammenlignDatoerOgOppdaterFeilmelding(
+      utenlandsopphold.periode.fra.verdi,
+      utenlandsopphold.periode.til.verdi
+    );
+  });
 
   return (
     <div className="utenlandsopphold utenlandsopphold__container">
@@ -119,43 +130,17 @@ const Utenlandsopphold: FC<Props> = ({
         tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
       />
 
-      <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
-        <Element>
-          <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet'} />
-        </Element>
-      </FeltGruppe>
-
-      <div className={'utenlandsopphold__periodegruppe'}>
-        <Datovelger
-          settDato={(e) => settPeriode(e, 'fra')}
-          valgtDato={utenlandsopphold.periode.fra ? periode.fra : undefined}
-          tekstid={'periode.fra'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-        />
-
-        <Datovelger
-          settDato={(e) => settPeriode(e, 'til')}
-          valgtDato={periode.til ? periode.til : undefined}
-          tekstid={'periode.til'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-        />
-        {feilmelding !== '' ? (
-          <div
-            className={classNames('datovelger__feilmelding ', {
-              gjemFeilmelding: feilmelding === '',
-            })}
-          >
-            <Feilmelding tekstid={feilmelding} />
-          </div>
-        ) : null}
-      </div>
+      <PeriodeDatovelgere
+        settDato={settPeriode}
+        periode={utenlandsopphold.periode}
+        tekstid={'medlemskap.periodeBoddIUtlandet'}
+        feilmelding={feilmelding}
+      />
 
       <Textarea
-        label={intl.formatMessage({
-          id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
-        })}
+        label={begrunnelseTekst}
         placeholder={'...'}
-        value={begrunnelse}
+        value={begrunnelse.verdi}
         maxLength={1000}
         onChange={(e) => settBegrunnelse(e)}
       />
@@ -163,4 +148,4 @@ const Utenlandsopphold: FC<Props> = ({
   );
 };
 
-export default injectIntl(Utenlandsopphold);
+export default Utenlandsopphold;
