@@ -14,6 +14,7 @@ const norskeOrdMedÆØÅ = [
   'Søknadsdialog',
   'MultiSvarSpørsmål',
   'Søknadsbegrunnelse',
+  'SøkerSkalFlytteSammenEllerFåSamboer',
 ];
 
 module.exports = {

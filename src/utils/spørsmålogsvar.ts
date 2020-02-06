@@ -11,7 +11,7 @@ import { IntlShape } from 'react-intl';
 export const returnerJaNeiSvar = (
   spørsmål: IJaNeiSpørsmål,
   svar: IJaNeiSvar,
-  søknadobj: ISøknad
+  søknadobj: any
 ) => {
   for (const [key, value] of Object.entries(søknadobj)) {
     if (key === spørsmål.spørsmål_id && value !== undefined) {
