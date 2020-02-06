@@ -3,7 +3,7 @@ import Environment from '../Environment';
 
 export const sendInnSøknad = (søknad: object) => {
   return axios
-    .post(`${Environment().apiUrl}/api/soknad/test`, søknad, {
+    .post(`${Environment().apiUrl}/api/soknad/v2`, søknad, {
       headers: { 'content-type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
