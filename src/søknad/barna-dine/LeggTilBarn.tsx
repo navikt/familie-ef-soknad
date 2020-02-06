@@ -7,7 +7,6 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { formatDate, formatDateFnr } from '../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
-import { IBarn } from '../../models/person';
 const uuidv4 = require('uuid/v4');
 
 interface Props {
