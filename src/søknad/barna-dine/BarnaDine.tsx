@@ -21,7 +21,7 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
   const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
-  const barn = søknad.person.barn;
+  const barna = søknad.person.barn;
 
   const location = useLocation();
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
@@ -42,17 +42,17 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
               </Lesmerpanel>
               <AlertStripeInfo className="informasjonstekst">{intl.formatMessage({id: 'barnadine.infohentet'})}</AlertStripeInfo>
         <div className="barnekort-wrapper">
-        {barn?.map(b => <Barnekort 
+        {barna?.map(barn => <Barnekort 
         settÅpenModal={settÅpenModal}
-        id={b.id ? b.id: ""}
-        navn={b.navn}
-        fnr={b.fnr}
-        fødselsdato={b.fødselsdato}
-        personnummer={b.personnummer? b.personnummer : ""}
-        alder={b.alder}
-        harSammeAdresse={b.harSammeAdresse} 
-        ufødt={b.ufødt ? b.ufødt : false} 
-        lagtTil={b.lagtTil ? b.lagtTil: false} />
+        id={barn.id ? barn.id: ""}
+        navn={barn.navn}
+        fnr={barn.fnr}
+        fødselsdato={barn.fødselsdato}
+        personnummer={barn.personnummer? barn.personnummer : ""}
+        alder={barn.alder}
+        harSammeAdresse={barn.harSammeAdresse} 
+        ufødt={barn.ufødt ? barn.ufødt : false} 
+        lagtTil={barn.lagtTil ? barn.lagtTil: false} />
         )}
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
