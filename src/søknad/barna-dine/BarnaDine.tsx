@@ -42,18 +42,22 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
               </Lesmerpanel>
               <AlertStripeInfo className="informasjonstekst">{intl.formatMessage({id: 'barnadine.infohentet'})}</AlertStripeInfo>
         <div className="barnekort-wrapper">
-        {barna?.map(barn => <Barnekort 
-        settÅpenModal={settÅpenModal}
-        id={barn.id ? barn.id: ""}
-        navn={barn.navn}
-        fnr={barn.fnr}
-        fødselsdato={barn.fødselsdato}
-        personnummer={barn.personnummer? barn.personnummer : ""}
-        alder={barn.alder}
-        harSammeAdresse={barn.harSammeAdresse} 
-        ufødt={barn.ufødt ? barn.ufødt : false} 
-        lagtTil={barn.lagtTil ? barn.lagtTil: false} />
-        )}
+        {
+          barna?.map(barn => (
+            <Barnekort
+              settÅpenModal={settÅpenModal}
+              id={barn.id ? barn.id : ""}
+              navn={barn.navn}
+              fnr={barn.fnr}
+              fødselsdato={barn.fødselsdato}
+              personnummer={barn.personnummer ? barn.personnummer : ""}
+              alder={barn.alder}
+              harSammeAdresse={barn.harSammeAdresse}
+              ufødt={barn.ufødt ? barn.ufødt : false}
+              lagtTil={barn.lagtTil ? barn.lagtTil : false}
+            />
+          ))
+        }
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
             <Normaltekst>{intl.formatMessage({id: 'barnadine.leggtil.info'})}</Normaltekst>
