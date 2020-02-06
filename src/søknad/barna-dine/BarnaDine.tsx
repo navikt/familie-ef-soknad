@@ -71,7 +71,7 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
           closeButton={true}
           contentLabel="Halla"
           >
-        <div style={{padding:'2rem 2.5rem'}}>
+        <div className="legg-til-barn-modal">
           <LeggTilBarn settÅpenModal={settÅpenModal} />
         </div>
       </Modal>
