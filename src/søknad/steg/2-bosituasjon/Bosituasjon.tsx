@@ -59,11 +59,11 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const harSøkerEkteskapsliknendeForhold =
     valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
-  const planerOmÅFlytteSammenEllerFåSamboer = hovedSpørsmål.svaralternativer.find(
-    (svar: IMultiSvar) => {
-      return valgtSvarNøkkel === svar.svar_tekstid.split('.')[2];
-    }
-  );
+  const planerOmÅFlytteSammenEllerFåSamboer =
+    valgtSvarNøkkel === ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+    valgtSvarNøkkel === ESøkerDelerBolig.delerBoligMedAndreVoksne ||
+    valgtSvarNøkkel ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   useEffect(() => {
     const erSpørsmålOgSvarTomme =
