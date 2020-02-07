@@ -4,7 +4,7 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { formatDate, formatDateFnr } from '../../utils/dato';
+import { formatDate, formatDateFnr, dagensDato } from '../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 const uuidv4 = require('uuid/v4');
@@ -15,7 +15,7 @@ interface Props {
 
 const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
   const { søknad, settSøknad } = useSøknadContext();
-  const [barnDato, settBarnDato] = useState<Date>(new Date());
+  const [barnDato, settBarnDato] = useState<Date>(dagensDato);
   const [født, settBarnFødt] = useState("");
   const [navn, settNavn] = useState("Barn");
   const [personnummer, settPersonnummer] = useState("");
@@ -34,7 +34,7 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
   }
 
   const tilbakestillFelt = () => {
-    settBarnDato(new Date());
+    settBarnDato(dagensDato);
     settNavn("Barn");
     settPersonnummer("");
     settBoHosDeg("");
@@ -46,7 +46,7 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
     const barn = {
       fnr: fødselsnummer,
       personnummer: personnummer,
-      alder: differenceInYears(new Date(), barnDato),
+      alder: differenceInYears(dagensDato, barnDato),
       navn: navn,
       fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === "ja",
