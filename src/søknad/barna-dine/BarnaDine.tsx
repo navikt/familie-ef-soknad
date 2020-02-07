@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useSøknadContext from '../../context/SøknadContext';
 import Side from '../../components/side/Side';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
 import { Routes, IRoute } from '../../config/Routes';
 import { hentNesteRoute } from '../../utils/routing';
@@ -62,7 +62,7 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
         }
         <div className="barnekort">
           <div className="informasjonsboks legg-til-barn-kort">
-            <Normaltekst>{intl.formatMessage({id: 'barnadine.leggtil.info'})}</Normaltekst>
+            <Element>{intl.formatMessage({id: 'barnadine.leggtil.info'})}</Element>
             <Knapp onClick={() => settÅpenModal(true)}>{intl.formatMessage({id: 'barnadine.leggtil'})}</Knapp>
             </div>
           </div>
