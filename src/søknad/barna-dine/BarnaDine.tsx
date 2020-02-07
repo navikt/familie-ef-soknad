@@ -4,6 +4,7 @@ import Side from '../../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
 import { Routes, IRoute } from '../../config/Routes';
+import { hentNesteRoute } from '../../utils/routing';
 import { hentForrigeRoute } from '../../utils/routing';
 import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -24,14 +25,15 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
   const barna = søknad.person.barn;
 
   const location = useLocation();
+  const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
 
   return (
     <>
       <Side
         tittel={intl.formatMessage({ id: 'barnadine.sidetittel'})}
+        nestePath={nesteRoute.path}
         tilbakePath={forrigeRoute.path}
-        nestePath={''}
       >
         <div className="barna-dine">
                       <Lesmerpanel
