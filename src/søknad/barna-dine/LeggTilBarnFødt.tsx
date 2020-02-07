@@ -37,7 +37,7 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
 
       <div className="bo-hos-deg-spørsmål">
       <Normaltekst>Bor barnet hos deg?</Normaltekst>
-        <div className="radiogruppe-2">
+        <div className="radiogruppe-2-svar">
           <RadioPanel
                 key={"ja"}
                 name={"radio-bosted"}

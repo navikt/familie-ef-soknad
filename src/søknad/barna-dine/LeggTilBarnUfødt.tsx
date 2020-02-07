@@ -29,7 +29,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnD
 
       <div className="bo-hos-deg-spørsmål">
         <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
-        <div className="radiogruppe-2">
+        <div className="radiogruppe-2-svar">
           <RadioPanel
                 key={"ja"}
                 name={"radio-bosted"}

@@ -11,8 +11,11 @@ const StyledFeltGruppe = styled.section`
   }
 `;
 
-const SeksjonGruppe: React.FC = ({ children }) => {
-  return <StyledFeltGruppe>{children}</StyledFeltGruppe>;
+const SeksjonGruppe: React.FC<{ className?: string }> = ({
+  children,
+  className,
+}) => {
+  return <StyledFeltGruppe className={className}>{children}</StyledFeltGruppe>;
 };
 
 export default SeksjonGruppe;
