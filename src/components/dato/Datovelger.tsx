@@ -9,7 +9,7 @@ import DatePicker from 'react-datepicker';
 import en from 'date-fns/locale/en-US';
 import nb from 'date-fns/locale/nb';
 import nn from 'date-fns/locale/nn';
-import FeltGruppe from '../FeltGruppe';
+import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
 

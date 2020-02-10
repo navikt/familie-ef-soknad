@@ -38,3 +38,9 @@ export interface IBarn {
   ufødt?: boolean;
   lagtTil?: boolean;
 }
+
+export interface IPersonDetaljer {
+  navn: string;
+  fødselsdato: Date;
+  fødselsnummer: string;
+}

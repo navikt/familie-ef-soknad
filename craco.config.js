@@ -16,6 +16,7 @@ const norskeOrdMedÆØÅ = [
   'Søknadsbegrunnelse',
   'LeggTilBarnUfødt',
   'LeggTilBarnFødt',
+  'SøkerSkalFlytteSammenEllerFåSamboer',
 ];
 
 module.exports = {

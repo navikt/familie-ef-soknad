@@ -1,5 +1,6 @@
 import Environment from '../Environment';
 import axios from 'axios';
+import { IntlShape } from 'react-intl';
 
 export const hentPersonData = () => {
   return axios
@@ -37,4 +38,12 @@ export const hentSivilstatus = (statuskode: string) => {
     default:
       return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
   }
+};
+
+export const erValgtSvarLiktSomSvar = (
+  valgtSvar: string,
+  annetSvarTekstid: string,
+  intl: IntlShape
+) => {
+  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DatePicker from 'react-datepicker';
 import { RadioPanel } from 'nav-frontend-skjema';
-import KomponentGruppe from '../../components/KomponentGruppe';
+import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 
 interface Props {
     settBo: Function;

@@ -1,12 +1,9 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Element } from 'nav-frontend-typografi';
-import DatePicker from 'react-datepicker';
-import useSøknadContext from '../../context/SøknadContext';
-import { dagensDato } from '../../utils/dato';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import { IPeriode } from '../../models/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
-import FeltGruppe from '../FeltGruppe';
+import FeltGruppe from '../gruppe/FeltGruppe';
 
 interface Props {
   tekstid: string;

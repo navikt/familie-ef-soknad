@@ -15,7 +15,7 @@ const StyledTilbakeKnapp = styled.div`
     text-decoration: none;
     cursor: pointer;
     display:grid;
-    grid-template:columns: auto auto;
+    grid-template-columns: auto auto;
     border: none;
     }
 
