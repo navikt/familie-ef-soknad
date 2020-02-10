@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        //settError(true);
+        settError(true);
       });
 
       const fetchPersonData = () => {
@@ -42,7 +42,7 @@ const App = () => {
           });
         });
       };
-      //fetchPersonData();
+      fetchPersonData();
       settFetching(false);
     };
     fetchData();

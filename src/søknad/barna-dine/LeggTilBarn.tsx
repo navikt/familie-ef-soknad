@@ -110,7 +110,7 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
           settDato={settDato}
           barnDato={barnDato}
          /> : null}
-          <Hovedknapp className="legg-til-barn-knapp" onClick={leggTilBarn}>Legg til barn</Hovedknapp>
+          <Hovedknapp className="legg-til-barn__knapp" onClick={leggTilBarn}>Legg til barn</Hovedknapp>
           </Seksjonsgruppe>
   );
 };
