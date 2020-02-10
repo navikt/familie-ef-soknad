@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 import barn1 from '../../assets/barn1.svg';
 import barn2 from '../../assets/barn2.svg';
 import barn3 from '../../assets/barn3.svg';
 import ufødtIkon from '../../assets/ufodt.svg';
 import useSøknadContext from '../../context/SøknadContext';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import LeggTilBarn from '../barna-dine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 
 interface Props {
-    intl: IntlShape;
     navn: string;
     fnr: string;
     fødselsdato: string;
@@ -23,7 +22,8 @@ interface Props {
     settÅpenModal: Function;
 }
 
-const Barnekort: React.FC<Props> = ( { settÅpenModal, id, intl, navn, fnr, alder, harSammeAdresse, lagtTil, ufødt, fødselsdato }) => {
+const Barnekort: React.FC<Props> = ( { settÅpenModal, id, navn, fnr, alder, harSammeAdresse, lagtTil, ufødt, fødselsdato }) => {
+  const intl = useIntl();
     const { søknad, settSøknad } = useSøknadContext();
     const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
@@ -57,7 +57,7 @@ const Barnekort: React.FC<Props> = ( { settÅpenModal, id, intl, navn, fnr, alde
           </div>
           <div className="informasjonsboks">
             <div className="informasjonsboks-innhold">
-              <Normaltekst className="navn">{navn}</Normaltekst>
+              <Element>{navn}</Element>
               <div className="informasjonselement">
                 {fnr ? <><Normaltekst>{intl.formatMessage({ id: 'barnekort.fødselsnummer' })}</Normaltekst>
                 <Normaltekst>{formatFnr(fnr)}</Normaltekst></> :
@@ -94,4 +94,4 @@ const Barnekort: React.FC<Props> = ( { settÅpenModal, id, intl, navn, fnr, alde
   );
 };
 
-export default injectIntl(Barnekort);
+export default Barnekort;

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Element, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -8,6 +8,7 @@ import { formatDate, formatDateFnr, dagensDato } from '../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../components/SeksjonGruppe';
+import KomponentGruppe from '../../components/KomponentGruppe';
 const uuidv4 = require('uuid/v4');
 
 interface Props {
@@ -67,7 +68,8 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
         <Seksjonsgruppe className="legg-til-barn">
           <Undertittel>Legg til barn</Undertittel>
 
-          <Normaltekst className="spørsmål">Er barnet født?</Normaltekst>
+          <KomponentGruppe>
+          <Element>Er barnet født?</Element>
 
           <div className="radiogruppe-2-svar">
           <RadioPanel
@@ -93,6 +95,7 @@ const LeggTilBarn: React.FC<Props> = ( { settÅpenModal }) => {
                 }}
             />
             </div>
+            </KomponentGruppe>
         {født === "ja" ?
         <LeggTilBarnFødt
           settNavn={settNavn}

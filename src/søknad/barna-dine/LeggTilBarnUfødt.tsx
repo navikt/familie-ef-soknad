@@ -2,6 +2,7 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DatePicker from 'react-datepicker';
 import { RadioPanel } from 'nav-frontend-skjema';
+import KomponentGruppe from '../../components/KomponentGruppe';
 
 interface Props {
     settBo: Function;
@@ -13,7 +14,7 @@ interface Props {
 const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnDato }) => {
   return (
     <>
-    <div className="termindato">
+    <KomponentGruppe>
       <Normaltekst>Termindato</Normaltekst>
       <div className="barn-datovelger">
       <div className={'datepicker__container'}>
@@ -25,9 +26,9 @@ const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnD
             />
             </div>
         </div>
-        </div>
+      </KomponentGruppe>
 
-      <div className="bo-hos-deg-spørsmål">
+      <KomponentGruppe>
         <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
@@ -47,7 +48,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnD
                 onChange={(e) => settBo(e)}
             />
           </div>
-        </div>
+        </KomponentGruppe>
         </>
   );
 };

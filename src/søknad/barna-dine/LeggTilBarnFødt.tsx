@@ -3,6 +3,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import DatePicker from 'react-datepicker';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { Input } from 'nav-frontend-skjema';
+import KomponentGruppe from '../../components/KomponentGruppe';
 
 interface Props {
     settNavn: Function;
@@ -16,8 +17,11 @@ interface Props {
 const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo, boHosDeg, settDato, barnDato }) => {
   return (
     <>
-    <Input className="input-navn" onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
+    <KomponentGruppe>
+    <Input onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
+    </KomponentGruppe>
 
+    <KomponentGruppe>
       <div className="fødselsnummer">
         <div className="fødselsdato">
       <Normaltekst>Fødselsdato</Normaltekst>
@@ -34,8 +38,9 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
         </div>
         <Input className="personnummer" onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
         </div>
+        </KomponentGruppe>
 
-      <div className="bo-hos-deg-spørsmål">
+      <KomponentGruppe>
       <Normaltekst>Bor barnet hos deg?</Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
@@ -55,7 +60,7 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
                 onChange={(e) => settBo(e)}
             />
           </div>
-        </div>
+        </KomponentGruppe>
         </>
   );
 };

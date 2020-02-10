@@ -10,15 +10,12 @@ import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
 
-interface Props {
-  intl: IntlShape;
-}
-
-const BarnaDine: React.FC<Props> = ( { intl } ) => {
+const BarnaDine: React.FC = () => {
+  const intl = useIntl();
   const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -83,4 +80,4 @@ const BarnaDine: React.FC<Props> = ( { intl } ) => {
   );
 };
 
-export default injectIntl(BarnaDine);
+export default BarnaDine;
