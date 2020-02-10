@@ -1,3 +1,4 @@
+import { IArbeidssituasjon } from './arbeidssituasjon';
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
 import { IBosituasjon } from './bosituasjon';
@@ -21,6 +22,7 @@ export interface ISøknad {
   begrunnelseAnnet?: string;
   vedleggsliste: IVedlegg[];
   bosituasjon: IBosituasjon;
+  arbeidssituasjon: IArbeidssituasjon;
 }
 
 export interface IUtenlandsopphold {

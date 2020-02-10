@@ -4,6 +4,9 @@ import { IRoute, Routes } from '../../../routing/Routes';
 import { useLocation } from 'react-router-dom';
 import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 
 const Arbeidssituasjon: React.FC = () => {
   const location = useLocation();
@@ -11,13 +14,24 @@ const Arbeidssituasjon: React.FC = () => {
 
   const { søknad, settSøknad } = useSøknadContext();
 
+  const settArbeidssituasjon = (svar: string) => {
+    console.log('setter arbeidssituasjon');
+  };
+
   return (
     <Side
       tittel={'Arbeid, utdanning etc'}
       nestePath={nesteRoute.path}
       tilbakePath={Routes[2].path}
     >
-      arbeid og shiz
+      <KomponentGruppe>
+        <MultiSvarSpørsmål
+          spørsmål={hvaErDinArbeidssituasjon}
+          onChange={settArbeidssituasjon}
+          valgtSvar={undefined}
+        />
+      </KomponentGruppe>
+      >
     </Side>
   );
 };
