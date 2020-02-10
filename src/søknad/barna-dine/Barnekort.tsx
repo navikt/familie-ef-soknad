@@ -52,10 +52,10 @@ const Barnekort: React.FC<Props> = ( { settÅpenModal, id, navn, fnr, alder, har
 
   return (
         <div className="barnekort">
-          <div className="header">
+          <div className="barnekort__header">
               <img alt="barn" className="barneikon" src={ikon} />
           </div>
-          <div className="informasjonsboks">
+          <div className="barnekort__informasjonsboks">
             <div className="informasjonsboks-innhold">
               <Element>{navn}</Element>
               <div className="informasjonselement">
@@ -72,10 +72,10 @@ const Barnekort: React.FC<Props> = ( { settÅpenModal, id, navn, fnr, alder, har
                 <Normaltekst>{intl.formatMessage({ id: 'barnekort.bosted' })}</Normaltekst>
                 <Normaltekst>{bosted}</Normaltekst>
               </div>
-              {lagtTil && id ? <div className="endre-barnekort" onClick={() => endre(id)}>
+              {lagtTil && id ? <div className="barnekort__endre-barnekort" onClick={() => endre(id)}>
                 <Normaltekst>Endre</Normaltekst>
               </div> : null}
-              {lagtTil && id ? <div className="endre-barnekort" onClick={() => fjernFraSøknad(id)}>
+              {lagtTil && id ? <div className="barnekort__endre-barnekort" onClick={() => fjernFraSøknad(id)}>
                 <Normaltekst>Fjern fra søknad</Normaltekst>
               </div> : null}
             </div>

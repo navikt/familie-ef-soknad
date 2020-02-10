@@ -58,7 +58,7 @@ const BarnaDine: React.FC = () => {
           ))
         }
         <div className="barnekort">
-          <div className="informasjonsboks legg-til-barn-kort">
+          <div className="barnekort__informasjonsboks legg-til-barn-kort">
             <Element>{intl.formatMessage({id: 'barnadine.leggtil.info'})}</Element>
             <Knapp onClick={() => settÅpenModal(true)}>{intl.formatMessage({id: 'barnadine.leggtil'})}</Knapp>
             </div>
