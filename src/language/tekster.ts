@@ -61,7 +61,6 @@ export default {
       'Hva vil det si å være bosatt i Norge?',
     'medlemskap.hjelpetekst.bosatt.innhold':
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
-    'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
     'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsopphold',

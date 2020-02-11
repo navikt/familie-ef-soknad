@@ -1,7 +1,6 @@
 import React from 'react';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import {
-  registrertSomFlykting,
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
 } from './MedlemskapConfig';
@@ -59,7 +58,7 @@ const Medlemskap: React.FC = () => {
         />
       </KomponentGruppe>
 
-      {typeof søkerOppholderSegINorge?.verdi === 'boolean' ? (
+      {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
         <KomponentGruppe key={bosattINorgeDeSisteTreÅr.spørsmål_id}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅr}
@@ -74,18 +73,6 @@ const Medlemskap: React.FC = () => {
 
       {søkerBosattINorgeSisteTreÅr?.verdi === false ? (
         <PeriodeBoddIUtlandet />
-      ) : null}
-
-      {statsborgerskap !== 'NOR' &&
-      søkerBosattINorgeSisteTreÅr?.verdi === false &&
-      typeof søkerBosattINorgeSisteTreÅr.verdi === 'boolean' ? (
-        <KomponentGruppe key={registrertSomFlykting.spørsmål_id}>
-          <JaNeiSpørsmål
-            spørsmål={registrertSomFlykting}
-            valgtSvar={søkerErFlyktning ? søkerErFlyktning.verdi : undefined}
-            onChange={settMedlemskapBooleanFelt}
-          />
-        </KomponentGruppe>
       ) : null}
     </SeksjonGruppe>
   );

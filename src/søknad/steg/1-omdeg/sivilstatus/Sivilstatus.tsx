@@ -120,7 +120,7 @@ const Sivilstatus: React.FC = () => {
             />
           </KomponentGruppe>
 
-          {typeof søkerGiftIUtlandet?.verdi === 'boolean' ? (
+          {søkerGiftIUtlandet?.hasOwnProperty('verdi') ? (
             <KomponentGruppe>
               <JaNeiSpørsmål
                 spørsmål={søkerSeparertEllerSKiltIUtlandetSpørsmål}
@@ -136,7 +136,7 @@ const Sivilstatus: React.FC = () => {
       ) : null}
 
       {(erSøkerUgift &&
-        søkerSeparertEllerSkiltIUtlandet?.verdi !== undefined) ||
+        søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
       erSøkerEnke ? (
         <Søknadsbegrunnelse settDato={settDato} />
