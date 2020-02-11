@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import useSøknadContext from '../../context/SøknadContext';
+import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { formatDate, formatDateFnr, dagensDato } from '../../utils/dato';
+import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
-import Seksjonsgruppe from '../../components/gruppe/SeksjonGruppe';
-import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 const uuidv4 = require('uuid/v4');
 
 interface Props {

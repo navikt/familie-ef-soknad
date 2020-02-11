@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import useSøknadContext from '../../context/SøknadContext';
-import Side from '../../components/side/Side';
+import useSøknadContext from '../../../context/SøknadContext';
+import Side from '../../../components/side/Side';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
-import { Routes, IRoute } from '../../routing/Routes';
-import { hentNesteRoute } from '../../routing/utils';
-import { hentForrigeRoute } from '../../routing/utils';
+import { Routes, IRoute } from '../../../routing/Routes';
+import { hentNesteRoute } from '../../../routing/utils';
+import { hentForrigeRoute } from '../../../routing/utils';
 import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';

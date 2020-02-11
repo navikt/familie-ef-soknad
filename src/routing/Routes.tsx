@@ -5,7 +5,7 @@ export interface IRoute {
 export const Routes: IRoute[] = [
   { path: '/', label: 'Forside' },
   { path: '/om-deg', label: 'Om deg' },
-  { path: '/barn', label: 'Barn' },
   { path: '/bosituasjon', label: 'Bosituasjonen din' },
+  { path: '/barn', label: 'Barn' },
   { path: '/send-soknad', label: 'Send søknad' },
 ];

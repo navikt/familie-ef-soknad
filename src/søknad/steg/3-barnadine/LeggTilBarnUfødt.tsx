@@ -2,29 +2,20 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import DatePicker from 'react-datepicker';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { Input } from 'nav-frontend-skjema';
-import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
-    settNavn: Function;
-    settPersonnummer: Function;
     settBo: Function;
     boHosDeg: string;
     settDato: Function;
     barnDato: Date;
 }
 
-const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo, boHosDeg, settDato, barnDato }) => {
+const LeggTilBarnUfødt: React.FC<Props> = ( { settBo, boHosDeg, settDato, barnDato }) => {
   return (
     <>
     <KomponentGruppe>
-    <Input onChange={(e) => settNavn(e.target.value)} label="Barnets fulle navn, om dette er bestemt" />
-    </KomponentGruppe>
-
-    <KomponentGruppe>
-      <div className="fødselsnummer">
-        <div className="fødselsdato">
-      <Normaltekst>Fødselsdato</Normaltekst>
+      <Normaltekst>Termindato</Normaltekst>
       <div className="barn-datovelger">
       <div className={'datepicker__container'}>
         <DatePicker
@@ -35,13 +26,10 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
             />
             </div>
         </div>
-        </div>
-        <Input className="personnummer" onChange={(e) => settPersonnummer(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
-        </div>
-        </KomponentGruppe>
+      </KomponentGruppe>
 
       <KomponentGruppe>
-      <Normaltekst>Bor barnet hos deg?</Normaltekst>
+        <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
                 key={"ja"}
@@ -65,4 +53,4 @@ const LeggTilBarnFødt: React.FC<Props> = ( { settNavn, settPersonnummer, settBo
   );
 };
 
-export default LeggTilBarnFødt;
+export default LeggTilBarnUfødt;

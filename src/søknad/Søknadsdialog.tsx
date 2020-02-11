@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
 import Forside from './forside/Forside';
-import BarnaDine from './barna-dine/BarnaDine';
+import BarnaDine from './steg/3-barnadine/BarnaDine';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 
 const Søknadsdialog: FC = () => {
