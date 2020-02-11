@@ -10,20 +10,17 @@ import {
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { injectIntl, IntlShape } from 'react-intl';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import { ISivilstatus } from '../../../../models/omDeg';
 
 interface Props {
-  intl: IntlShape;
   settJaNeiFelt: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
   sivilstatusObjekt: ISivilstatus;
 }
 
 const SøkerErGift: React.FC<Props> = ({
-  intl,
   settJaNeiFelt,
   settDato,
   sivilstatusObjekt,
@@ -75,4 +72,4 @@ const SøkerErGift: React.FC<Props> = ({
   );
 };
 
-export default injectIntl(SøkerErGift);
+export default SøkerErGift;

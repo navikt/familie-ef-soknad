@@ -9,15 +9,16 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
-import { injectIntl } from 'react-intl';
 import { ISivilstatus } from '../../../../models/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,
   søkerGiftIUtlandetSpørsmål,
 } from './SivilstatusConfig';
+import { useIntl } from 'react-intl';
 
-const Sivilstatus: React.FC<any> = ({ intl }) => {
+const Sivilstatus: React.FC = () => {
+  const intl = useIntl();
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { sivilstatus } = søknad;
@@ -144,4 +145,4 @@ const Sivilstatus: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Sivilstatus);
+export default Sivilstatus;

@@ -2,24 +2,19 @@ import React, { SyntheticEvent, useState } from 'react';
 import { IJaNeiSpørsmål, IJaNeiSvar, ISvar } from '../../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
-  intl: IntlShape;
   spørsmål: IJaNeiSpørsmål;
   onChange: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
   valgtSvar: boolean | undefined;
 }
-const JaNeiSpørsmål: React.FC<Props> = ({
-  spørsmål,
-  intl,
-  onChange,
-  valgtSvar,
-}) => {
+const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
+  const intl = useIntl();
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
@@ -95,4 +90,4 @@ const JaNeiSpørsmål: React.FC<Props> = ({
   );
 };
 
-export default injectIntl(JaNeiSpørsmål);
+export default JaNeiSpørsmål;

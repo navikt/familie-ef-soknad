@@ -5,7 +5,7 @@ import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
@@ -15,7 +15,8 @@ import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 
-const Personopplysninger: React.FC<any> = ({ intl }) => {
+const Personopplysninger: React.FC = () => {
+  const intl = useIntl();
   const { person } = usePersonContext();
   const { søker } = person;
   const { søknad, settSøknad } = useSøknadContext();
@@ -136,4 +137,4 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Personopplysninger);
+export default Personopplysninger;

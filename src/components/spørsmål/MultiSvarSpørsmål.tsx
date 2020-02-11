@@ -1,22 +1,17 @@
 import React, { FC, SyntheticEvent } from 'react';
 import { IMultiSpørsmål as ISpørsmål, IMultiSvar } from '../../models/spørsmal';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 
 interface Props {
   spørsmål: ISpørsmål;
-  intl: IntlShape;
   onChange: (spørsmål: string, svar: string) => void;
   valgtSvar: string | undefined;
 }
 
-const MultiSvarSpørsmål: FC<Props> = ({
-  spørsmål,
-  intl,
-  onChange,
-  valgtSvar,
-}) => {
+const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
+  const intl = useIntl();
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
@@ -57,4 +52,4 @@ const MultiSvarSpørsmål: FC<Props> = ({
   );
 };
 
-export default injectIntl(MultiSvarSpørsmål);
+export default MultiSvarSpørsmål;

@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
-import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
 import { hentNesteRoute } from '../../../routing/utils';
@@ -16,11 +16,8 @@ import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEller
 import { ESøkerDelerBolig } from '../../../models/bosituasjon';
 import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 
-interface Props {
-  intl: IntlShape;
-}
-
-const Bosituasjon: FC<Props> = ({ intl }) => {
+const Bosituasjon: FC = () => {
+  const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
   const { søkerDelerBoligMedAndreVoksne } = bosituasjon;
@@ -128,4 +125,4 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
     </Side>
   );
 };
-export default injectIntl(Bosituasjon);
+export default Bosituasjon;

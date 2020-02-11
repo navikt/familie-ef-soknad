@@ -7,19 +7,15 @@ import Datovelger, {
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import useSøknadContext from '../../../context/SøknadContext';
 import { tomPersonInfo } from '../../../utils/person';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 interface Props {
-  intl: IntlShape;
   tittel: string;
   ekteskapsLiknendeForhold: boolean;
 }
 
-const OmSamboerenDin: FC<Props> = ({
-  tittel,
-  ekteskapsLiknendeForhold,
-  intl,
-}) => {
+const OmSamboerenDin: FC<Props> = ({ tittel, ekteskapsLiknendeForhold }) => {
+  const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
   const { samboerDetaljer } = bosituasjon;
@@ -105,4 +101,4 @@ const OmSamboerenDin: FC<Props> = ({
   );
 };
 
-export default injectIntl(OmSamboerenDin);
+export default OmSamboerenDin;

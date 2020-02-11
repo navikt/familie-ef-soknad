@@ -3,7 +3,7 @@ import React, { FC, useEffect } from 'react';
 import { IMultiSpørsmål } from '../../../../../models/spørsmal';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import useSøknadContext from '../../../../../context/SøknadContext';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import { Textarea } from 'nav-frontend-skjema';
@@ -13,12 +13,12 @@ import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import EndringISamvær from './EndringISamvær';
 
 interface Props {
-  intl: IntlShape;
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
 }
 
-const Søknadsbegrunnelse: FC<Props> = ({ intl, settDato }) => {
+const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
   const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
+  const intl = useIntl();
 
   const { søknad, settSøknad } = useSøknadContext();
   const { sivilstatus } = søknad;
@@ -159,4 +159,4 @@ const Søknadsbegrunnelse: FC<Props> = ({ intl, settDato }) => {
   );
 };
 
-export default injectIntl(Søknadsbegrunnelse);
+export default Søknadsbegrunnelse;

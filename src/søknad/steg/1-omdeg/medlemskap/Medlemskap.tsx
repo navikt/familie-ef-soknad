@@ -12,9 +12,10 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { IMedlemskap } from '../../../../models/omDeg';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 
-const Medlemskap: React.FC<{ intl: IntlShape }> = ({ intl }) => {
+const Medlemskap: React.FC = () => {
+  const intl = useIntl();
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const { statsborgerskap } = person.søker;
@@ -90,4 +91,4 @@ const Medlemskap: React.FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Medlemskap);
+export default Medlemskap;
