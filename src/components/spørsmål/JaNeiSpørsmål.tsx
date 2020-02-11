@@ -67,7 +67,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel
                 key={svar.svar_tekstid}
-                name={spørsmål.spørsmål_id + svar.svar_tekstid}
+                name={spørsmål.spørsmål_id}
                 label={intl.formatMessage({
                   id: svar.svar_tekstid,
                 })}
