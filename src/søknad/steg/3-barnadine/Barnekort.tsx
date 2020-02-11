@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
-import barn1 from '../../assets/barn1.svg';
-import barn2 from '../../assets/barn2.svg';
-import barn3 from '../../assets/barn3.svg';
-import ufødtIkon from '../../assets/ufodt.svg';
-import useSøknadContext from '../../context/SøknadContext';
+import barn1 from '../../../assets/barn1.svg';
+import barn2 from '../../../assets/barn2.svg';
+import barn3 from '../../../assets/barn3.svg';
+import ufødtIkon from '../../../assets/ufodt.svg';
+import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
-import LeggTilBarn from '../barna-dine/LeggTilBarn';
+import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 
 interface Props {
