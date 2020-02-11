@@ -1,18 +1,12 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/dato/Datovelger';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import {
-  AlertStripeAdvarsel,
-  AlertStripeInfo,
-} from 'nav-frontend-alertstriper';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import { ISivilstatus } from '../../../../models/omDeg';
+import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 
 interface Props {
   settJaNeiFelt: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
@@ -26,7 +20,7 @@ const SøkerErGift: React.FC<Props> = ({
   sivilstatusObjekt,
 }) => {
   const separasjonsSpørsmål: IJaNeiSpørsmål = SeparasjonSpørsmål;
-  const { søkerHarSøktSeparasjon, datoSøktSeparasjon } = sivilstatusObjekt;
+  const { søkerHarSøktSeparasjon } = sivilstatusObjekt;
 
   return (
     <>
@@ -40,28 +34,8 @@ const SøkerErGift: React.FC<Props> = ({
         />
       </KomponentGruppe>
       {søkerHarSøktSeparasjon?.verdi ? (
-        <KomponentGruppe>
-          <Datovelger
-            settDato={(e) =>
-              settDato(
-                e,
-                'datoSøktSeparasjon',
-                'sivilstatus.separasjon.datosøkt'
-              )
-            }
-            valgtDato={
-              datoSøktSeparasjon ? datoSøktSeparasjon.verdi : undefined
-            }
-            tekstid={'sivilstatus.separasjon.datosøkt'}
-            datobegrensning={DatoBegrensning.TidligereDatoer}
-          />
-          <FeltGruppe>
-            <AlertStripeInfo className={'fjernBakgrunn'}>
-              <LocaleTekst tekst={'sivilstatus.somgift'} />
-            </AlertStripeInfo>
-          </FeltGruppe>
-        </KomponentGruppe>
-      ) : !søkerHarSøktSeparasjon && søkerHarSøktSeparasjon !== undefined ? (
+        <SøkerHarSøktSeparasjon settDato={settDato} />
+      ) : !søkerHarSøktSeparasjon?.verdi ? (
         <KomponentGruppe>
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />

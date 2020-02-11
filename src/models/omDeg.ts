@@ -17,7 +17,6 @@ export interface IMedlemskap {
   søkerOppholderSegINorge?: IBooleanFelt;
   søkerBosattINorgeSisteTreÅr?: IBooleanFelt;
   perioderBoddIUtlandet?: IUtenlandsopphold[];
-  søkerErFlyktning?: IBooleanFelt;
 }
 
 export interface IUtenlandsopphold {

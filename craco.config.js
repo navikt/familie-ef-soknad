@@ -18,6 +18,7 @@ const norskeOrdMedÆØÅ = [
   'EndringISamvær',
   'NårFlyttetDereFraHverandre',
   'SøkerErGift',
+  'SøkerHarSøktSeparasjon',
 ];
 
 module.exports = {

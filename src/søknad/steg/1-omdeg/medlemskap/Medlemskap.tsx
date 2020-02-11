@@ -15,13 +15,10 @@ import { useIntl } from 'react-intl';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();
-  const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
-  const { statsborgerskap } = person.søker;
   const {
     søkerOppholderSegINorge,
     søkerBosattINorgeSisteTreÅr,
-    søkerErFlyktning,
   } = søknad.medlemskap;
 
   const settMedlemskapBooleanFelt = (
