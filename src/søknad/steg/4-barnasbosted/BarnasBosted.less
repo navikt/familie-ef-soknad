@@ -1,0 +1,40 @@
+.barnas-bosted {
+    &__header {
+        box-sizing: border-box;
+        background-color: #4d3e55;
+        border-top-right-radius: 5px;
+        border-top-left-radius: 5px;
+        border-bottom: 4px solid #826ba1;
+        height: 128px;
+        display: flex;
+        align-items: flex-end;
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    }
+
+    .navn {
+        text-align: center;
+        margin-top: 1.5rem;
+    }
+
+    .inforad {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: space-evenly; 
+
+        .informasjonselement {
+            &__header {
+                text-align: center;
+                color: @navGra60;
+            }
+
+            &__innhold {
+                text-align: center;
+                color: @navMorkGra;
+            }
+        }
+    }
+}

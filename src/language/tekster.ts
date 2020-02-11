@@ -140,6 +140,7 @@ export default {
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
     'barnadine.sidetittel': 'Barna dine',
+    'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
