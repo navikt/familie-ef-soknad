@@ -1,16 +1,16 @@
 import React, { FC, useEffect } from 'react';
 
-import { IMultiSpørsmål } from '../../../../../models/spørsmal';
-import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
-import useSøknadContext from '../../../../../context/SøknadContext';
-import { useIntl } from 'react-intl';
+import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
+import EndringISamvær from './EndringISamvær';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
-import { Textarea } from 'nav-frontend-skjema';
-import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
-import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
-import EndringISamvær from './EndringISamvær';
+import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
+import useSøknadContext from '../../../../../context/SøknadContext';
+import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
+import { IMultiSpørsmål } from '../../../../../models/spørsmal';
+import { Textarea } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 
 interface Props {
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
@@ -30,13 +30,17 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
     begrunnelseAnnet,
   } = sivilstatus;
 
-  const samlivsbruddForelderTekstid =
-    BegrunnelseSpørsmål.svaralternativer[0].svar_tekstid;
-  const samlivsbruddAndreTekstid =
-    BegrunnelseSpørsmål.svaralternativer[1].svar_tekstid;
-  const endringIsamværsordningTekstid =
-    BegrunnelseSpørsmål.svaralternativer[3].svar_tekstid;
-  const annetSvarTekstid = BegrunnelseSpørsmål.svaralternativer[4].svar_tekstid;
+  const hentTekstid = (svarNøkkel: string) => {
+    const tekstid = spørsmål.svaralternativer.find(
+      (svar) => svar.svar_tekstid.split('.')[2] === svarNøkkel
+    );
+    return tekstid?.svar_tekstid;
+  };
+
+  const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
+  const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
+  const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
+  const annetSvarTekstid = hentTekstid('annet');
 
   const samlivsbruddMedAndreForelder =
     begrunnelseForSøknad?.verdi ===
