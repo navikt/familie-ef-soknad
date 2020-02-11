@@ -11,7 +11,6 @@ interface Props {
   tekstid: string;
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
-  className?: string;
   feilmelding?: string;
 }
 
@@ -19,7 +18,6 @@ const PeriodeDatovelgere: FC<Props> = ({
   periode,
   settDato,
   tekstid,
-  className,
   feilmelding,
 }) => {
   return (
@@ -32,14 +30,14 @@ const PeriodeDatovelgere: FC<Props> = ({
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
           settDato={(e) => settDato(e, 'fra')}
-          valgtDato={periode.fra ? periode.fra.verdi : undefined}
+          valgtDato={periode.fra.verdi}
           tekstid={'periode.fra'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
 
         <Datovelger
           settDato={(e) => settDato(e, 'til')}
-          valgtDato={periode.til ? periode.til.verdi : undefined}
+          valgtDato={periode.til.verdi}
           tekstid={'periode.til'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
