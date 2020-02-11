@@ -34,6 +34,13 @@
       "alder": 9,
       "fødselsdato": "2010-02-28",
       "harSammeAdresse": true
+    },
+    {
+      "fnr": "01021878040",
+      "navn": "DONALD DUCK",
+      "alder": 2,
+      "fødselsdato": "2018-02-01",
+      "harSammeAdresse": false
     }
   ]
 }

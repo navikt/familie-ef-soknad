@@ -14,6 +14,8 @@ const norskeOrdMedÆØÅ = [
   'Søknadsdialog',
   'MultiSvarSpørsmål',
   'Søknadsbegrunnelse',
+  'LeggTilBarnUfødt',
+  'LeggTilBarnFødt',
   'SøkerSkalFlytteSammenEllerFåSamboer',
 ];
 

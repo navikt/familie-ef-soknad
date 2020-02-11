@@ -134,6 +134,18 @@ export default {
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -179,6 +191,18 @@ export default {
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -202,14 +226,12 @@ export default {
       'I, [0], swear to give as much as possible correct information.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-
     'sivilstatus.somgift':
       'as married you must have applied for separation in order to have access to overgangsstønad',
     'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
     'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
     'sivilstatus.separasjon.advarsel':
       'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
-
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
@@ -224,5 +246,17 @@ export default {
     'filopplaster.feilmelding.filtype': '[0] – Invalid file type.',
     'filopplaster.feilmelding.maks': '[0] is too large (max size [1]).',
     'filopplaster.feilmelding.generisk': 'Error uploading file.',
+    'barnekort.fødselsnummer': 'FØDSELSNUMMER',
+    'barnekort.alder': 'ALDER',
+    'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnadine.sidetittel': 'Barna dine',
+    'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+    'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+    'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
+    'barnadine.leggtil': 'Legg til barn',
+    'barnadine.leggtil.info':
+      'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
   },
 };
