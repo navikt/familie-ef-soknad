@@ -1,6 +1,6 @@
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
-import { IMedlemskap, ISivilstatus, IUtenlandsopphold } from './omDeg';
+import { IMedlemskap, ISivilstatus } from './omDeg';
 import { IBooleanFelt, IDatoFelt } from './søknadsfelter';
 import { IBosituasjon } from './bosituasjon';
 
