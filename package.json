@@ -40,6 +40,7 @@
     "http-proxy-middleware": "^0.20.0",
     "install": "^0.13.0",
     "lodash.throttle": "^4.1.1",
+    "moment": "^2.24.0",
     "mustache-express": "^1.3.0",
     "nav-frontend-alertstriper": "^3.0.7",
     "nav-frontend-alertstriper-style": "^2.0.6",
@@ -48,10 +49,10 @@
     "nav-frontend-core": "^4.0.11",
     "nav-frontend-ikoner-assets": "^1.0.3",
     "nav-frontend-js-utils": "^1.0.8",
-    "nav-frontend-knapper": "^1.0.38",
-    "nav-frontend-knapper-style": "^0.3.33",
-    "nav-frontend-lenker": "^1.0.31",
-    "nav-frontend-lenker-style": "^0.2.23",
+    "nav-frontend-knapper": "^1.0.39",
+    "nav-frontend-knapper-style": "^0.3.34",
+    "nav-frontend-lenker": "^1.0.33",
+    "nav-frontend-lenker-style": "^0.2.24",
     "nav-frontend-lesmerpanel": "0.0.32",
     "nav-frontend-lesmerpanel-style": "0.0.27",
     "nav-frontend-lukknapp": "^1.0.23",
@@ -67,8 +68,8 @@
     "nav-frontend-stegindikator": "0.0.41",
     "nav-frontend-stegindikator-style": "^1.0.25",
     "nav-frontend-tekstomrade": "^2.0.35",
-    "nav-frontend-typografi": "^2.0.16",
-    "nav-frontend-typografi-style": "^1.0.17",
+    "nav-frontend-typografi": "^2.0.17",
+    "nav-frontend-typografi-style": "^1.0.18",
     "nav-frontend-veileder": "^2.0.15",
     "nav-frontend-veileder-style": "^2.0.12",
     "nav-frontend-veilederpanel": "^0.1.15",
@@ -86,7 +87,8 @@
     "react-modal": "^3.11.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.3.0",
-    "styled-components": "^4.4.0"
+    "styled-components": "^4.4.0",
+    "uuid": "^3.4.0"
   },
   "eslintConfig": {
     "extends": "react-app"

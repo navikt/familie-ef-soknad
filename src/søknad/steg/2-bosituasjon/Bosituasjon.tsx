@@ -1,10 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { IRoute, Routes } from '../../../routing/Routes';
-import { FormattedHTMLMessage, injectIntl, IntlShape } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import { useLocation } from 'react-router';
 import { hentNesteRoute } from '../../../routing/utils';
-import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -15,12 +14,10 @@ import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { ESøkerDelerBolig } from '../../../models/bosituasjon';
+import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
 
-interface Props {
-  intl: IntlShape;
-}
-
-const Bosituasjon: FC<Props> = ({ intl }) => {
+const Bosituasjon: FC = () => {
+  const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const { bosituasjon } = søknad;
   const { søkerDelerBoligMedAndreVoksne } = bosituasjon;
@@ -30,21 +27,18 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
-    .svar_tekst
-    ? bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst
+    .verdi
+    ? bosituasjon.søkerDelerBoligMedAndreVoksne.verdi
     : '';
 
-  const settSøkerDelerBoligMedAndreVoksne = (svar: string) => {
+  const settBosituasjonFelt = (spørsmål: string, svar: string) => {
     settSøknad({
       ...søknad,
       bosituasjon: {
         ...bosituasjon,
         søkerDelerBoligMedAndreVoksne: {
-          nøkkel: delerSøkerBoligMedAndreVoksne.spørsmål_id,
-          spørsmål_tekst: intl.formatMessage({
-            id: delerSøkerBoligMedAndreVoksne.tekstid,
-          }),
-          svar_tekst: svar,
+          label: spørsmål,
+          verdi: svar,
         },
       },
     });
@@ -62,16 +56,15 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
   const harSøkerEkteskapsliknendeForhold =
     valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
-  const planerOmÅFlytteSammenEllerFåSamboer = hovedSpørsmål.svaralternativer.find(
-    (svar: IMultiSvar) => {
-      return valgtSvarNøkkel === svar.svar_tekstid.split('.')[2];
-    }
-  );
+  const planerOmÅFlytteSammenEllerFåSamboer =
+    valgtSvarNøkkel === ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+    valgtSvarNøkkel === ESøkerDelerBolig.delerBoligMedAndreVoksne ||
+    valgtSvarNøkkel ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   useEffect(() => {
     const erSpørsmålOgSvarTomme =
-      søkerDelerBoligMedAndreVoksne.spørsmål_tekst === '' &&
-      svarPåHovedspørsmål === '';
+      søkerDelerBoligMedAndreVoksne.label === '' && svarPåHovedspørsmål === '';
 
     const resetBosituasjon = (svar: string) => {
       settSøknad({
@@ -83,11 +76,11 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
       settSvarPåHovedspørsmål(svar);
     };
     const harValgtNyttSvarsalternativ =
-      søkerDelerBoligMedAndreVoksne.svar_tekst !== svarPåHovedspørsmål;
+      søkerDelerBoligMedAndreVoksne.verdi !== svarPåHovedspørsmål;
 
     !erSpørsmålOgSvarTomme &&
       harValgtNyttSvarsalternativ &&
-      resetBosituasjon(søkerDelerBoligMedAndreVoksne.svar_tekst);
+      resetBosituasjon(søkerDelerBoligMedAndreVoksne.verdi);
   }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
@@ -100,8 +93,8 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
         <MultiSvarSpørsmål
           key={hovedSpørsmål.spørsmål_id}
           spørsmål={hovedSpørsmål}
-          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.svar_tekst}
-          onChange={settSøkerDelerBoligMedAndreVoksne}
+          valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
+          onChange={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
@@ -132,4 +125,4 @@ const Bosituasjon: FC<Props> = ({ intl }) => {
     </Side>
   );
 };
-export default injectIntl(Bosituasjon);
+export default Bosituasjon;

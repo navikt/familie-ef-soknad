@@ -1,7 +1,7 @@
-import { ISpørsmålOgMultiSvar } from './søknad';
+import { ITekstFelt } from './søknadsfelter';
 
 export interface IArbeidssituasjon {
-  arbeidsituasjon: ISpørsmålOgMultiSvar;
+  arbeidsituasjon: ITekstFelt;
 }
 
 export enum EArbeidssituasjonSvar {
