@@ -147,6 +147,9 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -204,6 +207,9 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -259,5 +265,8 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
   },
 };

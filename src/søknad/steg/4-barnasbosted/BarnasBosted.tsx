@@ -9,7 +9,12 @@ import { hentForrigeRoute } from '../../../routing/utils';
 import { Input } from 'nav-frontend-skjema';
 import DatePicker from 'react-datepicker';
 import { Checkbox } from 'nav-frontend-skjema';
+import {
+  borINorge,
+  avtaleOmDeltBosted
+} from './ForeldreConfig';
 import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLocation } from 'react-router';
@@ -18,16 +23,18 @@ import { useIntl } from 'react-intl';
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
+  const [forelder, settForelder] = useState({});
 
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
 
+  console.log("FORELDER");
+  console.log(forelder);
+
   const barn = søknad.person.barn[0];
 
   const bosted = barn.harSammeAdresse ? intl.formatMessage({ id: 'barnekort.adresse.registrert' }) : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
-
-  console.log(barn);
 
   return (
     <>
@@ -81,12 +88,18 @@ const BarnasBosted: React.FC = () => {
                 </div>
             </div>
             </div>
-            <Input className="personnummer" onChange={(e) => console.log(e.target.value)} label="Personnummer. Kun hvis barnet har fått." />
+            <Input className="personnummer" onChange={(e) => settForelder({...forelder, "personnr": e.target.value})} label="Personnummer. Kun hvis barnet har fått." />
             </div>
-            </KomponentGruppe>
             <FeltGruppe>
             <Checkbox label={'Jeg kan ikke oppgi den andre forelderen'} />
             </FeltGruppe>
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <JaNeiSpørsmål spørsmål={borINorge} onChange={(e) => settForelder({...forelder, "borINorge": e})} />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <JaNeiSpørsmål spørsmål={avtaleOmDeltBosted} onChange={(e) => settForelder({...forelder, "avtaleOmDeltBosted": e})} />
+            </KomponentGruppe>
             </div>
             </div>
       </Side>
