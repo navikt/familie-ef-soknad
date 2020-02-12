@@ -78,7 +78,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
     });
   };
 
-  useEffect(() => {
+  const fjernIrrelevanteSøknadsfelter = () => {
     if (!samlivsbruddMedForelder && datoForSamlivsbrudd) {
       const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
@@ -97,17 +97,11 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
       const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
     }
-  }, [
-    datoForSamlivsbrudd,
-    datoEndretSamvær,
-    datoFlyttetFraHverandre,
-    endretSamvær,
-    samlivsbruddAndre,
-    samlivsbruddMedForelder,
-    settSøknad,
-    sivilstatus,
-    søknad,
-  ]);
+  };
+
+  useEffect(() => {
+    fjernIrrelevanteSøknadsfelter();
+  });
 
   return (
     <SeksjonGruppe>
