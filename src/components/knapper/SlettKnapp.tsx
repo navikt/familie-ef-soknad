@@ -14,6 +14,7 @@ const StyledSlettKnapp = styled.button`
   line-height: 1.375rem;
   font-weight: 400;
   color: #0067c5;
+
   cursor: pointer;
 
   &:hover {

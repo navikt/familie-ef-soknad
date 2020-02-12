@@ -11,7 +11,7 @@ export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
   svaralternativer: standardJaNeiSvar,
 };
 
-export const søkerGiftIUtlandet: IJaNeiSpørsmål = {
+export const søkerGiftIUtlandetSpørsmål: IJaNeiSpørsmål = {
   spørsmål_id: 'søkerGiftIUtlandet',
   tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
   lesmer: {
@@ -28,7 +28,7 @@ export const søkerGiftIUtlandet: IJaNeiSpørsmål = {
   ],
 };
 
-export const søkerSeparertEllerSKiltIUtlandet: IJaNeiSpørsmål = {
+export const søkerSeparertEllerSKiltIUtlandetSpørsmål: IJaNeiSpørsmål = {
   spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
   tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
   svaralternativer: [

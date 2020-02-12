@@ -17,6 +17,10 @@ const norskeOrdMedÆØÅ = [
   'LeggTilBarnUfødt',
   'LeggTilBarnFødt',
   'SøkerSkalFlytteSammenEllerFåSamboer',
+  'EndringISamvær',
+  'NårFlyttetDereFraHverandre',
+  'SøkerErGift',
+  'SøkerHarSøktSeparasjon',
 ];
 
 module.exports = {

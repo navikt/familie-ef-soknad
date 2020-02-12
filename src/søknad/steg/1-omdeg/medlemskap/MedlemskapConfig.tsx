@@ -16,9 +16,3 @@ export const bosattINorgeDeSisteTreÅr: IJaNeiSpørsmål = {
   },
   svaralternativer: standardJaNeiSvar,
 };
-
-export const registrertSomFlykting: IJaNeiSpørsmål = {
-  spørsmål_id: 'søkerErFlyktning',
-  tekstid: 'medlemskap.spm.flyktning',
-  svaralternativer: standardJaNeiSvar,
-};
