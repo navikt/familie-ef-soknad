@@ -37,23 +37,19 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
     return tekstid?.svar_tekstid;
   };
 
+  const erBegrunnelse = (id: string | undefined) => {
+    return begrunnelseForSøknad?.verdi === intl.formatMessage({ id: id });
+  };
+
   const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
   const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
   const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
   const annetSvarTekstid = hentTekstid('annet');
 
-  const samlivsbruddMedAndreForelder =
-    begrunnelseForSøknad?.verdi ===
-    intl.formatMessage({ id: samlivsbruddForelderTekstid });
-  const samlivsbruddAndre =
-    begrunnelseForSøknad?.verdi ===
-    intl.formatMessage({ id: samlivsbruddAndreTekstid });
-  const endretSamvær =
-    begrunnelseForSøknad?.verdi ===
-    intl.formatMessage({ id: endringIsamværsordningTekstid });
-  const annet =
-    begrunnelseForSøknad?.verdi ===
-    intl.formatMessage({ id: annetSvarTekstid });
+  const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
+  const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
+  const endretSamvær = erBegrunnelse(endringIsamværsordningTekstid);
+  const annet = erBegrunnelse(annetSvarTekstid);
 
   const settTekstfeltBegrunnelseAnnet = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -83,7 +79,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
   };
 
   useEffect(() => {
-    if (!samlivsbruddMedAndreForelder && datoForSamlivsbrudd) {
+    if (!samlivsbruddMedForelder && datoForSamlivsbrudd) {
       const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
     }
@@ -91,7 +87,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
     if (
       !samlivsbruddAndre &&
       datoFlyttetFraHverandre &&
-      !samlivsbruddMedAndreForelder
+      !samlivsbruddMedForelder
     ) {
       const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
       settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
@@ -107,7 +103,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
     datoFlyttetFraHverandre,
     endretSamvær,
     samlivsbruddAndre,
-    samlivsbruddMedAndreForelder,
+    samlivsbruddMedForelder,
     settSøknad,
     sivilstatus,
     søknad,
@@ -124,7 +120,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
         />
       </KomponentGruppe>
 
-      {samlivsbruddMedAndreForelder ? (
+      {samlivsbruddMedForelder ? (
         <>
           <DatoForSamlivsbrudd
             settDato={settDato}
@@ -133,7 +129,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
         </>
       ) : null}
 
-      {samlivsbruddMedAndreForelder || samlivsbruddAndre ? (
+      {samlivsbruddMedForelder || samlivsbruddAndre ? (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}
