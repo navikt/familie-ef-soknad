@@ -1,50 +1,31 @@
 import React, { SyntheticEvent, useState } from 'react';
-import {
-  IJaNeiSpørsmål as ISpørsmål,
-  IJaNeiSvar,
-  ISvar,
-} from '../../models/spørsmal';
+import { IJaNeiSpørsmål, IJaNeiSvar, ISvar } from '../../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
-import { returnerJaNeiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { injectIntl, IntlShape } from 'react-intl';
-import useSøknadContext from '../../context/SøknadContext';
+import { useIntl } from 'react-intl';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
-  spørsmål: ISpørsmål;
-  intl: IntlShape;
-  onChange?: (svar: boolean) => void;
-  valgtSvar?: boolean;
+  spørsmål: IJaNeiSpørsmål;
+  onChange: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
+  valgtSvar: boolean | undefined;
 }
-const JaNeiSpørsmål: React.FC<Props> = ({
-  spørsmål,
-  intl,
-  onChange,
-  valgtSvar,
-}) => {
-  const { søknad, settSøknad } = useSøknadContext();
+const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
+  const intl = useIntl();
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
-
+  const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: ISpørsmål,
+    spørsmål: IJaNeiSpørsmål,
     svar: IJaNeiSvar
   ): void => {
     const erSvarJa = svar.svar_tekstid === ISvar.JA;
 
-    if (onChange !== undefined && svar) {
-      onChange(erSvarJa);
-    } else {
-      settSøknad({
-        ...søknad,
-        [spørsmål.spørsmål_id]: erSvarJa,
-      });
-    }
+    onChange !== undefined && svar && onChange(spørsmål, erSvarJa);
 
     if (svar.alert_tekstid) {
       settAlert(true);
@@ -54,6 +35,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({
       settValgtSvarAlertTekst('');
     }
   };
+
   const erValgtSvarRadioKnapp = (
     svar: IJaNeiSvar,
     valgtSvar: boolean
@@ -68,7 +50,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({
 
   return (
     <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
-      <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
+      <Element>{spørsmålTekst}</Element>
       {spørsmål.lesmer ? (
         <Lesmerpanel
           apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}
@@ -80,9 +62,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: IJaNeiSvar) => {
           const svarISøknad =
-            valgtSvar !== undefined
-              ? erValgtSvarRadioKnapp(svar, valgtSvar)
-              : returnerJaNeiSvar(spørsmål, svar, søknad);
+            valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
           return (
             <div key={svar.svar_tekstid} className={'radioknapp__item'}>
               <RadioPanel
@@ -110,4 +90,4 @@ const JaNeiSpørsmål: React.FC<Props> = ({
   );
 };
 
-export default injectIntl(JaNeiSpørsmål);
+export default JaNeiSpørsmål;

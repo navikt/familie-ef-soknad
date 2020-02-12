@@ -11,7 +11,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknadContext();
-  const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad;
+  const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad.sivilstatus;
 
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
@@ -25,7 +25,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       <Personopplysninger />
 
       {søknad.søkerBorPåRegistrertAdresse &&
-      søknad.søkerBorPåRegistrertAdresse === true ? (
+      søknad.søkerBorPåRegistrertAdresse.verdi === true ? (
         <>
           <Sivilstatus />
 
