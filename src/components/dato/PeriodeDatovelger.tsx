@@ -4,44 +4,54 @@ import Datovelger, { DatoBegrensning } from './Datovelger';
 import { IPeriode } from '../../models/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
+import classNames from 'classnames';
+import Feilmelding from '../feil/Feilmelding';
 
 interface Props {
   tekstid: string;
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
-  className?: string;
+  feilmelding?: string;
 }
 
 const PeriodeDatovelgere: FC<Props> = ({
   periode,
   settDato,
   tekstid,
-  className,
+  feilmelding,
 }) => {
   return (
-    <div className={className}>
-      <FeltGruppe>
-        <Element className={''}>
+    <>
+      <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
+        <Element>
           <LocaleTekst tekst={tekstid} />
         </Element>
       </FeltGruppe>
-      <FeltGruppe>
+      <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
           settDato={(e) => settDato(e, 'fra')}
-          valgtDato={periode.fra ? periode.fra : undefined}
+          valgtDato={periode.fra.verdi}
           tekstid={'periode.fra'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
         />
-      </FeltGruppe>
-      <FeltGruppe>
+
         <Datovelger
           settDato={(e) => settDato(e, 'til')}
-          valgtDato={periode.til ? periode.til : undefined}
+          valgtDato={periode.til.verdi}
           tekstid={'periode.til'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
         />
-      </FeltGruppe>
-    </div>
+        {feilmelding !== '' ? (
+          <div
+            className={classNames('datovelger__feilmelding ', {
+              gjemFeilmelding: feilmelding === '',
+            })}
+          >
+            <Feilmelding tekstid={feilmelding ? feilmelding : ''} />
+          </div>
+        ) : null}
+      </div>
+    </>
   );
 };
 

@@ -14,7 +14,13 @@ const norskeOrdMedÆØÅ = [
   'Søknadsdialog',
   'MultiSvarSpørsmål',
   'Søknadsbegrunnelse',
+  'LeggTilBarnUfødt',
+  'LeggTilBarnFødt',
   'SøkerSkalFlytteSammenEllerFåSamboer',
+  'EndringISamvær',
+  'NårFlyttetDereFraHverandre',
+  'SøkerErGift',
+  'SøkerHarSøktSeparasjon',
 ];
 
 module.exports = {
