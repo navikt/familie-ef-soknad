@@ -8,7 +8,7 @@ export const Routes: IRoute[] = [
   { path: '/bosituasjon', label: 'Bosituasjonen din' },
   { path: '/barn', label: 'Barn' },
   {
-    path: '/arbeid-utdanning-og-andre-aktiviteter',
+    path: '/arbeidsituasjon',
     label: 'Arbeid, utdanning og andre aktiviteter',
   },
   { path: '/send-soknad', label: 'Send søknad' },

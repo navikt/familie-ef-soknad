@@ -2,8 +2,8 @@ import { IMultiSpørsmål } from '../../../models/spørsmal';
 import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
 
 export const hvaErDinArbeidssituasjon: IMultiSpørsmål = {
-  spørsmål_id: 'søkerDelerBoligMedAndreVoksne',
-  tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
+  spørsmål_id: 'arbeidssituasjon',
+  tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {
       nøkkel: EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr,
