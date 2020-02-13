@@ -11,10 +11,12 @@ import DatePicker from 'react-datepicker';
 import { Checkbox } from 'nav-frontend-skjema';
 import {
   borINorge,
-  avtaleOmDeltBosted
+  avtaleOmDeltBosted,
+  harAnnenForelderSamværMedBarn
 } from './ForeldreConfig';
 import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLocation } from 'react-router';
@@ -95,10 +97,17 @@ const BarnasBosted: React.FC = () => {
             </FeltGruppe>
             </KomponentGruppe>
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={borINorge} onChange={(e) => settForelder({...forelder, "borINorge": e})} />
+              <JaNeiSpørsmål spørsmål={borINorge} onChange={(e) => settForelder({...forelder, [borINorge.spørsmål_id]: e})} />
             </KomponentGruppe>
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={avtaleOmDeltBosted} onChange={(e) => settForelder({...forelder, "avtaleOmDeltBosted": e})} />
+              <JaNeiSpørsmål spørsmål={avtaleOmDeltBosted} onChange={(e) => settForelder({...forelder, [avtaleOmDeltBosted.spørsmål_id]: e})} />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <MultiSvarSpørsmål
+                key={harAnnenForelderSamværMedBarn.spørsmål_id}
+                spørsmål={harAnnenForelderSamværMedBarn}
+                onChange={(e) => settForelder({...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: e})}
+              />
             </KomponentGruppe>
             </div>
             </div>

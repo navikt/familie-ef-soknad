@@ -150,6 +150,13 @@ export default {
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.nei': 'Nei',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -210,6 +217,13 @@ export default {
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.nei': 'Nei',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -268,5 +282,12 @@ export default {
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.nei': 'Nei',
   },
 };
