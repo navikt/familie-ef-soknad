@@ -1,7 +1,7 @@
-import { IJaNeiSpørsmål, standardJaNeiSvar } from '../../../../models/spørsmal';
+import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
 
-export const borDuPåDenneAdressen: IJaNeiSpørsmål = {
+export const borDuPåDenneAdressen: ISpørsmål = {
   spørsmål_id: 'søkerBorPåRegistrertAdresse',
   tekstid: 'personopplysninger.spm.riktigAdresse',
-  svaralternativer: standardJaNeiSvar,
+  svaralternativer: JaNeiSvar,
 };

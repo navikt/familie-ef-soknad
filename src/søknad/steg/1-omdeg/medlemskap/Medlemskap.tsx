@@ -1,5 +1,5 @@
 import React from 'react';
-import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmal';
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
@@ -20,10 +20,7 @@ const Medlemskap: React.FC = () => {
     søkerBosattINorgeSisteTreÅr,
   } = søknad.medlemskap;
 
-  const settMedlemskapBooleanFelt = (
-    spørsmål: IJaNeiSpørsmål,
-    svar: boolean
-  ) => {
+  const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, svar: boolean) => {
     settSøknad({
       ...søknad,
       medlemskap: {
@@ -36,7 +33,7 @@ const Medlemskap: React.FC = () => {
     });
   };
 
-  const hentValgtSvar = (spørsmål: IJaNeiSpørsmål, medlemskap: IMedlemskap) => {
+  const hentValgtSvar = (spørsmål: ISpørsmål, medlemskap: IMedlemskap) => {
     for (const [key, value] of Object.entries(medlemskap)) {
       if (key === spørsmål.spørsmål_id && value !== undefined) {
         return value.verdi;

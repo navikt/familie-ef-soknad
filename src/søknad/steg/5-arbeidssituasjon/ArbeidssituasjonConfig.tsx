@@ -1,7 +1,7 @@
-import { IMultiSpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmal';
 import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
 
-export const hvaErDinArbeidssituasjon: IMultiSpørsmål = {
+export const hvaErDinArbeidssituasjon: ISpørsmål = {
   spørsmål_id: 'arbeidssituasjon',
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [

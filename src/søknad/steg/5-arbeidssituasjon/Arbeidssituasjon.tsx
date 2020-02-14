@@ -8,10 +8,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import { useIntl } from 'react-intl';
-import { IMultiSvar } from '../../../models/spørsmal';
-import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import LocaleTekst from '../../../language/LocaleTekst';
+import { ISvar } from '../../../models/spørsmal';
 import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 
 const Arbeidssituasjon: React.FC = () => {
@@ -33,11 +30,13 @@ const Arbeidssituasjon: React.FC = () => {
     });
   };
   const valgtÅrsak:
-    | IMultiSvar
+    | ISvar
     | undefined = hvaErDinArbeidssituasjon.svaralternativer.find(
-    (svar) =>
+    (svar: any) =>
       intl.formatMessage({ id: svar.svar_tekstid }) === arbeidLagretISøknad
   );
+
+  console.log(valgtÅrsak);
 
   // TODO: Må lage en ny spørsmålskomponent med multiple choice check boxes og ny datafelttype for å ta inn lister
 

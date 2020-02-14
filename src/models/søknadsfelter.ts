@@ -11,3 +11,8 @@ export interface IDatoFelt {
   label: string;
   verdi: Date;
 }
+
+export interface ITekstListeFelt {
+  label: string;
+  verdi: string[];
+}
