@@ -10,7 +10,7 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import useSøknadContext from '../../../context/SøknadContext';
-import { IMultiSpørsmål, IMultiSvar } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import OmSamboerenDin from './OmSamboerenDin';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { ESøkerDelerBolig } from '../../../models/bosituasjon';
@@ -23,7 +23,7 @@ const Bosituasjon: FC = () => {
   const { søkerDelerBoligMedAndreVoksne } = bosituasjon;
   const [svarPåHovedspørsmål, settSvarPåHovedspørsmål] = useState('');
 
-  const hovedSpørsmål: IMultiSpørsmål = delerSøkerBoligMedAndreVoksne;
+  const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
@@ -46,7 +46,7 @@ const Bosituasjon: FC = () => {
   };
 
   const valgtSvar:
-    | IMultiSvar
+    | ISvar
     | undefined = hovedSpørsmål.svaralternativer.find((svar) =>
     erValgtSvarLiktSomSvar(valgtBosituasjon, svar.svar_tekstid, intl)
   );

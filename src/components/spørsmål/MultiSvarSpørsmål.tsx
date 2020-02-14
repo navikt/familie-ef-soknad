@@ -1,11 +1,11 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { IMultiSpørsmål, IMultiSvar } from '../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 
 interface Props {
-  spørsmål: IMultiSpørsmål;
+  spørsmål: ISpørsmål;
   onChange: (spørsmål: string, svar: string) => void;
   valgtSvar: string | undefined;
 }
@@ -14,8 +14,8 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
   const intl = useIntl();
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: IMultiSpørsmål,
-    svar: IMultiSvar
+    spørsmål: ISpørsmål,
+    svar: ISvar
   ): void => {
     svar !== undefined &&
       onChange !== undefined &&
@@ -29,7 +29,7 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
     <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
-        {spørsmål.svaralternativer.map((svar: IMultiSvar) => {
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad =
             intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
           return (
