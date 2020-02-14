@@ -20,15 +20,15 @@ const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
 
   const { søknad, settSøknad } = useSøknadContext();
-  const { arbeidsituasjon } = søknad.arbeidssituasjon;
-  const arbeidLagretISøknad: string = arbeidsituasjon.verdi;
+  const { situasjon } = søknad.arbeidssituasjon;
+  const arbeidLagretISøknad: string = situasjon.verdi;
 
   const settArbeidssituasjon = (spørsmål: string, svar: string) => {
     settSøknad({
       ...søknad,
       arbeidssituasjon: {
         ...søknad.arbeidssituasjon,
-        arbeidsituasjon: { label: spørsmål, verdi: svar },
+        situasjon: { label: spørsmål, verdi: svar },
       },
     });
   };
@@ -51,7 +51,7 @@ const Arbeidssituasjon: React.FC = () => {
         <MultiSvarSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
           onChange={settArbeidssituasjon}
-          valgtSvar={arbeidsituasjon?.verdi}
+          valgtSvar={situasjon?.verdi}
         />
       </KomponentGruppe>
       <HjemmeMedBarnUnderEttÅr erValgt={true} />
