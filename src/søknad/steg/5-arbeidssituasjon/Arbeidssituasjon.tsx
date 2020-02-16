@@ -5,11 +5,11 @@ import { useLocation } from 'react-router-dom';
 import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import { useIntl } from 'react-intl';
 import { ISvar } from '../../../models/spørsmal';
 import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
+import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 
 const Arbeidssituasjon: React.FC = () => {
   const location = useLocation();
@@ -18,9 +18,8 @@ const Arbeidssituasjon: React.FC = () => {
 
   const { søknad, settSøknad } = useSøknadContext();
   const { situasjon } = søknad.arbeidssituasjon;
-  const arbeidLagretISøknad: string = situasjon.verdi;
 
-  const settArbeidssituasjon = (spørsmål: string, svar: string) => {
+  const settArbeidssituasjon = (spørsmål: string, svar: string[]) => {
     settSøknad({
       ...søknad,
       arbeidssituasjon: {
@@ -29,14 +28,6 @@ const Arbeidssituasjon: React.FC = () => {
       },
     });
   };
-  const valgtÅrsak:
-    | ISvar
-    | undefined = hvaErDinArbeidssituasjon.svaralternativer.find(
-    (svar: any) =>
-      intl.formatMessage({ id: svar.svar_tekstid }) === arbeidLagretISøknad
-  );
-
-  console.log(valgtÅrsak);
 
   // TODO: Må lage en ny spørsmålskomponent med multiple choice check boxes og ny datafelttype for å ta inn lister
 
@@ -47,10 +38,10 @@ const Arbeidssituasjon: React.FC = () => {
       tilbakePath={Routes[2].path}
     >
       <KomponentGruppe>
-        <MultiSvarSpørsmål
+        <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
           onChange={settArbeidssituasjon}
-          valgtSvar={situasjon?.verdi}
+          valgteSvar={situasjon?.verdi}
         />
       </KomponentGruppe>
       <HjemmeMedBarnUnderEttÅr erValgt={true} />

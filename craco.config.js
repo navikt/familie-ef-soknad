@@ -13,6 +13,7 @@ const norskeOrdMedÆØÅ = [
   'Søknad',
   'Søknadsdialog',
   'MultiSvarSpørsmål',
+  'CheckboxSpørsmål',
   'Søknadsbegrunnelse',
   'LeggTilBarnUfødt',
   'LeggTilBarnFødt',
