@@ -7,7 +7,6 @@ import Side from '../../../components/side/Side';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import { useIntl } from 'react-intl';
-import { ISvar } from '../../../models/spørsmal';
 import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 
@@ -40,7 +39,7 @@ const Arbeidssituasjon: React.FC = () => {
       <KomponentGruppe>
         <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
-          onChange={settArbeidssituasjon}
+          settValgteSvar={settArbeidssituasjon}
           valgteSvar={situasjon?.verdi}
         />
       </KomponentGruppe>
