@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LocaleTekst from '../../language/LocaleTekst';
-import { ReactComponent as Slett } from '../../assets/Slett.svg';
+import { ReactComponent as Slett } from '../../assets/slett.svg';
 
 const StyledSlettKnapp = styled.button`
   margin: 0;
