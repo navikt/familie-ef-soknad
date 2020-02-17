@@ -33,18 +33,16 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
           const svarISøknad =
             intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
           return (
-            <div key={svar.svar_tekstid} className={'radioknapp__item'}>
-              <RadioPanel
-                key={svar.svar_tekstid}
-                name={spørsmål.spørsmål_id}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => onClickHandle(e, spørsmål, svar)}
-              />
-            </div>
+            <RadioPanel
+              key={svar.svar_tekstid}
+              name={spørsmål.spørsmål_id}
+              label={intl.formatMessage({
+                id: svar.svar_tekstid,
+              })}
+              value={svar.svar_tekstid}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={(e) => onClickHandle(e, spørsmål, svar)}
+            />
           );
         })}
       </div>

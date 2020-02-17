@@ -46,7 +46,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <div key={spørsmål.spørsmål_id} className="spørsmålgruppe">
+    <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
       <Element>{spørsmålTekst}</Element>
       {spørsmål.lesmer ? (
         <Lesmerpanel
@@ -61,18 +61,16 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
           const svarISøknad =
             valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
           return (
-            <div key={svar.svar_tekstid} className={'radioknapp__item'}>
-              <RadioPanel
-                key={svar.svar_tekstid}
-                name={spørsmål.spørsmål_id}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => onClickHandle(e, spørsmål, svar)}
-              />
-            </div>
+            <RadioPanel
+              key={svar.svar_tekstid}
+              name={spørsmål.spørsmål_id}
+              label={intl.formatMessage({
+                id: svar.svar_tekstid,
+              })}
+              value={svar.svar_tekstid}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={(e) => onClickHandle(e, spørsmål, svar)}
+            />
           );
         })}
       </div>
