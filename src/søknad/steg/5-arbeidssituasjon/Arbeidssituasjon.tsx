@@ -11,6 +11,7 @@ import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
+import OmArbeidsforholdetDitt from './OmArbeidsforholdetDitt';
 
 const Arbeidssituasjon: React.FC = () => {
   const location = useLocation();
@@ -60,6 +61,7 @@ const Arbeidssituasjon: React.FC = () => {
       </KomponentGruppe>
       <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
       <EtablererEgenVirksomhet erHuketAv={huketAvEtablererEgenVirksomhet} />
+      <OmArbeidsforholdetDitt />
     </Side>
   );
 };

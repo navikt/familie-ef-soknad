@@ -7,10 +7,17 @@ export default {
       'Jeg er hjemme med barn under 1 år',
     'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
       '[info om aktivitetsplikt fra Ett år]',
-    'arbeidssituasjon.svar.erIArbeid': 'Jeg er i arbeid',
+    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+    'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
+    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
+    'arbeidsforhold.label.navn': 'Navn på arbeidsgiver',
+    'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'arbeidsforhold.label.fastEllerMidlertidig':
+      'Er stillingen fast eller midlertidig?',
+    'arbeidsforhold.slett.arbeidsgiver': 'Fjern arbeidsgiver',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
-    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':

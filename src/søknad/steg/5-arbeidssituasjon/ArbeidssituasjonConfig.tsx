@@ -11,8 +11,8 @@ export const hvaErDinArbeidssituasjon: ISpørsmål = {
       alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erIArbeid,
-      svar_tekstid: 'arbeidssituasjon.svar.erIArbeid',
+      nøkkel: EArbeidssituasjonSvar.erArbeidstaker,
+      svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
       alert_tekstid: '',
     },
     {

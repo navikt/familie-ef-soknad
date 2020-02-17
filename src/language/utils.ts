@@ -1,9 +1,9 @@
-export const hentPeriodeTittelMedTall = (
-  perioder: any[],
+export const hentTittelMedNr = (
+  nummer: any[],
   oppholdsnr: number,
   tittel: string
 ) => {
-  const tall = perioder.length >= 2 ? oppholdsnr + 1 : '';
+  const tall = nummer.length >= 2 ? oppholdsnr + 1 : '';
 
   return tittel + ' ' + tall;
 };
