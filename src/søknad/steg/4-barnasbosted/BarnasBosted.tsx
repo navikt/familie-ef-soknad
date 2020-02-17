@@ -14,7 +14,8 @@ import {
   avtaleOmDeltBosted,
   harAnnenForelderSamværMedBarn,
   harDereSkriftligSamværsavtale,
-  boddSammenFør
+  boddSammenFør,
+  borISammeHus
 } from './ForeldreConfig';
 import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
@@ -116,6 +117,13 @@ const BarnasBosted: React.FC = () => {
                 key={harDereSkriftligSamværsavtale.spørsmål_id}
                 spørsmål={harDereSkriftligSamværsavtale}
                 onChange={(e) => settForelder({...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: e})}
+              />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <MultiSvarSpørsmål
+                key={borISammeHus.spørsmål_id}
+                spørsmål={borISammeHus}
+                onChange={(e) => settForelder({...forelder, [borISammeHus.spørsmål_id]: e})}
               />
             </KomponentGruppe>
             <KomponentGruppe>

@@ -2,6 +2,7 @@ import React, { FC, SyntheticEvent } from 'react';
 import { IMultiSpørsmål as ISpørsmål, IMultiSvar } from '../../models/spørsmal';
 import { injectIntl, IntlShape } from 'react-intl';
 import useSøknadContext from '../../context/SøknadContext';
+import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { Element } from 'nav-frontend-typografi';
 import { returnerMultiSvar } from '../../utils/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -41,6 +42,14 @@ const MultiSvarSpørsmål: FC<Props> = ({
   return (
     <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
+      {spørsmål.lesmer ? (
+        <Lesmerpanel
+          apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}
+          className={'hjelpetekst'}
+        >
+          {intl.formatMessage({ id: spørsmål.lesmer.innholdTekstid })}
+        </Lesmerpanel>
+      ) : null}
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: IMultiSvar) => {
           const svarISøknad = valgtSvar

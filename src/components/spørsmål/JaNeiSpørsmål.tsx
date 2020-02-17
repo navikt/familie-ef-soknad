@@ -20,6 +20,7 @@ interface Props {
   onChange?: (svar: boolean) => void;
   valgtSvar?: boolean;
 }
+
 const JaNeiSpørsmål: React.FC<Props> = ({
   spørsmål,
   intl,

@@ -35,5 +35,6 @@ export interface IMultiSvar {
 export interface IMultiSpørsmål {
   spørsmål_id: string;
   tekstid: string;
+  lesmer?: LesMer
   svaralternativer: IMultiSvar[];
 }

@@ -149,12 +149,13 @@ export default {
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
@@ -164,6 +165,13 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -223,12 +231,13 @@ export default {
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
@@ -238,6 +247,13 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -295,12 +311,13 @@ export default {
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
@@ -310,5 +327,12 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
   },
 };

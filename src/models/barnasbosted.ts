@@ -16,3 +16,9 @@ export enum EHarSkriftligSamværsavtale {
   jaIkkeKonkreteTidspunkter = 'jaIkkeKonkreteTidspunkter',
   nei = 'nei',
 }
+
+export enum EBorISammeHus {
+  ja = 'ja',
+  nei = 'nei',
+  vetikke = 'vetikke',
+}
