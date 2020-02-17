@@ -12,7 +12,9 @@ import { Checkbox } from 'nav-frontend-skjema';
 import {
   borINorge,
   avtaleOmDeltBosted,
-  harAnnenForelderSamværMedBarn
+  harAnnenForelderSamværMedBarn,
+  harDereSkriftligSamværsavtale,
+  boddSammenFør
 } from './ForeldreConfig';
 import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
@@ -72,7 +74,7 @@ const BarnasBosted: React.FC = () => {
             <Element>{barn.navn}s andre forelder</Element>
             </FeltGruppe>
           <FeltGruppe>
-            <Input className="foreldre-navn-input" onChange={(e) => console.log(e.target.value)} label="Navn" />
+            <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} label="Navn" />
           </FeltGruppe>
           </KomponentGruppe>
           <KomponentGruppe>
@@ -108,6 +110,16 @@ const BarnasBosted: React.FC = () => {
                 spørsmål={harAnnenForelderSamværMedBarn}
                 onChange={(e) => settForelder({...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: e})}
               />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <MultiSvarSpørsmål
+                key={harDereSkriftligSamværsavtale.spørsmål_id}
+                spørsmål={harDereSkriftligSamværsavtale}
+                onChange={(e) => settForelder({...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: e})}
+              />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <JaNeiSpørsmål spørsmål={boddSammenFør} onChange={(e) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: e})} />
             </KomponentGruppe>
             </div>
             </div>

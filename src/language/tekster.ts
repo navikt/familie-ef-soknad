@@ -151,12 +151,19 @@ export default {
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
-    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
-    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
-      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -218,12 +225,19 @@ export default {
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
-    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
-    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
-      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -283,11 +297,18 @@ export default {
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted?',
-    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
       'Ja, men ikke mer enn vanlig samværsrett',
-    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
-      'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
   },
 };

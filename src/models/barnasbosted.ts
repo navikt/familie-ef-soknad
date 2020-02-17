@@ -6,7 +6,13 @@ export interface IBosituasjon {
 }
 
 export enum EHarSamværMedBarn {
-  jaKonkreteTidspunkt = 'jaKonkreteTidspunkt',
-  jaIkkeKonkreteTidspunkt = 'jaIkkeKonkreteTidspunkt',
+  jaIkkeMerEnnVanlig = 'jaIkkeMerEnnVanlig',
+  jaMerEnnVanlig = 'jaMerEnnVanlig',
+  nei = 'nei',
+}
+
+export enum EHarSkriftligSamværsavtale {
+  jaKonkreteTidspunkter = 'jaKonkreteTidspunkter',
+  jaIkkeKonkreteTidspunkter = 'jaIkkeKonkreteTidspunkter',
   nei = 'nei',
 }
