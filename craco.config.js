@@ -23,6 +23,7 @@ const norskeOrdMedÆØÅ = [
   'SøkerErGift',
   'SøkerHarSøktSeparasjon',
   'HjemmeMedBarnUnderEttÅr',
+  'StyledCheckboxSpørsmål',
 ];
 
 module.exports = {

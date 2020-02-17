@@ -2,14 +2,17 @@ import React, { SyntheticEvent } from 'react';
 import { ISpørsmål, ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
-import { RadioPanel, CheckboksPanelGruppe } from 'nav-frontend-skjema';
+import { CheckboksPanel } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
+import styled from 'styled-components';
 
-interface CheckboxSvar {
-  label: string;
-  value: string;
-  id: string;
-}
+const StyledCheckboxSpørsmål = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: min-content;
+  grid-gap: 1rem;
+  padding-top: 1rem;
+`;
 interface Props {
   spørsmål: ISpørsmål;
   settValgteSvar: (spørsmål: string, svar: string[]) => void;
@@ -24,34 +27,43 @@ const CheckboxSpørsmål: React.FC<Props> = ({
 
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: ISpørsmål,
-    svar: ISvar[]
+    checked: boolean,
+    svarTekst: string
   ): void => {
-    const alleSvar: string[] = svar.map((s) =>
-      intl.formatMessage({ id: s.svar_tekstid })
-    );
+    const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
 
-    svar !== undefined &&
-      settValgteSvar !== undefined &&
-      settValgteSvar(intl.formatMessage({ id: spørsmål.tekstid }), alleSvar);
+    if (checked) {
+      const avhukedeSvar: string[] = valgteSvar.filter((valgtSvar) => {
+        return valgtSvar !== svarTekst;
+      });
+      settValgteSvar(spørsmålTekst, avhukedeSvar);
+    } else {
+      const avhukedeSvar = valgteSvar;
+      avhukedeSvar.push(svarTekst);
+      settValgteSvar(spørsmålTekst, avhukedeSvar);
+    }
   };
 
-  const checkboxSvar = spørsmål.svaralternativer.map((svar) => {
-    return {
-      label: svar.svar_tekstid,
-      checked: true,
-      id: svar.svar_tekstid.split('.')[2],
-    };
-  });
-  console.log(checkboxSvar);
-
   return (
-    <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
+    <StyledCheckboxSpørsmål key={spørsmål.spørsmål_id}>
       <Element>
-        {' '}
-        <LocaleTekst tekst={spørsmål.tekstid} />{' '}
+        <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
-    </div>
+      {spørsmål.svaralternativer.map((svar: ISvar) => {
+        const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
+        const huketAvISøknad = valgteSvar.some((valgtSvar) => {
+          return valgtSvar === svarTekst;
+        });
+
+        return (
+          <CheckboksPanel
+            label={svarTekst}
+            checked={huketAvISøknad}
+            onChange={(e) => onClickHandle(e, huketAvISøknad, svarTekst)}
+          />
+        );
+      })}
+    </StyledCheckboxSpørsmål>
   );
 };
 
