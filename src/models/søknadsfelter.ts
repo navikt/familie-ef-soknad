@@ -7,6 +7,11 @@ export interface IBooleanFelt {
   verdi: boolean;
 }
 
+export interface ITallFelt {
+  label: string;
+  verdi: number;
+}
+
 export interface IDatoFelt {
   label: string;
   verdi: Date;
