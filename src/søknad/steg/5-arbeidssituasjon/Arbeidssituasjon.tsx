@@ -9,6 +9,8 @@ import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import { useIntl } from 'react-intl';
 import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
+import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
+import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 
 const Arbeidssituasjon: React.FC = () => {
   const location = useLocation();
@@ -28,7 +30,20 @@ const Arbeidssituasjon: React.FC = () => {
     });
   };
 
-  // TODO: Må lage en ny spørsmålskomponent med multiple choice check boxes og ny datafelttype for å ta inn lister
+  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjonSvar): boolean => {
+    const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
+    const svarTekst: string = intl.formatMessage({ id: tekstid });
+    return situasjon.verdi.some((svarHuketAvISøknad: string) => {
+      return svarHuketAvISøknad === svarTekst;
+    });
+  };
+
+  const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
+    EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr
+  );
+  const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
+    EArbeidssituasjonSvar.etablererEgenVirksomhet
+  );
 
   return (
     <Side
@@ -43,7 +58,8 @@ const Arbeidssituasjon: React.FC = () => {
           valgteSvar={situasjon?.verdi}
         />
       </KomponentGruppe>
-      <HjemmeMedBarnUnderEttÅr erValgt={true} />
+      <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
+      <EtablererEgenVirksomhet erHuketAv={huketAvEtablererEgenVirksomhet} />
     </Side>
   );
 };

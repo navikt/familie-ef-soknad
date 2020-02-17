@@ -1,7 +1,8 @@
-import { ITekstListeFelt } from './søknadsfelter';
+import { ITekstListeFelt, ITekstFelt } from './søknadsfelter';
 
 export interface IArbeidssituasjon {
   situasjon: ITekstListeFelt;
+  etablererEgenVirksomhet?: ITekstFelt;
 }
 
 export enum EArbeidssituasjonSvar {

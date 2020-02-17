@@ -5,18 +5,23 @@ export default {
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
+    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
+      '[info om aktivitetsplikt fra Ett år]',
     'arbeidssituasjon.svar.erIArbeid': 'Jeg er i arbeid',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
     'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
+    'arbeidssituasjon.tittel.etablererEgenVirksomhet':
+      'Om virksomheten du etablerer',
+    'arbeidssituasjon.alert.etablererEgenVirksomhet':
+      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
     'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
     'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
     'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
       'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
-    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-      '[info om aktivitetsplikt fra Ett år]',
+
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
     'bosituasjon.svar.borAleneMedBarnEllerGravid':
