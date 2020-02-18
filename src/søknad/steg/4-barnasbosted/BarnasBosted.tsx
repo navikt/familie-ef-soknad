@@ -26,7 +26,7 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLocation } from 'react-router';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
@@ -149,9 +149,9 @@ const BarnasBosted: React.FC = () => {
                         />
                         {visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
                           <FeltGruppe>
-                          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+                          <AlertStripeInfo className={'fjernBakgrunn'}>
                             <LocaleTekst tekst={'barnasbosted.alert.leggeVedSamværsavtalen'} />
-                          </AlertStripeAdvarsel>
+                          </AlertStripeInfo>
                           </FeltGruppe>
                       ) : null}
                       </KomponentGruppe> : null}
