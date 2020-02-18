@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
 import { Routes, IRoute } from '../../../routing/Routes';
 import { hentNesteRoute } from '../../../routing/utils';
@@ -9,10 +9,10 @@ import { hentForrigeRoute } from '../../../routing/utils';
 import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
-import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
+import Hjelpetekst from '../../../components/Hjelpetekst';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -33,14 +33,10 @@ const BarnaDine: React.FC = () => {
         tilbakePath={forrigeRoute.path}
       >
         <div className="barna-dine">
-          <Lesmerpanel
-            className="hjelpetekst"
-            apneTekst={intl.formatMessage({ id: 'barnadine.hjelpetekst.åpne' })}
-          >
-            <Normaltekst>
-              {intl.formatMessage({ id: 'barnadine.hjelpetekst.innhold' })}
-            </Normaltekst>
-          </Lesmerpanel>
+          <Hjelpetekst
+            åpneTekstid={'barnadine.hjelpetekst.åpne'}
+            innholdTekstid={'barnadine.hjelpetekst.innhold'}
+          />
           <AlertStripeInfo className="informasjonstekst">
             {intl.formatMessage({ id: 'barnadine.infohentet' })}
           </AlertStripeInfo>
