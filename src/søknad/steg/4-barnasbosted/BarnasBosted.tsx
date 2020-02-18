@@ -25,6 +25,8 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLocation } from 'react-router';
 import { useIntl } from 'react-intl';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
@@ -45,8 +47,13 @@ const BarnasBosted: React.FC = () => {
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
 
-  console.log("FORELDER");
-  console.log(forelder);
+  const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
+    return valgtSvar == intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
+  }
+
+  const visSkriftligSamværsavtaleSpørsmål = (svarAndreForelderenSamvær: string) => {
+    return svarAndreForelderenSamvær !== intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' });
+  }
 
   const barn = søknad.person.barn[0];
 
@@ -132,14 +139,22 @@ const BarnasBosted: React.FC = () => {
                 onChange={(e) => settForelder({...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: e})}
               />
             </KomponentGruppe>
-            <KomponentGruppe>
-              <MultiSvarSpørsmål
-                key={harDereSkriftligSamværsavtale.spørsmål_id}
-                spørsmål={harDereSkriftligSamværsavtale}
-                valgtSvar={forelder.harDereSkriftligSamværsavtale}
-                onChange={(e) => settForelder({...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: e})}
-              />
-            </KomponentGruppe>
+            {visSkriftligSamværsavtaleSpørsmål(forelder.harAnnenForelderSamværMedBarn) ? 
+                        <KomponentGruppe>
+                        <MultiSvarSpørsmål
+                          key={harDereSkriftligSamværsavtale.spørsmål_id}
+                          spørsmål={harDereSkriftligSamværsavtale}
+                          valgtSvar={forelder.harDereSkriftligSamværsavtale}
+                          onChange={(e) => settForelder({...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: e})}
+                        />
+                        {visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
+                          <FeltGruppe>
+                          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+                            <LocaleTekst tekst={'barnasbosted.alert.leggeVedSamværsavtalen'} />
+                          </AlertStripeAdvarsel>
+                          </FeltGruppe>
+                      ) : null}
+                      </KomponentGruppe> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
                 key={borISammeHus.spørsmål_id}

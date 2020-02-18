@@ -43,7 +43,7 @@ export const harAnnenForelderSamværMedBarn: IMultiSpørsmål = {
       },
       {
         nøkkel: EHarSamværMedBarn.nei,
-        svar_tekstid: 'barnasbosted.spm.nei'
+        svar_tekstid: 'barnasbosted.spm.andreForelderenSamværNei'
       }
     ],
   };

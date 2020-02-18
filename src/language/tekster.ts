@@ -157,6 +157,7 @@ export default {
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
     'barnasbosted.spm.jaKonkreteTidspunkt':
@@ -181,6 +182,8 @@ export default {
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -248,6 +251,7 @@ export default {
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
     'barnasbosted.spm.jaKonkreteTidspunkt':
@@ -270,6 +274,8 @@ export default {
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -335,6 +341,7 @@ export default {
     'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
     'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
     'barnasbosted.spm.jaKonkreteTidspunkt':
@@ -357,5 +364,7 @@ export default {
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
   },
 };
