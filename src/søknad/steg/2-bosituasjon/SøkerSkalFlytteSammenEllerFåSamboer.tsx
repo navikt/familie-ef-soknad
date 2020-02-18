@@ -9,7 +9,7 @@ import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
 import useSøknadContext from '../../../context/SøknadContext';
 import { injectIntl, IntlShape } from 'react-intl';
-import { IJaNeiSpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmal';
 
 const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
   intl,
@@ -23,10 +23,10 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     samboerDetaljer,
   } = bosituasjon;
 
-  const spørsmål: IJaNeiSpørsmål = skalSøkerGifteSegMedSamboer;
+  const spørsmål: ISpørsmål = skalSøkerGifteSegMedSamboer;
 
   const settSøkerSkalGifteSegEllerBliSamboer = (
-    spørsmål: IJaNeiSpørsmål,
+    spørsmål: ISpørsmål,
     svar: boolean
   ) => {
     settSøknad({

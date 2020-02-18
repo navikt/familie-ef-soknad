@@ -13,7 +13,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmal';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -26,10 +26,7 @@ const Personopplysninger: React.FC = () => {
     undefined
   );
 
-  const settPersonopplysningerFelt = (
-    spørsmål: IJaNeiSpørsmål,
-    svar: boolean
-  ) => {
+  const settPersonopplysningerFelt = (spørsmål: ISpørsmål, svar: boolean) => {
     settSøknad({
       ...søknad,
       søkerBorPåRegistrertAdresse: { label: spørsmål.spørsmål_id, verdi: svar },
