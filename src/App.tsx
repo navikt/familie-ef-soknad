@@ -13,7 +13,6 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
-import Filopplaster from './components/filopplaster/Filopplaster';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});

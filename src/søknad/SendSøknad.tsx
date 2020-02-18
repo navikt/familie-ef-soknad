@@ -7,7 +7,6 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Routes, IRoute } from '../routing/Routes';
 import { hentForrigeRoute } from '../routing/utils';
 import { useLocation } from 'react-router';
-import TestsideInformasjon from "../components/TestsideInformasjon";
 import Filopplaster from "../components/filopplaster/Filopplaster";
 
 interface IState {
