@@ -3,6 +3,19 @@ import { ISpørsmål, ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
+import styled from 'styled-components';
+
+const StyledMultisvarSpørsmål = styled.div`
+  .radioknapp {
+    &__multiSvar {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: min-content;
+      grid-gap: 1rem;
+      padding-top: 1rem;
+    }
+  }
+`;
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -26,7 +39,7 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
   };
 
   return (
-    <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
+    <StyledMultisvarSpørsmål key={spørsmål.spørsmål_id}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
@@ -46,7 +59,7 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
           );
         })}
       </div>
-    </div>
+    </StyledMultisvarSpørsmål>
   );
 };
 

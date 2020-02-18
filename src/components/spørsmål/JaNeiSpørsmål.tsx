@@ -3,10 +3,23 @@ import { ISpørsmål, ISvar, ESvar } from '../../models/spørsmal';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
-import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
+import Hjelpetekst from '../Hjelpetekst';
+import styled from 'styled-components';
+
+const StyledJaNeiSpørsmål = styled.div`
+  .radioknapp {
+    &__jaNeiSvar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: min-content;
+      grid-gap: 1rem;
+      padding-top: 1rem;
+    }
+  }
+`;
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -46,15 +59,13 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
+    <StyledJaNeiSpørsmål key={spørsmål.spørsmål_id}>
       <Element>{spørsmålTekst}</Element>
       {spørsmål.lesmer ? (
-        <Lesmerpanel
-          apneTekst={intl.formatMessage({ id: spørsmål.lesmer.åpneTekstid })}
-          className={'hjelpetekst'}
-        >
-          {intl.formatMessage({ id: spørsmål.lesmer.innholdTekstid })}
-        </Lesmerpanel>
+        <Hjelpetekst
+          åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          innholdTekstid={spørsmål.lesmer.innholdTekstid}
+        />
       ) : null}
       <div className={'radioknapp__jaNeiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
@@ -81,7 +92,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
           </AlertStripeInfo>
         </FeltGruppe>
       ) : null}
-    </div>
+    </StyledJaNeiSpørsmål>
   );
 };
 
