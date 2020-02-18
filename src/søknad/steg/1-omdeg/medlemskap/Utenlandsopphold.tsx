@@ -124,7 +124,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
       </Undertittel>
       <SlettKnapp
         className={classnames('utenlandsopphold__slettknapp', {
-          kunEttUtenlandsopphold: perioderBoddIUtlandet?.length === 1,
+          kunEn: perioderBoddIUtlandet?.length === 1,
         })}
         onClick={() => fjernUtenlandsperiode()}
         tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
