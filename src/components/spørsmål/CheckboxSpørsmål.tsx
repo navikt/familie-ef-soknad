@@ -6,7 +6,7 @@ import { CheckboksPanel } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components';
 
-const StyledCheckBoxSpørsmål = styled.div`
+const StyledCheckboxSpørsmål = styled.div`
   .radioknapp {
     &__multiSvar {
       display: grid;
@@ -50,7 +50,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   };
 
   return (
-    <StyledCheckBoxSpørsmål key={spørsmål.spørsmål_id}>
+    <StyledCheckboxSpørsmål key={spørsmål.spørsmål_id}>
       <Element>
         <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
@@ -70,7 +70,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
           );
         })}
       </div>
-    </StyledCheckBoxSpørsmål>
+    </StyledCheckboxSpørsmål>
   );
 };
 

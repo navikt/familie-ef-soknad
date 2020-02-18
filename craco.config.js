@@ -24,6 +24,8 @@ const norskeOrdMedÆØÅ = [
   'SøkerHarSøktSeparasjon',
   'HjemmeMedBarnUnderEttÅr',
   'StyledCheckboxSpørsmål',
+  'StyledMultisvarSpørsmål',
+  'StyledJaNeiSpørsmål',
 ];
 
 module.exports = {
