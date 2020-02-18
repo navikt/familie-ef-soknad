@@ -1,7 +1,6 @@
 import {
   ITekstListeFelt,
   ITekstFelt,
-  ITallFelt,
   IBooleanFelt,
   IDatoFelt,
 } from './søknadsfelter';
@@ -14,11 +13,16 @@ export interface IArbeidssituasjon {
 
 export interface IArbeidsgiver {
   navn?: ITekstFelt;
-  arbeidsmengde?: ITallFelt;
+  arbeidsmengde?: ITekstFelt;
   fastStilling?: IBooleanFelt;
   harSluttDato?: IBooleanFelt;
   sluttdato?: IDatoFelt;
 }
+
+export const nyttTekstFelt: ITekstFelt = {
+  label: '',
+  verdi: '',
+};
 
 export enum EArbeidssituasjonSvar {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
@@ -29,4 +33,9 @@ export enum EArbeidssituasjonSvar {
   erArbeidssøker = 'erArbeidssøker',
   tarUtdanning = 'tarUtdanning',
   erHverkenIArbeidUtdanningEllerArbeidssøker = 'erHverkenIArbeidUtdanningEllerArbeidssøker',
+}
+
+export enum EStillingSvar {
+  fast = 'fast',
+  midlertidig = 'midlertidig',
 }

@@ -11,7 +11,7 @@ import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
-import OmArbeidsforholdetDitt from './OmArbeidsforholdetDitt';
+import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 
 const Arbeidssituasjon: React.FC = () => {
   const location = useLocation();

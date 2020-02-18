@@ -15,13 +15,19 @@ export default {
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
     'arbeidsforhold.label.fastEllerMidlertidig':
       'Er stillingen fast eller midlertidig?',
-    'arbeidsforhold.slett.arbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.svar.fast': 'Fast',
+    'arbeidsforhold.svar.midlertidig': 'Midlertidig',
+    'arbeidsforold.label.sluttdato': 'Har du en sluttdato?',
+    'arbeidsforhold.label.flereArbeidsgivere': 'Arbeider du flere steder?',
+    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
+    'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
     'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
