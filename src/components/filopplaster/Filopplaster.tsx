@@ -88,6 +88,7 @@ const Filopplaster: React.FC<Props> = ({
             nyeVedlegg.push({
               dokumentId: data.dokumentId,
               navn: dokumentasjonsType,
+              label: tittel,
             });
             settFilliste((prevListe: any) => [
               { filObjekt: fil, dokumentId: data.dokumentId },

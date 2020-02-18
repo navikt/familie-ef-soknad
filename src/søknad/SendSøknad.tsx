@@ -52,7 +52,6 @@ const SendSøknad = () => {
         nestePath={''}
       >
         <Filopplaster tittel={"Erklæring om samlivsbrudd"} dokumentasjonsType={"samlivsbrudd"}/>
-        <Filopplaster tittel={"Terminbekreftelse"} dokumentasjonsType={"terminbekreftelse"}/>
         <Normaltekst>
           Ingenting vil skje om du trykker på denne knappen.
         </Normaltekst>
