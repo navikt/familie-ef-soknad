@@ -17,6 +17,7 @@ import { IVedlegg } from '../../models/vedlegg';
 interface Props {
   intl: IntlShape;
   tittel: string;
+  dokumentasjonsType: string;
   beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
   maxFilstørrelse?: number;
@@ -25,6 +26,7 @@ interface Props {
 const Filopplaster: React.FC<Props> = ({
   intl,
   tittel,
+  dokumentasjonsType,
   beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
@@ -75,7 +77,7 @@ const Filopplaster: React.FC<Props> = ({
         data.append('file', fil);
 
         fetch(
-          'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
+          'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
           {
             method: 'POST',
             body: data,
@@ -83,7 +85,10 @@ const Filopplaster: React.FC<Props> = ({
         )
           .then((response) => response.json())
           .then((data) => {
-            nyeVedlegg.push(data);
+            nyeVedlegg.push({
+              dokumentId: data.dokumentId,
+              navn: dokumentasjonsType,
+            });
             settFilliste((prevListe: any) => [
               { filObjekt: fil, dokumentId: data.dokumentId },
               ...prevListe,

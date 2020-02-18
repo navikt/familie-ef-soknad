@@ -7,6 +7,8 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { Routes, IRoute } from '../routing/Routes';
 import { hentForrigeRoute } from '../routing/utils';
 import { useLocation } from 'react-router';
+import TestsideInformasjon from "../components/TestsideInformasjon";
+import Filopplaster from "../components/filopplaster/Filopplaster";
 
 interface IState {
   status: string;
@@ -50,6 +52,8 @@ const SendSøknad = () => {
         tilbakePath={forrigeRoute.path}
         nestePath={''}
       >
+        <Filopplaster tittel={"Erklæring om samlivsbrudd"} dokumentasjonsType={"samlivsbrudd"}/>
+        <Filopplaster tittel={"Terminbekreftelse"} dokumentasjonsType={"terminbekreftelse"}/>
         <Normaltekst>
           Ingenting vil skje om du trykker på denne knappen.
         </Normaltekst>
