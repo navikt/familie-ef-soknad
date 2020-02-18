@@ -29,7 +29,17 @@ import { useIntl } from 'react-intl';
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
-  const [forelder, settForelder] = useState({});
+  const [forelder, settForelder] = useState({
+    navn: "",
+    personnr: "",
+    borINorge: undefined,
+    avtaleOmDeltBosted: undefined,
+    harAnnenForelderSamværMedBarn: "",
+    harDereSkriftligSamværsavtale: "",
+    borISammeHus: "",
+    boddSammenFør: undefined,
+    hvorMyeSammen: ""
+  });
 
   const location = useLocation();
   const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
@@ -101,15 +111,24 @@ const BarnasBosted: React.FC = () => {
             </FeltGruppe>
             </KomponentGruppe>
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={borINorge} onChange={(e) => settForelder({...forelder, [borINorge.spørsmål_id]: e})} />
+              <JaNeiSpørsmål 
+                spørsmål={borINorge} 
+                onChange={(e) => settForelder({...forelder, [borINorge.spørsmål_id]: e})}
+                valgtSvar={forelder.borINorge}
+              />
             </KomponentGruppe>
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={avtaleOmDeltBosted} onChange={(e) => settForelder({...forelder, [avtaleOmDeltBosted.spørsmål_id]: e})} />
+              <JaNeiSpørsmål 
+                spørsmål={avtaleOmDeltBosted} 
+                onChange={(e) => settForelder({...forelder, [avtaleOmDeltBosted.spørsmål_id]: e})} 
+                valgtSvar={forelder.avtaleOmDeltBosted}
+              />
             </KomponentGruppe>
             <KomponentGruppe>
               <MultiSvarSpørsmål
                 key={harAnnenForelderSamværMedBarn.spørsmål_id}
                 spørsmål={harAnnenForelderSamværMedBarn}
+                valgtSvar={forelder.harAnnenForelderSamværMedBarn}
                 onChange={(e) => settForelder({...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: e})}
               />
             </KomponentGruppe>
@@ -117,6 +136,7 @@ const BarnasBosted: React.FC = () => {
               <MultiSvarSpørsmål
                 key={harDereSkriftligSamværsavtale.spørsmål_id}
                 spørsmål={harDereSkriftligSamværsavtale}
+                valgtSvar={forelder.harDereSkriftligSamværsavtale}
                 onChange={(e) => settForelder({...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: e})}
               />
             </KomponentGruppe>
@@ -124,16 +144,22 @@ const BarnasBosted: React.FC = () => {
               <MultiSvarSpørsmål
                 key={borISammeHus.spørsmål_id}
                 spørsmål={borISammeHus}
+                valgtSvar={forelder.borISammeHus}
                 onChange={(e) => settForelder({...forelder, [borISammeHus.spørsmål_id]: e})}
               />
             </KomponentGruppe>
             <KomponentGruppe>
-              <JaNeiSpørsmål spørsmål={boddSammenFør} onChange={(e) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: e})} />
+              <JaNeiSpørsmål 
+                spørsmål={boddSammenFør} 
+                onChange={(e) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: e})}
+                valgtSvar={forelder.boddSammenFør}
+              />
             </KomponentGruppe>
             <KomponentGruppe>
               <MultiSvarSpørsmål
                 key={hvorMyeSammen.spørsmål_id}
                 spørsmål={hvorMyeSammen}
+                valgtSvar={forelder.hvorMyeSammen}
                 onChange={(e) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: e})}
               />
             </KomponentGruppe>

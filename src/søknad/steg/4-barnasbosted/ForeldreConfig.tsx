@@ -8,7 +8,7 @@ export const borINorge: IJaNeiSpørsmål = {
 };
 
 export const avtaleOmDeltBosted: IJaNeiSpørsmål = {
-    spørsmål_id: 'avtaleOmdeltBosted',
+    spørsmål_id: 'avtaleOmDeltBosted',
     tekstid: 'barnasbosted.avtale',
     lesmer: {
       åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',

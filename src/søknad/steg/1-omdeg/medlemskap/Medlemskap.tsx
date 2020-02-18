@@ -17,6 +17,9 @@ const Medlemskap: React.FC = () => {
   const { statsborgerskap } = person.søker;
   const { søkerBosattINorgeSisteTreÅr, søkerOppholderSegINorge } = søknad;
 
+  console.log("BOSATT SISTE 3 ÅR");
+  console.log(søkerBosattINorgeSisteTreÅr);
+
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
