@@ -22,3 +22,9 @@ export enum EBorISammeHus {
   nei = 'nei',
   vetikke = 'vetikke',
 }
+
+export enum EHvorMyeSammen {
+  møtesIkke = 'møtesIkke',
+  kunNårLeveres = 'kunNårLeveres',
+  møtesUtenom = 'møtesUtenom',
+}

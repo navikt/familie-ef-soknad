@@ -1,5 +1,5 @@
 import { IJaNeiSpørsmål, standardJaNeiSvar, IMultiSpørsmål } from '../../../models/spørsmal';
-import { EHarSamværMedBarn, EHarSkriftligSamværsavtale, EBorISammeHus } from '../../../models/barnasbosted';
+import { EHarSamværMedBarn, EHarSkriftligSamværsavtale, EBorISammeHus, EHvorMyeSammen } from '../../../models/barnasbosted';
 
 export const borINorge: IJaNeiSpørsmål = {
     spørsmål_id: 'borINorge',
@@ -70,6 +70,11 @@ export const harDereSkriftligSamværsavtale: IMultiSpørsmål = {
 export const borISammeHus: IMultiSpørsmål = {
   spørsmål_id: 'borISammeHus',
   tekstid: 'barnasbosted.spm.borISammeHus',
+  lesmer: {
+    åpneTekstid: 'barnasbosted.hjelpetekst.borisammehus.apne',
+    lukkeTekstid: '',
+    innholdTekstid: 'barnasbosted.hjelpetekst.borisammehus.innhold',
+  },
   svaralternativer: [
     {
       nøkkel: EBorISammeHus.ja,
@@ -84,4 +89,23 @@ export const borISammeHus: IMultiSpørsmål = {
       svar_tekstid: 'barnasbosted.spm.vetikke'
     }
   ],
+}
+
+export const hvorMyeSammen: IMultiSpørsmål = {
+  spørsmål_id: 'hvorMyeSammen',
+  tekstid: 'barnasbosted.spm.hvorMyeSammen',
+  svaralternativer: [
+    {
+      nøkkel: EHvorMyeSammen.møtesIkke,
+      svar_tekstid: 'barnasbosted.spm.møtesIkke',
+    },
+    {
+      nøkkel: EHvorMyeSammen.kunNårLeveres,
+      svar_tekstid: 'barnasbosted.spm.kunNårLeveres'
+    },
+    {
+      nøkkel: EHvorMyeSammen.møtesUtenom,
+      svar_tekstid: 'barnasbosted.spm.møtesUtenom'
+    }
+  ],  
 }

@@ -15,7 +15,8 @@ import {
   harAnnenForelderSamværMedBarn,
   harDereSkriftligSamværsavtale,
   boddSammenFør,
-  borISammeHus
+  borISammeHus,
+  hvorMyeSammen
 } from './ForeldreConfig';
 import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
@@ -128,6 +129,13 @@ const BarnasBosted: React.FC = () => {
             </KomponentGruppe>
             <KomponentGruppe>
               <JaNeiSpørsmål spørsmål={boddSammenFør} onChange={(e) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: e})} />
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <MultiSvarSpørsmål
+                key={hvorMyeSammen.spørsmål_id}
+                spørsmål={hvorMyeSammen}
+                onChange={(e) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: e})}
+              />
             </KomponentGruppe>
             </div>
             </div>

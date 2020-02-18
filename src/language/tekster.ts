@@ -172,6 +172,15 @@ export default {
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.hvorMyeSammen':
+      'Hvor mye er du sammen med den andre forelderen til Solveig?',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -254,6 +263,13 @@ export default {
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -334,5 +350,12 @@ export default {
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
   },
 };
