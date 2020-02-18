@@ -4,9 +4,6 @@ import { sendInnSøknad } from '../innsending/api';
 import useSøknadContext from '../context/SøknadContext';
 import Side from '../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Routes, IRoute } from '../routing/Routes';
-import { hentForrigeRoute } from '../routing/utils';
-import { useLocation } from 'react-router';
 
 interface IState {
   status: string;
@@ -40,16 +37,9 @@ const SendSøknad = () => {
       );
   };
 
-  const location = useLocation();
-  const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
-
   return (
     <>
-      <Side
-        tittel={'Oppsummering'}
-        tilbakePath={forrigeRoute.path}
-        nestePath={''}
-      >
+      <Side tittel={'Oppsummering'}>
         <Normaltekst>
           Ingenting vil skje om du trykker på denne knappen.
         </Normaltekst>

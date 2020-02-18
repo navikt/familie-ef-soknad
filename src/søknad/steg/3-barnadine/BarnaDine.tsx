@@ -3,10 +3,6 @@ import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
 import { Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
-import { Routes, IRoute } from '../../../routing/Routes';
-import { hentNesteRoute } from '../../../routing/utils';
-import { hentForrigeRoute } from '../../../routing/utils';
-import { useLocation } from 'react-router';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
@@ -21,17 +17,9 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
 
-  const location = useLocation();
-  const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
-
   return (
     <>
-      <Side
-        tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}
-        nestePath={nesteRoute.path}
-        tilbakePath={forrigeRoute.path}
-      >
+      <Side tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}>
         <div className="barna-dine">
           <Hjelpetekst
             åpneTekstid={'barnadine.hjelpetekst.åpne'}

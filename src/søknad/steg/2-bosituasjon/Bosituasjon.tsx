@@ -1,9 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import { IRoute, Routes } from '../../../routing/Routes';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
-import { useLocation } from 'react-router';
-import { hentNesteRoute } from '../../../routing/utils';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -24,8 +21,6 @@ const Bosituasjon: FC = () => {
   const [svarPåHovedspørsmål, settSvarPåHovedspørsmål] = useState('');
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
-  const location = useLocation();
-  const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
     .verdi
     ? bosituasjon.søkerDelerBoligMedAndreVoksne.verdi
@@ -84,11 +79,7 @@ const Bosituasjon: FC = () => {
   }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
-    <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
-      nestePath={nesteRoute.path}
-      tilbakePath={Routes[1].path}
-    >
+    <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
       <SeksjonGruppe>
         <MultiSvarSpørsmål
           key={hovedSpørsmål.spørsmål_id}
