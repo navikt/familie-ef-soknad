@@ -49,7 +49,6 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     dato: Date | null,
     label: string
   ) => {
-    console.log('søkersklflyttesammen:', dato);
     dato !== null &&
       settBosituasjon({
         ...bosituasjon,
@@ -89,21 +88,27 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
               }
               tekstid={'datovelger.nårSkalDetteSkje'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
-              settDato={(e) =>
-                settDatoSøkerSkalGifteSegEllerBliSamboer(e, datovelgerTekst)
-              }
+              settDato={(e) => {
+                settDatoSøkerSkalGifteSegEllerBliSamboer(e, datovelgerTekst);
+              }}
             />
           </KomponentGruppe>
-          <KomponentGruppe>
-            <OmSamboerenDin
-              tittel={'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'}
-              ekteskapsLiknendeForhold={false}
-            />
-          </KomponentGruppe>
+          {datoSkalGifteSegEllerBliSamboer && (
+            <KomponentGruppe>
+              <OmSamboerenDin
+                tittel={
+                  'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
+                }
+                ekteskapsLiknendeForhold={false}
+                settBosituasjon={settBosituasjon}
+                bosituasjon={bosituasjon}
+              />
+            </KomponentGruppe>
+          )}
         </>
       ) : null}
     </>
   );
 };
 
-export default injectIntl(SøkerSkalFlytteSammenEllerFåSamboer);
+export default SøkerSkalFlytteSammenEllerFåSamboer;
