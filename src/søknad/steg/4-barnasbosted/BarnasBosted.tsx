@@ -26,6 +26,7 @@ import { useLocation } from 'react-router';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Textarea } from 'nav-frontend-skjema';
 
 interface Forelder {
   navn: string;
@@ -35,6 +36,7 @@ interface Forelder {
   avtaleOmDeltBosted: boolean | undefined;
   harAnnenForelderSamværMedBarn: string;
   harDereSkriftligSamværsavtale: string;
+  hvordanPraktiseresSamværet: string;
   borISammeHus: string;
   boddSammenFør: boolean | undefined;
   flyttetFra: Date | null;
@@ -52,6 +54,7 @@ const BarnasBosted: React.FC = () => {
     avtaleOmDeltBosted: undefined,
     harAnnenForelderSamværMedBarn: "",
     harDereSkriftligSamværsavtale: "",
+    hvordanPraktiseresSamværet: "",
     borISammeHus: "",
     boddSammenFør: undefined,
     flyttetFra: null,
@@ -68,6 +71,10 @@ const BarnasBosted: React.FC = () => {
 
   const visSkriftligSamværsavtaleSpørsmål = (svarAndreForelderenSamvær: string) => {
     return svarAndreForelderenSamvær && svarAndreForelderenSamvær !== intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' });
+  }
+
+  const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
+    return valgtSamværsrett == intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
   }
 
   const barn = søknad.person.barn[0];
@@ -169,6 +176,28 @@ const BarnasBosted: React.FC = () => {
                           </AlertStripeInfo>
                           </FeltGruppe>
                       ) : null}
+                      </KomponentGruppe> : null}
+                      {visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale) ?
+                      <KomponentGruppe className="hvordan-praktiseres-samværet">
+                        <FeltGruppe>
+                          <Element>{intl.formatMessage({ id: 'barnasbosted.element.samvær' })}</Element>
+                          <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.opplysninger' })}</Normaltekst>
+                          <ul>
+                            <li>
+                              <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.hvormangedager' })}</Normaltekst>
+                            </li>
+                            <li>
+                              <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.nårreiserbarnet' })}</Normaltekst>
+                            </li>
+                          </ul>
+                        </FeltGruppe>
+                        <FeltGruppe>
+                        <Textarea 
+                            value={forelder.hvordanPraktiseresSamværet}
+                            onChange={(e) => settForelder({...forelder, "hvordanPraktiseresSamværet": e.target.value})}
+                            label=""
+                        />
+                        </FeltGruppe>
                       </KomponentGruppe> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål

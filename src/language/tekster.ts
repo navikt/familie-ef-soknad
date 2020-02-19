@@ -184,6 +184,12 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.alert.leggeVedSamværsavtalen':
       'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -276,6 +282,12 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.alert.leggeVedSamværsavtalen':
       'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -366,5 +378,11 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.alert.leggeVedSamværsavtalen':
       'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
   },
 };
