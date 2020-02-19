@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { skalSøkerGifteSegMedSamboer } from './BosituasjonConfig';
@@ -7,20 +7,25 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
-import useSøknadContext from '../../../context/SøknadContext';
-import { injectIntl, IntlShape } from 'react-intl';
 import { ISpørsmål } from '../../../models/spørsmal';
+import { IBosituasjon } from '../../../models/bosituasjon';
+import { useIntl } from 'react-intl';
 
-const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
-  intl,
+interface Props {
+  settBosituasjon: (bosituasjon: IBosituasjon) => void;
+  bosituasjon: IBosituasjon;
+}
+
+const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
+  settBosituasjon,
+  bosituasjon,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const { bosituasjon } = søknad;
+  const intl = useIntl();
+
   const {
     søkerDelerBoligMedAndreVoksne,
     søkerSkalGifteSegEllerBliSamboer,
     datoSkalGifteSegEllerBliSamboer,
-    samboerDetaljer,
   } = bosituasjon;
 
   const spørsmål: ISpørsmål = skalSøkerGifteSegMedSamboer;
@@ -29,16 +34,13 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     spørsmål: ISpørsmål,
     svar: boolean
   ) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        ...bosituasjon,
-        søkerSkalGifteSegEllerBliSamboer: {
-          label: intl.formatMessage({
-            id: spørsmål.tekstid,
-          }),
-          verdi: svar,
-        },
+    settBosituasjon({
+      søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+      søkerSkalGifteSegEllerBliSamboer: {
+        label: intl.formatMessage({
+          id: spørsmål.tekstid,
+        }),
+        verdi: svar,
       },
     });
   };
@@ -47,40 +49,16 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
     dato: Date | null,
     label: string
   ) => {
+    console.log('søkersklflyttesammen:', dato);
     dato !== null &&
-      settSøknad({
-        ...søknad,
-        bosituasjon: {
-          ...bosituasjon,
-          datoSkalGifteSegEllerBliSamboer: {
-            label: label,
-            verdi: dato,
-          },
+      settBosituasjon({
+        ...bosituasjon,
+        datoSkalGifteSegEllerBliSamboer: {
+          label: label,
+          verdi: dato,
         },
       });
   };
-
-  useEffect(() => {
-    const resetSamboerDetaljer = () => {
-      settSøknad({
-        ...søknad,
-        bosituasjon: {
-          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-          søkerSkalGifteSegEllerBliSamboer: søkerSkalGifteSegEllerBliSamboer,
-        },
-      });
-    };
-    søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.verdi === false &&
-      samboerDetaljer &&
-      resetSamboerDetaljer();
-  }, [
-    søkerSkalGifteSegEllerBliSamboer,
-    samboerDetaljer,
-    settSøknad,
-    søknad,
-    søkerDelerBoligMedAndreVoksne,
-  ]);
 
   const datovelgerTekst = intl.formatMessage({
     id: 'datovelger.nårSkalDetteSkje',

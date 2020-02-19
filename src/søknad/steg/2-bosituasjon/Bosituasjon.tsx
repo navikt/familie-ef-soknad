@@ -1,49 +1,63 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import Side from '../../../components/side/Side';
-import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import OmSamboerenDin from './OmSamboerenDin';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import Side from '../../../components/side/Side';
+import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
-import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål, ISvar } from '../../../models/spørsmal';
-import OmSamboerenDin from './OmSamboerenDin';
-import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
-import { ESøkerDelerBolig } from '../../../models/bosituasjon';
 import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
+import { ESøkerDelerBolig, IBosituasjon } from '../../../models/bosituasjon';
+import { ISpørsmål, ISvar } from '../../../models/spørsmal';
+import useSøknadContext from '../../../context/SøknadContext';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
-  const { bosituasjon } = søknad;
-  const { søkerDelerBoligMedAndreVoksne } = bosituasjon;
-  const [svarPåHovedspørsmål, settSvarPåHovedspørsmål] = useState('');
+
+  const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
+    søkerDelerBoligMedAndreVoksne: {
+      label: '',
+      verdi: '',
+    },
+  });
+  useEffect(() => {
+    settSøknad({ ...søknad, bosituasjon: bosituasjon });
+  }, [bosituasjon, settSøknad, søknad]);
+
+  const updateBosituasjon = (nyBosituasjon: IBosituasjon) =>
+    settBosituasjon({ ...bosituasjon, ...nyBosituasjon });
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
-  const valgtBosituasjon: string = bosituasjon.søkerDelerBoligMedAndreVoksne
-    .verdi
-    ? bosituasjon.søkerDelerBoligMedAndreVoksne.verdi
-    : '';
 
   const settBosituasjonFelt = (spørsmål: string, svar: string) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        ...bosituasjon,
+    if (!bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
+      updateBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmål,
           verdi: svar,
         },
-      },
-    });
-    svarPåHovedspørsmål === '' && settSvarPåHovedspørsmål(svar);
+      });
+    } else if (svar !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
+      settBosituasjon({
+        søkerDelerBoligMedAndreVoksne: {
+          label: spørsmål,
+          verdi: svar,
+        },
+      });
+    }
   };
 
   const valgtSvar:
     | ISvar
     | undefined = hovedSpørsmål.svaralternativer.find((svar) =>
-    erValgtSvarLiktSomSvar(valgtBosituasjon, svar.svar_tekstid, intl)
+    erValgtSvarLiktSomSvar(
+      bosituasjon.søkerDelerBoligMedAndreVoksne.verdi,
+      svar.svar_tekstid,
+      intl
+    )
   );
 
   const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
@@ -56,27 +70,6 @@ const Bosituasjon: FC = () => {
     valgtSvarNøkkel === ESøkerDelerBolig.delerBoligMedAndreVoksne ||
     valgtSvarNøkkel ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
-
-  useEffect(() => {
-    const erSpørsmålOgSvarTomme =
-      søkerDelerBoligMedAndreVoksne.label === '' && svarPåHovedspørsmål === '';
-
-    const resetBosituasjon = (svar: string) => {
-      settSøknad({
-        ...søknad,
-        bosituasjon: {
-          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-        },
-      });
-      settSvarPåHovedspørsmål(svar);
-    };
-    const harValgtNyttSvarsalternativ =
-      søkerDelerBoligMedAndreVoksne.verdi !== svarPåHovedspørsmål;
-
-    !erSpørsmålOgSvarTomme &&
-      harValgtNyttSvarsalternativ &&
-      resetBosituasjon(søkerDelerBoligMedAndreVoksne.verdi);
-  }, [settSøknad, svarPåHovedspørsmål, søkerDelerBoligMedAndreVoksne, søknad]);
 
   return (
     <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
@@ -101,7 +94,10 @@ const Bosituasjon: FC = () => {
 
       {planerOmÅFlytteSammenEllerFåSamboer ? (
         <SeksjonGruppe>
-          <SøkerSkalFlytteSammenEllerFåSamboer />
+          <SøkerSkalFlytteSammenEllerFåSamboer
+            settBosituasjon={settBosituasjon}
+            bosituasjon={bosituasjon}
+          />
         </SeksjonGruppe>
       ) : null}
 
@@ -110,6 +106,8 @@ const Bosituasjon: FC = () => {
           <OmSamboerenDin
             tittel={'bosituasjon.tittel.omSamboer'}
             ekteskapsLiknendeForhold={harSøkerEkteskapsliknendeForhold}
+            settBosituasjon={settBosituasjon}
+            bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
       ) : null}
