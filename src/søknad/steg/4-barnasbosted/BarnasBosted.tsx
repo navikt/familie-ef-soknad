@@ -18,7 +18,6 @@ import {
   borISammeHus,
   hvorMyeSammen
 } from './ForeldreConfig';
-import SeksjonsGruppe from '../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -28,11 +27,26 @@ import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
+interface Forelder {
+  navn: string;
+  fødselsdato: Date | null;
+  personnr: string;
+  borINorge: boolean | undefined;
+  avtaleOmDeltBosted: boolean | undefined;
+  harAnnenForelderSamværMedBarn: string;
+  harDereSkriftligSamværsavtale: string;
+  borISammeHus: string;
+  boddSammenFør: boolean | undefined;
+  flyttetFra: Date | null;
+  hvorMyeSammen: string;
+}
+
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
-  const [forelder, settForelder] = useState({
+  const [forelder, settForelder] = useState<Forelder>({
     navn: "",
+    fødselsdato: null,
     personnr: "",
     borINorge: undefined,
     avtaleOmDeltBosted: undefined,
@@ -40,6 +54,7 @@ const BarnasBosted: React.FC = () => {
     harDereSkriftligSamværsavtale: "",
     borISammeHus: "",
     boddSammenFør: undefined,
+    flyttetFra: null,
     hvorMyeSammen: ""
   });
 
@@ -52,7 +67,7 @@ const BarnasBosted: React.FC = () => {
   }
 
   const visSkriftligSamværsavtaleSpørsmål = (svarAndreForelderenSamvær: string) => {
-    return svarAndreForelderenSamvær !== intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' });
+    return svarAndreForelderenSamvær && svarAndreForelderenSamvær !== intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' });
   }
 
   const barn = søknad.person.barn[0];
@@ -103,7 +118,7 @@ const BarnasBosted: React.FC = () => {
           <div className="barn-datovelger">
           <div className={'datepicker__container'}>
             <DatePicker
-                    onChange={(e) => console.log(e)}
+                    onChange={(e) => settForelder({...forelder, "fødselsdato": e})}
                     selected={new Date()}
                     dateFormat={'dd.MM.yyyy'}
                     className={'datovelger__input'}
@@ -170,6 +185,23 @@ const BarnasBosted: React.FC = () => {
                 valgtSvar={forelder.boddSammenFør}
               />
             </KomponentGruppe>
+            {forelder.boddSammenFør ? <KomponentGruppe>
+            <div className="fødselsnummer">
+            <div className="fødselsdato">
+          <Normaltekst>Når flyttet dere fra hverandre?</Normaltekst>
+          <div className="barn-datovelger">
+          <div className={'datepicker__container'}>
+            <DatePicker
+                    onChange={(e) => settForelder({...forelder, "flyttetFra": e})}
+                    selected={new Date()}
+                    dateFormat={'dd.MM.yyyy'}
+                    className={'datovelger__input'}
+                />
+                </div>
+            </div>
+            </div>
+            </div>
+            </KomponentGruppe> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
                 key={hvorMyeSammen.spørsmål_id}
