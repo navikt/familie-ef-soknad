@@ -190,6 +190,8 @@ export default {
       'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -288,6 +290,8 @@ export default {
       'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -384,5 +388,7 @@ export default {
       'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
 };

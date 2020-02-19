@@ -47,15 +47,15 @@ export interface IPersonDetaljer {
 
 export interface IForelder {
   navn: string;
-  fødselsdato: string;
-  personnummer?: string;
-  borINorge: boolean;
-  avtaleOmDeltBosted: boolean;
-  harSamværMedBarn: string;
-  skriftligSamværsavtale: string;
-  hvordanPraktiseresSamværet?: string;
-  borNærme: string;
-  boddSammenFør: string;
-  nårFlyttetFra?: string;
-  hvorMyeErDereSammen: string;
+  fødselsdato: Date | null;
+  personnr?: string;
+  borINorge: boolean | undefined;
+  avtaleOmDeltBosted: boolean | undefined;
+  harAnnenForelderSamværMedBarn: string;
+  harDereSkriftligSamværsavtale: string;
+  hvordanPraktiseresSamværet: string;
+  borISammeHus: string;
+  boddSammenFør: boolean | undefined;
+  flyttetFra: Date | null;
+  hvorMyeSammen: string;
 }

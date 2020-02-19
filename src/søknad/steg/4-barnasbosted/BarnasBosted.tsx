@@ -18,6 +18,7 @@ import {
   borISammeHus,
   hvorMyeSammen
 } from './ForeldreConfig';
+import { IForelder } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -26,27 +27,12 @@ import { useLocation } from 'react-router';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Textarea } from 'nav-frontend-skjema';
-
-interface Forelder {
-  navn: string;
-  fødselsdato: Date | null;
-  personnr: string;
-  borINorge: boolean | undefined;
-  avtaleOmDeltBosted: boolean | undefined;
-  harAnnenForelderSamværMedBarn: string;
-  harDereSkriftligSamværsavtale: string;
-  hvordanPraktiseresSamværet: string;
-  borISammeHus: string;
-  boddSammenFør: boolean | undefined;
-  flyttetFra: Date | null;
-  hvorMyeSammen: string;
-}
+import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
-  const [forelder, settForelder] = useState<Forelder>({
+  const [forelder, settForelder] = useState<IForelder>({
     navn: "",
     fødselsdato: null,
     personnr: "",
@@ -96,15 +82,15 @@ const BarnasBosted: React.FC = () => {
             <Element className="navn">{barn.navn}</Element>
             <div className="inforad">
               <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">FØDSELSNUMMER</Normaltekst>
+                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.fødselsnummer'})}</Normaltekst>
                   <Normaltekst className="informasjonselement__innhold">{barn.fnr}</Normaltekst>
               </div>
               <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">ALDER</Normaltekst>
+                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.alder'})}}</Normaltekst>
                   <Normaltekst className="informasjonselement__innhold">{barn.alder} år</Normaltekst>
               </div>
               <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">BOSTED</Normaltekst>
+                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.bosted'})}}</Normaltekst>
                   <Normaltekst className="informasjonselement__innhold">{bosted}</Normaltekst>
               </div>
             </div>
@@ -112,7 +98,7 @@ const BarnasBosted: React.FC = () => {
           <div className="barnas-bosted__innhold">
           <KomponentGruppe>
             <FeltGruppe>
-            <Element>{barn.navn}s andre forelder</Element>
+            <Element>{barn.navn}{intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}</Element>
             </FeltGruppe>
           <FeltGruppe>
             <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} label="Navn" />
@@ -121,7 +107,7 @@ const BarnasBosted: React.FC = () => {
           <KomponentGruppe>
           <div className="fødselsnummer">
             <div className="fødselsdato">
-          <Normaltekst>Fødselsdato</Normaltekst>
+          <Normaltekst>{intl.formatMessage({ id: 'datovelger.fødselsdato' })}</Normaltekst>
           <div className="barn-datovelger">
           <div className={'datepicker__container'}>
             <DatePicker
@@ -178,27 +164,7 @@ const BarnasBosted: React.FC = () => {
                       ) : null}
                       </KomponentGruppe> : null}
                       {visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale) ?
-                      <KomponentGruppe className="hvordan-praktiseres-samværet">
-                        <FeltGruppe>
-                          <Element>{intl.formatMessage({ id: 'barnasbosted.element.samvær' })}</Element>
-                          <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.opplysninger' })}</Normaltekst>
-                          <ul>
-                            <li>
-                              <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.hvormangedager' })}</Normaltekst>
-                            </li>
-                            <li>
-                              <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.nårreiserbarnet' })}</Normaltekst>
-                            </li>
-                          </ul>
-                        </FeltGruppe>
-                        <FeltGruppe>
-                        <Textarea 
-                            value={forelder.hvordanPraktiseresSamværet}
-                            onChange={(e) => settForelder({...forelder, "hvordanPraktiseresSamværet": e.target.value})}
-                            label=""
-                        />
-                        </FeltGruppe>
-                      </KomponentGruppe> : null}
+                      <HvordanPraktiseresSamværet forelder={forelder} settForelder={settForelder} /> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
                 key={borISammeHus.spørsmål_id}
@@ -217,7 +183,7 @@ const BarnasBosted: React.FC = () => {
             {forelder.boddSammenFør ? <KomponentGruppe>
             <div className="fødselsnummer">
             <div className="fødselsdato">
-          <Normaltekst>Når flyttet dere fra hverandre?</Normaltekst>
+          <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.nårflyttetfra' })}</Normaltekst>
           <div className="barn-datovelger">
           <div className={'datepicker__container'}>
             <DatePicker
