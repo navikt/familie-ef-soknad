@@ -58,7 +58,6 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
               type={'hoved'}
               onClick={() => history.push(nestePath)}
               className={knappStyling}
-              tabIndex={-1}
             >
               <LocaleTekst tekst={'knapp.neste'} />
             </KnappBase>
