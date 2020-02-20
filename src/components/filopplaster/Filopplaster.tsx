@@ -13,6 +13,7 @@ import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/vedlegg';
+import Environment from '../../Environment';
 
 interface Props {
   intl: IntlShape;
@@ -76,13 +77,10 @@ const Filopplaster: React.FC<Props> = ({
         const data = new FormData();
         data.append('file', fil);
 
-        fetch(
-          'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-          {
-            method: 'POST',
-            body: data,
-          }
-        )
+        fetch(`${Environment().dokumentUrl}`, {
+          method: 'POST',
+          body: data,
+        })
           .then((response) => response.json())
           .then((data) => {
             nyeVedlegg.push({
