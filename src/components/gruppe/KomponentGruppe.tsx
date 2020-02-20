@@ -15,8 +15,8 @@ const StyledFeltGruppe = styled.div`
   }
 `;
 
-const FeltGruppe: React.FC = ({ children }) => {
+const KomponentGruppe: React.FC = ({ children }) => {
   return <StyledFeltGruppe>{children}</StyledFeltGruppe>;
 };
 
-export default FeltGruppe;
+export default KomponentGruppe;
