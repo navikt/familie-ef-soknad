@@ -4,6 +4,8 @@ import { sendInnSøknad } from '../innsending/api';
 import useSøknadContext from '../context/SøknadContext';
 import Side from '../components/side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
+import Filopplaster from '../components/filopplaster/Filopplaster';
+import tekster from '../language/tekster';
 
 interface IState {
   status: string;
@@ -36,10 +38,19 @@ const SendSøknad = () => {
         })
       );
   };
-
   return (
     <>
       <Side tittel={'Oppsummering'}>
+        {søknad.sivilstatus.begrunnelseForSøknad &&
+        (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+          tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
+          søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+            tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
+          <Filopplaster
+            tittel={'Erklæring om samlivsbrudd'}
+            dokumentasjonsType={'samlivsbrudd'}
+          />
+        ) : null}
         <Normaltekst>
           Ingenting vil skje om du trykker på denne knappen.
         </Normaltekst>
