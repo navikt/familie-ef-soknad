@@ -63,6 +63,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
 
           return (
             <CheckboksPanel
+              key={svar.svar_tekstid}
               label={svarTekst}
               checked={huketAvISøknad}
               onChange={(e) => onClickHandle(e, huketAvISøknad, svarTekst)}

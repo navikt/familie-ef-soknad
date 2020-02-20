@@ -2,6 +2,7 @@
 export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
+    'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',

@@ -55,7 +55,7 @@ const OmArbeidsforholdetDitt: React.FC = () => {
       </KomponentGruppe>
       {arbeidsforhold?.map((arbeidsgiver, index) => {
         return (
-          <SeksjonGruppe>
+          <SeksjonGruppe key={index}>
             <Arbeidsgiver arbeidsgiver={arbeidsgiver} nummer={index} />
           </SeksjonGruppe>
         );
