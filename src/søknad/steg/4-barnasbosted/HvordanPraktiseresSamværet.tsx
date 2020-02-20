@@ -29,7 +29,7 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({ forelder, settForelder }
     </FeltGruppe>
     <FeltGruppe>
     <Textarea 
-        value={forelder.hvordanPraktiseresSamværet}
+        value={forelder.hvordanPraktiseresSamværet ? forelder.hvordanPraktiseresSamværet : ""}
         onChange={(e) => settForelder({...forelder, "hvordanPraktiseresSamværet": e.target.value})}
         label=""
     />

@@ -46,16 +46,16 @@ export interface IPersonDetaljer {
 }
 
 export interface IForelder {
-  navn: string;
-  fødselsdato: Date | null;
+  navn?: string;
+  fødselsdato?: Date | null;
   personnr?: string;
-  borINorge: boolean | undefined;
-  avtaleOmDeltBosted: boolean | undefined;
-  harAnnenForelderSamværMedBarn: string;
-  harDereSkriftligSamværsavtale: string;
-  hvordanPraktiseresSamværet: string;
-  borISammeHus: string;
-  boddSammenFør: boolean | undefined;
-  flyttetFra: Date | null;
-  hvorMyeSammen: string;
+  borINorge?: boolean;
+  avtaleOmDeltBosted?: boolean;
+  harAnnenForelderSamværMedBarn?: string;
+  harDereSkriftligSamværsavtale?: string;
+  hvordanPraktiseresSamværet?: string;
+  borISammeHus?: string;
+  boddSammenFør?: boolean;
+  flyttetFra?: Date | null;
+  hvorMyeSammen?: string;
 }
