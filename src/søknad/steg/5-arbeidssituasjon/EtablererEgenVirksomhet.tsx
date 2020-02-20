@@ -17,6 +17,9 @@ const EtablererEgenVirksomhet: React.FC<{ erHuketAv: boolean }> = ({
   const { søknad, settSøknad } = useSøknadContext();
   const { etablererEgenVirksomhet } = søknad.arbeidssituasjon;
   const intl = useIntl();
+  const tittelTekstid: string = intl.formatMessage({
+    id: 'arbeidssituasjon.tittel.etablererEgenVirksomhet',
+  });
 
   const settTekstfelt = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     settSøknad({
@@ -37,11 +40,7 @@ const EtablererEgenVirksomhet: React.FC<{ erHuketAv: boolean }> = ({
         <SeksjonGruppe>
           <FeltGruppe>
             <Undertittel>
-              <LocaleTekst
-                tekst={intl.formatMessage({
-                  id: 'arbeidssituasjon.tittel.etablererEgenVirksomhet',
-                })}
-              />
+              <LocaleTekst tekst={tittelTekstid} />
             </Undertittel>
           </FeltGruppe>
 

@@ -7,17 +7,15 @@ import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Routes } from '../../routing/Routes';
-import { hentForrigeRoute } from '../../routing/utils';
+import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 
 interface ISide {
   tittel: string;
-  tilbakePath: string;
-  nestePath: string;
 }
 
-const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
+const Side: React.FC<ISide> = ({ tittel, children }) => {
   const location = useLocation();
   const history = useHistory();
 
@@ -32,9 +30,10 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
-  const forrigePath = hentForrigeRoute(Routes, location.pathname);
+  const nesteRoute = hentNesteRoute(Routes, location.pathname);
+  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
   const knappStyling = classNames({
-    hideButton: nestePath.length === 0,
+    hideButton: nesteRoute === undefined,
   });
   return (
     <div className={'søknadsdialog'}>
@@ -45,7 +44,7 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
           aktivtSteg={aktivtSteg}
           steg={stegobjekter}
         />
-        <TilbakeKnapp path={forrigePath.path} />
+        <TilbakeKnapp path={forrigeRoute.path} />
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>
@@ -56,7 +55,7 @@ const Side: React.FC<ISide> = ({ tittel, nestePath, children }) => {
           <>
             <KnappBase
               type={'hoved'}
-              onClick={() => history.push(nestePath)}
+              onClick={() => history.push(nesteRoute.path)}
               className={knappStyling}
             >
               <LocaleTekst tekst={'knapp.neste'} />

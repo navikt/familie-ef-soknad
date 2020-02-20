@@ -158,7 +158,6 @@ export default {
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
     'stegtittel.bosituasjon': 'Bosituasjonen din',
-    'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Last opp dokumentasjon',

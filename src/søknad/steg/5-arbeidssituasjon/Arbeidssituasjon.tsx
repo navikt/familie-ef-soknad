@@ -1,7 +1,4 @@
 import React from 'react';
-import { hentNesteRoute } from '../../../routing/utils';
-import { IRoute, Routes } from '../../../routing/Routes';
-import { useLocation } from 'react-router-dom';
 import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -14,8 +11,6 @@ import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 
 const Arbeidssituasjon: React.FC = () => {
-  const location = useLocation();
-  const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
   const intl = useIntl();
 
   const { søknad, settSøknad } = useSøknadContext();
@@ -47,11 +42,7 @@ const Arbeidssituasjon: React.FC = () => {
   );
 
   return (
-    <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
-      nestePath={nesteRoute.path}
-      tilbakePath={Routes[2].path}
-    >
+    <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
       <KomponentGruppe>
         <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
