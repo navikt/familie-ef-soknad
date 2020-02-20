@@ -8,16 +8,16 @@ import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import useSøknadContext from '../../../../../context/SøknadContext';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
-import { IMultiSpørsmål } from '../../../../../models/spørsmal';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
+import { ISpørsmål } from '../../../../../models/spørsmal';
 
 interface Props {
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
 }
 
 const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
-  const spørsmål: IMultiSpørsmål = BegrunnelseSpørsmål;
+  const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
 
   const { søknad, settSøknad } = useSøknadContext();

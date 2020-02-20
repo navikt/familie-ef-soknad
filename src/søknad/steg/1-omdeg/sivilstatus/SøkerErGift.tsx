@@ -3,13 +3,13 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import { ISivilstatus } from '../../../../models/omDeg';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 
 interface Props {
-  settJaNeiFelt: (spørsmål: IJaNeiSpørsmål, svar: boolean) => void;
+  settJaNeiFelt: (spørsmål: ISpørsmål, svar: boolean) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
   sivilstatusObjekt: ISivilstatus;
 }
@@ -19,7 +19,7 @@ const SøkerErGift: React.FC<Props> = ({
   settDato,
   sivilstatusObjekt,
 }) => {
-  const separasjonsSpørsmål: IJaNeiSpørsmål = SeparasjonSpørsmål;
+  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
   const { søkerHarSøktSeparasjon } = sivilstatusObjekt;
 
   return (

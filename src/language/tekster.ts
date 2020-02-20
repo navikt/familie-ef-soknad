@@ -2,6 +2,26 @@
 export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
+    'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
+    'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
+      'Jeg er hjemme med barn under 1 år',
+    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
+      '[info om aktivitetsplikt fra Ett år]',
+    'arbeidssituasjon.svar.erIArbeid': 'Jeg er i arbeid',
+    'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
+      'Jeg er selvstendig næringsdrivende eller frilanser',
+    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+    'arbeidssituasjon.svar.etablererEgenVirksomhet':
+      'Jeg etablerer egen virksomhet',
+    'arbeidssituasjon.tittel.etablererEgenVirksomhet':
+      'Om virksomheten du etablerer',
+    'arbeidssituasjon.alert.etablererEgenVirksomhet':
+      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
+    'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
+    'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
+    'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
+      'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
+
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
     'bosituasjon.svar.borAleneMedBarnEllerGravid':
@@ -125,6 +145,7 @@ export default {
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
     'stegtittel.bosituasjon': 'Bosituasjonen din',
+    'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Last opp dokumentasjon',

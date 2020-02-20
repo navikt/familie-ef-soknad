@@ -8,7 +8,7 @@ import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentSivilstatus } from '../../../../utils/søknad';
-import { IJaNeiSpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmal';
 import { ISivilstatus } from '../../../../models/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
@@ -35,7 +35,7 @@ const Sivilstatus: React.FC = () => {
   const erSøkerEnke = sivilstand === 'ENKE';
   const erSøkerSeparert = sivilstand === 'SEPA';
 
-  const settSivilstatusFelt = (spørsmål: IJaNeiSpørsmål, svar: boolean) => {
+  const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: boolean) => {
     settSøknad({
       ...søknad,
       sivilstatus: {
@@ -66,10 +66,7 @@ const Sivilstatus: React.FC = () => {
       });
   };
 
-  const hentValgtSvar = (
-    spørsmål: IJaNeiSpørsmål,
-    sivilstatus: ISivilstatus
-  ) => {
+  const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
     for (const [key, value] of Object.entries(sivilstatus)) {
       if (key === spørsmål.spørsmål_id && value !== undefined) {
         return value.verdi;

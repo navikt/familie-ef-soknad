@@ -1,11 +1,24 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { IMultiSpørsmål, IMultiSvar } from '../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
+import styled from 'styled-components';
+
+const StyledMultisvarSpørsmål = styled.div`
+  .radioknapp {
+    &__multiSvar {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-auto-rows: min-content;
+      grid-gap: 1rem;
+      padding-top: 1rem;
+    }
+  }
+`;
 
 interface Props {
-  spørsmål: IMultiSpørsmål;
+  spørsmål: ISpørsmål;
   onChange: (spørsmål: string, svar: string) => void;
   valgtSvar: string | undefined;
 }
@@ -14,8 +27,8 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
   const intl = useIntl();
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: IMultiSpørsmål,
-    svar: IMultiSvar
+    spørsmål: ISpørsmål,
+    svar: ISvar
   ): void => {
     svar !== undefined &&
       onChange !== undefined &&
@@ -26,29 +39,27 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
   };
 
   return (
-    <div key={spørsmål.spørsmål_id} className={'spørsmålgruppe'}>
+    <StyledMultisvarSpørsmål key={spørsmål.spørsmål_id}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       <div className={'radioknapp__multiSvar'}>
-        {spørsmål.svaralternativer.map((svar: IMultiSvar) => {
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad =
             intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
           return (
-            <div key={svar.svar_tekstid} className={'radioknapp__item'}>
-              <RadioPanel
-                key={svar.svar_tekstid}
-                name={spørsmål.spørsmål_id}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => onClickHandle(e, spørsmål, svar)}
-              />
-            </div>
+            <RadioPanel
+              key={svar.svar_tekstid}
+              name={spørsmål.spørsmål_id}
+              label={intl.formatMessage({
+                id: svar.svar_tekstid,
+              })}
+              value={svar.svar_tekstid}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={(e) => onClickHandle(e, spørsmål, svar)}
+            />
           );
         })}
       </div>
-    </div>
+    </StyledMultisvarSpørsmål>
   );
 };
 

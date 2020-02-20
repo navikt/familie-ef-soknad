@@ -13,6 +13,7 @@ const norskeOrdMedÆØÅ = [
   'Søknad',
   'Søknadsdialog',
   'MultiSvarSpørsmål',
+  'CheckboxSpørsmål',
   'Søknadsbegrunnelse',
   'LeggTilBarnUfødt',
   'LeggTilBarnFødt',
@@ -21,6 +22,10 @@ const norskeOrdMedÆØÅ = [
   'NårFlyttetDereFraHverandre',
   'SøkerErGift',
   'SøkerHarSøktSeparasjon',
+  'HjemmeMedBarnUnderEttÅr',
+  'StyledCheckboxSpørsmål',
+  'StyledMultisvarSpørsmål',
+  'StyledJaNeiSpørsmål',
 ];
 
 module.exports = {
