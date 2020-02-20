@@ -27,14 +27,14 @@ const Bosituasjon: FC = () => {
     settSøknad({ ...søknad, bosituasjon: bosituasjon });
   }, [bosituasjon, settSøknad, søknad]);
 
-  const updateBosituasjon = (nyBosituasjon: IBosituasjon) =>
+  const oppdaterBosituasjon = (nyBosituasjon: IBosituasjon) =>
     settBosituasjon({ ...bosituasjon, ...nyBosituasjon });
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
   const settBosituasjonFelt = (spørsmål: string, svar: string) => {
     if (!bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
-      updateBosituasjon({
+      oppdaterBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmål,
           verdi: svar,
