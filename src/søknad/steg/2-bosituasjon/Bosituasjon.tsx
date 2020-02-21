@@ -25,7 +25,8 @@ const Bosituasjon: FC = () => {
   });
   useEffect(() => {
     settSøknad({ ...søknad, bosituasjon: bosituasjon });
-  }, [bosituasjon, settSøknad, søknad]);
+    // eslint-disable-next-line
+  }, [bosituasjon]);
 
   const oppdaterBosituasjon = (nyBosituasjon: IBosituasjon) =>
     settBosituasjon({ ...bosituasjon, ...nyBosituasjon });
