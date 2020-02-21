@@ -77,26 +77,7 @@ const BarnasBosted: React.FC = () => {
         tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
       >
         <div className="barnas-bosted">
-          <div className="barnas-bosted__header">
-            <img alt="barn" className="barneikon" src={barn1} />
-          </div>
-          <div className="barnas-bosted__info">
-            <Element className="navn">{barn.navn}</Element>
-            <div className="inforad">
-              <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.fødselsnummer'})}</Normaltekst>
-                  <Normaltekst className="informasjonselement__innhold">{barn.fnr}</Normaltekst>
-              </div>
-              <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.alder'})}}</Normaltekst>
-                  <Normaltekst className="informasjonselement__innhold">{barn.alder} år</Normaltekst>
-              </div>
-              <div className="informasjonselement">
-                  <Normaltekst className="informasjonselement__header">{intl.formatMessage({id: 'barnekort.bosted'})}}</Normaltekst>
-                  <Normaltekst className="informasjonselement__innhold">{bosted}</Normaltekst>
-              </div>
-            </div>
-          </div>
+          <BarnasBostedHeader barn={barn} />
           <div className="barnas-bosted__innhold">
           <KomponentGruppe>
             <FeltGruppe>
