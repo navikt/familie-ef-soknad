@@ -13,10 +13,12 @@ import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/vedlegg';
+import Environment from '../../Environment';
 
 interface Props {
   intl: IntlShape;
   tittel: string;
+  dokumentasjonsType: string;
   beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
   maxFilstørrelse?: number;
@@ -25,6 +27,7 @@ interface Props {
 const Filopplaster: React.FC<Props> = ({
   intl,
   tittel,
+  dokumentasjonsType,
   beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
@@ -74,16 +77,17 @@ const Filopplaster: React.FC<Props> = ({
         const data = new FormData();
         data.append('file', fil);
 
-        fetch(
-          'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/soknad-om-overgangsstonad-vedlegg',
-          {
-            method: 'POST',
-            body: data,
-          }
-        )
+        fetch(`${Environment().dokumentUrl}`, {
+          method: 'POST',
+          body: data,
+        })
           .then((response) => response.json())
           .then((data) => {
-            nyeVedlegg.push(data);
+            nyeVedlegg.push({
+              dokumentId: data.dokumentId,
+              navn: dokumentasjonsType,
+              label: tittel,
+            });
             settFilliste((prevListe: any) => [
               { filObjekt: fil, dokumentId: data.dokumentId },
               ...prevListe,

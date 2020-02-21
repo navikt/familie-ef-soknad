@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import vedlegg from '../../assets/vedlegg.svg';
-import slett from '../../assets/Slett.svg';
+import slett from '../../assets/slett.svg';
 import { formaterFilstørrelse } from './utils';
 import useSøknadContext from '../../context/SøknadContext';
 
