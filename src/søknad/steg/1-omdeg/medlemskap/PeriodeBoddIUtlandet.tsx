@@ -1,33 +1,40 @@
 import React, { FC, useEffect } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { injectIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
 import useSøknadContext from '../../../../context/SøknadContext';
 import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { IUtenlandsopphold } from '../../../../models/søknad';
 import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
+import { IUtenlandsopphold } from '../../../../models/omDeg';
 
-interface Props {
-  intl: IntlShape;
-}
-
-const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
+const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknadContext();
-  const { perioderBoddIUtlandet } = søknad;
+  const { perioderBoddIUtlandet } = søknad.medlemskap;
+  const intl = useIntl();
+  const hentTekst = (id: string) => intl.formatMessage({ id: id });
+
   const nyPeriode = {
-    periode: { fra: subDays(dagensDato, 1), til: dagensDato },
-    ugyldig: false,
-    begrunnelse: '',
+    periode: {
+      fra: { label: hentTekst('periode.fra'), verdi: subDays(dagensDato, 1) },
+      til: { label: hentTekst('periode.til'), verdi: dagensDato },
+    },
+    begrunnelse: {
+      label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse'),
+      verdi: '',
+    },
   };
 
   useEffect(() => {
     settSøknad({
       ...søknad,
-      perioderBoddIUtlandet: [nyPeriode],
+      medlemskap: {
+        ...søknad.medlemskap,
+        perioderBoddIUtlandet: [nyPeriode],
+      },
     });
     // eslint-disable-next-line
   }, []);
@@ -37,7 +44,13 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
     const alleUtenlandsopphold = perioderBoddIUtlandet;
     alleUtenlandsopphold && alleUtenlandsopphold.push(nyttUtenlandsopphold);
     alleUtenlandsopphold &&
-      settSøknad({ ...søknad, perioderBoddIUtlandet: alleUtenlandsopphold });
+      settSøknad({
+        ...søknad,
+        medlemskap: {
+          ...søknad.medlemskap,
+          perioderBoddIUtlandet: alleUtenlandsopphold,
+        },
+      });
   };
 
   return (
@@ -69,4 +82,4 @@ const PeriodeBoddIUtlandet: FC<Props> = ({ intl }) => {
     </>
   );
 };
-export default injectIntl(PeriodeBoddIUtlandet);
+export default PeriodeBoddIUtlandet;

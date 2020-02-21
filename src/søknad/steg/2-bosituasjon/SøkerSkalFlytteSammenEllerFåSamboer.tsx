@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { skalSøkerGifteSegMedSamboer } from './BosituasjonConfig';
@@ -7,72 +7,61 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
-import useSøknadContext from '../../../context/SøknadContext';
-import { injectIntl, IntlShape } from 'react-intl';
-import { IJaNeiSpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmal';
+import { IBosituasjon } from '../../../models/bosituasjon';
+import { useIntl } from 'react-intl';
 
-const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
-  intl,
+interface Props {
+  settBosituasjon: (bosituasjon: IBosituasjon) => void;
+  bosituasjon: IBosituasjon;
+}
+
+const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
+  settBosituasjon,
+  bosituasjon,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
-  const { bosituasjon } = søknad;
+  const intl = useIntl();
+
   const {
     søkerDelerBoligMedAndreVoksne,
     søkerSkalGifteSegEllerBliSamboer,
     datoSkalGifteSegEllerBliSamboer,
-    samboerDetaljer,
   } = bosituasjon;
 
-  const spørsmål: IJaNeiSpørsmål = skalSøkerGifteSegMedSamboer;
+  const spørsmål: ISpørsmål = skalSøkerGifteSegMedSamboer;
 
-  const settSøkerSkalGifteSegEllerBliSamboer = (svar: boolean) => {
-    settSøknad({
-      ...søknad,
-      bosituasjon: {
-        ...bosituasjon,
-        søkerSkalGifteSegEllerBliSamboer: {
-          nøkkel: spørsmål.spørsmål_id,
-          spørsmål_tekst: intl.formatMessage({
-            id: spørsmål.tekstid,
-          }),
-          svar: svar,
-        },
+  const settSøkerSkalGifteSegEllerBliSamboer = (
+    spørsmål: ISpørsmål,
+    svar: boolean
+  ) => {
+    settBosituasjon({
+      søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
+      søkerSkalGifteSegEllerBliSamboer: {
+        label: intl.formatMessage({
+          id: spørsmål.tekstid,
+        }),
+        verdi: svar,
       },
     });
   };
 
-  const settDatoSøkerSkalGifteSegEllerBliSamboer = (dato: Date | null) => {
+  const settDatoSøkerSkalGifteSegEllerBliSamboer = (
+    dato: Date | null,
+    label: string
+  ) => {
     dato !== null &&
-      settSøknad({
-        ...søknad,
-        bosituasjon: {
-          ...bosituasjon,
-          datoSkalGifteSegEllerBliSamboer: dato,
+      settBosituasjon({
+        ...bosituasjon,
+        datoSkalGifteSegEllerBliSamboer: {
+          label: label,
+          verdi: dato,
         },
       });
   };
 
-  useEffect(() => {
-    const resetSamboerDetaljer = () => {
-      settSøknad({
-        ...søknad,
-        bosituasjon: {
-          søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-          søkerSkalGifteSegEllerBliSamboer: søkerSkalGifteSegEllerBliSamboer,
-        },
-      });
-    };
-    søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.svar === false &&
-      samboerDetaljer &&
-      resetSamboerDetaljer();
-  }, [
-    søkerSkalGifteSegEllerBliSamboer,
-    samboerDetaljer,
-    settSøknad,
-    søknad,
-    søkerDelerBoligMedAndreVoksne,
-  ]);
+  const datovelgerTekst = intl.formatMessage({
+    id: 'datovelger.nårSkalDetteSkje',
+  });
 
   return (
     <>
@@ -82,36 +71,44 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<{ intl: IntlShape }> = ({
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
           valgtSvar={
             søkerSkalGifteSegEllerBliSamboer
-              ? søkerSkalGifteSegEllerBliSamboer.svar
+              ? søkerSkalGifteSegEllerBliSamboer.verdi
               : undefined
           }
         />
       </KomponentGruppe>
       {søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.svar === true ? (
+      søkerSkalGifteSegEllerBliSamboer.verdi === true ? (
         <>
           <KomponentGruppe>
             <Datovelger
               valgtDato={
                 datoSkalGifteSegEllerBliSamboer
-                  ? datoSkalGifteSegEllerBliSamboer
+                  ? datoSkalGifteSegEllerBliSamboer.verdi
                   : dagensDato
               }
               tekstid={'datovelger.nårSkalDetteSkje'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
-              settDato={(e) => settDatoSøkerSkalGifteSegEllerBliSamboer(e)}
+              settDato={(e) => {
+                settDatoSøkerSkalGifteSegEllerBliSamboer(e, datovelgerTekst);
+              }}
             />
           </KomponentGruppe>
-          <KomponentGruppe>
-            <OmSamboerenDin
-              tittel={'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'}
-              ekteskapsLiknendeForhold={false}
-            />
-          </KomponentGruppe>
+          {datoSkalGifteSegEllerBliSamboer && (
+            <KomponentGruppe>
+              <OmSamboerenDin
+                tittel={
+                  'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
+                }
+                ekteskapsLiknendeForhold={false}
+                settBosituasjon={settBosituasjon}
+                bosituasjon={bosituasjon}
+              />
+            </KomponentGruppe>
+          )}
         </>
       ) : null}
     </>
   );
 };
 
-export default injectIntl(SøkerSkalFlytteSammenEllerFåSamboer);
+export default SøkerSkalFlytteSammenEllerFåSamboer;

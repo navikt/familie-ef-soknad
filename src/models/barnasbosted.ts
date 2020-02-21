@@ -1,8 +1,8 @@
-import { ISpørsmålOgJaNeiSvar, ISpørsmålOgMultiSvar } from './søknad';
+import { ISpørsmål } from '../models/spørsmal';
 import { IPersonDetaljer } from './person';
 
 export interface IBosituasjon {
-  harSamværMedBarn: ISpørsmålOgMultiSvar;
+  harSamværMedBarn: ISpørsmål;
 }
 
 export enum EHarSamværMedBarn {

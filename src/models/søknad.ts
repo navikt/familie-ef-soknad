@@ -1,47 +1,22 @@
+import { IArbeidssituasjon } from './arbeidssituasjon';
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
+import { IMedlemskap, ISivilstatus } from './omDeg';
+import { IBooleanFelt, IDatoFelt } from './søknadsfelter';
 import { IBosituasjon } from './bosituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
   person: IPerson;
-  søkerBorPåRegistrertAdresse?: boolean;
-  søkerOppholderSegINorge?: boolean;
-  søkerBosattINorgeSisteTreÅr?: boolean;
-  søkerErFlyktning?: boolean;
-  søkerHarSøktSeparasjon?: boolean;
-  datoSøktSeparasjon?: Date;
-  søkerGiftIUtlandet?: boolean;
-  søkerSeparertEllerSkiltIUtlandet?: boolean;
-  perioderBoddIUtlandet?: IUtenlandsopphold[];
-  begrunnelseForSøknad?: string;
-  datoEndretSamvær?: Date;
-  datoForSamlivsbrudd?: Date;
-  datoFlyttetFraHverandre?: Date;
-  begrunnelseAnnet?: string;
-  vedleggsliste: IVedlegg[];
+  søkerBorPåRegistrertAdresse?: IBooleanFelt;
+  sivilstatus: ISivilstatus;
+  medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;
-}
-
-export interface IUtenlandsopphold {
-  periode: IPeriode;
-  ugyldig: boolean;
-  begrunnelse: string;
+  arbeidssituasjon: IArbeidssituasjon;
+  vedleggsliste: IVedlegg[];
 }
 
 export interface IPeriode {
-  fra: Date;
-  til: Date;
-}
-
-export interface ISpørsmålOgMultiSvar {
-  nøkkel: string;
-  spørsmål_tekst: string;
-  svar_tekst: string;
-}
-
-export interface ISpørsmålOgJaNeiSvar {
-  nøkkel: string;
-  spørsmål_tekst: string;
-  svar: boolean;
+  fra: IDatoFelt;
+  til: IDatoFelt;
 }

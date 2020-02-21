@@ -5,7 +5,7 @@ import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 
-import { injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
@@ -13,15 +13,25 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { ISpørsmål } from '../../../../models/spørsmal';
 
-const Personopplysninger: React.FC<any> = ({ intl }) => {
+const Personopplysninger: React.FC = () => {
+  const intl = useIntl();
   const { person } = usePersonContext();
   const { søker } = person;
   const { søknad, settSøknad } = useSøknadContext();
+  const { søkerBorPåRegistrertAdresse } = søknad;
   const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
     undefined
   );
+
+  const settPersonopplysningerFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+    settSøknad({
+      ...søknad,
+      søkerBorPåRegistrertAdresse: { label: spørsmål.spørsmål_id, verdi: svar },
+    });
+  };
 
   const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
@@ -57,18 +67,21 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
           </AlertStripeInfo>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.fnr'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
           </Element>
           <Normaltekst>{søker.statsborgerskap}</Normaltekst>
         </FeltGruppe>
+
         <FeltGruppe>
           <Element>
             <LocaleTekst tekst={'personopplysninger.adresse'} />
@@ -78,8 +91,16 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <JaNeiSpørsmål spørsmål={borDuPåDenneAdressen} />
-        {søknad.søkerBorPåRegistrertAdresse === false ? (
+        <JaNeiSpørsmål
+          spørsmål={borDuPåDenneAdressen}
+          valgtSvar={
+            søkerBorPåRegistrertAdresse
+              ? søkerBorPåRegistrertAdresse.verdi
+              : undefined
+          }
+          onChange={settPersonopplysningerFelt}
+        />
+        {søkerBorPåRegistrertAdresse?.verdi === false ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
             <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
           </AlertStripeAdvarsel>
@@ -113,4 +134,4 @@ const Personopplysninger: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Personopplysninger);
+export default Personopplysninger;

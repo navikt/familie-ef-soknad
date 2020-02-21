@@ -1,12 +1,12 @@
-import { IJaNeiSpørsmål, standardJaNeiSvar } from '../../../../models/spørsmal';
+import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
 
-export const oppholderSegINorge: IJaNeiSpørsmål = {
+export const oppholderSegINorge: ISpørsmål = {
   spørsmål_id: 'søkerOppholderSegINorge',
   tekstid: 'medlemskap.spm.opphold',
-  svaralternativer: standardJaNeiSvar,
+  svaralternativer: JaNeiSvar,
 };
 
-export const bosattINorgeDeSisteTreÅr: IJaNeiSpørsmål = {
+export const bosattINorgeDeSisteTreÅr: ISpørsmål = {
   spørsmål_id: 'søkerBosattINorgeSisteTreÅr',
   tekstid: 'medlemskap.spm.bosatt',
   lesmer: {
@@ -14,11 +14,5 @@ export const bosattINorgeDeSisteTreÅr: IJaNeiSpørsmål = {
     lukkeTekstid: '',
     innholdTekstid: 'medlemskap.hjelpetekst.bosatt.innhold',
   },
-  svaralternativer: standardJaNeiSvar,
-};
-
-export const registrertSomFlykting: IJaNeiSpørsmål = {
-  spørsmål_id: 'søkerErFlyktning',
-  tekstid: 'medlemskap.spm.flyktning',
-  svaralternativer: standardJaNeiSvar,
+  svaralternativer: JaNeiSvar,
 };

@@ -3,9 +3,6 @@ import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
-import { Routes, IRoute } from '../../../routing/Routes';
-import { hentNesteRoute } from '../../../routing/utils';
-import { hentForrigeRoute } from '../../../routing/utils';
 import { Input } from 'nav-frontend-skjema';
 import DatePicker from 'react-datepicker';
 import { Checkbox } from 'nav-frontend-skjema';
@@ -23,7 +20,6 @@ import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { useLocation } from 'react-router';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -34,11 +30,7 @@ const BarnasBosted: React.FC = () => {
   const { søknad } = useSøknadContext();
   const [forelder, settForelder] = useState<IForelder>({});
 
-  const location = useLocation();
-  const nesteRoute: IRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute: IRoute = hentForrigeRoute(Routes, location.pathname);
-
-  const settHarForelderSamværMedBarn = (valgtSvar: string) => {
+  const settHarForelderSamværMedBarn = (spørsmål: string, valgtSvar: string) => {
     const nyForelder = {...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: valgtSvar};
 
     if (valgtSvar === intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei'})) {
@@ -49,8 +41,8 @@ const BarnasBosted: React.FC = () => {
     settForelder(nyForelder);
   }
 
-  const settHarDereSkriftligSamværsavtale = (valgtSvar: string) => {
-    const nyForelder = {...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]:valgtSvar};
+  const settHarDereSkriftligSamværsavtale = (spørsmål: string, valgtSvar: string) => {
+    const nyForelder = {...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: valgtSvar};
 
     if (valgtSvar !== intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt'})) {
       delete nyForelder.hvordanPraktiseresSamværet;
@@ -58,6 +50,9 @@ const BarnasBosted: React.FC = () => {
 
     settForelder(nyForelder);
   }
+
+  console.log("FORELDER");
+  console.log(forelder);
 
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
     return valgtSvar == intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
@@ -79,8 +74,6 @@ const BarnasBosted: React.FC = () => {
     <>
       <Side
         tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
-        nestePath={nesteRoute.path}
-        tilbakePath={forrigeRoute.path}
       >
         <div className="barnas-bosted">
           <div className="barnas-bosted__header">
@@ -136,14 +129,14 @@ const BarnasBosted: React.FC = () => {
             <KomponentGruppe>
               <JaNeiSpørsmål 
                 spørsmål={borINorge} 
-                onChange={(e) => settForelder({...forelder, [borINorge.spørsmål_id]: e})}
+                onChange={(_, svar) => settForelder({...forelder, [borINorge.spørsmål_id]: svar})}
                 valgtSvar={forelder.borINorge}
               />
             </KomponentGruppe>
             <KomponentGruppe>
               <JaNeiSpørsmål 
                 spørsmål={avtaleOmDeltBosted} 
-                onChange={(e) => settForelder({...forelder, [avtaleOmDeltBosted.spørsmål_id]: e})} 
+                onChange={(_, svar) => settForelder({...forelder, [avtaleOmDeltBosted.spørsmål_id]: svar})} 
                 valgtSvar={forelder.avtaleOmDeltBosted}
               />
             </KomponentGruppe>
@@ -152,7 +145,7 @@ const BarnasBosted: React.FC = () => {
                 key={harAnnenForelderSamværMedBarn.spørsmål_id}
                 spørsmål={harAnnenForelderSamværMedBarn}
                 valgtSvar={forelder.harAnnenForelderSamværMedBarn}
-                onChange={settHarForelderSamværMedBarn}
+                onChange={(spørsmål, svar) => settHarForelderSamværMedBarn(spørsmål, svar)}
               />
             </KomponentGruppe>
             {forelder.harAnnenForelderSamværMedBarn && visSkriftligSamværsavtaleSpørsmål(forelder.harAnnenForelderSamværMedBarn) ? 
@@ -161,7 +154,7 @@ const BarnasBosted: React.FC = () => {
                           key={harDereSkriftligSamværsavtale.spørsmål_id}
                           spørsmål={harDereSkriftligSamværsavtale}
                           valgtSvar={forelder.harDereSkriftligSamværsavtale}
-                          onChange={settHarDereSkriftligSamværsavtale}
+                          onChange={(spørsmål, svar) => settHarDereSkriftligSamværsavtale(spørsmål, svar)}
                         />
                         {forelder.harDereSkriftligSamværsavtale && visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
                           <FeltGruppe>
@@ -178,13 +171,13 @@ const BarnasBosted: React.FC = () => {
                 key={borISammeHus.spørsmål_id}
                 spørsmål={borISammeHus}
                 valgtSvar={forelder.borISammeHus}
-                onChange={(e) => settForelder({...forelder, [borISammeHus.spørsmål_id]: e})}
+                onChange={(_, svar) => settForelder({...forelder, [borISammeHus.spørsmål_id]: svar})}
               />
             </KomponentGruppe>
             <KomponentGruppe>
               <JaNeiSpørsmål 
                 spørsmål={boddSammenFør} 
-                onChange={(e) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: e})}
+                onChange={(_, svar) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: svar})}
                 valgtSvar={forelder.boddSammenFør}
               />
             </KomponentGruppe>
@@ -210,7 +203,7 @@ const BarnasBosted: React.FC = () => {
                 key={hvorMyeSammen.spørsmål_id}
                 spørsmål={hvorMyeSammen}
                 valgtSvar={forelder.hvorMyeSammen}
-                onChange={(e) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: e})}
+                onChange={(_, svar) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: svar})}
               />
             </KomponentGruppe>
             </div>

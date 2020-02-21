@@ -1,17 +1,12 @@
-import {
-  IJaNeiSpørsmål,
-  IMultiSpørsmål,
-  ISvar,
-  standardJaNeiSvar,
-} from '../../../../models/spørsmal';
+import { ISpørsmål, ESvar, JaNeiSvar } from '../../../../models/spørsmal';
 
-export const SeparasjonSpørsmål: IJaNeiSpørsmål = {
+export const SeparasjonSpørsmål: ISpørsmål = {
   spørsmål_id: 'søkerHarSøktSeparasjon',
   tekstid: 'sivilstatus.separasjon.harsøkersøkt',
-  svaralternativer: standardJaNeiSvar,
+  svaralternativer: JaNeiSvar,
 };
 
-export const søkerGiftIUtlandet: IJaNeiSpørsmål = {
+export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
   spørsmål_id: 'søkerGiftIUtlandet',
   tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
   lesmer: {
@@ -21,26 +16,26 @@ export const søkerGiftIUtlandet: IJaNeiSpørsmål = {
   },
   svaralternativer: [
     {
-      svar_tekstid: ISvar.JA,
+      svar_tekstid: ESvar.JA,
       alert_tekstid: 'sivilstatus.dok.søkerGiftIUtlandet',
     },
-    { svar_tekstid: ISvar.NEI },
+    { svar_tekstid: ESvar.NEI },
   ],
 };
 
-export const søkerSeparertEllerSKiltIUtlandet: IJaNeiSpørsmål = {
+export const søkerSeparertEllerSKiltIUtlandetSpørsmål: ISpørsmål = {
   spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
   tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
   svaralternativer: [
     {
-      svar_tekstid: ISvar.JA,
+      svar_tekstid: ESvar.JA,
       alert_tekstid: 'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet',
     },
-    { svar_tekstid: ISvar.NEI },
+    { svar_tekstid: ESvar.NEI },
   ],
 };
 
-export const BegrunnelseSpørsmål: IMultiSpørsmål = {
+export const BegrunnelseSpørsmål: ISpørsmål = {
   spørsmål_id: 'begrunnelseForSøknad',
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [

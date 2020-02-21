@@ -40,9 +40,9 @@ export interface IBarn {
 }
 
 export interface IPersonDetaljer {
-  navn: string;
-  fødselsdato: Date;
-  fødselsnummer: string;
+  navn?: string;
+  fødselsdato?: Date;
+  fødselsnummer?: string;
 }
 
 export interface IForelder {

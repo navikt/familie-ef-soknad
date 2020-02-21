@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import LocaleTekst from '../../language/LocaleTekst';
-import { ReactComponent as Slett } from '../../assets/Slett.svg';
+import { ReactComponent as Slett } from '../../assets/slett.svg';
 
 const StyledSlettKnapp = styled.button`
   margin: 0;
@@ -14,6 +14,7 @@ const StyledSlettKnapp = styled.button`
   line-height: 1.375rem;
   font-weight: 400;
   color: #0067c5;
+
   cursor: pointer;
 
   &:hover {

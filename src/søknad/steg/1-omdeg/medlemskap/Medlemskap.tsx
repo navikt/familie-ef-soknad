@@ -1,42 +1,71 @@
 import React from 'react';
+import { ISpørsmål } from '../../../../models/spørsmal';
 import {
-  registrertSomFlykting,
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import { IMedlemskap } from '../../../../models/omDeg';
+import { useIntl } from 'react-intl';
 
 const Medlemskap: React.FC = () => {
-  const { person } = usePersonContext();
-  const { søknad } = useSøknadContext();
-  const { statsborgerskap } = person.søker;
-  const { søkerBosattINorgeSisteTreÅr, søkerOppholderSegINorge } = søknad;
+  const intl = useIntl();
+  const { søknad, settSøknad } = useSøknadContext();
+  const {
+    søkerOppholderSegINorge,
+    søkerBosattINorgeSisteTreÅr,
+  } = søknad.medlemskap;
+
+  const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+    settSøknad({
+      ...søknad,
+      medlemskap: {
+        ...søknad.medlemskap,
+        [spørsmål.spørsmål_id]: {
+          label: intl.formatMessage({ id: spørsmål.tekstid }),
+          verdi: svar,
+        },
+      },
+    });
+  };
+
+  const hentValgtSvar = (spørsmål: ISpørsmål, medlemskap: IMedlemskap) => {
+    for (const [key, value] of Object.entries(medlemskap)) {
+      if (key === spørsmål.spørsmål_id && value !== undefined) {
+        return value.verdi;
+      }
+    }
+  };
 
   return (
     <SeksjonGruppe>
-      <KomponentGruppe>
-        <JaNeiSpørsmål spørsmål={oppholderSegINorge} />
+      <KomponentGruppe key={oppholderSegINorge.spørsmål_id}>
+        <JaNeiSpørsmål
+          spørsmål={oppholderSegINorge}
+          valgtSvar={hentValgtSvar(oppholderSegINorge, søknad.medlemskap)}
+          onChange={settMedlemskapBooleanFelt}
+        />
       </KomponentGruppe>
 
-      {typeof søkerOppholderSegINorge === 'boolean' ? (
-        <KomponentGruppe>
-          <JaNeiSpørsmål spørsmål={bosattINorgeDeSisteTreÅr} />
+      {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
+        <KomponentGruppe key={bosattINorgeDeSisteTreÅr.spørsmål_id}>
+          <JaNeiSpørsmål
+            spørsmål={bosattINorgeDeSisteTreÅr}
+            valgtSvar={hentValgtSvar(
+              bosattINorgeDeSisteTreÅr,
+              søknad.medlemskap
+            )}
+            onChange={settMedlemskapBooleanFelt}
+          />
         </KomponentGruppe>
       ) : null}
 
-      {søkerBosattINorgeSisteTreÅr === false ? <PeriodeBoddIUtlandet /> : null}
-
-      {statsborgerskap !== 'NOR' &&
-      søkerBosattINorgeSisteTreÅr === false &&
-      typeof søkerBosattINorgeSisteTreÅr === 'boolean' ? (
-        <KomponentGruppe key={registrertSomFlykting.spørsmål_id}>
-          <JaNeiSpørsmål spørsmål={registrertSomFlykting} />
-        </KomponentGruppe>
+      {søkerBosattINorgeSisteTreÅr?.verdi === false ? (
+        <PeriodeBoddIUtlandet />
       ) : null}
     </SeksjonGruppe>
   );

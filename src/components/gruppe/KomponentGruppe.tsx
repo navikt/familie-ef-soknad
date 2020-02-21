@@ -15,11 +15,11 @@ const StyledFeltGruppe = styled.div`
   }
 `;
 
-const FeltGruppe: React.FC<{ className?: string }> = ({
+const KomponentGruppe: React.FC<{ className?: string }> = ({
   children,
   className,
 }) => {
   return <StyledFeltGruppe className={className}>{children}</StyledFeltGruppe>;
 };
 
-export default FeltGruppe;
+export default KomponentGruppe;

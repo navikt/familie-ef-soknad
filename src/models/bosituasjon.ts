@@ -1,11 +1,11 @@
-import { ISpørsmålOgJaNeiSvar, ISpørsmålOgMultiSvar } from './søknad';
+import { IBooleanFelt, IDatoFelt, ITekstFelt } from './søknadsfelter';
 import { IPersonDetaljer } from './person';
 
 export interface IBosituasjon {
-  søkerDelerBoligMedAndreVoksne: ISpørsmålOgMultiSvar;
-  søkerSkalGifteSegEllerBliSamboer?: ISpørsmålOgJaNeiSvar;
-  datoFlyttetSammenMedSamboer?: Date;
-  datoSkalGifteSegEllerBliSamboer?: Date;
+  søkerDelerBoligMedAndreVoksne: ITekstFelt;
+  søkerSkalGifteSegEllerBliSamboer?: IBooleanFelt;
+  datoFlyttetSammenMedSamboer?: IDatoFelt;
+  datoSkalGifteSegEllerBliSamboer?: IDatoFelt;
   samboerDetaljer?: IPersonDetaljer;
 }
 

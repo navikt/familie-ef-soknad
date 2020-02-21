@@ -1,13 +1,13 @@
-import { IJaNeiSpørsmål, standardJaNeiSvar, IMultiSpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, JaNeiSvar } from '../../../models/spørsmal';
 import { EHarSamværMedBarn, EHarSkriftligSamværsavtale, EBorISammeHus, EHvorMyeSammen } from '../../../models/barnasbosted';
 
-export const borINorge: IJaNeiSpørsmål = {
+export const borINorge: ISpørsmål = {
     spørsmål_id: 'borINorge',
     tekstid: 'barnasbosted.borinorge',
-    svaralternativer: standardJaNeiSvar,
+    svaralternativer: JaNeiSvar,
 };
 
-export const avtaleOmDeltBosted: IJaNeiSpørsmål = {
+export const avtaleOmDeltBosted: ISpørsmål = {
     spørsmål_id: 'avtaleOmDeltBosted',
     tekstid: 'barnasbosted.avtale',
     lesmer: {
@@ -15,16 +15,16 @@ export const avtaleOmDeltBosted: IJaNeiSpørsmål = {
       lukkeTekstid: '',
       innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
     },
-    svaralternativer: standardJaNeiSvar,
+    svaralternativer: JaNeiSvar,
 };
 
-export const boddSammenFør: IJaNeiSpørsmål = {
+export const boddSammenFør: ISpørsmål = {
   spørsmål_id: 'boddSammenFør',
   tekstid: 'barnasbosted.spm.boddsammenfør',
-  svaralternativer: standardJaNeiSvar,
+  svaralternativer: JaNeiSvar,
 }
 
-export const harAnnenForelderSamværMedBarn: IMultiSpørsmål = {
+export const harAnnenForelderSamværMedBarn: ISpørsmål = {
     spørsmål_id: 'harAnnenForelderSamværMedBarn',
     tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
     lesmer: {
@@ -48,7 +48,7 @@ export const harAnnenForelderSamværMedBarn: IMultiSpørsmål = {
     ],
   };
 
-export const harDereSkriftligSamværsavtale: IMultiSpørsmål = {
+export const harDereSkriftligSamværsavtale: ISpørsmål = {
   spørsmål_id: 'harDereSkriftligSamværsavtale',
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   svaralternativer: [
@@ -67,7 +67,7 @@ export const harDereSkriftligSamværsavtale: IMultiSpørsmål = {
   ],
 };
 
-export const borISammeHus: IMultiSpørsmål = {
+export const borISammeHus: ISpørsmål = {
   spørsmål_id: 'borISammeHus',
   tekstid: 'barnasbosted.spm.borISammeHus',
   lesmer: {
@@ -91,7 +91,7 @@ export const borISammeHus: IMultiSpørsmål = {
   ],
 }
 
-export const hvorMyeSammen: IMultiSpørsmål = {
+export const hvorMyeSammen: ISpørsmål = {
   spørsmål_id: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   svaralternativer: [
