@@ -19,6 +19,7 @@ import { IForelder } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import BarnasBostedHeader from './BarnasBostedHeader';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
@@ -55,7 +56,7 @@ const BarnasBosted: React.FC = () => {
   console.log(forelder);
 
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
-    return valgtSvar == intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
+    return valgtSvar === intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
   }
 
   const visSkriftligSamværsavtaleSpørsmål = (svarAndreForelderenSamvær: string) => {
@@ -63,7 +64,7 @@ const BarnasBosted: React.FC = () => {
   }
 
   const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
-    return valgtSamværsrett == intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
+    return valgtSamværsrett === intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
   }
 
   const barn = søknad.person.barn[0];

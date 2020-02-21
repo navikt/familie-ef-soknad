@@ -1,10 +1,3 @@
-import { ISpørsmål } from '../models/spørsmal';
-import { IPersonDetaljer } from './person';
-
-export interface IBosituasjon {
-  harSamværMedBarn: ISpørsmål;
-}
-
 export enum EHarSamværMedBarn {
   jaIkkeMerEnnVanlig = 'jaIkkeMerEnnVanlig',
   jaMerEnnVanlig = 'jaMerEnnVanlig',
