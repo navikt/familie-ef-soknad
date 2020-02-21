@@ -24,7 +24,12 @@ export const nyttTekstFelt: ITekstFelt = {
   verdi: '',
 };
 
-export enum EArbeidssituasjonSvar {
+export const nyttTekstListeFelt: ITekstListeFelt = {
+  label: '',
+  verdi: [],
+};
+
+export enum EArbeidssituasjon {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
   erArbeidstaker = 'erArbeidstaker',
   erSelvstendigNæringsdriveneEllerFrilanser = 'erSelvstendigNæringsdriveneEllerFrilanser',
@@ -35,7 +40,15 @@ export enum EArbeidssituasjonSvar {
   erHverkenIArbeidUtdanningEllerArbeidssøker = 'erHverkenIArbeidUtdanningEllerArbeidssøker',
 }
 
-export enum EStillingSvar {
+export enum EStilling {
   fast = 'fast',
   midlertidig = 'midlertidig',
+}
+
+export enum EArbeidsgiver {
+  navn = 'navn',
+  arbeidsmengde = 'arbeidsmengde',
+  fastStilling = 'fastStilling',
+  harSluttDato = 'harSluttDato',
+  sluttdato = 'sluttdato',
 }
