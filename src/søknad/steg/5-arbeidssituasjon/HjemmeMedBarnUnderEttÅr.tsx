@@ -8,7 +8,7 @@ const HjemmeMedBarnUnderEttÅr: React.FC<{ erHuketAv: boolean }> = ({
 }) => {
   return (
     <>
-      {erHuketAv ? (
+      {erHuketAv && (
         <KomponentGruppe>
           <AlertStripeInfo className="fjernBakgrunn">
             <LocaleTekst
@@ -16,7 +16,7 @@ const HjemmeMedBarnUnderEttÅr: React.FC<{ erHuketAv: boolean }> = ({
             />
           </AlertStripeInfo>
         </KomponentGruppe>
-      ) : null}
+      )}
     </>
   );
 };

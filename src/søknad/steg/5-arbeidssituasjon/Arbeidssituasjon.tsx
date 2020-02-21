@@ -1,32 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
+import { useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
-import { useIntl } from 'react-intl';
-import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
+import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
+import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
+import {
+  EArbeidssituasjon,
+  IArbeidssituasjon,
+  nyttTekstListeFelt,
+} from '../../../models/arbeidssituasjon';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
-
   const { søknad, settSøknad } = useSøknadContext();
-  const { situasjon } = søknad.arbeidssituasjon;
+  const [arbeidssituasjon, settArbeidssituasjon] = useState<IArbeidssituasjon>({
+    situasjon: nyttTekstListeFelt,
+  });
+  const { situasjon } = arbeidssituasjon;
 
-  const settArbeidssituasjon = (spørsmål: string, svar: string[]) => {
-    settSøknad({
-      ...søknad,
-      arbeidssituasjon: {
-        ...søknad.arbeidssituasjon,
-        situasjon: { label: spørsmål, verdi: svar },
-      },
+  useEffect(() => {
+    settSøknad({ ...søknad, arbeidssituasjon: arbeidssituasjon });
+    // eslint-disable-next-line
+  }, [arbeidssituasjon]);
+
+  const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IArbeidssituasjon) => {
+    settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
+  };
+
+  const settArbeidssituasjonFelt = (spørsmål: string, svar: string[]) => {
+    oppdaterArbeidssituasjon({
+      ...arbeidssituasjon,
+      situasjon: { label: spørsmål, verdi: svar },
     });
   };
 
-  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjonSvar): boolean => {
+  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return situasjon.verdi.some((svarHuketAvISøknad: string) => {
@@ -35,24 +47,38 @@ const Arbeidssituasjon: React.FC = () => {
   };
 
   const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr
+    EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr
   );
   const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.etablererEgenVirksomhet
+    EArbeidssituasjon.etablererEgenVirksomhet
   );
+  const huketAvHarArbeid =
+    erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
+    erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
 
   return (
     <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
       <KomponentGruppe>
         <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
-          settValgteSvar={settArbeidssituasjon}
+          settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={situasjon?.verdi}
         />
       </KomponentGruppe>
+
       <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
-      <EtablererEgenVirksomhet erHuketAv={huketAvEtablererEgenVirksomhet} />
-      <OmArbeidsforholdetDitt />
+
+      <EtablererEgenVirksomhet
+        erHuketAv={huketAvEtablererEgenVirksomhet}
+        arbeidssituasjon={arbeidssituasjon}
+        settArbeidssituasjon={settArbeidssituasjon}
+      />
+
+      <OmArbeidsforholdetDitt
+        erHuketAv={huketAvHarArbeid}
+        arbeidssituasjon={arbeidssituasjon}
+        settArbeidssituasjon={settArbeidssituasjon}
+      />
     </Side>
   );
 };
