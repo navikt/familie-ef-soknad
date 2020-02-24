@@ -4,7 +4,6 @@ import Side from '../../../components/side/Side';
 import { Element } from 'nav-frontend-typografi';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
-import { ISpørsmål } from '../../../models/spørsmal';
 import {
   borINorge,
   avtaleOmDeltBosted,
@@ -25,58 +24,21 @@ import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
+import { 
+  settHarForelderSamværMedBarn,
+  settHarDereSkriftligSamværsavtale,
+  settHarBoddsammenFør,
+  visSamværsavtaleAdvarsel,
+  visSkriftligSamværsavtaleSpørsmål,
+  visHvordanPraktiseresSamværet
+} from './utils';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
   const [forelder, settForelder] = useState<IForelder>({});
 
-  const settHarForelderSamværMedBarn = (spørsmål: string, valgtSvar: string) => {
-    const nyForelder = {...forelder, [harAnnenForelderSamværMedBarn.spørsmål_id]: valgtSvar};
-
-    if (valgtSvar === intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei'})) {
-      delete nyForelder.harDereSkriftligSamværsavtale;
-      delete nyForelder.hvordanPraktiseresSamværet;
-    }
-
-    settForelder(nyForelder);
-  }
-
-  const settHarDereSkriftligSamværsavtale = (spørsmål: string, valgtSvar: string) => {
-    const nyForelder = {...forelder, [harDereSkriftligSamværsavtale.spørsmål_id]: valgtSvar};
-
-    if (valgtSvar !== intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt'})) {
-      delete nyForelder.hvordanPraktiseresSamværet;
-    }
-
-    settForelder(nyForelder);
-  }
-
-  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
-    const nyForelder = {...forelder, [boddSammenFør.spørsmål_id]: valgtSvar};
-
-    if (valgtSvar === false) {
-      delete nyForelder.flyttetFra;
-    }
-
-    settForelder(nyForelder);
-  }
-
-  const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
-    return valgtSvar === intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
-  }
-
-  const visSkriftligSamværsavtaleSpørsmål = (svarAndreForelderenSamvær: string) => {
-    return svarAndreForelderenSamvær && svarAndreForelderenSamvær !== intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' });
-  }
-
-  const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
-    return valgtSamværsrett === intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
-  }
-
   const barn = søknad.person.barn[0];
-
-  const bosted = barn.harSammeAdresse ? intl.formatMessage({ id: 'barnekort.adresse.registrert' }) : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
 
   return (
     <>
@@ -129,18 +91,18 @@ const BarnasBosted: React.FC = () => {
                 key={harAnnenForelderSamværMedBarn.spørsmål_id}
                 spørsmål={harAnnenForelderSamværMedBarn}
                 valgtSvar={forelder.harAnnenForelderSamværMedBarn}
-                onChange={(spørsmål, svar) => settHarForelderSamværMedBarn(spørsmål, svar)}
+                onChange={(spørsmål, svar) => settHarForelderSamværMedBarn(spørsmål, svar, settForelder, forelder, intl)}
               />
             </KomponentGruppe>
-            {forelder.harAnnenForelderSamværMedBarn && visSkriftligSamværsavtaleSpørsmål(forelder.harAnnenForelderSamværMedBarn) ? 
+            {forelder.harAnnenForelderSamværMedBarn && visSkriftligSamværsavtaleSpørsmål(forelder.harAnnenForelderSamværMedBarn, intl) ? 
                         <KomponentGruppe>
                         <MultiSvarSpørsmål
                           key={harDereSkriftligSamværsavtale.spørsmål_id}
                           spørsmål={harDereSkriftligSamværsavtale}
                           valgtSvar={forelder.harDereSkriftligSamværsavtale}
-                          onChange={(spørsmål, svar) => settHarDereSkriftligSamværsavtale(spørsmål, svar)}
+                          onChange={(spørsmål, svar) => settHarDereSkriftligSamværsavtale(spørsmål, svar, settForelder, forelder, intl)}
                         />
-                        {forelder.harDereSkriftligSamværsavtale && visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
+                        {forelder.harDereSkriftligSamværsavtale && visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale, intl) ? (
                           <FeltGruppe>
                           <AlertStripeInfo className={'fjernBakgrunn'}>
                             <LocaleTekst tekst={'barnasbosted.alert.leggeVedSamværsavtalen'} />
@@ -148,7 +110,7 @@ const BarnasBosted: React.FC = () => {
                           </FeltGruppe>
                       ) : null}
                       </KomponentGruppe> : null}
-                      {forelder.harDereSkriftligSamværsavtale && visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale) ?
+                      {forelder.harDereSkriftligSamværsavtale && visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale, intl) ?
                       <HvordanPraktiseresSamværet forelder={forelder} settForelder={settForelder} /> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
@@ -161,7 +123,7 @@ const BarnasBosted: React.FC = () => {
             <KomponentGruppe>
               <JaNeiSpørsmål 
                 spørsmål={boddSammenFør} 
-                onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar)}
+                onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar, settForelder, forelder, intl)}
                 valgtSvar={forelder.boddSammenFør}
               />
             </KomponentGruppe>
