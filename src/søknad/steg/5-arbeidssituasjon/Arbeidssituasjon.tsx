@@ -66,19 +66,20 @@ const Arbeidssituasjon: React.FC = () => {
         />
       </KomponentGruppe>
 
-      <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
+      {huketAvHjemmeMedBarnUnderEttÅr && <HjemmeMedBarnUnderEttÅr />}
 
-      <EtablererEgenVirksomhet
-        erHuketAv={huketAvEtablererEgenVirksomhet}
-        arbeidssituasjon={arbeidssituasjon}
-        settArbeidssituasjon={settArbeidssituasjon}
-      />
-
-      <OmArbeidsforholdetDitt
-        erHuketAv={huketAvHarArbeid}
-        arbeidssituasjon={arbeidssituasjon}
-        settArbeidssituasjon={settArbeidssituasjon}
-      />
+      {huketAvEtablererEgenVirksomhet && (
+        <EtablererEgenVirksomhet
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+      {huketAvHarArbeid && (
+        <OmArbeidsforholdetDitt
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
     </Side>
   );
 };

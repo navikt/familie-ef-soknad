@@ -13,11 +13,9 @@ import { useIntl } from 'react-intl';
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;
   settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
-  erHuketAv: boolean;
 }
 
 const EtablererEgenVirksomhet: React.FC<Props> = ({
-  erHuketAv,
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
@@ -36,38 +34,30 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
   };
 
   return (
-    <>
-      {erHuketAv && (
-        <SeksjonGruppe>
-          <FeltGruppe>
-            <Undertittel>
-              <LocaleTekst
-                tekst={'arbeidssituasjon.tittel.etablererEgenVirksomhet'}
-              />
-            </Undertittel>
-          </FeltGruppe>
-
-          <Textarea
-            label={intl.formatMessage({
-              id: 'arbeidssituasjon.label.etablererEgenVirksomhet',
-            })}
-            value={
-              etablererEgenVirksomhet?.verdi
-                ? etablererEgenVirksomhet.verdi
-                : ''
-            }
-            maxLength={2000}
-            onChange={(e) => settTekstfelt(e)}
+    <SeksjonGruppe>
+      <FeltGruppe>
+        <Undertittel>
+          <LocaleTekst
+            tekst={'arbeidssituasjon.tittel.etablererEgenVirksomhet'}
           />
+        </Undertittel>
+      </FeltGruppe>
 
-          <AlertStripeInfo className="fjernBakgrunn">
-            <LocaleTekst
-              tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'}
-            />
-          </AlertStripeInfo>
-        </SeksjonGruppe>
-      )}
-    </>
+      <Textarea
+        label={intl.formatMessage({
+          id: 'arbeidssituasjon.label.etablererEgenVirksomhet',
+        })}
+        value={
+          etablererEgenVirksomhet?.verdi ? etablererEgenVirksomhet.verdi : ''
+        }
+        maxLength={2000}
+        onChange={(e) => settTekstfelt(e)}
+      />
+
+      <AlertStripeInfo className="fjernBakgrunn">
+        <LocaleTekst tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'} />
+      </AlertStripeInfo>
+    </SeksjonGruppe>
   );
 };
 

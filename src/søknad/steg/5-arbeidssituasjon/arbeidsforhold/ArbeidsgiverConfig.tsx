@@ -1,8 +1,8 @@
 import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
-import { EStilling } from '../../../../models/arbeidssituasjon';
+import { EArbeidsgiver, EStilling } from '../../../../models/arbeidssituasjon';
 
 export const hvaSlagsStilling: ISpørsmål = {
-  spørsmål_id: 'fastEllerMidlertidig',
+  spørsmål_id: EArbeidsgiver.fastStilling,
   tekstid: 'arbeidsforhold.label.fastEllerMidlertidig',
   svaralternativer: [
     {
@@ -18,7 +18,7 @@ export const hvaSlagsStilling: ISpørsmål = {
 };
 
 export const harDuSluttdato: ISpørsmål = {
-  spørsmål_id: 'sluttdato',
+  spørsmål_id: EArbeidsgiver.harSluttDato,
   tekstid: 'arbeidsforold.label.sluttdato',
   svaralternativer: JaNeiSvar,
 };
