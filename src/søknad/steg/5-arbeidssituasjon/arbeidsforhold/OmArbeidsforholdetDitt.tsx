@@ -33,14 +33,6 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   useEffect(() => {
     settArbeidssituasjon({
       ...arbeidssituasjon,
-      arbeidsforhold: [tomArbeidsgiver],
-    });
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    settArbeidssituasjon({
-      ...arbeidssituasjon,
       arbeidsforhold: arbeidsforhold,
     });
     // eslint-disable-next-line

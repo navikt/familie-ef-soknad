@@ -14,7 +14,7 @@ export interface IArbeidssituasjon {
 export interface IArbeidsgiver {
   navn?: ITekstFelt;
   arbeidsmengde?: ITekstFelt;
-  fastStilling?: IBooleanFelt;
+  fastStilling?: ITekstFelt;
   harSluttDato?: IBooleanFelt;
   sluttdato?: IDatoFelt;
 }

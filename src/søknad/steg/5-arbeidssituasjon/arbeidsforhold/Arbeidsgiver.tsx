@@ -5,14 +5,22 @@ import {
   EArbeidsgiver,
   IArbeidsgiver,
 } from '../../../../models/arbeidssituasjon';
-
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import styled from 'styled-components';
 import { Input } from 'nav-frontend-skjema';
 import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
+import { harDuSluttdato, hvaSlagsStilling } from './ArbeidsgiverConfig';
+import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
+import { ISpørsmål } from '../../../../models/spørsmal';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../../components/dato/Datovelger';
+import HarSøkerSluttdato from './HarSøkerSluttdato';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -41,7 +49,7 @@ const Arbeidsgiver: React.FC<Props> = ({
   );
 
   const oppdaterArbeidsgiver = (
-    objektnøkkel: EArbeidsgiver,
+    objektnøkkel: EArbeidsgiver | string,
     label: string,
     verdi: any
   ) => {
@@ -53,7 +61,6 @@ const Arbeidsgiver: React.FC<Props> = ({
         };
       } else return arbeidsgiver;
     });
-    console.log(endretArbeidsforhold);
     arbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
   };
 
@@ -66,7 +73,7 @@ const Arbeidsgiver: React.FC<Props> = ({
     }
   };
 
-  const settTekstFelt = (
+  const settTekstInputFelt = (
     e: React.FormEvent<HTMLInputElement>,
     nøkkel: EArbeidsgiver,
     label: string
@@ -95,27 +102,44 @@ const Arbeidsgiver: React.FC<Props> = ({
           tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
         />
       </TittelOgSlettKnapp>
-
-      <KomponentGruppe>
+      <FeltGruppe>
         <Input
           key={navnLabel}
           label={navnLabel}
           type="text"
           bredde={'L'}
-          onChange={(e) => settTekstFelt(e, EArbeidsgiver.navn, navnLabel)}
+          onChange={(e) => settTekstInputFelt(e, EArbeidsgiver.navn, navnLabel)}
         />
-      </KomponentGruppe>
-      <KomponentGruppe>
+      </FeltGruppe>
+      <FeltGruppe>
         <Input
           key={arbeidsmengdeLabel}
           label={arbeidsmengdeLabel}
           type="text"
           bredde={'L'}
           onChange={(e) =>
-            settTekstFelt(e, EArbeidsgiver.navn, arbeidsmengdeLabel)
+            settTekstInputFelt(
+              e,
+              EArbeidsgiver.arbeidsmengde,
+              arbeidsmengdeLabel
+            )
           }
         />
-      </KomponentGruppe>
+      </FeltGruppe>
+      <FeltGruppe>
+        <MultiSvarSpørsmål
+          toKorteSvar={true}
+          spørsmål={hvaSlagsStilling}
+          onChange={(spørsmål: string, svar: string) =>
+            oppdaterArbeidsgiver(EArbeidsgiver.fastStilling, spørsmål, svar)
+          }
+          valgtSvar={arbeidsgiver.fastStilling?.verdi}
+        />
+      </FeltGruppe>
+      <HarSøkerSluttdato
+        arbeidsgiver={arbeidsgiver}
+        oppdaterArbeidsgiver={oppdaterArbeidsgiver}
+      />
     </StyledArbeidsgiver>
   );
 };

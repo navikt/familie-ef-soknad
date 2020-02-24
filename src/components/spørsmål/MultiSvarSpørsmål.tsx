@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import styled from 'styled-components';
+import classNames from 'classnames';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -15,15 +16,29 @@ const StyledMultisvarSpørsmål = styled.div`
       padding-top: 1rem;
     }
   }
+
+  .toKorteSvar {
+    grid-template-columns: 1fr 1fr;
+
+    @media all and (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
+  }
 `;
 
 interface Props {
+  toKorteSvar?: boolean;
   spørsmål: ISpørsmål;
   onChange: (spørsmål: string, svar: string) => void;
   valgtSvar: string | undefined;
 }
 
-const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
+const MultiSvarSpørsmål: FC<Props> = ({
+  toKorteSvar,
+  spørsmål,
+  onChange,
+  valgtSvar,
+}) => {
   const intl = useIntl();
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
@@ -41,7 +56,11 @@ const MultiSvarSpørsmål: FC<Props> = ({ spørsmål, onChange, valgtSvar }) => 
   return (
     <StyledMultisvarSpørsmål key={spørsmål.spørsmål_id}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
-      <div className={'radioknapp__multiSvar'}>
+      <div
+        className={classNames('radioknapp__multiSvar', {
+          toKorteSvar: toKorteSvar,
+        })}
+      >
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad =
             intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
