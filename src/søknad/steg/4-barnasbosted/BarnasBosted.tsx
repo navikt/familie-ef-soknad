@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
-import barn1 from '../../../assets/barn1.svg';
+import { Element } from 'nav-frontend-typografi';
 import { Input } from 'nav-frontend-skjema';
-import DatePicker from 'react-datepicker';
 import { Checkbox } from 'nav-frontend-skjema';
+import { ISpørsmål } from '../../../models/spørsmal';
 import {
   borINorge,
   avtaleOmDeltBosted,
@@ -53,8 +52,15 @@ const BarnasBosted: React.FC = () => {
     settForelder(nyForelder);
   }
 
-  console.log("FORELDER");
-  console.log(forelder);
+  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
+    const nyForelder = {...forelder, [boddSammenFør.spørsmål_id]: valgtSvar};
+
+    if (valgtSvar === false) {
+      delete nyForelder.flyttetFra;
+    }
+
+    settForelder(nyForelder);
+  }
 
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
     return valgtSvar === intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' });
@@ -92,8 +98,8 @@ const BarnasBosted: React.FC = () => {
           <div className="fødselsnummer">
             <div className="fødselsdato">
           <Datovelger
-                    settDato={(e: any) => settForelder({...forelder, "fødselsdato": e})}
-                    valgtDato={forelder.fødselsdato ? forelder.fødselsdato : new Date()}
+                    settDato={(e: Date | null) => settForelder({...forelder, "fødselsdato": e})}
+                    valgtDato={forelder.fødselsdato ? forelder.fødselsdato : undefined}
                     tekstid={'datovelger.fødselsdato'}
                     datobegrensning={DatoBegrensning.TidligereDatoer}
                   />
@@ -155,7 +161,7 @@ const BarnasBosted: React.FC = () => {
             <KomponentGruppe>
               <JaNeiSpørsmål 
                 spørsmål={boddSammenFør} 
-                onChange={(_, svar) => settForelder({...forelder, [boddSammenFør.spørsmål_id]: svar})}
+                onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar)}
                 valgtSvar={forelder.boddSammenFør}
               />
             </KomponentGruppe>
@@ -164,8 +170,8 @@ const BarnasBosted: React.FC = () => {
             <div className="fødselsdato">
           <div className={'datepicker__container'}>
                           <Datovelger
-                    settDato={(e: any) => settForelder({...forelder, "flyttetFra": e})}
-                    valgtDato={forelder.flyttetFra ? forelder.flyttetFra : new Date()}
+                    settDato={(e: Date | null) => settForelder({...forelder, "flyttetFra": e})}
+                    valgtDato={forelder.flyttetFra ? forelder.flyttetFra : undefined}
                     tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
                     datobegrensning={DatoBegrensning.TidligereDatoer}
                   />
