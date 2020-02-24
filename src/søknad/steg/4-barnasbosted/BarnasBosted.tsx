@@ -22,6 +22,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
+import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
@@ -90,18 +91,13 @@ const BarnasBosted: React.FC = () => {
           <KomponentGruppe>
           <div className="fødselsnummer">
             <div className="fødselsdato">
-          <Normaltekst>{intl.formatMessage({ id: 'datovelger.fødselsdato' })}</Normaltekst>
-          <div className="barn-datovelger">
-          <div className={'datepicker__container'}>
-            <DatePicker
-                    onChange={(e) => settForelder({...forelder, "fødselsdato": e})}
-                    selected={new Date()}
-                    dateFormat={'dd.MM.yyyy'}
-                    className={'datovelger__input'}
-                />
+          <Datovelger
+                    settDato={(e: any) => settForelder({...forelder, "fødselsdato": e})}
+                    valgtDato={forelder.fødselsdato ? forelder.fødselsdato : new Date()}
+                    tekstid={'datovelger.fødselsdato'}
+                    datobegrensning={DatoBegrensning.TidligereDatoer}
+                  />
                 </div>
-            </div>
-            </div>
             <Input className="personnummer" onChange={(e) => settForelder({...forelder, "personnr": e.target.value})} label="Personnummer. Kun hvis barnet har fått." />
             </div>
             <FeltGruppe>
@@ -166,17 +162,14 @@ const BarnasBosted: React.FC = () => {
             {forelder.boddSammenFør ? <KomponentGruppe>
             <div className="fødselsnummer">
             <div className="fødselsdato">
-          <Normaltekst>{intl.formatMessage({ id: 'barnasbosted.normaltekst.nårflyttetfra' })}</Normaltekst>
-          <div className="barn-datovelger">
           <div className={'datepicker__container'}>
-            <DatePicker
-                    onChange={(e) => settForelder({...forelder, "flyttetFra": e})}
-                    selected={new Date()}
-                    dateFormat={'dd.MM.yyyy'}
-                    className={'datovelger__input'}
-                />
+                          <Datovelger
+                    settDato={(e: any) => settForelder({...forelder, "flyttetFra": e})}
+                    valgtDato={forelder.flyttetFra ? forelder.flyttetFra : new Date()}
+                    tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
+                    datobegrensning={DatoBegrensning.TidligereDatoer}
+                  />
                 </div>
-            </div>
             </div>
             </div>
             </KomponentGruppe> : null}
