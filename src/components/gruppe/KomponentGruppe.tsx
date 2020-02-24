@@ -7,6 +7,9 @@ const StyledKomponentGruppe = styled.div`
   &:last-child {
     padding-bottom: 0;
   }
+  .skjemaelement {
+    margin-bottom: 0;
+  }
 
   .alertstripe.fjernBakgrunn {
     background: transparent;
