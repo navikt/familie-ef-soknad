@@ -26,6 +26,7 @@ const norskeOrdMedÆØÅ = [
   'StyledCheckboxSpørsmål',
   'StyledMultisvarSpørsmål',
   'StyledJaNeiSpørsmål',
+  'HarSøkerSluttdato',
 ];
 
 module.exports = {

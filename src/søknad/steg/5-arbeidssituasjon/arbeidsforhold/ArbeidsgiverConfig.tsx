@@ -19,6 +19,6 @@ export const hvaSlagsStilling: ISpørsmål = {
 
 export const harDuSluttdato: ISpørsmål = {
   spørsmål_id: EArbeidsgiver.harSluttDato,
-  tekstid: 'arbeidsforold.label.sluttdato',
+  tekstid: 'arbeidsforhold.label.sluttdato',
   svaralternativer: JaNeiSvar,
 };
