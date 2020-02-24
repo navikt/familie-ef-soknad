@@ -5,6 +5,7 @@ import {
   EArbeidsgiver,
   IArbeidsgiver,
 } from '../../../../models/arbeidssituasjon';
+
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
