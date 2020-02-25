@@ -1,5 +1,5 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { ISpørsmål } from '../../models/spørsmal'; 
+import { ISpørsmål } from '../../models/spørsmal';
 import Hjelpetekst from '../Hjelpetekst';
 import { ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
