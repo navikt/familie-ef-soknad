@@ -16,21 +16,11 @@ import { useIntl } from 'react-intl';
 import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger';
 import OmAndreForelder from './OmAndreForelder';
 import BostedOgSamvær from './BostedOgSamvær';
+import BarnetsBosted from './BarnetsBosted';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknadContext();
-  const [forelder, settForelder] = useState<IForelder>({});
-
-  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
-    const nyForelder = {...forelder, [boddSammenFør.spørsmål_id]: valgtSvar};
-
-    if (valgtSvar === false) {
-      delete nyForelder.flyttetFra;
-    }
-
-    settForelder(nyForelder);
-  }
 
   const barna = søknad.person.barn;
 
@@ -40,50 +30,7 @@ const BarnasBosted: React.FC = () => {
         tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
       >
        {barna.map((barn) => {
-        return (<div className="barnas-bosted">
-          <BarnasBostedHeader barn={barn} />
-          <div className="barnas-bosted__innhold">
-            <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} />
-            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
-            <KomponentGruppe>
-              <MultiSvarSpørsmål
-                key={borISammeHus.spørsmål_id}
-                spørsmål={borISammeHus}
-                valgtSvar={forelder.borISammeHus}
-                onChange={(_, svar) => settForelder({...forelder, [borISammeHus.spørsmål_id]: svar})}
-              />
-            </KomponentGruppe>
-            <KomponentGruppe>
-              <JaNeiSpørsmål 
-                spørsmål={boddSammenFør} 
-                onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar)}
-                valgtSvar={forelder.boddSammenFør}
-              />
-            </KomponentGruppe>
-            {forelder.boddSammenFør ? <KomponentGruppe>
-            <div className="fødselsnummer">
-            <div className="fødselsdato">
-          <div className={'datepicker__container'}>
-                          <Datovelger
-                    settDato={(e: Date | null) => settForelder({...forelder, "flyttetFra": e})}
-                    valgtDato={forelder.flyttetFra ? forelder.flyttetFra : undefined}
-                    tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
-                    datobegrensning={DatoBegrensning.TidligereDatoer}
-                  />
-                </div>
-            </div>
-            </div>
-            </KomponentGruppe> : null}
-            <KomponentGruppe>
-              <MultiSvarSpørsmål
-                key={hvorMyeSammen.spørsmål_id}
-                spørsmål={hvorMyeSammen}
-                valgtSvar={forelder.hvorMyeSammen}
-                onChange={(_, svar) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: svar})}
-              />
-            </KomponentGruppe>
-            </div>
-            </div>)
+        return (<BarnetsBosted barn={barn} />)
        })}
       </Side>
     </>
