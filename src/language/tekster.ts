@@ -160,12 +160,58 @@ export default {
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
     'barnadine.sidetittel': 'Barna dine',
+    'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
+    'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.hvorMyeSammen':
+      'Hvor mye er du sammen med den andre forelderen til Solveig?',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -223,6 +269,49 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
+    'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -278,5 +367,48 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.avtale':
+      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.spm.harAnnenForelderSamværMedBarn':
+      'Har den andre forelderen samvær med [0]?',
+    'barnasbosted.spm.jaIkkeMerEnnVanlig':
+      'Ja, men ikke mer enn vanlig samværsrett',
+    'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
+    'barnasbosted.spm.ja': 'Ja',
+    'barnasbosted.spm.nei': 'Nei',
+    'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
+    'barnasbosted.spm.harDereSkriftligSamværsavtale':
+      'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.spm.jaKonkreteTidspunkt':
+      'Ja, og den inneholder konkrete tidspunkter for samvær',
+    'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+      'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
+    'barnasbosted.spm.boddsammenfør':
+      'Har du bodd sammen med den andre forelderen til Mina før?',
+    'barnasbosted.spm.borISammeHus':
+      'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
+    'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
+    'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
+    'barnasbosted.hjelpetekst.borisammehus.apne':
+      'Hvorfor spør vi om dere bor nærme hverandre?',
+    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
+    'barnasbosted.spm.kunNårLeveres':
+      'Vi møtes kun når barnet skal hentes eller leveres',
+    'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.alert.leggeVedSamværsavtalen':
+      'Du må legge ved samværsavtalen',
+    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'barnasbosted.normaltekst.hvormangedager':
+      'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',
+    'barnasbosted.normaltekst.nårreiserbarnet':
+      'når reiser barnet til og fra den andre forelderen?',
+    'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'barnasbosted.element.andreforelder': 's andre forelder',
   },
 };
