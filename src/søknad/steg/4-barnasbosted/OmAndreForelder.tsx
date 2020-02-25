@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
@@ -16,6 +16,22 @@ interface Props {
 
 const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => {
     const intl = useIntl();
+    const [huketAv, settHuketAv] = useState<boolean>(false);
+
+    const hukAv = (e: any) => {
+        settHuketAv(e.target.checked);
+
+        const nyForelder = {...forelder};
+    
+        if (e.target.checked) {
+          delete nyForelder.navn;
+        }
+
+        settForelder(nyForelder);
+    }
+
+    console.log("FORELDER");
+    console.log(forelder);
 
     return (
         <>
@@ -24,7 +40,7 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
         <Element>{barn.navn}{intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}</Element>
         </FeltGruppe>
     <FeltGruppe>
-        <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} label="Navn" />
+        <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} value={forelder.navn ? forelder.navn : ""} label="Navn" disabled={huketAv} />
     </FeltGruppe>
     </KomponentGruppe>
     <KomponentGruppe>
@@ -40,7 +56,11 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
         <Input className="personnummer" onChange={(e) => settForelder({...forelder, "personnr": e.target.value})} label="Personnummer. Kun hvis barnet har fått." />
         </div>
         <FeltGruppe>
-        <Checkbox label={'Jeg kan ikke oppgi den andre forelderen'} />
+        <Checkbox 
+            label={'Jeg kan ikke oppgi den andre forelderen'}
+            checked={huketAv}
+            onChange={hukAv}
+        />
         </FeltGruppe>
         </KomponentGruppe>
         </>
