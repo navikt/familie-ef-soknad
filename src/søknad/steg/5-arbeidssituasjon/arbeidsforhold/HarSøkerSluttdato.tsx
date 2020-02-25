@@ -28,36 +28,45 @@ const HarSøkerSluttdato: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
+  const settDato = (dato: Date | null) => {
+    dato !== null &&
+      oppdaterArbeidsgiver(
+        EArbeidsgiver.sluttdato,
+        intl.formatMessage({ id: sluttdatoTekstid }),
+        dato
+      );
+  };
+
+  const settHarSluttDato = (spørsmål: ISpørsmål, svar: boolean) => {
+    oppdaterArbeidsgiver(
+      EArbeidsgiver.harSluttDato,
+      intl.formatMessage({ id: spørsmål.tekstid }),
+      svar
+    );
+  };
+
+  const sluttdatoTekstid = 'arbeidsforhold.datovelger.sluttdato';
+
   return (
     <>
       <KomponentGruppe>
         <FeltGruppe>
           <JaNeiSpørsmål
             spørsmål={harDuSluttdato}
-            onChange={(spørsmål: ISpørsmål, svar: boolean) =>
-              oppdaterArbeidsgiver(
-                EArbeidsgiver.harSluttDato,
-                intl.formatMessage({ id: spørsmål.tekstid }),
-                svar
-              )
-            }
+            onChange={settHarSluttDato}
             valgtSvar={arbeidsgiver.harSluttDato?.verdi}
           />
         </FeltGruppe>
-        <FeltGruppe>
-          <Datovelger
-            valgtDato={arbeidsgiver.sluttdato?.verdi}
-            tekstid={'arbeidsforhold.datovelger.sluttdato'}
-            datobegrensning={DatoBegrensning.FremtidigeDatoer}
-            settDato={(dato: Date | null) =>
-              oppdaterArbeidsgiver(
-                EArbeidsgiver.sluttdato,
-                'arbeidsforhold.datovelger.sluttdato',
-                dato
-              )
-            }
-          />
-        </FeltGruppe>
+        {arbeidsgiver.harSluttDato?.verdi === true && (
+          <FeltGruppe>
+            <Datovelger
+              valgtDato={arbeidsgiver.sluttdato?.verdi}
+              tekstid={sluttdatoTekstid}
+              datobegrensning={DatoBegrensning.FremtidigeDatoer}
+              settDato={(e) => settDato(e)}
+            />
+          </FeltGruppe>
+        )}
       </KomponentGruppe>
     </>
   );

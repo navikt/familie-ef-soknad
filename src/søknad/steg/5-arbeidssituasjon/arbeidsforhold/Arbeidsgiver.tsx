@@ -51,10 +51,24 @@ const Arbeidsgiver: React.FC<Props> = ({
   ) => {
     const endretArbeidsforhold = arbeidsforhold?.map((arbeidsgiver, index) => {
       if (index === arbeidsgivernummer) {
-        return {
-          ...arbeidsgiver,
-          [objektnøkkel]: { label: label, verdi: verdi },
-        };
+        if (
+          objektnøkkel === EArbeidsgiver.harSluttDato &&
+          verdi === false &&
+          arbeidsgiver.sluttdato
+        ) {
+          const endretArbeidsgiver = arbeidsgiver;
+          delete endretArbeidsgiver.sluttdato;
+
+          return {
+            ...endretArbeidsgiver,
+            [objektnøkkel]: { label: label, verdi: verdi },
+          };
+        } else {
+          return {
+            ...arbeidsgiver,
+            [objektnøkkel]: { label: label, verdi: verdi },
+          };
+        }
       } else return arbeidsgiver;
     });
     arbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
@@ -133,10 +147,12 @@ const Arbeidsgiver: React.FC<Props> = ({
           valgtSvar={arbeidsgiver.fastStilling?.verdi}
         />
       </FeltGruppe>
-      <HarSøkerSluttdato
-        arbeidsgiver={arbeidsgiver}
-        oppdaterArbeidsgiver={oppdaterArbeidsgiver}
-      />
+      {arbeidsgiver.fastStilling && (
+        <HarSøkerSluttdato
+          arbeidsgiver={arbeidsgiver}
+          oppdaterArbeidsgiver={oppdaterArbeidsgiver}
+        />
+      )}
     </StyledArbeidsgiver>
   );
 };
