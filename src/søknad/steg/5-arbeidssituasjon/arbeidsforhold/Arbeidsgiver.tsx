@@ -17,6 +17,7 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
+import { hentEndretArbeidsforhold } from './ArbeidsgiverUtils';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -49,28 +50,13 @@ const Arbeidsgiver: React.FC<Props> = ({
     label: string,
     verdi: any
   ) => {
-    const endretArbeidsforhold = arbeidsforhold?.map((arbeidsgiver, index) => {
-      if (index === arbeidsgivernummer) {
-        if (
-          objektnøkkel === EArbeidsgiver.harSluttDato &&
-          verdi === false &&
-          arbeidsgiver.sluttdato
-        ) {
-          const endretArbeidsgiver = arbeidsgiver;
-          delete endretArbeidsgiver.sluttdato;
-
-          return {
-            ...endretArbeidsgiver,
-            [objektnøkkel]: { label: label, verdi: verdi },
-          };
-        } else {
-          return {
-            ...arbeidsgiver,
-            [objektnøkkel]: { label: label, verdi: verdi },
-          };
-        }
-      } else return arbeidsgiver;
-    });
+    const endretArbeidsforhold = hentEndretArbeidsforhold(
+      arbeidsforhold,
+      arbeidsgivernummer,
+      objektnøkkel,
+      label,
+      verdi
+    );
     arbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
   };
 
