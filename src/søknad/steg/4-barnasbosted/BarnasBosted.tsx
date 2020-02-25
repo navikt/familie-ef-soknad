@@ -32,14 +32,15 @@ const BarnasBosted: React.FC = () => {
     settForelder(nyForelder);
   }
 
-  const barn = søknad.person.barn[0];
+  const barna = søknad.person.barn;
 
   return (
     <>
       <Side
         tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
       >
-        <div className="barnas-bosted">
+       {barna.map((barn) => {
+        return (<div className="barnas-bosted">
           <BarnasBostedHeader barn={barn} />
           <div className="barnas-bosted__innhold">
             <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} />
@@ -82,7 +83,8 @@ const BarnasBosted: React.FC = () => {
               />
             </KomponentGruppe>
             </div>
-            </div>
+            </div>)
+       })}
       </Side>
     </>
   );
