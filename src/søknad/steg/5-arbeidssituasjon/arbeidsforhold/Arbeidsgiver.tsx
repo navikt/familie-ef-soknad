@@ -16,6 +16,7 @@ import { hvaSlagsStilling } from './ArbeidsgiverConfig';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -107,18 +108,19 @@ const Arbeidsgiver: React.FC<Props> = ({
         />
       </FeltGruppe>
       <FeltGruppe>
-        <Input
-          key={arbeidsmengdeLabel}
+        <InputLabelGruppe
           label={arbeidsmengdeLabel}
-          type="text"
-          bredde={'L'}
-          onChange={(e) =>
+          nøkkel={EArbeidsgiver.arbeidsmengde}
+          type={'number'}
+          bredde={'XS'}
+          settInputFelt={(e) =>
             settTekstInputFelt(
               e,
               EArbeidsgiver.arbeidsmengde,
               arbeidsmengdeLabel
             )
           }
+          beskrivendeTekst={'%'}
         />
       </FeltGruppe>
       <FeltGruppe>
