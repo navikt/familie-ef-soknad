@@ -4,6 +4,10 @@ import styled from 'styled-components';
 const StyledFeltGruppe = styled.div`
   padding-bottom: 25px;
 
+  .skjemaelement {
+    margin-bottom: 0;
+  }
+
   &:last-child {
     padding-bottom: 0;
   }

@@ -1,11 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledFeltGruppe = styled.div`
+const StyledKomponentGruppe = styled.div`
   padding-bottom: 50px;
 
   &:last-child {
     padding-bottom: 0;
+  }
+  .skjemaelement {
+    margin-bottom: 0;
   }
 
   .alertstripe.fjernBakgrunn {
@@ -16,10 +19,14 @@ const StyledFeltGruppe = styled.div`
 `;
 
 const KomponentGruppe: React.FC<{ className?: string }> = ({
-  children,
   className,
+  children,
 }) => {
-  return <StyledFeltGruppe className={className}>{children}</StyledFeltGruppe>;
+  return (
+    <StyledKomponentGruppe className={className}>
+      {children}
+    </StyledKomponentGruppe>
+  );
 };
 
 export default KomponentGruppe;
