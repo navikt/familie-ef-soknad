@@ -27,6 +27,8 @@ const norskeOrdMedÆØÅ = [
   'StyledMultisvarSpørsmål',
   'StyledJaNeiSpørsmål',
   'HarSøkerSluttdato',
+  'HvordanPraktiseresSamværet',
+  'BostedOgSamvær',
 ];
 
 module.exports = {

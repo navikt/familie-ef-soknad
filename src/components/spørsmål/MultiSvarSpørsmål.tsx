@@ -1,5 +1,7 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar } from '../../models/spørsmal';
+import { ISpørsmål } from '../../models/spørsmal';
+import Hjelpetekst from '../Hjelpetekst';
+import { ISvar } from '../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -56,6 +58,12 @@ const MultiSvarSpørsmål: FC<Props> = ({
   return (
     <StyledMultisvarSpørsmål key={spørsmål.spørsmål_id}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
+      {spørsmål.lesmer ? (
+        <Hjelpetekst
+          åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          innholdTekstid={spørsmål.lesmer.innholdTekstid}
+        />
+      ) : null}
       <div
         className={classNames('radioknapp__multiSvar', {
           toKorteSvar: toKorteSvar,

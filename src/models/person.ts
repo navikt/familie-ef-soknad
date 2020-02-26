@@ -44,3 +44,18 @@ export interface IPersonDetaljer {
   fødselsdato?: Date;
   fødselsnummer?: string;
 }
+
+export interface IForelder {
+  navn?: string;
+  fødselsdato?: Date | null;
+  personnr?: string;
+  borINorge?: boolean;
+  avtaleOmDeltBosted?: boolean;
+  harAnnenForelderSamværMedBarn?: string;
+  harDereSkriftligSamværsavtale?: string;
+  hvordanPraktiseresSamværet?: string;
+  borISammeHus?: string;
+  boddSammenFør?: boolean;
+  flyttetFra?: Date | null;
+  hvorMyeSammen?: string;
+}
