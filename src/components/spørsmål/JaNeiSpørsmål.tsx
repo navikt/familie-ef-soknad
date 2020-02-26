@@ -17,6 +17,10 @@ const StyledJaNeiSpørsmål = styled.div`
       grid-auto-rows: min-content;
       grid-gap: 1rem;
       padding-top: 1rem;
+
+      @media all and (max-width: 420px) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 `;

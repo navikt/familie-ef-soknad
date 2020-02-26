@@ -2,19 +2,34 @@
 export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
+    'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
     'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
       '[info om aktivitetsplikt fra Ett år]',
-    'arbeidssituasjon.svar.erIArbeid': 'Jeg er i arbeid',
+    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+    'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
+    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
+    'arbeidsforhold.label.navn': 'Navn på arbeidsgiver',
+    'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'arbeidsforhold.label.fastEllerMidlertidig':
+      'Er stillingen fast eller midlertidig?',
+    'arbeidsforhold.svar.fast': 'Fast',
+    'arbeidsforhold.svar.midlertidig': 'Midlertidig',
+    'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
+    'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
+    'arbeidsforhold.label.flereArbeidsgivere': 'Arbeider du flere steder?',
+    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
-    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
+    'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
     'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
@@ -152,7 +167,6 @@ export default {
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
     'stegtittel.bosituasjon': 'Bosituasjonen din',
-    'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
     'filopplaster.dra': 'Last opp dokumentasjon',

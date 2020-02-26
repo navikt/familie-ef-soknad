@@ -10,11 +10,11 @@ const StyledComponent = styled.div`
   grid-template-areas:
     'label label'
     'input tegn';
+
   .skjemaelement__label {
     grid-area: label;
   }
   .skjemaelement {
-    background: #9bd0b0;
     grid-area: input;
   }
   .typo-normal {
