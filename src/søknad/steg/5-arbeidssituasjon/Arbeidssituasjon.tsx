@@ -1,23 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
+import { useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
-import { useIntl } from 'react-intl';
-import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import {
-  EArbeidssituasjonSvar,
-  IArbeidssituasjon,
-} from '../../../models/arbeidssituasjon';
+import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
+import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
+import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
+import {
+  EArbeidssituasjon,
+  IArbeidssituasjon,
+  nyttTekstListeFelt,
+} from '../../../models/arbeidssituasjon';
 import OmFirmaetDitt from './OmFirmaetDitt';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IArbeidssituasjon>({
-    situasjon: { label: '', verdi: [] },
+    situasjon: nyttTekstListeFelt,
   });
   const { situasjon } = arbeidssituasjon;
 
@@ -37,7 +39,7 @@ const Arbeidssituasjon: React.FC = () => {
     });
   };
 
-  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjonSvar): boolean => {
+  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return situasjon.verdi.some((svarHuketAvISøknad: string) => {
@@ -46,13 +48,17 @@ const Arbeidssituasjon: React.FC = () => {
   };
 
   const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr
+    EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr
   );
   const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.etablererEgenVirksomhet
+    EArbeidssituasjon.etablererEgenVirksomhet
   );
+  const huketAvHarArbeid =
+    erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
+    erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
+
   const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.erSelvstendigNæringsdriveneEllerFrilanser
+    EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser
   );
 
   return (
@@ -65,9 +71,20 @@ const Arbeidssituasjon: React.FC = () => {
         />
       </KomponentGruppe>
 
-      <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
+      {huketAvHjemmeMedBarnUnderEttÅr && <HjemmeMedBarnUnderEttÅr />}
 
-      <EtablererEgenVirksomhet erHuketAv={huketAvEtablererEgenVirksomhet} />
+      {huketAvEtablererEgenVirksomhet && (
+        <EtablererEgenVirksomhet
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+      {huketAvHarArbeid && (
+        <OmArbeidsforholdetDitt
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
 
       {huketAvSelvstendigNæringsdrivendeEllerFrilanser && (
         <OmFirmaetDitt

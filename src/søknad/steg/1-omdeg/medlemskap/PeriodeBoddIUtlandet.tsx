@@ -28,17 +28,6 @@ const PeriodeBoddIUtlandet: FC = () => {
     },
   };
 
-  useEffect(() => {
-    settSøknad({
-      ...søknad,
-      medlemskap: {
-        ...søknad.medlemskap,
-        perioderBoddIUtlandet: [nyPeriode],
-      },
-    });
-    // eslint-disable-next-line
-  }, []);
-
   const leggTilUtenlandsperiode = () => {
     const nyttUtenlandsopphold: IUtenlandsopphold = nyPeriode;
     const alleUtenlandsopphold = perioderBoddIUtlandet;
@@ -52,6 +41,17 @@ const PeriodeBoddIUtlandet: FC = () => {
         },
       });
   };
+
+  useEffect(() => {
+    settSøknad({
+      ...søknad,
+      medlemskap: {
+        ...søknad.medlemskap,
+        perioderBoddIUtlandet: [nyPeriode],
+      },
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
