@@ -1,9 +1,9 @@
 export const hentTittelMedNr = (
-  nummer: any[],
+  liste: any[],
   oppholdsnr: number,
   tittel: string
 ) => {
-  const tall = nummer.length >= 2 ? oppholdsnr + 1 : '';
+  const tall = liste.length >= 2 ? oppholdsnr + 1 : '';
 
   return tittel + ' ' + tall;
 };
