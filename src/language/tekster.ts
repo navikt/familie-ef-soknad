@@ -21,6 +21,13 @@ export default {
     'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
     'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
       'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
+    'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'firma.tittel': 'Om firmaet du driver',
+    'firma.label.navn': 'Navn på firma',
+    'firma.label.organisasjonnr': 'Organisasjonsnummer',
+    'firma.datovelger.etablering': 'Når etablerte du virksomheten?',
+    'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',

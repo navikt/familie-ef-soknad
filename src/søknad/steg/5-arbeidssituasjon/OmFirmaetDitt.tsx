@@ -1,11 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
-import { IArbeidssituasjon, IFirma } from '../../../models/arbeidssituasjon';
+import {
+  EFirma,
+  IArbeidssituasjon,
+  IFirma,
+} from '../../../models/arbeidssituasjon';
 import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;
@@ -43,7 +51,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
   const settInputTekstFelt = (
     e: React.FormEvent<HTMLInputElement>,
-    nøkkel: 'navn' | 'organisasjonsnummer'
+    nøkkel: EFirma
   ) => {
     settFirma({
       ...firma,
@@ -51,35 +59,62 @@ const OmFirmaetDitt: React.FC<Props> = ({
     });
   };
 
+  const labelArbeidsmengde = intl.formatMessage({
+    id: 'firma.label.arbeidsmengde',
+  });
+  const labelArbeidsuke = intl.formatMessage({ id: 'firma.label.arbeidsuke' });
+
   return (
-    <>
-      <Undertittel className={'sentrert'}>Tittel</Undertittel>
-      <Input
-        label={'Navn på firma'}
-        bredde={'L'}
-        type={'text'}
-        onChange={(e) => settInputTekstFelt(e, 'navn')}
-      />
-      <Input
-        label={'Organisasjonsnummer'}
-        bredde={'L'}
-        type={'text'}
-        onChange={(e) => settInputTekstFelt(e, 'organisasjonsnummer')}
-      />
-      <Datovelger
-        valgtDato={firma?.etableringsdato?.verdi}
-        tekstid={'datovelger tekstid'}
-        datobegrensning={DatoBegrensning.TidligereDatoer}
-        settDato={(e) => settDatoFelt(e)}
-      />
-      Sett inn InputOgLabelGruppe her
-      <Textarea
-        label={'arbeidsuke tekstid'}
-        value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
-        maxLength={1000}
-        onChange={(e) => settArbeidsukeTekst(e)}
-      />
-    </>
+    <SeksjonGruppe>
+      <FeltGruppe>
+        <Undertittel className={'sentrert'}>
+          <LocaleTekst tekst={'firma.tittel'} />
+        </Undertittel>
+      </FeltGruppe>
+      <FeltGruppe>
+        <Input
+          label={intl.formatMessage({ id: 'firma.label.navn' })}
+          bredde={'L'}
+          type={'text'}
+          onChange={(e) => settInputTekstFelt(e, EFirma.navn)}
+        />
+      </FeltGruppe>
+      <FeltGruppe>
+        <Input
+          label={intl.formatMessage({ id: 'firma.label.organisasjonnr' })}
+          bredde={'L'}
+          type={'text'}
+          onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
+        />
+      </FeltGruppe>
+      <FeltGruppe>
+        <Datovelger
+          valgtDato={firma?.etableringsdato?.verdi}
+          tekstid={'firma.datovelger.etablering'}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
+          settDato={(e) => settDatoFelt(e)}
+        />
+      </FeltGruppe>
+      <FeltGruppe>
+        <InputLabelGruppe
+          label={labelArbeidsmengde}
+          nøkkel={labelArbeidsmengde}
+          type={'text'}
+          bredde={'XS'}
+          settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
+          beskrivendeTekst={'%'}
+        />
+      </FeltGruppe>
+      <FeltGruppe>
+        <Textarea
+          key={labelArbeidsmengde}
+          label={labelArbeidsuke}
+          value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
+          maxLength={1000}
+          onChange={(e) => settArbeidsukeTekst(e)}
+        />
+      </FeltGruppe>
+    </SeksjonGruppe>
   );
 };
 

@@ -14,6 +14,12 @@ export interface IFirma {
   arbeidsuke?: ITekstFelt;
 }
 
+export enum EFirma {
+  navn = 'navn',
+  organisasjonsnummer = 'organisasjonsnummer',
+  arbeidsmengde = 'arbeidsmengde',
+}
+
 export enum EArbeidssituasjonSvar {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
   erIArbeid = 'erIArbeid',
