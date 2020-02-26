@@ -15,34 +15,44 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
-  oppdaterArbeidsgiver: (
-    objektnøkkel: EArbeidsgiver | string,
-    label: string,
-    verdi: any
-  ) => void;
+  settArbeidsgiver: (arbeidsgiver: IArbeidsgiver) => void;
 }
 
 const HarSøkerSluttdato: React.FC<Props> = ({
   arbeidsgiver,
-  oppdaterArbeidsgiver,
+  settArbeidsgiver,
 }) => {
   const intl = useIntl();
 
   const settDato = (dato: Date | null) => {
     dato !== null &&
-      oppdaterArbeidsgiver(
-        EArbeidsgiver.sluttdato,
-        intl.formatMessage({ id: sluttdatoTekstid }),
-        dato
-      );
+      settArbeidsgiver({
+        ...arbeidsgiver,
+        [EArbeidsgiver.sluttdato]: {
+          label: intl.formatMessage({ id: sluttdatoTekstid }),
+          verdi: dato,
+        },
+      });
   };
 
   const settHarSluttDato = (spørsmål: ISpørsmål, svar: boolean) => {
-    oppdaterArbeidsgiver(
-      EArbeidsgiver.harSluttDato,
-      intl.formatMessage({ id: spørsmål.tekstid }),
-      svar
-    );
+    const harSluttDatoFelt = {
+      label: intl.formatMessage({ id: spørsmål.tekstid }),
+      verdi: svar,
+    };
+    if (svar === false && arbeidsgiver.sluttdato) {
+      const endretArbeidsgiver = arbeidsgiver;
+      delete endretArbeidsgiver.sluttdato;
+      settArbeidsgiver({
+        ...endretArbeidsgiver,
+        [EArbeidsgiver.harSluttDato]: harSluttDatoFelt,
+      });
+    } else {
+      settArbeidsgiver({
+        ...arbeidsgiver,
+        [EArbeidsgiver.harSluttDato]: harSluttDatoFelt,
+      });
+    }
   };
 
   const sluttdatoTekstid = 'arbeidsforhold.datovelger.sluttdato';

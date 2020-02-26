@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import {
@@ -17,7 +17,6 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
-import { hentEndretArbeidsforhold } from './ArbeidsgiverUtils';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -34,30 +33,37 @@ interface Props {
 const Arbeidsgiver: React.FC<Props> = ({
   arbeidsforhold,
   settArbeidsforhold,
-  arbeidsgiver,
   arbeidsgivernummer,
 }) => {
   const intl = useIntl();
-
-  const arbeidsgiverTittel = hentTittelMedNr(
-    arbeidsforhold!,
-    arbeidsgivernummer,
-    intl.formatMessage({ id: 'arbeidsforhold.tittel.arbeidsgiver' })
+  const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
+    if (index === arbeidsgivernummer) return arbeidsgiver;
+  });
+  const [arbeidsgiver, settArbeidsgiver] = useState<IArbeidsgiver>(
+    arbeidsgiverFraSøknad!
   );
 
-  const oppdaterArbeidsgiver = (
-    objektnøkkel: EArbeidsgiver | string,
-    label: string,
-    verdi: any
-  ) => {
-    const endretArbeidsforhold = hentEndretArbeidsforhold(
-      arbeidsforhold,
-      arbeidsgivernummer,
-      objektnøkkel,
-      label,
-      verdi
+  useEffect(() => {
+    const endretArbeidsforhold = arbeidsforhold?.map(
+      (arbeidsgiverFraSøknad, index) => {
+        if (index === arbeidsgivernummer) return arbeidsgiver;
+        else return arbeidsgiverFraSøknad;
+      }
     );
-    arbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
+    settArbeidsforhold(endretArbeidsforhold);
+    // eslint-disable-next-line
+  }, [arbeidsgiver]);
+
+  const oppdaterArbeidsgiver = (
+    nøkkel: EArbeidsgiver,
+    label: string,
+    verdi: string
+  ) => {
+    arbeidsgiver &&
+      settArbeidsgiver({
+        ...arbeidsgiver,
+        [nøkkel]: { label: label, verdi: verdi },
+      });
   };
 
   const fjernArbeidsgiver = () => {
@@ -80,7 +86,11 @@ const Arbeidsgiver: React.FC<Props> = ({
   const hentFeltTekstid = (feltid: EArbeidsgiver) => {
     return intl.formatMessage({ id: 'arbeidsforhold.label.' + feltid }).trim();
   };
-
+  const arbeidsgiverTittel = hentTittelMedNr(
+    arbeidsforhold!,
+    arbeidsgivernummer,
+    intl.formatMessage({ id: 'arbeidsforhold.tittel.arbeidsgiver' })
+  );
   const navnLabel: string = hentFeltTekstid(EArbeidsgiver.navn);
   const arbeidsmengdeLabel: string = hentFeltTekstid(
     EArbeidsgiver.arbeidsmengde
@@ -136,7 +146,7 @@ const Arbeidsgiver: React.FC<Props> = ({
       {arbeidsgiver.fastStilling && (
         <HarSøkerSluttdato
           arbeidsgiver={arbeidsgiver}
-          oppdaterArbeidsgiver={oppdaterArbeidsgiver}
+          settArbeidsgiver={settArbeidsgiver}
         />
       )}
     </StyledArbeidsgiver>
