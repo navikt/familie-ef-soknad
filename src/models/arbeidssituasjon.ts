@@ -1,8 +1,17 @@
-import { ITekstListeFelt, ITekstFelt } from './søknadsfelter';
+import { ITekstListeFelt, ITekstFelt, IDatoFelt } from './søknadsfelter';
 
 export interface IArbeidssituasjon {
   situasjon: ITekstListeFelt;
   etablererEgenVirksomhet?: ITekstFelt;
+  firma?: IFirma;
+}
+
+export interface IFirma {
+  navn?: ITekstFelt;
+  organisasjonsnummer?: ITekstFelt;
+  etableringsdato?: IDatoFelt;
+  arbeidsmengde?: ITekstFelt;
+  arbeidsuke?: ITekstFelt;
 }
 
 export enum EArbeidssituasjonSvar {
