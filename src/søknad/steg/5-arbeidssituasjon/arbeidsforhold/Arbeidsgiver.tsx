@@ -17,6 +17,7 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
+import { hentTekst } from '../../../../utils/søknad';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -83,17 +84,15 @@ const Arbeidsgiver: React.FC<Props> = ({
     oppdaterArbeidsgiver(nøkkel, label, e.currentTarget.value);
   };
 
-  const hentFeltTekstid = (feltid: EArbeidsgiver) => {
-    return intl.formatMessage({ id: 'arbeidsforhold.label.' + feltid }).trim();
-  };
   const arbeidsgiverTittel = hentTittelMedNr(
     arbeidsforhold!,
     arbeidsgivernummer,
     intl.formatMessage({ id: 'arbeidsforhold.tittel.arbeidsgiver' })
   );
-  const navnLabel: string = hentFeltTekstid(EArbeidsgiver.navn);
-  const arbeidsmengdeLabel: string = hentFeltTekstid(
-    EArbeidsgiver.arbeidsmengde
+  const navnLabel: string = hentTekst('arbeidsforhold.label.navn', intl);
+  const arbeidsmengdeLabel: string = hentTekst(
+    'arbeidsforhold.label.arbeidsmengde',
+    intl
   );
 
   return (
