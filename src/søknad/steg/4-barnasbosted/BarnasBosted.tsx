@@ -21,7 +21,7 @@ const BarnasBosted: React.FC = () => {
   const [forelder, settForelder] = useState<IForelder>({});
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
-    const nyForelder = { ...forelder, [boddSammenFør.spørsmål_id]: valgtSvar };
+    const nyForelder = { ...forelder, [boddSammenFør.søknadid]: valgtSvar };
 
     if (valgtSvar === false) {
       delete nyForelder.flyttetFra;
@@ -46,13 +46,13 @@ const BarnasBosted: React.FC = () => {
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
             <KomponentGruppe>
               <MultiSvarSpørsmål
-                key={borISammeHus.spørsmål_id}
+                key={borISammeHus.søknadid}
                 spørsmål={borISammeHus}
                 valgtSvar={forelder.borISammeHus}
                 onChange={(_, svar) =>
                   settForelder({
                     ...forelder,
-                    [borISammeHus.spørsmål_id]: svar,
+                    [borISammeHus.søknadid]: svar,
                   })
                 }
               />
@@ -88,13 +88,13 @@ const BarnasBosted: React.FC = () => {
             ) : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
-                key={hvorMyeSammen.spørsmål_id}
+                key={hvorMyeSammen.søknadid}
                 spørsmål={hvorMyeSammen}
                 valgtSvar={forelder.hvorMyeSammen}
                 onChange={(_, svar) =>
                   settForelder({
                     ...forelder,
-                    [hvorMyeSammen.spørsmål_id]: svar,
+                    [hvorMyeSammen.søknadid]: svar,
                   })
                 }
               />

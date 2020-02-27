@@ -76,7 +76,7 @@ const Bosituasjon: FC = () => {
     <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
       <SeksjonGruppe>
         <MultiSvarSpørsmål
-          key={hovedSpørsmål.spørsmål_id}
+          key={hovedSpørsmål.søknadid}
           spørsmål={hovedSpørsmål}
           valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
           onChange={settBosituasjonFelt}

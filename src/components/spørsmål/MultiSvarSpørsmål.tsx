@@ -56,7 +56,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
   };
 
   return (
-    <StyledMultisvarSpørsmål key={spørsmål.spørsmål_id}>
+    <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
       {spørsmål.lesmer ? (
         <Hjelpetekst
@@ -75,7 +75,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
           return (
             <RadioPanel
               key={svar.svar_tekstid}
-              name={spørsmål.spørsmål_id}
+              name={spørsmål.søknadid}
               label={intl.formatMessage({
                 id: svar.svar_tekstid,
               })}

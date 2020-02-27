@@ -29,7 +29,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   ) => {
     const nyForelder = {
       ...forelder,
-      [harAnnenForelderSamværMedBarn.spørsmål_id]: valgtSvar,
+      [harAnnenForelderSamværMedBarn.søknadid]: valgtSvar,
     };
 
     if (
@@ -59,7 +59,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   ) => {
     const nyForelder = {
       ...forelder,
-      [harDereSkriftligSamværsavtale.spørsmål_id]: valgtSvar,
+      [harDereSkriftligSamværsavtale.søknadid]: valgtSvar,
     };
 
     if (
@@ -92,7 +92,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
         <JaNeiSpørsmål
           spørsmål={borINorge}
           onChange={(_, svar) =>
-            settForelder({ ...forelder, [borINorge.spørsmål_id]: svar })
+            settForelder({ ...forelder, [borINorge.søknadid]: svar })
           }
           valgtSvar={forelder.borINorge}
         />
@@ -103,7 +103,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
           onChange={(_, svar) =>
             settForelder({
               ...forelder,
-              [avtaleOmDeltBosted.spørsmål_id]: svar,
+              [avtaleOmDeltBosted.søknadid]: svar,
             })
           }
           valgtSvar={forelder.avtaleOmDeltBosted}
@@ -111,7 +111,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmål
-          key={harAnnenForelderSamværMedBarn.spørsmål_id}
+          key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
           valgtSvar={forelder.harAnnenForelderSamværMedBarn}
           onChange={(spørsmål, svar) =>
@@ -125,7 +125,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
       ) ? (
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            key={harDereSkriftligSamværsavtale.spørsmål_id}
+            key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
             valgtSvar={forelder.harDereSkriftligSamværsavtale}
             onChange={(spørsmål, svar) =>
