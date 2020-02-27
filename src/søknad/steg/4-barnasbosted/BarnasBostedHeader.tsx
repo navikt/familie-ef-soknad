@@ -1,6 +1,7 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
+import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { IBarn } from '../../../models/person';
@@ -54,11 +55,12 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn }) => {
     const intl = useIntl();
 
     const bosted = barn.harSammeAdresse ? intl.formatMessage({ id: 'barnekort.adresse.registrert' }) : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
+    const ikon = barn.ufødt ? ufødtIkon : barn1;
 
   return (
       <StyledBarnasBostedHeader>
         <div className="barnas-bosted-header">
-        <img alt="barn" className="barneikon" src={barn1} />
+        <img alt="barn" className="barneikon" src={ikon} />
         </div>
         <div className="barnas-bosted__info">
             <Element className="navn">{barn.navn}</Element>
@@ -69,7 +71,7 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn }) => {
             </div>
             <div className="informasjonselement">
                 <Normaltekst className="informasjonselement-header">{intl.formatMessage({id: 'barnekort.alder'})}</Normaltekst>
-                <Normaltekst className="informasjonselement-innhold">{barn.alder} år</Normaltekst>
+                <Normaltekst className="informasjonselement-innhold">{barn.ufødt ? 'Ufødt' : `${barn.alder} år`}</Normaltekst>
             </div>
             <div className="informasjonselement">
                 <Normaltekst className="informasjonselement-header">{intl.formatMessage({id: 'barnekort.bosted'})}</Normaltekst>

@@ -47,6 +47,7 @@ export interface IPersonDetaljer {
 
 export interface IForelder {
   navn?: string;
+  skalBarnBoHosDeg?: string;
   fødselsdato?: Date | null;
   personnr?: string;
   borINorge?: boolean;

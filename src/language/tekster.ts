@@ -21,7 +21,6 @@ export default {
     'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
     'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
       'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
-
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
     'bosituasjon.svar.borAleneMedBarnEllerGravid':
@@ -47,7 +46,7 @@ export default {
       '\n' +
       '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
       '\n' +
-      '<br/><br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
+      '<br/><br/>Du kan også dokumentere at du beor alene med barn ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
       ' <li> Informasjon om hvor den tidligere samboeren bor nå </li>' +
       '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
@@ -212,6 +211,15 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -312,6 +320,15 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -410,5 +427,14 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
   },
 };

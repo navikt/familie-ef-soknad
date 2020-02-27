@@ -25,6 +25,8 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
     
         if (e.target.checked) {
           delete nyForelder.navn;
+          delete nyForelder.fødselsdato;
+          delete nyForelder.personnr;
         }
 
         settForelder(nyForelder);
@@ -53,9 +55,9 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
                 datobegrensning={DatoBegrensning.TidligereDatoer}
             />
             </div>
-        <Input className="personnummer" onChange={(e) => settForelder({...forelder, "personnr": e.target.value})} label="Personnummer. Kun hvis barnet har fått." />
+        <Input className="personnummer" onChange={(e) => settForelder({...forelder, "personnr": e.target.value})} value={forelder.personnr ? forelder.personnr : ""} label="Personnummer (hvis du vet)" disabled={huketAv} />
         </div>
-        <FeltGruppe>
+        <FeltGruppe classname="checkbox-forelder">
         <Checkbox 
             label={'Jeg kan ikke oppgi den andre forelderen'}
             checked={huketAv}
