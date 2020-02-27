@@ -99,7 +99,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
         <InputLabelGruppe
           label={labelArbeidsmengde}
           nøkkel={labelArbeidsmengde}
-          type={'text'}
+          type={'number'}
           bredde={'XS'}
           settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
           beskrivendeTekst={'%'}
