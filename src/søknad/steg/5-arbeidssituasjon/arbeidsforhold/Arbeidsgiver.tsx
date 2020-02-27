@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import {
-  EArbeidsgiver,
-  IArbeidsgiver,
-} from '../../../../models/arbeidssituasjon';
-
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
@@ -17,6 +12,11 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
+import {
+  EArbeidsgiver,
+  IArbeidsgiver,
+} from '../../../../models/arbeidssituasjon/arbeidsgiver';
+import { ISpørsmål } from '../../../../models/spørsmal';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;

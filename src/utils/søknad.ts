@@ -47,3 +47,7 @@ export const erValgtSvarLiktSomSvar = (
 ) => {
   return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
 };
+
+export const hentTekst = (id: string, intl: IntlShape) => {
+  return intl.formatMessage({ id: id });
+};

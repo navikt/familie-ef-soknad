@@ -1,8 +1,8 @@
 import { ISpørsmål } from '../../../models/spørsmal';
-import { EArbeidssituasjon } from '../../../models/arbeidssituasjon';
+import { EArbeidssituasjon } from '../../../models/arbeidssituasjon/arbeidssituasjon';
 
 export const hvaErDinArbeidssituasjon: ISpørsmål = {
-  spørsmål_id: 'arbeidssituasjon',
+  søknadid: 'situasjon',
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {

@@ -1,4 +1,4 @@
-import { IArbeidssituasjon } from './arbeidssituasjon';
+import { IArbeidssituasjon } from './arbeidssituasjon/arbeidssituasjon';
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
 import { IMedlemskap, ISivilstatus } from './omDeg';
