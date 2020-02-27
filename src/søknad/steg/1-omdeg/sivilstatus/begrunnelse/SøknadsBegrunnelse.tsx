@@ -112,7 +112,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
           key={spørsmål.tekstid}
           spørsmål={spørsmål}
           valgtSvar={sivilstatus.begrunnelseForSøknad?.verdi}
-          onChange={settBegrunnelseForSøknad}
+          settSpørsmålOgSvar={settBegrunnelseForSøknad}
         />
       </KomponentGruppe>
 

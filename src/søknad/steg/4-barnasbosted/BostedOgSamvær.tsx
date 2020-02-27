@@ -115,7 +115,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
           key={harAnnenForelderSamværMedBarn.spørsmål_id}
           spørsmål={harAnnenForelderSamværMedBarn}
           valgtSvar={forelder.harAnnenForelderSamværMedBarn}
-          onChange={(spørsmål, svar) =>
+          settSpørsmålOgSvar={(spørsmål, svar) =>
             settHarForelderSamværMedBarn(spørsmål, svar)
           }
         />
@@ -129,7 +129,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
             key={harDereSkriftligSamværsavtale.spørsmål_id}
             spørsmål={harDereSkriftligSamværsavtale}
             valgtSvar={forelder.harDereSkriftligSamværsavtale}
-            onChange={(spørsmål, svar) =>
+            settSpørsmålOgSvar={(spørsmål, svar) =>
               settHarDereSkriftligSamværsavtale(spørsmål, svar)
             }
           />

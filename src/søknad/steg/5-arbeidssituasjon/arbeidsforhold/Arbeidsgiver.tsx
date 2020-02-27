@@ -137,7 +137,7 @@ const Arbeidsgiver: React.FC<Props> = ({
         <MultiSvarSpørsmål
           toKorteSvar={true}
           spørsmål={hvaSlagsStilling}
-          onChange={(spørsmål: ISpørsmål, svar: string) =>
+          settSpørsmålOgSvar={(spørsmål: ISpørsmål, svar: string) =>
             oppdaterArbeidsgiver(
               EArbeidsgiver.fastStilling,
               spørsmål.tekstid,

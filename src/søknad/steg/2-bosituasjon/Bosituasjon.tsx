@@ -81,7 +81,7 @@ const Bosituasjon: FC = () => {
           key={hovedSpørsmål.spørsmål_id}
           spørsmål={hovedSpørsmål}
           valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
-          onChange={settBosituasjonFelt}
+          settSpørsmålOgSvar={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>
