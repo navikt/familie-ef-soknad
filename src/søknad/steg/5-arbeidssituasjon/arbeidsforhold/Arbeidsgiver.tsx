@@ -18,6 +18,7 @@ import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTekst } from '../../../../utils/søknad';
+import { ISpørsmål } from '../../../../models/spørsmal';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -136,8 +137,12 @@ const Arbeidsgiver: React.FC<Props> = ({
         <MultiSvarSpørsmål
           toKorteSvar={true}
           spørsmål={hvaSlagsStilling}
-          onChange={(spørsmål: string, svar: string) =>
-            oppdaterArbeidsgiver(EArbeidsgiver.fastStilling, spørsmål, svar)
+          onChange={(spørsmål: ISpørsmål, svar: string) =>
+            oppdaterArbeidsgiver(
+              EArbeidsgiver.fastStilling,
+              spørsmål.tekstid,
+              svar
+            )
           }
           valgtSvar={arbeidsgiver.fastStilling?.verdi}
         />

@@ -31,7 +31,7 @@ const StyledMultisvarSpørsmål = styled.div`
 interface Props {
   toKorteSvar?: boolean;
   spørsmål: ISpørsmål;
-  onChange: (spørsmål: string, svar: string) => void;
+  onChange: (spørsmål: ISpørsmål, svar: string) => void;
   valgtSvar: string | undefined;
 }
 
@@ -49,10 +49,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
   ): void => {
     svar !== undefined &&
       onChange !== undefined &&
-      onChange(
-        intl.formatMessage({ id: spørsmål.tekstid }),
-        intl.formatMessage({ id: svar.svar_tekstid })
-      );
+      onChange(spørsmål, intl.formatMessage({ id: svar.svar_tekstid }));
   };
 
   return (

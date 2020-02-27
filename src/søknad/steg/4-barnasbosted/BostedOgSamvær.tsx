@@ -14,6 +14,7 @@ import {
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ISpørsmål } from '../../../models/spørsmal';
 
 interface Props {
   settForelder: Function;
@@ -24,12 +25,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
 
   const settHarForelderSamværMedBarn = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harAnnenForelderSamværMedBarn.spørsmål_id]: valgtSvar,
+      [spørsmål.spørsmål_id]: valgtSvar,
     };
 
     if (
@@ -54,12 +55,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   };
 
   const settHarDereSkriftligSamværsavtale = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harDereSkriftligSamværsavtale.spørsmål_id]: valgtSvar,
+      [spørsmål.spørsmål_id]: valgtSvar,
     };
 
     if (
