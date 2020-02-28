@@ -1,4 +1,4 @@
-import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
+import { ESvar, ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
 import {
   EArbeidssted,
   EArbeidssøker,
@@ -7,7 +7,13 @@ import {
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
-  svaralternativer: JaNeiSvar,
+  svaralternativer: [
+    { svar_tekstid: ESvar.JA },
+    {
+      svar_tekstid: ESvar.NEI,
+      alert_tekstid: 'arbeidssøker.alert.forÅHaRett',
+    },
+  ],
 };
 
 export const erVilligTilÅTaImotTilbud: ISpørsmål = {
@@ -30,10 +36,10 @@ export const kanSkaffeBarnepassInnenEnUke: ISpørsmål = {
 
 export const ønsketArbeidssted: ISpørsmål = {
   søknadid: EArbeidssøker.hvorØnskerSøkerArbeid,
-  tekstid: 'arbeidssøker.label.ønsketSøkested',
+  tekstid: 'arbeidssøker.label.ønsketArbeidssted',
   lesmer: {
-    åpneTekstid: 'arbeidssøker.lesmer-åpne.ønsketArbeidsted',
-    innholdTekstid: 'arbeidssøker.lesmer-innhold.ønsketArbeidsted',
+    åpneTekstid: 'arbeidssøker.lesmer-åpne.ønsketArbeidssted',
+    innholdTekstid: 'arbeidssøker.lesmer-innhold.ønsketArbeidssted',
     lukkeTekstid: '',
   },
   svaralternativer: [

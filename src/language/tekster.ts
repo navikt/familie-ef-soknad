@@ -48,7 +48,7 @@ export default {
       'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
     'arbeidssøker.label.barnepass':
       'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
-    'arbeidssøker.label.ønsketArbeidsted': 'Hvor ønsker du å søke arbeid?',
+    'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50% stilling?',
     'arbeidssøker.alert.forÅHaRett':
@@ -56,8 +56,9 @@ export default {
     'arbeidssøker.svar.nærme':
       'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei',
     'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
-    'arbeidssøker.lesmer-åpne.ønsketArbeidsted': 'Hva betyr 1 times reisevei?',
-    'arbeidssøker.lesmer-innhold.ønsketArbeidsted': '1 times reisevei betyr.. ',
+    'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
+    'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
+      '1 times reisevei betyr.. ',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
