@@ -13,6 +13,7 @@ import {
   IArbeidssituasjon,
   nyttTekstListeFelt,
 } from '../../../models/arbeidssituasjon';
+import { ISpørsmål } from '../../../models/spørsmal';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
@@ -31,10 +32,10 @@ const Arbeidssituasjon: React.FC = () => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
   };
 
-  const settArbeidssituasjonFelt = (spørsmål: string, svar: string[]) => {
+  const settArbeidssituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
-      situasjon: { label: spørsmål, verdi: svar },
+      situasjon: { label: spørsmål.tekstid, verdi: svar },
     });
   };
 
