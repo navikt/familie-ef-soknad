@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import {
-  EArbeidsgiver,
-  IArbeidsgiver,
-} from '../../../../models/arbeidssituasjon';
-
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
@@ -17,6 +12,12 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
+import { hentTekst } from '../../../../utils/søknad';
+import {
+  EArbeidsgiver,
+  IArbeidsgiver,
+} from '../../../../models/arbeidssituasjon/arbeidsgiver';
+import { ISpørsmål } from '../../../../models/spørsmal';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -83,17 +84,15 @@ const Arbeidsgiver: React.FC<Props> = ({
     oppdaterArbeidsgiver(nøkkel, label, e.currentTarget.value);
   };
 
-  const hentFeltTekstid = (feltid: EArbeidsgiver) => {
-    return intl.formatMessage({ id: 'arbeidsforhold.label.' + feltid }).trim();
-  };
   const arbeidsgiverTittel = hentTittelMedNr(
     arbeidsforhold!,
     arbeidsgivernummer,
     intl.formatMessage({ id: 'arbeidsforhold.tittel.arbeidsgiver' })
   );
-  const navnLabel: string = hentFeltTekstid(EArbeidsgiver.navn);
-  const arbeidsmengdeLabel: string = hentFeltTekstid(
-    EArbeidsgiver.arbeidsmengde
+  const navnLabel: string = hentTekst('arbeidsforhold.label.navn', intl);
+  const arbeidsmengdeLabel: string = hentTekst(
+    'arbeidsforhold.label.arbeidsmengde',
+    intl
   );
 
   return (
@@ -137,8 +136,12 @@ const Arbeidsgiver: React.FC<Props> = ({
         <MultiSvarSpørsmål
           toKorteSvar={true}
           spørsmål={hvaSlagsStilling}
-          onChange={(spørsmål: string, svar: string) =>
-            oppdaterArbeidsgiver(EArbeidsgiver.fastStilling, spørsmål, svar)
+          settSpørsmålOgSvar={(spørsmål: ISpørsmål, svar: string) =>
+            oppdaterArbeidsgiver(
+              EArbeidsgiver.fastStilling,
+              spørsmål.tekstid,
+              svar
+            )
           }
           valgtSvar={arbeidsgiver.fastStilling?.verdi}
         />

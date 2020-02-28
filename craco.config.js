@@ -29,6 +29,7 @@ const norskeOrdMedÆØÅ = [
   'HarSøkerSluttdato',
   'HvordanPraktiseresSamværet',
   'BostedOgSamvær',
+  'Arbeidssøker',
 ];
 
 module.exports = {

@@ -11,6 +11,7 @@ import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../../../models/spørsmal';
+import { hentTekst } from '../../../../../utils/søknad';
 
 interface Props {
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
@@ -68,12 +69,13 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
       });
   };
 
-  const settBegrunnelseForSøknad = (spørsmål: string, svar: string) => {
+  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: string) => {
+    const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
     settSøknad({
       ...søknad,
       sivilstatus: {
         ...sivilstatus,
-        begrunnelseForSøknad: { label: spørsmål, verdi: svar },
+        begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
       },
     });
   };
@@ -110,7 +112,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
           key={spørsmål.tekstid}
           spørsmål={spørsmål}
           valgtSvar={sivilstatus.begrunnelseForSøknad?.verdi}
-          onChange={settBegrunnelseForSøknad}
+          settSpørsmålOgSvar={settBegrunnelseForSøknad}
         />
       </KomponentGruppe>
 

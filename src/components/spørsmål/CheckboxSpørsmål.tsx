@@ -20,7 +20,7 @@ const StyledCheckboxSpørsmål = styled.div`
 
 interface Props {
   spørsmål: ISpørsmål;
-  settValgteSvar: (spørsmål: string, svar: string[]) => void;
+  settValgteSvar: (spørsmål: ISpørsmål, svar: string[]) => void;
   valgteSvar: string[];
 }
 const CheckboxSpørsmål: React.FC<Props> = ({
@@ -35,22 +35,20 @@ const CheckboxSpørsmål: React.FC<Props> = ({
     checked: boolean,
     svarTekst: string
   ): void => {
-    const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
-
     if (checked) {
       const avhukedeSvar: string[] = valgteSvar.filter((valgtSvar) => {
         return valgtSvar !== svarTekst;
       });
-      settValgteSvar(spørsmålTekst, avhukedeSvar);
+      settValgteSvar(spørsmål, avhukedeSvar);
     } else {
       const avhukedeSvar = valgteSvar;
       avhukedeSvar.push(svarTekst);
-      settValgteSvar(spørsmålTekst, avhukedeSvar);
+      settValgteSvar(spørsmål, avhukedeSvar);
     }
   };
 
   return (
-    <StyledCheckboxSpørsmål key={spørsmål.spørsmål_id}>
+    <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
       <Element>
         <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
