@@ -17,15 +17,19 @@ export default {
       'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
     'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
     'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
-
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
-
     'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
-    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-      '[info om aktivitetsplikt fra Ett år]',
+
+    'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.lesmer-åpne.kanFåStønad':
+      'Hva slags utdanning kan du få stønad til?',
+    'utdanning.lesmer-innhold.kanFåStønad':
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
+    'utdanning.': '',
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
@@ -41,13 +45,26 @@ export default {
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
 
-    'utdanning.tittel': 'Utdanningen du skal ta',
-    'utdanning.lesmer-åpne.kanFåStønad':
-      'Hva slags utdanning kan du få stønad til?',
-    'utdanning.lesmer-innhold.kanFåStønad':
-      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
-      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
-    'utdanning.': '',
+    'arbeidssøker.tittel': 'Når du er arbeidssøker',
+    'arbeidssøker.label.registrert':
+      'Er du registrert som arbeidssøker hos NAV?',
+    'arbeidssøker.label.villig':
+      'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'arbeidssøker.label.senestEnUke':
+      'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
+    'arbeidssøker.label.barnepass':
+      'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
+    'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',
+    'arbeidssøker.label.halvstilling':
+      'Ønsker du å stå som arbeidssøker til minst 50% stilling?',
+    'arbeidssøker.alert.forÅHaRett':
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
+    'arbeidssøker.svar.nærme':
+      'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei',
+    'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
+    'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
+    'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
+      '1 times reisevei betyr.. ',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
@@ -90,19 +107,23 @@ export default {
     'bosituasjon.tittel.omSamboer': 'Om samboeren din',
     'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
       'Hvem skal du gifte deg med eller bli samboer med?',
+
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+
     'datovelger.periode.feilFormat':
       'Startsdato må være tidligere enn sluttdato.',
     'datovelger.periode.likeDatoer':
       'Valgte datoer for perioden kan ikke være like',
     'datovelger.fødselsdato': 'Fødselsdato',
     'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
+
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
     'knapp.start': 'Start søknad',
+
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
     'medlemskap.hjelpetekst.bosatt.apne':
       'Hva vil det si å være bosatt i Norge?',
@@ -119,8 +140,10 @@ export default {
     'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
     'periode.fra': 'Fra',
     'periode.til': 'Til',
+
     'person.navn': 'Navn',
     'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
+
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
     'stegtittel.omDeg': 'Om deg',
@@ -131,10 +154,12 @@ export default {
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
+
     'side.bekreftelse':
       'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
+
     'sivilstatus.somgift':
       'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
     'sivilstatus.alert.samlivsbrudd':
@@ -168,23 +193,27 @@ export default {
       'Endring i samværsordning, aktivitet eller inntekt',
     'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.tittel': 'Sivilstatus',
+
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
     'stegtittel.bosituasjon': 'Bosituasjonen din',
     'svar.ja': 'Ja',
     'svar.nei': 'Nei',
+
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
     'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+
     'barnadine.sidetittel': 'Barna dine',
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',

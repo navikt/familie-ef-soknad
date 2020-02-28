@@ -15,7 +15,7 @@ export interface LesMer {
 }
 
 export interface ISpørsmål {
-  spørsmål_id: string;
+  søknadid: string;
   tekstid: string;
   lesmer?: LesMer;
   svaralternativer: ISvar[];

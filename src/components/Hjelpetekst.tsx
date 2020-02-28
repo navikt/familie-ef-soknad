@@ -4,6 +4,7 @@ import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import styled from 'styled-components';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../language/LocaleTekst';
+import { hentTekst } from '../utils/søknad';
 
 const StyledHjelpetekst = styled.div`
   .lesMerPanel {
@@ -57,13 +58,12 @@ const Hjelpetekst: React.FC<Props> = ({
   innholdTekstid,
 }) => {
   const intl = useIntl();
-  const hentTekst = (id: string) => intl.formatMessage({ id: id });
 
   return (
     <StyledHjelpetekst className={className}>
       <Lesmerpanel
-        apneTekst={hentTekst(åpneTekstid)}
-        lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid) : undefined}
+        apneTekst={hentTekst(åpneTekstid, intl)}
+        lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
       >
         <Normaltekst>
           <LocaleTekst tekst={innholdTekstid} />

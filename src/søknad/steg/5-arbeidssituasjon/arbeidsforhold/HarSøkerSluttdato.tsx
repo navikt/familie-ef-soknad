@@ -3,15 +3,16 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { harDuSluttdato } from './ArbeidsgiverConfig';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import {
-  EArbeidsgiver,
-  IArbeidsgiver,
-} from '../../../../models/arbeidssituasjon';
+
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import {
+  EArbeidsgiver,
+  IArbeidsgiver,
+} from '../../../../models/arbeidssituasjon/arbeidsgiver';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
