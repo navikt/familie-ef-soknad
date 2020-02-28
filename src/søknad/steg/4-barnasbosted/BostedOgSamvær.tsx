@@ -14,6 +14,7 @@ import {
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ISpørsmål } from '../../../models/spørsmal';
 
 interface Props {
   settForelder: Function;
@@ -24,12 +25,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
 
   const settHarForelderSamværMedBarn = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harAnnenForelderSamværMedBarn.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: valgtSvar,
     };
 
     if (
@@ -54,12 +55,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   };
 
   const settHarDereSkriftligSamværsavtale = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harDereSkriftligSamværsavtale.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: valgtSvar,
     };
 
     if (
@@ -114,7 +115,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
           key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
           valgtSvar={forelder.harAnnenForelderSamværMedBarn}
-          onChange={(spørsmål, svar) =>
+          settSpørsmålOgSvar={(spørsmål, svar) =>
             settHarForelderSamværMedBarn(spørsmål, svar)
           }
         />
@@ -128,7 +129,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
             key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
             valgtSvar={forelder.harDereSkriftligSamværsavtale}
-            onChange={(spørsmål, svar) =>
+            settSpørsmålOgSvar={(spørsmål, svar) =>
               settHarDereSkriftligSamværsavtale(spørsmål, svar)
             }
           />

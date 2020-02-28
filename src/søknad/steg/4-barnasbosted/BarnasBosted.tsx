@@ -49,7 +49,7 @@ const BarnasBosted: React.FC = () => {
                 key={borISammeHus.søknadid}
                 spørsmål={borISammeHus}
                 valgtSvar={forelder.borISammeHus}
-                onChange={(_, svar) =>
+                settSpørsmålOgSvar={(_, svar) =>
                   settForelder({
                     ...forelder,
                     [borISammeHus.søknadid]: svar,
@@ -91,7 +91,7 @@ const BarnasBosted: React.FC = () => {
                 key={hvorMyeSammen.søknadid}
                 spørsmål={hvorMyeSammen}
                 valgtSvar={forelder.hvorMyeSammen}
-                onChange={(_, svar) =>
+                settSpørsmålOgSvar={(_, svar) =>
                   settForelder({
                     ...forelder,
                     [hvorMyeSammen.søknadid]: svar,
