@@ -63,7 +63,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <StyledJaNeiSpørsmål key={spørsmål.spørsmål_id}>
+    <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
       <Element>{spørsmålTekst}</Element>
       {spørsmål.lesmer ? (
         <Hjelpetekst
@@ -78,7 +78,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
           return (
             <RadioPanel
               key={svar.svar_tekstid}
-              name={spørsmål.spørsmål_id}
+              name={spørsmål.søknadid}
               label={intl.formatMessage({
                 id: svar.svar_tekstid,
               })}

@@ -25,7 +25,7 @@ const Medlemskap: React.FC = () => {
       ...søknad,
       medlemskap: {
         ...søknad.medlemskap,
-        [spørsmål.spørsmål_id]: {
+        [spørsmål.søknadid]: {
           label: intl.formatMessage({ id: spørsmål.tekstid }),
           verdi: svar,
         },
@@ -35,7 +35,7 @@ const Medlemskap: React.FC = () => {
 
   const hentValgtSvar = (spørsmål: ISpørsmål, medlemskap: IMedlemskap) => {
     for (const [key, value] of Object.entries(medlemskap)) {
-      if (key === spørsmål.spørsmål_id && value !== undefined) {
+      if (key === spørsmål.søknadid && value !== undefined) {
         return value.verdi;
       }
     }
@@ -43,7 +43,7 @@ const Medlemskap: React.FC = () => {
 
   return (
     <SeksjonGruppe>
-      <KomponentGruppe key={oppholderSegINorge.spørsmål_id}>
+      <KomponentGruppe key={oppholderSegINorge.søknadid}>
         <JaNeiSpørsmål
           spørsmål={oppholderSegINorge}
           valgtSvar={hentValgtSvar(oppholderSegINorge, søknad.medlemskap)}
@@ -52,7 +52,7 @@ const Medlemskap: React.FC = () => {
       </KomponentGruppe>
 
       {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
-        <KomponentGruppe key={bosattINorgeDeSisteTreÅr.spørsmål_id}>
+        <KomponentGruppe key={bosattINorgeDeSisteTreÅr.søknadid}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅr}
             valgtSvar={hentValgtSvar(

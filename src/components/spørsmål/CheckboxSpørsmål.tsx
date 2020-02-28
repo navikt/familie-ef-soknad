@@ -48,7 +48,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   };
 
   return (
-    <StyledCheckboxSpørsmål key={spørsmål.spørsmål_id}>
+    <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
       <Element>
         <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
