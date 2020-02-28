@@ -13,7 +13,6 @@ import HarSøkerSluttdato from './HarSøkerSluttdato';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål } from '../../../../models/spørsmal';
 import {
   EArbeidsgiver,
   IArbeidsgiver,

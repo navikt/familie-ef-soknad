@@ -5,6 +5,9 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   erSøkerArbeidssøker,
   erVilligTilÅTaImotTilbud,
+  kanBegynneInnenEnUke,
+  kanSkaffeBarnepassInnenEnUke,
+  ønskerHalvStillig,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
@@ -13,7 +16,6 @@ import { ISpørsmål } from '../../../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import Hjelpetekst from '../../../../components/Hjelpetekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 
 interface Props {
@@ -72,29 +74,54 @@ const Arbeidssøker: React.FC<Props> = ({
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
       </KomponentGruppe>
-      <KomponentGruppe>
-        <MultiSvarSpørsmål
-          spørsmål={ønsketArbeidssted}
-          onChange={settMultiSvarSpørsmål}
-          valgtSvar={arbeidssøker.hvorØnskerSøkerArbeid?.verdi}
-        />
 
-        {arbeidssøker.hvorØnskerSøkerArbeid?.verdi &&
-          ønsketArbeidssted.lesmer && (
-            <Hjelpetekst
-              åpneTekstid={ønsketArbeidssted.lesmer.åpneTekstid}
-              innholdTekstid={ønsketArbeidssted.lesmer.innholdTekstid}
-            />
-          )}
-      </KomponentGruppe>
+      {arbeidssøker.registrertSomArbeidssøkerNav && (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={erVilligTilÅTaImotTilbud}
+            onChange={settJaNeiSpørsmål}
+            valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
+          />
+        </KomponentGruppe>
+      )}
+      {arbeidssøker.villigTilÅTaImotTilbudOmArbeid && (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={kanBegynneInnenEnUke}
+            onChange={settJaNeiSpørsmål}
+            valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
+          />
+        </KomponentGruppe>
+      )}
 
-      <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={erVilligTilÅTaImotTilbud}
-          onChange={settJaNeiSpørsmål}
-          valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
-        />
-      </KomponentGruppe>
+      {arbeidssøker.kanBegynneInnenEnUke && (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={kanSkaffeBarnepassInnenEnUke}
+            onChange={settJaNeiSpørsmål}
+            valgtSvar={arbeidssøker.kanSkaffeBarnepassInnenEnUke?.verdi}
+          />
+        </KomponentGruppe>
+      )}
+
+      {arbeidssøker.kanSkaffeBarnepassInnenEnUke && (
+        <KomponentGruppe>
+          <MultiSvarSpørsmål
+            spørsmål={ønsketArbeidssted}
+            settSpørsmålOgSvar={settMultiSvarSpørsmål}
+            valgtSvar={arbeidssøker.hvorØnskerSøkerArbeid?.verdi}
+          />
+        </KomponentGruppe>
+      )}
+      {arbeidssøker.hvorØnskerSøkerArbeid && (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={ønskerHalvStillig}
+            onChange={settJaNeiSpørsmål}
+            valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
+          />
+        </KomponentGruppe>
+      )}
     </SeksjonGruppe>
   );
 };
