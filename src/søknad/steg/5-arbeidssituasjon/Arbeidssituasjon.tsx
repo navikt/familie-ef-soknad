@@ -101,6 +101,7 @@ const Arbeidssituasjon: React.FC = () => {
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
+
       {huketAvTarUtdanning && (
         <Utdanning
           arbeidssituasjon={arbeidssituasjon}
