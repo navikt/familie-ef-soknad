@@ -23,14 +23,6 @@ export default {
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
 
-    'utdanning.tittel': 'Utdanningen du skal ta',
-    'utdanning.lesmer-åpne.kanFåStønad':
-      'Hva slags utdanning kan du få stønad til?',
-    'utdanning.lesmer-innhold.kanFåStønad':
-      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
-      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
-    'utdanning.': '',
-
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiver',
@@ -44,6 +36,15 @@ export default {
     'arbeidsforhold.label.flereArbeidsgivere': 'Arbeider du flere steder?',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
+
+    'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.lesmer-åpne.kanFåStønad':
+      'Hva slags utdanning kan du få stønad til?',
+    'utdanning.lesmer-innhold.kanFåStønad':
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
+    'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
+    'utdanning.': '',
 
     'arbeidssøker.tittel': 'Når du er arbeidssøker',
     'arbeidssøker.label.registrert':
@@ -138,9 +139,11 @@ export default {
     'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
       'Har du hatt flere utenlandsopphold de siste 3 årene?',
     'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+
     'periode.fra': 'Fra',
     'periode.til': 'Til',
-
+    'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
+    'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
     'person.navn': 'Navn',
     'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
 

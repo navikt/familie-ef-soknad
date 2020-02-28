@@ -1,6 +1,8 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
+import subDays from 'date-fns';
+import { dagensDato } from './dato';
 
 export const hentPersonData = () => {
   return axios

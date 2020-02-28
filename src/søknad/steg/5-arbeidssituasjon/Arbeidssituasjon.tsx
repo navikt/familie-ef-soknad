@@ -62,8 +62,11 @@ const Arbeidssituasjon: React.FC = () => {
   const huketAvHarArbeid =
     erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
     erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
-  const hukerAvErArbeidssøker = erAktivitetHuketAv(
+  const huketAvErArbeidssøker = erAktivitetHuketAv(
     EArbeidssituasjon.erArbeidssøker
+  );
+  const huketAvTarUtdanning = erAktivitetHuketAv(
+    EArbeidssituasjon.tarUtdanning
   );
 
   return (
@@ -92,17 +95,18 @@ const Arbeidssituasjon: React.FC = () => {
         />
       )}
 
-      {hukerAvErArbeidssøker && (
+      {huketAvErArbeidssøker && (
         <Arbeidssøker
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
-
-      <Utdanning
-        arbeidssituasjon={arbeidssituasjon}
-        settArbeidssituasjon={settArbeidssituasjon}
-      />
+      {huketAvTarUtdanning && (
+        <Utdanning
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
     </Side>
   );
 };
