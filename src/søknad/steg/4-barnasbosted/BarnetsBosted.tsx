@@ -12,6 +12,7 @@ import { IForelder, IBarn } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { Knapp } from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -21,6 +22,7 @@ import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper'
 import OmAndreForelder from './OmAndreForelder';
 import BostedOgSamvær from './BostedOgSamvær';
 import LocaleTekst from '../../../language/LocaleTekst';
+import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 
 interface Props {
     barn: IBarn;
@@ -28,8 +30,10 @@ interface Props {
 
 const BarnetsBosted: React.FC<Props> = ( { barn }) => {
     const intl = useIntl();
+    const { søknad, settSøknad } = useSøknadContext();
 
     const [forelder, settForelder] = useState<IForelder>({});
+
 
     const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
       const nyForelder = {...forelder, [boddSammenFør.spørsmål_id]: valgtSvar};
@@ -37,47 +41,16 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
       if (valgtSvar === false) {
         delete nyForelder.flyttetFra;
       }
-  
+
       settForelder(nyForelder);
     }
 
-    console.log("BARN");
-    console.log(barn);
-
     return (
         <>
-<div className="barnas-bosted">
+          <div className="barnas-bosted">
           <BarnasBostedHeader barn={barn} />
           <div className="barnas-bosted__innhold">
-            {!barn.harSammeAdresse ? <KomponentGruppe>
-            <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-              <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
-            </AlertStripeAdvarsel>
-            <MultiSvarSpørsmål
-                  key={skalBarnBoHosDeg.spørsmål_id}
-                  spørsmål={skalBarnBoHosDeg}
-                  valgtSvar={forelder.skalBarnBoHosDeg}
-                  onChange={(_, svar) => settForelder({...forelder, [skalBarnBoHosDeg.spørsmål_id]: svar})}
-                />
-              </KomponentGruppe>              
-              : null}
-            {forelder.skalBarnBoHosDeg === intl.formatMessage({ id: 'barnasbosted.spm.jaMenSamarbeiderIkke' }) ? 
-            <FeltGruppe>
-            <AlertStripeInfo className={'fjernBakgrunn'}>
-              <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
-            </AlertStripeInfo>
-            <FeltGruppe>
-            <Normaltekst className="innskutt">Familievernkontoret kan også hjelpe deg</Normaltekst>
-            </FeltGruppe>
-            <Normaltekst className="innskutt">Når det kommer til denne søknaden kan du dokumentere at Lise bor hos deg ved å sende inn for eksempel:</Normaltekst>
-            <ul className="dokumentere-bosted">
-              <li><Normaltekst>redegjørelse for årsaken til manglende adresseendring for barnet</Normaltekst></li>
-              <li><Normaltekst>kopi av flyttemelding/tips til Folkeregisteret</Normaltekst></li>
-              <li><Normaltekst>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</Normaltekst></li>
-            </ul>
-            </FeltGruppe>
-             : 
-            null}
+            <SkalBarnBoHosDeg forelder={forelder} settForelder={settForelder} barn={barn} />
             <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} />
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
             <KomponentGruppe>
@@ -117,6 +90,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
                 onChange={(_, svar) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: svar})}
               />
             </KomponentGruppe>
+            <Knapp onClick={() => console.log("jepp")}>Legg til</Knapp>
             </div>
             </div>
         </>

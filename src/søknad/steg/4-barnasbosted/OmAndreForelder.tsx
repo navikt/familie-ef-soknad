@@ -32,9 +32,6 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
         settForelder(nyForelder);
     }
 
-    console.log("FORELDER");
-    console.log(forelder);
-
     return (
         <>
         <KomponentGruppe>

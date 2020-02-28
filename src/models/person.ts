@@ -37,6 +37,7 @@ export interface IBarn {
   navn: string;
   ufødt?: boolean;
   lagtTil?: boolean;
+  skalBarnBoHosDeg?: string;
 }
 
 export interface IPersonDetaljer {
