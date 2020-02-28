@@ -3,13 +3,30 @@ export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
-    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-      '[info om aktivitetsplikt fra Ett år]',
+    'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
+      'Jeg er selvstendig næringsdrivende eller frilanser',
+    'arbeidssituasjon.svar.etablererEgenVirksomhet':
+      'Jeg etablerer egen virksomhet',
+    'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
+    'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
+    'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
+      'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
     'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
     'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+
+    'arbeidssituasjon.tittel.etablererEgenVirksomhet':
+      'Om virksomheten du etablerer',
+
+    'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
+    'arbeidssituasjon.alert.etablererEgenVirksomhet':
+      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
+    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
+      '[info om aktivitetsplikt fra Ett år]',
+
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiver',
@@ -23,19 +40,14 @@ export default {
     'arbeidsforhold.label.flereArbeidsgivere': 'Arbeider du flere steder?',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
-    'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
-      'Jeg er selvstendig næringsdrivende eller frilanser',
-    'arbeidssituasjon.svar.etablererEgenVirksomhet':
-      'Jeg etablerer egen virksomhet',
-    'arbeidssituasjon.tittel.etablererEgenVirksomhet':
-      'Om virksomheten du etablerer',
-    'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
-    'arbeidssituasjon.alert.etablererEgenVirksomhet':
-      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
-    'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
-    'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
-    'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
-      'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
+
+    'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.lesmer-åpne.kanFåStønad':
+      'Hva slags utdanning kan du få stønad til?',
+    'utdanning.lesmer-innhold.kanFåStønad':
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
+    'utdanning.': '',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',

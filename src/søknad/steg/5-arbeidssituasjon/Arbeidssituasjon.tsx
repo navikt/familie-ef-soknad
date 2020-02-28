@@ -14,6 +14,7 @@ import {
   nyttTekstListeFelt,
 } from '../../../models/arbeidssituasjon';
 import { ISpørsmål } from '../../../models/spørsmal';
+import Utdanning from './utdanning/Utdanning';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
@@ -81,6 +82,11 @@ const Arbeidssituasjon: React.FC = () => {
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
+
+      <Utdanning
+        arbeidssituasjon={arbeidssituasjon}
+        settArbeidssituasjon={settArbeidssituasjon}
+      />
     </Side>
   );
 };

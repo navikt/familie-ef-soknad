@@ -32,15 +32,26 @@ const StyledHjelpetekst = styled.div`
       font-size: 16px;
     }
   }
+  &.sentrert {
+    .lesMerPanel {
+      &__togglelink {
+        &--erApen {
+          margin: auto;
+        }
+      }
+    }
+  }
 `;
 
 interface Props {
+  className?: string;
   åpneTekstid: string;
   lukkeTekstid?: string;
   innholdTekstid: string;
 }
 
 const Hjelpetekst: React.FC<Props> = ({
+  className,
   åpneTekstid,
   lukkeTekstid,
   innholdTekstid,
@@ -49,7 +60,7 @@ const Hjelpetekst: React.FC<Props> = ({
   const hentTekst = (id: string) => intl.formatMessage({ id: id });
 
   return (
-    <StyledHjelpetekst>
+    <StyledHjelpetekst className={className}>
       <Lesmerpanel
         apneTekst={hentTekst(åpneTekstid)}
         lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid) : undefined}
