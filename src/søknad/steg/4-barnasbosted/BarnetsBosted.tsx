@@ -34,7 +34,6 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
 
     const [forelder, settForelder] = useState<IForelder>({});
 
-
     const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
       const nyForelder = {...forelder, [boddSammenFør.søknadid]: valgtSvar};
   
@@ -43,6 +42,17 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
       }
 
       settForelder(nyForelder);
+    }
+
+    const leggTilForelder = () => {
+      const barneListeUtenDetteBarnet = søknad.person.barn.filter(b => b !== barn);
+      let nyttBarn = barn;
+
+      nyttBarn.forelder = forelder;
+
+      const nyBarneListe = [barn, ...barneListeUtenDetteBarnet];
+
+      settSøknad({...søknad, person: {...søknad.person, barn: nyBarneListe}});
     }
 
     return (
@@ -90,7 +100,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
                 settSpørsmålOgSvar={(_, svar) => settForelder({...forelder, [hvorMyeSammen.søknadid]: svar})}
               />
             </KomponentGruppe>
-            <Knapp onClick={() => console.log("jepp")}>Legg til</Knapp>
+            <Knapp onClick={leggTilForelder}>Legg til</Knapp>
             </div>
             </div>
         </>
