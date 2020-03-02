@@ -1,13 +1,13 @@
 import { ISpørsmål, ESvar, JaNeiSvar } from '../../../../models/spørsmal';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
-  spørsmål_id: 'søkerHarSøktSeparasjon',
+  søknadid: 'søkerHarSøktSeparasjon',
   tekstid: 'sivilstatus.separasjon.harsøkersøkt',
   svaralternativer: JaNeiSvar,
 };
 
 export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
-  spørsmål_id: 'søkerGiftIUtlandet',
+  søknadid: 'søkerGiftIUtlandet',
   tekstid: 'sivilstatus.spm.søkerGiftIUtlandet',
   lesmer: {
     åpneTekstid: 'sivilstatus.lesmer-åpne.søkerGiftIUtlandet',
@@ -24,7 +24,7 @@ export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
 };
 
 export const søkerSeparertEllerSKiltIUtlandetSpørsmål: ISpørsmål = {
-  spørsmål_id: 'søkerSeparertEllerSkiltIUtlandet',
+  søknadid: 'søkerSeparertEllerSkiltIUtlandet',
   tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
   svaralternativer: [
     {
@@ -36,7 +36,7 @@ export const søkerSeparertEllerSKiltIUtlandetSpørsmål: ISpørsmål = {
 };
 
 export const BegrunnelseSpørsmål: ISpørsmål = {
-  spørsmål_id: 'begrunnelseForSøknad',
+  søknadid: 'begrunnelseForSøknad',
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {

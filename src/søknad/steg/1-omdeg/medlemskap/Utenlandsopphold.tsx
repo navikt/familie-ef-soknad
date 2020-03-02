@@ -9,6 +9,7 @@ import { compareAsc } from 'date-fns';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { IUtenlandsopphold } from '../../../../models/omDeg';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
+import { hentTekst } from '../../../../utils/søknad';
 
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
@@ -21,7 +22,6 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
   const { periode, begrunnelse } = utenlandsopphold;
   const intl = useIntl();
   const [feilmelding, settFeilmelding] = useState('');
-  const hentTekst = (id: string) => intl.formatMessage({ id: id });
   const begrunnelseTekst = intl.formatMessage({
     id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
   });
@@ -89,7 +89,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
             periode: {
               ...periode,
               [objektnøkkel]: {
-                label: hentTekst('periode.' + objektnøkkel),
+                label: hentTekst('periode.' + objektnøkkel, intl),
                 verdi: date !== null ? date : undefined,
               },
             },

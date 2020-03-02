@@ -7,13 +7,13 @@ import {
 } from '../../../models/barnasbosted';
 
 export const borINorge: ISpørsmål = {
-  spørsmål_id: 'borINorge',
+  søknadid: 'borINorge',
   tekstid: 'barnasbosted.borinorge',
   svaralternativer: JaNeiSvar,
 };
 
 export const avtaleOmDeltBosted: ISpørsmål = {
-  spørsmål_id: 'avtaleOmDeltBosted',
+  søknadid: 'avtaleOmDeltBosted',
   tekstid: 'barnasbosted.avtale',
   lesmer: {
     åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
@@ -24,13 +24,13 @@ export const avtaleOmDeltBosted: ISpørsmål = {
 };
 
 export const boddSammenFør: ISpørsmål = {
-  spørsmål_id: 'boddSammenFør',
+  søknadid: 'boddSammenFør',
   tekstid: 'barnasbosted.spm.boddsammenfør',
   svaralternativer: JaNeiSvar,
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
-  spørsmål_id: 'harAnnenForelderSamværMedBarn',
+  søknadid: 'harAnnenForelderSamværMedBarn',
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
   lesmer: {
     åpneTekstid: 'barnasbosted.hjelpetekst.samvær.apne',
@@ -54,7 +54,7 @@ export const harAnnenForelderSamværMedBarn: ISpørsmål = {
 };
 
 export const harDereSkriftligSamværsavtale: ISpørsmål = {
-  spørsmål_id: 'harDereSkriftligSamværsavtale',
+  søknadid: 'harDereSkriftligSamværsavtale',
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   svaralternativer: [
     {
@@ -73,7 +73,7 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
 };
 
 export const borISammeHus: ISpørsmål = {
-  spørsmål_id: 'borISammeHus',
+  søknadid: 'borISammeHus',
   tekstid: 'barnasbosted.spm.borISammeHus',
   lesmer: {
     åpneTekstid: 'barnasbosted.hjelpetekst.borisammehus.apne',
@@ -97,7 +97,7 @@ export const borISammeHus: ISpørsmål = {
 };
 
 export const hvorMyeSammen: ISpørsmål = {
-  spørsmål_id: 'hvorMyeSammen',
+  søknadid: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   svaralternativer: [
     {

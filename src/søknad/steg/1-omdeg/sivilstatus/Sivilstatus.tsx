@@ -40,7 +40,7 @@ const Sivilstatus: React.FC = () => {
       ...søknad,
       sivilstatus: {
         ...sivilstatus,
-        [spørsmål.spørsmål_id]: {
+        [spørsmål.søknadid]: {
           label: intl.formatMessage({ id: spørsmål.tekstid }),
           verdi: svar,
         },
@@ -68,7 +68,7 @@ const Sivilstatus: React.FC = () => {
 
   const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
     for (const [key, value] of Object.entries(sivilstatus)) {
-      if (key === spørsmål.spørsmål_id && value !== undefined) {
+      if (key === spørsmål.søknadid && value !== undefined) {
         return value.verdi;
       }
     }

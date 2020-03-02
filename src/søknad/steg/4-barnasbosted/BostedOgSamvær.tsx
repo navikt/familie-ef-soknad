@@ -14,6 +14,7 @@ import {
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { ISpørsmål } from '../../../models/spørsmal';
 
 interface Props {
   settForelder: Function;
@@ -24,12 +25,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
 
   const settHarForelderSamværMedBarn = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harAnnenForelderSamværMedBarn.spørsmål_id]: valgtSvar,
+      [spørsmål.søknadid]: valgtSvar,
     };
 
     if (
@@ -54,12 +55,12 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   };
 
   const settHarDereSkriftligSamværsavtale = (
-    spørsmål: string,
+    spørsmål: ISpørsmål,
     valgtSvar: string
   ) => {
     const nyForelder = {
       ...forelder,
-      [harDereSkriftligSamværsavtale.spørsmål_id]: valgtSvar,
+      [spørsmål.søknadid]: valgtSvar,
     };
 
     if (
@@ -92,7 +93,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
         <JaNeiSpørsmål
           spørsmål={borINorge}
           onChange={(_, svar) =>
-            settForelder({ ...forelder, [borINorge.spørsmål_id]: svar })
+            settForelder({ ...forelder, [borINorge.søknadid]: svar })
           }
           valgtSvar={forelder.borINorge}
         />
@@ -103,7 +104,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
           onChange={(_, svar) =>
             settForelder({
               ...forelder,
-              [avtaleOmDeltBosted.spørsmål_id]: svar,
+              [avtaleOmDeltBosted.søknadid]: svar,
             })
           }
           valgtSvar={forelder.avtaleOmDeltBosted}
@@ -111,10 +112,10 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmål
-          key={harAnnenForelderSamværMedBarn.spørsmål_id}
+          key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
           valgtSvar={forelder.harAnnenForelderSamværMedBarn}
-          onChange={(spørsmål, svar) =>
+          settSpørsmålOgSvar={(spørsmål, svar) =>
             settHarForelderSamværMedBarn(spørsmål, svar)
           }
         />
@@ -125,10 +126,10 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
       ) ? (
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            key={harDereSkriftligSamværsavtale.spørsmål_id}
+            key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
             valgtSvar={forelder.harDereSkriftligSamværsavtale}
-            onChange={(spørsmål, svar) =>
+            settSpørsmålOgSvar={(spørsmål, svar) =>
               settHarDereSkriftligSamværsavtale(spørsmål, svar)
             }
           />

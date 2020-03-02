@@ -6,11 +6,9 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import {
-  IArbeidsgiver,
-  IArbeidssituasjon,
-  nyttTekstFelt,
-} from '../../../../models/arbeidssituasjon';
+import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
+import { IArbeidsgiver } from '../../../../models/arbeidssituasjon/arbeidsgiver';
+import { nyttTekstFelt } from '../../../../models/søknadsfelter';
 
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;
