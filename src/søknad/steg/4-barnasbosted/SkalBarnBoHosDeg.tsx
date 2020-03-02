@@ -25,10 +25,10 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({ barn, forelder, settForelder }) => 
         <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
     </AlertStripeAdvarsel>
     <MultiSvarSpørsmål
-            key={skalBarnBoHosDeg.spørsmål_id}
+            key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
             valgtSvar={forelder.skalBarnBoHosDeg}
-            onChange={(_, svar) => settForelder({...forelder, [skalBarnBoHosDeg.spørsmål_id]: svar})}
+            settSpørsmålOgSvar={(_, svar) => settForelder({...forelder, [skalBarnBoHosDeg.søknadid]: svar})}
         />
         </KomponentGruppe>              
         : null}

@@ -36,7 +36,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
 
 
     const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
-      const nyForelder = {...forelder, [boddSammenFør.spørsmål_id]: valgtSvar};
+      const nyForelder = {...forelder, [boddSammenFør.søknadid]: valgtSvar};
   
       if (valgtSvar === false) {
         delete nyForelder.flyttetFra;
@@ -55,10 +55,10 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
             <KomponentGruppe>
               <MultiSvarSpørsmål
-                key={borISammeHus.spørsmål_id}
+                key={borISammeHus.søknadid}
                 spørsmål={borISammeHus}
                 valgtSvar={forelder.borISammeHus}
-                onChange={(_, svar) => settForelder({...forelder, [borISammeHus.spørsmål_id]: svar})}
+                settSpørsmålOgSvar={(_, svar) => settForelder({...forelder, [borISammeHus.søknadid]: svar})}
               />
             </KomponentGruppe>
             <KomponentGruppe>
@@ -84,10 +84,10 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
             </KomponentGruppe> : null}
             <KomponentGruppe>
               <MultiSvarSpørsmål
-                key={hvorMyeSammen.spørsmål_id}
+                key={hvorMyeSammen.søknadid}
                 spørsmål={hvorMyeSammen}
                 valgtSvar={forelder.hvorMyeSammen}
-                onChange={(_, svar) => settForelder({...forelder, [hvorMyeSammen.spørsmål_id]: svar})}
+                settSpørsmålOgSvar={(_, svar) => settForelder({...forelder, [hvorMyeSammen.søknadid]: svar})}
               />
             </KomponentGruppe>
             <Knapp onClick={() => console.log("jepp")}>Legg til</Knapp>

@@ -10,34 +10,26 @@ import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
 import { IUtenlandsopphold } from '../../../../models/omDeg';
+import { hentTekst } from '../../../../utils/søknad';
 
 const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknadContext();
   const { perioderBoddIUtlandet } = søknad.medlemskap;
   const intl = useIntl();
-  const hentTekst = (id: string) => intl.formatMessage({ id: id });
 
   const nyPeriode = {
     periode: {
-      fra: { label: hentTekst('periode.fra'), verdi: subDays(dagensDato, 1) },
-      til: { label: hentTekst('periode.til'), verdi: dagensDato },
+      fra: {
+        label: hentTekst('periode.fra', intl),
+        verdi: subDays(dagensDato, 1),
+      },
+      til: { label: hentTekst('periode.til', intl), verdi: dagensDato },
     },
     begrunnelse: {
-      label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse'),
+      label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),
       verdi: '',
     },
   };
-
-  useEffect(() => {
-    settSøknad({
-      ...søknad,
-      medlemskap: {
-        ...søknad.medlemskap,
-        perioderBoddIUtlandet: [nyPeriode],
-      },
-    });
-    // eslint-disable-next-line
-  }, []);
 
   const leggTilUtenlandsperiode = () => {
     const nyttUtenlandsopphold: IUtenlandsopphold = nyPeriode;
@@ -52,6 +44,17 @@ const PeriodeBoddIUtlandet: FC = () => {
         },
       });
   };
+
+  useEffect(() => {
+    settSøknad({
+      ...søknad,
+      medlemskap: {
+        ...søknad.medlemskap,
+        perioderBoddIUtlandet: [nyPeriode],
+      },
+    });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>

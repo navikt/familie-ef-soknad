@@ -8,7 +8,7 @@ import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
-import { erValgtSvarLiktSomSvar } from '../../../utils/søknad';
+import { erValgtSvarLiktSomSvar, hentTekst } from '../../../utils/søknad';
 import { ESøkerDelerBolig, IBosituasjon } from '../../../models/bosituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import useSøknadContext from '../../../context/SøknadContext';
@@ -33,18 +33,20 @@ const Bosituasjon: FC = () => {
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
-  const settBosituasjonFelt = (spørsmål: string, svar: string) => {
+  const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: string) => {
+    const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
+
     if (!bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       oppdaterBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
-          label: spørsmål,
+          label: spørsmålTekst,
           verdi: svar,
         },
       });
     } else if (svar !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       settBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
-          label: spørsmål,
+          label: spørsmålTekst,
           verdi: svar,
         },
       });
@@ -76,10 +78,10 @@ const Bosituasjon: FC = () => {
     <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
       <SeksjonGruppe>
         <MultiSvarSpørsmål
-          key={hovedSpørsmål.spørsmål_id}
+          key={hovedSpørsmål.søknadid}
           spørsmål={hovedSpørsmål}
           valgtSvar={bosituasjon.søkerDelerBoligMedAndreVoksne.verdi}
-          onChange={settBosituasjonFelt}
+          settSpørsmålOgSvar={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
           <AlertStripeAdvarsel className={'fjernBakgrunn'}>

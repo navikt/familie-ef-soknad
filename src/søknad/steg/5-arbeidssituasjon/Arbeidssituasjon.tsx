@@ -1,31 +1,50 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import Side from '../../../components/side/Side';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import { useIntl } from 'react-intl';
-import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
+import Side from '../../../components/side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
+import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
+import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
+import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
+import {
+  EArbeidssituasjon,
+  IArbeidssituasjon,
+} from '../../../models/arbeidssituasjon/arbeidssituasjon';
+import Arbeidssøker from './arbeidssøker/Arbeidssøker';
+import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { ISpørsmål } from '../../../models/spørsmal';
+import { hentTekst } from '../../../utils/søknad';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
-
   const { søknad, settSøknad } = useSøknadContext();
-  const { situasjon } = søknad.arbeidssituasjon;
+  const [arbeidssituasjon, settArbeidssituasjon] = useState<IArbeidssituasjon>({
+    situasjon: nyttTekstListeFelt,
+  });
+  const { situasjon } = arbeidssituasjon;
 
-  const settArbeidssituasjon = (spørsmål: string, svar: string[]) => {
-    settSøknad({
-      ...søknad,
-      arbeidssituasjon: {
-        ...søknad.arbeidssituasjon,
-        situasjon: { label: spørsmål, verdi: svar },
+  useEffect(() => {
+    settSøknad({ ...søknad, arbeidssituasjon: arbeidssituasjon });
+    // eslint-disable-next-line
+  }, [arbeidssituasjon]);
+
+  const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IArbeidssituasjon) => {
+    settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
+  };
+
+  const settArbeidssituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
+    oppdaterArbeidssituasjon({
+      ...arbeidssituasjon,
+      [spørsmål.søknadid]: {
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: svar,
       },
     });
   };
 
-  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjonSvar): boolean => {
+  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return situasjon.verdi.some((svarHuketAvISøknad: string) => {
@@ -34,23 +53,50 @@ const Arbeidssituasjon: React.FC = () => {
   };
 
   const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr
+    EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr
   );
   const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    EArbeidssituasjonSvar.etablererEgenVirksomhet
+    EArbeidssituasjon.etablererEgenVirksomhet
+  );
+  const huketAvHarArbeid =
+    erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
+    erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
+  const hukerAvErArbeidssøker = erAktivitetHuketAv(
+    EArbeidssituasjon.erArbeidssøker
   );
 
   return (
     <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
-      <KomponentGruppe>
+      <SeksjonGruppe>
         <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjon}
-          settValgteSvar={settArbeidssituasjon}
+          settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={situasjon?.verdi}
         />
-      </KomponentGruppe>
-      <HjemmeMedBarnUnderEttÅr erHuketAv={huketAvHjemmeMedBarnUnderEttÅr} />
-      <EtablererEgenVirksomhet erHuketAv={huketAvEtablererEgenVirksomhet} />
+      </SeksjonGruppe>
+
+      {huketAvHjemmeMedBarnUnderEttÅr && <HjemmeMedBarnUnderEttÅr />}
+
+      {huketAvEtablererEgenVirksomhet && (
+        <EtablererEgenVirksomhet
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+
+      {huketAvHarArbeid && (
+        <OmArbeidsforholdetDitt
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+
+      {hukerAvErArbeidssøker && (
+        <Arbeidssøker
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={oppdaterArbeidssituasjon}
+        />
+      )}
     </Side>
   );
 };

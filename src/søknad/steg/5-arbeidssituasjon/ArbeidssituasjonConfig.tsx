@@ -1,51 +1,43 @@
 import { ISpørsmål } from '../../../models/spørsmal';
-import { EArbeidssituasjonSvar } from '../../../models/arbeidssituasjon';
+import { EArbeidssituasjon } from '../../../models/arbeidssituasjon/arbeidssituasjon';
 
 export const hvaErDinArbeidssituasjon: ISpørsmål = {
-  spørsmål_id: 'arbeidssituasjon',
+  søknadid: 'situasjon',
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {
-      nøkkel: EArbeidssituasjonSvar.erHjemmeMedBarnUnderEttÅr,
+      nøkkel: EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr,
       svar_tekstid: 'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erIArbeid,
-      svar_tekstid: 'arbeidssituasjon.svar.erIArbeid',
-      alert_tekstid: '',
+      nøkkel: EArbeidssituasjon.erArbeidstaker,
+      svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erSelvstendigNæringsdriveneEllerFrilanser,
+      nøkkel: EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser,
       svar_tekstid:
         'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erAnsattIEgetAS,
+      nøkkel: EArbeidssituasjon.erAnsattIEgetAS,
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.etablererEgenVirksomhet,
+      nøkkel: EArbeidssituasjon.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erArbeidssøker,
+      nøkkel: EArbeidssituasjon.erArbeidssøker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidssøker',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.tarUtdanning,
+      nøkkel: EArbeidssituasjon.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
-      alert_tekstid: '',
     },
     {
-      nøkkel: EArbeidssituasjonSvar.erHverkenIArbeidUtdanningEllerArbeidssøker,
+      nøkkel: EArbeidssituasjon.erHverkenIArbeidUtdanningEllerArbeidssøker,
       svar_tekstid:
         'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker',
-      alert_tekstid: '',
     },
   ],
 };

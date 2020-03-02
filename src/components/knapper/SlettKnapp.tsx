@@ -29,6 +29,15 @@ const StyledSlettKnapp = styled.button`
     height: 16px;
     width: 16px;
   }
+
+  &.kunEn {
+    display: none;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    border: none;
+  }
 `;
 
 interface Props {

@@ -6,14 +6,15 @@ import { IForelder, IBarn } from '../../../models/person';
 import { Element } from 'nav-frontend-typografi';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
-import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
 
 interface Props {
-    barn: IBarn;
-    settForelder: Function;
-    forelder: IForelder;
+  barn: IBarn;
+  settForelder: Function;
+  forelder: IForelder;
 }
-
 const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => {
     const intl = useIntl();
     const [huketAv, settHuketAv] = useState<boolean>(false);
@@ -32,11 +33,14 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
         settForelder(nyForelder);
     }
 
-    return (
-        <>
-        <KomponentGruppe>
+  return (
+    <>
+      <KomponentGruppe>
         <FeltGruppe>
-        <Element>{barn.navn}{intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}</Element>
+          <Element>
+            {barn.navn}
+            {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
+          </Element>
         </FeltGruppe>
     <FeltGruppe>
         <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} value={forelder.navn ? forelder.navn : ""} label="Navn" disabled={huketAv} />
@@ -61,9 +65,9 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
             onChange={hukAv}
         />
         </FeltGruppe>
-        </KomponentGruppe>
-        </>
-    );
+      </KomponentGruppe>
+    </>
+  );
 };
 
 export default OmAndreForelder;

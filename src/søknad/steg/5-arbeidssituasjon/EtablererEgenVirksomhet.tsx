@@ -1,68 +1,63 @@
 import React from 'react';
-import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import useSøknadContext from '../../../context/SøknadContext';
-import { Undertittel } from 'nav-frontend-typografi';
-import LocaleTekst from '../../../language/LocaleTekst';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
-import { ISpørsmål } from '../../../models/spørsmal';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import LocaleTekst from '../../../language/LocaleTekst';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
+import { IArbeidssituasjon } from '../../../models/arbeidssituasjon/arbeidssituasjon';
+import { ISpørsmål } from '../../../models/spørsmal';
+import { Textarea } from 'nav-frontend-skjema';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
 
-const EtablererEgenVirksomhet: React.FC<{ erHuketAv: boolean }> = ({
-  erHuketAv,
+interface Props {
+  arbeidssituasjon: IArbeidssituasjon;
+  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+}
+
+const EtablererEgenVirksomhet: React.FC<Props> = ({
+  arbeidssituasjon,
+  settArbeidssituasjon,
 }) => {
   const spørsmål: ISpørsmål = hvaErDinArbeidssituasjon;
-  const { søknad, settSøknad } = useSøknadContext();
-  const { etablererEgenVirksomhet } = søknad.arbeidssituasjon;
+  const { etablererEgenVirksomhet } = arbeidssituasjon;
   const intl = useIntl();
-  const tittelTekstid: string = intl.formatMessage({
-    id: 'arbeidssituasjon.tittel.etablererEgenVirksomhet',
-  });
 
   const settTekstfelt = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    settSøknad({
-      ...søknad,
-      arbeidssituasjon: {
-        ...søknad.arbeidssituasjon,
-        etablererEgenVirksomhet: {
-          label: intl.formatMessage({ id: spørsmål.tekstid }),
-          verdi: e.target.value,
-        },
+    settArbeidssituasjon({
+      ...arbeidssituasjon,
+      etablererEgenVirksomhet: {
+        label: intl.formatMessage({ id: spørsmål.tekstid }),
+        verdi: e.target.value,
       },
     });
   };
 
   return (
-    <>
-      {erHuketAv ? (
-        <SeksjonGruppe>
-          <FeltGruppe>
-            <Undertittel>
-              <LocaleTekst tekst={tittelTekstid} />
-            </Undertittel>
-          </FeltGruppe>
-
-          <Textarea
-            label={tittelTekstid}
-            value={
-              etablererEgenVirksomhet?.verdi
-                ? etablererEgenVirksomhet.verdi
-                : ''
-            }
-            maxLength={2000}
-            onChange={(e) => settTekstfelt(e)}
+    <SeksjonGruppe>
+      <FeltGruppe>
+        <Undertittel>
+          <LocaleTekst
+            tekst={'arbeidssituasjon.tittel.etablererEgenVirksomhet'}
           />
+        </Undertittel>
+      </FeltGruppe>
 
-          <AlertStripeInfo className="fjernBakgrunn">
-            <LocaleTekst
-              tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'}
-            />
-          </AlertStripeInfo>
-        </SeksjonGruppe>
-      ) : null}
-    </>
+      <Textarea
+        label={intl.formatMessage({
+          id: 'arbeidssituasjon.label.etablererEgenVirksomhet',
+        })}
+        value={
+          etablererEgenVirksomhet?.verdi ? etablererEgenVirksomhet.verdi : ''
+        }
+        maxLength={2000}
+        onChange={(e) => settTekstfelt(e)}
+      />
+
+      <AlertStripeInfo className="fjernBakgrunn">
+        <LocaleTekst tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'} />
+      </AlertStripeInfo>
+    </SeksjonGruppe>
   );
 };
 

@@ -29,7 +29,7 @@ const Personopplysninger: React.FC = () => {
   const settPersonopplysningerFelt = (spørsmål: ISpørsmål, svar: boolean) => {
     settSøknad({
       ...søknad,
-      søkerBorPåRegistrertAdresse: { label: spørsmål.spørsmål_id, verdi: svar },
+      søkerBorPåRegistrertAdresse: { label: spørsmål.søknadid, verdi: svar },
     });
   };
 

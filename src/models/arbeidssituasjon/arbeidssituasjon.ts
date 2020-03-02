@@ -1,13 +1,17 @@
-import { ITekstListeFelt, ITekstFelt } from './søknadsfelter';
+import { ITekstListeFelt, ITekstFelt } from '../søknadsfelter';
+import { IArbeidsgiver } from './arbeidsgiver';
+import { IArbeidssøker } from './arbeidssøker';
 
 export interface IArbeidssituasjon {
   situasjon: ITekstListeFelt;
   etablererEgenVirksomhet?: ITekstFelt;
+  arbeidsforhold?: IArbeidsgiver[];
+  arbeidssøker?: IArbeidssøker;
 }
 
-export enum EArbeidssituasjonSvar {
+export enum EArbeidssituasjon {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
-  erIArbeid = 'erIArbeid',
+  erArbeidstaker = 'erArbeidstaker',
   erSelvstendigNæringsdriveneEllerFrilanser = 'erSelvstendigNæringsdriveneEllerFrilanser',
   erAnsattIEgetAS = 'erAnsattIEgetAS',
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',
