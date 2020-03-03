@@ -46,6 +46,18 @@ export default {
       'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
       'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
     'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
+    'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
+    'utdanning.spm.privatEllerOffentlig':
+      'Er utdanningen privat eller offentlig?',
+    'utdanning.svar.privat': 'Privat',
+    'utdanning.svar.offentlig': 'Offentlig',
+    'utdanning.datovelger.studieperiode':
+      'Når skal du være elev eller student?',
+    'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
+    'utdanning.svar.heltid': 'Heltid',
+    'utdanning.svar.deltid': 'Deltid',
+    'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
+    'utdanning.spm.mål': 'Hva er målet med utdanningen?',
     'utdanning.': '',
 
     'arbeidssøker.tittel': 'Når du er arbeidssøker',
