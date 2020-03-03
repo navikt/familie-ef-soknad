@@ -8,7 +8,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
 import { IArbeidsgiver } from '../../../../models/arbeidssituasjon/arbeidsgiver';
-import { nyttTekstFelt } from '../../../../models/søknadsfelter';
+import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;

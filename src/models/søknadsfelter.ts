@@ -22,15 +22,3 @@ export interface ITekstListeFelt {
   label: string;
   verdi: string[];
 }
-
-// --- Tomme objekt felter
-
-export const nyttTekstFelt: ITekstFelt = {
-  label: '',
-  verdi: '',
-};
-
-export const nyttTekstListeFelt: ITekstListeFelt = {
-  label: '',
-  verdi: [],
-};

@@ -1,4 +1,5 @@
 import { ITekstListeFelt, ITekstFelt } from '../søknadsfelter';
+import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';
 
@@ -7,6 +8,7 @@ export interface IArbeidssituasjon {
   etablererEgenVirksomhet?: ITekstFelt;
   arbeidsforhold?: IArbeidsgiver[];
   arbeidssøker?: IArbeidssøker;
+  underUtdanning?: IUnderUtdanning;
 }
 
 export enum EArbeidssituasjon {

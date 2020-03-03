@@ -13,10 +13,10 @@ import {
 } from '../../../models/arbeidssituasjon/arbeidssituasjon';
 import Utdanning from './utdanning/Utdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
-import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { hentTekst } from '../../../utils/søknad';
+import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
