@@ -58,7 +58,14 @@ export default {
     'utdanning.svar.deltid': 'Deltid',
     'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
     'utdanning.spm.mål': 'Hva er målet med utdanningen?',
-    'utdanning.': '',
+    'utdanning.tittel.tidligere': 'Tidligere utdanning etter grunnskolen',
+    'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen',
+    'utdanning.lesmer-åpne.grunnskolen': 'Hva regnes som grunnskolen?',
+    'utdanning.lesmer-innholde.grunnskolen':
+      '"Hva regnes som grunnskolen?\n' +
+      'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse."\n',
+    'utdanning.spm.tattMerUtdanning': 'Har du tatt mer utdanning?',
+    'utdanning.knapp.leggtil': 'Legg til en utdanning',
 
     'arbeidssøker.tittel': 'Når du er arbeidssøker',
     'arbeidssøker.label.registrert':

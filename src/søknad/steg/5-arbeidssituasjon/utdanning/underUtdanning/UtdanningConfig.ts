@@ -1,9 +1,9 @@
-import { ISpørsmål, ITekst, LesMer } from '../../../../models/spørsmal';
+import { ISpørsmål, ITekst, LesMer } from '../../../../../models/spørsmal';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
-} from '../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../../models/arbeidssituasjon/utdanning';
 
 export const utdanningDuKanFåStønadTil: LesMer = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
@@ -21,7 +21,8 @@ export const linjeKursGrad: ITekst = {
   label_tekstid: 'utdanning.label.linjeKursGrad',
 };
 
-// --- Spørsmål ---
+// -- Spørsmål
+
 export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',

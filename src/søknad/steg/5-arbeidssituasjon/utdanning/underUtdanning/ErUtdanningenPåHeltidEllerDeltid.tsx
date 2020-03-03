@@ -1,6 +1,6 @@
 import React from 'react';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
-import { heltidEllerDeltidSpm } from '../UtdanningConfig';
+import { heltidEllerDeltidSpm } from './UtdanningConfig';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import {
   EUtdanning,

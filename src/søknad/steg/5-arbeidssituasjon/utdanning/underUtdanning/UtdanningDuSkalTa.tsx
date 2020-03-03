@@ -4,7 +4,7 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import Hjelpetekst from '../../../../../components/Hjelpetekst';
-import { utdanningDuKanFåStønadTil } from '../UtdanningConfig';
+import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
 import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
