@@ -4,8 +4,8 @@ import { IPeriode } from '../søknad';
 // --- INTERFACES
 
 export interface IUtdanning {
-  linjeKursGrad: ITekstFelt;
-  periode: IPeriode;
+  linjeKursGrad?: ITekstFelt;
+  periode?: IPeriode;
 }
 
 export interface ITidligereUtdanning extends IUtdanning {

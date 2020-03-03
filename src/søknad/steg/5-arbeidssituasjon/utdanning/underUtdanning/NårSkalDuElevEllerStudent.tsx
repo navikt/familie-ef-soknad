@@ -1,6 +1,7 @@
 import React from 'react';
 import { IUnderUtdanning } from '../../../../../models/arbeidssituasjon/utdanning';
 import PeriodeDatovelgere from '../../../../../components/dato/PeriodeDatovelger';
+import { tomPeriode } from '../../../../../utils/søknadsfelter';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -12,23 +13,24 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   settUtdanning,
 }) => {
   const settPeriode = (dato: Date | null, nøkkel: string): void => {
-    settUtdanning({
-      ...utdanning,
-      periode: {
-        ...utdanning.periode,
-        [nøkkel]: {
-          label: 'utdanning.datovelger.studieperiode',
-          verdi: dato !== null ? dato : undefined,
+    utdanning.periode &&
+      settUtdanning({
+        ...utdanning,
+        periode: {
+          ...utdanning.periode,
+          [nøkkel]: {
+            label: 'utdanning.datovelger.studieperiode',
+            verdi: dato !== null ? dato : undefined,
+          },
         },
-      },
-    });
+      });
   };
 
   return (
     <>
       <PeriodeDatovelgere
         tekstid={'utdanning.datovelger.studieperiode'}
-        periode={utdanning.periode}
+        periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
       />
     </>
