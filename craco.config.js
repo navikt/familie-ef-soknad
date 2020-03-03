@@ -32,6 +32,7 @@ const norskeOrdMedÆØÅ = [
   'Arbeidssøker',
   'NårSkalDuVæreElevEllerStudent',
   'SøkerSkalJobbeDeltid',
+  'ErUtdanningenPåHeltidEllerDeltid',
 ];
 
 module.exports = {

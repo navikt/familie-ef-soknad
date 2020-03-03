@@ -1,6 +1,6 @@
 import React from 'react';
-import { IUnderUtdanning } from '../../../../models/arbeidssituasjon/utdanning';
-import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
+import { IUnderUtdanning } from '../../../../../models/arbeidssituasjon/utdanning';
+import PeriodeDatovelgere from '../../../../../components/dato/PeriodeDatovelger';
 
 interface Props {
   utdanning: IUnderUtdanning;
