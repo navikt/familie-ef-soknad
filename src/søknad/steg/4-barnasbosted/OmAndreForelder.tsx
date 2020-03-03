@@ -3,7 +3,6 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
 import { IForelder, IBarn } from '../../../models/person';
-import { Element } from 'nav-frontend-typografi';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
@@ -36,12 +35,6 @@ const OmAndreForelder: React.FC<Props> = ( { barn, settForelder, forelder }) => 
   return (
     <>
       <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            {barn.navn}
-            {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
-          </Element>
-        </FeltGruppe>
     <FeltGruppe>
         <Input className="foreldre-navn-input" onChange={(e) => settForelder({...forelder, "navn": e.target.value})} value={forelder.navn ? forelder.navn : ""} label="Navn" disabled={huketAv} />
     </FeltGruppe>

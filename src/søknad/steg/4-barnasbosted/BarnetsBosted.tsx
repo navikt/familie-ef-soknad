@@ -13,8 +13,10 @@ import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Knapp } from 'nav-frontend-knapper';
+import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
+import { Element } from 'nav-frontend-typografi';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger';
@@ -33,6 +35,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
     const { søknad, settSøknad } = useSøknadContext();
 
     const [forelder, settForelder] = useState<IForelder>({});
+    const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(false);
 
     const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
       const nyForelder = {...forelder, [boddSammenFør.søknadid]: valgtSvar};
@@ -55,12 +58,41 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
       settSøknad({...søknad, person: {...søknad.person, barn: nyBarneListe}});
     }
 
+    const leggTilSammeForelder = (e: any, detAndreBarnet: IBarn, detteBarnet: IBarn) => {
+      settHuketAvAnnenForelder(true);
+      const denAndreForelderen = detAndreBarnet.forelder;
+
+      console.log("ANDRE");
+      console.log(denAndreForelderen)
+    }
+
+    const andreBarnMedForelder = søknad.person.barn.filter((b) => {
+      return b !== barn && b.forelder;
+    });
+
+    console.log(andreBarnMedForelder);
+
     return (
         <>
           <div className="barnas-bosted">
           <BarnasBostedHeader barn={barn} />
           <div className="barnas-bosted__innhold">
             <SkalBarnBoHosDeg forelder={forelder} settForelder={settForelder} barn={barn} />
+            <FeltGruppe>
+          <Element>
+            {barn.navn}
+            {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
+          </Element>
+          {andreBarnMedForelder?.map((b) => {
+            return <RadioPanel
+              key={`andre-forelder-${b.navn}`}
+              name={`andre-forelder-${barn.navn}`}
+              label={`Samme som ${b.navn}`}
+              value={`andre-forelder-${b.navn}`}
+              onChange={(e) => leggTilSammeForelder(e, b, barn)}
+            />
+          })}
+        </FeltGruppe>
             <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} />
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
             <KomponentGruppe>
