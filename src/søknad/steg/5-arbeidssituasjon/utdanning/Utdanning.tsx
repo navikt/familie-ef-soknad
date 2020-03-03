@@ -1,40 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon';
-import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { Undertittel } from 'nav-frontend-typografi';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
+import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
+import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
+import { ISpørsmål } from '../../../../models/spørsmal';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
+import { erValgtSvarLiktSomSvar, hentTekst } from '../../../../utils/søknad';
 import {
-  linjeKursGrad,
-  skoleUtdanningssted,
+  heltidEllerDeltidSpm,
+  privatEllerOffentligSpm,
   utdanningDuKanFåStønadTil,
 } from './UtdanningConfig';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { Input } from 'nav-frontend-skjema';
-import { hentTekst } from '../../../../utils/søknad';
 import {
   EUtdanning,
   IUnderUtdanning,
-  IUtdanning,
-} from '../../../../models/utdanning';
-import { useIntl } from 'react-intl';
-import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import LocaleTekst from '../../../../language/LocaleTekst';
-import subDays from 'date-fns';
-import { dagensDato } from '../../../../utils/dato';
-import { IPeriode } from '../../../../models/søknad';
+} from '../../../../models/arbeidssituasjon/utdanning';
+import { nyttTekstFelt, tomPeriode } from '../../../../utils/søknadsfelter';
+import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;
   settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
 }
-
-const tomPeriode: IPeriode = {
-  fra: {
-    label: '',
-    verdi: subDays(dagensDato, 1),
-  },
-  til: { label: '', verdi: dagensDato },
-};
 
 const Utdanning: React.FC<Props> = ({
   arbeidssituasjon,
@@ -42,19 +34,27 @@ const Utdanning: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
-  const [utdanning, settUtdanning] = useState<IUnderUtdanning>();
-  const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning>({
-    linjeKursGrad: tomtTekstfelt,
+  const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
+    skoleUtdanningssted: nyttTekstFelt,
+    linjeKursGrad: nyttTekstFelt,
     periode: tomPeriode,
   });
 
   useEffect(() => {
+    settUtdanning({
+      skoleUtdanningssted: nyttTekstFelt,
+      linjeKursGrad: nyttTekstFelt,
+      periode: tomPeriode,
+    });
+  }, []);
+
+  useEffect(() => {
     settArbeidssituasjon({
       ...arbeidssituasjon,
-      utdanning: { ...underUtdanning, tidligereUtdanning: tidligereUtdanning },
+      underUtdanning: utdanning,
     });
     // eslint-disable-next-line
-  }, [underUtdanning, tidligereUtdanning]);
+  }, [utdanning]);
 
   const oppdaterUtdanning = (
     nøkkel: EUtdanning,
@@ -68,20 +68,34 @@ const Utdanning: React.FC<Props> = ({
       });
   };
 
-  const settTekstInputFelt = (
-    nøkkel: EUtdanning,
-    label: string,
-    e: React.FormEvent<HTMLInputElement>
-  ) => {
-    oppdaterUtdanning(nøkkel, label, e.currentTarget.value);
+  const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: string) => {
+    const søkerVilStudereHeltid = spørsmål.svaralternativer.find(
+      (svarsalternativ) =>
+        hentTekst(svarsalternativ.svar_tekstid, intl) === svar
+    );
+    if (
+      (spørsmål.søknadid === EUtdanning.heltidEllerDeltid &&
+        søkerVilStudereHeltid &&
+        utdanning.målMedUtdanning) ||
+      utdanning.arbeidsmengde
+    ) {
+      delete utdanning.arbeidsmengde;
+      delete utdanning.målMedUtdanning;
+    }
+    settUtdanning({
+      ...utdanning,
+      [spørsmål.søknadid]: {
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: svar,
+      },
+    });
   };
 
-  const skoleUtdanningstedLabel = hentTekst(
-    skoleUtdanningssted.label_tekstid,
+  const søkerSkalJobbeDeltid = erValgtSvarLiktSomSvar(
+    utdanning.heltidEllerDeltid?.verdi,
+    'utdanning.svar.deltid',
     intl
   );
-  const linjeKursGradLabel = hentTekst(linjeKursGrad.label_tekstid, intl);
-
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
@@ -94,32 +108,39 @@ const Utdanning: React.FC<Props> = ({
           innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
         />
       </KomponentGruppe>
-      <FeltGruppe>
-        <Input
-          key={skoleUtdanningssted.nøkkel}
-          label={skoleUtdanningstedLabel}
-          type="text"
-          bredde={'L'}
-          onChange={(e) =>
-            settTekstInputFelt(
-              EUtdanning.skoleUtdanningssted,
-              skoleUtdanningstedLabel,
-              e
-            )
-          }
+      <SkoleOgLinje
+        utdanning={utdanning}
+        oppdaterUtdanning={oppdaterUtdanning}
+      />
+
+      <KomponentGruppe>
+        <MultiSvarSpørsmål
+          spørsmål={privatEllerOffentligSpm}
+          settSpørsmålOgSvar={settMultiSpørsmål}
+          valgtSvar={utdanning.offentligEllerPrivat?.verdi}
+          toKorteSvar={true}
         />
-      </FeltGruppe>
-      <FeltGruppe>
-        <Input
-          key={linjeKursGrad.nøkkel}
-          label={linjeKursGradLabel}
-          type="text"
-          bredde={'L'}
-          onChange={(e) =>
-            settTekstInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
-          }
+      </KomponentGruppe>
+
+      <NårSkalDuVæreElevEllerStudent
+        utdanning={utdanning}
+        settUtdanning={settUtdanning}
+      />
+
+      <KomponentGruppe>
+        <MultiSvarSpørsmål
+          spørsmål={heltidEllerDeltidSpm}
+          settSpørsmålOgSvar={settMultiSpørsmål}
+          valgtSvar={utdanning.heltidEllerDeltid?.verdi}
+          toKorteSvar={true}
         />
-      </FeltGruppe>
+      </KomponentGruppe>
+      {søkerSkalJobbeDeltid && (
+        <SøkerSkalJobbeDeltid
+          utdanning={utdanning}
+          oppdaterUtdanning={oppdaterUtdanning}
+        />
+      )}
     </SeksjonGruppe>
   );
 };

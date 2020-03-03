@@ -1,8 +1,6 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
-import subDays from 'date-fns';
-import { dagensDato } from './dato';
 
 export const hentPersonData = () => {
   return axios
@@ -43,7 +41,7 @@ export const hentSivilstatus = (statuskode: string) => {
 };
 
 export const erValgtSvarLiktSomSvar = (
-  valgtSvar: string,
+  valgtSvar: string | undefined,
   annetSvarTekstid: string,
   intl: IntlShape
 ) => {
