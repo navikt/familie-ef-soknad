@@ -13,8 +13,9 @@ const BarnasBosted: React.FC = () => {
       <Side
         tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
       >
-       {barna.map((barn) => {
-        return (<BarnetsBosted barn={barn} />)
+       {barna.map((barn, index) => {
+         const key = barn.fødselsdato + index;
+        return (<BarnetsBosted barn={barn} key={key} />)
        })}
        </Side>);
 }

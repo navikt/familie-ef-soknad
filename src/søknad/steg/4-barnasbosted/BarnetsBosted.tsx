@@ -5,8 +5,7 @@ import { ISpørsmål } from '../../../models/spørsmal';
 import {
   boddSammenFør,
   borISammeHus,
-  hvorMyeSammen,
-  skalBarnBoHosDeg
+  hvorMyeSammen
 } from './ForeldreConfig';
 import { IForelder, IBarn } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
@@ -17,13 +16,10 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { Element } from 'nav-frontend-typografi';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import Datovelger, { DatoBegrensning } from '../../../components/dato/Datovelger';
-import { AlertStripeAdvarsel, AlertStripeInfo } from 'nav-frontend-alertstriper';
 import OmAndreForelder from './OmAndreForelder';
 import BostedOgSamvær from './BostedOgSamvær';
-import LocaleTekst from '../../../language/LocaleTekst';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 
 interface Props {
@@ -39,7 +35,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
 
     const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
       const nyForelder = {...forelder, [boddSammenFør.søknadid]: valgtSvar};
-  
+
       if (valgtSvar === false) {
         delete nyForelder.flyttetFra;
       }
@@ -62,15 +58,12 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
       settHuketAvAnnenForelder(true);
       const denAndreForelderen = detAndreBarnet.forelder;
 
-      console.log("ANDRE");
-      console.log(denAndreForelderen)
+      settForelder({...forelder, "navn": denAndreForelderen?.navn, "fødselsdato": denAndreForelderen?.fødselsdato, "personnr": denAndreForelderen?.personnr, "borINorge": denAndreForelderen?.borINorge, "hvordanPraktiseresSamværet": denAndreForelderen?.hvordanPraktiseresSamværet, "borISammeHus": denAndreForelderen?.borISammeHus, "boddSammenFør": denAndreForelderen?.boddSammenFør, "flyttetFra": denAndreForelderen?.flyttetFra, "hvorMyeSammen": denAndreForelderen?.hvorMyeSammen});
     }
 
     const andreBarnMedForelder = søknad.person.barn.filter((b) => {
       return b !== barn && b.forelder;
     });
-
-    console.log(andreBarnMedForelder);
 
     return (
         <>
@@ -93,9 +86,9 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
             />
           })}
         </FeltGruppe>
-            <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} />
-            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
-            <KomponentGruppe>
+            {!huketAvAnnenForelder ? <OmAndreForelder barn={barn} settForelder={settForelder} forelder={forelder} /> : null}
+            <BostedOgSamvær settForelder={settForelder} forelder={forelder} huketAvAnnenForelder={huketAvAnnenForelder} />
+            {!huketAvAnnenForelder ? <><KomponentGruppe>
               <MultiSvarSpørsmål
                 key={borISammeHus.søknadid}
                 spørsmål={borISammeHus}
@@ -131,7 +124,7 @@ const BarnetsBosted: React.FC<Props> = ( { barn }) => {
                 valgtSvar={forelder.hvorMyeSammen}
                 settSpørsmålOgSvar={(_, svar) => settForelder({...forelder, [hvorMyeSammen.søknadid]: svar})}
               />
-            </KomponentGruppe>
+            </KomponentGruppe></> : null}
             <Knapp onClick={leggTilForelder}>Legg til</Knapp>
             </div>
             </div>
