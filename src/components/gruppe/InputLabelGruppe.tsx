@@ -15,7 +15,6 @@ const StyledComponent = styled.div`
     grid-area: label;
   }
   .skjemaelement {
-    background: #9bd0b0;
     grid-area: input;
   }
   .typo-normal {
