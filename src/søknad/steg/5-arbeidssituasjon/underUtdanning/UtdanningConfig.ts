@@ -1,9 +1,14 @@
-import { ISpørsmål, ITekst, LesMer } from '../../../../../models/spørsmal';
+import {
+  ISpørsmål,
+  ITekst,
+  JaNeiSvar,
+  LesMer,
+} from '../../../../models/spørsmal';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
-} from '../../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../models/arbeidssituasjon/utdanning';
 
 export const utdanningDuKanFåStønadTil: LesMer = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
@@ -50,4 +55,10 @@ export const heltidEllerDeltidSpm: ISpørsmål = {
       svar_tekstid: 'utdanning.svar.deltid',
     },
   ],
+};
+
+export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
+  søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
+  tekstid: 'utdanning.spm.grunnskole',
+  svaralternativer: JaNeiSvar,
 };

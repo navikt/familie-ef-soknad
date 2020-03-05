@@ -1,12 +1,12 @@
 import React from 'react';
-import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
-import InputLabelGruppe from '../../../../../components/gruppe/InputLabelGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../models/arbeidssituasjon/utdanning';
 import { Textarea } from 'nav-frontend-skjema';
-import { hentTekst } from '../../../../../utils/søknad';
+import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 
 interface Props {

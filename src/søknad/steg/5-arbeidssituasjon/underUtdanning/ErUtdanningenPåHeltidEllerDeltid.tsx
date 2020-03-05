@@ -1,13 +1,13 @@
 import React from 'react';
-import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
+import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { heltidEllerDeltidSpm } from './UtdanningConfig';
-import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../../models/arbeidssituasjon/utdanning';
-import { ISpørsmål } from '../../../../../models/spørsmal';
-import { hentTekst } from '../../../../../utils/søknad';
+} from '../../../../models/arbeidssituasjon/utdanning';
+import { ISpørsmål } from '../../../../models/spørsmal';
+import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 interface Props {
   utdanning: IUnderUtdanning;

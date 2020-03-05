@@ -2,11 +2,11 @@ import React from 'react';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../../models/arbeidssituasjon/utdanning';
-import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
+} from '../../../../models/arbeidssituasjon/utdanning';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
-import { hentTekst } from '../../../../../utils/søknad';
+import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 
 interface Props {
