@@ -27,7 +27,6 @@ const StyledArbeidsgiver = styled.div`
 interface Props {
   arbeidsforhold: IArbeidsgiver[];
   settArbeidsforhold: (arbeidsforhold: IArbeidsgiver[]) => void;
-  arbeidsgiver: IArbeidsgiver;
   arbeidsgivernummer: number;
 }
 

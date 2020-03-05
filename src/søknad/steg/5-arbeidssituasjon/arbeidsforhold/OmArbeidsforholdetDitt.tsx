@@ -59,7 +59,6 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             <Arbeidsgiver
               arbeidsforhold={arbeidsforhold}
               settArbeidsforhold={settArbeidsforhold}
-              arbeidsgiver={arbeidsgiver}
               arbeidsgivernummer={index}
             />
           </SeksjonGruppe>
