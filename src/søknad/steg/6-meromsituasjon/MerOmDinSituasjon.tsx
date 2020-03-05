@@ -5,11 +5,15 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import useSøknadContext from '../../../context/SøknadContext';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
-import { IDinSituasjon } from '../../../models/steg/meromsituasjon';
+import {
+  EDinSituasjon,
+  IDinSituasjon,
+} from '../../../models/steg/meromsituasjon';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import { EArbeidssituasjon } from '../../../models/steg/arbeidssituasjon/arbeidssituasjon';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -37,8 +41,16 @@ const MerOmDinSituasjon: React.FC = () => {
     });
   };
 
+  const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
+    const tekstid: string = 'dinSituasjon.svar.' + situasjon;
+    const svarTekst: string = intl.formatMessage({ id: tekstid });
+    return dinSituasjon.situasjon.verdi.some((svarHuketAvISøknad: string) => {
+      return svarHuketAvISøknad === svarTekst;
+    });
+  };
+
   return (
-    <Side tittel={'din situasjon placeholder'}>
+    <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
       <SeksjonGruppe>
         <KomponentGruppe>
           <CheckboxSpørsmål

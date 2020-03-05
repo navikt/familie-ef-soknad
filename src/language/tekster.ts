@@ -109,6 +109,17 @@ export default {
     'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
       'Hvem skal du gifte deg med eller bli samboer med?',
 
+    'dinSituasjon.tittel': 'Mer om situasjonen din',
+    'dinSituasjon.spm': 'Gjelder noe av dette deg?',
+    'dinSituasjon.svar.erSyk': 'Jeg er syk',
+    'dinSituasjon.svar.harSyktBarn': 'Barnet mitt er sykt',
+    'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå':
+      'Jeg har søkt om barnepass, men ikke fått plass enda',
+    'dinSituasjon.svar.harBarnMedSærligeBehov':
+      'Jeg har barn som har behov for særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
+    'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
+    'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
+
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
