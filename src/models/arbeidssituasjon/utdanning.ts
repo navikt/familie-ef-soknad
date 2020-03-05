@@ -8,17 +8,14 @@ export interface IUtdanning {
   periode?: IPeriode;
 }
 
-export interface ITidligereUtdanning extends IUtdanning {
-  tattUtdanningEtterGrunnskole?: IBooleanFelt;
-}
-
 export interface IUnderUtdanning extends IUtdanning {
   skoleUtdanningssted: ITekstFelt;
   offentligEllerPrivat?: ITekstFelt;
   heltidEllerDeltid?: ITekstFelt;
   arbeidsmengde?: ITallFelt;
   målMedUtdanning?: ITekstFelt;
-  tidligereUtdanning?: ITidligereUtdanning[];
+  harTattUtdanningEtterGrunnskolen?: IBooleanFelt;
+  tidligereUtdanning?: IUtdanning[];
 }
 
 // --- ENUMS

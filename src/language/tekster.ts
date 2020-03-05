@@ -40,6 +40,7 @@ export default {
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.undertittel': 'Utdanning',
     'utdanning.lesmer-åpne.kanFåStønad':
       'Hva slags utdanning kan du få stønad til?',
     'utdanning.lesmer-innhold.kanFåStønad':
@@ -64,7 +65,7 @@ export default {
     'utdanning.lesmer-innholde.grunnskolen':
       '"Hva regnes som grunnskolen?\n' +
       'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse."\n',
-    'utdanning.spm.tattMerUtdanning': 'Har du tatt mer utdanning?',
+    'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
 
     'arbeidssøker.tittel': 'Når du er arbeidssøker',

@@ -11,7 +11,7 @@ import {
   EArbeidssituasjon,
   IArbeidssituasjon,
 } from '../../../models/arbeidssituasjon/arbeidssituasjon';
-import Utdanning from './utdanning/Utdanning';
+import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål } from '../../../models/spørsmal';
@@ -103,7 +103,7 @@ const Arbeidssituasjon: React.FC = () => {
       )}
 
       {huketAvTarUtdanning && (
-        <Utdanning
+        <UnderUtdanning
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />

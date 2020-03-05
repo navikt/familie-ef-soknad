@@ -4,21 +4,21 @@ import {
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/arbeidssituasjon/utdanning';
-import { nyttTekstFelt, tomPeriode } from '../../../../utils/søknadsfelter';
-import TidligereUtdanning from './tidligereUtdanning/TidligereUtdanning';
-import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import { Undertittel } from 'nav-frontend-typografi';
-import LocaleTekst from '../../../../language/LocaleTekst';
-import Hjelpetekst from '../../../../components/Hjelpetekst';
-import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
-import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import ErUtdanningenOffentligEllerPrivat from './ErUtdanningenOffentligEllerPrivat';
-import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
 import ErUtdanningenPåHeltidEllerDeltid from './ErUtdanningenPåHeltidEllerDeltid';
-import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
+import Hjelpetekst from '../../../../components/Hjelpetekst';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import SkoleOgLinje from './SkoleOgLinjeInputFelter';
+import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
+import TidligereUtdanning from './TidligereUtdanning';
 import { erValgtSvarLiktSomSvar } from '../../../../utils/søknad';
+import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
+import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 
 interface Props {
   arbeidssituasjon: IArbeidssituasjon;
@@ -61,7 +61,6 @@ const UnderUtdanning: React.FC<Props> = ({
     'utdanning.svar.deltid',
     intl
   );
-  console.log(underUtdanning?.harTattUtdanningEtterGrunnskole);
 
   return (
     <>
@@ -106,10 +105,14 @@ const UnderUtdanning: React.FC<Props> = ({
         )}
       </SeksjonGruppe>
 
-      <TidligereUtdanning
-        utdanning={underUtdanning ? underUtdanning : utdanning}
-        settUtdanning={settUtdanning}
-      />
+      {underUtdanning && underUtdanning.heltidEllerDeltid && (
+        <>
+          <TidligereUtdanning
+            underUtdanning={underUtdanning}
+            settUnderUtdanning={settUtdanning}
+          />
+        </>
+      )}
     </>
   );
 };
