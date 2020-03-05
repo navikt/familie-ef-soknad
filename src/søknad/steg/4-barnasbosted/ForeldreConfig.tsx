@@ -4,7 +4,7 @@ import {
   EHarSkriftligSamværsavtale,
   EBorISammeHus,
   EHvorMyeSammen,
-} from '../../../models/barnasbosted';
+} from '../../../models/steg/barnasbosted';
 
 export const borINorge: ISpørsmål = {
   søknadid: 'borINorge',

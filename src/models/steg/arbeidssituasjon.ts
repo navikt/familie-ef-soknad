@@ -3,7 +3,7 @@ import {
   ITekstFelt,
   IBooleanFelt,
   IDatoFelt,
-} from './søknadsfelter';
+} from '../søknadsfelter';
 
 // INTERFACES
 export interface IArbeidssituasjon {

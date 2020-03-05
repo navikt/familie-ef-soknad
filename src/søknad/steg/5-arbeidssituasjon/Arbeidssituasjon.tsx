@@ -10,7 +10,7 @@ import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
 import {
   EArbeidssituasjon,
   IArbeidssituasjon,
-} from '../../../models/arbeidssituasjon/arbeidssituasjon';
+} from '../../../models/steg/arbeidssituasjon/arbeidssituasjon';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';

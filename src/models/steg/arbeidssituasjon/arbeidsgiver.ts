@@ -1,4 +1,4 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../søknadsfelter';
+import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../../søknadsfelter';
 
 export interface IArbeidsgiver {
   navn?: ITekstFelt;

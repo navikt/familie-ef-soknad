@@ -2,7 +2,7 @@ import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
 import {
   EArbeidsgiver,
   EStilling,
-} from '../../../../models/arbeidssituasjon/arbeidsgiver';
+} from '../../../../models/steg/arbeidssituasjon/arbeidsgiver';
 
 export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.fastStilling,

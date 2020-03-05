@@ -1,4 +1,4 @@
-import { ITekstListeFelt, ITekstFelt } from '../søknadsfelter';
+import { ITekstListeFelt, ITekstFelt } from '../../søknadsfelter';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';
 

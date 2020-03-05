@@ -7,7 +7,7 @@ import Datovelger, {
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import { tomPersonInfo } from '../../../utils/person';
 import { useIntl } from 'react-intl';
-import { IBosituasjon } from '../../../models/bosituasjon';
+import { IBosituasjon } from '../../../models/steg/bosituasjon';
 
 interface Props {
   tittel: string;

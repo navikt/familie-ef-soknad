@@ -16,7 +16,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import {
   EArbeidsgiver,
   IArbeidsgiver,
-} from '../../../../models/arbeidssituasjon/arbeidsgiver';
+} from '../../../../models/steg/arbeidssituasjon/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmal';
 
 const StyledArbeidsgiver = styled.div`

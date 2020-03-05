@@ -4,7 +4,7 @@ import {
   EFirma,
   IArbeidssituasjon,
   IFirma,
-} from '../../../models/arbeidssituasjon';
+} from '../../../models/steg/arbeidssituasjon';
 import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {

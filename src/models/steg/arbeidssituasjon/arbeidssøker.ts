@@ -1,4 +1,4 @@
-import { IBooleanFelt, ITekstFelt } from '../søknadsfelter';
+import { IBooleanFelt, ITekstFelt } from '../../søknadsfelter';
 
 export interface IArbeidssøker {
   registrertSomArbeidssøkerNav?: IBooleanFelt;

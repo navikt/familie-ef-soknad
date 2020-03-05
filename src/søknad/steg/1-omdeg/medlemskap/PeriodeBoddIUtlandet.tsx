@@ -9,7 +9,7 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
-import { IUtenlandsopphold } from '../../../../models/omDeg';
+import { IUtenlandsopphold } from '../../../../models/steg/omDeg';
 import { hentTekst } from '../../../../utils/søknad';
 
 const PeriodeBoddIUtlandet: FC = () => {

@@ -10,8 +10,8 @@ import {
   ønskerHalvStillig,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
-import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
-import { IArbeidssøker } from '../../../../models/arbeidssituasjon/arbeidssøker';
+import { IArbeidssituasjon } from '../../../../models/steg/arbeidssituasjon/arbeidssituasjon';
+import { IArbeidssøker } from '../../../../models/steg/arbeidssituasjon/arbeidssøker';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';

@@ -9,7 +9,7 @@ import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentSivilstatus } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import { ISivilstatus } from '../../../../models/omDeg';
+import { ISivilstatus } from '../../../../models/steg/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,
