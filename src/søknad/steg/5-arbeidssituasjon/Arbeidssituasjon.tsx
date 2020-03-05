@@ -17,6 +17,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
+import OmFirmaetDitt from './OmFirmaetDitt';
 
 const Arbeidssituasjon: React.FC = () => {
   const intl = useIntl();
@@ -69,6 +70,10 @@ const Arbeidssituasjon: React.FC = () => {
     EArbeidssituasjon.tarUtdanning
   );
 
+  const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
+    EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser
+  );
+
   return (
     <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
       <SeksjonGruppe>
@@ -97,6 +102,13 @@ const Arbeidssituasjon: React.FC = () => {
 
       {huketAvErArbeidssøker && (
         <Arbeidssøker
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={oppdaterArbeidssituasjon}
+        />
+      )}
+
+      {huketAvSelvstendigNæringsdrivendeEllerFrilanser && (
+        <OmFirmaetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />

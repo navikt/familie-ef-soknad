@@ -23,6 +23,14 @@ export default {
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
 
+    'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'firma.tittel': 'Om firmaet du driver',
+    'firma.label.navn': 'Navn på firma',
+    'firma.label.organisasjonnr': 'Organisasjonsnummer',
+    'firma.datovelger.etablering': 'Når etablerte du virksomheten?',
+    'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+
     'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
       '[info om aktivitetsplikt fra Ett år]',
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
@@ -38,6 +46,27 @@ export default {
     'arbeidsforhold.label.flereArbeidsgivere': 'Arbeider du flere steder?',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
+
+    'arbeidssøker.tittel': 'Når du er arbeidssøker',
+    'arbeidssøker.label.registrert':
+      'Er du registrert som arbeidssøker hos NAV?',
+    'arbeidssøker.label.villig':
+      'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'arbeidssøker.label.senestEnUke':
+      'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
+    'arbeidssøker.label.barnepass':
+      'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
+    'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',
+    'arbeidssøker.label.halvstilling':
+      'Ønsker du å stå som arbeidssøker til minst 50% stilling?',
+    'arbeidssøker.alert.forÅHaRett':
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
+    'arbeidssøker.svar.nærme':
+      'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei',
+    'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
+    'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
+    'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
+      '1 times reisevei betyr.. ',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
@@ -67,27 +96,6 @@ export default {
       'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse."\n',
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
-
-    'arbeidssøker.tittel': 'Når du er arbeidssøker',
-    'arbeidssøker.label.registrert':
-      'Er du registrert som arbeidssøker hos NAV?',
-    'arbeidssøker.label.villig':
-      'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
-    'arbeidssøker.label.senestEnUke':
-      'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
-    'arbeidssøker.label.barnepass':
-      'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
-    'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',
-    'arbeidssøker.label.halvstilling':
-      'Ønsker du å stå som arbeidssøker til minst 50% stilling?',
-    'arbeidssøker.alert.forÅHaRett':
-      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
-    'arbeidssøker.svar.nærme':
-      'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei',
-    'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
-    'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
-    'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
-      '1 times reisevei betyr.. ',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
