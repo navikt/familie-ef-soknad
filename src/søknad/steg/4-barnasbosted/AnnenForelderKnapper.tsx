@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, SyntheticEvent } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -17,7 +17,7 @@ const AnnenForelderKnapper: React.FC<Props> = ( { barn, andreBarnMedForelder, se
 
   const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] = useState<string>("");
 
-  const leggTilSammeForelder = (e: any, detAndreBarnet: IBarn, detteBarnet: IBarn) => {
+  const leggTilSammeForelder = (e: SyntheticEvent<EventTarget, Event>, detAndreBarnet: IBarn) => {
     settHuketAvAnnenForelder(true);
     const denAndreForelderen = detAndreBarnet.forelder;
     settAndreForelderRadioVerdi(detAndreBarnet.navn);
@@ -55,7 +55,7 @@ const AnnenForelderKnapper: React.FC<Props> = ( { barn, andreBarnMedForelder, se
       label={`Samme som ${b.navn}`}
       value={`andre-forelder-${b.navn}`}
       checked={andreForelderRadioVerdi === b.navn}
-      onChange={(e) => leggTilSammeForelder(e, b, barn)}
+      onChange={(e) => leggTilSammeForelder(e, b)}
     />
   })}
   <RadioPanel
