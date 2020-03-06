@@ -22,7 +22,11 @@ interface Props {
   huketAvAnnenForelder: boolean;
 }
 
-const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, huketAvAnnenForelder }) => {
+const BostedOgSamvær: React.FC<Props> = ({
+  settForelder,
+  forelder,
+  huketAvAnnenForelder,
+}) => {
   const intl = useIntl();
 
   const settHarForelderSamværMedBarn = (
@@ -90,15 +94,17 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, huketAvAnnen
 
   return (
     <>
-      {!huketAvAnnenForelder ? <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={borINorge}
-          onChange={(_, svar) =>
-            settForelder({ ...forelder, [borINorge.søknadid]: svar })
-          }
-          valgtSvar={forelder.borINorge}
-        />
-      </KomponentGruppe> : null}
+      {!huketAvAnnenForelder ? (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={borINorge}
+            onChange={(_, svar) =>
+              settForelder({ ...forelder, [borINorge.søknadid]: svar })
+            }
+            valgtSvar={forelder.borINorge}
+          />
+        </KomponentGruppe>
+      ) : null}
       <KomponentGruppe>
         <JaNeiSpørsmål
           spørsmål={avtaleOmDeltBosted}

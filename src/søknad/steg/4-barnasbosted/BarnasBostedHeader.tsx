@@ -53,8 +53,8 @@ interface Props {
 
 const BarnasBostedHeader: React.FC<Props> = ({ barn }) => {
   const intl = useIntl();
-    const ikon = barn.ufødt ? ufødtIkon : barn1;
-    const bosted = barn.harSammeAdresse
+  const ikon = barn.ufødt ? ufødtIkon : barn1;
+  const bosted = barn.harSammeAdresse
     ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
     : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
 

@@ -10,14 +10,13 @@ const BarnasBosted: React.FC = () => {
   const barna = søknad.person.barn;
 
   return (
-      <Side
-        tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
-      >
-       {barna.map((barn, index) => {
-         const key = barn.fødselsdato + index;
-        return (<BarnetsBosted barn={barn} key={key} />)
-       })}
-       </Side>);
-}
+    <Side tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}>
+      {barna.map((barn, index) => {
+        const key = barn.fødselsdato + index;
+        return <BarnetsBosted barn={barn} key={key} />;
+      })}
+    </Side>
+  );
+};
 
 export default BarnasBosted;
