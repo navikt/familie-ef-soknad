@@ -12,7 +12,7 @@ export const Routes: IRoute[] = [
     label: 'Barnas bosted og foreldrenes samværsordning',
   },
   {
-    path: '/arbeidsituasjon',
+    path: '/aktivitet',
     label: 'Arbeid, utdanning og andre aktiviteter',
   },
   { path: '/send-soknad', label: 'Send søknad' },

@@ -6,32 +6,33 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
+import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import {
   EArbeidssituasjon,
-  IArbeidssituasjon,
-} from '../../../models/arbeidssituasjon/arbeidssituasjon';
+  IAktivitet,
+} from '../../../models/aktivitet/aktivitet';
+import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
-import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { hentTekst } from '../../../utils/søknad';
+import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
 
-const Arbeidssituasjon: React.FC = () => {
+const Aktivitet: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
-  const [arbeidssituasjon, settArbeidssituasjon] = useState<IArbeidssituasjon>({
-    situasjon: nyttTekstListeFelt,
+  const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
+    hvaErDinArbeidssituasjon: nyttTekstListeFelt,
   });
-  const { situasjon } = arbeidssituasjon;
+  const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
 
   useEffect(() => {
-    settSøknad({ ...søknad, arbeidssituasjon: arbeidssituasjon });
+    settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
 
-  const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IArbeidssituasjon) => {
+  const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
   };
 
@@ -48,7 +49,7 @@ const Arbeidssituasjon: React.FC = () => {
   const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
-    return situasjon.verdi.some((svarHuketAvISøknad: string) => {
+    return hvaErDinArbeidssituasjon.verdi.some((svarHuketAvISøknad: string) => {
       return svarHuketAvISøknad === svarTekst;
     });
   };
@@ -62,8 +63,11 @@ const Arbeidssituasjon: React.FC = () => {
   const huketAvHarArbeid =
     erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
     erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
-  const hukerAvErArbeidssøker = erAktivitetHuketAv(
+  const huketAvErArbeidssøker = erAktivitetHuketAv(
     EArbeidssituasjon.erArbeidssøker
+  );
+  const huketAvTarUtdanning = erAktivitetHuketAv(
+    EArbeidssituasjon.tarUtdanning
   );
 
   const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
@@ -74,9 +78,9 @@ const Arbeidssituasjon: React.FC = () => {
     <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
       <SeksjonGruppe>
         <CheckboxSpørsmål
-          spørsmål={hvaErDinArbeidssituasjon}
+          spørsmål={hvaErDinArbeidssituasjonSpm}
           settValgteSvar={settArbeidssituasjonFelt}
-          valgteSvar={situasjon?.verdi}
+          valgteSvar={hvaErDinArbeidssituasjon?.verdi}
         />
       </SeksjonGruppe>
 
@@ -96,7 +100,7 @@ const Arbeidssituasjon: React.FC = () => {
         />
       )}
 
-      {hukerAvErArbeidssøker && (
+      {huketAvErArbeidssøker && (
         <Arbeidssøker
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
@@ -109,8 +113,15 @@ const Arbeidssituasjon: React.FC = () => {
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
+
+      {huketAvTarUtdanning && (
+        <UnderUtdanning
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
     </Side>
   );
 };
 
-export default Arbeidssituasjon;
+export default Aktivitet;

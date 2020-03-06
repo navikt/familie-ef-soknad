@@ -1,11 +1,10 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import { compareAsc } from 'date-fns';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { IUtenlandsopphold } from '../../../../models/omDeg';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
@@ -21,7 +20,6 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
   const { perioderBoddIUtlandet } = søknad.medlemskap;
   const { periode, begrunnelse } = utenlandsopphold;
   const intl = useIntl();
-  const [feilmelding, settFeilmelding] = useState('');
   const begrunnelseTekst = intl.formatMessage({
     id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
   });
@@ -71,15 +69,6 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
       });
   };
 
-  const sammenlignDatoerOgOppdaterFeilmelding = (fom: Date, tom: Date) => {
-    const val = compareAsc(fom, tom);
-    val === 1
-      ? settFeilmelding('datovelger.periode.feilFormat')
-      : val === 0
-      ? settFeilmelding('datovelger.periode.likeDatoer')
-      : settFeilmelding('');
-  };
-
   const settPeriode = (date: Date | null, objektnøkkel: string): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
@@ -110,13 +99,6 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
       });
   };
 
-  useEffect(() => {
-    sammenlignDatoerOgOppdaterFeilmelding(
-      utenlandsopphold.periode.fra.verdi,
-      utenlandsopphold.periode.til.verdi
-    );
-  });
-
   return (
     <div className="utenlandsopphold utenlandsopphold__container">
       <Undertittel className={'utenlandsopphold__tittel'}>
@@ -134,7 +116,6 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekstid={'medlemskap.periodeBoddIUtlandet'}
-        feilmelding={feilmelding}
       />
 
       <Textarea

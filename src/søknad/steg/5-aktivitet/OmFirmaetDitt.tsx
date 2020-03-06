@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
-import {
-  EFirma,
-  IArbeidssituasjon,
-  IFirma,
-} from '../../../models/arbeidssituasjon';
 import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
@@ -14,10 +9,12 @@ import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { IAktivitet } from '../../../models/aktivitet/aktivitet';
+import { EFirma, IFirma } from '../../../models/aktivitet/firma';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (arbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
 }
 
 const OmFirmaetDitt: React.FC<Props> = ({

@@ -3,23 +3,23 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { hvaErDinArbeidssituasjon } from './ArbeidssituasjonConfig';
-import { IArbeidssituasjon } from '../../../models/arbeidssituasjon/arbeidssituasjon';
+import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
+import { IAktivitet } from '../../../models/aktivitet/aktivitet';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
 }
 
 const EtablererEgenVirksomhet: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
-  const spørsmål: ISpørsmål = hvaErDinArbeidssituasjon;
+  const spørsmål: ISpørsmål = hvaErDinArbeidssituasjonSpm;
   const { etablererEgenVirksomhet } = arbeidssituasjon;
   const intl = useIntl();
 

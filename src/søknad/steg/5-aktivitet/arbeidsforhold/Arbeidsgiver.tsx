@@ -16,7 +16,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import {
   EArbeidsgiver,
   IArbeidsgiver,
-} from '../../../../models/arbeidssituasjon/arbeidsgiver';
+} from '../../../../models/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmal';
 
 const StyledArbeidsgiver = styled.div`
@@ -27,7 +27,6 @@ const StyledArbeidsgiver = styled.div`
 interface Props {
   arbeidsforhold: IArbeidsgiver[];
   settArbeidsforhold: (arbeidsforhold: IArbeidsgiver[]) => void;
-  arbeidsgiver: IArbeidsgiver;
   arbeidsgivernummer: number;
 }
 

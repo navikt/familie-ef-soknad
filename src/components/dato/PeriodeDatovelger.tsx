@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import { IPeriode } from '../../models/søknad';
@@ -6,20 +6,38 @@ import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
+import { dagensDato } from '../../utils/dato';
+import subDays from 'date-fns/subDays';
+import { compareAsc, isEqual } from 'date-fns';
 
 interface Props {
   tekstid: string;
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
-  feilmelding?: string;
 }
 
-const PeriodeDatovelgere: FC<Props> = ({
-  periode,
-  settDato,
-  tekstid,
-  feilmelding,
-}) => {
+const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
+  const [feilmelding, settFeilmelding] = useState('');
+
+  const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
+    (dato: Date, periodenøkkel: 'fra' | 'til') => {
+      const fom: Date = periodenøkkel === 'fra' ? dato : periode.fra.verdi;
+      const tom: Date = periodenøkkel === 'til' ? dato : periode.til.verdi;
+      const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
+      const erDatoerLike = isEqual(fom, tom);
+      erFraDatoSenereEnnTilDato &&
+        settFeilmelding('datovelger.periode.feilFormat');
+      erDatoerLike && settFeilmelding('datovelger.periode.likeDatoer');
+      !erFraDatoSenereEnnTilDato && !erDatoerLike && settFeilmelding('');
+    },
+    [periode]
+  );
+
+  const settPeriode = (dato: Date | null, objektnøkkel: 'til' | 'fra') => {
+    dato !== null && settDato(dato, objektnøkkel);
+    dato !== null && sammenlignDatoerOgOppdaterFeilmelding(dato, objektnøkkel);
+  };
+
   return (
     <>
       <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
@@ -29,19 +47,21 @@ const PeriodeDatovelgere: FC<Props> = ({
       </FeltGruppe>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
-          settDato={(e) => settDato(e, 'fra')}
-          valgtDato={periode.fra.verdi}
+          settDato={(e) => settPeriode(e, 'fra')}
+          valgtDato={
+            periode.fra.verdi ? periode.fra.verdi : subDays(dagensDato, 1)
+          }
           tekstid={'periode.fra'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
 
         <Datovelger
-          settDato={(e) => settDato(e, 'til')}
-          valgtDato={periode.til.verdi}
+          settDato={(e) => settPeriode(e, 'til')}
+          valgtDato={periode.til.verdi ? periode.til.verdi : dagensDato}
           tekstid={'periode.til'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
-        {feilmelding !== '' ? (
+        {feilmelding && feilmelding !== '' && (
           <div
             className={classNames('datovelger__feilmelding ', {
               gjemFeilmelding: feilmelding === '',
@@ -49,7 +69,7 @@ const PeriodeDatovelgere: FC<Props> = ({
           >
             <Feilmelding tekstid={feilmelding ? feilmelding : ''} />
           </div>
-        ) : null}
+        )}
       </div>
     </>
   );

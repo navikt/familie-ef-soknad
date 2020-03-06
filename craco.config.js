@@ -30,6 +30,9 @@ const norskeOrdMedÆØÅ = [
   'HvordanPraktiseresSamværet',
   'BostedOgSamvær',
   'Arbeidssøker',
+  'NårSkalDuVæreElevEllerStudent',
+  'SøkerSkalJobbeDeltid',
+  'ErUtdanningenPåHeltidEllerDeltid',
 ];
 
 module.exports = {
