@@ -91,7 +91,7 @@ export default {
       '\n' +
       '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
       '\n' +
-      '<br/><br/>Du kan også dokumentere at du beor alene med barn ved å sende inn for eksempel:<br/>' +
+      '<br/><br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
       ' <li> Informasjon om hvor den tidligere samboeren bor nå </li>' +
       '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
