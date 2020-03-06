@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { IUnderUtdanning } from '../../../../models/arbeidssituasjon/utdanning';
+import { IUnderUtdanning } from '../../../../models/aktivitet/utdanning';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../utils/søknadsfelter';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../models/aktivitet/utdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';

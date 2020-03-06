@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
+import { IAktivitet } from '../../../../models/aktivitet/aktivitet';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../models/aktivitet/utdanning';
 import ErUtdanningenOffentligEllerPrivat from './ErUtdanningenOffentligEllerPrivat';
 import ErUtdanningenPåHeltidEllerDeltid from './ErUtdanningenPåHeltidEllerDeltid';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
@@ -21,8 +21,8 @@ import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
 }
 
 const UnderUtdanning: React.FC<Props> = ({

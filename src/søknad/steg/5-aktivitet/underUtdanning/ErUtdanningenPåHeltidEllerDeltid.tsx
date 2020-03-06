@@ -1,8 +1,11 @@
 import React from 'react';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
-import { privatEllerOffentligSpm } from './UtdanningConfig';
+import { heltidEllerDeltidSpm } from './UtdanningConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import { IUnderUtdanning } from '../../../../models/arbeidssituasjon/utdanning';
+import {
+  EUtdanning,
+  IUnderUtdanning,
+} from '../../../../models/aktivitet/utdanning';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
@@ -10,13 +13,26 @@ interface Props {
   utdanning: IUnderUtdanning;
   settUtdanning: (utdanning: IUnderUtdanning) => void;
 }
-const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
+const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
   utdanning,
   settUtdanning,
 }) => {
   const intl = useIntl();
 
   const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: string) => {
+    const søkerVilStudereHeltid = spørsmål.svaralternativer.find(
+      (svarsalternativ) =>
+        hentTekst(svarsalternativ.svar_tekstid, intl) === svar
+    );
+    if (
+      (spørsmål.søknadid === EUtdanning.heltidEllerDeltid &&
+        søkerVilStudereHeltid &&
+        utdanning.målMedUtdanning) ||
+      utdanning.arbeidsmengde
+    ) {
+      delete utdanning.arbeidsmengde;
+      delete utdanning.målMedUtdanning;
+    }
     settUtdanning({
       ...utdanning,
       [spørsmål.søknadid]: {
@@ -28,13 +44,13 @@ const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <MultiSvarSpørsmål
-        spørsmål={privatEllerOffentligSpm}
+        spørsmål={heltidEllerDeltidSpm}
         settSpørsmålOgSvar={settMultiSpørsmål}
-        valgtSvar={utdanning.offentligEllerPrivat?.verdi}
+        valgtSvar={utdanning.heltidEllerDeltid?.verdi}
         toKorteSvar={true}
       />
     </KomponentGruppe>
   );
 };
 
-export default ErUtdanningenOffentligEllerPrivat;
+export default ErUtdanningenPåHeltidEllerDeltid;

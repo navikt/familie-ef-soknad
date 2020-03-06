@@ -6,13 +6,13 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
-import { IArbeidsgiver } from '../../../../models/arbeidssituasjon/arbeidsgiver';
+import { IAktivitet } from '../../../../models/aktivitet/aktivitet';
+import { IArbeidsgiver } from '../../../../models/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
 }
 
 const tomArbeidsgiver: IArbeidsgiver = {

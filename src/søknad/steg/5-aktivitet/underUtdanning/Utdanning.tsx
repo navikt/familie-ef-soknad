@@ -8,7 +8,7 @@ import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { Input } from 'nav-frontend-skjema';
-import { IUtdanning } from '../../../../models/arbeidssituasjon/utdanning';
+import { IUtdanning } from '../../../../models/aktivitet/utdanning';
 import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../utils/søknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';

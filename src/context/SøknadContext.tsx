@@ -14,7 +14,7 @@ const initialState: ISøknad = {
       verdi: '',
     },
   },
-  arbeidssituasjon: { situasjon: { label: '', verdi: [] } },
+  aktivitet: { hvaErDinArbeidssituasjon: { label: '', verdi: [] } },
   vedleggsliste: [],
 };
 

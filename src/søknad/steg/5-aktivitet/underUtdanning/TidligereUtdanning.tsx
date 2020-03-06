@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {
   IUtdanning,
   IUnderUtdanning,
-} from '../../../../models/arbeidssituasjon/utdanning';
+} from '../../../../models/aktivitet/utdanning';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
