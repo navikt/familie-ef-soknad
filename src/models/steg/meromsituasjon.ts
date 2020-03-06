@@ -1,7 +1,7 @@
 import { ITekstListeFelt } from '../søknadsfelter';
 
 export interface IDinSituasjon {
-  situasjon: ITekstListeFelt;
+  gjelderDetteDeg: ITekstListeFelt;
 }
 
 export enum EDinSituasjon {

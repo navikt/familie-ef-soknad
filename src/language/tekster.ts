@@ -2,28 +2,27 @@
 export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
-
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
-    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-      '[info om aktivitetsplikt fra Ett år]',
-    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
-    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
+    'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
+    'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
+    'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
+      'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
+    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
     'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
       'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
-    'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
-    'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
-    'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
-      'Jeg er hverken i arbeid, utdanning eller er arbeidssøker',
+
     'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
     'firma.tittel': 'Om firmaet du driver',
     'firma.label.navn': 'Navn på firma',
@@ -32,6 +31,8 @@ export default {
     'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
     'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
 
+    'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
+      '[info om aktivitetsplikt fra Ett år]',
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiver',
@@ -66,6 +67,36 @@ export default {
     'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
     'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
       '1 times reisevei betyr.. ',
+
+    'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.undertittel': 'Utdanning',
+    'utdanning.lesmer-åpne.kanFåStønad':
+      'Hva slags utdanning kan du få stønad til?',
+    'utdanning.lesmer-innhold.kanFåStønad':
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig og hensiktsmessig for å få eller beholde arbeid. \n' +
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
+    'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
+    'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
+    'utdanning.spm.privatEllerOffentlig':
+      'Er utdanningen privat eller offentlig?',
+    'utdanning.svar.privat': 'Privat',
+    'utdanning.svar.offentlig': 'Offentlig',
+    'utdanning.datovelger.studieperiode':
+      'Når skal du være elev eller student?',
+    'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
+    'utdanning.svar.heltid': 'Heltid',
+    'utdanning.svar.deltid': 'Deltid',
+    'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
+    'utdanning.spm.mål': 'Hva er målet med utdanningen?',
+    'utdanning.tittel.tidligere': 'Tidligere utdanning etter grunnskolen',
+    'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen',
+    'utdanning.lesmer-åpne.grunnskolen': 'Hva regnes som grunnskolen?',
+    'utdanning.lesmer-innholde.grunnskolen':
+      '"Hva regnes som grunnskolen?\n' +
+      'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse."\n',
+    'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
+    'utdanning.knapp.leggtil': 'Legg til en utdanning',
+    'utdanning.knapp.slett': 'Fjern utdanning',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
@@ -150,9 +181,11 @@ export default {
     'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
       'Har du hatt flere utenlandsopphold de siste 3 årene?',
     'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+
     'periode.fra': 'Fra',
     'periode.til': 'Til',
-
+    'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
+    'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
     'person.navn': 'Navn',
     'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
 

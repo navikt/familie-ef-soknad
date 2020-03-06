@@ -10,16 +10,15 @@ import {
   IDinSituasjon,
 } from '../../../models/steg/meromsituasjon';
 import { ISpørsmål } from '../../../models/spørsmal';
-import { nyttTekstListeFelt } from '../../../models/søknadsfelter';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { EArbeidssituasjon } from '../../../models/steg/arbeidssituasjon/arbeidssituasjon';
+import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
-    situasjon: nyttTekstListeFelt,
+    gjelderDetteDeg: nyttTekstListeFelt,
   });
 
   useEffect(() => {
@@ -44,10 +43,14 @@ const MerOmDinSituasjon: React.FC = () => {
   const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
     const tekstid: string = 'dinSituasjon.svar.' + situasjon;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
-    return dinSituasjon.situasjon.verdi.some((svarHuketAvISøknad: string) => {
-      return svarHuketAvISøknad === svarTekst;
-    });
+    return dinSituasjon.gjelderDetteDeg.verdi.some(
+      (svarHuketAvISøknad: string) => {
+        return svarHuketAvISøknad === svarTekst;
+      }
+    );
   };
+
+  const erSykHuketav = erSituasjonHuketAv(EDinSituasjon.erSyk);
 
   return (
     <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
@@ -56,9 +59,10 @@ const MerOmDinSituasjon: React.FC = () => {
           <CheckboxSpørsmål
             spørsmål={gjelderNoeAvDetteDeg}
             settValgteSvar={settDinSituasjonFelt}
-            valgteSvar={søknad.merOmDinSituasjon.situasjon.verdi}
+            valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>
+        {erSykHuketav && <>cake??</>}
       </SeksjonGruppe>
     </Side>
   );

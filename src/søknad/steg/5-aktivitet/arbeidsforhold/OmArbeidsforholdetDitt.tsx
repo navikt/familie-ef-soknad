@@ -6,13 +6,13 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
-import { IArbeidssituasjon } from '../../../../models/steg/arbeidssituasjon/arbeidssituasjon';
-import { IArbeidsgiver } from '../../../../models/steg/arbeidssituasjon/arbeidsgiver';
-import { nyttTekstFelt } from '../../../../models/søknadsfelter';
+import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
+import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
+import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
 }
 
 const tomArbeidsgiver: IArbeidsgiver = {
@@ -59,7 +59,6 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             <Arbeidsgiver
               arbeidsforhold={arbeidsforhold}
               settArbeidsforhold={settArbeidsforhold}
-              arbeidsgiver={arbeidsgiver}
               arbeidsgivernummer={index}
             />
           </SeksjonGruppe>

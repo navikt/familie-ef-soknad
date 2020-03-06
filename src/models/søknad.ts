@@ -1,4 +1,4 @@
-import { IArbeidssituasjon } from './steg/arbeidssituasjon/arbeidssituasjon';
+import { IAktivitet } from './steg/aktivitet/aktivitet';
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
 import { IMedlemskap, ISivilstatus } from './steg/omDeg';
@@ -13,8 +13,8 @@ export interface ISøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;
-  arbeidssituasjon: IArbeidssituasjon;
   merOmDinSituasjon: IDinSituasjon;
+  aktivitet: IAktivitet;
   vedleggsliste: IVedlegg[];
 }
 

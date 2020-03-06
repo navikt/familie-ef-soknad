@@ -41,7 +41,7 @@ export const hentSivilstatus = (statuskode: string) => {
 };
 
 export const erValgtSvarLiktSomSvar = (
-  valgtSvar: string,
+  valgtSvar: string | undefined,
   annetSvarTekstid: string,
   intl: IntlShape
 ) => {

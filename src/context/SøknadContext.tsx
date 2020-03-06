@@ -2,7 +2,7 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 import mockPerson from '../mock/person.json';
-import { nyttTekstListeFelt } from '../models/søknadsfelter';
+import { nyttTekstListeFelt } from '../utils/søknadsfelter';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -15,8 +15,8 @@ const initialState: ISøknad = {
       verdi: '',
     },
   },
-  arbeidssituasjon: { situasjon: nyttTekstListeFelt },
-  merOmDinSituasjon: { situasjon: nyttTekstListeFelt },
+  aktivitet: { hvaErDinArbeidssituasjon: { label: '', verdi: [] } },
+  merOmDinSituasjon: { gjelderDetteDeg: nyttTekstListeFelt },
   vedleggsliste: [],
 };
 
