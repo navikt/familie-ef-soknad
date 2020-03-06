@@ -47,18 +47,14 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
       </KomponentGruppe>
       <KomponentGruppe>
         <div className="fødselsnummer">
-          <div className="fødselsdato">
-            <Datovelger
-              settDato={(e: Date | null) =>
-                settForelder({ ...forelder, fødselsdato: e })
-              }
-              valgtDato={
-                forelder.fødselsdato ? forelder.fødselsdato : undefined
-              }
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-            />
-          </div>
+          <Datovelger
+            settDato={(e: Date | null) =>
+              settForelder({ ...forelder, fødselsdato: e })
+            }
+            valgtDato={forelder.fødselsdato ? forelder.fødselsdato : undefined}
+            tekstid={'datovelger.fødselsdato'}
+            datobegrensning={DatoBegrensning.TidligereDatoer}
+          />
           <Input
             className="personnummer"
             onChange={(e) =>

@@ -111,24 +111,16 @@ const BarnetsBosted: React.FC<Props> = ({ barn }) => {
               </KomponentGruppe>
               {forelder.boddSammenFør ? (
                 <KomponentGruppe>
-                  <div className="fødselsnummer">
-                    <div className="fødselsdato">
-                      <div className={'datepicker__container'}>
-                        <Datovelger
-                          settDato={(e: Date | null) =>
-                            settForelder({ ...forelder, flyttetFra: e })
-                          }
-                          valgtDato={
-                            forelder.flyttetFra
-                              ? forelder.flyttetFra
-                              : undefined
-                          }
-                          tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
-                          datobegrensning={DatoBegrensning.TidligereDatoer}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <Datovelger
+                    settDato={(e: Date | null) =>
+                      settForelder({ ...forelder, flyttetFra: e })
+                    }
+                    valgtDato={
+                      forelder.flyttetFra ? forelder.flyttetFra : undefined
+                    }
+                    tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
+                    datobegrensning={DatoBegrensning.TidligereDatoer}
+                  />
                 </KomponentGruppe>
               ) : null}
               <KomponentGruppe>
