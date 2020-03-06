@@ -72,6 +72,7 @@ const TidligereUtdanning: React.FC<Props> = ({
     } else if (svar && !underUtdanning.tidligereUtdanning) {
       settUnderUtdanning({
         ...underUtdanning,
+        [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
         tidligereUtdanning: [tomUtdanning],
       });
     } else {
