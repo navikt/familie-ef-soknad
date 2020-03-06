@@ -54,6 +54,9 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     settForelder({});
   };
 
+  const andreForelder = 'andre-forelder-';
+  const andreForelderAnnen = 'andre-forelder-annen';
+
   return (
     <>
       <Element>
@@ -65,20 +68,22 @@ const AnnenForelderKnapper: React.FC<Props> = ({
           {andreBarnMedForelder.map((b) => {
             return (
               <RadioPanel
-                key={`andre-forelder-${b.navn}`}
-                name={`andre-forelder-${barn.navn}`}
-                label={`Samme som ${b.navn}`}
-                value={`andre-forelder-${b.navn}`}
+                key={`${andreForelder}${b.navn}`}
+                name={`${andreForelder}${barn.navn}`}
+                label={`${intl.formatMessage({
+                  id: 'barnasbosted.forelder.sammesom',
+                })} ${b.navn}`}
+                value={`${andreForelder}${b.navn}`}
                 checked={andreForelderRadioVerdi === b.navn}
                 onChange={(e) => leggTilSammeForelder(e, b)}
               />
             );
           })}
           <RadioPanel
-            key={`andre-forelder-annen`}
-            name={`andre-forelder-${barn.navn}`}
-            label={`Annen forelder`}
-            value={`andre-forelder-annen`}
+            key={andreForelderAnnen}
+            name={`${andreForelder}${barn.navn}`}
+            label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+            value={andreForelderAnnen}
             checked={andreForelderRadioVerdi === 'annen-forelder'}
             onChange={() => leggTilAnnenForelder()}
           />

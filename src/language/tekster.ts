@@ -276,6 +276,8 @@ export default {
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.alert.hvisFaktiskBor':
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
+    'barnasbosted.forelder.sammesom': 'Samme som',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -385,6 +387,7 @@ export default {
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.alert.hvisFaktiskBor':
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -492,5 +495,6 @@ export default {
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.alert.hvisFaktiskBor':
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
   },
 };
