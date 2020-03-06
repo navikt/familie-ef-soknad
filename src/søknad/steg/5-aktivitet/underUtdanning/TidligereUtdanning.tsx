@@ -103,6 +103,7 @@ const TidligereUtdanning: React.FC<Props> = ({
           {tidligereUtdanning?.map((utdanning, index) => {
             return (
               <Utdanning
+                key={'utdanning-' + index}
                 tidligereUtdanninger={tidligereUtdanning}
                 settTidligereUtdanninger={settTidligereUtdanning}
                 utdanningsnummer={index}
