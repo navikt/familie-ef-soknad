@@ -96,6 +96,7 @@ export default {
       'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse."\n',
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
+    'utdanning.knapp.slett': 'Fjern utdanning',
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',

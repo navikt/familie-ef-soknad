@@ -92,7 +92,7 @@ const Utdanning: React.FC<Props> = ({
             kunEn: tidligereUtdanninger?.length === 1,
           })}
           onClick={() => fjernUtdanning()}
-          tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
+          tekstid={'utdanning.knapp.slett'}
         />
       </TittelOgSlettKnapp>
       <FeltGruppe>
