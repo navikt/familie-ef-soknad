@@ -67,7 +67,6 @@ export default {
     'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
     'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
       '1 times reisevei betyr.. ',
-
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
     'utdanning.lesmer-åpne.kanFåStønad':
@@ -97,7 +96,6 @@ export default {
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
     'utdanning.knapp.slett': 'Fjern utdanning',
-
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
     'bosituasjon.svar.borAleneMedBarnEllerGravid':
@@ -301,6 +299,17 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
+    'barnasbosted.forelder.sammesom': 'Samme som',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -401,6 +410,16 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
   },
   en: {
     'banner.tittel': 'Single parent',
@@ -499,5 +518,15 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.jaFolkeregistrert':
+      'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'barnasbosted.spm.jaMenSamarbeiderIkke':
+      'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+    'barnasbosted.alert.måBoHosDeg':
+      '[0] må bo hos deg for at du skal ha rett til stønad',
+    'barnasbosted.alert.hvisFaktiskBor':
+      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
+    'barnasbosted.forelder.annen': 'Annen forelder',
   },
 };

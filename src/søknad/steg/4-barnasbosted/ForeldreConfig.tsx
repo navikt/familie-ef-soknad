@@ -4,6 +4,7 @@ import {
   EHarSkriftligSamværsavtale,
   EBorISammeHus,
   EHvorMyeSammen,
+  ESkalBarnBoHosDeg,
 } from '../../../models/barnasbosted';
 
 export const borINorge: ISpørsmål = {
@@ -111,6 +112,25 @@ export const hvorMyeSammen: ISpørsmål = {
     {
       nøkkel: EHvorMyeSammen.møtesUtenom,
       svar_tekstid: 'barnasbosted.spm.møtesUtenom',
+    },
+  ],
+};
+
+export const skalBarnBoHosDeg: ISpørsmål = {
+  søknadid: 'skalBarnBoHosDeg',
+  tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
+  svaralternativer: [
+    {
+      nøkkel: ESkalBarnBoHosDeg.ja,
+      svar_tekstid: 'barnasbosted.spm.jaFolkeregistrert',
+    },
+    {
+      nøkkel: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+      svar_tekstid: 'barnasbosted.spm.jaMenSamarbeiderIkke',
+    },
+    {
+      nøkkel: ESkalBarnBoHosDeg.nei,
+      svar_tekstid: 'barnasbosted.spm.nei',
     },
   ],
 };
