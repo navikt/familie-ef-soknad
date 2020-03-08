@@ -2,7 +2,7 @@ import { ESvar, ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
 import {
   EArbeidssted,
   EArbeidssøker,
-} from '../../../../models/arbeidssituasjon/arbeidssøker';
+} from '../../../../models/aktivitet/arbeidssøker';
 
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,

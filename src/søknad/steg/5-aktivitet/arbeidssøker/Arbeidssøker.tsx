@@ -10,8 +10,8 @@ import {
   ønskerHalvStillig,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
-import { IArbeidssituasjon } from '../../../../models/arbeidssituasjon/arbeidssituasjon';
-import { IArbeidssøker } from '../../../../models/arbeidssituasjon/arbeidssøker';
+import { IAktivitet } from '../../../../models/aktivitet/aktivitet';
+import { IArbeidssøker } from '../../../../models/aktivitet/arbeidssøker';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
@@ -19,8 +19,8 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 
 interface Props {
-  arbeidssituasjon: IArbeidssituasjon;
-  settArbeidssituasjon: (nyArbeidssituasjon: IArbeidssituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
 }
 
 const Arbeidssøker: React.FC<Props> = ({

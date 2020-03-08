@@ -26,3 +26,9 @@ export interface ISvar {
   svar_tekstid: string;
   alert_tekstid?: string;
 }
+
+export interface ITekst {
+  nøkkel: string;
+  label_tekstid: string;
+  alert_tekstid?: string;
+}
