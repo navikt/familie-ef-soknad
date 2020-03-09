@@ -21,3 +21,9 @@ export enum EHvorMyeSammen {
   kunNårLeveres = 'kunNårLeveres',
   møtesUtenom = 'møtesUtenom',
 }
+
+export enum ESkalBarnBoHosDeg {
+  ja = 'ja',
+  jaMenSamarbeiderIkke = 'jaMenSamarbeiderIkke',
+  nei = 'nei',
+}

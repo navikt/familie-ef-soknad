@@ -1,6 +1,7 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
+import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
 import styled from 'styled-components';
 import { IBarn } from '../../../models/person';
@@ -52,7 +53,7 @@ interface Props {
 
 const BarnasBostedHeader: React.FC<Props> = ({ barn }) => {
   const intl = useIntl();
-
+  const ikon = barn.ufødt ? ufødtIkon : barn1;
   const bosted = barn.harSammeAdresse
     ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
     : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
@@ -60,7 +61,7 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn }) => {
   return (
     <StyledBarnasBostedHeader>
       <div className="barnas-bosted-header">
-        <img alt="barn" className="barneikon" src={barn1} />
+        <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="barnas-bosted__info">
         <Element className="navn">{barn.navn}</Element>
