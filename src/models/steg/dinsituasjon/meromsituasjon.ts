@@ -1,9 +1,11 @@
-import { IDatoFelt, ITekstListeFelt } from '../../søknadsfelter';
+import { IDatoFelt, ITekstFelt, ITekstListeFelt } from '../../søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ITekstListeFelt;
   utdanningStartsdato?: IDatoFelt;
   nyJobbStartsdato?: IDatoFelt;
+  søknadsdato: IDatoFelt;
+  sagtOppEllerRedusertStilling?: ITekstFelt;
 }
 
 export enum EDinSituasjon {
@@ -13,4 +15,10 @@ export enum EDinSituasjon {
   harBarnMedSærligeBehov = 'harBarnMedSærligeBehov',
   harFåttJobbTilbud = 'harFåttJobbTilbud',
   skalTaUtdanning = 'skalTaUtdanning',
+}
+
+export enum ESagtOppEllerRedusertStilling {
+  jaHarSagtOppJobben = 'jaHarSagtOppJobben',
+  jaHarRedusertArbeidstiden = 'jaHarRedusertArbeidstiden',
+  nei = 'nei',
 }

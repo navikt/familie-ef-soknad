@@ -1,5 +1,8 @@
 import { ISpørsmål } from '../../../models/spørsmal';
-import { EDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import {
+  EDinSituasjon,
+  ESagtOppEllerRedusertStilling,
+} from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
   søknadid: 'situasjon',
@@ -28,6 +31,30 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
     {
       nøkkel: EDinSituasjon.skalTaUtdanning,
       svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
+    },
+  ],
+};
+
+export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
+  søknadid: 'sagtOppEllerRedusertStilling',
+  tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
+  lesmer: {
+    åpneTekstid: 'sagtOppEllerRedusertStilling.lesmer-åpne',
+    innholdTekstid: 'sagtOppEllerRedusertStilling.lesmer-innhold',
+    lukkeTekstid: '',
+  },
+  svaralternativer: [
+    {
+      nøkkel: ESagtOppEllerRedusertStilling.jaHarRedusertArbeidstiden,
+      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.sagtOpp',
+    },
+    {
+      nøkkel: ESagtOppEllerRedusertStilling.jaHarSagtOppJobben,
+      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.redusertstilling',
+    },
+    {
+      nøkkel: ESagtOppEllerRedusertStilling.nei,
+      svar_tekstid: 'svar.nei',
     },
   ],
 };

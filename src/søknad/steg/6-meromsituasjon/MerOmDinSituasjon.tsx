@@ -19,12 +19,16 @@ import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
 import BarnMedSærligeBehov from './BarnMedSærligeBehov';
 import FåttJobbTilbud from './FåttJobbTilbud';
 import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
+import { dagensDato } from '../../../utils/dato';
+import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
+import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: nyttTekstListeFelt,
+    søknadsdato: { label: '', verdi: dagensDato },
   });
 
   useEffect(() => {
@@ -93,6 +97,18 @@ const MerOmDinSituasjon: React.FC = () => {
             settDinSituasjon={settDinSituasjon}
           />
         )}
+      </SeksjonGruppe>
+      <SeksjonGruppe>
+        <HarSøkerSagtOppEllerRedusertStilling
+          dinSituasjon={dinSituasjon}
+          settDinSituasjon={settDinSituasjon}
+        />
+      </SeksjonGruppe>
+      <SeksjonGruppe>
+        <NårSøkerDuOvergangsstønadFra
+          dinSituasjon={dinSituasjon}
+          settDinSituasjon={settDinSituasjon}
+        />
       </SeksjonGruppe>
     </Side>
   );

@@ -150,6 +150,19 @@ export default {
     'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
     'dinSituasjon.datovelger.utdanning': 'Når skal du begynne å ta utdanning?',
     'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
+    'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
+    'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke?',
+    'dinSituasjon.lesmer-innhold.overgangsstønad': 'Lalala',
+    'dinSituasjon.datovelger.overgangsstønad':
+      'Jeg søker overgangsstønad fra og med',
+    'dinSituasjon.spm.sagtOppEllerRedusertStilling':
+      'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
+    'sagtOppEllerRedusertStilling.lesmer-åpne': 'Hvorfor spør vi om dette?',
+    'sagtOppEllerRedusertStilling.lesmer-innhold': 'Because ya know',
+    'sagtOppEllerRedusertStilling.svar.sagtOpp':
+      'Ja, jeg har sagt opp jobben eller tatt frivillig permisjon, men ikke foreldrepermisjon',
+    'sagtOppEllerRedusertStilling.svar.redusertstilling':
+      'Ja, jeg har redusert arbeidstiden',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
