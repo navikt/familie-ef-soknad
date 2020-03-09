@@ -14,6 +14,11 @@ import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import SøkerErSyk from './SøkerErSyk';
+import SyktBarn from './SyktBarn';
+import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
+import BarnMedSærligeBehov from './BarnMedSærligeBehov';
+import FåttJobbTilbud from './FåttJobbTilbud';
+import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -52,6 +57,15 @@ const MerOmDinSituasjon: React.FC = () => {
   };
 
   const erSykHuketav = erSituasjonHuketAv(EDinSituasjon.erSyk);
+  const harSyktBarnHuketAv = erSituasjonHuketAv(EDinSituasjon.harSyktBarn);
+  const harSøktBarnepassOgVenterPåSvar = erSituasjonHuketAv(
+    EDinSituasjon.harSøktBarnepassOgVenterEnnå
+  );
+  const harBarnMedSærligeBehov = erSituasjonHuketAv(
+    EDinSituasjon.harBarnMedSærligeBehov
+  );
+  const harFåttJobbTilbud = erSituasjonHuketAv(EDinSituasjon.harFåttJobbTilbud);
+  const skalTaUtdanning = erSituasjonHuketAv(EDinSituasjon.skalTaUtdanning);
 
   return (
     <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
@@ -64,6 +78,21 @@ const MerOmDinSituasjon: React.FC = () => {
           />
         </KomponentGruppe>
         {erSykHuketav && <SøkerErSyk />}
+        {harSyktBarnHuketAv && <SyktBarn />}
+        {harSøktBarnepassOgVenterPåSvar && <SøktBarnepassOgVenterPåSvar />}
+        {harBarnMedSærligeBehov && <BarnMedSærligeBehov />}
+        {harFåttJobbTilbud && (
+          <FåttJobbTilbud
+            dinSituasjon={dinSituasjon}
+            settDinSituasjon={settDinSituasjon}
+          />
+        )}
+        {skalTaUtdanning && (
+          <SøkerSkalTaUtdanning
+            dinSituasjon={dinSituasjon}
+            settDinSituasjon={settDinSituasjon}
+          />
+        )}
       </SeksjonGruppe>
     </Side>
   );

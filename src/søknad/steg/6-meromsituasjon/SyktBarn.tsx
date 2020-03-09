@@ -3,29 +3,31 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
-const SøkerErSyk: React.FC = () => {
+const SyktBarn: React.FC = () => {
   return (
     <KomponentGruppe>
       <AlertStripeInfo className={'fjernBakgrunn'}>
         <Normaltekst>
-          Hvis du ikke har sykemelding eller ikke mottar AAP eller uføretrygd,
-          må du legge ved dokumentasjon
+          Du må legge ved dokumentasjon om barnets sykdom og din mulighet til å
+          være i yrkesrettet aktivitet
         </Normaltekst>
         <br />
         <Normaltekst>
           Dokumentasjonen fra legen din må tydelig vise:
           <ul>
-            <li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>
+            <li>
+              årsaken til at barnets sykdom påvirker muligheten din til å være i
+              yrkesrettet aktivitet
+            </li>
             <li>hvor mye du kan arbeide</li>
           </ul>
         </Normaltekst>
         <Normaltekst>
-          Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke
-          er varig? Da trenger vi dokumentasjonen fra legen din selv om du har
-          sykemelding. Denne må vise:
+          Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som
+          ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:
           <ul>
-            <li>når du ble syk</li>
-            <li>når legen din regner med at du vil bli frisk</li>
+            <li>når barnet ble syk</li>
+            <li>når legen din regner med at barnet vil bli frisk</li>
           </ul>
         </Normaltekst>
         <Normaltekst>
@@ -37,4 +39,4 @@ const SøkerErSyk: React.FC = () => {
     </KomponentGruppe>
   );
 };
-export default SøkerErSyk;
+export default SyktBarn;

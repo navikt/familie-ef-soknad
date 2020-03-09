@@ -148,6 +148,8 @@ export default {
       'Jeg har barn som har behov for særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
     'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
     'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
+    'dinSituasjon.datovelger.utdanning': 'Når skal du begynne å ta utdanning?',
+    'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',

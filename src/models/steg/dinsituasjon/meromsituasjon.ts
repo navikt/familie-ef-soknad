@@ -1,7 +1,9 @@
-import { ITekstListeFelt } from '../../søknadsfelter';
+import { IDatoFelt, ITekstListeFelt } from '../../søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ITekstListeFelt;
+  utdanningStartsdato?: IDatoFelt;
+  nyJobbStartsdato?: IDatoFelt;
 }
 
 export enum EDinSituasjon {
