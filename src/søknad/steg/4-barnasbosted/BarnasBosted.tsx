@@ -25,7 +25,14 @@ const BarnasBosted: React.FC = () => {
             />
           );
         } else {
-          return <BarnetsBostedLagtTil barn={barn} key={key} />;
+          return (
+            <BarnetsBostedLagtTil
+              barn={barn}
+              settAktivIndex={settAktivIndex}
+              index={index}
+              key={key}
+            />
+          );
         }
       })}
     </Side>
