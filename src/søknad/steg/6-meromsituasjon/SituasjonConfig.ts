@@ -5,7 +5,7 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
-  søknadid: 'situasjon',
+  søknadid: 'gjelderDetteDeg',
   tekstid: 'dinSituasjon.spm',
   svaralternativer: [
     {
@@ -47,10 +47,12 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
     {
       nøkkel: ESagtOppEllerRedusertStilling.jaHarRedusertArbeidstiden,
       svar_tekstid: 'sagtOppEllerRedusertStilling.svar.sagtOpp',
+      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.sagtOpp',
     },
     {
       nøkkel: ESagtOppEllerRedusertStilling.jaHarSagtOppJobben,
       svar_tekstid: 'sagtOppEllerRedusertStilling.svar.redusertstilling',
+      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.redusertstilling',
     },
     {
       nøkkel: ESagtOppEllerRedusertStilling.nei,

@@ -36,12 +36,8 @@ const MerOmDinSituasjon: React.FC = () => {
     // eslint-disable-next-line
   }, [dinSituasjon]);
 
-  const oppdaterDinSituasjon = (nyDinSituasjon: IDinSituasjon) => {
-    settDinSituasjon({ ...dinSituasjon, ...nyDinSituasjon });
-  };
-
   const settDinSituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
-    oppdaterDinSituasjon({
+    settDinSituasjon({
       ...dinSituasjon,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
