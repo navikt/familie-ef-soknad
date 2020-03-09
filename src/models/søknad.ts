@@ -4,7 +4,7 @@ import { IVedlegg } from './vedlegg';
 import { IMedlemskap, ISivilstatus } from './steg/omDeg';
 import { IBooleanFelt, IDatoFelt } from './søknadsfelter';
 import { IBosituasjon } from './steg/bosituasjon';
-import { IDinSituasjon } from './steg/meromsituasjon';
+import { IDinSituasjon } from './steg/dinsituasjon/meromsituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -13,8 +13,8 @@ export interface ISøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;
-  merOmDinSituasjon: IDinSituasjon;
   aktivitet: IAktivitet;
+  merOmDinSituasjon: IDinSituasjon;
   vedleggsliste: IVedlegg[];
 }
 

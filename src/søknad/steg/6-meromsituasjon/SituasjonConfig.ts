@@ -1,5 +1,5 @@
 import { ISpørsmål } from '../../../models/spørsmal';
-import { EDinSituasjon } from '../../../models/steg/meromsituasjon';
+import { EDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
   søknadid: 'situasjon',

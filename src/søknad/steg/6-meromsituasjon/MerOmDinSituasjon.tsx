@@ -8,11 +8,12 @@ import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import {
   EDinSituasjon,
   IDinSituasjon,
-} from '../../../models/steg/meromsituasjon';
+} from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
+import SøkerErSyk from './SøkerErSyk';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -62,7 +63,7 @@ const MerOmDinSituasjon: React.FC = () => {
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>
-        {erSykHuketav && <>cake??</>}
+        {erSykHuketav && <SøkerErSyk />}
       </SeksjonGruppe>
     </Side>
   );

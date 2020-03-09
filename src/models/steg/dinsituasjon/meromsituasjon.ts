@@ -1,4 +1,4 @@
-import { ITekstListeFelt } from '../søknadsfelter';
+import { ITekstListeFelt } from '../../søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ITekstListeFelt;
