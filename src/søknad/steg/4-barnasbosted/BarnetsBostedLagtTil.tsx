@@ -4,9 +4,9 @@ import { useIntl } from 'react-intl';
 import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import ufødtIkon from '../../../assets/ufodt.svg';
-import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
+import { formatDate } from '../../../utils/dato';
 import barn1 from '../../../assets/barn1.svg';
-import { format } from 'date-fns';
+import endre from '../../../assets/endre.svg';
 
 interface Props {
   barn: IBarn;
@@ -19,12 +19,6 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
   settAktivIndex,
   index,
 }) => {
-  const intl = useIntl();
-  const ikon = barn.ufødt ? ufødtIkon : barn1;
-
-  console.log('LAGT TIL');
-  console.log(barn);
-
   const forelder = barn.forelder;
 
   if (!forelder) return null;
@@ -35,7 +29,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 
   return (
     <div className="barnas-bosted-lagt-til">
-      <BarnasBostedHeader barn={barn} visInfo={false} />
+      <BarnasBostedHeader barn={barn} visBakgrunn={true} />
       <div className="barnas-bosted-lagt-til__svar">
         {forelder.navn && (
           <div className="spørsmål-og-svar">
@@ -87,7 +81,10 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>{forelder.borISammeHus}</Normaltekst>
           </div>
         ) : null}
-        <div onClick={endreInformasjon}>Endre informasjon</div>
+        <div className="lenke-knapp" onClick={endreInformasjon}>
+          <img src={endre} />
+          <Normaltekst>Endre informasjon</Normaltekst>
+        </div>
       </div>
     </div>
   );

@@ -23,9 +23,19 @@ const StyledBarnasBostedHeader = styled.div`
             }
     }
 
+    .barnas-bosted-tom {
+      background-color: white;
+      border-bottom: solid 1px;
+
+      img {
+        display: block;
+        margin: 0 auto;
+    }
+    }
+
     .navn {
         text-align: center;
-        margin-top: 1.5rem;
+        margin-top: 1rem;
     }
 
     .inforad {
@@ -49,10 +59,10 @@ const StyledBarnasBostedHeader = styled.div`
 
 interface Props {
   barn: IBarn;
-  visInfo?: boolean;
+  visBakgrunn?: boolean;
 }
 
-const BarnasBostedHeader: React.FC<Props> = ({ barn, visInfo = true }) => {
+const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
   const intl = useIntl();
   const ikon = barn.ufødt ? ufødtIkon : barn1;
   const bosted = barn.harSammeAdresse
@@ -61,40 +71,14 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn, visInfo = true }) => {
 
   return (
     <StyledBarnasBostedHeader>
-      <div className="barnas-bosted-header">
+      <div
+        className={visBakgrunn ? 'barnas-bosted-header' : 'barnas-bosted-tom'}
+      >
         <img alt="barn" className="barneikon" src={ikon} />
       </div>
-      {visInfo && (
-        <div className="barnas-bosted__info">
-          <Element className="navn">{barn.navn}</Element>
-          <div className="inforad">
-            <div className="informasjonselement">
-              <Normaltekst className="informasjonselement-header">
-                {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
-              </Normaltekst>
-              <Normaltekst className="informasjonselement-innhold">
-                {barn.fnr}
-              </Normaltekst>
-            </div>
-            <div className="informasjonselement">
-              <Normaltekst className="informasjonselement-header">
-                {intl.formatMessage({ id: 'barnekort.alder' })}
-              </Normaltekst>
-              <Normaltekst className="informasjonselement-innhold">
-                {barn.alder} år
-              </Normaltekst>
-            </div>
-            <div className="informasjonselement">
-              <Normaltekst className="informasjonselement-header">
-                {intl.formatMessage({ id: 'barnekort.bosted' })}
-              </Normaltekst>
-              <Normaltekst className="informasjonselement-innhold">
-                {bosted}
-              </Normaltekst>
-            </div>
-          </div>
-        </div>
-      )}
+      <div className="navn">
+        <Element>{barn.navn}</Element>
+      </div>
     </StyledBarnasBostedHeader>
   );
 };

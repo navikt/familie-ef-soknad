@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
@@ -31,9 +31,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknadContext();
 
   const [forelder, settForelder] = useState<IForelder>({});
+
   const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(
     false
   );
+
+  useEffect(() => {
+    if (barn.forelder) {
+      settForelder(barn.forelder);
+    }
+  }, []);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
     const nyForelder = { ...forelder, [boddSammenFør.søknadid]: valgtSvar };

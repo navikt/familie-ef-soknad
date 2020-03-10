@@ -4,8 +4,6 @@
     margin-right: 2rem;
   }
 
-  border-right: 1px solid grey;
-  border-left: 1px solid grey;
   border-bottom: 1px solid grey;
 
   padding-bottom: 5rem;
@@ -74,6 +72,7 @@
   width: 90%;
   margin: 0 auto;
   background-color: #e7e9e9;
+  margin-bottom: 6rem;
 
   &__svar {
     padding-left: 3rem;
@@ -82,4 +81,20 @@
 
 .spørsmål-og-svar {
   margin-top: 2rem;
+}
+
+.lenke-knapp {
+  display: flex;
+  margin-top: 2rem;
+  color: @navBla;
+  text-decoration: underline;
+
+  .typo-normal {
+    margin-left: 1rem;
+  }
+
+  &:hover {
+    text-decoration: none;
+    cursor: pointer;
+  }
 }
