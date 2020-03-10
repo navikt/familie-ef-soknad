@@ -298,8 +298,9 @@ export default {
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
-    'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.element.andreforelder': '[0]s andre forelder',
     'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.andreForelderNorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.spm.jaFolkeregistrert':
       'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
     'barnasbosted.spm.jaMenSamarbeiderIkke':
@@ -310,6 +311,7 @@ export default {
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
+    'barnasbosted.knapp.endre': 'Endre informasjon',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -409,8 +411,9 @@ export default {
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
-    'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.element.andreforelder': '[0]s andre forelder',
     'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.andreForelderNorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.spm.jaFolkeregistrert':
       'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
     'barnasbosted.spm.jaMenSamarbeiderIkke':
@@ -510,7 +513,7 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.alert.leggeVedSamværsavtalen':
       'Du må legge ved samværsavtalen',
-    'barnasbosted.element.samvær': 'Hvordan praktiseres samværet?',
+    'barnasbosted.element.samvær': 'Hvordan praktiserer dere samværet?',
     'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
     'barnasbosted.normaltekst.hvormangedager':
       'hvor mange dager og netter oppholder barnet seg hos den andre forelderen i minst en to ukers-periode?',

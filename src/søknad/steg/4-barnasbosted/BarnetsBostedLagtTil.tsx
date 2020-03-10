@@ -3,10 +3,12 @@ import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
-import ufødtIkon from '../../../assets/ufodt.svg';
 import { formatDate } from '../../../utils/dato';
-import barn1 from '../../../assets/barn1.svg';
 import endre from '../../../assets/endre.svg';
+import {
+  hentBeskjedMedNavn,
+  hentBeskjedMedToParametre,
+} from '../../../utils/språk';
 
 interface Props {
   barn: IBarn;
@@ -20,6 +22,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
   index,
 }) => {
   const forelder = barn.forelder;
+  const intl = useIntl();
 
   if (!forelder) return null;
 
@@ -33,57 +36,93 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
       <div className="barnas-bosted-lagt-til__svar">
         {forelder.navn && (
           <div className="spørsmål-og-svar">
-            <Element>{barn.navn}s andre forelder</Element>
+            <Element>
+              {hentBeskjedMedNavn(
+                barn.navn,
+                intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
+              )}
+            </Element>
             <Normaltekst>{forelder.navn}</Normaltekst>
           </div>
         )}
         {forelder.fødselsdato && (
           <div className="spørsmål-og-svar">
-            <Element>Fødselsdato</Element>
+            <Element>
+              {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
+            </Element>
             <Normaltekst>{formatDate(forelder.fødselsdato)}</Normaltekst>
           </div>
         )}
         <div className="spørsmål-og-svar">
-          <Element>Bor {barn.navn}s andre forelder i Norge?</Element>
+          <Element>
+            {hentBeskjedMedNavn(
+              barn.navn,
+              intl.formatMessage({ id: 'barnasbosted.spm.andreForelderNorge' })
+            )}
+          </Element>
           <Normaltekst>{forelder.borINorge ? 'Ja' : 'Nei'}</Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
           <Element>
-            Har du og den andre forelderen skriftlig avtaale om delt bosted for{' '}
-            {barn.navn}?
+            {hentBeskjedMedNavn(
+              barn.navn,
+              intl.formatMessage({ id: 'barnasbosted.avtale' })
+            )}
           </Element>
           <Normaltekst>
             {forelder.avtaleOmDeltBosted ? 'Ja' : 'Nei'}
           </Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
-          <Element>Har den andre forelderen samvær med {barn.navn}?</Element>
+          <Element>
+            {hentBeskjedMedNavn(
+              barn.navn,
+              intl.formatMessage({
+                id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+              })
+            )}
+          </Element>
           <Normaltekst>{forelder.harAnnenForelderSamværMedBarn}</Normaltekst>
         </div>
         {forelder.harDereSkriftligSamværsavtale ? (
           <div className="spørsmål-og-svar">
-            <Element>Har dere skriftlig samværsavtale for {barn.navn}?</Element>
+            <Element>
+              {hentBeskjedMedNavn(
+                barn.navn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
+                })
+              )}
+            </Element>
             <Normaltekst>{forelder.harDereSkriftligSamværsavtale}</Normaltekst>
           </div>
         ) : null}
         {forelder.hvordanPraktiseresSamværet ? (
           <div className="spørsmål-og-svar">
-            <Element>Hvordan praktiserer dere samværet?</Element>
+            <Element>
+              {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
+            </Element>
             <Normaltekst>{forelder.hvordanPraktiseresSamværet}</Normaltekst>
           </div>
         ) : null}
         {forelder.borISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
-              Bor du og den andre forelderen til Solveig i samme hus, blokk,
-              gårdstun, kvartal eller vei/gate?
+              {hentBeskjedMedNavn(
+                barn.navn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.borISammeHus',
+                })
+              )}
             </Element>
             <Normaltekst>{forelder.borISammeHus}</Normaltekst>
           </div>
         ) : null}
         <div className="lenke-knapp" onClick={endreInformasjon}>
           <img src={endre} />
-          <Normaltekst>Endre informasjon</Normaltekst>
+          <Normaltekst>
+            {intl.formatMessage({ id: 'barnasbosted.knapp.endre' })}
+          </Normaltekst>
         </div>
       </div>
     </div>
