@@ -22,7 +22,10 @@ import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 import { dagensDato } from '../../../utils/dato';
 import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
-import { erSituasjonIAvhukedeSvar } from './SituasjonUtil';
+import {
+  erSituasjonIAvhukedeSvar,
+  harSøkerMindreEnnHalvStilling,
+} from './SituasjonUtil';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -95,7 +98,9 @@ const MerOmDinSituasjon: React.FC = () => {
   );
   const harFåttJobbTilbud = erSituasjonHuketAv(EDinSituasjon.harFåttJobbTilbud);
   const skalTaUtdanning = erSituasjonHuketAv(EDinSituasjon.skalTaUtdanning);
-
+  const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
+    søknad
+  );
   return (
     <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
       <SeksjonGruppe>
@@ -123,12 +128,14 @@ const MerOmDinSituasjon: React.FC = () => {
           />
         )}
       </SeksjonGruppe>
-      <SeksjonGruppe>
-        <HarSøkerSagtOppEllerRedusertStilling
-          dinSituasjon={dinSituasjon}
-          settDinSituasjon={settDinSituasjon}
-        />
-      </SeksjonGruppe>
+      {søkerJobberMindreEnnFemtiProsent && (
+        <SeksjonGruppe>
+          <HarSøkerSagtOppEllerRedusertStilling
+            dinSituasjon={dinSituasjon}
+            settDinSituasjon={settDinSituasjon}
+          />
+        </SeksjonGruppe>
+      )}
       <SeksjonGruppe>
         <NårSøkerDuOvergangsstønadFra
           dinSituasjon={dinSituasjon}
