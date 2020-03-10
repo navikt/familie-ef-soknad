@@ -5,10 +5,7 @@ import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { formatDate } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
-import {
-  hentBeskjedMedNavn,
-  hentBeskjedMedToParametre,
-} from '../../../utils/språk';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
 
 interface Props {
   barn: IBarn;

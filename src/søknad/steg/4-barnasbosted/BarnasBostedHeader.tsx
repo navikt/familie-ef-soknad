@@ -1,5 +1,5 @@
 import React from 'react';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
