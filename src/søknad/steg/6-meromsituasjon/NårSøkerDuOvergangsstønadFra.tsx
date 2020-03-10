@@ -30,7 +30,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
     dato !== null &&
       settDinSituasjon({
         ...dinSituasjon,
-        nyJobbStartsdato: {
+        søknadsdato: {
           label: hentTekst('dinSituasjon.datovelger.overgangsstønad', intl),
           verdi: dato,
         },
@@ -47,7 +47,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
       />
       <StyledDatovelger>
         <Datovelger
-          valgtDato={dinSituasjon.utdanningStartsdato?.verdi}
+          valgtDato={dinSituasjon.søknadsdato.verdi}
           tekstid={'dinSituasjon.datovelger.overgangsstønad'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
           settDato={settSøknadsdato}

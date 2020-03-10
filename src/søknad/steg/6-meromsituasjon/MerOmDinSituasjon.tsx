@@ -22,6 +22,7 @@ import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 import { dagensDato } from '../../../utils/dato';
 import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
+import { erSituasjonIAvhukedeSvar } from './SituasjonUtil';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -30,6 +31,11 @@ const MerOmDinSituasjon: React.FC = () => {
     gjelderDetteDeg: nyttTekstListeFelt,
     søknadsdato: { label: '', verdi: dagensDato },
   });
+  const {
+    gjelderDetteDeg,
+    nyJobbStartsdato,
+    utdanningStartsdato,
+  } = dinSituasjon;
 
   useEffect(() => {
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
@@ -37,22 +43,45 @@ const MerOmDinSituasjon: React.FC = () => {
   }, [dinSituasjon]);
 
   const settDinSituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
-    settDinSituasjon({
-      ...dinSituasjon,
-      [spørsmål.søknadid]: {
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar,
-      },
-    });
+    const dinSituasjonFelt = {
+      label: hentTekst(spørsmål.tekstid, intl),
+      verdi: svar,
+    };
+
+    const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
+      EDinSituasjon.harFåttJobbTilbud,
+      svar,
+      intl
+    );
+    const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
+      EDinSituasjon.skalTaUtdanning,
+      svar,
+      intl
+    );
+
+    if (nyJobbStartsdato || utdanningStartsdato) {
+      const endretSituasjon = dinSituasjon;
+      if (!erFåttJobbTilbudISvar && nyJobbStartsdato) {
+        delete endretSituasjon.nyJobbStartsdato;
+      } else if (!erSkalTaUtdanningISvar && utdanningStartsdato) {
+        delete endretSituasjon.utdanningStartsdato;
+      }
+      settDinSituasjon({
+        ...endretSituasjon,
+        [spørsmål.søknadid]: dinSituasjonFelt,
+      });
+    } else {
+      settDinSituasjon({
+        ...dinSituasjon,
+        [spørsmål.søknadid]: dinSituasjonFelt,
+      });
+    }
   };
 
   const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
-    const tekstid: string = 'dinSituasjon.svar.' + situasjon;
-    const svarTekst: string = intl.formatMessage({ id: tekstid });
-    return dinSituasjon.gjelderDetteDeg.verdi.some(
-      (svarHuketAvISøknad: string) => {
-        return svarHuketAvISøknad === svarTekst;
-      }
+    return (
+      gjelderDetteDeg &&
+      erSituasjonIAvhukedeSvar(situasjon, gjelderDetteDeg.verdi, intl)
     );
   };
 
