@@ -152,17 +152,36 @@ export default {
     'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
     'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
     'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke?',
-    'dinSituasjon.lesmer-innhold.overgangsstønad': 'Lalala',
+    'dinSituasjon.lesmer-innhold.overgangsstønad':
+      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med [måned år]. \n' +
+      +'\n' +
+      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med [måned år].',
     'dinSituasjon.datovelger.overgangsstønad':
       'Jeg søker overgangsstønad fra og med',
     'dinSituasjon.spm.sagtOppEllerRedusertStilling':
       'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
     'sagtOppEllerRedusertStilling.lesmer-åpne': 'Hvorfor spør vi om dette?',
-    'sagtOppEllerRedusertStilling.lesmer-innhold': 'Because ya know',
+    'sagtOppEllerRedusertStilling.lesmer-innhold':
+      'Har du sagt opp jobben uten rimelig grunn, kan du som hovedregel først ha rett til stønaden 6 måneder etter at du sa opp. Det samme gjelder hvis du har redusert arbeidstiden til under 50 prosent.',
+
     'sagtOppEllerRedusertStilling.svar.sagtOpp':
       'Ja, jeg har sagt opp jobben eller tatt frivillig permisjon, men ikke foreldrepermisjon',
-    'sagtOppEllerRedusertStilling.svar.redusertstilling':
+    'sagtOppEllerRedusertStilling.alert.sagtOpp':
+      'Du må legge ved dokumentasjon om arbeidsforholdet og årsaken til at du sluttet',
+    'sagtOppEllerRedusertStilling.fritekst.sagtOpp': 'Hvorfor sa du opp?',
+    'sagtOppEller.datovelger.sagtOpp': 'Når sa du opp?',
+    'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
+      'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+
+    'sagtOppEllerRedusertStilling.svar.redusertStilling':
       'Ja, jeg har redusert arbeidstiden',
+    'sagtOppEllerRedusertStilling.alert.redusertStilling': 'sdlfidfjislds',
+    'sagtOppEllerRedusertStilling.fritekst.redusertStilling':
+      'Hvorfor reduserte du arbeidstiden?',
+    'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
+      'Fra når reduserte du arbeidstiden?',
+    'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
+      'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',

@@ -6,6 +6,8 @@ export interface IDinSituasjon {
   nyJobbStartsdato?: IDatoFelt;
   søknadsdato: IDatoFelt;
   sagtOppEllerRedusertStilling?: ITekstFelt;
+  begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
+  datoSagtOppEllerRedusertStilling?: IDatoFelt;
 }
 
 export enum EDinSituasjon {
@@ -18,7 +20,7 @@ export enum EDinSituasjon {
 }
 
 export enum ESagtOppEllerRedusertStilling {
-  jaHarSagtOppJobben = 'jaHarSagtOppJobben',
-  jaHarRedusertArbeidstiden = 'jaHarRedusertArbeidstiden',
+  sagtOpp = 'sagtOpp',
+  redusertStilling = 'redusertStilling',
   nei = 'nei',
 }

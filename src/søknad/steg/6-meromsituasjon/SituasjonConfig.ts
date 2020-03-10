@@ -45,14 +45,14 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: ESagtOppEllerRedusertStilling.jaHarRedusertArbeidstiden,
+      nøkkel: ESagtOppEllerRedusertStilling.sagtOpp,
       svar_tekstid: 'sagtOppEllerRedusertStilling.svar.sagtOpp',
       alert_tekstid: 'sagtOppEllerRedusertStilling.alert.sagtOpp',
     },
     {
-      nøkkel: ESagtOppEllerRedusertStilling.jaHarSagtOppJobben,
-      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.redusertstilling',
-      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.redusertstilling',
+      nøkkel: ESagtOppEllerRedusertStilling.redusertStilling,
+      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.redusertStilling',
+      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.redusertStilling',
     },
     {
       nøkkel: ESagtOppEllerRedusertStilling.nei,

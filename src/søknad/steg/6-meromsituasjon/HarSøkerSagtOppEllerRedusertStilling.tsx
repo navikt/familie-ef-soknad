@@ -1,10 +1,24 @@
 import React from 'react';
-import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import {
+  ESagtOppEllerRedusertStilling,
+  IDinSituasjon,
+} from '../../../models/steg/dinsituasjon/meromsituasjon';
+import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { hentTekst } from '../../../utils/søknad';
+import { ISpørsmål } from '../../../models/spørsmal';
+import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
+import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
+import subMonths from 'date-fns/subMonths';
+import isAfter from 'date-fns/isAfter';
+import isBefore from 'date-fns/isBefore';
+import { dagensDato } from '../../../utils/dato';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -16,26 +30,157 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   settDinSituasjon,
 }) => {
   const intl = useIntl();
+  const {
+    datoSagtOppEllerRedusertStilling,
+    begrunnelseSagtOppEllerRedusertStilling,
+    sagtOppEllerRedusertStilling,
+  } = dinSituasjon;
 
   const settSagtOppEllerRedusertStilling = (
     spørsmål: ISpørsmål,
     svar: string
   ) => {
+    const valgtSvar = {
+      label: hentTekst(spørsmål.tekstid, intl),
+      verdi: svar,
+    };
+    if (
+      valgtSvarNei &&
+      (datoSagtOppEllerRedusertStilling ||
+        begrunnelseSagtOppEllerRedusertStilling)
+    ) {
+      console.log('Svart Nei og etc eksisterer.');
+      const endretSituasjon = dinSituasjon;
+      delete endretSituasjon.datoSagtOppEllerRedusertStilling;
+      delete endretSituasjon.begrunnelseSagtOppEllerRedusertStilling;
+      settDinSituasjon({
+        ...endretSituasjon,
+        sagtOppEllerRedusertStilling: valgtSvar,
+      });
+    } else {
+      settDinSituasjon({
+        ...dinSituasjon,
+        sagtOppEllerRedusertStilling: valgtSvar,
+      });
+    }
+  };
+
+  const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     settDinSituasjon({
       ...dinSituasjon,
-      sagtOppEllerRedusertStilling: {
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar,
+      begrunnelseSagtOppEllerRedusertStilling: {
+        label: begrunnelseLabel,
+        verdi: e.currentTarget.value,
       },
     });
   };
+
+  const settDato = (dato: Date | null): void => {
+    dato !== null &&
+      settDinSituasjon({
+        ...dinSituasjon,
+        datoSagtOppEllerRedusertStilling: {
+          label: datovelgerLabel,
+          verdi: dato,
+        },
+      });
+  };
+
+  const valgtDatoMindreEnn6mndSiden = (valgtDato: Date) => {
+    const seksMndSidenDato = subMonths(dagensDato, 6);
+    return (
+      isAfter(valgtDato, seksMndSidenDato) && isBefore(valgtDato, dagensDato)
+    );
+  };
+
+  const erSagtOppEllerRedusertStillingValgt = (
+    valgtSvar: ESagtOppEllerRedusertStilling
+  ) => {
+    const tekstid: string = 'sagtOppEllerRedusertStilling.svar.' + valgtSvar;
+    const svarTekst: string = intl.formatMessage({ id: tekstid });
+    return sagtOppEllerRedusertStilling?.verdi === svarTekst;
+  };
+
+  const hentLabelForSagtOppEllerRedusertStilling = (
+    sagtOppLabel: string,
+    redusertStillingLabel: string
+  ) => {
+    if (harSagtOpp) return hentTekst(sagtOppLabel, intl);
+    else if (harRedusertStilling) return hentTekst(redusertStillingLabel, intl);
+    else return '';
+  };
+
+  const harSagtOpp = erSagtOppEllerRedusertStillingValgt(
+    ESagtOppEllerRedusertStilling.sagtOpp
+  );
+  const harRedusertStilling = erSagtOppEllerRedusertStillingValgt(
+    ESagtOppEllerRedusertStilling.redusertStilling
+  );
+  const valgtSvarNei = hentTekst('svar.nei', intl);
+
+  const erValgtDatoMindreEnn6mndSiden =
+    datoSagtOppEllerRedusertStilling &&
+    valgtDatoMindreEnn6mndSiden(datoSagtOppEllerRedusertStilling?.verdi);
+
+  const alertLabel = hentLabelForSagtOppEllerRedusertStilling(
+    'sagtOppEllerRedusertStilling.alert.sagtOpp',
+    'sagtOppEllerRedusertStilling.alert.redusertStilling'
+  );
+  const begrunnelseLabel = hentLabelForSagtOppEllerRedusertStilling(
+    'sagtOppEllerRedusertStilling.fritekst.sagtOpp',
+    'sagtOppEllerRedusertStilling.fritekst.redusertStilling'
+  );
+  const datovelgerLabel = hentLabelForSagtOppEllerRedusertStilling(
+    'sagtOppEllerRedusertStilling.datovelger.sagtOpp',
+    'sagtOppEllerRedusertStilling.datovelger.redusertStilling'
+  );
+
+  const valgtDatoMindreEnn6mndSidenAlert = hentLabelForSagtOppEllerRedusertStilling(
+    'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp',
+    'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling'
+  );
+
   return (
     <>
       <MultiSvarSpørsmål
         spørsmål={SagtOppEllerRedusertStillingSpm}
         settSpørsmålOgSvar={settSagtOppEllerRedusertStilling}
-        valgtSvar={dinSituasjon.sagtOppEllerRedusertStilling?.verdi}
+        valgtSvar={sagtOppEllerRedusertStilling?.verdi}
       />
+      {(harSagtOpp || harRedusertStilling) && (
+        <>
+          <KomponentGruppe>
+            <AlertStripeInfo className={'fjernBakgrunn'}>
+              <LocaleTekst tekst={alertLabel} />
+            </AlertStripeInfo>
+          </KomponentGruppe>
+          <KomponentGruppe>
+            <Textarea
+              label={begrunnelseLabel}
+              value={
+                begrunnelseSagtOppEllerRedusertStilling
+                  ? begrunnelseSagtOppEllerRedusertStilling.verdi
+                  : ''
+              }
+              maxLength={1000}
+              onChange={(e) => settBegrunnelse(e)}
+            />
+          </KomponentGruppe>
+          <KomponentGruppe>
+            <Datovelger
+              valgtDato={datoSagtOppEllerRedusertStilling?.verdi}
+              tekstid={datovelgerLabel}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
+              settDato={settDato}
+            />
+            {erValgtDatoMindreEnn6mndSiden && (
+              <AlertStripeInfo className={'fjernBakgrunn'}>
+                <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
+              </AlertStripeInfo>
+            )}
+          </KomponentGruppe>
+        </>
+      )}
     </>
   );
 };

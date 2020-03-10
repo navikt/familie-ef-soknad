@@ -38,6 +38,8 @@ const norskeOrdMedÆØÅ = [
   'BarnMedSærligeBehov',
   'FåttJobbTilbud',
   'SøkerSkalTaUtdanning',
+  'NårSøkerDuOvergangsstønadFra',
+  'HarSøkerSagtOppEllerRedusertStilling',
 ];
 
 module.exports = {
