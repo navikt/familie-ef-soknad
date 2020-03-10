@@ -22,7 +22,7 @@ const SøkerSkalTaUtdanning: React.FC<Props> = ({
     dato !== null &&
       settDinSituasjon({
         ...dinSituasjon,
-        utdanningStartsdato: {
+        datoOppstartUtdanning: {
           label: hentTekst('dinSituasjon.datovelger.utdanning', intl),
           verdi: dato,
         },
@@ -46,7 +46,7 @@ const SøkerSkalTaUtdanning: React.FC<Props> = ({
         </Normaltekst>
       </AlertStripeInfo>
       <Datovelger
-        valgtDato={dinSituasjon.utdanningStartsdato?.verdi}
+        valgtDato={dinSituasjon.datoOppstartUtdanning?.verdi}
         tekstid={'dinSituasjon.datovelger.utdanning'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
         settDato={settUtdanningStartsdato}

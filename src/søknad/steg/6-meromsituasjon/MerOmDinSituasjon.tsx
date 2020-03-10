@@ -33,8 +33,8 @@ const MerOmDinSituasjon: React.FC = () => {
   });
   const {
     gjelderDetteDeg,
-    nyJobbStartsdato,
-    utdanningStartsdato,
+    datoOppstartJobb,
+    datoOppstartUtdanning,
   } = dinSituasjon;
 
   useEffect(() => {
@@ -59,12 +59,12 @@ const MerOmDinSituasjon: React.FC = () => {
       intl
     );
 
-    if (nyJobbStartsdato || utdanningStartsdato) {
+    if (datoOppstartJobb || datoOppstartUtdanning) {
       const endretSituasjon = dinSituasjon;
-      if (!erFåttJobbTilbudISvar && nyJobbStartsdato) {
-        delete endretSituasjon.nyJobbStartsdato;
-      } else if (!erSkalTaUtdanningISvar && utdanningStartsdato) {
-        delete endretSituasjon.utdanningStartsdato;
+      if (!erFåttJobbTilbudISvar && datoOppstartJobb) {
+        delete endretSituasjon.datoOppstartJobb;
+      } else if (!erSkalTaUtdanningISvar && datoOppstartUtdanning) {
+        delete endretSituasjon.datoOppstartUtdanning;
       }
       settDinSituasjon({
         ...endretSituasjon,

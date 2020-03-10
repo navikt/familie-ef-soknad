@@ -2,8 +2,8 @@ import { IDatoFelt, ITekstFelt, ITekstListeFelt } from '../../søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ITekstListeFelt;
-  utdanningStartsdato?: IDatoFelt;
-  nyJobbStartsdato?: IDatoFelt;
+  datoOppstartJobb?: IDatoFelt;
+  datoOppstartUtdanning?: IDatoFelt;
   søknadsdato: IDatoFelt;
   sagtOppEllerRedusertStilling?: ITekstFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;

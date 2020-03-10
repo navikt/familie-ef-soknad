@@ -19,11 +19,11 @@ const FåttJobbTilbud: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const settNyJobbStartsdato = (dato: Date | null) => {
+  const settDato = (dato: Date | null) => {
     dato !== null &&
       settDinSituasjon({
         ...dinSituasjon,
-        nyJobbStartsdato: {
+        datoOppstartJobb: {
           label: hentTekst('dinSituasjon.datovelger.jobb', intl),
           verdi: dato,
         },
@@ -48,10 +48,10 @@ const FåttJobbTilbud: React.FC<Props> = ({
         </Normaltekst>
       </AlertStripeInfo>
       <Datovelger
-        valgtDato={dinSituasjon.utdanningStartsdato?.verdi}
+        valgtDato={dinSituasjon.datoOppstartUtdanning?.verdi}
         tekstid={'dinSituasjon.datovelger.jobb'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
-        settDato={settNyJobbStartsdato}
+        settDato={settDato}
       />
     </KomponentGruppe>
   );

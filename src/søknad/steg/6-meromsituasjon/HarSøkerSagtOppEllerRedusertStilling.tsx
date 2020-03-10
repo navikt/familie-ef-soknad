@@ -49,7 +49,6 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
       (datoSagtOppEllerRedusertStilling ||
         begrunnelseSagtOppEllerRedusertStilling)
     ) {
-      console.log('Svart Nei og etc eksisterer.');
       const endretSituasjon = dinSituasjon;
       delete endretSituasjon.datoSagtOppEllerRedusertStilling;
       delete endretSituasjon.begrunnelseSagtOppEllerRedusertStilling;
