@@ -116,7 +116,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           </div>
         ) : null}
         <div className="lenke-knapp" onClick={endreInformasjon}>
-          <img src={endre} />
+          <img alt="Endre" src={endre} />
           <Normaltekst>
             {intl.formatMessage({ id: 'barnasbosted.knapp.endre' })}
           </Normaltekst>

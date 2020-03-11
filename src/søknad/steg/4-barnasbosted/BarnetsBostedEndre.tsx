@@ -40,6 +40,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     if (barn.forelder) {
       settForelder(barn.forelder);
     }
+
+    // eslint-disable-next-line
   }, []);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
