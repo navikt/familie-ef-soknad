@@ -13,9 +13,9 @@ import Utdanning from './Utdanning';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import { linjeKursGrad, utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
+import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
 import { useIntl } from 'react-intl';
-import { tomPeriode } from '../../../../utils/søknadsfelter';
+import { lagTomUtdanning } from '../../../../helpers/utdanning';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -26,14 +26,9 @@ const TidligereUtdanning: React.FC<Props> = ({
   settUnderUtdanning,
 }) => {
   const intl = useIntl();
-  const linjeKursGradLabel = hentTekst(linjeKursGrad.label_tekstid, intl);
-  const tomUtdanning: IUtdanning = {
-    linjeKursGrad: { label: linjeKursGradLabel, verdi: '' },
-    periode: tomPeriode,
-  };
 
   const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning[]>([
-    tomUtdanning,
+    lagTomUtdanning(intl),
   ]);
 
   useEffect(() => {
@@ -47,7 +42,7 @@ const TidligereUtdanning: React.FC<Props> = ({
   }, [tidligereUtdanning]);
 
   const leggTilUtdanning = () => {
-    const nyUtdanning: IUtdanning = tomUtdanning;
+    const nyUtdanning: IUtdanning = lagTomUtdanning(intl);
     const allUtdanning: IUtdanning[] = tidligereUtdanning;
     allUtdanning.push(nyUtdanning);
     settUnderUtdanning({ ...underUtdanning, tidligereUtdanning: allUtdanning });
@@ -73,7 +68,7 @@ const TidligereUtdanning: React.FC<Props> = ({
       settUnderUtdanning({
         ...underUtdanning,
         [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
-        tidligereUtdanning: [tomUtdanning],
+        tidligereUtdanning: [lagTomUtdanning(intl)],
       });
     } else {
       underUtdanning &&
@@ -104,7 +99,7 @@ const TidligereUtdanning: React.FC<Props> = ({
           {tidligereUtdanning?.map((utdanning, index) => {
             return (
               <Utdanning
-                key={'utdanning-' + index}
+                key={utdanning.react_key}
                 tidligereUtdanninger={tidligereUtdanning}
                 settTidligereUtdanninger={settTidligereUtdanning}
                 utdanningsnummer={index}

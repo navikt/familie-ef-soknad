@@ -19,6 +19,7 @@ import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import { hentUid } from '../../../../utils/uuid';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,6 +33,7 @@ const UnderUtdanning: React.FC<Props> = ({
   const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
+    react_key: hentUid(),
     skoleUtdanningssted: nyttTekstFelt,
     linjeKursGrad: nyttTekstFelt,
   });

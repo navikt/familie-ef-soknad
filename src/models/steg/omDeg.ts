@@ -20,6 +20,7 @@ export interface IMedlemskap {
 }
 
 export interface IUtenlandsopphold {
+  react_key: string;
   periode: IPeriode;
   begrunnelse: ITekstFelt;
 }

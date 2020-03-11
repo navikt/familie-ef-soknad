@@ -9,6 +9,7 @@ import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
+import { hentUid } from '../../../../utils/uuid';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -16,6 +17,7 @@ interface Props {
 }
 
 const tomArbeidsgiver: IArbeidsgiver = {
+  react_key: hentUid(),
   navn: nyttTekstFelt,
   arbeidsmengde: nyttTekstFelt,
 };
@@ -55,7 +57,7 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
       </KomponentGruppe>
       {arbeidssituasjon.arbeidsforhold?.map((arbeidsgiver, index) => {
         return (
-          <SeksjonGruppe key={index}>
+          <SeksjonGruppe key={arbeidsgiver.react_key}>
             <Arbeidsgiver
               arbeidsforhold={arbeidsforhold}
               settArbeidsforhold={settArbeidsforhold}

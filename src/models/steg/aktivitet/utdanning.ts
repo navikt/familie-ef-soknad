@@ -4,6 +4,7 @@ import { IPeriode } from '../../søknad';
 // --- INTERFACES
 
 export interface IUtdanning {
+  react_key: string;
   linjeKursGrad?: ITekstFelt;
   periode?: IPeriode;
 }
