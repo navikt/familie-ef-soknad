@@ -41,9 +41,21 @@ export const hentSivilstatus = (statuskode: string) => {
 };
 
 export const erValgtSvarLiktSomSvar = (
-  valgtSvar: string,
+  valgtSvar: string | undefined,
   annetSvarTekstid: string,
   intl: IntlShape
 ) => {
   return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
+};
+
+export const hentTekst = (id: string, intl: IntlShape) => {
+  return intl.formatMessage({ id: id });
+};
+
+export const fraStringTilTall = (tallAvTypenStreng: string) => {
+  const parsed = Number.parseInt(tallAvTypenStreng, 10);
+  if (Number.isNaN(parsed)) {
+    return 0;
+  }
+  return parsed;
 };

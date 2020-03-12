@@ -26,6 +26,20 @@ const norskeOrdMedÆØÅ = [
   'StyledCheckboxSpørsmål',
   'StyledMultisvarSpørsmål',
   'StyledJaNeiSpørsmål',
+  'HarSøkerSluttdato',
+  'HvordanPraktiseresSamværet',
+  'BostedOgSamvær',
+  'Arbeidssøker',
+  'NårSkalDuVæreElevEllerStudent',
+  'SøkerSkalJobbeDeltid',
+  'ErUtdanningenPåHeltidEllerDeltid',
+  'SøkerErSyk',
+  'SøktBarnepassOgVenterPåSvar',
+  'BarnMedSærligeBehov',
+  'FåttJobbTilbud',
+  'SøkerSkalTaUtdanning',
+  'NårSøkerDuOvergangsstønadFra',
+  'HarSøkerSagtOppEllerRedusertStilling',
 ];
 
 module.exports = {

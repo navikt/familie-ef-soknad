@@ -5,7 +5,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
-import { ISivilstatus } from '../../../../models/omDeg';
+import { ISivilstatus } from '../../../../models/steg/omDeg';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 
 interface Props {

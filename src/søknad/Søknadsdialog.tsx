@@ -1,24 +1,24 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { Route, Switch } from 'react-router';
+import Aktivitet from './steg/5-aktivitet/Aktivitet';
+import BarnaDine from './steg/3-barnadine/BarnaDine';
+import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
+import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
+import Forside from './forside/Forside';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
-import Forside from './forside/Forside';
-import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
-import Arbeidssituasjon from './steg/5-arbeidssituasjon/Arbeidssituasjon';
-import BarnaDine from './steg/3-barnadine/BarnaDine';
+import MerOmDinSituasjon from './steg/6-meromsituasjon/MerOmDinSituasjon';
 
 const Søknadsdialog: FC = () => {
-  useEffect(() => {
-    // eslint-disable-next-line
-  }, []);
-
   return (
     <>
       <Switch>
         <Route path={'/om-deg'} component={OmDeg} />
         <Route path={'/bosituasjon'} component={Bosituasjon} />
         <Route path={'/barn'} component={BarnaDine} />
-        <Route path={'/arbeidsituasjon'} component={Arbeidssituasjon} />
+        <Route path={'/barnas-bosted'} component={BarnasBosted} />
+        <Route path={'/aktivitet'} component={Aktivitet} />
+        <Route path={'/din-situasjon'} component={MerOmDinSituasjon} />
         <Route path={'/send-soknad'} component={SendSøknad} />
         <Route path={'/'} component={Forside} />
       </Switch>

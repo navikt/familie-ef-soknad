@@ -29,8 +29,9 @@ const BarnaDine: React.FC = () => {
             {intl.formatMessage({ id: 'barnadine.infohentet' })}
           </AlertStripeInfo>
           <div className="barnekort-wrapper">
-            {barna?.map((barn) => (
+            {barna?.map((barn, index) => (
               <Barnekort
+                key={index + barn.fødselsdato}
                 settÅpenModal={settÅpenModal}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}

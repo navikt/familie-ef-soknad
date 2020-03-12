@@ -1,5 +1,5 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from './søknadsfelter';
-import { IPeriode } from './søknad';
+import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../søknadsfelter';
+import { IPeriode } from '../søknad';
 
 export interface ISivilstatus {
   søkerHarSøktSeparasjon?: IBooleanFelt;
@@ -20,6 +20,7 @@ export interface IMedlemskap {
 }
 
 export interface IUtenlandsopphold {
+  react_key: string;
   periode: IPeriode;
   begrunnelse: ITekstFelt;
 }

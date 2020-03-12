@@ -15,7 +15,7 @@ export interface LesMer {
 }
 
 export interface ISpørsmål {
-  spørsmål_id: string;
+  søknadid: string;
   tekstid: string;
   lesmer?: LesMer;
   svaralternativer: ISvar[];
@@ -24,5 +24,11 @@ export interface ISpørsmål {
 export interface ISvar {
   nøkkel?: string;
   svar_tekstid: string;
+  alert_tekstid?: string;
+}
+
+export interface ITekst {
+  nøkkel: string;
+  label_tekstid: string;
   alert_tekstid?: string;
 }

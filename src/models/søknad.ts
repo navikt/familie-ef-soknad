@@ -1,9 +1,10 @@
-import { IArbeidssituasjon } from './arbeidssituasjon';
+import { IAktivitet } from './steg/aktivitet/aktivitet';
 import { IPerson } from './person';
 import { IVedlegg } from './vedlegg';
-import { IMedlemskap, ISivilstatus } from './omDeg';
+import { IMedlemskap, ISivilstatus } from './steg/omDeg';
 import { IBooleanFelt, IDatoFelt } from './søknadsfelter';
-import { IBosituasjon } from './bosituasjon';
+import { IBosituasjon } from './steg/bosituasjon';
+import { IDinSituasjon } from './steg/dinsituasjon/meromsituasjon';
 
 export interface ISøknad {
   bekreftet?: boolean;
@@ -12,7 +13,8 @@ export interface ISøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;
-  arbeidssituasjon: IArbeidssituasjon;
+  aktivitet: IAktivitet;
+  merOmDinSituasjon: IDinSituasjon;
   vedleggsliste: IVedlegg[];
 }
 

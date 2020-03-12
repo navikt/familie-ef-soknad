@@ -8,7 +8,7 @@ import Datovelger, {
 import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
 import { ISpørsmål } from '../../../models/spørsmal';
-import { IBosituasjon } from '../../../models/bosituasjon';
+import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
 
 interface Props {
