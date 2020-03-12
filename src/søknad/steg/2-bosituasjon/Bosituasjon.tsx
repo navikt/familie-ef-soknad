@@ -6,7 +6,7 @@ import OmSamboerenDin from './OmSamboerenDin';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar, hentTekst } from '../../../utils/søknad';
 import {
@@ -87,14 +87,14 @@ const Bosituasjon: FC = () => {
           settSpørsmålOgSvar={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid ? (
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+          <AlertStripe type={'advarsel'} form={'inline'}>
             {valgtSvar.svar_tekstid.split('.')[2] ===
             ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
             ) : (
               <LocaleTekst tekst={valgtSvar.alert_tekstid} />
             )}
-          </AlertStripeAdvarsel>
+          </AlertStripe>
         ) : null}
       </SeksjonGruppe>
 

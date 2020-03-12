@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
@@ -31,7 +31,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
   };
   return (
     <KomponentGruppe>
-      <AlertStripeInfo className={'fjernBakgrunn'}>
+      <AlertStripe type={'info'} form={'inline'}>
         <Element>
           Du må legge ved arbeidskontrakt som viser at du har fått tilbud om
           arbeid.
@@ -46,7 +46,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
             <li>dato du fikk tilbudet</li>
           </ul>
         </Normaltekst>
-      </AlertStripeInfo>
+      </AlertStripe>
       <Datovelger
         valgtDato={dinSituasjon.datoOppstartUtdanning?.verdi}
         tekstid={'dinSituasjon.datovelger.jobb'}
