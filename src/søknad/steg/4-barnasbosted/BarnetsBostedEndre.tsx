@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
@@ -19,15 +19,30 @@ import AnnenForelderKnapper from './AnnenForelderKnapper';
 
 interface Props {
   barn: IBarn;
+  settAktivIndex: Function;
+  aktivIndex: number;
 }
 
-const BarnetsBosted: React.FC<Props> = ({ barn }) => {
+const BarnetsBostedEndre: React.FC<Props> = ({
+  barn,
+  settAktivIndex,
+  aktivIndex,
+}) => {
   const { søknad, settSøknad } = useSøknadContext();
 
   const [forelder, settForelder] = useState<IForelder>({});
+
   const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(
     false
   );
+
+  useEffect(() => {
+    if (barn.forelder) {
+      settForelder(barn.forelder);
+    }
+
+    // eslint-disable-next-line
+  }, []);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
     const nyForelder = { ...forelder, [boddSammenFør.søknadid]: valgtSvar };
@@ -51,6 +66,10 @@ const BarnetsBosted: React.FC<Props> = ({ barn }) => {
     });
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
+
+    const nyIndex = aktivIndex + 1;
+
+    settAktivIndex(nyIndex);
   };
 
   const andreBarnMedForelder = søknad.person.barn.filter((b) => {
@@ -145,4 +164,4 @@ const BarnetsBosted: React.FC<Props> = ({ barn }) => {
   );
 };
 
-export default BarnetsBosted;
+export default BarnetsBostedEndre;
