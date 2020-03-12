@@ -10,7 +10,7 @@ import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import {
   EArbeidssituasjon,
   IAktivitet,
-} from '../../../models/aktivitet/aktivitet';
+} from '../../../models/steg/aktivitet/aktivitet';
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';

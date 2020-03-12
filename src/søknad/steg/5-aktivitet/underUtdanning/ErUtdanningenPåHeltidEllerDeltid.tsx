@@ -5,7 +5,7 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../models/aktivitet/utdanning';
+} from '../../../../models/steg/aktivitet/utdanning';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';

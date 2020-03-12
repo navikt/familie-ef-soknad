@@ -1,4 +1,4 @@
-import { ITekstListeFelt, ITekstFelt } from '../søknadsfelter';
+import { ITekstListeFelt, ITekstFelt } from '../../søknadsfelter';
 import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';

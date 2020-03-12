@@ -10,13 +10,13 @@ import {
   ønskerHalvStillig,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
-import { IAktivitet } from '../../../../models/aktivitet/aktivitet';
-import { IArbeidssøker } from '../../../../models/aktivitet/arbeidssøker';
+import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
+import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

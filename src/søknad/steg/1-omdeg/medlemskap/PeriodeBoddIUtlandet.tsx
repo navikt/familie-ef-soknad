@@ -9,8 +9,9 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
 import { dagensDato } from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
-import { IUtenlandsopphold } from '../../../../models/omDeg';
+import { IUtenlandsopphold } from '../../../../models/steg/omDeg';
 import { hentTekst } from '../../../../utils/søknad';
+import { hentUid } from '../../../../utils/uuid';
 
 const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknadContext();
@@ -18,6 +19,7 @@ const PeriodeBoddIUtlandet: FC = () => {
   const intl = useIntl();
 
   const nyPeriode = {
+    react_key: hentUid(),
     periode: {
       fra: {
         label: hentTekst('periode.fra', intl),
@@ -60,7 +62,7 @@ const PeriodeBoddIUtlandet: FC = () => {
     <>
       {perioderBoddIUtlandet?.map((periode, index) => {
         return (
-          <KomponentGruppe key={index}>
+          <KomponentGruppe key={periode.react_key}>
             <Utenlandsopphold utenlandsopphold={periode} oppholdsnr={index} />
           </KomponentGruppe>
         );

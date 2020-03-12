@@ -1,4 +1,4 @@
-import { IDatoFelt, ITekstFelt } from '../søknadsfelter';
+import { IDatoFelt, ITekstFelt } from '../../søknadsfelter';
 
 export interface IFirma {
   navn?: ITekstFelt;

@@ -4,7 +4,7 @@ import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../models/aktivitet/utdanning';
+} from '../../../../models/steg/aktivitet/utdanning';
 import { Textarea } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';

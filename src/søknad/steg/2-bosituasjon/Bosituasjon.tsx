@@ -9,7 +9,10 @@ import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEller
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar, hentTekst } from '../../../utils/søknad';
-import { ESøkerDelerBolig, IBosituasjon } from '../../../models/bosituasjon';
+import {
+  ESøkerDelerBolig,
+  IBosituasjon,
+} from '../../../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import useSøknadContext from '../../../context/SøknadContext';
 

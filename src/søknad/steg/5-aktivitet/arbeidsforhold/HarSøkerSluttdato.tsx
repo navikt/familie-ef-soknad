@@ -12,7 +12,7 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import {
   EArbeidsgiver,
   IArbeidsgiver,
-} from '../../../../models/aktivitet/arbeidsgiver';
+} from '../../../../models/steg/aktivitet/arbeidsgiver';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;

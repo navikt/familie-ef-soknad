@@ -138,6 +138,51 @@ export default {
     'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
       'Hvem skal du gifte deg med eller bli samboer med?',
 
+    'dinSituasjon.tittel': 'Mer om situasjonen din',
+    'dinSituasjon.spm': 'Gjelder noe av dette deg?',
+    'dinSituasjon.svar.erSyk': 'Jeg er syk',
+    'dinSituasjon.svar.harSyktBarn': 'Barnet mitt er sykt',
+    'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå':
+      'Jeg har søkt om barnepass, men ikke fått plass enda',
+    'dinSituasjon.svar.harBarnMedSærligeBehov':
+      'Jeg har barn som har behov for særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
+    'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
+    'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
+    'dinSituasjon.datovelger.utdanning': 'Når skal du begynne å ta utdanning?',
+    'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
+    'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
+    'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke?',
+    'dinSituasjon.lesmer-innhold.overgangsstønad':
+      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med [måned år]. \n' +
+      +'\n' +
+      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med [måned år].',
+    'dinSituasjon.datovelger.overgangsstønad':
+      'Jeg søker overgangsstønad fra og med',
+    'dinSituasjon.spm.sagtOppEllerRedusertStilling':
+      'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
+    'sagtOppEllerRedusertStilling.lesmer-åpne': 'Hvorfor spør vi om dette?',
+    'sagtOppEllerRedusertStilling.lesmer-innhold':
+      'Har du sagt opp jobben uten rimelig grunn, kan du som hovedregel først ha rett til stønaden 6 måneder etter at du sa opp. Det samme gjelder hvis du har redusert arbeidstiden til under 50 prosent.',
+
+    'sagtOppEllerRedusertStilling.svar.sagtOpp':
+      'Ja, jeg har sagt opp jobben eller tatt frivillig permisjon, men ikke foreldrepermisjon',
+    'sagtOppEllerRedusertStilling.alert.sagtOpp':
+      'Du må legge ved dokumentasjon om arbeidsforholdet og årsaken til at du sluttet',
+    'sagtOppEllerRedusertStilling.fritekst.sagtOpp': 'Hvorfor sa du opp?',
+    'sagtOppEller.datovelger.sagtOpp': 'Når sa du opp?',
+    'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
+      'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+
+    'sagtOppEllerRedusertStilling.svar.redusertStilling':
+      'Ja, jeg har redusert arbeidstiden',
+    'sagtOppEllerRedusertStilling.alert.redusertStilling': 'sdlfidfjislds',
+    'sagtOppEllerRedusertStilling.fritekst.redusertStilling':
+      'Hvorfor reduserte du arbeidstiden?',
+    'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
+      'Fra når reduserte du arbeidstiden?',
+    'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
+      'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',

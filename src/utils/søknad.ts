@@ -51,3 +51,11 @@ export const erValgtSvarLiktSomSvar = (
 export const hentTekst = (id: string, intl: IntlShape) => {
   return intl.formatMessage({ id: id });
 };
+
+export const fraStringTilTall = (tallAvTypenStreng: string) => {
+  const parsed = Number.parseInt(tallAvTypenStreng, 10);
+  if (Number.isNaN(parsed)) {
+    return 0;
+  }
+  return parsed;
+};

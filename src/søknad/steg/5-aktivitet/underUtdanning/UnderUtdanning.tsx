@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { IAktivitet } from '../../../../models/aktivitet/aktivitet';
+import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
   EUtdanning,
   IUnderUtdanning,
-} from '../../../../models/aktivitet/utdanning';
+} from '../../../../models/steg/aktivitet/utdanning';
 import ErUtdanningenOffentligEllerPrivat from './ErUtdanningenOffentligEllerPrivat';
 import ErUtdanningenPåHeltidEllerDeltid from './ErUtdanningenPåHeltidEllerDeltid';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
@@ -19,6 +19,7 @@ import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import { hentUid } from '../../../../utils/uuid';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,6 +33,7 @@ const UnderUtdanning: React.FC<Props> = ({
   const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
+    react_key: hentUid(),
     skoleUtdanningssted: nyttTekstFelt,
     linjeKursGrad: nyttTekstFelt,
   });

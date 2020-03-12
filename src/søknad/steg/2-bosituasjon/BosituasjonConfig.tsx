@@ -1,5 +1,5 @@
 import { ISpørsmål, JaNeiSvar } from '../../../models/spørsmal';
-import { ESøkerDelerBolig } from '../../../models/bosituasjon';
+import { ESøkerDelerBolig } from '../../../models/steg/bosituasjon';
 
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
   søknadid: 'søkerDelerBoligMedAndreVoksne',

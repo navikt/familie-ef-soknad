@@ -6,7 +6,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
-import { IUtenlandsopphold } from '../../../../models/omDeg';
+import { IUtenlandsopphold } from '../../../../models/steg/omDeg';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 

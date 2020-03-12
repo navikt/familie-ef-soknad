@@ -8,7 +8,7 @@ import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
-} from '../../../../models/aktivitet/utdanning';
+} from '../../../../models/steg/aktivitet/utdanning';
 
 export const utdanningDuKanFåStønadTil: LesMer = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',

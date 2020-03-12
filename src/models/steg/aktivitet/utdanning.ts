@@ -1,9 +1,10 @@
-import { IBooleanFelt, ITallFelt, ITekstFelt } from '../søknadsfelter';
-import { IPeriode } from '../søknad';
+import { IBooleanFelt, ITekstFelt } from '../../søknadsfelter';
+import { IPeriode } from '../../søknad';
 
 // --- INTERFACES
 
 export interface IUtdanning {
+  react_key: string;
   linjeKursGrad?: ITekstFelt;
   periode?: IPeriode;
 }
@@ -12,7 +13,7 @@ export interface IUnderUtdanning extends IUtdanning {
   skoleUtdanningssted: ITekstFelt;
   offentligEllerPrivat?: ITekstFelt;
   heltidEllerDeltid?: ITekstFelt;
-  arbeidsmengde?: ITallFelt;
+  arbeidsmengde?: ITekstFelt;
   målMedUtdanning?: ITekstFelt;
   harTattUtdanningEtterGrunnskolen?: IBooleanFelt;
   tidligereUtdanning?: IUtdanning[];

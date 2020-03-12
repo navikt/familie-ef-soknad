@@ -4,7 +4,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
-import { IAktivitet } from '../../../models/aktivitet/aktivitet';
+import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
