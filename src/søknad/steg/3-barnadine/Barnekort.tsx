@@ -106,7 +106,9 @@ const Barnekort: React.FC<Props> = ({
               className="barnekort__endre-barnekort"
               onClick={() => endre(id)}
             >
-              <Normaltekst>Endre</Normaltekst>
+              <Normaltekst>
+                <span className="lenke">Endre</span>
+              </Normaltekst>
             </div>
           ) : null}
           {lagtTil && id ? (
@@ -114,7 +116,9 @@ const Barnekort: React.FC<Props> = ({
               className="barnekort__endre-barnekort"
               onClick={() => fjernFraSøknad(id)}
             >
-              <Normaltekst>Fjern fra søknad</Normaltekst>
+              <Normaltekst>
+                <span className="lenke">Fjern fra søknad</span>
+              </Normaltekst>
             </div>
           ) : null}
         </div>
