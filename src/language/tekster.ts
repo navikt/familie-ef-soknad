@@ -3,6 +3,7 @@ export default {
   nb: {
     'banner.tittel': 'Søknad om overgangsstønad',
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+    'stegtittel.omDeg': 'Om deg',
 
     'arbeidssituasjon.spm': 'Hva er din arbeidsituasjon?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
@@ -224,7 +225,11 @@ export default {
 
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
-    'stegtittel.omDeg': 'Om deg',
+    'personopplysninger.info.endreAdresse':
+      'Skal du ikke endre adresse i Folkeregisteret?',
+    'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
+    'personopplysninger.info.pdfskjema':
+      'Skjemaet kan sendes inn elektronisk eller på papir',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':

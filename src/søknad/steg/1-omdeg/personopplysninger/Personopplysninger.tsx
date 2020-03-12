@@ -14,6 +14,7 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { ISpørsmål } from '../../../../models/spørsmal';
+import Lenke from 'nav-frontend-lenker';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -100,11 +101,36 @@ const Personopplysninger: React.FC = () => {
           }
           onChange={settPersonopplysningerFelt}
         />
-        {søkerBorPåRegistrertAdresse?.verdi === false ? (
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-            <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-          </AlertStripeAdvarsel>
-        ) : null}
+        {søkerBorPåRegistrertAdresse?.verdi === false && (
+          <>
+            <KomponentGruppe>
+              <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+                <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
+              </AlertStripeAdvarsel>
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <FeltGruppe>
+                <Element>
+                  <LocaleTekst tekst={'personopplysninger.info.endreAdresse'} />
+                </Element>
+              </FeltGruppe>
+              <FeltGruppe>
+                <Normaltekst>
+                  <Lenke
+                    href={
+                      'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/dokumentinnsending'
+                    }
+                  >
+                    <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
+                  </Lenke>
+                </Normaltekst>
+              </FeltGruppe>
+              <Normaltekst>
+                <LocaleTekst tekst={'personopplysninger.info.pdfskjema'} />
+              </Normaltekst>
+            </KomponentGruppe>
+          </>
+        )}
       </KomponentGruppe>
 
       {telefonnr === '' ? (
