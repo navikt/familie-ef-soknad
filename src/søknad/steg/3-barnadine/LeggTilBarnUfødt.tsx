@@ -1,6 +1,8 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import DatePicker from 'react-datepicker';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
 import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
@@ -20,17 +22,12 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe>
-        <Normaltekst>Termindato</Normaltekst>
-        <div className="barn-datovelger">
-          <div className={'datepicker__container'}>
-            <DatePicker
-              onChange={(e) => settDato(e)}
-              selected={barnDato}
-              dateFormat={'dd.MM.yyyy'}
-              className={'datovelger__input'}
-            />
-          </div>
-        </div>
+        <Datovelger
+          settDato={(e) => settDato(e)}
+          valgtDato={barnDato}
+          tekstid={'datovelger.fødselsdato'}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
+        />
       </KomponentGruppe>
 
       <KomponentGruppe>

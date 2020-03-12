@@ -71,6 +71,7 @@ export default {
     'datovelger.periode.likeDatoer':
       'Valgte datoer for perioden kan ikke være like',
     'datovelger.fødselsdato': 'Fødselsdato',
+    'datovelger.termindato': 'Termindato',
     'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
