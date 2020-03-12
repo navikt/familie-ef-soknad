@@ -4,15 +4,13 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
-
 import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål } from '../../../../models/spørsmal';
 
 const Personopplysninger: React.FC = () => {
@@ -63,9 +61,9 @@ const Personopplysninger: React.FC = () => {
     <SeksjonGruppe>
       <KomponentGruppe>
         <FeltGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
+          <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
-          </AlertStripeInfo>
+          </AlertStripe>
         </FeltGruppe>
 
         <FeltGruppe>
@@ -101,9 +99,9 @@ const Personopplysninger: React.FC = () => {
           onChange={settPersonopplysningerFelt}
         />
         {søkerBorPåRegistrertAdresse?.verdi === false ? (
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+          <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-          </AlertStripeAdvarsel>
+          </AlertStripe>
         ) : null}
       </KomponentGruppe>
 

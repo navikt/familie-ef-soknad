@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
@@ -29,9 +29,9 @@ const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato }) => {
         datobegrensning={DatoBegrensning.TidligereDatoer}
       />
       <FeltGruppe>
-        <AlertStripeInfo className={'fjernBakgrunn'}>
+        <AlertStripe type={'info'} form={'inline'}>
           <LocaleTekst tekst={'sivilstatus.somgift'} />
-        </AlertStripeInfo>
+        </AlertStripe>
       </FeltGruppe>
     </KomponentGruppe>
   );

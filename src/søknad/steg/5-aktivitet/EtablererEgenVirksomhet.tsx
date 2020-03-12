@@ -2,7 +2,7 @@ import React from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { ISpørsmål } from '../../../models/spørsmal';
@@ -54,9 +54,9 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
         onChange={(e) => settTekstfelt(e)}
       />
 
-      <AlertStripeInfo className="fjernBakgrunn">
+      <AlertStripe type={'info'} form={'inline'}>
         <LocaleTekst tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'} />
-      </AlertStripeInfo>
+      </AlertStripe>
     </SeksjonGruppe>
   );
 };

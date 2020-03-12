@@ -1,12 +1,12 @@
 import React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 const BarnMedSærligeBehov: React.FC = () => {
   return (
     <KomponentGruppe>
-      <AlertStripeInfo className={'fjernBakgrunn'}>
+      <AlertStripe type={'info'} form={'inline'}>
         <Normaltekst>
           Du må legge ved dokumentasjon på barnets tilsynsbehov
         </Normaltekst>
@@ -24,7 +24,7 @@ const BarnMedSærligeBehov: React.FC = () => {
             </li>
           </ul>
         </Normaltekst>
-      </AlertStripeInfo>
+      </AlertStripe>
     </KomponentGruppe>
   );
 };
