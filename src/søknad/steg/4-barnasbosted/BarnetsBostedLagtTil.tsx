@@ -5,6 +5,7 @@ import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { formatDate } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
+import LenkeMedIkon from './LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 
 interface Props {
@@ -115,12 +116,11 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>{forelder.borISammeHus}</Normaltekst>
           </div>
         ) : null}
-        <div className="lenke-knapp" onClick={endreInformasjon}>
-          <img alt="Endre" src={endre} />
-          <Normaltekst>
-            {intl.formatMessage({ id: 'barnasbosted.knapp.endre' })}
-          </Normaltekst>
-        </div>
+        <LenkeMedIkon
+          onClick={endreInformasjon}
+          tekst_id="barnasbosted.knapp.endre"
+          ikon={endre}
+        />
       </div>
     </div>
   );
