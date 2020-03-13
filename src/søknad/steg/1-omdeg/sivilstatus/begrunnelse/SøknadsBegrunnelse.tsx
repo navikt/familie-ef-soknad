@@ -125,7 +125,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
         </>
       ) : null}
 
-      {samlivsbruddMedForelder || samlivsbruddAndre ? (
+      {samlivsbruddAndre ? (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}
