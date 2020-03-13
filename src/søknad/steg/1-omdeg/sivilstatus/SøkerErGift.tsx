@@ -5,8 +5,8 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
-import { ISivilstatus } from '../../../../models/steg/omDeg';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
+import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, svar: boolean) => void;
@@ -35,13 +35,15 @@ const SøkerErGift: React.FC<Props> = ({
       </KomponentGruppe>
       {søkerHarSøktSeparasjon?.verdi ? (
         <SøkerHarSøktSeparasjon settDato={settDato} />
-      ) : !søkerHarSøktSeparasjon?.verdi ? (
-        <KomponentGruppe>
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-            <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-          </AlertStripeAdvarsel>
-        </KomponentGruppe>
-      ) : null}
+      ) : (
+        søkerHarSøktSeparasjon?.verdi === false && (
+          <KomponentGruppe>
+            <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+              <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
+            </AlertStripeAdvarsel>
+          </KomponentGruppe>
+        )
+      )}
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -7,15 +7,15 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentSivilstatus } from '../../../../utils/søknad';
+import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import { ISivilstatus } from '../../../../models/steg/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,
   søkerGiftIUtlandetSpørsmål,
 } from './SivilstatusConfig';
 import { useIntl } from 'react-intl';
+import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -25,6 +25,7 @@ const Sivilstatus: React.FC = () => {
   const {
     søkerHarSøktSeparasjon,
     datoSøktSeparasjon,
+    datoFlyttetFraHverandre,
     søkerSeparertEllerSkiltIUtlandet,
     søkerGiftIUtlandet,
   } = sivilstatus;
@@ -36,15 +37,27 @@ const Sivilstatus: React.FC = () => {
   const erSøkerSeparert = sivilstand === 'SEPA';
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+    const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
+    const nySivilstatus = {
+      ...sivilstatus,
+      [spørsmål.søknadid]: {
+        label: spørsmålLabel,
+        verdi: svar,
+      },
+    };
+    if (
+      spørsmål.søknadid === 'søkerHarSøktSeparasjon' &&
+      søkerHarSøktSeparasjon?.verdi === false &&
+      datoFlyttetFraHverandre &&
+      datoSøktSeparasjon
+    ) {
+      delete nySivilstatus.datoSøktSeparasjon;
+      delete nySivilstatus.datoFlyttetFraHverandre;
+    }
+
     settSøknad({
       ...søknad,
-      sivilstatus: {
-        ...sivilstatus,
-        [spørsmål.søknadid]: {
-          label: intl.formatMessage({ id: spørsmål.tekstid }),
-          verdi: svar,
-        },
-      },
+      sivilstatus: nySivilstatus,
     });
   };
 
@@ -73,22 +86,6 @@ const Sivilstatus: React.FC = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const resetDatoSøktSeparasjon = () => {
-      const { datoSøktSeparasjon, ...nyttObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nyttObjekt });
-    };
-    !søkerHarSøktSeparasjon?.verdi &&
-      datoSøktSeparasjon !== undefined &&
-      resetDatoSøktSeparasjon();
-  }, [
-    datoSøktSeparasjon,
-    settSøknad,
-    sivilstatus,
-    søkerHarSøktSeparasjon,
-    søknad,
-  ]);
 
   return (
     <SeksjonGruppe>
