@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -20,8 +20,10 @@ import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
+  const sivilstand = person.søker.sivilstand;
+
   const { søknad, settSøknad } = useSøknadContext();
-  const { sivilstatus } = søknad;
+  const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
     søkerHarSøktSeparasjon,
     datoSøktSeparasjon,
@@ -29,7 +31,11 @@ const Sivilstatus: React.FC = () => {
     søkerSeparertEllerSkiltIUtlandet,
     søkerGiftIUtlandet,
   } = sivilstatus;
-  const sivilstand = person.søker.sivilstand;
+
+  useEffect(() => {
+    settSøknad({ ...søknad, sivilstatus: sivilstatus });
+    // eslint-disable-next-line
+  }, [sivilstatus]);
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
@@ -55,10 +61,7 @@ const Sivilstatus: React.FC = () => {
       delete nySivilstatus.datoFlyttetFraHverandre;
     }
 
-    settSøknad({
-      ...søknad,
-      sivilstatus: nySivilstatus,
-    });
+    settSivilstatus(nySivilstatus);
   };
 
   const settDato = (
@@ -67,14 +70,11 @@ const Sivilstatus: React.FC = () => {
     tekstid: string
   ): void => {
     date !== null &&
-      settSøknad({
-        ...søknad,
-        sivilstatus: {
-          ...sivilstatus,
-          [objektnøkkel]: {
-            label: intl.formatMessage({ id: tekstid }),
-            verdi: date,
-          },
+      settSivilstatus({
+        ...sivilstatus,
+        [objektnøkkel]: {
+          label: intl.formatMessage({ id: tekstid }),
+          verdi: date,
         },
       });
   };
@@ -133,7 +133,11 @@ const Sivilstatus: React.FC = () => {
         søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
       erSøkerEnke ? (
-        <Søknadsbegrunnelse settDato={settDato} />
+        <Søknadsbegrunnelse
+          sivilstatus={sivilstatus}
+          settSivilstatus={settSivilstatus}
+          settDato={settDato}
+        />
       ) : null}
     </SeksjonGruppe>
   );

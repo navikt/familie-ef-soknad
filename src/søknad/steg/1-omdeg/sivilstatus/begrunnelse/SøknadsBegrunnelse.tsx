@@ -12,17 +12,22 @@ import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../../../models/spørsmal';
 import { hentTekst } from '../../../../../utils/søknad';
+import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
 
 interface Props {
+  sivilstatus: ISivilstatus;
+  settSivilstatus: (sivilstatus: ISivilstatus) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
 }
 
-const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
+const Søknadsbegrunnelse: FC<Props> = ({
+  sivilstatus,
+  settSivilstatus,
+  settDato,
+}) => {
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
 
-  const { søknad, settSøknad } = useSøknadContext();
-  const { sivilstatus } = søknad;
   const {
     begrunnelseForSøknad,
     datoForSamlivsbrudd,
@@ -57,33 +62,27 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
   ): void => {
     begrunnelseForSøknad &&
       annet &&
-      settSøknad({
-        ...søknad,
-        sivilstatus: {
-          ...sivilstatus,
-          begrunnelseAnnet: {
-            label: intl.formatMessage({ id: spørsmål.tekstid }),
-            verdi: e.target.value,
-          },
+      settSivilstatus({
+        ...sivilstatus,
+        begrunnelseAnnet: {
+          label: intl.formatMessage({ id: spørsmål.tekstid }),
+          verdi: e.target.value,
         },
       });
   };
 
   const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: string) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
-    settSøknad({
-      ...søknad,
-      sivilstatus: {
-        ...sivilstatus,
-        begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
-      },
+    settSivilstatus({
+      ...sivilstatus,
+      begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
     });
   };
 
   const fjernIrrelevanteSøknadsfelter = () => {
     if (!samlivsbruddMedForelder && datoForSamlivsbrudd) {
       const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
 
     if (
@@ -92,12 +91,12 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
       !samlivsbruddMedForelder
     ) {
       const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
 
     if (!endretSamvær && datoEndretSamvær) {
       const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
   };
 
