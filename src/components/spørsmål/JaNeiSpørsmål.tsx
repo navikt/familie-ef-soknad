@@ -4,7 +4,7 @@ import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import FeltGruppe from '../gruppe/FeltGruppe';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components';
@@ -91,9 +91,9 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
       </div>
       {harAlert ? (
         <FeltGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
+          <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={valgtSvarAlertTekst} />
-          </AlertStripeInfo>
+          </AlertStripe>
         </FeltGruppe>
       ) : null}
     </StyledJaNeiSpørsmål>

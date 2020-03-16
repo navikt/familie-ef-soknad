@@ -5,7 +5,7 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
@@ -149,9 +149,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
       {(harSagtOpp || harRedusertStilling) && (
         <>
           <KomponentGruppe>
-            <AlertStripeInfo className={'fjernBakgrunn'}>
+            <AlertStripe type={'info'} form={'inline'}>
               <LocaleTekst tekst={alertLabel} />
-            </AlertStripeInfo>
+            </AlertStripe>
           </KomponentGruppe>
           <KomponentGruppe>
             <Textarea
@@ -173,9 +173,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
               settDato={settDato}
             />
             {erValgtDatoMindreEnn6mndSiden && (
-              <AlertStripeInfo className={'fjernBakgrunn'}>
+              <AlertStripe type={'info'} form={'inline'}>
                 <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-              </AlertStripeInfo>
+              </AlertStripe>
             )}
           </KomponentGruppe>
         </>

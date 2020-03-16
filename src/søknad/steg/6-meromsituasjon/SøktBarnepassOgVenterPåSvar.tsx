@@ -1,12 +1,12 @@
 import React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 const SøktBarnepassOgVenterPåSvar: React.FC = () => {
   return (
     <KomponentGruppe>
-      <AlertStripeInfo className={'fjernBakgrunn'}>
+      <AlertStripe type={'info'} form={'inline'}>
         <Normaltekst>
           Du må legge ved dokumentasjon på at du mangler barnepass. Det vil si
           avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står
@@ -20,7 +20,7 @@ const SøktBarnepassOgVenterPåSvar: React.FC = () => {
             <li>datoen du ønsket plass fra</li>
           </ul>
         </Normaltekst>
-      </AlertStripeInfo>
+      </AlertStripe>
     </KomponentGruppe>
   );
 };

@@ -198,6 +198,7 @@ export default {
 
     'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
       'Deler du bolig med andre voksne?',
+
     'bosituasjon.svar.borAleneMedBarnEllerGravid':
       'Nei, jeg bor alene med barn eller jeg er gravid og bor alene',
     'bosituasjon.svar.borMidlertidigFraHverandre':
@@ -214,6 +215,7 @@ export default {
       'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
     'bosituasjon.svar.delerBoligMedAndreVoksne':
       'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn, søsken eller egne foreldre',
+
     'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':
       'Nei, men en tidligere samboer er fortsatt registrert på adressen min',
     'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
