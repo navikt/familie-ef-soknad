@@ -1,7 +1,7 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
@@ -37,9 +37,9 @@ const SøkerErGift: React.FC<Props> = ({
         <SøkerHarSøktSeparasjon settDato={settDato} />
       ) : !søkerHarSøktSeparasjon?.verdi ? (
         <KomponentGruppe>
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+          <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-          </AlertStripeAdvarsel>
+          </AlertStripe>
         </KomponentGruppe>
       ) : null}
     </>

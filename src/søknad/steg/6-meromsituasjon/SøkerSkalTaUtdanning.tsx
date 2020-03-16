@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
@@ -31,7 +31,7 @@ const SøkerSkalTaUtdanning: React.FC<Props> = ({
 
   return (
     <KomponentGruppe>
-      <AlertStripeInfo className={'fjernBakgrunn'}>
+      <AlertStripe type={'info'} form={'inline'}>
         <Element>Du må legge ved dokumentasjon på ??</Element>
         <br />
         <Normaltekst>
@@ -44,7 +44,7 @@ const SøkerSkalTaUtdanning: React.FC<Props> = ({
             <li>dato du fikk tilbudet</li>
           </ul>
         </Normaltekst>
-      </AlertStripeInfo>
+      </AlertStripe>
       <Datovelger
         valgtDato={dinSituasjon.datoOppstartUtdanning?.verdi}
         tekstid={'dinSituasjon.datovelger.utdanning'}
