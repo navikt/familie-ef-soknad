@@ -11,16 +11,16 @@ import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, svar: boolean) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
-  sivilstatusObjekt: ISivilstatus;
+  sivilstatus: ISivilstatus;
 }
 
 const SøkerErGift: React.FC<Props> = ({
   settJaNeiFelt,
   settDato,
-  sivilstatusObjekt,
+  sivilstatus,
 }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const { søkerHarSøktSeparasjon } = sivilstatusObjekt;
+  const { søkerHarSøktSeparasjon } = sivilstatus;
 
   return (
     <>
@@ -34,12 +34,12 @@ const SøkerErGift: React.FC<Props> = ({
         />
       </KomponentGruppe>
       {søkerHarSøktSeparasjon?.verdi ? (
-        <SøkerHarSøktSeparasjon settDato={settDato} />
+        <SøkerHarSøktSeparasjon sivilstatus={sivilstatus} settDato={settDato} />
       ) : (
         søkerHarSøktSeparasjon?.verdi === false && (
           <KomponentGruppe>
             <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-              <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
+              <LocaleTekst tekst={'sivilstatus.alert.søktSeparasjon'} />
             </AlertStripeAdvarsel>
           </KomponentGruppe>
         )

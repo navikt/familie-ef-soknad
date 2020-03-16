@@ -164,7 +164,6 @@ export default {
     'sagtOppEllerRedusertStilling.lesmer-åpne': 'Hvorfor spør vi om dette?',
     'sagtOppEllerRedusertStilling.lesmer-innhold':
       'Har du sagt opp jobben uten rimelig grunn, kan du som hovedregel først ha rett til stønaden 6 måneder etter at du sa opp. Det samme gjelder hvis du har redusert arbeidstiden til under 50 prosent.',
-
     'sagtOppEllerRedusertStilling.svar.sagtOpp':
       'Ja, jeg har sagt opp jobben eller tatt frivillig permisjon, men ikke foreldrepermisjon',
     'sagtOppEllerRedusertStilling.alert.sagtOpp':
@@ -173,7 +172,6 @@ export default {
     'sagtOppEller.datovelger.sagtOpp': 'Når sa du opp?',
     'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
       'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-
     'sagtOppEllerRedusertStilling.svar.redusertStilling':
       'Ja, jeg har redusert arbeidstiden',
     'sagtOppEllerRedusertStilling.alert.redusertStilling': 'sdlfidfjislds',
@@ -201,21 +199,6 @@ export default {
     'knapp.avbryt': 'Avbryt',
     'knapp.start': 'Start søknad',
 
-    'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
-    'medlemskap.hjelpetekst.bosatt.apne':
-      'Hva vil det si å være bosatt i Norge?',
-    'medlemskap.hjelpetekst.bosatt.innhold':
-      'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
-    'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
-    'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
-    'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsopphold',
-    'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
-    'medlemskap.periodeBoddIUtlandet.begrunnelse':
-      'Hvorfor bodde du i utlandet?',
-    'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
-      'Har du hatt flere utenlandsopphold de siste 3 årene?',
-    'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
-
     'periode.fra': 'Fra',
     'periode.til': 'Til',
     'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
@@ -238,44 +221,65 @@ export default {
     'personopplysninger.telefonnr': 'Telefonnummer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
 
-    'side.bekreftelse':
-      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
-    'side.info.overgangsstønad':
-      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-
-    'sivilstatus.somgift':
+    'sivilstatus.tittel': 'Sivilstatus',
+    'sivilstatus.alert.somgift':
       'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
-    'sivilstatus.begrunnelse.endring':
+    'sivilstatus.datovelger.endretSamvær':
       'Når skjedde endringen/ når skal endringen skje?',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
+    'sivilstatus.datovelger.separasjon': 'Når søkte dere separasjon?',
+    'sivilstatus.spm.søktSeparasjon': 'Har dere søkt separasjon?',
+    'sivilstatus.alert.søktSeparasjon':
       'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
+
     'sivilstatus.spm.søkerGiftIUtlandet':
-      'Er du gift i utlandet eller etter utenlandske tradisjoner i Norge?',
-    'sivilstatus.dok.søkerGiftIUtlandet':
+      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+    'sivilstatus.alert.søkerGiftIUtlandet':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
-    'sivilstatus.lesmer-innhold.søkerGiftIUtlandet': 'Let me tell you why',
+    'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
+      'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
     'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet':
       'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
-    'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet':
+    'sivilstatus.alert.søkerSeparertEllerSkiltIUtlandet':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
-    'sivilstatus.spm.begrunnelse':
-      'Hva er grunnen til at du er alene med barn?',
-    'sivilstatus.sporsmål.datoForSamlivsbrudd': 'Dato for samlivsbrudd',
-    'sivilstatus.sporsmal.datoFlyttetFraHverandre':
-      'Når flyttet dere fra hverandre?',
+
     'sivilstatus.svar.samlivsbruddForeldre':
       'Samlivsbrudd fra den andre forelderen',
     'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd fra noen andre',
     'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
     'sivilstatus.svar.endringISamværsordning':
-      'Endring i samværsordning, aktivitet eller inntekt',
+      'Endring i samværsordningsordning',
+    'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
     'sivilstatus.svar.annet': 'Annet',
-    'sivilstatus.tittel': 'Sivilstatus',
+    'sivilstatus.datovelger.samlivsbrudd': 'Dato for samlivsbrudd',
+    'sivilstatus.datovelger.flyttetFraHverandre':
+      'Når flyttet dere fra hverandre?',
+    'sivilstatus.alert.dødsfall':
+      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle">gjenlevende</a> og  <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon">barnepensjon</a>. ',
+    'sivilstatus.spm.begrunnelse':
+      'Hva er årsaken til at du er alene med barn?',
+
+    'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
+    'medlemskap.hjelpetekst.bosatt.apne':
+      'Hva vil det si å være bosatt i Norge?',
+    'medlemskap.hjelpetekst.bosatt.innhold':
+      'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
+    'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+    'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+    'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsopphold',
+    'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.begrunnelse':
+      'Hvorfor bodde du i utlandet?',
+    'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
+      'Har du hatt flere utenlandsopphold de siste 3 årene?',
+    'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+
+    'side.bekreftelse':
+      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
+    'side.info.overgangsstønad':
+      'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -385,18 +389,7 @@ export default {
       'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.alert.samlivsbrudd':
-      'Du må legge ved erklæring om samlivsbrudd',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Sivilstatus',
+
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
@@ -497,16 +490,7 @@ export default {
       'I, [0], swear to give as much as possible correct information.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'as married you must have applied for separation in order to have access to overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Relationship status',
+
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',

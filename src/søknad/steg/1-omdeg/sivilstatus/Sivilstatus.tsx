@@ -99,7 +99,7 @@ const Sivilstatus: React.FC = () => {
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}
           settDato={settDato}
-          sivilstatusObjekt={sivilstatus}
+          sivilstatus={sivilstatus}
         />
       ) : erSøkerUgift ? (
         <>

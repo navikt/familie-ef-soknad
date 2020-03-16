@@ -6,13 +6,13 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
-import useSøknadContext from '../../../../../context/SøknadContext';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../../../models/spørsmal';
 import { hentTekst } from '../../../../../utils/søknad';
 import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -50,11 +50,13 @@ const Søknadsbegrunnelse: FC<Props> = ({
   const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
   const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
   const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
+  const dødsfallTekstid = hentTekstid('dødsfall');
   const annetSvarTekstid = hentTekstid('annet');
 
   const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
   const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
   const endretSamvær = erBegrunnelse(endringIsamværsordningTekstid);
+  const dødsfall = erBegrunnelse(dødsfallTekstid);
   const annet = erBegrunnelse(annetSvarTekstid);
 
   const settTekstfeltBegrunnelseAnnet = (
@@ -115,30 +117,38 @@ const Søknadsbegrunnelse: FC<Props> = ({
         />
       </KomponentGruppe>
 
-      {samlivsbruddMedForelder ? (
+      {samlivsbruddMedForelder && (
         <>
           <DatoForSamlivsbrudd
             settDato={settDato}
             datoForSamlivsbrudd={datoForSamlivsbrudd}
           />
         </>
-      ) : null}
+      )}
 
-      {samlivsbruddAndre ? (
+      {samlivsbruddAndre && (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}
         />
-      ) : null}
+      )}
 
-      {endretSamvær ? (
+      {endretSamvær && (
         <EndringISamvær
           settDato={settDato}
           datoEndretSamvær={datoEndretSamvær}
         />
-      ) : null}
+      )}
 
-      {annet ? (
+      {dødsfall && (
+        <KomponentGruppe>
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <FormattedHTMLMessage id={'sivilstatus.alert.dødsfall'} />
+          </AlertStripeInfo>
+        </KomponentGruppe>
+      )}
+
+      {annet && (
         <KomponentGruppe>
           <Textarea
             label={intl.formatMessage({
@@ -149,7 +159,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             onChange={(e) => settTekstfeltBegrunnelseAnnet(e)}
           />
         </KomponentGruppe>
-      ) : null}
+      )}
     </SeksjonGruppe>
   );
 };
