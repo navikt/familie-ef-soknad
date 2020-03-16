@@ -2,7 +2,7 @@ import React from 'react';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknadsfelter';
@@ -33,9 +33,9 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
           tekstid={'sivilstatus.datovelger.samlivsbrudd'}
           datobegrensning={DatoBegrensning.AlleDatoer}
         />
-        <AlertStripeInfo className={'fjernBakgrunn'}>
+        <AlertStripe type={'info'} form={'inline'}>
           <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
-        </AlertStripeInfo>
+        </AlertStripe>
       </KomponentGruppe>
     </>
   );
