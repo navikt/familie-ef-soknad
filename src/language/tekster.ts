@@ -285,10 +285,13 @@ export default {
     'filopplaster.feilmelding.maks':
       '[0] er for stor (maksimal filstørrelse er [1]).',
     'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
-
+    'barnekort.termindato': 'TERMINDATO',
+    'barnekort.fødselsdato': 'FØDSELSDATO',
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
+    'barnekort.lenke.endre': 'Endre',
+    'barnekort.normaltekst.barn': 'Barn',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
 

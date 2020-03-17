@@ -63,7 +63,11 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Element>{ufødt ? 'Barn' : navn}</Element>
+          <Element>
+            {ufødt
+              ? intl.formatMessage({ id: 'barnekort.normaltekst.barn' })
+              : navn}
+          </Element>
           <div className="informasjonselement">
             {fnr ? (
               <>
@@ -75,7 +79,9 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {ufødt ? 'TERMINDATO' : 'FØDSELSDATO'}
+                  {ufødt
+                    ? intl.formatMessage({ id: 'barnekort.termindato' })
+                    : intl.formatMessage({ id: 'barnekort.fødselsdato' })}
                 </Normaltekst>
                 <Normaltekst>{fødselsdato}</Normaltekst>
               </>
@@ -99,7 +105,9 @@ const Barnekort: React.FC<Props> = ({
               onClick={() => settÅpenEndreModal(true)}
             >
               <Normaltekst>
-                <span className="lenke">Endre</span>
+                <span className="lenke">
+                  {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
+                </span>
               </Normaltekst>
             </div>
           ) : null}
