@@ -1,27 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
+import {
+  formatDate,
+  formatDateFnr,
+  dagensDato,
+  parseDate,
+} from '../../../utils/dato';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-const uuidv4 = require('uuid/v4');
+import { hentUid } from '../../../utils/uuid';
 
 interface Props {
   settÅpenModal: Function;
+  id?: string;
 }
 
-const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
+const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [barnDato, settBarnDato] = useState<Date>(dagensDato);
   const [født, settBarnFødt] = useState('');
-  const [navn, settNavn] = useState('Barn');
+  const [navn, settNavn] = useState('');
   const [personnummer, settPersonnummer] = useState('');
   const [boHosDeg, settBoHosDeg] = useState('');
+
+  useEffect(() => {
+    if (id) {
+      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+
+      settNavn(detteBarnet?.navn ? detteBarnet.navn : '');
+      settPersonnummer(
+        detteBarnet?.personnummer ? detteBarnet.personnummer : ''
+      );
+      settBarnFødt(detteBarnet?.ufødt ? 'nei' : 'ja');
+      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
+      settDato(
+        detteBarnet?.fødselsdato
+          ? parseDate(detteBarnet.fødselsdato)
+          : dagensDato
+      );
+
+      const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+    }
+  }, []);
 
   const settDato = (date: Date | null): void => {
     date !== null && settBarnDato(date);
@@ -37,12 +63,12 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
 
   const tilbakestillFelt = () => {
     settBarnDato(dagensDato);
-    settNavn('Barn');
+    settNavn('');
     settPersonnummer('');
     settBoHosDeg('');
   };
 
-  const leggTilBarn = () => {
+  const leggTilBarn = (id: string | undefined) => {
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
@@ -55,10 +81,13 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
       harSammeAdresse: boHosDeg === 'ja',
       ufødt: født === 'nei',
       lagtTil: true,
-      id: uuidv4(),
+      id: hentUid(),
     };
 
-    const nyBarneListe = [...søknad.person.barn, barn];
+    const nyBarneListe = [
+      ...søknad.person.barn.filter((b) => b.id !== id),
+      barn,
+    ];
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
 
@@ -99,6 +128,8 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
       </KomponentGruppe>
       {født === 'ja' ? (
         <LeggTilBarnFødt
+          navn={navn}
+          personnummer={personnummer}
           settNavn={settNavn}
           settPersonnummer={settPersonnummer}
           settBo={settBo}
@@ -114,7 +145,10 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
           barnDato={barnDato}
         />
       ) : null}
-      <Hovedknapp className="legg-til-barn__knapp" onClick={leggTilBarn}>
+      <Hovedknapp
+        className="legg-til-barn__knapp"
+        onClick={() => leggTilBarn(id)}
+      >
         Legg til barn
       </Hovedknapp>
     </Seksjonsgruppe>

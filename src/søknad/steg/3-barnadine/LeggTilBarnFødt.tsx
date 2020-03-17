@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Datovelger, {
   DatoBegrensning,
@@ -8,6 +8,8 @@ import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
+  navn?: string;
+  personnummer?: string;
   settNavn: Function;
   settPersonnummer: Function;
   settBo: Function;
@@ -17,6 +19,8 @@ interface Props {
 }
 
 const LeggTilBarnFødt: React.FC<Props> = ({
+  navn,
+  personnummer,
   settNavn,
   settPersonnummer,
   settBo,
@@ -24,11 +28,14 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  useEffect(() => {}, [navn]);
+
   return (
     <>
       <KomponentGruppe>
         <Input
           onChange={(e) => settNavn(e.target.value)}
+          value={navn}
           label="Barnets fulle navn, om dette er bestemt"
         />
       </KomponentGruppe>
@@ -45,6 +52,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
           </div>
           <Input
             className="personnummer"
+            value={personnummer}
             onChange={(e) => settPersonnummer(e.target.value)}
             label="Personnummer. Kun hvis barnet har fått."
           />

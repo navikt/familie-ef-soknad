@@ -18,7 +18,7 @@ interface Props {
   harSammeAdresse: boolean;
   lagtTil: boolean;
   ufødt: boolean;
-  id?: string;
+  id: string;
   settÅpenModal: Function;
 }
 
@@ -56,14 +56,6 @@ const Barnekort: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
   };
 
-  const endre = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
-
-    settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
-
-    settÅpenModal(true);
-  };
-
   return (
     <div className="barnekort">
       <div className="barnekort__header">
@@ -71,7 +63,7 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Element>{navn}</Element>
+          <Element>{ufødt ? 'Barn' : navn}</Element>
           <div className="informasjonselement">
             {fnr ? (
               <>
@@ -101,17 +93,17 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
-          {lagtTil && id ? (
+          {lagtTil ? (
             <div
               className="barnekort__endre-barnekort"
-              onClick={() => endre(id)}
+              onClick={() => settÅpenEndreModal(true)}
             >
               <Normaltekst>
                 <span className="lenke">Endre</span>
               </Normaltekst>
             </div>
           ) : null}
-          {lagtTil && id ? (
+          {lagtTil ? (
             <div
               className="barnekort__endre-barnekort"
               onClick={() => fjernFraSøknad(id)}
@@ -129,7 +121,7 @@ const Barnekort: React.FC<Props> = ({
           contentLabel="Halla"
         >
           <div style={{ padding: '2rem 2.5rem' }}>
-            <LeggTilBarn settÅpenModal={settÅpenEndreModal} />
+            <LeggTilBarn settÅpenModal={settÅpenEndreModal} id={id} />
           </div>
         </Modal>
       </div>
