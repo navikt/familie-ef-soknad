@@ -40,25 +40,21 @@ const SendSøknad = () => {
   };
   return (
     <>
-      <Side tittel={'Oppsummering'}>
-        {søknad.sivilstatus.begrunnelseForSøknad &&
-        (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-          tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
-          søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-            tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
-          <Filopplaster
-            tittel={'Erklæring om samlivsbrudd'}
-            dokumentasjonsType={'samlivsbrudd'}
-          />
-        ) : null}
-        <Normaltekst>
-          Ingenting vil skje om du trykker på denne knappen.
-        </Normaltekst>
-        <Hovedknapp onClick={send} spinner={hocState.venter}>
-          Send Søknad
-        </Hovedknapp>
-        <Normaltekst>Status: {hocState.status}</Normaltekst>
-      </Side>
+      {søknad.sivilstatus.begrunnelseForSøknad &&
+      (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+        tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
+        søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+          tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
+        <Filopplaster
+          tittel={'Erklæring om samlivsbrudd'}
+          dokumentasjonsType={'samlivsbrudd'}
+        />
+      ) : null}
+
+      <Hovedknapp onClick={send} spinner={hocState.venter}>
+        Send Søknad
+      </Hovedknapp>
+      <Normaltekst>Status: {hocState.status}</Normaltekst>
     </>
   );
 };

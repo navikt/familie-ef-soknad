@@ -6,20 +6,20 @@ import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import Forside from './forside/Forside';
 import OmDeg from './steg/1-omdeg/OmDeg';
-import SendSøknad from './SendSøknad';
 import MerOmDinSituasjon from './steg/6-meromsituasjon/MerOmDinSituasjon';
+import LastOppDokumentasjon from './steg/8-dokumentasjon/LastOppDokumentasjon';
 
 const Søknadsdialog: FC = () => {
   return (
     <>
       <Switch>
-        <Route path={'/om-deg'} component={OmDeg} />
-        <Route path={'/bosituasjon'} component={Bosituasjon} />
-        <Route path={'/barn'} component={BarnaDine} />
-        <Route path={'/barnas-bosted'} component={BarnasBosted} />
-        <Route path={'/aktivitet'} component={Aktivitet} />
+        <Route path={'/dokumentasjon'} component={LastOppDokumentasjon} />
         <Route path={'/din-situasjon'} component={MerOmDinSituasjon} />
-        <Route path={'/send-soknad'} component={SendSøknad} />
+        <Route path={'/aktivitet'} component={Aktivitet} />
+        <Route path={'/barnas-bosted'} component={BarnasBosted} />
+        <Route path={'/barn'} component={BarnaDine} />
+        <Route path={'/bosituasjon'} component={Bosituasjon} />
+        <Route path={'/om-deg'} component={OmDeg} />
         <Route path={'/'} component={Forside} />
       </Switch>
     </>

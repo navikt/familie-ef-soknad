@@ -358,6 +358,8 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
+
+    'dokumentasjon.tittel': 'Last opp dokumentasjon',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

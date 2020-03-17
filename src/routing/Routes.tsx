@@ -16,5 +16,5 @@ export const Routes: IRoute[] = [
     label: 'Arbeid, utdanning og andre aktiviteter',
   },
   { path: '/din-situasjon', label: 'Din situasjon' },
-  { path: '/send-soknad', label: 'Send søknad' },
+  { path: '/dokumentasjon', label: 'Last opp dokumentasjon' },
 ];
