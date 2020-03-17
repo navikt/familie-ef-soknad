@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Datovelger, {
   DatoBegrensning,
@@ -28,8 +28,6 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
-  useEffect(() => {}, [navn]);
-
   return (
     <>
       <KomponentGruppe>

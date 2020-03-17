@@ -44,9 +44,8 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
           ? parseDate(detteBarnet.fødselsdato)
           : dagensDato
       );
-
-      const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
     }
+    // eslint-disable-next-line
   }, []);
 
   const settDato = (date: Date | null): void => {
