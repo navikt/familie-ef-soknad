@@ -42,7 +42,7 @@ const App = () => {
           });
         });
       };
-      fetchPersonData();
+      // fetchPersonData();
       settFetching(false);
     };
     fetchData();

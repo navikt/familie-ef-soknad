@@ -124,11 +124,11 @@ export default {
       '<br/><br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
       ' <li> Informasjon om hvor den tidligere samboeren bor nå </li>' +
-      '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
+      '<li>Dokumentasjonsbehov som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
       '<li>Husleiekontrakt for begge parter</li>' +
-      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Dokumentasjonsbehov på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
       '<li>Bekreftelse fra nøytral tredjepart, for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
-      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li>' +
+      '<li>Dokumentasjonsbehov på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li>' +
       '</ul>',
     'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
       'Har du konkrete planer om å gifte deg eller bli samboer?',
@@ -360,6 +360,16 @@ export default {
     'barnasbosted.knapp.endre': 'Endre informasjon',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
+    'dokumentasjon.beskrivelse':
+      'For at vi skal kunne behandle søknaden din så raskt som mulig, må du laste opp dokumentasjon som bekrefter opplysningene i søknaden.\n' +
+      'Ps! Du kan bruke bilder som vedlegg til søknaden. <br/><br/>' +
+      'Slik gjør du det:\n<br/>' +
+      '<ol><li>Ta bilde av dokumentet med smarttelefonen eller nettbrettet\n</li>' +
+      '<li>Sjekk at dokumentet er lett å lese\n</li>' +
+      '<li>Last opp bildene her</li></ol>',
+    'dokumentasjon.checkbox.sendtTidligere':
+      'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
+    'dokumentasjon.': '',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
