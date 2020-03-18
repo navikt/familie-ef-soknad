@@ -1,3 +1,12 @@
+import { IDokumentasjon } from './dokumentasjon';
+
+export interface ISøknadFelt {
+  søknadsid: string;
+  label: string;
+  tekstid: string;
+  dokumentasjon?: IDokumentasjon;
+}
+
 export interface ITekstFelt {
   label: string;
   verdi: string;

@@ -8,7 +8,7 @@ import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,

@@ -18,8 +18,3 @@ export interface ISøknad {
   merOmDinSituasjon: IDinSituasjon;
   vedleggsliste: IVedlegg[];
 }
-
-export interface IPeriode {
-  fra: IDatoFelt;
-  til: IDatoFelt;
-}

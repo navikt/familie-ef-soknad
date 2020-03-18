@@ -5,7 +5,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';

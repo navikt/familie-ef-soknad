@@ -1,7 +1,7 @@
 import React, { FC, SyntheticEvent } from 'react';
-import { ISpørsmål } from '../../models/spørsmal';
+import { ISpørsmål } from '../../models/spørsmålogsvar';
 import Hjelpetekst from '../Hjelpetekst';
-import { ISvar } from '../../models/spørsmal';
+import { ISvar } from '../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';

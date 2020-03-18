@@ -1,4 +1,4 @@
-import { ISpørsmål, JaNeiSvar } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
@@ -6,6 +6,7 @@ import {
   EHvorMyeSammen,
   ESkalBarnBoHosDeg,
 } from '../../../models/steg/barnasbosted';
+import { JaNeiSvar } from '../../../helpers/standardSvar';
 
 export const borINorge: ISpørsmål = {
   søknadid: 'borINorge',

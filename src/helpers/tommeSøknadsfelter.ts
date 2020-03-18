@@ -1,7 +1,7 @@
-import { IPeriode } from '../models/søknad';
 import { subDays } from 'date-fns';
-import { dagensDato } from './dato';
+import { dagensDato } from '../utils/dato';
 import { ITekstFelt, ITekstListeFelt } from '../models/søknadsfelter';
+import { IPeriode } from '../models/periode';
 
 export const tomPeriode: IPeriode = {
   fra: {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 import mockPerson from '../mock/person.json';
-import { nyttTekstListeFelt } from '../utils/søknadsfelter';
+import { nyttTekstListeFelt } from '../helpers/tommeSøknadsfelter';
 import { dagensDato } from '../utils/dato';
 
 // -----------  CONTEXT  -----------

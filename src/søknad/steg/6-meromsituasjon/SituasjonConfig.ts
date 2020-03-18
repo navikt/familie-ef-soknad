@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   EDinSituasjon,
   ESagtOppEllerRedusertStilling,

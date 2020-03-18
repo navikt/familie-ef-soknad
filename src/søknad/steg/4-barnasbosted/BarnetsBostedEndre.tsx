@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { IForelder, IBarn } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';

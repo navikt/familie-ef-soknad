@@ -1,4 +1,5 @@
-import { ISpørsmål, ESvar, JaNeiSvar } from '../../../../models/spørsmal';
+import { ISpørsmål, ESvar } from '../../../../models/spørsmålogsvar';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',

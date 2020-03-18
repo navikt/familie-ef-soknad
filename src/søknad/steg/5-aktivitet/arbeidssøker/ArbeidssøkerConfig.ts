@@ -1,8 +1,9 @@
-import { ESvar, ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
+import { ESvar, ISpørsmål } from '../../../../models/spørsmålogsvar';
 import {
   EArbeidssted,
   EArbeidssøker,
 } from '../../../../models/steg/aktivitet/arbeidssøker';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
 
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,

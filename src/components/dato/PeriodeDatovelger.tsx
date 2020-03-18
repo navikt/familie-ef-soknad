@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
-import { IPeriode } from '../../models/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
@@ -9,6 +8,7 @@ import Feilmelding from '../feil/Feilmelding';
 import { dagensDato } from '../../utils/dato';
 import subDays from 'date-fns/subDays';
 import { compareAsc, isEqual } from 'date-fns';
+import { IPeriode } from '../../models/periode';
 
 interface Props {
   tekstid: string;

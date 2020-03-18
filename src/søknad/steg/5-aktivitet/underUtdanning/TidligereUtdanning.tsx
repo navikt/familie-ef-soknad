@@ -12,7 +12,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
 import { useIntl } from 'react-intl';
 import { lagTomUtdanning } from '../../../../helpers/utdanning';
@@ -99,7 +99,7 @@ const TidligereUtdanning: React.FC<Props> = ({
           {tidligereUtdanning?.map((utdanning, index) => {
             return (
               <Utdanning
-                key={utdanning.react_key}
+                key={utdanning.id}
                 tidligereUtdanninger={tidligereUtdanning}
                 settTidligereUtdanninger={settTidligereUtdanning}
                 utdanningsnummer={index}

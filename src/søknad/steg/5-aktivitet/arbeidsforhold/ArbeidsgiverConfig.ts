@@ -1,8 +1,9 @@
-import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import {
   EArbeidsgiver,
   EStilling,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
 
 export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.fastStilling,

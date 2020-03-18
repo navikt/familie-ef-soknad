@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,

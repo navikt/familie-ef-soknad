@@ -14,9 +14,9 @@ import {
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
+import { nyttTekstListeFelt } from '../../../helpers/tommeSøknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
 
 const Aktivitet: React.FC = () => {

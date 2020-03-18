@@ -1,16 +1,13 @@
-import {
-  ISpørsmål,
-  ITekst,
-  JaNeiSvar,
-  LesMer,
-} from '../../../../models/spørsmal';
+import { ISpørsmål, ITekst } from '../../../../models/spørsmålogsvar';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
 } from '../../../../models/steg/aktivitet/utdanning';
+import { IHjelpetekst } from '../../../../models/hjelpetekst';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
 
-export const utdanningDuKanFåStønadTil: LesMer = {
+export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad',
   lukkeTekstid: '',

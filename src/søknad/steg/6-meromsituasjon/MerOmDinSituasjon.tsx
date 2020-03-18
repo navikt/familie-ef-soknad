@@ -9,10 +9,10 @@ import {
   EDinSituasjon,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
+import { nyttTekstListeFelt } from '../../../helpers/tommeSøknadsfelter';
 import SøkerErSyk from './SøkerErSyk';
 import SyktBarn from './SyktBarn';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';

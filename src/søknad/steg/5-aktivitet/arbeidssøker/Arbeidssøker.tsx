@@ -11,7 +11,7 @@ import {
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';

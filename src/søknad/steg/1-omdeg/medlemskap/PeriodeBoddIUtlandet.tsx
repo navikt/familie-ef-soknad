@@ -19,7 +19,7 @@ const PeriodeBoddIUtlandet: FC = () => {
   const intl = useIntl();
 
   const nyPeriode = {
-    react_key: hentUid(),
+    id: hentUid(),
     periode: {
       fra: {
         label: hentTekst('periode.fra', intl),
@@ -62,7 +62,7 @@ const PeriodeBoddIUtlandet: FC = () => {
     <>
       {perioderBoddIUtlandet?.map((periode, index) => {
         return (
-          <KomponentGruppe key={periode.react_key}>
+          <KomponentGruppe key={periode.id}>
             <Utenlandsopphold utenlandsopphold={periode} oppholdsnr={index} />
           </KomponentGruppe>
         );

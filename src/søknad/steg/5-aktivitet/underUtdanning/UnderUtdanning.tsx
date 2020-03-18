@@ -15,7 +15,7 @@ import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
 import TidligereUtdanning from './TidligereUtdanning';
 import { erValgtSvarLiktSomSvar } from '../../../../utils/søknad';
-import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
+import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
@@ -33,7 +33,7 @@ const UnderUtdanning: React.FC<Props> = ({
   const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
-    react_key: hentUid(),
+    id: hentUid(),
     skoleUtdanningssted: nyttTekstFelt,
     linjeKursGrad: nyttTekstFelt,
   });

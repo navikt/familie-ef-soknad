@@ -1,4 +1,5 @@
-import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 
 export const borDuPåDenneAdressen: ISpørsmål = {
   søknadid: 'søkerBorPåRegistrertAdresse',
