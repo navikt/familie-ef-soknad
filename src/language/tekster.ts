@@ -363,6 +363,8 @@ export default {
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
     'oppsummering.sidetittel': 'Oppsummering',
+    'oppsummering.normaltekst.lesgjennom':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
