@@ -18,7 +18,7 @@ interface Props {
   harSammeAdresse: boolean;
   lagtTil: boolean;
   ufødt: boolean;
-  id?: string;
+  id: string;
   settÅpenModal: Function;
 }
 
@@ -56,14 +56,6 @@ const Barnekort: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
   };
 
-  const endre = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
-
-    settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
-
-    settÅpenModal(true);
-  };
-
   return (
     <div className="barnekort">
       <div className="barnekort__header">
@@ -71,7 +63,11 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Element>{navn}</Element>
+          <Element>
+            {ufødt
+              ? intl.formatMessage({ id: 'barnekort.normaltekst.barn' })
+              : navn}
+          </Element>
           <div className="informasjonselement">
             {fnr ? (
               <>
@@ -83,7 +79,9 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {ufødt ? 'TERMINDATO' : 'FØDSELSDATO'}
+                  {ufødt
+                    ? intl.formatMessage({ id: 'barnekort.termindato' })
+                    : intl.formatMessage({ id: 'barnekort.fødselsdato' })}
                 </Normaltekst>
                 <Normaltekst>{fødselsdato}</Normaltekst>
               </>
@@ -101,20 +99,26 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
-          {lagtTil && id ? (
+          {lagtTil ? (
             <div
               className="barnekort__endre-barnekort"
-              onClick={() => endre(id)}
+              onClick={() => settÅpenEndreModal(true)}
             >
-              <Normaltekst>Endre</Normaltekst>
+              <Normaltekst>
+                <span className="lenke">
+                  {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
+                </span>
+              </Normaltekst>
             </div>
           ) : null}
-          {lagtTil && id ? (
+          {lagtTil ? (
             <div
               className="barnekort__endre-barnekort"
               onClick={() => fjernFraSøknad(id)}
             >
-              <Normaltekst>Fjern fra søknad</Normaltekst>
+              <Normaltekst>
+                <span className="lenke">Fjern fra søknad</span>
+              </Normaltekst>
             </div>
           ) : null}
         </div>
@@ -125,7 +129,7 @@ const Barnekort: React.FC<Props> = ({
           contentLabel="Halla"
         >
           <div style={{ padding: '2rem 2.5rem' }}>
-            <LeggTilBarn settÅpenModal={settÅpenEndreModal} />
+            <LeggTilBarn settÅpenModal={settÅpenEndreModal} id={id} />
           </div>
         </Modal>
       </div>
