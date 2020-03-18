@@ -4,7 +4,6 @@
   grid-template-rows: repeat(5, auto);
   grid-template-areas:
     "stegindikator stegindikator stegindikator"
-    "tilbake . ."
     "tittel tittel tittel"
     "innhold innhold innhold"
     "knapper knapper knapper";
@@ -43,8 +42,27 @@
     justify-self: center;
     flex-direction: column;
 
+    display: grid;
+    grid-template-columns: repeat(2, min-content);
+    grid-template-rows: repeat(2, min-content);
+    grid-template-areas:
+      "tilbake neste"
+      "avbryt avbryt";
+    grid-gap: 1rem;
+
     .hideButton {
       display: none;
+    }
+
+    .tilbake {
+      grid-area: tilbake;
+    }
+
+    .neste {
+      grid-area: neste;
+    }
+    .avbryt {
+      grid-area: avbryt;
     }
   }
 }
