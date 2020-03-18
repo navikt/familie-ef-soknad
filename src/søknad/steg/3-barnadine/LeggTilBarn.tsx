@@ -1,34 +1,56 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
-import { RadioPanel } from 'nav-frontend-skjema';
-import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import {
+  formatDate,
+  formatDateFnr,
+  dagensDato,
+  parseDate,
+} from '../../../utils/dato';
+import { barnetFødt } from './BarneConfig';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-const uuidv4 = require('uuid/v4');
+import { hentUid } from '../../../utils/uuid';
 
 interface Props {
   settÅpenModal: Function;
+  id?: string;
 }
 
-const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
+const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const { søknad, settSøknad } = useSøknadContext();
   const [barnDato, settBarnDato] = useState<Date>(dagensDato);
-  const [født, settBarnFødt] = useState('');
-  const [navn, settNavn] = useState('Barn');
+  const [født, settBarnFødt] = useState();
+  const [navn, settNavn] = useState('');
   const [personnummer, settPersonnummer] = useState('');
   const [boHosDeg, settBoHosDeg] = useState('');
 
+  useEffect(() => {
+    if (id) {
+      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+
+      settNavn(detteBarnet?.navn ? detteBarnet.navn : '');
+      settPersonnummer(
+        detteBarnet?.personnummer ? detteBarnet.personnummer : ''
+      );
+      settBarnFødt(!detteBarnet?.ufødt);
+      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
+      settDato(
+        detteBarnet?.fødselsdato
+          ? parseDate(detteBarnet.fødselsdato)
+          : dagensDato
+      );
+    }
+    // eslint-disable-next-line
+  }, []);
+
   const settDato = (date: Date | null): void => {
     date !== null && settBarnDato(date);
-  };
-
-  const settFødt = (event: any) => {
-    settBarnFødt(event.target.value);
   };
 
   const settBo = (event: any) => {
@@ -37,12 +59,12 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
 
   const tilbakestillFelt = () => {
     settBarnDato(dagensDato);
-    settNavn('Barn');
+    settNavn('');
     settPersonnummer('');
     settBoHosDeg('');
   };
 
-  const leggTilBarn = () => {
+  const leggTilBarn = (id: string | undefined) => {
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
@@ -53,12 +75,15 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
       navn: navn,
       fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === 'ja',
-      ufødt: født === 'nei',
+      ufødt: !født,
       lagtTil: true,
-      id: uuidv4(),
+      id: hentUid(),
     };
 
-    const nyBarneListe = [...søknad.person.barn, barn];
+    const nyBarneListe = [
+      ...søknad.person.barn.filter((b) => b.id !== id),
+      barn,
+    ];
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
 
@@ -70,35 +95,22 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
       <Undertittel>Legg til barn</Undertittel>
 
       <KomponentGruppe>
-        <Element>Er barnet født?</Element>
-
         <div className="radiogruppe-2-svar">
-          <RadioPanel
-            key={'ja'}
-            name={'radio-født'}
-            label="Ja"
-            value={'ja'}
-            checked={født === 'ja'}
-            onChange={(e) => {
+          <JaNeiSpørsmål
+            spørsmål={barnetFødt}
+            onChange={(_, svar) => {
+              console.log(svar);
               tilbakestillFelt();
-              settFødt(e);
+              settBarnFødt(svar);
             }}
-          />
-          <RadioPanel
-            key={'nei'}
-            name={'radio-født'}
-            label="Nei"
-            value={'nei'}
-            checked={født === 'nei'}
-            onChange={(e) => {
-              tilbakestillFelt();
-              settFødt(e);
-            }}
+            valgtSvar={født}
           />
         </div>
       </KomponentGruppe>
-      {født === 'ja' ? (
+      {født === true ? (
         <LeggTilBarnFødt
+          navn={navn}
+          personnummer={personnummer}
           settNavn={settNavn}
           settPersonnummer={settPersonnummer}
           settBo={settBo}
@@ -106,7 +118,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
           settDato={settDato}
           barnDato={barnDato}
         />
-      ) : født === 'nei' ? (
+      ) : født === false ? (
         <LeggTilBarnUfødt
           settBo={settBo}
           boHosDeg={boHosDeg}
@@ -114,7 +126,10 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal }) => {
           barnDato={barnDato}
         />
       ) : null}
-      <Hovedknapp className="legg-til-barn__knapp" onClick={leggTilBarn}>
+      <Hovedknapp
+        className="legg-til-barn__knapp"
+        onClick={() => leggTilBarn(id)}
+      >
         Legg til barn
       </Hovedknapp>
     </Seksjonsgruppe>
