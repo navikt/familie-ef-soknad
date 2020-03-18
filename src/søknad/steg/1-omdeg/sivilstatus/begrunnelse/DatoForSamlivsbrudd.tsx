@@ -24,13 +24,13 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
             settDato(
               e,
               'datoForSamlivsbrudd',
-              'sivilstatus.sporsmål.datoForSamlivsbrudd'
+              'sivilstatus.datovelger.samlivsbrudd'
             )
           }
           valgtDato={
             datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
           }
-          tekstid={'sivilstatus.sporsmål.datoForSamlivsbrudd'}
+          tekstid={'sivilstatus.datovelger.samlivsbrudd'}
           datobegrensning={DatoBegrensning.AlleDatoer}
         />
         <AlertStripe type={'info'} form={'inline'}>
