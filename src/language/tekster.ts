@@ -294,6 +294,7 @@ export default {
     'barnekort.normaltekst.barn': 'Barn',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'barnekort.født': 'Er barnet født?',
 
     'barnadine.sidetittel': 'Barna dine',
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',

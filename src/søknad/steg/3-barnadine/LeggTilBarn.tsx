@@ -3,7 +3,6 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
-import { RadioPanel } from 'nav-frontend-skjema';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import {
   formatDate,
@@ -54,10 +53,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     date !== null && settBarnDato(date);
   };
 
-  const settFødt = (event: any) => {
-    settBarnFødt(event.target.value);
-  };
-
   const settBo = (event: any) => {
     settBoHosDeg(event.target.value);
   };
@@ -100,8 +95,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       <Undertittel>Legg til barn</Undertittel>
 
       <KomponentGruppe>
-        <Element>Er barnet født?</Element>
-
         <div className="radiogruppe-2-svar">
           <JaNeiSpørsmål
             spørsmål={barnetFødt}
