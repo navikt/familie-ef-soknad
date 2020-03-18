@@ -362,6 +362,7 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
+    'oppsummering.sidetittel': 'Oppsummering',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

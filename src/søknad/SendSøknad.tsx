@@ -40,7 +40,7 @@ const SendSøknad = () => {
   };
   return (
     <>
-      <Side tittel={'Oppsummering'}>
+      <Side tittel={'Takk for søknaden'}>
         {søknad.sivilstatus.begrunnelseForSøknad &&
         (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
           tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
