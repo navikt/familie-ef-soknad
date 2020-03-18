@@ -4,10 +4,7 @@ import { useIntl } from 'react-intl';
 import { IBarn } from '../../../models/person';
 import { skalBarnBoHosDeg } from './ForeldreConfig';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import {
-  AlertStripeAdvarsel,
-  AlertStripeInfo,
-} from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
@@ -29,9 +26,9 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
     <>
       {!barn.harSammeAdresse ? (
         <KomponentGruppe>
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
+          <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
-          </AlertStripeAdvarsel>
+          </AlertStripe>
           <MultiSvarSpørsmål
             key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
@@ -45,9 +42,9 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
       {forelder.skalBarnBoHosDeg ===
       intl.formatMessage({ id: 'barnasbosted.spm.jaMenSamarbeiderIkke' }) ? (
         <FeltGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
+          <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
-          </AlertStripeInfo>
+          </AlertStripe>
           <FeltGruppe>
             <Normaltekst className="innskutt">
               Familievernkontoret kan også hjelpe deg

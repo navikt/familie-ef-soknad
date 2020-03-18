@@ -39,20 +39,20 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
   søknadid: 'sagtOppEllerRedusertStilling',
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
   lesmer: {
-    åpneTekstid: 'sagtOppEllerRedusertStilling.lesmer-åpne',
-    innholdTekstid: 'sagtOppEllerRedusertStilling.lesmer-innhold',
+    åpneTekstid: 'dinSituasjon.lesmer-åpne',
+    innholdTekstid: 'dinSituasjon.lesmer-innhold',
     lukkeTekstid: '',
   },
   svaralternativer: [
     {
       nøkkel: ESagtOppEllerRedusertStilling.sagtOpp,
-      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.sagtOpp',
-      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.sagtOpp',
+      svar_tekstid: 'dinSituasjon.svar.sagtOpp',
+      alert_tekstid: 'dinSituasjon.alert.sagtOpp',
     },
     {
       nøkkel: ESagtOppEllerRedusertStilling.redusertStilling,
-      svar_tekstid: 'sagtOppEllerRedusertStilling.svar.redusertStilling',
-      alert_tekstid: 'sagtOppEllerRedusertStilling.alert.redusertStilling',
+      svar_tekstid: 'dinSituasjon.svar.redusertStilling',
+      alert_tekstid: 'dinSituasjon.alert.redusertStilling',
     },
     {
       nøkkel: ESagtOppEllerRedusertStilling.nei,

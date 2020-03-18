@@ -13,7 +13,7 @@ import {
 } from './ForeldreConfig';
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål } from '../../../models/spørsmal';
 
 interface Props {
@@ -143,11 +143,11 @@ const BostedOgSamvær: React.FC<Props> = ({
           {forelder.harDereSkriftligSamværsavtale &&
           visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
             <FeltGruppe>
-              <AlertStripeInfo className={'fjernBakgrunn'}>
+              <AlertStripe type={'info'} form={'inline'}>
                 <LocaleTekst
                   tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                 />
-              </AlertStripeInfo>
+              </AlertStripe>
             </FeltGruppe>
           ) : null}
         </KomponentGruppe>

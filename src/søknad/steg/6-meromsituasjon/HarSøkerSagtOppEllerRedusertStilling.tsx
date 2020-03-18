@@ -5,7 +5,7 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål } from '../../../models/spørsmal';
 import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
@@ -95,7 +95,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   const erSagtOppEllerRedusertStillingValgt = (
     valgtSvar: ESagtOppEllerRedusertStilling
   ) => {
-    const tekstid: string = 'sagtOppEllerRedusertStilling.svar.' + valgtSvar;
+    const tekstid: string = 'dinSituasjon.svar.' + valgtSvar;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return sagtOppEllerRedusertStilling?.verdi === svarTekst;
   };
@@ -122,12 +122,12 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
     valgtDatoMindreEnn6mndSiden(datoSagtOppEllerRedusertStilling?.verdi);
 
   const alertLabel = hentLabelForSagtOppEllerRedusertStilling(
-    'sagtOppEllerRedusertStilling.alert.sagtOpp',
-    'sagtOppEllerRedusertStilling.alert.redusertStilling'
+    'dinSituasjon.alert.sagtOpp',
+    'dinSituasjon.alert.redusertStilling'
   );
   const begrunnelseLabel = hentLabelForSagtOppEllerRedusertStilling(
-    'sagtOppEllerRedusertStilling.fritekst.sagtOpp',
-    'sagtOppEllerRedusertStilling.fritekst.redusertStilling'
+    'dinSituasjon.fritekst.sagtOpp',
+    'dinSituasjon.fritekst.redusertStilling'
   );
   const datovelgerLabel = hentLabelForSagtOppEllerRedusertStilling(
     'sagtOppEllerRedusertStilling.datovelger.sagtOpp',
@@ -149,9 +149,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
       {(harSagtOpp || harRedusertStilling) && (
         <>
           <KomponentGruppe>
-            <AlertStripeInfo className={'fjernBakgrunn'}>
+            <AlertStripe type={'info'} form={'inline'}>
               <LocaleTekst tekst={alertLabel} />
-            </AlertStripeInfo>
+            </AlertStripe>
           </KomponentGruppe>
           <KomponentGruppe>
             <Textarea
@@ -173,9 +173,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
               settDato={settDato}
             />
             {erValgtDatoMindreEnn6mndSiden && (
-              <AlertStripeInfo className={'fjernBakgrunn'}>
+              <AlertStripe type={'info'} form={'inline'}>
                 <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-              </AlertStripeInfo>
+              </AlertStripe>
             )}
           </KomponentGruppe>
         </>

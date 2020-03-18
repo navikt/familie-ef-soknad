@@ -1,7 +1,6 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import classNames from 'classnames';
-import TilbakeKnapp from '../knapper/TilbakeKnapp';
 import Banner from '../Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
@@ -32,7 +31,7 @@ const Side: React.FC<ISide> = ({ tittel, children }) => {
   );
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
-  const knappStyling = classNames({
+  const nesteKnappStyling = classNames('neste', {
     hideButton: nesteRoute === undefined,
   });
   return (
@@ -44,7 +43,6 @@ const Side: React.FC<ISide> = ({ tittel, children }) => {
           aktivtSteg={aktivtSteg}
           steg={stegobjekter}
         />
-        <TilbakeKnapp path={forrigeRoute.path} />
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>
@@ -52,21 +50,27 @@ const Side: React.FC<ISide> = ({ tittel, children }) => {
           </main>
         </Panel>
         <div className={'side__knapper'}>
-          <>
-            <KnappBase
-              type={'hoved'}
-              onClick={() => history.push(nesteRoute.path)}
-              className={knappStyling}
-            >
-              <LocaleTekst tekst={'knapp.neste'} />
-            </KnappBase>
-            <KnappBase
-              type={'flat'}
-              onClick={() => history.push(Routes[0].path)}
-            >
-              <LocaleTekst tekst={'knapp.avbryt'} />
-            </KnappBase>
-          </>
+          <KnappBase
+            className={'tilbake'}
+            type={'standard'}
+            onClick={() => history.push(forrigeRoute.path)}
+          >
+            <LocaleTekst tekst={'knapp.tilbake'} />
+          </KnappBase>
+          <KnappBase
+            type={'hoved'}
+            onClick={() => history.push(nesteRoute.path)}
+            className={nesteKnappStyling}
+          >
+            <LocaleTekst tekst={'knapp.neste'} />
+          </KnappBase>
+          <KnappBase
+            className={'avbryt'}
+            type={'flat'}
+            onClick={() => history.push(Routes[0].path)}
+          >
+            <LocaleTekst tekst={'knapp.avbryt'} />
+          </KnappBase>
         </div>
       </div>
     </div>
