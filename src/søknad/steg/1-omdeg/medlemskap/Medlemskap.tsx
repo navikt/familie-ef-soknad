@@ -9,8 +9,8 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { IMedlemskap } from '../../../../models/steg/omDeg';
 import { useIntl } from 'react-intl';
+import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();

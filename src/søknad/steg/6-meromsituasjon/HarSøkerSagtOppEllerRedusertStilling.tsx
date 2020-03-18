@@ -95,7 +95,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   const erSagtOppEllerRedusertStillingValgt = (
     valgtSvar: ESagtOppEllerRedusertStilling
   ) => {
-    const tekstid: string = 'sagtOppEllerRedusertStilling.svar.' + valgtSvar;
+    const tekstid: string = 'dinSituasjon.svar.' + valgtSvar;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return sagtOppEllerRedusertStilling?.verdi === svarTekst;
   };
@@ -122,12 +122,12 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
     valgtDatoMindreEnn6mndSiden(datoSagtOppEllerRedusertStilling?.verdi);
 
   const alertLabel = hentLabelForSagtOppEllerRedusertStilling(
-    'sagtOppEllerRedusertStilling.alert.sagtOpp',
-    'sagtOppEllerRedusertStilling.alert.redusertStilling'
+    'dinSituasjon.alert.sagtOpp',
+    'dinSituasjon.alert.redusertStilling'
   );
   const begrunnelseLabel = hentLabelForSagtOppEllerRedusertStilling(
-    'sagtOppEllerRedusertStilling.fritekst.sagtOpp',
-    'sagtOppEllerRedusertStilling.fritekst.redusertStilling'
+    'dinSituasjon.fritekst.sagtOpp',
+    'dinSituasjon.fritekst.redusertStilling'
   );
   const datovelgerLabel = hentLabelForSagtOppEllerRedusertStilling(
     'sagtOppEllerRedusertStilling.datovelger.sagtOpp',

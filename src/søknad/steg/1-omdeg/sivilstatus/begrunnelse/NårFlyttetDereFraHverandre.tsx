@@ -14,20 +14,18 @@ const NårFlyttetDereFraHverandre: React.FC<Props> = ({
   settDato,
   datoFlyttetFraHverandre,
 }) => {
+  const datovelgerTekstid = 'sivilstatus.datovelger.flyttetFraHverandre';
+
   return (
     <KomponentGruppe>
       <Datovelger
         settDato={(e) =>
-          settDato(
-            e,
-            'datoFlyttetFraHverandre',
-            'sivilstatus.sporsmal.datoFlyttetFraHverandre'
-          )
+          settDato(e, 'datoFlyttetFraHverandre', datovelgerTekstid)
         }
         valgtDato={
           datoFlyttetFraHverandre ? datoFlyttetFraHverandre.verdi : undefined
         }
-        tekstid={'sivilstatus.sporsmal.datoFlyttetFraHverandre'}
+        tekstid={datovelgerTekstid}
         datobegrensning={DatoBegrensning.AlleDatoer}
       />
     </KomponentGruppe>

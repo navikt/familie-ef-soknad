@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -7,28 +7,35 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentSivilstatus } from '../../../../utils/søknad';
+import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmal';
-import { ISivilstatus } from '../../../../models/steg/omDeg';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,
   søkerGiftIUtlandetSpørsmål,
 } from './SivilstatusConfig';
 import { useIntl } from 'react-intl';
+import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
+  const sivilstand = person.søker.sivilstand;
+
   const { søknad, settSøknad } = useSøknadContext();
-  const { sivilstatus } = søknad;
+  const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
     søkerHarSøktSeparasjon,
     datoSøktSeparasjon,
+    datoFlyttetFraHverandre,
     søkerSeparertEllerSkiltIUtlandet,
     søkerGiftIUtlandet,
   } = sivilstatus;
-  const sivilstand = person.søker.sivilstand;
+
+  useEffect(() => {
+    settSøknad({ ...søknad, sivilstatus: sivilstatus });
+    // eslint-disable-next-line
+  }, [sivilstatus]);
 
   const erSøkerGift = person.søker.sivilstand === 'GIFT';
   const erSøkerUgift = sivilstand === 'UGIF';
@@ -36,16 +43,25 @@ const Sivilstatus: React.FC = () => {
   const erSøkerSeparert = sivilstand === 'SEPA';
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: boolean) => {
-    settSøknad({
-      ...søknad,
-      sivilstatus: {
-        ...sivilstatus,
-        [spørsmål.søknadid]: {
-          label: intl.formatMessage({ id: spørsmål.tekstid }),
-          verdi: svar,
-        },
+    const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
+    const nySivilstatus = {
+      ...sivilstatus,
+      [spørsmål.søknadid]: {
+        label: spørsmålLabel,
+        verdi: svar,
       },
-    });
+    };
+    if (
+      spørsmål.søknadid === 'søkerHarSøktSeparasjon' &&
+      søkerHarSøktSeparasjon?.verdi === false &&
+      datoFlyttetFraHverandre &&
+      datoSøktSeparasjon
+    ) {
+      delete nySivilstatus.datoSøktSeparasjon;
+      delete nySivilstatus.datoFlyttetFraHverandre;
+    }
+
+    settSivilstatus(nySivilstatus);
   };
 
   const settDato = (
@@ -54,14 +70,11 @@ const Sivilstatus: React.FC = () => {
     tekstid: string
   ): void => {
     date !== null &&
-      settSøknad({
-        ...søknad,
-        sivilstatus: {
-          ...sivilstatus,
-          [objektnøkkel]: {
-            label: intl.formatMessage({ id: tekstid }),
-            verdi: date,
-          },
+      settSivilstatus({
+        ...sivilstatus,
+        [objektnøkkel]: {
+          label: intl.formatMessage({ id: tekstid }),
+          verdi: date,
         },
       });
   };
@@ -73,22 +86,6 @@ const Sivilstatus: React.FC = () => {
       }
     }
   };
-
-  useEffect(() => {
-    const resetDatoSøktSeparasjon = () => {
-      const { datoSøktSeparasjon, ...nyttObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nyttObjekt });
-    };
-    !søkerHarSøktSeparasjon?.verdi &&
-      datoSøktSeparasjon !== undefined &&
-      resetDatoSøktSeparasjon();
-  }, [
-    datoSøktSeparasjon,
-    settSøknad,
-    sivilstatus,
-    søkerHarSøktSeparasjon,
-    søknad,
-  ]);
 
   return (
     <SeksjonGruppe>
@@ -102,7 +99,7 @@ const Sivilstatus: React.FC = () => {
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}
           settDato={settDato}
-          sivilstatusObjekt={sivilstatus}
+          sivilstatus={sivilstatus}
         />
       ) : erSøkerUgift ? (
         <>
@@ -136,7 +133,11 @@ const Sivilstatus: React.FC = () => {
         søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
       erSøkerEnke ? (
-        <Søknadsbegrunnelse settDato={settDato} />
+        <Søknadsbegrunnelse
+          sivilstatus={sivilstatus}
+          settSivilstatus={settSivilstatus}
+          settDato={settDato}
+        />
       ) : null}
     </SeksjonGruppe>
   );
