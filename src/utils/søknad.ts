@@ -72,5 +72,7 @@ export const verdiTilTekstsvar = (verdi: string | Date | boolean) => {
     }
   } else if (verdi instanceof Date) {
     return formatDate(verdi);
+  } else {
+    return null;
   }
 };

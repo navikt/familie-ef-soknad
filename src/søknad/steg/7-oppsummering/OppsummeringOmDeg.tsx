@@ -23,8 +23,12 @@ const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
 
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
+  const medlemskap = søknad.medlemskap;
 
   const sivilstatusSpørsmål = visLabelOgSvar(sivilstatus);
+
+  const medlemskapSpørsmål = visLabelOgSvar(medlemskap);
+  // TODO: Håndter perioderBoddIUtlandet
 
   return (
     <Ekspanderbartpanel tittel="Om deg">
@@ -45,6 +49,7 @@ const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
         <Normaltekst>{omDeg.mobiltelefon}</Normaltekst>
       </div>
       {sivilstatusSpørsmål}
+      {medlemskapSpørsmål}
     </Ekspanderbartpanel>
   );
 };
