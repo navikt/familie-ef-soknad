@@ -7,10 +7,14 @@ import { Knapp } from 'nav-frontend-knapper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
+import OppsummeringOmDeg from './OppsummeringOmDeg';
 
 const Oppsummering: React.FC = () => {
   const { søknad } = useSøknadContext();
   const intl = useIntl();
+
+  console.log(søknad);
 
   return (
     <>
@@ -21,10 +25,7 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <Ekspanderbartpanel tittel="Om deg">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringOmDeg />
             <Ekspanderbartpanel tittel="Bosituasjonen din">
               <h1>Yes</h1>
               <div>Test</div>
