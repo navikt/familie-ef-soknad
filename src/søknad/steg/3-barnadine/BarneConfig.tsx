@@ -1,4 +1,5 @@
-import { ISpørsmål, JaNeiSvar } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { JaNeiSvar } from '../../../helpers/standardSvar';
 
 export const barnetFødt: ISpørsmål = {
   søknadid: 'barnetFødt',
