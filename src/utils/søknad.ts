@@ -1,6 +1,7 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
+import { formatDate } from './dato';
 
 export const hentPersonData = () => {
   return axios
@@ -58,4 +59,18 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
     return 0;
   }
   return parsed;
+};
+
+export const verdiTilTekstsvar = (verdi: string | Date | boolean) => {
+  if (typeof verdi === 'string') {
+    return verdi;
+  } else if (typeof verdi === 'boolean') {
+    if (verdi === true) {
+      return 'Ja';
+    } else {
+      return 'Nei';
+    }
+  } else if (verdi instanceof Date) {
+    return formatDate(verdi);
+  }
 };

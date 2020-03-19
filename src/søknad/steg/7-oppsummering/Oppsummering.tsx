@@ -9,12 +9,23 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
+import { verdiTilTekstsvar } from '../../../utils/søknad';
 
 const Oppsummering: React.FC = () => {
   const { søknad } = useSøknadContext();
   const intl = useIntl();
 
   console.log(søknad);
+
+  const visLabelOgSvar = (objekt: Object) =>
+    Object.values(objekt).map((spørsmål) => {
+      return (
+        <div className="spørsmål-og-svar">
+          <Element>{spørsmål.label}</Element>
+          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi)}</Normaltekst>
+        </div>
+      );
+    });
 
   return (
     <>
@@ -25,7 +36,7 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg />
+            <OppsummeringOmDeg visLabelOgSvar={visLabelOgSvar} />
             <Ekspanderbartpanel tittel="Bosituasjonen din">
               <h1>Yes</h1>
               <div>Test</div>

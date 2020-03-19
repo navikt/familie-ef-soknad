@@ -8,8 +8,14 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
+import { formatDate } from '../../../utils/dato';
+import { verdiTilTekstsvar } from '../../../utils/søknad';
 
-const OppsummeringOmDeg: React.FC = () => {
+interface Props {
+  visLabelOgSvar: Function;
+}
+
+const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
   const { søknad } = useSøknadContext();
   const intl = useIntl();
 
@@ -18,14 +24,7 @@ const OppsummeringOmDeg: React.FC = () => {
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
 
-  const sivilstatusSpørsmål = Object.values(sivilstatus).forEach((spørsmål) => {
-    return (
-      <div className="spørsmål-og-svar">
-        <Element>{spørsmål.label}</Element>
-        <Normaltekst>{spørsmål.verdi}</Normaltekst>
-      </div>
-    );
-  });
+  const sivilstatusSpørsmål = visLabelOgSvar(sivilstatus);
 
   return (
     <Ekspanderbartpanel tittel="Om deg">
@@ -45,6 +44,7 @@ const OppsummeringOmDeg: React.FC = () => {
         <Element>Telefonnummer</Element>
         <Normaltekst>{omDeg.mobiltelefon}</Normaltekst>
       </div>
+      {sivilstatusSpørsmål}
     </Ekspanderbartpanel>
   );
 };
