@@ -21,6 +21,7 @@ const initialState: ISøknad = {
     gjelderDetteDeg: nyttTekstListeFelt,
     søknadsdato: { label: '', verdi: dagensDato },
   },
+  dokumentasjonsbehov: [],
   vedleggsliste: [],
 };
 

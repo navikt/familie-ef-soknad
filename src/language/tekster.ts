@@ -377,6 +377,12 @@ export default {
     'dokumentasjon.checkbox.sendtTidligere':
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
     'dokumentasjon.': '',
+
+    'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
+    'dokumentasjon.inngåttEkteskap.beskrivelse': '',
+    'dokumentasjon.separasjonEllerSkilsmisse.tittel':
+      'Dokumentasjon på separasjon eller skilsmisse',
+    'dokumentasjon.inngåttEkteskap': 'Beskrivelse for dokumentasjon lalala',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

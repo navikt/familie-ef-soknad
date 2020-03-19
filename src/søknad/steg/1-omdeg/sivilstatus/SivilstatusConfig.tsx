@@ -1,5 +1,18 @@
 import { ISpørsmål, ESvar } from '../../../../models/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/standardSvar';
+import {
+  EDokumentasjon,
+  IDokumentasjon,
+} from '../../../../models/dokumentasjon';
+
+export const DokumentasjonInngåttEkteskap: IDokumentasjon = {
+  id: EDokumentasjon.INNGÅTT_EKTESKAP,
+  spørsmålid: 'søkerGiftIUtlandet',
+  svarid: [ESvar.JA],
+  tittel: 'dokumentasjon.inngåttEkteskap.tittel',
+  beskrivelse: 'dokumentasjon.inngåttEkteskap.beskrivelse',
+  harSendtInn: false,
+};
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',
@@ -19,6 +32,7 @@ export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
     {
       svar_tekstid: ESvar.JA,
       alert_tekstid: 'sivilstatus.alert.søkerGiftIUtlandet',
+      dokumentasjonsbehov: DokumentasjonInngåttEkteskap,
     },
     { svar_tekstid: ESvar.NEI },
   ],
