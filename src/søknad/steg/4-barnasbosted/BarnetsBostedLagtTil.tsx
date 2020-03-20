@@ -58,7 +58,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               intl.formatMessage({ id: 'barnasbosted.spm.andreForelderNorge' })
             )}
           </Element>
-          <Normaltekst>{forelder.borINorge ? 'Ja' : 'Nei'}</Normaltekst>
+          <Normaltekst>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
           <Element>
@@ -68,7 +68,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             )}
           </Element>
           <Normaltekst>
-            {forelder.avtaleOmDeltBosted ? 'Ja' : 'Nei'}
+            {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
           </Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
@@ -80,9 +80,11 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               })
             )}
           </Element>
-          <Normaltekst>{forelder.harAnnenForelderSamværMedBarn}</Normaltekst>
+          <Normaltekst>
+            {forelder.harAnnenForelderSamværMedBarn?.verdi}
+          </Normaltekst>
         </div>
-        {forelder.harDereSkriftligSamværsavtale ? (
+        {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
@@ -92,15 +94,19 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.harDereSkriftligSamværsavtale}</Normaltekst>
+            <Normaltekst>
+              {forelder.harDereSkriftligSamværsavtale.verdi}
+            </Normaltekst>
           </div>
         ) : null}
-        {forelder.hvordanPraktiseresSamværet ? (
+        {forelder.hvordanPraktiseresSamværet?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>
               {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
             </Element>
-            <Normaltekst>{forelder.hvordanPraktiseresSamværet}</Normaltekst>
+            <Normaltekst>
+              {forelder.hvordanPraktiseresSamværet.verdi}
+            </Normaltekst>
           </div>
         ) : null}
         {forelder.borISammeHus ? (
