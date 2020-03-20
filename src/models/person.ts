@@ -1,3 +1,5 @@
+import { ITekstListeFelt, ITekstFelt, IBooleanFelt } from './søknadsfelter';
+
 export interface IPerson {
   søker: ISøker;
   barn: IBarn[];
@@ -52,11 +54,11 @@ export interface IForelder {
   skalBarnBoHosDeg?: string;
   fødselsdato?: Date | null;
   personnr?: string;
-  borINorge?: boolean;
-  avtaleOmDeltBosted?: boolean;
-  harAnnenForelderSamværMedBarn?: string;
-  harDereSkriftligSamværsavtale?: string;
-  hvordanPraktiseresSamværet?: string;
+  borINorge?: IBooleanFelt;
+  avtaleOmDeltBosted?: IBooleanFelt;
+  harAnnenForelderSamværMedBarn?: ITekstFelt;
+  harDereSkriftligSamværsavtale?: ITekstFelt;
+  hvordanPraktiseresSamværet?: ITekstFelt;
   borISammeHus?: string;
   boddSammenFør?: boolean;
   flyttetFra?: Date | null;
