@@ -37,7 +37,7 @@ export interface IBarn {
   personnummer?: string;
   harSammeAdresse: boolean;
   navn: string;
-  ufødt?: boolean;
+  født?: boolean;
   lagtTil?: boolean;
   skalBarnBoHosDeg?: string;
   forelder?: IForelder;

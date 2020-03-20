@@ -38,7 +38,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       settPersonnummer(
         detteBarnet?.personnummer ? detteBarnet.personnummer : ''
       );
-      settBarnFødt(!detteBarnet?.ufødt);
+      settBarnFødt(detteBarnet?.født);
       settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
       settDato(
         detteBarnet?.fødselsdato
@@ -75,7 +75,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       navn: navn,
       fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === 'ja',
-      ufødt: !født,
+      født: født,
       lagtTil: true,
       id: hentUid(),
     };

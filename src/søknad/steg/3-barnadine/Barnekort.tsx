@@ -17,7 +17,7 @@ interface Props {
   alder: number;
   harSammeAdresse: boolean;
   lagtTil: boolean;
-  ufødt: boolean;
+  født: boolean;
   id: string;
   settÅpenModal: Function;
 }
@@ -30,7 +30,7 @@ const Barnekort: React.FC<Props> = ({
   alder,
   harSammeAdresse,
   lagtTil,
-  ufødt,
+  født,
   fødselsdato,
 }) => {
   const intl = useIntl();
@@ -42,9 +42,9 @@ const Barnekort: React.FC<Props> = ({
   };
 
   const ikoner = [barn1, barn2, barn3];
-  const ikon = ufødt
-    ? ufødtIkon
-    : ikoner[Math.floor(Math.random() * ikoner.length)];
+  const ikon = født
+    ? ikoner[Math.floor(Math.random() * ikoner.length)]
+    : ufødtIkon;
 
   const bosted = harSammeAdresse
     ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
@@ -64,9 +64,9 @@ const Barnekort: React.FC<Props> = ({
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
           <Element>
-            {ufødt
-              ? intl.formatMessage({ id: 'barnekort.normaltekst.barn' })
-              : navn}
+            {født
+              ? navn
+              : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Element>
           <div className="informasjonselement">
             {fnr ? (
@@ -79,9 +79,9 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {ufødt
-                    ? intl.formatMessage({ id: 'barnekort.termindato' })
-                    : intl.formatMessage({ id: 'barnekort.fødselsdato' })}
+                  {født
+                    ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
+                    : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>
                 <Normaltekst>{fødselsdato}</Normaltekst>
               </>
@@ -91,7 +91,7 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
-            <Normaltekst>{ufødt ? 'Ufødt' : alder}</Normaltekst>
+            <Normaltekst>{født ? alder : 'Ufødt'}</Normaltekst>
           </div>
           <div className="informasjonselement">
             <Normaltekst>

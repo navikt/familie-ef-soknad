@@ -27,7 +27,8 @@
       "navn": "SHIBA INU",
       "alder": 9,
       "fødselsdato": "2010-02-28",
-      "harSammeAdresse": true
+      "harSammeAdresse": true,
+      "født": true
     },
     {
       "id": "12346",
@@ -35,7 +36,8 @@
       "navn": "HACHI KO",
       "alder": 9,
       "fødselsdato": "2010-02-28",
-      "harSammeAdresse": true
+      "harSammeAdresse": true,
+      "født": true
     },
     {
       "id": "12347",
@@ -43,7 +45,8 @@
       "navn": "DONALD DUCK",
       "alder": 2,
       "fødselsdato": "2018-02-01",
-      "harSammeAdresse": false
+      "harSammeAdresse": false,
+      "født": true
     }
   ]
 }

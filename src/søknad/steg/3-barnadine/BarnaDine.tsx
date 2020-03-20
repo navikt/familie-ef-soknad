@@ -40,7 +40,7 @@ const BarnaDine: React.FC = () => {
                 personnummer={barn.personnummer ? barn.personnummer : ''}
                 alder={barn.alder}
                 harSammeAdresse={barn.harSammeAdresse}
-                ufødt={barn.ufødt ? barn.ufødt : false}
+                født={barn.født ? barn.født : false}
                 lagtTil={barn.lagtTil ? barn.lagtTil : false}
               />
             ))}
