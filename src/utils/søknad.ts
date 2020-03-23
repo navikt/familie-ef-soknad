@@ -1,7 +1,7 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { ISpørsmål } from '../models/spørsmålogsvar';
 
 export const hentPersonData = () => {
   return axios
