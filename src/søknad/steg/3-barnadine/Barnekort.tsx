@@ -8,16 +8,21 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
+import {
+  ITekstFelt,
+  IBooleanFelt,
+  IDatoFelt,
+} from '../../../models/søknadsfelter';
 
 interface Props {
-  navn: string;
-  fnr: string;
-  fødselsdato: string;
-  personnummer: string;
-  alder: number;
-  harSammeAdresse: boolean;
+  navn: ITekstFelt;
+  fnr: ITekstFelt;
+  fødselsdato: ITekstFelt;
+  personnummer: ITekstFelt;
+  alder: ITekstFelt;
+  harSammeAdresse: IBooleanFelt;
   lagtTil: boolean;
-  født: boolean;
+  født: IBooleanFelt;
   id: string;
   settÅpenModal: Function;
 }
@@ -56,6 +61,9 @@ const Barnekort: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
   };
 
+  console.log('SØKNAD');
+  console.log(søknad);
+
   return (
     <div className="barnekort">
       <div className="barnekort__header">
@@ -74,7 +82,7 @@ const Barnekort: React.FC<Props> = ({
                 <Normaltekst>
                   {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
                 </Normaltekst>
-                <Normaltekst>{formatFnr(fnr)}</Normaltekst>
+                <Normaltekst>{formatFnr(fnr.verdi)}</Normaltekst>
               </>
             ) : (
               <>

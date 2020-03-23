@@ -31,7 +31,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   ) => {
     settHuketAvAnnenForelder(true);
     const denAndreForelderen = detAndreBarnet.forelder;
-    settAndreForelderRadioVerdi(detAndreBarnet.navn);
+    settAndreForelderRadioVerdi(detAndreBarnet.navn.verdi);
 
     settForelder({
       ...forelder,
@@ -74,7 +74,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
                   id: 'barnasbosted.forelder.sammesom',
                 })} ${b.navn}`}
                 value={`${andreForelder}${b.navn}`}
-                checked={andreForelderRadioVerdi === b.navn}
+                checked={andreForelderRadioVerdi === b.navn.verdi}
                 onChange={(e) => leggTilSammeForelder(e, b)}
               />
             );

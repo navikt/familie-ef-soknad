@@ -13,6 +13,7 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
+import { standardLabelsBarn } from './utils/standardLabels';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -31,7 +32,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(true);
+        settError(false);
       });
 
       const fetchPersonData = () => {
@@ -50,7 +51,26 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    settSøknad({ ...søknad, person: person });
+    const barnMedLabels = person.barn.map((barn) => {
+      let nyttBarn: any = {};
+
+      Object.keys(barn).forEach((key: string) => {
+        const barnLabel = standardLabelsBarn(key);
+
+        if (barnLabel) {
+          nyttBarn[key] = {
+            label: barnLabel,
+            verdi: (barn as any)[key],
+          };
+        } else {
+          nyttBarn[key] = (barn as any)[key];
+        }
+      });
+
+      return nyttBarn;
+    });
+
+    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
   }, [person]);
 
@@ -61,6 +81,7 @@ const App = () => {
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>

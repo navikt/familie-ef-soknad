@@ -16,6 +16,12 @@ import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentUid } from '../../../utils/uuid';
+import {
+  ITekstFelt,
+  IBooleanFelt,
+  IDatoFelt,
+} from '../../../models/søknadsfelter';
+import { standardLabelsBarn } from '../../../utils/standardLabels';
 
 interface Props {
   settÅpenModal: Function;
@@ -31,21 +37,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [boHosDeg, settBoHosDeg] = useState('');
 
   useEffect(() => {
-    if (id) {
-      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
-
-      settNavn(detteBarnet?.navn ? detteBarnet.navn : '');
-      settPersonnummer(
-        detteBarnet?.personnummer ? detteBarnet.personnummer : ''
-      );
-      settBarnFødt(detteBarnet?.født);
-      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
-      settDato(
-        detteBarnet?.fødselsdato
-          ? parseDate(detteBarnet.fødselsdato)
-          : dagensDato
-      );
-    }
     // eslint-disable-next-line
   }, []);
 
@@ -80,9 +71,24 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       id: hentUid(),
     };
 
+    const nyttBarn: any = {};
+
+    Object.keys(barn).forEach((key: string) => {
+      const barnLabel = standardLabelsBarn(key);
+
+      if (barnLabel) {
+        nyttBarn[key] = {
+          label: barnLabel,
+          verdi: (barn as any)[key],
+        };
+      } else {
+        nyttBarn[key] = (barn as any)[key];
+      }
+    });
+
     const nyBarneListe = [
       ...søknad.person.barn.filter((b) => b.id !== id),
-      barn,
+      nyttBarn,
     ];
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });

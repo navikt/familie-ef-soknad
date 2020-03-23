@@ -31,15 +31,15 @@ export interface IAdresse {
 
 export interface IBarn {
   id?: string;
-  alder: number;
-  fnr: string;
-  fødselsdato: string;
-  personnummer?: string;
-  harSammeAdresse: boolean;
-  navn: string;
-  født?: boolean;
+  alder: ITekstFelt;
+  fnr: ITekstFelt;
+  fødselsdato: ITekstFelt;
+  personnummer?: ITekstFelt;
+  harSammeAdresse: IBooleanFelt;
+  navn: ITekstFelt;
+  født?: IBooleanFelt;
   lagtTil?: boolean;
-  skalBarnBoHosDeg?: string;
+  skalBarnBoHosDeg?: IBooleanFelt;
   forelder?: IForelder;
 }
 

@@ -36,7 +36,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
               )}
             </Element>
@@ -54,7 +54,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({ id: 'barnasbosted.spm.andreForelderNorge' })
             )}
           </Element>
@@ -63,7 +63,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({ id: 'barnasbosted.avtale' })
             )}
           </Element>
@@ -74,7 +74,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({
                 id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
               })
@@ -88,7 +88,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
                 })
@@ -113,7 +113,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.borISammeHus',
                 })

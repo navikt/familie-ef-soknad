@@ -17,6 +17,9 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
 
+  console.log('BARNA');
+  console.log(barna);
+
   return (
     <>
       <Side tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}>
@@ -31,16 +34,30 @@ const BarnaDine: React.FC = () => {
           <div className="barnekort-wrapper">
             {barna?.map((barn, index) => (
               <Barnekort
-                key={index + barn.fødselsdato}
+                key={index + barn.fødselsdato.verdi}
                 settÅpenModal={settÅpenModal}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}
                 fnr={barn.fnr}
                 fødselsdato={barn.fødselsdato}
-                personnummer={barn.personnummer ? barn.personnummer : ''}
+                personnummer={
+                  barn.personnummer && barn.personnummer.verdi
+                    ? barn.personnummer
+                    : {
+                        label: 'Personnummer',
+                        verdi: '',
+                      }
+                }
                 alder={barn.alder}
                 harSammeAdresse={barn.harSammeAdresse}
-                født={barn.født ? barn.født : false}
+                født={
+                  barn.født
+                    ? barn.født
+                    : {
+                        label: 'Er barnet født?',
+                        verdi: false,
+                      }
+                }
                 lagtTil={barn.lagtTil ? barn.lagtTil : false}
               />
             ))}
