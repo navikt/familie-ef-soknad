@@ -11,7 +11,6 @@ export interface ISpørsmål extends ILabel {
   svaralternativer: ISvar[];
 }
 
-// TODO: Kan ISVar extende ILabel?
 export interface ISvar {
   nøkkel: string;
   svar_tekstid: string;

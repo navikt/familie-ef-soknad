@@ -11,9 +11,9 @@ export const bosattINorgeDeSisteTreÅr: ISpørsmål = {
   søknadid: 'søkerBosattINorgeSisteTreÅr',
   tekstid: 'medlemskap.spm.bosatt',
   lesmer: {
-    åpneTekstid: 'medlemskap.hjelpetekst.bosatt.apne',
+    åpneTekstid: 'medlemskap.hjelpetekst-åpne.bosatt',
     lukkeTekstid: '',
-    innholdTekstid: 'medlemskap.hjelpetekst.bosatt.innhold',
+    innholdTekstid: 'medlemskap.hjelpetekst-innhold.bosatt',
   },
   svaralternativer: JaNeiSvar,
 };

@@ -73,9 +73,6 @@ export default {
       'Når flyttet dere fra hverandre?',
     'sivilstatus.datovelger.endring':
       'Når skjedde endringen / når skal endringen skje?',
-    'sivilstatus.datovelger.endretSamvær': '',
-    'sivilstatus.fritekstfelt.endring':
-      'Når skjedde endringen/ når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
       'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltGift':
@@ -423,13 +420,7 @@ export default {
       'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
 
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Sivilstatus',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
@@ -529,13 +520,7 @@ export default {
       'I, [0], swear to give as much as possible correct information.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'as married you must have applied for separation in order to have access to overgangsstønad',
 
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Relationship status',
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
