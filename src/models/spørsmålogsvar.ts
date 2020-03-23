@@ -13,7 +13,7 @@ export interface ISpørsmål extends ILabel {
 
 // TODO: Kan ISVar extende ILabel?
 export interface ISvar {
-  nøkkel?: string;
+  nøkkel: string;
   svar_tekstid: string;
   alert_tekstid?: string;
   dokumentasjonsbehov?: IDokumentasjon;

@@ -12,4 +12,5 @@ export interface IDokumentasjon {
 
 export enum EDokumentasjon {
   INNGÅTT_EKTESKAP = 'INNGÅTT_EKTESKAP',
+  SEPARASJON_ELLER_SKILSMISSE = 'SEPARASJON_ELLER_SKILSMISSE',
 }

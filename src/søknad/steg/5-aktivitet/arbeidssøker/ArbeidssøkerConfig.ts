@@ -3,14 +3,15 @@ import {
   EArbeidssted,
   EArbeidssøker,
 } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { JaNeiSvar } from '../../../../helpers/standardSvar';
+import { JaNeiSvar, JaSvar } from '../../../../helpers/standardSvar';
 
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
   svaralternativer: [
-    { svar_tekstid: ESvar.JA },
+    JaSvar,
     {
+      nøkkel: ESvar.NEI,
       svar_tekstid: ESvar.NEI,
       alert_tekstid: 'arbeidssøker.alert.forÅHaRett',
     },

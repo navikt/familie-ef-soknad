@@ -20,7 +20,7 @@ const SøkerErGift: React.FC<Props> = ({
   sivilstatus,
 }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const { søkerHarSøktSeparasjon } = sivilstatus;
+  const { harSøktSeparasjon } = sivilstatus;
 
   return (
     <>
@@ -28,15 +28,13 @@ const SøkerErGift: React.FC<Props> = ({
         <JaNeiSpørsmål
           spørsmål={separasjonsSpørsmål}
           onChange={settJaNeiFelt}
-          valgtSvar={
-            søkerHarSøktSeparasjon ? søkerHarSøktSeparasjon.verdi : undefined
-          }
+          valgtSvar={harSøktSeparasjon ? harSøktSeparasjon.verdi : undefined}
         />
       </KomponentGruppe>
-      {søkerHarSøktSeparasjon?.verdi ? (
+      {harSøktSeparasjon?.verdi ? (
         <SøkerHarSøktSeparasjon sivilstatus={sivilstatus} settDato={settDato} />
       ) : (
-        søkerHarSøktSeparasjon?.verdi === false && (
+        harSøktSeparasjon?.verdi === false && (
           <KomponentGruppe>
             <AlertStripe type={'advarsel'} form={'inline'}>
               <LocaleTekst tekst={'sivilstatus.alert.søktSeparasjon'} />

@@ -11,8 +11,8 @@ import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
-  søkerSeparertEllerSKiltIUtlandetSpørsmål,
-  søkerGiftIUtlandetSpørsmål,
+  erUformeltSeparertEllerSkiltSpørsmål,
+  erUformeltGiftSpørsmål,
 } from './SivilstatusConfig';
 import { useIntl } from 'react-intl';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
@@ -25,11 +25,11 @@ const Sivilstatus: React.FC = () => {
   const { søknad, settSøknad } = useSøknadContext();
   const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
-    søkerHarSøktSeparasjon,
+    harSøktSeparasjon,
     datoSøktSeparasjon,
     datoFlyttetFraHverandre,
-    søkerSeparertEllerSkiltIUtlandet,
-    søkerGiftIUtlandet,
+    erUformeltSeparertEllerSkilt,
+    erUformeltGift,
   } = sivilstatus;
 
   useEffect(() => {
@@ -52,8 +52,8 @@ const Sivilstatus: React.FC = () => {
       },
     };
     if (
-      spørsmål.søknadid === 'søkerHarSøktSeparasjon' &&
-      søkerHarSøktSeparasjon?.verdi === false &&
+      spørsmål.søknadid === 'harSøktSeparasjon' &&
+      harSøktSeparasjon?.verdi === false &&
       datoFlyttetFraHverandre &&
       datoSøktSeparasjon
     ) {
@@ -105,22 +105,22 @@ const Sivilstatus: React.FC = () => {
         <>
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={søkerGiftIUtlandetSpørsmål}
+              spørsmål={erUformeltGiftSpørsmål}
               onChange={settSivilstatusFelt}
               valgtSvar={hentValgtSvar(
-                søkerGiftIUtlandetSpørsmål,
+                erUformeltGiftSpørsmål,
                 søknad.sivilstatus
               )}
             />
           </KomponentGruppe>
 
-          {søkerGiftIUtlandet?.hasOwnProperty('verdi') ? (
+          {erUformeltGift?.hasOwnProperty('verdi') ? (
             <KomponentGruppe>
               <JaNeiSpørsmål
-                spørsmål={søkerSeparertEllerSKiltIUtlandetSpørsmål}
+                spørsmål={erUformeltSeparertEllerSkiltSpørsmål}
                 onChange={settSivilstatusFelt}
                 valgtSvar={hentValgtSvar(
-                  søkerSeparertEllerSKiltIUtlandetSpørsmål,
+                  erUformeltSeparertEllerSkiltSpørsmål,
                   søknad.sivilstatus
                 )}
               />
@@ -130,7 +130,7 @@ const Sivilstatus: React.FC = () => {
       ) : null}
 
       {(erSøkerUgift &&
-        søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
+        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
       erSøkerEnke ? (
         <Søknadsbegrunnelse

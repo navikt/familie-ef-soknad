@@ -56,23 +56,21 @@ export default {
     'sivilstatus.tittel': 'Sivilstatus',
     'sivilstatus.somgift':
       'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
-    'sivilstatus.alert.samlivsbrudd':
+    'sivilstatus.alert.samlivsbruddForeldre':
       'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen/ når skal endringen skje?',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.spm.søkerGiftIUtlandet':
-      'Er du gift i utlandet eller etter utenlandske tradisjoner i Norge?',
-    'sivilstatus.dok.søkerGiftIUtlandet':
+    'sivilstatus.spm.erUformeltGift':
+      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+    'sivilstatus.dok.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
-    'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
-    'sivilstatus.lesmer-innhold.søkerGiftIUtlandet': 'Let me tell you why',
-    'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet':
+    'sivilstatus.lesmer-åpne.erUformeltGift': 'Hvorfor spør vi om dette?',
+    'sivilstatus.lesmer-innhold.erUformeltGift':
+      'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
+
+    'sivilstatus.spm.erUformeltSeparertEllerSkilt':
       'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
-    'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet':
+    'sivilstatus.dok.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse':
       'Hva er grunnen til at du er alene med barn?',
@@ -407,10 +405,7 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
       'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
+
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
@@ -518,10 +513,7 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
     'sivilstatus.somgift':
       'as married you must have applied for separation in order to have access to overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
+
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',

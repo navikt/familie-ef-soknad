@@ -8,7 +8,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknadContext();
-  const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad.sivilstatus;
+  const { begrunnelseForSøknad, harSøktSeparasjon } = søknad.sivilstatus;
 
   return (
     <Side tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}>
@@ -19,8 +19,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
         <>
           <Sivilstatus />
 
-          {søkerHarSøktSeparasjon ||
-          søkerHarSøktSeparasjon === false ||
+          {harSøktSeparasjon ||
+          harSøktSeparasjon === false ||
           begrunnelseForSøknad ? (
             <Medlemskap />
           ) : null}
