@@ -37,7 +37,9 @@ const SøkerErGift: React.FC<Props> = ({
         harSøktSeparasjon?.verdi === false && (
           <KomponentGruppe>
             <AlertStripe type={'advarsel'} form={'inline'}>
-              <LocaleTekst tekst={'sivilstatus.alert.søktSeparasjon'} />
+              <LocaleTekst
+                tekst={'sivilstatus.alert-advarsel.søktSeparasjon'}
+              />
             </AlertStripe>
           </KomponentGruppe>
         )

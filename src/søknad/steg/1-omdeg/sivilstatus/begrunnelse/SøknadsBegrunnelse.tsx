@@ -10,8 +10,14 @@ import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../../../models/spørsmålogsvar';
-import { hentTekst } from '../../../../../utils/søknad';
-import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
+import {
+  hentSvarAlertFraSpørsmål,
+  hentTekst,
+} from '../../../../../utils/søknad';
+import {
+  EBegrunnelseForSøknad,
+  ISivilstatus,
+} from '../../../../../models/steg/omDeg/sivilstatus';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
@@ -47,11 +53,17 @@ const Søknadsbegrunnelse: FC<Props> = ({
     return begrunnelseForSøknad?.verdi === intl.formatMessage({ id: id });
   };
 
-  const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
-  const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
-  const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
-  const dødsfallTekstid = hentTekstid('dødsfall');
-  const annetSvarTekstid = hentTekstid('annet');
+  const samlivsbruddForelderTekstid = hentTekstid(
+    EBegrunnelseForSøknad.samlivsbruddForeldre
+  );
+  const samlivsbruddAndreTekstid = hentTekstid(
+    EBegrunnelseForSøknad.samlivsbruddAndre
+  );
+  const endringIsamværsordningTekstid = hentTekstid(
+    EBegrunnelseForSøknad.endringISamværsordning
+  );
+  const dødsfallTekstid = hentTekstid(EBegrunnelseForSøknad.dødsfall);
+  const annetSvarTekstid = hentTekstid(EBegrunnelseForSøknad.annet);
 
   const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
   const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
@@ -106,6 +118,11 @@ const Søknadsbegrunnelse: FC<Props> = ({
     fjernIrrelevanteSøknadsfelter();
   });
 
+  const alertTekstForDødsfall = hentSvarAlertFraSpørsmål(
+    EBegrunnelseForSøknad.dødsfall,
+    spørsmål
+  );
+
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
@@ -143,7 +160,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
       {dødsfall && (
         <KomponentGruppe>
           <AlertStripeInfo className={'fjernBakgrunn'}>
-            <FormattedHTMLMessage id={'sivilstatus.alert.dødsfall'} />
+            <FormattedHTMLMessage id={alertTekstForDødsfall} />
           </AlertStripeInfo>
         </KomponentGruppe>
       )}

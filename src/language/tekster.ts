@@ -43,26 +43,42 @@ export default {
     'person.navn': 'Navn',
     'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
 
+    'personopplysninger.fnr': 'Fødselsnr',
+    'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
     'personopplysninger.adresse': 'Adresse',
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':
       'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
-    'personopplysninger.fnr': 'Fødselsnr',
-    'personopplysninger.telefonnr': 'Telefonnummer',
-    'personopplysninger.statsborgerskap': 'Statsborgerskap',
+    'personopplysninger.info.endreAdresse':
+      'Skal du ikke endre adresse i Folkeregisteret?',
+    'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
+    'personopplysninger.info.pdfskjema':
+      'Skjemaet kan sendes inn elektronisk eller på papir',
 
     'sivilstatus.tittel': 'Sivilstatus',
-    'sivilstatus.somgift':
-      'Du må legge ved bekreftelse fra Fylkesmannen på søknad om separasjon',
+    'sivilstatus.spm.søktSeparasjon':
+      'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
+    'sivilstatus.alert-info.søktSeparasjon':
+      'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'sivilstatus.alert-advarsel.søktSeparasjon':
+      'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
     'sivilstatus.alert.samlivsbruddForeldre':
       'Du må legge ved erklæring om samlivsbrudd',
-    'sivilstatus.begrunnelse.endring':
+    'sivilstatus.datovelger.søktSeparasjon': 'Når søkte dere eller reiste sak?',
+    'sivilstatus.datovelger.samlivsbrudd': 'Dato for samlivsbrudd',
+    'sivilstatus.datovelger.flyttetFraHverandre':
+      'Når flyttet dere fra hverandre?',
+    'sivilstatus.datovelger.endring':
+      'Når skjedde endringen / når skal endringen skje?',
+    'sivilstatus.datovelger.endretSamvær': '',
+    'sivilstatus.fritekstfelt.endring':
       'Når skjedde endringen/ når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
       'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
-    'sivilstatus.dok.erUformeltGift':
+    'sivilstatus.alert.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.erUformeltGift': 'Hvorfor spør vi om dette?',
     'sivilstatus.lesmer-innhold.erUformeltGift':
@@ -70,19 +86,20 @@ export default {
 
     'sivilstatus.spm.erUformeltSeparertEllerSkilt':
       'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
-    'sivilstatus.dok.erUformeltSeparertEllerSkilt':
+    'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse':
       'Hva er grunnen til at du er alene med barn?',
-    'sivilstatus.sporsmål.datoForSamlivsbrudd': 'Dato for samlivsbrudd',
-    'sivilstatus.sporsmal.datoFlyttetFraHverandre':
-      'Når flyttet dere fra hverandre?',
+
     'sivilstatus.svar.samlivsbruddForeldre':
       'Samlivsbrudd fra den andre forelderen',
     'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd fra noen andre',
     'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
     'sivilstatus.svar.endringISamværsordning':
       'Endring i samværsordning, aktivitet eller inntekt',
+    'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
+    'sivilstatus.alert.dødsfall':
+      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til gjenlevende (lenke) og barnepensjon(lenke). ',
     'sivilstatus.svar.annet': 'Annet',
 
     'medlemskap.spm.bosatt': 'Har du vært bosatt i Norge de siste tre årene?',
@@ -377,13 +394,16 @@ export default {
     'dokumentasjon.': '',
 
     'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
-    'dokumentasjon.inngåttEkteskap.beskrivelse': '',
+    'dokumentasjon.inngåttEkteskap.beskrivelse':
+      'Beskrivelse for inngått ekteskap',
     'dokumentasjon.separasjonEllerSkilsmisse.tittel':
       'Dokumentasjon på separasjon eller skilsmisse',
-    'dokumentasjon.inngåttEkteskap': 'Beskrivelse for dokumentasjon lalala',
+    'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
+      'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
+    'dokumentasjon.tittel.': '',
   },
   nn: {
-    'banner.tittel': 'Einsleg forsørgjer',
+    'banner.tittel': 'Einsleg forsørger',
     'knapp.tilbake': 'Tilbake',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',
@@ -407,8 +427,6 @@ export default {
       'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
 
     'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.alert.samlivsbrudd':
-      'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.separertEllerSkilt.utlandet':
       'Er du skilt eller separert i utlandet?',
     'sivilstatus.tittel': 'Sivilstatus',

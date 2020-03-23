@@ -24,8 +24,8 @@ export const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
   id: EDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   svarid: [ESvar.JA],
-  tittel: 'dokumentasjon.inngåttEkteskap.tittel',
-  beskrivelse: 'dokumentasjon.inngåttEkteskap.beskrivelse',
+  tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
+  beskrivelse: 'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse',
   harSendtInn: false,
 };
 

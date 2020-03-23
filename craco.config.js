@@ -42,6 +42,7 @@ const norskeOrdMedÆØÅ = [
   'HarSøkerSagtOppEllerRedusertStilling',
   'SendSøknad',
   'SøknadProvider',
+  'SøkerBorIkkePåAdresse',
 ];
 
 module.exports = {

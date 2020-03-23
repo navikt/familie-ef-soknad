@@ -1,6 +1,7 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
+import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 
 export const hentPersonData = () => {
   return axios
@@ -58,4 +59,19 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
     return 0;
   }
   return parsed;
+};
+
+export const hentSvarAlertFraSpørsmål = (
+  svarid: string,
+  spørsmål: ISpørsmål
+): string => {
+  const hentetSvar = hentSvarFraSpørsmål(svarid, spørsmål);
+  return hentetSvar?.alert_tekstid || 'Dette svaret har ikke alert';
+};
+
+export const hentSvarFraSpørsmål = (svarid: string, spørsmål: ISpørsmål) => {
+  const hentetSvar = spørsmål.svaralternativer.find(
+    (svar) => svar.nøkkel === svarid
+  );
+  return hentetSvar;
 };
