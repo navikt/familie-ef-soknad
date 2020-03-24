@@ -72,12 +72,12 @@ const Barnekort: React.FC<Props> = ({
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
           <Element>
-            {født
-              ? navn
+            {født.verdi
+              ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Element>
           <div className="informasjonselement">
-            {fnr ? (
+            {fnr.verdi ? (
               <>
                 <Normaltekst>
                   {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
@@ -99,7 +99,7 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
-            <Normaltekst>{født ? alder : 'Ufødt'}</Normaltekst>
+            <Normaltekst>{født.verdi ? alder.verdi : 'Ufødt'}</Normaltekst>
           </div>
           <div className="informasjonselement">
             <Normaltekst>

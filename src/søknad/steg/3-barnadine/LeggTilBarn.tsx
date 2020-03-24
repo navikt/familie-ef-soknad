@@ -36,10 +36,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [personnummer, settPersonnummer] = useState('');
   const [boHosDeg, settBoHosDeg] = useState('');
 
-  useEffect(() => {
-    // eslint-disable-next-line
-  }, []);
-
   const settDato = (date: Date | null): void => {
     date !== null && settBarnDato(date);
   };
