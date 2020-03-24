@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Element, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
