@@ -119,7 +119,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.borISammeHus}</Normaltekst>
+            <Normaltekst>{forelder.borISammeHus.verdi}</Normaltekst>
           </div>
         ) : null}
         <LenkeMedIkon

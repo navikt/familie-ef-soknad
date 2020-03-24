@@ -61,9 +61,6 @@ const Barnekort: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
   };
 
-  console.log('SØKNAD');
-  console.log(søknad);
-
   return (
     <div className="barnekort">
       <div className="barnekort__header">
@@ -91,7 +88,7 @@ const Barnekort: React.FC<Props> = ({
                     ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                     : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>
-                <Normaltekst>{fødselsdato}</Normaltekst>
+                <Normaltekst>{fødselsdato.verdi}</Normaltekst>
               </>
             )}
           </div>

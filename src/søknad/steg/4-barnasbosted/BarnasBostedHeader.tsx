@@ -62,7 +62,7 @@ interface Props {
 }
 
 const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
-  const ikon = barn.født ? barn1 : ufødtIkon;
+  const ikon = barn.født?.verdi ? barn1 : ufødtIkon;
 
   return (
     <StyledBarnasBostedHeader>
@@ -72,7 +72,7 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="navn">
-        <Element>{barn.navn}</Element>
+        <Element>{barn.navn.verdi}</Element>
       </div>
     </StyledBarnasBostedHeader>
   );

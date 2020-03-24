@@ -60,7 +60,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   return (
     <>
       <Element>
-        {barn.navn}
+        {barn.navn.verdi}
         {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
       </Element>
       {andreBarnMedForelder.length ? (

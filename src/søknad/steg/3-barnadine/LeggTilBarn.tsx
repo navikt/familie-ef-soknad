@@ -1,26 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Element, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import {
-  formatDate,
-  formatDateFnr,
-  dagensDato,
-  parseDate,
-} from '../../../utils/dato';
+import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
 import { barnetFødt } from './BarneConfig';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentUid } from '../../../utils/uuid';
-import {
-  ITekstFelt,
-  IBooleanFelt,
-  IDatoFelt,
-} from '../../../models/søknadsfelter';
 import { standardLabelsBarn } from '../../../utils/standardLabels';
 
 interface Props {
