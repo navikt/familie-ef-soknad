@@ -14,6 +14,7 @@ import {
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
 import { standardLabelsBarn } from './utils/standardLabels';
+import mockPersonMedBarn from './mock/person.json';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -51,7 +52,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const barnMedLabels = person.barn.map((barn) => {
+    const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
       let nyttBarn: any = {};
 
       Object.keys(barn).forEach((key: string) => {
@@ -73,6 +74,8 @@ const App = () => {
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
   }, [person]);
+
+  console.log('søknad', søknad);
 
   if (!fetching && autentisert) {
     if (!error) {

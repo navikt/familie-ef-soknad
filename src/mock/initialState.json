@@ -1,0 +1,23 @@
+{
+  "søker": {
+    "fnr": "",
+    "forkortetNavn": "",
+    "adresse": {
+      "adresse": "",
+      "adressetillegg": "",
+      "kommune": "",
+      "postnummer": ""
+    },
+    "innvandretDato": "",
+    "utvandretDato": "",
+    "oppholdstillatelse": "",
+    "sivilstand": "",
+    "språk": "",
+    "statsborgerskap": "",
+    "privattelefon": "",
+    "mobiltelefon": "",
+    "jobbtelefon": "",
+    "bankkontonummer": ""
+  },
+  "barn": []
+}

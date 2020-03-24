@@ -4,10 +4,11 @@ import { ISøknad } from '../models/søknad';
 import mockPerson from '../mock/person.json';
 import { nyttTekstListeFelt } from '../utils/søknadsfelter';
 import { dagensDato } from '../utils/dato';
+import personIngenBarn from '../mock/personIngenBarn.json';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
-  person: mockPerson,
+  person: personIngenBarn,
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {

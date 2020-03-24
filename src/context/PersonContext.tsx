@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import { IPerson } from '../models/person';
 import mockPerson from '../mock/person.json';
+import personIngenBarn from '../mock/personIngenBarn.json';
 
 // ----------- ACTIONS & TYPES -----------
 export enum PersonActionTypes {
@@ -27,7 +28,7 @@ const reducer = (state: IPerson, action: IPersonAction) => {
 };
 
 // -----------  CONTEXT  -----------
-const initialState: IPerson = mockPerson;
+const initialState: IPerson = personIngenBarn;
 
 const PersonContext = createContext<{
   person: IPerson;
