@@ -14,7 +14,8 @@ import {
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmal';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   settForelder: Function;
@@ -29,10 +30,8 @@ const BostedOgSamvær: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const settHarForelderSamværMedBarn = (
-    spørsmål: ISpørsmål,
-    valgtSvar: string
-  ) => {
+  const settHarForelderSamværMedBarn = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: valgtSvar,
@@ -61,8 +60,9 @@ const BostedOgSamvær: React.FC<Props> = ({
 
   const settHarDereSkriftligSamværsavtale = (
     spørsmål: ISpørsmål,
-    valgtSvar: string
+    svar: ISvar
   ) => {
+    const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: valgtSvar,

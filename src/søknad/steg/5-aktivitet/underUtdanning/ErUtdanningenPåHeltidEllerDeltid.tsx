@@ -6,7 +6,7 @@ import {
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmal';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 interface Props {
@@ -19,10 +19,9 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: string) => {
+  const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
     const søkerVilStudereHeltid = spørsmål.svaralternativer.find(
-      (svarsalternativ) =>
-        hentTekst(svarsalternativ.svar_tekstid, intl) === svar
+      (svarsalternativ) => svarsalternativ.svar_tekstid === svar.svar_tekstid
     );
     if (
       (spørsmål.søknadid === EUtdanning.heltidEllerDeltid &&
@@ -37,7 +36,7 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
       ...utdanning,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
   };

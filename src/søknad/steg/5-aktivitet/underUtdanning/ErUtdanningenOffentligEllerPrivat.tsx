@@ -3,7 +3,7 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import { privatEllerOffentligSpm } from './UtdanningConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmal';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 interface Props {
@@ -16,12 +16,12 @@ const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: string) => {
+  const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
     settUtdanning({
       ...utdanning,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
   };

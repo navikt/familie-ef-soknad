@@ -9,7 +9,7 @@ import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { ISpørsmål } from '../../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../../models/spørsmal';
 import { hentTekst } from '../../../../../utils/søknad';
 import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -73,11 +73,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
       });
   };
 
-  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: string) => {
+  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
     settSivilstatus({
       ...sivilstatus,
-      begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
+      begrunnelseForSøknad: {
+        label: spørsmålTekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
     });
   };
 

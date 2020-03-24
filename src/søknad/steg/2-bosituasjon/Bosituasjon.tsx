@@ -36,21 +36,22 @@ const Bosituasjon: FC = () => {
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
-  const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: string) => {
+  const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
 
     if (!bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       oppdaterBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmålTekst,
-          verdi: svar,
+          verdi: svarTekst,
         },
       });
-    } else if (svar !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
+    } else if (svarTekst !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       settBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmålTekst,
-          verdi: svar,
+          verdi: svarTekst,
         },
       });
     }
