@@ -17,9 +17,6 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
 
-  console.log('BARNA');
-  console.log(barna);
-
   return (
     <>
       <Side tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}>

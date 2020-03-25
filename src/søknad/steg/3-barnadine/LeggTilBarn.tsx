@@ -32,15 +32,20 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [boHosDeg, settBoHosDeg] = useState('');
 
   useEffect(() => {
+    console.log('JADDDA');
+    console.log(id);
+
     if (id) {
       const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+
+      console.log(detteBarnet);
 
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
       settPersonnummer(
         detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
       );
-      settBarnFødt(detteBarnet?.født);
-      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
+      settBarnFødt(detteBarnet?.født?.verdi);
+      settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? 'ja' : 'nei');
       settDato(
         detteBarnet?.fødselsdato
           ? parseDate(detteBarnet.fødselsdato?.verdi)
