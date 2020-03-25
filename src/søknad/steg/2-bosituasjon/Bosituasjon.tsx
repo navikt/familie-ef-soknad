@@ -13,7 +13,7 @@ import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import useSøknadContext from '../../../context/SøknadContext';
 
 const Bosituasjon: FC = () => {

@@ -1,4 +1,4 @@
-import { ISpørsmål, JaNeiSvar } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
@@ -6,6 +6,7 @@ import {
   EHvorMyeSammen,
   ESkalBarnBoHosDeg,
 } from '../../../models/steg/barnasbosted';
+import { JaNeiSvar } from '../../../helpers/svar';
 
 export const borINorge: ISpørsmål = {
   søknadid: 'borINorge',
@@ -40,15 +41,15 @@ export const harAnnenForelderSamværMedBarn: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: EHarSamværMedBarn.jaIkkeMerEnnVanlig,
+      id: EHarSamværMedBarn.jaIkkeMerEnnVanlig,
       svar_tekstid: 'barnasbosted.spm.jaIkkeMerEnnVanlig',
     },
     {
-      nøkkel: EHarSamværMedBarn.jaMerEnnVanlig,
+      id: EHarSamværMedBarn.jaMerEnnVanlig,
       svar_tekstid: 'barnasbosted.spm.jaMerEnnVanlig',
     },
     {
-      nøkkel: EHarSamværMedBarn.nei,
+      id: EHarSamværMedBarn.nei,
       svar_tekstid: 'barnasbosted.spm.andreForelderenSamværNei',
     },
   ],
@@ -59,15 +60,15 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   svaralternativer: [
     {
-      nøkkel: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
+      id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
       svar_tekstid: 'barnasbosted.spm.jaKonkreteTidspunkt',
     },
     {
-      nøkkel: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
+      id: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
       svar_tekstid: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt',
     },
     {
-      nøkkel: EHarSkriftligSamværsavtale.nei,
+      id: EHarSkriftligSamværsavtale.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
   ],
@@ -83,15 +84,15 @@ export const borISammeHus: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: EBorISammeHus.ja,
+      id: EBorISammeHus.ja,
       svar_tekstid: 'barnasbosted.spm.ja',
     },
     {
-      nøkkel: EBorISammeHus.nei,
+      id: EBorISammeHus.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
     {
-      nøkkel: EBorISammeHus.vetikke,
+      id: EBorISammeHus.vetikke,
       svar_tekstid: 'barnasbosted.spm.vetikke',
     },
   ],
@@ -102,15 +103,15 @@ export const hvorMyeSammen: ISpørsmål = {
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   svaralternativer: [
     {
-      nøkkel: EHvorMyeSammen.møtesIkke,
+      id: EHvorMyeSammen.møtesIkke,
       svar_tekstid: 'barnasbosted.spm.møtesIkke',
     },
     {
-      nøkkel: EHvorMyeSammen.kunNårLeveres,
+      id: EHvorMyeSammen.kunNårLeveres,
       svar_tekstid: 'barnasbosted.spm.kunNårLeveres',
     },
     {
-      nøkkel: EHvorMyeSammen.møtesUtenom,
+      id: EHvorMyeSammen.møtesUtenom,
       svar_tekstid: 'barnasbosted.spm.møtesUtenom',
     },
   ],
@@ -121,15 +122,15 @@ export const skalBarnBoHosDeg: ISpørsmål = {
   tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
   svaralternativer: [
     {
-      nøkkel: ESkalBarnBoHosDeg.ja,
+      id: ESkalBarnBoHosDeg.ja,
       svar_tekstid: 'barnasbosted.spm.jaFolkeregistrert',
     },
     {
-      nøkkel: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+      id: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
       svar_tekstid: 'barnasbosted.spm.jaMenSamarbeiderIkke',
     },
     {
-      nøkkel: ESkalBarnBoHosDeg.nei,
+      id: ESkalBarnBoHosDeg.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
   ],

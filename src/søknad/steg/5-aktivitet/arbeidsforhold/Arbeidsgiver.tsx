@@ -17,7 +17,7 @@ import {
   EArbeidsgiver,
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;

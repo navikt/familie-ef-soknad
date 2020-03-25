@@ -11,7 +11,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmalogsvar';
 import Lenke from 'nav-frontend-lenker';
 
 const Personopplysninger: React.FC = () => {

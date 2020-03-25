@@ -3,7 +3,7 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import { privatEllerOffentligSpm } from './UtdanningConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 interface Props {

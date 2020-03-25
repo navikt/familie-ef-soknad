@@ -1,4 +1,9 @@
-import { ISpørsmål, ESvar, JaNeiSvar } from '../../../../models/spørsmal';
+import {
+  ISpørsmål,
+  ESvar,
+  ESvarTekstid,
+} from '../../../../models/spørsmalogsvar';
+import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',
@@ -16,10 +21,11 @@ export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
   },
   svaralternativer: [
     {
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.søkerGiftIUtlandet',
     },
-    { svar_tekstid: ESvar.NEI },
+    { id: ESvar.NEI, svar_tekstid: ESvarTekstid.NEI },
   ],
 };
 
@@ -28,10 +34,11 @@ export const søkerSeparertEllerSKiltIUtlandetSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
   svaralternativer: [
     {
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.søkerSeparertEllerSkiltIUtlandet',
     },
-    { svar_tekstid: ESvar.NEI },
+    { id: ESvar.NEI, svar_tekstid: ESvarTekstid.NEI },
   ],
 };
 
@@ -40,6 +47,7 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {
+      id: '',
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
     },
