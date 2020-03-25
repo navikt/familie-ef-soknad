@@ -76,3 +76,22 @@ export const verdiTilTekstsvar = (verdi: string | Date | boolean) => {
     return null;
   }
 };
+
+export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
+  const nyttObjekt: any = {};
+
+  for (const [key, verdi] of Object.entries(objekt)) {
+    const barnLabel = variabelTilLabel[key];
+
+    if (barnLabel) {
+      nyttObjekt[key] = {
+        label: barnLabel,
+        verdi: verdi,
+      };
+    } else {
+      nyttObjekt[key] = verdi;
+    }
+  }
+
+  return nyttObjekt;
+};

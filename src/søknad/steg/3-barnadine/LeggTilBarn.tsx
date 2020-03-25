@@ -17,6 +17,7 @@ import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentUid } from '../../../utils/uuid';
 import { standardLabelsBarn } from '../../../utils/standardLabels';
+import { settLabelOgVerdi } from '../../../utils/søknad';
 
 interface Props {
   settÅpenModal: Function;
@@ -81,20 +82,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       id: hentUid(),
     };
 
-    const nyttBarn: any = {};
-
-    Object.keys(barn).forEach((key: string) => {
-      const barnLabel = standardLabelsBarn(key);
-
-      if (barnLabel) {
-        nyttBarn[key] = {
-          label: barnLabel,
-          verdi: (barn as any)[key],
-        };
-      } else {
-        nyttBarn[key] = (barn as any)[key];
-      }
-    });
+    const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
     const nyBarneListe = [
       ...søknad.person.barn.filter((b) => b.id !== id),
