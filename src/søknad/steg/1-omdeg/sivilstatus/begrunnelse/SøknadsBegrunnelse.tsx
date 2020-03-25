@@ -6,23 +6,28 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
-import useSøknadContext from '../../../../../context/SøknadContext';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../../../models/spørsmal';
 import { hentTekst } from '../../../../../utils/søknad';
+import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
+  sivilstatus: ISivilstatus;
+  settSivilstatus: (sivilstatus: ISivilstatus) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
 }
 
-const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
+const Søknadsbegrunnelse: FC<Props> = ({
+  sivilstatus,
+  settSivilstatus,
+  settDato,
+}) => {
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
 
-  const { søknad, settSøknad } = useSøknadContext();
-  const { sivilstatus } = søknad;
   const {
     begrunnelseForSøknad,
     datoForSamlivsbrudd,
@@ -45,11 +50,13 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
   const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
   const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
   const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
+  const dødsfallTekstid = hentTekstid('dødsfall');
   const annetSvarTekstid = hentTekstid('annet');
 
   const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
   const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
   const endretSamvær = erBegrunnelse(endringIsamværsordningTekstid);
+  const dødsfall = erBegrunnelse(dødsfallTekstid);
   const annet = erBegrunnelse(annetSvarTekstid);
 
   const settTekstfeltBegrunnelseAnnet = (
@@ -57,33 +64,27 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
   ): void => {
     begrunnelseForSøknad &&
       annet &&
-      settSøknad({
-        ...søknad,
-        sivilstatus: {
-          ...sivilstatus,
-          begrunnelseAnnet: {
-            label: intl.formatMessage({ id: spørsmål.tekstid }),
-            verdi: e.target.value,
-          },
+      settSivilstatus({
+        ...sivilstatus,
+        begrunnelseAnnet: {
+          label: intl.formatMessage({ id: spørsmål.tekstid }),
+          verdi: e.target.value,
         },
       });
   };
 
   const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: string) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
-    settSøknad({
-      ...søknad,
-      sivilstatus: {
-        ...sivilstatus,
-        begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
-      },
+    settSivilstatus({
+      ...sivilstatus,
+      begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
     });
   };
 
   const fjernIrrelevanteSøknadsfelter = () => {
     if (!samlivsbruddMedForelder && datoForSamlivsbrudd) {
       const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
 
     if (
@@ -92,12 +93,12 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
       !samlivsbruddMedForelder
     ) {
       const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
 
     if (!endretSamvær && datoEndretSamvær) {
       const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
-      settSøknad({ ...søknad, sivilstatus: nySivilstatusObjekt });
+      settSivilstatus(nySivilstatusObjekt);
     }
   };
 
@@ -116,30 +117,38 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
         />
       </KomponentGruppe>
 
-      {samlivsbruddMedForelder ? (
+      {samlivsbruddMedForelder && (
         <>
           <DatoForSamlivsbrudd
             settDato={settDato}
             datoForSamlivsbrudd={datoForSamlivsbrudd}
           />
         </>
-      ) : null}
+      )}
 
-      {samlivsbruddMedForelder || samlivsbruddAndre ? (
+      {samlivsbruddAndre && (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}
         />
-      ) : null}
+      )}
 
-      {endretSamvær ? (
+      {endretSamvær && (
         <EndringISamvær
           settDato={settDato}
           datoEndretSamvær={datoEndretSamvær}
         />
-      ) : null}
+      )}
 
-      {annet ? (
+      {dødsfall && (
+        <KomponentGruppe>
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <FormattedHTMLMessage id={'sivilstatus.alert.dødsfall'} />
+          </AlertStripeInfo>
+        </KomponentGruppe>
+      )}
+
+      {annet && (
         <KomponentGruppe>
           <Textarea
             label={intl.formatMessage({
@@ -150,7 +159,7 @@ const Søknadsbegrunnelse: FC<Props> = ({ settDato }) => {
             onChange={(e) => settTekstfeltBegrunnelseAnnet(e)}
           />
         </KomponentGruppe>
-      ) : null}
+      )}
     </SeksjonGruppe>
   );
 };

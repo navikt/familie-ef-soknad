@@ -11,7 +11,6 @@ import Modal from 'nav-frontend-modal';
 import {
   ITekstFelt,
   IBooleanFelt,
-  IDatoFelt,
 } from '../../../models/søknadsfelter';
 
 interface Props {

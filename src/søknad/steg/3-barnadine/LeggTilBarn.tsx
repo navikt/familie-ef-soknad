@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import { formatDate, formatDateFnr, dagensDato } from '../../../utils/dato';
+import {
+  formatDate,
+  formatDateFnr,
+  dagensDato,
+  parseDate,
+} from '../../../utils/dato';
 import { barnetFødt } from './BarneConfig';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
@@ -26,6 +31,25 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [personnummer, settPersonnummer] = useState('');
   const [boHosDeg, settBoHosDeg] = useState('');
 
+  useEffect(() => {
+    if (id) {
+      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+
+      settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
+      settPersonnummer(
+        detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
+      );
+      settBarnFødt(detteBarnet?.født);
+      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
+      settDato(
+        detteBarnet?.fødselsdato
+          ? parseDate(detteBarnet.fødselsdato?.verdi)
+          : dagensDato
+      );
+    }
+    // eslint-disable-next-line
+  }, []);
+
   const settDato = (date: Date | null): void => {
     date !== null && settBarnDato(date);
   };
@@ -40,9 +64,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     settPersonnummer('');
     settBoHosDeg('');
   };
-
-  console.log('LEGGER TIL BARN');
-  console.log('ID', id);
 
   const leggTilBarn = (id: string | undefined) => {
     const fødselsnummer =

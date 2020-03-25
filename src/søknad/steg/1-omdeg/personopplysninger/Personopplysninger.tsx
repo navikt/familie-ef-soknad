@@ -4,16 +4,15 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../../context/PersonContext';
 import useSøknadContext from '../../../../context/SøknadContext';
-
 import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import AlertStripeInfo from 'nav-frontend-alertstriper/lib/info-alertstripe';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål } from '../../../../models/spørsmal';
+import Lenke from 'nav-frontend-lenker';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -63,9 +62,9 @@ const Personopplysninger: React.FC = () => {
     <SeksjonGruppe>
       <KomponentGruppe>
         <FeltGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
+          <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
-          </AlertStripeInfo>
+          </AlertStripe>
         </FeltGruppe>
 
         <FeltGruppe>
@@ -100,11 +99,37 @@ const Personopplysninger: React.FC = () => {
           }
           onChange={settPersonopplysningerFelt}
         />
-        {søkerBorPåRegistrertAdresse?.verdi === false ? (
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-            <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-          </AlertStripeAdvarsel>
-        ) : null}
+
+        {søkerBorPåRegistrertAdresse?.verdi === false && (
+          <>
+            <KomponentGruppe>
+              <AlertStripe type={'advarsel'} form={'inline'}>
+                <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
+              </AlertStripe>
+            </KomponentGruppe>
+            <KomponentGruppe>
+              <FeltGruppe>
+                <Element>
+                  <LocaleTekst tekst={'personopplysninger.info.endreAdresse'} />
+                </Element>
+              </FeltGruppe>
+              <FeltGruppe>
+                <Normaltekst>
+                  <Lenke
+                    href={
+                      'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/dokumentinnsending'
+                    }
+                  >
+                    <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
+                  </Lenke>
+                </Normaltekst>
+              </FeltGruppe>
+              <Normaltekst>
+                <LocaleTekst tekst={'personopplysninger.info.pdfskjema'} />
+              </Normaltekst>
+            </KomponentGruppe>
+          </>
+        )}
       </KomponentGruppe>
 
       {telefonnr === '' ? (

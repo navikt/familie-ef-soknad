@@ -1,26 +1,26 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { ISpørsmål } from '../../../../models/spørsmal';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
-import { ISivilstatus } from '../../../../models/steg/omDeg';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
+import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, svar: boolean) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
-  sivilstatusObjekt: ISivilstatus;
+  sivilstatus: ISivilstatus;
 }
 
 const SøkerErGift: React.FC<Props> = ({
   settJaNeiFelt,
   settDato,
-  sivilstatusObjekt,
+  sivilstatus,
 }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const { søkerHarSøktSeparasjon } = sivilstatusObjekt;
+  const { søkerHarSøktSeparasjon } = sivilstatus;
 
   return (
     <>
@@ -34,14 +34,16 @@ const SøkerErGift: React.FC<Props> = ({
         />
       </KomponentGruppe>
       {søkerHarSøktSeparasjon?.verdi ? (
-        <SøkerHarSøktSeparasjon settDato={settDato} />
-      ) : !søkerHarSøktSeparasjon?.verdi ? (
-        <KomponentGruppe>
-          <AlertStripeAdvarsel className={'fjernBakgrunn'}>
-            <LocaleTekst tekst={'sivilstatus.separasjon.advarsel'} />
-          </AlertStripeAdvarsel>
-        </KomponentGruppe>
-      ) : null}
+        <SøkerHarSøktSeparasjon sivilstatus={sivilstatus} settDato={settDato} />
+      ) : (
+        søkerHarSøktSeparasjon?.verdi === false && (
+          <KomponentGruppe>
+            <AlertStripe type={'advarsel'} form={'inline'}>
+              <LocaleTekst tekst={'sivilstatus.alert.søktSeparasjon'} />
+            </AlertStripe>
+          </KomponentGruppe>
+        )
+      )}
     </>
   );
 };

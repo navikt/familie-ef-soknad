@@ -10,14 +10,13 @@ interface Props {
   datoEndretSamvær: IDatoFelt | undefined;
 }
 const EndringISamvær: React.FC<Props> = ({ settDato, datoEndretSamvær }) => {
+  const datovelgerTekstid = 'sivilstatus.datovelger.endretSamvær';
   return (
     <KomponentGruppe>
       <Datovelger
-        settDato={(e) =>
-          settDato(e, 'datoEndretSamvær', 'sivilstatus.begrunnelse.endring')
-        }
+        settDato={(e) => settDato(e, 'datoEndretSamvær', datovelgerTekstid)}
         valgtDato={datoEndretSamvær ? datoEndretSamvær.verdi : undefined}
-        tekstid={'sivilstatus.begrunnelse.endring'}
+        tekstid={datovelgerTekstid}
         datobegrensning={DatoBegrensning.AlleDatoer}
       />
     </KomponentGruppe>
