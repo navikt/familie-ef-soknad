@@ -28,6 +28,10 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  console.log('LEGG TIL BARN FØDT');
+  console.log(personnummer);
+  console.log(navn);
+
   return (
     <>
       <KomponentGruppe>
