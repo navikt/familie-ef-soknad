@@ -8,13 +8,14 @@ import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
-import { erValgtSvarLiktSomSvar, hentTekst } from '../../../utils/søknad';
+import { hentTekst } from '../../../utils/søknad';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import useSøknadContext from '../../../context/SøknadContext';
+import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();

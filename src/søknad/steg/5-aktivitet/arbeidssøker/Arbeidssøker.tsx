@@ -18,6 +18,7 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentTekst } from '../../../../utils/søknad';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -36,7 +37,9 @@ const Arbeidssøker: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [arbeidssøker]);
 
-  const settJaNeiSpørsmål = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settJaNeiSpørsmål = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settArbeidssøker({
       ...arbeidssøker,
       [spørsmål.søknadid]: {

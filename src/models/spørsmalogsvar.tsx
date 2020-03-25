@@ -28,7 +28,7 @@ export interface ISvar {
 }
 
 export interface ITekst {
-  nøkkel: string;
+  id: string;
   label_tekstid: string;
   alert_tekstid?: string;
 }

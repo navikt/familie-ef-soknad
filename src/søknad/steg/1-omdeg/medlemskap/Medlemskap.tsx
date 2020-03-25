@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISpørsmål } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
@@ -11,6 +11,7 @@ import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { useIntl } from 'react-intl';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();
@@ -20,7 +21,9 @@ const Medlemskap: React.FC = () => {
     søkerBosattINorgeSisteTreÅr,
   } = søknad.medlemskap;
 
-  const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settSøknad({
       ...søknad,
       medlemskap: {

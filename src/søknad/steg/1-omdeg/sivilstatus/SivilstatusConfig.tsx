@@ -3,7 +3,7 @@ import {
   ESvar,
   ESvarTekstid,
 } from '../../../../models/spørsmalogsvar';
-import { JaNeiSvar } from '../../../../helpers/svar';
+import { JaNeiSvar, NeiSvar } from '../../../../helpers/svar';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',
@@ -25,7 +25,7 @@ export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
       svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.søkerGiftIUtlandet',
     },
-    { id: ESvar.NEI, svar_tekstid: ESvarTekstid.NEI },
+    NeiSvar,
   ],
 };
 
@@ -52,14 +52,18 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
     },
     {
+      id: '',
       svar_tekstid: 'sivilstatus.svar.samlivsbruddAndre',
     },
-    { svar_tekstid: 'sivilstatus.svar.aleneFraFødsel' },
-    { svar_tekstid: 'sivilstatus.svar.endringISamværsordning' },
+
+    { id: '', svar_tekstid: 'sivilstatus.svar.aleneFraFødsel' },
+    { id: '', svar_tekstid: 'sivilstatus.svar.endringISamværsordning' },
     {
+      id: '',
+
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
-    { svar_tekstid: 'sivilstatus.svar.annet' },
+    { id: '', svar_tekstid: 'sivilstatus.svar.annet' },
   ],
 };

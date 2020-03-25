@@ -7,11 +7,7 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import {
-  hentBooleanFraValgtSvar,
-  hentSivilstatus,
-  hentTekst,
-} from '../../../../utils/søknad';
+import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
@@ -23,6 +19,8 @@ import {
   ESivilstand,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
+import { hentSivilstatus } from '../../../../helpers/omdeg';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -49,15 +47,15 @@ const Sivilstatus: React.FC = () => {
   const erSøkerEnke = sivilstand === ESivilstand.ENKE;
   const erSøkerSeparert = sivilstand === ESivilstand.SEPA;
 
-  const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+  const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
-    const valgtSvar: boolean = hentBooleanFraValgtSvar(svar);
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
 
     const nySivilstatus = {
       ...sivilstatus,
       [spørsmål.søknadid]: {
         label: spørsmålLabel,
-        verdi: valgtSvar,
+        verdi: svar,
       },
     };
     if (
@@ -116,7 +114,6 @@ const Sivilstatus: React.FC = () => {
             <JaNeiSpørsmål
               spørsmål={søkerGiftIUtlandetSpørsmål}
               onChange={settSivilstatusFelt}
-              settSpørsmålOgSvar={settSivilstatusFelt}
               valgtSvar={hentValgtSvar(
                 søkerGiftIUtlandetSpørsmål,
                 søknad.sivilstatus

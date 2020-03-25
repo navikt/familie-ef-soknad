@@ -27,7 +27,7 @@ const StyledJaNeiSpørsmål = styled.div`
 
 interface Props {
   spørsmål: ISpørsmål;
-  onChange: (spørsmål: ISpørsmål, svar: boolean) => void;
+  onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;
 }
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
@@ -35,14 +35,13 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
+
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
     svar: ISvar
   ): void => {
-    const erSvarJa = svar.svar_tekstid === ESvar.JA;
-
-    onChange !== undefined && svar && onChange(spørsmål, erSvarJa);
+    onChange !== undefined && svar && onChange(spørsmål, svar);
 
     if (svar.alert_tekstid) {
       settAlert(true);
