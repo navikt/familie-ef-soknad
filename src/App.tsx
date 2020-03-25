@@ -15,6 +15,7 @@ import {
 } from './utils/autentisering';
 import { standardLabelsBarn } from './utils/standardLabels';
 import mockPersonMedBarn from './mock/person.json';
+import { IBarn } from './models/person';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -55,18 +56,18 @@ const App = () => {
     const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
       let nyttBarn: any = {};
 
-      Object.keys(barn).forEach((key: string) => {
+      for (const [key, verdi] of Object.entries(barn)) {
         const barnLabel = standardLabelsBarn(key);
 
         if (barnLabel) {
           nyttBarn[key] = {
             label: barnLabel,
-            verdi: (barn as any)[key],
+            verdi: verdi,
           };
         } else {
-          nyttBarn[key] = (barn as any)[key];
+          nyttBarn[key] = verdi;
         }
-      });
+      }
 
       return nyttBarn;
     });
