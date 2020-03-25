@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
-import mockPerson from '../mock/person.json';
 import { nyttTekstListeFelt } from '../utils/søknadsfelter';
 import { dagensDato } from '../utils/dato';
 import personIngenBarn from '../mock/personIngenBarn.json';

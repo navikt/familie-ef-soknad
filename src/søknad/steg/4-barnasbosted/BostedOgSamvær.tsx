@@ -27,8 +27,6 @@ const BostedOgSamvær: React.FC<Props> = ({
   forelder,
   huketAvAnnenForelder,
 }) => {
-  console.log('FORELDER');
-  console.log(forelder);
   const intl = useIntl();
 
   const settHarForelderSamværMedBarn = (
@@ -166,7 +164,7 @@ const BostedOgSamvær: React.FC<Props> = ({
             forelder.harDereSkriftligSamværsavtale.verdi
           ) ? (
             <FeltGruppe>
-              <AlertStripe type={'info'} form={'inline'}>
+              <AlertStripe type={'info'}>
                 <LocaleTekst
                   tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                 />

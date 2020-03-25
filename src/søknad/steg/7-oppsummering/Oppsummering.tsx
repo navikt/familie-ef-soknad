@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
+import React from 'react';
 import Side from '../../../components/side/Side';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Knapp } from 'nav-frontend-knapper';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { hentBeskjedMedNavn } from '../../../utils/språk';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
 import { verdiTilTekstsvar } from '../../../utils/søknad';
 
 const Oppsummering: React.FC = () => {
-  const { søknad } = useSøknadContext();
+  //const { søknad } = useSøknadContext();
   const intl = useIntl();
-
-  console.log(søknad);
 
   const visLabelOgSvar = (objekt: Object) =>
     Object.values(objekt).map((spørsmål) => {

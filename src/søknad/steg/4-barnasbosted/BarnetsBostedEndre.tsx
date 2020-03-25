@@ -38,9 +38,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     false
   );
 
-  console.log('FORELDER');
-  console.log(forelder);
-
   useEffect(() => {
     if (barn.forelder) {
       settForelder(barn.forelder);

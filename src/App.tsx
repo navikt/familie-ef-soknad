@@ -76,8 +76,6 @@ const App = () => {
     // eslint-disable-next-line
   }, [person]);
 
-  console.log('søknad', søknad);
-
   if (!fetching && autentisert) {
     if (!error) {
       return (
