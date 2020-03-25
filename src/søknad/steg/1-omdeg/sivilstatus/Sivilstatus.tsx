@@ -7,15 +7,22 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import {
+  hentBooleanFraValgtSvar,
+  hentSivilstatus,
+  hentTekst,
+} from '../../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   søkerSeparertEllerSKiltIUtlandetSpørsmål,
   søkerGiftIUtlandetSpørsmål,
 } from './SivilstatusConfig';
 import { useIntl } from 'react-intl';
-import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
+import {
+  ESivilstand,
+  ISivilstatus,
+} from '../../../../models/steg/omDeg/sivilstatus';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -37,18 +44,20 @@ const Sivilstatus: React.FC = () => {
     // eslint-disable-next-line
   }, [sivilstatus]);
 
-  const erSøkerGift = person.søker.sivilstand === 'GIFT';
-  const erSøkerUgift = sivilstand === 'UGIF';
-  const erSøkerEnke = sivilstand === 'ENKE';
-  const erSøkerSeparert = sivilstand === 'SEPA';
+  const erSøkerGift = sivilstand === ESivilstand.GIFT;
+  const erSøkerUgift = sivilstand === ESivilstand.UGIF;
+  const erSøkerEnke = sivilstand === ESivilstand.ENKE;
+  const erSøkerSeparert = sivilstand === ESivilstand.SEPA;
 
-  const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
+    const valgtSvar: boolean = hentBooleanFraValgtSvar(svar);
+
     const nySivilstatus = {
       ...sivilstatus,
       [spørsmål.søknadid]: {
         label: spørsmålLabel,
-        verdi: svar,
+        verdi: valgtSvar,
       },
     };
     if (
@@ -107,6 +116,7 @@ const Sivilstatus: React.FC = () => {
             <JaNeiSpørsmål
               spørsmål={søkerGiftIUtlandetSpørsmål}
               onChange={settSivilstatusFelt}
+              settSpørsmålOgSvar={settSivilstatusFelt}
               valgtSvar={hentValgtSvar(
                 søkerGiftIUtlandetSpørsmål,
                 søknad.sivilstatus
