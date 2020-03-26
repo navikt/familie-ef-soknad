@@ -6,6 +6,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
+import OppsummeringBarnaDine from './OppsummeringBarnaDine';
 import { verdiTilTekstsvar } from '../../../utils/søknad';
 
 const Oppsummering: React.FC = () => {
@@ -33,10 +34,7 @@ const Oppsummering: React.FC = () => {
           <KomponentGruppe>
             <OppsummeringOmDeg visLabelOgSvar={visLabelOgSvar} />
             <OppsummeringBosituasjon visLabelOgSvar={visLabelOgSvar} />
-            <Ekspanderbartpanel tittel="Barna dine">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringBarnaDine visLabelOgSvar={visLabelOgSvar} />
             <Ekspanderbartpanel tittel="Barnas bosted og samværsordning">
               <h1>Yes</h1>
               <div>Test</div>
