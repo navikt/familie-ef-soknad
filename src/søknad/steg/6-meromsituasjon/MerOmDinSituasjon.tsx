@@ -42,7 +42,6 @@ const MerOmDinSituasjon: React.FC = () => {
   const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
 
   useEffect(() => {
-    console.log(dinSituasjon);
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
     // eslint-disable-next-line
   }, [dinSituasjon]);
