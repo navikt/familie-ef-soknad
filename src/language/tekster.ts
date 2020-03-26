@@ -305,6 +305,7 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',

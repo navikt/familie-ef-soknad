@@ -17,7 +17,7 @@ const Oppsummering: React.FC = () => {
       return (
         <div className="spørsmål-og-svar">
           <Element>{spørsmål.label}</Element>
-          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi)}</Normaltekst>
+          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi, intl)}</Normaltekst>
         </div>
       );
     });

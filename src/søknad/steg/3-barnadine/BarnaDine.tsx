@@ -41,7 +41,9 @@ const BarnaDine: React.FC = () => {
                   barn.personnummer && barn.personnummer.verdi
                     ? barn.personnummer
                     : {
-                        label: 'Personnummer',
+                        label: intl.formatMessage({
+                          id: 'barnadine.personnummer',
+                        }),
                         verdi: '',
                       }
                 }
@@ -51,7 +53,9 @@ const BarnaDine: React.FC = () => {
                   barn.født
                     ? barn.født
                     : {
-                        label: 'Er barnet født?',
+                        label: intl.formatMessage({
+                          id: 'barnekort.født',
+                        }),
                         verdi: false,
                       }
                 }
