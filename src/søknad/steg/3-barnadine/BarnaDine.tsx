@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
 import Hjelpetekst from '../../../components/Hjelpetekst';
+import { hentTekst } from '../../../utils/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -19,19 +20,19 @@ const BarnaDine: React.FC = () => {
 
   return (
     <>
-      <Side tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}>
+      <Side tittel={hentTekst('barnadine.sidetittel', intl)}>
         <div className="barna-dine">
           <Hjelpetekst
             åpneTekstid={'barnadine.hjelpetekst.åpne'}
             innholdTekstid={'barnadine.hjelpetekst.innhold'}
           />
           <AlertStripeInfo className="informasjonstekst">
-            {intl.formatMessage({ id: 'barnadine.infohentet' })}
+            {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>
           <div className="barnekort-wrapper">
-            {barna?.map((barn, index) => (
+            {barna?.map((barn) => (
               <Barnekort
-                key={index + barn.fødselsdato.verdi}
+                key={barn.id}
                 settÅpenModal={settÅpenModal}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}
@@ -41,7 +42,7 @@ const BarnaDine: React.FC = () => {
                   barn.personnummer && barn.personnummer.verdi
                     ? barn.personnummer
                     : {
-                        label: 'Personnummer',
+                        label: hentTekst('barnadine.personnummer', intl),
                         verdi: '',
                       }
                 }
@@ -51,7 +52,7 @@ const BarnaDine: React.FC = () => {
                   barn.født
                     ? barn.født
                     : {
-                        label: 'Er barnet født?',
+                        label: hentTekst('barnekort.født', intl),
                         verdi: false,
                       }
                 }
@@ -60,11 +61,9 @@ const BarnaDine: React.FC = () => {
             ))}
             <div className="barnekort">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Element>
-                  {intl.formatMessage({ id: 'barnadine.leggtil.info' })}
-                </Element>
+                <Element>{hentTekst('barnadine.leggtil.info', intl)}</Element>
                 <Knapp onClick={() => settÅpenModal(true)}>
-                  {intl.formatMessage({ id: 'barnadine.leggtil' })}
+                  {hentTekst('barnadine.leggtil', intl)}
                 </Knapp>
               </div>
             </div>

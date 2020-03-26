@@ -16,7 +16,7 @@ import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentUid } from '../../../utils/uuid';
-import { standardLabelsBarn } from '../../../utils/standardLabels';
+import { standardLabelsBarn } from '../../../helpers/labels';
 import { settLabelOgVerdi } from '../../../utils/søknad';
 
 interface Props {

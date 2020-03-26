@@ -61,14 +61,17 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
   return parsed;
 };
 
-export const verdiTilTekstsvar = (verdi: string | Date | boolean) => {
+export const verdiTilTekstsvar = (
+  verdi: string | Date | boolean,
+  intl: IntlShape
+) => {
   if (typeof verdi === 'string') {
     return verdi;
   } else if (typeof verdi === 'boolean') {
     if (verdi === true) {
-      return 'Ja';
+      return hentTekst('svar.ja', intl);
     } else {
-      return 'Nei';
+      return hentTekst('svar.nei', intl);
     }
   } else if (verdi instanceof Date) {
     return formatDate(verdi);
