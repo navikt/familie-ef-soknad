@@ -1,6 +1,5 @@
 import React from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
@@ -10,9 +9,20 @@ interface Props {
 const OppsummeringBarnaDine: React.FC<Props> = ({ visLabelOgSvar }) => {
   const { søknad } = useSøknadContext();
 
+  const barna = søknad.person.barn;
+
+  const felterAlleBarna = barna.map((barn, index) => {
+    return (
+      <div className="oppsummering-barn">
+        {visLabelOgSvar(barn)}
+        {index < barna.length - 1 && <hr />}
+      </div>
+    );
+  });
+
   return (
     <Ekspanderbartpanel tittel="Barna dine">
-      <h1>Halla</h1>
+      {felterAlleBarna}
     </Ekspanderbartpanel>
   );
 };

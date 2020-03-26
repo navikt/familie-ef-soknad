@@ -14,14 +14,16 @@ const Oppsummering: React.FC = () => {
   const intl = useIntl();
 
   const visLabelOgSvar = (objekt: Object) =>
-    Object.values(objekt).map((spørsmål) => {
-      return (
-        <div className="spørsmål-og-svar">
-          <Element>{spørsmål.label}</Element>
-          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi)}</Normaltekst>
-        </div>
-      );
-    });
+    Object.values(objekt)
+      .filter((spørsmål) => spørsmål.label && spørsmål.verdi)
+      .map((spørsmål) => {
+        return (
+          <div className="spørsmål-og-svar">
+            <Element>{spørsmål.label}</Element>
+            <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi)}</Normaltekst>
+          </div>
+        );
+      });
 
   return (
     <>
