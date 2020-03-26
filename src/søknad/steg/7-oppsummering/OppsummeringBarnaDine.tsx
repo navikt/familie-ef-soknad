@@ -11,6 +11,9 @@ const OppsummeringBarnaDine: React.FC<Props> = ({ visLabelOgSvar }) => {
 
   const barna = søknad.person.barn;
 
+  console.log('BARNA');
+  console.log(barna);
+
   const felterAlleBarna = barna.map((barn, index) => {
     return (
       <div className="oppsummering-barn">

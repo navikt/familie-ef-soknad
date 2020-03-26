@@ -50,10 +50,10 @@ export interface IPersonDetaljer {
 }
 
 export interface IForelder {
-  navn?: string;
+  navn?: ITekstFelt;
   skalBarnBoHosDeg?: ITekstFelt;
-  fødselsdato?: Date | null;
-  personnr?: string;
+  fødselsdato?: IDatoFelt;
+  personnr?: ITekstFelt;
   borINorge?: IBooleanFelt;
   avtaleOmDeltBosted?: IBooleanFelt;
   harAnnenForelderSamværMedBarn?: ITekstFelt;
