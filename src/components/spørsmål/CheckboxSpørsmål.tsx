@@ -42,7 +42,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
-          const alleredeHuketAvtISøknad = valgteSvar.some((valgtSvar) => {
+          const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
             return valgtSvar === svarTekst;
           });
 
@@ -50,9 +50,9 @@ const CheckboxSpørsmål: React.FC<Props> = ({
             <CheckboksPanel
               key={svar.svar_tekstid}
               label={svarTekst}
-              checked={alleredeHuketAvtISøknad}
+              checked={alleredeHuketAvISøknad}
               onChange={() =>
-                settValgteSvar(spørsmål, alleredeHuketAvtISøknad, svar)
+                settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
               }
             />
           );
