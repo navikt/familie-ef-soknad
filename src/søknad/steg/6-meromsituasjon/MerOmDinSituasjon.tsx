@@ -9,7 +9,7 @@ import {
   EDinSituasjon,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål } from '../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
@@ -39,29 +39,26 @@ const MerOmDinSituasjon: React.FC = () => {
     datoOppstartJobb,
     datoOppstartUtdanning,
   } = dinSituasjon;
+  const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
 
   useEffect(() => {
+    console.log(dinSituasjon);
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
     // eslint-disable-next-line
   }, [dinSituasjon]);
 
-  const settDinSituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
-    const dinSituasjonFelt = {
-      label: hentTekst(spørsmål.tekstid, intl),
-      verdi: svar,
-    };
+  const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
+    EDinSituasjon.harFåttJobbTilbud,
+    avhukedeSvarISøknad,
+    intl
+  );
+  const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
+    EDinSituasjon.skalTaUtdanning,
+    avhukedeSvarISøknad,
+    intl
+  );
 
-    const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
-      EDinSituasjon.harFåttJobbTilbud,
-      svar,
-      intl
-    );
-    const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
-      EDinSituasjon.skalTaUtdanning,
-      svar,
-      intl
-    );
-
+  const hentEndretSituasjon = (dinSituasjon: IDinSituasjon): IDinSituasjon => {
     if (datoOppstartJobb || datoOppstartUtdanning) {
       const endretSituasjon = dinSituasjon;
       if (!erFåttJobbTilbudISvar && datoOppstartJobb) {
@@ -69,14 +66,40 @@ const MerOmDinSituasjon: React.FC = () => {
       } else if (!erSkalTaUtdanningISvar && datoOppstartUtdanning) {
         delete endretSituasjon.datoOppstartUtdanning;
       }
+      return endretSituasjon;
+    } else return dinSituasjon;
+  };
+
+  const settDinSituasjonFelt = (
+    spørsmål: ISpørsmål,
+    svarHuketAv: boolean,
+    svar: ISvar
+  ) => {
+    const spørsmålTekst = hentTekst(spørsmål.tekstid, intl);
+    const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
+    const endretSituasjon = hentEndretSituasjon(dinSituasjon);
+    const avhukendeSvarIEndretSituasjon = endretSituasjon.gjelderDetteDeg.verdi;
+    const dinSituasjonFelt = (svarSomSkalSettesISøknad: string[]) => ({
+      label: spørsmålTekst,
+      verdi: svarSomSkalSettesISøknad,
+    });
+
+    if (svarHuketAv) {
+      const avhukedeSvarUtenValgtSvar: string[] = avhukendeSvarIEndretSituasjon.filter(
+        (valgtSvar) => {
+          return valgtSvar !== svarTekst;
+        }
+      );
       settDinSituasjon({
         ...endretSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt,
+        [spørsmål.søknadid]: dinSituasjonFelt(avhukedeSvarUtenValgtSvar),
       });
     } else {
+      const avhukedeSvar = avhukendeSvarIEndretSituasjon;
+      avhukedeSvar.push(svarTekst);
       settDinSituasjon({
-        ...dinSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt,
+        ...endretSituasjon,
+        [spørsmål.søknadid]: dinSituasjonFelt(avhukedeSvar),
       });
     }
   };
@@ -107,7 +130,11 @@ const MerOmDinSituasjon: React.FC = () => {
         <KomponentGruppe>
           <CheckboxSpørsmål
             spørsmål={gjelderNoeAvDetteDeg}
-            settValgteSvar={settDinSituasjonFelt}
+            settValgteSvar={(
+              spørsmål: ISpørsmål,
+              svarHuketAv: boolean,
+              svar: ISvar
+            ) => settDinSituasjonFelt(spørsmål, svarHuketAv, svar)}
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>

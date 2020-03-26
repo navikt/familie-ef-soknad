@@ -14,7 +14,7 @@ import {
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål } from '../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
@@ -36,12 +36,25 @@ const Aktivitet: React.FC = () => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
   };
 
-  const settArbeidssituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
+  const settArbeidssituasjonFelt = (
+    spørsmål: ISpørsmål,
+    svarHuketAv: boolean,
+    svar: ISvar
+  ) => {
+    let avhukedeSvar = hvaErDinArbeidssituasjon?.verdi;
+    const svarTekst = hentTekst(svar.svar_tekstid, intl);
+    if (svarHuketAv) {
+      avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {
+        return valgtSvar !== svarTekst;
+      });
+    } else {
+      avhukedeSvar.push(svarTekst);
+    }
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar,
+        verdi: avhukedeSvar,
       },
     });
   };
