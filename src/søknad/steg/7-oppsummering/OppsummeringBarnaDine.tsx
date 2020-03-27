@@ -1,12 +1,9 @@
 import React from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { VisLabelOgSvar } from '../../../utils/visning';
 
-interface Props {
-  VisLabelOgSvar: Function;
-}
-
-const OppsummeringBarnaDine: React.FC<Props> = ({ VisLabelOgSvar }) => {
+const OppsummeringBarnaDine: React.FC = () => {
   const { søknad } = useSøknadContext();
 
   const barna = søknad.person.barn;

@@ -27,6 +27,13 @@ export const VisLabelOgSvar = (objekt: Object) => {
   const intl = useIntl();
 
   return Object.values(objekt).map((spørsmål) => {
+    if (!spørsmål) {
+      console.log('NEI NEI NEI');
+      console.log(objekt);
+
+      return null;
+    }
+
     return (
       <div className="spørsmål-og-svar">
         <Element>{spørsmål.label}</Element>

@@ -11,8 +11,6 @@ const BarnasBosted: React.FC = () => {
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const barna = søknad.person.barn;
 
-  console.log('BARNABOSTED', barna);
-
   return (
     <Side tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}>
       {barna.map((barn, index) => {

@@ -7,7 +7,6 @@ import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
-import { VisLabelOgSvar } from '../../../utils/visning';
 
 const Oppsummering: React.FC = () => {
   //const { søknad } = useSøknadContext();
@@ -22,13 +21,10 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg VisLabelOgSvar={VisLabelOgSvar} />
-            <OppsummeringBosituasjon VisLabelOgSvar={VisLabelOgSvar} />
-            <OppsummeringBarnaDine VisLabelOgSvar={VisLabelOgSvar} />
-            <Ekspanderbartpanel tittel="Barnas bosted og samværsordning">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringOmDeg />
+            <OppsummeringBosituasjon />
+            <OppsummeringBarnaDine />
+            <OppsummeringBosituasjon />
             <Ekspanderbartpanel tittel="Arbeid, utdanning og mindre aktiviteter">
               <h1>Yes</h1>
               <div>Test</div>
