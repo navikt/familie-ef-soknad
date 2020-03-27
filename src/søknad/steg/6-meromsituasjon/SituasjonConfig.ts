@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import {
   EDinSituasjon,
   ESagtOppEllerRedusertStilling,
@@ -9,27 +9,27 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
   tekstid: 'dinSituasjon.spm',
   svaralternativer: [
     {
-      nøkkel: EDinSituasjon.erSyk,
+      id: EDinSituasjon.erSyk,
       svar_tekstid: 'dinSituasjon.svar.erSyk',
     },
     {
-      nøkkel: EDinSituasjon.harSyktBarn,
+      id: EDinSituasjon.harSyktBarn,
       svar_tekstid: 'dinSituasjon.svar.harSyktBarn',
     },
     {
-      nøkkel: EDinSituasjon.harSøktBarnepassOgVenterEnnå,
+      id: EDinSituasjon.harSøktBarnepassOgVenterEnnå,
       svar_tekstid: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
     },
     {
-      nøkkel: EDinSituasjon.harBarnMedSærligeBehov,
+      id: EDinSituasjon.harBarnMedSærligeBehov,
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
     },
     {
-      nøkkel: EDinSituasjon.harFåttJobbTilbud,
+      id: EDinSituasjon.harFåttJobbTilbud,
       svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
     },
     {
-      nøkkel: EDinSituasjon.skalTaUtdanning,
+      id: EDinSituasjon.skalTaUtdanning,
       svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
     },
   ],
@@ -45,17 +45,17 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: ESagtOppEllerRedusertStilling.sagtOpp,
+      id: ESagtOppEllerRedusertStilling.sagtOpp,
       svar_tekstid: 'dinSituasjon.svar.sagtOpp',
       alert_tekstid: 'dinSituasjon.alert.sagtOpp',
     },
     {
-      nøkkel: ESagtOppEllerRedusertStilling.redusertStilling,
+      id: ESagtOppEllerRedusertStilling.redusertStilling,
       svar_tekstid: 'dinSituasjon.svar.redusertStilling',
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
     },
     {
-      nøkkel: ESagtOppEllerRedusertStilling.nei,
+      id: ESagtOppEllerRedusertStilling.nei,
       svar_tekstid: 'svar.nei',
     },
   ],

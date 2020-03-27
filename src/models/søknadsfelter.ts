@@ -1,6 +1,6 @@
 export interface ISøknadFelt {
   spørsmålid?: string;
-  svarid?: string | string[];
+  svarid?: string[];
 }
 export interface ITekstFelt extends ISøknadFelt {
   label: string;

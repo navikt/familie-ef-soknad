@@ -2,7 +2,7 @@ import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { harDuSluttdato } from './ArbeidsgiverConfig';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 
 import Datovelger, {
   DatoBegrensning,
@@ -13,6 +13,7 @@ import {
   EArbeidsgiver,
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
@@ -36,7 +37,8 @@ const HarSøkerSluttdato: React.FC<Props> = ({
       });
   };
 
-  const settHarSluttDato = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settHarSluttDato = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
     const harSluttDatoFelt = {
       label: intl.formatMessage({ id: spørsmål.tekstid }),
       verdi: svar,

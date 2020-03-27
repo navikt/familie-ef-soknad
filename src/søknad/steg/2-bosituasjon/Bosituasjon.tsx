@@ -8,13 +8,14 @@ import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
-import { erValgtSvarLiktSomSvar, hentTekst } from '../../../utils/søknad';
+import { hentTekst } from '../../../utils/søknad';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import useSøknadContext from '../../../context/SøknadContext';
+import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -36,21 +37,22 @@ const Bosituasjon: FC = () => {
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
-  const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: string) => {
+  const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
 
     if (!bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       oppdaterBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmålTekst,
-          verdi: svar,
+          verdi: svarTekst,
         },
       });
-    } else if (svar !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
+    } else if (svarTekst !== bosituasjon.søkerDelerBoligMedAndreVoksne.verdi) {
       settBosituasjon({
         søkerDelerBoligMedAndreVoksne: {
           label: spørsmålTekst,
-          verdi: svar,
+          verdi: svarTekst,
         },
       });
     }
