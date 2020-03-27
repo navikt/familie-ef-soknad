@@ -7,10 +7,6 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 const OppsummeringBosituasjon: React.FC = () => {
   const { søknad } = useSøknadContext();
 
-  const barn = søknad.person.barn;
-
-  console.log('barn', barn);
-
   const barna = søknad.person.barn;
   const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
@@ -18,8 +14,6 @@ const OppsummeringBosituasjon: React.FC = () => {
     .filter((barn) => barn.forelder)
     .map((barn, index) => {
       if (!barn.forelder) return;
-
-      console.log('FORELDER', barn.forelder);
       const forelderFelter = VisLabelOgSvar(barn.forelder);
 
       return (

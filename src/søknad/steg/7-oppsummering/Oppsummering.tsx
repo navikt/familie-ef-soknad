@@ -1,15 +1,17 @@
 import React from 'react';
 import Side from '../../../components/side/Side';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import useSøknadContext from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
+import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
 
 const Oppsummering: React.FC = () => {
-  //const { søknad } = useSøknadContext();
+  const { søknad } = useSøknadContext();
   const intl = useIntl();
 
   return (
@@ -29,10 +31,7 @@ const Oppsummering: React.FC = () => {
               <h1>Yes</h1>
               <div>Test</div>
             </Ekspanderbartpanel>
-            <Ekspanderbartpanel tittel="Mer om din situasjonen">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringDinSituasjon />
           </KomponentGruppe>
         </div>
       </Side>
