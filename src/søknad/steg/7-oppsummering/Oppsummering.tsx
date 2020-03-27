@@ -7,21 +7,11 @@ import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
-import { verdiTilTekstsvar } from '../../../utils/søknad';
+import { VisLabelOgSvar } from '../../../utils/visning';
 
 const Oppsummering: React.FC = () => {
   //const { søknad } = useSøknadContext();
   const intl = useIntl();
-
-  const visLabelOgSvar = (objekt: Object) =>
-    Object.values(objekt).map((spørsmål) => {
-      return (
-        <div className="spørsmål-og-svar">
-          <Element>{spørsmål.label}</Element>
-          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi, intl)}</Normaltekst>
-        </div>
-      );
-    });
 
   return (
     <>
@@ -32,9 +22,9 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg visLabelOgSvar={visLabelOgSvar} />
-            <OppsummeringBosituasjon visLabelOgSvar={visLabelOgSvar} />
-            <OppsummeringBarnaDine visLabelOgSvar={visLabelOgSvar} />
+            <OppsummeringOmDeg VisLabelOgSvar={VisLabelOgSvar} />
+            <OppsummeringBosituasjon VisLabelOgSvar={VisLabelOgSvar} />
+            <OppsummeringBarnaDine VisLabelOgSvar={VisLabelOgSvar} />
             <Ekspanderbartpanel tittel="Barnas bosted og samværsordning">
               <h1>Yes</h1>
               <div>Test</div>

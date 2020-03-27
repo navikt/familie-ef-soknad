@@ -72,7 +72,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
                 name={`${andreForelder}${barn.navn}`}
                 label={`${intl.formatMessage({
                   id: 'barnasbosted.forelder.sammesom',
-                })} ${b.navn}`}
+                })} ${b.navn.verdi}`}
                 value={`${andreForelder}${b.navn}`}
                 checked={andreForelderRadioVerdi === b.navn.verdi}
                 onChange={(e) => leggTilSammeForelder(e, b)}

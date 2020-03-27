@@ -4,14 +4,14 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
-  visLabelOgSvar: Function;
+  VisLabelOgSvar: Function;
 }
 
-const OppsummeringBosituasjon: React.FC<Props> = ({ visLabelOgSvar }) => {
+const OppsummeringBosituasjon: React.FC<Props> = ({ VisLabelOgSvar }) => {
   const { søknad } = useSøknadContext();
 
   const { samboerDetaljer, ...bosituasjon } = søknad.bosituasjon;
-  const bosituasjonSpørsmål = visLabelOgSvar(bosituasjon);
+  const bosituasjonSpørsmål = VisLabelOgSvar(bosituasjon);
 
   const samboerInformasjonVisning = samboerDetaljer
     ? Object.keys(samboerDetaljer).map((key: string) => {

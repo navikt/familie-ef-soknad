@@ -4,19 +4,19 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
-  visLabelOgSvar: Function;
+  VisLabelOgSvar: Function;
 }
 
-const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
+const OppsummeringOmDeg: React.FC<Props> = ({ VisLabelOgSvar }) => {
   const { søknad } = useSøknadContext();
 
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
 
-  const sivilstatusSpørsmål = visLabelOgSvar(sivilstatus);
+  const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
 
-  const medlemskapSpørsmål = visLabelOgSvar(medlemskap);
+  const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
   // TODO: Håndter perioderBoddIUtlandet
 
   return (

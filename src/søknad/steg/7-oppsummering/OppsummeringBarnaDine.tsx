@@ -3,21 +3,18 @@ import useSøknadContext from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 interface Props {
-  visLabelOgSvar: Function;
+  VisLabelOgSvar: Function;
 }
 
-const OppsummeringBarnaDine: React.FC<Props> = ({ visLabelOgSvar }) => {
+const OppsummeringBarnaDine: React.FC<Props> = ({ VisLabelOgSvar }) => {
   const { søknad } = useSøknadContext();
 
   const barna = søknad.person.barn;
 
-  console.log('BARNA');
-  console.log(barna);
-
   const felterAlleBarna = barna.map((barn, index) => {
     return (
       <div className="oppsummering-barn">
-        {visLabelOgSvar(barn)}
+        {VisLabelOgSvar(barn)}
         {index < barna.length - 1 && <hr />}
       </div>
     );
