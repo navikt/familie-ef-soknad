@@ -5,19 +5,29 @@ import { formatDate } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
 
 export const verdiTilTekstsvar = (
-  verdi: string | Date | boolean,
+  verdi: string | Date | boolean | string[],
   intl: IntlShape
 ) => {
-  if (typeof verdi === 'string') {
-    return verdi;
+  if (Array.isArray(verdi)) {
+    return (
+      <ul>
+        {verdi.map((v) => (
+          <li>
+            <Normaltekst>{v}</Normaltekst>
+          </li>
+        ))}
+      </ul>
+    );
+  } else if (typeof verdi === 'string') {
+    return <Normaltekst>{verdi}</Normaltekst>;
   } else if (typeof verdi === 'boolean') {
     if (verdi === true) {
-      return hentTekst('svar.ja', intl);
+      return <Normaltekst>{hentTekst('svar.ja', intl)}</Normaltekst>;
     } else {
-      return hentTekst('svar.nei', intl);
+      return <Normaltekst>{hentTekst('svar.nei', intl)}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
-    return formatDate(verdi);
+    return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
   } else {
     return null;
   }
@@ -28,16 +38,13 @@ export const VisLabelOgSvar = (objekt: Object) => {
 
   return Object.values(objekt).map((spørsmål) => {
     if (!spørsmål) {
-      console.log('NEI NEI NEI');
-      console.log(objekt);
-
       return null;
     }
 
     return (
       <div className="spørsmål-og-svar">
         <Element>{spørsmål.label}</Element>
-        <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi, intl)}</Normaltekst>
+        {verdiTilTekstsvar(spørsmål.verdi, intl)}
       </div>
     );
   });
