@@ -6,7 +6,7 @@ import Side from '../../../components/side/Side';
 import useSøknadContext from '../../../context/SøknadContext';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import {
-  EDinSituasjon,
+  DinSituasjonType,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
@@ -47,12 +47,12 @@ const MerOmDinSituasjon: React.FC = () => {
   }, [dinSituasjon]);
 
   const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
-    EDinSituasjon.harFåttJobbTilbud,
+    DinSituasjonType.harFåttJobbTilbud,
     avhukedeSvarISøknad,
     intl
   );
   const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
-    EDinSituasjon.skalTaUtdanning,
+    DinSituasjonType.skalTaUtdanning,
     avhukedeSvarISøknad,
     intl
   );
@@ -103,23 +103,25 @@ const MerOmDinSituasjon: React.FC = () => {
     }
   };
 
-  const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
+  const erSituasjonHuketAv = (situasjon: DinSituasjonType): boolean => {
     return (
       gjelderDetteDeg &&
       erSituasjonIAvhukedeSvar(situasjon, gjelderDetteDeg.verdi, intl)
     );
   };
 
-  const erSykHuketav = erSituasjonHuketAv(EDinSituasjon.erSyk);
-  const harSyktBarnHuketAv = erSituasjonHuketAv(EDinSituasjon.harSyktBarn);
+  const erSykHuketav = erSituasjonHuketAv(DinSituasjonType.erSyk);
+  const harSyktBarnHuketAv = erSituasjonHuketAv(DinSituasjonType.harSyktBarn);
   const harSøktBarnepassOgVenterPåSvar = erSituasjonHuketAv(
-    EDinSituasjon.harSøktBarnepassOgVenterEnnå
+    DinSituasjonType.harSøktBarnepassOgVenterEnnå
   );
   const harBarnMedSærligeBehov = erSituasjonHuketAv(
-    EDinSituasjon.harBarnMedSærligeBehov
+    DinSituasjonType.harBarnMedSærligeBehov
   );
-  const harFåttJobbTilbud = erSituasjonHuketAv(EDinSituasjon.harFåttJobbTilbud);
-  const skalTaUtdanning = erSituasjonHuketAv(EDinSituasjon.skalTaUtdanning);
+  const harFåttJobbTilbud = erSituasjonHuketAv(
+    DinSituasjonType.harFåttJobbTilbud
+  );
+  const skalTaUtdanning = erSituasjonHuketAv(DinSituasjonType.skalTaUtdanning);
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );

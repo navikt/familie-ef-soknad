@@ -1,11 +1,11 @@
-import { EDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IntlShape } from 'react-intl';
 import { ISøknad } from '../../../models/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
 
 export const erSituasjonIAvhukedeSvar = (
-  situasjon: EDinSituasjon,
+  situasjon: DinSituasjonType,
   avhukedeSvar: string[],
   intl: IntlShape
 ): boolean => {

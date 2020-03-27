@@ -10,7 +10,17 @@ export interface IDinSituasjon {
   datoSagtOppEllerRedusertStilling?: IDatoFelt;
 }
 
-export enum EDinSituasjon {
+export enum ESituasjon {
+  gjelderDetteDeg = ' gjelderDetteDeg',
+  datoOppstartJobb = 'datoOppstartJobb',
+  datoOppstartUtdanning = 'datoOppstartUtdanning',
+  søknadsdato = 'søknadsdato',
+  sagtOppEllerRedusertStilling = 'sagtOppEllerRedusertStilling',
+  begrunnelseSagtOppEllerRedusertStilling = 'begrunnelseSagtOppEllerRedusertStilling',
+  datoSagtOppEllerRedusertStilling = 'datoSagtOppEllerRedusertStilling',
+}
+
+export enum DinSituasjonType {
   erSyk = 'erSyk',
   harSyktBarn = 'harSyktBarn',
   harSøktBarnepassOgVenterEnnå = 'harSøktBarnepassOgVenterEnnå',
