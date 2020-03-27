@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import { EArbeidssituasjon } from '../../../models/steg/aktivitet/aktivitet';
 
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
@@ -6,36 +6,36 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {
-      nøkkel: EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr,
+      id: EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr,
       svar_tekstid: 'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr',
     },
     {
-      nøkkel: EArbeidssituasjon.erArbeidstaker,
+      id: EArbeidssituasjon.erArbeidstaker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
-      nøkkel: EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser,
+      id: EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser,
       svar_tekstid:
         'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
     },
     {
-      nøkkel: EArbeidssituasjon.erAnsattIEgetAS,
+      id: EArbeidssituasjon.erAnsattIEgetAS,
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
-      nøkkel: EArbeidssituasjon.etablererEgenVirksomhet,
+      id: EArbeidssituasjon.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
     },
     {
-      nøkkel: EArbeidssituasjon.erArbeidssøker,
+      id: EArbeidssituasjon.erArbeidssøker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidssøker',
     },
     {
-      nøkkel: EArbeidssituasjon.tarUtdanning,
+      id: EArbeidssituasjon.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
     },
     {
-      nøkkel: EArbeidssituasjon.erHverkenIArbeidUtdanningEllerArbeidssøker,
+      id: EArbeidssituasjon.erHverkenIArbeidUtdanningEllerArbeidssøker,
       svar_tekstid:
         'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker',
     },

@@ -7,9 +7,10 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -32,8 +33,10 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
 
   const settSøkerSkalGifteSegEllerBliSamboer = (
     spørsmål: ISpørsmål,
-    svar: boolean
+    valgtSvar: ISvar
   ) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settBosituasjon({
       søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
       søkerSkalGifteSegEllerBliSamboer: {
