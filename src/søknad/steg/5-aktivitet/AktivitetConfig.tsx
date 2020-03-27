@@ -1,41 +1,45 @@
 import { ISpørsmål } from '../../../models/spørsmalogsvar';
-import { EArbeidssituasjon } from '../../../models/steg/aktivitet/aktivitet';
+import {
+  ArbeidssituasjonType,
+  EArbeidssituasjom,
+  EArbeidssituasjon,
+} from '../../../models/steg/aktivitet/aktivitet';
 
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
-  søknadid: 'hvaErDinArbeidssituasjon',
+  søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {
-      id: EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr,
+      id: ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr,
       svar_tekstid: 'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr',
     },
     {
-      id: EArbeidssituasjon.erArbeidstaker,
+      id: ArbeidssituasjonType.erArbeidstaker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
-      id: EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser,
+      id: ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser,
       svar_tekstid:
         'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
     },
     {
-      id: EArbeidssituasjon.erAnsattIEgetAS,
+      id: ArbeidssituasjonType.erAnsattIEgetAS,
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
-      id: EArbeidssituasjon.etablererEgenVirksomhet,
+      id: ArbeidssituasjonType.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
     },
     {
-      id: EArbeidssituasjon.erArbeidssøker,
+      id: ArbeidssituasjonType.erArbeidssøker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidssøker',
     },
     {
-      id: EArbeidssituasjon.tarUtdanning,
+      id: ArbeidssituasjonType.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
     },
     {
-      id: EArbeidssituasjon.erHverkenIArbeidUtdanningEllerArbeidssøker,
+      id: ArbeidssituasjonType.erHverkenIArbeidUtdanningEllerArbeidssøker,
       svar_tekstid:
         'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker',
     },

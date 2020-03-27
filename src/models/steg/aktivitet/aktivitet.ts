@@ -14,6 +14,11 @@ export interface IAktivitet {
 }
 
 export enum EArbeidssituasjon {
+  hvaErDinArbeidssituasjon = 'hvaErDinArbeidssituasjon',
+  etablererEgenVirksomhet = 'etablererEgenVirksomhet',
+}
+
+export enum ArbeidssituasjonType {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
   erArbeidstaker = 'erArbeidstaker',
   erSelvstendigNæringsdriveneEllerFrilanser = 'erSelvstendigNæringsdriveneEllerFrilanser',

@@ -8,7 +8,7 @@ import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import {
-  EArbeidssituasjon,
+  ArbeidssituasjonType,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
@@ -59,7 +59,7 @@ const Aktivitet: React.FC = () => {
     });
   };
 
-  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
+  const erAktivitetHuketAv = (aktivitet: ArbeidssituasjonType): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return hvaErDinArbeidssituasjon.verdi.some((svarHuketAvISøknad: string) => {
@@ -68,23 +68,23 @@ const Aktivitet: React.FC = () => {
   };
 
   const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr
+    ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
   );
   const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    EArbeidssituasjon.etablererEgenVirksomhet
+    ArbeidssituasjonType.etablererEgenVirksomhet
   );
   const huketAvHarArbeid =
-    erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
-    erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
+    erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
+    erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker);
   const huketAvErArbeidssøker = erAktivitetHuketAv(
-    EArbeidssituasjon.erArbeidssøker
+    ArbeidssituasjonType.erArbeidssøker
   );
   const huketAvTarUtdanning = erAktivitetHuketAv(
-    EArbeidssituasjon.tarUtdanning
+    ArbeidssituasjonType.tarUtdanning
   );
 
   const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
-    EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser
+    ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
   );
 
   return (
