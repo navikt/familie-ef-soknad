@@ -1,7 +1,6 @@
 import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import {
   ArbeidssituasjonType,
-  EArbeidssituasjom,
   EArbeidssituasjon,
 } from '../../../models/steg/aktivitet/aktivitet';
 

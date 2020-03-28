@@ -1,12 +1,12 @@
-import { ITekstListeFelt, ITekstFelt } from '../../søknadsfelter';
+import { ISpørsmålListeFelt, ISpørsmålFelt } from '../../søknadsfelter';
 import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';
 import { IFirma } from './firma';
 
 export interface IAktivitet {
-  hvaErDinArbeidssituasjon: ITekstListeFelt;
-  etablererEgenVirksomhet?: ITekstFelt;
+  hvaErDinArbeidssituasjon: ISpørsmålListeFelt;
+  etablererEgenVirksomhet?: ISpørsmålFelt;
   arbeidsforhold?: IArbeidsgiver[];
   arbeidssøker?: IArbeidssøker;
   firma?: IFirma;

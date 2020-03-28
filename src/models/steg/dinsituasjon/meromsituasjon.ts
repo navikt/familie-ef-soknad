@@ -1,7 +1,7 @@
-import { IDatoFelt, ITekstFelt, ITekstListeFelt } from '../../søknadsfelter';
+import { IDatoFelt, ISpørsmålListeFelt, ITekstFelt } from '../../søknadsfelter';
 
 export interface IDinSituasjon {
-  gjelderDetteDeg: ITekstListeFelt;
+  gjelderDetteDeg: ISpørsmålListeFelt;
   datoOppstartJobb?: IDatoFelt;
   datoOppstartUtdanning?: IDatoFelt;
   søknadsdato: IDatoFelt;
@@ -11,7 +11,7 @@ export interface IDinSituasjon {
 }
 
 export enum ESituasjon {
-  gjelderDetteDeg = ' gjelderDetteDeg',
+  gjelderDetteDeg = 'gjelderDetteDeg',
   datoOppstartJobb = 'datoOppstartJobb',
   datoOppstartUtdanning = 'datoOppstartUtdanning',
   søknadsdato = 'søknadsdato',

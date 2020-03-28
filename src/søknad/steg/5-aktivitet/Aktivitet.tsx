@@ -16,14 +16,14 @@ import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
-    hvaErDinArbeidssituasjon: nyttTekstListeFelt,
+    hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
 
@@ -41,18 +41,18 @@ const Aktivitet: React.FC = () => {
     svarHuketAv: boolean,
     svar: ISvar
   ) => {
-    let avhukedeSvar = hvaErDinArbeidssituasjon?.verdi;
-    const svarTekst = hentTekst(svar.svar_tekstid, intl);
-    if (svarHuketAv) {
-      avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {
-        return valgtSvar !== svarTekst;
-      });
-    } else {
-      avhukedeSvar.push(svarTekst);
-    }
+    const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
+      hvaErDinArbeidssituasjon,
+      svarHuketAv,
+      svar,
+      intl
+    );
+
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svarider,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: avhukedeSvar,
       },
