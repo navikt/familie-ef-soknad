@@ -13,7 +13,7 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
-import { standardLabelsBarn } from './utils/standardLabels';
+import { standardLabelsBarn } from './helpers/labels';
 import mockPersonMedBarn from './mock/person.json';
 import { settLabelOgVerdi } from './utils/søknad';
 
