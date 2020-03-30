@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
-import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
-import { IForelder, IBarn } from '../../../models/person';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Knapp } from 'nav-frontend-knapper';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import OmAndreForelder from './OmAndreForelder';
-import BostedOgSamvær from './BostedOgSamvær';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
-import { useIntl } from 'react-intl';
+import BostedOgSamvær from './BostedOgSamvær';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import OmAndreForelder from './OmAndreForelder';
+import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
+import useSøknadContext from '../../../context/SøknadContext';
+import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
-
+import { IForelder, IBarn } from '../../../models/person';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
+import { Knapp } from 'nav-frontend-knapper';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
@@ -57,9 +56,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       },
     };
 
-    const nyForelder = { ...forelder, [boddSammenFør.søknadid]: svar };
-
-    if (svar === false) {
+    if (valgtSvar.id === ESvar.NEI) {
       delete nyForelder.flyttetFra;
     }
 

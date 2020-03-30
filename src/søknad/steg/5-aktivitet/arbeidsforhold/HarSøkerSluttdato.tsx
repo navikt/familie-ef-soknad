@@ -14,6 +14,7 @@ import {
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../../utils/søknad';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
@@ -31,7 +32,7 @@ const HarSøkerSluttdato: React.FC<Props> = ({
       settArbeidsgiver({
         ...arbeidsgiver,
         [EArbeidsgiver.sluttdato]: {
-          label: intl.formatMessage({ id: sluttdatoTekstid }),
+          label: hentTekst(sluttdatoTekstid, intl),
           verdi: dato,
         },
       });
@@ -40,7 +41,9 @@ const HarSøkerSluttdato: React.FC<Props> = ({
   const settHarSluttDato = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
     const harSluttDatoFelt = {
-      label: intl.formatMessage({ id: spørsmål.tekstid }),
+      spørsmålid: spørsmål.søknadid,
+      svarid: valgtSvar.id,
+      label: hentTekst(spørsmål.tekstid, intl),
       verdi: svar,
     };
     if (svar === false && arbeidsgiver.sluttdato) {

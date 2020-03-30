@@ -4,6 +4,7 @@ import {
   ESvarTekstid,
 } from '../../../../models/spørsmalogsvar';
 import { JaNeiSvar, NeiSvar } from '../../../../helpers/svar';
+import { EBegrunnelse } from '../../../../models/steg/omDeg/sivilstatus';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',
@@ -47,23 +48,28 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {
-      id: '',
+      id: EBegrunnelse.samlivsbruddForeldre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
     },
     {
-      id: '',
+      id: EBegrunnelse.samlivsbruddAndre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddAndre',
     },
 
-    { id: '', svar_tekstid: 'sivilstatus.svar.aleneFraFødsel' },
-    { id: '', svar_tekstid: 'sivilstatus.svar.endringISamværsordning' },
     {
-      id: '',
-
+      id: EBegrunnelse.aleneFraFødsel,
+      svar_tekstid: 'sivilstatus.svar.aleneFraFødsel',
+    },
+    {
+      id: EBegrunnelse.endringISamværsordning,
+      svar_tekstid: 'sivilstatus.svar.endringISamværsordning',
+    },
+    {
+      id: EBegrunnelse.dødsfall,
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
-    { id: '', svar_tekstid: 'sivilstatus.svar.annet' },
+    { id: EBegrunnelse.annet, svar_tekstid: 'sivilstatus.svar.annet' },
   ],
 };

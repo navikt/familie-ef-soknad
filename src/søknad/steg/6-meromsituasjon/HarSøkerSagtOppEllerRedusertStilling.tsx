@@ -41,6 +41,8 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
     svar: ISvar
   ) => {
     const valgtSvar = {
+      spørsmålid: spørsmål.søknadid,
+      svarid: svar.id,
       label: hentTekst(spørsmål.tekstid, intl),
       verdi: hentTekst(svar.svar_tekstid, intl),
     };

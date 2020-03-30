@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
-import { nyttTekstListeFelt } from '../utils/søknadsfelter';
 import { dagensDato } from '../utils/dato';
 import personIngenBarn from '../mock/personIngenBarn.json';
+import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
+import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -11,14 +12,28 @@ const initialState: ISøknad = {
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
-    søkerDelerBoligMedAndreVoksne: {
+    delerBoligMedAndreVoksne: {
+      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      svarid: '',
       label: '',
       verdi: '',
     },
   },
-  aktivitet: { hvaErDinArbeidssituasjon: { label: '', verdi: [] } },
+  aktivitet: {
+    hvaErDinArbeidssituasjon: {
+      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
+  },
   merOmDinSituasjon: {
-    gjelderDetteDeg: nyttTekstListeFelt,
+    gjelderDetteDeg: {
+      spørsmålid: ESituasjon.gjelderDetteDeg,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
     søknadsdato: { label: '', verdi: dagensDato },
   },
   vedleggsliste: [],

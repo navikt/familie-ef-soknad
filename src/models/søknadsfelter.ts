@@ -2,22 +2,38 @@ export interface ISøknadFelt {
   spørsmålid?: string;
   svarid?: string;
 }
-export interface ITekstFelt extends ISøknadFelt {
+
+export interface ITekstFelt {
   label: string;
   verdi: string;
 }
 
-export interface IBooleanFelt extends ISøknadFelt {
+export interface IBooleanFelt {
   label: string;
   verdi: boolean;
 }
 
-export interface IDatoFelt extends ISøknadFelt {
+export interface IDatoFelt {
   label: string;
   verdi: Date;
 }
 
-export interface ITekstListeFelt extends ISøknadFelt {
+export interface ITekstListeFelt {
   label: string;
   verdi: string[];
+}
+
+export interface ISpørsmålFelt extends ITekstFelt {
+  spørsmålid: string;
+  svarid: string;
+}
+
+export interface ISpørsmålBooleanFelt extends IBooleanFelt {
+  spørsmålid: string;
+  svarid: string;
+}
+
+export interface ISpørsmålListeFelt extends ITekstListeFelt {
+  spørsmålid: string;
+  svarid: string[];
 }

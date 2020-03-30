@@ -8,7 +8,7 @@ import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import {
-  EArbeidssituasjon,
+  ArbeidssituasjonType,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
@@ -16,14 +16,14 @@ import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
-    hvaErDinArbeidssituasjon: nyttTekstListeFelt,
+    hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
 
@@ -41,25 +41,25 @@ const Aktivitet: React.FC = () => {
     svarHuketAv: boolean,
     svar: ISvar
   ) => {
-    let avhukedeSvar = hvaErDinArbeidssituasjon?.verdi;
-    const svarTekst = hentTekst(svar.svar_tekstid, intl);
-    if (svarHuketAv) {
-      avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {
-        return valgtSvar !== svarTekst;
-      });
-    } else {
-      avhukedeSvar.push(svarTekst);
-    }
+    const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
+      hvaErDinArbeidssituasjon,
+      svarHuketAv,
+      svar,
+      intl
+    );
+
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svarider,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: avhukedeSvar,
       },
     });
   };
 
-  const erAktivitetHuketAv = (aktivitet: EArbeidssituasjon): boolean => {
+  const erAktivitetHuketAv = (aktivitet: ArbeidssituasjonType): boolean => {
     const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
     const svarTekst: string = intl.formatMessage({ id: tekstid });
     return hvaErDinArbeidssituasjon.verdi.some((svarHuketAvISøknad: string) => {
@@ -68,23 +68,23 @@ const Aktivitet: React.FC = () => {
   };
 
   const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr
+    ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
   );
   const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    EArbeidssituasjon.etablererEgenVirksomhet
+    ArbeidssituasjonType.etablererEgenVirksomhet
   );
   const huketAvHarArbeid =
-    erAktivitetHuketAv(EArbeidssituasjon.erAnsattIEgetAS) ||
-    erAktivitetHuketAv(EArbeidssituasjon.erArbeidstaker);
+    erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
+    erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker);
   const huketAvErArbeidssøker = erAktivitetHuketAv(
-    EArbeidssituasjon.erArbeidssøker
+    ArbeidssituasjonType.erArbeidssøker
   );
   const huketAvTarUtdanning = erAktivitetHuketAv(
-    EArbeidssituasjon.tarUtdanning
+    ArbeidssituasjonType.tarUtdanning
   );
 
   const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
-    EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser
+    ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
   );
 
   return (
