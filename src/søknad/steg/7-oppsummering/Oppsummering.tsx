@@ -8,6 +8,7 @@ import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
 import OppsummeringBosituasjon from './OppsummeringBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
+import OppsummeringAktiviteter from './OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
 
 const Oppsummering: React.FC = () => {
@@ -27,10 +28,7 @@ const Oppsummering: React.FC = () => {
             <OppsummeringBosituasjon />
             <OppsummeringBarnaDine />
             <OppsummeringBosituasjon />
-            <Ekspanderbartpanel tittel="Arbeid, utdanning og mindre aktiviteter">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringAktiviteter />
             <OppsummeringDinSituasjon />
           </KomponentGruppe>
         </div>

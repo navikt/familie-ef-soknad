@@ -4,18 +4,21 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 
-const OppsummeringDinSituasjon: React.FC = () => {
+const OppsummeringAktiviteter: React.FC = () => {
   const { søknad } = useSøknadContext();
 
-  const merOmDinSituasjon = søknad.merOmDinSituasjon;
+  const aktivitet = søknad.aktivitet;
 
-  console.log('SØKNAD', søknad);
+  const arbeidssituasjon = VisLabelOgSvar(aktivitet);
+
+  const firma = aktivitet.firma ? VisLabelOgSvar(aktivitet.firma) : null;
 
   return (
-    <Ekspanderbartpanel tittel="Mer om din situasjon">
-      {VisLabelOgSvar(merOmDinSituasjon)}
+    <Ekspanderbartpanel tittel="Arbeid, utdanning og mindre aktiviteter">
+      {arbeidssituasjon}
+      {firma}
     </Ekspanderbartpanel>
   );
 };
 
-export default OppsummeringDinSituasjon;
+export default OppsummeringAktiviteter;
