@@ -7,7 +7,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
@@ -38,11 +38,11 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
 
   const settSagtOppEllerRedusertStilling = (
     spørsmål: ISpørsmål,
-    svar: string
+    svar: ISvar
   ) => {
     const valgtSvar = {
       label: hentTekst(spørsmål.tekstid, intl),
-      verdi: svar,
+      verdi: hentTekst(svar.svar_tekstid, intl),
     };
     if (
       valgtSvarNei &&

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { IForelder, IBarn } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
@@ -17,6 +17,8 @@ import BostedOgSamvær from './BostedOgSamvær';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import { useIntl } from 'react-intl';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+
 
 interface Props {
   barn: IBarn;
@@ -46,16 +48,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
+  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,
       [boddSammenFør.søknadid]: {
         label: intl.formatMessage({ id: 'barnasbosted.spm.boddsammenfør' }),
-        verdi: valgtSvar,
+        verdi: hentBooleanFraValgtSvar(valgtSvar),
       },
     };
 
-    if (valgtSvar === false) {
+    const nyForelder = { ...forelder, [boddSammenFør.søknadid]: svar };
+
+    if (svar === false) {
       delete nyForelder.flyttetFra;
     }
 

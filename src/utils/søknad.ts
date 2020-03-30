@@ -16,39 +16,6 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentSivilstatus = (statuskode: string) => {
-  switch (statuskode) {
-    case 'GIFT':
-      return 'Gift';
-
-    case 'UGIF':
-      return 'Ugift';
-
-    case 'SAMB':
-      return 'Samboer';
-
-    case 'SEPA':
-      return 'Separert';
-
-    case 'SKIL':
-      return 'Skilt';
-
-    case 'ENKE':
-      return 'Enke/ enkemann';
-
-    default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
-  }
-};
-
-export const erValgtSvarLiktSomSvar = (
-  valgtSvar: string | undefined,
-  annetSvarTekstid: string,
-  intl: IntlShape
-) => {
-  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
-};
-
 export const hentTekst = (id: string, intl: IntlShape) => {
   return intl.formatMessage({ id: id });
 };

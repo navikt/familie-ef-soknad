@@ -1,19 +1,23 @@
-export interface ITekstFelt {
+export interface ISøknadFelt {
+  spørsmålid?: string;
+  svarid?: string;
+}
+export interface ITekstFelt extends ISøknadFelt {
   label: string;
   verdi: string;
 }
 
-export interface IBooleanFelt {
+export interface IBooleanFelt extends ISøknadFelt {
   label: string;
   verdi: boolean;
 }
 
-export interface IDatoFelt {
+export interface IDatoFelt extends ISøknadFelt {
   label: string;
   verdi: Date;
 }
 
-export interface ITekstListeFelt {
+export interface ITekstListeFelt extends ISøknadFelt {
   label: string;
   verdi: string[];
 }

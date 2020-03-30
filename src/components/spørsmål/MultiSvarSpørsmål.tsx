@@ -1,7 +1,7 @@
-import React, { FC, SyntheticEvent } from 'react';
-import { ISpørsmål } from '../../models/spørsmal';
+import React, { FC } from 'react';
+import { ISpørsmål } from '../../models/spørsmalogsvar';
 import Hjelpetekst from '../Hjelpetekst';
-import { ISvar } from '../../models/spørsmal';
+import { ISvar } from '../../models/spørsmalogsvar';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -31,7 +31,7 @@ const StyledMultisvarSpørsmål = styled.div`
 interface Props {
   toKorteSvar?: boolean;
   spørsmål: ISpørsmål;
-  settSpørsmålOgSvar: (spørsmål: ISpørsmål, svar: string) => void;
+  settSpørsmålOgSvar: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: string | undefined;
 }
 
@@ -42,18 +42,6 @@ const MultiSvarSpørsmål: FC<Props> = ({
   valgtSvar,
 }) => {
   const intl = useIntl();
-  const onClickHandle = (
-    e: SyntheticEvent<EventTarget, Event>,
-    spørsmål: ISpørsmål,
-    svar: ISvar
-  ): void => {
-    svar !== undefined &&
-      settSpørsmålOgSvar !== undefined &&
-      settSpørsmålOgSvar(
-        spørsmål,
-        intl.formatMessage({ id: svar.svar_tekstid })
-      );
-  };
 
   return (
     <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
@@ -81,7 +69,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
               })}
               value={svar.svar_tekstid}
               checked={svarISøknad ? svarISøknad : false}
-              onChange={(e) => onClickHandle(e, spørsmål, svar)}
+              onChange={() => settSpørsmålOgSvar(spørsmål, svar)}
             />
           );
         })}
