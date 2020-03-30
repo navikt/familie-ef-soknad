@@ -11,6 +11,7 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -40,9 +41,9 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     settBosituasjon({
       søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
       søkerSkalGifteSegEllerBliSamboer: {
-        label: intl.formatMessage({
-          id: spørsmål.tekstid,
-        }),
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
       },
     });

@@ -1,9 +1,14 @@
+export interface ISøknadFelt {
+  spørsmålid: string;
+  svarid: string;
+}
+
 export interface ITekstFelt {
   label: string;
   verdi: string;
 }
 
-export interface IBooleanFelt {
+export interface IBooleanFelt extends ISøknadFelt {
   label: string;
   verdi: boolean;
 }

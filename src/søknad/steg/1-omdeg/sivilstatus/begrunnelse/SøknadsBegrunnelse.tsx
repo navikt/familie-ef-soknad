@@ -78,6 +78,8 @@ const Søknadsbegrunnelse: FC<Props> = ({
     settSivilstatus({
       ...sivilstatus,
       begrunnelseForSøknad: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
         label: spørsmålTekst,
         verdi: hentTekst(svar.svar_tekstid, intl),
       },

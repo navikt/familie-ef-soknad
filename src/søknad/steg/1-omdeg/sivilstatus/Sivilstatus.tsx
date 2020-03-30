@@ -54,6 +54,8 @@ const Sivilstatus: React.FC = () => {
     const nySivilstatus = {
       ...sivilstatus,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
         label: spørsmålLabel,
         verdi: svar,
       },

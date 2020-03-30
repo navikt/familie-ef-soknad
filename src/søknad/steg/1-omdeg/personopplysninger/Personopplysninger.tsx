@@ -34,7 +34,12 @@ const Personopplysninger: React.FC = () => {
 
     settSøknad({
       ...søknad,
-      søkerBorPåRegistrertAdresse: { label: spørsmål.søknadid, verdi: svar },
+      søkerBorPåRegistrertAdresse: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: spørsmål.søknadid,
+        verdi: svar,
+      },
     });
   };
 
