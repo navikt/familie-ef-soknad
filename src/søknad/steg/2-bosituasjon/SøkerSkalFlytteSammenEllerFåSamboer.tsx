@@ -25,8 +25,8 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   const intl = useIntl();
 
   const {
-    søkerDelerBoligMedAndreVoksne,
-    søkerSkalGifteSegEllerBliSamboer,
+    delerBoligMedAndreVoksne,
+    skalGifteSegEllerBliSamboer,
     datoSkalGifteSegEllerBliSamboer,
   } = bosituasjon;
 
@@ -39,8 +39,8 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
 
     settBosituasjon({
-      søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-      søkerSkalGifteSegEllerBliSamboer: {
+      delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
+      skalGifteSegEllerBliSamboer: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
         label: hentTekst(spørsmål.tekstid, intl),
@@ -74,14 +74,14 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
           spørsmål={spørsmål}
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
           valgtSvar={
-            søkerSkalGifteSegEllerBliSamboer
-              ? søkerSkalGifteSegEllerBliSamboer.verdi
+            skalGifteSegEllerBliSamboer
+              ? skalGifteSegEllerBliSamboer.verdi
               : undefined
           }
         />
       </KomponentGruppe>
-      {søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.verdi === true ? (
+      {skalGifteSegEllerBliSamboer &&
+      skalGifteSegEllerBliSamboer.verdi === true ? (
         <>
           <KomponentGruppe>
             <Datovelger

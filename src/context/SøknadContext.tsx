@@ -3,7 +3,6 @@ import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 import mockPerson from '../mock/person.json';
 import { dagensDato } from '../utils/dato';
-import { nyttTekstFelt } from '../helpers/tommeSøknadsfelter';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 
@@ -13,7 +12,12 @@ const initialState: ISøknad = {
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
-    søkerDelerBoligMedAndreVoksne: nyttTekstFelt,
+    delerBoligMedAndreVoksne: {
+      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      svarid: '',
+      label: '',
+      verdi: '',
+    },
   },
   aktivitet: {
     hvaErDinArbeidssituasjon: {

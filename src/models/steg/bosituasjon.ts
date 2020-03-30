@@ -1,9 +1,9 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../søknadsfelter';
+import { IBooleanFelt, IDatoFelt, ISpørsmålFelt } from '../søknadsfelter';
 import { IPersonDetaljer } from '../person';
 
 export interface IBosituasjon {
-  søkerDelerBoligMedAndreVoksne: ITekstFelt;
-  søkerSkalGifteSegEllerBliSamboer?: IBooleanFelt;
+  delerBoligMedAndreVoksne: ISpørsmålFelt;
+  skalGifteSegEllerBliSamboer?: IBooleanFelt;
   datoFlyttetSammenMedSamboer?: IDatoFelt;
   datoSkalGifteSegEllerBliSamboer?: IDatoFelt;
   samboerDetaljer?: IPersonDetaljer;
