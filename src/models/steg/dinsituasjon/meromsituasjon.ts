@@ -1,11 +1,16 @@
-import { IDatoFelt, ISpørsmålListeFelt, ITekstFelt } from '../../søknadsfelter';
+import {
+  IDatoFelt,
+  ISpørsmålFelt,
+  ISpørsmålListeFelt,
+  ITekstFelt,
+} from '../../søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ISpørsmålListeFelt;
   datoOppstartJobb?: IDatoFelt;
   datoOppstartUtdanning?: IDatoFelt;
   søknadsdato: IDatoFelt;
-  sagtOppEllerRedusertStilling?: ITekstFelt;
+  sagtOppEllerRedusertStilling?: ISpørsmålFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
   datoSagtOppEllerRedusertStilling?: IDatoFelt;
 }

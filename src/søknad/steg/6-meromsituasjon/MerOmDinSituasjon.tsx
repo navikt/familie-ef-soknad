@@ -83,7 +83,6 @@ const MerOmDinSituasjon: React.FC = () => {
       intl
     );
 
-    console.log(endretSituasjon.gjelderDetteDeg, dinSituasjon.gjelderDetteDeg);
     settDinSituasjon({
       ...endretSituasjon,
       gjelderDetteDeg: {
