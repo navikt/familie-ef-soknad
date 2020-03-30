@@ -1,9 +1,13 @@
-import { IBooleanFelt, IDatoFelt, ISpørsmålFelt } from '../søknadsfelter';
+import {
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+  ISpørsmålFelt,
+} from '../søknadsfelter';
 import { IPersonDetaljer } from '../person';
 
 export interface IBosituasjon {
   delerBoligMedAndreVoksne: ISpørsmålFelt;
-  skalGifteSegEllerBliSamboer?: IBooleanFelt;
+  skalGifteSegEllerBliSamboer?: ISpørsmålBooleanFelt;
   datoFlyttetSammenMedSamboer?: IDatoFelt;
   datoSkalGifteSegEllerBliSamboer?: IDatoFelt;
   samboerDetaljer?: IPersonDetaljer;

@@ -1,6 +1,6 @@
 export interface ISøknadFelt {
-  spørsmålid: string;
-  svarid: string;
+  spørsmålid?: string;
+  svarid?: string;
 }
 
 export interface ITekstFelt {
@@ -8,7 +8,7 @@ export interface ITekstFelt {
   verdi: string;
 }
 
-export interface IBooleanFelt extends ISøknadFelt {
+export interface IBooleanFelt {
   label: string;
   verdi: boolean;
 }
@@ -24,6 +24,11 @@ export interface ITekstListeFelt {
 }
 
 export interface ISpørsmålFelt extends ITekstFelt {
+  spørsmålid: string;
+  svarid: string;
+}
+
+export interface ISpørsmålBooleanFelt extends IBooleanFelt {
   spørsmålid: string;
   svarid: string;
 }
