@@ -45,4 +45,7 @@ const useSøknad = () => {
   return { søknad, settSøknad };
 };
 
-export default createUseContext(useSøknad);
+const context = createUseContext(useSøknad);
+export const SøknadProvider = context.Provider;
+
+export default context;
