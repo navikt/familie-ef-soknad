@@ -97,7 +97,8 @@ const Barnekort: React.FC<Props> = ({
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
             <Normaltekst>
-              {ufødt ? 'Ufødt' : alder} {hentTekst('år', intl)}{' '}
+              {ufødt ? hentTekst('barnekort.erUfødt', intl) : alder}{' '}
+              {hentTekst('barnekort.år', intl)}{' '}
             </Normaltekst>
           </div>
           <div className="informasjonselement">
