@@ -6,19 +6,19 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl, IntlShape } from 'react-intl';
 
-const VisArbeidsforhold = (arbeidsforhold: any[], intl: IntlShape) => {
-  return arbeidsforhold.map((arbeid, index) => {
-    let tekst = hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl);
+const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
+  return liste.map((el, index) => {
+    let tekst = overskrift;
 
-    if (arbeidsforhold.length > 1) {
+    if (liste.length > 1) {
       tekst = tekst + ' ' + (index + 1);
     }
 
     return (
-      <div className="arbeidsforhold">
+      <div className="listeelement">
         <Element>{tekst}</Element>
-        {VisLabelOgSvar(arbeid)}
-        {index < arbeidsforhold.length - 1 && <hr />}
+        {VisLabelOgSvar(el)}
+        {index < liste.length - 1 && <hr />}
       </div>
     );
   });
@@ -30,12 +30,34 @@ const OppsummeringAktiviteter: React.FC = () => {
 
   const aktivitet = søknad.aktivitet;
 
+  const virksomhet = aktivitet.etablererEgenVirksomhet
+    ? VisLabelOgSvar(aktivitet.etablererEgenVirksomhet)
+    : null;
+
   const arbeidssituasjon = VisLabelOgSvar(aktivitet);
 
   const firma = aktivitet.firma ? VisLabelOgSvar(aktivitet.firma) : null;
 
   const arbeidsforhold = aktivitet.arbeidsforhold
-    ? VisArbeidsforhold(aktivitet.arbeidsforhold, intl)
+    ? visListeAvLabelOgSvar(
+        aktivitet.arbeidsforhold,
+        hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl)
+      )
+    : null;
+
+  const tidligereUtdanning = aktivitet.underUtdanning?.tidligereUtdanning
+    ? visListeAvLabelOgSvar(
+        aktivitet.underUtdanning.tidligereUtdanning,
+        hentTekst('utdanning.undertittel', intl)
+      )
+    : null;
+
+  const arbeidssøker = aktivitet.arbeidssøker
+    ? VisLabelOgSvar(aktivitet.arbeidssøker)
+    : null;
+
+  const underUtdanning = aktivitet.underUtdanning
+    ? VisLabelOgSvar(aktivitet.underUtdanning)
     : null;
 
   return (
@@ -43,9 +65,19 @@ const OppsummeringAktiviteter: React.FC = () => {
       className="aktiviteter"
       tittel="Arbeid, utdanning og mindre aktiviteter"
     >
-      {arbeidssituasjon}
-      {arbeidsforhold}
-      {firma}
+      {virksomhet ? <div className="seksjon">{virksomhet}</div> : null}
+      {arbeidssituasjon ? (
+        <div className="seksjon">{arbeidssituasjon}</div>
+      ) : null}
+      {arbeidsforhold ? <div className="seksjon">{arbeidsforhold}</div> : null}
+      {firma ? <div className="seksjon">{firma}</div> : null}
+      {arbeidssøker ? <div className="seksjon">{arbeidssøker}</div> : null}
+      {underUtdanning ? (
+        <div className="seksjon">
+          {underUtdanning}
+          {tidligereUtdanning}
+        </div>
+      ) : null}
     </Ekspanderbartpanel>
   );
 };

@@ -9,8 +9,6 @@ const OppsummeringDinSituasjon: React.FC = () => {
 
   const merOmDinSituasjon = søknad.merOmDinSituasjon;
 
-  console.log('SØKNAD', søknad);
-
   return (
     <Ekspanderbartpanel tittel="Mer om din situasjon">
       {VisLabelOgSvar(merOmDinSituasjon)}
