@@ -8,6 +8,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   navn: string;
@@ -91,7 +92,9 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
-            <Normaltekst>{ufødt ? 'Ufødt' : alder}</Normaltekst>
+            <Normaltekst>
+              {ufødt ? 'Ufødt' : alder} {hentTekst('år', intl)}{' '}
+            </Normaltekst>
           </div>
           <div className="informasjonselement">
             <Normaltekst>

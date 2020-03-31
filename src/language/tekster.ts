@@ -29,6 +29,7 @@ export default {
       'Valgte datoer for perioden kan ikke være like',
     'datovelger.fødselsdato': 'Fødselsdato',
     'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
+    år: 'år',
 
     'periode.fra': 'Fra',
     'periode.til': 'Til',
