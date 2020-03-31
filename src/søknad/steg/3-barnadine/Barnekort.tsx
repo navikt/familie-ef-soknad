@@ -47,9 +47,13 @@ const Barnekort: React.FC<Props> = ({
     ? ufødtIkon
     : ikoner[Math.floor(Math.random() * ikoner.length)];
 
-  const bosted = harSammeAdresse
-    ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
-    : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
+  const bosted = !ufødt
+    ? harSammeAdresse
+      ? hentTekst('barnekort.adresse.bor', intl)
+      : hentTekst('barnekort.adresse.borIkke', intl)
+    : harSammeAdresse
+    ? hentTekst('barnekort.adresse.skalBo', intl)
+    : hentTekst('barnekort.adresse.skalIkkeBo', intl);
 
   const fjernFraSøknad = (id: string) => {
     const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
