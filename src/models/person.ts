@@ -1,4 +1,4 @@
-import { ITekstFelt, IBooleanFelt, IDatoFelt } from './søknadsfelter';
+import { IBarn } from './barn';
 
 export interface IPerson {
   søker: ISøker;
@@ -29,38 +29,8 @@ export interface IAdresse {
   postnummer: string;
 }
 
-export interface IBarn {
-  id?: string;
-  alder: ITekstFelt;
-  fnr: ITekstFelt;
-  fødselsdato: ITekstFelt;
-  personnummer?: ITekstFelt;
-  harSammeAdresse: IBooleanFelt;
-  navn: ITekstFelt;
-  født?: IBooleanFelt;
-  lagtTil?: boolean;
-  skalBarnBoHosDeg?: IBooleanFelt;
-  forelder?: IForelder;
-}
-
 export interface IPersonDetaljer {
   navn?: string;
   fødselsdato?: Date;
   fødselsnummer?: string;
-}
-
-export interface IForelder {
-  navn?: string;
-  skalBarnBoHosDeg?: ITekstFelt;
-  fødselsdato?: Date | null;
-  personnr?: string;
-  borINorge?: IBooleanFelt;
-  avtaleOmDeltBosted?: IBooleanFelt;
-  harAnnenForelderSamværMedBarn?: ITekstFelt;
-  harDereSkriftligSamværsavtale?: ITekstFelt;
-  hvordanPraktiseresSamværet?: ITekstFelt;
-  borISammeHus?: ITekstFelt;
-  boddSammenFør?: IBooleanFelt;
-  flyttetFra?: IDatoFelt;
-  hvorMyeSammen?: ITekstFelt;
 }

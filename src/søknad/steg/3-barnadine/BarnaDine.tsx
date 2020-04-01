@@ -52,7 +52,7 @@ const BarnaDine: React.FC = () => {
                   barn.født
                     ? barn.født
                     : {
-                        label: hentTekst('barnekort.født', intl),
+                        label: hentTekst('barnekort.spm.født', intl),
                         verdi: false,
                       }
                 }

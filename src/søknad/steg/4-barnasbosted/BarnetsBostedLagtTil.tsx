@@ -1,12 +1,12 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { formatDate } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from './LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
+import { IBarn } from '../../../models/barn';
 
 interface Props {
   barn: IBarn;

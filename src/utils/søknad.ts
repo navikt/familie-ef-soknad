@@ -65,3 +65,11 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
 
   return nyttObjekt;
 };
+
+export const hentFeltObjekt = (
+  tekstid: string,
+  verdi: any,
+  intl: IntlShape
+) => {
+  return { label: hentTekst(tekstid, intl), verdi: verdi };
+};
