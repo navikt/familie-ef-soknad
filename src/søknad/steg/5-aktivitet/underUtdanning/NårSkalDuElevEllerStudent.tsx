@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
-import { tomPeriode } from '../../../../utils/søknadsfelter';
+import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
 interface Props {
   utdanning: IUnderUtdanning;

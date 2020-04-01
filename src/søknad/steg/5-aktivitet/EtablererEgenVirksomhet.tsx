@@ -4,7 +4,11 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
-import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
+import {
+  ArbeidssituasjonType,
+  EArbeidssituasjon,
+  IAktivitet,
+} from '../../../models/steg/aktivitet/aktivitet';
 import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -27,6 +31,8 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
     settArbeidssituasjon({
       ...arbeidssituasjon,
       etablererEgenVirksomhet: {
+        spørsmålid: EArbeidssituasjon.etablererEgenVirksomhet,
+        svarid: ArbeidssituasjonType.etablererEgenVirksomhet,
         label: intl.formatMessage({ id: spørsmål.tekstid }),
         verdi: e.target.value,
       },
@@ -53,10 +59,13 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
         maxLength={2000}
         onChange={(e) => settTekstfelt(e)}
       />
-
-      <AlertStripe type={'info'} form={'inline'}>
-        <LocaleTekst tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'} />
-      </AlertStripe>
+      <FeltGruppe>
+        <AlertStripe type={'info'} form={'inline'}>
+          <LocaleTekst
+            tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'}
+          />
+        </AlertStripe>
+      </FeltGruppe>
     </SeksjonGruppe>
   );
 };

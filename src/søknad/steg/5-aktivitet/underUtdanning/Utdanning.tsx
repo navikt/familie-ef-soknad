@@ -10,9 +10,9 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import { Input } from 'nav-frontend-skjema';
 import { IUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import { linjeKursGrad } from './UtdanningConfig';
-import { tomPeriode } from '../../../../utils/søknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];

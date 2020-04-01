@@ -3,7 +3,7 @@ import { ESøkerDelerBolig } from '../../../models/steg/bosituasjon';
 import { JaNeiSvar } from '../../../helpers/svar';
 
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
-  søknadid: 'søkerDelerBoligMedAndreVoksne',
+  søknadid: 'delerBoligMedAndreVoksne',
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
   svaralternativer: [
     {
@@ -40,7 +40,7 @@ export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
 };
 
 export const skalSøkerGifteSegMedSamboer: ISpørsmål = {
-  søknadid: 'søkerSkalGifteSegMedSamboer',
+  søknadid: 'skalGifteSegMedSamboer',
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
   svaralternativer: JaNeiSvar,
 };

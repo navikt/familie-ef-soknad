@@ -8,8 +8,8 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
-import { nyttTekstFelt } from '../../../../utils/søknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
+import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

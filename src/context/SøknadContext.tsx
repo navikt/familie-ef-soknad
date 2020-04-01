@@ -2,8 +2,9 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 import mockPerson from '../mock/person.json';
-import { nyttTekstListeFelt } from '../utils/søknadsfelter';
 import { dagensDato } from '../utils/dato';
+import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
+import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -11,14 +12,28 @@ const initialState: ISøknad = {
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
-    søkerDelerBoligMedAndreVoksne: {
+    delerBoligMedAndreVoksne: {
+      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      svarid: '',
       label: '',
       verdi: '',
     },
   },
-  aktivitet: { hvaErDinArbeidssituasjon: { label: '', verdi: [] } },
+  aktivitet: {
+    hvaErDinArbeidssituasjon: {
+      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
+  },
   merOmDinSituasjon: {
-    gjelderDetteDeg: nyttTekstListeFelt,
+    gjelderDetteDeg: {
+      spørsmålid: ESituasjon.gjelderDetteDeg,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
     søknadsdato: { label: '', verdi: dagensDato },
   },
   vedleggsliste: [],
@@ -30,4 +45,7 @@ const useSøknad = () => {
   return { søknad, settSøknad };
 };
 
-export default createUseContext(useSøknad);
+const context = createUseContext(useSøknad);
+export const SøknadProvider = context.Provider;
+
+export default context;

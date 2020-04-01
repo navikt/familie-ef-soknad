@@ -6,13 +6,12 @@ import Side from '../../../components/side/Side';
 import useSøknadContext from '../../../context/SøknadContext';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import {
-  EDinSituasjon,
+  DinSituasjonType,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import SøkerErSyk from './SøkerErSyk';
 import SyktBarn from './SyktBarn';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
@@ -26,12 +25,13 @@ import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
 } from './SituasjonUtil';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
-    gjelderDetteDeg: nyttTekstListeFelt,
+    gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
     søknadsdato: { label: '', verdi: dagensDato },
   });
   const {
@@ -47,12 +47,12 @@ const MerOmDinSituasjon: React.FC = () => {
   }, [dinSituasjon]);
 
   const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
-    EDinSituasjon.harFåttJobbTilbud,
+    DinSituasjonType.harFåttJobbTilbud,
     avhukedeSvarISøknad,
     intl
   );
   const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
-    EDinSituasjon.skalTaUtdanning,
+    DinSituasjonType.skalTaUtdanning,
     avhukedeSvarISøknad,
     intl
   );
@@ -75,51 +75,44 @@ const MerOmDinSituasjon: React.FC = () => {
     svar: ISvar
   ) => {
     const spørsmålTekst = hentTekst(spørsmål.tekstid, intl);
-    const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
     const endretSituasjon = hentEndretSituasjon(dinSituasjon);
-    const avhukendeSvarIEndretSituasjon = endretSituasjon.gjelderDetteDeg.verdi;
-    const dinSituasjonFelt = (svarSomSkalSettesISøknad: string[]) => ({
-      label: spørsmålTekst,
-      verdi: svarSomSkalSettesISøknad,
-    });
+    const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
+      endretSituasjon.gjelderDetteDeg,
+      svarHuketAv,
+      svar,
+      intl
+    );
 
-    if (svarHuketAv) {
-      const avhukedeSvarUtenValgtSvar: string[] = avhukendeSvarIEndretSituasjon.filter(
-        (valgtSvar) => {
-          return valgtSvar !== svarTekst;
-        }
-      );
-      settDinSituasjon({
-        ...endretSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt(avhukedeSvarUtenValgtSvar),
-      });
-    } else {
-      const avhukedeSvar = avhukendeSvarIEndretSituasjon;
-      avhukedeSvar.push(svarTekst);
-      settDinSituasjon({
-        ...endretSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt(avhukedeSvar),
-      });
-    }
+    settDinSituasjon({
+      ...endretSituasjon,
+      gjelderDetteDeg: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svarider,
+        label: spørsmålTekst,
+        verdi: avhukedeSvar,
+      },
+    });
   };
 
-  const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
+  const erSituasjonHuketAv = (situasjon: DinSituasjonType): boolean => {
     return (
       gjelderDetteDeg &&
       erSituasjonIAvhukedeSvar(situasjon, gjelderDetteDeg.verdi, intl)
     );
   };
 
-  const erSykHuketav = erSituasjonHuketAv(EDinSituasjon.erSyk);
-  const harSyktBarnHuketAv = erSituasjonHuketAv(EDinSituasjon.harSyktBarn);
+  const erSykHuketav = erSituasjonHuketAv(DinSituasjonType.erSyk);
+  const harSyktBarnHuketAv = erSituasjonHuketAv(DinSituasjonType.harSyktBarn);
   const harSøktBarnepassOgVenterPåSvar = erSituasjonHuketAv(
-    EDinSituasjon.harSøktBarnepassOgVenterEnnå
+    DinSituasjonType.harSøktBarnepassOgVenterEnnå
   );
   const harBarnMedSærligeBehov = erSituasjonHuketAv(
-    EDinSituasjon.harBarnMedSærligeBehov
+    DinSituasjonType.harBarnMedSærligeBehov
   );
-  const harFåttJobbTilbud = erSituasjonHuketAv(EDinSituasjon.harFåttJobbTilbud);
-  const skalTaUtdanning = erSituasjonHuketAv(EDinSituasjon.skalTaUtdanning);
+  const harFåttJobbTilbud = erSituasjonHuketAv(
+    DinSituasjonType.harFåttJobbTilbud
+  );
+  const skalTaUtdanning = erSituasjonHuketAv(DinSituasjonType.skalTaUtdanning);
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
@@ -129,11 +122,7 @@ const MerOmDinSituasjon: React.FC = () => {
         <KomponentGruppe>
           <CheckboxSpørsmål
             spørsmål={gjelderNoeAvDetteDeg}
-            settValgteSvar={(
-              spørsmål: ISpørsmål,
-              svarHuketAv: boolean,
-              svar: ISvar
-            ) => settDinSituasjonFelt(spørsmål, svarHuketAv, svar)}
+            settValgteSvar={settDinSituasjonFelt}
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>

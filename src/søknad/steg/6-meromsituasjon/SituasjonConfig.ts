@@ -1,42 +1,43 @@
 import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import {
-  EDinSituasjon,
+  DinSituasjonType,
   ESagtOppEllerRedusertStilling,
+  ESituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
-  søknadid: 'gjelderDetteDeg',
+  søknadid: ESituasjon.gjelderDetteDeg,
   tekstid: 'dinSituasjon.spm',
   svaralternativer: [
     {
-      id: EDinSituasjon.erSyk,
+      id: DinSituasjonType.erSyk,
       svar_tekstid: 'dinSituasjon.svar.erSyk',
     },
     {
-      id: EDinSituasjon.harSyktBarn,
+      id: DinSituasjonType.harSyktBarn,
       svar_tekstid: 'dinSituasjon.svar.harSyktBarn',
     },
     {
-      id: EDinSituasjon.harSøktBarnepassOgVenterEnnå,
+      id: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
       svar_tekstid: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
     },
     {
-      id: EDinSituasjon.harBarnMedSærligeBehov,
+      id: DinSituasjonType.harBarnMedSærligeBehov,
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
     },
     {
-      id: EDinSituasjon.harFåttJobbTilbud,
+      id: DinSituasjonType.harFåttJobbTilbud,
       svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
     },
     {
-      id: EDinSituasjon.skalTaUtdanning,
+      id: DinSituasjonType.skalTaUtdanning,
       svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
     },
   ],
 };
 
 export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
-  søknadid: 'sagtOppEllerRedusertStilling',
+  søknadid: ESituasjon.sagtOppEllerRedusertStilling,
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
   lesmer: {
     åpneTekstid: 'dinSituasjon.lesmer-åpne',
