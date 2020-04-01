@@ -8,10 +8,7 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
-import {
-  ITekstFelt,
-  IBooleanFelt,
-} from '../../../models/søknadsfelter';
+import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
 
 interface Props {
   navn: ITekstFelt;

@@ -5,7 +5,7 @@ import { IBarn } from '../../../models/person';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { formatDate } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
-import LenkeMedIkon from './LenkeMedIkon';
+import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 
 interface Props {

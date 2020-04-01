@@ -4,7 +4,11 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';
-import { useIntl, IntlShape } from 'react-intl';
+import { useIntl } from 'react-intl';
+import endre from '../../../assets/endre.svg';
+import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
+import { useHistory } from 'react-router-dom';
+import { Routes } from '../../../routing/Routes';
 
 const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
   return liste.map((el, index) => {
@@ -26,6 +30,7 @@ const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
 
 const OppsummeringAktiviteter: React.FC = () => {
   const { søknad } = useSøknadContext();
+  const history = useHistory();
   const intl = useIntl();
 
   const aktivitet = søknad.aktivitet;
@@ -78,6 +83,16 @@ const OppsummeringAktiviteter: React.FC = () => {
           {tidligereUtdanning}
         </div>
       ) : null}
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: Routes[5].path,
+            state: { edit: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };

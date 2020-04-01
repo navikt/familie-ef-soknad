@@ -34,6 +34,8 @@ const Side: React.FC<ISide> = ({ tittel, children }) => {
   const nesteKnappStyling = classNames('neste', {
     hideButton: nesteRoute === undefined,
   });
+
+  console.log('nesteRoute', nesteRoute);
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />

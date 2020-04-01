@@ -38,6 +38,7 @@ const SendSøknad = () => {
         })
       );
   };
+
   return (
     <>
       <Side tittel={'Takk for søknaden'}>

@@ -7,12 +7,16 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
+import { useHistory, useLocation } from 'react-router-dom';
 import LeggTilBarn from './LeggTilBarn';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import { hentTekst } from '../../../utils/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
+
   const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -79,6 +83,17 @@ const BarnaDine: React.FC = () => {
             </div>
           </Modal>
         </div>
+        {location.state?.edit ? (
+          <Knapp
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('barnadine.sidetittel', intl)}
+          </Knapp>
+        ) : null}
       </Side>
     </>
   );
