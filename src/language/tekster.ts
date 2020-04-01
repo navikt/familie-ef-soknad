@@ -329,7 +329,7 @@ export default {
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
-      'Har du bodd sammen med den andre forelderen til Mina før?',
+      'Har du bodd sammen med den andre forelderen til [0] før?',
     'barnasbosted.spm.borISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',

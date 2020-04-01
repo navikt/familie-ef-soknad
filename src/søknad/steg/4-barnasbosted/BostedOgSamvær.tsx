@@ -72,6 +72,8 @@ const BostedOgSamvær: React.FC<Props> = ({
     const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
         label: intl.formatMessage({
           id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
         }),

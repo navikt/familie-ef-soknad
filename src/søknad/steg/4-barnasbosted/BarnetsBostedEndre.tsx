@@ -53,7 +53,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     const nyForelder = {
       ...forelder,
       [boddSammenFør.søknadid]: {
-        label: intl.formatMessage({ id: 'barnasbosted.spm.boddsammenfør' }),
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentBooleanFraValgtSvar(valgtSvar),
       },
     };

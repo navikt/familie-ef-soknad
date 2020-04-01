@@ -1,4 +1,10 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from './søknadsfelter';
+import {
+  IBooleanFelt,
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+  ISpørsmålFelt,
+  ITekstFelt,
+} from './søknadsfelter';
 
 export interface IForelder {
   navn?: string;
@@ -8,10 +14,10 @@ export interface IForelder {
   borINorge?: IBooleanFelt;
   avtaleOmDeltBosted?: IBooleanFelt;
   harAnnenForelderSamværMedBarn?: ITekstFelt;
-  harDereSkriftligSamværsavtale?: ITekstFelt;
+  harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
   borISammeHus?: ITekstFelt;
-  boddSammenFør?: IBooleanFelt;
+  boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
   hvorMyeSammen?: ITekstFelt;
 }
