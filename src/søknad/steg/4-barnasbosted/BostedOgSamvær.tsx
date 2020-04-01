@@ -16,6 +16,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { IForelder } from '../../../models/forelder';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   settForelder: Function;
@@ -113,7 +114,7 @@ const BostedOgSamvær: React.FC<Props> = ({
                 ...forelder,
                 [borINorge.søknadid]: {
                   label: intl.formatMessage({ id: 'barnasbosted.borinorge' }),
-                  verdi: svar,
+                  verdi: hentBooleanFraValgtSvar(svar),
                 },
               })
             }
@@ -129,7 +130,7 @@ const BostedOgSamvær: React.FC<Props> = ({
               ...forelder,
               [avtaleOmDeltBosted.søknadid]: {
                 label: intl.formatMessage({ id: 'barnasbosted.avtale' }),
-                verdi: svar,
+                verdi: hentBooleanFraValgtSvar(svar),
               },
             })
           }

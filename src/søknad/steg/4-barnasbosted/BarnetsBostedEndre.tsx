@@ -19,6 +19,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
@@ -131,7 +132,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.borISammeHus',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }
@@ -183,7 +184,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.hvorMyeSammen',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }
