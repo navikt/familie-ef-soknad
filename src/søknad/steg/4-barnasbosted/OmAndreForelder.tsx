@@ -15,7 +15,6 @@ interface Props {
   forelder: IForelder;
 }
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
-  const intl = useIntl();
   const [huketAv, settHuketAv] = useState<boolean>(false);
 
   const hukAv = (e: any) => {

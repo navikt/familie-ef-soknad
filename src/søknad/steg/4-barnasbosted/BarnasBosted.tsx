@@ -4,9 +4,13 @@ import Side from '../../../components/side/Side';
 import { useIntl } from 'react-intl';
 import BarnetsBostedEndre from './BarnetsBostedEndre';
 import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Knapp } from 'nav-frontend-knapper';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad } = useSøknadContext();
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const barna = søknad.person.barn;

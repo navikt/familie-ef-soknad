@@ -15,9 +15,13 @@ import {
 } from '../../../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import useSøknadContext from '../../../context/SøknadContext';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Knapp } from 'nav-frontend-knapper';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
 
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
@@ -116,6 +120,17 @@ const Bosituasjon: FC = () => {
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
+      ) : null}
+      {location.state?.edit ? (
+        <Knapp
+          onClick={() =>
+            history.push({
+              pathname: '/oppsummering',
+            })
+          }
+        >
+          {hentTekst('oppsummering.tilbake', intl)}
+        </Knapp>
       ) : null}
     </Side>
   );

@@ -91,7 +91,7 @@ const BarnaDine: React.FC = () => {
               })
             }
           >
-            {hentTekst('barnadine.sidetittel', intl)}
+            {hentTekst('oppsummering.tilbake', intl)}
           </Knapp>
         ) : null}
       </Side>
