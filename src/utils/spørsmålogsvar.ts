@@ -23,7 +23,6 @@ export const returnerAvhukedeSvar = (
   let avhukedeSvar: string[] = spørsmålliste.verdi;
   let svarider: string[] = spørsmålliste.svarid;
   const svarTekst = hentTekst(svar.svar_tekstid, intl);
-  console.log(spørsmålliste);
 
   if (erHuketAv) {
     avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
 import { dagensDato } from '../utils/dato';
-import personIngenBarn from '../mock/personIngenBarn.json';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
+import personIngenBarn from '../mock/personIngenBarn.json';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -45,4 +45,7 @@ const useSøknad = () => {
   return { søknad, settSøknad };
 };
 
-export default createUseContext(useSøknad);
+const context = createUseContext(useSøknad);
+export const SøknadProvider = context.Provider;
+
+export default context;
