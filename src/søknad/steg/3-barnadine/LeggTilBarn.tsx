@@ -10,9 +10,9 @@ import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { ESvar } from '../../../models/spørsmalogsvar';
-import { useIntl } from 'react-intl';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/barn';
+import { useIntl } from 'react-intl';
 
 interface Props {
   settÅpenModal: Function;
