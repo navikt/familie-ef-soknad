@@ -34,7 +34,12 @@ const BostedOgSamvær: React.FC<Props> = ({
     const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
-      [spørsmål.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+        }),
+        verdi: valgtSvar,
+      },
     };
 
     if (
@@ -65,7 +70,12 @@ const BostedOgSamvær: React.FC<Props> = ({
     const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
-      [spørsmål.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
+        }),
+        verdi: valgtSvar,
+      },
     };
 
     if (
@@ -99,9 +109,15 @@ const BostedOgSamvær: React.FC<Props> = ({
           <JaNeiSpørsmål
             spørsmål={borINorge}
             onChange={(_, svar) =>
-              settForelder({ ...forelder, [borINorge.søknadid]: svar })
+              settForelder({
+                ...forelder,
+                [borINorge.søknadid]: {
+                  label: intl.formatMessage({ id: 'barnasbosted.borinorge' }),
+                  verdi: svar,
+                },
+              })
             }
-            valgtSvar={forelder.borINorge}
+            valgtSvar={forelder.borINorge?.verdi}
           />
         </KomponentGruppe>
       ) : null}
@@ -111,17 +127,20 @@ const BostedOgSamvær: React.FC<Props> = ({
           onChange={(_, svar) =>
             settForelder({
               ...forelder,
-              [avtaleOmDeltBosted.søknadid]: svar,
+              [avtaleOmDeltBosted.søknadid]: {
+                label: intl.formatMessage({ id: 'barnasbosted.avtale' }),
+                verdi: svar,
+              },
             })
           }
-          valgtSvar={forelder.avtaleOmDeltBosted}
+          valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
         />
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
-          valgtSvar={forelder.harAnnenForelderSamværMedBarn}
+          valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
           settSpørsmålOgSvar={(spørsmål, svar) =>
             settHarForelderSamværMedBarn(spørsmål, svar)
           }
@@ -129,21 +148,23 @@ const BostedOgSamvær: React.FC<Props> = ({
       </KomponentGruppe>
       {forelder.harAnnenForelderSamværMedBarn &&
       visSkriftligSamværsavtaleSpørsmål(
-        forelder.harAnnenForelderSamværMedBarn
+        forelder.harAnnenForelderSamværMedBarn.verdi
       ) ? (
         <KomponentGruppe>
           <MultiSvarSpørsmål
             key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
-            valgtSvar={forelder.harDereSkriftligSamværsavtale}
+            valgtSvar={forelder.harDereSkriftligSamværsavtale?.verdi}
             settSpørsmålOgSvar={(spørsmål, svar) =>
               settHarDereSkriftligSamværsavtale(spørsmål, svar)
             }
           />
           {forelder.harDereSkriftligSamværsavtale &&
-          visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
+          visSamværsavtaleAdvarsel(
+            forelder.harDereSkriftligSamværsavtale.verdi
+          ) ? (
             <FeltGruppe>
-              <AlertStripe type={'info'} form={'inline'}>
+              <AlertStripe type={'info'}>
                 <LocaleTekst
                   tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                 />
@@ -153,7 +174,9 @@ const BostedOgSamvær: React.FC<Props> = ({
         </KomponentGruppe>
       ) : null}
       {forelder.harDereSkriftligSamværsavtale &&
-      visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale) ? (
+      visHvordanPraktiseresSamværet(
+        forelder.harDereSkriftligSamværsavtale.verdi
+      ) ? (
         <HvordanPraktiseresSamværet
           forelder={forelder}
           settForelder={settForelder}

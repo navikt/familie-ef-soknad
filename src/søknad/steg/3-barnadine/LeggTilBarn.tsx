@@ -16,6 +16,8 @@ import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentUid } from '../../../utils/uuid';
+import { standardLabelsBarn } from '../../../helpers/labels';
+import { settLabelOgVerdi } from '../../../utils/søknad';
 
 interface Props {
   settÅpenModal: Function;
@@ -34,15 +36,15 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     if (id) {
       const detteBarnet = søknad.person.barn.find((b) => b.id === id);
 
-      settNavn(detteBarnet?.navn ? detteBarnet.navn : '');
+      settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
       settPersonnummer(
-        detteBarnet?.personnummer ? detteBarnet.personnummer : ''
+        detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
       );
-      settBarnFødt(!detteBarnet?.ufødt);
-      settBoHosDeg(detteBarnet?.harSammeAdresse ? 'ja' : 'nei');
+      settBarnFødt(detteBarnet?.født?.verdi);
+      settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? 'ja' : 'nei');
       settDato(
         detteBarnet?.fødselsdato
-          ? parseDate(detteBarnet.fødselsdato)
+          ? parseDate(detteBarnet.fødselsdato?.verdi)
           : dagensDato
       );
     }
@@ -75,14 +77,16 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       navn: navn,
       fødselsdato: formatDate(barnDato),
       harSammeAdresse: boHosDeg === 'ja',
-      ufødt: !født,
+      født: født,
       lagtTil: true,
       id: hentUid(),
     };
 
+    const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
+
     const nyBarneListe = [
       ...søknad.person.barn.filter((b) => b.id !== id),
-      barn,
+      nyttBarn,
     ];
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
@@ -99,7 +103,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
           <JaNeiSpørsmål
             spørsmål={barnetFødt}
             onChange={(_, svar) => {
-              console.log(svar);
               tilbakestillFelt();
               settBarnFødt(svar);
             }}

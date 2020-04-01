@@ -32,9 +32,17 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
           <MultiSvarSpørsmål
             key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
-            valgtSvar={forelder.skalBarnBoHosDeg}
+            valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
             settSpørsmålOgSvar={(_, svar) =>
-              settForelder({ ...forelder, [skalBarnBoHosDeg.søknadid]: svar })
+              settForelder({
+                ...forelder,
+                [skalBarnBoHosDeg.søknadid]: {
+                  label: intl.formatMessage({
+                    id: 'barnasbosted.spm.skalBarnBoHosDeg',
+                  }),
+                  verdi: svar,
+                },
+              })
             }
           />
         </KomponentGruppe>

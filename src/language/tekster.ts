@@ -282,7 +282,6 @@ export default {
       'Fra når reduserte du arbeidstiden?',
     'dinSituasjon.datovelger-alert.redusertStilling':
       'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
     'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',
@@ -306,6 +305,7 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
@@ -364,6 +364,10 @@ export default {
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
+    'barnasbosted.knapp.endre': 'Endre informasjon',
+    'oppsummering.sidetittel': 'Oppsummering',
+    'oppsummering.normaltekst.lesgjennom':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

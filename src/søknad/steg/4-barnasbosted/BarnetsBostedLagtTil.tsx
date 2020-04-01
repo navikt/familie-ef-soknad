@@ -36,7 +36,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
               )}
             </Element>
@@ -54,66 +54,72 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({ id: 'barnasbosted.spm.andreForelderNorge' })
             )}
           </Element>
-          <Normaltekst>{forelder.borINorge ? 'Ja' : 'Nei'}</Normaltekst>
+          <Normaltekst>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({ id: 'barnasbosted.avtale' })
             )}
           </Element>
           <Normaltekst>
-            {forelder.avtaleOmDeltBosted ? 'Ja' : 'Nei'}
+            {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
           </Normaltekst>
         </div>
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn,
+              barn.navn.verdi,
               intl.formatMessage({
                 id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
               })
             )}
           </Element>
-          <Normaltekst>{forelder.harAnnenForelderSamværMedBarn}</Normaltekst>
+          <Normaltekst>
+            {forelder.harAnnenForelderSamværMedBarn?.verdi}
+          </Normaltekst>
         </div>
-        {forelder.harDereSkriftligSamværsavtale ? (
+        {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.harDereSkriftligSamværsavtale}</Normaltekst>
+            <Normaltekst>
+              {forelder.harDereSkriftligSamværsavtale.verdi}
+            </Normaltekst>
           </div>
         ) : null}
-        {forelder.hvordanPraktiseresSamværet ? (
+        {forelder.hvordanPraktiseresSamværet?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>
               {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
             </Element>
-            <Normaltekst>{forelder.hvordanPraktiseresSamværet}</Normaltekst>
+            <Normaltekst>
+              {forelder.hvordanPraktiseresSamværet.verdi}
+            </Normaltekst>
           </div>
         ) : null}
         {forelder.borISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn,
+                barn.navn.verdi,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.borISammeHus',
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.borISammeHus}</Normaltekst>
+            <Normaltekst>{forelder.borISammeHus.verdi}</Normaltekst>
           </div>
         ) : null}
         <LenkeMedIkon

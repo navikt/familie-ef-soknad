@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
-import mockPerson from '../mock/person.json';
 import { dagensDato } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
+import personIngenBarn from '../mock/personIngenBarn.json';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
-  person: mockPerson,
+  person: personIngenBarn,
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
