@@ -4,13 +4,13 @@ import Side from '../../../components/side/Side';
 import { Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
-import { useHistory, useLocation } from 'react-router-dom';
 import LeggTilBarn from './LeggTilBarn';
 import Hjelpetekst from '../../../components/Hjelpetekst';
+import { Knapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -85,6 +85,7 @@ const BarnaDine: React.FC = () => {
         </div>
         {location.state?.edit ? (
           <Knapp
+            className="tilbake-til-oppsummering"
             onClick={() =>
               history.push({
                 pathname: '/oppsummering',

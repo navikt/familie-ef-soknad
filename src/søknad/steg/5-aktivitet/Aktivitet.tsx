@@ -18,9 +18,13 @@ import { ISpørsmål } from '../../../models/spørsmal';
 import { hentTekst } from '../../../utils/søknad';
 import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import OmFirmaetDitt from './OmFirmaetDitt';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Knapp } from 'nav-frontend-knapper';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     hvaErDinArbeidssituasjon: nyttTekstListeFelt,
@@ -120,6 +124,18 @@ const Aktivitet: React.FC = () => {
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
+      {location.state?.edit ? (
+        <Knapp
+          className="tilbake-til-oppsummering"
+          onClick={() =>
+            history.push({
+              pathname: '/oppsummering',
+            })
+          }
+        >
+          {hentTekst('oppsummering.tilbake', intl)}
+        </Knapp>
+      ) : null}
     </Side>
   );
 };

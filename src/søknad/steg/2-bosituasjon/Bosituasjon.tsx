@@ -123,6 +123,19 @@ const Bosituasjon: FC = () => {
       ) : null}
       {location.state?.edit ? (
         <Knapp
+          className="tilbake-til-oppsummering"
+          onClick={() =>
+            history.push({
+              pathname: '/oppsummering',
+            })
+          }
+        >
+          {hentTekst('oppsummering.tilbake', intl)}
+        </Knapp>
+      ) : null}
+      {location.state?.edit ? (
+        <Knapp
+          className="tilbake-til-oppsummering"
           onClick={() =>
             history.push({
               pathname: '/oppsummering',

@@ -26,9 +26,13 @@ import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
 } from './SituasjonUtil';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Knapp } from 'nav-frontend-knapper';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: nyttTekstListeFelt,
@@ -142,6 +146,18 @@ const MerOmDinSituasjon: React.FC = () => {
           settDinSituasjon={settDinSituasjon}
         />
       </SeksjonGruppe>
+      {location.state?.edit ? (
+        <Knapp
+          className="tilbake-til-oppsummering"
+          onClick={() =>
+            history.push({
+              pathname: '/oppsummering',
+            })
+          }
+        >
+          {hentTekst('oppsummering.tilbake', intl)}
+        </Knapp>
+      ) : null}
     </Side>
   );
 };
