@@ -2,22 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import useSøknadContext from '../../../context/SøknadContext';
-import { differenceInYears } from 'date-fns';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import {
-  formatDate,
-  formatDateFnr,
-  dagensDato,
-  parseDate,
-} from '../../../utils/dato';
+import { formatDateFnr, dagensDato, parseDate } from '../../../utils/dato';
 import { barnetFødt } from './BarneConfig';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { hentUid } from '../../../utils/uuid';
-import { standardLabelsBarn } from '../../../helpers/labels';
-import { settLabelOgVerdi } from '../../../utils/søknad';
+import { ESvar } from '../../../models/spørsmalogsvar';
+import { IBarn } from '../../../models/barn';
+import { hentNyttBarn } from '../../../helpers/barn';
+import { useIntl } from 'react-intl';
 
 interface Props {
   settÅpenModal: Function;
@@ -25,9 +20,10 @@ interface Props {
 }
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
+  const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [barnDato, settBarnDato] = useState<Date>(dagensDato);
-  const [født, settBarnFødt] = useState();
+  const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
   const [personnummer, settPersonnummer] = useState('');
   const [boHosDeg, settBoHosDeg] = useState('');
@@ -70,28 +66,29 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
-    const barn = {
-      fnr: fødselsnummer,
-      personnummer: personnummer,
-      alder: differenceInYears(dagensDato, barnDato),
-      navn: navn,
-      fødselsdato: formatDate(barnDato),
-      harSammeAdresse: boHosDeg === 'ja',
-      født: født,
-      lagtTil: true,
-      id: hentUid(),
-    };
+    if (født) {
+      const nyttBarn: IBarn = hentNyttBarn(
+        fødselsnummer,
+        personnummer,
+        barnDato,
+        navn,
+        boHosDeg,
+        født,
+        intl
+      );
 
-    const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
+      const nyBarneListe = [
+        ...søknad.person.barn.filter((b) => b.id !== id),
+        nyttBarn,
+      ];
 
-    const nyBarneListe = [
-      ...søknad.person.barn.filter((b) => b.id !== id),
-      nyttBarn,
-    ];
+      settSøknad({
+        ...søknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      });
 
-    settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
-
-    settÅpenModal(false);
+      settÅpenModal(false);
+    }
   };
 
   return (
@@ -104,7 +101,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
             spørsmål={barnetFødt}
             onChange={(_, svar) => {
               tilbakestillFelt();
-              settBarnFødt(svar);
+              settBarnFødt(svar.id === ESvar.JA);
             }}
             valgtSvar={født}
           />

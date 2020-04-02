@@ -14,10 +14,12 @@ import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import useSøknadContext from '../../../context/SøknadContext';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
-import { IForelder, IBarn } from '../../../models/person';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
@@ -51,7 +53,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     const nyForelder = {
       ...forelder,
       [boddSammenFør.søknadid]: {
-        label: intl.formatMessage({ id: 'barnasbosted.spm.boddsammenfør' }),
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentBooleanFraValgtSvar(valgtSvar),
       },
     };
@@ -130,7 +134,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.borISammeHus',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }
@@ -182,7 +186,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.hvorMyeSammen',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }

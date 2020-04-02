@@ -42,16 +42,18 @@ export default {
 
     'person.navn': 'Navn',
     'person.nr': 'Personnummer 5 siffer. Kun hvis du vet',
+    'person.fnr': 'Fødselsnummer',
+    'person.telefonnr': 'Telefonnummer',
+    'person.statsborgerskap': 'Statsborgerskap',
+    'person.adresse': 'Adresse',
+    'person.alder': 'Alder',
+    'person.fødselsdato': 'Fødselsdato',
 
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
-    'personopplysninger.adresse': 'Adresse',
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':
       'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
-    'personopplysninger.fnr': 'Fødselsnr',
-    'personopplysninger.telefonnr': 'Telefonnummer',
-    'personopplysninger.statsborgerskap': 'Statsborgerskap',
 
     'sivilstatus.tittel': 'Sivilstatus',
     'sivilstatus.somgift':
@@ -297,7 +299,8 @@ export default {
     'barnekort.normaltekst.barn': 'Barn',
     'barnekort.adresse.registrert': 'Registrert på adressen din',
     'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
-    'barnekort.født': 'Er barnet født?',
+    'barnekort.spm.født': 'Er barnet født?',
+    'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
 
     'barnadine.sidetittel': 'Barna dine',
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
@@ -326,7 +329,7 @@ export default {
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
-      'Har du bodd sammen med den andre forelderen til Mina før?',
+      'Har du bodd sammen med den andre forelderen til [0] før?',
     'barnasbosted.spm.borISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
@@ -380,8 +383,6 @@ export default {
       'Hvis du har studert i utlandet med støtte fra Lånekassen i denne perioden, regnes du som bosatt i Norge.',
     'medlemskap.spm.flyktning': 'Er du registrert som flyktning i UDI?',
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
-    'personopplysninger.adresse': 'Adresse',
-    'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.infohentet':
       'Informasjonen er hentet fra Folkeregisteret og NAVS register',
     'personopplysninger.telefonnr': 'Telefonnummer',

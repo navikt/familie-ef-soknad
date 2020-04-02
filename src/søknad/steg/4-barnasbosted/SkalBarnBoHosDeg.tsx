@@ -1,13 +1,13 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { IBarn } from '../../../models/person';
 import { skalBarnBoHosDeg } from './ForeldreConfig';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { IBarn } from '../../../models/barn';
 
 interface Props {
   barn: IBarn;

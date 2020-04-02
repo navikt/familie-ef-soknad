@@ -3,7 +3,7 @@ import { Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import styled from 'styled-components';
-import { IBarn } from '../../../models/person';
+import { IBarn } from '../../../models/barn';
 
 const StyledBarnasBostedHeader = styled.div`
     .barnas-bosted-header {
