@@ -3,19 +3,24 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
+import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentSivilstatus, hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { hentSivilstatus } from '../../../../helpers/omdeg';
+import { hentTekst } from '../../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   erUformeltSeparertEllerSkiltSpørsmål,
   erUformeltGiftSpørsmål,
 } from './SivilstatusConfig';
-import { useIntl } from 'react-intl';
-import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
+import {
+  ESivilstand,
+  ISivilstatus,
+} from '../../../../models/steg/omDeg/sivilstatus';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -37,17 +42,21 @@ const Sivilstatus: React.FC = () => {
     // eslint-disable-next-line
   }, [sivilstatus]);
 
-  const erSøkerGift = person.søker.sivilstand === 'GIFT';
-  const erSøkerUgift = sivilstand === 'UGIF';
-  const erSøkerEnke = sivilstand === 'ENKE';
-  const erSøkerSeparert = sivilstand === 'SEPA';
-  const erSøkerSkilt = sivilstand === 'SKIL';
+  const erSøkerGift = sivilstand === ESivilstand.GIFT;
+  const erSøkerUgift = sivilstand === ESivilstand.UGIF;
+  const erSøkerEnke = sivilstand === ESivilstand.ENKE;
+  const erSøkerSeparert = sivilstand === ESivilstand.SEPA;
+  const erSøkerSkilt = sivilstand === ESivilstand.SKIL;
 
-  const settSivilstatusFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     const nySivilstatus = {
       ...sivilstatus,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
         label: spørsmålLabel,
         verdi: svar,
       },

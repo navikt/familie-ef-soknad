@@ -11,8 +11,9 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -25,10 +26,20 @@ const Personopplysninger: React.FC = () => {
     undefined
   );
 
-  const settPersonopplysningerFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settPersonopplysningerFelt = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar
+  ) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settSøknad({
       ...søknad,
-      søkerBorPåRegistrertAdresse: { label: spørsmål.søknadid, verdi: svar },
+      søkerBorPåRegistrertAdresse: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: spørsmål.søknadid,
+        verdi: svar,
+      },
     });
   };
 

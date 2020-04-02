@@ -11,12 +11,14 @@ import {
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
+import { hentTekst } from '../../../../utils/søknad';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -35,28 +37,26 @@ const Arbeidssøker: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [arbeidssøker]);
 
-  const settJaNeiSpørsmål = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settJaNeiSpørsmål = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settArbeidssøker({
       ...arbeidssøker,
       [spørsmål.søknadid]: {
-        label: hentTekst(spørsmål.tekstid),
+        label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
       },
     });
   };
 
-  const settMultiSvarSpørsmål = (spørsmål: ISpørsmål, svar: string) => {
+  const settMultiSvarSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
     settArbeidssøker({
       ...arbeidssøker,
       [spørsmål.søknadid]: {
-        label: hentTekst(spørsmål.tekstid),
-        verdi: svar,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
-  };
-
-  const hentTekst = (id: string) => {
-    return intl.formatMessage({ id: id });
   };
 
   return (

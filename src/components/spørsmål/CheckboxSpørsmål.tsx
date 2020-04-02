@@ -1,4 +1,4 @@
-import React, { SyntheticEvent } from 'react';
+import React from 'react';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
@@ -20,7 +20,11 @@ const StyledCheckboxSpørsmål = styled.div`
 
 interface Props {
   spørsmål: ISpørsmål;
-  settValgteSvar: (spørsmål: ISpørsmål, svar: string[]) => void;
+  settValgteSvar: (
+    spørsmål: ISpørsmål,
+    svarHuketAv: boolean,
+    svar: ISvar
+  ) => void;
   valgteSvar: string[];
 }
 const CheckboxSpørsmål: React.FC<Props> = ({
@@ -30,23 +34,6 @@ const CheckboxSpørsmål: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const onClickHandle = (
-    e: SyntheticEvent<EventTarget, Event>,
-    checked: boolean,
-    svarTekst: string
-  ): void => {
-    if (checked) {
-      const avhukedeSvar: string[] = valgteSvar.filter((valgtSvar) => {
-        return valgtSvar !== svarTekst;
-      });
-      settValgteSvar(spørsmål, avhukedeSvar);
-    } else {
-      const avhukedeSvar = valgteSvar;
-      avhukedeSvar.push(svarTekst);
-      settValgteSvar(spørsmål, avhukedeSvar);
-    }
-  };
-
   return (
     <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
       <Element>
@@ -55,7 +42,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
-          const huketAvISøknad = valgteSvar.some((valgtSvar) => {
+          const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
             return valgtSvar === svarTekst;
           });
 
@@ -63,8 +50,10 @@ const CheckboxSpørsmål: React.FC<Props> = ({
             <CheckboksPanel
               key={svar.svar_tekstid}
               label={svarTekst}
-              checked={huketAvISøknad}
-              onChange={(e) => onClickHandle(e, huketAvISøknad, svarTekst)}
+              checked={alleredeHuketAvISøknad}
+              onChange={() =>
+                settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
+              }
             />
           );
         })}

@@ -318,6 +318,7 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
@@ -377,6 +378,9 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
+    'oppsummering.sidetittel': 'Oppsummering',
+    'oppsummering.normaltekst.lesgjennom':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
@@ -400,7 +404,7 @@ export default {
     'dokumentasjon.tittel.': '',
   },
   nn: {
-    'banner.tittel': 'Einsleg forsørger',
+    'banner.tittel': 'Einsleg forsørgjer',
     'knapp.tilbake': 'Tilbake',
     'feil.ingentekst.app': 'Ingen statisk tekst funne i app.',
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funne i Sanity.',

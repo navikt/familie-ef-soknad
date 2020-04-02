@@ -1,5 +1,5 @@
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
-import { JaNeiSvar } from '../../../../helpers/standardSvar';
+import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const oppholderSegINorge: ISpørsmål = {
   søknadid: 'søkerOppholderSegINorge',

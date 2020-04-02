@@ -9,15 +9,15 @@ import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { ISpørsmål } from '../../../../../models/spørsmålogsvar';
 import {
   hentSvarAlertFraSpørsmål,
   hentTekst,
 } from '../../../../../utils/søknad';
 import {
-  EBegrunnelseForSøknad,
+  EBegrunnelse,
   ISivilstatus,
 } from '../../../../../models/steg/omDeg/sivilstatus';
+import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
@@ -54,16 +54,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
   };
 
   const samlivsbruddForelderTekstid = hentTekstid(
-    EBegrunnelseForSøknad.samlivsbruddForeldre
+    EBegrunnelse.samlivsbruddForeldre
   );
-  const samlivsbruddAndreTekstid = hentTekstid(
-    EBegrunnelseForSøknad.samlivsbruddAndre
-  );
+  const samlivsbruddAndreTekstid = hentTekstid(EBegrunnelse.samlivsbruddAndre);
   const endringIsamværsordningTekstid = hentTekstid(
-    EBegrunnelseForSøknad.endringISamværsordning
+    EBegrunnelse.endringISamværsordning
   );
-  const dødsfallTekstid = hentTekstid(EBegrunnelseForSøknad.dødsfall);
-  const annetSvarTekstid = hentTekstid(EBegrunnelseForSøknad.annet);
+  const dødsfallTekstid = hentTekstid(EBegrunnelse.dødsfall);
+  const annetSvarTekstid = hentTekstid(EBegrunnelse.annet);
 
   const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
   const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
@@ -85,11 +83,16 @@ const Søknadsbegrunnelse: FC<Props> = ({
       });
   };
 
-  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: string) => {
+  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
     settSivilstatus({
       ...sivilstatus,
-      begrunnelseForSøknad: { label: spørsmålTekst, verdi: svar },
+      begrunnelseForSøknad: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: spørsmålTekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
     });
   };
 
@@ -119,7 +122,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   });
 
   const alertTekstForDødsfall = hentSvarAlertFraSpørsmål(
-    EBegrunnelseForSøknad.dødsfall,
+    EBegrunnelse.dødsfall,
     spørsmål
   );
 

@@ -3,13 +3,13 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 
 interface Props {
-  settJaNeiFelt: (spørsmål: ISpørsmål, svar: boolean) => void;
+  settJaNeiFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
   sivilstatus: ISivilstatus;
 }

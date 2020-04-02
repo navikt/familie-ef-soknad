@@ -97,7 +97,7 @@ const Utdanning: React.FC<Props> = ({
       </TittelOgSlettKnapp>
       <FeltGruppe>
         <Input
-          key={linjeKursGrad.nøkkel}
+          key={linjeKursGrad.id}
           label={linjeKursGradLabel}
           type="text"
           bredde={'L'}

@@ -34,7 +34,7 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
     <>
       <FeltGruppe>
         <Input
-          key={skoleUtdanningssted.nøkkel}
+          key={skoleUtdanningssted.id}
           label={skoleUtdanningstedLabel}
           type="text"
           bredde={'L'}
@@ -49,7 +49,7 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
       </FeltGruppe>
       <FeltGruppe>
         <Input
-          key={linjeKursGrad.nøkkel}
+          key={linjeKursGrad.id}
           label={linjeKursGradLabel}
           type="text"
           bredde={'L'}

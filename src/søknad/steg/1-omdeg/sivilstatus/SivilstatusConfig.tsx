@@ -1,13 +1,17 @@
-import { ISpørsmål, ESvar } from '../../../../models/spørsmålogsvar';
 import { JaNeiSvar, NeiSvar } from '../../../../helpers/standardSvar';
 import {
   EDokumentasjon,
   IDokumentasjon,
 } from '../../../../models/dokumentasjon';
 import {
-  EBegrunnelseForSøknad,
+  EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../../../../models/steg/omDeg/sivilstatus';
+import {
+  ESvar,
+  ESvarTekstid,
+  ISpørsmål,
+} from '../../../../models/spørsmålogsvar';
 
 // DOKUMENTASJON CONFIG
 
@@ -47,8 +51,8 @@ export const erUformeltGiftSpørsmål: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: ESvar.JA,
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.erUformeltGift',
       dokumentasjonsbehov: DokumentasjonInngåttEkteskap,
     },
@@ -61,8 +65,8 @@ export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.erUformeltSeparertEllerSkilt',
   svaralternativer: [
     {
-      nøkkel: ESvar.JA,
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.erUformeltSeparertEllerSkilt',
       dokumentasjonsbehov: DokumentasjonSeparertEllerSkilt,
     },
@@ -75,29 +79,29 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {
-      nøkkel: EBegrunnelseForSøknad.samlivsbruddForeldre,
+      id: EBegrunnelse.samlivsbruddForeldre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
     },
     {
-      nøkkel: EBegrunnelseForSøknad.samlivsbruddAndre,
+      id: EBegrunnelse.samlivsbruddAndre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddAndre',
     },
     {
-      nøkkel: EBegrunnelseForSøknad.aleneFraFødsel,
+      id: EBegrunnelse.aleneFraFødsel,
       svar_tekstid: 'sivilstatus.svar.aleneFraFødsel',
     },
     {
-      nøkkel: EBegrunnelseForSøknad.endringISamværsordning,
+      id: EBegrunnelse.endringISamværsordning,
       svar_tekstid: 'sivilstatus.svar.endringISamværsordning',
     },
     {
-      nøkkel: EBegrunnelseForSøknad.dødsfall,
+      id: EBegrunnelse.dødsfall,
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
     {
-      nøkkel: EBegrunnelseForSøknad.annet,
+      id: EBegrunnelse.annet,
       svar_tekstid: 'sivilstatus.svar.annet',
     },
   ],

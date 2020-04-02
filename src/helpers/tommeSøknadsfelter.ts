@@ -1,6 +1,11 @@
 import { subDays } from 'date-fns';
 import { dagensDato } from '../utils/dato';
-import { ITekstFelt, ITekstListeFelt } from '../models/søknadsfelter';
+import {
+  ISpørsmålFelt,
+  ISpørsmålListeFelt,
+  ITekstFelt,
+  ITekstListeFelt,
+} from '../models/søknadsfelter';
 import { IPeriode } from '../models/periode';
 
 export const tomPeriode: IPeriode = {
@@ -9,6 +14,20 @@ export const tomPeriode: IPeriode = {
     verdi: subDays(dagensDato, 1),
   },
   til: { label: '', verdi: dagensDato },
+};
+
+export const nyttSpørsmålFelt: ISpørsmålFelt = {
+  spørsmålid: '',
+  svarid: '',
+  label: '',
+  verdi: '',
+};
+
+export const nyttSpørsmålListeFelt: ISpørsmålListeFelt = {
+  spørsmålid: '',
+  svarid: [],
+  label: '',
+  verdi: [],
 };
 
 export const nyttTekstFelt: ITekstFelt = {

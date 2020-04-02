@@ -1,24 +1,39 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import { ISøknad } from '../models/søknad';
-import mockPerson from '../mock/person.json';
-import { nyttTekstListeFelt } from '../helpers/tommeSøknadsfelter';
 import { dagensDato } from '../utils/dato';
+import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
+import personIngenBarn from '../mock/personIngenBarn.json';
+import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
-  person: mockPerson,
+  person: personIngenBarn,
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
-    søkerDelerBoligMedAndreVoksne: {
+    delerBoligMedAndreVoksne: {
+      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      svarid: '',
       label: '',
       verdi: '',
     },
   },
-  aktivitet: { hvaErDinArbeidssituasjon: { label: '', verdi: [] } },
+  aktivitet: {
+    hvaErDinArbeidssituasjon: {
+      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
+  },
   merOmDinSituasjon: {
-    gjelderDetteDeg: nyttTekstListeFelt,
+    gjelderDetteDeg: {
+      spørsmålid: ESituasjon.gjelderDetteDeg,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
     søknadsdato: { label: '', verdi: dagensDato },
   },
   dokumentasjonsbehov: [],

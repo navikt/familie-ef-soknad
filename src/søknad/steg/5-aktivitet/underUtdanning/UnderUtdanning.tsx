@@ -14,12 +14,12 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
 import TidligereUtdanning from './TidligereUtdanning';
-import { erValgtSvarLiktSomSvar } from '../../../../utils/søknad';
+import { erValgtSvarLiktSomSvar } from '../../../../utils/spørsmålogsvar';
+import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
-import { hentUid } from '../../../../utils/uuid';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

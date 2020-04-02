@@ -18,6 +18,7 @@ import {
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { ISvar } from '../../../../models/spørsmålogsvar';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -54,15 +55,15 @@ const Arbeidsgiver: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [arbeidsgiver]);
 
-  const oppdaterArbeidsgiver = (
+  const settSpørsmålOgSvar = (
     nøkkel: EArbeidsgiver,
     label: string,
-    verdi: string
+    verdi: ISvar
   ) => {
     arbeidsgiver &&
       settArbeidsgiver({
         ...arbeidsgiver,
-        [nøkkel]: { label: label, verdi: verdi },
+        [nøkkel]: { label: label, verdi: hentTekst(verdi.svar_tekstid, intl) },
       });
   };
 
@@ -80,7 +81,11 @@ const Arbeidsgiver: React.FC<Props> = ({
     nøkkel: EArbeidsgiver,
     label: string
   ) => {
-    oppdaterArbeidsgiver(nøkkel, label, e.currentTarget.value);
+    arbeidsgiver &&
+      settArbeidsgiver({
+        ...arbeidsgiver,
+        [nøkkel]: { label: label, verdi: e.currentTarget.value },
+      });
   };
 
   const arbeidsgiverTittel = hentTittelMedNr(
@@ -135,8 +140,8 @@ const Arbeidsgiver: React.FC<Props> = ({
         <MultiSvarSpørsmål
           toKorteSvar={true}
           spørsmål={hvaSlagsStilling}
-          settSpørsmålOgSvar={(spørsmål: ISpørsmål, svar: string) =>
-            oppdaterArbeidsgiver(
+          settSpørsmålOgSvar={(spørsmål: ISpørsmål, svar: ISvar) =>
+            settSpørsmålOgSvar(
               EArbeidsgiver.fastStilling,
               spørsmål.tekstid,
               svar

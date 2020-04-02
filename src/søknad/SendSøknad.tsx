@@ -5,6 +5,7 @@ import useSøknadContext from '../context/SøknadContext';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Filopplaster from '../components/filopplaster/Filopplaster';
 import tekster from '../language/tekster';
+import Side from '../components/side/Side';
 
 interface IState {
   status: string;
@@ -39,21 +40,25 @@ const SendSøknad = () => {
   };
   return (
     <>
-      {søknad.sivilstatus.begrunnelseForSøknad &&
-      (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-        tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
-        søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-          tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
-        <Filopplaster
-          tittel={'Erklæring om samlivsbrudd'}
-          dokumentasjonsType={'samlivsbrudd'}
-        />
-      ) : null}
-
-      <Hovedknapp onClick={send} spinner={hocState.venter}>
-        Send Søknad
-      </Hovedknapp>
-      <Normaltekst>Status: {hocState.status}</Normaltekst>
+      <Side tittel={'Takk for søknaden'}>
+        {søknad.sivilstatus.begrunnelseForSøknad &&
+        (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+          tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
+          søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+            tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
+          <Filopplaster
+            tittel={'Erklæring om samlivsbrudd'}
+            dokumentasjonsType={'samlivsbrudd'}
+          />
+        ) : null}
+        <Normaltekst>
+          Ingenting vil skje om du trykker på denne knappen.
+        </Normaltekst>
+        <Hovedknapp onClick={send} spinner={hocState.venter}>
+          Send Søknad
+        </Hovedknapp>
+        <Normaltekst>Status: {hocState.status}</Normaltekst>
+      </Side>
     </>
   );
 };

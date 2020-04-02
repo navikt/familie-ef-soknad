@@ -13,6 +13,9 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
+import mockPersonMedBarn from './mock/person.json';
+import { settLabelOgVerdi } from './utils/søknad';
+import { standardLabelsBarn } from './helpers/labels';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -50,7 +53,13 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    settSøknad({ ...søknad, person: person });
+    const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
+      const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
+
+      return nyttBarn;
+    });
+
+    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
   }, [person]);
 
