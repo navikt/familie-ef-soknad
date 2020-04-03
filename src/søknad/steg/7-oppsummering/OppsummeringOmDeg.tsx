@@ -45,7 +45,7 @@ const OppsummeringOmDeg: React.FC = () => {
         onClick={() =>
           history.push({
             pathname: Routes[1].path,
-            state: { edit: true },
+            state: { kommerFraOppsummering: true },
           })
         }
         tekst_id="barnasbosted.knapp.endre"

@@ -30,7 +30,7 @@ const OppsummeringDinSituasjon: React.FC = () => {
         onClick={() =>
           history.push({
             pathname: Routes[6].path,
-            state: { edit: true },
+            state: { kommerFraOppsummering: true },
           })
         }
         tekst_id="barnasbosted.knapp.endre"

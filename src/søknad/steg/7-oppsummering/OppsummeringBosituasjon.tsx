@@ -1,6 +1,6 @@
 import React from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -18,7 +18,7 @@ const OppsummeringBosituasjon: React.FC = () => {
   const felterAlleForeldrene = barna
     .filter((barn) => barn.forelder)
     .map((barn, index) => {
-      if (!barn.forelder) return;
+      if (!barn.forelder) return null;
       const forelderFelter = VisLabelOgSvar(barn.forelder);
 
       return (
@@ -37,7 +37,7 @@ const OppsummeringBosituasjon: React.FC = () => {
         onClick={() =>
           history.push({
             pathname: Routes[4].path,
-            state: { edit: true },
+            state: { kommerFraOppsummering: true },
           })
         }
         tekst_id="barnasbosted.knapp.endre"

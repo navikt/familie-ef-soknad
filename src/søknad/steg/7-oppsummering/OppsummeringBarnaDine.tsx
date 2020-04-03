@@ -29,7 +29,7 @@ const OppsummeringBarnaDine: React.FC = () => {
         onClick={() =>
           history.push({
             pathname: Routes[3].path,
-            state: { edit: true },
+            state: { kommerFraOppsummering: true },
           })
         }
         tekst_id="barnasbosted.knapp.endre"

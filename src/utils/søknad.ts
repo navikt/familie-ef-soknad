@@ -1,7 +1,6 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
-import { formatDate } from './dato';
 
 export const hentPersonData = () => {
   return axios

@@ -7,7 +7,6 @@ import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;

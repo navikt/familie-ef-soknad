@@ -16,13 +16,14 @@ import {
 import { ISpørsmål, ISvar } from '../../../models/spørsmal';
 import useSøknadContext from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Knapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
     søkerDelerBoligMedAndreVoksne: {
@@ -82,7 +83,10 @@ const Bosituasjon: FC = () => {
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   return (
-    <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
           key={hovedSpørsmål.søknadid}
@@ -121,29 +125,19 @@ const Bosituasjon: FC = () => {
           />
         </SeksjonGruppe>
       ) : null}
-      {location.state?.edit ? (
-        <Knapp
-          className="tilbake-til-oppsummering"
-          onClick={() =>
-            history.push({
-              pathname: '/oppsummering',
-            })
-          }
-        >
-          {hentTekst('oppsummering.tilbake', intl)}
-        </Knapp>
-      ) : null}
-      {location.state?.edit ? (
-        <Knapp
-          className="tilbake-til-oppsummering"
-          onClick={() =>
-            history.push({
-              pathname: '/oppsummering',
-            })
-          }
-        >
-          {hentTekst('oppsummering.tilbake', intl)}
-        </Knapp>
+      {kommerFraOppsummering ? (
+        <div className={'side'}>
+          <Hovedknapp
+            className="tilbake-til-oppsummering"
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('oppsummering.tilbake', intl)}
+          </Hovedknapp>
+        </div>
       ) : null}
     </Side>
   );

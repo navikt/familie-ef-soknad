@@ -1,6 +1,6 @@
 import React from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';
@@ -87,7 +87,7 @@ const OppsummeringAktiviteter: React.FC = () => {
         onClick={() =>
           history.push({
             pathname: Routes[5].path,
-            state: { edit: true },
+            state: { kommerFraOppsummering: true },
           })
         }
         tekst_id="barnasbosted.knapp.endre"

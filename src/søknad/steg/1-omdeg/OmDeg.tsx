@@ -6,7 +6,7 @@ import Side from '../../../components/side/Side';
 import { IntlShape, injectIntl } from 'react-intl';
 import useSøknadContext from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Knapp } from 'nav-frontend-knapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
@@ -14,9 +14,13 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const history = useHistory();
   const { søknad } = useSøknadContext();
   const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad.sivilstatus;
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (
-    <Side tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <Personopplysninger />
 
       {søknad.søkerBorPåRegistrertAdresse &&
@@ -31,17 +35,19 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
           ) : null}
         </>
       ) : null}
-      {location.state?.edit ? (
-        <Knapp
-          className="tilbake-til-oppsummering"
-          onClick={() =>
-            history.push({
-              pathname: '/oppsummering',
-            })
-          }
-        >
-          {hentTekst('oppsummering.tilbake', intl)}
-        </Knapp>
+      {kommerFraOppsummering ? (
+        <div className={'side'}>
+          <Hovedknapp
+            className="tilbake-til-oppsummering"
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('oppsummering.tilbake', intl)}
+          </Hovedknapp>
+        </div>
       ) : null}
     </Side>
   );
