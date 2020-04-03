@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
@@ -18,10 +17,11 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import OmFirmaetDitt from './OmFirmaetDitt';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });

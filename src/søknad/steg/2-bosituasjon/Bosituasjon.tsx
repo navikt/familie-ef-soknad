@@ -1,25 +1,25 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmSamboerenDin from './OmSamboerenDin';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
+import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import useSøknadContext from '../../../context/SøknadContext';
-import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({

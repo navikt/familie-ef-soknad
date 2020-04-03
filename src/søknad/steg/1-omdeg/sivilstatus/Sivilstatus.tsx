@@ -5,7 +5,6 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
 import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
-import useSøknadContext from '../../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
@@ -21,13 +20,14 @@ import {
   ESivilstand,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
     harSøktSeparasjon,

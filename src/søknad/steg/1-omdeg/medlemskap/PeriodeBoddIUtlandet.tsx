@@ -2,7 +2,6 @@ import React, { FC, useEffect } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
-import useSøknadContext from '../../../../context/SøknadContext';
 import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
@@ -12,9 +11,10 @@ import subDays from 'date-fns/subDays';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const PeriodeBoddIUtlandet: FC = () => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const { perioderBoddIUtlandet } = søknad.medlemskap;
   const intl = useIntl();
 

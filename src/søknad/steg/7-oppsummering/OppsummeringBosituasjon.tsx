@@ -1,14 +1,14 @@
 import React from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   visLabelOgSvar: Function;
 }
 
 const OppsummeringBosituasjon: React.FC<Props> = ({ visLabelOgSvar }) => {
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
 
   const { samboerDetaljer, ...bosituasjon } = søknad.bosituasjon;
   const bosituasjonSpørsmål = visLabelOgSvar(bosituasjon);

@@ -3,7 +3,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { Input } from 'nav-frontend-skjema';
 import { usePersonContext } from '../../../../context/PersonContext';
-import useSøknadContext from '../../../../context/SøknadContext';
+import { useSøknad } from '../../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
@@ -19,7 +19,7 @@ const Personopplysninger: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const { søker } = person;
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(

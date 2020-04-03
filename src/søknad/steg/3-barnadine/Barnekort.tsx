@@ -4,11 +4,11 @@ import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
-import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   navn: ITekstFelt;
@@ -35,7 +35,7 @@ const Barnekort: React.FC<Props> = ({
   fødselsdato,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const formatFnr = (fnr: string) => {

@@ -40,13 +40,10 @@ const initialState: ISøknad = {
   vedleggsliste: [],
 };
 
-const useSøknad = () => {
+const [SøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
 
   return { søknad, settSøknad };
-};
+});
 
-const context = createUseContext(useSøknad);
-export const SøknadProvider = context.Provider;
-
-export default context;
+export { SøknadProvider, useSøknad };

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import vedlegg from '../../assets/vedlegg.svg';
 import slett from '../../assets/slett.svg';
+import vedlegg from '../../assets/vedlegg.svg';
 import { formaterFilstørrelse } from './utils';
-import useSøknadContext from '../../context/SøknadContext';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { useSøknad } from '../../context/SøknadContext';
 
 interface Props {
   filliste: any;
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
 
   const slettFil = (filwrapper: any) => {
     const fil = filwrapper.filObjekt;

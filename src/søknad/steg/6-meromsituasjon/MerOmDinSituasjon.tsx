@@ -1,35 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import BarnMedSærligeBehov from './BarnMedSærligeBehov';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
+import FåttJobbTilbud from './FåttJobbTilbud';
+import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
-import useSøknadContext from '../../../context/SøknadContext';
+import SyktBarn from './SyktBarn';
+import SøkerErSyk from './SøkerErSyk';
+import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
+import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
+import { dagensDato } from '../../../utils/dato';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
+import { hentTekst } from '../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
 import {
   DinSituasjonType,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { useIntl } from 'react-intl';
-import { hentTekst } from '../../../utils/søknad';
-import SøkerErSyk from './SøkerErSyk';
-import SyktBarn from './SyktBarn';
-import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
-import BarnMedSærligeBehov from './BarnMedSærligeBehov';
-import FåttJobbTilbud from './FåttJobbTilbud';
-import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
-import { dagensDato } from '../../../utils/dato';
-import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
-import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
 } from './SituasjonUtil';
-import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
     søknadsdato: { label: '', verdi: dagensDato },

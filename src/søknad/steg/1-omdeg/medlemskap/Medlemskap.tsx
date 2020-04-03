@@ -6,16 +6,16 @@ import {
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import useSøknadContext from '../../../../context/SøknadContext';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { useIntl } from 'react-intl';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const {
     søkerOppholderSegINorge,
     søkerBosattINorgeSisteTreÅr,

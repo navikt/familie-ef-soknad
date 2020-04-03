@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
-import useSøknadContext from '../../../context/SøknadContext';
 import { differenceInYears } from 'date-fns';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import LeggTilBarnFødt from './LeggTilBarnFødt';
+import LeggTilBarnUfødt from './LeggTilBarnUfødt';
+import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
+import { barnetFødt } from './BarneConfig';
+import { hentUid } from '../../../utils/uuid';
+import { settLabelOgVerdi } from '../../../utils/søknad';
+import { standardLabelsBarn } from '../../../helpers/labels';
+import { useSøknad } from '../../../context/SøknadContext';
 import {
   formatDate,
   formatDateFnr,
   dagensDato,
   parseDate,
 } from '../../../utils/dato';
-import { barnetFødt } from './BarneConfig';
-import LeggTilBarnFødt from './LeggTilBarnFødt';
-import LeggTilBarnUfødt from './LeggTilBarnUfødt';
-import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { hentUid } from '../../../utils/uuid';
-import { standardLabelsBarn } from '../../../helpers/labels';
-import { settLabelOgVerdi } from '../../../utils/søknad';
 
 interface Props {
   settÅpenModal: Function;
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [barnDato, settBarnDato] = useState<Date>(dagensDato);
   const [født, settBarnFødt] = useState();
   const [navn, settNavn] = useState('');

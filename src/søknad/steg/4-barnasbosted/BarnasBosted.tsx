@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import Side from '../../../components/side/Side';
-import { useIntl } from 'react-intl';
 import BarnetsBostedEndre from './BarnetsBostedEndre';
 import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const barna = søknad.person.barn;
 

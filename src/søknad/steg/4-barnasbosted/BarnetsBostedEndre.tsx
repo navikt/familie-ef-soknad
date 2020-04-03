@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import BarnasBostedHeader from './BarnasBostedHeader';
@@ -18,6 +17,7 @@ import { IForelder, IBarn } from '../../../models/person';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   barn: IBarn;
@@ -31,7 +31,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   aktivIndex,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
 
