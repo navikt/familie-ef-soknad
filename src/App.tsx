@@ -4,7 +4,6 @@ import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './søknad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
-import useSøknadContext from './context/SøknadContext';
 import { hentPersonData } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
