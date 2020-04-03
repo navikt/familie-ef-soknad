@@ -5,6 +5,7 @@ import { dagensDato } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import personIngenBarn from '../mock/personIngenBarn.json';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
+import { EBosituasjon } from '../models/steg/bosituasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -13,7 +14,7 @@ const initialState: ISøknad = {
   medlemskap: {},
   bosituasjon: {
     delerBoligMedAndreVoksne: {
-      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
       svarid: '',
       label: '',
       verdi: '',
