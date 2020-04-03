@@ -1,9 +1,12 @@
 import { ISpørsmål } from '../../../models/spørsmålogsvar';
-import { ESøkerDelerBolig } from '../../../models/steg/bosituasjon';
+import {
+  EBosituasjon,
+  ESøkerDelerBolig,
+} from '../../../models/steg/bosituasjon';
 import { JaNeiSvar } from '../../../helpers/svar';
 
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
-  søknadid: 'delerBoligMedAndreVoksne',
+  søknadid: EBosituasjon.delerBoligMedAndreVoksne,
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
   svaralternativer: [
     {
@@ -40,7 +43,7 @@ export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
 };
 
 export const skalSøkerGifteSegMedSamboer: ISpørsmål = {
-  søknadid: 'skalGifteSegMedSamboer',
+  søknadid: EBosituasjon.skalGifteSegEllerBliSamboer,
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
   svaralternativer: JaNeiSvar,
 };
