@@ -81,3 +81,11 @@ export const hentSvarFraSpørsmål = (svarid: string, spørsmål: ISpørsmål) =
   );
   return hentetSvar;
 };
+
+export const hentIdHvisFinnesIListe = (
+  id: string,
+  liste: string[]
+): string | undefined => {
+  const hentetId = liste.find((idIListe) => idIListe === id);
+  return hentetId ? hentetId : undefined;
+};

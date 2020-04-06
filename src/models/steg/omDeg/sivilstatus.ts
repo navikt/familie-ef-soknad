@@ -2,6 +2,7 @@ import {
   IBooleanFelt,
   IDatoFelt,
   ISpørsmålFelt,
+  ISpørsmålBooleanFelt,
   ITekstFelt,
 } from '../../søknadsfelter';
 
@@ -16,8 +17,8 @@ export enum ESivilstand {
 export interface ISivilstatus {
   harSøktSeparasjon?: IBooleanFelt;
   datoSøktSeparasjon?: IDatoFelt;
-  erUformeltGift?: IBooleanFelt;
-  erUformeltSeparertEllerSkilt?: IBooleanFelt;
+  erUformeltGift?: ISpørsmålBooleanFelt;
+  erUformeltSeparertEllerSkilt?: ISpørsmålBooleanFelt;
   begrunnelseForSøknad?: ISpørsmålFelt;
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;

@@ -3,7 +3,7 @@ import { IVedlegg } from './vedlegg';
 export interface IDokumentasjon {
   id: string;
   spørsmålid: string;
-  svarid: string[];
+  svarid: string[] | string;
   tittel: string;
   beskrivelse: string;
   harSendtInn: boolean;

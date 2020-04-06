@@ -18,6 +18,7 @@ import {
 } from './SivilstatusConfig';
 import {
   ESivilstand,
+  ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
 import { useSøknad } from '../../../../context/SøknadContext';
@@ -27,7 +28,7 @@ const Sivilstatus: React.FC = () => {
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
     harSøktSeparasjon,
@@ -62,7 +63,7 @@ const Sivilstatus: React.FC = () => {
       },
     };
     if (
-      spørsmål.søknadid === 'harSøktSeparasjon' &&
+      spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
       harSøktSeparasjon?.verdi === false &&
       datoFlyttetFraHverandre &&
       datoSøktSeparasjon
@@ -72,6 +73,8 @@ const Sivilstatus: React.FC = () => {
     }
 
     settSivilstatus(nySivilstatus);
+    valgtSvar.dokumentasjonsbehov &&
+      settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   const settDato = (

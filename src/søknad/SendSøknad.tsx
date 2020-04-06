@@ -4,7 +4,6 @@ import { sendInnSøknad } from '../innsending/api';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Filopplaster from '../components/filopplaster/Filopplaster';
 import tekster from '../language/tekster';
-import Side from '../components/side/Side';
 import { useSøknad } from '../context/SøknadContext';
 
 interface IState {
@@ -40,25 +39,23 @@ const SendSøknad = () => {
   };
   return (
     <>
-      <Side tittel={'Takk for søknaden'}>
-        {søknad.sivilstatus.begrunnelseForSøknad &&
-        (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-          tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
-          søknad.sivilstatus.begrunnelseForSøknad.verdi ===
-            tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
-          <Filopplaster
-            tittel={'Erklæring om samlivsbrudd'}
-            dokumentasjonsType={'samlivsbrudd'}
-          />
-        ) : null}
-        <Normaltekst>
-          Ingenting vil skje om du trykker på denne knappen.
-        </Normaltekst>
-        <Hovedknapp onClick={send} spinner={hocState.venter}>
-          Send Søknad
-        </Hovedknapp>
-        <Normaltekst>Status: {hocState.status}</Normaltekst>
-      </Side>
+      {søknad.sivilstatus.begrunnelseForSøknad &&
+      (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+        tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
+        søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+          tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
+        <Filopplaster
+          tittel={'Erklæring om samlivsbrudd'}
+          dokumentasjonsType={'samlivsbrudd'}
+        />
+      ) : null}
+      <Normaltekst>
+        Ingenting vil skje om du trykker på denne knappen.
+      </Normaltekst>
+      <Hovedknapp onClick={send} spinner={hocState.venter}>
+        Send Søknad
+      </Hovedknapp>
+      <Normaltekst>Status: {hocState.status}</Normaltekst>
     </>
   );
 };

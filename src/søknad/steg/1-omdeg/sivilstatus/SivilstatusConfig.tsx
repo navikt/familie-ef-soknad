@@ -61,7 +61,7 @@ export const erUformeltGiftSpørsmål: ISpørsmål = {
 };
 
 export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
-  søknadid: 'erUformeltSeparertEllerSkilt',
+  søknadid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   tekstid: 'sivilstatus.spm.erUformeltSeparertEllerSkilt',
   svaralternativer: [
     {

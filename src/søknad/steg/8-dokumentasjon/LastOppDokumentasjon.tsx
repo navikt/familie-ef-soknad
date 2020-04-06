@@ -7,9 +7,12 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Dokumentasjonsbehov from './Dokumentasjonsbehov';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const LastOppDokumentasjon: React.FC = () => {
   const intl = useIntl();
+  const { søknad } = useSøknad();
+  const { dokumentasjonsbehov } = søknad;
 
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
 
@@ -20,8 +23,10 @@ const LastOppDokumentasjon: React.FC = () => {
           <FormattedHTMLMessage id={'dokumentasjon.beskrivelse'} />
         </Normaltekst>
       </SeksjonGruppe>
-
-      <Dokumentasjonsbehov />
+      {dokumentasjonsbehov !== [] &&
+        dokumentasjonsbehov.map((dokumentasjon) => {
+          return <Dokumentasjonsbehov dokumentasjon={dokumentasjon} />;
+        })}
 
       <KomponentGruppe>
         <SendSøknad />
