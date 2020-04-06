@@ -7,9 +7,11 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -23,8 +25,8 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   const intl = useIntl();
 
   const {
-    søkerDelerBoligMedAndreVoksne,
-    søkerSkalGifteSegEllerBliSamboer,
+    delerBoligMedAndreVoksne,
+    skalGifteSegEllerBliSamboer,
     datoSkalGifteSegEllerBliSamboer,
   } = bosituasjon;
 
@@ -32,14 +34,16 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
 
   const settSøkerSkalGifteSegEllerBliSamboer = (
     spørsmål: ISpørsmål,
-    svar: boolean
+    valgtSvar: ISvar
   ) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settBosituasjon({
-      søkerDelerBoligMedAndreVoksne: søkerDelerBoligMedAndreVoksne,
-      søkerSkalGifteSegEllerBliSamboer: {
-        label: intl.formatMessage({
-          id: spørsmål.tekstid,
-        }),
+      delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
+      skalGifteSegEllerBliSamboer: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
       },
     });
@@ -70,14 +74,14 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
           spørsmål={spørsmål}
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
           valgtSvar={
-            søkerSkalGifteSegEllerBliSamboer
-              ? søkerSkalGifteSegEllerBliSamboer.verdi
+            skalGifteSegEllerBliSamboer
+              ? skalGifteSegEllerBliSamboer.verdi
               : undefined
           }
         />
       </KomponentGruppe>
-      {søkerSkalGifteSegEllerBliSamboer &&
-      søkerSkalGifteSegEllerBliSamboer.verdi === true ? (
+      {skalGifteSegEllerBliSamboer &&
+      skalGifteSegEllerBliSamboer.verdi === true ? (
         <>
           <KomponentGruppe>
             <Datovelger

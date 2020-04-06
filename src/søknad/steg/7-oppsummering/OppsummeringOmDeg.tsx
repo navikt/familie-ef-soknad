@@ -8,16 +8,13 @@ import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes } from '../../../routing/Routes';
 
-const OppsummeringOmDeg: React.FC = () => {
+const OppsummeringOmDeg = () => {
   const { søknad } = useSøknadContext();
   const history = useHistory();
-
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
-
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
-
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
   // TODO: Håndter perioderBoddIUtlandet
 

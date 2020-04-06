@@ -1,4 +1,5 @@
 import { ITekstFelt, IBooleanFelt, IDatoFelt } from './søknadsfelter';
+import { IBarn } from './barn';
 
 export interface IPerson {
   søker: ISøker;
@@ -27,20 +28,6 @@ export interface IAdresse {
   adressetillegg: string;
   kommune: string;
   postnummer: string;
-}
-
-export interface IBarn {
-  id?: string;
-  alder: ITekstFelt;
-  fnr: ITekstFelt;
-  fødselsdato: ITekstFelt;
-  personnummer?: ITekstFelt;
-  harSammeAdresse: IBooleanFelt;
-  navn: ITekstFelt;
-  født?: IBooleanFelt;
-  lagtTil?: boolean;
-  skalBarnBoHosDeg?: IBooleanFelt;
-  forelder?: IForelder;
 }
 
 export interface IPersonDetaljer {

@@ -11,8 +11,9 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål } from '../../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
 import Lenke from 'nav-frontend-lenker';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -25,10 +26,20 @@ const Personopplysninger: React.FC = () => {
     undefined
   );
 
-  const settPersonopplysningerFelt = (spørsmål: ISpørsmål, svar: boolean) => {
+  const settPersonopplysningerFelt = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar
+  ) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+
     settSøknad({
       ...søknad,
-      søkerBorPåRegistrertAdresse: { label: spørsmål.søknadid, verdi: svar },
+      søkerBorPåRegistrertAdresse: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: spørsmål.søknadid,
+        verdi: svar,
+      },
     });
   };
 
@@ -69,21 +80,21 @@ const Personopplysninger: React.FC = () => {
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.fnr'} />
+            <LocaleTekst tekst={'person.fnr'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
+            <LocaleTekst tekst={'person.statsborgerskap'} />
           </Element>
           <Normaltekst>{søker.statsborgerskap}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.adresse'} />
+            <LocaleTekst tekst={'person.adresse'} />
           </Element>
           <Normaltekst>{søker.adresse.adresse}</Normaltekst>
         </FeltGruppe>
@@ -135,9 +146,7 @@ const Personopplysninger: React.FC = () => {
       {telefonnr === '' ? (
         <Input
           key={'tlf'}
-          label={intl
-            .formatMessage({ id: 'personopplysninger.telefonnr' })
-            .trim()}
+          label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
           type="tel"
           bredde={'M'}
           onChange={(e) => settTelefonnummer(e)}
@@ -150,7 +159,7 @@ const Personopplysninger: React.FC = () => {
       ) : (
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.telefonnr'} />
+            <LocaleTekst tekst={'person.telefonnr'} />
           </Element>
           <Normaltekst>{telefonnr}</Normaltekst>
         </FeltGruppe>

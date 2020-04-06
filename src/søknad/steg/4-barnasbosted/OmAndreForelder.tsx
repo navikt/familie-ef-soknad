@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { IForelder, IBarn } from '../../../models/person';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
 
 interface Props {
   barn: IBarn;

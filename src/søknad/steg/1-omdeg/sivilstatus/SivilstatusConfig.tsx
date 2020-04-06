@@ -1,4 +1,10 @@
-import { ISpørsmål, ESvar, JaNeiSvar } from '../../../../models/spørsmal';
+import {
+  ISpørsmål,
+  ESvar,
+  ESvarTekstid,
+} from '../../../../models/spørsmalogsvar';
+import { JaNeiSvar, NeiSvar } from '../../../../helpers/svar';
+import { EBegrunnelse } from '../../../../models/steg/omDeg/sivilstatus';
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: 'søkerHarSøktSeparasjon',
@@ -16,10 +22,11 @@ export const søkerGiftIUtlandetSpørsmål: ISpørsmål = {
   },
   svaralternativer: [
     {
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.søkerGiftIUtlandet',
     },
-    { svar_tekstid: ESvar.NEI },
+    NeiSvar,
   ],
 };
 
@@ -28,10 +35,11 @@ export const søkerSeparertEllerSKiltIUtlandetSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet',
   svaralternativer: [
     {
-      svar_tekstid: ESvar.JA,
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.søkerSeparertEllerSkiltIUtlandet',
     },
-    { svar_tekstid: ESvar.NEI },
+    { id: ESvar.NEI, svar_tekstid: ESvarTekstid.NEI },
   ],
 };
 
@@ -40,18 +48,28 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   tekstid: 'sivilstatus.spm.begrunnelse',
   svaralternativer: [
     {
+      id: EBegrunnelse.samlivsbruddForeldre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
     },
     {
+      id: EBegrunnelse.samlivsbruddAndre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddAndre',
     },
-    { svar_tekstid: 'sivilstatus.svar.aleneFraFødsel' },
-    { svar_tekstid: 'sivilstatus.svar.endringISamværsordning' },
+
     {
+      id: EBegrunnelse.aleneFraFødsel,
+      svar_tekstid: 'sivilstatus.svar.aleneFraFødsel',
+    },
+    {
+      id: EBegrunnelse.endringISamværsordning,
+      svar_tekstid: 'sivilstatus.svar.endringISamværsordning',
+    },
+    {
+      id: EBegrunnelse.dødsfall,
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
-    { svar_tekstid: 'sivilstatus.svar.annet' },
+    { id: EBegrunnelse.annet, svar_tekstid: 'sivilstatus.svar.annet' },
   ],
 };

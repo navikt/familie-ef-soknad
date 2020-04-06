@@ -13,9 +13,9 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
-import { standardLabelsBarn } from './helpers/labels';
 import mockPersonMedBarn from './mock/person.json';
 import { settLabelOgVerdi } from './utils/søknad';
+import { standardLabelsBarn } from './helpers/labels';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});

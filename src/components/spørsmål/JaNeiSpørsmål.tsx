@@ -1,5 +1,5 @@
 import React, { SyntheticEvent, useState } from 'react';
-import { ISpørsmål, ISvar, ESvar } from '../../models/spørsmal';
+import { ISpørsmål, ISvar, ESvarTekstid } from '../../models/spørsmalogsvar';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
@@ -27,7 +27,7 @@ const StyledJaNeiSpørsmål = styled.div`
 
 interface Props {
   spørsmål: ISpørsmål;
-  onChange: (spørsmål: ISpørsmål, svar: boolean) => void;
+  onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;
 }
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
@@ -35,14 +35,13 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   const [harAlert, settAlert] = useState(false);
   const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
+
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
     svar: ISvar
   ): void => {
-    const erSvarJa = svar.svar_tekstid === ESvar.JA;
-
-    onChange !== undefined && svar && onChange(spørsmål, erSvarJa);
+    onChange !== undefined && svar && onChange(spørsmål, svar);
 
     if (svar.alert_tekstid) {
       settAlert(true);
@@ -55,8 +54,8 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
     if (
-      (svar.svar_tekstid === ESvar.JA && valgtSvar === true) ||
-      (svar.svar_tekstid === ESvar.NEI && valgtSvar === false)
+      (svar.svar_tekstid === ESvarTekstid.JA && valgtSvar === true) ||
+      (svar.svar_tekstid === ESvarTekstid.NEI && valgtSvar === false)
     )
       return true;
     else return false;
@@ -75,6 +74,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarISøknad =
             valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
+
           return (
             <RadioPanel
               key={svar.svar_tekstid}

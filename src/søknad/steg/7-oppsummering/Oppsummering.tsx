@@ -11,7 +11,6 @@ import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
-
   return (
     <>
       <Side tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}>

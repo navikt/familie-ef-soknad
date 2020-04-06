@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål } from '../../../models/spørsmal';
-import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
-import { IForelder, IBarn } from '../../../models/person';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Knapp } from 'nav-frontend-knapper';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import OmAndreForelder from './OmAndreForelder';
-import BostedOgSamvær from './BostedOgSamvær';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
+import BostedOgSamvær from './BostedOgSamvær';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import OmAndreForelder from './OmAndreForelder';
+import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import { useIntl } from 'react-intl';
+import useSøknadContext from '../../../context/SøknadContext';
+import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
+import { Knapp } from 'nav-frontend-knapper';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
@@ -46,16 +49,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: boolean) => {
+  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,
       [boddSammenFør.søknadid]: {
-        label: intl.formatMessage({ id: 'barnasbosted.spm.boddsammenfør' }),
-        verdi: valgtSvar,
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentBooleanFraValgtSvar(valgtSvar),
       },
     };
 
-    if (valgtSvar === false) {
+    if (valgtSvar.id === ESvar.NEI) {
       delete nyForelder.flyttetFra;
     }
 
@@ -129,7 +134,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.borISammeHus',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }
@@ -181,7 +186,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                         label: intl.formatMessage({
                           id: 'barnasbosted.spm.hvorMyeSammen',
                         }),
-                        verdi: svar,
+                        verdi: hentTekst(svar.svar_tekstid, intl),
                       },
                     })
                   }

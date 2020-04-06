@@ -1,41 +1,44 @@
-import { ISpørsmål } from '../../../models/spørsmal';
-import { EArbeidssituasjon } from '../../../models/steg/aktivitet/aktivitet';
+import { ISpørsmål } from '../../../models/spørsmalogsvar';
+import {
+  ArbeidssituasjonType,
+  EArbeidssituasjon,
+} from '../../../models/steg/aktivitet/aktivitet';
 
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
-  søknadid: 'hvaErDinArbeidssituasjon',
+  søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
   svaralternativer: [
     {
-      nøkkel: EArbeidssituasjon.erHjemmeMedBarnUnderEttÅr,
+      id: ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr,
       svar_tekstid: 'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr',
     },
     {
-      nøkkel: EArbeidssituasjon.erArbeidstaker,
+      id: ArbeidssituasjonType.erArbeidstaker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
-      nøkkel: EArbeidssituasjon.erSelvstendigNæringsdriveneEllerFrilanser,
+      id: ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser,
       svar_tekstid:
         'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
     },
     {
-      nøkkel: EArbeidssituasjon.erAnsattIEgetAS,
+      id: ArbeidssituasjonType.erAnsattIEgetAS,
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
-      nøkkel: EArbeidssituasjon.etablererEgenVirksomhet,
+      id: ArbeidssituasjonType.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
     },
     {
-      nøkkel: EArbeidssituasjon.erArbeidssøker,
+      id: ArbeidssituasjonType.erArbeidssøker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidssøker',
     },
     {
-      nøkkel: EArbeidssituasjon.tarUtdanning,
+      id: ArbeidssituasjonType.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
     },
     {
-      nøkkel: EArbeidssituasjon.erHverkenIArbeidUtdanningEllerArbeidssøker,
+      id: ArbeidssituasjonType.erHverkenIArbeidUtdanningEllerArbeidssøker,
       svar_tekstid:
         'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker',
     },

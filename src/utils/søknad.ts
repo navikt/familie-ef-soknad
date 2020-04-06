@@ -1,6 +1,7 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
+import { formatDate } from './dato';
 
 export const hentPersonData = () => {
   return axios
@@ -15,39 +16,6 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentSivilstatus = (statuskode: string) => {
-  switch (statuskode) {
-    case 'GIFT':
-      return 'Gift';
-
-    case 'UGIF':
-      return 'Ugift';
-
-    case 'SAMB':
-      return 'Samboer';
-
-    case 'SEPA':
-      return 'Separert';
-
-    case 'SKIL':
-      return 'Skilt';
-
-    case 'ENKE':
-      return 'Enke/ enkemann';
-
-    default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
-  }
-};
-
-export const erValgtSvarLiktSomSvar = (
-  valgtSvar: string | undefined,
-  annetSvarTekstid: string,
-  intl: IntlShape
-) => {
-  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
-};
-
 export const hentTekst = (id: string, intl: IntlShape) => {
   return intl.formatMessage({ id: id });
 };
@@ -58,6 +26,25 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
     return 0;
   }
   return parsed;
+};
+
+export const verdiTilTekstsvar = (
+  verdi: string | Date | boolean,
+  intl: IntlShape
+) => {
+  if (typeof verdi === 'string') {
+    return verdi;
+  } else if (typeof verdi === 'boolean') {
+    if (verdi === true) {
+      return hentTekst('svar.ja', intl);
+    } else {
+      return hentTekst('svar.nei', intl);
+    }
+  } else if (verdi instanceof Date) {
+    return formatDate(verdi);
+  } else {
+    return null;
+  }
 };
 
 export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
@@ -77,4 +64,12 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
   }
 
   return nyttObjekt;
+};
+
+export const hentFeltObjekt = (
+  tekstid: string,
+  verdi: any,
+  intl: IntlShape
+) => {
+  return { label: hentTekst(tekstid, intl), verdi: verdi };
 };
