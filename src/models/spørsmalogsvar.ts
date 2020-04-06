@@ -1,12 +1,12 @@
 export enum ESvar {
+  JA = 'JA',
+  NEI = 'NEI',
+}
+
+export enum ESvarTekstid {
   JA = 'svar.ja',
   NEI = 'svar.nei',
 }
-
-export const JaNeiSvar = [
-  { svar_tekstid: ESvar.JA },
-  { svar_tekstid: ESvar.NEI },
-];
 
 export interface LesMer {
   åpneTekstid: string;
@@ -22,13 +22,13 @@ export interface ISpørsmål {
 }
 
 export interface ISvar {
-  nøkkel?: string;
+  id: string;
   svar_tekstid: string;
   alert_tekstid?: string;
 }
 
 export interface ITekst {
-  nøkkel: string;
+  id: string;
   label_tekstid: string;
   alert_tekstid?: string;
 }

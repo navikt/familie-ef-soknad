@@ -1,14 +1,10 @@
-import {
-  ISpørsmål,
-  ITekst,
-  JaNeiSvar,
-  LesMer,
-} from '../../../../models/spørsmal';
+import { ISpørsmål, ITekst, LesMer } from '../../../../models/spørsmalogsvar';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
 } from '../../../../models/steg/aktivitet/utdanning';
+import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const utdanningDuKanFåStønadTil: LesMer = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
@@ -17,12 +13,12 @@ export const utdanningDuKanFåStønadTil: LesMer = {
 };
 
 export const skoleUtdanningssted: ITekst = {
-  nøkkel: EUtdanning.skoleUtdanningssted,
+  id: EUtdanning.skoleUtdanningssted,
   label_tekstid: 'utdanning.label.skoleUtdanningssted',
 };
 
 export const linjeKursGrad: ITekst = {
-  nøkkel: EUtdanning.linjeKursGrad,
+  id: EUtdanning.linjeKursGrad,
   label_tekstid: 'utdanning.label.linjeKursGrad',
 };
 
@@ -33,11 +29,11 @@ export const privatEllerOffentligSpm: ISpørsmål = {
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   svaralternativer: [
     {
-      nøkkel: EUtdanningsform.offentlig,
+      id: EUtdanningsform.offentlig,
       svar_tekstid: 'utdanning.svar.offentlig',
     },
     {
-      nøkkel: EUtdanningsform.privat,
+      id: EUtdanningsform.privat,
       svar_tekstid: 'utdanning.svar.privat',
     },
   ],
@@ -47,11 +43,11 @@ export const heltidEllerDeltidSpm: ISpørsmål = {
   tekstid: 'utdanning.spm.studieandel',
   svaralternativer: [
     {
-      nøkkel: EStudieandel.heltid,
+      id: EStudieandel.heltid,
       svar_tekstid: 'utdanning.svar.heltid',
     },
     {
-      nøkkel: EStudieandel.deltid,
+      id: EStudieandel.deltid,
       svar_tekstid: 'utdanning.svar.deltid',
     },
   ],

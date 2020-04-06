@@ -1,42 +1,43 @@
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import {
-  EDinSituasjon,
+  DinSituasjonType,
   ESagtOppEllerRedusertStilling,
+  ESituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
-  søknadid: 'gjelderDetteDeg',
+  søknadid: ESituasjon.gjelderDetteDeg,
   tekstid: 'dinSituasjon.spm',
   svaralternativer: [
     {
-      nøkkel: EDinSituasjon.erSyk,
+      id: DinSituasjonType.erSyk,
       svar_tekstid: 'dinSituasjon.svar.erSyk',
     },
     {
-      nøkkel: EDinSituasjon.harSyktBarn,
+      id: DinSituasjonType.harSyktBarn,
       svar_tekstid: 'dinSituasjon.svar.harSyktBarn',
     },
     {
-      nøkkel: EDinSituasjon.harSøktBarnepassOgVenterEnnå,
+      id: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
       svar_tekstid: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
     },
     {
-      nøkkel: EDinSituasjon.harBarnMedSærligeBehov,
+      id: DinSituasjonType.harBarnMedSærligeBehov,
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
     },
     {
-      nøkkel: EDinSituasjon.harFåttJobbTilbud,
+      id: DinSituasjonType.harFåttJobbTilbud,
       svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
     },
     {
-      nøkkel: EDinSituasjon.skalTaUtdanning,
+      id: DinSituasjonType.skalTaUtdanning,
       svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
     },
   ],
 };
 
 export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
-  søknadid: 'sagtOppEllerRedusertStilling',
+  søknadid: ESituasjon.sagtOppEllerRedusertStilling,
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
   lesmer: {
     åpneTekstid: 'dinSituasjon.lesmer-åpne',
@@ -45,17 +46,17 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
   },
   svaralternativer: [
     {
-      nøkkel: ESagtOppEllerRedusertStilling.sagtOpp,
+      id: ESagtOppEllerRedusertStilling.sagtOpp,
       svar_tekstid: 'dinSituasjon.svar.sagtOpp',
       alert_tekstid: 'dinSituasjon.alert.sagtOpp',
     },
     {
-      nøkkel: ESagtOppEllerRedusertStilling.redusertStilling,
+      id: ESagtOppEllerRedusertStilling.redusertStilling,
       svar_tekstid: 'dinSituasjon.svar.redusertStilling',
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
     },
     {
-      nøkkel: ESagtOppEllerRedusertStilling.nei,
+      id: ESagtOppEllerRedusertStilling.nei,
       svar_tekstid: 'svar.nei',
     },
   ],

@@ -1,20 +1,21 @@
-import { ISpørsmål, JaNeiSvar } from '../../../../models/spørsmal';
+import { ISpørsmål } from '../../../../models/spørsmalogsvar';
 import {
   EArbeidsgiver,
   EStilling,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
+import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.fastStilling,
   tekstid: 'arbeidsforhold.label.fastEllerMidlertidig',
   svaralternativer: [
     {
-      nøkkel: EStilling.fast,
+      id: EStilling.fast,
       svar_tekstid: 'arbeidsforhold.svar.fast',
       alert_tekstid: '',
     },
     {
-      nøkkel: EStilling.midlertidig,
+      id: EStilling.midlertidig,
       svar_tekstid: 'arbeidsforhold.svar.midlertidig',
     },
   ],

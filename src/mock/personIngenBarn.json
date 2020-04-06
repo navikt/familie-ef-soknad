@@ -1,0 +1,24 @@
+{
+  "søker": {
+    "fnr": "01018212345",
+    "forkortetNavn": "Nyan Cat",
+    "adresse": {
+      "adresse": "Meowt street 1",
+      "adressetillegg": "",
+      "kommune": "0104",
+      "postnummer": "1533"
+    },
+    "egenansatt": false,
+    "innvandretDato": "1991-12-28",
+    "utvandretDato": "",
+    "oppholdstillatelse": "",
+    "sivilstand": "UGIF",
+    "språk": "NB",
+    "statsborgerskap": "NOR",
+    "privattelefon": "",
+    "mobiltelefon": "983289398",
+    "jobbtelefon": "",
+    "bankkontonummer": ""
+  },
+  "barn": []
+}

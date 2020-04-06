@@ -6,13 +6,12 @@ import Side from '../../../components/side/Side';
 import useSøknadContext from '../../../context/SøknadContext';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import {
-  EDinSituasjon,
+  DinSituasjonType,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål } from '../../../models/spørsmal';
+import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { nyttTekstListeFelt } from '../../../utils/søknadsfelter';
 import SøkerErSyk from './SøkerErSyk';
 import SyktBarn from './SyktBarn';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
@@ -26,12 +25,13 @@ import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
 } from './SituasjonUtil';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
-    gjelderDetteDeg: nyttTekstListeFelt,
+    gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
     søknadsdato: { label: '', verdi: dagensDato },
   });
   const {
@@ -39,29 +39,25 @@ const MerOmDinSituasjon: React.FC = () => {
     datoOppstartJobb,
     datoOppstartUtdanning,
   } = dinSituasjon;
+  const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
 
   useEffect(() => {
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
     // eslint-disable-next-line
   }, [dinSituasjon]);
 
-  const settDinSituasjonFelt = (spørsmål: ISpørsmål, svar: string[]) => {
-    const dinSituasjonFelt = {
-      label: hentTekst(spørsmål.tekstid, intl),
-      verdi: svar,
-    };
+  const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
+    DinSituasjonType.harFåttJobbTilbud,
+    avhukedeSvarISøknad,
+    intl
+  );
+  const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
+    DinSituasjonType.skalTaUtdanning,
+    avhukedeSvarISøknad,
+    intl
+  );
 
-    const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
-      EDinSituasjon.harFåttJobbTilbud,
-      svar,
-      intl
-    );
-    const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
-      EDinSituasjon.skalTaUtdanning,
-      svar,
-      intl
-    );
-
+  const hentEndretSituasjon = (dinSituasjon: IDinSituasjon): IDinSituasjon => {
     if (datoOppstartJobb || datoOppstartUtdanning) {
       const endretSituasjon = dinSituasjon;
       if (!erFåttJobbTilbudISvar && datoOppstartJobb) {
@@ -69,35 +65,54 @@ const MerOmDinSituasjon: React.FC = () => {
       } else if (!erSkalTaUtdanningISvar && datoOppstartUtdanning) {
         delete endretSituasjon.datoOppstartUtdanning;
       }
-      settDinSituasjon({
-        ...endretSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt,
-      });
-    } else {
-      settDinSituasjon({
-        ...dinSituasjon,
-        [spørsmål.søknadid]: dinSituasjonFelt,
-      });
-    }
+      return endretSituasjon;
+    } else return dinSituasjon;
   };
 
-  const erSituasjonHuketAv = (situasjon: EDinSituasjon): boolean => {
+  const settDinSituasjonFelt = (
+    spørsmål: ISpørsmål,
+    svarHuketAv: boolean,
+    svar: ISvar
+  ) => {
+    const spørsmålTekst = hentTekst(spørsmål.tekstid, intl);
+    const endretSituasjon = hentEndretSituasjon(dinSituasjon);
+    const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
+      endretSituasjon.gjelderDetteDeg,
+      svarHuketAv,
+      svar,
+      intl
+    );
+
+    settDinSituasjon({
+      ...endretSituasjon,
+      gjelderDetteDeg: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svarider,
+        label: spørsmålTekst,
+        verdi: avhukedeSvar,
+      },
+    });
+  };
+
+  const erSituasjonHuketAv = (situasjon: DinSituasjonType): boolean => {
     return (
       gjelderDetteDeg &&
       erSituasjonIAvhukedeSvar(situasjon, gjelderDetteDeg.verdi, intl)
     );
   };
 
-  const erSykHuketav = erSituasjonHuketAv(EDinSituasjon.erSyk);
-  const harSyktBarnHuketAv = erSituasjonHuketAv(EDinSituasjon.harSyktBarn);
+  const erSykHuketav = erSituasjonHuketAv(DinSituasjonType.erSyk);
+  const harSyktBarnHuketAv = erSituasjonHuketAv(DinSituasjonType.harSyktBarn);
   const harSøktBarnepassOgVenterPåSvar = erSituasjonHuketAv(
-    EDinSituasjon.harSøktBarnepassOgVenterEnnå
+    DinSituasjonType.harSøktBarnepassOgVenterEnnå
   );
   const harBarnMedSærligeBehov = erSituasjonHuketAv(
-    EDinSituasjon.harBarnMedSærligeBehov
+    DinSituasjonType.harBarnMedSærligeBehov
   );
-  const harFåttJobbTilbud = erSituasjonHuketAv(EDinSituasjon.harFåttJobbTilbud);
-  const skalTaUtdanning = erSituasjonHuketAv(EDinSituasjon.skalTaUtdanning);
+  const harFåttJobbTilbud = erSituasjonHuketAv(
+    DinSituasjonType.harFåttJobbTilbud
+  );
+  const skalTaUtdanning = erSituasjonHuketAv(DinSituasjonType.skalTaUtdanning);
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
