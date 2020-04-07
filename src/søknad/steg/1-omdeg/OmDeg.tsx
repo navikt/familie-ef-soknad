@@ -14,6 +14,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const history = useHistory();
   const { søknad } = useSøknadContext();
   const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad.sivilstatus;
+
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (

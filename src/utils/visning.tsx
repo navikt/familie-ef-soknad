@@ -4,9 +4,20 @@ import { hentTekst } from '../utils/søknad';
 import { formatDate } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
 
+export const VisPerioderBoddIUtlandet = (verdi: any) => {
+  return verdi.map((v: any) => {
+    return (
+      <>
+        {verdiTilTekstsvar(v.fra)}
+        {VisLabelOgSvar(v.begrunnelse)}
+      </>
+    );
+  });
+};
+
 export const verdiTilTekstsvar = (
   verdi: string | Date | boolean | string[],
-  intl: IntlShape
+  intl?: IntlShape
 ) => {
   if (Array.isArray(verdi)) {
     return (
@@ -21,10 +32,18 @@ export const verdiTilTekstsvar = (
   } else if (typeof verdi === 'string') {
     return <Normaltekst>{verdi}</Normaltekst>;
   } else if (typeof verdi === 'boolean') {
+    let jaTekst = 'Ja';
+    let neiTekst = 'Nei';
+
+    if (intl) {
+      jaTekst = hentTekst('svar.ja', intl);
+      neiTekst = hentTekst('svar.nei', intl);
+    }
+
     if (verdi === true) {
-      return <Normaltekst>{hentTekst('svar.ja', intl)}</Normaltekst>;
+      return <Normaltekst>{jaTekst}</Normaltekst>;
     } else {
-      return <Normaltekst>{hentTekst('svar.nei', intl)}</Normaltekst>;
+      return <Normaltekst>{neiTekst}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
     return <Normaltekst>{formatDate(verdi)}</Normaltekst>;

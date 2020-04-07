@@ -2,7 +2,10 @@ import React from 'react';
 import useSøknadContext from '../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
+import {
+  VisLabelOgSvar,
+  VisPerioderBoddIUtlandet,
+} from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -14,9 +17,14 @@ const OppsummeringOmDeg = () => {
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
+  const utlandet = søknad.medlemskap.perioderBoddIUtlandet;
+
+  const perioderBoddIUtlandet = utlandet
+    ? VisPerioderBoddIUtlandet(utlandet)
+    : null;
+
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
-  // TODO: Håndter perioderBoddIUtlandet
 
   return (
     <Ekspanderbartpanel tittel="Om deg">
@@ -38,6 +46,7 @@ const OppsummeringOmDeg = () => {
       </div>
       {sivilstatusSpørsmål}
       {medlemskapSpørsmål}
+      {perioderBoddIUtlandet}
       <LenkeMedIkon
         onClick={() =>
           history.push({
