@@ -3,7 +3,7 @@ import { Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import styled from 'styled-components';
-import { IBarn } from '../../../models/person';
+import { IBarn } from '../../../models/barn';
 
 const StyledBarnasBostedHeader = styled.div`
     .barnas-bosted-header {
@@ -62,7 +62,7 @@ interface Props {
 }
 
 const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
-  const ikon = barn.ufødt ? ufødtIkon : barn1;
+  const ikon = barn.født?.verdi ? barn1 : ufødtIkon;
 
   return (
     <StyledBarnasBostedHeader>
@@ -72,7 +72,7 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="navn">
-        <Element>{barn.navn}</Element>
+        <Element>{barn.navn.verdi}</Element>
       </div>
     </StyledBarnasBostedHeader>
   );

@@ -45,14 +45,20 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
       <FeltGruppe>
         <Textarea
           value={
-            forelder.hvordanPraktiseresSamværet
-              ? forelder.hvordanPraktiseresSamværet
+            forelder.hvordanPraktiseresSamværet &&
+            forelder.hvordanPraktiseresSamværet.verdi
+              ? forelder.hvordanPraktiseresSamværet.verdi
               : ''
           }
           onChange={(e) =>
             settForelder({
               ...forelder,
-              hvordanPraktiseresSamværet: e.target.value,
+              hvordanPraktiseresSamværet: {
+                label: intl.formatMessage({
+                  id: 'barnasbosted.element.samvær',
+                }),
+                verdi: e.target.value,
+              },
             })
           }
           label=""

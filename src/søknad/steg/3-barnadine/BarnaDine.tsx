@@ -8,6 +8,7 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
+import { hentTekst } from '../../../utils/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -18,34 +19,46 @@ const BarnaDine: React.FC = () => {
 
   return (
     <>
-      <Side tittel={intl.formatMessage({ id: 'barnadine.sidetittel' })}>
+      <Side tittel={hentTekst('barnadine.sidetittel', intl)}>
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
-            {intl.formatMessage({ id: 'barnadine.infohentet' })}
+            {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>
           <div className="barnekort-wrapper">
-            {barna?.map((barn, index) => (
+            {barna?.map((barn) => (
               <Barnekort
-                key={index + barn.fødselsdato}
+                key={barn.id}
                 settÅpenModal={settÅpenModal}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}
                 fnr={barn.fnr}
                 fødselsdato={barn.fødselsdato}
-                personnummer={barn.personnummer ? barn.personnummer : ''}
+                personnummer={
+                  barn.personnummer && barn.personnummer.verdi
+                    ? barn.personnummer
+                    : {
+                        label: hentTekst('barnadine.personnummer', intl),
+                        verdi: '',
+                      }
+                }
                 alder={barn.alder}
                 harSammeAdresse={barn.harSammeAdresse}
-                ufødt={barn.ufødt ? barn.ufødt : false}
+                født={
+                  barn.født
+                    ? barn.født
+                    : {
+                        label: hentTekst('barnekort.spm.født', intl),
+                        verdi: false,
+                      }
+                }
                 lagtTil={barn.lagtTil ? barn.lagtTil : false}
               />
             ))}
             <div className="barnekort">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Element>
-                  {intl.formatMessage({ id: 'barnadine.leggtil.info' })}
-                </Element>
+                <Element>{hentTekst('barnadine.leggtil.info', intl)}</Element>
                 <Knapp onClick={() => settÅpenModal(true)}>
-                  {intl.formatMessage({ id: 'barnadine.leggtil' })}
+                  {hentTekst('barnadine.leggtil', intl)}
                 </Knapp>
               </div>
             </div>

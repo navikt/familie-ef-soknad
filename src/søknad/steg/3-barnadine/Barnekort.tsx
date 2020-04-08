@@ -8,17 +8,18 @@ import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
+import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
-  navn: string;
-  fnr: string;
-  fødselsdato: string;
-  personnummer: string;
-  alder: number;
-  harSammeAdresse: boolean;
+  navn: ITekstFelt;
+  fnr: ITekstFelt;
+  fødselsdato: ITekstFelt;
+  personnummer: ITekstFelt;
+  alder: ITekstFelt;
+  harSammeAdresse: IBooleanFelt;
   lagtTil: boolean;
-  ufødt: boolean;
+  født: IBooleanFelt;
   id: string;
   settÅpenModal: Function;
 }
@@ -31,7 +32,7 @@ const Barnekort: React.FC<Props> = ({
   alder,
   harSammeAdresse,
   lagtTil,
-  ufødt,
+  født,
   fødselsdato,
 }) => {
   const intl = useIntl();
@@ -43,11 +44,11 @@ const Barnekort: React.FC<Props> = ({
   };
 
   const ikoner = [barn1, barn2, barn3];
-  const ikon = ufødt
-    ? ufødtIkon
-    : ikoner[Math.floor(Math.random() * ikoner.length)];
+  const ikon = født
+    ? ikoner[Math.floor(Math.random() * ikoner.length)]
+    : ufødtIkon;
 
-  const bosted = !ufødt
+  const bosted = født
     ? harSammeAdresse
       ? hentTekst('barnekort.adresse.bor', intl)
       : hentTekst('barnekort.adresse.borIkke', intl)
@@ -69,26 +70,26 @@ const Barnekort: React.FC<Props> = ({
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
           <Element>
-            {ufødt
-              ? intl.formatMessage({ id: 'barnekort.normaltekst.barn' })
-              : navn}
+            {født.verdi
+              ? navn.verdi
+              : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Element>
           <div className="informasjonselement">
-            {fnr ? (
+            {fnr.verdi ? (
               <>
                 <Normaltekst>
                   {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
                 </Normaltekst>
-                <Normaltekst>{formatFnr(fnr)}</Normaltekst>
+                <Normaltekst>{formatFnr(fnr.verdi)}</Normaltekst>
               </>
             ) : (
               <>
                 <Normaltekst>
-                  {ufødt
-                    ? intl.formatMessage({ id: 'barnekort.termindato' })
-                    : intl.formatMessage({ id: 'barnekort.fødselsdato' })}
+                  {født
+                    ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
+                    : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>
-                <Normaltekst>{fødselsdato}</Normaltekst>
+                <Normaltekst>{fødselsdato.verdi}</Normaltekst>
               </>
             )}
           </div>
@@ -97,8 +98,8 @@ const Barnekort: React.FC<Props> = ({
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
             <Normaltekst>
-              {ufødt ? hentTekst('barnekort.erUfødt', intl) : alder}{' '}
-              {hentTekst('barnekort.år', intl)}{' '}
+              {født.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
+              {' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
           <div className="informasjonselement">

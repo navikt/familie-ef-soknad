@@ -1,7 +1,6 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { IForelder } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -16,6 +15,8 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { IForelder } from '../../../models/forelder';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   settForelder: Function;
@@ -34,7 +35,12 @@ const BostedOgSamvær: React.FC<Props> = ({
     const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
-      [spørsmål.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+        }),
+        verdi: valgtSvar,
+      },
     };
 
     if (
@@ -65,7 +71,14 @@ const BostedOgSamvær: React.FC<Props> = ({
     const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
     const nyForelder = {
       ...forelder,
-      [spørsmål.søknadid]: valgtSvar,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
+        }),
+        verdi: valgtSvar,
+      },
     };
 
     if (
@@ -99,9 +112,15 @@ const BostedOgSamvær: React.FC<Props> = ({
           <JaNeiSpørsmål
             spørsmål={borINorge}
             onChange={(_, svar) =>
-              settForelder({ ...forelder, [borINorge.søknadid]: svar })
+              settForelder({
+                ...forelder,
+                [borINorge.søknadid]: {
+                  label: intl.formatMessage({ id: 'barnasbosted.borinorge' }),
+                  verdi: hentBooleanFraValgtSvar(svar),
+                },
+              })
             }
-            valgtSvar={forelder.borINorge}
+            valgtSvar={forelder.borINorge?.verdi}
           />
         </KomponentGruppe>
       ) : null}
@@ -111,17 +130,20 @@ const BostedOgSamvær: React.FC<Props> = ({
           onChange={(_, svar) =>
             settForelder({
               ...forelder,
-              [avtaleOmDeltBosted.søknadid]: svar,
+              [avtaleOmDeltBosted.søknadid]: {
+                label: intl.formatMessage({ id: 'barnasbosted.avtale' }),
+                verdi: hentBooleanFraValgtSvar(svar),
+              },
             })
           }
-          valgtSvar={forelder.avtaleOmDeltBosted}
+          valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
         />
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
-          valgtSvar={forelder.harAnnenForelderSamværMedBarn}
+          valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
           settSpørsmålOgSvar={(spørsmål, svar) =>
             settHarForelderSamværMedBarn(spørsmål, svar)
           }
@@ -129,21 +151,23 @@ const BostedOgSamvær: React.FC<Props> = ({
       </KomponentGruppe>
       {forelder.harAnnenForelderSamværMedBarn &&
       visSkriftligSamværsavtaleSpørsmål(
-        forelder.harAnnenForelderSamværMedBarn
+        forelder.harAnnenForelderSamværMedBarn.verdi
       ) ? (
         <KomponentGruppe>
           <MultiSvarSpørsmål
             key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
-            valgtSvar={forelder.harDereSkriftligSamværsavtale}
+            valgtSvar={forelder.harDereSkriftligSamværsavtale?.verdi}
             settSpørsmålOgSvar={(spørsmål, svar) =>
               settHarDereSkriftligSamværsavtale(spørsmål, svar)
             }
           />
           {forelder.harDereSkriftligSamværsavtale &&
-          visSamværsavtaleAdvarsel(forelder.harDereSkriftligSamværsavtale) ? (
+          visSamværsavtaleAdvarsel(
+            forelder.harDereSkriftligSamværsavtale.verdi
+          ) ? (
             <FeltGruppe>
-              <AlertStripe type={'info'} form={'inline'}>
+              <AlertStripe type={'info'}>
                 <LocaleTekst
                   tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                 />
@@ -153,7 +177,9 @@ const BostedOgSamvær: React.FC<Props> = ({
         </KomponentGruppe>
       ) : null}
       {forelder.harDereSkriftligSamværsavtale &&
-      visHvordanPraktiseresSamværet(forelder.harDereSkriftligSamværsavtale) ? (
+      visHvordanPraktiseresSamværet(
+        forelder.harDereSkriftligSamværsavtale.verdi
+      ) ? (
         <HvordanPraktiseresSamværet
           forelder={forelder}
           settForelder={settForelder}

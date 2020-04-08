@@ -1,4 +1,9 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../../søknadsfelter';
+import {
+  IBooleanFelt,
+  IDatoFelt,
+  ISpørsmålFelt,
+  ITekstFelt,
+} from '../../søknadsfelter';
 
 export enum ESivilstand {
   GIFT = 'GIFT',
@@ -13,9 +18,18 @@ export interface ISivilstatus {
   datoSøktSeparasjon?: IDatoFelt;
   søkerGiftIUtlandet?: IBooleanFelt;
   søkerSeparertEllerSkiltIUtlandet?: IBooleanFelt;
-  begrunnelseForSøknad?: ITekstFelt;
+  begrunnelseForSøknad?: ISpørsmålFelt;
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
   datoEndretSamvær?: IDatoFelt;
   begrunnelseAnnet?: ITekstFelt;
+}
+
+export enum EBegrunnelse {
+  samlivsbruddForeldre = 'samlivsbruddForeldre',
+  samlivsbruddAndre = 'samlivsbruddAndre',
+  aleneFraFødsel = 'aleneFraFødsel',
+  endringISamværsordning = 'endringISamværsordning',
+  dødsfall = 'dødsfall',
+  annet = 'annet',
 }

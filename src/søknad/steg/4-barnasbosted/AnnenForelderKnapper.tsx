@@ -2,7 +2,8 @@ import React, { useState, SyntheticEvent } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { IBarn, IForelder } from '../../../models/person';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
 
 interface Props {
   barn: IBarn;
@@ -31,7 +32,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   ) => {
     settHuketAvAnnenForelder(true);
     const denAndreForelderen = detAndreBarnet.forelder;
-    settAndreForelderRadioVerdi(detAndreBarnet.navn);
+    settAndreForelderRadioVerdi(detAndreBarnet.navn.verdi);
 
     settForelder({
       ...forelder,
@@ -60,7 +61,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   return (
     <>
       <Element>
-        {barn.navn}
+        {barn.navn.verdi}
         {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
       </Element>
       {andreBarnMedForelder.length ? (
@@ -74,7 +75,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
                   id: 'barnasbosted.forelder.sammesom',
                 })} ${b.navn}`}
                 value={`${andreForelder}${b.navn}`}
-                checked={andreForelderRadioVerdi === b.navn}
+                checked={andreForelderRadioVerdi === b.navn.verdi}
                 onChange={(e) => leggTilSammeForelder(e, b)}
               />
             );

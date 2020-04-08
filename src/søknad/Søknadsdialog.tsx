@@ -8,6 +8,7 @@ import Forside from './forside/Forside';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import SendSøknad from './SendSøknad';
 import MerOmDinSituasjon from './steg/6-meromsituasjon/MerOmDinSituasjon';
+import Oppsummering from './steg/7-oppsummering/Oppsummering';
 
 const Søknadsdialog: FC = () => {
   return (
@@ -19,6 +20,7 @@ const Søknadsdialog: FC = () => {
         <Route path={'/barnas-bosted'} component={BarnasBosted} />
         <Route path={'/aktivitet'} component={Aktivitet} />
         <Route path={'/din-situasjon'} component={MerOmDinSituasjon} />
+        <Route path={'/oppsummering'} component={Oppsummering} />
         <Route path={'/send-soknad'} component={SendSøknad} />
         <Route path={'/'} component={Forside} />
       </Switch>

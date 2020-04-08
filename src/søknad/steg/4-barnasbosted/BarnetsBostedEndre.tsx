@@ -1,22 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
-import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
-import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
-import { IForelder, IBarn } from '../../../models/person';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Knapp } from 'nav-frontend-knapper';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import BarnasBostedHeader from './BarnasBostedHeader';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import OmAndreForelder from './OmAndreForelder';
-import BostedOgSamvær from './BostedOgSamvær';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
+import BostedOgSamvær from './BostedOgSamvær';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import OmAndreForelder from './OmAndreForelder';
+import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
+import useSøknadContext from '../../../context/SøknadContext';
+import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
+import { Knapp } from 'nav-frontend-knapper';
+import { useIntl } from 'react-intl';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
@@ -29,6 +32,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settAktivIndex,
   aktivIndex,
 }) => {
+  const intl = useIntl();
   const { søknad, settSøknad } = useSøknadContext();
 
   const [forelder, settForelder] = useState<IForelder>({});
@@ -46,11 +50,17 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   }, []);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+    const nyForelder = {
+      ...forelder,
+      [boddSammenFør.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentBooleanFraValgtSvar(valgtSvar),
+      },
+    };
 
-    const nyForelder = { ...forelder, [boddSammenFør.søknadid]: svar };
-
-    if (svar === false) {
+    if (valgtSvar.id === ESvar.NEI) {
       delete nyForelder.flyttetFra;
     }
 
@@ -116,9 +126,17 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 <MultiSvarSpørsmål
                   key={borISammeHus.søknadid}
                   spørsmål={borISammeHus}
-                  valgtSvar={forelder.borISammeHus}
+                  valgtSvar={forelder.borISammeHus?.verdi}
                   settSpørsmålOgSvar={(_, svar) =>
-                    settForelder({ ...forelder, [borISammeHus.søknadid]: svar })
+                    settForelder({
+                      ...forelder,
+                      [borISammeHus.søknadid]: {
+                        label: intl.formatMessage({
+                          id: 'barnasbosted.spm.borISammeHus',
+                        }),
+                        verdi: hentTekst(svar.svar_tekstid, intl),
+                      },
+                    })
                   }
                 />
               </KomponentGruppe>
@@ -128,17 +146,28 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   onChange={(spørsmål, svar) =>
                     settHarBoddsammenFør(spørsmål, svar)
                   }
-                  valgtSvar={forelder.boddSammenFør}
+                  valgtSvar={forelder.boddSammenFør?.verdi}
                 />
               </KomponentGruppe>
               {forelder.boddSammenFør ? (
                 <KomponentGruppe>
                   <Datovelger
-                    settDato={(e: Date | null) =>
-                      settForelder({ ...forelder, flyttetFra: e })
-                    }
+                    settDato={(e: Date | null) => {
+                      e !== null &&
+                        settForelder({
+                          ...forelder,
+                          flyttetFra: {
+                            label: intl.formatMessage({
+                              id: 'barnasbosted.normaltekst.nårflyttetfra',
+                            }),
+                            verdi: e,
+                          },
+                        });
+                    }}
                     valgtDato={
-                      forelder.flyttetFra ? forelder.flyttetFra : undefined
+                      forelder.flyttetFra && forelder.flyttetFra.verdi
+                        ? forelder.flyttetFra.verdi
+                        : undefined
                     }
                     tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
                     datobegrensning={DatoBegrensning.TidligereDatoer}
@@ -149,11 +178,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 <MultiSvarSpørsmål
                   key={hvorMyeSammen.søknadid}
                   spørsmål={hvorMyeSammen}
-                  valgtSvar={forelder.hvorMyeSammen}
+                  valgtSvar={forelder.hvorMyeSammen?.verdi}
                   settSpørsmålOgSvar={(_, svar) =>
                     settForelder({
                       ...forelder,
-                      [hvorMyeSammen.søknadid]: svar,
+                      [hvorMyeSammen.søknadid]: {
+                        label: intl.formatMessage({
+                          id: 'barnasbosted.spm.hvorMyeSammen',
+                        }),
+                        verdi: hentTekst(svar.svar_tekstid, intl),
+                      },
                     })
                   }
                 />

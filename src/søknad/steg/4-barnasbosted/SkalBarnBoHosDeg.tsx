@@ -1,13 +1,13 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { IBarn } from '../../../models/person';
 import { skalBarnBoHosDeg } from './ForeldreConfig';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { IBarn } from '../../../models/barn';
 
 interface Props {
   barn: IBarn;
@@ -32,9 +32,17 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
           <MultiSvarSpørsmål
             key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
-            valgtSvar={forelder.skalBarnBoHosDeg}
+            valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
             settSpørsmålOgSvar={(_, svar) =>
-              settForelder({ ...forelder, [skalBarnBoHosDeg.søknadid]: svar })
+              settForelder({
+                ...forelder,
+                [skalBarnBoHosDeg.søknadid]: {
+                  label: intl.formatMessage({
+                    id: 'barnasbosted.spm.skalBarnBoHosDeg',
+                  }),
+                  verdi: svar,
+                },
+              })
             }
           />
         </KomponentGruppe>
