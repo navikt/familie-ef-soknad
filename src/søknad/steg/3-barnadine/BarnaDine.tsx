@@ -8,7 +8,6 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
-import Hjelpetekst from '../../../components/Hjelpetekst';
 import { hentTekst } from '../../../utils/søknad';
 
 const BarnaDine: React.FC = () => {
@@ -22,10 +21,6 @@ const BarnaDine: React.FC = () => {
     <>
       <Side tittel={hentTekst('barnadine.sidetittel', intl)}>
         <div className="barna-dine">
-          <Hjelpetekst
-            åpneTekstid={'barnadine.hjelpetekst.åpne'}
-            innholdTekstid={'barnadine.hjelpetekst.innhold'}
-          />
           <AlertStripeInfo className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>

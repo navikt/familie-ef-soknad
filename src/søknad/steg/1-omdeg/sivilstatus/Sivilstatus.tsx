@@ -46,6 +46,7 @@ const Sivilstatus: React.FC = () => {
   const erSøkerUgift = sivilstand === ESivilstand.UGIF;
   const erSøkerEnke = sivilstand === ESivilstand.ENKE;
   const erSøkerSeparert = sivilstand === ESivilstand.SEPA;
+  const erSøkerSkilt = sivilstand === ESivilstand.SKIL;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -141,7 +142,8 @@ const Sivilstatus: React.FC = () => {
       {(erSøkerUgift &&
         søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
-      erSøkerEnke ? (
+      erSøkerEnke ||
+      erSøkerSkilt ? (
         <Søknadsbegrunnelse
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}
