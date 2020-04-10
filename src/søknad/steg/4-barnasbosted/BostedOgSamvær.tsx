@@ -1,7 +1,6 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { IForelder } from '../../../models/person';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -16,6 +15,8 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { IForelder } from '../../../models/forelder';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   settForelder: Function;
@@ -71,6 +72,8 @@ const BostedOgSamvær: React.FC<Props> = ({
     const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
         label: intl.formatMessage({
           id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
         }),
@@ -113,7 +116,7 @@ const BostedOgSamvær: React.FC<Props> = ({
                 ...forelder,
                 [borINorge.søknadid]: {
                   label: intl.formatMessage({ id: 'barnasbosted.borinorge' }),
-                  verdi: svar,
+                  verdi: hentBooleanFraValgtSvar(svar),
                 },
               })
             }
@@ -129,7 +132,7 @@ const BostedOgSamvær: React.FC<Props> = ({
               ...forelder,
               [avtaleOmDeltBosted.søknadid]: {
                 label: intl.formatMessage({ id: 'barnasbosted.avtale' }),
-                verdi: svar,
+                verdi: hentBooleanFraValgtSvar(svar),
               },
             })
           }

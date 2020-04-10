@@ -61,11 +61,11 @@ const Personopplysninger: React.FC = () => {
   };
 
   const telefonnr =
-    mobiltelefon !== ''
+    mobiltelefon?.trim() !== ''
       ? mobiltelefon
-      : privattelefon !== ''
+      : privattelefon?.trim() !== ''
       ? privattelefon
-      : jobbtelefon !== ''
+      : jobbtelefon?.trim() !== ''
       ? jobbtelefon
       : '';
 
@@ -80,21 +80,21 @@ const Personopplysninger: React.FC = () => {
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.fnr'} />
+            <LocaleTekst tekst={'person.fnr'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.statsborgerskap'} />
+            <LocaleTekst tekst={'person.statsborgerskap'} />
           </Element>
           <Normaltekst>{søker.statsborgerskap}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.adresse'} />
+            <LocaleTekst tekst={'person.adresse'} />
           </Element>
           <Normaltekst>{søker.adresse.adresse}</Normaltekst>
         </FeltGruppe>
@@ -119,9 +119,7 @@ const Personopplysninger: React.FC = () => {
       {telefonnr === '' ? (
         <Input
           key={'tlf'}
-          label={intl
-            .formatMessage({ id: 'personopplysninger.telefonnr' })
-            .trim()}
+          label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
           type="tel"
           bredde={'M'}
           onChange={(e) => settTelefonnummer(e)}
@@ -134,7 +132,7 @@ const Personopplysninger: React.FC = () => {
       ) : (
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'personopplysninger.telefonnr'} />
+            <LocaleTekst tekst={'person.telefonnr'} />
           </Element>
           <Normaltekst>{telefonnr}</Normaltekst>
         </FeltGruppe>

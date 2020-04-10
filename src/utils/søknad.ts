@@ -89,3 +89,11 @@ export const hentIdHvisFinnesIListe = (
   const hentetId = liste.find((idIListe) => idIListe === id);
   return hentetId ? hentetId : undefined;
 };
+
+export const hentFeltObjekt = (
+  tekstid: string,
+  verdi: any,
+  intl: IntlShape
+) => {
+  return { label: hentTekst(tekstid, intl), verdi: verdi };
+};

@@ -2,7 +2,8 @@ import React, { useState, SyntheticEvent } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { IBarn, IForelder } from '../../../models/person';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
 
 interface Props {
   barn: IBarn;

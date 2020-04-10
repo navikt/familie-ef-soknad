@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Barnekort from './Barnekort';
-import Hjelpetekst from '../../../components/Hjelpetekst';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import Side from '../../../components/side/Side';
@@ -22,10 +21,6 @@ const BarnaDine: React.FC = () => {
     <>
       <Side tittel={hentTekst('barnadine.sidetittel', intl)}>
         <div className="barna-dine">
-          <Hjelpetekst
-            åpneTekstid={'barnadine.hjelpetekst.åpne'}
-            innholdTekstid={'barnadine.hjelpetekst.innhold'}
-          />
           <AlertStripeInfo className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>
@@ -52,7 +47,7 @@ const BarnaDine: React.FC = () => {
                   barn.født
                     ? barn.født
                     : {
-                        label: hentTekst('barnekort.født', intl),
+                        label: hentTekst('barnekort.spm.født', intl),
                         verdi: false,
                       }
                 }
