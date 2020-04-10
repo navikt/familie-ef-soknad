@@ -73,8 +73,7 @@ const Sivilstatus: React.FC = () => {
     }
 
     settSivilstatus(nySivilstatus);
-    valgtSvar.dokumentasjonsbehov &&
-      settDokumentasjonsbehov(spørsmål, valgtSvar);
+    settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   const settDato = (

@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
-import { ISøknad } from '../models/søknad';
+import personIngenBarn from '../mock/personIngenBarn.json';
 import { dagensDato } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
-import personIngenBarn from '../mock/personIngenBarn.json';
-import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 import { EBosituasjon } from '../models/steg/bosituasjon';
+import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { hentIdHvisFinnesIListe } from '../utils/søknad';
-import { IDokumentasjon } from '../models/dokumentasjon';
+import { ISøknad } from '../models/søknad';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -47,29 +45,33 @@ const initialState: ISøknad = {
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
 
-  const settDokumentasjonsbehov = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+  const settDokumentasjonsbehov = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => {
     let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
-    let svaridTilBehov: string | undefined = '';
 
-    const dokumentasjonsbehovTilSpørsmålOgSvar:
+    /*const dokumentasjonsbehovISøknad:
       | IDokumentasjon
-      | undefined = søknad.dokumentasjonsbehov.find((behov) => {
-      svaridTilBehov =
-        typeof behov.svarid === 'string'
-          ? behov.svarid
-          : hentIdHvisFinnesIListe(valgtSvar.id, behov.svarid);
-      return behov.spørsmålid === spørsmål.søknadid && svaridTilBehov;
-    });
+      | undefined = hentDokumentasjonsbehovTilSpørsmålOgSvar(
+      spørsmål,
+      valgtSvar,
+      endretDokumentasjonsbehov
+    );*/
 
-    if (dokumentasjonsbehovTilSpørsmålOgSvar) {
-      endretDokumentasjonsbehov = endretDokumentasjonsbehov.filter(
-        (dokumentasjonbehov) => {
-          return (
-            dokumentasjonbehov.spørsmålid !== spørsmål.søknadid &&
-            svaridTilBehov !== valgtSvar.id
-          );
-        }
-      );
+    const dokumentasjonsbehovLagretISøknad = søknad.dokumentasjonsbehov.find(
+      (dokbehov) => dokbehov.spørsmålid === spørsmål.søknadid
+    );
+    if (dokumentasjonsbehovLagretISøknad) {
+      if (
+        dokumentasjonsbehovLagretISøknad.svarid !== valgtSvar.id &&
+        !valgtSvar.dokumentasjonsbehov
+      ) {
+        endretDokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
+          (behov) => behov.spørsmålid !== spørsmål.søknadid
+        );
+      }
     } else {
       valgtSvar.dokumentasjonsbehov &&
         endretDokumentasjonsbehov.push(valgtSvar.dokumentasjonsbehov);

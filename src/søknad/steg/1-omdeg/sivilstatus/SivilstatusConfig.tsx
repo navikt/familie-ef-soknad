@@ -18,7 +18,7 @@ import {
 export const DokumentasjonInngåttEkteskap: IDokumentasjon = {
   id: EDokumentasjon.INNGÅTT_EKTESKAP,
   spørsmålid: 'erUformeltGift',
-  svarid: [ESvar.JA],
+  svarid: ESvar.JA,
   tittel: 'dokumentasjon.inngåttEkteskap.tittel',
   beskrivelse: 'dokumentasjon.inngåttEkteskap.beskrivelse',
   harSendtInn: false,
@@ -27,7 +27,7 @@ export const DokumentasjonInngåttEkteskap: IDokumentasjon = {
 export const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
   id: EDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
-  svarid: [ESvar.JA],
+  svarid: ESvar.JA,
   tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
   beskrivelse: 'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse',
   harSendtInn: false,

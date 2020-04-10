@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import AlertStripe from 'nav-frontend-alertstriper';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
+import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
-import { useIntl } from 'react-intl';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
-import AlertStripe from 'nav-frontend-alertstriper';
-import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
-import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();

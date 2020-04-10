@@ -12,7 +12,6 @@ export const hvaSlagsStilling: ISpørsmål = {
     {
       id: EStilling.fast,
       svar_tekstid: 'arbeidsforhold.svar.fast',
-      alert_tekstid: '',
     },
     {
       id: EStilling.midlertidig,
