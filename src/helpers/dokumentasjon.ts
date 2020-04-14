@@ -1,15 +1,19 @@
 import { IDokumentasjon } from '../models/dokumentasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { hentIdHvisFinnesIListe } from '../utils/søknad';
+import { ISvar } from '../models/spørsmålogsvar';
 
-export const hentDokumentasjonsbehovTilSpørsmålOgSvar = (
-  spørsmål: ISpørsmål,
-  valgtSvar: ISvar,
-  dokumentasjonsbehovliste: IDokumentasjon[]
-): IDokumentasjon | undefined =>
-  dokumentasjonsbehovliste.find((behov) => {
-    const svaridTilBehov = Array.isArray(behov.svarid)
-      ? hentIdHvisFinnesIListe(valgtSvar.id, behov.svarid)
-      : behov.svarid;
-    return behov.spørsmålid === spørsmål.søknadid && svaridTilBehov;
-  });
+export const hentDokumentasjonTilFlersvarSpørsmål = (
+  erHuketAv: boolean | undefined,
+  dokumentasjonsbehov: IDokumentasjon[],
+  valgtSvar: ISvar
+) => {
+  let endretDokumentasjonsbehov = [];
+  if (erHuketAv) {
+    endretDokumentasjonsbehov = dokumentasjonsbehov.filter(
+      (behov) => behov.svarid !== valgtSvar.id
+    );
+  } else {
+    valgtSvar.dokumentasjonsbehov &&
+      endretDokumentasjonsbehov.push(valgtSvar?.dokumentasjonsbehov);
+  }
+  return endretDokumentasjonsbehov;
+};

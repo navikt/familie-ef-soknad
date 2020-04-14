@@ -7,6 +7,7 @@ import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { ISøknad } from '../models/søknad';
+import { hentDokumentasjonTilFlersvarSpørsmål } from '../helpers/dokumentasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -51,26 +52,28 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     erHuketAv?: boolean
   ) => {
     let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
-
-    /*const dokumentasjonsbehovISøknad:
-      | IDokumentasjon
-      | undefined = hentDokumentasjonsbehovTilSpørsmålOgSvar(
-      spørsmål,
-      valgtSvar,
-      endretDokumentasjonsbehov
-    );*/
-
     const dokumentasjonsbehovLagretISøknad = søknad.dokumentasjonsbehov.find(
-      (dokbehov) => dokbehov.spørsmålid === spørsmål.søknadid
+      (dokbehov) =>
+        dokbehov.spørsmålid === spørsmål.søknadid &&
+        dokbehov.svarid === valgtSvar.id
     );
+
     if (dokumentasjonsbehovLagretISøknad) {
-      if (
-        dokumentasjonsbehovLagretISøknad.svarid !== valgtSvar.id &&
-        !valgtSvar.dokumentasjonsbehov
-      ) {
-        endretDokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
-          (behov) => behov.spørsmålid !== spørsmål.søknadid
+      if (spørsmål.flersvar) {
+        endretDokumentasjonsbehov = hentDokumentasjonTilFlersvarSpørsmål(
+          erHuketAv,
+          søknad.dokumentasjonsbehov,
+          valgtSvar
         );
+      } else {
+        if (
+          dokumentasjonsbehovLagretISøknad.svarid !== valgtSvar.id &&
+          !valgtSvar.dokumentasjonsbehov
+        ) {
+          endretDokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
+            (behov) => behov.spørsmålid !== spørsmål.søknadid
+          );
+        }
       }
     } else {
       valgtSvar.dokumentasjonsbehov &&

@@ -18,6 +18,7 @@ export interface ILabel {
 
 export interface ISpørsmål extends ILabel {
   lesmer?: IHjelpetekst;
+  flersvar: boolean;
   svaralternativer: ISvar[];
 }
 

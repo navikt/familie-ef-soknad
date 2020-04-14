@@ -8,6 +8,7 @@ import { JaNeiSvar } from '../../../helpers/svar';
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
   søknadid: EBosituasjon.delerBoligMedAndreVoksne,
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
+  flersvar: false,
   svaralternativer: [
     {
       id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
@@ -45,5 +46,6 @@ export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
 export const skalSøkerGifteSegMedSamboer: ISpørsmål = {
   søknadid: EBosituasjon.skalGifteSegEllerBliSamboer,
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

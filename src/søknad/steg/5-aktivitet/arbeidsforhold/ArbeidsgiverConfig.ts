@@ -8,6 +8,7 @@ import { JaNeiSvar } from '../../../../helpers/svar';
 export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.fastStilling,
   tekstid: 'arbeidsforhold.label.fastEllerMidlertidig',
+  flersvar: false,
   svaralternativer: [
     {
       id: EStilling.fast,
@@ -23,5 +24,6 @@ export const hvaSlagsStilling: ISpørsmål = {
 export const harDuSluttdato: ISpørsmål = {
   søknadid: EArbeidsgiver.harSluttDato,
   tekstid: 'arbeidsforhold.label.sluttdato',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

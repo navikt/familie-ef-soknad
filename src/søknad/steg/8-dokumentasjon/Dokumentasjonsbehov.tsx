@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -25,7 +25,7 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
       </FeltGruppe>
       <FeltGruppe>
         <Normaltekst>
-          <LocaleTekst tekst={dokumentasjon.beskrivelse} />
+          <FormattedHTMLMessage id={dokumentasjon.beskrivelse} />
         </Normaltekst>
       </FeltGruppe>
       <FeltGruppe>

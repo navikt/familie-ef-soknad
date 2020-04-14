@@ -479,8 +479,29 @@ export default {
     'dokumentasjon.separasjonEllerSkilsmisse.tittel':
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
+      'Beskrivelse for separasjone eller skilsmisse',
+    'dokumentasjon.søktSeparasjon.tittel':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.tittel.': '',
+    'dokumentasjon.søktSeparasjon.beskrivelse': '',
+    'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
+    'dokumentasjon.sykdom.beskrivelse':
+      'Dokumentasjonen fra legen din må tydelig vise:\n' +
+      '<ul><li>- årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
+      '<li>hvor mye du kan arbeide</li> </ul>' +
+      'Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding. Denne må vise:\n' +
+      '<ul><li>når du ble syk</li>' +
+      '<li>når legen din regner med at du vil bli frisk</li></ul>' +
+      'Har du sendt inn dokumentasjon på dette tidligere, for eksempel i forbindelse med sykemelding, AAP eller uføretrygd?',
+    'dokumentasjon.syktBarn.tittel': 'Dokumentasjon på barnets sykdom',
+    'dokumentasjon.syktBarn.beskrivelse':
+      'Dokumentasjonen fra lege må tydelig vise:\n' +
+      '<ul><li>årsaken til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet</li>' +
+      '<li>hvor mye kan du arbeide</li></ul>' +
+      'Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:\n' +
+      '<ul><li>når barnet ble sykt</li>' +
+      '<li>når legen regner med at barnet vil bli friskt</li></ul>',
+    'dokumentasjon..tittel': '',
+    'dokumentasjon..beskrivelse': '',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

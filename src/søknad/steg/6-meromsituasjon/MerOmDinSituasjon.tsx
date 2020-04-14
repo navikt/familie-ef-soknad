@@ -29,7 +29,7 @@ import {
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
     søknadsdato: { label: '', verdi: dagensDato },
@@ -92,6 +92,7 @@ const MerOmDinSituasjon: React.FC = () => {
         verdi: avhukedeSvar,
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
   const erSituasjonHuketAv = (situasjon: DinSituasjonType): boolean => {
@@ -117,7 +118,7 @@ const MerOmDinSituasjon: React.FC = () => {
     søknad
   );
   return (
-    <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
+    <Side tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}>
       <SeksjonGruppe>
         <KomponentGruppe>
           <CheckboxSpørsmål

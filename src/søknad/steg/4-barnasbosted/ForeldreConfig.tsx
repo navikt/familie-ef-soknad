@@ -11,12 +11,14 @@ import { JaNeiSvar } from '../../../helpers/standardSvar';
 export const borINorge: ISpørsmål = {
   søknadid: 'borINorge',
   tekstid: 'barnasbosted.borinorge',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const avtaleOmDeltBosted: ISpørsmål = {
   søknadid: 'avtaleOmDeltBosted',
   tekstid: 'barnasbosted.avtale',
+  flersvar: false,
   lesmer: {
     åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
     lukkeTekstid: '',
@@ -28,12 +30,14 @@ export const avtaleOmDeltBosted: ISpørsmål = {
 export const boddSammenFør: ISpørsmål = {
   søknadid: 'boddSammenFør',
   tekstid: 'barnasbosted.spm.boddsammenfør',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
   søknadid: 'harAnnenForelderSamværMedBarn',
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+  flersvar: false,
   lesmer: {
     åpneTekstid: 'barnasbosted.hjelpetekst.samvær.apne',
     lukkeTekstid: '',
@@ -58,6 +62,7 @@ export const harAnnenForelderSamværMedBarn: ISpørsmål = {
 export const harDereSkriftligSamværsavtale: ISpørsmål = {
   søknadid: 'harDereSkriftligSamværsavtale',
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
+  flersvar: false,
   svaralternativer: [
     {
       id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
@@ -82,6 +87,7 @@ export const borISammeHus: ISpørsmål = {
     lukkeTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.borisammehus.innhold',
   },
+  flersvar: false,
   svaralternativer: [
     {
       id: EBorISammeHus.ja,
@@ -101,6 +107,7 @@ export const borISammeHus: ISpørsmål = {
 export const hvorMyeSammen: ISpørsmål = {
   søknadid: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
+  flersvar: false,
   svaralternativer: [
     {
       id: EHvorMyeSammen.møtesIkke,
@@ -120,6 +127,7 @@ export const hvorMyeSammen: ISpørsmål = {
 export const skalBarnBoHosDeg: ISpørsmål = {
   søknadid: 'skalBarnBoHosDeg',
   tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
+  flersvar: false,
   svaralternativer: [
     {
       id: ESkalBarnBoHosDeg.ja,

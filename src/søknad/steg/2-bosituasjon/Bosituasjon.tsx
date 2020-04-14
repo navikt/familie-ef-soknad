@@ -19,7 +19,7 @@ import {
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
@@ -35,9 +35,6 @@ const Bosituasjon: FC = () => {
     // eslint-disable-next-line
   }, [bosituasjon]);
 
-  const oppdaterBosituasjon = (nyBosituasjon: IBosituasjon) =>
-    settBosituasjon({ ...bosituasjon, ...nyBosituasjon });
-
   const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
@@ -51,11 +48,8 @@ const Bosituasjon: FC = () => {
       },
     };
 
-    if (!bosituasjon.delerBoligMedAndreVoksne.verdi) {
-      oppdaterBosituasjon(nyBosituasjon);
-    } else if (svarTekst !== bosituasjon.delerBoligMedAndreVoksne.verdi) {
-      settBosituasjon(nyBosituasjon);
-    }
+    settBosituasjon(nyBosituasjon);
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const valgtSvar:

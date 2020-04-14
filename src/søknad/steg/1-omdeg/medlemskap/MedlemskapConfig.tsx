@@ -4,6 +4,8 @@ import { JaNeiSvar } from '../../../../helpers/svar';
 export const oppholderSegINorge: ISpørsmål = {
   søknadid: 'søkerOppholderSegINorge',
   tekstid: 'medlemskap.spm.opphold',
+  flersvar: false,
+
   svaralternativer: JaNeiSvar,
 };
 
@@ -15,5 +17,7 @@ export const bosattINorgeDeSisteTreÅr: ISpørsmål = {
     lukkeTekstid: '',
     innholdTekstid: 'medlemskap.hjelpetekst-innhold.bosatt',
   },
+  flersvar: false,
+
   svaralternativer: JaNeiSvar,
 };

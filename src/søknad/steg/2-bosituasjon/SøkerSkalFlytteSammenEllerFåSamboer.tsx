@@ -13,6 +13,7 @@ import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { ISvar } from '../../../models/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -24,6 +25,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   bosituasjon,
 }) => {
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
 
   const {
     delerBoligMedAndreVoksne,
@@ -48,6 +50,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         verdi: svar,
       },
     });
+    settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   const settDatoSøkerSkalGifteSegEllerBliSamboer = (

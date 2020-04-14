@@ -1,4 +1,4 @@
-import { JaNeiSvar, NeiSvar } from '../../../../helpers/standardSvar';
+import { NeiSvar } from '../../../../helpers/standardSvar';
 import {
   EDokumentasjon,
   IDokumentasjon,
@@ -33,12 +33,29 @@ export const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
   harSendtInn: false,
 };
 
+export const BekreftelseSeparasjonSøknad: IDokumentasjon = {
+  id: EDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
+  spørsmålid: ESivilstatusSøknadid.harSøktSeparasjon,
+  svarid: ESvar.JA,
+  tittel: 'dokumentasjon.søktSeparasjon.tittel',
+  beskrivelse: 'dokumentasjon.søktSeparasjon.beskrivelse',
+  harSendtInn: false,
+};
+
 // SPØRSMÅL CONFIG
 
 export const SeparasjonSpørsmål: ISpørsmål = {
   søknadid: ESivilstatusSøknadid.harSøktSeparasjon,
   tekstid: 'sivilstatus.spm.søktSeparasjon',
-  svaralternativer: JaNeiSvar,
+  flersvar: false,
+  svaralternativer: [
+    {
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
+      dokumentasjonsbehov: BekreftelseSeparasjonSøknad,
+    },
+    NeiSvar,
+  ],
 };
 
 export const erUformeltGiftSpørsmål: ISpørsmål = {
@@ -49,6 +66,7 @@ export const erUformeltGiftSpørsmål: ISpørsmål = {
     lukkeTekstid: '',
     innholdTekstid: 'sivilstatus.lesmer-innhold.erUformeltGift',
   },
+  flersvar: false,
   svaralternativer: [
     {
       id: ESvar.JA,
@@ -63,6 +81,7 @@ export const erUformeltGiftSpørsmål: ISpørsmål = {
 export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
   søknadid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   tekstid: 'sivilstatus.spm.erUformeltSeparertEllerSkilt',
+  flersvar: false,
   svaralternativer: [
     {
       id: ESvar.JA,
@@ -77,6 +96,7 @@ export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
 export const BegrunnelseSpørsmål: ISpørsmål = {
   søknadid: ESivilstatusSøknadid.begrunnelseForSøknad,
   tekstid: 'sivilstatus.spm.begrunnelse',
+  flersvar: false,
   svaralternativer: [
     {
       id: EBegrunnelse.samlivsbruddForeldre,

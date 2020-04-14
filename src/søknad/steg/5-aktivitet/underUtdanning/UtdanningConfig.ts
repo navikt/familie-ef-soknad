@@ -28,6 +28,7 @@ export const linjeKursGrad: ITekst = {
 export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
+  flersvar: false,
   svaralternativer: [
     {
       id: EUtdanningsform.offentlig,
@@ -42,6 +43,7 @@ export const privatEllerOffentligSpm: ISpørsmål = {
 export const heltidEllerDeltidSpm: ISpørsmål = {
   søknadid: EUtdanning.heltidEllerDeltid,
   tekstid: 'utdanning.spm.studieandel',
+  flersvar: false,
   svaralternativer: [
     {
       id: EStudieandel.heltid,
@@ -57,5 +59,6 @@ export const heltidEllerDeltidSpm: ISpørsmål = {
 export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

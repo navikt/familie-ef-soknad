@@ -4,5 +4,6 @@ import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 export const borDuPåDenneAdressen: ISpørsmål = {
   søknadid: 'søkerBorPåRegistrertAdresse',
   tekstid: 'personopplysninger.spm.riktigAdresse',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

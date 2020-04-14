@@ -7,6 +7,7 @@ import {
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
+  flersvar: true,
   svaralternativer: [
     {
       id: ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr,
