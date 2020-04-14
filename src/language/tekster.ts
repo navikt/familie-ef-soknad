@@ -485,8 +485,8 @@ export default {
     'dokumentasjon.søktSeparasjon.beskrivelse': '',
     'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
     'dokumentasjon.sykdom.beskrivelse':
-      'Dokumentasjonen fra legen din må tydelig vise:\n' +
-      '<ul><li>- årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
+      'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
+      '<li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
       '<li>hvor mye du kan arbeide</li> </ul>' +
       'Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding. Denne må vise:\n' +
       '<ul><li>når du ble syk</li>' +
@@ -500,6 +500,34 @@ export default {
       'Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:\n' +
       '<ul><li>når barnet ble sykt</li>' +
       '<li>når legen regner med at barnet vil bli friskt</li></ul>',
+    'dokumentasjon.barnepass.tittel':
+      'Dokumentasjon på at du mangler barnepass. ',
+    'dokumentasjon.barnepass.beskrivelse':
+      'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.' +
+      'Dokumentasjonen må tydelig vise <ul>' +
+      '<li>datoen du søkte</li>' +
+      '<li>datoen du ønsket plass fra</li></ul>',
+    'dokumentasjon.barnetilsynsbehov.tittel':
+      'Dokumentasjon på barnets tilsynsbehov',
+    'dokumentasjon.barnetilsynsbehov.beskrivelse':
+      '<ul><li>Dokumentasjon fra legen din som bekrefter at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn.<li/>' +
+      '<li>Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og hvordan dette påvirker muligheten din til å være i arbeid eller yrkesrettet aktivitet.</li></ul>',
+    'dokumentasjon.arbeidskontrakt.tittel':
+      'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
+    'dokumentasjon.arbeidskontrakt.beskrivelse':
+      'Dokumentasjonen må tydelig vise: <ul>' +
+      '<li>navn på arbeidsgiver</li>' +
+      '<li>stillingsprosent</li>' +
+      '<li>dato for oppstart</li>' +
+      '<li>dato du fikk tilbudet</li></ul>',
+    'dokumentasjon.utdanning.tittel': 'Dokumentasjon på utdanningen du skal ta',
+    'dokumentasjon.utdanning.beskrivelse':
+      'Dokumentasjonen må tydelig vise:<ul>' +
+      '<li>navn på studiested</li>' +
+      '<li>navn på studie</li>' +
+      '<li>hvor mye du skal studere</li>' +
+      '<li>periode du skal studere</li>' +
+      '<li>dato du fikk tilbudet</li></ul>',
     'dokumentasjon..tittel': '',
     'dokumentasjon..beskrivelse': '',
   },

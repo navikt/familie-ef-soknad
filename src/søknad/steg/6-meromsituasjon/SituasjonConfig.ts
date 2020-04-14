@@ -25,6 +25,40 @@ export const DokumentasjonSyktBarn: IDokumentasjon = {
   harSendtInn: false,
 };
 
+export const DokumentasjonBarnepassMangel: IDokumentasjon = {
+  id: EDokumentasjon.BARNEPASS,
+  spørsmålid: ESituasjon.gjelderDetteDeg,
+  svarid: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
+  tittel: 'dokumentasjon.barnepass.tittel',
+  beskrivelse: 'dokumentasjon.barnepass.beskrivelse',
+  harSendtInn: false,
+};
+
+export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
+  id: EDokumentasjon.BARNETILSYN_BEHOV,
+  spørsmålid: ESituasjon.gjelderDetteDeg,
+  svarid: DinSituasjonType.harBarnMedSærligeBehov,
+  tittel: 'dokumentasjon.barnetilsynsbehov.tittel',
+  beskrivelse: 'dokumentasjon.barnetilsynsbehov.beskrivelse',
+  harSendtInn: false,
+};
+export const DokumentasjonArbeidskontrakt: IDokumentasjon = {
+  id: EDokumentasjon.ARBEIDSKONTRAKT,
+  spørsmålid: ESituasjon.gjelderDetteDeg,
+  svarid: DinSituasjonType.harFåttJobbTilbud,
+  tittel: 'dokumentasjon.arbeidskontrakt.tittel',
+  beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
+  harSendtInn: false,
+};
+export const DokumentasjonUtdanning: IDokumentasjon = {
+  id: EDokumentasjon.UTDANNING,
+  spørsmålid: ESituasjon.gjelderDetteDeg,
+  svarid: DinSituasjonType.skalTaUtdanning,
+  tittel: 'dokumentasjon.utdanning.tittel',
+  beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
+  harSendtInn: false,
+};
+
 // SPØRSMÅL
 export const gjelderNoeAvDetteDeg: ISpørsmål = {
   søknadid: ESituasjon.gjelderDetteDeg,
@@ -44,18 +78,22 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
     {
       id: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
       svar_tekstid: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
+      dokumentasjonsbehov: DokumentasjonBarnepassMangel,
     },
     {
       id: DinSituasjonType.harBarnMedSærligeBehov,
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
+      dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
     },
     {
       id: DinSituasjonType.harFåttJobbTilbud,
       svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
+      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
     },
     {
       id: DinSituasjonType.skalTaUtdanning,
       svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
+      dokumentasjonsbehov: DokumentasjonUtdanning,
     },
   ],
 };
