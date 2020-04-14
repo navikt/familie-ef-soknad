@@ -7,15 +7,20 @@ import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
-const OppsummeringDinSituasjon: React.FC = () => {
+const OppsummeringBosituasionenDin: React.FC = () => {
   const { søknad } = useSøknadContext();
   const history = useHistory();
 
-  const merOmDinSituasjon = søknad.merOmDinSituasjon;
+  const bosituasjon = søknad.bosituasjon;
+
+  const samboerDetaljer = bosituasjon.samboerDetaljer
+    ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
+    : null;
 
   return (
-    <Ekspanderbartpanel tittel="Mer om din situasjon">
-      {VisLabelOgSvar(merOmDinSituasjon)}
+    <Ekspanderbartpanel tittel="Bosituasjonen din">
+      {VisLabelOgSvar(bosituasjon)}
+      {samboerDetaljer}
       <LenkeMedIkon
         onClick={() =>
           history.push({
@@ -30,4 +35,4 @@ const OppsummeringDinSituasjon: React.FC = () => {
   );
 };
 
-export default OppsummeringDinSituasjon;
+export default OppsummeringBosituasionenDin;

@@ -9,7 +9,7 @@ import {
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes } from '../../../routing/Routes';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
 const OppsummeringOmDeg = () => {
   const { søknad } = useSøknadContext();
@@ -50,7 +50,7 @@ const OppsummeringOmDeg = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: Routes[1].path,
+            pathname: hentPath(Routes, RouteEnum.Oppsummering),
             state: { kommerFraOppsummering: true },
           })
         }

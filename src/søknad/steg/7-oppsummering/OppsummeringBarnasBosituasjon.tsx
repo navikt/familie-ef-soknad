@@ -6,9 +6,9 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes } from '../../../routing/Routes';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
-const OppsummeringBosituasjon = () => {
+const OppsummeringBarnasBosituasjon = () => {
   const { søknad } = useSøknadContext();
   const history = useHistory();
 
@@ -34,13 +34,13 @@ const OppsummeringBosituasjon = () => {
     });
 
   return (
-    <Ekspanderbartpanel tittel="Bosituasjon">
+    <Ekspanderbartpanel tittel="Barnas bosted">
       {felterAlleForeldrene}
       {bosituasjonSpørsmål}
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: Routes[4].path,
+            pathname: hentPath(Routes, RouteEnum.BarnasBosted),
             state: { kommerFraOppsummering: true },
           })
         }
@@ -51,4 +51,4 @@ const OppsummeringBosituasjon = () => {
   );
 };
 
-export default OppsummeringBosituasjon;
+export default OppsummeringBarnasBosituasjon;

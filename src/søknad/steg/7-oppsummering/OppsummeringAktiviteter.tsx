@@ -8,7 +8,7 @@ import { useIntl } from 'react-intl';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { useHistory } from 'react-router-dom';
-import { Routes } from '../../../routing/Routes';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
 const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
   return liste.map((el, index) => {
@@ -86,7 +86,7 @@ const OppsummeringAktiviteter: React.FC = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: Routes[5].path,
+            pathname: hentPath(Routes, RouteEnum.Aktivitet),
             state: { kommerFraOppsummering: true },
           })
         }

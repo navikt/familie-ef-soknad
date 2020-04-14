@@ -4,10 +4,11 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
-import OppsummeringBosituasjon from './OppsummeringBosituasjon';
+import OppsummeringBarnasBosituasjon from './OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
 import OppsummeringAktiviteter from './OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
+import OppsummeringBosituasjonenDin from './OppsummeringBosituasjonenDin';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -21,9 +22,9 @@ const Oppsummering: React.FC = () => {
 
           <KomponentGruppe>
             <OppsummeringOmDeg />
-            <OppsummeringBosituasjon />
+            <OppsummeringBosituasjonenDin />
             <OppsummeringBarnaDine />
-            <OppsummeringBosituasjon />
+            <OppsummeringBarnasBosituasjon />
             <OppsummeringAktiviteter />
             <OppsummeringDinSituasjon />
           </KomponentGruppe>

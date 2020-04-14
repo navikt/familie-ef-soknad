@@ -5,7 +5,7 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes } from '../../../routing/Routes';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
 const OppsummeringBarnaDine: React.FC = () => {
   const { søknad } = useSøknadContext();
@@ -28,7 +28,7 @@ const OppsummeringBarnaDine: React.FC = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: Routes[3].path,
+            pathname: hentPath(Routes, RouteEnum.Barn),
             state: { kommerFraOppsummering: true },
           })
         }

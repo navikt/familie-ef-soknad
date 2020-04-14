@@ -23,8 +23,6 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
 
-  console.log('kommerFraOppsummering', kommerFraOppsummering);
-
   return (
     <>
       <Side
