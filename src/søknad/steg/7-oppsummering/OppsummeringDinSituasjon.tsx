@@ -19,16 +19,6 @@ const OppsummeringDinSituasjon: React.FC = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: '/barn',
-            state: { edit: true },
-          })
-        }
-        tekst_id="barnasbosted.knapp.endre"
-        ikon={endre}
-      />
-      <LenkeMedIkon
-        onClick={() =>
-          history.push({
             pathname: Routes[6].path,
             state: { kommerFraOppsummering: true },
           })
