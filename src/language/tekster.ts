@@ -528,6 +528,12 @@ export default {
       '<li>hvor mye du skal studere</li>' +
       '<li>periode du skal studere</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
+    'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
+      'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
+    'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse': '',
+    'dokumentasjon.arbeidsforhold-redusert.tittel':
+      'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
+    'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
     'dokumentasjon..tittel': '',
     'dokumentasjon..beskrivelse': '',
   },

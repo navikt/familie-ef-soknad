@@ -19,6 +19,7 @@ import subMonths from 'date-fns/subMonths';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
 import { dagensDato } from '../../../utils/dato';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -30,6 +31,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   settDinSituasjon,
 }) => {
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
   const {
     datoSagtOppEllerRedusertStilling,
     begrunnelseSagtOppEllerRedusertStilling,
@@ -64,6 +66,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
         sagtOppEllerRedusertStilling: valgtSvar,
       });
     }
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {

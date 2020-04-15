@@ -4,11 +4,14 @@ import {
   ESagtOppEllerRedusertStilling,
   ESituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { EDokumentasjon, IDokumentasjon } from '../../../models/dokumentasjon';
+import {
+  IDokumentasjon,
+  SituasjonDokumentasjon,
+} from '../../../models/dokumentasjon';
 
 // DOKUMENTASJON
 export const DokumentasjonSykdom: IDokumentasjon = {
-  id: EDokumentasjon.SYKDOM,
+  id: SituasjonDokumentasjon.SYKDOM,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.erSyk,
   tittel: 'dokumentasjon.sykdom.tittel',
@@ -17,7 +20,7 @@ export const DokumentasjonSykdom: IDokumentasjon = {
 };
 
 export const DokumentasjonSyktBarn: IDokumentasjon = {
-  id: EDokumentasjon.SYKT_BARN,
+  id: SituasjonDokumentasjon.SYKT_BARN,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.harSyktBarn,
   tittel: 'dokumentasjon.syktBarn.tittel',
@@ -26,7 +29,7 @@ export const DokumentasjonSyktBarn: IDokumentasjon = {
 };
 
 export const DokumentasjonBarnepassMangel: IDokumentasjon = {
-  id: EDokumentasjon.BARNEPASS,
+  id: SituasjonDokumentasjon.BARNEPASS,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
   tittel: 'dokumentasjon.barnepass.tittel',
@@ -35,7 +38,7 @@ export const DokumentasjonBarnepassMangel: IDokumentasjon = {
 };
 
 export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
-  id: EDokumentasjon.BARNETILSYN_BEHOV,
+  id: SituasjonDokumentasjon.BARNETILSYN_BEHOV,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.harBarnMedSærligeBehov,
   tittel: 'dokumentasjon.barnetilsynsbehov.tittel',
@@ -43,7 +46,7 @@ export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
   harSendtInn: false,
 };
 export const DokumentasjonArbeidskontrakt: IDokumentasjon = {
-  id: EDokumentasjon.ARBEIDSKONTRAKT,
+  id: SituasjonDokumentasjon.ARBEIDSKONTRAKT,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.harFåttJobbTilbud,
   tittel: 'dokumentasjon.arbeidskontrakt.tittel',
@@ -51,11 +54,29 @@ export const DokumentasjonArbeidskontrakt: IDokumentasjon = {
   harSendtInn: false,
 };
 export const DokumentasjonUtdanning: IDokumentasjon = {
-  id: EDokumentasjon.UTDANNING,
+  id: SituasjonDokumentasjon.UTDANNING,
   spørsmålid: ESituasjon.gjelderDetteDeg,
   svarid: DinSituasjonType.skalTaUtdanning,
   tittel: 'dokumentasjon.utdanning.tittel',
   beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
+  harSendtInn: false,
+};
+
+export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
+  id: SituasjonDokumentasjon.ARBEIDSFORHOLD_OPPSIGELSE,
+  spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
+  svarid: ESagtOppEllerRedusertStilling.sagtOpp,
+  tittel: 'dokumentasjon.arbeidsforhold-oppsigelse.tittel',
+  beskrivelse: 'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse',
+  harSendtInn: false,
+};
+
+export const ArbeidsforholdOgRedusertArbedistid: IDokumentasjon = {
+  id: SituasjonDokumentasjon.ARBEIDSFORHOLD_REDUSERT_ARBEIDSTID,
+  spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
+  svarid: ESagtOppEllerRedusertStilling.redusertStilling,
+  tittel: 'dokumentasjon.arbeidsforhold-.tittel',
+  beskrivelse: 'dokumentasjon.arbeidsforhold-.beskrivelse',
   harSendtInn: false,
 };
 
@@ -112,11 +133,13 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
       id: ESagtOppEllerRedusertStilling.sagtOpp,
       svar_tekstid: 'dinSituasjon.svar.sagtOpp',
       alert_tekstid: 'dinSituasjon.alert.sagtOpp',
+      dokumentasjonsbehov: ArbeidsforholdOgOppsigelsesårsak,
     },
     {
       id: ESagtOppEllerRedusertStilling.redusertStilling,
       svar_tekstid: 'dinSituasjon.svar.redusertStilling',
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
+      dokumentasjonsbehov: ArbeidsforholdOgRedusertArbedistid,
     },
     {
       id: ESagtOppEllerRedusertStilling.nei,

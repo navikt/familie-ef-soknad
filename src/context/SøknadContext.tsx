@@ -7,7 +7,10 @@ import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { ISøknad } from '../models/søknad';
-import { hentDokumentasjonTilFlersvarSpørsmål } from '../helpers/dokumentasjon';
+import {
+  hentDokumentasjonTilFlersvarSpørsmål,
+  oppdaterDokumentasjonTilEtSvarSpørsmål,
+} from '../helpers/dokumentasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -52,33 +55,21 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     erHuketAv?: boolean
   ) => {
     let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
-    const dokumentasjonsbehovLagretISøknad = søknad.dokumentasjonsbehov.find(
-      (dokbehov) =>
-        dokbehov.spørsmålid === spørsmål.søknadid &&
-        dokbehov.svarid === valgtSvar.id
-    );
 
-    if (dokumentasjonsbehovLagretISøknad) {
-      if (spørsmål.flersvar) {
-        endretDokumentasjonsbehov = hentDokumentasjonTilFlersvarSpørsmål(
-          erHuketAv,
-          søknad.dokumentasjonsbehov,
-          valgtSvar
-        );
-      } else {
-        if (
-          dokumentasjonsbehovLagretISøknad.svarid !== valgtSvar.id &&
-          !valgtSvar.dokumentasjonsbehov
-        ) {
-          endretDokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
-            (behov) => behov.spørsmålid !== spørsmål.søknadid
-          );
-        }
-      }
+    if (spørsmål.flersvar) {
+      endretDokumentasjonsbehov = hentDokumentasjonTilFlersvarSpørsmål(
+        erHuketAv,
+        søknad.dokumentasjonsbehov,
+        valgtSvar
+      );
     } else {
-      valgtSvar.dokumentasjonsbehov &&
-        endretDokumentasjonsbehov.push(valgtSvar.dokumentasjonsbehov);
+      endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmål(
+        søknad.dokumentasjonsbehov,
+        spørsmål,
+        valgtSvar
+      );
     }
+
     settSøknad({ ...søknad, dokumentasjonsbehov: endretDokumentasjonsbehov });
   };
 
