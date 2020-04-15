@@ -7,10 +7,10 @@ import {
 } from './søknadsfelter';
 
 export interface IForelder {
-  navn?: string;
+  navn?: ITekstFelt;
   skalBarnBoHosDeg?: ITekstFelt;
-  fødselsdato?: Date | null;
-  personnr?: string;
+  fødselsdato?: IDatoFelt | null;
+  personnr?: ITekstFelt;
   borINorge?: IBooleanFelt;
   avtaleOmDeltBosted?: IBooleanFelt;
   harAnnenForelderSamværMedBarn?: ITekstFelt;

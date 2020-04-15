@@ -448,6 +448,7 @@ export default {
     'oppsummering.sidetittel': 'Oppsummering',
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
+    'oppsummering.tilbake': 'Tilbake til oppsummering',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

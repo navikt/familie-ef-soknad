@@ -25,10 +25,14 @@ import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
 } from './SituasjonUtil';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
@@ -39,6 +43,7 @@ const MerOmDinSituasjon: React.FC = () => {
     datoOppstartJobb,
     datoOppstartUtdanning,
   } = dinSituasjon;
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
 
   useEffect(() => {
@@ -117,7 +122,10 @@ const MerOmDinSituasjon: React.FC = () => {
     søknad
   );
   return (
-    <Side tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'dinSituasjon.tittel' })}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <SeksjonGruppe>
         <KomponentGruppe>
           <CheckboxSpørsmål
@@ -157,6 +165,20 @@ const MerOmDinSituasjon: React.FC = () => {
           settDinSituasjon={settDinSituasjon}
         />
       </SeksjonGruppe>
+      {kommerFraOppsummering ? (
+        <div className={'side'}>
+          <Hovedknapp
+            className="tilbake-til-oppsummering"
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('oppsummering.tilbake', intl)}
+          </Hovedknapp>
+        </div>
+      ) : null}
     </Side>
   );
 };

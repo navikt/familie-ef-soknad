@@ -38,9 +38,15 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           <Input
             className="foreldre-navn-input"
             onChange={(e) =>
-              settForelder({ ...forelder, navn: e.target.value })
+              settForelder({
+                ...forelder,
+                navn: {
+                  label: 'halla',
+                  verdi: e.target.value,
+                },
+              })
             }
-            value={forelder.navn ? forelder.navn : ''}
+            value={forelder.navn ? forelder.navn?.verdi : ''}
             label="Navn"
             disabled={huketAv}
           />
@@ -49,19 +55,36 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
       <KomponentGruppe>
         <div className="fødselsnummer">
           <Datovelger
-            settDato={(e: Date | null) =>
-              settForelder({ ...forelder, fødselsdato: e })
+            settDato={(e: Date | null) => {
+              e !== null &&
+                settForelder({
+                  ...forelder,
+                  flyttetFra: {
+                    label: 'Fødselsnummer datotest',
+                    verdi: e,
+                  },
+                });
+            }}
+            valgtDato={
+              forelder.fødselsdato && forelder.fødselsdato.verdi
+                ? forelder.fødselsdato.verdi
+                : undefined
             }
-            valgtDato={forelder.fødselsdato ? forelder.fødselsdato : undefined}
             tekstid={'datovelger.fødselsdato'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
           />
           <Input
             className="personnummer"
             onChange={(e) =>
-              settForelder({ ...forelder, personnr: e.target.value })
+              settForelder({
+                ...forelder,
+                personnr: {
+                  label: 'Personnr',
+                  verdi: e.target.value,
+                },
+              })
             }
-            value={forelder.personnr ? forelder.personnr : ''}
+            value={forelder.personnr ? forelder.personnr?.verdi : ''}
             label="Personnummer (hvis du vet)"
             disabled={huketAv}
           />

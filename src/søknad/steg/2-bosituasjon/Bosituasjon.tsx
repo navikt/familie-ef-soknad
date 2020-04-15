@@ -15,11 +15,16 @@ import {
 } from '../../../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
 import useSøknadContext from '../../../context/SøknadContext';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
   const { søknad, settSøknad } = useSøknadContext();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
@@ -80,7 +85,10 @@ const Bosituasjon: FC = () => {
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   return (
-    <Side tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
           key={hovedSpørsmål.søknadid}
@@ -118,6 +126,20 @@ const Bosituasjon: FC = () => {
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
+      ) : null}
+      {kommerFraOppsummering ? (
+        <div className={'side'}>
+          <Hovedknapp
+            className="tilbake-til-oppsummering"
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('oppsummering.tilbake', intl)}
+          </Hovedknapp>
+        </div>
       ) : null}
     </Side>
   );

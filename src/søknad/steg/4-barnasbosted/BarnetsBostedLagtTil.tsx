@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import BarnasBostedHeader from './BarnasBostedHeader';
 import { formatDate } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
-import LenkeMedIkon from './LenkeMedIkon';
+import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/barn';
 
@@ -40,7 +40,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                 intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
               )}
             </Element>
-            <Normaltekst>{forelder.navn}</Normaltekst>
+            <Normaltekst>{forelder.navn?.verdi}</Normaltekst>
           </div>
         )}
         {forelder.fødselsdato && (
@@ -48,7 +48,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Element>
               {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
             </Element>
-            <Normaltekst>{formatDate(forelder.fødselsdato)}</Normaltekst>
+            <Normaltekst>{formatDate(forelder.fødselsdato.verdi)}</Normaltekst>
           </div>
         )}
         <div className="spørsmål-og-svar">

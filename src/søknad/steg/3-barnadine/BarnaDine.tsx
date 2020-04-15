@@ -4,14 +4,20 @@ import Side from '../../../components/side/Side';
 import { Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
+import Hjelpetekst from '../../../components/Hjelpetekst';
+import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
+  const history = useHistory();
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+
   const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -19,7 +25,10 @@ const BarnaDine: React.FC = () => {
 
   return (
     <>
-      <Side tittel={hentTekst('barnadine.sidetittel', intl)}>
+      <Side
+        tittel={hentTekst('barnadine.sidetittel', intl)}
+        kommerFraOppsummering={kommerFraOppsummering}
+      >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
@@ -74,6 +83,20 @@ const BarnaDine: React.FC = () => {
             </div>
           </Modal>
         </div>
+        {location.state?.kommerFraOppsummering ? (
+          <div className={'side'}>
+            <Hovedknapp
+              className="tilbake-til-oppsummering"
+              onClick={() =>
+                history.push({
+                  pathname: '/oppsummering',
+                })
+              }
+            >
+              {hentTekst('oppsummering.tilbake', intl)}
+            </Hovedknapp>
+          </div>
+        ) : null}
       </Side>
     </>
   );

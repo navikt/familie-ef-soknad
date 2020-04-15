@@ -1,27 +1,17 @@
 import React from 'react';
 import Side from '../../../components/side/Side';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from './OppsummeringOmDeg';
-import OppsummeringBosituasjon from './OppsummeringBosituasjon';
-import { verdiTilTekstsvar } from '../../../utils/søknad';
+import OppsummeringBarnasBosituasjon from './OppsummeringBarnasBosituasjon';
+import OppsummeringBarnaDine from './OppsummeringBarnaDine';
+import OppsummeringAktiviteter from './OppsummeringAktiviteter';
+import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
+import OppsummeringBosituasjonenDin from './OppsummeringBosituasjonenDin';
 
 const Oppsummering: React.FC = () => {
-  //const { søknad } = useSøknadContext();
   const intl = useIntl();
-
-  const visLabelOgSvar = (objekt: Object) =>
-    Object.values(objekt).map((spørsmål) => {
-      return (
-        <div className="spørsmål-og-svar">
-          <Element>{spørsmål.label}</Element>
-          <Normaltekst>{verdiTilTekstsvar(spørsmål.verdi, intl)}</Normaltekst>
-        </div>
-      );
-    });
-
   return (
     <>
       <Side tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}>
@@ -31,24 +21,12 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg visLabelOgSvar={visLabelOgSvar} />
-            <OppsummeringBosituasjon visLabelOgSvar={visLabelOgSvar} />
-            <Ekspanderbartpanel tittel="Barna dine">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
-            <Ekspanderbartpanel tittel="Barnas bosted og samværsordning">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
-            <Ekspanderbartpanel tittel="Arbeid, utdanning og mindre aktiviteter">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
-            <Ekspanderbartpanel tittel="Mer om din situasjonen">
-              <h1>Yes</h1>
-              <div>Test</div>
-            </Ekspanderbartpanel>
+            <OppsummeringOmDeg />
+            <OppsummeringBosituasjonenDin />
+            <OppsummeringBarnaDine />
+            <OppsummeringBarnasBosituasjon />
+            <OppsummeringAktiviteter />
+            <OppsummeringDinSituasjon />
           </KomponentGruppe>
         </div>
       </Side>
