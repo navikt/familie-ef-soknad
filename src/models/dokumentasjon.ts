@@ -15,6 +15,9 @@ export enum EDokumentasjon {
   SEPARASJON_ELLER_SKILSMISSE = 'SEPARASJON_ELLER_SKILSMISSE',
 }
 
+export enum Barn {
+  TERMINBEKREFTELSE = 'TERMINBEKREFTELSE',
+}
 export enum BarnasBostedDokumentasjon {
   BARN_BOR_HOS_SØKER = 'BARN_BOR_HOS_SØKER',
   DELT_BOSTED = 'DELT_BOSTED',

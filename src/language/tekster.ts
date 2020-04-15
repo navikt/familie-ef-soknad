@@ -196,6 +196,7 @@ export default {
     'barnekort.år': 'år',
     'barnekort.lenke.endre': 'Endre',
     'barnekort.normaltekst.barn': 'Barn',
+    'barnekort.spm.skalBarnBoHosDeg': 'Skal barnet bo hos deg?',
     'barnekort.spm.født': 'Er barnet født?',
     'barnekort.erUfødt': 'Ufødt',
     'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
@@ -486,6 +487,9 @@ export default {
 
     'dokumentasjon..tittel': '',
     'dokumentasjon..beskrivelse': '',
+
+    'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
+    'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
     'dokumentasjon.samvær.tittel': 'Samværsavtale for ',
     'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
