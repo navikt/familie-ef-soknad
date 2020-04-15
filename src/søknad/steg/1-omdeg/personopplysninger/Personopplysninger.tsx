@@ -61,11 +61,11 @@ const Personopplysninger: React.FC = () => {
   };
 
   const telefonnr =
-    mobiltelefon !== ''
+    mobiltelefon?.trim() !== ''
       ? mobiltelefon
-      : privattelefon !== ''
+      : privattelefon?.trim() !== ''
       ? privattelefon
-      : jobbtelefon !== ''
+      : jobbtelefon?.trim() !== ''
       ? jobbtelefon
       : '';
 

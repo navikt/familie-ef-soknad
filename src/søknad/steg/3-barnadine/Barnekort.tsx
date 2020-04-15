@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   navn: ITekstFelt;
@@ -47,9 +48,13 @@ const Barnekort: React.FC<Props> = ({
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
 
-  const bosted = harSammeAdresse
-    ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
-    : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
+  const bosted = født
+    ? harSammeAdresse
+      ? hentTekst('barnekort.adresse.bor', intl)
+      : hentTekst('barnekort.adresse.borIkke', intl)
+    : harSammeAdresse
+    ? hentTekst('barnekort.adresse.skalBo', intl)
+    : hentTekst('barnekort.adresse.skalIkkeBo', intl);
 
   const fjernFraSøknad = (id: string) => {
     const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
@@ -92,7 +97,10 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
-            <Normaltekst>{født.verdi ? alder.verdi : 'Ufødt'}</Normaltekst>
+            <Normaltekst>
+              {født.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
+              {' ' + intl.formatMessage({ id: 'barnekort.år' })}
+            </Normaltekst>
           </div>
           <div className="informasjonselement">
             <Normaltekst>

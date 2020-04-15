@@ -30,10 +30,6 @@ const BarnaDine: React.FC = () => {
         kommerFraOppsummering={kommerFraOppsummering}
       >
         <div className="barna-dine">
-          <Hjelpetekst
-            åpneTekstid={'barnadine.hjelpetekst.åpne'}
-            innholdTekstid={'barnadine.hjelpetekst.innhold'}
-          />
           <AlertStripeInfo className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>
