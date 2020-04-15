@@ -27,11 +27,11 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
 ): IDokumentasjon[] => {
   let endretDokumentasjon = dokumentasjonsbehov;
 
-  const dokbehovMedLikSpørsmålid = dokumentasjonsbehov.find(
+  const dokumentasjonsbehovMedLikSpørsmålid = dokumentasjonsbehov.find(
     (dokbehov) => dokbehov.spørsmålid === spørsmål.søknadid
   );
 
-  if (dokbehovMedLikSpørsmålid) {
+  if (dokumentasjonsbehovMedLikSpørsmålid) {
     endretDokumentasjon = dokumentasjonsbehov.filter(
       (behov) => behov.spørsmålid !== spørsmål.søknadid
     );

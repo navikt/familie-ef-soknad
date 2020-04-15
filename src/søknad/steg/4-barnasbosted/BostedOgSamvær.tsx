@@ -17,6 +17,11 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { IForelder } from '../../../models/forelder';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
+import {
+  EHarSamværMedBarn,
+  EHarSkriftligSamværsavtale,
+} from '../../../models/steg/barnasbosted';
 
 interface Props {
   settForelder: Function;
@@ -30,28 +35,30 @@ const BostedOgSamvær: React.FC<Props> = ({
   huketAvAnnenForelder,
 }) => {
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
 
-  const settHarForelderSamværMedBarn = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
+  const settBostedOgSamværFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
-        }),
-        verdi: valgtSvar,
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     };
 
-    if (
-      valgtSvar ===
-      intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' })
-    ) {
+    if (svar.id !== EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter) {
+      delete nyForelder.hvordanPraktiseresSamværet;
+    }
+
+    if (svar.id === EHarSamværMedBarn.nei) {
       delete nyForelder.harDereSkriftligSamværsavtale;
       delete nyForelder.hvordanPraktiseresSamværet;
     }
 
     settForelder(nyForelder);
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const visSkriftligSamværsavtaleSpørsmål = (
@@ -64,31 +71,17 @@ const BostedOgSamvær: React.FC<Props> = ({
     );
   };
 
-  const settHarDereSkriftligSamværsavtale = (
-    spørsmål: ISpørsmål,
-    svar: ISvar
-  ) => {
-    const valgtSvar: string = hentTekst(svar.svar_tekstid, intl);
-    const nyForelder = {
+  const settBostedJaNeiFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settForelder({
       ...forelder,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
-        }),
-        verdi: valgtSvar,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentBooleanFraValgtSvar(svar),
       },
-    };
-
-    if (
-      valgtSvar !==
-      intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
-    ) {
-      delete nyForelder.hvordanPraktiseresSamværet;
-    }
-
-    settForelder(nyForelder);
+    });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
@@ -111,15 +104,7 @@ const BostedOgSamvær: React.FC<Props> = ({
         <KomponentGruppe>
           <JaNeiSpørsmål
             spørsmål={borINorge}
-            onChange={(_, svar) =>
-              settForelder({
-                ...forelder,
-                [borINorge.søknadid]: {
-                  label: intl.formatMessage({ id: 'barnasbosted.borinorge' }),
-                  verdi: hentBooleanFraValgtSvar(svar),
-                },
-              })
-            }
+            onChange={settBostedJaNeiFelt}
             valgtSvar={forelder.borINorge?.verdi}
           />
         </KomponentGruppe>
@@ -127,15 +112,7 @@ const BostedOgSamvær: React.FC<Props> = ({
       <KomponentGruppe>
         <JaNeiSpørsmål
           spørsmål={avtaleOmDeltBosted}
-          onChange={(_, svar) =>
-            settForelder({
-              ...forelder,
-              [avtaleOmDeltBosted.søknadid]: {
-                label: intl.formatMessage({ id: 'barnasbosted.avtale' }),
-                verdi: hentBooleanFraValgtSvar(svar),
-              },
-            })
-          }
+          onChange={settBostedJaNeiFelt}
           valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
         />
       </KomponentGruppe>
@@ -144,9 +121,7 @@ const BostedOgSamvær: React.FC<Props> = ({
           key={harAnnenForelderSamværMedBarn.søknadid}
           spørsmål={harAnnenForelderSamværMedBarn}
           valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
-          settSpørsmålOgSvar={(spørsmål, svar) =>
-            settHarForelderSamværMedBarn(spørsmål, svar)
-          }
+          settSpørsmålOgSvar={settBostedOgSamværFelt}
         />
       </KomponentGruppe>
       {forelder.harAnnenForelderSamværMedBarn &&
@@ -158,9 +133,7 @@ const BostedOgSamvær: React.FC<Props> = ({
             key={harDereSkriftligSamværsavtale.søknadid}
             spørsmål={harDereSkriftligSamværsavtale}
             valgtSvar={forelder.harDereSkriftligSamværsavtale?.verdi}
-            settSpørsmålOgSvar={(spørsmål, svar) =>
-              settHarDereSkriftligSamværsavtale(spørsmål, svar)
-            }
+            settSpørsmålOgSvar={settBostedOgSamværFelt}
           />
           {forelder.harDereSkriftligSamværsavtale &&
           visSamværsavtaleAdvarsel(

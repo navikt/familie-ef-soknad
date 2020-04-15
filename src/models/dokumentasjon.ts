@@ -15,6 +15,16 @@ export enum EDokumentasjon {
   SEPARASJON_ELLER_SKILSMISSE = 'SEPARASJON_ELLER_SKILSMISSE',
 }
 
+export enum BarnasBostedDokumentasjon {
+  BARN_BOR_HOS_SØKER = 'BARN_BOR_HOS_SØKER',
+  DELT_BOSTED = 'DELT_BOSTED',
+  SAMVÆRSAVTALE = 'SAMVÆRSAVTALE',
+}
+
+export enum AktivitetDokumentasjon {
+  UTDANNING = 'UTDANNING',
+}
+
 export enum SituasjonDokumentasjon {
   SYKDOM = 'SYKDOM',
   SYKT_BARN = 'SYKT_BARN',

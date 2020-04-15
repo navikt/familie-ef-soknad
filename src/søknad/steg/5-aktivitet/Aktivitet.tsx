@@ -21,7 +21,7 @@ import { useSøknad } from '../../../context/SøknadContext';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
@@ -57,6 +57,7 @@ const Aktivitet: React.FC = () => {
         verdi: avhukedeSvar,
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
   const erAktivitetHuketAv = (aktivitet: ArbeidssituasjonType): boolean => {

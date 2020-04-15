@@ -7,6 +7,7 @@ import {
 import { IHjelpetekst } from '../../../../models/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
 
+// ----- TEKSTER
 export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad',
@@ -23,7 +24,7 @@ export const linjeKursGrad: ITekst = {
   label_tekstid: 'utdanning.label.linjeKursGrad',
 };
 
-// -- Spørsmål
+// --- Spørsmål
 
 export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,

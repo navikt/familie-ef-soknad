@@ -21,3 +21,16 @@ export interface IForelder {
   flyttetFra?: IDatoFelt;
   hvorMyeSammen?: ITekstFelt;
 }
+
+export enum EForelder {
+  skalBarnBoHosDeg = 'skalBarnBoHosDeg',
+  borINorge = 'borINorge',
+  avtaleOmDeltBosted = 'avtaleOmDeltBosted',
+  harAnnenForelderSamværMedBarn = 'harAnnenForelderSamværMedBarn',
+  harDereSkriftligSamværsavtale = 'harDereSkriftligSamværsavtale',
+  hvordanPraktiseresSamværet = 'hvordanPraktiseresSamværet',
+  borISammeHus = 'borISammeHus',
+  boddSammenFør = 'boddSammenFør',
+  flyttetFra = 'flyttetFra',
+  hvorMyeSammen = 'hvorMyeSammen',
+}

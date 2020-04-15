@@ -483,6 +483,22 @@ export default {
     'dokumentasjon.søktSeparasjon.tittel':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
     'dokumentasjon.søktSeparasjon.beskrivelse': '',
+
+    'dokumentasjon..tittel': '',
+    'dokumentasjon..beskrivelse': '',
+
+    'dokumentasjon.samvær.tittel': 'Samværsavtale for ',
+    'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
+    'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
+    'dokumentasjon.deltBosted.beskrivelse': '',
+    'dokumentasjon.barnBorHosDeg.tittel':
+      'Dokumentasjon på at barn bor hos deg',
+    'dokumentasjon.barnBorHosDeg.beskrivelse':
+      ' Dokumentasjon på at barn bor hos deg, for eksempel:<ul>' +
+      '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
+      '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
+      '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
+
     'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
     'dokumentasjon.sykdom.beskrivelse':
       'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
@@ -534,8 +550,6 @@ export default {
     'dokumentasjon.arbeidsforhold-redusert.tittel':
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
-    'dokumentasjon..tittel': '',
-    'dokumentasjon..beskrivelse': '',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

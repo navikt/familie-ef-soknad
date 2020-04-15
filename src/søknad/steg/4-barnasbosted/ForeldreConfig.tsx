@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
@@ -7,9 +7,55 @@ import {
   ESkalBarnBoHosDeg,
 } from '../../../models/steg/barnasbosted';
 import { JaNeiSvar } from '../../../helpers/standardSvar';
+import {
+  BarnasBostedDokumentasjon,
+  IDokumentasjon,
+} from '../../../models/dokumentasjon';
+
+import { EForelder } from '../../../models/forelder';
+import { NeiSvar } from '../../../helpers/svar';
+
+// --- Dokumentasjon
+
+const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
+  id: BarnasBostedDokumentasjon.BARN_BOR_HOS_SØKER,
+  spørsmålid: EForelder.skalBarnBoHosDeg,
+  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
+  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
+  harSendtInn: false,
+};
+
+const AvtaleOmDeltBosted: IDokumentasjon = {
+  id: BarnasBostedDokumentasjon.DELT_BOSTED,
+  spørsmålid: EForelder.avtaleOmDeltBosted,
+  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
+  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
+  harSendtInn: false,
+};
+
+const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
+  id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
+  spørsmålid: EForelder.avtaleOmDeltBosted,
+  svarid: ESvar.JA,
+  tittel: 'dokumentasjon.deltBosted.tittel',
+  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
+  harSendtInn: false,
+};
+
+const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon = {
+  id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
+  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
+  svarid: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
+  tittel: 'dokumentasjon.samvær.tittel',
+  beskrivelse: 'dokumentasjon.samvær.beskrivelse',
+  harSendtInn: false,
+};
+// --- Spørsmål
 
 export const borINorge: ISpørsmål = {
-  søknadid: 'borINorge',
+  søknadid: EForelder.borINorge,
   tekstid: 'barnasbosted.borinorge',
   flersvar: false,
   svaralternativer: JaNeiSvar,
@@ -24,7 +70,14 @@ export const avtaleOmDeltBosted: ISpørsmål = {
     lukkeTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
   },
-  svaralternativer: JaNeiSvar,
+  svaralternativer: [
+    {
+      id: ESvar.JA,
+      svar_tekstid: ESvarTekstid.JA,
+      dokumentasjonsbehov: AvtaleOmDeltBosted,
+    },
+    NeiSvar,
+  ],
 };
 
 export const boddSammenFør: ISpørsmål = {
@@ -60,17 +113,19 @@ export const harAnnenForelderSamværMedBarn: ISpørsmål = {
 };
 
 export const harDereSkriftligSamværsavtale: ISpørsmål = {
-  søknadid: 'harDereSkriftligSamværsavtale',
+  søknadid: EForelder.harDereSkriftligSamværsavtale,
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   flersvar: false,
   svaralternativer: [
     {
       id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
       svar_tekstid: 'barnasbosted.spm.jaKonkreteTidspunkt',
+      dokumentasjonsbehov: SamværsavtaleMedKonkreteTidspunkter,
     },
     {
       id: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
       svar_tekstid: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt',
+      dokumentasjonsbehov: SamværsavtaleUtenKonkreteTidspunkter,
     },
     {
       id: EHarSkriftligSamværsavtale.nei,
@@ -125,7 +180,7 @@ export const hvorMyeSammen: ISpørsmål = {
 };
 
 export const skalBarnBoHosDeg: ISpørsmål = {
-  søknadid: 'skalBarnBoHosDeg',
+  søknadid: EForelder.skalBarnBoHosDeg,
   tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
   flersvar: false,
   svaralternativer: [
@@ -136,6 +191,7 @@ export const skalBarnBoHosDeg: ISpørsmål = {
     {
       id: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
       svar_tekstid: 'barnasbosted.spm.jaMenSamarbeiderIkke',
+      dokumentasjonsbehov: DokumentasjonBarnBorHosDeg,
     },
     {
       id: ESkalBarnBoHosDeg.nei,
