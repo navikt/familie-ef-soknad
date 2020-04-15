@@ -483,10 +483,21 @@ export default {
       'Beskrivelse for separasjone eller skilsmisse',
     'dokumentasjon.søktSeparasjon.tittel':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.søktSeparasjon.beskrivelse': '',
+    'dokumentasjon.søktSeparasjon.beskrivelse': '' + '',
 
     'dokumentasjon..tittel': '',
     'dokumentasjon..beskrivelse': '',
+
+    'dokumentasjon.ulikeAdresser.tittel':
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
+    'dokumentasjon.ulikeAdresser.beskrivelse':
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <li>' +
+      '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
+      '<li>Kopi av flyttemelding/tips til folkeregisteret</li>' +
+      '<li>Husleiekontrakt for begge parter</li>' +
+      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Bekreftelse fra eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
+      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li></ul>',
 
     'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
     'dokumentasjon.terminbekreftelse.beskrivelse': '',

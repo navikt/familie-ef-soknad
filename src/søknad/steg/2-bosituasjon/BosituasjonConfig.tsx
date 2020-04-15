@@ -4,6 +4,24 @@ import {
   ESøkerDelerBolig,
 } from '../../../models/steg/bosituasjon';
 import { JaNeiSvar } from '../../../helpers/svar';
+import {
+  BosituasjonDokumentasjon,
+  IDokumentasjon,
+} from '../../../models/dokumentasjon';
+import { EArbeidssituasjon } from '../../../models/steg/aktivitet/aktivitet';
+
+// --- Dokumentasjon
+
+const DokumentasjonBorPåUlikeAdresser: IDokumentasjon = {
+  id: BosituasjonDokumentasjon.BOR_PÅ_ULIKE_ADRESSER,
+  spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+  svarid: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
+  tittel: 'dokumentasjon.ulikeAdresser.tittel',
+  beskrivelse: 'dokumentasjon.ulikeAdresser.beskrivelse',
+  harSendtInn: false,
+};
+
+// --- Spørsmål
 
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
   søknadid: EBosituasjon.delerBoligMedAndreVoksne,
@@ -39,6 +57,7 @@ export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
         'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
       alert_tekstid:
         'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',
+      dokumentasjonsbehov: DokumentasjonBorPåUlikeAdresser,
     },
   ],
 };

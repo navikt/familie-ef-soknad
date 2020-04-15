@@ -2,11 +2,14 @@ import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsv
 import { JaNeiSvar } from '../../../helpers/standardSvar';
 import { EBarn } from '../../../models/barn';
 import { NeiSvar } from '../../../helpers/svar';
-import { Barn, IDokumentasjon } from '../../../models/dokumentasjon';
+import {
+  BarnDokumentasjon,
+  IDokumentasjon,
+} from '../../../models/dokumentasjon';
 
 // --- Dokumentasjon
 const Terminbekreftelse: IDokumentasjon = {
-  id: Barn.TERMINBEKREFTELSE,
+  id: BarnDokumentasjon.TERMINBEKREFTELSE,
   spørsmålid: EBarn.født,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.terminbekreftelse.tittel',

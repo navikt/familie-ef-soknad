@@ -15,7 +15,11 @@ export enum EDokumentasjon {
   SEPARASJON_ELLER_SKILSMISSE = 'SEPARASJON_ELLER_SKILSMISSE',
 }
 
-export enum Barn {
+export enum BosituasjonDokumentasjon {
+  BOR_PÅ_ULIKE_ADRESSER = 'BOR_PÅ_ULIKE_ADRESSER',
+}
+
+export enum BarnDokumentasjon {
   TERMINBEKREFTELSE = 'TERMINBEKREFTELSE',
 }
 export enum BarnasBostedDokumentasjon {
