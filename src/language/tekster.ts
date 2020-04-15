@@ -483,7 +483,7 @@ export default {
       'Beskrivelse for separasjone eller skilsmisse',
     'dokumentasjon.søktSeparasjon.tittel':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.søktSeparasjon.beskrivelse': '' + '',
+    'dokumentasjon.søktSeparasjon.beskrivelse': '',
 
     'dokumentasjon..tittel': '',
     'dokumentasjon..beskrivelse': '',

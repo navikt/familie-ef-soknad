@@ -8,7 +8,6 @@ import {
   BosituasjonDokumentasjon,
   IDokumentasjon,
 } from '../../../models/dokumentasjon';
-import { EArbeidssituasjon } from '../../../models/steg/aktivitet/aktivitet';
 
 // --- Dokumentasjon
 
