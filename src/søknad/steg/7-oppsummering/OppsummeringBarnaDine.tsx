@@ -7,24 +7,28 @@ import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
-const OppsummeringBosituasionenDin: React.FC = () => {
+const OppsummeringBarnaDine: React.FC = () => {
   const { søknad } = useSøknad();
   const history = useHistory();
 
-  const bosituasjon = søknad.bosituasjon;
+  const barna = søknad.person.barn;
 
-  const samboerDetaljer = bosituasjon.samboerDetaljer
-    ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
-    : null;
+  const felterAlleBarna = barna.map((barn, index) => {
+    return (
+      <div className="oppsummering-barn">
+        {VisLabelOgSvar(barn)}
+        {index < barna.length - 1 && <hr />}
+      </div>
+    );
+  });
 
   return (
-    <Ekspanderbartpanel tittel="Bosituasjonen din">
-      {VisLabelOgSvar(bosituasjon)}
-      {samboerDetaljer}
+    <Ekspanderbartpanel tittel="Barna dine">
+      {felterAlleBarna}
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.BosituasjonenDin),
+            pathname: hentPath(Routes, RouteEnum.Barn),
             state: { kommerFraOppsummering: true },
           })
         }
@@ -35,4 +39,4 @@ const OppsummeringBosituasionenDin: React.FC = () => {
   );
 };
 
-export default OppsummeringBosituasionenDin;
+export default OppsummeringBarnaDine;

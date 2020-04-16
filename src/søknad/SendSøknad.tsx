@@ -37,6 +37,7 @@ const SendSøknad = () => {
         })
       );
   };
+
   return (
     <>
       {søknad.sivilstatus.begrunnelseForSøknad &&

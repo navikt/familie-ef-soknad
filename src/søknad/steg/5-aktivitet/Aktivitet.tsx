@@ -16,16 +16,21 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import OmFirmaetDitt from './OmFirmaetDitt';
+import { useHistory, useLocation } from 'react-router-dom';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const history = useHistory();
+  const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   useEffect(() => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
@@ -89,7 +94,10 @@ const Aktivitet: React.FC = () => {
   );
 
   return (
-    <Side tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <SeksjonGruppe>
         <CheckboxSpørsmål
           spørsmål={hvaErDinArbeidssituasjonSpm}
@@ -134,6 +142,20 @@ const Aktivitet: React.FC = () => {
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
+      {kommerFraOppsummering ? (
+        <div className={'side'}>
+          <Hovedknapp
+            className="tilbake-til-oppsummering"
+            onClick={() =>
+              history.push({
+                pathname: '/oppsummering',
+              })
+            }
+          >
+            {hentTekst('oppsummering.tilbake', intl)}
+          </Hovedknapp>
+        </div>
+      ) : null}
     </Side>
   );
 };

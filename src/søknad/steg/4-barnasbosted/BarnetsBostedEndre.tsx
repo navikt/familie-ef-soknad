@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import BarnasBostedHeader from './BarnasBostedHeader';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
+import BarnasBostedHeader from './BarnasBostedHeader';
 import BostedOgSamvær from './BostedOgSamvær';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
-import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { IBarn } from '../../../models/barn';
-import { IForelder } from '../../../models/forelder';
-import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;

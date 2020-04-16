@@ -2,22 +2,30 @@ import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSøknad } from '../../../context/SøknadContext';
+import {
+  VisLabelOgSvar,
+  VisPerioderBoddIUtlandet,
+} from '../../../utils/visning';
+import endre from '../../../assets/endre.svg';
+import { useHistory } from 'react-router-dom';
+import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
-interface Props {
-  visLabelOgSvar: Function;
-}
-
-const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
+const OppsummeringOmDeg = () => {
   const { søknad } = useSøknad();
 
+  const history = useHistory();
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
+  const utlandet = søknad.medlemskap.perioderBoddIUtlandet;
 
-  const sivilstatusSpørsmål = visLabelOgSvar(sivilstatus);
+  const perioderBoddIUtlandet = utlandet
+    ? VisPerioderBoddIUtlandet(utlandet)
+    : null;
 
-  const medlemskapSpørsmål = visLabelOgSvar(medlemskap);
-  // TODO: Håndter perioderBoddIUtlandet
+  const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
+  const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
   return (
     <Ekspanderbartpanel tittel="Om deg">
@@ -39,6 +47,17 @@ const OppsummeringOmDeg: React.FC<Props> = ({ visLabelOgSvar }) => {
       </div>
       {sivilstatusSpørsmål}
       {medlemskapSpørsmål}
+      {perioderBoddIUtlandet}
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: hentPath(Routes, RouteEnum.Oppsummering),
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };
