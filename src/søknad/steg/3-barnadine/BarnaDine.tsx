@@ -7,7 +7,6 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useIntl } from 'react-intl';
 import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
-import Hjelpetekst from '../../../components/Hjelpetekst';
 import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
