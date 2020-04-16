@@ -1,7 +1,7 @@
 import { NeiSvar } from '../../../../helpers/standardSvar';
 import {
-  EDokumentasjon,
   IDokumentasjon,
+  OmDegDokumentasjon,
 } from '../../../../models/dokumentasjon';
 import {
   EBegrunnelse,
@@ -15,17 +15,26 @@ import {
 
 // DOKUMENTASJON CONFIG
 
-export const DokumentasjonInngåttEkteskap: IDokumentasjon = {
-  id: EDokumentasjon.INNGÅTT_EKTESKAP,
-  spørsmålid: 'erUformeltGift',
+const ErklæringSamlivsbrudd: IDokumentasjon = {
+  id: OmDegDokumentasjon.SAMLIVSBRUDD,
+  spørsmålid: ESivilstatusSøknadid.begrunnelseForSøknad,
+  svarid: EBegrunnelse.samlivsbruddForeldre,
+  tittel: 'dokumentasjon.begrunnelse.tittel',
+  beskrivelse: 'dokumentasjon.begrunnelse.beskrivelse',
+  harSendtInn: false,
+};
+
+const DokumentasjonInngåttEkteskap: IDokumentasjon = {
+  id: OmDegDokumentasjon.INNGÅTT_EKTESKAP,
+  spørsmålid: ESivilstatusSøknadid.erUformeltGift,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.inngåttEkteskap.tittel',
   beskrivelse: 'dokumentasjon.inngåttEkteskap.beskrivelse',
   harSendtInn: false,
 };
 
-export const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
-  id: EDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
+const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
+  id: OmDegDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
@@ -34,7 +43,7 @@ export const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
 };
 
 export const BekreftelseSeparasjonSøknad: IDokumentasjon = {
-  id: EDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
+  id: OmDegDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.harSøktSeparasjon,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.søktSeparasjon.tittel',
@@ -102,6 +111,7 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
       id: EBegrunnelse.samlivsbruddForeldre,
       svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
+      dokumentasjonsbehov: ErklæringSamlivsbrudd,
     },
     {
       id: EBegrunnelse.samlivsbruddAndre,

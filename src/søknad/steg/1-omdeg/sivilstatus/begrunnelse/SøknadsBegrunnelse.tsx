@@ -19,6 +19,7 @@ import {
 } from '../../../../../models/steg/omDeg/sivilstatus';
 import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { useSøknad } from '../../../../../context/SøknadContext';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -33,6 +34,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
 }) => {
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
 
   const {
     begrunnelseForSøknad,
@@ -42,32 +44,17 @@ const Søknadsbegrunnelse: FC<Props> = ({
     begrunnelseAnnet,
   } = sivilstatus;
 
-  const hentTekstid = (svarNøkkel: string) => {
-    const tekstid = spørsmål.svaralternativer.find(
-      (svar) => svar.svar_tekstid.split('.')[2] === svarNøkkel
-    );
-    return tekstid?.svar_tekstid;
+  const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
+    return begrunnelseForSøknad?.svarid === svaralternativ;
   };
 
-  const erBegrunnelse = (id: string | undefined) => {
-    return begrunnelseForSøknad?.verdi === intl.formatMessage({ id: id });
-  };
-
-  const samlivsbruddForelderTekstid = hentTekstid(
+  const samlivsbruddMedForelder = erBegrunnelse(
     EBegrunnelse.samlivsbruddForeldre
   );
-  const samlivsbruddAndreTekstid = hentTekstid(EBegrunnelse.samlivsbruddAndre);
-  const endringIsamværsordningTekstid = hentTekstid(
-    EBegrunnelse.endringISamværsordning
-  );
-  const dødsfallTekstid = hentTekstid(EBegrunnelse.dødsfall);
-  const annetSvarTekstid = hentTekstid(EBegrunnelse.annet);
-
-  const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
-  const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
-  const endretSamvær = erBegrunnelse(endringIsamværsordningTekstid);
-  const dødsfall = erBegrunnelse(dødsfallTekstid);
-  const annet = erBegrunnelse(annetSvarTekstid);
+  const samlivsbruddAndre = erBegrunnelse(EBegrunnelse.samlivsbruddAndre);
+  const endretSamvær = erBegrunnelse(EBegrunnelse.endringISamværsordning);
+  const dødsfall = erBegrunnelse(EBegrunnelse.dødsfall);
+  const annet = erBegrunnelse(EBegrunnelse.annet);
 
   const settTekstfeltBegrunnelseAnnet = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -94,6 +81,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const fjernIrrelevanteSøknadsfelter = () => {

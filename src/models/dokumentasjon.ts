@@ -10,7 +10,8 @@ export interface IDokumentasjon {
   opplastedeVedlegg?: IVedlegg[];
 }
 
-export enum EDokumentasjon {
+export enum OmDegDokumentasjon {
+  SAMLIVSBRUDD = 'SAMLIVSBRUDD',
   INNGÅTT_EKTESKAP = 'INNGÅTT_EKTESKAP',
   SEPARASJON_ELLER_SKILSMISSE = 'SEPARASJON_ELLER_SKILSMISSE',
 }

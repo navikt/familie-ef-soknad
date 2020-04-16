@@ -472,7 +472,6 @@ export default {
       '<li>Last opp bildene her</li></ol>',
     'dokumentasjon.checkbox.sendtTidligere':
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
-    'dokumentasjon.': '',
 
     'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
     'dokumentasjon.inngåttEkteskap.beskrivelse':
@@ -484,9 +483,8 @@ export default {
     'dokumentasjon.søktSeparasjon.tittel':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
     'dokumentasjon.søktSeparasjon.beskrivelse': '',
-
-    'dokumentasjon..tittel': '',
-    'dokumentasjon..beskrivelse': '',
+    'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
+    'dokumentasjon.begrunnelse.beskrivelse': '',
 
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
