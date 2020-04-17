@@ -1,10 +1,15 @@
-import { IBooleanFelt, IDatoFelt, ITekstFelt } from '../../søknadsfelter';
+import {
+  IBooleanFelt,
+  IDatoFelt,
+  ISpørsmålFelt,
+  ITekstFelt,
+} from '../../søknadsfelter';
 
 export interface IArbeidsgiver {
   react_key: string;
   navn?: ITekstFelt;
   arbeidsmengde?: ITekstFelt;
-  fastStilling?: ITekstFelt;
+  fastStilling?: ISpørsmålFelt;
   harSluttDato?: IBooleanFelt;
   sluttdato?: IDatoFelt;
 }
