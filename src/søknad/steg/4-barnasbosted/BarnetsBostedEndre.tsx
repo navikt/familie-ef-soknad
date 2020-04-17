@@ -1,25 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import BarnasBostedHeader from './BarnasBostedHeader';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
+import BarnasBostedHeader from './BarnasBostedHeader';
 import BostedOgSamvær from './BostedOgSamvær';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
-import { useIntl } from 'react-intl';
-import useSøknadContext from '../../../context/SøknadContext';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
-import { Knapp } from 'nav-frontend-knapper';
+import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
-import { hentTekst } from '../../../utils/søknad';
+import { Knapp } from 'nav-frontend-knapper';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   barn: IBarn;
@@ -33,7 +33,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   aktivIndex,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
 

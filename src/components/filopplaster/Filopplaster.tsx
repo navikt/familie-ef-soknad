@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-import useSøknadContext from '../../context/SøknadContext';
 import { useDropzone } from 'react-dropzone';
 import { injectIntl, IntlShape } from 'react-intl';
 import {
@@ -14,6 +13,7 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/vedlegg';
 import Environment from '../../Environment';
+import { useSøknad } from '../../context/SøknadContext';
 
 interface Props {
   intl: IntlShape;
@@ -32,7 +32,7 @@ const Filopplaster: React.FC<Props> = ({
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [filliste, settFilliste] = useState<any>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);

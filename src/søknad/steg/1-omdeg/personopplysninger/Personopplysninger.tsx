@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
-import LocaleTekst from '../../../../language/LocaleTekst';
-import { Input } from 'nav-frontend-skjema';
-import { usePersonContext } from '../../../../context/PersonContext';
-import useSøknadContext from '../../../../context/SøknadContext';
-import { useIntl } from 'react-intl';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
-import Lenke from 'nav-frontend-lenker';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
+import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
+import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { Input } from 'nav-frontend-skjema';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { useIntl } from 'react-intl';
+import { usePersonContext } from '../../../../context/PersonContext';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const { søker } = person;
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
@@ -112,34 +112,7 @@ const Personopplysninger: React.FC = () => {
         />
 
         {søkerBorPåRegistrertAdresse?.verdi === false && (
-          <>
-            <KomponentGruppe>
-              <AlertStripe type={'advarsel'} form={'inline'}>
-                <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-              </AlertStripe>
-            </KomponentGruppe>
-            <KomponentGruppe>
-              <FeltGruppe>
-                <Element>
-                  <LocaleTekst tekst={'personopplysninger.info.endreAdresse'} />
-                </Element>
-              </FeltGruppe>
-              <FeltGruppe>
-                <Normaltekst>
-                  <Lenke
-                    href={
-                      'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/dokumentinnsending'
-                    }
-                  >
-                    <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
-                  </Lenke>
-                </Normaltekst>
-              </FeltGruppe>
-              <Normaltekst>
-                <LocaleTekst tekst={'personopplysninger.info.pdfskjema'} />
-              </Normaltekst>
-            </KomponentGruppe>
-          </>
+          <SøkerBorIkkePåAdresse />
         )}
       </KomponentGruppe>
 

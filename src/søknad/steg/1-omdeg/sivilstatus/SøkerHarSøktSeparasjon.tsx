@@ -15,18 +15,20 @@ interface Props {
 }
 const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato, sivilstatus }) => {
   const { datoSøktSeparasjon, datoFlyttetFraHverandre } = sivilstatus;
-  const datovelgerTekstid = 'sivilstatus.datovelger.separasjon';
+  const datovelgerTekstid = 'sivilstatus.datovelger.søktSeparasjon';
   return (
     <KomponentGruppe>
-      <Datovelger
-        settDato={(e) => settDato(e, 'datoSøktSeparasjon', datovelgerTekstid)}
-        valgtDato={datoSøktSeparasjon ? datoSøktSeparasjon.verdi : undefined}
-        tekstid={datovelgerTekstid}
-        datobegrensning={DatoBegrensning.TidligereDatoer}
-      />
+      <FeltGruppe>
+        <Datovelger
+          settDato={(e) => settDato(e, 'datoSøktSeparasjon', datovelgerTekstid)}
+          valgtDato={datoSøktSeparasjon ? datoSøktSeparasjon.verdi : undefined}
+          tekstid={datovelgerTekstid}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
+        />
+      </FeltGruppe>
       <FeltGruppe>
         <AlertStripe type={'info'} form={'inline'}>
-          <LocaleTekst tekst={'sivilstatus.somgift'} />
+          <LocaleTekst tekst={'sivilstatus.alert-info.søktSeparasjon'} />
         </AlertStripe>
       </FeltGruppe>
       {datoSøktSeparasjon && (

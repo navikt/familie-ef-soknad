@@ -1,5 +1,5 @@
 import React from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
+import { useSøknad } from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
@@ -29,7 +29,7 @@ const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
 };
 
 const OppsummeringAktiviteter: React.FC = () => {
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
   const history = useHistory();
   const intl = useIntl();
 

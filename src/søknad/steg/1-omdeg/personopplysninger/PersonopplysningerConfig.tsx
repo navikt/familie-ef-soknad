@@ -1,8 +1,9 @@
-import { ISpørsmål } from '../../../../models/spørsmalogsvar';
-import { JaNeiSvar } from '../../../../helpers/svar';
+import { JaNeiSvar } from '../../../../helpers/standardSvar';
+import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 
 export const borDuPåDenneAdressen: ISpørsmål = {
   søknadid: 'søkerBorPåRegistrertAdresse',
   tekstid: 'personopplysninger.spm.riktigAdresse',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

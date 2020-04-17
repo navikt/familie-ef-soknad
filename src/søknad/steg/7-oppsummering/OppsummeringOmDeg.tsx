@@ -1,7 +1,7 @@
 import React from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { useSøknad } from '../../../context/SøknadContext';
 import {
   VisLabelOgSvar,
   VisPerioderBoddIUtlandet,
@@ -12,7 +12,8 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
 const OppsummeringOmDeg = () => {
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
+
   const history = useHistory();
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;

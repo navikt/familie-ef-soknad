@@ -16,17 +16,12 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   settDato,
   datoForSamlivsbrudd,
 }) => {
+  const datovelgerLabel = 'sivilstatus.alert.samlivsbruddForeldre';
   return (
     <>
       <KomponentGruppe>
         <Datovelger
-          settDato={(e) =>
-            settDato(
-              e,
-              'datoForSamlivsbrudd',
-              'sivilstatus.datovelger.samlivsbrudd'
-            )
-          }
+          settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
           valgtDato={
             datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
           }
@@ -34,7 +29,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
           datobegrensning={DatoBegrensning.AlleDatoer}
         />
         <AlertStripe type={'info'} form={'inline'}>
-          <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
+          <LocaleTekst tekst={datovelgerLabel} />
         </AlertStripe>
       </KomponentGruppe>
     </>

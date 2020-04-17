@@ -1,5 +1,4 @@
 import React from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
@@ -7,9 +6,10 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const OppsummeringBarnasBosituasjon = () => {
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
   const history = useHistory();
 
   const barna = søknad.person.barn;

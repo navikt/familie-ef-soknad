@@ -2,6 +2,7 @@ import {
   IBooleanFelt,
   IDatoFelt,
   ISpørsmålFelt,
+  ISpørsmålBooleanFelt,
   ITekstFelt,
 } from '../../søknadsfelter';
 
@@ -14,10 +15,10 @@ export enum ESivilstand {
 }
 
 export interface ISivilstatus {
-  søkerHarSøktSeparasjon?: IBooleanFelt;
+  harSøktSeparasjon?: IBooleanFelt;
   datoSøktSeparasjon?: IDatoFelt;
-  søkerGiftIUtlandet?: IBooleanFelt;
-  søkerSeparertEllerSkiltIUtlandet?: IBooleanFelt;
+  erUformeltGift?: ISpørsmålBooleanFelt;
+  erUformeltSeparertEllerSkilt?: ISpørsmålBooleanFelt;
   begrunnelseForSøknad?: ISpørsmålFelt;
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
@@ -32,4 +33,16 @@ export enum EBegrunnelse {
   endringISamværsordning = 'endringISamværsordning',
   dødsfall = 'dødsfall',
   annet = 'annet',
+}
+
+export enum ESivilstatusSøknadid {
+  harSøktSeparasjon = 'harSøktSeparasjon',
+  datoSøktSeparasjon = 'datoSøktSeparasjon',
+  erUformeltGift = 'erUformeltGift',
+  erUformeltSeparertEllerSkilt = 'erUformeltSeparertEllerSkilt',
+  begrunnelseForSøknad = 'begrunnelseForSøknad',
+  datoForSamlivsbrudd = 'datoForSamlivsbrudd',
+  datoFlyttetFraHverandre = 'datoFlyttetFraHverandre',
+  datoEndretSamvær = 'datoEndretSamvær',
+  begrunnelseAnnet = 'begrunnelseAnnet',
 }

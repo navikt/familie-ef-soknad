@@ -48,6 +48,9 @@ export default {
 
     'stegtittel.omDeg': 'Om deg',
 
+    'personopplysninger.fnr': 'Fødselsnr',
+    'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
 
@@ -59,41 +62,50 @@ export default {
     'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
     'personopplysninger.info.pdfskjema':
       'Skjemaet kan sendes inn elektronisk eller på papir',
-    'personopplysninger.fnr': 'Fødselsnummer',
-    'personopplysninger.telefonnr': 'Telefonnummer',
-    'personopplysninger.statsborgerskap': 'Statsborgerskap',
 
     'sivilstatus.tittel': 'Sivilstatus',
-    'sivilstatus.spm.søkerGiftIUtlandet':
+    'sivilstatus.spm.søktSeparasjon':
+      'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
+    'sivilstatus.alert-info.søktSeparasjon':
+      'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'sivilstatus.alert-advarsel.søktSeparasjon':
+      'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
+    'sivilstatus.alert.samlivsbruddForeldre':
+      'Du må legge ved erklæring om samlivsbrudd',
+    'sivilstatus.datovelger.søktSeparasjon': 'Når søkte dere eller reiste sak?',
+    'sivilstatus.datovelger.samlivsbrudd': 'Dato for samlivsbrudd',
+    'sivilstatus.datovelger.flyttetFraHverandre':
+      'Når flyttet dere fra hverandre?',
+    'sivilstatus.datovelger.endring':
+      'Når skjedde endringen / når skal endringen skje?',
+    'sivilstatus.spm.erUformeltGift':
+      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+    'sivilstatus.alert.erUformeltGift':
       'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
     'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
       'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
     'sivilstatus.dok.søkerGiftIUtlandet':
       'Du må legge ved dokumentasjon på inngått ekteskap',
-    'sivilstatus.spm.søkerSeparertEllerSkiltIUtlandet':
+    'sivilstatus.lesmer-åpne.erUformeltGift': 'Hvorfor spør vi om dette?',
+    'sivilstatus.lesmer-innhold.erUformeltGift':
+      'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
+
+    'sivilstatus.spm.erUformeltSeparertEllerSkilt':
       'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
-    'sivilstatus.dok.søkerSeparertEllerSkiltIUtlandet':
+    'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
+    'sivilstatus.spm.begrunnelse':
+      'Hva er grunnen til at du er alene med barn?',
 
-    'sivilstatus.separasjon.harsøkersøkt':
-      'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere eller reiste sak?',
-    'sivilstatus.somgift':
-      'Du må legge ved bekreftelse fra Fylkesmannen eller domstolen',
-
-    'sivilstatus.sporsmål.datoForSamlivsbrudd': 'Dato for samlivsbrudd',
-    'sivilstatus.sporsmal.datoFlyttetFraHverandre':
-      'Når flyttet dere fra hverandre?',
-    'sivilstatus.separasjon.advarsel':
-      'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
-
-    'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
     'sivilstatus.svar.samlivsbruddForeldre':
       'Samlivsbrudd med den andre forelderen',
     'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd med noen andre',
     'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
     'sivilstatus.svar.endringISamværsordning': 'Endring i samværsordning',
+    'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
+    'sivilstatus.alert.dødsfall':
+      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til gjenlevende (lenke) og barnepensjon(lenke). ',
     'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
@@ -106,8 +118,8 @@ export default {
       'Hva vil det si å være bosatt i Norge?',
     'medlemskap.hjelpetekst-innhold.bosatt':
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
-
     'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+
     'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
     'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
     'medlemskap.periodeBoddIUtlandet.begrunnelse':
@@ -184,6 +196,7 @@ export default {
     'barnekort.år': 'år',
     'barnekort.lenke.endre': 'Endre',
     'barnekort.normaltekst.barn': 'Barn',
+    'barnekort.spm.skalBarnBoHosDeg': 'Skal barnet bo hos deg?',
     'barnekort.spm.født': 'Er barnet født?',
     'barnekort.erUfødt': 'Ufødt',
     'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
@@ -449,6 +462,108 @@ export default {
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
     'oppsummering.tilbake': 'Tilbake til oppsummering',
+
+    'dokumentasjon.tittel': 'Last opp dokumentasjon',
+    'dokumentasjon.beskrivelse':
+      'For at vi skal kunne behandle søknaden din så raskt som mulig, må du laste opp dokumentasjon som bekrefter opplysningene i søknaden.\n' +
+      'Ps! Du kan bruke bilder som vedlegg til søknaden. <br/><br/>' +
+      'Slik gjør du det:\n<br/>' +
+      '<ol><li>Ta bilde av dokumentet med smarttelefonen eller nettbrettet\n</li>' +
+      '<li>Sjekk at dokumentet er lett å lese\n</li>' +
+      '<li>Last opp bildene her</li></ol>',
+    'dokumentasjon.checkbox.sendtTidligere':
+      'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
+
+    'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
+    'dokumentasjon.inngåttEkteskap.beskrivelse':
+      'Beskrivelse for inngått ekteskap',
+    'dokumentasjon.separasjonEllerSkilsmisse.tittel':
+      'Dokumentasjon på separasjon eller skilsmisse',
+    'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
+      'Beskrivelse for separasjone eller skilsmisse',
+    'dokumentasjon.søktSeparasjon.tittel':
+      'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
+    'dokumentasjon.søktSeparasjon.beskrivelse': '',
+    'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
+    'dokumentasjon.begrunnelse.beskrivelse': '',
+
+    'dokumentasjon.ulikeAdresser.tittel':
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
+    'dokumentasjon.ulikeAdresser.beskrivelse':
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <li>' +
+      '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
+      '<li>Kopi av flyttemelding/tips til folkeregisteret</li>' +
+      '<li>Husleiekontrakt for begge parter</li>' +
+      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Bekreftelse fra eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
+      '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li></ul>',
+
+    'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
+    'dokumentasjon.terminbekreftelse.beskrivelse': '',
+
+    'dokumentasjon.samvær.tittel': 'Samværsavtale for ',
+    'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
+    'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
+    'dokumentasjon.deltBosted.beskrivelse': '',
+    'dokumentasjon.barnBorHosDeg.tittel':
+      'Dokumentasjon på at barn bor hos deg',
+    'dokumentasjon.barnBorHosDeg.beskrivelse':
+      ' Dokumentasjon på at barn bor hos deg, for eksempel:<ul>' +
+      '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
+      '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
+      '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
+
+    'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
+    'dokumentasjon.sykdom.beskrivelse':
+      'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
+      '<li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
+      '<li>hvor mye du kan arbeide</li> </ul>' +
+      'Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding. Denne må vise:\n' +
+      '<ul><li>når du ble syk</li>' +
+      '<li>når legen din regner med at du vil bli frisk</li></ul>' +
+      'Har du sendt inn dokumentasjon på dette tidligere, for eksempel i forbindelse med sykemelding, AAP eller uføretrygd?',
+    'dokumentasjon.syktBarn.tittel': 'Dokumentasjon på barnets sykdom',
+    'dokumentasjon.syktBarn.beskrivelse':
+      'Dokumentasjonen fra lege må tydelig vise:\n' +
+      '<ul><li>årsaken til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet</li>' +
+      '<li>hvor mye kan du arbeide</li></ul>' +
+      'Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:\n' +
+      '<ul><li>når barnet ble sykt</li>' +
+      '<li>når legen regner med at barnet vil bli friskt</li></ul>',
+    'dokumentasjon.barnepass.tittel':
+      'Dokumentasjon på at du mangler barnepass. ',
+    'dokumentasjon.barnepass.beskrivelse':
+      'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.' +
+      'Dokumentasjonen må tydelig vise <ul>' +
+      '<li>datoen du søkte</li>' +
+      '<li>datoen du ønsket plass fra</li></ul>',
+    'dokumentasjon.barnetilsynsbehov.tittel':
+      'Dokumentasjon på barnets tilsynsbehov',
+    'dokumentasjon.barnetilsynsbehov.beskrivelse':
+      '<ul><li>Dokumentasjon fra legen din som bekrefter at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn.<li/>' +
+      '<li>Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og hvordan dette påvirker muligheten din til å være i arbeid eller yrkesrettet aktivitet.</li></ul>',
+    'dokumentasjon.arbeidskontrakt.tittel':
+      'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
+    'dokumentasjon.arbeidskontrakt.beskrivelse':
+      'Dokumentasjonen må tydelig vise: <ul>' +
+      '<li>navn på arbeidsgiver</li>' +
+      '<li>stillingsprosent</li>' +
+      '<li>dato for oppstart</li>' +
+      '<li>dato du fikk tilbudet</li></ul>',
+    'dokumentasjon.utdanning.tittel': 'Dokumentasjon på utdanningen du skal ta',
+    'dokumentasjon.utdanning.beskrivelse':
+      'Dokumentasjonen må tydelig vise:<ul>' +
+      '<li>navn på studiested</li>' +
+      '<li>navn på studie</li>' +
+      '<li>hvor mye du skal studere</li>' +
+      '<li>periode du skal studere</li>' +
+      '<li>dato du fikk tilbudet</li></ul>',
+    'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
+      'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
+    'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse': '',
+    'dokumentasjon.arbeidsforhold-redusert.tittel':
+      'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
+    'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
@@ -469,18 +584,7 @@ export default {
       'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'Som gift må du ha søkt separasjon for å ha rett til overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'Du kan fremdeles søke om overgangsstønad, men vil sannsynligvis få avslag på søknaden.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.alert.samlivsbrudd':
-      'Du må legge ved erklæring om samlivsbrudd',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Sivilstatus',
+
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
@@ -576,16 +680,7 @@ export default {
       'I, [0], swear to give as much as possible correct information.',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
-    'sivilstatus.somgift':
-      'as married you must have applied for separation in order to have access to overgangsstønad',
-    'sivilstatus.separasjon.datosøkt': 'Når søkte dere separasjon?',
-    'sivilstatus.separasjon.harsøkersøkt': 'Har dere søkt separasjon?',
-    'sivilstatus.separasjon.advarsel':
-      'You can still apply for overgangsstønad, however  your application will most likely get rejected.',
-    'sivilstatus.gift.utlandet': 'Er du gift i utlandet?',
-    'sivilstatus.separertEllerSkilt.utlandet':
-      'Er du skilt eller separert i utlandet?',
-    'sivilstatus.tittel': 'Relationship status',
+
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
     'språk.nynorsk': 'Nynorsk',
