@@ -14,8 +14,6 @@ export const hentDokumentasjonTilFlersvarSpørsmål = (
   } else if (erHuketAv === false) {
     valgtSvar.dokumentasjonsbehov &&
       endretDokumentasjonsbehov.push(valgtSvar.dokumentasjonsbehov);
-  } else {
-    endretDokumentasjonsbehov = dokumentasjonsbehov;
   }
   return endretDokumentasjonsbehov;
 };
