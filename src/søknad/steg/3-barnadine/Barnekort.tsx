@@ -4,11 +4,11 @@ import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
-import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
+import { useSøknad } from '../../../context/SøknadContext';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
@@ -36,7 +36,7 @@ const Barnekort: React.FC<Props> = ({
   fødselsdato,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const formatFnr = (fnr: string) => {
@@ -48,13 +48,20 @@ const Barnekort: React.FC<Props> = ({
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
 
-  const bosted = født
-    ? harSammeAdresse
-      ? hentTekst('barnekort.adresse.bor', intl)
-      : hentTekst('barnekort.adresse.borIkke', intl)
-    : harSammeAdresse
-    ? hentTekst('barnekort.adresse.skalBo', intl)
-    : hentTekst('barnekort.adresse.skalIkkeBo', intl);
+  let bosted: string = '';
+  if (født !== undefined) {
+    bosted = født
+      ? harSammeAdresse
+        ? hentTekst('barnekort.adresse.bor', intl)
+        : hentTekst('barnekort.adresse.borIkke', intl)
+      : harSammeAdresse
+      ? hentTekst('barnekort.adresse.skalBo', intl)
+      : hentTekst('barnekort.adresse.skalIkkeBo', intl);
+  } else {
+    bosted = harSammeAdresse
+      ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
+      : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
+  }
 
   const fjernFraSøknad = (id: string) => {
     const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);

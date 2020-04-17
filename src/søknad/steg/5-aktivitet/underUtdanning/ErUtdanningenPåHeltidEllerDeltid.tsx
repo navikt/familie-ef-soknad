@@ -6,7 +6,7 @@ import {
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 interface Props {

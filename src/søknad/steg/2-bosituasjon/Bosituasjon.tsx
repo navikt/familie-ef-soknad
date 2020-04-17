@@ -1,29 +1,29 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmSamboerenDin from './OmSamboerenDin';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
+import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
-import useSøknadContext from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const history = useHistory();
   const location = useLocation();
-  const { søknad, settSøknad } = useSøknadContext();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
@@ -40,9 +40,6 @@ const Bosituasjon: FC = () => {
     // eslint-disable-next-line
   }, [bosituasjon]);
 
-  const oppdaterBosituasjon = (nyBosituasjon: IBosituasjon) =>
-    settBosituasjon({ ...bosituasjon, ...nyBosituasjon });
-
   const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
@@ -56,11 +53,8 @@ const Bosituasjon: FC = () => {
       },
     };
 
-    if (!bosituasjon.delerBoligMedAndreVoksne.verdi) {
-      oppdaterBosituasjon(nyBosituasjon);
-    } else if (svarTekst !== bosituasjon.delerBoligMedAndreVoksne.verdi) {
-      settBosituasjon(nyBosituasjon);
-    }
+    settBosituasjon(nyBosituasjon);
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const valgtSvar:

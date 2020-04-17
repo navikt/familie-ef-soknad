@@ -1,6 +1,6 @@
 import React from 'react';
 import { LocaleString } from '../models/språk';
-import { FormattedMessage } from 'react-intl';
+import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import { useSpråkContext } from '../context/SpråkContext';
 
 interface Props {
@@ -16,11 +16,11 @@ const LocaleTekst = ({ tekst }: Props) => {
           tekst[locale] ||
           tekst.nb || (
             <span style={{ color: 'red' }}>
-              <FormattedMessage id={'feil.ingentekst.sanity'} />
+              <FormattedHTMLMessage id={'feil.ingentekst.sanity'} />
             </span>
           )
         ) : (
-          <FormattedMessage id={tekst} />
+          <FormattedHTMLMessage id={tekst} />
         )
       ) : (
         <FormattedMessage id={'feil.udefinerttekst'} />

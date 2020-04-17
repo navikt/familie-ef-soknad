@@ -13,6 +13,7 @@ export enum RouteEnum {
   Aktivitet = 'Aktivitet',
   DinSituasjon = 'DinSituasjon',
   Oppsummering = 'Oppsummering',
+  Dokumentasjon = 'Dokumentasjon',
   SendSøknad = 'SendSøknad',
 }
 
@@ -44,6 +45,11 @@ export const Routes: IRoute[] = [
     path: '/oppsummering',
     label: 'Oppsummering',
     route: RouteEnum.Oppsummering,
+  },
+  {
+    path: '/dokumentasjon',
+    label: 'Dokumentasjon',
+    route: RouteEnum.Dokumentasjon,
   },
   { path: '/send-soknad', label: 'Send søknad', route: RouteEnum.SendSøknad },
 ];

@@ -1,6 +1,6 @@
 import React from 'react';
-import { SøknadProvider } from './SøknadContext';
 import { PersonProvider } from './PersonContext';
+import { SøknadProvider } from './SøknadContext';
 
 const ContextProviders: React.FC = ({ children }) => {
   return (

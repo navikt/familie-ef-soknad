@@ -1,19 +1,19 @@
 import React, { FC } from 'react';
-import Personopplysninger from './personopplysninger/Personopplysninger';
-import Sivilstatus from './sivilstatus/Sivilstatus';
 import Medlemskap from './medlemskap/Medlemskap';
+import Personopplysninger from './personopplysninger/Personopplysninger';
 import Side from '../../../components/side/Side';
+import Sivilstatus from './sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
-import useSøknadContext from '../../../context/SøknadContext';
+import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const { søknad } = useSøknad();
+  const { begrunnelseForSøknad, harSøktSeparasjon } = søknad.sivilstatus;
   const location = useLocation();
   const history = useHistory();
-  const { søknad } = useSøknadContext();
-  const { begrunnelseForSøknad, søkerHarSøktSeparasjon } = søknad.sivilstatus;
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
@@ -29,8 +29,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
         <>
           <Sivilstatus />
 
-          {søkerHarSøktSeparasjon ||
-          søkerHarSøktSeparasjon === false ||
+          {harSøktSeparasjon ||
+          harSøktSeparasjon === false ||
           begrunnelseForSøknad ? (
             <Medlemskap />
           ) : null}

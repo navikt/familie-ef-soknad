@@ -1,12 +1,14 @@
-import { ISpørsmål, ITekst, LesMer } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ITekst } from '../../../../models/spørsmålogsvar';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
 } from '../../../../models/steg/aktivitet/utdanning';
+import { IHjelpetekst } from '../../../../models/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
 
-export const utdanningDuKanFåStønadTil: LesMer = {
+// ----- TEKSTER
+export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad',
   lukkeTekstid: '',
@@ -22,11 +24,12 @@ export const linjeKursGrad: ITekst = {
   label_tekstid: 'utdanning.label.linjeKursGrad',
 };
 
-// -- Spørsmål
+// --- Spørsmål
 
 export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
+  flersvar: false,
   svaralternativer: [
     {
       id: EUtdanningsform.offentlig,
@@ -41,6 +44,7 @@ export const privatEllerOffentligSpm: ISpørsmål = {
 export const heltidEllerDeltidSpm: ISpørsmål = {
   søknadid: EUtdanning.heltidEllerDeltid,
   tekstid: 'utdanning.spm.studieandel',
+  flersvar: false,
   svaralternativer: [
     {
       id: EStudieandel.heltid,
@@ -56,5 +60,6 @@ export const heltidEllerDeltidSpm: ISpørsmål = {
 export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

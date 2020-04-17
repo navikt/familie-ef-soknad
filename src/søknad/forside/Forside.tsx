@@ -1,24 +1,24 @@
 import React from 'react';
-import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
+import KnappBase from 'nav-frontend-knapper';
+import LocaleTekst from '../../language/LocaleTekst';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
-import { ReactComponent as Veilederkvinne } from '../../assets/VeilederKvinne.svg';
 import Veileder from 'nav-frontend-veileder';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-import { usePersonContext } from '../../context/PersonContext';
-import { Routes } from '../../routing/Routes';
-import useSøknadContext from '../../context/SøknadContext';
-import { hentBeskjedMedNavn } from '../../utils/språk';
 import { FormattedHTMLMessage, injectIntl } from 'react-intl';
+import { hentBeskjedMedNavn } from '../../utils/språk';
 import { hentNesteRoute } from '../../routing/utils';
+import { Panel } from 'nav-frontend-paneler';
+import { ReactComponent as Veilederkvinne } from '../../assets/VeilederKvinne.svg';
+import { Routes } from '../../routing/Routes';
 import { useLocation, useHistory } from 'react-router-dom';
-import KnappBase from 'nav-frontend-knapper';
-import LocaleTekst from '../../language/LocaleTekst';
+import { usePersonContext } from '../../context/PersonContext';
+import { useSøknad } from '../../context/SøknadContext';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const location = useLocation();
   const history = useHistory();
   const nestePath = hentNesteRoute(Routes, location.pathname);

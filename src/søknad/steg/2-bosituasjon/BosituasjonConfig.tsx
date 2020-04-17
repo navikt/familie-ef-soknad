@@ -1,10 +1,31 @@
-import { ISpørsmål } from '../../../models/spørsmalogsvar';
-import { ESøkerDelerBolig } from '../../../models/steg/bosituasjon';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import {
+  EBosituasjon,
+  ESøkerDelerBolig,
+} from '../../../models/steg/bosituasjon';
 import { JaNeiSvar } from '../../../helpers/svar';
+import {
+  BosituasjonDokumentasjon,
+  IDokumentasjon,
+} from '../../../models/dokumentasjon';
+
+// --- Dokumentasjon
+
+const DokumentasjonBorPåUlikeAdresser: IDokumentasjon = {
+  id: BosituasjonDokumentasjon.BOR_PÅ_ULIKE_ADRESSER,
+  spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+  svarid: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
+  tittel: 'dokumentasjon.ulikeAdresser.tittel',
+  beskrivelse: 'dokumentasjon.ulikeAdresser.beskrivelse',
+  harSendtInn: false,
+};
+
+// --- Spørsmål
 
 export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
-  søknadid: 'delerBoligMedAndreVoksne',
+  søknadid: EBosituasjon.delerBoligMedAndreVoksne,
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
+  flersvar: false,
   svaralternativer: [
     {
       id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
@@ -35,12 +56,14 @@ export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
         'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
       alert_tekstid:
         'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',
+      dokumentasjonsbehov: DokumentasjonBorPåUlikeAdresser,
     },
   ],
 };
 
 export const skalSøkerGifteSegMedSamboer: ISpørsmål = {
-  søknadid: 'skalGifteSegMedSamboer',
+  søknadid: EBosituasjon.skalGifteSegEllerBliSamboer,
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

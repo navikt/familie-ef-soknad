@@ -1,3 +1,6 @@
+import { IHjelpetekst } from './hjelpetekst';
+import { IDokumentasjon } from './dokumentasjon';
+
 export enum ESvar {
   JA = 'JA',
   NEI = 'NEI',
@@ -8,16 +11,14 @@ export enum ESvarTekstid {
   NEI = 'svar.nei',
 }
 
-export interface LesMer {
-  åpneTekstid: string;
-  lukkeTekstid: string;
-  innholdTekstid: string;
-}
-
-export interface ISpørsmål {
+export interface ILabel {
   søknadid: string;
   tekstid: string;
-  lesmer?: LesMer;
+}
+
+export interface ISpørsmål extends ILabel {
+  lesmer?: IHjelpetekst;
+  flersvar: boolean;
   svaralternativer: ISvar[];
 }
 
@@ -25,6 +26,7 @@ export interface ISvar {
   id: string;
   svar_tekstid: string;
   alert_tekstid?: string;
+  dokumentasjonsbehov?: IDokumentasjon;
 }
 
 export interface ITekst {
