@@ -11,7 +11,7 @@ import {
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -19,6 +19,7 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import AlertStripe, { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -43,6 +44,8 @@ const Arbeidssøker: React.FC<Props> = ({
     settArbeidssøker({
       ...arbeidssøker,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
       },
@@ -82,6 +85,12 @@ const Arbeidssøker: React.FC<Props> = ({
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
           />
+          {arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.svarid ===
+            ESvar.NEI && (
+            <AlertStripe type={'advarsel'} form={'inline'}>
+              <LocaleTekst tekst={'arbeidssøker.alert.villig'} />
+            </AlertStripe>
+          )}
         </KomponentGruppe>
       )}
       {arbeidssøker.villigTilÅTaImotTilbudOmArbeid && (

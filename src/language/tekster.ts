@@ -359,6 +359,8 @@ export default {
 
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'arbeidssøker.alert.villig':
+      'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
     'arbeidssøker.label.senestEnUke':
       'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
     'arbeidssøker.label.barnepass':

@@ -27,7 +27,14 @@ export const erVilligTilÅTaImotTilbud: ISpørsmål = {
   søknadid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   tekstid: 'arbeidssøker.label.villig',
   flersvar: false,
-  svaralternativer: JaNeiSvar,
+  svaralternativer: [
+    JaSvar,
+    {
+      id: ESvar.NEI,
+      svar_tekstid: ESvarTekstid.NEI,
+      alert_tekstid: 'arbeidssøker.alert.villig',
+    },
+  ],
 };
 
 export const kanBegynneInnenEnUke: ISpørsmål = {
