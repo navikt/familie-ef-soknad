@@ -6,6 +6,7 @@ import Datovelger, {
 import { RadioPanel } from 'nav-frontend-skjema';
 import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
   navn?: string;
@@ -77,6 +78,12 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             onChange={(e) => settBo(e)}
           />
         </div>
+        {boHosDeg === 'nei' && (
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            Når barnet ikke skal bo hos deg, har du ikke rett til stønad til
+            enslig mor eller far
+          </AlertStripe>
+        )}
       </KomponentGruppe>
     </>
   );

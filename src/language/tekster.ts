@@ -210,6 +210,10 @@ export default {
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.alert-advarsel.avtaleDeltBosted':
+      'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far.',
+    'barnasbosted.alert-info.avtaleOmDeltBosted':
+      'Du må legge ved avtale om delt bosted',
     'barnasbosted.alert.måBoHosDeg':
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] ha adresse hos deg?',

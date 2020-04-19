@@ -1,11 +1,8 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { ISpørsmål, ISvar, ESvarTekstid } from '../../models/spørsmålogsvar';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
-import FeltGruppe from '../gruppe/FeltGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
-import LocaleTekst from '../../language/LocaleTekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components';
 

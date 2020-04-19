@@ -17,9 +17,9 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
-import { hentTekst } from '../../../../utils/søknad';
+import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import AlertStripe, { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -62,6 +62,11 @@ const Arbeidssøker: React.FC<Props> = ({
     });
   };
 
+  const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
+    ESvar.NEI,
+    erSøkerArbeidssøker
+  );
+
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
@@ -76,6 +81,11 @@ const Arbeidssøker: React.FC<Props> = ({
           onChange={settJaNeiSpørsmål}
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
+        {arbeidssøker.registrertSomArbeidssøkerNav && (
+          <AlertStripe type={'info'} form={'inline'}>
+            <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
+          </AlertStripe>
+        )}
       </KomponentGruppe>
 
       {arbeidssøker.registrertSomArbeidssøkerNav && (
