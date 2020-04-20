@@ -45,8 +45,6 @@ const Forside: React.FC<any> = ({ intl }) => {
     fetchData();
   }, []);
 
-  console.log(forside);
-
   const onChange = () => {
     settSøknad({ ...søknad, bekreftet: !søknad.bekreftet });
   };
@@ -87,7 +85,7 @@ const Forside: React.FC<any> = ({ intl }) => {
                   {blokk.tittel && <Element>{blokk.tittel}</Element>}
                   <BlockContent
                     className="typo-normal"
-                    blocks={seksjon.innhold}
+                    blocks={blokk.innhold}
                     serializers={{ types: { block: BlockRenderer } }}
                   />
                 </div>
