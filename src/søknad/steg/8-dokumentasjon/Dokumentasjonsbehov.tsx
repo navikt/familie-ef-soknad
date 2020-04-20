@@ -70,14 +70,18 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
           onChange={settHarSendtInnTidligere}
         />
       </FeltGruppe>
-      <Filopplaster
-        settVedlegg={settVedlegg}
-        vedleggsliste={
-          dokumentasjon.opplastedeVedlegg ? dokumentasjon.opplastedeVedlegg : []
-        }
-        tittel={hentTekst(dokumentasjon.tittel, intl)}
-        dokumentasjonsType={hentTekst(dokumentasjon.tittel, intl)}
-      />
+      {!dokumentasjon.harSendtInn && (
+        <Filopplaster
+          settVedlegg={settVedlegg}
+          vedleggsliste={
+            dokumentasjon.opplastedeVedlegg
+              ? dokumentasjon.opplastedeVedlegg
+              : []
+          }
+          tittel={hentTekst(dokumentasjon.tittel, intl)}
+          dokumentasjonsType={hentTekst(dokumentasjon.tittel, intl)}
+        />
+      )}
     </SeksjonGruppe>
   );
 };
