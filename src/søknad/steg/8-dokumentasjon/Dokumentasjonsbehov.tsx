@@ -24,6 +24,7 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
 
   useEffect(() => {
     settSøknad({ ...søknad, dokumentasjonsbehov: dokumentasjonsbehov });
+    // eslint-disable-next-line
   }, [dokumentasjonsbehov]);
 
   const settVedlegg = (vedleggliste: IVedlegg[]) => {
