@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Barnekort from './Barnekort';
 import LeggTilBarn from './LeggTilBarn';
+import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import Side from '../../../components/side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
-import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
