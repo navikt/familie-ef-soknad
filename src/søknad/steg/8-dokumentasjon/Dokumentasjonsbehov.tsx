@@ -40,8 +40,13 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
   };
 
   const settHarSendtInnTidligere = (e: any) => {
-    const dokumentasjonEndret = dokumentasjonsbehov.map((dok) => {
+    const huketAv = e.target.checked;
+    const dokbehov = dokumentasjonsbehov;
+    const dokumentasjonEndret = dokbehov.map((dok) => {
       if (dok.id === dokumentasjon.id) {
+        if (huketAv && dok.opplastedeVedlegg) {
+          delete dok.opplastedeVedlegg;
+        }
         return {
           ...dok,
           harSendtInn: e.target.checked,
