@@ -13,6 +13,14 @@ export interface IBosituasjon {
   samboerDetaljer?: IPersonDetaljer;
 }
 
+export enum EBosituasjon {
+  delerBoligMedAndreVoksne = 'delerBoligMedAndreVoksne',
+  skalGifteSegEllerBliSamboer = 'skalGifteSegEllerBliSamboer',
+  datoFlyttetSammenMedSamboer = 'datoFlyttetSammenMedSamboer',
+  datoSkalGifteSegEllerBliSamboer = 'datoSkalGifteSegEllerBliSamboer',
+  samboerDetaljer = 'samboerDetaljer',
+}
+
 export enum ESøkerDelerBolig {
   borAleneMedBarnEllerGravid = 'borAleneMedBarnEllerGravid',
   borMidlertidigFraHverandre = 'borMidlertidigFraHverandre',

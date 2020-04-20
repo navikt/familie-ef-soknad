@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
-import Side from '../../../components/side/Side';
-import { Element } from 'nav-frontend-typografi';
 import Barnekort from './Barnekort';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { useIntl } from 'react-intl';
-import Modal from 'nav-frontend-modal';
 import LeggTilBarn from './LeggTilBarn';
 import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
+import Modal from 'nav-frontend-modal';
+import Side from '../../../components/side/Side';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
+  const { søknad } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
-  const { søknad } = useSøknadContext();
   const [åpenModal, settÅpenModal] = useState(false);
 
   const barna = søknad.person.barn;

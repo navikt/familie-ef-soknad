@@ -8,6 +8,8 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
   barn: IBarn;
@@ -21,6 +23,20 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   settForelder,
 }) => {
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
+
+  const settSkalBarnBoHosDegFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settForelder({
+      ...forelder,
+      [skalBarnBoHosDeg.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.skalBarnBoHosDeg',
+        }),
+        verdi: svar,
+      },
+    });
+    settDokumentasjonsbehov(spørsmål, svar);
+  };
 
   return (
     <>
@@ -33,17 +49,7 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
             key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
             valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
-            settSpørsmålOgSvar={(_, svar) =>
-              settForelder({
-                ...forelder,
-                [skalBarnBoHosDeg.søknadid]: {
-                  label: intl.formatMessage({
-                    id: 'barnasbosted.spm.skalBarnBoHosDeg',
-                  }),
-                  verdi: svar,
-                },
-              })
-            }
+            settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
           />
         </KomponentGruppe>
       ) : null}

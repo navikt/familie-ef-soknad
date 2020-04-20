@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
-import useSøknadContext from '../../../../context/SøknadContext';
 import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
@@ -9,6 +8,7 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const { perioderBoddIUtlandet } = søknad.medlemskap;
   const { periode, begrunnelse } = utenlandsopphold;
   const intl = useIntl();

@@ -9,10 +9,17 @@ import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { ISpørsmål, ISvar } from '../../../../../models/spørsmalogsvar';
-import { hentTekst } from '../../../../../utils/søknad';
-import { ISivilstatus } from '../../../../../models/steg/omDeg/sivilstatus';
+import {
+  hentSvarAlertFraSpørsmål,
+  hentTekst,
+} from '../../../../../utils/søknad';
+import {
+  EBegrunnelse,
+  ISivilstatus,
+} from '../../../../../models/steg/omDeg/sivilstatus';
+import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { useSøknad } from '../../../../../context/SøknadContext';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -27,6 +34,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
 }) => {
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
 
   const {
     begrunnelseForSøknad,
@@ -36,28 +44,17 @@ const Søknadsbegrunnelse: FC<Props> = ({
     begrunnelseAnnet,
   } = sivilstatus;
 
-  const hentTekstid = (svarNøkkel: string) => {
-    const tekstid = spørsmål.svaralternativer.find(
-      (svar) => svar.svar_tekstid.split('.')[2] === svarNøkkel
-    );
-    return tekstid?.svar_tekstid;
+  const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
+    return begrunnelseForSøknad?.svarid === svaralternativ;
   };
 
-  const erBegrunnelse = (id: string | undefined) => {
-    return begrunnelseForSøknad?.verdi === intl.formatMessage({ id: id });
-  };
-
-  const samlivsbruddForelderTekstid = hentTekstid('samlivsbruddForeldre');
-  const samlivsbruddAndreTekstid = hentTekstid('samlivsbruddAndre');
-  const endringIsamværsordningTekstid = hentTekstid('endringISamværsordning');
-  const dødsfallTekstid = hentTekstid('dødsfall');
-  const annetSvarTekstid = hentTekstid('annet');
-
-  const samlivsbruddMedForelder = erBegrunnelse(samlivsbruddForelderTekstid);
-  const samlivsbruddAndre = erBegrunnelse(samlivsbruddAndreTekstid);
-  const endretSamvær = erBegrunnelse(endringIsamværsordningTekstid);
-  const dødsfall = erBegrunnelse(dødsfallTekstid);
-  const annet = erBegrunnelse(annetSvarTekstid);
+  const samlivsbruddMedForelder = erBegrunnelse(
+    EBegrunnelse.samlivsbruddForeldre
+  );
+  const samlivsbruddAndre = erBegrunnelse(EBegrunnelse.samlivsbruddAndre);
+  const endretSamvær = erBegrunnelse(EBegrunnelse.endringISamværsordning);
+  const dødsfall = erBegrunnelse(EBegrunnelse.dødsfall);
+  const annet = erBegrunnelse(EBegrunnelse.annet);
 
   const settTekstfeltBegrunnelseAnnet = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -84,6 +81,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const fjernIrrelevanteSøknadsfelter = () => {
@@ -110,6 +108,11 @@ const Søknadsbegrunnelse: FC<Props> = ({
   useEffect(() => {
     fjernIrrelevanteSøknadsfelter();
   });
+
+  const alertTekstForDødsfall = hentSvarAlertFraSpørsmål(
+    EBegrunnelse.dødsfall,
+    spørsmål
+  );
 
   return (
     <SeksjonGruppe>
@@ -148,7 +151,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
       {dødsfall && (
         <KomponentGruppe>
           <AlertStripeInfo className={'fjernBakgrunn'}>
-            <FormattedHTMLMessage id={'sivilstatus.alert.dødsfall'} />
+            <FormattedHTMLMessage id={alertTekstForDødsfall} />
           </AlertStripeInfo>
         </KomponentGruppe>
       )}

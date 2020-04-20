@@ -1,8 +1,3 @@
-export interface ISøknadFelt {
-  spørsmålid?: string;
-  svarid?: string;
-}
-
 export interface ITekstFelt {
   label: string;
   verdi: string;

@@ -36,6 +36,7 @@
     "craco-less": "^1.16.0",
     "date-fns": "^2.8.1",
     "dotenv": "^8.1.0",
+    "eslint-plugin-flowtype": "^4.6.0",
     "exenv": "^1.2.2",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.0",

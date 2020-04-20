@@ -1,4 +1,4 @@
-import { ESvar, ISvar } from '../models/spørsmalogsvar';
+import { ESvar, ISvar } from '../models/spørsmålogsvar';
 import { IntlShape } from 'react-intl';
 import { ISpørsmålListeFelt } from '../models/søknadsfelter';
 import { hentTekst } from './søknad';

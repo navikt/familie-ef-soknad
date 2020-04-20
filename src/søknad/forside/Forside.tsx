@@ -6,7 +6,6 @@ import { Element, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../../context/PersonContext';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { Routes } from '../../routing/Routes';
-import useSøknadContext from '../../context/SøknadContext';
 import { hentBeskjedMedNavn } from '../../utils/språk';
 import { injectIntl } from 'react-intl';
 import { hentNesteRoute } from '../../routing/utils';
@@ -15,12 +14,12 @@ import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import { client } from '../../utils/sanity';
-
+import { useSøknad } from '../../context/SøknadContext';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const location = useLocation();
   const [locale] = useSpråkContext();
   const history = useHistory();

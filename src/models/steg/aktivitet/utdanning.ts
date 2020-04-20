@@ -1,10 +1,10 @@
 import { IBooleanFelt, ITekstFelt } from '../../søknadsfelter';
-import { IPeriode } from '../../søknad';
+import { IPeriode } from '../../periode';
 
 // --- INTERFACES
 
 export interface IUtdanning {
-  react_key: string;
+  id: string;
   linjeKursGrad?: ITekstFelt;
   periode?: IPeriode;
 }

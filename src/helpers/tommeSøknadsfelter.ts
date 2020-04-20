@@ -1,12 +1,12 @@
 import { subDays } from 'date-fns';
 import { dagensDato } from '../utils/dato';
-import { IPeriode } from '../models/søknad';
 import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
   ITekstFelt,
   ITekstListeFelt,
 } from '../models/søknadsfelter';
+import { IPeriode } from '../models/periode';
 
 export const tomPeriode: IPeriode = {
   fra: {
