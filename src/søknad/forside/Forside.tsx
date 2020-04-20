@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import Språkvelger from '../../components/språkvelger/Språkvelger';
-import { ReactComponent as Veilederkvinne } from '../../assets/VeilederKvinne.svg';
-import Veileder from 'nav-frontend-veileder';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
+import { Element, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../../context/PersonContext';
+import { useSpråkContext } from '../../context/SpråkContext';
 import { Routes } from '../../routing/Routes';
 import useSøknadContext from '../../context/SøknadContext';
 import { hentBeskjedMedNavn } from '../../utils/språk';
-import { FormattedHTMLMessage, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import { hentNesteRoute } from '../../routing/utils';
 import { useLocation, useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
@@ -24,10 +22,13 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const { søknad, settSøknad } = useSøknadContext();
   const location = useLocation();
+  const [locale] = useSpråkContext();
   const history = useHistory();
   const nestePath = hentNesteRoute(Routes, location.pathname);
   const [forside, settForside] = useState<any>({});
+  // eslint-disable-next-line
   const [error, settError] = useState<boolean>(false);
+  // eslint-disable-next-line
   const [fetching, settFetching] = useState<boolean>(false);
 
   useEffect(() => {
@@ -44,6 +45,8 @@ const Forside: React.FC<any> = ({ intl }) => {
     };
     fetchData();
   }, []);
+
+  console.log(forside);
 
   const onChange = () => {
     settSøknad({ ...søknad, bekreftet: !søknad.bekreftet });
@@ -69,17 +72,20 @@ const Forside: React.FC<any> = ({ intl }) => {
     return BlockContent.defaultSerializers.types.block(props);
   };
 
+  const disclaimer = forside['disclaimer_' + locale];
+  const seksjon = forside['seksjon_' + locale];
+
   return (
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
 
-          {forside.seksjon &&
-            forside.seksjon.map((seksjon: any) => {
+          {seksjon &&
+            seksjon.map((blokk: any) => {
               return (
                 <div className="seksjon">
-                  {seksjon.tittel && <Element>{seksjon.tittel}</Element>}
+                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
                   <BlockContent
                     className="typo-normal"
                     blocks={seksjon.innhold}
@@ -89,13 +95,13 @@ const Forside: React.FC<any> = ({ intl }) => {
               );
             })}
 
-          {forside.disclaimer && (
+          {disclaimer && (
             <div className="seksjon">
               <AlertStripeAdvarsel>
                 {' '}
                 <BlockContent
                   className="typo-normal"
-                  blocks={forside.disclaimer}
+                  blocks={disclaimer}
                   serializers={{ types: { block: BlockRenderer } }}
                 />
                 <BekreftCheckboksPanel
