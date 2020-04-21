@@ -13,8 +13,8 @@ import {
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentTekst } from '../../../utils/søknad';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../utils/søknad';
 import { IForelder } from '../../../models/forelder';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -115,6 +115,20 @@ const BostedOgSamvær: React.FC<Props> = ({
           onChange={settBostedJaNeiFelt}
           valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
         />
+        {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
+          <>
+            <AlertStripe type={'advarsel'} form={'inline'}>
+              <LocaleTekst
+                tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
+              />
+            </AlertStripe>
+            <AlertStripe type={'info'} form={'inline'}>
+              <LocaleTekst
+                tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'}
+              />
+            </AlertStripe>
+          </>
+        )}
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmål

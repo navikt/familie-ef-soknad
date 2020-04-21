@@ -1,11 +1,8 @@
-import React, { SyntheticEvent, useState } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { ISpørsmål, ISvar, ESvarTekstid } from '../../models/spørsmålogsvar';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
-import FeltGruppe from '../gruppe/FeltGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
-import LocaleTekst from '../../language/LocaleTekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components';
 
@@ -32,8 +29,7 @@ interface Props {
 }
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
   const intl = useIntl();
-  const [harAlert, settAlert] = useState(false);
-  const [valgtSvarAlertTekst, settValgtSvarAlertTekst] = useState('');
+
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
 
   const onClickHandle = (
@@ -42,14 +38,6 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
     svar: ISvar
   ): void => {
     onChange !== undefined && svar && onChange(spørsmål, svar);
-
-    if (svar.alert_tekstid) {
-      settAlert(true);
-      settValgtSvarAlertTekst(svar.alert_tekstid);
-    } else {
-      settAlert(false);
-      settValgtSvarAlertTekst('');
-    }
   };
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
@@ -89,13 +77,6 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
           );
         })}
       </div>
-      {harAlert ? (
-        <FeltGruppe>
-          <AlertStripe type={'info'} form={'inline'}>
-            <LocaleTekst tekst={valgtSvarAlertTekst} />
-          </AlertStripe>
-        </FeltGruppe>
-      ) : null}
     </StyledJaNeiSpørsmål>
   );
 };

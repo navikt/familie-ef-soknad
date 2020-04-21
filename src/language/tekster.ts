@@ -210,6 +210,10 @@ export default {
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.alert-advarsel.avtaleDeltBosted':
+      'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far.',
+    'barnasbosted.alert-info.avtaleOmDeltBosted':
+      'Du må legge ved avtale om delt bosted',
     'barnasbosted.alert.måBoHosDeg':
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] ha adresse hos deg?',
@@ -359,6 +363,8 @@ export default {
 
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'arbeidssøker.alert.villig':
+      'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
     'arbeidssøker.label.senestEnUke':
       'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
     'arbeidssøker.label.barnepass':

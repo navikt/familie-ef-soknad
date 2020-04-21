@@ -74,6 +74,7 @@ export const avtaleOmDeltBosted: ISpørsmål = {
     {
       id: ESvar.JA,
       svar_tekstid: ESvarTekstid.JA,
+      alert_tekstid: 'barnasbosted.alert-advarsel.avtaleDeltBosted',
       dokumentasjonsbehov: AvtaleOmDeltBosted,
     },
     NeiSvar,

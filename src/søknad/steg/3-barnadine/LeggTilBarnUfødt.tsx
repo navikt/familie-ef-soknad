@@ -1,10 +1,11 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { RadioPanel } from 'nav-frontend-skjema';
+import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
 
 interface Props {
   settBo: Function;
@@ -50,6 +51,12 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             onChange={(e) => settBo(e)}
           />
         </div>
+        {boHosDeg === 'nei' && (
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            Når barnet ikke skal bo hos deg, har du ikke rett til stønad til
+            enslig mor eller far
+          </AlertStripe>
+        )}
       </KomponentGruppe>
     </>
   );
