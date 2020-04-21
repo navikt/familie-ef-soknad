@@ -192,6 +192,7 @@ export default {
     'barnadine.advarsel.skalikkebo':
       'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
     'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
+    'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
     'barnadine.termindato': 'Termindato',
     'barnekort.termindato': 'TERMINDATO',
     'barnekort.fødselsdato': 'FØDSELSDATO',

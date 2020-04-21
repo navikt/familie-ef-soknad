@@ -5,7 +5,10 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import {
+  AlertStripeAdvarsel,
+  AlertStripeInfo,
+} from 'nav-frontend-alertstriper';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
 
@@ -33,8 +36,10 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           tekstid={'barnadine.termindato'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
         />
+        <AlertStripeInfo className="fjernBakgrunn">
+          <FormattedMessage id="barnadine.info.terminbekreftelse" />
+        </AlertStripeInfo>
       </KomponentGruppe>
-
       <KomponentGruppe>
         <Normaltekst>
           {intl.formatMessage({ id: 'barnekort.spm.skalBarnBoHosDeg' })}
