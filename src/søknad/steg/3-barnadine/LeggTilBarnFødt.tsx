@@ -6,6 +6,8 @@ import Datovelger, {
 import { RadioPanel } from 'nav-frontend-skjema';
 import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { useIntl } from 'react-intl';
 
 interface Props {
   navn?: string;
@@ -28,6 +30,8 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  const intl = useIntl();
+
   return (
     <>
       <KomponentGruppe>
@@ -39,22 +43,21 @@ const LeggTilBarnFødt: React.FC<Props> = ({
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <div className="fødselsnummer">
-          <div className="fødselsdato">
-            <Datovelger
-              settDato={(e) => settDato(e)}
-              valgtDato={barnDato}
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-            />
-          </div>
-          <Input
-            className="personnummer"
-            value={personnummer}
-            onChange={(e) => settPersonnummer(e.target.value)}
-            label="Personnummer. Kun hvis barnet har fått."
+        <FeltGruppe classname={'datoOgPersonnummer'}>
+          <Datovelger
+            valgtDato={barnDato}
+            tekstid={'datovelger.fødselsdato'}
+            datobegrensning={DatoBegrensning.TidligereDatoer}
+            settDato={(e) => settDato(e)}
           />
-        </div>
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.nr' }).trim()}
+            type="text"
+            bredde={'S'}
+            onChange={(e) => settPersonnummer(e.target.value, 'fødselsnummer')}
+          />
+        </FeltGruppe>
       </KomponentGruppe>
 
       <KomponentGruppe>
