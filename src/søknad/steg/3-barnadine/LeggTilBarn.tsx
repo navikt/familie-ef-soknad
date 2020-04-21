@@ -63,32 +63,32 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   };
 
   const leggTilBarn = (id: string | undefined) => {
+    console.log('LEGGER TIL BARN');
+
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
-    if (født) {
-      const nyttBarn: IBarn = hentNyttBarn(
-        fødselsnummer,
-        personnummer,
-        barnDato,
-        navn,
-        boHosDeg,
-        født,
-        intl
-      );
+    const nyttBarn: IBarn = hentNyttBarn(
+      fødselsnummer,
+      personnummer,
+      barnDato,
+      navn,
+      boHosDeg,
+      født ? født : false,
+      intl
+    );
 
-      const nyBarneListe = [
-        ...søknad.person.barn.filter((b) => b.id !== id),
-        nyttBarn,
-      ];
+    const nyBarneListe = [
+      ...søknad.person.barn.filter((b) => b.id !== id),
+      nyttBarn,
+    ];
 
-      settSøknad({
-        ...søknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      });
+    settSøknad({
+      ...søknad,
+      person: { ...søknad.person, barn: nyBarneListe },
+    });
 
-      settÅpenModal(false);
-    }
+    settÅpenModal(false);
   };
 
   return (

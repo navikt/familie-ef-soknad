@@ -44,7 +44,7 @@ const Barnekort: React.FC<Props> = ({
   };
 
   const ikoner = [barn1, barn2, barn3];
-  const ikon = født
+  const ikon = født.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
 
@@ -106,7 +106,7 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>
               {født.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
-              {' ' + intl.formatMessage({ id: 'barnekort.år' })}
+              {født.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
           <div className="informasjonselement">
