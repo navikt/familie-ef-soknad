@@ -22,8 +22,6 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
 
-  console.log('BARNA', barna);
-
   return (
     <>
       <Side

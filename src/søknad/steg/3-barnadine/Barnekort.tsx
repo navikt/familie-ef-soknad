@@ -140,7 +140,7 @@ const Barnekort: React.FC<Props> = ({
         </div>
         <Modal
           isOpen={åpenEndreModal}
-          onRequestClose={() => settÅpenModal(false)}
+          onRequestClose={() => settÅpenEndreModal(false)}
           closeButton={true}
           contentLabel="Halla"
         >

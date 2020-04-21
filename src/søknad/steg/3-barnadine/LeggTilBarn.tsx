@@ -63,8 +63,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   };
 
   const leggTilBarn = (id: string | undefined) => {
-    console.log('LEGGER TIL BARN');
-
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
