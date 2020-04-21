@@ -56,7 +56,7 @@ export default {
 
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':
-      'Du må oppgi riktig adresse til Folkeregisteret for å bruke denne søknaden.',
+      'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
     'personopplysninger.info.endreAdresse':
       'Skal du ikke endre adresse i Folkeregisteret?',
     'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
@@ -105,7 +105,7 @@ export default {
     'sivilstatus.svar.endringISamværsordning': 'Endring i samværsordning',
     'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
     'sivilstatus.alert.dødsfall':
-      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til gjenlevende (lenke) og barnepensjon(lenke). ',
+      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
     'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
@@ -463,6 +463,7 @@ export default {
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
     'oppsummering.tilbake': 'Tilbake til oppsummering',
 
+
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
       'For at vi skal kunne behandle søknaden din så raskt som mulig, må du laste opp dokumentasjon som bekrefter opplysningene i søknaden.\n' +
@@ -485,7 +486,9 @@ export default {
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
     'dokumentasjon.søktSeparasjon.beskrivelse': '',
     'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
-    'dokumentasjon.begrunnelse.beskrivelse': '',
+    'dokumentasjon.begrunnelse.beskrivelse':
+      'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
+
 
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
