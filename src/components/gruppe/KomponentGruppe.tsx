@@ -11,10 +11,8 @@ const StyledKomponentGruppe = styled.div`
     margin-bottom: 0;
   }
 
-  .alertstripe.fjernBakgrunn {
-    background: transparent;
-    border: none;
-    padding-left: 0;
+  .alertstripe {
+    padding-top: 1rem;
   }
 `;
 

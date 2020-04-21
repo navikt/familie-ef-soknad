@@ -8,7 +8,7 @@ import OppsummeringBarnasBosituasjon from './OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from './OppsummeringBarnaDine';
 import OppsummeringAktiviteter from './OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
-import OppsummeringBosituasjonenDin from './OppsummeringBosituasjonenDin';
+import OppsummeringBosituasjonenDin from './OppsummeringBosituasjon';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();

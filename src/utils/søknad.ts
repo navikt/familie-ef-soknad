@@ -2,6 +2,7 @@ import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { formatDate } from './dato';
+import { ISpørsmål } from '../models/spørsmålogsvar';
 
 export const hentPersonData = () => {
   return axios
@@ -64,6 +65,29 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
   }
 
   return nyttObjekt;
+};
+
+export const hentSvarAlertFraSpørsmål = (
+  svarid: string,
+  spørsmål: ISpørsmål
+): string => {
+  const hentetSvar = hentSvarFraSpørsmål(svarid, spørsmål);
+  return hentetSvar?.alert_tekstid || 'Dette svaret har ikke alert';
+};
+
+export const hentSvarFraSpørsmål = (svarid: string, spørsmål: ISpørsmål) => {
+  const hentetSvar = spørsmål.svaralternativer.find(
+    (svar) => svar.id === svarid
+  );
+  return hentetSvar;
+};
+
+export const hentIdHvisFinnesIListe = (
+  id: string,
+  liste: string[]
+): string | undefined => {
+  const hentetId = liste.find((idIListe) => idIListe === id);
+  return hentetId ? hentetId : undefined;
 };
 
 export const hentFeltObjekt = (

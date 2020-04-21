@@ -4,7 +4,6 @@ import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './søknad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
-import useSøknadContext from './context/SøknadContext';
 import { hentPersonData } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
@@ -16,6 +15,7 @@ import {
 import mockPersonMedBarn from './mock/person.json';
 import { settLabelOgVerdi } from './utils/søknad';
 import { standardLabelsBarn } from './helpers/labels';
+import { useSøknad } from './context/SøknadContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -23,7 +23,7 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
 
   autentiseringsInterceptor();
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
 import { useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
@@ -14,18 +13,19 @@ import {
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål, ISvar } from '../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import OmFirmaetDitt from './OmFirmaetDitt';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const history = useHistory();
   const location = useLocation();
-  const { søknad, settSøknad } = useSøknadContext();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
@@ -62,6 +62,7 @@ const Aktivitet: React.FC = () => {
         verdi: avhukedeSvar,
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
   const erAktivitetHuketAv = (aktivitet: ArbeidssituasjonType): boolean => {

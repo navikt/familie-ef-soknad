@@ -118,8 +118,8 @@ export default {
       'Hva vil det si å være bosatt i Norge?',
     'medlemskap.hjelpetekst-innhold.bosatt':
       'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
-
     'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+
     'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
     'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
     'medlemskap.periodeBoddIUtlandet.begrunnelse':
@@ -461,6 +461,8 @@ export default {
     'oppsummering.sidetittel': 'Oppsummering',
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
+    'oppsummering.tilbake': 'Tilbake til oppsummering',
+
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
@@ -486,6 +488,7 @@ export default {
     'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
     'dokumentasjon.begrunnelse.beskrivelse':
       'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
+
 
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',

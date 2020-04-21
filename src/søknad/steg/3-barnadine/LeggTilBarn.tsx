@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Undertittel } from 'nav-frontend-typografi';
-import useSøknadContext from '../../../context/SøknadContext';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import { formatDateFnr, dagensDato, parseDate } from '../../../utils/dato';
-import { barnetFødt } from './BarneConfig';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { ESvar } from '../../../models/spørsmalogsvar';
+import { barnetFødt } from './BarneConfig';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
+import { formatDateFnr, dagensDato, parseDate } from '../../../utils/dato';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/barn';
-import { useIntl } from 'react-intl';
+import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   settÅpenModal: Function;
@@ -21,7 +21,7 @@ interface Props {
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad } = useSøknad();
   const [barnDato, settBarnDato] = useState<Date>(dagensDato);
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');

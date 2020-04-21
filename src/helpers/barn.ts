@@ -4,7 +4,7 @@ import { differenceInYears } from 'date-fns';
 import { dagensDato, formatDate } from '../utils/dato';
 import { hentUid } from '../utils/uuid';
 import { EBarn, IBarn } from '../models/barn';
-import { ESvar } from '../models/spørsmalogsvar';
+import { ESvar } from '../models/spørsmålogsvar';
 
 export const hentNyttBarn = (
   fødselsnummer: string,

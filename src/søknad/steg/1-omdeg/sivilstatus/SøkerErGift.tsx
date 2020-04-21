@@ -3,7 +3,7 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
@@ -20,7 +20,7 @@ const SøkerErGift: React.FC<Props> = ({
   sivilstatus,
 }) => {
   const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål;
-  const { søkerHarSøktSeparasjon } = sivilstatus;
+  const { harSøktSeparasjon } = sivilstatus;
 
   return (
     <>
@@ -28,18 +28,18 @@ const SøkerErGift: React.FC<Props> = ({
         <JaNeiSpørsmål
           spørsmål={separasjonsSpørsmål}
           onChange={settJaNeiFelt}
-          valgtSvar={
-            søkerHarSøktSeparasjon ? søkerHarSøktSeparasjon.verdi : undefined
-          }
+          valgtSvar={harSøktSeparasjon ? harSøktSeparasjon.verdi : undefined}
         />
       </KomponentGruppe>
-      {søkerHarSøktSeparasjon?.verdi ? (
+      {harSøktSeparasjon?.verdi ? (
         <SøkerHarSøktSeparasjon sivilstatus={sivilstatus} settDato={settDato} />
       ) : (
-        søkerHarSøktSeparasjon?.verdi === false && (
+        harSøktSeparasjon?.verdi === false && (
           <KomponentGruppe>
             <AlertStripe type={'advarsel'} form={'inline'}>
-              <LocaleTekst tekst={'sivilstatus.alert.søktSeparasjon'} />
+              <LocaleTekst
+                tekst={'sivilstatus.alert-advarsel.søktSeparasjon'}
+              />
             </AlertStripe>
           </KomponentGruppe>
         )

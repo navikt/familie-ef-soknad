@@ -1,12 +1,30 @@
-import { ISpørsmål } from '../../../models/spørsmalogsvar';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   ArbeidssituasjonType,
   EArbeidssituasjon,
 } from '../../../models/steg/aktivitet/aktivitet';
+import {
+  AktivitetDokumentasjon,
+  IDokumentasjon,
+} from '../../../models/dokumentasjon';
+
+// --- DOKUMENTASJON
+
+const DokumentasjonUtdanning: IDokumentasjon = {
+  id: AktivitetDokumentasjon.UTDANNING,
+  spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+  svarid: ArbeidssituasjonType.tarUtdanning,
+  tittel: 'dokumentasjon.utdanning.tittel',
+  beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
+  harSendtInn: false,
+};
+
+// --- SPØRSMÅL
 
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
+  flersvar: true,
   svaralternativer: [
     {
       id: ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr,
@@ -36,6 +54,7 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
     {
       id: ArbeidssituasjonType.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
+      dokumentasjonsbehov: DokumentasjonUtdanning,
     },
     {
       id: ArbeidssituasjonType.erHverkenIArbeidUtdanningEllerArbeidssøker,

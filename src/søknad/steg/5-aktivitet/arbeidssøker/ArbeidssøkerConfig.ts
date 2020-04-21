@@ -2,7 +2,7 @@ import {
   ESvar,
   ESvarTekstid,
   ISpørsmål,
-} from '../../../../models/spørsmalogsvar';
+} from '../../../../models/spørsmålogsvar';
 import {
   EArbeidssted,
   EArbeidssøker,
@@ -12,6 +12,7 @@ import { JaNeiSvar, JaSvar } from '../../../../helpers/svar';
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
+  flersvar: false,
   svaralternativer: [
     JaSvar,
     {
@@ -25,24 +26,28 @@ export const erSøkerArbeidssøker: ISpørsmål = {
 export const erVilligTilÅTaImotTilbud: ISpørsmål = {
   søknadid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   tekstid: 'arbeidssøker.label.villig',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const kanBegynneInnenEnUke: ISpørsmål = {
   søknadid: EArbeidssøker.kanBegynneInnenEnUke,
   tekstid: 'arbeidssøker.label.senestEnUke',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const kanSkaffeBarnepassInnenEnUke: ISpørsmål = {
   søknadid: EArbeidssøker.kanSkaffeBarnepassInnenEnUke,
   tekstid: 'arbeidssøker.label.barnepass',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const ønsketArbeidssted: ISpørsmål = {
   søknadid: EArbeidssøker.hvorØnskerSøkerArbeid,
   tekstid: 'arbeidssøker.label.ønsketArbeidssted',
+  flersvar: false,
   lesmer: {
     åpneTekstid: 'arbeidssøker.lesmer-åpne.ønsketArbeidssted',
     innholdTekstid: 'arbeidssøker.lesmer-innhold.ønsketArbeidssted',
@@ -63,5 +68,6 @@ export const ønsketArbeidssted: ISpørsmål = {
 export const ønskerHalvStillig: ISpørsmål = {
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
+  flersvar: false,
   svaralternativer: JaNeiSvar,
 };

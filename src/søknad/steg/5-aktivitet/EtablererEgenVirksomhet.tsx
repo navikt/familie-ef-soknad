@@ -9,10 +9,10 @@ import {
   EArbeidssituasjon,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
-import { ISpørsmål } from '../../../models/spørsmalogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { ISpørsmål } from '../../../models/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

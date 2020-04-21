@@ -40,6 +40,9 @@ const norskeOrdMedÆØÅ = [
   'SøkerSkalTaUtdanning',
   'NårSøkerDuOvergangsstønadFra',
   'HarSøkerSagtOppEllerRedusertStilling',
+  'SendSøknad',
+  'SøknadProvider',
+  'SøkerBorIkkePåAdresse',
 ];
 
 module.exports = {

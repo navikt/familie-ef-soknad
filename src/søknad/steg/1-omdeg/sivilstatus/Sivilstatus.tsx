@@ -3,38 +3,39 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import SøkerErGift from './SøkerErGift';
-import useSøknadContext from '../../../../context/SøknadContext';
+import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { hentSivilstatus } from '../../../../helpers/omdeg';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
-  søkerSeparertEllerSKiltIUtlandetSpørsmål,
-  søkerGiftIUtlandetSpørsmål,
+  erUformeltSeparertEllerSkiltSpørsmål,
+  erUformeltGiftSpørsmål,
 } from './SivilstatusConfig';
-import { useIntl } from 'react-intl';
 import {
   ESivilstand,
+  ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import { hentSivilstatus } from '../../../../helpers/omdeg';
-import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const { søknad, settSøknad } = useSøknadContext();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
   const {
-    søkerHarSøktSeparasjon,
+    harSøktSeparasjon,
     datoSøktSeparasjon,
     datoFlyttetFraHverandre,
-    søkerSeparertEllerSkiltIUtlandet,
-    søkerGiftIUtlandet,
+    erUformeltSeparertEllerSkilt,
+    erUformeltGift,
   } = sivilstatus;
 
   useEffect(() => {
@@ -62,8 +63,8 @@ const Sivilstatus: React.FC = () => {
       },
     };
     if (
-      spørsmål.søknadid === 'søkerHarSøktSeparasjon' &&
-      søkerHarSøktSeparasjon?.verdi === false &&
+      spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
+      harSøktSeparasjon?.verdi === false &&
       datoFlyttetFraHverandre &&
       datoSøktSeparasjon
     ) {
@@ -72,6 +73,7 @@ const Sivilstatus: React.FC = () => {
     }
 
     settSivilstatus(nySivilstatus);
+    settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   const settDato = (
@@ -115,22 +117,22 @@ const Sivilstatus: React.FC = () => {
         <>
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={søkerGiftIUtlandetSpørsmål}
+              spørsmål={erUformeltGiftSpørsmål}
               onChange={settSivilstatusFelt}
               valgtSvar={hentValgtSvar(
-                søkerGiftIUtlandetSpørsmål,
+                erUformeltGiftSpørsmål,
                 søknad.sivilstatus
               )}
             />
           </KomponentGruppe>
 
-          {søkerGiftIUtlandet?.hasOwnProperty('verdi') ? (
+          {erUformeltGift?.hasOwnProperty('verdi') ? (
             <KomponentGruppe>
               <JaNeiSpørsmål
-                spørsmål={søkerSeparertEllerSKiltIUtlandetSpørsmål}
+                spørsmål={erUformeltSeparertEllerSkiltSpørsmål}
                 onChange={settSivilstatusFelt}
                 valgtSvar={hentValgtSvar(
-                  søkerSeparertEllerSKiltIUtlandetSpørsmål,
+                  erUformeltSeparertEllerSkiltSpørsmål,
                   søknad.sivilstatus
                 )}
               />
@@ -140,10 +142,10 @@ const Sivilstatus: React.FC = () => {
       ) : null}
 
       {(erSøkerUgift &&
-        søkerSeparertEllerSkiltIUtlandet?.hasOwnProperty('verdi')) ||
+        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
       erSøkerSeparert ||
-      erSøkerEnke ||
-      erSøkerSkilt ? (
+      erSøkerSkilt ||
+      erSøkerEnke ? (
         <Søknadsbegrunnelse
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}

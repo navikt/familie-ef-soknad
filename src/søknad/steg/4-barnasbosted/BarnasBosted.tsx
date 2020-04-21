@@ -1,25 +1,25 @@
 import React, { useState } from 'react';
-import useSøknadContext from '../../../context/SøknadContext';
-import Side from '../../../components/side/Side';
-import { useIntl } from 'react-intl';
 import BarnetsBostedEndre from './BarnetsBostedEndre';
 import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import Side from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
-  const { søknad } = useSøknadContext();
+  const { søknad } = useSøknad();
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'barnasbosted.sidetittel' })}
+      tittel={hentTekst('barnasbosted.sidetittel', intl)}
       kommerFraOppsummering={kommerFraOppsummering}
     >
       {barna.map((barn, index) => {

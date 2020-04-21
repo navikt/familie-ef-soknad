@@ -2,7 +2,7 @@ import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { harDuSluttdato } from './ArbeidsgiverConfig';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmalogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 
 import Datovelger, {
   DatoBegrensning,

@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
-import { ISøknad } from '../models/søknad';
+import personIngenBarn from '../mock/personIngenBarn.json';
 import { dagensDato } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
+import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
-import personIngenBarn from '../mock/personIngenBarn.json';
+import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { ISøknad } from '../models/søknad';
+import {
+  hentDokumentasjonTilFlersvarSpørsmål,
+  oppdaterDokumentasjonTilEtSvarSpørsmål,
+} from '../helpers/dokumentasjon';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -13,7 +19,7 @@ const initialState: ISøknad = {
   medlemskap: {},
   bosituasjon: {
     delerBoligMedAndreVoksne: {
-      spørsmålid: 'søkerDelerBoligMedAndreVoksne',
+      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
       svarid: '',
       label: '',
       verdi: '',
@@ -36,16 +42,38 @@ const initialState: ISøknad = {
     },
     søknadsdato: { label: '', verdi: dagensDato },
   },
+  dokumentasjonsbehov: [],
   vedleggsliste: [],
 };
 
-const useSøknad = () => {
+const [SøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
 
-  return { søknad, settSøknad };
-};
+  const settDokumentasjonsbehov = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => {
+    let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
 
-const context = createUseContext(useSøknad);
-export const SøknadProvider = context.Provider;
+    if (spørsmål.flersvar) {
+      endretDokumentasjonsbehov = hentDokumentasjonTilFlersvarSpørsmål(
+        erHuketAv,
+        søknad.dokumentasjonsbehov,
+        valgtSvar
+      );
+    } else {
+      endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmål(
+        søknad.dokumentasjonsbehov,
+        spørsmål,
+        valgtSvar
+      );
+    }
 
-export default context;
+    settSøknad({ ...søknad, dokumentasjonsbehov: endretDokumentasjonsbehov });
+  };
+
+  return { søknad, settSøknad, settDokumentasjonsbehov };
+});
+
+export { SøknadProvider, useSøknad };
