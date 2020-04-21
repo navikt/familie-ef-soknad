@@ -187,7 +187,12 @@ export default {
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
-
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
+    'barnadine.termindato': 'Termindato',
     'barnekort.termindato': 'TERMINDATO',
     'barnekort.fødselsdato': 'FØDSELSDATO',
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
@@ -606,6 +611,11 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
+
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
@@ -701,6 +711,10 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',

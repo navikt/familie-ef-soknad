@@ -5,6 +5,9 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
 
 interface Props {
   settBo: Function;
@@ -19,19 +22,23 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  const intl = useIntl();
+
   return (
     <>
       <KomponentGruppe>
         <Datovelger
           settDato={(e) => settDato(e)}
           valgtDato={barnDato}
-          tekstid={'datovelger.fødselsdato'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
+          tekstid={'barnadine.termindato'}
+          datobegrensning={DatoBegrensning.FremtidigeDatoer}
         />
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
+        <Normaltekst>
+          {intl.formatMessage({ id: 'barnekort.spm.skalBarnBoHosDeg' })}
+        </Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
             key={'ja'}
@@ -50,6 +57,11 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             onChange={(e) => settBo(e)}
           />
         </div>
+        {boHosDeg === 'nei' && (
+          <AlertStripeAdvarsel className="fjernBakgrunn bor-ikke">
+            <FormattedMessage id="barnadine.advarsel.skalikkebo" />
+          </AlertStripeAdvarsel>
+        )}
       </KomponentGruppe>
     </>
   );

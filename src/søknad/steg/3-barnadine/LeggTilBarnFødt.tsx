@@ -8,6 +8,8 @@ import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { FormattedMessage } from 'react-intl';
 
 interface Props {
   navn?: string;
@@ -61,7 +63,9 @@ const LeggTilBarnFødt: React.FC<Props> = ({
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <Normaltekst>Bor barnet hos deg?</Normaltekst>
+        <Normaltekst>
+          {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
+        </Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
             key={'ja'}
@@ -80,6 +84,11 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             onChange={(e) => settBo(e)}
           />
         </div>
+        {boHosDeg === 'nei' && (
+          <AlertStripeAdvarsel className="fjernBakgrunn bor-ikke">
+            <FormattedMessage id="barnadine.advarsel.borikke" />
+          </AlertStripeAdvarsel>
+        )}
       </KomponentGruppe>
     </>
   );
