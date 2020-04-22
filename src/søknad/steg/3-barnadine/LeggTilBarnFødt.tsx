@@ -8,8 +8,9 @@ import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { FormattedMessage } from 'react-intl';
+import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   navn?: string;
@@ -24,7 +25,6 @@ interface Props {
 
 const LeggTilBarnFødt: React.FC<Props> = ({
   navn,
-  personnummer,
   settNavn,
   settPersonnummer,
   settBo,
@@ -68,26 +68,26 @@ const LeggTilBarnFødt: React.FC<Props> = ({
         </Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
-            key={'ja'}
+            key={ESvar.JA}
             name={'radio-bosted'}
             label="Ja"
-            value={'ja'}
-            checked={boHosDeg === 'ja'}
+            value={ESvar.JA}
+            checked={boHosDeg === ESvar.JA}
             onChange={(e) => settBo(e)}
           />
           <RadioPanel
-            key={'nei'}
+            key={ESvar.NEI}
             name={'radio-bosted'}
             label="Nei"
-            value={'nei'}
-            checked={boHosDeg === 'nei'}
+            value={ESvar.NEI}
+            checked={boHosDeg === ESvar.NEI}
             onChange={(e) => settBo(e)}
           />
         </div>
-        {boHosDeg === 'nei' && (
-          <AlertStripeAdvarsel className="fjernBakgrunn bor-ikke">
+        {boHosDeg === ESvar.NEI && (
+          <AlertStripe type="advarsel" form="inline" className="bor-ikke">
             <FormattedMessage id="barnadine.advarsel.borikke" />
-          </AlertStripeAdvarsel>
+          </AlertStripe>
         )}
       </KomponentGruppe>
     </>
