@@ -76,7 +76,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
-          <Sidetittel>Søknad om NYTT SKJEMA</Sidetittel>
+          <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
 
           {seksjon &&
             seksjon.map((blokk: any) => {
