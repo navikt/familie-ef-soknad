@@ -7,7 +7,6 @@ on:
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
-  IMAGE_LATEST: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:latest
 
 jobs:
   build:
@@ -19,12 +18,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npm
-          npm build
-          docker build . -t ${IMAGE} -t ${IMAGE_LATEST}
+          npm install
+          npm run build
+          docker build . -t ${IMAGE}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
-          docker push ${IMAGE_LATEST} 
   deploy:
     name: Deploy to NAIS
     needs: build
