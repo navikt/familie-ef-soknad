@@ -12,6 +12,7 @@ import {
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
 import Forside from './Forside';
+import Spørsmål from './Spørsmål';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -53,8 +54,11 @@ const App = () => {
         <>
           <TestsideInformasjon />
           <Switch>
-            <Route path={'/arbeidssøker'}>
+            <Route exact path={'/arbeidssøker'}>
               <Forside />
+            </Route>
+            <Route path={'/arbeidssøker/spørsmål'}>
+              <Spørsmål />
             </Route>
           </Switch>
         </>
