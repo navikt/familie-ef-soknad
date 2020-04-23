@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Feilside from './components/feil/Feilside';
-import hentToggles from './toggles/api';
+import Feilside from '../components/feil/Feilside';
+import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Søknadsdialog from './søknad/Søknadsdialog';
-import TestsideInformasjon from './components/TestsideInformasjon';
-import { hentPersonData } from './utils/søknad';
-import { PersonActionTypes, usePersonContext } from './context/PersonContext';
+import TestsideInformasjon from '../components/TestsideInformasjon';
+import { hentPersonData } from '../utils/søknad';
+import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName, Toggles } from './models/toggles';
+import { Toggles } from '../models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
-} from './utils/autentisering';
-import mockPersonMedBarn from './mock/person.json';
-import { settLabelOgVerdi } from './utils/søknad';
-import { standardLabelsBarn } from './helpers/labels';
-import { useSøknad } from './context/SøknadContext';
+} from '../utils/autentisering';
+import Forside from './Forside';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -23,7 +19,6 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
-  const { søknad, settSøknad } = useSøknad();
 
   autentiseringsInterceptor();
 
@@ -52,26 +47,14 @@ const App = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
-      const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
-
-      return nyttBarn;
-    });
-
-    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
-    // eslint-disable-next-line
-  }, [person]);
-
   if (!fetching && autentisert) {
     if (!error) {
       return (
         <>
           <TestsideInformasjon />
           <Switch>
-            <Route path={'/'}>
-              <Søknadsdialog />
-              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+            <Route path={'/arbeidssøker'}>
+              <Forside />
             </Route>
           </Switch>
         </>
