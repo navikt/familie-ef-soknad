@@ -6,20 +6,28 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../utils/søknad';
 import SeksjonGruppe from '../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../components/spørsmål/JaNeiSpørsmål';
-import { erSøkerArbeidssøker } from '../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
+import {
+  erSøkerArbeidssøker,
+  erVilligTilÅTaImotTilbud,
+  kanBegynneInnenEnUke,
+  kanSkaffeBarnepassInnenEnUke,
+  ønskerHalvStillig,
+  ønsketArbeidssted,
+} from '../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import KomponentGruppe from '../components/gruppe/KomponentGruppe';
 import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../utils/spørsmålogsvar';
 import { useSkjema } from './SkjemaContext';
+import MultiSvarSpørsmål from '../components/spørsmål/MultiSvarSpørsmål';
 
 const Spørsmål: FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
-  const { arbeidssøker } = skjema;
+  const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
@@ -27,16 +35,33 @@ const Spørsmål: FC = () => {
     erSøkerArbeidssøker
   );
 
+  React.useEffect(() => {
+    settSkjema({ ...skjema, arbeidssøker: arbeidssøker });
+    // eslint-disable-next-line
+  }, [arbeidssøker]);
+
   const settJaNeiSpørsmål = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
 
-    settSkjema({
-      ...skjema,
+    settArbeidssøker({
+      ...arbeidssøker,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
+      },
+    });
+  };
+
+  const settMultiSvarSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settArbeidssøker({
+      ...arbeidssøker,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
   };
@@ -53,12 +78,66 @@ const Spørsmål: FC = () => {
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
           />
-          {arbeidssøker.registrertSomArbeidssøkerNav && (
+          {arbeidssøker.registrertSomArbeidssøkerNav?.verdi === false && (
             <AlertStripe type={'info'} form={'inline'}>
               <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
             </AlertStripe>
           )}
         </KomponentGruppe>
+
+        {arbeidssøker.registrertSomArbeidssøkerNav && (
+          <KomponentGruppe>
+            <JaNeiSpørsmål
+              spørsmål={erVilligTilÅTaImotTilbud}
+              onChange={settJaNeiSpørsmål}
+              valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
+            />
+            {arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.svarid ===
+              ESvar.NEI && (
+              <AlertStripe type={'advarsel'} form={'inline'}>
+                <LocaleTekst tekst={'arbeidssøker.alert.villig'} />
+              </AlertStripe>
+            )}
+          </KomponentGruppe>
+        )}
+        {arbeidssøker.villigTilÅTaImotTilbudOmArbeid && (
+          <KomponentGruppe>
+            <JaNeiSpørsmål
+              spørsmål={kanBegynneInnenEnUke}
+              onChange={settJaNeiSpørsmål}
+              valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
+            />
+          </KomponentGruppe>
+        )}
+
+        {arbeidssøker.kanBegynneInnenEnUke && (
+          <KomponentGruppe>
+            <JaNeiSpørsmål
+              spørsmål={kanSkaffeBarnepassInnenEnUke}
+              onChange={settJaNeiSpørsmål}
+              valgtSvar={arbeidssøker.kanSkaffeBarnepassInnenEnUke?.verdi}
+            />
+          </KomponentGruppe>
+        )}
+
+        {arbeidssøker.kanSkaffeBarnepassInnenEnUke && (
+          <KomponentGruppe>
+            <MultiSvarSpørsmål
+              spørsmål={ønsketArbeidssted}
+              settSpørsmålOgSvar={settMultiSvarSpørsmål}
+              valgtSvar={arbeidssøker.hvorØnskerSøkerArbeid?.verdi}
+            />
+          </KomponentGruppe>
+        )}
+        {arbeidssøker.hvorØnskerSøkerArbeid && (
+          <KomponentGruppe>
+            <JaNeiSpørsmål
+              spørsmål={ønskerHalvStillig}
+              onChange={settJaNeiSpørsmål}
+              valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
+            />
+          </KomponentGruppe>
+        )}
       </SeksjonGruppe>
       {kommerFraOppsummering ? (
         <div className={'side'}>
