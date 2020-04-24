@@ -13,6 +13,8 @@ import {
 } from '../utils/autentisering';
 import Forside from './Forside';
 import Spørsmål from './Spørsmål';
+import Oppsummering from './Oppsummering';
+import Kvittering from './Kvittering';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -59,6 +61,12 @@ const App = () => {
             </Route>
             <Route path={'/arbeidssøker/spørsmål'}>
               <Spørsmål />
+            </Route>
+            <Route path={'/arbeidssøker/oppsummering'}>
+              <Oppsummering />
+            </Route>
+            <Route path={'/arbeidssøker/kvittering'}>
+              <Kvittering />
             </Route>
           </Switch>
         </>
