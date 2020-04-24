@@ -5,15 +5,15 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../utils/søknad';
 
-const Spørsmål: FC<{ intl: IntlShape }> = ({ intl }) => {
+const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation();
   const history = useHistory();
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (
-    <Side tittel={'Spørsmål'} kommerFraOppsummering={kommerFraOppsummering}>
-      <h1>Halla</h1>
+    <Side tittel={'Oppsummering'} kommerFraOppsummering={kommerFraOppsummering}>
+      <h1>Oppsummering</h1>
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp
@@ -32,4 +32,4 @@ const Spørsmål: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Spørsmål);
+export default injectIntl(Oppsummering);
