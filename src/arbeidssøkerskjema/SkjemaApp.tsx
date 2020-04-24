@@ -12,6 +12,7 @@ import {
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
 import Forside from './Forside';
+import { SkjemaProvider } from './SkjemaContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -51,12 +52,14 @@ const App = () => {
     if (!error) {
       return (
         <>
-          <TestsideInformasjon />
-          <Switch>
-            <Route path={'/arbeidssøker'}>
-              <Forside />
-            </Route>
-          </Switch>
+          <SkjemaProvider>
+            <TestsideInformasjon />
+            <Switch>
+              <Route path={'/arbeidssøker'}>
+                <Forside />
+              </Route>
+            </Switch>
+          </SkjemaProvider>
         </>
       );
     } else if (error) {
