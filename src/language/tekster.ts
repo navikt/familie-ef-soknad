@@ -469,7 +469,6 @@ export default {
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
     'oppsummering.tilbake': 'Tilbake til oppsummering',
 
-
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
       'For at vi skal kunne behandle søknaden din så raskt som mulig, må du laste opp dokumentasjon som bekrefter opplysningene i søknaden.\n' +
@@ -494,7 +493,6 @@ export default {
     'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
     'dokumentasjon.begrunnelse.beskrivelse':
       'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
-
 
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
