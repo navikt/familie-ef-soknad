@@ -15,6 +15,7 @@ import Forside from './Forside';
 import Spørsmål from './Spørsmål';
 import Oppsummering from './Oppsummering';
 import Kvittering from './Kvittering';
+import { SkjemaProvider } from './SkjemaContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -32,7 +33,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(false);
+        // settError(false);
       });
 
       const fetchPersonData = () => {
@@ -43,7 +44,7 @@ const App = () => {
           });
         });
       };
-      fetchPersonData();
+      // fetchPersonData();
       settFetching(false);
     };
     fetchData();
@@ -54,6 +55,7 @@ const App = () => {
     if (!error) {
       return (
         <>
+          <SkjemaProvider>
           <TestsideInformasjon />
           <Switch>
             <Route exact path={'/arbeidssøker'}>
@@ -69,6 +71,7 @@ const App = () => {
               <Kvittering />
             </Route>
           </Switch>
+          </SkjemaProvider>
         </>
       );
     } else if (error) {
