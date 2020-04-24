@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Side from './side/Side';
-import { IntlShape, injectIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../utils/søknad';
@@ -12,11 +12,14 @@ import LocaleTekst from '../language/LocaleTekst';
 import KomponentGruppe from '../components/gruppe/KomponentGruppe';
 import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../utils/spørsmålogsvar';
+import { useSkjema } from './SkjemaContext';
 
-const Spørsmål: FC<{ intl: IntlShape }> = ({ intl }) => {
+const Spørsmål: FC = () => {
   const location = useLocation();
   const history = useHistory();
+  const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
+  const { arbeidssøker } = skjema;
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
@@ -75,4 +78,4 @@ const Spørsmål: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Spørsmål);
+export default Spørsmål;

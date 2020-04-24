@@ -6,7 +6,7 @@ import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { Toggles } from '../models/toggles';
+import { ToggleName, Toggles } from '../models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -42,6 +42,7 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
+          console.log(person);
         });
       };
       fetchPersonData();
@@ -60,6 +61,7 @@ const App = () => {
             <Switch>
               <Route exact path={'/arbeidssøker'}>
                 <Forside />
+                {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
               <Route path={'/arbeidssøker/spørsmål'}>
                 <Spørsmål />
