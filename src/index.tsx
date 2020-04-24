@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import ArbeidssøkerApp from './arbeidssøker/ArbeidssøkerApp';
+import ArbeidssøkerApp from './arbeidssøkerskjema/SkjemaApp';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';

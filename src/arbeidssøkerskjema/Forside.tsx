@@ -5,11 +5,9 @@ import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { Routes } from '../routing/Routes';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
-import { hentNesteRoute } from '../routing/utils';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
@@ -18,10 +16,8 @@ const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
-  const location = useLocation();
   const [locale] = useSpråkContext();
   const history = useHistory();
-  const nestePath = hentNesteRoute(Routes, location.pathname);
   const [forside, settForside] = useState<any>({});
   // eslint-disable-next-line
   const [error, settError] = useState<boolean>(false);

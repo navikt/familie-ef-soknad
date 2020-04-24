@@ -6,12 +6,13 @@ import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { Toggles } from '../models/toggles';
+import { ToggleName, Toggles } from '../models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
 import Forside from './Forside';
+import { SkjemaProvider } from './SkjemaContext';
 import Spørsmål from './Spørsmål';
 import Oppsummering from './Oppsummering';
 import Kvittering from './Kvittering';
@@ -41,6 +42,7 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
+          console.log(person);
         });
       };
       fetchPersonData();
@@ -54,21 +56,24 @@ const App = () => {
     if (!error) {
       return (
         <>
-          <TestsideInformasjon />
-          <Switch>
-            <Route exact path={'/arbeidssøker'}>
-              <Forside />
-            </Route>
-            <Route path={'/arbeidssøker/spørsmål'}>
-              <Spørsmål />
-            </Route>
-            <Route path={'/arbeidssøker/oppsummering'}>
-              <Oppsummering />
-            </Route>
-            <Route path={'/arbeidssøker/kvittering'}>
-              <Kvittering />
-            </Route>
-          </Switch>
+          <SkjemaProvider>
+            <TestsideInformasjon />
+            <Switch>
+              <Route exact path={'/arbeidssøker'}>
+                <Forside />
+                {toggles[ToggleName.vis_innsending] && <Forside />}
+              </Route>
+              <Route path={'/arbeidssøker/spørsmål'}>
+                <Spørsmål />
+              </Route>
+              <Route path={'/arbeidssøker/oppsummering'}>
+                <Oppsummering />
+              </Route>
+              <Route path={'/arbeidssøker/kvittering'}>
+                <Kvittering />
+              </Route>
+            </Switch>
+          </SkjemaProvider>
         </>
       );
     } else if (error) {
