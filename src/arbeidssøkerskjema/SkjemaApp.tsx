@@ -13,6 +13,9 @@ import {
 } from '../utils/autentisering';
 import Forside from './Forside';
 import { SkjemaProvider } from './SkjemaContext';
+import Spørsmål from './Spørsmål';
+import Oppsummering from './Oppsummering';
+import Kvittering from './Kvittering';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -55,8 +58,17 @@ const App = () => {
           <SkjemaProvider>
             <TestsideInformasjon />
             <Switch>
-              <Route path={'/arbeidssøker'}>
+              <Route exact path={'/arbeidssøker'}>
                 <Forside />
+              </Route>
+              <Route path={'/arbeidssøker/spørsmål'}>
+                <Spørsmål />
+              </Route>
+              <Route path={'/arbeidssøker/oppsummering'}>
+                <Oppsummering />
+              </Route>
+              <Route path={'/arbeidssøker/kvittering'}>
+                <Kvittering />
               </Route>
             </Switch>
           </SkjemaProvider>
