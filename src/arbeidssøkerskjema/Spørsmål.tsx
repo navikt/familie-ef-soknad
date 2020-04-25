@@ -69,6 +69,9 @@ const Spørsmål: FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'skjema.tittel.omarbeidssøker' })}
+      visNesteKnapp={
+        arbeidssøker.ønskerSøker50ProsentStilling?.verdi !== undefined
+      }
       kommerFraOppsummering={kommerFraOppsummering}
     >
       <SeksjonGruppe>

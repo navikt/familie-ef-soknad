@@ -12,10 +12,16 @@ import LocaleTekst from '../../language/LocaleTekst';
 
 interface ISide {
   tittel: string;
+  visNesteKnapp: boolean;
   kommerFraOppsummering?: boolean;
 }
 
-const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
+const Side: React.FC<ISide> = ({
+  tittel,
+  children,
+  kommerFraOppsummering,
+  visNesteKnapp,
+}) => {
   const location = useLocation();
   const history = useHistory();
 
@@ -36,6 +42,8 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
     hideButton: nesteRoute === undefined,
   });
 
+  console.log(visNesteKnapp);
+
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
@@ -52,7 +60,11 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
           </main>
         </Panel>
         {!kommerFraOppsummering ? (
-          <div className={'side__knapper'}>
+          <div
+            className={
+              visNesteKnapp ? 'side__knapper treKnapper' : 'side__knapper'
+            }
+          >
             <KnappBase
               className={'tilbake'}
               type={'standard'}
@@ -60,13 +72,15 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            <KnappBase
-              type={'hoved'}
-              onClick={() => history.push(nesteRoute.path)}
-              className={nesteKnappStyling}
-            >
-              <LocaleTekst tekst={'knapp.neste'} />
-            </KnappBase>
+            {visNesteKnapp && (
+              <KnappBase
+                type={'hoved'}
+                onClick={() => history.push(nesteRoute.path)}
+                className={nesteKnappStyling}
+              >
+                <LocaleTekst tekst={'knapp.neste'} />
+              </KnappBase>
+            )}
             <KnappBase
               className={'avbryt'}
               type={'flat'}

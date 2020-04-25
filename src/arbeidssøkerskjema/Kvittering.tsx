@@ -12,7 +12,11 @@ const Kvittering: FC<{ intl: IntlShape }> = ({ intl }) => {
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (
-    <Side tittel={'Takk'} kommerFraOppsummering={kommerFraOppsummering}>
+    <Side
+      tittel={'Takk'}
+      visNesteKnapp={true}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <h1>Takk</h1>
       {kommerFraOppsummering ? (
         <div className={'side'}>
