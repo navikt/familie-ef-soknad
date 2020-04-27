@@ -1,6 +1,16 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'skjema.takk': 'Takk',
+    'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
+    'skjema.beskrivelse':
+      'NAV kan orientere og veilede deg om yrkes - og utdanningsvalg, og i en del tilfeller tliby andre tiltak, for eksempel praksisplass eller kurs.' +
+      '<br/>Når du er arbeidssøker og søker om eller mottar overgangstønad må du: ' +
+      '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV</li>' +
+      '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
+      '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
+      '<li>sende meldekort hver 14. dag</li></ol>',
+
     'skjema.': '',
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
 
@@ -9,6 +19,7 @@ export default {
     'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
 
     'banner.tittel': 'Søknad om overgangsstønad',
+    'banner.tittel.arbeidssøker': 'Enslig mor eller far som er arbeidssøker',
 
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
