@@ -4,6 +4,10 @@ export default {
     'skjema.': '',
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
 
+    'skjema.oppsummering.disclaimer':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
+    'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
+
     'banner.tittel': 'Søknad om overgangsstønad',
 
     'språk.bokmål': 'Bokmål',
