@@ -42,8 +42,6 @@ const Side: React.FC<ISide> = ({
     hideButton: nesteRoute === undefined,
   });
 
-  console.log(visNesteKnapp);
-
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
