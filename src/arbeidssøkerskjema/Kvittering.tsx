@@ -1,33 +1,32 @@
-import React, { FC } from 'react';
+import React from 'react';
+import AlertStripe from 'nav-frontend-alertstriper';
+import LocaleTekst from '../language/LocaleTekst';
 import Side from './side/Side';
-import { IntlShape, injectIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../utils/søknad';
+import { injectIntl, useIntl } from 'react-intl';
+import { Normaltekst } from 'nav-frontend-typografi';
+import KomponentGruppe from '../components/gruppe/KomponentGruppe';
+import { dagensDato, formatDate } from '../utils/dato';
 
-const Kvittering: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const location = useLocation();
-  const history = useHistory();
+const Kvittering: React.FC = () => {
+  const intl = useIntl();
 
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const klokkeslett: string = `${dagensDato.getHours()}:${dagensDato.getMinutes()}`;
+
+  const mottattAlert: string =
+    hentTekst('skjema.alert.mottatt', intl) +
+    ` ${klokkeslett}, ${formatDate(dagensDato)} `;
 
   return (
-    <Side tittel={'Takk'} kommerFraOppsummering={kommerFraOppsummering}>
-      <h1>Takk</h1>
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
+    <Side tittel={intl.formatMessage({ id: 'skjema.takk' })}>
+      <KomponentGruppe>
+        <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
+      </KomponentGruppe>
+      <KomponentGruppe>
+        <Normaltekst>
+          <LocaleTekst tekst={'skjema.beskrivelse'} />
+        </Normaltekst>
+      </KomponentGruppe>
     </Side>
   );
 };
