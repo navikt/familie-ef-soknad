@@ -1,6 +1,9 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'skjema.': '',
+    'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+
     'banner.tittel': 'Søknad om overgangsstønad',
 
     'språk.bokmål': 'Bokmål',
