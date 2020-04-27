@@ -1,17 +1,24 @@
 import React, { FC } from 'react';
+import endre from '../assets/endre.svg';
+import LenkeMedIkon from '../components/knapper/LenkeMedIkon';
 import Side from './side/Side';
-import { IntlShape, injectIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { hentPath, Routes, RouteEnum, hentNesteRoute } from './routes/Routes';
 import { hentTekst } from '../utils/søknad';
+import { IntlShape, injectIntl } from 'react-intl';
 import { ISkjema } from './typer/skjema';
 import { mapDataTilLabelOgVerdiTyper } from './utils/innsending';
-import { hentNesteRoute, Routes } from './routes/Routes';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory, useLocation } from 'react-router-dom';
+import { useSkjema } from './SkjemaContext';
+import { VisLabelOgSvar } from '../utils/visning';
 
 const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
+  const { skjema } = useSkjema();
+
+  const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
@@ -29,22 +36,25 @@ const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
       kommerFraOppsummering={kommerFraOppsummering}
       sendSkjema={sendSkjema}
     >
-      <h1>Oppsummering</h1>
-
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
+      <div className="oppsummering-arbeidssøker">
+        <p className="typo-normal disclaimer">
+          {hentTekst('skjema.oppsummering.disclaimer', intl)}
+        </p>
+        <Undertittel>
+          {hentTekst('skjema.oppsummering.omdeg', intl)}
+        </Undertittel>
+        {spørsmålOgSvar}
+      </div>
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: hentPath(Routes, RouteEnum.Spørsmål),
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Side>
   );
 };
