@@ -12,7 +12,11 @@ const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   return (
-    <Side tittel={'Oppsummering'} kommerFraOppsummering={kommerFraOppsummering}>
+    <Side
+      tittel={'Oppsummering'}
+      visNesteKnapp={true}
+      kommerFraOppsummering={kommerFraOppsummering}
+    >
       <h1>Oppsummering</h1>
       {kommerFraOppsummering ? (
         <div className={'side'}>

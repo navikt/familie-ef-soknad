@@ -3,7 +3,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import Side from './side/Side';
 import { hentTekst } from '../utils/søknad';
-import { injectIntl, useIntl } from 'react-intl';
+import { useIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../components/gruppe/KomponentGruppe';
 import { dagensDato, formatDate } from '../utils/dato';
@@ -18,7 +18,10 @@ const Kvittering: React.FC = () => {
     ` ${klokkeslett}, ${formatDate(dagensDato)} `;
 
   return (
-    <Side tittel={intl.formatMessage({ id: 'skjema.takk' })}>
+    <Side
+      tittel={intl.formatMessage({ id: 'skjema.takk' })}
+      visNesteKnapp={false}
+    >
       <KomponentGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </KomponentGruppe>
@@ -31,4 +34,4 @@ const Kvittering: React.FC = () => {
   );
 };
 
-export default injectIntl(Kvittering);
+export default Kvittering;

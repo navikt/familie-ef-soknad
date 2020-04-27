@@ -12,10 +12,10 @@ import {
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
 import Forside from './Forside';
-import { SkjemaProvider } from './SkjemaContext';
 import Spørsmål from './Spørsmål';
 import Oppsummering from './Oppsummering';
 import Kvittering from './Kvittering';
+import { SkjemaProvider } from './SkjemaContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
