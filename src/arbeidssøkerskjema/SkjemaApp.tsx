@@ -12,9 +12,9 @@ import {
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
 import Forside from './Forside';
-import Spørsmål from './Spørsmål';
-import Oppsummering from './Oppsummering';
-import Kvittering from './Kvittering';
+import Spørsmål from './steg/1-Spørsmål';
+import Oppsummering from './steg/2-Oppsummering';
+import Kvittering from './steg/3-Kvittering';
 import { SkjemaProvider } from './SkjemaContext';
 
 const App = () => {

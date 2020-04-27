@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import Side from './side/Side';
-import { IntlShape, injectIntl } from 'react-intl';
+import Side from '../side/Side';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../utils/søknad';
+import { hentTekst } from '../../utils/søknad';
+import { useIntl } from 'react-intl';
 
-const Kvittering: FC<{ intl: IntlShape }> = ({ intl }) => {
+const Kvittering: FC = () => {
   const location = useLocation();
   const history = useHistory();
+  const intl = useIntl();
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
@@ -36,4 +37,4 @@ const Kvittering: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Kvittering);
+export default Kvittering;

@@ -1,14 +1,9 @@
 import createUseContext from 'constate';
 import React from 'react';
-import { ISkjema } from './typer/skjema';
-
-const initialState: ISkjema = {
-  fødselsnummer: '',
-  arbeidssøker: {},
-};
+import { IArbeidssøker } from '../models/steg/aktivitet/arbeidssøker';
 
 const [SkjemaProvider, useSkjema] = createUseContext(() => {
-  const [skjema, settSkjema] = React.useState<ISkjema>(initialState);
+  const [skjema, settSkjema] = React.useState<IArbeidssøker>({});
 
   return { skjema, settSkjema };
 });
