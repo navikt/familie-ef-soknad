@@ -3,6 +3,7 @@ export default {
   nb: {
     'skjema.': '',
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.send': 'Send skjema',
 
     'banner.tittel': 'Søknad om overgangsstønad',
 
