@@ -65,7 +65,7 @@ const App = () => {
               <Route path={'/arbeidssoker/sporsmal'}>
                 <Spørsmål />
               </Route>
-              <Route path={'/arbeidssøker/oppsummering'}>
+              <Route path={'/arbeidssoker/oppsummering'}>
                 <Oppsummering />
               </Route>
               <Route path={'/arbeidssoker/kvittering'}>
