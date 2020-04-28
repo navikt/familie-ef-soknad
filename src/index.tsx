@@ -14,7 +14,7 @@ ReactDOM.render(
     <ContextProviders>
       <Router basename={process.env.PUBLIC_URL}>
         <Switch>
-          <Route path={'/arbeidssøker'} component={ArbeidssøkerApp} />
+          <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
           <Route path={'/'} component={App} />
         </Switch>
       </Router>

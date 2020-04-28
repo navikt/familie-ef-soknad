@@ -59,16 +59,16 @@ const App = () => {
           <SkjemaProvider>
             <TestsideInformasjon />
             <Switch>
-              <Route exact path={'/arbeidssøker'}>
+              <Route exact path={'/arbeidssoker'}>
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
-              <Route path={'/arbeidssøker/spørsmål'}>
+              <Route path={'/arbeidssoker/sporsmal'}>
                 <Spørsmål />
               </Route>
               <Route path={'/arbeidssøker/oppsummering'}>
                 <Oppsummering />
               </Route>
-              <Route path={'/arbeidssøker/kvittering'}>
+              <Route path={'/arbeidssoker/kvittering'}>
                 <Kvittering />
               </Route>
             </Switch>
