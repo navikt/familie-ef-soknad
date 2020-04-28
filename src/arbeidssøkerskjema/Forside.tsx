@@ -113,7 +113,11 @@ const Forside: React.FC<any> = ({ intl }) => {
           {bekreftet ? (
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
-                onClick={() => hentPath(Routes, RouteEnum.Spørsmål)}
+                onClick={() =>
+                  history.push({
+                    pathname: hentPath(Routes, RouteEnum.Spørsmål),
+                  })
+                }
                 type={'hoved'}
               >
                 <LocaleTekst tekst={'knapp.start'} />
