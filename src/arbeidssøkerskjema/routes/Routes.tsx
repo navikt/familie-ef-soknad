@@ -12,19 +12,19 @@ export enum RouteEnum {
 }
 
 export const Routes: IRoute[] = [
-  { path: '/arbeidssøker', label: 'Forside', route: RouteEnum.Forside },
+  { path: '/arbeidssoker', label: 'Forside', route: RouteEnum.Forside },
   {
-    path: '/arbeidssøker/spørsmål',
+    path: '/arbeidssoker/sporsmal',
     label: 'Spørsmål',
     route: RouteEnum.Spørsmål,
   },
   {
-    path: '/arbeidssøker/oppsummering',
+    path: '/arbeidssoker/oppsummering',
     label: 'Oppsummering',
     route: RouteEnum.Oppsummering,
   },
   {
-    path: '/arbeidssøker/kvittering',
+    path: '/arbeidssoker/kvittering',
     label: 'Kvittering',
     route: RouteEnum.Kvittering,
   },
