@@ -1,19 +1,22 @@
 import React from 'react';
-import Stegindikator from 'nav-frontend-stegindikator';
-import classNames from 'classnames';
 import Banner from '../../components/Banner';
-import { Panel } from 'nav-frontend-paneler';
-import { useLocation, useHistory } from 'react-router-dom';
-import { Systemtittel } from 'nav-frontend-typografi';
-import { Routes } from '../routes/Routes';
-import { hentForrigeRoute, hentNesteRoute } from '../routes/Routes';
+import classNames from 'classnames';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
+import Stegindikator from 'nav-frontend-stegindikator';
+import { hentForrigeRoute, hentNesteRoute } from '../routes/Routes';
+import { ISkjema } from '../typer/skjema';
+import { Panel } from 'nav-frontend-paneler';
+import { Routes } from '../routes/Routes';
+import { Systemtittel } from 'nav-frontend-typografi';
+import { useLocation, useHistory } from 'react-router-dom';
+import { useSkjema } from '../SkjemaContext';
 
 interface ISide {
   tittel: string;
   visNesteKnapp: boolean;
   kommerFraOppsummering?: boolean;
+  sendSkjema?: (skjema: ISkjema) => void;
 }
 
 const Side: React.FC<ISide> = ({
@@ -21,9 +24,11 @@ const Side: React.FC<ISide> = ({
   children,
   kommerFraOppsummering,
   visNesteKnapp,
+  sendSkjema,
 }) => {
   const location = useLocation();
   const history = useHistory();
+  const { skjema } = useSkjema();
 
   const routes = Object.values(Routes);
   routes.shift();
@@ -42,9 +47,13 @@ const Side: React.FC<ISide> = ({
     hideButton: nesteRoute === undefined,
   });
 
+  const onClickSendSkjema = () => {
+    sendSkjema && sendSkjema(skjema);
+  };
+
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={'banner.tittel'} />
+      <Banner tekstid={'banner.tittel.arbeidssøker'} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}
@@ -70,13 +79,22 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {visNesteKnapp && (
+            {visNesteKnapp && !sendSkjema && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}
                 className={nesteKnappStyling}
               >
                 <LocaleTekst tekst={'knapp.neste'} />
+              </KnappBase>
+            )}
+            {sendSkjema && (
+              <KnappBase
+                type={'hoved'}
+                onClick={() => onClickSendSkjema()}
+                className={nesteKnappStyling}
+              >
+                <LocaleTekst tekst={'skjema.send'} />
               </KnappBase>
             )}
             <KnappBase

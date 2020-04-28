@@ -1,38 +1,35 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Side from '../side/Side';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { dagensDato, formatDate } from '../../utils/dato';
+import { hentTekst } from '../../utils/søknad';
+import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../language/LocaleTekst';
 
-const Kvittering: FC = () => {
-  const location = useLocation();
-  const history = useHistory();
+const Kvittering: React.FC = () => {
   const intl = useIntl();
 
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const klokkeslett: string = `${dagensDato.getHours()}:${dagensDato.getMinutes()}`;
+
+  const mottattAlert: string =
+    hentTekst('skjema.alert.mottatt', intl) +
+    ` ${klokkeslett}, ${formatDate(dagensDato)} `;
 
   return (
     <Side
-      tittel={'Takk'}
-      visNesteKnapp={true}
-      kommerFraOppsummering={kommerFraOppsummering}
+      tittel={intl.formatMessage({ id: 'skjema.takk' })}
+      visNesteKnapp={false}
     >
-      <h1>Takk</h1>
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
+      <KomponentGruppe>
+        <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
+      </KomponentGruppe>
+      <KomponentGruppe>
+        <Normaltekst>
+          <LocaleTekst tekst={'skjema.beskrivelse'} />
+        </Normaltekst>
+      </KomponentGruppe>
     </Side>
   );
 };
