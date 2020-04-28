@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
+import ArbeidssøkerApp from './arbeidssøkerskjema/SkjemaApp';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
@@ -11,7 +12,8 @@ import ContextProviders from './context/ContextProviders';
 ReactDOM.render(
   <SpråkProvider>
     <ContextProviders>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
+        <Route path={'/arbeidssøker'} component={ArbeidssøkerApp} />
         <Route path={'/'} component={App} />
       </Router>
     </ContextProviders>
