@@ -13,6 +13,8 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
+import Språkvelger from '../components/språkvelger/Språkvelger';
+import KomponentGruppe from '../components/gruppe/KomponentGruppe';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -73,6 +75,9 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
+          <KomponentGruppe className={'sentrert'}>
+            <Språkvelger />
+          </KomponentGruppe>
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
 
           {seksjon &&
