@@ -13,6 +13,7 @@ export default {
 
     'skjema.': '',
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.send': 'Send skjema',
 
     'skjema.oppsummering.disclaimer':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
