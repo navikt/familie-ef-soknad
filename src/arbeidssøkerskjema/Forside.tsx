@@ -12,6 +12,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
+import { hentPath, RouteEnum, Routes } from './routes/Routes';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -112,7 +113,7 @@ const Forside: React.FC<any> = ({ intl }) => {
           {bekreftet ? (
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
-                onClick={() => history.push('/arbeidssøker/spørsmål')}
+                onClick={() => hentPath(Routes, RouteEnum.Spørsmål)}
                 type={'hoved'}
               >
                 <LocaleTekst tekst={'knapp.start'} />
