@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
@@ -13,8 +13,10 @@ ReactDOM.render(
   <SpråkProvider>
     <ContextProviders>
       <Router basename={process.env.PUBLIC_URL}>
-        <Route path={'/arbeidssøker'} component={ArbeidssøkerApp} />
-        <Route path={'/'} component={App} />
+        <Switch>
+          <Route path={'/arbeidssøker'} component={ArbeidssøkerApp} />
+          <Route path={'/'} component={App} />
+        </Switch>
       </Router>
     </ContextProviders>
   </SpråkProvider>,

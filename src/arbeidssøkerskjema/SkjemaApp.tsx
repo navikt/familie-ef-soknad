@@ -60,7 +60,6 @@ const App = () => {
             <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssøker'}>
-                <Forside />
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
               <Route path={'/arbeidssøker/spørsmål'}>
