@@ -1,12 +1,12 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
-import LocaleTekst from '../language/LocaleTekst';
-import Side from './side/Side';
-import { hentTekst } from '../utils/søknad';
+import Side from '../side/Side';
 import { useIntl } from 'react-intl';
+import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
-import KomponentGruppe from '../components/gruppe/KomponentGruppe';
-import { dagensDato, formatDate } from '../utils/dato';
+import { dagensDato, formatDate } from '../../utils/dato';
+import { hentTekst } from '../../utils/søknad';
+import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../language/LocaleTekst';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();

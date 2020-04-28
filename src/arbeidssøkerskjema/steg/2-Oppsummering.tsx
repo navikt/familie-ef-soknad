@@ -1,29 +1,30 @@
 import React, { FC } from 'react';
-import endre from '../assets/endre.svg';
-import LenkeMedIkon from '../components/knapper/LenkeMedIkon';
-import Side from './side/Side';
-import { hentPath, Routes, RouteEnum, hentNesteRoute } from './routes/Routes';
-import { hentTekst } from '../utils/søknad';
-import { IntlShape, injectIntl } from 'react-intl';
-import { ISkjema } from './typer/skjema';
-import { mapDataTilLabelOgVerdiTyper } from './utils/innsending';
+import Side from '../side/Side';
+import { useIntl } from 'react-intl';
+import endre from '../../assets/endre.svg';
+import { hentPath, Routes, RouteEnum, hentNesteRoute } from '../routes/Routes';
+import { mapDataTilLabelOgVerdiTyper } from '../utils/innsending';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useSkjema } from './SkjemaContext';
-import { VisLabelOgSvar } from '../utils/visning';
+import { hentTekst } from '../../utils/søknad';
+import { useSkjema } from '../SkjemaContext';
+import { VisLabelOgSvar } from '../../utils/visning';
+import { IArbeidssøker } from '../../models/steg/aktivitet/arbeidssøker';
+import LenkeMedIkon from '../../components/knapper/LenkeMedIkon';
 
-const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
+const Oppsummering: FC = () => {
   const location = useLocation();
   const history = useHistory();
+  const intl = useIntl();
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const { skjema } = useSkjema();
 
-  const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
+  const spørsmålOgSvar = VisLabelOgSvar(skjema);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
-  const sendSkjema = (skjema: ISkjema) => {
-    const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema.arbeidssøker);
+  const sendSkjema = (skjema: IArbeidssøker) => {
+    const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
     console.log('send dette objektet til api: ', mappetSkjema);
     // Hvis vi får "Suksess" på at skjemaet er sendt tilbake fra apiet, send videre til Kvitteringssiden.
     history.push(nesteRoute.path);
@@ -59,4 +60,4 @@ const Oppsummering: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Oppsummering);
+export default Oppsummering;

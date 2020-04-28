@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import Side from './side/Side';
+import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../utils/søknad';
-import SeksjonGruppe from '../components/gruppe/SeksjonGruppe';
-import JaNeiSpørsmål from '../components/spørsmål/JaNeiSpørsmål';
+import { hentSvarAlertFraSpørsmål, hentTekst } from '../../utils/søknad';
+import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
+import JaNeiSpørsmål from '../../components/spørsmål/JaNeiSpørsmål';
 import {
   erSøkerArbeidssøker,
   erVilligTilÅTaImotTilbud,
@@ -13,22 +13,22 @@ import {
   kanSkaffeBarnepassInnenEnUke,
   ønskerHalvStillig,
   ønsketArbeidssted,
-} from '../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
+} from '../../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import LocaleTekst from '../language/LocaleTekst';
-import KomponentGruppe from '../components/gruppe/KomponentGruppe';
-import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { hentBooleanFraValgtSvar } from '../utils/spørsmålogsvar';
-import { useSkjema } from './SkjemaContext';
-import MultiSvarSpørsmål from '../components/spørsmål/MultiSvarSpørsmål';
-import { hentPath, Routes, RouteEnum } from './routes/Routes';
+import LocaleTekst from '../../language/LocaleTekst';
+import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import { ESvar, ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { hentBooleanFraValgtSvar } from '../../utils/spørsmålogsvar';
+import { useSkjema } from '../SkjemaContext';
+import MultiSvarSpørsmål from '../../components/spørsmål/MultiSvarSpørsmål';
+import { hentPath, RouteEnum, Routes } from '../routes/Routes';
 
 const Spørsmål: FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
-  const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
+  const [arbeidssøker, settArbeidssøker] = React.useState(skjema);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
@@ -37,7 +37,7 @@ const Spørsmål: FC = () => {
   );
 
   React.useEffect(() => {
-    settSkjema({ ...skjema, arbeidssøker: arbeidssøker });
+    settSkjema(arbeidssøker);
     // eslint-disable-next-line
   }, [arbeidssøker]);
 
