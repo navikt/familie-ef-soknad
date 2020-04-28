@@ -12,11 +12,9 @@ import ContextProviders from './context/ContextProviders';
 ReactDOM.render(
   <SpråkProvider>
     <ContextProviders>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Route path={'/arbeidssøker'} component={ArbeidssøkerApp} />
-        {!process.env.REACT_APP_ARBEIDSSOKER && (
-          <Route path={'/'} component={App} />
-        )}
+        <Route path={'/'} component={App} />
       </Router>
     </ContextProviders>
   </SpråkProvider>,

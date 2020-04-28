@@ -75,9 +75,9 @@ const Forside: React.FC<any> = ({ intl }) => {
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
 
           {seksjon &&
-            seksjon.map((blokk: any) => {
+            seksjon.map((blokk: any, index: number) => {
               return (
-                <div className="seksjon">
+                <div className="seksjon" key={index}>
                   {blokk.tittel && <Element>{blokk.tittel}</Element>}
                   <BlockContent
                     className="typo-normal"
