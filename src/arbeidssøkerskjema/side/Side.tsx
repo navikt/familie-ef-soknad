@@ -5,18 +5,18 @@ import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import Stegindikator from 'nav-frontend-stegindikator';
 import { hentForrigeRoute, hentNesteRoute } from '../routes/Routes';
-import { ISkjema } from '../typer/skjema';
 import { Panel } from 'nav-frontend-paneler';
 import { Routes } from '../routes/Routes';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSkjema } from '../SkjemaContext';
+import { IArbeidssøker } from '../../models/steg/aktivitet/arbeidssøker';
 
 interface ISide {
   tittel: string;
   visNesteKnapp: boolean;
   kommerFraOppsummering?: boolean;
-  sendSkjema?: (skjema: ISkjema) => void;
+  sendSkjema?: (skjema: IArbeidssøker) => void;
 }
 
 const Side: React.FC<ISide> = ({

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
-import endre from '../assets/endre.svg';
+import endre from '../../assets/endre.svg';
 import { hentPath, Routes, RouteEnum, hentNesteRoute } from '../routes/Routes';
 import { mapDataTilLabelOgVerdiTyper } from '../utils/innsending';
 import { Undertittel } from 'nav-frontend-typografi';
