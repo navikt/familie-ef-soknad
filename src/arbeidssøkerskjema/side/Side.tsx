@@ -10,21 +10,20 @@ import { Routes } from '../routes/Routes';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useSkjema } from '../SkjemaContext';
-import { IArbeidssøker } from '../../models/steg/aktivitet/arbeidssøker';
 
 interface ISide {
   tittel: string;
   visNesteKnapp: boolean;
+  innsending: boolean;
   kommerFraOppsummering?: boolean;
-  sendSkjema?: (skjema: IArbeidssøker) => void;
 }
 
 const Side: React.FC<ISide> = ({
   tittel,
   children,
   kommerFraOppsummering,
+  innsending,
   visNesteKnapp,
-  sendSkjema,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -47,10 +46,6 @@ const Side: React.FC<ISide> = ({
     hideButton: nesteRoute === undefined,
   });
 
-  const onClickSendSkjema = () => {
-    sendSkjema && sendSkjema(skjema);
-  };
-
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel.arbeidssøker'} />
@@ -66,7 +61,7 @@ const Side: React.FC<ISide> = ({
             {children}
           </main>
         </Panel>
-        {!kommerFraOppsummering ? (
+        {!kommerFraOppsummering && !innsending && (
           <div
             className={
               visNesteKnapp ? 'side__knapper treKnapper' : 'side__knapper'
@@ -79,7 +74,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {visNesteKnapp && !sendSkjema && (
+            {visNesteKnapp && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}
@@ -88,15 +83,7 @@ const Side: React.FC<ISide> = ({
                 <LocaleTekst tekst={'knapp.neste'} />
               </KnappBase>
             )}
-            {sendSkjema && (
-              <KnappBase
-                type={'hoved'}
-                onClick={() => onClickSendSkjema()}
-                className={nesteKnappStyling}
-              >
-                <LocaleTekst tekst={'skjema.send'} />
-              </KnappBase>
-            )}
+
             <KnappBase
               className={'avbryt'}
               type={'flat'}
@@ -105,7 +92,7 @@ const Side: React.FC<ISide> = ({
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

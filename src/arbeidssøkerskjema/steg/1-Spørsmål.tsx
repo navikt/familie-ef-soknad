@@ -74,6 +74,7 @@ const Spørsmål: FC = () => {
         arbeidssøker.ønskerSøker50ProsentStilling?.verdi !== undefined
       }
       kommerFraOppsummering={kommerFraOppsummering}
+      innsending={false}
     >
       <SeksjonGruppe>
         <KomponentGruppe>
