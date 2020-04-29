@@ -42,7 +42,6 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
-          console.log(person);
         });
       };
       fetchPersonData();
@@ -60,7 +59,6 @@ const App = () => {
             <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssoker'}>
-                <Forside />
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
               <Route path={'/arbeidssoker/sporsmal'}>
