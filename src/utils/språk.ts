@@ -17,6 +17,11 @@ export const hentListeMedSpråk = (): Språk[] => [
   { tittel: 'English', locale: 'en' },
 ];
 
+export const listeMedSpråkBmNn: Språk[] = [
+  { tittel: 'Bokmål', locale: 'nb' },
+  { tittel: 'Nynorsk', locale: 'nn' },
+];
+
 export const hentValgtSpråk = (locale: string) => {
   let språk: string = '';
   locale === 'en'

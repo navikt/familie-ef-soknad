@@ -5,7 +5,7 @@ import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { hentBeskjedMedNavn } from '../utils/språk';
+import { hentBeskjedMedNavn, listeMedSpråkBmNn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
 import { useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
@@ -76,7 +76,7 @@ const Forside: React.FC<any> = ({ intl }) => {
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
           <KomponentGruppe className={'sentrert'}>
-            <Språkvelger />
+            <Språkvelger språkObjekter={listeMedSpråkBmNn} />
           </KomponentGruppe>
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
 
