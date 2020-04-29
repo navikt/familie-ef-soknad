@@ -74,12 +74,14 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
-          <VeilederSnakkeboble
-            tekst={hentBeskjedMedNavn(
-              person.søker.forkortetNavn,
-              intl.formatMessage({ id: 'skjema.hei' })
-            )}
-          />
+          <div className="veileder">
+            <VeilederSnakkeboble
+              tekst={hentBeskjedMedNavn(
+                person.søker.forkortetNavn,
+                intl.formatMessage({ id: 'skjema.hei' })
+              )}
+            />
+          </div>
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
