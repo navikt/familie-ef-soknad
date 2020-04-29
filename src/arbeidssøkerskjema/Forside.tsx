@@ -13,6 +13,7 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
+import VeilederSnakkeboble from './VeilederSnakkeboble';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -73,8 +74,13 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
+          <VeilederSnakkeboble
+            tekst={hentBeskjedMedNavn(
+              person.søker.forkortetNavn,
+              intl.formatMessage({ id: 'skjema.hei' })
+            )}
+          />
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
-
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
               return (
