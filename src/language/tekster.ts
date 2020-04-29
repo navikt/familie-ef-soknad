@@ -1,6 +1,13 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.send': 'Send skjema',
+
+    'skjema.oppsummering.disclaimer':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
+    'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
+
     'skjema.takk': 'Takk',
     'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
     'skjema.beskrivelse':
@@ -10,14 +17,6 @@ export default {
       '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
       '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
       '<li>sende meldekort hver 14. dag</li></ol>',
-
-    'skjema.': '',
-    'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
-    'skjema.send': 'Send skjema',
-
-    'skjema.oppsummering.disclaimer':
-      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
-    'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
 
     'banner.tittel': 'Søknad om overgangsstønad',
     'banner.tittel.arbeidssøker': 'Enslig mor eller far som er arbeidssøker',
