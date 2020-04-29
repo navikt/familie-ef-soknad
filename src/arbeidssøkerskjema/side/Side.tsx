@@ -9,7 +9,6 @@ import { Panel } from 'nav-frontend-paneler';
 import { Routes } from '../routes/Routes';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useHistory } from 'react-router-dom';
-import { useSkjema } from '../SkjemaContext';
 
 interface ISide {
   tittel: string;
@@ -27,7 +26,6 @@ const Side: React.FC<ISide> = ({
 }) => {
   const location = useLocation();
   const history = useHistory();
-  const { skjema } = useSkjema();
 
   const routes = Object.values(Routes);
   routes.shift();

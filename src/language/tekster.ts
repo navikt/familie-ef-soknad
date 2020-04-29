@@ -10,7 +10,6 @@ export default {
       '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
       '<li>sende meldekort hver 14. dag</li></ol>',
 
-
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
     'skjema.send': 'Send skjema',
     'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',

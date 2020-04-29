@@ -42,6 +42,7 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
+          console.log(person);
         });
       };
       fetchPersonData();
