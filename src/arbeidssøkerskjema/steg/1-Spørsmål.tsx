@@ -15,7 +15,10 @@ import {
   ønsketArbeidssted,
 } from '../../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { usePersonContext } from '../../context/PersonContext';
 import LocaleTekst from '../../language/LocaleTekst';
+import FeltGruppe from '../../components/gruppe/FeltGruppe';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { ESvar, ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../utils/spørsmålogsvar';
@@ -25,6 +28,7 @@ import { hentPath, RouteEnum, Routes } from '../routes/Routes';
 
 const Spørsmål: FC = () => {
   const location = useLocation();
+  const { person } = usePersonContext();
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
@@ -76,6 +80,12 @@ const Spørsmål: FC = () => {
       kommerFraOppsummering={kommerFraOppsummering}
     >
       <SeksjonGruppe>
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst tekst={'person.fnr'} />
+          </Element>
+          <Normaltekst>{person.søker.fnr}</Normaltekst>
+        </FeltGruppe>
         <KomponentGruppe>
           <JaNeiSpørsmål
             spørsmål={erSøkerArbeidssøker}
