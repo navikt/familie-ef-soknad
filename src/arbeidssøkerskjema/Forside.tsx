@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Sidetittel } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -80,11 +80,13 @@ const Forside: React.FC<any> = ({ intl }) => {
               return (
                 <div className="seksjon" key={index}>
                   {blokk.tittel && <Element>{blokk.tittel}</Element>}
-                  <BlockContent
-                    className="typo-normal"
-                    blocks={blokk.innhold}
-                    serializers={{ types: { block: BlockRenderer } }}
-                  />
+                  <Normaltekst>
+                    <BlockContent
+                      className="typo-normal"
+                      blocks={blokk.innhold}
+                      serializers={{ types: { block: BlockRenderer } }}
+                    />
+                  </Normaltekst>
                 </div>
               );
             })}
