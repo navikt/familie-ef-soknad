@@ -51,10 +51,10 @@ const Oppsummering: React.FC = () => {
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const spørsmålOgSvar = VisLabelOgSvar(skjema);
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  console.log(innsendingState);
 
   const sendSkjema = (skjema: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
+    console.log(mappetSkjema);
     settinnsendingState({ ...innsendingState, venter: true });
     console.log(innsendingState);
     sendInnSkjema(mappetSkjema)
@@ -78,6 +78,7 @@ const Oppsummering: React.FC = () => {
     if (innsendingState.status === IStatus.SUKSESS) {
       history.push(nesteRoute.path);
     }
+    console.log(innsendingState);
   };
 
   return (
