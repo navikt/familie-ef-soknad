@@ -42,7 +42,7 @@ const Oppsummering: React.FC = () => {
   const history = useHistory();
   const intl = useIntl();
   const { skjema } = useSkjema();
-  const [hocState, setHocState] = React.useState<Innsending>({
+  const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
     melding: `Søknad kan sendes`,
     venter: false,
@@ -51,31 +51,31 @@ const Oppsummering: React.FC = () => {
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const spørsmålOgSvar = VisLabelOgSvar(skjema);
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  console.log(hocState);
+  console.log(innsendingState);
 
   const sendSkjema = (skjema: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
-    setHocState({ ...hocState, venter: true });
-    console.log(hocState);
+    settinnsendingState({ ...innsendingState, venter: true });
+    console.log(innsendingState);
     sendInnSkjema(mappetSkjema)
       .then((kvittering) => {
-        setHocState({
-          ...hocState,
+        settinnsendingState({
+          ...innsendingState,
           status: IStatus.SUKSESS,
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         });
       })
       .catch((e) =>
-        setHocState({
-          ...hocState,
+        settinnsendingState({
+          ...innsendingState,
           status: IStatus.FEILET,
           melding: `Noe gikk galt: ${e}`,
           venter: false,
         })
       );
 
-    if (hocState.status === IStatus.SUKSESS) {
+    if (innsendingState.status === IStatus.SUKSESS) {
       history.push(nesteRoute.path);
     }
   };
@@ -109,10 +109,10 @@ const Oppsummering: React.FC = () => {
         />
       </SeksjonGruppe>
 
-      {hocState.status === IStatus.FEILET && (
+      {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
           <AlertStripe type={'advarsel'} form={'inline'}>
-            <Normaltekst>{hocState.melding}</Normaltekst>
+            <Normaltekst>{innsendingState.melding}</Normaltekst>
           </AlertStripe>
         </KomponentGruppe>
       )}
@@ -132,7 +132,7 @@ const Oppsummering: React.FC = () => {
             type={'hoved'}
             onClick={() => sendSkjema(skjema)}
             className={'neste'}
-            spinner={hocState.venter}
+            spinner={innsendingState.venter}
           >
             <LocaleTekst tekst={'skjema.send'} />
           </KnappBase>
