@@ -3,7 +3,7 @@ import Veilederpanel from 'nav-frontend-veilederpanel';
 import svg from '../assets/VeilederSvg';
 import { Panel } from 'nav-frontend-paneler';
 import Environment from '../Environment';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledTestside = styled.div`
   padding: 0 50px 0 50px;

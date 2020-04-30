@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 export const StyledKnapper = styled.div`
   justify-content: center;
@@ -13,14 +13,16 @@ export const StyledKnapper = styled.div`
   .hideButton {
     display: none;
   }
-`;
 
-export const StyledTilbakeKnapp = styled.div`
-  grid-area: tilbake;
-`;
-export const StyledNesteKnapp = styled.div`
-  grid-area: neste;
-`;
-export const StyledAvbrytKnapp = styled.div`
-  grid-area: avbryt;
+  .tilbake {
+    grid-area: tilbake;
+  }
+
+  .neste {
+    grid-area: neste;
+  }
+
+  .avbryt {
+    grid-area: avbryt;
+  }
 `;
