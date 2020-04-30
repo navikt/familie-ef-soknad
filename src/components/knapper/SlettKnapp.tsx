@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import LocaleTekst from '../../language/LocaleTekst';
 import { ReactComponent as Slett } from '../../assets/slett.svg';
 

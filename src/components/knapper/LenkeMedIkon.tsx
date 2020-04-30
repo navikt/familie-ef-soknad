@@ -1,6 +1,6 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useIntl } from 'react-intl';
 
 const StyledLenkeMedIkon = styled.div`
