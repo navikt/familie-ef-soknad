@@ -8,6 +8,7 @@ export const sendInnSkjema = (skjema: object) => {
       withCredentials: true,
     })
     .then((response: { data: any }) => {
+      console.log(response.data);
       return response.data;
     });
 };
