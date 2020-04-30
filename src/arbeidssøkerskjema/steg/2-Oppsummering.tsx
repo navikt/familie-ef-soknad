@@ -24,12 +24,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
-import {
-  StyledAvbrytKnapp,
-  StyledKnapper,
-  StyledNesteKnapp,
-  StyledTilbakeKnapp,
-} from '../komponenter/StyledKnapper';
+import { StyledKnapper } from '../komponenter/StyledKnapper';
 
 interface Innsending {
   status: IStatus;
@@ -54,9 +49,7 @@ const Oppsummering: React.FC = () => {
 
   const sendSkjema = (skjema: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
-    console.log(mappetSkjema);
     settinnsendingState({ ...innsendingState, venter: true });
-    console.log(innsendingState);
     sendInnSkjema(mappetSkjema)
       .then((kvittering) => {
         settinnsendingState({
@@ -65,6 +58,7 @@ const Oppsummering: React.FC = () => {
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         });
+        history.push(nesteRoute.path);
       })
       .catch((e) =>
         settinnsendingState({
@@ -74,11 +68,6 @@ const Oppsummering: React.FC = () => {
           venter: false,
         })
       );
-
-    if (innsendingState.status === IStatus.SUKSESS) {
-      history.push(nesteRoute.path);
-    }
-    console.log(innsendingState);
   };
 
   return (
@@ -119,34 +108,30 @@ const Oppsummering: React.FC = () => {
       )}
 
       <StyledKnapper>
-        <StyledTilbakeKnapp>
-          <KnappBase
-            className={'tilbake'}
-            type={'standard'}
-            onClick={() => history.push(forrigeRoute.path)}
-          >
-            <LocaleTekst tekst={'knapp.tilbake'} />
-          </KnappBase>
-        </StyledTilbakeKnapp>
-        <StyledNesteKnapp>
-          <KnappBase
-            type={'hoved'}
-            onClick={() => sendSkjema(skjema)}
-            className={'neste'}
-            spinner={innsendingState.venter}
-          >
-            <LocaleTekst tekst={'skjema.send'} />
-          </KnappBase>
-        </StyledNesteKnapp>
-        <StyledAvbrytKnapp>
-          <KnappBase
-            className={'avbryt'}
-            type={'flat'}
-            onClick={() => history.push(Routes[0].path)}
-          >
-            <LocaleTekst tekst={'knapp.avbryt'} />
-          </KnappBase>
-        </StyledAvbrytKnapp>
+        <KnappBase
+          className={'tilbake'}
+          type={'standard'}
+          onClick={() => history.push(forrigeRoute.path)}
+        >
+          <LocaleTekst tekst={'knapp.tilbake'} />
+        </KnappBase>
+
+        <KnappBase
+          type={'hoved'}
+          onClick={() => sendSkjema(skjema)}
+          className={'neste'}
+          spinner={innsendingState.venter}
+        >
+          <LocaleTekst tekst={'skjema.send'} />
+        </KnappBase>
+
+        <KnappBase
+          className={'avbryt'}
+          type={'flat'}
+          onClick={() => history.push(Routes[0].path)}
+        >
+          <LocaleTekst tekst={'knapp.avbryt'} />
+        </KnappBase>
       </StyledKnapper>
     </Side>
   );
