@@ -21,42 +21,21 @@ import { sendInnSkjema } from '../innsending/api';
 import { IStatus } from '../innsending/typer';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
-import styled from 'styled-components';
 import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
+import {
+  StyledAvbrytKnapp,
+  StyledKnapper,
+  StyledNesteKnapp,
+  StyledTilbakeKnapp,
+} from '../komponenter/StyledKnapper';
 
 interface Innsending {
   status: IStatus;
   melding: string;
   venter: boolean;
 }
-
-const StyledKnapper = styled.div`
-  justify-content: center;
-  display: grid;
-  grid-template-columns: repeat(2, max-content);
-  grid-template-rows: repeat(2, min-content);
-  grid-template-areas:
-    'tilbake neste'
-    'avbryt avbryt';
-  grid-gap: 1rem;
-
-  .hideButton {
-    display: none;
-  }
-
-  .tilbake {
-    grid-area: tilbake;
-  }
-
-  .neste {
-    grid-area: neste;
-  }
-  .avbryt {
-    grid-area: avbryt;
-  }
-`;
 
 const Oppsummering: React.FC = () => {
   const location = useLocation();
@@ -139,28 +118,34 @@ const Oppsummering: React.FC = () => {
       )}
 
       <StyledKnapper>
-        <KnappBase
-          className={'tilbake'}
-          type={'standard'}
-          onClick={() => history.push(forrigeRoute.path)}
-        >
-          <LocaleTekst tekst={'knapp.tilbake'} />
-        </KnappBase>
-        <KnappBase
-          type={'hoved'}
-          onClick={() => sendSkjema(skjema)}
-          className={'neste'}
-          spinner={hocState.venter}
-        >
-          <LocaleTekst tekst={'skjema.send'} />
-        </KnappBase>
-        <KnappBase
-          className={'avbryt'}
-          type={'flat'}
-          onClick={() => history.push(Routes[0].path)}
-        >
-          <LocaleTekst tekst={'knapp.avbryt'} />
-        </KnappBase>
+        <StyledTilbakeKnapp>
+          <KnappBase
+            className={'tilbake'}
+            type={'standard'}
+            onClick={() => history.push(forrigeRoute.path)}
+          >
+            <LocaleTekst tekst={'knapp.tilbake'} />
+          </KnappBase>
+        </StyledTilbakeKnapp>
+        <StyledNesteKnapp>
+          <KnappBase
+            type={'hoved'}
+            onClick={() => sendSkjema(skjema)}
+            className={'neste'}
+            spinner={hocState.venter}
+          >
+            <LocaleTekst tekst={'skjema.send'} />
+          </KnappBase>
+        </StyledNesteKnapp>
+        <StyledAvbrytKnapp>
+          <KnappBase
+            className={'avbryt'}
+            type={'flat'}
+            onClick={() => history.push(Routes[0].path)}
+          >
+            <LocaleTekst tekst={'knapp.avbryt'} />
+          </KnappBase>
+        </StyledAvbrytKnapp>
       </StyledKnapper>
     </Side>
   );
