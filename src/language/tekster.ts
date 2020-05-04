@@ -11,6 +11,8 @@ export default {
       '<li>sende meldekort hver 14. dag</li></ol>',
 
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.alert.registrert':
+      'Du kan registrere deg etter at du har sendt inn dette skjemaet.',
     'skjema.send': 'Send skjema',
     'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',
 

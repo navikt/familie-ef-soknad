@@ -35,10 +35,6 @@ const Spørsmål: FC = () => {
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
-    ESvar.NEI,
-    erSøkerArbeidssøker
-  );
 
   React.useEffect(() => {
     settSkjema(arbeidssøker);
@@ -95,7 +91,7 @@ const Spørsmål: FC = () => {
           />
           {arbeidssøker.registrertSomArbeidssøkerNav?.verdi === false && (
             <AlertStripe type={'info'} form={'inline'}>
-              <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
+              <LocaleTekst tekst={'skjema.alert.registrert'} />
             </AlertStripe>
           )}
         </KomponentGruppe>
