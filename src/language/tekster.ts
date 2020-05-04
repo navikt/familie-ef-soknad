@@ -487,7 +487,7 @@ export default {
     'oppsummering.sidetittel': 'Oppsummering',
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
-    'oppsummering.tilbake': 'Tilbake til oppsummering',
+    'oppsummering.tilbake': 'Til oppsummering',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
