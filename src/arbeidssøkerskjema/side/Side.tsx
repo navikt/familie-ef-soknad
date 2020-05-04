@@ -59,7 +59,7 @@ const Side: React.FC<ISide> = ({
             {children}
           </main>
         </Panel>
-        {!kommerFraOppsummering && !innsending && (
+        {!kommerFraOppsummering && !innsending && nesteRoute && (
           <div
             className={
               visNesteKnapp ? 'side__knapper treKnapper' : 'side__knapper'
