@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentTekst } from '../utils/søknad';
 import { formatDate } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
+import { useLocation } from 'react-router-dom';
 
 export const VisPerioderBoddIUtlandet = (verdi: any) => {
   return verdi.map((v: any) => {
@@ -76,4 +77,14 @@ export const VisLabelOgSvar = (objekt: Object) => {
       </div>
     );
   });
+};
+
+export const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 };
