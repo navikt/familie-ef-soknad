@@ -3,7 +3,7 @@ import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../../utils/søknad';
+import { hentTekst } from '../../utils/søknad';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../components/spørsmål/JaNeiSpørsmål';
 import {
