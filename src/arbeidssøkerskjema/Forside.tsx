@@ -80,13 +80,11 @@ const Forside: React.FC<any> = ({ intl }) => {
               return (
                 <div className="seksjon" key={index}>
                   {blokk.tittel && <Element>{blokk.tittel}</Element>}
-                  <Normaltekst>
-                    <BlockContent
-                      className="typo-normal"
-                      blocks={blokk.innhold}
-                      serializers={{ types: { block: BlockRenderer } }}
-                    />
-                  </Normaltekst>
+                  <BlockContent
+                    className="typo-normal"
+                    blocks={blokk.innhold}
+                    serializers={{ types: { block: BlockRenderer } }}
+                  />
                 </div>
               );
             })}
