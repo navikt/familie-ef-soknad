@@ -382,7 +382,10 @@ export default {
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
       'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
-
+    'arbeidssøker.hjelpetekst-åpne.registrert':
+      'Hva vil det si å være registrert som arbeidssøker hos NAV?',
+    'arbeidssøker.hjelpetekst-innhold.registrert':
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no.',
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
     'arbeidssøker.alert.villig':

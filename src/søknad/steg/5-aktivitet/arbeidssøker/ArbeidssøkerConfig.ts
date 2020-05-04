@@ -13,6 +13,11 @@ export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'arbeidssøker.hjelpetekst-åpne.registrert',
+    innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.registrert',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     JaSvar,
     {
