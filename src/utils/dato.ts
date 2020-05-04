@@ -22,3 +22,7 @@ export const formatDateFnr = (date: Date) => {
 };
 
 export const dagensDato = new Date();
+
+export const zeroPad = (num: number) => {
+  return String(num).padStart(2, '0');
+};
