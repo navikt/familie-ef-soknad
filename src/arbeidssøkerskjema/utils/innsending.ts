@@ -6,5 +6,5 @@ export const mapDataTilLabelOgVerdiTyper = (skjema: IArbeidssøker) => {
   for (const [key, value] of Object.entries(skjema)) {
     nyttSkjemaObjekt[key] = { label: value['label'], verdi: value['verdi'] };
   }
-  return { nyttSkjemaObjekt };
+  return nyttSkjemaObjekt;
 };

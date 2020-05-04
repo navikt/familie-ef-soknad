@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledKomponentGruppe = styled.div`
   padding-bottom: 50px;

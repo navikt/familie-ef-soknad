@@ -4,7 +4,7 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Input } from 'nav-frontend-skjema';
 import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';

@@ -4,7 +4,7 @@ import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {

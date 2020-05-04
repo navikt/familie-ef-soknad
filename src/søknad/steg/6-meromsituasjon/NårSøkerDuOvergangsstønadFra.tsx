@@ -9,7 +9,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import Hjelpetekst from '../../../components/Hjelpetekst';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface Props {
   dinSituasjon: IDinSituasjon;

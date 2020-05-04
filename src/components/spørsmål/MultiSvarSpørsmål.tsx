@@ -5,7 +5,7 @@ import { ISvar } from '../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import classNames from 'classnames';
 
 const StyledMultisvarSpørsmål = styled.div`

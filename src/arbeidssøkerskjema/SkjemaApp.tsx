@@ -22,7 +22,7 @@ const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
-  const { person, settPerson } = usePersonContext();
+  const { settPerson } = usePersonContext();
 
   autentiseringsInterceptor();
 
@@ -42,7 +42,6 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
-          console.log(person);
         });
       };
       fetchPersonData();

@@ -21,6 +21,7 @@ const Kvittering: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'skjema.takk' })}
       visNesteKnapp={false}
+      innsending={false}
     >
       <KomponentGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
