@@ -11,6 +11,8 @@ export default {
       '<li>sende meldekort hver 14. dag</li></ol>',
 
     'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.alert.registrert':
+      'Du kan registrere deg etter at du har sendt inn dette skjemaet.',
     'skjema.send': 'Send skjema',
     'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',
 
@@ -380,7 +382,10 @@ export default {
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
       'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
-
+    'arbeidssøker.hjelpetekst-åpne.registrert':
+      'Hva vil det si å være registrert som arbeidssøker hos NAV?',
+    'arbeidssøker.hjelpetekst-innhold.registrert':
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no.',
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
     'arbeidssøker.alert.villig':
@@ -487,7 +492,7 @@ export default {
     'oppsummering.sidetittel': 'Oppsummering',
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
-    'oppsummering.tilbake': 'Tilbake til oppsummering',
+    'oppsummering.tilbake': 'Til oppsummering',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':

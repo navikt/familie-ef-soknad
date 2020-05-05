@@ -45,7 +45,6 @@ const Oppsummering: React.FC = () => {
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   const sendSkjema = (arbeidssøker: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(arbeidssøker);
@@ -74,12 +73,7 @@ const Oppsummering: React.FC = () => {
   };
 
   return (
-    <Side
-      tittel={'Oppsummering'}
-      visNesteKnapp={true}
-      kommerFraOppsummering={kommerFraOppsummering}
-      innsending={true}
-    >
+    <Side tittel={'Oppsummering'} skalViseKnapper={false}>
       <SeksjonGruppe>
         <div className="oppsummering-arbeidssøker">
           <p className="typo-normal disclaimer">

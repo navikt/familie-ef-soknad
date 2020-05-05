@@ -8,11 +8,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
 import ContextProviders from './context/ContextProviders';
+import { ScrollToTop } from './utils/visning';
 
 ReactDOM.render(
   <SpråkProvider>
     <ContextProviders>
       <Router basename={process.env.PUBLIC_URL}>
+        <ScrollToTop />
         <Switch>
           <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
           <Route path={'/'} component={App} />
