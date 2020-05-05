@@ -70,11 +70,10 @@ const Spørsmål: FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'skjema.tittel.omarbeidssøker' })}
-      visNesteKnapp={
+      erAlleSpørsmålBesvart={
         arbeidssøker.ønskerSøker50ProsentStilling?.verdi !== undefined
       }
-      kommerFraOppsummering={kommerFraOppsummering}
-      innsending={false}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <SeksjonGruppe>
         <FeltGruppe>
