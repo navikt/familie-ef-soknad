@@ -36,7 +36,7 @@ const Oppsummering: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
-  const { skjema } = useSkjema();
+  const { skjema, settSkjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
     melding: `Søknad kan sendes`,
@@ -58,8 +58,7 @@ const Oppsummering: React.FC = () => {
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         });
-        // TODO: sett kvittering fra api som dato.
-        // settSkjema({...skjema, innsendingsdato: kvittering.text})
+        settSkjema({ ...skjema, innsendingsdato: kvittering.motattDato });
         history.push(nesteRoute.path);
       })
       .catch((e) =>

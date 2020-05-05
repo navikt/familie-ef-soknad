@@ -7,12 +7,17 @@ import { dagensDato, formatDateHour } from '../../utils/dato';
 import { hentTekst } from '../../utils/søknad';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
+import { useSkjema } from '../SkjemaContext';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
+  const { skjema } = useSkjema();
 
   const mottattAlert: string =
-    hentTekst('skjema.alert.mottatt', intl) + ` ${formatDateHour(dagensDato)} `;
+    hentTekst('skjema.alert.mottatt', intl) +
+    ` ${formatDateHour(
+      skjema.innsendingsdato ? skjema.innsendingsdato : dagensDato
+    )} `;
 
   return (
     <Side
