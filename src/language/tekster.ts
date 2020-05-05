@@ -3,8 +3,8 @@ export default {
   nb: {
     'skjema.hei': 'Hei, [0]!',
     'skjema.beskrivelse':
-      'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempelkurs eller praksisplass, som vil bidra til at du kommer i arbeid..' +
-      '<br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
+      'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
+      '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
       '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV</li>' +
       '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
       '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
