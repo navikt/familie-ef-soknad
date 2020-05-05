@@ -12,7 +12,7 @@ import { useLocation, useHistory } from 'react-router-dom';
 
 interface ISide {
   tittel: string;
-  erAlleSpørsmålBesvart?: boolean;
+  erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
 }
 
@@ -20,7 +20,7 @@ const Side: React.FC<ISide> = ({
   tittel,
   children,
   skalViseKnapper,
-  erAlleSpørsmålBesvart,
+  erSpørsmålBesvart,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -60,9 +60,7 @@ const Side: React.FC<ISide> = ({
         {skalViseKnapper && (
           <div
             className={
-              erAlleSpørsmålBesvart
-                ? 'side__knapper treKnapper'
-                : 'side__knapper'
+              erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper'
             }
           >
             <KnappBase
@@ -72,7 +70,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {erAlleSpørsmålBesvart && (
+            {erSpørsmålBesvart && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}

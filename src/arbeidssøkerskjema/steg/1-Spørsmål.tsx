@@ -70,7 +70,7 @@ const Spørsmål: FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'skjema.tittel.omarbeidssøker' })}
-      erAlleSpørsmålBesvart={
+      erSpørsmålBesvart={
         arbeidssøker.ønskerSøker50ProsentStilling?.verdi !== undefined
       }
       skalViseKnapper={!kommerFraOppsummering}
