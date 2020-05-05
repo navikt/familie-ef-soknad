@@ -32,7 +32,7 @@ const Spørsmål: FC = () => {
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
-  const [arbeidssøker, settArbeidssøker] = React.useState(skjema);
+  const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
@@ -41,7 +41,7 @@ const Spørsmål: FC = () => {
   );
 
   React.useEffect(() => {
-    settSkjema(arbeidssøker);
+    settSkjema({ ...skjema, arbeidssøker: arbeidssøker });
     // eslint-disable-next-line
   }, [arbeidssøker]);
 

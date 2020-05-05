@@ -37,7 +37,7 @@ const Oppsummering: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
-  const { skjema } = useSkjema();
+  const { skjema, settSkjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
     melding: `Søknad kan sendes`,
@@ -45,17 +45,14 @@ const Oppsummering: React.FC = () => {
   });
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const spørsmålOgSvar = VisLabelOgSvar(skjema);
+  const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
-  const sendSkjema = (skjema: IArbeidssøker) => {
-    const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
-    const mappetSkjemaMedDato = {
-      arbeidssøker: mappetSkjema,
-      innsendingsdato: dagensDato,
-    };
+  const sendSkjema = (arbeidssøker: IArbeidssøker) => {
+    const mappetSkjema = mapDataTilLabelOgVerdiTyper(arbeidssøker);
+
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSkjema(mappetSkjemaMedDato)
+    sendInnSkjema(mappetSkjema)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
@@ -63,6 +60,8 @@ const Oppsummering: React.FC = () => {
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         });
+        // TODO: sett kvittering fra api som dato.
+        // settSkjema({...skjema, innsendingsdato: kvittering.text})
         history.push(nesteRoute.path);
       })
       .catch((e) =>
@@ -123,7 +122,7 @@ const Oppsummering: React.FC = () => {
 
         <KnappBase
           type={'hoved'}
-          onClick={() => sendSkjema(skjema)}
+          onClick={() => sendSkjema(skjema.arbeidssøker)}
           className={'neste'}
           spinner={innsendingState.venter}
         >
