@@ -150,18 +150,16 @@ const Spørsmål: FC = () => {
         )}
       </SeksjonGruppe>
       {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: hentPath(Routes, RouteEnum.Oppsummering),
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
+        <Hovedknapp
+          className="tilbake-til-oppsummering"
+          onClick={() =>
+            history.push({
+              pathname: hentPath(Routes, RouteEnum.Oppsummering),
+            })
+          }
+        >
+          {hentTekst('oppsummering.tilbake', intl)}
+        </Hovedknapp>
       ) : null}
     </Side>
   );

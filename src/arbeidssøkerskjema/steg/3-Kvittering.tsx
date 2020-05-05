@@ -3,7 +3,7 @@ import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { dagensDato, formatDate } from '../../utils/dato';
+import { dagensDato, formatDateHour } from '../../utils/dato';
 import { hentTekst } from '../../utils/søknad';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
@@ -11,11 +11,8 @@ import LocaleTekst from '../../language/LocaleTekst';
 const Kvittering: React.FC = () => {
   const intl = useIntl();
 
-  const klokkeslett: string = `${dagensDato.getHours()}:${dagensDato.getMinutes()}`;
-
   const mottattAlert: string =
-    hentTekst('skjema.alert.mottatt', intl) +
-    ` ${klokkeslett}, ${formatDate(dagensDato)} `;
+    hentTekst('skjema.alert.mottatt', intl) + ` ${formatDateHour(dagensDato)} `;
 
   return (
     <Side
