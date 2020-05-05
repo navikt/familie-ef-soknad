@@ -25,6 +25,7 @@ import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
+import { dagensDato } from '../../utils/dato';
 
 interface Innsending {
   status: IStatus;
@@ -49,8 +50,12 @@ const Oppsummering: React.FC = () => {
 
   const sendSkjema = (skjema: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
+    const mappetSkjemaMedDato = {
+      arbeidssøker: mappetSkjema,
+      innsendingsdato: dagensDato,
+    };
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSkjema(mappetSkjema)
+    sendInnSkjema(mappetSkjemaMedDato)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
