@@ -25,7 +25,6 @@ import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
-import { dagensDato } from '../../utils/dato';
 
 interface Innsending {
   status: IStatus;
@@ -37,7 +36,7 @@ const Oppsummering: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
-  const { skjema, settSkjema } = useSkjema();
+  const { skjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
     melding: `Søknad kan sendes`,
