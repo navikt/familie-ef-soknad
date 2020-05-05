@@ -3,7 +3,7 @@ import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../../utils/søknad';
+import { hentTekst } from '../../utils/søknad';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../components/spørsmål/JaNeiSpørsmål';
 import {
@@ -35,10 +35,6 @@ const Spørsmål: FC = () => {
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
-    ESvar.NEI,
-    erSøkerArbeidssøker
-  );
 
   React.useEffect(() => {
     settSkjema(arbeidssøker);
@@ -74,11 +70,10 @@ const Spørsmål: FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'skjema.tittel.omarbeidssøker' })}
-      visNesteKnapp={
+      erSpørsmålBesvart={
         arbeidssøker.ønskerSøker50ProsentStilling?.verdi !== undefined
       }
-      kommerFraOppsummering={kommerFraOppsummering}
-      innsending={false}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <SeksjonGruppe>
         <FeltGruppe>
@@ -95,7 +90,7 @@ const Spørsmål: FC = () => {
           />
           {arbeidssøker.registrertSomArbeidssøkerNav?.verdi === false && (
             <AlertStripe type={'info'} form={'inline'}>
-              <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
+              <LocaleTekst tekst={'skjema.alert.registrert'} />
             </AlertStripe>
           )}
         </KomponentGruppe>
