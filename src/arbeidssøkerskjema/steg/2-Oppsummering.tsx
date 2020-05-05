@@ -25,6 +25,7 @@ import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
+import { parseISO } from 'date-fns';
 
 interface Innsending {
   status: IStatus;
@@ -58,7 +59,10 @@ const Oppsummering: React.FC = () => {
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
         });
-        settSkjema({ ...skjema, innsendingsdato: kvittering.motattDato });
+        settSkjema({
+          ...skjema,
+          innsendingsdato: parseISO(kvittering.motattDato),
+        });
         history.push(nesteRoute.path);
       })
       .catch((e) =>
