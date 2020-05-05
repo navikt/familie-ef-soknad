@@ -15,7 +15,7 @@ import Forside from './Forside';
 import Spørsmål from './steg/1-Spørsmål';
 import Oppsummering from './steg/2-Oppsummering';
 import Kvittering from './steg/3-Kvittering';
-import { SkjemaProvider } from './SkjemaContext';
+import { SkjemaProvider, useSkjema } from './SkjemaContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -23,6 +23,7 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { settPerson } = usePersonContext();
+  const { skjema } = useSkjema();
 
   autentiseringsInterceptor();
 
@@ -68,7 +69,11 @@ const App = () => {
                 <Oppsummering />
               </Route>
               <Route path={'/arbeidssoker/kvittering'}>
-                <Kvittering />
+                {skjema?.innsendingsdato !== undefined ? (
+                  <Kvittering />
+                ) : (
+                  <Feilside />
+                )}
               </Route>
             </Switch>
           </SkjemaProvider>
