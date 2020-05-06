@@ -45,6 +45,7 @@ export default {
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'feil.alert': 'Noe gikk galt!',
 
     'datovelger.periode.feilFormat':
       'Startsdato må være tidligere enn sluttdato.',
