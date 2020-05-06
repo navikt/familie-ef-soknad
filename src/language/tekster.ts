@@ -16,6 +16,10 @@ export default {
     'skjema.send': 'Send skjema',
     'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',
 
+    'skjema.forside.disclaimer':
+      'Jeg er klar over at jeg kan miste retten til overgangsstønad dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+    'skjema.forside.disclaimer.tittel': 'Vi stoler på deg',
+
     'skjema.oppsummering.disclaimer':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
     'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
