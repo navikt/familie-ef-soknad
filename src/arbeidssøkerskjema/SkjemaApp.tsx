@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
@@ -15,7 +14,7 @@ import Forside from './Forside';
 import Spørsmål from './steg/1-Spørsmål';
 import Oppsummering from './steg/2-Oppsummering';
 import Kvittering from './steg/3-Kvittering';
-import { SkjemaProvider } from './SkjemaContext';
+import { SkjemaProvider, useSkjema } from './SkjemaContext';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -23,6 +22,7 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { settPerson } = usePersonContext();
+  const { skjema } = useSkjema();
 
   autentiseringsInterceptor();
 
@@ -56,9 +56,9 @@ const App = () => {
       return (
         <>
           <SkjemaProvider>
-            <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssoker'}>
+                <Forside />
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
               <Route path={'/arbeidssoker/sporsmal'}>
@@ -68,7 +68,11 @@ const App = () => {
                 <Oppsummering />
               </Route>
               <Route path={'/arbeidssoker/kvittering'}>
-                <Kvittering />
+                {skjema?.innsendingsdato !== undefined ? (
+                  <Kvittering innsendingsdato={skjema.innsendingsdato} />
+                ) : (
+                  <Feilside />
+                )}
               </Route>
             </Switch>
           </SkjemaProvider>
