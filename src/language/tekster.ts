@@ -409,6 +409,8 @@ export default {
       '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
+    'arbeidssøker.alert.halvstilling':
+      'Som enslig mor eller far er det ikke krav til at du må søke heltidsarbeid. Det samme gjelder kvelds-, natt-, helg- og skiftarbeid. ',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
