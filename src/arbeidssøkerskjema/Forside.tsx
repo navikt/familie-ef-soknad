@@ -129,7 +129,7 @@ const Forside: React.FC<any> = ({ intl }) => {
                 }
                 type={'hoved'}
               >
-                <LocaleTekst tekst={'knapp.start'} />
+                <LocaleTekst tekst={'skjema.knapp.start'} />
               </KnappBase>
             </FeltGruppe>
           ) : null}
