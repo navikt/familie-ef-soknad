@@ -9,15 +9,15 @@ import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { useSkjema } from '../SkjemaContext';
 
-const Kvittering: React.FC = () => {
+interface Props {
+  innsendingsdato: Date;
+}
+const Kvittering: React.FC<Props> = ({ innsendingsdato }) => {
   const intl = useIntl();
-  const { skjema } = useSkjema();
 
   const mottattAlert: string =
     hentTekst('skjema.alert.mottatt', intl) +
-    ` ${formatDateHour(
-      skjema.innsendingsdato ? skjema.innsendingsdato : dagensDato
-    )} `;
+    ` ${formatDateHour(innsendingsdato)} `;
 
   return (
     <Side

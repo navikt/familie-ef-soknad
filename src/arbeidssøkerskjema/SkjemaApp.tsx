@@ -34,7 +34,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       hentToggles(settToggles).catch((err: Error) => {
-        settError(false);
+        // settError(false);
       });
 
       const fetchPersonData = () => {
@@ -45,7 +45,7 @@ const App = () => {
           });
         });
       };
-      fetchPersonData();
+      // fetchPersonData();
       settFetching(false);
     };
     fetchData();
@@ -60,6 +60,7 @@ const App = () => {
             <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssoker'}>
+                <Forside />
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
               <Route path={'/arbeidssoker/sporsmal'}>
@@ -70,7 +71,7 @@ const App = () => {
               </Route>
               <Route path={'/arbeidssoker/kvittering'}>
                 {skjema?.innsendingsdato !== undefined ? (
-                  <Kvittering />
+                  <Kvittering innsendingsdato={skjema.innsendingsdato} />
                 ) : (
                   <Feilside />
                 )}
