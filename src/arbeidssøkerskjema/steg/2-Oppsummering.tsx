@@ -61,7 +61,7 @@ const Oppsummering: React.FC = () => {
         });
         settSkjema({
           ...skjema,
-          innsendingsdato: parseISO(kvittering.motattDato),
+          innsendingsdato: parseISO(kvittering.mottattDato),
         });
         history.push(nesteRoute.path);
       })
