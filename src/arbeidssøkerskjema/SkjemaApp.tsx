@@ -67,11 +67,7 @@ const App = () => {
                 <Oppsummering />
               </Route>
               <Route path={'/arbeidssoker/kvittering'}>
-                {skjema?.innsendingsdato !== undefined ? (
-                  <Kvittering innsendingsdato={skjema.innsendingsdato} />
-                ) : (
-                  <Feilside />
-                )}
+                <Kvittering />
               </Route>
             </Switch>
           </SkjemaProvider>
