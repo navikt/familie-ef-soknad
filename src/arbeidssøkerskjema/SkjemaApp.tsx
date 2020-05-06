@@ -21,6 +21,7 @@ const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+  const [feilmelding, settFeilmelding] = useState('');
   const { settPerson } = usePersonContext();
 
   autentiseringsInterceptor();
@@ -36,12 +37,21 @@ const App = () => {
       });
 
       const fetchPersonData = () => {
-        hentPersonData().then((response) => {
-          settPerson({
-            type: PersonActionTypes.HENT_PERSON,
-            payload: response,
+        hentPersonData()
+          .then((response) => {
+            settPerson({
+              type: PersonActionTypes.HENT_PERSON,
+              payload: response,
+            });
+            settError(false);
+            settFeilmelding('');
+          })
+          .catch((e) => {
+            settError(true);
+            settFeilmelding(
+              'En feil oppstod ved uthenting av dine personopplysninger'
+            );
           });
-        });
       };
       fetchPersonData();
       settFetching(false);
@@ -73,7 +83,7 @@ const App = () => {
         </>
       );
     } else if (error) {
-      return <Feilside />;
+      return <Feilside tekst={feilmelding} />;
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }
