@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
@@ -57,7 +56,6 @@ const App = () => {
       return (
         <>
           <SkjemaProvider>
-            <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssoker'}>
                 <Forside />
