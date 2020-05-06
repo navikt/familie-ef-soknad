@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
