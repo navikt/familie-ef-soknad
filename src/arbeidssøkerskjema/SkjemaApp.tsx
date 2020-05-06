@@ -44,10 +44,13 @@ const App = () => {
               payload: response,
             });
             settError(false);
+            settFeilmelding('');
           })
           .catch((e) => {
             settError(true);
-            settFeilmelding(`${e}`);
+            settFeilmelding(
+              'En feil oppstod ved uthenting av dine personopplysninger'
+            );
           });
       };
       fetchPersonData();
