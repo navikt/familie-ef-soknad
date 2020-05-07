@@ -118,7 +118,9 @@ const Oppsummering: React.FC = () => {
 
           <KnappBase
             type={'hoved'}
-            onClick={() => sendSkjema(skjema.arbeidssøker)}
+            onClick={() =>
+              !innsendingState.venter && sendSkjema(skjema.arbeidssøker)
+            }
             className={'neste'}
             spinner={innsendingState.venter}
           >
