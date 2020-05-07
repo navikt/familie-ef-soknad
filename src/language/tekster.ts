@@ -406,7 +406,7 @@ export default {
     'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
     'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
     'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
-      '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
+      '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time hver vei. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
     'arbeidssøker.alert.halvstilling':
