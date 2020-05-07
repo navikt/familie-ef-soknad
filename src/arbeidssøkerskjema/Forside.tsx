@@ -14,7 +14,6 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -76,11 +75,6 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
-          <div style={{ marginBottom: '2rem' }}>
-            <AlertStripeFeil>
-              Innsending av søknad er nede, vennligst prøv igjen senere.{' '}
-            </AlertStripeFeil>
-          </div>
           <div className="veileder">
             <VeilederSnakkeboble
               tekst={hentBeskjedMedNavn(
