@@ -6,7 +6,7 @@ export default {
     'skjema.beskrivelse':
       'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
       '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
-      '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV</li>' +
+      '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV, hvis du ikke allerede har gjort det</li>' +
       '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
       '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
       '<li>sende meldekort hver 14. dag</li></ol>',
@@ -387,11 +387,11 @@ export default {
     'arbeidssøker.label.registrert':
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
-      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
+      'Du kan registrere deg etter at du har sendt inn dette skjemaet. Da hjelper vi deg videre til registreringen.',
     'arbeidssøker.hjelpetekst-åpne.registrert':
       'Hva vil det si å være registrert som arbeidssøker hos NAV?',
     'arbeidssøker.hjelpetekst-innhold.registrert':
-      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no.',
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no. Hvis du ikke er registrert, kan du gjøre dette etter at du har sendt inn dette skjemaet.  ',
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
     'arbeidssøker.alert.villig':
@@ -411,6 +411,16 @@ export default {
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
     'arbeidssøker.alert.halvstilling':
       'Som enslig mor eller far er det ikke krav til at du må søke heltidsarbeid. Det samme gjelder kvelds-, natt-, helg- og skiftarbeid. ',
+    'arbeidssøker.tekst.tillegstønad':
+      'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>reise når du er arbeidssøker</li>' +
+      '<li>flytting</li>' +
+      '</ul>' +
+      'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
+    'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
+    'arbeidssøker.knapp.tilleggstønad': 'Søk tillegsstønader',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
