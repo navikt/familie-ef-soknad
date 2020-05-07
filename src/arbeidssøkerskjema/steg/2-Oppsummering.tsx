@@ -106,33 +106,34 @@ const Oppsummering: React.FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      <SeksjonGruppe className={'sentrert'}>
+        <StyledKnapper>
+          <KnappBase
+            className={'tilbake'}
+            type={'standard'}
+            onClick={() => history.push(forrigeRoute.path)}
+          >
+            <LocaleTekst tekst={'knapp.tilbake'} />
+          </KnappBase>
 
-      <StyledKnapper>
-        <KnappBase
-          className={'tilbake'}
-          type={'standard'}
-          onClick={() => history.push(forrigeRoute.path)}
-        >
-          <LocaleTekst tekst={'knapp.tilbake'} />
-        </KnappBase>
+          <KnappBase
+            type={'hoved'}
+            onClick={() => sendSkjema(skjema.arbeidssøker)}
+            className={'neste'}
+            spinner={innsendingState.venter}
+          >
+            <LocaleTekst tekst={'skjema.send'} />
+          </KnappBase>
 
-        <KnappBase
-          type={'hoved'}
-          onClick={() => sendSkjema(skjema.arbeidssøker)}
-          className={'neste'}
-          spinner={innsendingState.venter}
-        >
-          <LocaleTekst tekst={'skjema.send'} />
-        </KnappBase>
-
-        <KnappBase
-          className={'avbryt'}
-          type={'flat'}
-          onClick={() => history.push(Routes[0].path)}
-        >
-          <LocaleTekst tekst={'knapp.avbryt'} />
-        </KnappBase>
-      </StyledKnapper>
+          <KnappBase
+            className={'avbryt'}
+            type={'flat'}
+            onClick={() => history.push(Routes[0].path)}
+          >
+            <LocaleTekst tekst={'knapp.avbryt'} />
+          </KnappBase>
+        </StyledKnapper>
+      </SeksjonGruppe>
     </Side>
   );
 };
