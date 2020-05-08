@@ -81,5 +81,10 @@ export const ønskerHalvStillig: ISpørsmål = {
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: '',
+    innholdTekstid: 'arbeidssøker.alert.halvstilling',
+    lukkeTekstid: '',
+  },
   svaralternativer: JaNeiSvar,
 };
