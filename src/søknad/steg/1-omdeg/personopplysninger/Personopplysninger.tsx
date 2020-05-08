@@ -116,27 +116,24 @@ const Personopplysninger: React.FC = () => {
         )}
       </KomponentGruppe>
 
-      {telefonnr === '' ? (
-        <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-          type="tel"
-          bredde={'M'}
-          onChange={(e) => settTelefonnummer(e)}
-          feil={
-            feilTelefonnr !== undefined
-              ? { feilmelding: feilTelefonnr }
-              : undefined
-          }
-        />
-      ) : (
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'person.telefonnr'} />
-          </Element>
-          <Normaltekst>{telefonnr}</Normaltekst>
-        </FeltGruppe>
-      )}
+      {søkerBorPåRegistrertAdresse?.verdi &&
+        (telefonnr === '' ? (
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+            type="tel"
+            bredde={'M'}
+            onChange={(e) => settTelefonnummer(e)}
+            feil={feilTelefonnr !== undefined ? feilTelefonnr : undefined}
+          />
+        ) : (
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'person.telefonnr'} />
+            </Element>
+            <Normaltekst>{telefonnr}</Normaltekst>
+          </FeltGruppe>
+        ))}
     </SeksjonGruppe>
   );
 };
