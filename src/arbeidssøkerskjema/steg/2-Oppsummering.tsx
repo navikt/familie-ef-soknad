@@ -25,6 +25,7 @@ import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
+import { parseISO } from 'date-fns';
 
 interface Innsending {
   status: IStatus;
@@ -36,7 +37,7 @@ const Oppsummering: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const intl = useIntl();
-  const { skjema } = useSkjema();
+  const { skjema, settSkjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
     melding: `Søknad kan sendes`,
@@ -44,10 +45,11 @@ const Oppsummering: React.FC = () => {
   });
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const spørsmålOgSvar = VisLabelOgSvar(skjema);
+  const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
 
-  const sendSkjema = (skjema: IArbeidssøker) => {
-    const mappetSkjema = mapDataTilLabelOgVerdiTyper(skjema);
+  const sendSkjema = (arbeidssøker: IArbeidssøker) => {
+    const mappetSkjema = mapDataTilLabelOgVerdiTyper(arbeidssøker);
+
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnSkjema(mappetSkjema)
       .then((kvittering) => {
@@ -56,6 +58,10 @@ const Oppsummering: React.FC = () => {
           status: IStatus.SUKSESS,
           melding: `Vi har kontakt: ${kvittering.text}`,
           venter: false,
+        });
+        settSkjema({
+          ...skjema,
+          innsendingsdato: parseISO(kvittering.mottattDato),
         });
         history.push(nesteRoute.path);
       })
@@ -100,33 +106,36 @@ const Oppsummering: React.FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      <SeksjonGruppe className={'sentrert'}>
+        <StyledKnapper>
+          <KnappBase
+            className={'tilbake'}
+            type={'standard'}
+            onClick={() => history.push(forrigeRoute.path)}
+          >
+            <LocaleTekst tekst={'knapp.tilbake'} />
+          </KnappBase>
 
-      <StyledKnapper>
-        <KnappBase
-          className={'tilbake'}
-          type={'standard'}
-          onClick={() => history.push(forrigeRoute.path)}
-        >
-          <LocaleTekst tekst={'knapp.tilbake'} />
-        </KnappBase>
+          <KnappBase
+            type={'hoved'}
+            onClick={() =>
+              !innsendingState.venter && sendSkjema(skjema.arbeidssøker)
+            }
+            className={'neste'}
+            spinner={innsendingState.venter}
+          >
+            <LocaleTekst tekst={'skjema.send'} />
+          </KnappBase>
 
-        <KnappBase
-          type={'hoved'}
-          onClick={() => sendSkjema(skjema)}
-          className={'neste'}
-          spinner={innsendingState.venter}
-        >
-          <LocaleTekst tekst={'skjema.send'} />
-        </KnappBase>
-
-        <KnappBase
-          className={'avbryt'}
-          type={'flat'}
-          onClick={() => history.push(Routes[0].path)}
-        >
-          <LocaleTekst tekst={'knapp.avbryt'} />
-        </KnappBase>
-      </StyledKnapper>
+          <KnappBase
+            className={'avbryt'}
+            type={'flat'}
+            onClick={() => history.push(Routes[0].path)}
+          >
+            <LocaleTekst tekst={'knapp.avbryt'} />
+          </KnappBase>
+        </StyledKnapper>
+      </SeksjonGruppe>
     </Side>
   );
 };

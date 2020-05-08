@@ -2,9 +2,10 @@
 export default {
   nb: {
     'skjema.hei': 'Hei, [0]!',
+    'skjema.knapp.start': 'Start',
     'skjema.beskrivelse':
-      'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempelkurs eller praksisplass, som vil bidra til at du kommer i arbeid..' +
-      '<br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
+      'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
+      '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
       '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV</li>' +
       '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
       '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
@@ -15,6 +16,10 @@ export default {
       'Du kan registrere deg etter at du har sendt inn dette skjemaet.',
     'skjema.send': 'Send skjema',
     'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',
+
+    'skjema.forside.disclaimer':
+      'Jeg er klar over at jeg kan miste retten til overgangsstønad dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+    'skjema.forside.disclaimer.tittel': 'Vi stoler på deg',
 
     'skjema.oppsummering.disclaimer':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
@@ -40,6 +45,7 @@ export default {
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'feil.alert': 'Noe gikk galt!',
 
     'datovelger.periode.feilFormat':
       'Startsdato må være tidligere enn sluttdato.',

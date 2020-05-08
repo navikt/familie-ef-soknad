@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Sidetittel } from 'nav-frontend-typografi';
+import { Element, Sidetittel, Normaltekst } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
+import { hentTekst } from '../utils/søknad';
 import { useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
@@ -99,13 +100,13 @@ const Forside: React.FC<any> = ({ intl }) => {
 
           {disclaimer && (
             <div className="seksjon">
+              <Element className="disclaimer-tittel">
+                {hentTekst('skjema.forside.disclaimer.tittel', intl)}
+              </Element>
               <AlertStripeAdvarsel>
-                {' '}
-                <BlockContent
-                  className="typo-normal"
-                  blocks={disclaimer}
-                  serializers={{ types: { block: BlockRenderer } }}
-                />
+                <Normaltekst className="disclaimer-innhold">
+                  {hentTekst('skjema.forside.disclaimer', intl)}
+                </Normaltekst>
                 <BekreftCheckboksPanel
                   onChange={(e) => onChange()}
                   checked={bekreftet ? true : false}
@@ -128,7 +129,7 @@ const Forside: React.FC<any> = ({ intl }) => {
                 }
                 type={'hoved'}
               >
-                <LocaleTekst tekst={'knapp.start'} />
+                <LocaleTekst tekst={'skjema.knapp.start'} />
               </KnappBase>
             </FeltGruppe>
           ) : null}

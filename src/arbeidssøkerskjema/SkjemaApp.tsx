@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
@@ -22,6 +21,7 @@ const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+  const [feilmelding, settFeilmelding] = useState('');
   const { settPerson } = usePersonContext();
 
   autentiseringsInterceptor();
@@ -37,12 +37,21 @@ const App = () => {
       });
 
       const fetchPersonData = () => {
-        hentPersonData().then((response) => {
-          settPerson({
-            type: PersonActionTypes.HENT_PERSON,
-            payload: response,
+        hentPersonData()
+          .then((response) => {
+            settPerson({
+              type: PersonActionTypes.HENT_PERSON,
+              payload: response,
+            });
+            settError(false);
+            settFeilmelding('');
+          })
+          .catch((e) => {
+            settError(true);
+            settFeilmelding(
+              'En feil oppstod ved uthenting av dine personopplysninger'
+            );
           });
-        });
       };
       fetchPersonData();
       settFetching(false);
@@ -56,7 +65,6 @@ const App = () => {
       return (
         <>
           <SkjemaProvider>
-            <TestsideInformasjon />
             <Switch>
               <Route exact path={'/arbeidssoker'}>
                 {toggles[ToggleName.vis_innsending] && <Forside />}
@@ -75,7 +83,7 @@ const App = () => {
         </>
       );
     } else if (error) {
-      return <Feilside />;
+      return <Feilside tekst={feilmelding} />;
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }
