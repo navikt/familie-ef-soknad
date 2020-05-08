@@ -60,16 +60,24 @@ const Hjelpetekst: React.FC<Props> = ({
   const intl = useIntl();
 
   return (
-    <StyledHjelpetekst className={className}>
-      <Lesmerpanel
-        apneTekst={hentTekst(åpneTekstid, intl)}
-        lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
-      >
+    <>
+      {åpneTekstid === '' ? (
         <Normaltekst>
           <LocaleTekst tekst={innholdTekstid} />
         </Normaltekst>
-      </Lesmerpanel>
-    </StyledHjelpetekst>
+      ) : (
+        <StyledHjelpetekst className={className}>
+          <Lesmerpanel
+            apneTekst={hentTekst(åpneTekstid, intl)}
+            lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
+          >
+            <Normaltekst>
+              <LocaleTekst tekst={innholdTekstid} />
+            </Normaltekst>
+          </Lesmerpanel>
+        </StyledHjelpetekst>
+      )}
+    </>
   );
 };
 
