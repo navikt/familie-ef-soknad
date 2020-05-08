@@ -31,7 +31,7 @@ const Kvittering: React.FC = () => {
       skjema?.innsendingsdato ? skjema.innsendingsdato : dagensDato
     )} `;
 
-  return skjema?.innsendingsdato || true ? (
+  return skjema?.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'skjema.takk' })}
       skalViseKnapper={false}
