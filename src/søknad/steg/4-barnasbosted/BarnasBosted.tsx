@@ -20,7 +20,7 @@ const BarnasBosted: React.FC = () => {
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
-      kommerFraOppsummering={kommerFraOppsummering}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       {barna.map((barn, index) => {
         const key = barn.fødselsdato.verdi + index;

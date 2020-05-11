@@ -96,7 +96,7 @@ const Aktivitet: React.FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
-      kommerFraOppsummering={kommerFraOppsummering}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål

@@ -20,7 +20,10 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      kommerFraOppsummering={kommerFraOppsummering}
+      erSpørsmålBesvart={
+        søknad?.medlemskap?.søkerBosattINorgeSisteTreÅr?.verdi !== undefined
+      }
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <Personopplysninger />
 

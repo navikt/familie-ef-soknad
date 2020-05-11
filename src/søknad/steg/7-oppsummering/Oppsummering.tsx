@@ -14,7 +14,10 @@ const Oppsummering: React.FC = () => {
   const intl = useIntl();
   return (
     <>
-      <Side tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}>
+      <Side
+        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        skalViseKnapper={true}
+      >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}

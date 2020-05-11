@@ -22,6 +22,7 @@
 .side {
   margin: auto;
   width: @panel-bredde;
+  padding-bottom: 75px;
 
   @media @tablet {
     width: 100%;
@@ -42,14 +43,26 @@
     justify-self: center;
     flex-direction: column;
 
+    .avbryt {
+      margin-top: 1rem;
+    }
+  }
+
+  .treKnapper {
     display: grid;
-    grid-template-columns: repeat(2, min-content);
+    grid-template-columns: repeat(2, max-content);
     grid-template-rows: repeat(2, min-content);
     grid-template-areas:
       "tilbake neste"
       "avbryt avbryt";
-    grid-gap: 1rem;
 
+    @supports (grid-gap: 1rem) {
+      grid-gap: 1rem;
+
+      .avbryt {
+        margin-top: 0;
+      }
+    }
     .hideButton {
       display: none;
     }
@@ -65,16 +78,19 @@
       grid-area: avbryt;
     }
   }
-
   .tilbake-til-oppsummering {
     margin: 0 auto;
     display: block;
     margin-top: 2rem;
   }
 }
-
+.skjema_lenke {
+  color: @navBla;
+}
 .innholdscontainer {
   padding: 2rem;
+  margin: 0 auto;
+  max-width: @panel-innhold-bredde;
 
   .typo-systemtittel:first-child {
     display: flex;
