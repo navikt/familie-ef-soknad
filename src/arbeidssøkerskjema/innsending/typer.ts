@@ -1,0 +1,5 @@
+export enum IStatus {
+  KLAR_TIL_INNSENDING = 'KLAR_TIL_INNSENDING',
+  SUKSESS = 'SUKSESS',
+  FEILET = 'FEILET',
+}

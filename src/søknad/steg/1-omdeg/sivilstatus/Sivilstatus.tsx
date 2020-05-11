@@ -8,8 +8,8 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
-import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
+import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
@@ -22,6 +22,7 @@ import {
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
 import { useSøknad } from '../../../../context/SøknadContext';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -29,7 +30,9 @@ const Sivilstatus: React.FC = () => {
   const sivilstand = person.søker.sivilstand;
 
   const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
-  const [sivilstatus, settSivilstatus] = useState<ISivilstatus>({});
+  const [sivilstatus, settSivilstatus] = useState<ISivilstatus>(
+    søknad.sivilstatus
+  );
   const {
     harSøktSeparasjon,
     datoSøktSeparasjon,
@@ -124,9 +127,19 @@ const Sivilstatus: React.FC = () => {
                 søknad.sivilstatus
               )}
             />
+            {sivilstatus.erUformeltGift?.svarid === ESvar.JA && (
+              <AlertStripe type={'info'} form={'inline'}>
+                <LocaleTekst
+                  tekst={hentSvarAlertFraSpørsmål(
+                    ESvar.JA,
+                    erUformeltGiftSpørsmål
+                  )}
+                />
+              </AlertStripe>
+            )}
           </KomponentGruppe>
 
-          {erUformeltGift?.hasOwnProperty('verdi') ? (
+          {erUformeltGift?.hasOwnProperty('verdi') && (
             <KomponentGruppe>
               <JaNeiSpørsmål
                 spørsmål={erUformeltSeparertEllerSkiltSpørsmål}
@@ -136,8 +149,19 @@ const Sivilstatus: React.FC = () => {
                   søknad.sivilstatus
                 )}
               />
+              {sivilstatus.erUformeltSeparertEllerSkilt?.svarid ===
+                ESvar.JA && (
+                <AlertStripe type={'info'} form={'inline'}>
+                  <LocaleTekst
+                    tekst={hentSvarAlertFraSpørsmål(
+                      ESvar.JA,
+                      erUformeltSeparertEllerSkiltSpørsmål
+                    )}
+                  />
+                </AlertStripe>
+              )}
             </KomponentGruppe>
-          ) : null}
+          )}
         </>
       ) : null}
 

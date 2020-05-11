@@ -6,7 +6,7 @@ metadata:
   labels:
     team: teamfamilie
 spec:
-  image: navikt/familie-ef-soknad:{{version}}
+  image:  {{ image }}
   team: teamfamilie
   replicas:
     min: 1
@@ -22,6 +22,8 @@ spec:
     path: /metrics
   ingresses:
     - https://www-q0.nav.no/familie/alene-med-barn/soknad
+    - https://familie-ef-soknad.nais.oera-q.local
+    - https://familie-ef-soknad.dev-sbs.nais.io
   webproxy: true
   env:
     - name: APP_VERSION

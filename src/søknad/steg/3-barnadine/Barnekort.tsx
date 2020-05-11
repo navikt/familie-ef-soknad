@@ -92,7 +92,7 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {født
+                  {født.verdi
                     ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                     : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>

@@ -13,6 +13,11 @@ export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'arbeidssøker.hjelpetekst-åpne.registrert',
+    innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.registrert',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     JaSvar,
     {
@@ -27,7 +32,14 @@ export const erVilligTilÅTaImotTilbud: ISpørsmål = {
   søknadid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   tekstid: 'arbeidssøker.label.villig',
   flersvar: false,
-  svaralternativer: JaNeiSvar,
+  svaralternativer: [
+    JaSvar,
+    {
+      id: ESvar.NEI,
+      svar_tekstid: ESvarTekstid.NEI,
+      alert_tekstid: 'arbeidssøker.alert.villig',
+    },
+  ],
 };
 
 export const kanBegynneInnenEnUke: ISpørsmål = {
@@ -69,5 +81,10 @@ export const ønskerHalvStillig: ISpørsmål = {
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: '',
+    innholdTekstid: 'arbeidssøker.alert.halvstilling',
+    lukkeTekstid: '',
+  },
   svaralternativer: JaNeiSvar,
 };

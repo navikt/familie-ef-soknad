@@ -1,7 +1,34 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'skjema.hei': 'Hei, [0]!',
+    'skjema.knapp.start': 'Start',
+    'skjema.beskrivelse':
+      'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
+      '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
+      '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV, hvis du ikke allerede har gjort det</li>' +
+      '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
+      '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
+      '<li>sende meldekort hver 14. dag</li></ol>',
+
+    'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
+    'skjema.alert.registrert':
+      'Du kan registrere deg etter at du har sendt inn dette skjemaet.',
+    'skjema.send': 'Send skjema',
+    'skjema.feilet': 'Noe gikk galt. Skjema er ikke blitt sendt. Prøv igjen.',
+
+    'skjema.forside.disclaimer':
+      'Jeg er klar over at jeg kan miste retten til overgangsstønad dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+    'skjema.forside.disclaimer.tittel': 'Vi stoler på deg',
+
+    'skjema.oppsummering.disclaimer':
+      'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
+    'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
+    'skjema.takk': 'Takk',
+    'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
+
     'banner.tittel': 'Søknad om overgangsstønad',
+    'banner.tittel.arbeidssøker': 'Enslig mor eller far som er arbeidssøker',
 
     'språk.bokmål': 'Bokmål',
     'språk.engelsk': 'English',
@@ -18,6 +45,7 @@ export default {
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
+    'feil.alert': 'Noe gikk galt!',
 
     'datovelger.periode.feilFormat':
       'Startsdato må være tidligere enn sluttdato.',
@@ -56,7 +84,7 @@ export default {
 
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':
-      'Du må oppgi riktig adresse til Folkeregisteret for å bruke denne søknaden.',
+      'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
     'personopplysninger.info.endreAdresse':
       'Skal du ikke endre adresse i Folkeregisteret?',
     'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
@@ -105,7 +133,7 @@ export default {
     'sivilstatus.svar.endringISamværsordning': 'Endring i samværsordning',
     'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
     'sivilstatus.alert.dødsfall':
-      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til gjenlevende (lenke) og barnepensjon(lenke). ',
+      'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
     'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
@@ -216,6 +244,10 @@ export default {
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'barnasbosted.alert-advarsel.avtaleDeltBosted':
+      'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far.',
+    'barnasbosted.alert-info.avtaleOmDeltBosted':
+      'Du må legge ved avtale om delt bosted',
     'barnasbosted.alert.måBoHosDeg':
       '[0] må bo hos deg for at du skal ha rett til stønad',
     'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] ha adresse hos deg?',
@@ -361,10 +393,15 @@ export default {
     'arbeidssøker.label.registrert':
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
-      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker hos NAV. Du får en lenke til dette når du sender inn søknaden.',
-
+      'Du kan registrere deg etter at du har sendt inn dette skjemaet. Da hjelper vi deg videre til registreringen.',
+    'arbeidssøker.hjelpetekst-åpne.registrert':
+      'Hva vil det si å være registrert som arbeidssøker hos NAV?',
+    'arbeidssøker.hjelpetekst-innhold.registrert':
+      'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no. Hvis du ikke er registrert, kan du gjøre dette etter at du har sendt inn dette skjemaet.  ',
     'arbeidssøker.label.villig':
       'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'arbeidssøker.alert.villig':
+      'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
     'arbeidssøker.label.senestEnUke':
       'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
     'arbeidssøker.label.barnepass':
@@ -375,9 +412,21 @@ export default {
     'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
     'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Hva betyr 1 times reisevei?',
     'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
-      '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
+      '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time hver vei. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
+    'arbeidssøker.alert.halvstilling':
+      'Som enslig mor eller far er det ikke krav til at du må søke heltidsarbeid. Det samme gjelder kvelds-, natt-, helg- og skiftarbeid. ',
+    'arbeidssøker.tekst.tillegstønad':
+      'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>reise når du er arbeidssøker</li>' +
+      '<li>flytting</li>' +
+      '</ul>' +
+      'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
+    'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
+    'arbeidssøker.knapp.tilleggstønad': 'Søk tillegsstønader',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
@@ -467,7 +516,7 @@ export default {
     'oppsummering.sidetittel': 'Oppsummering',
     'oppsummering.normaltekst.lesgjennom':
       'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gjøre det.',
-    'oppsummering.tilbake': 'Tilbake til oppsummering',
+    'oppsummering.tilbake': 'Til oppsummering',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
@@ -491,7 +540,8 @@ export default {
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
     'dokumentasjon.søktSeparasjon.beskrivelse': '',
     'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
-    'dokumentasjon.begrunnelse.beskrivelse': '',
+    'dokumentasjon.begrunnelse.beskrivelse':
+      'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
 
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',

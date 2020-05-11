@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { useIntl } from 'react-intl';
+import { Normaltekst } from 'nav-frontend-typografi';
 
-const Feilside = () => {
+const Feilside: FC<{ tekst?: string }> = ({ tekst }) => {
+  const intl = useIntl();
   return (
     <div className="feilside">
-      <AlertStripeFeil>Noe galt skjedde</AlertStripeFeil>
+      <AlertStripeFeil>
+        {intl.formatMessage({ id: 'feil.alert' })}
+        <Normaltekst>{tekst}</Normaltekst>
+      </AlertStripeFeil>
     </div>
   );
 };

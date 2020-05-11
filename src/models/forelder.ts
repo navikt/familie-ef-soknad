@@ -12,7 +12,7 @@ export interface IForelder {
   fødselsdato?: IDatoFelt | null;
   personnr?: ITekstFelt;
   borINorge?: IBooleanFelt;
-  avtaleOmDeltBosted?: IBooleanFelt;
+  avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
   harAnnenForelderSamværMedBarn?: ITekstFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;

@@ -13,10 +13,11 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/vedlegg';
 import Environment from '../../Environment';
-import { useSøknad } from '../../context/SøknadContext';
 
 interface Props {
   intl: IntlShape;
+  settVedlegg: (vedleggliste: IVedlegg[]) => void;
+  vedleggsliste: IVedlegg[];
   tittel: string;
   dokumentasjonsType: string;
   beskrivelsesListe?: string[];
@@ -26,13 +27,14 @@ interface Props {
 
 const Filopplaster: React.FC<Props> = ({
   intl,
+  settVedlegg,
+  vedleggsliste,
   tittel,
   dokumentasjonsType,
   beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
-  const { søknad, settSøknad } = useSøknad();
   const [filliste, settFilliste] = useState<any>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
@@ -92,12 +94,9 @@ const Filopplaster: React.FC<Props> = ({
               { filObjekt: fil, dokumentId: data.dokumentId },
               ...prevListe,
             ]);
-            const nyVedleggsliste = [...søknad.vedleggsliste, ...nyeVedlegg];
+            const nyVedleggsliste = [...vedleggsliste, ...nyeVedlegg];
 
-            settSøknad({
-              ...søknad,
-              vedleggsliste: nyVedleggsliste,
-            });
+            settVedlegg(nyVedleggsliste);
           })
           .catch((error) => {
             console.log('Feil', error);
@@ -108,7 +107,7 @@ const Filopplaster: React.FC<Props> = ({
       });
     },
     // eslint-disable-next-line
-    [søknad]
+    []
   );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

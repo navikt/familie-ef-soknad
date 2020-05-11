@@ -5,6 +5,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Filopplaster from '../components/filopplaster/Filopplaster';
 import tekster from '../language/tekster';
 import { useSøknad } from '../context/SøknadContext';
+import { IVedlegg } from '../models/vedlegg';
 
 interface IState {
   status: string;
@@ -38,6 +39,10 @@ const SendSøknad = () => {
       );
   };
 
+  const settVedlegg = (vedleggliste: IVedlegg[]) => {
+    return vedleggliste;
+  };
+
   return (
     <>
       {søknad.sivilstatus.begrunnelseForSøknad &&
@@ -46,6 +51,8 @@ const SendSøknad = () => {
         søknad.sivilstatus.begrunnelseForSøknad.verdi ===
           tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
         <Filopplaster
+          settVedlegg={settVedlegg}
+          vedleggsliste={[]}
           tittel={'Erklæring om samlivsbrudd'}
           dokumentasjonsType={'samlivsbrudd'}
         />

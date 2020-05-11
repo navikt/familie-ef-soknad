@@ -1,14 +1,14 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { RadioPanel } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
 import { ESvar } from '../../../models/spørsmålogsvar';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
 
 interface Props {
   settBo: Function;

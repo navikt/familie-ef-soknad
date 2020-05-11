@@ -2,7 +2,7 @@ import React from 'react';
 import { Element } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { IBarn } from '../../../models/barn';
 
 const StyledBarnasBostedHeader = styled.div`

@@ -4,7 +4,7 @@ import { useIntl } from 'react-intl';
 import { Element } from 'nav-frontend-typografi';
 import { CheckboksPanel } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledCheckboxSpørsmål = styled.div`
   .radioknapp {

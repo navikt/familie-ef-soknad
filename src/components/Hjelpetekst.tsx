@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../language/LocaleTekst';
 import { hentTekst } from '../utils/søknad';
@@ -60,16 +60,24 @@ const Hjelpetekst: React.FC<Props> = ({
   const intl = useIntl();
 
   return (
-    <StyledHjelpetekst className={className}>
-      <Lesmerpanel
-        apneTekst={hentTekst(åpneTekstid, intl)}
-        lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
-      >
+    <>
+      {åpneTekstid === '' ? (
         <Normaltekst>
           <LocaleTekst tekst={innholdTekstid} />
         </Normaltekst>
-      </Lesmerpanel>
-    </StyledHjelpetekst>
+      ) : (
+        <StyledHjelpetekst className={className}>
+          <Lesmerpanel
+            apneTekst={hentTekst(åpneTekstid, intl)}
+            lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
+          >
+            <Normaltekst>
+              <LocaleTekst tekst={innholdTekstid} />
+            </Normaltekst>
+          </Lesmerpanel>
+        </StyledHjelpetekst>
+      )}
+    </>
   );
 };
 

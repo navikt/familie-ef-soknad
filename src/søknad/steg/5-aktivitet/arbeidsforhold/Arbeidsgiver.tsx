@@ -4,7 +4,7 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Input } from 'nav-frontend-skjema';
 import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';
@@ -15,6 +15,7 @@ import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTekst } from '../../../../utils/søknad';
 import {
   EArbeidsgiver,
+  EStilling,
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
@@ -55,15 +56,25 @@ const Arbeidsgiver: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [arbeidsgiver]);
 
-  const settSpørsmålOgSvar = (
-    nøkkel: EArbeidsgiver,
-    label: string,
-    verdi: ISvar
-  ) => {
+  const settSpørsmålOgSvar = (spørsmål: ISpørsmål, svar: ISvar) => {
+    if (
+      spørsmål.søknadid === EArbeidsgiver.fastStilling &&
+      svar.id === EStilling.fast &&
+      arbeidsgiver.harSluttDato
+    ) {
+      delete arbeidsgiver.harSluttDato;
+      delete arbeidsgiver.sluttdato;
+    }
+
     arbeidsgiver &&
       settArbeidsgiver({
         ...arbeidsgiver,
-        [nøkkel]: { label: label, verdi: hentTekst(verdi.svar_tekstid, intl) },
+        [spørsmål.søknadid]: {
+          spørsmålid: spørsmål.søknadid,
+          svarid: svar.id,
+          label: hentTekst(spørsmål.tekstid, intl),
+          verdi: hentTekst(svar.svar_tekstid, intl),
+        },
       });
   };
 
@@ -140,17 +151,11 @@ const Arbeidsgiver: React.FC<Props> = ({
         <MultiSvarSpørsmål
           toKorteSvar={true}
           spørsmål={hvaSlagsStilling}
-          settSpørsmålOgSvar={(spørsmål: ISpørsmål, svar: ISvar) =>
-            settSpørsmålOgSvar(
-              EArbeidsgiver.fastStilling,
-              spørsmål.tekstid,
-              svar
-            )
-          }
+          settSpørsmålOgSvar={settSpørsmålOgSvar}
           valgtSvar={arbeidsgiver.fastStilling?.verdi}
         />
       </FeltGruppe>
-      {arbeidsgiver.fastStilling && (
+      {arbeidsgiver.fastStilling?.svarid === EStilling.midlertidig && (
         <HarSøkerSluttdato
           arbeidsgiver={arbeidsgiver}
           settArbeidsgiver={settArbeidsgiver}
