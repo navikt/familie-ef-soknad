@@ -25,6 +25,7 @@ interface Props {
 
 const LeggTilBarnFødt: React.FC<Props> = ({
   navn,
+  personnummer,
   settNavn,
   settPersonnummer,
   settBo,
@@ -56,6 +57,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             key={'tlf'}
             label={intl.formatMessage({ id: 'person.nr' }).trim()}
             type="text"
+            value={personnummer}
             bredde={'S'}
             onChange={(e) => settPersonnummer(e.target.value, 'fødselsnummer')}
           />
