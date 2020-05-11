@@ -78,6 +78,7 @@ export default {
 
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.feilmelding.telefonnr': 'Du må ha minst 8 siffre',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',

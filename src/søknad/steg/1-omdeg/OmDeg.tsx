@@ -8,6 +8,7 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
+import { harSøkerTlfnr } from '../../../helpers/omdeg';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknad();
@@ -28,17 +29,19 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       <Personopplysninger />
 
       {søknad.søkerBorPåRegistrertAdresse &&
-      søknad.søkerBorPåRegistrertAdresse.verdi === true ? (
-        <>
-          <Sivilstatus />
+        søknad.søkerBorPåRegistrertAdresse.verdi === true &&
+        harSøkerTlfnr(søknad.person) && (
+          <>
+            <Sivilstatus />
 
-          {harSøktSeparasjon ||
-          harSøktSeparasjon === false ||
-          begrunnelseForSøknad ? (
-            <Medlemskap />
-          ) : null}
-        </>
-      ) : null}
+            {harSøktSeparasjon ||
+            harSøktSeparasjon === false ||
+            begrunnelseForSøknad ? (
+              <Medlemskap />
+            ) : null}
+          </>
+        )}
+
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp

@@ -14,6 +14,7 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
+import { harSøkerTlfnr, hentSøkersTlfnr } from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -21,7 +22,6 @@ const Personopplysninger: React.FC = () => {
   const { søker } = person;
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
-  const { mobiltelefon, jobbtelefon, privattelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
     undefined
   );
@@ -56,18 +56,9 @@ const Personopplysninger: React.FC = () => {
         },
       });
     } else {
-      settFeilTelefonnr('Feil format');
+      settFeilTelefonnr('personopplysninger.feilmelding.telefonnr');
     }
   };
-
-  const telefonnr =
-    mobiltelefon?.trim() !== ''
-      ? mobiltelefon
-      : privattelefon?.trim() !== ''
-      ? privattelefon
-      : jobbtelefon?.trim() !== ''
-      ? jobbtelefon
-      : '';
 
   return (
     <SeksjonGruppe>
@@ -117,21 +108,25 @@ const Personopplysninger: React.FC = () => {
       </KomponentGruppe>
 
       {søkerBorPåRegistrertAdresse?.verdi &&
-        (telefonnr === '' ? (
+        (!harSøkerTlfnr(søknad.person) ? (
           <Input
             key={'tlf'}
             label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
             type="tel"
             bredde={'M'}
             onChange={(e) => settTelefonnummer(e)}
-            feil={feilTelefonnr !== undefined ? feilTelefonnr : undefined}
+            feil={
+              feilTelefonnr !== undefined
+                ? intl.formatMessage({ id: feilTelefonnr })
+                : undefined
+            }
           />
         ) : (
           <FeltGruppe>
             <Element>
               <LocaleTekst tekst={'person.telefonnr'} />
             </Element>
-            <Normaltekst>{telefonnr}</Normaltekst>
+            <Normaltekst>{hentSøkersTlfnr(søknad.person)}</Normaltekst>
           </FeltGruppe>
         ))}
     </SeksjonGruppe>
