@@ -66,7 +66,7 @@ export default {
 
     'person.navn': 'Navn',
 
-    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
+    'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
