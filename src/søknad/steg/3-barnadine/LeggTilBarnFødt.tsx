@@ -84,6 +84,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             onChange={(e) => settBo(e)}
           />
         </div>
+
         {boHosDeg === ESvar.NEI && (
           <AlertStripe type="advarsel" form="inline" className="bor-ikke">
             <FormattedMessage id="barnadine.advarsel.borikke" />

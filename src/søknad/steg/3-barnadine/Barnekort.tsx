@@ -10,6 +10,7 @@ import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
 import { useSøknad } from '../../../context/SøknadContext';
 import { hentTekst } from '../../../utils/søknad';
+import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   navn: ITekstFelt;
@@ -49,16 +50,17 @@ const Barnekort: React.FC<Props> = ({
     : ufødtIkon;
 
   let bosted: string = '';
-  if (født !== undefined) {
-    bosted = født
-      ? harSammeAdresse
+
+  if (lagtTil) {
+    bosted = født.verdi
+      ? harSammeAdresse.verdi
         ? hentTekst('barnekort.adresse.bor', intl)
         : hentTekst('barnekort.adresse.borIkke', intl)
-      : harSammeAdresse
+      : harSammeAdresse.verdi
       ? hentTekst('barnekort.adresse.skalBo', intl)
       : hentTekst('barnekort.adresse.skalIkkeBo', intl);
   } else {
-    bosted = harSammeAdresse
+    bosted = harSammeAdresse.verdi
       ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
       : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
   }

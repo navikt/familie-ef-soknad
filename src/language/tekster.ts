@@ -227,6 +227,9 @@ export default {
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+
     'barnekort.år': 'år',
     'barnekort.lenke.endre': 'Endre',
     'barnekort.normaltekst.barn': 'Barn',

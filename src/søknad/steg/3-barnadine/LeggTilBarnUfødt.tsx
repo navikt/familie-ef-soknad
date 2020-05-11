@@ -2,8 +2,8 @@ import React from 'react';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
 import { ESvar } from '../../../models/spørsmålogsvar';
