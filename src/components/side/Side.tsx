@@ -9,7 +9,7 @@ import { Routes } from '../../routing/Routes';
 import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import NavigeringsKnapper from '../knapper/StyledKnapper';
+import NavigeringsKnapper from '../knapper/StyledNavigeringsKnapper';
 
 interface ISide {
   tittel: string;
