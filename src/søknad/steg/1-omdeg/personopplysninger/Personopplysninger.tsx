@@ -22,9 +22,7 @@ const Personopplysninger: React.FC = () => {
   const { søker } = person;
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
-  const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
-    undefined
-  );
+  const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -46,8 +44,6 @@ const Personopplysninger: React.FC = () => {
   const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
     if (telefonnr.length >= 8) {
-      settFeilTelefonnr(undefined);
-
       settSøknad({
         ...søknad,
         person: {
@@ -55,8 +51,6 @@ const Personopplysninger: React.FC = () => {
           søker: { ...søker, mobiltelefon: telefonnr },
         },
       });
-    } else {
-      settFeilTelefonnr('personopplysninger.feilmelding.telefonnr');
     }
   };
 
@@ -115,9 +109,16 @@ const Personopplysninger: React.FC = () => {
             type="tel"
             bredde={'M'}
             onChange={(e) => settTelefonnummer(e)}
+            onBlur={(e) => {
+              e.currentTarget.value.length >= 8
+                ? settFeilTelefonnr(false)
+                : settFeilTelefonnr(true);
+            }}
             feil={
-              feilTelefonnr !== undefined
-                ? intl.formatMessage({ id: feilTelefonnr })
+              feilTelefonnr
+                ? intl.formatMessage({
+                    id: 'personopplysninger.feilmelding.telefonnr',
+                  })
                 : undefined
             }
           />
