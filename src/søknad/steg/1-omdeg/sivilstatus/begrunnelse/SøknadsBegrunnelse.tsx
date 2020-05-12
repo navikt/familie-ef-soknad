@@ -51,10 +51,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
   const samlivsbruddMedForelder = erBegrunnelse(
     EBegrunnelse.samlivsbruddForeldre
   );
-  const samlivsbruddAndre = erBegrunnelse(EBegrunnelse.samlivsbruddAndre);
-  const endretSamvær = erBegrunnelse(EBegrunnelse.endringISamværsordning);
-  const dødsfall = erBegrunnelse(EBegrunnelse.dødsfall);
-  const annet = erBegrunnelse(EBegrunnelse.annet);
+  const samlivsbruddAndre: boolean = erBegrunnelse(
+    EBegrunnelse.samlivsbruddAndre
+  );
+  const endretSamvær: boolean = erBegrunnelse(
+    EBegrunnelse.endringISamværsordning
+  );
+  const dødsfall: boolean = erBegrunnelse(EBegrunnelse.dødsfall);
+  const annet: boolean = erBegrunnelse(EBegrunnelse.annet);
 
   const settTekstfeltBegrunnelseAnnet = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -72,8 +76,11 @@ const Søknadsbegrunnelse: FC<Props> = ({
 
   const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
+
+    const nyttSivilstatusObjekt = fjernIrrelevanteSøknadsfelter(svar);
+
     settSivilstatus({
-      ...sivilstatus,
+      ...nyttSivilstatusObjekt,
       begrunnelseForSøknad: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
@@ -84,30 +91,20 @@ const Søknadsbegrunnelse: FC<Props> = ({
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  const fjernIrrelevanteSøknadsfelter = () => {
-    if (!samlivsbruddMedForelder && datoForSamlivsbrudd) {
-      const { datoForSamlivsbrudd, ...nySivilstatusObjekt } = sivilstatus;
-      settSivilstatus(nySivilstatusObjekt);
+  const fjernIrrelevanteSøknadsfelter = (svar: ISvar): ISivilstatus => {
+    const nySivilStatusObjekt = sivilstatus;
+    if (svar.id !== EBegrunnelse.samlivsbruddForeldre && datoForSamlivsbrudd) {
+      delete nySivilStatusObjekt.datoForSamlivsbrudd;
+    }
+    if (svar.id !== EBegrunnelse.samlivsbruddAndre && datoFlyttetFraHverandre) {
+      delete nySivilStatusObjekt.datoFlyttetFraHverandre;
     }
 
-    if (
-      !samlivsbruddAndre &&
-      datoFlyttetFraHverandre &&
-      !samlivsbruddMedForelder
-    ) {
-      const { datoFlyttetFraHverandre, ...nySivilstatusObjekt } = sivilstatus;
-      settSivilstatus(nySivilstatusObjekt);
+    if (svar.id !== EBegrunnelse.endringISamværsordning && datoEndretSamvær) {
+      delete nySivilStatusObjekt.datoEndretSamvær;
     }
-
-    if (!endretSamvær && datoEndretSamvær) {
-      const { datoEndretSamvær, ...nySivilstatusObjekt } = sivilstatus;
-      settSivilstatus(nySivilstatusObjekt);
-    }
+    return nySivilStatusObjekt;
   };
-
-  useEffect(() => {
-    fjernIrrelevanteSøknadsfelter();
-  });
 
   const alertTekstForDødsfall = hentSvarAlertFraSpørsmål(
     EBegrunnelse.dødsfall,
