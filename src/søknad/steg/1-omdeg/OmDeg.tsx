@@ -13,17 +13,31 @@ import { harSøkerTlfnr } from '../../../helpers/omdeg';
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknad();
   const { begrunnelseForSøknad, harSøktSeparasjon } = søknad.sivilstatus;
+  const {
+    søkerBosattINorgeSisteTreÅr,
+    perioderBoddIUtlandet,
+  } = søknad.medlemskap;
   const location = useLocation();
   const history = useHistory();
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
+  const søkerFyltUtAlleFelterOgSpørsmål = () => {
+    if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
+      const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
+        (utenlandsopphold) =>
+          utenlandsopphold.begrunnelse.verdi === '' ||
+          !utenlandsopphold.begrunnelse
+      );
+      return harFelterUtenUtfyltBegrunnelse ? false : true;
+    } else if (søkerBosattINorgeSisteTreÅr?.verdi) return true;
+    else return false;
+  };
+
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      erSpørsmålBesvart={
-        søknad?.medlemskap?.søkerBosattINorgeSisteTreÅr?.verdi !== undefined
-      }
+      erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
       skalViseKnapper={!kommerFraOppsummering}
     >
       <Personopplysninger />
