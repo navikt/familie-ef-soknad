@@ -36,7 +36,6 @@ const BarnaDine: React.FC = () => {
             {barna?.map((barn) => (
               <Barnekort
                 key={barn.id}
-                settÅpenModal={settÅpenModal}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}
                 fnr={barn.fnr}

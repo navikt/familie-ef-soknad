@@ -10,7 +10,6 @@ import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
 import { useSøknad } from '../../../context/SøknadContext';
 import { hentTekst } from '../../../utils/søknad';
-import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   navn: ITekstFelt;
@@ -22,11 +21,9 @@ interface Props {
   lagtTil: boolean;
   født: IBooleanFelt;
   id: string;
-  settÅpenModal: Function;
 }
 
 const Barnekort: React.FC<Props> = ({
-  settÅpenModal,
   id,
   navn,
   fnr,
@@ -135,7 +132,9 @@ const Barnekort: React.FC<Props> = ({
               onClick={() => fjernFraSøknad(id)}
             >
               <Normaltekst>
-                <span className="lenke">Fjern fra søknad</span>
+                <span className="lenke">
+                  {intl.formatMessage({ id: 'barnekort.fjern' })}
+                </span>
               </Normaltekst>
             </div>
           ) : null}

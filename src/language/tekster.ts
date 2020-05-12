@@ -242,6 +242,7 @@ export default {
     'barnekort.adresse.borIkke': 'Bor ikke hos deg',
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
+    'barnekort.fjern': 'Fjern fra søknad',
 
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
