@@ -54,7 +54,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     else return false;
   };
 
-  console.log(erBegrunnelseBesvart);
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
