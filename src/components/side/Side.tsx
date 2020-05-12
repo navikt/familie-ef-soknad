@@ -9,7 +9,7 @@ import { Routes } from '../../routing/Routes';
 import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import NavigeringsKnapper from '../knapper/StyledNavigeringsKnapper';
+import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
 
 interface ISide {
   tittel: string;
@@ -56,7 +56,7 @@ const Side: React.FC<ISide> = ({
           </main>
         </Panel>
         {skalViseKnapper && (
-          <NavigeringsKnapper
+          <StyledNavigeringsWrapper
             classname={
               erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
             }
@@ -86,7 +86,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
-          </NavigeringsKnapper>
+          </StyledNavigeringsWrapper>
         )}
       </div>
     </div>

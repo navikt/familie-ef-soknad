@@ -53,7 +53,7 @@ const StyledNavigeringsKnapper = styled.div`
   }
 `;
 
-const NavigeringsKnapper: FC<{ classname: string }> = ({
+const StyledNavigeringsWrapper: FC<{ classname: string }> = ({
   classname,
   children,
 }) => {
@@ -64,4 +64,4 @@ const NavigeringsKnapper: FC<{ classname: string }> = ({
   );
 };
 
-export default NavigeringsKnapper;
+export default StyledNavigeringsWrapper;
