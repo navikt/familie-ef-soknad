@@ -32,8 +32,6 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     if (id) {
       const detteBarnet = søknad.person.barn.find((b) => b.id === id);
 
-      console.log('DETTEBARNET', detteBarnet);
-
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
       settPersonnummer(
         detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
