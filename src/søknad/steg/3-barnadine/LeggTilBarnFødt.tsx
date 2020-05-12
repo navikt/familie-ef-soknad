@@ -6,7 +6,11 @@ import Datovelger, {
 import { RadioPanel } from 'nav-frontend-skjema';
 import { Input } from 'nav-frontend-skjema';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { FormattedMessage } from 'react-intl';
+import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   navn?: string;
@@ -29,6 +33,8 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  const intl = useIntl();
+
   return (
     <>
       <KomponentGruppe>
@@ -40,48 +46,50 @@ const LeggTilBarnFødt: React.FC<Props> = ({
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <div className="fødselsnummer">
-          <div className="fødselsdato">
-            <Datovelger
-              settDato={(e) => settDato(e)}
-              valgtDato={barnDato}
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-            />
-          </div>
-          <Input
-            className="personnummer"
-            value={personnummer}
-            onChange={(e) => settPersonnummer(e.target.value)}
-            label="Personnummer. Kun hvis barnet har fått."
+        <FeltGruppe classname={'datoOgPersonnummer'}>
+          <Datovelger
+            valgtDato={barnDato}
+            tekstid={'datovelger.fødselsdato'}
+            datobegrensning={DatoBegrensning.TidligereDatoer}
+            settDato={(e) => settDato(e)}
           />
-        </div>
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.nr' }).trim()}
+            type="text"
+            value={personnummer}
+            bredde={'S'}
+            onChange={(e) => settPersonnummer(e.target.value, 'fødselsnummer')}
+          />
+        </FeltGruppe>
       </KomponentGruppe>
 
       <KomponentGruppe>
-        <Normaltekst>Bor barnet hos deg?</Normaltekst>
+        <Normaltekst>
+          {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
+        </Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
-            key={'ja'}
+            key={ESvar.JA}
             name={'radio-bosted'}
             label="Ja"
-            value={'ja'}
-            checked={boHosDeg === 'ja'}
+            value={ESvar.JA}
+            checked={boHosDeg === ESvar.JA}
             onChange={(e) => settBo(e)}
           />
           <RadioPanel
-            key={'nei'}
+            key={ESvar.NEI}
             name={'radio-bosted'}
             label="Nei"
-            value={'nei'}
-            checked={boHosDeg === 'nei'}
+            value={ESvar.NEI}
+            checked={boHosDeg === ESvar.NEI}
             onChange={(e) => settBo(e)}
           />
         </div>
-        {boHosDeg === 'nei' && (
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            Når barnet ikke skal bo hos deg, har du ikke rett til stønad til
-            enslig mor eller far
+
+        {boHosDeg === ESvar.NEI && (
+          <AlertStripe type="advarsel" form="inline" className="bor-ikke">
+            <FormattedMessage id="barnadine.advarsel.borikke" />
           </AlertStripe>
         )}
       </KomponentGruppe>

@@ -30,8 +30,8 @@ export const hentNyttBarn = (
       intl
     ),
     harSammeAdresse: hentFeltObjekt(
-      'barnekort.spm.født',
-      boHosDeg === 'ja',
+      'barnekort.spm.sammeAdresse',
+      boHosDeg === ESvar.JA ? true : boHosDeg === ESvar.NEI ? false : undefined,
       intl
     ),
     født: {

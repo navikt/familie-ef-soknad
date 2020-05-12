@@ -37,7 +37,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
         detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
       );
       settBarnFødt(detteBarnet?.født?.verdi);
-      settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? 'ja' : 'nei');
+      settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
       settDato(
         detteBarnet?.fødselsdato
           ? parseDate(detteBarnet.fødselsdato?.verdi)
@@ -66,29 +66,27 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     const fødselsnummer =
       barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
 
-    if (født) {
-      const nyttBarn: IBarn = hentNyttBarn(
-        fødselsnummer,
-        personnummer,
-        barnDato,
-        navn,
-        boHosDeg,
-        født,
-        intl
-      );
+    const nyttBarn: IBarn = hentNyttBarn(
+      fødselsnummer,
+      personnummer,
+      barnDato,
+      navn,
+      boHosDeg,
+      født ? født : false,
+      intl
+    );
 
-      const nyBarneListe = [
-        ...søknad.person.barn.filter((b) => b.id !== id),
-        nyttBarn,
-      ];
+    const nyBarneListe = [
+      ...søknad.person.barn.filter((b) => b.id !== id),
+      nyttBarn,
+    ];
 
-      settSøknad({
-        ...søknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      });
+    settSøknad({
+      ...søknad,
+      person: { ...søknad.person, barn: nyBarneListe },
+    });
 
-      settÅpenModal(false);
-    }
+    settÅpenModal(false);
   };
 
   return (

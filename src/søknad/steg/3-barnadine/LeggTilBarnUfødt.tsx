@@ -4,6 +4,9 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { FormattedMessage } from 'react-intl';
+import { useIntl } from 'react-intl';
+import { ESvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 
@@ -20,41 +23,46 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
+  const intl = useIntl();
+
   return (
     <>
       <KomponentGruppe>
         <Datovelger
           settDato={(e) => settDato(e)}
           valgtDato={barnDato}
-          tekstid={'datovelger.fødselsdato'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
+          tekstid={'barnadine.termindato'}
+          datobegrensning={DatoBegrensning.FremtidigeDatoer}
         />
+        <AlertStripe type="info" form="inline">
+          <FormattedMessage id="barnadine.info.terminbekreftelse" />
+        </AlertStripe>
       </KomponentGruppe>
-
       <KomponentGruppe>
-        <Normaltekst>Skal barnet bo hos deg?</Normaltekst>
+        <Normaltekst>
+          {intl.formatMessage({ id: 'barnekort.spm.skalBarnBoHosDeg' })}
+        </Normaltekst>
         <div className="radiogruppe-2-svar">
           <RadioPanel
-            key={'ja'}
+            key={ESvar.JA}
             name={'radio-bosted'}
             label="Ja"
-            value={'ja'}
-            checked={boHosDeg === 'ja'}
+            value={ESvar.JA}
+            checked={boHosDeg === ESvar.JA}
             onChange={(e) => settBo(e)}
           />
           <RadioPanel
-            key={'nei'}
+            key={ESvar.NEI}
             name={'radio-bosted'}
             label="Nei"
-            value={'nei'}
-            checked={boHosDeg === 'nei'}
+            value={ESvar.NEI}
+            checked={boHosDeg === ESvar.NEI}
             onChange={(e) => settBo(e)}
           />
         </div>
-        {boHosDeg === 'nei' && (
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            Når barnet ikke skal bo hos deg, har du ikke rett til stønad til
-            enslig mor eller far
+        {boHosDeg === ESvar.NEI && (
+          <AlertStripe type="advarsel" form="inline" className="bor-ikke">
+            <FormattedMessage id="barnadine.advarsel.skalikkebo" />
           </AlertStripe>
         )}
       </KomponentGruppe>

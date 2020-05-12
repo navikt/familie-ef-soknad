@@ -21,11 +21,9 @@ interface Props {
   lagtTil: boolean;
   født: IBooleanFelt;
   id: string;
-  settÅpenModal: Function;
 }
 
 const Barnekort: React.FC<Props> = ({
-  settÅpenModal,
   id,
   navn,
   fnr,
@@ -44,21 +42,22 @@ const Barnekort: React.FC<Props> = ({
   };
 
   const ikoner = [barn1, barn2, barn3];
-  const ikon = født
+  const ikon = født.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
 
   let bosted: string = '';
-  if (født !== undefined) {
-    bosted = født
-      ? harSammeAdresse
+
+  if (lagtTil) {
+    bosted = født.verdi
+      ? harSammeAdresse.verdi
         ? hentTekst('barnekort.adresse.bor', intl)
         : hentTekst('barnekort.adresse.borIkke', intl)
-      : harSammeAdresse
+      : harSammeAdresse.verdi
       ? hentTekst('barnekort.adresse.skalBo', intl)
       : hentTekst('barnekort.adresse.skalIkkeBo', intl);
   } else {
-    bosted = harSammeAdresse
+    bosted = harSammeAdresse.verdi
       ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
       : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
   }
@@ -92,7 +91,7 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {født
+                  {født.verdi
                     ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                     : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>
@@ -106,7 +105,7 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>
               {født.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
-              {' ' + intl.formatMessage({ id: 'barnekort.år' })}
+              {født.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
           <div className="informasjonselement">
@@ -133,14 +132,16 @@ const Barnekort: React.FC<Props> = ({
               onClick={() => fjernFraSøknad(id)}
             >
               <Normaltekst>
-                <span className="lenke">Fjern fra søknad</span>
+                <span className="lenke">
+                  {intl.formatMessage({ id: 'barnekort.fjern' })}
+                </span>
               </Normaltekst>
             </div>
           ) : null}
         </div>
         <Modal
           isOpen={åpenEndreModal}
-          onRequestClose={() => settÅpenModal(false)}
+          onRequestClose={() => settÅpenEndreModal(false)}
           closeButton={true}
           contentLabel="Halla"
         >

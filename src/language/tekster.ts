@@ -66,7 +66,7 @@ export default {
 
     'person.navn': 'Navn',
 
-    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
+    'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
@@ -216,12 +216,21 @@ export default {
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
-
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
+    'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
+    'barnadine.termindato': 'Termindato',
     'barnekort.termindato': 'TERMINDATO',
     'barnekort.fødselsdato': 'FØDSELSDATO',
     'barnekort.fødselsnummer': 'FØDSELSNUMMER',
     'barnekort.alder': 'ALDER',
     'barnekort.bosted': 'BOSTED',
+    'barnekort.adresse.registrert': 'Registrert på adressen din',
+    'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+
     'barnekort.år': 'år',
     'barnekort.lenke.endre': 'Endre',
     'barnekort.normaltekst.barn': 'Barn',
@@ -234,6 +243,7 @@ export default {
     'barnekort.adresse.borIkke': 'Bor ikke hos deg',
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
+    'barnekort.fjern': 'Fjern fra søknad',
 
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
@@ -657,6 +667,11 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
+
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
@@ -752,6 +767,10 @@ export default {
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.infohentet': 'Informasjonen er hentet fra Folkeregisteret',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.advarsel.borikke':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'barnadine.advarsel.skalikkebo':
+      'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
