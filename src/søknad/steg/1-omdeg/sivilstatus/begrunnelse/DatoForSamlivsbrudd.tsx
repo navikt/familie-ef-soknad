@@ -26,7 +26,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
             datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
           }
           tekstid={'sivilstatus.datovelger.samlivsbrudd'}
-          datobegrensning={DatoBegrensning.AlleDatoer}
+          datobegrensning={DatoBegrensning.TidligereDatoer}
         />
         <AlertStripe type={'info'} form={'inline'}>
           <LocaleTekst tekst={datovelgerLabel} />

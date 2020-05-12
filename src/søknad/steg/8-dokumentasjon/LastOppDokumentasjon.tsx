@@ -19,7 +19,7 @@ const LastOppDokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
 
   return (
-    <Side tittel={sidetittel}>
+    <Side tittel={sidetittel} skalViseKnapper={true}>
       <SeksjonGruppe>
         <Normaltekst>
           <FormattedHTMLMessage id={'dokumentasjon.beskrivelse'} />

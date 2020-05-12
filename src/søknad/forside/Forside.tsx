@@ -14,12 +14,11 @@ import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import { client } from '../../utils/sanity';
-import { useSøknad } from '../../context/SøknadContext';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
-  const { søknad, settSøknad } = useSøknad();
+  const [harBekreftet, settBekreftelse] = useState<boolean>(false);
   const location = useLocation();
   const [locale] = useSpråkContext();
   const history = useHistory();
@@ -44,10 +43,6 @@ const Forside: React.FC<any> = ({ intl }) => {
     };
     fetchData();
   }, []);
-
-  const onChange = () => {
-    settSøknad({ ...søknad, bekreftet: !søknad.bekreftet });
-  };
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -102,8 +97,8 @@ const Forside: React.FC<any> = ({ intl }) => {
                   serializers={{ types: { block: BlockRenderer } }}
                 />
                 <BekreftCheckboksPanel
-                  onChange={(e) => onChange()}
-                  checked={søknad.bekreftet ? true : false}
+                  onChange={(e) => settBekreftelse(!harBekreftet)}
+                  checked={harBekreftet}
                   label={hentBeskjedMedNavn(
                     person.søker.forkortetNavn,
                     intl.formatMessage({ id: 'side.bekreftelse' })
@@ -113,7 +108,7 @@ const Forside: React.FC<any> = ({ intl }) => {
             </div>
           )}
 
-          {søknad.bekreftet ? (
+          {harBekreftet ? (
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
                 onClick={() => history.push(nestePath.path)}

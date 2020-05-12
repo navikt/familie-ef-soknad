@@ -9,13 +9,20 @@ import { Routes } from '../../routing/Routes';
 import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
+import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
 
 interface ISide {
   tittel: string;
-  kommerFraOppsummering?: boolean;
+  erSpørsmålBesvart?: boolean;
+  skalViseKnapper: boolean;
 }
 
-const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
+const Side: React.FC<ISide> = ({
+  tittel,
+  children,
+  erSpørsmålBesvart,
+  skalViseKnapper,
+}) => {
   const location = useLocation();
   const history = useHistory();
 
@@ -32,9 +39,6 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
   );
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
-  const nesteKnappStyling = classNames('neste', {
-    hideButton: nesteRoute === undefined,
-  });
 
   return (
     <div className={'søknadsdialog'}>
@@ -51,8 +55,12 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
             {children}
           </main>
         </Panel>
-        {!kommerFraOppsummering ? (
-          <div className={'side__knapper'}>
+        {skalViseKnapper && (
+          <StyledNavigeringsWrapper
+            classname={
+              erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
+            }
+          >
             <KnappBase
               className={'tilbake'}
               type={'standard'}
@@ -60,13 +68,17 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            <KnappBase
-              type={'hoved'}
-              onClick={() => history.push(nesteRoute.path)}
-              className={nesteKnappStyling}
-            >
-              <LocaleTekst tekst={'knapp.neste'} />
-            </KnappBase>
+            {erSpørsmålBesvart && (
+              <KnappBase
+                type={'hoved'}
+                onClick={() => history.push(nesteRoute.path)}
+                className={classNames('neste', {
+                  hideButton: nesteRoute === undefined,
+                })}
+              >
+                <LocaleTekst tekst={'knapp.neste'} />
+              </KnappBase>
+            )}
             <KnappBase
               className={'avbryt'}
               type={'flat'}
@@ -74,8 +86,8 @@ const Side: React.FC<ISide> = ({ tittel, children, kommerFraOppsummering }) => {
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
-          </div>
-        ) : null}
+          </StyledNavigeringsWrapper>
+        )}
       </div>
     </div>
   );

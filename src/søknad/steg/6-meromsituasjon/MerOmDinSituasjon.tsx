@@ -125,7 +125,7 @@ const MerOmDinSituasjon: React.FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
-      kommerFraOppsummering={kommerFraOppsummering}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <SeksjonGruppe>
         <KomponentGruppe>

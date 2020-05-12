@@ -14,6 +14,7 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
+import { harSøkerTlfnr, hentSøkersTlfnr } from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -21,10 +22,7 @@ const Personopplysninger: React.FC = () => {
   const { søker } = person;
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
-  const { mobiltelefon, jobbtelefon, privattelefon } = søker;
-  const [feilTelefonnr, settFeilTelefonnr] = useState<string | undefined>(
-    undefined
-  );
+  const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -46,8 +44,6 @@ const Personopplysninger: React.FC = () => {
   const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
     if (telefonnr.length >= 8) {
-      settFeilTelefonnr(undefined);
-
       settSøknad({
         ...søknad,
         person: {
@@ -55,19 +51,8 @@ const Personopplysninger: React.FC = () => {
           søker: { ...søker, mobiltelefon: telefonnr },
         },
       });
-    } else {
-      settFeilTelefonnr('Feil format');
     }
   };
-
-  const telefonnr =
-    mobiltelefon?.trim() !== ''
-      ? mobiltelefon
-      : privattelefon?.trim() !== ''
-      ? privattelefon
-      : jobbtelefon?.trim() !== ''
-      ? jobbtelefon
-      : '';
 
   return (
     <SeksjonGruppe>
@@ -116,27 +101,35 @@ const Personopplysninger: React.FC = () => {
         )}
       </KomponentGruppe>
 
-      {telefonnr === '' ? (
-        <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-          type="tel"
-          bredde={'M'}
-          onChange={(e) => settTelefonnummer(e)}
-          feil={
-            feilTelefonnr !== undefined
-              ? { feilmelding: feilTelefonnr }
-              : undefined
-          }
-        />
-      ) : (
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'person.telefonnr'} />
-          </Element>
-          <Normaltekst>{telefonnr}</Normaltekst>
-        </FeltGruppe>
-      )}
+      {søkerBorPåRegistrertAdresse?.verdi &&
+        (!harSøkerTlfnr(søknad.person) ? (
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+            type="tel"
+            bredde={'M'}
+            onChange={(e) => settTelefonnummer(e)}
+            onBlur={(e) => {
+              e.currentTarget.value.length >= 8
+                ? settFeilTelefonnr(false)
+                : settFeilTelefonnr(true);
+            }}
+            feil={
+              feilTelefonnr
+                ? intl.formatMessage({
+                    id: 'personopplysninger.feilmelding.telefonnr',
+                  })
+                : undefined
+            }
+          />
+        ) : (
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'person.telefonnr'} />
+            </Element>
+            <Normaltekst>{hentSøkersTlfnr(søknad.person)}</Normaltekst>
+          </FeltGruppe>
+        ))}
     </SeksjonGruppe>
   );
 };

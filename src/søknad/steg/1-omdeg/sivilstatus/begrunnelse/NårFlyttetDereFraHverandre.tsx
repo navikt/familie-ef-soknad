@@ -26,7 +26,7 @@ const NårFlyttetDereFraHverandre: React.FC<Props> = ({
           datoFlyttetFraHverandre ? datoFlyttetFraHverandre.verdi : undefined
         }
         tekstid={datovelgerTekstid}
-        datobegrensning={DatoBegrensning.AlleDatoer}
+        datobegrensning={DatoBegrensning.TidligereDatoer}
       />
     </KomponentGruppe>
   );

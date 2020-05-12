@@ -1,3 +1,5 @@
+import { IPerson } from '../models/person';
+
 export const hentSivilstatus = (statuskode: string) => {
   switch (statuskode) {
     case 'GIFT':
@@ -21,4 +23,18 @@ export const hentSivilstatus = (statuskode: string) => {
     default:
       return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
   }
+};
+
+export const hentSøkersTlfnr = (søker: IPerson): string => {
+  const { mobiltelefon, privattelefon, jobbtelefon } = søker.søker;
+  return (
+    [mobiltelefon, privattelefon, jobbtelefon].find(
+      (nr) => nr && nr.trim() !== ''
+    ) || ''
+  );
+};
+
+export const harSøkerTlfnr = (søker: IPerson): boolean => {
+  const telefonnr = hentSøkersTlfnr(søker).trim();
+  return telefonnr !== '';
 };

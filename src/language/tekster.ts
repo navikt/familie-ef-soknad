@@ -78,6 +78,7 @@ export default {
 
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
+    'personopplysninger.feilmelding.telefonnr': 'Du må ha minst 8 siffre',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
@@ -109,7 +110,7 @@ export default {
     'sivilstatus.spm.erUformeltGift':
       'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltGift':
-      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+      'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
     'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
       'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',

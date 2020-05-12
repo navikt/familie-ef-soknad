@@ -81,7 +81,7 @@ const Bosituasjon: FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
-      kommerFraOppsummering={kommerFraOppsummering}
+      skalViseKnapper={!kommerFraOppsummering}
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
