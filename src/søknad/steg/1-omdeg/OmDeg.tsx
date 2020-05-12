@@ -9,10 +9,18 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
 import { harSøkerTlfnr } from '../../../helpers/omdeg';
+import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknad();
-  const { begrunnelseForSøknad, harSøktSeparasjon } = søknad.sivilstatus;
+  const {
+    begrunnelseForSøknad,
+    harSøktSeparasjon,
+    datoForSamlivsbrudd,
+    datoFlyttetFraHverandre,
+    datoEndretSamvær,
+    begrunnelseAnnet,
+  } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
     perioderBoddIUtlandet,
@@ -21,6 +29,18 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const history = useHistory();
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+
+  const erBegrunnelseBesvart: boolean =
+    (begrunnelseForSøknad?.svarid === EBegrunnelse.samlivsbruddForeldre &&
+      datoForSamlivsbrudd?.verdi !== undefined) ||
+    (begrunnelseForSøknad?.svarid === EBegrunnelse.samlivsbruddAndre &&
+      datoFlyttetFraHverandre?.verdi !== undefined) ||
+    (begrunnelseForSøknad?.svarid === EBegrunnelse.endringISamværsordning &&
+      datoEndretSamvær?.verdi !== undefined) ||
+    begrunnelseForSøknad?.svarid === EBegrunnelse.aleneFraFødsel ||
+    begrunnelseForSøknad?.svarid === EBegrunnelse.dødsfall ||
+    (begrunnelseForSøknad?.svarid === EBegrunnelse.annet &&
+      begrunnelseAnnet?.verdi !== undefined);
 
   const søkerFyltUtAlleFelterOgSpørsmål = () => {
     if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
@@ -34,6 +54,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     else return false;
   };
 
+  console.log(erBegrunnelseBesvart);
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
@@ -50,7 +71,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
             {harSøktSeparasjon ||
             harSøktSeparasjon === false ||
-            begrunnelseForSøknad ? (
+            erBegrunnelseBesvart ? (
               <Medlemskap />
             ) : null}
           </>

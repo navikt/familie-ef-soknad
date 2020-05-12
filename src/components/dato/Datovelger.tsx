@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { addDays, subDays } from 'date-fns';
-import { dagensDato } from '../../utils/dato';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
