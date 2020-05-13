@@ -20,11 +20,8 @@ interface Props {
 }
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
-  const [huketAv, settHuketAv] = useState<boolean>(false);
 
   const hukAv = (e: any) => {
-    settHuketAv(e.target.checked);
-
     const nyForelder = { ...forelder };
 
     if (e.target.checked) {
@@ -33,8 +30,16 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
       delete nyForelder.personnr;
     }
 
-    settForelder(nyForelder);
+    settForelder({
+      ...nyForelder,
+      kanIkkeOppgiAnnenForelderFar: {
+        label: hentTekst('barnasbosted.hvorforikkeoppgi', intl),
+        verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
+      },
+    });
   };
+
+  console.log(forelder);
 
   return (
     <>
@@ -53,7 +58,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             }
             value={forelder.navn ? forelder.navn?.verdi : ''}
             label="Navn"
-            disabled={huketAv}
+            disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
         </FeltGruppe>
       </KomponentGruppe>
@@ -91,39 +96,47 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             }
             value={forelder.personnr ? forelder.personnr?.verdi : ''}
             label="Personnummer (hvis barnet har fått)"
-            disabled={huketAv}
+            disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
         </div>
         <FeltGruppe classname="checkbox-forelder">
           <Checkbox
             label={'Jeg kan ikke oppgi den andre forelderen'}
-            checked={huketAv}
+            checked={
+              forelder.kanIkkeOppgiAnnenForelderFar?.verdi
+                ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi
+                : false
+            }
             onChange={hukAv}
           />
         </FeltGruppe>
-        <Normaltekst>
-          {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
-        </Normaltekst>
-        <FeltGruppe>
-          <Textarea
-            value={
-              forelder.hvordanPraktiseresSamværet &&
-              forelder.hvordanPraktiseresSamværet.verdi
-                ? forelder.hvordanPraktiseresSamværet.verdi
-                : ''
-            }
-            onChange={(e: any) =>
-              settForelder({
-                ...forelder,
-                hvordanPraktiseresSamværet: {
-                  label: hentTekst('skjema.oppsummering.disclaimer', intl),
-                  verdi: e.target.value,
-                },
-              })
-            }
-            label=""
-          />
-        </FeltGruppe>
+        {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
+          <>
+            <Normaltekst>
+              {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
+            </Normaltekst>
+            <FeltGruppe>
+              <Textarea
+                value={
+                  forelder.ikkeOppgittAnnenForelderBegrunnelse &&
+                  forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                    ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                    : ''
+                }
+                onChange={(e: any) =>
+                  settForelder({
+                    ...forelder,
+                    ikkeOppgittAnnenForelderBegrunnelse: {
+                      label: hentTekst('barnasbosted.hvorforikkeoppgi', intl),
+                      verdi: e.target.value,
+                    },
+                  })
+                }
+                label=""
+              />
+            </FeltGruppe>
+          </>
+        ) : null}
       </KomponentGruppe>
     </>
   );

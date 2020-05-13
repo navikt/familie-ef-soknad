@@ -11,6 +11,8 @@ export interface IForelder {
   skalBarnBoHosDeg?: ITekstFelt;
   fødselsdato?: IDatoFelt | null;
   personnr?: ITekstFelt;
+  kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
+  ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: IBooleanFelt;
   avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
   harAnnenForelderSamværMedBarn?: ITekstFelt;
