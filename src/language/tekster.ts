@@ -247,6 +247,8 @@ export default {
 
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
+    'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
+    'barnasbosted.land': 'Land',
     'barnasbosted.hvorforikkeoppgi':
       'Hvorfor kan du ikke oppgi den andre forelderen?',
     'barnasbosted.avtale':
@@ -677,6 +679,8 @@ export default {
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
+    'barnasbosted.land': 'Land',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':

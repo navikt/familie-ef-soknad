@@ -10,6 +10,7 @@ import {
   harAnnenForelderSamværMedBarn,
   harDereSkriftligSamværsavtale,
 } from './ForeldreConfig';
+import { Input } from 'nav-frontend-skjema';
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -109,6 +110,23 @@ const BostedOgSamvær: React.FC<Props> = ({
           />
         </KomponentGruppe>
       ) : null}
+      {forelder.borINorge?.verdi === false && (
+        <KomponentGruppe>
+          <Input
+            onChange={(e) =>
+              settForelder({
+                ...forelder,
+                land: {
+                  label: hentTekst('barnasbosted.land', intl),
+                  verdi: e.target.value,
+                },
+              })
+            }
+            value={forelder.land ? forelder.land?.verdi : ''}
+            label={hentTekst('barnasbosted.hvilketLand', intl)}
+          />
+        </KomponentGruppe>
+      )}
       <KomponentGruppe>
         <JaNeiSpørsmål
           spørsmål={avtaleOmDeltBosted}
