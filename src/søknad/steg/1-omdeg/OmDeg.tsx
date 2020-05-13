@@ -9,7 +9,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
 import {
-  erSøknadsBegrunnelseUtfylt,
+  erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
 
@@ -24,8 +24,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const history = useHistory();
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-
-  const erBegrunnelseBesvart = erSøknadsBegrunnelseUtfylt(søknad.sivilstatus);
 
   const søkerFyltUtAlleFelterOgSpørsmål = () => {
     if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
@@ -55,7 +53,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
             {harSøktSeparasjon ||
             harSøktSeparasjon === false ||
-            erBegrunnelseBesvart ? (
+            erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
               <Medlemskap />
             ) : null}
           </>

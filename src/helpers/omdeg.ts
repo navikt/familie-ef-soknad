@@ -40,7 +40,7 @@ export const harSøkerTlfnr = (søker: IPerson): boolean => {
   return telefonnr !== '';
 };
 
-export const erSøknadsBegrunnelseUtfylt = (sivilstatus: ISivilstatus) => {
+export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
   const {
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
