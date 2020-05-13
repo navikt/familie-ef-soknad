@@ -1,4 +1,5 @@
 import { IPerson } from '../models/person';
+import { EBegrunnelse, ISivilstatus } from '../models/steg/omDeg/sivilstatus';
 
 export const hentSivilstatus = (statuskode: string) => {
   switch (statuskode) {
@@ -37,4 +38,31 @@ export const hentSøkersTlfnr = (søker: IPerson): string => {
 export const harSøkerTlfnr = (søker: IPerson): boolean => {
   const telefonnr = hentSøkersTlfnr(søker).trim();
   return telefonnr !== '';
+};
+
+export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
+  const {
+    datoForSamlivsbrudd,
+    datoFlyttetFraHverandre,
+    datoEndretSamvær,
+    begrunnelseAnnet,
+    begrunnelseForSøknad,
+  } = sivilstatus;
+
+  const valgtBegrunnelse = begrunnelseForSøknad?.svarid;
+
+  switch (valgtBegrunnelse) {
+    case EBegrunnelse.samlivsbruddForeldre:
+      return datoForSamlivsbrudd?.verdi !== undefined;
+    case EBegrunnelse.samlivsbruddAndre:
+      return datoFlyttetFraHverandre?.verdi !== undefined;
+    case EBegrunnelse.endringISamværsordning:
+      return datoEndretSamvær?.verdi !== undefined;
+    case EBegrunnelse.aleneFraFødsel:
+      return true;
+    case EBegrunnelse.dødsfall:
+      return true;
+    case EBegrunnelse.annet:
+      return begrunnelseAnnet?.verdi !== undefined;
+  }
 };

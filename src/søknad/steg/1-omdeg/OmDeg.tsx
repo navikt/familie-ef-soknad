@@ -8,11 +8,14 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
-import { harSøkerTlfnr } from '../../../helpers/omdeg';
+import {
+  erSøknadsBegrunnelseBesvart,
+  harSøkerTlfnr,
+} from '../../../helpers/omdeg';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknad();
-  const { begrunnelseForSøknad, harSøktSeparasjon } = søknad.sivilstatus;
+  const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
     perioderBoddIUtlandet,
@@ -50,7 +53,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
             {harSøktSeparasjon ||
             harSøktSeparasjon === false ||
-            begrunnelseForSøknad ? (
+            erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
               <Medlemskap />
             ) : null}
           </>

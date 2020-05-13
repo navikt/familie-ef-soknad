@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { addDays, subDays } from 'date-fns';
-import { dagensDato } from '../../utils/dato';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -43,7 +42,6 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    settDato(valgtDato ? valgtDato : dagensDato);
     setDefaultLocale('nb');
     // eslint-disable-next-line
   }, []);
@@ -62,7 +60,8 @@ const Datovelger: React.FC<Props> = ({
               <DatePicker
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                placeholderText={'DD.MM.YYYY'}
+                selected={valgtDato !== undefined ? valgtDato : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
@@ -71,7 +70,8 @@ const Datovelger: React.FC<Props> = ({
               <DatePicker
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                placeholderText={'DD.MM.YYYY'}
+                selected={valgtDato !== undefined ? valgtDato : null}
                 dateFormat={'dd.MM.yyyy'}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
@@ -80,7 +80,8 @@ const Datovelger: React.FC<Props> = ({
               <DatePicker
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                selected={valgtDato !== undefined ? valgtDato : dagensDato}
+                placeholderText={'DD.MM.YYYY'}
+                selected={valgtDato !== undefined ? valgtDato : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
               />
