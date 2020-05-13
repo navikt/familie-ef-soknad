@@ -8,7 +8,10 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
-import { harSøkerTlfnr } from '../../../helpers/omdeg';
+import {
+  erSøknadsBegrunnelseUtfylt,
+  harSøkerTlfnr,
+} from '../../../helpers/omdeg';
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
@@ -30,17 +33,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
-  const erBegrunnelseBesvart: boolean =
-    (begrunnelseForSøknad?.svarid === EBegrunnelse.samlivsbruddForeldre &&
-      datoForSamlivsbrudd?.verdi !== undefined) ||
-    (begrunnelseForSøknad?.svarid === EBegrunnelse.samlivsbruddAndre &&
-      datoFlyttetFraHverandre?.verdi !== undefined) ||
-    (begrunnelseForSøknad?.svarid === EBegrunnelse.endringISamværsordning &&
-      datoEndretSamvær?.verdi !== undefined) ||
-    begrunnelseForSøknad?.svarid === EBegrunnelse.aleneFraFødsel ||
-    begrunnelseForSøknad?.svarid === EBegrunnelse.dødsfall ||
-    (begrunnelseForSøknad?.svarid === EBegrunnelse.annet &&
-      begrunnelseAnnet?.verdi !== undefined);
+  const erBegrunnelseBesvart = erSøknadsBegrunnelseUtfylt(søknad.sivilstatus);
 
   const søkerFyltUtAlleFelterOgSpørsmål = () => {
     if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
