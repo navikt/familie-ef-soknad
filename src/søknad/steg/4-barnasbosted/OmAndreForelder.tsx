@@ -112,9 +112,11 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
         </FeltGruppe>
         {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
           <>
-            <Normaltekst>
-              {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
-            </Normaltekst>
+            <div className="margin-bottom-05">
+              <Normaltekst>
+                {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
+              </Normaltekst>
+            </div>
             <FeltGruppe>
               <Textarea
                 value={
