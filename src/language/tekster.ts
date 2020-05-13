@@ -247,6 +247,8 @@ export default {
 
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
+    'barnasbosted.hvorforikkeoppgi':
+      'Hvorfor kan du ikke oppgi den andre forelderen?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.alert-advarsel.avtaleDeltBosted':

@@ -8,6 +8,10 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { Textarea } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
@@ -15,6 +19,7 @@ interface Props {
   forelder: IForelder;
 }
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
+  const intl = useIntl();
   const [huketAv, settHuketAv] = useState<boolean>(false);
 
   const hukAv = (e: any) => {
@@ -94,6 +99,29 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             label={'Jeg kan ikke oppgi den andre forelderen'}
             checked={huketAv}
             onChange={hukAv}
+          />
+        </FeltGruppe>
+        <Normaltekst>
+          {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
+        </Normaltekst>
+        <FeltGruppe>
+          <Textarea
+            value={
+              forelder.hvordanPraktiseresSamværet &&
+              forelder.hvordanPraktiseresSamværet.verdi
+                ? forelder.hvordanPraktiseresSamværet.verdi
+                : ''
+            }
+            onChange={(e: any) =>
+              settForelder({
+                ...forelder,
+                hvordanPraktiseresSamværet: {
+                  label: hentTekst('skjema.oppsummering.disclaimer', intl),
+                  verdi: e.target.value,
+                },
+              })
+            }
+            label=""
           />
         </FeltGruppe>
       </KomponentGruppe>
