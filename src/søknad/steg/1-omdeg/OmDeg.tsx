@@ -12,18 +12,10 @@ import {
   erSøknadsBegrunnelseUtfylt,
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
-import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad } = useSøknad();
-  const {
-    begrunnelseForSøknad,
-    harSøktSeparasjon,
-    datoForSamlivsbrudd,
-    datoFlyttetFraHverandre,
-    datoEndretSamvær,
-    begrunnelseAnnet,
-  } = søknad.sivilstatus;
+  const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
     perioderBoddIUtlandet,
