@@ -18,6 +18,7 @@ import {
 } from '../../../models/steg/bosituasjon';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -90,28 +91,30 @@ const Bosituasjon: FC = () => {
           valgtSvar={bosituasjon.delerBoligMedAndreVoksne.verdi}
           settSpørsmålOgSvar={settBosituasjonFelt}
         />
-        {valgtSvar && valgtSvar.alert_tekstid ? (
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            {valgtSvar.svar_tekstid.split('.')[2] ===
-            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
-              <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
-            ) : (
-              <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-            )}
-          </AlertStripe>
-        ) : null}
+        {valgtSvar && valgtSvar.alert_tekstid && (
+          <FeltGruppe>
+            <AlertStripe type={'advarsel'} form={'inline'}>
+              {valgtSvar.svar_tekstid.split('.')[2] ===
+              ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+                <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
+              ) : (
+                <LocaleTekst tekst={valgtSvar.alert_tekstid} />
+              )}
+            </AlertStripe>
+          </FeltGruppe>
+        )}
       </SeksjonGruppe>
 
-      {planerOmÅFlytteSammenEllerFåSamboer ? (
+      {planerOmÅFlytteSammenEllerFåSamboer && (
         <SeksjonGruppe>
           <SøkerSkalFlytteSammenEllerFåSamboer
             settBosituasjon={settBosituasjon}
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
-      ) : null}
+      )}
 
-      {harSøkerEkteskapsliknendeForhold ? (
+      {harSøkerEkteskapsliknendeForhold && (
         <SeksjonGruppe>
           <OmSamboerenDin
             tittel={'bosituasjon.tittel.omSamboer'}
@@ -120,7 +123,7 @@ const Bosituasjon: FC = () => {
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
-      ) : null}
+      )}
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp
