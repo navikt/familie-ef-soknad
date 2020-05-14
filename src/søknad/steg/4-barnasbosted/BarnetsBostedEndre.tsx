@@ -16,8 +16,10 @@ import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/barn';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
+import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 
@@ -140,6 +142,41 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   }
                 />
               </KomponentGruppe>
+              {forelder.borISammeHus?.verdi ===
+              hentTekst('barnasbosted.spm.ja', intl) ? (
+                <>
+                  <div className="margin-bottom-05">
+                    <Normaltekst>
+                      {intl.formatMessage({
+                        id: 'barnasbosted.spm.hvordanBorDere',
+                      })}
+                    </Normaltekst>
+                  </div>
+                  <FeltGruppe>
+                    <Textarea
+                      value={
+                        forelder.hvordanBorDere && forelder.hvordanBorDere.verdi
+                          ? forelder.hvordanBorDere.verdi
+                          : ''
+                      }
+                      onChange={(e: any) =>
+                        settForelder({
+                          ...forelder,
+                          hvordanBorDere: {
+                            label: hentTekst(
+                              'barnasbosted.spm.hvordanBorDere',
+                              intl
+                            ),
+                            verdi: e.target.value,
+                          },
+                        })
+                      }
+                      label=""
+                    />
+                  </FeltGruppe>
+                </>
+              ) : null}
+
               <KomponentGruppe>
                 <JaNeiSpørsmål
                   spørsmål={boddSammenFør}

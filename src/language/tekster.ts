@@ -249,7 +249,7 @@ export default {
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
     'barnasbosted.land': 'Land',
-    'barnasbosted.hvorforikkeoppgi':
+    'barnasbosted.spm.hvorforikkeoppgi':
       'Hvorfor kan du ikke oppgi den andre forelderen?',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
@@ -319,6 +319,7 @@ export default {
 
     'barnasbosted.spm.borISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.hvordanBorDere': 'Hvordan bor dere nærme hverandre?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.borisammehus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',

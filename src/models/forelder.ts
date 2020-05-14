@@ -20,6 +20,7 @@ export interface IForelder {
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
   borISammeHus?: ITekstFelt;
+  hvordanBorDere?: ITekstFelt;
   boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
   hvorMyeSammen?: ITekstFelt;
@@ -33,6 +34,7 @@ export enum EForelder {
   harDereSkriftligSamværsavtale = 'harDereSkriftligSamværsavtale',
   hvordanPraktiseresSamværet = 'hvordanPraktiseresSamværet',
   borISammeHus = 'borISammeHus',
+  hvordanBorDere = 'hvordanBorDere',
   boddSammenFør = 'boddSammenFør',
   flyttetFra = 'flyttetFra',
   hvorMyeSammen = 'hvorMyeSammen',

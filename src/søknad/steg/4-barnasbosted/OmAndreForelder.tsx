@@ -33,7 +33,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     settForelder({
       ...nyForelder,
       kanIkkeOppgiAnnenForelderFar: {
-        label: hentTekst('barnasbosted.hvorforikkeoppgi', intl),
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
         verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
       },
     });
@@ -114,7 +114,9 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           <>
             <div className="margin-bottom-05">
               <Normaltekst>
-                {intl.formatMessage({ id: 'barnasbosted.hvorforikkeoppgi' })}
+                {intl.formatMessage({
+                  id: 'barnasbosted.spm.hvorforikkeoppgi',
+                })}
               </Normaltekst>
             </div>
             <FeltGruppe>
@@ -129,7 +131,10 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
                   settForelder({
                     ...forelder,
                     ikkeOppgittAnnenForelderBegrunnelse: {
-                      label: hentTekst('barnasbosted.hvorforikkeoppgi', intl),
+                      label: hentTekst(
+                        'barnasbosted.spm.hvorforikkeoppgi',
+                        intl
+                      ),
                       verdi: e.target.value,
                     },
                   })
