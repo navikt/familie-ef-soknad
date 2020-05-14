@@ -19,6 +19,7 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { erFerdigUtfylt } from '../../../helpers/bosituasjon';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -74,14 +75,17 @@ const Bosituasjon: FC = () => {
 
   const planerOmÅFlytteSammenEllerFåSamboer =
     bosituasjon.delerBoligMedAndreVoksne.svarid ===
-    (ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+      ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.delerBoligMedAndreVoksne ||
-      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse);
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
