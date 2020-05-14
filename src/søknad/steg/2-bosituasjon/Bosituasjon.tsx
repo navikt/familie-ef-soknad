@@ -68,16 +68,15 @@ const Bosituasjon: FC = () => {
     )
   );
 
-  const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
-
   const harSøkerEkteskapsliknendeForhold =
-    valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+    ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
   const planerOmÅFlytteSammenEllerFåSamboer =
-    valgtSvarNøkkel === ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
-    valgtSvarNøkkel === ESøkerDelerBolig.delerBoligMedAndreVoksne ||
-    valgtSvarNøkkel ===
-      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+    (ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+      ESøkerDelerBolig.delerBoligMedAndreVoksne ||
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse);
 
   return (
     <Side
@@ -94,7 +93,7 @@ const Bosituasjon: FC = () => {
         {valgtSvar && valgtSvar.alert_tekstid && (
           <FeltGruppe>
             <AlertStripe type={'advarsel'} form={'inline'}>
-              {valgtSvar.svar_tekstid.split('.')[2] ===
+              {bosituasjon.delerBoligMedAndreVoksne.svarid ===
               ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
                 <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
               ) : (

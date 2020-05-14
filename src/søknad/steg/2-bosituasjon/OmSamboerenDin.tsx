@@ -69,7 +69,7 @@ const OmSamboerenDin: FC<Props> = ({
         valgtPersonInfo={samboerDetaljer ? samboerDetaljer : tomPersonInfo}
       />
 
-      {ekteskapsLiknendeForhold === true ? (
+      {ekteskapsLiknendeForhold && samboerDetaljer?.fødselsdato && (
         <FeltGruppe>
           <Datovelger
             valgtDato={
@@ -82,7 +82,7 @@ const OmSamboerenDin: FC<Props> = ({
             settDato={(e) => settDatoFlyttetSammen(e)}
           />
         </FeltGruppe>
-      ) : null}
+      )}
     </KomponentGruppe>
   );
 };
