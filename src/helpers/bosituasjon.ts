@@ -6,16 +6,12 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     delerBoligMedAndreVoksne,
     samboerDetaljer,
     datoFlyttetSammenMedSamboer,
-    datoSkalGifteSegEllerBliSamboer,
     skalGifteSegEllerBliSamboer,
   } = bosituasjon;
 
   const harPlanerOmÅBliSamboerEllerSkalGifteSeg =
     skalGifteSegEllerBliSamboer &&
     skalGifteSegEllerBliSamboer.svarid === ESvar.JA;
-  const harSattDatoSkalGifteSegEllerBliSamboer = datoSkalGifteSegEllerBliSamboer?.verdi
-    ? true
-    : false;
 
   const harSattFødselsdato = samboerDetaljer?.fødselsdato ? true : false;
 
