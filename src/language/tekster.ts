@@ -335,6 +335,8 @@ export default {
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.spm.beskrivSamværUtenBarn':
+      'Hvor mye er du sammen med den andre forelderen til [0]?',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',

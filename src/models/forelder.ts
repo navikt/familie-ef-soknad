@@ -24,6 +24,7 @@ export interface IForelder {
   boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
   hvorMyeSammen?: ITekstFelt;
+  beskrivSamværUtenBarn?: ITekstFelt;
 }
 
 export enum EForelder {
@@ -38,4 +39,5 @@ export enum EForelder {
   boddSammenFør = 'boddSammenFør',
   flyttetFra = 'flyttetFra',
   hvorMyeSammen = 'hvorMyeSammen',
+  beskrivSamværUtenBarn = 'beskrivSamværUtenBarn',
 }

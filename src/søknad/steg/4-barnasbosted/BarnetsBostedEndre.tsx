@@ -229,6 +229,41 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   }
                 />
               </KomponentGruppe>
+              {forelder.hvorMyeSammen?.verdi ===
+              hentTekst('barnasbosted.spm.møtesUtenom', intl) ? (
+                <>
+                  <div className="margin-bottom-05">
+                    <Normaltekst>
+                      {intl.formatMessage({
+                        id: 'barnasbosted.spm.beskrivSamværUtenBarn',
+                      })}
+                    </Normaltekst>
+                  </div>
+                  <FeltGruppe>
+                    <Textarea
+                      value={
+                        forelder.beskrivSamværUtenBarn &&
+                        forelder.beskrivSamværUtenBarn.verdi
+                          ? forelder.beskrivSamværUtenBarn.verdi
+                          : ''
+                      }
+                      onChange={(e: any) =>
+                        settForelder({
+                          ...forelder,
+                          beskrivSamværUtenBarn: {
+                            label: hentTekst(
+                              'barnasbosted.spm.beskrivSamværUtenBarn',
+                              intl
+                            ),
+                            verdi: e.target.value,
+                          },
+                        })
+                      }
+                      label=""
+                    />
+                  </FeltGruppe>
+                </>
+              ) : null}
             </>
           ) : null}
           <Knapp onClick={leggTilForelder}>Lagre</Knapp>
