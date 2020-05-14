@@ -54,7 +54,6 @@ const BostedOgSamvær: React.FC<Props> = ({
     }
 
     if (svar.id === EHarSamværMedBarn.nei) {
-      delete nyForelder.harDereSkriftligSamværsavtale;
       delete nyForelder.hvordanPraktiseresSamværet;
     }
 
