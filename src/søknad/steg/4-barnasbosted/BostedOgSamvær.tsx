@@ -173,9 +173,9 @@ const BostedOgSamvær: React.FC<Props> = ({
           visSamværsavtaleAdvarsel(
             forelder.harDereSkriftligSamværsavtale.verdi
           ) ? (
-            <div className="margin-top-2">
+            <div className="margin-top-1">
               <FeltGruppe>
-                <AlertStripe type={'info'}>
+                <AlertStripe type={'info'} form="inline">
                   <LocaleTekst
                     tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                   />
