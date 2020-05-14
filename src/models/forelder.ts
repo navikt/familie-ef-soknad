@@ -12,6 +12,7 @@ export interface IForelder {
   fødselsdato?: IDatoFelt | null;
   personnr?: ITekstFelt;
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
+  hvorforIkkeOppgi?: ISpørsmålFelt;
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: IBooleanFelt;
   land?: ITekstFelt;

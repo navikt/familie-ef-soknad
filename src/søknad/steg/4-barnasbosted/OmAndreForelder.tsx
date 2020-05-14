@@ -6,10 +6,13 @@ import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import { hvorforIkkeOppgi } from './ForeldreConfig';
 import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { IForelder } from '../../../models/forelder';
 import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 
@@ -37,6 +40,20 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
         verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
       },
     });
+  };
+
+  const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
+    };
+
+    settForelder(nyForelder);
   };
 
   console.log(forelder);
@@ -111,6 +128,16 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           />
         </FeltGruppe>
         {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
+          <KomponentGruppe>
+            <MultiSvarSpørsmål
+              spørsmål={hvorforIkkeOppgi}
+              settSpørsmålOgSvar={settHvorforIkkeOppgi}
+              valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
+            />
+          </KomponentGruppe>
+        ) : null}
+        {forelder.hvorforIkkeOppgi?.verdi ===
+        hentTekst('barnasbosted.spm.annet', intl) ? (
           <>
             <div className="margin-bottom-05">
               <Normaltekst>

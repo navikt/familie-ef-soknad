@@ -27,3 +27,8 @@ export enum ESkalBarnBoHosDeg {
   jaMenSamarbeiderIkke = 'jaMenSamarbeiderIkke',
   nei = 'nei',
 }
+
+export enum EHvorforIkkeOppgi {
+  donorbarn = 'donorbarn',
+  annet = 'annet',
+}
