@@ -87,14 +87,17 @@ const BostedOgSamvær: React.FC<Props> = ({
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
     return (
       valgtSvar ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
+        intl.formatMessage({
+          id: 'barnasbosted.spm.jaKonkreteTidspunkt',
+        }) ||
+      valgtSvar ===
+        intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
     );
   };
 
   const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
     return (
-      valgtSamværsrett ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
+      valgtSamværsrett === intl.formatMessage({ id: 'barnasbosted.spm.nei' })
     );
   };
 
@@ -170,13 +173,15 @@ const BostedOgSamvær: React.FC<Props> = ({
           visSamværsavtaleAdvarsel(
             forelder.harDereSkriftligSamværsavtale.verdi
           ) ? (
-            <FeltGruppe>
-              <AlertStripe type={'info'}>
-                <LocaleTekst
-                  tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
-                />
-              </AlertStripe>
-            </FeltGruppe>
+            <div className="margin-top-2">
+              <FeltGruppe>
+                <AlertStripe type={'info'}>
+                  <LocaleTekst
+                    tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
+                  />
+                </AlertStripe>
+              </FeltGruppe>
+            </div>
           ) : null}
         </KomponentGruppe>
       ) : null}
