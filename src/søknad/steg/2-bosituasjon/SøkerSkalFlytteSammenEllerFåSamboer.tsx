@@ -5,7 +5,6 @@ import { skalSøkerGifteSegMedSamboer } from './BosituasjonConfig';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { dagensDato } from '../../../utils/dato';
 import OmSamboerenDin from './OmSamboerenDin';
 import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
@@ -89,11 +88,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         <>
           <KomponentGruppe>
             <Datovelger
-              valgtDato={
-                datoSkalGifteSegEllerBliSamboer
-                  ? datoSkalGifteSegEllerBliSamboer.verdi
-                  : dagensDato
-              }
+              valgtDato={datoSkalGifteSegEllerBliSamboer?.verdi}
               tekstid={'datovelger.nårSkalDetteSkje'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
               settDato={(e) => {
