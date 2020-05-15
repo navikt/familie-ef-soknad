@@ -13,8 +13,12 @@ import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import {
+  hentBooleanFraValgtSvar,
+  erValgtSvarLiktSomSvar,
+} from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { EBorISammeHus } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/barn';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { IForelder } from '../../../models/forelder';
@@ -64,6 +68,27 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
     if (valgtSvar.id === ESvar.NEI) {
       delete nyForelder.flyttetFra;
+    }
+
+    settForelder(nyForelder);
+  };
+
+  const settBorISammeHus = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [borISammeHus.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.borISammeHus',
+        }),
+        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      valgtSvar.id === EBorISammeHus.nei ||
+      valgtSvar.id === EBorISammeHus.vetikke
+    ) {
+      delete nyForelder.hvordanBorDere;
     }
 
     settForelder(nyForelder);
@@ -129,16 +154,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   key={borISammeHus.søknadid}
                   spørsmål={borISammeHus}
                   valgtSvar={forelder.borISammeHus?.verdi}
-                  settSpørsmålOgSvar={(_, svar) =>
-                    settForelder({
-                      ...forelder,
-                      [borISammeHus.søknadid]: {
-                        label: intl.formatMessage({
-                          id: 'barnasbosted.spm.borISammeHus',
-                        }),
-                        verdi: hentTekst(svar.svar_tekstid, intl),
-                      },
-                    })
+                  settSpørsmålOgSvar={(spørsmål, svar) =>
+                    settBorISammeHus(spørsmål, svar)
                   }
                 />
               </KomponentGruppe>

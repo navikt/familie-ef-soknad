@@ -24,7 +24,7 @@ interface Props {
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
 
-  const hukAv = (e: any) => {
+  const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
 
     if (e.target.checked) {
@@ -124,7 +124,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
                 ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi
                 : false
             }
-            onChange={hukAv}
+            onChange={hukAvKanIkkeOppgiAnnenForelder}
           />
         </FeltGruppe>
         {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
