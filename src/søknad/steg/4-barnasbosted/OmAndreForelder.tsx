@@ -33,6 +33,11 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
       delete nyForelder.personnr;
     }
 
+    if (!e.target.checked) {
+      delete nyForelder.hvorforIkkeOppgi;
+      delete nyForelder.kanIkkeOppgiAnnenForelderFar;
+    }
+
     settForelder({
       ...nyForelder,
       kanIkkeOppgiAnnenForelderFar: {
