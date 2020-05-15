@@ -126,7 +126,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
         </div>
         <FeltGruppe classname="checkbox-forelder">
           <Checkbox
-            label={'Jeg kan ikke oppgi den andre forelderen'}
+            label={hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
             checked={
               forelder.kanIkkeOppgiAnnenForelderFar?.verdi
                 ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi

@@ -245,6 +245,8 @@ export default {
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
 
+    'barnasbosted.kanikkeoppgiforelder':
+      'Jeg kan ikke oppgi den andre forelderen',
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
     'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
@@ -278,7 +280,7 @@ export default {
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
 
-    'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.element.andreforelder': '[0]s andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
