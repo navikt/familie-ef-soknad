@@ -26,7 +26,7 @@ const PersonInfoGruppe: FC<Props> = ({
   settFødselsdato,
   valgtPersonInfo,
 }) => {
-  const { fødselsdato } = valgtPersonInfo;
+  const { fødselsdato, navn } = valgtPersonInfo;
 
   return (
     <KomponentGruppe>
@@ -45,19 +45,23 @@ const PersonInfoGruppe: FC<Props> = ({
         />
       </FeltGruppe>
       <FeltGruppe classname={'datoOgPersonnummer'}>
-        <Datovelger
-          valgtDato={fødselsdato}
-          tekstid={'datovelger.fødselsdato'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-          settDato={(e) => settFødselsdato(e)}
-        />
-        <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.nr' }).trim()}
-          type="text"
-          bredde={'S'}
-          onChange={(e) => settPersonInfo(e, 'fødselsnummer')}
-        />
+        {navn && (
+          <>
+            <Datovelger
+              valgtDato={fødselsdato}
+              tekstid={'datovelger.fødselsdato'}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
+              settDato={(e) => settFødselsdato(e)}
+            />
+            <Input
+              key={'tlf'}
+              label={intl.formatMessage({ id: 'person.nr' }).trim()}
+              type="text"
+              bredde={'S'}
+              onChange={(e) => settPersonInfo(e, 'fødselsnummer')}
+            />
+          </>
+        )}
       </FeltGruppe>
     </KomponentGruppe>
   );

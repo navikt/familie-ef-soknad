@@ -18,6 +18,8 @@ import {
 } from '../../../models/steg/bosituasjon';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { erFerdigUtfylt } from '../../../helpers/bosituasjon';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -67,21 +69,23 @@ const Bosituasjon: FC = () => {
     )
   );
 
-  const valgtSvarNøkkel = valgtSvar?.svar_tekstid.split('.')[2];
-
   const harSøkerEkteskapsliknendeForhold =
-    valgtSvarNøkkel === ESøkerDelerBolig.harEkteskapsliknendeForhold;
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+    ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
   const planerOmÅFlytteSammenEllerFåSamboer =
-    valgtSvarNøkkel === ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
-    valgtSvarNøkkel === ESøkerDelerBolig.delerBoligMedAndreVoksne ||
-    valgtSvarNøkkel ===
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.delerBoligMedAndreVoksne ||
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
@@ -90,28 +94,30 @@ const Bosituasjon: FC = () => {
           valgtSvar={bosituasjon.delerBoligMedAndreVoksne.verdi}
           settSpørsmålOgSvar={settBosituasjonFelt}
         />
-        {valgtSvar && valgtSvar.alert_tekstid ? (
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            {valgtSvar.svar_tekstid.split('.')[2] ===
-            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
-              <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
-            ) : (
-              <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-            )}
-          </AlertStripe>
-        ) : null}
+        {valgtSvar && valgtSvar.alert_tekstid && (
+          <FeltGruppe>
+            <AlertStripe type={'advarsel'} form={'inline'}>
+              {bosituasjon.delerBoligMedAndreVoksne.svarid ===
+              ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+                <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
+              ) : (
+                <LocaleTekst tekst={valgtSvar.alert_tekstid} />
+              )}
+            </AlertStripe>
+          </FeltGruppe>
+        )}
       </SeksjonGruppe>
 
-      {planerOmÅFlytteSammenEllerFåSamboer ? (
+      {planerOmÅFlytteSammenEllerFåSamboer && (
         <SeksjonGruppe>
           <SøkerSkalFlytteSammenEllerFåSamboer
             settBosituasjon={settBosituasjon}
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
-      ) : null}
+      )}
 
-      {harSøkerEkteskapsliknendeForhold ? (
+      {harSøkerEkteskapsliknendeForhold && (
         <SeksjonGruppe>
           <OmSamboerenDin
             tittel={'bosituasjon.tittel.omSamboer'}
@@ -120,7 +126,7 @@ const Bosituasjon: FC = () => {
             bosituasjon={bosituasjon}
           />
         </SeksjonGruppe>
-      ) : null}
+      )}
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp
