@@ -22,7 +22,7 @@ interface Props {
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknad();
-  const [barnDato, settBarnDato] = useState<Date>(dagensDato);
+  const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
   const [personnummer, settPersonnummer] = useState('');
@@ -56,7 +56,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   };
 
   const tilbakestillFelt = () => {
-    settBarnDato(dagensDato);
+    settBarnDato(undefined);
     settNavn('');
     settPersonnummer('');
     settBoHosDeg('');
@@ -124,12 +124,14 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
           barnDato={barnDato}
         />
       ) : null}
-      <Hovedknapp
-        className="legg-til-barn__knapp"
-        onClick={() => leggTilBarn(id)}
-      >
-        Legg til barn
-      </Hovedknapp>
+      {boHosDeg && (
+        <Hovedknapp
+          className="legg-til-barn__knapp"
+          onClick={() => leggTilBarn(id)}
+        >
+          Legg til barn
+        </Hovedknapp>
+      )}
     </Seksjonsgruppe>
   );
 };
