@@ -26,7 +26,7 @@ export const hentNyttBarn = (
     navn: hentFeltObjekt('person.navn', navn, intl),
     fødselsdato: hentFeltObjekt(
       'person.fødselsdato',
-      formatDate(barnDato ? barnDato : dagensDato),
+      barnDato ? formatDate(barnDato) : undefined,
       intl
     ),
     harSammeAdresse: hentFeltObjekt(
