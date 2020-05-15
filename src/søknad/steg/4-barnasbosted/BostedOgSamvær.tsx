@@ -72,7 +72,7 @@ const BostedOgSamvær: React.FC<Props> = ({
   };
 
   const settBostedJaNeiFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    settForelder({
+    const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
@@ -80,7 +80,13 @@ const BostedOgSamvær: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentBooleanFraValgtSvar(svar),
       },
-    });
+    };
+
+    if (svar.id === ESvar.JA) {
+      delete nyForelder.land;
+    }
+
+    settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
