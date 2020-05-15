@@ -2,7 +2,6 @@ import {
   IBooleanFelt,
   ISpørsmålBooleanFelt,
   ITekstFelt,
-  ISpørsmålFelt,
 } from './søknadsfelter';
 import { IForelder } from './forelder';
 
