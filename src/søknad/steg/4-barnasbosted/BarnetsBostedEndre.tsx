@@ -12,11 +12,9 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
+import { EHvorMyeSammen } from '../../../models/steg/barnasbosted';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import {
-  hentBooleanFraValgtSvar,
-  erValgtSvarLiktSomSvar,
-} from '../../../utils/spørsmålogsvar';
+import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { EBorISammeHus } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/barn';
@@ -89,6 +87,27 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       valgtSvar.id === EBorISammeHus.vetikke
     ) {
       delete nyForelder.hvordanBorDere;
+    }
+
+    settForelder(nyForelder);
+  };
+
+  const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [hvorMyeSammen.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.hvorMyeSammen',
+        }),
+        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      valgtSvar.id === EHvorMyeSammen.kunNårLeveres ||
+      valgtSvar.id === EHvorMyeSammen.møtesIkke
+    ) {
+      delete nyForelder.beskrivSamværUtenBarn;
     }
 
     settForelder(nyForelder);
@@ -203,7 +222,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   valgtSvar={forelder.boddSammenFør?.verdi}
                 />
               </KomponentGruppe>
-              {forelder.boddSammenFør ? (
+              {forelder.boddSammenFør?.verdi ? (
                 <KomponentGruppe>
                   <Datovelger
                     settDato={(e: Date | null) => {
@@ -233,16 +252,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   key={hvorMyeSammen.søknadid}
                   spørsmål={hvorMyeSammen}
                   valgtSvar={forelder.hvorMyeSammen?.verdi}
-                  settSpørsmålOgSvar={(_, svar) =>
-                    settForelder({
-                      ...forelder,
-                      [hvorMyeSammen.søknadid]: {
-                        label: intl.formatMessage({
-                          id: 'barnasbosted.spm.hvorMyeSammen',
-                        }),
-                        verdi: hentTekst(svar.svar_tekstid, intl),
-                      },
-                    })
+                  settSpørsmålOgSvar={(spørsmål, svar) =>
+                    settHvorMyeSammen(spørsmål, svar)
                   }
                 />
               </KomponentGruppe>

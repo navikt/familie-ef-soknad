@@ -7,6 +7,7 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
+import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/barn';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { IForelder } from '../../../models/forelder';
@@ -58,10 +59,12 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
       },
     };
 
+    if (svar.id === EHvorforIkkeOppgi.donorbarn) {
+      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
+    }
+
     settForelder(nyForelder);
   };
-
-  console.log(forelder);
 
   return (
     <>
