@@ -12,7 +12,6 @@ import { IBarn } from '../../../models/barn';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { IForelder } from '../../../models/forelder';
 import { hentTekst } from '../../../utils/søknad';
-import { Normaltekst } from 'nav-frontend-typografi';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
