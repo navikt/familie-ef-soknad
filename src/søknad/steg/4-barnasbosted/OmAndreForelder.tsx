@@ -147,13 +147,6 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
         {forelder.hvorforIkkeOppgi?.verdi ===
         hentTekst('barnasbosted.spm.annet', intl) ? (
           <>
-            <div className="margin-bottom-05">
-              <Normaltekst>
-                {intl.formatMessage({
-                  id: 'barnasbosted.spm.hvorforikkeoppgi',
-                })}
-              </Normaltekst>
-            </div>
             <FeltGruppe>
               <Textarea
                 value={
@@ -174,7 +167,9 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
                     },
                   })
                 }
-                label=""
+                label={intl.formatMessage({
+                  id: 'barnasbosted.spm.hvorforikkeoppgi',
+                })}
               />
             </FeltGruppe>
           </>

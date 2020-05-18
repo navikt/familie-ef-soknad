@@ -179,15 +179,13 @@ const BostedOgSamvær: React.FC<Props> = ({
           visSamværsavtaleAdvarsel(
             forelder.harDereSkriftligSamværsavtale.verdi
           ) ? (
-            <div className="margin-top-1">
-              <FeltGruppe>
-                <AlertStripe type={'info'} form="inline">
-                  <LocaleTekst
-                    tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
-                  />
-                </AlertStripe>
-              </FeltGruppe>
-            </div>
+            <FeltGruppe>
+              <AlertStripe type={'info'} form="inline">
+                <LocaleTekst
+                  tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
+                />
+              </AlertStripe>
+            </FeltGruppe>
           ) : null}
         </KomponentGruppe>
       ) : null}
