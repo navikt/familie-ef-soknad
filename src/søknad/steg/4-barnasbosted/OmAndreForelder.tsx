@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
@@ -6,8 +6,15 @@ import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import { hvorforIkkeOppgi } from './ForeldreConfig';
+import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { IForelder } from '../../../models/forelder';
+import { hentTekst } from '../../../utils/søknad';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { Textarea } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
@@ -15,17 +22,44 @@ interface Props {
   forelder: IForelder;
 }
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
-  const [huketAv, settHuketAv] = useState<boolean>(false);
+  const intl = useIntl();
 
-  const hukAv = (e: any) => {
-    settHuketAv(e.target.checked);
-
+  const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
 
     if (e.target.checked) {
       delete nyForelder.navn;
       delete nyForelder.fødselsdato;
       delete nyForelder.personnr;
+    }
+
+    if (!e.target.checked) {
+      delete nyForelder.hvorforIkkeOppgi;
+      delete nyForelder.kanIkkeOppgiAnnenForelderFar;
+    }
+
+    settForelder({
+      ...nyForelder,
+      kanIkkeOppgiAnnenForelderFar: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
+      },
+    });
+  };
+
+  const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
+    };
+
+    if (svar.id === EHvorforIkkeOppgi.donorbarn) {
+      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
     }
 
     settForelder(nyForelder);
@@ -48,7 +82,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             }
             value={forelder.navn ? forelder.navn?.verdi : ''}
             label="Navn"
-            disabled={huketAv}
+            disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
         </FeltGruppe>
       </KomponentGruppe>
@@ -86,16 +120,59 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             }
             value={forelder.personnr ? forelder.personnr?.verdi : ''}
             label="Personnummer (hvis barnet har fått)"
-            disabled={huketAv}
+            disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
         </div>
         <FeltGruppe classname="checkbox-forelder">
           <Checkbox
-            label={'Jeg kan ikke oppgi den andre forelderen'}
-            checked={huketAv}
-            onChange={hukAv}
+            label={hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
+            checked={
+              forelder.kanIkkeOppgiAnnenForelderFar?.verdi
+                ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi
+                : false
+            }
+            onChange={hukAvKanIkkeOppgiAnnenForelder}
           />
         </FeltGruppe>
+        {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
+          <KomponentGruppe>
+            <MultiSvarSpørsmål
+              spørsmål={hvorforIkkeOppgi}
+              settSpørsmålOgSvar={settHvorforIkkeOppgi}
+              valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
+            />
+          </KomponentGruppe>
+        ) : null}
+        {forelder.hvorforIkkeOppgi?.verdi ===
+        hentTekst('barnasbosted.spm.annet', intl) ? (
+          <>
+            <FeltGruppe>
+              <Textarea
+                value={
+                  forelder.ikkeOppgittAnnenForelderBegrunnelse &&
+                  forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                    ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                    : ''
+                }
+                onChange={(e: any) =>
+                  settForelder({
+                    ...forelder,
+                    ikkeOppgittAnnenForelderBegrunnelse: {
+                      label: hentTekst(
+                        'barnasbosted.spm.hvorforikkeoppgi',
+                        intl
+                      ),
+                      verdi: e.target.value,
+                    },
+                  })
+                }
+                label={intl.formatMessage({
+                  id: 'barnasbosted.spm.hvorforikkeoppgi',
+                })}
+              />
+            </FeltGruppe>
+          </>
+        ) : null}
       </KomponentGruppe>
     </>
   );

@@ -10,6 +10,7 @@ import {
   harAnnenForelderSamværMedBarn,
   harDereSkriftligSamværsavtale,
 } from './ForeldreConfig';
+import { Input } from 'nav-frontend-skjema';
 import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -53,7 +54,6 @@ const BostedOgSamvær: React.FC<Props> = ({
     }
 
     if (svar.id === EHarSamværMedBarn.nei) {
-      delete nyForelder.harDereSkriftligSamværsavtale;
       delete nyForelder.hvordanPraktiseresSamværet;
     }
 
@@ -72,7 +72,7 @@ const BostedOgSamvær: React.FC<Props> = ({
   };
 
   const settBostedJaNeiFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    settForelder({
+    const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
@@ -80,21 +80,30 @@ const BostedOgSamvær: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentBooleanFraValgtSvar(svar),
       },
-    });
+    };
+
+    if (svar.id === ESvar.JA) {
+      delete nyForelder.land;
+    }
+
+    settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
     return (
       valgtSvar ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
+        intl.formatMessage({
+          id: 'barnasbosted.spm.jaKonkreteTidspunkt',
+        }) ||
+      valgtSvar ===
+        intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
     );
   };
 
   const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
     return (
-      valgtSamværsrett ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
+      valgtSamværsrett === intl.formatMessage({ id: 'barnasbosted.spm.nei' })
     );
   };
 
@@ -109,6 +118,23 @@ const BostedOgSamvær: React.FC<Props> = ({
           />
         </KomponentGruppe>
       ) : null}
+      {forelder.borINorge?.verdi === false && (
+        <KomponentGruppe>
+          <Input
+            onChange={(e) =>
+              settForelder({
+                ...forelder,
+                land: {
+                  label: hentTekst('barnasbosted.land', intl),
+                  verdi: e.target.value,
+                },
+              })
+            }
+            value={forelder.land ? forelder.land?.verdi : ''}
+            label={hentTekst('barnasbosted.hvilketLand', intl)}
+          />
+        </KomponentGruppe>
+      )}
       <KomponentGruppe>
         <JaNeiSpørsmål
           spørsmål={avtaleOmDeltBosted}
@@ -154,7 +180,7 @@ const BostedOgSamvær: React.FC<Props> = ({
             forelder.harDereSkriftligSamværsavtale.verdi
           ) ? (
             <FeltGruppe>
-              <AlertStripe type={'info'}>
+              <AlertStripe type={'info'} form="inline">
                 <LocaleTekst
                   tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
                 />

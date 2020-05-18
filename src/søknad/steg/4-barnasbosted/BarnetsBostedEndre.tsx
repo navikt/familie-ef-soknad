@@ -12,12 +12,16 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
+import { EHvorMyeSammen } from '../../../models/steg/barnasbosted';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { EBorISammeHus } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/barn';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
+import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 
@@ -62,6 +66,48 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
     if (valgtSvar.id === ESvar.NEI) {
       delete nyForelder.flyttetFra;
+    }
+
+    settForelder(nyForelder);
+  };
+
+  const settBorISammeHus = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [borISammeHus.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.borISammeHus',
+        }),
+        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      valgtSvar.id === EBorISammeHus.nei ||
+      valgtSvar.id === EBorISammeHus.vetikke
+    ) {
+      delete nyForelder.hvordanBorDere;
+    }
+
+    settForelder(nyForelder);
+  };
+
+  const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [hvorMyeSammen.søknadid]: {
+        label: intl.formatMessage({
+          id: 'barnasbosted.spm.hvorMyeSammen',
+        }),
+        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      valgtSvar.id === EHvorMyeSammen.kunNårLeveres ||
+      valgtSvar.id === EHvorMyeSammen.møtesIkke
+    ) {
+      delete nyForelder.beskrivSamværUtenBarn;
     }
 
     settForelder(nyForelder);
@@ -127,19 +173,46 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   key={borISammeHus.søknadid}
                   spørsmål={borISammeHus}
                   valgtSvar={forelder.borISammeHus?.verdi}
-                  settSpørsmålOgSvar={(_, svar) =>
-                    settForelder({
-                      ...forelder,
-                      [borISammeHus.søknadid]: {
-                        label: intl.formatMessage({
-                          id: 'barnasbosted.spm.borISammeHus',
-                        }),
-                        verdi: hentTekst(svar.svar_tekstid, intl),
-                      },
-                    })
+                  settSpørsmålOgSvar={(spørsmål, svar) =>
+                    settBorISammeHus(spørsmål, svar)
                   }
                 />
               </KomponentGruppe>
+              {forelder.borISammeHus?.verdi ===
+              hentTekst('barnasbosted.spm.ja', intl) ? (
+                <>
+                  <div className="margin-bottom-05">
+                    <Normaltekst>
+                      {intl.formatMessage({
+                        id: 'barnasbosted.spm.hvordanBorDere',
+                      })}
+                    </Normaltekst>
+                  </div>
+                  <FeltGruppe>
+                    <Textarea
+                      value={
+                        forelder.hvordanBorDere && forelder.hvordanBorDere.verdi
+                          ? forelder.hvordanBorDere.verdi
+                          : ''
+                      }
+                      onChange={(e: any) =>
+                        settForelder({
+                          ...forelder,
+                          hvordanBorDere: {
+                            label: hentTekst(
+                              'barnasbosted.spm.hvordanBorDere',
+                              intl
+                            ),
+                            verdi: e.target.value,
+                          },
+                        })
+                      }
+                      label=""
+                    />
+                  </FeltGruppe>
+                </>
+              ) : null}
+
               <KomponentGruppe>
                 <JaNeiSpørsmål
                   spørsmål={boddSammenFør}
@@ -149,7 +222,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   valgtSvar={forelder.boddSammenFør?.verdi}
                 />
               </KomponentGruppe>
-              {forelder.boddSammenFør ? (
+              {forelder.boddSammenFør?.verdi ? (
                 <KomponentGruppe>
                   <Datovelger
                     settDato={(e: Date | null) => {
@@ -179,19 +252,46 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   key={hvorMyeSammen.søknadid}
                   spørsmål={hvorMyeSammen}
                   valgtSvar={forelder.hvorMyeSammen?.verdi}
-                  settSpørsmålOgSvar={(_, svar) =>
-                    settForelder({
-                      ...forelder,
-                      [hvorMyeSammen.søknadid]: {
-                        label: intl.formatMessage({
-                          id: 'barnasbosted.spm.hvorMyeSammen',
-                        }),
-                        verdi: hentTekst(svar.svar_tekstid, intl),
-                      },
-                    })
+                  settSpørsmålOgSvar={(spørsmål, svar) =>
+                    settHvorMyeSammen(spørsmål, svar)
                   }
                 />
               </KomponentGruppe>
+              {forelder.hvorMyeSammen?.verdi ===
+              hentTekst('barnasbosted.spm.møtesUtenom', intl) ? (
+                <>
+                  <div className="margin-bottom-05">
+                    <Normaltekst>
+                      {intl.formatMessage({
+                        id: 'barnasbosted.spm.beskrivSamværUtenBarn',
+                      })}
+                    </Normaltekst>
+                  </div>
+                  <FeltGruppe>
+                    <Textarea
+                      value={
+                        forelder.beskrivSamværUtenBarn &&
+                        forelder.beskrivSamværUtenBarn.verdi
+                          ? forelder.beskrivSamværUtenBarn.verdi
+                          : ''
+                      }
+                      onChange={(e: any) =>
+                        settForelder({
+                          ...forelder,
+                          beskrivSamværUtenBarn: {
+                            label: hentTekst(
+                              'barnasbosted.spm.beskrivSamværUtenBarn',
+                              intl
+                            ),
+                            verdi: e.target.value,
+                          },
+                        })
+                      }
+                      label=""
+                    />
+                  </FeltGruppe>
+                </>
+              ) : null}
             </>
           ) : null}
           <Knapp onClick={leggTilForelder}>Lagre</Knapp>

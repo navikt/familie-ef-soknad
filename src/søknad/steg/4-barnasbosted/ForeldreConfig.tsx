@@ -5,6 +5,7 @@ import {
   EBorISammeHus,
   EHvorMyeSammen,
   ESkalBarnBoHosDeg,
+  EHvorforIkkeOppgi,
 } from '../../../models/steg/barnasbosted';
 import { JaNeiSvar } from '../../../helpers/standardSvar';
 import {
@@ -86,6 +87,22 @@ export const boddSammenFør: ISpørsmål = {
   tekstid: 'barnasbosted.spm.boddsammenfør',
   flersvar: false,
   svaralternativer: JaNeiSvar,
+};
+
+export const hvorforIkkeOppgi: ISpørsmål = {
+  søknadid: 'hvorforIkkeOppgi',
+  tekstid: 'barnasbosted.spm.hvorforikkeoppgi',
+  flersvar: false,
+  svaralternativer: [
+    {
+      id: EHvorforIkkeOppgi.donorbarn,
+      svar_tekstid: 'barnasbosted.spm.donorbarn',
+    },
+    {
+      id: EHvorforIkkeOppgi.annet,
+      svar_tekstid: 'barnasbosted.spm.annet',
+    },
+  ],
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
