@@ -30,8 +30,21 @@ const StyledAndreForelderGruppe = styled.div`
   grid-template-columns: repeat(2, min-content);
   grid-template-rows: repeat(3, min-content);
   grid-gap: 1rem;
-  grid-template-areas: 'navn navn' 'fødselsdato personnr' 'checkbox checkbox';
+  grid-template-areas:
+    'navn navn'
+    'fødselsdato personnr'
+    'checkbox checkbox';
 
+  @media all and (max-width: 420px) {
+    grid-template-columns: repeat(1, min-content);
+    grid-template-rows: repeat(4, min-content);
+    grid-gap: 1rem;
+    grid-template-areas:
+      'navn'
+      'fødselsdato'
+      'personnr'
+      'checkbox';
+  }
   .foreldre-navn-input {
     grid-area: navn;
   }
