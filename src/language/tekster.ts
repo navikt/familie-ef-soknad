@@ -245,8 +245,16 @@ export default {
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
 
+    'barnasbosted.kanikkeoppgiforelder':
+      'Jeg kan ikke oppgi den andre forelderen',
     'barnasbosted.sidetittel': 'Barnas bosted og foreldrenes samværsordning',
     'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
+    'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
+    'barnasbosted.land': 'Land',
+    'barnasbosted.spm.hvorforikkeoppgi':
+      'Hvorfor kan du ikke oppgi den andre forelderen?',
+    'barnasbosted.spm.donorbarn': 'Donorbarn',
+    'barnasbosted.spm.annet': 'Annet',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.alert-advarsel.avtaleDeltBosted':
@@ -272,7 +280,7 @@ export default {
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
 
-    'barnasbosted.element.andreforelder': 's andre forelder',
+    'barnasbosted.element.andreforelder': '[0]s andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
@@ -315,6 +323,7 @@ export default {
 
     'barnasbosted.spm.borISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
+    'barnasbosted.spm.hvordanBorDere': 'Hvordan bor dere nærme hverandre?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.borisammehus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
@@ -330,6 +339,8 @@ export default {
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'barnasbosted.spm.beskrivSamværUtenBarn':
+      'Hvor mye er du sammen med den andre forelderen til [0]?',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
@@ -675,6 +686,8 @@ export default {
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
+    'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
+    'barnasbosted.land': 'Land',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':

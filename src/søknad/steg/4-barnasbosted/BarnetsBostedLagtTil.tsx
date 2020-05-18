@@ -7,6 +7,7 @@ import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/barn';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
@@ -32,7 +33,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
     <div className="barnas-bosted-lagt-til">
       <BarnasBostedHeader barn={barn} visBakgrunn={true} />
       <div className="barnas-bosted-lagt-til__svar">
-        {forelder.navn && (
+        {(forelder.navn || forelder.kanIkkeOppgiAnnenForelderFar) && (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
@@ -40,7 +41,26 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                 intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
               )}
             </Element>
-            <Normaltekst>{forelder.navn?.verdi}</Normaltekst>
+            <Normaltekst>
+              {forelder.navn?.verdi
+                ? forelder.navn.verdi
+                : hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
+            </Normaltekst>
+          </div>
+        )}
+        {forelder.hvorforIkkeOppgi && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barn.navn.verdi,
+                intl.formatMessage({ id: 'barnasbosted.spm.hvorforikkeoppgi' })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.ikkeOppgittAnnenForelderBegrunnelse
+                ? forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi
+                : hentTekst('barnasbosted.spm.donorbarn', intl)}
+            </Normaltekst>
           </div>
         )}
         {forelder.fødselsdato && (
@@ -55,11 +75,19 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <Element>
             {hentBeskjedMedNavn(
               barn.navn.verdi,
-              intl.formatMessage({ id: 'barnasbosted.spm.andreForelderNorge' })
+              intl.formatMessage({ id: 'barnasbosted.borinorge' })
             )}
           </Element>
           <Normaltekst>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</Normaltekst>
         </div>
+        {forelder.land && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {intl.formatMessage({ id: 'barnasbosted.hvilketLand' })}
+            </Element>
+            <Normaltekst>{forelder.land?.verdi}</Normaltekst>
+          </div>
+        )}
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
@@ -109,6 +137,14 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </Normaltekst>
           </div>
         ) : null}
+        {forelder.beskrivSamværUtenBarn && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
+            </Element>
+            <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
+          </div>
+        )}
         {forelder.borISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
