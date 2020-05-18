@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 import { Input } from 'nav-frontend-skjema';
