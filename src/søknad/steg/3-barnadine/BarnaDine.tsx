@@ -27,6 +27,7 @@ const BarnaDine: React.FC = () => {
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={!kommerFraOppsummering}
+        erSpørsmålBesvart={true}
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">

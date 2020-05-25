@@ -9,7 +9,7 @@ import { ESvar } from '../models/spørsmålogsvar';
 export const hentNyttBarn = (
   fødselsnummer: string,
   personnummer: string,
-  barnDato: Date,
+  barnDato: Date | undefined,
   navn: string,
   boHosDeg: string,
   født: boolean,
@@ -20,13 +20,13 @@ export const hentNyttBarn = (
     personnummer: hentFeltObjekt('barnadine.personnummer', personnummer, intl),
     alder: hentFeltObjekt(
       'person.alder',
-      differenceInYears(dagensDato, barnDato),
+      differenceInYears(dagensDato, barnDato ? barnDato : dagensDato),
       intl
     ),
     navn: hentFeltObjekt('person.navn', navn, intl),
     fødselsdato: hentFeltObjekt(
       'person.fødselsdato',
-      formatDate(barnDato),
+      barnDato ? formatDate(barnDato) : undefined,
       intl
     ),
     harSammeAdresse: hentFeltObjekt(

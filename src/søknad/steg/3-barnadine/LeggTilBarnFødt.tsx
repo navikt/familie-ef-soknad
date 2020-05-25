@@ -20,7 +20,7 @@ interface Props {
   settBo: Function;
   boHosDeg: string;
   settDato: Function;
-  barnDato: Date;
+  barnDato: Date | undefined;
 }
 
 const LeggTilBarnFødt: React.FC<Props> = ({
@@ -44,55 +44,59 @@ const LeggTilBarnFødt: React.FC<Props> = ({
           label="Barnets fulle navn, om dette er bestemt"
         />
       </KomponentGruppe>
+      {navn && (
+        <KomponentGruppe>
+          <FeltGruppe classname={'datoOgPersonnummer'}>
+            <Datovelger
+              valgtDato={barnDato}
+              tekstid={'datovelger.fødselsdato'}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
+              settDato={(e) => settDato(e)}
+            />
+            <Input
+              key={'tlf'}
+              label={intl.formatMessage({ id: 'person.nr' }).trim()}
+              type="text"
+              value={personnummer}
+              bredde={'S'}
+              onChange={(e) =>
+                settPersonnummer(e.target.value, 'fødselsnummer')
+              }
+            />
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
+      {barnDato && (
+        <KomponentGruppe>
+          <Normaltekst>
+            {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
+          </Normaltekst>
+          <div className="radiogruppe-2-svar">
+            <RadioPanel
+              key={ESvar.JA}
+              name={'radio-bosted'}
+              label="Ja"
+              value={ESvar.JA}
+              checked={boHosDeg === ESvar.JA}
+              onChange={(e) => settBo(e)}
+            />
+            <RadioPanel
+              key={ESvar.NEI}
+              name={'radio-bosted'}
+              label="Nei"
+              value={ESvar.NEI}
+              checked={boHosDeg === ESvar.NEI}
+              onChange={(e) => settBo(e)}
+            />
+          </div>
 
-      <KomponentGruppe>
-        <FeltGruppe classname={'datoOgPersonnummer'}>
-          <Datovelger
-            valgtDato={barnDato}
-            tekstid={'datovelger.fødselsdato'}
-            datobegrensning={DatoBegrensning.TidligereDatoer}
-            settDato={(e) => settDato(e)}
-          />
-          <Input
-            key={'tlf'}
-            label={intl.formatMessage({ id: 'person.nr' }).trim()}
-            type="text"
-            value={personnummer}
-            bredde={'S'}
-            onChange={(e) => settPersonnummer(e.target.value, 'fødselsnummer')}
-          />
-        </FeltGruppe>
-      </KomponentGruppe>
-
-      <KomponentGruppe>
-        <Normaltekst>
-          {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
-        </Normaltekst>
-        <div className="radiogruppe-2-svar">
-          <RadioPanel
-            key={ESvar.JA}
-            name={'radio-bosted'}
-            label="Ja"
-            value={ESvar.JA}
-            checked={boHosDeg === ESvar.JA}
-            onChange={(e) => settBo(e)}
-          />
-          <RadioPanel
-            key={ESvar.NEI}
-            name={'radio-bosted'}
-            label="Nei"
-            value={ESvar.NEI}
-            checked={boHosDeg === ESvar.NEI}
-            onChange={(e) => settBo(e)}
-          />
-        </div>
-
-        {boHosDeg === ESvar.NEI && (
-          <AlertStripe type="advarsel" form="inline" className="bor-ikke">
-            <FormattedMessage id="barnadine.advarsel.borikke" />
-          </AlertStripe>
-        )}
-      </KomponentGruppe>
+          {boHosDeg === ESvar.NEI && (
+            <AlertStripe type="advarsel" form="inline" className="bor-ikke">
+              <FormattedMessage id="barnadine.advarsel.borikke" />
+            </AlertStripe>
+          )}
+        </KomponentGruppe>
+      )}
     </>
   );
 };
