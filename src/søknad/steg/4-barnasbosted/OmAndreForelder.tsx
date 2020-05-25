@@ -65,6 +65,7 @@ const StyledAndreForelderGruppe = styled.div`
 `;
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
+  const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
@@ -83,7 +84,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     settForelder({
       ...nyForelder,
       kanIkkeOppgiAnnenForelderFar: {
-        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        label: hvorforIkkeOppgiLabel,
         verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
       },
     });
@@ -130,25 +131,23 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           {forelder.navn && (
             <>
               <Datovelger
+                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
                 settDato={(e: Date | null) => {
                   e !== null &&
                     settForelder({
                       ...forelder,
-                      flyttetFra: {
-                        label: 'Fødselsnummer datotest',
+                      fødselsdato: {
+                        label: 'Fødselsdato',
                         verdi: e,
                       },
                     });
                 }}
-                valgtDato={
-                  forelder.fødselsdato && forelder.fødselsdato.verdi
-                    ? forelder.fødselsdato.verdi
-                    : undefined
-                }
+                valgtDato={forelder.fødselsdato?.verdi}
                 tekstid={'datovelger.fødselsdato'}
                 datobegrensning={DatoBegrensning.TidligereDatoer}
               />
               <Input
+                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
                 className="personnummer"
                 onChange={(e) =>
                   settForelder({
@@ -161,7 +160,6 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
                 }
                 value={forelder.personnr ? forelder.personnr?.verdi : ''}
                 label="Personnummer (hvis barnet har fått)"
-                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
               />
             </>
           )}
@@ -188,14 +186,12 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           />
         </KomponentGruppe>
       )}
-      {forelder.hvorforIkkeOppgi?.verdi ===
-        hentTekst('barnasbosted.spm.annet', intl) && (
+      {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
         <>
           <FeltGruppe>
             <Textarea
               value={
-                forelder.ikkeOppgittAnnenForelderBegrunnelse &&
-                forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi
                   ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
                   : ''
               }
@@ -203,14 +199,12 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
                 settForelder({
                   ...forelder,
                   ikkeOppgittAnnenForelderBegrunnelse: {
-                    label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+                    label: hvorforIkkeOppgiLabel,
                     verdi: e.target.value,
                   },
                 })
               }
-              label={intl.formatMessage({
-                id: 'barnasbosted.spm.hvorforikkeoppgi',
-              })}
+              label={hvorforIkkeOppgiLabel}
             />
           </FeltGruppe>
         </>

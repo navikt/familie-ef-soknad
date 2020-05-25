@@ -1,28 +1,28 @@
 import React from 'react';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import {
   borINorge,
   avtaleOmDeltBosted,
   harAnnenForelderSamværMedBarn,
   harDereSkriftligSamværsavtale,
-} from './ForeldreConfig';
+} from '../ForeldreConfig';
 import { Input } from 'nav-frontend-skjema';
-import HvordanPraktiseresSamværet from './HvordanPraktiseresSamværet';
-import LocaleTekst from '../../../language/LocaleTekst';
+import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
+import LocaleTekst from '../../../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../utils/søknad';
-import { IForelder } from '../../../models/forelder';
-import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../context/SøknadContext';
+import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
+import { IForelder } from '../../../../models/forelder';
+import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { useSøknad } from '../../../../context/SøknadContext';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
-} from '../../../models/steg/barnasbosted';
+} from '../../../../models/steg/barnasbosted';
 
 interface Props {
   settForelder: Function;
@@ -49,13 +49,11 @@ const BostedOgSamvær: React.FC<Props> = ({
       },
     };
 
-    if (svar.id !== EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter) {
+    if (svar.id !== EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter)
       delete nyForelder.hvordanPraktiseresSamværet;
-    }
 
-    if (svar.id === EHarSamværMedBarn.nei) {
+    if (svar.id === EHarSamværMedBarn.nei)
       delete nyForelder.hvordanPraktiseresSamværet;
-    }
 
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
@@ -109,7 +107,7 @@ const BostedOgSamvær: React.FC<Props> = ({
 
   return (
     <>
-      {!huketAvAnnenForelder ? (
+      {!huketAvAnnenForelder && (
         <KomponentGruppe>
           <JaNeiSpørsmål
             spørsmål={borINorge}
@@ -117,7 +115,7 @@ const BostedOgSamvær: React.FC<Props> = ({
             valgtSvar={forelder.borINorge?.verdi}
           />
         </KomponentGruppe>
-      ) : null}
+      )}
       {forelder.borINorge?.verdi === false && (
         <KomponentGruppe>
           <Input
@@ -135,27 +133,29 @@ const BostedOgSamvær: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={avtaleOmDeltBosted}
-          onChange={settBostedJaNeiFelt}
-          valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
-        />
-        {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
-          <>
-            <AlertStripe type={'advarsel'} form={'inline'}>
-              <LocaleTekst
-                tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
-              />
-            </AlertStripe>
-            <AlertStripe type={'info'} form={'inline'}>
-              <LocaleTekst
-                tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'}
-              />
-            </AlertStripe>
-          </>
-        )}
-      </KomponentGruppe>
+      {(forelder.borINorge?.verdi === true || forelder.land?.verdi !== '') && (
+        <KomponentGruppe>
+          <JaNeiSpørsmål
+            spørsmål={avtaleOmDeltBosted}
+            onChange={settBostedJaNeiFelt}
+            valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
+          />
+          {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
+            <>
+              <AlertStripe type={'advarsel'} form={'inline'}>
+                <LocaleTekst
+                  tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
+                />
+              </AlertStripe>
+              <AlertStripe type={'info'} form={'inline'}>
+                <LocaleTekst
+                  tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'}
+                />
+              </AlertStripe>
+            </>
+          )}
+        </KomponentGruppe>
+      )}
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={harAnnenForelderSamværMedBarn.søknadid}

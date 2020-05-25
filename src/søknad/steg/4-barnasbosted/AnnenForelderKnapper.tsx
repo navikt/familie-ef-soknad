@@ -1,5 +1,4 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/barn';
@@ -60,10 +59,6 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
   return (
     <>
-      <Element>
-        {barn.navn.verdi}
-        {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
-      </Element>
       {andreBarnMedForelder.length ? (
         <div className="andre-forelder-valg">
           {andreBarnMedForelder.map((b) => {

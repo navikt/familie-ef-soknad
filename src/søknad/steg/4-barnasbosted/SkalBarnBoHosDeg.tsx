@@ -1,27 +1,22 @@
 import React from 'react';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
-import { skalBarnBoHosDeg } from './ForeldreConfig';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Normaltekst } from 'nav-frontend-typografi';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { IBarn } from '../../../models/barn';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { skalBarnBoHosDeg } from './ForeldreConfig';
+import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
-  barn: IBarn;
   forelder: any;
   settForelder: Function;
 }
 
-const SkalBarnBoHosDeg: React.FC<Props> = ({
-  barn,
-  forelder,
-  settForelder,
-}) => {
+const SkalBarnBoHosDeg: React.FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();
   const { settDokumentasjonsbehov } = useSøknad();
 
@@ -29,10 +24,10 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
     settForelder({
       ...forelder,
       [skalBarnBoHosDeg.søknadid]: {
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.skalBarnBoHosDeg',
-        }),
-        verdi: svar,
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst('barnasbosted.spm.skalBarnBoHosDeg', intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
     settDokumentasjonsbehov(spørsmål, svar);
@@ -40,21 +35,21 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
 
   return (
     <>
-      {!barn.harSammeAdresse ? (
-        <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
-          </AlertStripe>
-          <MultiSvarSpørsmål
-            key={skalBarnBoHosDeg.søknadid}
-            spørsmål={skalBarnBoHosDeg}
-            valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
-            settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
-          />
-        </KomponentGruppe>
-      ) : null}
+      <FeltGruppe>
+        <AlertStripe type={'advarsel'} form={'inline'}>
+          <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
+        </AlertStripe>
+      </FeltGruppe>
+      <KomponentGruppe>
+        <MultiSvarSpørsmål
+          key={skalBarnBoHosDeg.søknadid}
+          spørsmål={skalBarnBoHosDeg}
+          valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
+          settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
+        />
+      </KomponentGruppe>
       {forelder.skalBarnBoHosDeg ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaMenSamarbeiderIkke' }) ? (
+        hentTekst('barnasbosted.spm.jaMenSamarbeiderIkke', intl) && (
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
@@ -87,7 +82,7 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
             </li>
           </ul>
         </FeltGruppe>
-      ) : null}
+      )}
     </>
   );
 };

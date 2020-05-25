@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarnasBostedHeader from './BarnasBostedHeader';
-import BostedOgSamvær from './BostedOgSamvær';
+import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
@@ -10,6 +10,8 @@ import { IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useSøknad } from '../../../context/SøknadContext';
 import IkkeAnnenForelder from './IkkeAnnenForelder';
+import { Element } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
@@ -25,10 +27,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
-
   const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(
     false
   );
+
+  const intl = useIntl();
 
   useEffect(() => {
     if (barn.forelder) {
@@ -60,25 +63,33 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     return b !== barn && b.forelder;
   });
 
+  const erAlleFelterOgSpørsmålBesvart: boolean = false;
+
   return (
     <>
       <div className="barnas-bosted">
         <BarnasBostedHeader barn={barn} />
         <div className="barnas-bosted__innhold">
-          <SkalBarnBoHosDeg
-            forelder={forelder}
-            settForelder={settForelder}
-            barn={barn}
-          />
-          <FeltGruppe>
-            <AnnenForelderKnapper
-              barn={barn}
-              andreBarnMedForelder={andreBarnMedForelder}
-              settForelder={settForelder}
-              forelder={forelder}
-              settHuketAvAnnenForelder={settHuketAvAnnenForelder}
-            />
-          </FeltGruppe>
+          {!barn.harSammeAdresse.verdi && (
+            <SkalBarnBoHosDeg forelder={forelder} settForelder={settForelder} />
+          )}
+          {!barn.harSammeAdresse.verdi && forelder.skalBarnBoHosDeg && (
+            <FeltGruppe>
+              <Element>
+                {barn.navn.verdi}
+                {intl.formatMessage({
+                  id: 'barnasbosted.element.andreforelder',
+                })}
+              </Element>
+              <AnnenForelderKnapper
+                barn={barn}
+                andreBarnMedForelder={andreBarnMedForelder}
+                settForelder={settForelder}
+                forelder={forelder}
+                settHuketAvAnnenForelder={settHuketAvAnnenForelder}
+              />
+            </FeltGruppe>
+          )}
           {!huketAvAnnenForelder && (
             <OmAndreForelder
               barn={barn}
@@ -86,18 +97,25 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               forelder={forelder}
             />
           )}
-          <BostedOgSamvær
-            settForelder={settForelder}
-            forelder={forelder}
-            huketAvAnnenForelder={huketAvAnnenForelder}
-          />
-          {!huketAvAnnenForelder && (
-            <IkkeAnnenForelder
-              forelder={forelder}
+          {((forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+            forelder.hvorforIkkeOppgi?.verdi) ||
+            forelder.fødselsdato?.verdi) && (
+            <BostedOgSamvær
               settForelder={settForelder}
+              forelder={forelder}
+              huketAvAnnenForelder={huketAvAnnenForelder}
             />
           )}
-          <Knapp onClick={leggTilForelder}>Neste Barn</Knapp>
+          {!huketAvAnnenForelder &&
+            forelder.harDereSkriftligSamværsavtale?.verdi && (
+              <IkkeAnnenForelder
+                forelder={forelder}
+                settForelder={settForelder}
+              />
+            )}
+          {erAlleFelterOgSpørsmålBesvart && (
+            <Knapp onClick={leggTilForelder}>Neste Barn</Knapp>
+          )}
         </div>
       </div>
     </>

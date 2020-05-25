@@ -90,7 +90,7 @@ export const boddSammenFør: ISpørsmål = {
 };
 
 export const hvorforIkkeOppgi: ISpørsmål = {
-  søknadid: 'hvorforIkkeOppgi',
+  søknadid: EForelder.hvorforIkkeOppgi,
   tekstid: 'barnasbosted.spm.hvorforikkeoppgi',
   flersvar: false,
   svaralternativer: [
