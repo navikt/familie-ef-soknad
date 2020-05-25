@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   settBo: Function;
@@ -47,7 +48,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.JA}
               name={'radio-bosted'}
-              label="Ja"
+              label={hentTekst('barnasbosted.spm.ja', intl)}
               value={ESvar.JA}
               checked={boHosDeg === ESvar.JA}
               onChange={(e) => settBo(e)}
@@ -55,7 +56,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.NEI}
               name={'radio-bosted'}
-              label="Nei"
+              label={hentTekst('barnasbosted.spm.nei', intl)}
               value={ESvar.NEI}
               checked={boHosDeg === ESvar.NEI}
               onChange={(e) => settBo(e)}
