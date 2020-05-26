@@ -7,7 +7,6 @@ import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarS
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
-import { Textarea } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import {
   hentSvarAlertFraSpørsmål,
@@ -41,7 +40,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
     datoEndretSamvær,
-    begrunnelseAnnet,
   } = sivilstatus;
 
   const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
@@ -58,21 +56,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
     EBegrunnelse.endringISamværsordning
   );
   const dødsfall: boolean = erBegrunnelse(EBegrunnelse.dødsfall);
-  const annet: boolean = erBegrunnelse(EBegrunnelse.annet);
-
-  const settTekstfeltBegrunnelseAnnet = (
-    e: React.ChangeEvent<HTMLTextAreaElement>
-  ): void => {
-    begrunnelseForSøknad &&
-      annet &&
-      settSivilstatus({
-        ...sivilstatus,
-        begrunnelseAnnet: {
-          label: intl.formatMessage({ id: spørsmål.tekstid }),
-          verdi: e.target.value,
-        },
-      });
-  };
 
   const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
@@ -150,19 +133,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
           <AlertStripeInfo className={'fjernBakgrunn'}>
             <FormattedHTMLMessage id={alertTekstForDødsfall} />
           </AlertStripeInfo>
-        </KomponentGruppe>
-      )}
-
-      {annet && (
-        <KomponentGruppe>
-          <Textarea
-            label={intl.formatMessage({
-              id: spørsmål.tekstid,
-            })}
-            value={begrunnelseAnnet ? begrunnelseAnnet.verdi : ''}
-            maxLength={2000}
-            onChange={(e) => settTekstfeltBegrunnelseAnnet(e)}
-          />
         </KomponentGruppe>
       )}
     </SeksjonGruppe>

@@ -130,9 +130,5 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
-    {
-      id: EBegrunnelse.annet,
-      svar_tekstid: 'sivilstatus.svar.annet',
-    },
   ],
 };

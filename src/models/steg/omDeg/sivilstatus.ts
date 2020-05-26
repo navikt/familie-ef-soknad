@@ -3,7 +3,6 @@ import {
   IDatoFelt,
   ISpørsmålFelt,
   ISpørsmålBooleanFelt,
-  ITekstFelt,
 } from '../../søknadsfelter';
 
 export enum ESivilstand {
@@ -23,7 +22,6 @@ export interface ISivilstatus {
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
   datoEndretSamvær?: IDatoFelt;
-  begrunnelseAnnet?: ITekstFelt;
 }
 
 export enum EBegrunnelse {
@@ -44,5 +42,4 @@ export enum ESivilstatusSøknadid {
   datoForSamlivsbrudd = 'datoForSamlivsbrudd',
   datoFlyttetFraHverandre = 'datoFlyttetFraHverandre',
   datoEndretSamvær = 'datoEndretSamvær',
-  begrunnelseAnnet = 'begrunnelseAnnet',
 }

@@ -45,7 +45,6 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
     datoEndretSamvær,
-    begrunnelseAnnet,
     begrunnelseForSøknad,
   } = sivilstatus;
 
@@ -62,7 +61,5 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
       return true;
     case EBegrunnelse.dødsfall:
       return true;
-    case EBegrunnelse.annet:
-      return begrunnelseAnnet?.verdi !== undefined;
   }
 };
