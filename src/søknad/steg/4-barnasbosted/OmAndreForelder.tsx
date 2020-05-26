@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
@@ -23,6 +23,7 @@ interface Props {
 }
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
+  const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
@@ -34,6 +35,8 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     }
 
     if (!e.target.checked) {
+      settBegyntÅSkrive(false);
+      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
     }
@@ -48,8 +51,14 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   };
 
   const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settBegyntÅSkrive(false);
+
     const nyForelder = {
       ...forelder,
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
@@ -59,10 +68,22 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     };
 
     if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
+      delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
     }
 
     settForelder(nyForelder);
+  };
+
+  const settIkkeOppgittAnnenForelderBegrunnelse = (e: any) => {
+    settBegyntÅSkrive(true);
+
+    settForelder({
+      ...forelder,
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: e.target.value,
+      },
+    });
   };
 
   return (
@@ -150,22 +171,12 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
               <Textarea
                 value={
                   forelder.ikkeOppgittAnnenForelderBegrunnelse &&
-                  forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                  forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi &&
+                  begyntÅSkrive
                     ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
                     : ''
                 }
-                onChange={(e: any) =>
-                  settForelder({
-                    ...forelder,
-                    ikkeOppgittAnnenForelderBegrunnelse: {
-                      label: hentTekst(
-                        'barnasbosted.spm.hvorforikkeoppgi',
-                        intl
-                      ),
-                      verdi: e.target.value,
-                    },
-                  })
-                }
+                onChange={settIkkeOppgittAnnenForelderBegrunnelse}
                 label={intl.formatMessage({
                   id: 'barnasbosted.spm.hvorforikkeoppgi',
                 })}
