@@ -57,7 +57,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
   const dødsfall: boolean = erBegrunnelse(EBegrunnelse.dødsfall);
 
-  const settårsakEnslig = (spørsmål: ISpørsmål, svar: ISvar) => {
+  const settÅrsakEnslig = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
 
     const nyttSivilstatusObjekt = fjernIrrelevanteSøknadsfelter(svar);
@@ -101,7 +101,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
           key={spørsmål.tekstid}
           spørsmål={spørsmål}
           valgtSvar={sivilstatus.årsakEnslig?.verdi}
-          settSpørsmålOgSvar={settårsakEnslig}
+          settSpørsmålOgSvar={settÅrsakEnslig}
         />
       </KomponentGruppe>
 
