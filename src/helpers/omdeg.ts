@@ -45,10 +45,10 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
     datoEndretSamvær,
-    begrunnelseForSøknad,
+    årsakEnslig,
   } = sivilstatus;
 
-  const valgtBegrunnelse = begrunnelseForSøknad?.svarid;
+  const valgtBegrunnelse = årsakEnslig?.svarid;
 
   switch (valgtBegrunnelse) {
     case EBegrunnelse.samlivsbruddForeldre:

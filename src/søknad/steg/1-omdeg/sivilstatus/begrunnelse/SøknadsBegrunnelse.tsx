@@ -36,14 +36,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
   const { settDokumentasjonsbehov } = useSøknad();
 
   const {
-    begrunnelseForSøknad,
+    årsakEnslig,
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
     datoEndretSamvær,
   } = sivilstatus;
 
   const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
-    return begrunnelseForSøknad?.svarid === svaralternativ;
+    return årsakEnslig?.svarid === svaralternativ;
   };
 
   const samlivsbruddMedForelder = erBegrunnelse(
@@ -57,14 +57,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
   const dødsfall: boolean = erBegrunnelse(EBegrunnelse.dødsfall);
 
-  const settBegrunnelseForSøknad = (spørsmål: ISpørsmål, svar: ISvar) => {
+  const settårsakEnslig = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
 
     const nyttSivilstatusObjekt = fjernIrrelevanteSøknadsfelter(svar);
 
     settSivilstatus({
       ...nyttSivilstatusObjekt,
-      begrunnelseForSøknad: {
+      årsakEnslig: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: spørsmålTekst,
@@ -100,8 +100,8 @@ const Søknadsbegrunnelse: FC<Props> = ({
         <MultiSvarSpørsmål
           key={spørsmål.tekstid}
           spørsmål={spørsmål}
-          valgtSvar={sivilstatus.begrunnelseForSøknad?.verdi}
-          settSpørsmålOgSvar={settBegrunnelseForSøknad}
+          valgtSvar={sivilstatus.årsakEnslig?.verdi}
+          settSpørsmålOgSvar={settårsakEnslig}
         />
       </KomponentGruppe>
 

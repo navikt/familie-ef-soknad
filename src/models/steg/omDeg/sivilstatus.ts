@@ -18,7 +18,7 @@ export interface ISivilstatus {
   datoSøktSeparasjon?: IDatoFelt;
   erUformeltGift?: ISpørsmålBooleanFelt;
   erUformeltSeparertEllerSkilt?: ISpørsmålBooleanFelt;
-  begrunnelseForSøknad?: ISpørsmålFelt;
+  årsakEnslig?: ISpørsmålFelt;
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
   datoEndretSamvær?: IDatoFelt;
@@ -38,7 +38,7 @@ export enum ESivilstatusSøknadid {
   datoSøktSeparasjon = 'datoSøktSeparasjon',
   erUformeltGift = 'erUformeltGift',
   erUformeltSeparertEllerSkilt = 'erUformeltSeparertEllerSkilt',
-  begrunnelseForSøknad = 'begrunnelseForSøknad',
+  årsakEnslig = 'årsakEnslig',
   datoForSamlivsbrudd = 'datoForSamlivsbrudd',
   datoFlyttetFraHverandre = 'datoFlyttetFraHverandre',
   datoEndretSamvær = 'datoEndretSamvær',
