@@ -17,7 +17,7 @@ import {
 
 const ErklæringSamlivsbrudd: IDokumentasjon = {
   id: OmDegDokumentasjon.SAMLIVSBRUDD,
-  spørsmålid: ESivilstatusSøknadid.begrunnelseForSøknad,
+  spørsmålid: ESivilstatusSøknadid.årsakEnslig,
   svarid: EBegrunnelse.samlivsbruddForeldre,
   tittel: 'dokumentasjon.begrunnelse.tittel',
   beskrivelse: 'dokumentasjon.begrunnelse.beskrivelse',
@@ -103,7 +103,7 @@ export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
 };
 
 export const BegrunnelseSpørsmål: ISpørsmål = {
-  søknadid: ESivilstatusSøknadid.begrunnelseForSøknad,
+  søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,
   svaralternativer: [
@@ -129,10 +129,6 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
       id: EBegrunnelse.dødsfall,
       svar_tekstid: 'sivilstatus.svar.dødsfall',
       alert_tekstid: 'sivilstatus.alert.dødsfall',
-    },
-    {
-      id: EBegrunnelse.annet,
-      svar_tekstid: 'sivilstatus.svar.annet',
     },
   ],
 };

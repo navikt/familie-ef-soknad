@@ -135,7 +135,6 @@ export default {
     'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
     'sivilstatus.alert.dødsfall':
       'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
-    'sivilstatus.svar.annet': 'Annet',
     'sivilstatus.alert.samlivsbrudd':
       'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.begrunnelse.endring':
