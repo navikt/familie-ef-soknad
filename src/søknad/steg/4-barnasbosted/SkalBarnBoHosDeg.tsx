@@ -6,6 +6,7 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { hentTekst } from '../../../utils/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IBarn } from '../../../models/barn';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -32,7 +33,7 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
         label: intl.formatMessage({
           id: 'barnasbosted.spm.skalBarnBoHosDeg',
         }),
-        verdi: svar,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
     settDokumentasjonsbehov(spørsmål, svar);
