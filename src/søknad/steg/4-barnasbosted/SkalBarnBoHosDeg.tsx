@@ -6,7 +6,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { hentTekst } from '../../../utils/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IBarn } from '../../../models/barn';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -24,41 +23,24 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   settForelder,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
-
-  console.log(forelder);
+  const { settDokumentasjonsbehov } = useSøknad();
 
   const settSkalBarnBoHosDegFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const nyttBarn = {
-      ...barn,
-      skalBarnBoHosDeg: {
+    settForelder({
+      ...forelder,
+      [skalBarnBoHosDeg.søknadid]: {
         label: intl.formatMessage({
           id: 'barnasbosted.spm.skalBarnBoHosDeg',
         }),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar,
       },
-    };
-
-    const nyBarneListe = [
-      ...søknad.person.barn.filter((b) => b.id !== barn.id),
-      nyttBarn,
-    ];
-
-    settSøknad({
-      ...søknad,
-      person: { ...søknad.person, barn: nyBarneListe },
     });
-
-    console.log('nyliste', nyBarneListe);
-
     settDokumentasjonsbehov(spørsmål, svar);
-
-    console.log('ny', søknad.person);
   };
 
   return (
     <>
-      {barn.harSammeAdresse ? (
+      {!barn.harSammeAdresse ? (
         <KomponentGruppe>
           <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
@@ -66,7 +48,7 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
           <MultiSvarSpørsmål
             key={skalBarnBoHosDeg.søknadid}
             spørsmål={skalBarnBoHosDeg}
-            valgtSvar={forelder?.skalBarnBoHosDeg?.verdi}
+            valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
             settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
           />
         </KomponentGruppe>

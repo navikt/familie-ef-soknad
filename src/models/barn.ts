@@ -15,7 +15,7 @@ export interface IBarn {
   navn: ITekstFelt;
   født?: ISpørsmålBooleanFelt;
   lagtTil?: boolean;
-  skalBarnBoHosDeg?: ITekstFelt;
+  skalBarnBoHosDeg?: IBooleanFelt;
   forelder?: IForelder;
 }
 
