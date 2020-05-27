@@ -65,7 +65,6 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
     'person.navn': 'Navn',
-
     'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
@@ -73,6 +72,8 @@ export default {
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
     'person.fødselsdato': 'Fødselsdato',
+
+    barnet: 'Barnet',
 
     'stegtittel.omDeg': 'Om deg',
 
@@ -279,7 +280,7 @@ export default {
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
 
-    'barnasbosted.element.andreforelder': '[0]s andre forelder',
+    'barnasbosted.element.andreforelder': 's andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',

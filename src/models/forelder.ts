@@ -14,10 +14,10 @@ export interface IForelder {
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
   hvorforIkkeOppgi?: ISpørsmålFelt;
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
-  borINorge?: IBooleanFelt;
+  borINorge?: ISpørsmålBooleanFelt;
   land?: ITekstFelt;
   avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
-  harAnnenForelderSamværMedBarn?: ITekstFelt;
+  harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
   borISammeHus?: ITekstFelt;

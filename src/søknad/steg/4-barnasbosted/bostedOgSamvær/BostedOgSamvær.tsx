@@ -1,40 +1,37 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
-import {
-  borINorge,
-  avtaleOmDeltBosted,
-  harAnnenForelderSamværMedBarn,
-  harDereSkriftligSamværsavtale,
-} from '../ForeldreConfig';
-import { Input } from 'nav-frontend-skjema';
+import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
+
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
-import LocaleTekst from '../../../../language/LocaleTekst';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
-import { IForelder } from '../../../../models/forelder';
-import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../../utils/søknad';
+import { EForelder, IForelder } from '../../../../models/forelder';
+import {
+  erJaNeiSvar,
+  harValgtSvar,
+  hentBooleanFraValgtSvar,
+} from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
 } from '../../../../models/steg/barnasbosted';
+import BorForelderINorge from './BorForelderINorge';
+import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
+import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
+import {
+  harForelderSamværMedBarn,
+  harSkriftligSamværsavtale,
+} from '../../../../helpers/forelder';
 
 interface Props {
   settForelder: Function;
   forelder: IForelder;
-  huketAvAnnenForelder: boolean;
 }
 
-const BostedOgSamvær: React.FC<Props> = ({
-  settForelder,
-  forelder,
-  huketAvAnnenForelder,
-}) => {
+const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
   const { settDokumentasjonsbehov } = useSøknad();
 
@@ -45,42 +42,29 @@ const BostedOgSamvær: React.FC<Props> = ({
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: erJaNeiSvar(svar)
+          ? hentBooleanFraValgtSvar(svar)
+          : hentTekst(svar.svar_tekstid, intl),
       },
     };
 
-    if (svar.id !== EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter)
+    if (
+      spørsmål.søknadid === EForelder.harDereSkriftligSamværsavtale &&
+      svar.id !== EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter
+    )
       delete nyForelder.hvordanPraktiseresSamværet;
 
-    if (svar.id === EHarSamværMedBarn.nei)
+    if (
+      spørsmål.søknadid === EForelder.harAnnenForelderSamværMedBarn &&
+      svar.id === EHarSamværMedBarn.nei
+    )
       delete nyForelder.hvordanPraktiseresSamværet;
 
-    settForelder(nyForelder);
-    settDokumentasjonsbehov(spørsmål, svar);
-  };
-
-  const visSkriftligSamværsavtaleSpørsmål = (
-    svarAndreForelderenSamvær: string
-  ) => {
-    return (
-      svarAndreForelderenSamvær &&
-      svarAndreForelderenSamvær !==
-        intl.formatMessage({ id: 'barnasbosted.spm.andreForelderenSamværNei' })
-    );
-  };
-
-  const settBostedJaNeiFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const nyForelder = {
-      ...forelder,
-      [spørsmål.søknadid]: {
-        spørsmålid: spørsmål.søknadid,
-        svarid: svar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentBooleanFraValgtSvar(svar),
-      },
-    };
-
-    if (svar.id === ESvar.JA) {
+    if (
+      spørsmål.søknadid === EForelder.borINorge &&
+      forelder.land &&
+      svar.id === ESvar.JA
+    ) {
       delete nyForelder.land;
     }
 
@@ -88,116 +72,47 @@ const BostedOgSamvær: React.FC<Props> = ({
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  const visSamværsavtaleAdvarsel = (valgtSvar: string) => {
-    return (
-      valgtSvar ===
-        intl.formatMessage({
-          id: 'barnasbosted.spm.jaKonkreteTidspunkt',
-        }) ||
-      valgtSvar ===
-        intl.formatMessage({ id: 'barnasbosted.spm.jaIkkeKonkreteTidspunkt' })
-    );
-  };
-
-  const visHvordanPraktiseresSamværet = (valgtSamværsrett: string) => {
-    return (
-      valgtSamværsrett === intl.formatMessage({ id: 'barnasbosted.spm.nei' })
-    );
-  };
-
   return (
     <>
-      {!huketAvAnnenForelder && (
-        <KomponentGruppe>
-          <JaNeiSpørsmål
-            spørsmål={borINorge}
-            onChange={settBostedJaNeiFelt}
-            valgtSvar={forelder.borINorge?.verdi}
-          />
-        </KomponentGruppe>
-      )}
-      {forelder.borINorge?.verdi === false && (
-        <KomponentGruppe>
-          <Input
-            onChange={(e) =>
-              settForelder({
-                ...forelder,
-                land: {
-                  label: hentTekst('barnasbosted.land', intl),
-                  verdi: e.target.value,
-                },
-              })
-            }
-            value={forelder.land ? forelder.land?.verdi : ''}
-            label={hentTekst('barnasbosted.hvilketLand', intl)}
-          />
-        </KomponentGruppe>
-      )}
-      {(forelder.borINorge?.verdi === true || forelder.land?.verdi !== '') && (
-        <KomponentGruppe>
-          <JaNeiSpørsmål
-            spørsmål={avtaleOmDeltBosted}
-            onChange={settBostedJaNeiFelt}
-            valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
-          />
-          {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
-            <>
-              <AlertStripe type={'advarsel'} form={'inline'}>
-                <LocaleTekst
-                  tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
-                />
-              </AlertStripe>
-              <AlertStripe type={'info'} form={'inline'}>
-                <LocaleTekst
-                  tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'}
-                />
-              </AlertStripe>
-            </>
-          )}
-        </KomponentGruppe>
-      )}
-      <KomponentGruppe>
-        <MultiSvarSpørsmål
-          key={harAnnenForelderSamværMedBarn.søknadid}
-          spørsmål={harAnnenForelderSamværMedBarn}
-          valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
-          settSpørsmålOgSvar={settBostedOgSamværFelt}
+      <BorForelderINorge
+        forelder={forelder}
+        settForelder={settForelder}
+        settFelt={settBostedOgSamværFelt}
+      />
+
+      {(forelder.borINorge?.svarid === ESvar.JA || forelder.land?.verdi) && (
+        <HarForelderAvtaleOmDeltBosted
+          settBostedOgSamværFelt={settBostedOgSamværFelt}
+          forelder={forelder}
         />
-      </KomponentGruppe>
-      {forelder.harAnnenForelderSamværMedBarn &&
-      visSkriftligSamværsavtaleSpørsmål(
-        forelder.harAnnenForelderSamværMedBarn.verdi
-      ) ? (
+      )}
+
+      {harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) && (
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            key={harDereSkriftligSamværsavtale.søknadid}
-            spørsmål={harDereSkriftligSamværsavtale}
-            valgtSvar={forelder.harDereSkriftligSamværsavtale?.verdi}
+            key={harAnnenForelderSamværMedBarn.søknadid}
+            spørsmål={harAnnenForelderSamværMedBarn}
+            valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
             settSpørsmålOgSvar={settBostedOgSamværFelt}
           />
-          {forelder.harDereSkriftligSamværsavtale &&
-          visSamværsavtaleAdvarsel(
-            forelder.harDereSkriftligSamværsavtale.verdi
-          ) ? (
-            <FeltGruppe>
-              <AlertStripe type={'info'} form="inline">
-                <LocaleTekst
-                  tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
-                />
-              </AlertStripe>
-            </FeltGruppe>
-          ) : null}
         </KomponentGruppe>
-      ) : null}
-      {forelder.harDereSkriftligSamværsavtale &&
-      visHvordanPraktiseresSamværet(
-        forelder.harDereSkriftligSamværsavtale.verdi
-      ) ? (
+      )}
+      {harForelderSamværMedBarn(
+        forelder.harAnnenForelderSamværMedBarn?.svarid
+      ) && (
+        <HarForelderSkriftligSamværsavtale
+          forelder={forelder}
+          settBostedOgSamværFelt={settBostedOgSamværFelt}
+        />
+      )}
+      {harSkriftligSamværsavtale(
+        forelder.harDereSkriftligSamværsavtale?.svarid
+      ) && (
         <HvordanPraktiseresSamværet
           forelder={forelder}
           settForelder={settForelder}
         />
-      ) : null}
+      )}
     </>
   );
 };

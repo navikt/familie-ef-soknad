@@ -12,6 +12,9 @@ import { useSøknad } from '../../../context/SøknadContext';
 import IkkeAnnenForelder from './IkkeAnnenForelder';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
+import { visBostedOgSamværSeksjon } from '../../../helpers/forelder';
 
 interface Props {
   barn: IBarn;
@@ -27,9 +30,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
-  const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(
-    false
-  );
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(undefined);
 
   const intl = useIntl();
 
@@ -59,11 +62,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settAktivIndex(nyIndex);
   };
 
-  const andreBarnMedForelder = søknad.person.barn.filter((b) => {
+  const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
     return b !== barn && b.forelder;
   });
 
-  const erAlleFelterOgSpørsmålBesvart: boolean = false;
+  const erAlleFelterOgSpørsmålBesvart: boolean = true;
+
+  const visOmAndreForelder =
+    andreBarnMedForelder.length === 0 ||
+    (andreBarnMedForelder.length > 0 && barnHarSammeForelder === false) ||
+    (barnHarSammeForelder === false &&
+      (barn.harSammeAdresse.verdi ||
+        harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)));
+
+  const visBostedOgSamværSpørsmål =
+    visBostedOgSamværSeksjon(forelder) && !barnHarSammeForelder;
 
   return (
     <>
@@ -71,48 +84,51 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         <BarnasBostedHeader barn={barn} />
         <div className="barnas-bosted__innhold">
           {!barn.harSammeAdresse.verdi && (
-            <SkalBarnBoHosDeg forelder={forelder} settForelder={settForelder} />
-          )}
-          {!barn.harSammeAdresse.verdi && forelder.skalBarnBoHosDeg && (
-            <FeltGruppe>
-              <Element>
-                {barn.navn.verdi}
-                {intl.formatMessage({
-                  id: 'barnasbosted.element.andreforelder',
-                })}
-              </Element>
-              <AnnenForelderKnapper
-                barn={barn}
-                andreBarnMedForelder={andreBarnMedForelder}
-                settForelder={settForelder}
-                forelder={forelder}
-                settHuketAvAnnenForelder={settHuketAvAnnenForelder}
-              />
-            </FeltGruppe>
-          )}
-          {!huketAvAnnenForelder && (
-            <OmAndreForelder
+            <SkalBarnBoHosDeg
               barn={barn}
-              settForelder={settForelder}
               forelder={forelder}
+              settForelder={settForelder}
             />
           )}
-          {((forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-            forelder.hvorforIkkeOppgi?.verdi) ||
-            forelder.fødselsdato?.verdi) && (
-            <BostedOgSamvær
-              settForelder={settForelder}
-              forelder={forelder}
-              huketAvAnnenForelder={huketAvAnnenForelder}
-            />
-          )}
-          {!huketAvAnnenForelder &&
-            forelder.harDereSkriftligSamværsavtale?.verdi && (
-              <IkkeAnnenForelder
-                forelder={forelder}
-                settForelder={settForelder}
-              />
+
+          {!barn.harSammeAdresse?.verdi &&
+            harValgtSvar(forelder.skalBarnBoHosDeg?.verdi) && (
+              <>
+                <FeltGruppe>
+                  <Element>
+                    {barn.navn.verdi}
+                    {hentTekst('barnasbosted.element.andreforelder', intl)}
+                  </Element>
+                </FeltGruppe>
+
+                {andreBarnMedForelder.length > 0 && (
+                  <AnnenForelderKnapper
+                    barn={barn}
+                    andreBarnMedForelder={andreBarnMedForelder}
+                    settForelder={settForelder}
+                    forelder={forelder}
+                    settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  />
+                )}
+                {visOmAndreForelder && (
+                  <OmAndreForelder
+                    barn={barn}
+                    settForelder={settForelder}
+                    forelder={forelder}
+                  />
+                )}
+              </>
             )}
+
+          {visBostedOgSamværSpørsmål && (
+            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
+          )}
+          {!barnHarSammeForelder && false && (
+            <IkkeAnnenForelder
+              forelder={forelder}
+              settForelder={settForelder}
+            />
+          )}
           {erAlleFelterOgSpørsmålBesvart && (
             <Knapp onClick={leggTilForelder}>Neste Barn</Knapp>
           )}
