@@ -62,7 +62,7 @@ const StyledAndreForelderGruppe = styled.div`
     grid-area: checkbox;
   }
 `;
-const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
+const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   const intl = useIntl();
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);

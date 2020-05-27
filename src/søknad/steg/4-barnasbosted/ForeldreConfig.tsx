@@ -63,7 +63,7 @@ export const borINorge: ISpørsmål = {
 };
 
 export const avtaleOmDeltBosted: ISpørsmål = {
-  søknadid: 'avtaleOmDeltBosted',
+  søknadid: EForelder.avtaleOmDeltBosted,
   tekstid: 'barnasbosted.avtale',
   flersvar: false,
   lesmer: {
@@ -106,7 +106,7 @@ export const hvorforIkkeOppgi: ISpørsmål = {
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
-  søknadid: 'harAnnenForelderSamværMedBarn',
+  søknadid: EForelder.harAnnenForelderSamværMedBarn,
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
   flersvar: false,
   lesmer: {

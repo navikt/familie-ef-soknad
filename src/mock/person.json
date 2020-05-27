@@ -27,8 +27,8 @@
       "navn": "SHIBA INU",
       "alder": 9,
       "fødselsdato": "2010-02-28",
-      "harSammeAdresse": true,
-      "født": true
+      "harSammeAdresse": false,
+      "født": false
     },
     {
       "id": "12346",
