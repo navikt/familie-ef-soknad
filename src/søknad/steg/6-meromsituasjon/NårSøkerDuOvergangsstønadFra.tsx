@@ -6,6 +6,8 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { SøkerFraBestemtMånedSpm } from './SituasjonConfig';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import Hjelpetekst from '../../../components/Hjelpetekst';
@@ -36,24 +38,43 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         },
       });
   };
+
+  const settSøkerFraBestemtMåned = (spørsmål: any, svar: any) => {
+    console.log(svar);
+    settDinSituasjon({
+      ...dinSituasjon,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
+    });
+  };
+
   return (
-    <KomponentGruppe>
-      <Element>
-        <LocaleTekst tekst={'dinSituasjon.dato-tittel.overgangsstønad'} />
-      </Element>
-      <Hjelpetekst
-        åpneTekstid={'dinSituasjon.lesmer-åpne.overgangsstønad'}
-        innholdTekstid={'dinSituasjon.lesmer-innhold.overgangsstønad'}
-      />
-      <StyledDatovelger>
-        <Datovelger
-          valgtDato={dinSituasjon.søknadsdato.verdi}
-          tekstid={'dinSituasjon.datovelger.overgangsstønad'}
-          datobegrensning={DatoBegrensning.FremtidigeDatoer}
-          settDato={settSøknadsdato}
+    <>
+      <KomponentGruppe>
+        <MultiSvarSpørsmål
+          spørsmål={SøkerFraBestemtMånedSpm}
+          settSpørsmålOgSvar={settSøkerFraBestemtMåned}
+          valgtSvar={dinSituasjon.søkerFraBestemtMåned?.verdi}
         />
-      </StyledDatovelger>
-    </KomponentGruppe>
+      </KomponentGruppe>
+      <KomponentGruppe>
+        <Element>
+          <LocaleTekst tekst={'dinSituasjon.dato-tittel.overgangsstønad'} />
+        </Element>
+        <StyledDatovelger>
+          <Datovelger
+            valgtDato={dinSituasjon.søknadsdato.verdi}
+            tekstid={'dinSituasjon.datovelger.overgangsstønad'}
+            datobegrensning={DatoBegrensning.FremtidigeDatoer}
+            settDato={settSøknadsdato}
+          />
+        </StyledDatovelger>
+      </KomponentGruppe>
+    </>
   );
 };
 export default NårSøkerDuOvergangsstønadFra;

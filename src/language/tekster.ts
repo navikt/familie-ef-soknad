@@ -521,6 +521,11 @@ export default {
     'dinSituasjon.datovelger.overgangsstønad':
       'Jeg søker overgangsstønad fra og med',
 
+    'dinSituasjon.spm.søkerFraBestemtMåned':
+      'Søker du om overgangsstønad fra en bestemt måned?',
+    'dinSituasjon.svar.neiNavKanVurdere':
+      'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
+
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
     'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',

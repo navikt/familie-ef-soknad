@@ -13,6 +13,7 @@ export interface IDinSituasjon {
   sagtOppEllerRedusertStilling?: ISpørsmålFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
   datoSagtOppEllerRedusertStilling?: IDatoFelt;
+  søkerFraBestemtMåned?: ISpørsmålFelt;
 }
 
 export enum ESituasjon {
@@ -23,6 +24,7 @@ export enum ESituasjon {
   sagtOppEllerRedusertStilling = 'sagtOppEllerRedusertStilling',
   begrunnelseSagtOppEllerRedusertStilling = 'begrunnelseSagtOppEllerRedusertStilling',
   datoSagtOppEllerRedusertStilling = 'datoSagtOppEllerRedusertStilling',
+  søkerFraBestemtMåned = 'søkerFraBestemtMåned',
 }
 
 export enum DinSituasjonType {
@@ -38,4 +40,9 @@ export enum ESagtOppEllerRedusertStilling {
   sagtOpp = 'sagtOpp',
   redusertStilling = 'redusertStilling',
   nei = 'nei',
+}
+
+export enum ESøkerFraBestemtMåned {
+  ja = 'ja',
+  neiNavKanVurdere = 'neiNavKanVurdere',
 }
