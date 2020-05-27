@@ -1,22 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import styled from 'styled-components/macro';
+import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
+import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
 import { IBarn } from '../../../models/barn';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { IForelder } from '../../../models/forelder';
-import { hentTekst } from '../../../utils/søknad';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
-import styled from 'styled-components/macro';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
@@ -65,6 +64,7 @@ const StyledAndreForelderGruppe = styled.div`
 `;
 const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   const intl = useIntl();
+  const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
@@ -77,6 +77,8 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     }
 
     if (!e.target.checked) {
+      settBegyntÅSkrive(false);
+      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
     }
@@ -91,8 +93,14 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   };
 
   const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settBegyntÅSkrive(false);
+
     const nyForelder = {
       ...forelder,
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: hentTekst(svar.svar_tekstid, intl),
+      },
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
@@ -102,10 +110,22 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     };
 
     if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
+      delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
     }
 
     settForelder(nyForelder);
+  };
+
+  const settIkkeOppgittAnnenForelderBegrunnelse = (e: any) => {
+    settBegyntÅSkrive(true);
+
+    settForelder({
+      ...forelder,
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: e.target.value,
+      },
+    });
   };
 
   return (
@@ -191,19 +211,12 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
           <FeltGruppe>
             <Textarea
               value={
-                forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi
+                forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
+                begyntÅSkrive
                   ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
                   : ''
               }
-              onChange={(e: any) =>
-                settForelder({
-                  ...forelder,
-                  ikkeOppgittAnnenForelderBegrunnelse: {
-                    label: hvorforIkkeOppgiLabel,
-                    verdi: e.target.value,
-                  },
-                })
-              }
+              onChange={settIkkeOppgittAnnenForelderBegrunnelse}
               label={hvorforIkkeOppgiLabel}
             />
           </FeltGruppe>

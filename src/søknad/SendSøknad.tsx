@@ -45,10 +45,10 @@ const SendSøknad = () => {
 
   return (
     <>
-      {søknad.sivilstatus.begrunnelseForSøknad &&
-      (søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+      {søknad.sivilstatus.årsakEnslig &&
+      (søknad.sivilstatus.årsakEnslig.verdi ===
         tekster.nb['sivilstatus.svar.samlivsbruddAndre'] ||
-        søknad.sivilstatus.begrunnelseForSøknad.verdi ===
+        søknad.sivilstatus.årsakEnslig.verdi ===
           tekster.nb['sivilstatus.svar.samlivsbruddForeldre']) ? (
         <Filopplaster
           settVedlegg={settVedlegg}
