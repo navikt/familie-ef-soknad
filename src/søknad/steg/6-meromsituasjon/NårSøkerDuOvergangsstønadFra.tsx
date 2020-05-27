@@ -10,8 +10,8 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import { SøkerFraBestemtMånedSpm } from './SituasjonConfig';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
-import Hjelpetekst from '../../../components/Hjelpetekst';
 import styled from 'styled-components/macro';
+import { formatNårSøkerDuStønadFraMåned } from '../../../utils/dato';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -38,6 +38,8 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         },
       });
   };
+
+  console.log(formatNårSøkerDuStønadFraMåned(new Date(), 3));
 
   const settSøkerFraBestemtMåned = (spørsmål: any, svar: any) => {
     settDinSituasjon({
