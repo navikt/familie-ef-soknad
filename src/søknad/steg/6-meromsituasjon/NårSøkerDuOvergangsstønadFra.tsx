@@ -40,7 +40,6 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: any, svar: any) => {
-    console.log(svar);
     settDinSituasjon({
       ...dinSituasjon,
       [spørsmål.søknadid]: {
@@ -61,19 +60,22 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
           valgtSvar={dinSituasjon.søkerFraBestemtMåned?.verdi}
         />
       </KomponentGruppe>
-      <KomponentGruppe>
-        <Element>
-          <LocaleTekst tekst={'dinSituasjon.dato-tittel.overgangsstønad'} />
-        </Element>
-        <StyledDatovelger>
-          <Datovelger
-            valgtDato={dinSituasjon.søknadsdato.verdi}
-            tekstid={'dinSituasjon.datovelger.overgangsstønad'}
-            datobegrensning={DatoBegrensning.FremtidigeDatoer}
-            settDato={settSøknadsdato}
-          />
-        </StyledDatovelger>
-      </KomponentGruppe>
+      {dinSituasjon.søkerFraBestemtMåned?.verdi ===
+        hentTekst('svar.ja', intl) && (
+        <KomponentGruppe>
+          <Element>
+            <LocaleTekst tekst={'dinSituasjon.dato-tittel.overgangsstønad'} />
+          </Element>
+          <StyledDatovelger>
+            <Datovelger
+              valgtDato={dinSituasjon.søknadsdato.verdi}
+              tekstid={'dinSituasjon.datovelger.overgangsstønad'}
+              datobegrensning={DatoBegrensning.FremtidigeDatoer}
+              settDato={settSøknadsdato}
+            />
+          </StyledDatovelger>
+        </KomponentGruppe>
+      )}
     </>
   );
 };
