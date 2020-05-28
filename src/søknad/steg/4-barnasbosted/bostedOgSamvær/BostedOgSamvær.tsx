@@ -14,15 +14,13 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
-import {
-  EHarSamværMedBarn,
-  EHarSkriftligSamværsavtale,
-} from '../../../../models/steg/barnasbosted';
+
 import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
 import {
   harForelderSamværMedBarn,
   harSkriftligSamværsavtale,
+  hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
 } from '../../../../helpers/forelder';
 
 interface Props {
@@ -48,15 +46,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
     };
 
     if (
-      spørsmål.søknadid === EForelder.harDereSkriftligSamværsavtale &&
-      svar.id === EHarSkriftligSamværsavtale.nei &&
-      nyForelder.hvordanPraktiseresSamværet
-    )
-      delete nyForelder.hvordanPraktiseresSamværet;
-
-    if (
-      spørsmål.søknadid === EForelder.harAnnenForelderSamværMedBarn &&
-      svar.id === EHarSamværMedBarn.nei &&
+      hvisEndretSvarSlettFeltHvordanPraktiseresSamværet &&
       nyForelder.hvordanPraktiseresSamværet
     )
       delete nyForelder.hvordanPraktiseresSamværet;

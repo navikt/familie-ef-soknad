@@ -9,7 +9,6 @@ import { IBarn } from '../../../models/barn';
 import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useSøknad } from '../../../context/SøknadContext';
-import IkkeAnnenForelder from './IkkeAnnenForelder';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import {
@@ -19,12 +18,17 @@ import {
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
+  erAlleFelterOgSpørsmålBesvart,
   visBostedOgSamværSeksjon,
-  visSpørsmålUavhengigAvSammeForelder,
+  visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { isValid } from 'date-fns';
+import BorISammeHus from './ikkesammeforelder/BorISammeHus';
+import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
+import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
+import { EBorISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
@@ -44,6 +48,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
+  const { borISammeHus, boddSammenFør, flyttetFra } = forelder;
 
   const intl = useIntl();
 
@@ -82,9 +87,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)));
-  const erAlleFelterOgSpørsmålBesvart: boolean = true;
 
-  console.log(barnHarSammeForelder);
+  const nyForelderOgKanOppgiAndreForelder =
+    !barnHarSammeForelder &&
+    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+    isValid(forelder.fødselsdato?.verdi);
 
   const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
@@ -109,11 +116,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
-
-  const nyForelderOgKanOppgiAndreForelder =
-    !barnHarSammeForelder &&
-    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    isValid(forelder.fødselsdato?.verdi);
 
   return (
     <>
@@ -172,14 +174,28 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
           )}
 
-          {!barnHarSammeForelder &&
-            visSpørsmålUavhengigAvSammeForelder(forelder) && (
-              <IkkeAnnenForelder
-                forelder={forelder}
-                settForelder={settForelder}
-              />
-            )}
-          {erAlleFelterOgSpørsmålBesvart && (
+          {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            <>
+              <BorISammeHus forelder={forelder} settForelder={settForelder} />
+
+              {((harValgtSvar(borISammeHus?.verdi) &&
+                borISammeHus?.svarid !== EBorISammeHus.ja) ||
+                harValgtSvar(forelder.hvordanBorDere?.verdi)) && (
+                <BoddSammenFør
+                  forelder={forelder}
+                  settForelder={settForelder}
+                />
+              )}
+              {(boddSammenFør?.svarid === ESvar.NEI ||
+                isValid(flyttetFra?.verdi)) && (
+                <HvorMyeSammen
+                  forelder={forelder}
+                  settForelder={settForelder}
+                />
+              )}
+            </>
+          )}
+          {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
             <Knapp onClick={leggTilForelder}>Neste Barn</Knapp>
           )}
         </div>

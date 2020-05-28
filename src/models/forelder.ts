@@ -20,11 +20,11 @@ export interface IForelder {
   harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
-  borISammeHus?: ITekstFelt;
-  hvordanBorDere?: ITekstFelt;
+  borISammeHus?: ISpørsmålFelt;
+  hvordanBorDere?: ISpørsmålFelt;
   boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
-  hvorMyeSammen?: ITekstFelt;
+  hvorMyeSammen?: ISpørsmålFelt;
   beskrivSamværUtenBarn?: ITekstFelt;
 }
 

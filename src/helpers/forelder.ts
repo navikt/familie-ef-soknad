@@ -2,10 +2,12 @@ import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
   EHvorforIkkeOppgi,
+  EHvorMyeSammen,
 } from '../models/steg/barnasbosted';
-import { IForelder } from '../models/forelder';
+import { EForelder, IForelder } from '../models/forelder';
 import { isValid } from 'date-fns';
-import { ESvar } from '../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { harValgtSvar } from '../utils/spørsmålogsvar';
 
 export const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -61,7 +63,7 @@ export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
   }
 };
 
-export const visSpørsmålUavhengigAvSammeForelder = (forelder: IForelder) => {
+export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
   if (forelder.harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei)
     return true;
   else if (
@@ -76,4 +78,43 @@ export const visSpørsmålUavhengigAvSammeForelder = (forelder: IForelder) => {
     return true;
 
   return false;
+};
+
+export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
+  spørsmål: ISpørsmål,
+  svar: ISvar
+) => {
+  return (
+    (spørsmål.søknadid === EForelder.harDereSkriftligSamværsavtale &&
+      svar.id === EHarSkriftligSamværsavtale.nei) ||
+    (spørsmål.søknadid === EForelder.harAnnenForelderSamværMedBarn &&
+      svar.id === EHarSamværMedBarn.nei)
+  );
+};
+
+export const erAlleFelterOgSpørsmålBesvart = (
+  forelder: IForelder,
+  barnHarSammeForelder: boolean | undefined
+): boolean => {
+  const {
+    harAnnenForelderSamværMedBarn,
+    harDereSkriftligSamværsavtale,
+    hvordanPraktiseresSamværet,
+    hvorMyeSammen,
+    beskrivSamværUtenBarn,
+  } = forelder;
+  if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
+    return (
+      harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
+      harDereSkriftligSamværsavtale?.svarid ===
+        EHarSkriftligSamværsavtale.jaKonkreteTidspunkter ||
+      harValgtSvar(hvordanPraktiseresSamværet?.verdi)
+    );
+  } else {
+    return (
+      (harValgtSvar(hvorMyeSammen?.verdi) &&
+        hvorMyeSammen?.svarid !== EHvorMyeSammen.møtesUtenom) ||
+      harValgtSvar(beskrivSamværUtenBarn?.verdi)
+    );
+  }
 };
