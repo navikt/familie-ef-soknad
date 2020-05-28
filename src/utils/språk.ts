@@ -33,10 +33,14 @@ export const hentBeskjedMedNavn = (navn: string, tekststreng: string) => {
 };
 
 export const hentBeskjedMedToParametre = (
-  en: string,
-  to: string,
-  tekststreng: string
+  tekststreng: string,
+  en?: string,
+  to?: string
 ) => {
-  let tekst = tekststreng.replace('[0]', en).replace('[1]', to);
+  let tekst = tekststreng;
+
+  if (en) tekst = tekststreng.replace('[0]', en);
+  if (to) tekst = tekststreng.replace('[1]', to);
+
   return tekst;
 };
