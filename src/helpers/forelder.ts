@@ -5,8 +5,12 @@ import {
 } from '../models/steg/barnasbosted';
 import { IForelder } from '../models/forelder';
 import { isValid } from 'date-fns';
+import { ESvar } from '../models/spørsmålogsvar';
 
-export const visBostedOgSamværSeksjon = (forelder: IForelder) => {
+export const visBostedOgSamværSeksjon = (
+  forelder: IForelder,
+  visesBorINorgeSpørsmål: boolean
+) => {
   const erAnnetBegrunnelseUtfylt =
     forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
     forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi !==
@@ -18,7 +22,16 @@ export const visBostedOgSamværSeksjon = (forelder: IForelder) => {
     (forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn ||
       erAnnetBegrunnelseUtfylt);
 
-  return kanIkkeOppgiDenAndreForelderen || isValid(forelder.fødselsdato?.verdi);
+  const borForelderINorgeSpm =
+    forelder.borINorge?.svarid === ESvar.JA ||
+    (forelder.land && forelder.land?.verdi !== '');
+
+  return (
+    kanIkkeOppgiDenAndreForelderen ||
+    (visesBorINorgeSpørsmål
+      ? borForelderINorgeSpm
+      : isValid(forelder.fødselsdato?.verdi))
+  );
 };
 
 export const harForelderSamværMedBarn = (svarid: string | undefined) => {
@@ -37,11 +50,11 @@ export const harForelderSamværMedBarn = (svarid: string | undefined) => {
 export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
   switch (svarid) {
     case EHarSkriftligSamværsavtale.jaKonkreteTidspunkter:
-      return true;
+      return false;
     case EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter:
       return true;
     case EHarSkriftligSamværsavtale.nei:
-      return false;
+      return true;
 
     default:
       return false;
@@ -53,7 +66,7 @@ export const visSpørsmålUavhengigAvSammeForelder = (forelder: IForelder) => {
     return true;
   else if (
     forelder.harDereSkriftligSamværsavtale?.svarid ===
-    EHarSkriftligSamværsavtale.nei
+    EHarSkriftligSamværsavtale.jaKonkreteTidspunkter
   )
     return true;
   else if (

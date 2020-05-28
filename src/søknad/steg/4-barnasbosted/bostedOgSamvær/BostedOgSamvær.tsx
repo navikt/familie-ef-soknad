@@ -18,7 +18,6 @@ import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
 } from '../../../../models/steg/barnasbosted';
-import BorForelderINorge from './BorForelderINorge';
 import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
 import {
@@ -73,22 +72,13 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
-  console.log(forelder);
 
   return (
     <>
-      <BorForelderINorge
+      <HarForelderAvtaleOmDeltBosted
+        settBostedOgSamværFelt={settBostedOgSamværFelt}
         forelder={forelder}
-        settForelder={settForelder}
-        settFelt={settBostedOgSamværFelt}
       />
-
-      {(forelder.borINorge?.svarid === ESvar.JA || forelder.land?.verdi) && (
-        <HarForelderAvtaleOmDeltBosted
-          settBostedOgSamværFelt={settBostedOgSamværFelt}
-          forelder={forelder}
-        />
-      )}
 
       {harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) && (
         <KomponentGruppe>

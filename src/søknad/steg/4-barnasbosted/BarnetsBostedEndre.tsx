@@ -6,18 +6,25 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
 import { IBarn } from '../../../models/barn';
-import { IForelder } from '../../../models/forelder';
+import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useSøknad } from '../../../context/SøknadContext';
 import IkkeAnnenForelder from './IkkeAnnenForelder';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import {
+  erJaNeiSvar,
+  harValgtSvar,
+  hentBooleanFraValgtSvar,
+} from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
   visBostedOgSamværSeksjon,
   visSpørsmålUavhengigAvSammeForelder,
 } from '../../../helpers/forelder';
+import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { isValid } from 'date-fns';
 
 interface Props {
   barn: IBarn;
@@ -30,6 +37,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settAktivIndex,
   aktivIndex,
 }) => {
+  const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
@@ -61,7 +69,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
 
     const nyIndex = aktivIndex + 1;
-
     settAktivIndex(nyIndex);
   };
 
@@ -69,17 +76,44 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     return b !== barn && b.forelder;
   });
 
-  const erAlleFelterOgSpørsmålBesvart: boolean = true;
-
   const visOmAndreForelder =
     andreBarnMedForelder.length === 0 ||
     (andreBarnMedForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)));
+  const erAlleFelterOgSpørsmålBesvart: boolean = true;
 
-  const visBostedOgSamværSpørsmål =
-    visBostedOgSamværSeksjon(forelder) && !barnHarSammeForelder;
+  console.log(barnHarSammeForelder);
+
+  const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: erJaNeiSvar(svar)
+          ? hentBooleanFraValgtSvar(svar)
+          : hentTekst(svar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      spørsmål.søknadid === EForelder.borINorge &&
+      nyForelder.land &&
+      svar.id === ESvar.JA
+    ) {
+      delete nyForelder.land;
+    }
+    settForelder(nyForelder);
+    settDokumentasjonsbehov(spørsmål, svar);
+  };
+
+  const nyForelderOgKanOppgiAndreForelder =
+    !barnHarSammeForelder &&
+    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+    isValid(forelder.fødselsdato?.verdi);
 
   return (
     <>
@@ -123,9 +157,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-          {visBostedOgSamværSpørsmål && (
+          {nyForelderOgKanOppgiAndreForelder && (
+            <BorForelderINorge
+              forelder={forelder}
+              settForelder={settForelder}
+              settFelt={settBorINorgeFelt}
+            />
+          )}
+
+          {visBostedOgSamværSeksjon(
+            forelder,
+            nyForelderOgKanOppgiAndreForelder
+          ) && (
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
           )}
+
           {!barnHarSammeForelder &&
             visSpørsmålUavhengigAvSammeForelder(forelder) && (
               <IkkeAnnenForelder
