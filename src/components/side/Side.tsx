@@ -68,7 +68,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {(erSpørsmålBesvart || !erSpørsmålBesvart) && (
+            {(erSpørsmålBesvart || true) && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}

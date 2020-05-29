@@ -14,6 +14,7 @@ const BarnasBosted: React.FC = () => {
   const location = useLocation();
   const { søknad } = useSøknad();
   const [aktivIndex, settAktivIndex] = useState<number>(0);
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
@@ -21,6 +22,7 @@ const BarnasBosted: React.FC = () => {
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={!kommerFraOppsummering}
+      erSpørsmålBesvart={sisteBarnUtfylt}
     >
       {barna.map((barn, index) => {
         const key = barn.fødselsdato.verdi + index;
@@ -28,6 +30,8 @@ const BarnasBosted: React.FC = () => {
           return (
             <BarnetsBostedEndre
               barn={barn}
+              sisteBarnUtfylt={sisteBarnUtfylt}
+              settSisteBarnUtfylt={settSisteBarnUtfylt}
               settAktivIndex={settAktivIndex}
               aktivIndex={aktivIndex}
               key={key}

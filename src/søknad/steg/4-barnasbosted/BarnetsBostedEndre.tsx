@@ -34,12 +34,16 @@ interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   aktivIndex: number;
+  sisteBarnUtfylt: boolean;
+  settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
   barn,
   settAktivIndex,
   aktivIndex,
+  settSisteBarnUtfylt,
+  sisteBarnUtfylt,
 }) => {
   const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
@@ -60,7 +64,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
+  const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
+    return b !== barn && b.forelder;
+  });
+
+  const erPåSisteBarn: boolean =
+    søknad.person.barn.length - 1 === andreBarnMedForelder.length;
+
   const leggTilForelder = () => {
+    if (erPåSisteBarn && !sisteBarnUtfylt) settSisteBarnUtfylt(true);
+
     const nyBarneListe = søknad.person.barn.map((b) => {
       if (b === barn) {
         let nyttBarn = barn;
@@ -76,10 +89,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
   };
-
-  const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
-    return b !== barn && b.forelder;
-  });
 
   const visOmAndreForelder =
     andreBarnMedForelder.length === 0 ||
@@ -116,9 +125,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
-
-  const erPåSisteBarn: boolean =
-    søknad.person.barn.length - 1 === andreBarnMedForelder.length;
 
   return (
     <>
@@ -201,7 +207,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
           {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
             <Knapp onClick={leggTilForelder}>
-              {!erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
+              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
             </Knapp>
           )}
         </div>
