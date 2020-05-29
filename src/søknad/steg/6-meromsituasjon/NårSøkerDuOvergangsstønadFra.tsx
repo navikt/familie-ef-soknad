@@ -74,6 +74,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
               tekstid={'dinSituasjon.datovelger.overgangsstønad'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
               settDato={settSøknadsdato}
+              showMonthYearPicker
             />
           </StyledDatovelger>
         </KomponentGruppe>
