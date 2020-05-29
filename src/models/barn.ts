@@ -8,7 +8,7 @@ import { IForelder } from './forelder';
 export interface IBarn {
   id?: string;
   alder: ITekstFelt;
-  fnr: ITekstFelt;
+  fødselsnummer: ITekstFelt;
   fødselsdato: ITekstFelt;
   personnummer?: ITekstFelt;
   harSammeAdresse: IBooleanFelt;
@@ -20,7 +20,7 @@ export interface IBarn {
 
 export enum EBarn {
   alder = 'alder',
-  fnr = 'fnr',
+  fødselsnummer = 'fødselsnummer',
   fødselsdato = 'fødselsdato',
   personnummer = 'personnummer',
   harSammeAdresse = 'harSammeAdresse',
