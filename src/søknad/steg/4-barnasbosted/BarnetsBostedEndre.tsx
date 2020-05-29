@@ -117,6 +117,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
+  const erPåSisteBarn: boolean =
+    søknad.person.barn.length - 1 === andreBarnMedForelder.length;
+
   return (
     <>
       <div className="barnas-bosted">
@@ -167,10 +170,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             />
           )}
 
-          {visBostedOgSamværSeksjon(
+          {(visBostedOgSamværSeksjon(
             forelder,
             nyForelderOgKanOppgiAndreForelder
-          ) && (
+          ) ||
+            barnHarSammeForelder) && (
             <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
           )}
 
@@ -196,7 +200,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
           {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
-            <Knapp onClick={leggTilForelder}>Neste Barn</Knapp>
+            <Knapp onClick={leggTilForelder}>
+              {!erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
+            </Knapp>
           )}
         </div>
       </div>

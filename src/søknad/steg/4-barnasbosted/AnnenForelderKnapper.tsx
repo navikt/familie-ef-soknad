@@ -4,6 +4,7 @@ import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
@@ -52,7 +53,11 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   const leggTilAnnenForelder = () => {
     settBarnHarSammeForelder(false);
     settAndreForelderRadioVerdi('annen-forelder');
-    settForelder({});
+
+    !barn.harSammeAdresse.verdi &&
+    harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)
+      ? settForelder({ skalBarnBoHosDeg: forelder.skalBarnBoHosDeg })
+      : settForelder({});
   };
 
   const andreForelder = 'andre-forelder-';

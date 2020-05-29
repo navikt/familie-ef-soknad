@@ -13,16 +13,23 @@ export const visBostedOgSamværSeksjon = (
   forelder: IForelder,
   visesBorINorgeSpørsmål: boolean
 ) => {
+  const {
+    hvorforIkkeOppgi,
+    kanIkkeOppgiAnnenForelderFar,
+    ikkeOppgittAnnenForelderBegrunnelse,
+  } = forelder;
+
   const erAnnetBegrunnelseUtfylt =
-    forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
-    forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi !==
-      forelder.hvorforIkkeOppgi.verdi &&
-    forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi !== '';
+    hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
+    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi.verdi &&
+    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== '';
 
   const kanIkkeOppgiDenAndreForelderen =
-    forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    (forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn ||
-      erAnnetBegrunnelseUtfylt);
+    kanIkkeOppgiAnnenForelderFar && hvorforIkkeOppgi
+      ? kanIkkeOppgiAnnenForelderFar?.verdi &&
+        (hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn ||
+          erAnnetBegrunnelseUtfylt)
+      : false;
 
   const borForelderINorgeSpm =
     forelder.borINorge?.svarid === ESvar.JA ||

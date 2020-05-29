@@ -573,8 +573,11 @@ export default {
     'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
     'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
-    'dokumentasjon.samvær.tittel': 'Samværsavtale for ',
+    'dokumentasjon.samvær.tittel': 'Samværsavtale uten konkrete tidspunkter ',
     'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
+    'dokumentasjon.samværsavtale.tittel': 'Skriftlig samværsavtale ',
+    'dokumentasjon.samværsavtale.beskrivelse':
+      'Skriftlig samværsavtale som beskriver konkrete tidspunkter',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
     'dokumentasjon.deltBosted.beskrivelse': '',
     'dokumentasjon.barnBorHosDeg.tittel':
@@ -584,7 +587,6 @@ export default {
       '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
       '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
       '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
-
     'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
     'dokumentasjon.sykdom.beskrivelse':
       'Dokumentasjonen fra legen din må tydelig vise:<ul>' +

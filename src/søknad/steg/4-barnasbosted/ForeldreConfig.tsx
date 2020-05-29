@@ -30,18 +30,18 @@ const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
 const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
-  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
-  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
+  svarid: ESvar.JA,
+  tittel: 'dokumentasjon.deltBosted.tittel',
+  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
   harSendtInn: false,
 };
 
 const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
-  spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESvar.JA,
-  tittel: 'dokumentasjon.deltBosted.tittel',
-  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
+  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
+  svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
+  tittel: 'dokumentasjon.samværsavtale.tittel',
+  beskrivelse: 'dokumentasjon.samværsavtale.beskrivelse',
   harSendtInn: false,
 };
 

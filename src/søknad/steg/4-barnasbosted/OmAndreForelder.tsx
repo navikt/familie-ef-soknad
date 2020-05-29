@@ -179,7 +179,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
                   })
                 }
                 value={forelder.personnr ? forelder.personnr?.verdi : ''}
-                label="Personnummer (hvis barnet har fått)"
+                label="Personnummer"
               />
             </>
           )}
