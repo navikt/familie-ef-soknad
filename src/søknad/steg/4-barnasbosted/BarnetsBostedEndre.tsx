@@ -10,7 +10,7 @@ import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmAndreForelder from './OmAndreForelder';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
+import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
 import { EHvorMyeSammen } from '../../../models/steg/barnasbosted';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -140,7 +140,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       <div className="barnas-bosted">
         <BarnasBostedHeader barn={barn} />
         <div className="barnas-bosted__innhold">
-          <SkalBarnBoHosDeg
+          <SkalBarnetBoHosSøker
             forelder={forelder}
             settForelder={settForelder}
             barn={barn}

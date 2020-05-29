@@ -8,7 +8,7 @@ import {
 
 export interface IForelder {
   navn?: ITekstFelt;
-  skalBarnBoHosDeg?: ITekstFelt;
+  skalBarnetBoHosSøker?: ITekstFelt;
   fødselsdato?: IDatoFelt | null;
   personnr?: ITekstFelt;
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
@@ -29,7 +29,7 @@ export interface IForelder {
 }
 
 export enum EForelder {
-  skalBarnBoHosDeg = 'skalBarnBoHosDeg',
+  skalBarnetBoHosSøker = 'skalBarnetBoHosSøker',
   borINorge = 'borINorge',
   avtaleOmDeltBosted = 'avtaleOmDeltBosted',
   harAnnenForelderSamværMedBarn = 'harAnnenForelderSamværMedBarn',

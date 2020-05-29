@@ -26,6 +26,6 @@ export enum EBarn {
   harSammeAdresse = 'harSammeAdresse',
   navn = 'navn',
   født = 'født',
-  skalBarnBoHosDeg = 'skalBarnBoHosDeg',
+  skalBarnetBoHosSøker = 'skalBarnetBoHosSøker',
   forelder = 'forelder',
 }
