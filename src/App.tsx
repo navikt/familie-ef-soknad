@@ -56,8 +56,6 @@ const App = () => {
     // eslint-disable-next-line
   }, []);
 
-  console.log('ENV', erIDev);
-
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
 
