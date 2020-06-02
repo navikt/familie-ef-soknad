@@ -37,7 +37,7 @@ const TilleggsstønaderHarAktivitet: FC = () => {
       <KomponentGruppe>
         <Lenke
           href={
-            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-og-stonad-til-skolepenger'
+            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/barnetilsyn'
           }
         >
           <Normaltekst>
@@ -50,7 +50,9 @@ const TilleggsstønaderHarAktivitet: FC = () => {
       <KomponentGruppe>
         <a
           className={'knapp knapp--standard kvittering'}
-          href={'https://www.nav.no/soknader/nb/person/arbeid/tilleggsstonader'}
+          href={
+            'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far#NAV150002'
+          }
         >
           <LocaleTekst
             tekst={'kvittering.knapp.tilleggsstønader.aktivitetskrav'}

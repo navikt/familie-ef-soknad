@@ -47,7 +47,9 @@ const RegistrerDegSomArbeidssøker: FC = () => {
       <KomponentGruppe>
         <a
           className={'knapp knapp--standard kvittering'}
-          href={'https://www.nav.no/soknader/nb/person/arbeid/tilleggsstonader'}
+          href={
+            'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far#NAV150002'
+          }
         >
           <LocaleTekst tekst={'kvittering.knapp.tilleggsstønader'} />
         </a>

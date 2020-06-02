@@ -441,7 +441,7 @@ export default {
       '</ul>' +
       'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
     'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
-    'arbeidssøker.knapp.tilleggstønad': 'Søk tillegsstønader',
+    'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
@@ -642,7 +642,7 @@ export default {
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
     'kvittering.tekst.dineSaker':
-      'Du kan finne søknaden din i <a href="">Dine saker</a> når vi starter å behandle den. Finn <a href="">saksbehandlingstiden</a> for ditt fylke.',
+      'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
     'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
     'kvittering.tittel.tarUtdanning':
       'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
