@@ -643,7 +643,39 @@ export default {
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
     'kvittering.tekst.dineSaker':
       'Du kan finne søknaden din i <a href="">Dine saker</a> når vi starter å behandle den. Finn <a href="">saksbehandlingstiden</a> for ditt fylke.',
-    'kvittering.knapp.dineSaker': 'Last ned kvittering',
+    'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
+    'kvittering.tittel.tarUtdanning':
+      'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
+    'kvittering.beskrivelse.tarUtdanning':
+      'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
+    'kvittering.lenke.tarUtdanning': 'Les mer om stønad til skolepenger',
+    'kvittering.knapp.tarUtdanning': 'Søk stønad til skolepenger',
+    'kvittering.tittel.tilleggsstønader':
+      'Du kan også ha rett til tilleggsstønader når du er under utdanning',
+    'kvittering.beskrivelse.tilleggsstønader':
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>læremidler</li>' +
+      '<li>daglig reise</li>' +
+      '<li>reise til samling</li>' +
+      '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
+      '<li>bolig og overnatting</li>' +
+      '<li>flytting</li> </ul>' +
+      '<br/> <i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
+    'kvittering.lenke.tilleggsstønader': 'Les mer om tilleggsstønader',
+    'kvittering.knapp.tilleggsstønader': 'Søk tilleggsstønader',
+
+    'kvittering.tittel.tilleggsstønader.arbeidssøker':
+      'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader',
+    'kvittering.beskrivelse.tilleggsstønader.arbeidssøker':
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>reise når du er arbeidssøker</li>' +
+      '<li>flytting</li></ul>' +
+      '<i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
+    'kvittering.lenke.tilleggsstønader.arbeidssøker':
+      'Les mer om tilleggsstønader',
+    'kvittering.knapp.tilleggsstønader.arbeidssøker': 'Søk tilleggsstønader',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
