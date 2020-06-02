@@ -635,6 +635,15 @@ export default {
     'dokumentasjon.arbeidsforhold-redusert.tittel':
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
+
+    'kvittering.takk': 'Takk for søknaden',
+    'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.tekst.arbeidssøker':
+      'Husk å registrere deg som arbeidssøker hos NAV',
+    'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'kvittering.tekst.dineSaker':
+      'Du kan finne søknaden din i <a href="">Dine saker</a> når vi starter å behandle den. Finn <a href="">saksbehandlingstiden</a> for ditt fylke.',
+    'kvittering.knapp.dineSaker': 'Last ned kvittering',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

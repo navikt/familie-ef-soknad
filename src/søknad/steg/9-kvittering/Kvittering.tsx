@@ -43,6 +43,7 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </KomponentGruppe>
 
+      <RegistrerDegSomArbeidssøker />
 
       <SeksjonGruppe>
         <FeltGruppe>
