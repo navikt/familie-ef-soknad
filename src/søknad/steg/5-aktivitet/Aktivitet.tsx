@@ -73,26 +73,6 @@ const Aktivitet: React.FC = () => {
     });
   };
 
-  const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
-  );
-  const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    ArbeidssituasjonType.etablererEgenVirksomhet
-  );
-  const huketAvHarArbeid =
-    erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
-    erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker);
-  const huketAvErArbeidssøker = erAktivitetHuketAv(
-    ArbeidssituasjonType.erArbeidssøker
-  );
-  const huketAvTarUtdanning = erAktivitetHuketAv(
-    ArbeidssituasjonType.tarUtdanning
-  );
-
-  const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
-    ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
-  );
-
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
@@ -106,37 +86,42 @@ const Aktivitet: React.FC = () => {
         />
       </SeksjonGruppe>
 
-      {huketAvHjemmeMedBarnUnderEttÅr && <HjemmeMedBarnUnderEttÅr />}
+      {erAktivitetHuketAv(ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr) && (
+        <HjemmeMedBarnUnderEttÅr />
+      )}
 
-      {huketAvEtablererEgenVirksomhet && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.etablererEgenVirksomhet) && (
         <EtablererEgenVirksomhet
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
 
-      {huketAvHarArbeid && (
-        <OmArbeidsforholdetDitt
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={settArbeidssituasjon}
-        />
-      )}
+      {erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
+        (erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
+          <OmArbeidsforholdetDitt
+            arbeidssituasjon={arbeidssituasjon}
+            settArbeidssituasjon={settArbeidssituasjon}
+          />
+        ))}
 
-      {huketAvErArbeidssøker && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidssøker) && (
         <Arbeidssøker
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
 
-      {huketAvSelvstendigNæringsdrivendeEllerFrilanser && (
+      {erAktivitetHuketAv(
+        ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
+      ) && (
         <OmFirmaetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
 
-      {huketAvTarUtdanning && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.tarUtdanning) && (
         <UnderUtdanning
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
