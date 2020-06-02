@@ -3,6 +3,7 @@ import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { formatDate } from './dato';
 import { ISpørsmål } from '../models/spørsmålogsvar';
+import { ISøknad } from '../models/søknad';
 
 export const hentPersonData = () => {
   return axios
@@ -15,6 +16,29 @@ export const hentPersonData = () => {
     .then((response: { data: any }) => {
       return response && response.data;
     });
+};
+
+export const hentMellomlagretSøknad = () => {
+  return axios
+    .get(`${Environment().mellomlagerUrl}`, {
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+    })
+    .then((response: { data: ISøknad }) => {
+      return response.data;
+    });
+};
+
+export const mellomlagreSøknad = (søknad: ISøknad) => {
+  return axios.post(`${Environment().mellomlagerUrl}`, {
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+    body: søknad,
+  });
 };
 
 export const hentTekst = (id: string, intl: IntlShape) => {
