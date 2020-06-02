@@ -134,6 +134,12 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   søknadid: EForelder.harDereSkriftligSamværsavtale,
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   flersvar: false,
+  lesmer: {
+    innholdTekstid:
+      'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale',
+    åpneTekstid: 'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     {
       id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,

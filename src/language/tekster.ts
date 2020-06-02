@@ -308,6 +308,12 @@ export default {
 
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
+      'Hva må en skriftlig samværsavtale inneholde?',
+    'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
+      'Vi trenger opplysninger om' +
+      '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
+      '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
     'barnasbosted.spm.jaKonkreteTidspunkt':
       'Ja, og den beskriver når barnet er sammen med hver av foreldrene',
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
@@ -702,6 +708,12 @@ export default {
     'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
+      'Hva må en skriftlig samværsavtale inneholde?',
+    'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
+      '"Vi trenger opplysninger om' +
+      '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
+      '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
     'barnasbosted.spm.jaKonkreteTidspunkt':
       'Ja, og den inneholder konkrete tidspunkter for samvær',
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
