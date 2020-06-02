@@ -1,7 +1,7 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { skalBarnBoHosDeg } from './ForeldreConfig';
+import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -18,7 +18,7 @@ interface Props {
   settForelder: Function;
 }
 
-const SkalBarnBoHosDeg: React.FC<Props> = ({
+const SkalBarnetBoHosSøker: React.FC<Props> = ({
   barn,
   forelder,
   settForelder,
@@ -26,12 +26,12 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   const intl = useIntl();
   const { settDokumentasjonsbehov } = useSøknad();
 
-  const settSkalBarnBoHosDegFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+  const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settForelder({
       ...forelder,
-      [skalBarnBoHosDeg.søknadid]: {
+      [skalBarnetBoHosSøker.søknadid]: {
         label: intl.formatMessage({
-          id: 'barnasbosted.spm.skalBarnBoHosDeg',
+          id: 'barnasbosted.spm.skalBarnetBoHosSøker',
         }),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
@@ -41,20 +41,20 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
 
   return (
     <>
-      {!barn.harSammeAdresse ? (
+      {barn.harSammeAdresse ? (
         <KomponentGruppe>
           <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
           </AlertStripe>
           <MultiSvarSpørsmål
-            key={skalBarnBoHosDeg.søknadid}
-            spørsmål={skalBarnBoHosDeg}
-            valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
-            settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
+            key={skalBarnetBoHosSøker.søknadid}
+            spørsmål={skalBarnetBoHosSøker}
+            valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}
+            settSpørsmålOgSvar={settSkalBarnetBoHosSøkerFelt}
           />
         </KomponentGruppe>
       ) : null}
-      {forelder.skalBarnBoHosDeg ===
+      {forelder.skalBarnetBoHosSøker ===
       intl.formatMessage({ id: 'barnasbosted.spm.jaMenSamarbeiderIkke' }) ? (
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>
@@ -93,4 +93,4 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   );
 };
 
-export default SkalBarnBoHosDeg;
+export default SkalBarnetBoHosSøker;

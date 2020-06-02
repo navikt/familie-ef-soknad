@@ -233,7 +233,7 @@ export default {
     'barnekort.år': 'år',
     'barnekort.lenke.endre': 'Endre',
     'barnekort.normaltekst.barn': 'Barn',
-    'barnekort.spm.skalBarnBoHosDeg': 'Skal barnet bo hos deg?',
+    'barnekort.spm.skalBarnetBoHosSøker': 'Skal barnet bo hos deg?',
     'barnekort.spm.født': 'Er barnet født?',
     'barnekort.erUfødt': 'Ufødt',
     'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
@@ -262,7 +262,7 @@ export default {
       'Du må legge ved avtale om delt bosted',
     'barnasbosted.alert.måBoHosDeg':
       '[0] må bo hos deg for at du skal ha rett til stønad',
-    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] ha adresse hos deg?',
+    'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
     'barnasbosted.spm.jaFolkeregistrert':
       'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
     'barnasbosted.spm.jaMenSamarbeiderIkke':
@@ -828,7 +828,7 @@ export default {
       'når reiser barnet til og fra den andre forelderen?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.element.andreforelder': 's andre forelder',
-    'barnasbosted.spm.skalBarnBoHosDeg': 'Skal [0] bo hos deg?',
+    'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] bo hos deg?',
     'barnasbosted.spm.jaFolkeregistrert':
       'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
     'barnasbosted.spm.jaMenSamarbeiderIkke':
