@@ -34,7 +34,7 @@ const Kvittering: React.FC = () => {
       søknad?.innsendingsdato ? søknad?.innsendingsdato : dagensDato
     )} `;
 
-  return søknad.innsendingsdato ? (
+  return søknad.innsendingsdato || true ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={false}
@@ -61,11 +61,11 @@ const Kvittering: React.FC = () => {
         </a>
       </SeksjonGruppe>
 
-      {arbeidssøker && <TilleggsstønaderArbeidssøker />}
+      {arbeidssøker || (true && <TilleggsstønaderArbeidssøker />)}
 
-      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
+      {underUtdanning || (true && <TilleggsstønaderUnderUtdanning />)}
 
-      {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
+      {(arbeidsforhold || firma || etablererEgenVirksomhet || true) && (
         <TilleggsstønaderHarAktivitet />
       )}
     </Side>
