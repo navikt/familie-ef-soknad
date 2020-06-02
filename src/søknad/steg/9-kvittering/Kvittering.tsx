@@ -1,12 +1,14 @@
 import React from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
+import Feilside from '../../../components/feil/Feilside';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import RegistrerDegSomArbeidssøker from './RegistrerDegSomArbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import TilleggsstønaderArbeidssøker from './TilleggsstønaderArbeidssøker';
+import TilleggsstønaderHarAktivitet from './TilleggsstønaderHarAktivitet';
 import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
 import { dagensDato, formatDateHour } from '../../../utils/dato';
 import { ESvar } from '../../../models/spørsmålogsvar';
@@ -14,7 +16,6 @@ import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import TilleggsstønaderHarAktivitet from './TilleggsstønaderHarAktivitet';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -33,7 +34,7 @@ const Kvittering: React.FC = () => {
       søknad?.innsendingsdato ? søknad?.innsendingsdato : dagensDato
     )} `;
 
-  return (
+  return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={false}
@@ -68,6 +69,8 @@ const Kvittering: React.FC = () => {
         <TilleggsstønaderHarAktivitet />
       )}
     </Side>
+  ) : (
+    <Feilside />
   );
 };
 
