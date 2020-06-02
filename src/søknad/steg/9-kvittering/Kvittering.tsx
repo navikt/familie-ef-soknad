@@ -1,23 +1,31 @@
 import React from 'react';
 
-import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
-import { hentTekst } from '../../../utils/søknad';
-import { dagensDato, formatDateHour } from '../../../utils/dato';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
-import LocaleTekst from '../../../language/LocaleTekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import Side from '../../../components/side/Side';
+import LocaleTekst from '../../../language/LocaleTekst';
 import RegistrerDegSomArbeidssøker from './RegistrerDegSomArbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ESvar } from '../../../models/spørsmålogsvar';
-import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
+import Side from '../../../components/side/Side';
 import TilleggsstønaderArbeidssøker from './TilleggsstønaderArbeidssøker';
+import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
+import { dagensDato, formatDateHour } from '../../../utils/dato';
+import { ESvar } from '../../../models/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
+import { useSøknad } from '../../../context/SøknadContext';
+import TilleggsstønaderHarAktivitet from './TilleggsstønaderHarAktivitet';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useSøknad();
+  const {
+    arbeidssøker,
+    underUtdanning,
+    arbeidsforhold,
+    firma,
+    etablererEgenVirksomhet,
+  } = søknad.aktivitet;
 
   const mottattAlert: string =
     hentTekst('kvittering.alert.mottatt', intl) +
@@ -34,8 +42,9 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
-      {søknad.aktivitet.arbeidssøker?.registrertSomArbeidssøkerNav?.svarid ===
-        ESvar.NEI && <RegistrerDegSomArbeidssøker />}
+      {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
+        <RegistrerDegSomArbeidssøker />
+      )}
 
       <SeksjonGruppe>
         <FeltGruppe>
@@ -51,9 +60,13 @@ const Kvittering: React.FC = () => {
         </a>
       </SeksjonGruppe>
 
-      {søknad.aktivitet.arbeidssøker && <TilleggsstønaderArbeidssøker />}
+      {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
-      {søknad.aktivitet.underUtdanning && <TilleggsstønaderUnderUtdanning />}
+      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
+
+      {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
+        <TilleggsstønaderHarAktivitet />
+      )}
     </Side>
   );
 };

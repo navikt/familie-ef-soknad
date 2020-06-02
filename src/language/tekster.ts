@@ -676,6 +676,17 @@ export default {
     'kvittering.lenke.tilleggsstønader.arbeidssøker':
       'Les mer om tilleggsstønader',
     'kvittering.knapp.tilleggsstønader.arbeidssøker': 'Søk tilleggsstønader',
+
+    'kvittering.tittel.tilleggsstønader.aktivitetskrav':
+      'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
+    'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
+      'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
+      'Dersom du tjener mer enn 599 148 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
+      'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
+    'kvittering.lenke.tilleggsstønader.aktivitetskrav':
+      'Les mer om stønad til barnetilsyn',
+    'kvittering.knapp.tilleggsstønader.aktivitetskrav':
+      'Søk stønad til barnetilsyn',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
