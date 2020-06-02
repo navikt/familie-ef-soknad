@@ -10,6 +10,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { SøkerFraBestemtMånedSpm } from './SituasjonConfig';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { dagensDato } from '../../../utils/dato';
 import { ISvar } from '../../../models/spørsmålogsvar';
 import { hentBeskjedMedFireParametre } from '../../../utils/språk';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -79,9 +80,9 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
   const hjelpetekst = hentBeskjedMedFireParametre(
     hentTekst('dinSituasjon.lesmer-innhold.overgangsstønad', intl),
     '3',
-    formatNårSøkerDuStønadFraMåned(new Date(), 3),
+    formatNårSøkerDuStønadFraMåned(dagensDato, 3),
     '2',
-    formatNårSøkerDuStønadFraMåned(new Date(), 2)
+    formatNårSøkerDuStønadFraMåned(dagensDato, 2)
   );
 
   return (
