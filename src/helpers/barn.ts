@@ -44,5 +44,3 @@ export const hentNyttBarn = (
     id: hentUid(),
   };
 };
-
-export const erBarnFerdigUtfylt = (barn: IBarn) => {};

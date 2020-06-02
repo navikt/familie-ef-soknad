@@ -334,7 +334,7 @@ export default {
       'Har du bodd sammen med den andre forelderen til [0] før?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.spm.hvorMyeSammen':
-      'Hvor mye er du sammen med den andre forelderen til Solveig?',
+      'Hvor mye er du sammen med den andre forelderen til [0]?',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
