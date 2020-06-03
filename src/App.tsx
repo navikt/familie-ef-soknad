@@ -77,7 +77,7 @@ const App = () => {
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
-  }, [person, barneliste]);
+  }, [person]);
 
   if (!fetching && autentisert) {
     if (!error) {
@@ -86,6 +86,7 @@ const App = () => {
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>
