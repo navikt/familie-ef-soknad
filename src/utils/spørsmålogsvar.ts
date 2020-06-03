@@ -6,6 +6,20 @@ import { hentTekst } from './søknad';
 export const hentBooleanFraValgtSvar = (valgtSvar: ISvar) =>
   valgtSvar.id === ESvar.JA;
 
+export const erJaNeiSvar = (svar: ISvar) => {
+  return svar.id === ESvar.JA || svar.id === ESvar.NEI;
+};
+
+export const harValgtSvar = (svar: boolean | undefined | string) => {
+  if (typeof svar === 'boolean') {
+    return true;
+  } else if (typeof svar === 'string') {
+    return svar.toString() !== '';
+  } else {
+    return false;
+  }
+};
+
 export const erValgtSvarLiktSomSvar = (
   valgtSvar: string | undefined,
   annetSvarTekstid: string,

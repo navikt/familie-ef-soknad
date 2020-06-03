@@ -30,7 +30,7 @@ const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
 const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
+  svarid: ESvar.JA,
   tittel: 'dokumentasjon.barnBorHosSøker.tittel',
   beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
   harSendtInn: false,
@@ -38,10 +38,10 @@ const AvtaleOmDeltBosted: IDokumentasjon = {
 
 const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
-  spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESvar.JA,
-  tittel: 'dokumentasjon.deltBosted.tittel',
-  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
+  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
+  svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
+  tittel: 'dokumentasjon.samværsavtale.tittel',
+  beskrivelse: 'dokumentasjon.samværsavtale.beskrivelse',
   harSendtInn: false,
 };
 
@@ -63,7 +63,7 @@ export const borINorge: ISpørsmål = {
 };
 
 export const avtaleOmDeltBosted: ISpørsmål = {
-  søknadid: 'avtaleOmDeltBosted',
+  søknadid: EForelder.avtaleOmDeltBosted,
   tekstid: 'barnasbosted.avtale',
   flersvar: false,
   lesmer: {
@@ -90,7 +90,7 @@ export const boddSammenFør: ISpørsmål = {
 };
 
 export const hvorforIkkeOppgi: ISpørsmål = {
-  søknadid: 'hvorforIkkeOppgi',
+  søknadid: EForelder.hvorforIkkeOppgi,
   tekstid: 'barnasbosted.spm.hvorforikkeoppgi',
   flersvar: false,
   svaralternativer: [
@@ -106,7 +106,7 @@ export const hvorforIkkeOppgi: ISpørsmål = {
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
-  søknadid: 'harAnnenForelderSamværMedBarn',
+  søknadid: EForelder.harAnnenForelderSamværMedBarn,
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
   flersvar: false,
   lesmer: {
@@ -134,6 +134,12 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   søknadid: EForelder.harDereSkriftligSamværsavtale,
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   flersvar: false,
+  lesmer: {
+    innholdTekstid:
+      'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale',
+    åpneTekstid: 'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     {
       id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
