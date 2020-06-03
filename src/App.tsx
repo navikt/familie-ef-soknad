@@ -53,6 +53,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
+    console.log('test');
     const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
