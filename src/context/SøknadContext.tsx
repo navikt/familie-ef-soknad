@@ -40,7 +40,6 @@ const initialState: ISøknad = {
       label: '',
       verdi: [],
     },
-    søknadsdato: { label: '', verdi: dagensDato },
   },
   dokumentasjonsbehov: [],
   vedleggsliste: [],

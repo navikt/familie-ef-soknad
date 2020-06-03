@@ -126,7 +126,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
           </Element>
           <StyledDatovelger>
             <Datovelger
-              valgtDato={dinSituasjon.søknadsdato.verdi}
+              valgtDato={dinSituasjon.søknadsdato?.verdi}
               tekstid={'dinSituasjon.datovelger.overgangsstønad'}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
               settDato={settSøknadsdato}

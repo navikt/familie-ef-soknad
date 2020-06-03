@@ -36,7 +36,6 @@ const MerOmDinSituasjon: React.FC = () => {
   const location = useLocation();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
-    søknadsdato: { label: '', verdi: dagensDato },
   });
   const {
     gjelderDetteDeg,

@@ -9,7 +9,7 @@ export interface IDinSituasjon {
   gjelderDetteDeg: ISpørsmålListeFelt;
   datoOppstartJobb?: IDatoFelt;
   datoOppstartUtdanning?: IDatoFelt;
-  søknadsdato: IDatoFelt;
+  søknadsdato?: IDatoFelt;
   sagtOppEllerRedusertStilling?: ISpørsmålFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
   datoSagtOppEllerRedusertStilling?: IDatoFelt;
