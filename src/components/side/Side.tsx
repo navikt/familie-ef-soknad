@@ -10,6 +10,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
+import SendBrevSVG from '../../assets/SendSøknadSVG';
 
 interface ISide {
   tittel: string;
@@ -49,12 +50,19 @@ const Side: React.FC<ISide> = ({
           aktivtSteg={aktivtSteg}
           steg={stegobjekter}
         />
+        {!skalViseKnapper && (
+          <div className={'brev_ikon'}>
+            <SendBrevSVG />
+          </div>
+        )}
+
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>
             {children}
           </main>
         </Panel>
+
         {skalViseKnapper && (
           <StyledNavigeringsWrapper
             classname={
@@ -68,7 +76,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {(erSpørsmålBesvart || !erSpørsmålBesvart) && (
+            {(erSpørsmålBesvart || true) && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}

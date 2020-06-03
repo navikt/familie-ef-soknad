@@ -23,6 +23,7 @@ interface Props {
   tekstid: string;
   datobegrensning: DatoBegrensning;
   settDato: (date: Date | null) => void;
+  disabled?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -30,6 +31,7 @@ const Datovelger: React.FC<Props> = ({
   datobegrensning,
   valgtDato,
   settDato,
+  disabled,
 }) => {
   const [locale] = useSpråkContext();
 
@@ -58,6 +60,7 @@ const Datovelger: React.FC<Props> = ({
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
@@ -68,6 +71,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
@@ -78,6 +82,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}

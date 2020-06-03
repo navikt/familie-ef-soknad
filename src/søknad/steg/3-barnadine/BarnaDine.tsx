@@ -39,7 +39,7 @@ const BarnaDine: React.FC = () => {
                 key={barn.id}
                 id={barn.id ? barn.id : ''}
                 navn={barn.navn}
-                fnr={barn.fnr}
+                fødselsnummer={barn.fødselsnummer}
                 fødselsdato={barn.fødselsdato}
                 personnummer={
                   barn.personnummer && barn.personnummer.verdi

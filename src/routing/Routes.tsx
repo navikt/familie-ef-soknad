@@ -14,7 +14,7 @@ export enum RouteEnum {
   DinSituasjon = 'DinSituasjon',
   Oppsummering = 'Oppsummering',
   Dokumentasjon = 'Dokumentasjon',
-  SendSøknad = 'SendSøknad',
+  Kvittering = 'Kvittering',
 }
 
 export const Routes: IRoute[] = [
@@ -51,7 +51,7 @@ export const Routes: IRoute[] = [
     label: 'Dokumentasjon',
     route: RouteEnum.Dokumentasjon,
   },
-  { path: '/send-soknad', label: 'Send søknad', route: RouteEnum.SendSøknad },
+  { path: '/kvittering', label: 'Kvittering', route: RouteEnum.Kvittering },
 ];
 
 export const hentPath = (routes: IRoute[], route: RouteEnum) => {

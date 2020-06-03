@@ -33,16 +33,16 @@ export const barnetFødt: ISpørsmål = {
   ],
 };
 
-export const skalBarnBoHosDeg: ISpørsmål = {
-  søknadid: EBarn.skalBarnBoHosDeg,
-  tekstid: 'barnekort.spm.skalBarnBoHosDeg',
+export const skalBarnetBoHosSøker: ISpørsmål = {
+  søknadid: EBarn.skalBarnetBoHosSøker,
+  tekstid: 'barnekort.spm.skalBarnetBoHosSøker',
   flersvar: false,
   svaralternativer: JaNeiSvar,
 };
 
 export const borBarnetHosDeg: ISpørsmål = {
-  søknadid: EBarn.skalBarnBoHosDeg,
-  tekstid: 'barnekort.spm.skalBarnBoHosDeg',
+  søknadid: EBarn.skalBarnetBoHosSøker,
+  tekstid: 'barnekort.spm.skalBarnetBoHosSøker',
   flersvar: false,
   svaralternativer: JaNeiSvar,
 };
