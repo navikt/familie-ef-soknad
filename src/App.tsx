@@ -41,18 +41,14 @@ const App = () => {
       });
 
       const fetchPersonData = () => {
-        hentPersonData()
-          .then((response) => {
-            console.log('RESPONSE', response);
-            settPerson({
-              type: PersonActionTypes.HENT_PERSON,
-              payload: response,
-            });
-            settBarneliste(response.barn);
-          })
-          .catch((e) => {
-            console.log('Error', e);
+        hentPersonData().then((response) => {
+          console.log('RESPONSE', response);
+          settPerson({
+            type: PersonActionTypes.HENT_PERSON,
+            payload: response,
           });
+          settBarneliste(response.barn);
+        });
       };
       fetchPersonData();
       settFetching(false);
