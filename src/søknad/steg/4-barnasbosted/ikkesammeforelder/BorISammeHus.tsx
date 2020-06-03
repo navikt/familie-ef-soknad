@@ -39,7 +39,7 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
     settForelder(nyForelder);
   };
 
-  const settBeskrivSamværUtenBarn = (e: any) => {
+  const settBeskrivHvordanBorDere = (e: any) => {
     settForelder({
       ...forelder,
       hvordanBorDere: {
@@ -77,7 +77,7 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
                   ? forelder.hvordanBorDere.verdi
                   : ''
               }
-              onChange={settBeskrivSamværUtenBarn}
+              onChange={settBeskrivHvordanBorDere}
               label=""
             />
           </FeltGruppe>

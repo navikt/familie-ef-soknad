@@ -39,6 +39,16 @@ const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
 
     settForelder(nyForelder);
   };
+
+  const settBeskrivSamværUtenBarn = (e: any) => {
+    settForelder({
+      ...forelder,
+      beskrivSamværUtenBarn: {
+        label: hentTekst('barnasbosted.spm.beskrivSamværUtenBarn', intl),
+        verdi: e.target.value,
+      },
+    });
+  };
   return (
     <>
       <KomponentGruppe>
@@ -69,18 +79,7 @@ const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
                   ? forelder.beskrivSamværUtenBarn.verdi
                   : ''
               }
-              onChange={(e: any) =>
-                settForelder({
-                  ...forelder,
-                  beskrivSamværUtenBarn: {
-                    label: hentTekst(
-                      'barnasbosted.spm.beskrivSamværUtenBarn',
-                      intl
-                    ),
-                    verdi: e.target.value,
-                  },
-                })
-              }
+              onChange={settBeskrivSamværUtenBarn}
               label=""
             />
           </FeltGruppe>
