@@ -60,7 +60,7 @@ export default {
     'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
 
     'side.bekreftelse':
-      'Jeg, [0], lover å gi så riktige og fullstendige opplysninger som mulig.',
+      'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
@@ -79,14 +79,14 @@ export default {
 
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
-    'personopplysninger.feilmelding.telefonnr': 'Du må ha minst 8 siffre',
+    'personopplysninger.feilmelding.telefonnr': 'Telefonnummeret må ha minst 8 siffer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
 
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
     'personopplysninger.alert.riktigAdresse':
-      'Du må oppdatere Folkeregisteret med riktig adresse for å søke digitalt. Hvis du ikke skal endre Folkeregistrert adresse, kan du søke på papir med bostedsadressen din.',
+      'Du må oppgi riktig adresse til Folkeregisteret for å bruker denne søknaden',
     'personopplysninger.info.endreAdresse':
       'Skal du ikke endre adresse i Folkeregisteret?',
     'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
@@ -126,13 +126,13 @@ export default {
     'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse':
-      'Hva er grunnen til at du er alene med barn?',
+      'Hvorfor er du alene med barn?',
 
     'sivilstatus.svar.samlivsbruddForeldre':
       'Samlivsbrudd med den andre forelderen',
     'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd med noen andre',
     'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
-    'sivilstatus.svar.endringISamværsordning': 'Endring i samværsordning',
+    'sivilstatus.svar.endringISamværsordning': 'Endring i omsorgen for barn',
     'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
     'sivilstatus.alert.dødsfall':
       'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
@@ -383,8 +383,8 @@ export default {
       '</ul>',
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
-    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
-    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsforhold',
+    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsforhold',
 
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
@@ -394,8 +394,8 @@ export default {
     'arbeidsforhold.svar.midlertidig': 'Midlertidig',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
-    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsgivere?',
-    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsgiver',
+    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsforhold?',
+    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsforhold',
 
     'firma.tittel': 'Om firmaet du driver',
     'firma.label.navn': 'Navn på firma',
