@@ -43,7 +43,7 @@ const Side: React.FC<ISide> = ({
   });
 
   return (
-    <div className={'søknadsdialog'}>
+    <div className={'skjema'}>
       <Banner tekstid={'banner.tittel.arbeidssøker'} />
       <div className={'side'}>
         <Stegindikator

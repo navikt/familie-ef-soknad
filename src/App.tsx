@@ -24,8 +24,11 @@ const App = () => {
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
   const { søknad, settSøknad } = useSøknad();
+  const [barneliste, settBarneliste] = useState([]);
 
   autentiseringsInterceptor();
+
+  const erIDev = process.env.NODE_ENV === 'development';
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -43,6 +46,7 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
+          settBarneliste(response.barn);
         });
       };
       fetchPersonData();
@@ -53,7 +57,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
+    let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
+
+    const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
       return nyttBarn;
@@ -61,7 +67,7 @@ const App = () => {
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
-  }, [person]);
+  }, [person, barneliste]);
 
   if (!fetching && autentisert) {
     if (!error) {
@@ -70,6 +76,7 @@ const App = () => {
           <TestsideInformasjon />
           <Switch>
             <Route path={'/'}>
+              <Søknadsdialog />
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
             </Route>
           </Switch>

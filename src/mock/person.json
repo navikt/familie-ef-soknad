@@ -23,7 +23,7 @@
   "barn": [
     {
       "id": "12345",
-      "fnr": "28021078036",
+      "fødselsnummer": "28021078036",
       "navn": "SHIBA INU",
       "alder": 9,
       "fødselsdato": "2010-02-28",
@@ -32,7 +32,7 @@
     },
     {
       "id": "12346",
-      "fnr": "28021078038",
+      "fødselsnummer": "28021078038",
       "navn": "HACHI KO",
       "alder": 9,
       "fødselsdato": "2010-02-28",
@@ -41,7 +41,7 @@
     },
     {
       "id": "12347",
-      "fnr": "01021878040",
+      "fødselsnummer": "01021878040",
       "navn": "DONALD DUCK",
       "alder": 2,
       "fødselsdato": "2018-02-01",

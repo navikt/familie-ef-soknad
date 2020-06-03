@@ -42,7 +42,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
       {barnDato && (
         <KomponentGruppe>
           <Normaltekst>
-            {intl.formatMessage({ id: 'barnekort.spm.skalBarnBoHosDeg' })}
+            {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
           </Normaltekst>
           <div className="radiogruppe-2-svar">
             <RadioPanel

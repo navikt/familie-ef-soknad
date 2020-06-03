@@ -22,7 +22,7 @@ export enum EHvorMyeSammen {
   møtesUtenom = 'møtesUtenom',
 }
 
-export enum ESkalBarnBoHosDeg {
+export enum ESkalBarnetBoHosSøker {
   ja = 'ja',
   jaMenSamarbeiderIkke = 'jaMenSamarbeiderIkke',
   nei = 'nei',
