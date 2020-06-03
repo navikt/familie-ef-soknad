@@ -65,11 +65,10 @@ const Hjelpetekst: React.FC<Props> = ({
     <>
       {åpneTekstid === '' ? (
         <Normaltekst>
-          {innholdTekst ? (
-            innholdTekst
-          ) : innholdTekstid ? (
+          {innholdTekst && innholdTekst}
+          {!innholdTekst && innholdTekstid && (
             <LocaleTekst tekst={innholdTekstid} />
-          ) : null}
+          )}
         </Normaltekst>
       ) : (
         <StyledHjelpetekst className={className}>
