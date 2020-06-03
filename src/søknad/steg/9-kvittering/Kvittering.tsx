@@ -61,11 +61,11 @@ const Kvittering: React.FC = () => {
         </a>
       </SeksjonGruppe>
 
-      {arbeidssøker || (true && <TilleggsstønaderArbeidssøker />)}
+      {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
-      {underUtdanning || (true && <TilleggsstønaderUnderUtdanning />)}
+      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
 
-      {(arbeidsforhold || firma || etablererEgenVirksomhet || true) && (
+      {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
         <TilleggsstønaderHarAktivitet />
       )}
     </Side>
