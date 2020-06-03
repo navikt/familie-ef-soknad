@@ -48,7 +48,8 @@ interface Props {
   className?: string;
   åpneTekstid: string;
   lukkeTekstid?: string;
-  innholdTekstid: string;
+  innholdTekstid?: string;
+  innholdTekst?: string;
 }
 
 const Hjelpetekst: React.FC<Props> = ({
@@ -56,6 +57,7 @@ const Hjelpetekst: React.FC<Props> = ({
   åpneTekstid,
   lukkeTekstid,
   innholdTekstid,
+  innholdTekst,
 }) => {
   const intl = useIntl();
 
@@ -63,7 +65,10 @@ const Hjelpetekst: React.FC<Props> = ({
     <>
       {åpneTekstid === '' ? (
         <Normaltekst>
-          <LocaleTekst tekst={innholdTekstid} />
+          {innholdTekst && innholdTekst}
+          {!innholdTekst && innholdTekstid && (
+            <LocaleTekst tekst={innholdTekstid} />
+          )}
         </Normaltekst>
       ) : (
         <StyledHjelpetekst className={className}>
@@ -72,7 +77,10 @@ const Hjelpetekst: React.FC<Props> = ({
             lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
           >
             <Normaltekst>
-              <LocaleTekst tekst={innholdTekstid} />
+              {innholdTekst && innholdTekst}
+              {!innholdTekst && innholdTekstid && (
+                <LocaleTekst tekst={innholdTekstid} />
+              )}
             </Normaltekst>
           </Lesmerpanel>
         </StyledHjelpetekst>

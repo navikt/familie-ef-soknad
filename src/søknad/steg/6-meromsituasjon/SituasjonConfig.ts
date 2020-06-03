@@ -3,6 +3,7 @@ import {
   DinSituasjonType,
   ESagtOppEllerRedusertStilling,
   ESituasjon,
+  ESøkerFraBestemtMåned,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import {
   IDokumentasjon,
@@ -144,6 +145,27 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
     {
       id: ESagtOppEllerRedusertStilling.nei,
       svar_tekstid: 'svar.nei',
+    },
+  ],
+};
+
+export const SøkerFraBestemtMånedSpm: ISpørsmål = {
+  søknadid: ESituasjon.søkerFraBestemtMåned,
+  tekstid: 'dinSituasjon.spm.søkerFraBestemtMåned',
+  flersvar: false,
+  lesmer: {
+    åpneTekstid: 'dinSituasjon.lesmer-åpne.overgangsstønad',
+    innholdTekstid: 'dinSituasjon.lesmer-innhold.overgangsstønad',
+    lukkeTekstid: '',
+  },
+  svaralternativer: [
+    {
+      id: ESøkerFraBestemtMåned.ja,
+      svar_tekstid: 'svar.ja',
+    },
+    {
+      id: ESøkerFraBestemtMåned.neiNavKanVurdere,
+      svar_tekstid: 'dinSituasjon.svar.neiNavKanVurdere',
     },
   ],
 };

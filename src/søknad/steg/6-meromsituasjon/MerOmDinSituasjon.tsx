@@ -11,7 +11,6 @@ import SyktBarn from './SyktBarn';
 import SøkerErSyk from './SøkerErSyk';
 import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
-import { dagensDato } from '../../../utils/dato';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -36,7 +35,6 @@ const MerOmDinSituasjon: React.FC = () => {
   const location = useLocation();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
-    søknadsdato: { label: '', verdi: dagensDato },
   });
   const {
     gjelderDetteDeg,

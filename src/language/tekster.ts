@@ -522,11 +522,14 @@ export default {
     'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
     'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke fra?',
     'dinSituasjon.lesmer-innhold.overgangsstønad':
-      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med [måned år]. \n' +
-      +'\n' +
-      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med [måned år].',
+      'Du kan ha rett til stønad i inntil [0] måneder før du søker. Det vil si fra og med [1]. Hvis du har fått barn i løpet av de siste [0] månedene, kan du få stønad i inntil [2] måneder før du søker. Det vil si fra og med [3].',
     'dinSituasjon.datovelger.overgangsstønad':
       'Jeg søker overgangsstønad fra og med',
+
+    'dinSituasjon.spm.søkerFraBestemtMåned':
+      'Søker du om overgangsstønad fra en bestemt måned?',
+    'dinSituasjon.svar.neiNavKanVurdere':
+      'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
