@@ -41,14 +41,18 @@ const App = () => {
       });
 
       const fetchPersonData = () => {
-        hentPersonData().then((response) => {
-          console.log('RESPONSE', response);
-          settPerson({
-            type: PersonActionTypes.HENT_PERSON,
-            payload: response,
+        hentPersonData()
+          .then((response) => {
+            console.log('RESPONSE', response);
+            settPerson({
+              type: PersonActionTypes.HENT_PERSON,
+              payload: response,
+            });
+            settBarneliste(response.barn);
+          })
+          .catch((e) => {
+            console.log('Error', e);
           });
-          settBarneliste(response.barn);
-        });
       };
       fetchPersonData();
       settFetching(false);
@@ -59,6 +63,7 @@ const App = () => {
 
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
+    if (!mapBarn.length) return;
 
     console.log('barneliste', barneliste);
 
