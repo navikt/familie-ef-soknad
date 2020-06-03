@@ -72,7 +72,7 @@ const App = () => {
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
-  }, [person]);
+  }, [person, barneliste]);
 
   if (!fetching && autentisert) {
     if (!error) {
