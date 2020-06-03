@@ -15,6 +15,7 @@ interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
+  mellomlagreOvergangsstønad?: () => void;
 }
 
 const Side: React.FC<ISide> = ({
@@ -22,6 +23,7 @@ const Side: React.FC<ISide> = ({
   children,
   erSpørsmålBesvart,
   skalViseKnapper,
+  mellomlagreOvergangsstønad,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -86,6 +88,15 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
+            {mellomlagreOvergangsstønad && (
+              <KnappBase
+                className={'mellomlagre'}
+                type={'flat'}
+                onClick={mellomlagreOvergangsstønad}
+              >
+                <LocaleTekst tekst={'knapp.mellomlagre'} />
+              </KnappBase>
+            )}
           </StyledNavigeringsWrapper>
         )}
       </div>

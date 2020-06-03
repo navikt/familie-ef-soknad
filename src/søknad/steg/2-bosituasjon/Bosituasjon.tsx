@@ -23,7 +23,12 @@ import { erFerdigUtfylt } from '../../../helpers/bosituasjon';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    mellomlagreOvergangsstønad,
+  } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
@@ -86,6 +91,7 @@ const Bosituasjon: FC = () => {
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål

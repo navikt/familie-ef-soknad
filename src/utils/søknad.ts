@@ -18,9 +18,10 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentMellomlagretSøknad = () => {
+export const hentMellomlagretOvergangsstønadFraDokument = () => {
   return axios
     .get(`${Environment().mellomlagerUrl}`, {
+      withCredentials: true,
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
@@ -31,13 +32,13 @@ export const hentMellomlagretSøknad = () => {
     });
 };
 
-export const mellomlagreSøknad = (søknad: ISøknad) => {
-  return axios.post(`${Environment().mellomlagerUrl}`, {
+export const mellomlagreOvergangsstønadTilDokument = (søknad: ISøknad) => {
+  return axios.post(`${Environment().mellomlagerUrl}`, søknad, {
+    withCredentials: true,
     headers: {
       'content-type': 'application/json',
       accept: 'application/json',
     },
-    body: søknad,
   });
 };
 

@@ -10,14 +10,16 @@ import { hentBeskjedMedNavn } from '../../utils/språk';
 import { injectIntl } from 'react-intl';
 import { hentNesteRoute } from '../../routing/utils';
 import { useLocation, useHistory } from 'react-router-dom';
-import KnappBase from 'nav-frontend-knapper';
+import KnappBase, { Knapp } from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import { client } from '../../utils/sanity';
+import { useSøknad } from '../../context/SøknadContext';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
+  const { hentMellomlagretOvergangsstønad } = useSøknad();
   const [harBekreftet, settBekreftelse] = useState<boolean>(false);
   const location = useLocation();
   const [locale] = useSpråkContext();
@@ -118,6 +120,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               </KnappBase>
             </FeltGruppe>
           ) : null}
+          <Knapp htmlType={'button'} onClick={hentMellomlagretOvergangsstønad}>
+            <LocaleTekst tekst={'knapp.hentMellomlagretOvergangsstønad'} />
+          </Knapp>
         </Panel>
       </main>
     </div>
