@@ -42,6 +42,7 @@ const App = () => {
 
       const fetchPersonData = () => {
         hentPersonData().then((response) => {
+          console.log('RESPONSE', response);
           settPerson({
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
@@ -59,7 +60,9 @@ const App = () => {
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
 
-    console.log('testBarn', mapBarn);
+    console.log('barneliste', barneliste);
+
+    console.log('mapBarn', mapBarn);
 
     const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
