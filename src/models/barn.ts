@@ -6,7 +6,7 @@ import {
 import { IForelder } from './forelder';
 
 export interface IBarn {
-  id?: string;
+  id: string;
   alder: ITekstFelt;
   fnr: ITekstFelt;
   fødselsdato: ITekstFelt;
