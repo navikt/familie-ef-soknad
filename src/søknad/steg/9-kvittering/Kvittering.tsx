@@ -30,11 +30,9 @@ const Kvittering: React.FC = () => {
 
   const mottattAlert: string =
     hentTekst('kvittering.alert.mottatt', intl) +
-    ` ${formatDateHour(
-      søknad?.innsendingsdato ? søknad?.innsendingsdato : dagensDato
-    )} `;
+    ` ${søknad?.innsendingsdato && formatDateHour(søknad?.innsendingsdato)} `;
 
-  return søknad.innsendingsdato || true ? (
+  return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={false}
