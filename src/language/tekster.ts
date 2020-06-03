@@ -585,10 +585,10 @@ export default {
     'dokumentasjon.samværsavtale.beskrivelse':
       'Skriftlig samværsavtale som beskriver konkrete tidspunkter',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
-    'dokumentasjon.deltBosted.beskrivelse': '',
-    'dokumentasjon.barnBorHosDeg.tittel':
+    'dokumentasjon.deltBosted.beskrivelsel': '',
+    'dokumentasjon.barnBorHosSøker.tittel':
       'Dokumentasjon på at barn bor hos deg',
-    'dokumentasjon.barnBorHosDeg.beskrivelse':
+    'dokumentasjon.barnBorHosSøker.beskrivelse':
       ' Dokumentasjon på at barn bor hos deg, for eksempel:<ul>' +
       '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
       '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +

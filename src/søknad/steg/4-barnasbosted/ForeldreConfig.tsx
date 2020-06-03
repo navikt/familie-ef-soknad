@@ -31,8 +31,8 @@ const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
   svarid: ESvar.JA,
-  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
-  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
+  tittel: 'dokumentasjon.deltBosted.tittel',
+  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
   harSendtInn: false,
 };
 
