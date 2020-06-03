@@ -59,6 +59,8 @@ const App = () => {
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
 
+    console.log('testBarn', mapBarn);
+
     const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
