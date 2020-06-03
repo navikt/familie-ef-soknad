@@ -49,7 +49,12 @@ export const verdiTilTekstsvar = (
 };
 
 export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
-  const nyttObjekt: any = {};
+  const nyttObjekt: any = {
+    født: {
+      label: 'Født',
+      verdi: true,
+    },
+  };
 
   for (const [key, verdi] of Object.entries(objekt)) {
     const barnLabel = variabelTilLabel[key];
