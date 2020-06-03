@@ -12,12 +12,11 @@ import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import { useSøknad } from '../../../context/SøknadContext';
-import {
-  hentForrigeRoute,
-  Routes,
-} from '../../../arbeidssøkerskjema/routes/Routes';
+
 import { useHistory, useLocation } from 'react-router';
 import SendSøknadKnapp from './SendSøknad';
+import { hentForrigeRoute } from '../../../routing/utils';
+import { Routes } from '../../../routing/Routes';
 
 const Dokumentasjon: React.FC = () => {
   const location = useLocation();
