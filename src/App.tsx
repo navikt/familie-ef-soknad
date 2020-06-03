@@ -72,9 +72,13 @@ const App = () => {
       return nyttBarn;
     });
 
+    console.log('Etter mapping:', barnMedLabels);
+
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
   }, [person, barneliste]);
+
+  console.log('Søknad', søknad);
 
   if (!fetching && autentisert) {
     if (!error) {
