@@ -59,7 +59,6 @@ const App = () => {
 
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
-    if (!mapBarn.length) return;
 
     console.log('barneliste', barneliste);
 
@@ -73,7 +72,7 @@ const App = () => {
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
-  }, [person]);
+  }, [person, barneliste]);
 
   if (!fetching && autentisert) {
     if (!error) {
