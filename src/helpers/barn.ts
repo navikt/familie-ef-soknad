@@ -16,7 +16,7 @@ export const hentNyttBarn = (
   intl: IntlShape
 ): IBarn => {
   return {
-    fnr: hentFeltObjekt('person.fnr', fødselsnummer, intl),
+    fødselsnummer: hentFeltObjekt('person.fnr', fødselsnummer, intl),
     personnummer: hentFeltObjekt('barnadine.personnummer', personnummer, intl),
     alder: hentFeltObjekt(
       'person.alder',

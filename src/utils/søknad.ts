@@ -2,6 +2,7 @@ import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { formatDate } from './dato';
+import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
 
 export const hentPersonData = () => {
@@ -49,7 +50,13 @@ export const verdiTilTekstsvar = (
 };
 
 export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
-  const nyttObjekt: any = {};
+  const nyttObjekt: any = {
+    id: hentUid(),
+    født: {
+      label: 'Født',
+      verdi: true,
+    },
+  };
 
   for (const [key, verdi] of Object.entries(objekt)) {
     const barnLabel = variabelTilLabel[key];

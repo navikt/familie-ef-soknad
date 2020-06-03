@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { hvorforIkkeOppgi } from './ForeldreConfig';
+import styled from 'styled-components/macro';
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
-import { IBarn } from '../../../models/barn';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { IForelder } from '../../../models/forelder';
 import { hentTekst } from '../../../utils/søknad';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import { hvorforIkkeOppgi } from './ForeldreConfig';
+import { IBarn } from '../../../models/barn';
+import { IForelder } from '../../../models/forelder';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 
@@ -21,9 +22,50 @@ interface Props {
   settForelder: Function;
   forelder: IForelder;
 }
-const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
+
+const StyledAndreForelderGruppe = styled.div`
+  display: grid;
+  min-width: 500px;
+  grid-template-columns: repeat(2, min-content);
+  grid-template-rows: repeat(3, min-content);
+  grid-gap: 1rem;
+  grid-template-areas:
+    'navn navn'
+    'fødselsdato personnr'
+    'checkbox checkbox';
+
+  @media all and (max-width: 420px) {
+    grid-template-columns: repeat(1, min-content);
+    grid-template-rows: repeat(4, min-content);
+    grid-gap: 1rem;
+    grid-template-areas:
+      'navn'
+      'fødselsdato'
+      'personnr'
+      'checkbox';
+  }
+  .foreldre-navn-input {
+    grid-area: navn;
+  }
+
+  .datovelger {
+    grid-area: fødselsdato;
+  }
+  .personnummer {
+    grid-area: personnr;
+    min-width: 300px;
+    .skjemaelement__label {
+      margin-bottom: 1rem;
+    }
+  }
+  .checkbox {
+    grid-area: checkbox;
+  }
+`;
+const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   const intl = useIntl();
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
+  const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
@@ -44,7 +86,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
     settForelder({
       ...nyForelder,
       kanIkkeOppgiAnnenForelderFar: {
-        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        label: hvorforIkkeOppgiLabel,
         verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
       },
     });
@@ -89,7 +131,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
   return (
     <>
       <KomponentGruppe>
-        <FeltGruppe>
+        <StyledAndreForelderGruppe>
           <Input
             className="foreldre-navn-input"
             onChange={(e) =>
@@ -105,47 +147,45 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             label="Navn"
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
-        </FeltGruppe>
-      </KomponentGruppe>
-      <KomponentGruppe>
-        <div className="fødselsnummer">
-          <Datovelger
-            settDato={(e: Date | null) => {
-              e !== null &&
-                settForelder({
-                  ...forelder,
-                  flyttetFra: {
-                    label: 'Fødselsnummer datotest',
-                    verdi: e,
-                  },
-                });
-            }}
-            valgtDato={
-              forelder.fødselsdato && forelder.fødselsdato.verdi
-                ? forelder.fødselsdato.verdi
-                : undefined
-            }
-            tekstid={'datovelger.fødselsdato'}
-            datobegrensning={DatoBegrensning.TidligereDatoer}
-          />
-          <Input
-            className="personnummer"
-            onChange={(e) =>
-              settForelder({
-                ...forelder,
-                personnr: {
-                  label: 'Personnr',
-                  verdi: e.target.value,
-                },
-              })
-            }
-            value={forelder.personnr ? forelder.personnr?.verdi : ''}
-            label="Personnummer (hvis barnet har fått)"
-            disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
-          />
-        </div>
-        <FeltGruppe classname="checkbox-forelder">
+
+          {forelder.navn && (
+            <>
+              <Datovelger
+                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
+                settDato={(e: Date | null) => {
+                  e !== null &&
+                    settForelder({
+                      ...forelder,
+                      fødselsdato: {
+                        label: 'Fødselsdato',
+                        verdi: e,
+                      },
+                    });
+                }}
+                valgtDato={forelder.fødselsdato?.verdi}
+                tekstid={'datovelger.fødselsdato'}
+                datobegrensning={DatoBegrensning.TidligereDatoer}
+              />
+              <Input
+                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
+                className="personnummer"
+                onChange={(e) =>
+                  settForelder({
+                    ...forelder,
+                    personnr: {
+                      label: 'Personnr',
+                      verdi: e.target.value,
+                    },
+                  })
+                }
+                value={forelder.personnr ? forelder.personnr?.verdi : ''}
+                label="Personnummer"
+              />
+            </>
+          )}
+
           <Checkbox
+            className={'checkbox'}
             label={hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
             checked={
               forelder.kanIkkeOppgiAnnenForelderFar?.verdi
@@ -154,37 +194,34 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder }) => {
             }
             onChange={hukAvKanIkkeOppgiAnnenForelder}
           />
-        </FeltGruppe>
-        {forelder.kanIkkeOppgiAnnenForelderFar?.verdi ? (
-          <KomponentGruppe>
-            <MultiSvarSpørsmål
-              spørsmål={hvorforIkkeOppgi}
-              settSpørsmålOgSvar={settHvorforIkkeOppgi}
-              valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
-            />
-          </KomponentGruppe>
-        ) : null}
-        {forelder.hvorforIkkeOppgi?.verdi ===
-        hentTekst('barnasbosted.spm.annet', intl) ? (
-          <>
-            <FeltGruppe>
-              <Textarea
-                value={
-                  forelder.ikkeOppgittAnnenForelderBegrunnelse &&
-                  forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi &&
-                  begyntÅSkrive
-                    ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
-                    : ''
-                }
-                onChange={settIkkeOppgittAnnenForelderBegrunnelse}
-                label={intl.formatMessage({
-                  id: 'barnasbosted.spm.hvorforikkeoppgi',
-                })}
-              />
-            </FeltGruppe>
-          </>
-        ) : null}
+        </StyledAndreForelderGruppe>
       </KomponentGruppe>
+
+      {forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
+        <KomponentGruppe>
+          <MultiSvarSpørsmål
+            spørsmål={hvorforIkkeOppgi}
+            settSpørsmålOgSvar={settHvorforIkkeOppgi}
+            valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
+          />
+        </KomponentGruppe>
+      )}
+      {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
+        <>
+          <FeltGruppe>
+            <Textarea
+              value={
+                forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
+                begyntÅSkrive
+                  ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                  : ''
+              }
+              onChange={settIkkeOppgittAnnenForelderBegrunnelse}
+              label={hvorforIkkeOppgiLabel}
+            />
+          </FeltGruppe>
+        </>
+      )}
     </>
   );
 };

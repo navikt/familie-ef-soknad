@@ -13,7 +13,7 @@ import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   navn: ITekstFelt;
-  fnr: ITekstFelt;
+  fødselsnummer: ITekstFelt;
   fødselsdato: ITekstFelt;
   personnummer: ITekstFelt;
   alder: ITekstFelt;
@@ -26,7 +26,7 @@ interface Props {
 const Barnekort: React.FC<Props> = ({
   id,
   navn,
-  fnr,
+  fødselsnummer,
   alder,
   harSammeAdresse,
   lagtTil,
@@ -37,8 +37,8 @@ const Barnekort: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
-  const formatFnr = (fnr: string) => {
-    return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
+  const formatFnr = (fødselsnummer: string) => {
+    return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
   const ikoner = [barn1, barn2, barn3];
@@ -81,12 +81,12 @@ const Barnekort: React.FC<Props> = ({
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Element>
           <div className="informasjonselement">
-            {fnr.verdi ? (
+            {fødselsnummer.verdi ? (
               <>
                 <Normaltekst>
                   {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
                 </Normaltekst>
-                <Normaltekst>{formatFnr(fnr.verdi)}</Normaltekst>
+                <Normaltekst>{formatFnr(fødselsnummer.verdi)}</Normaltekst>
               </>
             ) : (
               <>
