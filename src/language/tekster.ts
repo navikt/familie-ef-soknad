@@ -79,7 +79,8 @@ export default {
 
     'personopplysninger.fnr': 'Fødselsnr',
     'personopplysninger.telefonnr': 'Telefonnummer',
-    'personopplysninger.feilmelding.telefonnr': 'Telefonnummeret må ha minst 8 siffer',
+    'personopplysninger.feilmelding.telefonnr':
+      'Telefonnummeret må ha minst 8 siffer',
     'personopplysninger.statsborgerskap': 'Statsborgerskap',
     'personopplysninger.alert.infohentet':
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
@@ -125,8 +126,7 @@ export default {
       'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
-    'sivilstatus.spm.begrunnelse':
-      'Hvorfor er du alene med barn?',
+    'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
 
     'sivilstatus.svar.samlivsbruddForeldre':
       'Samlivsbrudd med den andre forelderen',
