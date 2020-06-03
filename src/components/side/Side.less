@@ -1,9 +1,10 @@
 .søknadsdialog > .side {
   display: grid;
   grid-template-columns: repeat(3, minmax(50px, auto));
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: repeat(5, min-content);
   grid-template-areas:
     "stegindikator stegindikator stegindikator"
+    ". ikon ."
     "tittel tittel tittel"
     "innhold innhold innhold"
     "knapper knapper knapper";
@@ -11,6 +12,13 @@
   .stegindikator {
     grid-area: stegindikator;
     margin: 1rem 0 1rem;
+  }
+
+  .brev_ikon {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: center;
+    grid-area: ikon;
   }
 
   .typo-systemtittel {

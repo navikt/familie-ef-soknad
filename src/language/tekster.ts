@@ -448,7 +448,7 @@ export default {
       '</ul>' +
       'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
     'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
-    'arbeidssøker.knapp.tilleggstønad': 'Søk tillegsstønader',
+    'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',
@@ -644,6 +644,58 @@ export default {
     'dokumentasjon.arbeidsforhold-redusert.tittel':
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
+
+    'kvittering.takk': 'Takk for søknaden',
+    'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.tekst.arbeidssøker':
+      'Husk å registrere deg som arbeidssøker hos NAV',
+    'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'kvittering.tekst.dineSaker':
+      'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
+    'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
+    'kvittering.tittel.tarUtdanning':
+      'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
+    'kvittering.beskrivelse.tarUtdanning':
+      'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
+    'kvittering.lenke.tarUtdanning': 'Les mer om stønad til skolepenger',
+    'kvittering.knapp.tarUtdanning': 'Søk stønad til skolepenger',
+    'kvittering.tittel.tilleggsstønader':
+      'Du kan også ha rett til tilleggsstønader når du er under utdanning',
+    'kvittering.beskrivelse.tilleggsstønader':
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>læremidler</li>' +
+      '<li>daglig reise</li>' +
+      '<li>reise til samling</li>' +
+      '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
+      '<li>bolig og overnatting</li>' +
+      '<li>flytting</li> </ul>' +
+      '<br/> <i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
+    'kvittering.lenke.tilleggsstønader': 'Les mer om tilleggsstønader',
+    'kvittering.knapp.tilleggsstønader': 'Søk tilleggsstønader',
+
+    'kvittering.tittel.tilleggsstønader.arbeidssøker':
+      'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader',
+    'kvittering.beskrivelse.tilleggsstønader.arbeidssøker':
+      'Stønadene kan dekke utgifter til <ul>' +
+      '<li>barnepass</li>' +
+      '<li>reise når du er arbeidssøker</li>' +
+      '<li>flytting</li></ul>' +
+      '<i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
+    'kvittering.lenke.tilleggsstønader.arbeidssøker':
+      'Les mer om tilleggsstønader',
+    'kvittering.knapp.tilleggsstønader.arbeidssøker': 'Søk tilleggsstønader',
+
+    'kvittering.tittel.tilleggsstønader.aktivitetskrav':
+      'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
+    'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
+      'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
+      'Dersom du tjener mer enn 599 148 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
+      'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
+    'kvittering.lenke.tilleggsstønader.aktivitetskrav':
+      'Les mer om stønad til barnetilsyn',
+    'kvittering.knapp.tilleggsstønader.aktivitetskrav':
+      'Søk stønad til barnetilsyn',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',
