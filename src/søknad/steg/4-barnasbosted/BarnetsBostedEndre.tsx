@@ -4,7 +4,7 @@ import BarnasBostedHeader from './BarnasBostedHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
+import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/barn';
 import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
@@ -95,7 +95,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     (andreBarnMedForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)));
+        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
@@ -132,7 +132,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         <BarnasBostedHeader barn={barn} />
         <div className="barnas-bosted__innhold">
           {!barn.harSammeAdresse.verdi && (
-            <SkalBarnBoHosDeg
+            <SkalBarnetBoHosSøker
               barn={barn}
               forelder={forelder}
               settForelder={settForelder}
@@ -140,7 +140,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
 
           {(barn.harSammeAdresse?.verdi ||
-            harValgtSvar(forelder.skalBarnBoHosDeg?.verdi)) && (
+            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
             <>
               <FeltGruppe>
                 <Element>

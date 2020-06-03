@@ -4,7 +4,7 @@ import {
   EHarSkriftligSamværsavtale,
   EBorISammeHus,
   EHvorMyeSammen,
-  ESkalBarnBoHosDeg,
+  ESkalBarnetBoHosSøker,
   EHvorforIkkeOppgi,
 } from '../../../models/steg/barnasbosted';
 import { JaNeiSvar } from '../../../helpers/standardSvar';
@@ -20,8 +20,8 @@ import { NeiSvar } from '../../../helpers/svar';
 
 const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.BARN_BOR_HOS_SØKER,
-  spørsmålid: EForelder.skalBarnBoHosDeg,
-  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+  spørsmålid: EForelder.skalBarnetBoHosSøker,
+  svarid: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
   tittel: 'dokumentasjon.barnBorHosSøker.tittel',
   beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
   harSendtInn: false,
@@ -31,8 +31,8 @@ const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
   svarid: ESvar.JA,
-  tittel: 'dokumentasjon.deltBosted.tittel',
-  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
+  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
+  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
   harSendtInn: false,
 };
 
@@ -203,22 +203,22 @@ export const hvorMyeSammen: ISpørsmål = {
   ],
 };
 
-export const skalBarnBoHosDeg: ISpørsmål = {
-  søknadid: EForelder.skalBarnBoHosDeg,
-  tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
+export const skalBarnetBoHosSøker: ISpørsmål = {
+  søknadid: EForelder.skalBarnetBoHosSøker,
+  tekstid: 'barnasbosted.spm.skalBarnetBoHosSøker',
   flersvar: false,
   svaralternativer: [
     {
-      id: ESkalBarnBoHosDeg.ja,
+      id: ESkalBarnetBoHosSøker.ja,
       svar_tekstid: 'barnasbosted.spm.jaFolkeregistrert',
     },
     {
-      id: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+      id: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
       svar_tekstid: 'barnasbosted.spm.jaMenSamarbeiderIkke',
       dokumentasjonsbehov: DokumentasjonBarnBorHosDeg,
     },
     {
-      id: ESkalBarnBoHosDeg.nei,
+      id: ESkalBarnetBoHosSøker.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
   ],

@@ -6,15 +6,15 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { skalBarnBoHosDeg } from './ForeldreConfig';
+import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { ESkalBarnBoHosDeg } from '../../../models/steg/barnasbosted';
 import { IForelder } from '../../../models/forelder';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentSpørsmålTekstMedNavnEllerBarn } from '../../../utils/barn';
+import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
@@ -22,7 +22,7 @@ interface Props {
   settForelder: (forelder: IForelder) => void;
 }
 
-const SkalBarnBoHosDeg: React.FC<Props> = ({
+const SkalBarnetBoHosSøker: React.FC<Props> = ({
   barn,
   forelder,
   settForelder,
@@ -30,13 +30,13 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   const intl = useIntl();
   const { settDokumentasjonsbehov } = useSøknad();
 
-  const settSkalBarnBoHosDegFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+  const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settForelder({
       ...forelder,
-      [skalBarnBoHosDeg.søknadid]: {
+      [skalBarnetBoHosSøker.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
-        label: hentTekst('barnasbosted.spm.skalBarnBoHosDeg', intl),
+        label: hentTekst('barnasbosted.spm.skalBarnetBoHosSøker', intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
@@ -59,18 +59,18 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
       </FeltGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          key={skalBarnBoHosDeg.søknadid}
-          spørsmål={skalBarnBoHosDeg}
+          key={skalBarnetBoHosSøker.søknadid}
+          spørsmål={skalBarnetBoHosSøker}
           spørsmålTekst={hentBeskjedMedNavn(
             !barn.født ? hentTekst('barnet', intl) : barn.navn.verdi,
-            hentTekst(skalBarnBoHosDeg.tekstid, intl)
+            hentTekst(skalBarnetBoHosSøker.tekstid, intl)
           )}
-          valgtSvar={forelder.skalBarnBoHosDeg?.verdi}
-          settSpørsmålOgSvar={settSkalBarnBoHosDegFelt}
+          valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}
+          settSpørsmålOgSvar={settSkalBarnetBoHosSøkerFelt}
         />
       </KomponentGruppe>
-      {forelder.skalBarnBoHosDeg?.svarid ===
-        ESkalBarnBoHosDeg.jaMenSamarbeiderIkke && (
+      {forelder.skalBarnetBoHosSøker?.svarid ===
+        ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
@@ -108,4 +108,4 @@ const SkalBarnBoHosDeg: React.FC<Props> = ({
   );
 };
 
-export default SkalBarnBoHosDeg;
+export default SkalBarnetBoHosSøker;
