@@ -17,6 +17,7 @@ interface Props {
 }
 const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();
+
   const settBorISammeHus = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,
@@ -36,6 +37,16 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
     }
 
     settForelder(nyForelder);
+  };
+
+  const settBeskrivSamværUtenBarn = (e: any) => {
+    settForelder({
+      ...forelder,
+      hvordanBorDere: {
+        label: hentTekst('barnasbosted.spm.hvordanBorDere', intl),
+        verdi: e.target.value,
+      },
+    });
   };
 
   return (
@@ -66,15 +77,7 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
                   ? forelder.hvordanBorDere.verdi
                   : ''
               }
-              onChange={(e: any) =>
-                settForelder({
-                  ...forelder,
-                  hvordanBorDere: {
-                    label: hentTekst('barnasbosted.spm.hvordanBorDere', intl),
-                    verdi: e.target.value,
-                  },
-                })
-              }
+              onChange={settBeskrivSamværUtenBarn}
               label=""
             />
           </FeltGruppe>
