@@ -41,6 +41,7 @@ export default {
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
     'knapp.start': 'Start søknad',
+    'knapp.sendSøknad': 'Send søknad',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',

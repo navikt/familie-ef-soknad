@@ -69,7 +69,7 @@ const SendSøknadKnapp: FC = () => {
       className={'neste'}
       spinner={innsendingState.venter}
     >
-      <LocaleTekst tekst={'skjema.send'} />
+      <LocaleTekst tekst={'knapp.sendSøknad'} />
     </KnappBase>
   );
 };
