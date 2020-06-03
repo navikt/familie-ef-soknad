@@ -78,11 +78,8 @@ const Hjelpetekst: React.FC<Props> = ({
             lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
           >
             <Normaltekst>
-              {innholdTekst ? (
-                innholdTekst
-              ) : innholdTekstid ? (
-                <LocaleTekst tekst={innholdTekstid} />
-              ) : null}
+              {innholdTekst && (innholdTekst)}
+              {!innholdTekst && innholdTekstId && <LocaleTekst tekst={innholdTekstid} />}
             </Normaltekst>
           </Lesmerpanel>
         </StyledHjelpetekst>
