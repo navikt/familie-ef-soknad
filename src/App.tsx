@@ -62,6 +62,8 @@ const App = () => {
 
     console.log('barneliste', barneliste);
 
+    console.log('test');
+
     console.log('mapBarn', mapBarn);
 
     const barnMedLabels = mapBarn.map((barn: any) => {
