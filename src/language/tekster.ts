@@ -65,7 +65,6 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
     'person.navn': 'Navn',
-
     'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
@@ -73,6 +72,8 @@ export default {
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
     'person.fødselsdato': 'Fødselsdato',
+
+    barnet: 'Barnet',
 
     'stegtittel.omDeg': 'Om deg',
 
@@ -279,7 +280,7 @@ export default {
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
 
-    'barnasbosted.element.andreforelder': '[0]s andre forelder',
+    'barnasbosted.element.andreforelder': 's andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
@@ -307,6 +308,12 @@ export default {
 
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
+      'Hva må en skriftlig samværsavtale inneholde?',
+    'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
+      'Vi trenger opplysninger om' +
+      '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
+      '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
     'barnasbosted.spm.jaKonkreteTidspunkt':
       'Ja, og den beskriver når barnet er sammen med hver av foreldrene',
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
@@ -333,7 +340,7 @@ export default {
       'Har du bodd sammen med den andre forelderen til [0] før?',
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.spm.hvorMyeSammen':
-      'Hvor mye er du sammen med den andre forelderen til Solveig?',
+      'Hvor mye er du sammen med den andre forelderen til [0]?',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
@@ -572,8 +579,11 @@ export default {
     'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
     'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
-    'dokumentasjon.samvær.tittel': 'Samværsavtale for ',
+    'dokumentasjon.samvær.tittel': 'Samværsavtale uten konkrete tidspunkter ',
     'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
+    'dokumentasjon.samværsavtale.tittel': 'Skriftlig samværsavtale ',
+    'dokumentasjon.samværsavtale.beskrivelse':
+      'Skriftlig samværsavtale som beskriver konkrete tidspunkter',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
     'dokumentasjon.deltBosted.beskrivelse': '',
     'dokumentasjon.barnBorHosDeg.tittel':
@@ -583,7 +593,6 @@ export default {
       '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
       '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
       '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
-
     'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
     'dokumentasjon.sykdom.beskrivelse':
       'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
@@ -751,6 +760,12 @@ export default {
     'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.spm.harDereSkriftligSamværsavtale':
       'Har dere skriftlig samværsavtale for [0]?',
+    'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
+      'Hva må en skriftlig samværsavtale inneholde?',
+    'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
+      '"Vi trenger opplysninger om' +
+      '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
+      '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
     'barnasbosted.spm.jaKonkreteTidspunkt':
       'Ja, og den inneholder konkrete tidspunkter for samvær',
     'barnasbosted.spm.jaIkkeKonkreteTidspunkt':

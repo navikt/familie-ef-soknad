@@ -1,21 +1,25 @@
 import React from 'react';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
-import { skalBarnetBoHosSøker } from './ForeldreConfig';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { hentTekst } from '../../../utils/søknad';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { IBarn } from '../../../models/barn';
+import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { skalBarnetBoHosSøker } from './ForeldreConfig';
+import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
+import { IForelder } from '../../../models/forelder';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
+import { IBarn } from '../../../models/barn';
+import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
+import { hentSpørsmålTekstMedNavnEllerBarn } from '../../../utils/barn';
+import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
-  forelder: any;
-  settForelder: Function;
+  forelder: IForelder;
+  settForelder: (forelder: IForelder) => void;
 }
 
 const SkalBarnetBoHosSøker: React.FC<Props> = ({
@@ -30,32 +34,43 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
     settForelder({
       ...forelder,
       [skalBarnetBoHosSøker.søknadid]: {
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.skalBarnetBoHosSøker',
-        }),
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst('barnasbosted.spm.skalBarnetBoHosSøker', intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
+  const hentSpørsmålTekst = (tekstid: string) => {
+    const navnEllerBarn = barn.født?.verdi
+      ? barn.navn.verdi
+      : hentTekst('barnet', intl);
+    return hentSpørsmålTekstMedNavnEllerBarn(tekstid, navnEllerBarn, intl);
+  };
+
   return (
     <>
-      {barn.harSammeAdresse ? (
-        <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <LocaleTekst tekst={'barnasbosted.alert.måBoHosDeg'} />
-          </AlertStripe>
-          <MultiSvarSpørsmål
-            key={skalBarnetBoHosSøker.søknadid}
-            spørsmål={skalBarnetBoHosSøker}
-            valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}
-            settSpørsmålOgSvar={settSkalBarnetBoHosSøkerFelt}
-          />
-        </KomponentGruppe>
-      ) : null}
-      {forelder.skalBarnetBoHosSøker ===
-      intl.formatMessage({ id: 'barnasbosted.spm.jaMenSamarbeiderIkke' }) ? (
+      <FeltGruppe>
+        <AlertStripe type={'advarsel'} form={'inline'}>
+          {hentSpørsmålTekst('barnasbosted.alert.måBoHosDeg')}
+        </AlertStripe>
+      </FeltGruppe>
+      <KomponentGruppe>
+        <MultiSvarSpørsmålMedNavn
+          key={skalBarnetBoHosSøker.søknadid}
+          spørsmål={skalBarnetBoHosSøker}
+          spørsmålTekst={hentBeskjedMedNavn(
+            !barn.født ? hentTekst('barnet', intl) : barn.navn.verdi,
+            hentTekst(skalBarnetBoHosSøker.tekstid, intl)
+          )}
+          valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}
+          settSpørsmålOgSvar={settSkalBarnetBoHosSøkerFelt}
+        />
+      </KomponentGruppe>
+      {forelder.skalBarnetBoHosSøker?.svarid ===
+        ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
@@ -88,7 +103,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
             </li>
           </ul>
         </FeltGruppe>
-      ) : null}
+      )}
     </>
   );
 };

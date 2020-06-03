@@ -43,7 +43,12 @@ const norskeOrdMedÆØÅ = [
   'SendSøknad',
   'SøknadProvider',
   'SøkerBorIkkePåAdresse',
+  'HarForelderSkriftligSamværsavtale',
   'TilleggsstønaderUnderUtdanning',
+  'TilleggsstønaderHarAktivitet',
+  'TilleggsstønaderArbeidssøker',
+  'RegistrerDegSomArbeidssøker',
+
 ];
 
 module.exports = {

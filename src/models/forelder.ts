@@ -8,23 +8,23 @@ import {
 
 export interface IForelder {
   navn?: ITekstFelt;
-  skalBarnetBoHosSøker?: ITekstFelt;
+  skalBarnetBoHosSøker?: ISpørsmålFelt;
   fødselsdato?: IDatoFelt | null;
   personnr?: ITekstFelt;
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
   hvorforIkkeOppgi?: ISpørsmålFelt;
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
-  borINorge?: IBooleanFelt;
+  borINorge?: ISpørsmålBooleanFelt;
   land?: ITekstFelt;
   avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
-  harAnnenForelderSamværMedBarn?: ITekstFelt;
+  harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
-  borISammeHus?: ITekstFelt;
-  hvordanBorDere?: ITekstFelt;
+  borISammeHus?: ISpørsmålFelt;
+  hvordanBorDere?: ISpørsmålFelt;
   boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
-  hvorMyeSammen?: ITekstFelt;
+  hvorMyeSammen?: ISpørsmålFelt;
   beskrivSamværUtenBarn?: ITekstFelt;
 }
 
@@ -32,6 +32,8 @@ export enum EForelder {
   skalBarnetBoHosSøker = 'skalBarnetBoHosSøker',
   borINorge = 'borINorge',
   avtaleOmDeltBosted = 'avtaleOmDeltBosted',
+  hvorforIkkeOppgi = 'hvorforIkkeOppgi',
+
   harAnnenForelderSamværMedBarn = 'harAnnenForelderSamværMedBarn',
   harDereSkriftligSamværsavtale = 'harDereSkriftligSamværsavtale',
   hvordanPraktiseresSamværet = 'hvordanPraktiseresSamværet',
