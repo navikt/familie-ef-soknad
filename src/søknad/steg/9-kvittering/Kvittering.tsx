@@ -16,6 +16,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
+import DineSaker from './DineSaker';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -45,19 +46,7 @@ const Kvittering: React.FC = () => {
         <RegistrerDegSomArbeidssøker />
       )}
 
-      <SeksjonGruppe>
-        <FeltGruppe>
-          <Normaltekst>
-            <LocaleTekst tekst={'kvittering.tekst.dineSaker'} />
-          </Normaltekst>
-        </FeltGruppe>
-        <a
-          className={'knapp knapp--standard kvittering'}
-          href={'https://www.nav.no/soknader/nb/person/arbeid/tilleggsstonader'}
-        >
-          <LocaleTekst tekst={'kvittering.knapp.dineSaker'} />
-        </a>
-      </SeksjonGruppe>
+      <DineSaker />
 
       {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
