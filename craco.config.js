@@ -48,7 +48,6 @@ const norskeOrdMedÆØÅ = [
   'TilleggsstønaderHarAktivitet',
   'TilleggsstønaderArbeidssøker',
   'RegistrerDegSomArbeidssøker',
-
 ];
 
 module.exports = {
