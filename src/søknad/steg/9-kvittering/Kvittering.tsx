@@ -1,22 +1,19 @@
 import React from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
+import DineSaker from './DineSaker';
 import Feilside from '../../../components/feil/Feilside';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
 import RegistrerDegSomArbeidssøker from './RegistrerDegSomArbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import TilleggsstønaderArbeidssøker from './TilleggsstønaderArbeidssøker';
 import TilleggsstønaderHarAktivitet from './TilleggsstønaderHarAktivitet';
 import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
-import { dagensDato, formatDateHour } from '../../../utils/dato';
 import { ESvar } from '../../../models/spørsmålogsvar';
+import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import DineSaker from './DineSaker';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
