@@ -5,9 +5,9 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
-import { tomPersonInfo } from '../../../utils/person';
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   tittel: string;
@@ -29,7 +29,13 @@ const OmSamboerenDin: FC<Props> = ({
     date !== null &&
       settBosituasjon({
         ...bosituasjon,
-        samboerDetaljer: { ...samboerDetaljer, fødselsdato: date },
+        samboerDetaljer: {
+          ...samboerDetaljer,
+          fødselsdato: {
+            label: hentTekst('datovelger.fødselsdato', intl),
+            verdi: date,
+          },
+        },
       });
   };
 
@@ -66,7 +72,7 @@ const OmSamboerenDin: FC<Props> = ({
         tekstid={tittel}
         settPersonInfo={settSamboerInfo}
         settFødselsdato={settFødselsdato}
-        valgtPersonInfo={samboerDetaljer ? samboerDetaljer : tomPersonInfo}
+        valgtPersonInfo={samboerDetaljer ? samboerDetaljer : {}}
       />
 
       {ekteskapsLiknendeForhold && samboerDetaljer?.fødselsdato && (
