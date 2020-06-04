@@ -79,6 +79,8 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
         verdi: forelder.kanIkkeOppgiAnnenForelderFar || false,
       },
     });
+
+    //eslint-disable-next-line
   }, []);
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
