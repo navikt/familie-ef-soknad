@@ -73,7 +73,7 @@ const App = () => {
     if (!error) {
       return (
         <>
-          <TestsideInformasjon />
+          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
