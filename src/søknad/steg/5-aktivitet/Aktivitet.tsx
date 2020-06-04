@@ -20,6 +20,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
+import { hentAktivitetSpørsmål } from '../../../helpers/aktivitet';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -83,7 +84,10 @@ const Aktivitet: React.FC = () => {
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
-          spørsmål={hvaErDinArbeidssituasjonSpm}
+          spørsmål={hentAktivitetSpørsmål(
+            søknad.person,
+            hvaErDinArbeidssituasjonSpm
+          )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}
         />
