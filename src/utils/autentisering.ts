@@ -6,7 +6,7 @@ const er401Feil = (error: AxiosError) =>
 
 const loggInn = () =>
   process.env.NODE_ENV !== 'development' ||
-  process.env.REACT_APP_BRUK_AUTENTISERING_I_DEV === 'true';
+  process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
 const getLoginUrl = () =>
   Environment().loginService + '?redirect=' + window.location.href;
