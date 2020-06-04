@@ -43,7 +43,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
       borINorge: denAndreForelderen?.borINorge,
       hvordanPraktiseresSamværet:
         denAndreForelderen?.hvordanPraktiseresSamværet,
-      borISammeHus: denAndreForelderen?.borISammeHus,
+      borAnnenForelderISammeHus: denAndreForelderen?.borAnnenForelderISammeHus,
       boddSammenFør: denAndreForelderen?.boddSammenFør,
       flyttetFra: denAndreForelderen?.flyttetFra,
       hvorMyeSammen: denAndreForelderen?.hvorMyeSammen,

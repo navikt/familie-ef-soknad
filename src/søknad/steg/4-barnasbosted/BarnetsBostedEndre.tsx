@@ -25,10 +25,10 @@ import {
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { isValid } from 'date-fns';
-import BorISammeHus from './ikkesammeforelder/BorISammeHus';
+import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
-import { EBorISammeHus } from '../../../models/steg/barnasbosted';
+import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
@@ -52,7 +52,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
-  const { borISammeHus, boddSammenFør, flyttetFra } = forelder;
+  const { borAnnenForelderISammeHus, boddSammenFør, flyttetFra } = forelder;
 
   const intl = useIntl();
 
@@ -186,11 +186,17 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
             <>
-              <BorISammeHus forelder={forelder} settForelder={settForelder} />
+              <BorAnnenForelderISammeHus
+                forelder={forelder}
+                settForelder={settForelder}
+              />
 
-              {((harValgtSvar(borISammeHus?.verdi) &&
-                borISammeHus?.svarid !== EBorISammeHus.ja) ||
-                harValgtSvar(forelder.hvordanBorDere?.verdi)) && (
+              {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+                borAnnenForelderISammeHus?.svarid !==
+                  EBorAnnenForelderISammeHus.ja) ||
+                harValgtSvar(
+                  forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
+                )) && (
                 <BoddSammenFør
                   forelder={forelder}
                   settForelder={settForelder}

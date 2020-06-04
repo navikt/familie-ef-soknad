@@ -2,7 +2,7 @@ import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsv
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
-  EBorISammeHus,
+  EBorAnnenForelderISammeHus,
   EHvorMyeSammen,
   ESkalBarnetBoHosSøker,
   EHvorforIkkeOppgi,
@@ -156,26 +156,27 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   ],
 };
 
-export const borISammeHus: ISpørsmål = {
-  søknadid: 'borISammeHus',
-  tekstid: 'barnasbosted.spm.borISammeHus',
+export const borAnnenForelderISammeHus: ISpørsmål = {
+  søknadid: 'borAnnenForelderISammeHus',
+  tekstid: 'barnasbosted.spm.borAnnenForelderISammeHus',
   lesmer: {
-    åpneTekstid: 'barnasbosted.hjelpetekst.borisammehus.apne',
+    åpneTekstid: 'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne',
     lukkeTekstid: '',
-    innholdTekstid: 'barnasbosted.hjelpetekst.borisammehus.innhold',
+    innholdTekstid:
+      'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold',
   },
   flersvar: false,
   svaralternativer: [
     {
-      id: EBorISammeHus.ja,
+      id: EBorAnnenForelderISammeHus.ja,
       svar_tekstid: 'barnasbosted.spm.ja',
     },
     {
-      id: EBorISammeHus.nei,
+      id: EBorAnnenForelderISammeHus.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
     {
-      id: EBorISammeHus.vetikke,
+      id: EBorAnnenForelderISammeHus.vetikke,
       svar_tekstid: 'barnasbosted.spm.vetikke',
     },
   ],
