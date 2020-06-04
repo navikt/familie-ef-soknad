@@ -4,7 +4,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { ISøknad } from '../../../models/søknad';
 import { parseISO } from 'date-fns';
-import { sendInnSkjema } from '../../../arbeidssøkerskjema/innsending/api';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -14,6 +13,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
 import { Routes } from '../../../routing/Routes';
+import { sendInnSøknad } from '../../../innsending/api';
 
 interface Innsending {
   status: string;
@@ -36,7 +36,7 @@ const SendSøknadKnapper: FC = () => {
 
   const sendSøknad = (søknad: ISøknad) => {
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSkjema(søknad)
+    sendInnSøknad(søknad)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
