@@ -21,6 +21,7 @@ import {
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { ISvar } from '../../../../models/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -158,6 +159,13 @@ const Arbeidsgiver: React.FC<Props> = ({
           valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}
         />
       </FeltGruppe>
+      {arbeidsgiver.ansettelsesforhold?.svarid === EStilling.lærling && (
+        <FeltGruppe>
+          <AlertStripe type={'info'} form={'inline'}>
+            {hentTekst('arbeidsforhold.alert.lærling', intl)}
+          </AlertStripe>
+        </FeltGruppe>
+      )}
       {arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig && (
         <HarSøkerSluttdato
           arbeidsgiver={arbeidsgiver}

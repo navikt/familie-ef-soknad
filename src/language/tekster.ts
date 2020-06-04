@@ -397,6 +397,7 @@ export default {
     'arbeidsforhold.svar.fast': 'Fast',
     'arbeidsforhold.svar.midlertidig': 'Midlertidig',
     'arbeidsforhold.svar.lærling': 'Lærling',
+    'arbeidsforhold.alert.lærling': 'Du må legge ved lærlingkontrakten din',
     'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvakt eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
