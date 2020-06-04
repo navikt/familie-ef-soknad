@@ -24,7 +24,7 @@ import {
 } from '../../../../helpers/forelder';
 
 interface Props {
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
 }
 

@@ -8,6 +8,7 @@ import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import { tomPersonInfo } from '../../../utils/person';
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   tittel: string;
@@ -52,7 +53,7 @@ const OmSamboerenDin: FC<Props> = ({
         ...bosituasjon,
         datoFlyttetSammenMedSamboer: {
           label: datovelgerTekst,
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

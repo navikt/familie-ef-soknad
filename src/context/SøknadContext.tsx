@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import personIngenBarn from '../mock/personIngenBarn.json';
-import { dagensDato } from '../utils/dato';
+import { dagensDatoStreng } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
@@ -44,7 +44,7 @@ const initialState: ISøknad = {
       label: '',
       verdi: [],
     },
-    søknadsdato: { label: '', verdi: dagensDato },
+    søknadsdato: { label: '', verdi: dagensDatoStreng },
   },
   dokumentasjonsbehov: [],
   vedleggsliste: [],

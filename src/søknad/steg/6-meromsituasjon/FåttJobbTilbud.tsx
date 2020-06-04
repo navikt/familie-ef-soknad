@@ -8,6 +8,7 @@ import Datovelger, {
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -25,7 +26,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
         ...dinSituasjon,
         datoOppstartJobb: {
           label: hentTekst('dinSituasjon.datovelger.jobb', intl),
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

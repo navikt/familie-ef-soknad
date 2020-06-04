@@ -9,6 +9,7 @@ import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { useSøknad } from '../../../../context/SøknadContext';
+import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
   utenlandsopphold: IUtenlandsopphold;
@@ -79,7 +80,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
               ...periode,
               [objektnøkkel]: {
                 label: hentTekst('periode.' + objektnøkkel, intl),
-                verdi: date !== null ? date : undefined,
+                verdi: date !== null ? datoTilStreng(date) : undefined,
               },
             },
           };

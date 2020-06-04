@@ -13,7 +13,7 @@ import { useIntl } from 'react-intl';
 
 interface Props {
   forelder: IForelder;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
 }
 const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();
@@ -39,7 +39,9 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
     settForelder(nyForelder);
   };
 
-  const settBeskrivHvordanBorDere = (e: any) => {
+  const settBeskrivHvordanBorDere = (
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
     settForelder({
       ...forelder,
       hvordanBorDere: {

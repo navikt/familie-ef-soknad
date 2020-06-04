@@ -29,6 +29,7 @@ import BorISammeHus from './ikkesammeforelder/BorISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { EBorISammeHus } from '../../../models/steg/barnasbosted';
+import { strengTilDato } from '../../../utils/dato';
 
 interface Props {
   barn: IBarn;
@@ -100,7 +101,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    isValid(forelder.fødselsdato?.verdi);
+    isValid(
+      forelder.fødselsdato?.verdi
+        ? strengTilDato(forelder.fødselsdato.verdi)
+        : undefined
+    );
 
   const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
@@ -197,7 +202,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 />
               )}
               {(boddSammenFør?.svarid === ESvar.NEI ||
-                isValid(flyttetFra?.verdi)) && (
+                isValid(
+                  flyttetFra?.verdi
+                    ? strengTilDato(flyttetFra.verdi)
+                    : undefined
+                )) && (
                 <HvorMyeSammen
                   forelder={forelder}
                   settForelder={settForelder}

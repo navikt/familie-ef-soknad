@@ -26,4 +26,18 @@ export const formatDateHour = (date: Date) => {
   return format(date, DATO_OG_TIME);
 };
 
+export const datoTilStreng = (date: Date): string => {
+  return date.toJSON();
+};
+
+export const strengTilDato = (datoStreng: string): Date => {
+  return new Date(datoStreng);
+};
+
+export const tilDato = (dato: string | Date): Date => {
+  return typeof dato === 'string' ? new Date(dato) : dato;
+};
+
 export const dagensDato = new Date();
+
+export const dagensDatoStreng = datoTilStreng(new Date());

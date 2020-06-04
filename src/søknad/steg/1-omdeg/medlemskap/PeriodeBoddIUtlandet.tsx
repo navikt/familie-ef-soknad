@@ -6,7 +6,11 @@ import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
-import { dagensDato } from '../../../../utils/dato';
+import {
+  dagensDato,
+  dagensDatoStreng,
+  datoTilStreng,
+} from '../../../../utils/dato';
 import subDays from 'date-fns/subDays';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
@@ -18,14 +22,14 @@ const PeriodeBoddIUtlandet: FC = () => {
   const { perioderBoddIUtlandet } = søknad.medlemskap;
   const intl = useIntl();
 
-  const nyPeriode = {
+  const nyPeriode: IUtenlandsopphold = {
     id: hentUid(),
     periode: {
       fra: {
         label: hentTekst('periode.fra', intl),
-        verdi: subDays(dagensDato, 1),
+        verdi: datoTilStreng(subDays(dagensDato, 1)),
       },
-      til: { label: hentTekst('periode.til', intl), verdi: dagensDato },
+      til: { label: hentTekst('periode.til', intl), verdi: dagensDatoStreng },
     },
     begrunnelse: {
       label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),

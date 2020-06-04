@@ -13,7 +13,7 @@ import { EHvorMyeSammen } from '../../../../models/steg/barnasbosted';
 
 interface Props {
   forelder: IForelder;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
 }
 const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();

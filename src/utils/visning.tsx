@@ -1,15 +1,17 @@
 import React, { useEffect } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentTekst } from '../utils/søknad';
-import { formatDate } from '../utils/dato';
+import { formatDate, strengTilDato } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
+import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 
-export const VisPerioderBoddIUtlandet = (verdi: any) => {
-  return verdi.map((v: any) => {
+// TODO: Dette kan umulig være riktig visning av denne komponenten? Ser ikke ut som begrunnelse blir satt heller
+export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
+  return verdi.map((v: IUtenlandsopphold) => {
     return (
       <>
-        {verdiTilTekstsvar(v.fra)}
+        {verdiTilTekstsvar(strengTilDato(v.periode.fra.verdi))}
         {VisLabelOgSvar(v.begrunnelse)}
       </>
     );

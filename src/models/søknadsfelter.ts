@@ -10,7 +10,7 @@ export interface IBooleanFelt {
 
 export interface IDatoFelt {
   label: string;
-  verdi: Date;
+  verdi: string;
 }
 
 export interface ITekstListeFelt {

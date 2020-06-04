@@ -10,6 +10,7 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { IUtenlandsopphold } from '../../../models/steg/omDeg/medlemskap';
 
 const OppsummeringOmDeg = () => {
   const { søknad } = useSøknad();
@@ -18,7 +19,8 @@ const OppsummeringOmDeg = () => {
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
-  const utlandet = søknad.medlemskap.perioderBoddIUtlandet;
+  const utlandet: IUtenlandsopphold[] | undefined =
+    søknad.medlemskap.perioderBoddIUtlandet;
 
   const perioderBoddIUtlandet = utlandet
     ? VisPerioderBoddIUtlandet(utlandet)

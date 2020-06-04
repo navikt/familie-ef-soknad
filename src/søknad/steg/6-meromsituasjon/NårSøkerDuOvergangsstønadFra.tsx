@@ -10,6 +10,7 @@ import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon'
 import LocaleTekst from '../../../language/LocaleTekst';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import styled from 'styled-components/macro';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -32,7 +33,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         ...dinSituasjon,
         søknadsdato: {
           label: hentTekst('dinSituasjon.datovelger.overgangsstønad', intl),
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

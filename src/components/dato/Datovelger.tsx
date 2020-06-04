@@ -11,6 +11,7 @@ import nn from 'date-fns/locale/nn';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
+import { tilDato } from '../../utils/dato';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -19,7 +20,7 @@ export enum DatoBegrensning {
 }
 
 interface Props {
-  valgtDato: Date | undefined;
+  valgtDato: string | Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
   settDato: (date: Date | null) => void;
@@ -64,7 +65,7 @@ const Datovelger: React.FC<Props> = ({
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
@@ -75,7 +76,7 @@ const Datovelger: React.FC<Props> = ({
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
@@ -86,7 +87,7 @@ const Datovelger: React.FC<Props> = ({
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
               />

@@ -5,7 +5,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
-import { dagensDato } from '../../utils/dato';
+import { dagensDato, strengTilDato } from '../../utils/dato';
 import subDays from 'date-fns/subDays';
 import { compareAsc, isEqual } from 'date-fns';
 import { IPeriode } from '../../models/periode';
@@ -21,8 +21,10 @@ const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
 
   const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
     (dato: Date, periodenøkkel: 'fra' | 'til') => {
-      const fom: Date = periodenøkkel === 'fra' ? dato : periode.fra.verdi;
-      const tom: Date = periodenøkkel === 'til' ? dato : periode.til.verdi;
+      const fom: Date =
+        periodenøkkel === 'fra' ? dato : strengTilDato(periode.fra.verdi);
+      const tom: Date =
+        periodenøkkel === 'til' ? dato : strengTilDato(periode.til.verdi);
       const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
       const erDatoerLike = isEqual(fom, tom);
       erFraDatoSenereEnnTilDato &&

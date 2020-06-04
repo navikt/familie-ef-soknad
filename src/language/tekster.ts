@@ -40,6 +40,8 @@ export default {
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
+    'knapp.mellomlagre': 'Mellomlagre søknad',
+    'knapp.hentMellomlagretOvergangsstønad': 'Fortsett på mellomlagret søknad',
     'knapp.start': 'Start søknad',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
