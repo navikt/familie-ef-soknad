@@ -13,7 +13,7 @@ import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   navn: ITekstFelt;
-  fødselsnummer: ITekstFelt;
+  fnr: ITekstFelt;
   fødselsdato: ITekstFelt;
   personnummer: ITekstFelt;
   alder: ITekstFelt;
@@ -26,7 +26,7 @@ interface Props {
 const Barnekort: React.FC<Props> = ({
   id,
   navn,
-  fødselsnummer,
+  fnr,
   alder,
   harSammeAdresse,
   lagtTil,
@@ -81,12 +81,12 @@ const Barnekort: React.FC<Props> = ({
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Element>
           <div className="informasjonselement">
-            {fødselsnummer.verdi ? (
+            {fnr.verdi ? (
               <>
                 <Normaltekst>
                   {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
                 </Normaltekst>
-                <Normaltekst>{formatFnr(fødselsnummer.verdi)}</Normaltekst>
+                <Normaltekst>{formatFnr(fnr.verdi)}</Normaltekst>
               </>
             ) : (
               <>

@@ -42,6 +42,7 @@ const App = () => {
 
       const fetchPersonData = () => {
         hentPersonData().then((response) => {
+          console.log('REPONSE', response);
           settPerson({
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
@@ -59,11 +60,17 @@ const App = () => {
   useEffect(() => {
     let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
 
+    console.log('barnFørMapping', mapBarn);
+
+    console.log('barneliste', barneliste);
+
     const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
       return nyttBarn;
     });
+
+    console.log('barnEtterMapping', barnMedLabels);
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
