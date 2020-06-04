@@ -76,7 +76,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
       ...forelder,
       kanIkkeOppgiAnnenForelderFar: {
         label: jegKanIkkeOppgiLabel,
-        verdi: forelder.kanIkkeOppgiAnnenForelderFar || false,
+        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
       },
     });
 
