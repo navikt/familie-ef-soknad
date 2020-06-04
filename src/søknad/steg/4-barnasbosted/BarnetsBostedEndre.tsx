@@ -56,12 +56,29 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const intl = useIntl();
 
+  const jegKanIkkeOppgiLabel = hentTekst(
+    'barnasbosted.kanikkeoppgiforelder',
+    intl
+  );
+
   useEffect(() => {
     if (barn.forelder) {
       settForelder(barn.forelder);
     }
 
     // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    settForelder({
+      ...forelder,
+      kanIkkeOppgiAnnenForelderFar: {
+        label: jegKanIkkeOppgiLabel,
+        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
+      },
+    });
+
+    //eslint-disable-next-line
   }, []);
 
   const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
