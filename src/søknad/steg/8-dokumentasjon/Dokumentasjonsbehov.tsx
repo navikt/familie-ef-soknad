@@ -63,11 +63,13 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
           <LocaleTekst tekst={dokumentasjon.tittel} />
         </Undertittel>
       </FeltGruppe>
-      <FeltGruppe>
-        <Normaltekst>
-          <FormattedHTMLMessage id={dokumentasjon.beskrivelse} />
-        </Normaltekst>
-      </FeltGruppe>
+      {dokumentasjon.beskrivelse && (
+        <FeltGruppe>
+          <Normaltekst>
+            <FormattedHTMLMessage id={dokumentasjon.beskrivelse} />
+          </Normaltekst>
+        </FeltGruppe>
+      )}
       <FeltGruppe>
         <Checkbox
           label={hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
