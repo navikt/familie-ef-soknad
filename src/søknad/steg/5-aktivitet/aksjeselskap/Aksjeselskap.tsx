@@ -9,7 +9,6 @@ import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import {
   EAksjeselskap,
   IAksjeselskap,
@@ -53,19 +52,6 @@ const Aksjeselskap: FC<Props> = ({
     'arbeidsforhold.label.arbeidsmengde',
     intl
   );
-
-  const settSpørsmålOgSvar = (spørsmål: ISpørsmål, svar: ISvar) => {
-    aksjeselskap &&
-      settAksjeselskap({
-        ...aksjeselskap,
-        [spørsmål.søknadid]: {
-          spørsmålid: spørsmål.søknadid,
-          svarid: svar.id,
-          label: hentTekst(spørsmål.tekstid, intl),
-          verdi: hentTekst(svar.svar_tekstid, intl),
-        },
-      });
-  };
 
   const fjernAksjeselskap = () => {
     if (egetAS && egetAS.length > 1) {

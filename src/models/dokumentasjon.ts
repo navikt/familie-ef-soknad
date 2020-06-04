@@ -31,6 +31,7 @@ export enum BarnasBostedDokumentasjon {
 
 export enum AktivitetDokumentasjon {
   UTDANNING = 'UTDANNING',
+  LÆRLING = 'LÆRLING',
 }
 
 export enum SituasjonDokumentasjon {

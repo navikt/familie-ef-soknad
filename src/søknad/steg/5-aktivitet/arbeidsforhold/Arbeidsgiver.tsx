@@ -20,6 +20,7 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { ISvar } from '../../../../models/spørsmålogsvar';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -38,6 +39,7 @@ const Arbeidsgiver: React.FC<Props> = ({
   arbeidsgivernummer,
 }) => {
   const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
   const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
     if (index === arbeidsgivernummer) return arbeidsgiver;
   });
@@ -58,7 +60,7 @@ const Arbeidsgiver: React.FC<Props> = ({
 
   const settSpørsmålOgSvar = (spørsmål: ISpørsmål, svar: ISvar) => {
     if (
-      spørsmål.søknadid === EArbeidsgiver.fastStilling &&
+      spørsmål.søknadid === EArbeidsgiver.ansettelsesforhold &&
       svar.id === EStilling.fast &&
       arbeidsgiver.harSluttDato
     ) {
@@ -76,6 +78,7 @@ const Arbeidsgiver: React.FC<Props> = ({
           verdi: hentTekst(svar.svar_tekstid, intl),
         },
       });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const fjernArbeidsgiver = () => {
@@ -149,13 +152,13 @@ const Arbeidsgiver: React.FC<Props> = ({
       </FeltGruppe>
       <FeltGruppe>
         <MultiSvarSpørsmål
-          toKorteSvar={true}
+          toKorteSvar={false}
           spørsmål={hvaSlagsStilling}
           settSpørsmålOgSvar={settSpørsmålOgSvar}
-          valgtSvar={arbeidsgiver.fastStilling?.verdi}
+          valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}
         />
       </FeltGruppe>
-      {arbeidsgiver.fastStilling?.svarid === EStilling.midlertidig && (
+      {arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig && (
         <HarSøkerSluttdato
           arbeidsgiver={arbeidsgiver}
           settArbeidsgiver={settArbeidsgiver}
