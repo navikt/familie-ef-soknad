@@ -71,18 +71,6 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
     intl
   );
 
-  useEffect(() => {
-    settForelder({
-      ...forelder,
-      kanIkkeOppgiAnnenForelderFar: {
-        label: jegKanIkkeOppgiLabel,
-        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
-      },
-    });
-
-    //eslint-disable-next-line
-  }, []);
-
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
 
