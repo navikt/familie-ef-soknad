@@ -1,4 +1,4 @@
-import { format, parse } from 'date-fns';
+import { format, formatISO, parse } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 
@@ -18,6 +18,10 @@ export const parseDate = (date: string) => {
 
 export const formatDate = (date: Date) => {
   return format(date, STANDARD_DATOFORMAT);
+};
+
+export const formatIsoDate = (date: Date) => {
+  return formatISO(date, { representation: 'date' });
 };
 
 export const formatDateFnr = (date: Date) => {
