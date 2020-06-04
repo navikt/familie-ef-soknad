@@ -65,7 +65,8 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
     'person.navn': 'Navn',
-    'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
+    'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
+    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
