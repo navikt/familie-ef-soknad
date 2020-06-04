@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
-import { borISammeHus } from '../ForeldreConfig';
-import { EBorISammeHus } from '../../../../models/steg/barnasbosted';
+import { borAnnenForelderISammeHus } from '../ForeldreConfig';
+import { EBorAnnenForelderISammeHus } from '../../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../../utils/søknad';
 import { IForelder } from '../../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
@@ -15,23 +15,26 @@ interface Props {
   forelder: IForelder;
   settForelder: Function;
 }
-const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
+const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();
 
-  const settBorISammeHus = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+  const settBorAnnenForelderISammeHus = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar
+  ) => {
     const nyForelder = {
       ...forelder,
-      [borISammeHus.søknadid]: {
+      [borAnnenForelderISammeHus.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
-        label: hentTekst('barnasbosted.spm.borISammeHus', intl),
+        label: hentTekst('barnasbosted.spm.borAnnenForelderISammeHus', intl),
         verdi: hentTekst(valgtSvar.svar_tekstid, intl),
       },
     };
 
     if (
-      valgtSvar.id === EBorISammeHus.nei ||
-      valgtSvar.id === EBorISammeHus.vetikke
+      valgtSvar.id === EBorAnnenForelderISammeHus.nei ||
+      valgtSvar.id === EBorAnnenForelderISammeHus.vetikke
     ) {
       delete nyForelder.hvordanBorDere;
     }
@@ -53,15 +56,16 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
     <>
       <KomponentGruppe>
         <MultiSvarSpørsmål
-          key={borISammeHus.søknadid}
-          spørsmål={borISammeHus}
-          valgtSvar={forelder.borISammeHus?.verdi}
+          key={borAnnenForelderISammeHus.søknadid}
+          spørsmål={borAnnenForelderISammeHus}
+          valgtSvar={forelder.borAnnenForelderISammeHus?.verdi}
           settSpørsmålOgSvar={(spørsmål, svar) =>
-            settBorISammeHus(spørsmål, svar)
+            settBorAnnenForelderISammeHus(spørsmål, svar)
           }
         />
       </KomponentGruppe>
-      {forelder.borISammeHus?.svarid === EBorISammeHus.ja && (
+      {forelder.borAnnenForelderISammeHus?.svarid ===
+        EBorAnnenForelderISammeHus.ja && (
         <>
           <div className="margin-bottom-05">
             <Normaltekst>
@@ -87,4 +91,4 @@ const BorISammeHus: FC<Props> = ({ forelder, settForelder }) => {
   );
 };
 
-export default BorISammeHus;
+export default BorAnnenForelderISammeHus;

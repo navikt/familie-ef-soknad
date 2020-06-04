@@ -329,13 +329,13 @@ export default {
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når barnet reiser til og fra den andre forelderen',
 
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.hvordanBorDere': 'Hvordan bor dere nærme hverandre?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
       'Når du bor svært nær den andre forelderen, regnes du ikke for å være alene om omsorgen for barn.',
 
     'barnasbosted.spm.boddsammenfør':
@@ -773,16 +773,17 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
+      'lorem bipsum bepp hepp',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
@@ -872,16 +873,17 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
+      'lorem bipsum bepp hepp',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
