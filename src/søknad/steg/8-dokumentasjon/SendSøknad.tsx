@@ -6,12 +6,14 @@ import { ISøknad } from '../../../models/søknad';
 import { parseISO } from 'date-fns';
 import { sendInnSkjema } from '../../../arbeidssøkerskjema/innsending/api';
 import { useSøknad } from '../../../context/SøknadContext';
-import {
-  hentNesteRoute,
-  Routes,
-} from '../../../arbeidssøkerskjema/routes/Routes';
 import { useHistory, useLocation } from 'react-router';
-import { mapSøknad } from '../../../utils/mapper';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { Normaltekst } from 'nav-frontend-typografi';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
+import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
+import { Routes } from '../../../routing/Routes';
 
 interface Innsending {
   status: string;
@@ -19,11 +21,12 @@ interface Innsending {
   venter: boolean;
 }
 
-const SendSøknadKnapp: FC = () => {
+const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const location = useLocation();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
+  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -32,13 +35,8 @@ const SendSøknadKnapp: FC = () => {
   });
 
   const sendSøknad = (søknad: ISøknad) => {
-    // Map søknad fra ISpørsmålFelt til {label, verdi}
-    // const mappetSkjema = mapDataTilLabelOgVerdiTyper(søknad);
-    console.log(test);
-    const mappetSøknad = søknad;
-
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSkjema(mappetSøknad)
+    sendInnSkjema(søknad)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
@@ -63,15 +61,43 @@ const SendSøknadKnapp: FC = () => {
   };
 
   return (
-    <KnappBase
-      type={'hoved'}
-      onClick={() => !innsendingState.venter && sendSøknad(søknad)}
-      className={'neste'}
-      spinner={innsendingState.venter}
-    >
-      <LocaleTekst tekst={'knapp.sendSøknad'} />
-    </KnappBase>
+    <>
+      {innsendingState.status === IStatus.FEILET && (
+        <KomponentGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            <Normaltekst>{innsendingState.melding}</Normaltekst>
+          </AlertStripe>
+        </KomponentGruppe>
+      )}
+      <SeksjonGruppe className={'sentrert'}>
+        <StyledKnapper>
+          <KnappBase
+            className={'tilbake'}
+            type={'standard'}
+            onClick={() => history.push(forrigeRoute.path)}
+          >
+            <LocaleTekst tekst={'knapp.tilbake'} />
+          </KnappBase>
+
+          <KnappBase
+            type={'hoved'}
+            onClick={() => !innsendingState.venter && sendSøknad(søknad)}
+            className={'neste'}
+            spinner={innsendingState.venter}
+          >
+            <LocaleTekst tekst={'knapp.sendSøknad'} />
+          </KnappBase>
+          <KnappBase
+            className={'avbryt'}
+            type={'flat'}
+            onClick={() => history.push(Routes[0].path)}
+          >
+            <LocaleTekst tekst={'knapp.avbryt'} />
+          </KnappBase>
+        </StyledKnapper>
+      </SeksjonGruppe>
+    </>
   );
 };
 
-export default SendSøknadKnapp;
+export default SendSøknadKnapper;
