@@ -15,7 +15,7 @@ interface Props {
   dokumentasjon: IDokumentasjon;
 }
 
-const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
+const LastOppVedlegg: React.FC<Props> = ({ dokumentasjon }) => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknad();
   const [dokumentasjonsbehov, settDokumentasjon] = useState<IDokumentasjon[]>(
@@ -93,4 +93,4 @@ const Dokumentasjonsbehov: React.FC<Props> = ({ dokumentasjon }) => {
   );
 };
 
-export default Dokumentasjonsbehov;
+export default LastOppVedlegg;
