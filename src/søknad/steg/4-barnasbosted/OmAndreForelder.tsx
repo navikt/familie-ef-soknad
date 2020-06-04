@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
