@@ -584,11 +584,7 @@ export default {
     'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
     'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
-    'dokumentasjon.samvær.tittel': 'Samværsavtale uten konkrete tidspunkter ',
-    'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
-    'dokumentasjon.samværsavtale.tittel': 'Skriftlig samværsavtale ',
-    'dokumentasjon.samværsavtale.beskrivelse':
-      'Skriftlig samværsavtale som beskriver konkrete tidspunkter',
+    'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
     'dokumentasjon.deltBosted.beskrivelsel': '',
     'dokumentasjon.barnBorHosSøker.tittel':

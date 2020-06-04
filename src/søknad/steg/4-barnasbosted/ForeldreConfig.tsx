@@ -41,7 +41,6 @@ const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
   spørsmålid: EForelder.harDereSkriftligSamværsavtale,
   svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
   tittel: 'dokumentasjon.samværsavtale.tittel',
-  beskrivelse: 'dokumentasjon.samværsavtale.beskrivelse',
   harSendtInn: false,
 };
 
@@ -49,8 +48,7 @@ const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
   spørsmålid: EForelder.harDereSkriftligSamværsavtale,
   svarid: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
-  tittel: 'dokumentasjon.samvær.tittel',
-  beskrivelse: 'dokumentasjon.samvær.beskrivelse',
+  tittel: 'dokumentasjon.samværsavtale.tittel',
   harSendtInn: false,
 };
 // --- Spørsmål
