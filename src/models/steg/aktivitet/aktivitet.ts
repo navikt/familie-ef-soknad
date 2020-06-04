@@ -1,4 +1,8 @@
-import { ISpørsmålListeFelt, ISpørsmålFelt } from '../../søknadsfelter';
+import {
+  ISpørsmålListeFelt,
+  ISpørsmålFelt,
+  ITekstFelt,
+} from '../../søknadsfelter';
 import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';
@@ -9,8 +13,15 @@ export interface IAktivitet {
   etablererEgenVirksomhet?: ISpørsmålFelt;
   arbeidsforhold?: IArbeidsgiver[];
   arbeidssøker?: IArbeidssøker;
+  aksjeselskap?: IAksjeselskap;
   firma?: IFirma;
   underUtdanning?: IUnderUtdanning;
+}
+
+export interface IAksjeselskap {
+  id: string;
+  navn?: ITekstFelt;
+  arbeidsmengde?: ITekstFelt;
 }
 
 export enum EArbeidssituasjon {

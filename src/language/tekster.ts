@@ -358,7 +358,8 @@ export default {
     'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
-    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+    'arbeidssituasjon.svar.erAnsattIEgetAS':
+      'Jeg er ansatt i eget aksjeselskap (AS)',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
     'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
@@ -401,6 +402,12 @@ export default {
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
     'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsforhold?',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsforhold',
+
+    'egetAS.tittel': 'Aksjeselskap',
+    'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
+    'egetAS.knapp.fjern': 'Fjern aksjeselskap',
+    'egetAS.knapp.leggtil': 'Legg til et aksjeselskap',
+    'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
 
     'firma.tittel': 'Om firmaet du driver',
     'firma.label.navn': 'Navn på firma',
