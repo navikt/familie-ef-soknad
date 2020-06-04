@@ -7,7 +7,7 @@ import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.fastStilling,
-  tekstid: 'arbeidsforhold.label.fastEllerMidlertidig',
+  tekstid: 'arbeidsforhold.label.ansettelsesforhold',
   flersvar: false,
   svaralternativer: [
     {

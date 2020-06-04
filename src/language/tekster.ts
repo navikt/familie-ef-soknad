@@ -392,8 +392,8 @@ export default {
 
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
-    'arbeidsforhold.label.fastEllerMidlertidig':
-      'Er stillingen fast eller midlertidig?',
+    'arbeidsforhold.label.ansettelsesforhold':
+      'Hva slags ansettelsesforhold har du?',
     'arbeidsforhold.svar.fast': 'Fast',
     'arbeidsforhold.svar.midlertidig': 'Midlertidig',
     'arbeidsforhold.svar.lærling': 'Lærling',
