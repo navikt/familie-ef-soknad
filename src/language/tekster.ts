@@ -395,6 +395,8 @@ export default {
       'Er stillingen fast eller midlertidig?',
     'arbeidsforhold.svar.fast': 'Fast',
     'arbeidsforhold.svar.midlertidig': 'Midlertidig',
+    'arbeidsforhold.svar.lærling': 'Lærling',
+    'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvakt eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
     'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsforhold?',

@@ -24,4 +24,6 @@ export enum EArbeidsgiver {
 export enum EStilling {
   fast = 'fast',
   midlertidig = 'midlertidig',
+  lærling = 'lærling',
+  tilkallingsvakt = 'tilkallingsvakt',
 }

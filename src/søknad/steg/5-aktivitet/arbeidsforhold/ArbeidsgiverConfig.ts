@@ -18,6 +18,14 @@ export const hvaSlagsStilling: ISpørsmål = {
       id: EStilling.midlertidig,
       svar_tekstid: 'arbeidsforhold.svar.midlertidig',
     },
+    {
+      id: EStilling.lærling,
+      svar_tekstid: 'arbeidsforhold.svar.lærling',
+    },
+    {
+      id: EStilling.tilkallingsvakt,
+      svar_tekstid: 'arbeidsforhold.svar.tilkallingsvakt',
+    },
   ],
 };
 
