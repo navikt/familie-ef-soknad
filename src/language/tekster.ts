@@ -331,7 +331,8 @@ export default {
 
     'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
-    'barnasbosted.spm.hvordanBorDere': 'Hvordan bor dere nærme hverandre?',
+    'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse':
+      'Hvordan bor dere nærme hverandre?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',

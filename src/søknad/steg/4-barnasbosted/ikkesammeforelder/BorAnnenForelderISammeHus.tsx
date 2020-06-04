@@ -36,17 +36,20 @@ const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
       valgtSvar.id === EBorAnnenForelderISammeHus.nei ||
       valgtSvar.id === EBorAnnenForelderISammeHus.vetikke
     ) {
-      delete nyForelder.hvordanBorDere;
+      delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
     }
 
     settForelder(nyForelder);
   };
 
-  const settBeskrivHvordanBorDere = (e: any) => {
+  const settBorAnnenForelderISammeHusBeskrivelse = (e: any) => {
     settForelder({
       ...forelder,
-      hvordanBorDere: {
-        label: hentTekst('barnasbosted.spm.hvordanBorDere', intl),
+      borAnnenForelderISammeHusBeskrivelse: {
+        label: hentTekst(
+          'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse',
+          intl
+        ),
         verdi: e.target.value,
       },
     });
@@ -70,18 +73,19 @@ const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
           <div className="margin-bottom-05">
             <Normaltekst>
               {intl.formatMessage({
-                id: 'barnasbosted.spm.hvordanBorDere',
+                id: 'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse',
               })}
             </Normaltekst>
           </div>
           <FeltGruppe>
             <Textarea
               value={
-                forelder.hvordanBorDere && forelder.hvordanBorDere.verdi
-                  ? forelder.hvordanBorDere.verdi
+                forelder.borAnnenForelderISammeHusBeskrivelse &&
+                forelder.borAnnenForelderISammeHusBeskrivelse.verdi
+                  ? forelder.borAnnenForelderISammeHusBeskrivelse.verdi
                   : ''
               }
-              onChange={settBeskrivHvordanBorDere}
+              onChange={settBorAnnenForelderISammeHusBeskrivelse}
               label=""
             />
           </FeltGruppe>

@@ -194,7 +194,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
                 borAnnenForelderISammeHus?.svarid !==
                   EBorAnnenForelderISammeHus.ja) ||
-                harValgtSvar(forelder.hvordanBorDere?.verdi)) && (
+                harValgtSvar(
+                  forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
+                )) && (
                 <BoddSammenFør
                   forelder={forelder}
                   settForelder={settForelder}
