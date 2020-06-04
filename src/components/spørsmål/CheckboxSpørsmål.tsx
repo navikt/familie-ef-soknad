@@ -25,14 +25,12 @@ interface Props {
     svarHuketAv: boolean,
     svar: ISvar
   ) => void;
-  svarsalternativer?: ISvar[];
   valgteSvar: string[];
 }
 const CheckboxSpørsmål: React.FC<Props> = ({
   spørsmål,
   settValgteSvar,
   valgteSvar,
-  svarsalternativer,
 }) => {
   const intl = useIntl();
 
@@ -41,47 +39,25 @@ const CheckboxSpørsmål: React.FC<Props> = ({
       <Element>
         <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
-      {svarsalternativer ? (
-        <div className={'radioknapp__multiSvar'}>
-          {svarsalternativer.map((svar: ISvar) => {
-            const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
-            const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
-              return valgtSvar === svarTekst;
-            });
+      <div className={'radioknapp__multiSvar'}>
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
+          const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
+          const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
+            return valgtSvar === svarTekst;
+          });
 
-            return (
-              <CheckboksPanel
-                key={svar.svar_tekstid}
-                label={svarTekst}
-                checked={alleredeHuketAvISøknad}
-                onChange={() =>
-                  settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
-                }
-              />
-            );
-          })}
-        </div>
-      ) : (
-        <div className={'radioknapp__multiSvar'}>
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
-            const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
-              return valgtSvar === svarTekst;
-            });
-
-            return (
-              <CheckboksPanel
-                key={svar.svar_tekstid}
-                label={svarTekst}
-                checked={alleredeHuketAvISøknad}
-                onChange={() =>
-                  settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
-                }
-              />
-            );
-          })}
-        </div>
-      )}
+          return (
+            <CheckboksPanel
+              key={svar.svar_tekstid}
+              label={svarTekst}
+              checked={alleredeHuketAvISøknad}
+              onChange={() =>
+                settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
+              }
+            />
+          );
+        })}
+      </div>
     </StyledCheckboxSpørsmål>
   );
 };
