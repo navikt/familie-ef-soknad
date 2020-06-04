@@ -13,15 +13,9 @@ export interface IAktivitet {
   etablererEgenVirksomhet?: ISpørsmålFelt;
   arbeidsforhold?: IArbeidsgiver[];
   arbeidssøker?: IArbeidssøker;
-  aksjeselskap?: IAksjeselskap;
+  egetAS?: IAksjeselskap[];
   firma?: IFirma;
   underUtdanning?: IUnderUtdanning;
-}
-
-export interface IAksjeselskap {
-  id: string;
-  navn?: ITekstFelt;
-  arbeidsmengde?: ITekstFelt;
 }
 
 export enum EArbeidssituasjon {
@@ -38,4 +32,15 @@ export enum ArbeidssituasjonType {
   erArbeidssøker = 'erArbeidssøker',
   tarUtdanning = 'tarUtdanning',
   erHverkenIArbeidUtdanningEllerArbeidssøker = 'erHverkenIArbeidUtdanningEllerArbeidssøker',
+}
+
+export interface IAksjeselskap {
+  id: string;
+  navn?: ITekstFelt;
+  arbeidsmengde?: ITekstFelt;
+}
+
+export enum EAksjeselskap {
+  navn = 'navn',
+  arbeidsmengde = 'arbeidsmengde',
 }

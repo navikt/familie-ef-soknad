@@ -21,7 +21,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
 import { hentAktivitetSpørsmål } from '../../../helpers/aktivitet';
-import EgetAS from './EgetAS';
+import EgetAS from './aksjeselskap/EgetAS';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();

@@ -408,6 +408,7 @@ export default {
     'egetAS.knapp.fjern': 'Fjern aksjeselskap',
     'egetAS.knapp.leggtil': 'Legg til et aksjeselskap',
     'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
+    'egetAS.label.aksjeselskap': 'Aksjeselskap',
 
     'firma.tittel': 'Om firmaet du driver',
     'firma.label.navn': 'Navn på firma',
