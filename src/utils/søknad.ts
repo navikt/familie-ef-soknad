@@ -1,7 +1,6 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
-import { formatDate } from './dato';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
 import { ISøknad } from '../models/søknad';
@@ -53,25 +52,6 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
     return 0;
   }
   return parsed;
-};
-// TODO: Ikke i bruk?
-export const verdiTilTekstsvar = (
-  verdi: string | Date | boolean,
-  intl: IntlShape
-) => {
-  if (typeof verdi === 'string') {
-    return verdi;
-  } else if (typeof verdi === 'boolean') {
-    if (verdi === true) {
-      return hentTekst('svar.ja', intl);
-    } else {
-      return hentTekst('svar.nei', intl);
-    }
-  } else if (verdi instanceof Date) {
-    return formatDate(verdi);
-  } else {
-    return null;
-  }
 };
 
 export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
