@@ -37,14 +37,9 @@ const Bosituasjon: FC = () => {
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
-  const [bosituasjon, settBosituasjon] = useState<IBosituasjon>({
-    delerBoligMedAndreVoksne: {
-      spørsmålid: hovedSpørsmål.søknadid,
-      svarid: '',
-      label: '',
-      verdi: '',
-    },
-  });
+  const [bosituasjon, settBosituasjon] = useState<IBosituasjon>(
+    søknad.bosituasjon
+  );
   useEffect(() => {
     settSøknad({ ...søknad, bosituasjon: bosituasjon });
     // eslint-disable-next-line
