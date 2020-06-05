@@ -5,10 +5,9 @@ import {
   EHvorMyeSammen,
 } from '../models/steg/barnasbosted';
 import { EForelder, IForelder } from '../models/forelder';
-import { isValid } from 'date-fns';
 import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { harValgtSvar } from '../utils/spørsmålogsvar';
-import { strengTilDato } from '../utils/dato';
+import { erGyldigDato } from '../utils/dato';
 
 export const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -40,11 +39,7 @@ export const visBostedOgSamværSeksjon = (
     kanIkkeOppgiDenAndreForelderen ||
     (visesBorINorgeSpørsmål
       ? borForelderINorgeSpm
-      : isValid(
-          forelder.fødselsdato?.verdi
-            ? strengTilDato(forelder.fødselsdato.verdi)
-            : null
-        ))
+      : erGyldigDato(forelder.fødselsdato?.verdi))
   );
 };
 

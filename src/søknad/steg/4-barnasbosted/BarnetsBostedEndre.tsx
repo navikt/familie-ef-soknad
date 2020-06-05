@@ -24,11 +24,10 @@ import {
 } from '../../../helpers/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { isValid } from 'date-fns';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
-import { strengTilDato } from '../../../utils/dato';
+import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
@@ -118,11 +117,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    isValid(
-      forelder.fødselsdato?.verdi
-        ? strengTilDato(forelder.fødselsdato.verdi)
-        : undefined
-    );
+    erGyldigDato(forelder.fødselsdato?.verdi);
 
   const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
@@ -225,11 +220,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 />
               )}
               {(boddSammenFør?.svarid === ESvar.NEI ||
-                isValid(
-                  flyttetFra?.verdi
-                    ? strengTilDato(flyttetFra.verdi)
-                    : undefined
-                )) && (
+                erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}
                   settForelder={settForelder}

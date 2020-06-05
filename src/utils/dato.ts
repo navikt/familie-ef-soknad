@@ -1,4 +1,4 @@
-import { format, formatISO, parse } from 'date-fns';
+import { format, formatISO, isValid, parse } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 
@@ -56,3 +56,7 @@ export const formatNårSøkerDuStønadFraMåned = (
 export const dagensDato = new Date();
 
 export const dagensDatoStreng = datoTilStreng(new Date());
+
+export const erGyldigDato = (verdi: string | undefined): boolean => {
+  return verdi ? isValid(verdi) : false;
+};
