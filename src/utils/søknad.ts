@@ -54,7 +54,7 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
   }
   return parsed;
 };
-// TODO: Kommer ikke til å vise riktig dato!
+// TODO: Ikke i bruk?
 export const verdiTilTekstsvar = (
   verdi: string | Date | boolean,
   intl: IntlShape

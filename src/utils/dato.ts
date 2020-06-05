@@ -27,7 +27,7 @@ export const formatDateHour = (date: Date) => {
 };
 
 export const datoTilStreng = (date: Date): string => {
-  return date.toJSON();
+  return date.toISOString();
 };
 
 export const strengTilDato = (datoStreng: string): Date => {

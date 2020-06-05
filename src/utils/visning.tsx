@@ -5,6 +5,7 @@ import { formatDate, strengTilDato } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
+import { isValidISODateString } from 'iso-datestring-validator';
 
 // TODO: Dette kan umulig være riktig visning av denne komponenten? Ser ikke ut som begrunnelse blir satt heller
 export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
@@ -33,6 +34,9 @@ export const verdiTilTekstsvar = (
       </ul>
     );
   } else if (typeof verdi === 'string') {
+    if (isValidISODateString(verdi)) {
+      return <Normaltekst>{formatDate(strengTilDato(verdi))}</Normaltekst>;
+    }
     return <Normaltekst>{verdi}</Normaltekst>;
   } else if (typeof verdi === 'boolean') {
     let jaTekst = 'Ja';
@@ -49,6 +53,7 @@ export const verdiTilTekstsvar = (
       return <Normaltekst>{neiTekst}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
+    // Vil ikke skje?
     return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
   } else {
     return null;
