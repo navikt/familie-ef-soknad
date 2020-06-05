@@ -4,10 +4,6 @@ on:
   push:
     branches-ignore:
       - 'master'
-      - 'bruk-api-idev'
-  pull_request:
-    branches-ignore:
-      - 'master'
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
