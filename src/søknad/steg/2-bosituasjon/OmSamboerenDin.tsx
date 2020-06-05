@@ -48,7 +48,10 @@ const OmSamboerenDin: FC<Props> = ({
       ...bosituasjon,
       samboerDetaljer: {
         ...samboerDetaljer,
-        [objektnøkkel]: e.currentTarget.value,
+        [objektnøkkel]: {
+          label: objektnøkkel,
+          verdi: e.currentTarget.value,
+        },
       },
     });
   };

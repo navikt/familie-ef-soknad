@@ -4,10 +4,24 @@ import {
   EStilling,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { JaNeiSvar } from '../../../../helpers/svar';
+import {
+  AktivitetDokumentasjon,
+  IDokumentasjon,
+} from '../../../../models/dokumentasjon';
 
+// DOKUMENTASJON
+const DokumentasjonLærling: IDokumentasjon = {
+  id: AktivitetDokumentasjon.LÆRLING,
+  spørsmålid: EArbeidsgiver.ansettelsesforhold,
+  svarid: EStilling.lærling,
+  tittel: 'dokumentasjon.lærling.tittel',
+  harSendtInn: false,
+};
+
+// SPØRSMÅL
 export const hvaSlagsStilling: ISpørsmål = {
-  søknadid: EArbeidsgiver.fastStilling,
-  tekstid: 'arbeidsforhold.label.fastEllerMidlertidig',
+  søknadid: EArbeidsgiver.ansettelsesforhold,
+  tekstid: 'arbeidsforhold.label.ansettelsesforhold',
   flersvar: false,
   svaralternativer: [
     {
@@ -17,6 +31,15 @@ export const hvaSlagsStilling: ISpørsmål = {
     {
       id: EStilling.midlertidig,
       svar_tekstid: 'arbeidsforhold.svar.midlertidig',
+    },
+    {
+      id: EStilling.lærling,
+      svar_tekstid: 'arbeidsforhold.svar.lærling',
+      dokumentasjonsbehov: DokumentasjonLærling,
+    },
+    {
+      id: EStilling.tilkallingsvakt,
+      svar_tekstid: 'arbeidsforhold.svar.tilkallingsvakt',
     },
   ],
 };

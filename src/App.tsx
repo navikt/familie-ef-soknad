@@ -29,7 +29,9 @@ const App = () => {
 
   autentiseringsInterceptor();
 
-  const erIDev = process.env.NODE_ENV === 'development';
+  const kallApi = () =>
+    process.env.NODE_ENV !== 'development' ||
+    process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -58,7 +60,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    let mapBarn = !erIDev && barneliste ? barneliste : mockPersonMedBarn.barn;
+    let mapBarn = kallApi() ? barneliste : mockPersonMedBarn.barn;
 
     const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
