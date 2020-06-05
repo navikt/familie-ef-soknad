@@ -8,16 +8,16 @@ export const hentAktivitetSpørsmål = (
 ): ISpørsmål => {
   const AktivitetSpørsmål: ISpørsmål = aktivitetSpørsmål;
   const harSøkerBarnUnderEttÅr: boolean = person.barn.some(
-    (barn) => parseInt(barn.alder.verdi) < 1 || !barn.født
+    (barn) => !barn.født || parseInt(barn.alder.verdi) < 1
   );
 
   if (!harSøkerBarnUnderEttÅr) {
-    const svarsalternativerMedFjernetAlternativ: ISvar[] = AktivitetSpørsmål.svaralternativer.filter(
+    const filtrerteSvaralternativer: ISvar[] = AktivitetSpørsmål.svaralternativer.filter(
       (svar) => svar.id !== ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
     );
     return {
       ...AktivitetSpørsmål,
-      svaralternativer: svarsalternativerMedFjernetAlternativ,
+      svaralternativer: filtrerteSvaralternativer,
     };
   } else return AktivitetSpørsmål;
 };
