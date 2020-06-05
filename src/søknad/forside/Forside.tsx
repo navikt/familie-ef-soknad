@@ -15,6 +15,8 @@ import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import { client } from '../../utils/sanity';
 import { useSøknad } from '../../context/SøknadContext';
+import { useToggles } from '../../context/TogglesContext';
+import { ToggleName } from '../../models/toggles';
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -30,6 +32,7 @@ const Forside: React.FC<any> = ({ intl }) => {
   const [error, settError] = useState<boolean>(false);
   // eslint-disable-next-line
   const [fetching, settFetching] = useState<boolean>(false);
+  const { toggles } = useToggles();
 
   useEffect(() => {
     const fetchData = () => {
@@ -120,9 +123,14 @@ const Forside: React.FC<any> = ({ intl }) => {
               </KnappBase>
             </FeltGruppe>
           ) : null}
-          <Knapp htmlType={'button'} onClick={hentMellomlagretOvergangsstønad}>
-            <LocaleTekst tekst={'knapp.hentMellomlagretOvergangsstønad'} />
-          </Knapp>
+          {toggles[ToggleName.mellomlagre_søknad] && (
+            <Knapp
+              htmlType={'button'}
+              onClick={hentMellomlagretOvergangsstønad}
+            >
+              <LocaleTekst tekst={'knapp.hentMellomlagretOvergangsstønad'} />
+            </Knapp>
+          )}
         </Panel>
       </main>
     </div>

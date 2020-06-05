@@ -20,6 +20,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { erFerdigUtfylt } from '../../../helpers/bosituasjon';
+import { ToggleName } from '../../../models/toggles';
+import { useToggles } from '../../../context/TogglesContext';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -31,6 +33,7 @@ const Bosituasjon: FC = () => {
   } = useSøknad();
   const history = useHistory();
   const location = useLocation();
+  const { toggles } = useToggles();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
@@ -91,7 +94,11 @@ const Bosituasjon: FC = () => {
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreOvergangsstønad={
+        toggles[ToggleName.mellomlagre_søknad]
+          ? mellomlagreOvergangsstønad
+          : undefined
+      }
     >
       <SeksjonGruppe>
         <MultiSvarSpørsmål
