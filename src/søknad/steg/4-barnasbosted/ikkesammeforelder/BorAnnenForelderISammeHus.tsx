@@ -42,7 +42,6 @@ const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
     settForelder(nyForelder);
   };
 
-  // TODO: Denne kompilerer ikke? Svarid og spørsmålId mangler?
   const settBorAnnenForelderISammeHusBeskrivelse = (
     e: React.ChangeEvent<HTMLTextAreaElement>
   ) => {
