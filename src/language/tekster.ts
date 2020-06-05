@@ -43,6 +43,7 @@ export default {
     'knapp.mellomlagre': 'Mellomlagre søknad',
     'knapp.hentMellomlagretOvergangsstønad': 'Fortsett på mellomlagret søknad',
     'knapp.start': 'Start søknad',
+    'knapp.sendSøknad': 'Send søknad',
 
     'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
@@ -67,7 +68,8 @@ export default {
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
 
     'person.navn': 'Navn',
-    'person.nr': 'Personnummer 5 siffer (hvis barnet har fått)',
+    'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
+    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
@@ -329,13 +331,14 @@ export default {
     'barnasbosted.normaltekst.nårreiserbarnet':
       'når barnet reiser til og fra den andre forelderen',
 
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
-    'barnasbosted.spm.hvordanBorDere': 'Hvordan bor dere nærme hverandre?',
+    'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse':
+      'Hvordan bor dere nærme hverandre?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
       'Når du bor svært nær den andre forelderen, regnes du ikke for å være alene om omsorgen for barn.',
 
     'barnasbosted.spm.boddsammenfør':
@@ -524,11 +527,14 @@ export default {
     'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
     'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke fra?',
     'dinSituasjon.lesmer-innhold.overgangsstønad':
-      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med [måned år]. \n' +
-      +'\n' +
-      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med [måned år].',
+      'Du kan ha rett til stønad i inntil [0] måneder før du søker. Det vil si fra og med [1]. Hvis du har fått barn i løpet av de siste [0] månedene, kan du få stønad i inntil [2] måneder før du søker. Det vil si fra og med [3].',
     'dinSituasjon.datovelger.overgangsstønad':
       'Jeg søker overgangsstønad fra og med',
+
+    'dinSituasjon.spm.søkerFraBestemtMåned':
+      'Søker du om overgangsstønad fra en bestemt måned?',
+    'dinSituasjon.svar.neiNavKanVurdere':
+      'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
@@ -581,16 +587,12 @@ export default {
     'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
     'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
-    'dokumentasjon.samvær.tittel': 'Samværsavtale uten konkrete tidspunkter ',
-    'dokumentasjon.samvær.beskrivelse': 'Samværsavtale lalala',
-    'dokumentasjon.samværsavtale.tittel': 'Skriftlig samværsavtale ',
-    'dokumentasjon.samværsavtale.beskrivelse':
-      'Skriftlig samværsavtale som beskriver konkrete tidspunkter',
+    'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
-    'dokumentasjon.deltBosted.beskrivelse': '',
-    'dokumentasjon.barnBorHosDeg.tittel':
+    'dokumentasjon.deltBosted.beskrivelsel': '',
+    'dokumentasjon.barnBorHosSøker.tittel':
       'Dokumentasjon på at barn bor hos deg',
-    'dokumentasjon.barnBorHosDeg.beskrivelse':
+    'dokumentasjon.barnBorHosSøker.beskrivelse':
       ' Dokumentasjon på at barn bor hos deg, for eksempel:<ul>' +
       '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
       '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
@@ -774,16 +776,17 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
+      'lorem bipsum bepp hepp',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
@@ -873,16 +876,17 @@ export default {
       'Ja, men den inneholder ikke konkrete tidspunkter som samvær',
     'barnasbosted.spm.boddsammenfør':
       'Har du bodd sammen med den andre forelderen til Mina før?',
-    'barnasbosted.spm.borISammeHus':
+    'barnasbosted.spm.borAnnenForelderISammeHus':
       'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
     'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
     'barnasbosted.hjelpetekst.bosted.apne': 'Hva er avtale om delt bosted?',
     'barnasbosted.hjelpetekst.bosted.innhold': 'lorem ipsum jepsi pepsi',
     'barnasbosted.hjelpetekst.samvær.apne': 'Hva er vanlig samværsrett?',
     'barnasbosted.hjelpetekst.samvær.innhold': 'lorem ipsum jepsi pepsi',
-    'barnasbosted.hjelpetekst.borisammehus.apne':
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
       'Hvorfor spør vi om dere bor nærme hverandre?',
-    'barnasbosted.hjelpetekst.borisammehus.innhold': 'lorem bipsum bepp hepp',
+    'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
+      'lorem bipsum bepp hepp',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',

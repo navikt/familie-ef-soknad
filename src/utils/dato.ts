@@ -1,4 +1,6 @@
-import { format, parse } from 'date-fns';
+import { format, formatISO, parse } from 'date-fns';
+import subMonths from 'date-fns/subMonths';
+import { nb } from 'date-fns/locale';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
@@ -16,6 +18,10 @@ export const parseDate = (date: string) => {
 
 export const formatDate = (date: Date) => {
   return format(date, STANDARD_DATOFORMAT);
+};
+
+export const formatIsoDate = (date: Date) => {
+  return formatISO(date, { representation: 'date' });
 };
 
 export const formatDateFnr = (date: Date) => {
@@ -36,6 +42,15 @@ export const strengTilDato = (datoStreng: string): Date => {
 
 export const tilDato = (dato: string | Date): Date => {
   return typeof dato === 'string' ? new Date(dato) : dato;
+};
+
+export const formatNårSøkerDuStønadFraMåned = (
+  dato: Date,
+  antallMåneder: number
+) => {
+  const nyDato = subMonths(dato, antallMåneder);
+
+  return format(nyDato, 'MMMM yyyy', { locale: nb });
 };
 
 export const dagensDato = new Date();

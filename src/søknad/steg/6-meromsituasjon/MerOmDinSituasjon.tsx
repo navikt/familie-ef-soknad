@@ -31,7 +31,12 @@ import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    mellomlagreOvergangsstønad,
+  } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
@@ -126,6 +131,7 @@ const MerOmDinSituasjon: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <KomponentGruppe>

@@ -67,6 +67,10 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   const intl = useIntl();
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
+  const jegKanIkkeOppgiLabel = hentTekst(
+    'barnasbosted.kanikkeoppgiforelder',
+    intl
+  );
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
@@ -87,7 +91,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
     settForelder({
       ...nyForelder,
       kanIkkeOppgiAnnenForelderFar: {
-        label: hvorforIkkeOppgiLabel,
+        label: jegKanIkkeOppgiLabel,
         verdi: !forelder.kanIkkeOppgiAnnenForelderFar?.verdi,
       },
     });

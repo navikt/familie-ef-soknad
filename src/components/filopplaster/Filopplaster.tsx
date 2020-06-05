@@ -53,9 +53,9 @@ const Filopplaster: React.FC<Props> = ({
           const maks = formaterFilstørrelse(maxFilstørrelse);
           feilmeldingsliste.push(
             hentBeskjedMedToParametre(
+              intl.formatMessage({ id: 'filopplaster.feilmelding.maks' }),
               fil.name,
-              maks,
-              intl.formatMessage({ id: 'filopplaster.feilmelding.maks' })
+              maks
             )
           );
 

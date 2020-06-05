@@ -34,8 +34,13 @@ export const verdiTilTekstsvar = (
       </ul>
     );
   } else if (typeof verdi === 'string') {
-    if (isValidISODateString(verdi)) {
-      return <Normaltekst>{formatDate(strengTilDato(verdi))}</Normaltekst>;
+    try {
+      if (isValidISODateString(verdi)) {
+        const formattertDato = formatDate(strengTilDato(verdi));
+        return <Normaltekst>{formattertDato}</Normaltekst>;
+      }
+    } catch (e) {
+      return <Normaltekst>{verdi}</Normaltekst>;
     }
     return <Normaltekst>{verdi}</Normaltekst>;
   } else if (typeof verdi === 'boolean') {
@@ -53,7 +58,7 @@ export const verdiTilTekstsvar = (
       return <Normaltekst>{neiTekst}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
-    // Vil ikke skje?
+    console.log('Bør ikke komme hit');
     return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
   } else {
     return null;

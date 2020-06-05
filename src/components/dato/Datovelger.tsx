@@ -24,6 +24,7 @@ interface Props {
   tekstid: string;
   datobegrensning: DatoBegrensning;
   settDato: (date: Date | null) => void;
+  showMonthYearPicker?: Boolean;
   disabled?: boolean;
 }
 
@@ -32,6 +33,7 @@ const Datovelger: React.FC<Props> = ({
   datobegrensning,
   valgtDato,
   settDato,
+  showMonthYearPicker,
   disabled,
 }) => {
   const [locale] = useSpråkContext();
@@ -69,6 +71,7 @@ const Datovelger: React.FC<Props> = ({
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
@@ -80,6 +83,7 @@ const Datovelger: React.FC<Props> = ({
                 dateFormat={'dd.MM.yyyy'}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
@@ -90,6 +94,7 @@ const Datovelger: React.FC<Props> = ({
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : null}
           </div>

@@ -147,17 +147,19 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
           </div>
         )}
-        {forelder.borISammeHus ? (
+        {forelder.borAnnenForelderISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
                 barn.navn.verdi,
                 intl.formatMessage({
-                  id: 'barnasbosted.spm.borISammeHus',
+                  id: 'barnasbosted.spm.borAnnenForelderISammeHus',
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.borISammeHus.verdi}</Normaltekst>
+            <Normaltekst>
+              {forelder.borAnnenForelderISammeHus.verdi}
+            </Normaltekst>
           </div>
         ) : null}
         <LenkeMedIkon

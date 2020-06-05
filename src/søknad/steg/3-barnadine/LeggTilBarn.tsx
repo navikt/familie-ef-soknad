@@ -9,7 +9,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { formatDateFnr, dagensDato, parseDate } from '../../../utils/dato';
+import { formatDateFnr, dagensDato } from '../../../utils/dato';
+import { parseISO } from 'date-fns';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/barn';
 import { ESvar } from '../../../models/spørsmålogsvar';
@@ -40,7 +41,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
       settDato(
         detteBarnet?.fødselsdato
-          ? parseDate(detteBarnet.fødselsdato?.verdi)
+          ? parseISO(detteBarnet.fødselsdato?.verdi)
           : dagensDato
       );
     }

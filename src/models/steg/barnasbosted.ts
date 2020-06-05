@@ -10,7 +10,7 @@ export enum EHarSkriftligSamværsavtale {
   nei = 'nei',
 }
 
-export enum EBorISammeHus {
+export enum EBorAnnenForelderISammeHus {
   ja = 'ja',
   nei = 'nei',
   vetikke = 'vetikke',

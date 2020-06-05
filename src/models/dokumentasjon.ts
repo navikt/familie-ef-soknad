@@ -5,7 +5,7 @@ export interface IDokumentasjon {
   spørsmålid: string;
   svarid: string;
   tittel: string;
-  beskrivelse: string;
+  beskrivelse?: string;
   harSendtInn: boolean;
   opplastedeVedlegg?: IVedlegg[];
 }
