@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { hentFeltObjekt, hentTekst } from '../utils/søknad';
 import { differenceInYears } from 'date-fns';
-import { dagensDato, formatDate } from '../utils/dato';
+import { dagensDato, formatIsoDate } from '../utils/dato';
 import { hentUid } from '../utils/uuid';
 import { EBarn, IBarn } from '../models/barn';
 import { ESvar } from '../models/spørsmålogsvar';
@@ -26,7 +26,7 @@ export const hentNyttBarn = (
     navn: hentFeltObjekt('person.navn', navn, intl),
     fødselsdato: hentFeltObjekt(
       'person.fødselsdato',
-      barnDato ? formatDate(barnDato) : undefined,
+      barnDato ? formatIsoDate(barnDato) : undefined,
       intl
     ),
     harSammeAdresse: hentFeltObjekt(
