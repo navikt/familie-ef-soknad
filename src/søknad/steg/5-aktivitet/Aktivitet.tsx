@@ -20,6 +20,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
+import { hentAktivitetSpørsmål } from '../../../helpers/aktivitet';
+import EgetAS from './aksjeselskap/EgetAS';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -27,6 +29,7 @@ const Aktivitet: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
+    ...søknad.aktivitet,
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
@@ -53,6 +56,8 @@ const Aktivitet: React.FC = () => {
       intl
     );
 
+    console.log(avhukedeSvar, svarider);
+
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
       [spørsmål.søknadid]: {
@@ -73,26 +78,6 @@ const Aktivitet: React.FC = () => {
     });
   };
 
-  const huketAvHjemmeMedBarnUnderEttÅr = erAktivitetHuketAv(
-    ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
-  );
-  const huketAvEtablererEgenVirksomhet = erAktivitetHuketAv(
-    ArbeidssituasjonType.etablererEgenVirksomhet
-  );
-  const huketAvHarArbeid =
-    erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
-    erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker);
-  const huketAvErArbeidssøker = erAktivitetHuketAv(
-    ArbeidssituasjonType.erArbeidssøker
-  );
-  const huketAvTarUtdanning = erAktivitetHuketAv(
-    ArbeidssituasjonType.tarUtdanning
-  );
-
-  const huketAvSelvstendigNæringsdrivendeEllerFrilanser = erAktivitetHuketAv(
-    ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
-  );
-
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
@@ -100,43 +85,57 @@ const Aktivitet: React.FC = () => {
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
-          spørsmål={hvaErDinArbeidssituasjonSpm}
+          spørsmål={hentAktivitetSpørsmål(
+            søknad.person,
+            hvaErDinArbeidssituasjonSpm
+          )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}
         />
       </SeksjonGruppe>
 
-      {huketAvHjemmeMedBarnUnderEttÅr && <HjemmeMedBarnUnderEttÅr />}
+      {erAktivitetHuketAv(ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr) && (
+        <HjemmeMedBarnUnderEttÅr />
+      )}
 
-      {huketAvEtablererEgenVirksomhet && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.etablererEgenVirksomhet) && (
         <EtablererEgenVirksomhet
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
 
-      {huketAvHarArbeid && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
         <OmArbeidsforholdetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
 
-      {huketAvErArbeidssøker && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) && (
+        <EgetAS
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+
+      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidssøker) && (
         <Arbeidssøker
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
 
-      {huketAvSelvstendigNæringsdrivendeEllerFrilanser && (
+      {erAktivitetHuketAv(
+        ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
+      ) && (
         <OmFirmaetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={oppdaterArbeidssituasjon}
         />
       )}
 
-      {huketAvTarUtdanning && (
+      {erAktivitetHuketAv(ArbeidssituasjonType.tarUtdanning) && (
         <UnderUtdanning
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}

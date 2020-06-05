@@ -9,14 +9,14 @@ export interface IArbeidsgiver {
   id: string;
   navn?: ITekstFelt;
   arbeidsmengde?: ITekstFelt;
-  fastStilling?: ISpørsmålFelt;
+  ansettelsesforhold?: ISpørsmålFelt;
   harSluttDato?: IBooleanFelt;
   sluttdato?: IDatoFelt;
 }
 export enum EArbeidsgiver {
   navn = 'navn',
   arbeidsmengde = 'arbeidsmengde',
-  fastStilling = 'fastStilling',
+  ansettelsesforhold = 'ansettelsesforhold',
   harSluttDato = 'harSluttDato',
   sluttdato = 'sluttdato',
 }
@@ -24,4 +24,6 @@ export enum EArbeidsgiver {
 export enum EStilling {
   fast = 'fast',
   midlertidig = 'midlertidig',
+  lærling = 'lærling',
+  tilkallingsvakt = 'tilkallingsvakt',
 }

@@ -358,7 +358,8 @@ export default {
     'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
       'Jeg er selvstendig næringsdrivende eller frilanser',
-    'arbeidssituasjon.svar.erAnsattIEgetAS': 'Jeg er ansatt i eget AS',
+    'arbeidssituasjon.svar.erAnsattIEgetAS':
+      'Jeg er ansatt i eget aksjeselskap (AS)',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
       'Jeg etablerer egen virksomhet',
     'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
@@ -391,14 +392,24 @@ export default {
 
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
-    'arbeidsforhold.label.fastEllerMidlertidig':
-      'Er stillingen fast eller midlertidig?',
+    'arbeidsforhold.label.ansettelsesforhold':
+      'Hva slags ansettelsesforhold har du?',
     'arbeidsforhold.svar.fast': 'Fast',
     'arbeidsforhold.svar.midlertidig': 'Midlertidig',
+    'arbeidsforhold.svar.lærling': 'Lærling',
+    'arbeidsforhold.alert.lærling': 'Du må legge ved lærlingkontrakten din',
+    'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvakt eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
     'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsforhold?',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til arbeidsforhold',
+
+    'egetAS.tittel': 'Aksjeselskap',
+    'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
+    'egetAS.knapp.fjern': 'Fjern aksjeselskap',
+    'egetAS.knapp.leggtil': 'Legg til et aksjeselskap',
+    'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
+    'egetAS.label.aksjeselskap': 'Aksjeselskap',
 
     'firma.tittel': 'Om firmaet du driver',
     'firma.label.navn': 'Navn på firma',
@@ -640,6 +651,9 @@ export default {
       '<li>hvor mye du skal studere</li>' +
       '<li>periode du skal studere</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
+
+    'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
+
     'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
       'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
     'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse': '',
