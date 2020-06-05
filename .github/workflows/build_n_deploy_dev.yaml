@@ -4,6 +4,7 @@ on:
   push:
     branches-ignore:
       - 'master'
+      - '[Snyk]*'
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
