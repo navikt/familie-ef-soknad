@@ -7,6 +7,7 @@ import Datovelger, {
 import PersonInfoGruppe from '../../../components/gruppe/PersonInfoGruppe';
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { datoTilStreng } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
@@ -33,7 +34,7 @@ const OmSamboerenDin: FC<Props> = ({
           ...samboerDetaljer,
           fødselsdato: {
             label: hentTekst('datovelger.fødselsdato', intl),
-            verdi: date,
+            verdi: datoTilStreng(date),
           },
         },
       });
@@ -61,7 +62,7 @@ const OmSamboerenDin: FC<Props> = ({
         ...bosituasjon,
         datoFlyttetSammenMedSamboer: {
           label: datovelgerTekst,
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

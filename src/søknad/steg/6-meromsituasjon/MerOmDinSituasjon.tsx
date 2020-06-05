@@ -11,6 +11,7 @@ import SyktBarn from './SyktBarn';
 import SøkerErSyk from './SøkerErSyk';
 import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
+import { dagensDatoStreng } from '../../../utils/dato';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -27,14 +28,23 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/toggles';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    mellomlagreOvergangsstønad,
+  } = useSøknad();
+  const { toggles } = useToggles();
   const history = useHistory();
   const location = useLocation();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
     gjelderDetteDeg: søknad.merOmDinSituasjon.gjelderDetteDeg,
+    søknadsdato: { label: '', verdi: dagensDatoStreng },
   });
   const {
     gjelderDetteDeg,
@@ -124,6 +134,11 @@ const MerOmDinSituasjon: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      mellomlagreOvergangsstønad={
+        toggles[ToggleName.mellomlagre_søknad]
+          ? mellomlagreOvergangsstønad
+          : undefined
+      }
     >
       <SeksjonGruppe>
         <KomponentGruppe>

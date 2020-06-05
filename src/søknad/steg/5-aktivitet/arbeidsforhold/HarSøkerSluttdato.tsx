@@ -15,6 +15,7 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
+import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
@@ -33,7 +34,7 @@ const HarSøkerSluttdato: React.FC<Props> = ({
         ...arbeidsgiver,
         [EArbeidsgiver.sluttdato]: {
           label: hentTekst(sluttdatoTekstid, intl),
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

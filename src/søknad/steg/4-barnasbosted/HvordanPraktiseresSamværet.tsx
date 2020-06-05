@@ -4,10 +4,11 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
+import { IForelder } from '../../../models/forelder';
 
 interface Props {
   forelder: any;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
 }
 
 const HvordanPraktiseresSamværet: React.FC<Props> = ({

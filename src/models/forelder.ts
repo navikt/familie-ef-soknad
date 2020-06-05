@@ -21,7 +21,7 @@ export interface IForelder {
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
   borAnnenForelderISammeHus?: ISpørsmålFelt;
-  borAnnenForelderISammeHusBeskrivelse?: ISpørsmålFelt;
+  borAnnenForelderISammeHusBeskrivelse?: ITekstFelt;
   boddSammenFør?: ISpørsmålBooleanFelt;
   flyttetFra?: IDatoFelt;
   hvorMyeSammen?: ISpørsmålFelt;

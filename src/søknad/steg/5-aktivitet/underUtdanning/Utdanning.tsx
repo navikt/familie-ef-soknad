@@ -13,6 +13,7 @@ import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -71,7 +72,7 @@ const Utdanning: React.FC<Props> = ({
           ...utdanning.periode,
           [nøkkel]: {
             label: 'utdanning.datovelger.studieperiode',
-            verdi: dato !== null ? dato : undefined,
+            verdi: dato !== null ? datoTilStreng(dato) : undefined,
           },
         },
       });
