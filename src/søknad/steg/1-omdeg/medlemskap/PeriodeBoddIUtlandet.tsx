@@ -52,13 +52,15 @@ const PeriodeBoddIUtlandet: FC = () => {
   };
 
   useEffect(() => {
-    settSøknad({
-      ...søknad,
-      medlemskap: {
-        ...søknad.medlemskap,
-        perioderBoddIUtlandet: [nyPeriode],
-      },
-    });
+    if (!søknad.medlemskap?.perioderBoddIUtlandet) {
+      settSøknad({
+        ...søknad,
+        medlemskap: {
+          ...søknad.medlemskap,
+          perioderBoddIUtlandet: [nyPeriode],
+        },
+      });
+    }
     // eslint-disable-next-line
   }, []);
 
