@@ -27,8 +27,6 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
     arbeidssituasjon.egetAS ? arbeidssituasjon.egetAS : [tomtAksjeselskap]
   );
 
-  console.log(egetAS, arbeidssituasjon.egetAS);
-
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, egetAS: egetAS });
     // eslint-disable-next-line
@@ -40,6 +38,11 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
     arbeidsforhold.push(nyttAksjeselskap);
     settArbeidssituasjon({ ...arbeidssituasjon, egetAS: arbeidsforhold });
   };
+
+  const erAksjeselskapFerdigUtfylt = arbeidssituasjon.egetAS?.some(
+    (aksjeselskap, index) =>
+      index === egetAS?.length - 1 && aksjeselskap.arbeidsmengde?.verdi
+  );
 
   return (
     <>
@@ -60,19 +63,20 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
           </SeksjonGruppe>
         );
       })}
-
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'egetAS.label.flere'} />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
-            <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+      {erAksjeselskapFerdigUtfylt && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'egetAS.label.flere'} />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
+              <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };

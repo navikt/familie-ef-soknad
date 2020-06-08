@@ -7,7 +7,10 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
-import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
+import {
+  EStilling,
+  IArbeidsgiver,
+} from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
 
@@ -50,6 +53,14 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
     });
   };
 
+  const erSisteArbeidsgiverFerdigUtfylt = arbeidssituasjon.arbeidsforhold?.some(
+    (arbeidsgiver, index) =>
+      index === arbeidsforhold?.length - 1 &&
+      (arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig
+        ? arbeidsgiver.harSluttDato?.verdi === false ||
+          arbeidsgiver.sluttdato?.verdi
+        : arbeidsgiver.ansettelsesforhold?.verdi)
+  );
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
@@ -68,18 +79,21 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
           </SeksjonGruppe>
         );
       })}
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
-            <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+
+      {erSisteArbeidsgiverFerdigUtfylt && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
+              <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };
