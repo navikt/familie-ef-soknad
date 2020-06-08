@@ -13,7 +13,7 @@ interface Props {
   utdanning: IUnderUtdanning;
   oppdaterUtdanning: (nøkkel: EUtdanning, label: string, verdi: string) => void;
 }
-const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
+const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
   const intl = useIntl();
 
   const settInputFelt = (
@@ -38,6 +38,11 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
           label={skoleUtdanningstedLabel}
           type="text"
           bredde={'L'}
+          value={
+            utdanning?.skoleUtdanningssted?.verdi
+              ? utdanning?.skoleUtdanningssted?.verdi
+              : ''
+          }
           onChange={(e) =>
             settInputFelt(
               EUtdanning.skoleUtdanningssted,
@@ -55,6 +60,11 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
           bredde={'L'}
           onChange={(e) =>
             settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
+          }
+          value={
+            utdanning?.linjeKursGrad?.verdi
+              ? utdanning?.linjeKursGrad?.verdi
+              : ''
           }
         />
       </FeltGruppe>
