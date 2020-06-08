@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
+  EStudieandel,
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
@@ -83,17 +84,19 @@ const UnderUtdanning: React.FC<Props> = ({
           oppdaterUtdanning={oppdaterUtdanning}
         />
 
-        <ErUtdanningenOffentligEllerPrivat
-          utdanning={utdanning}
-          settUtdanning={settUtdanning}
-        />
+        {utdanning.linjeKursGrad?.verdi && (
+          <ErUtdanningenOffentligEllerPrivat
+            utdanning={utdanning}
+            settUtdanning={settUtdanning}
+          />
+        )}
         {utdanning.offentligEllerPrivat?.verdi && (
           <NårSkalDuVæreElevEllerStudent
             utdanning={utdanning}
             settUtdanning={settUtdanning}
           />
         )}
-        {utdanning.offentligEllerPrivat?.verdi && (
+        {utdanning.periode?.til.verdi && utdanning.periode?.fra.verdi && (
           <ErUtdanningenPåHeltidEllerDeltid
             utdanning={utdanning}
             settUtdanning={settUtdanning}
@@ -107,7 +110,8 @@ const UnderUtdanning: React.FC<Props> = ({
         )}
       </SeksjonGruppe>
 
-      {underUtdanning && underUtdanning.heltidEllerDeltid && (
+      {(underUtdanning?.heltidEllerDeltid?.svarid === EStudieandel.heltid ||
+        underUtdanning?.målMedUtdanning?.verdi) && (
         <>
           <TidligereUtdanning
             underUtdanning={underUtdanning}

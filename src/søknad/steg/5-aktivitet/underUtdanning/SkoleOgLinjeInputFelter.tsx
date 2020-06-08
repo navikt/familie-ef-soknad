@@ -52,22 +52,24 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           }
         />
       </FeltGruppe>
-      <FeltGruppe>
-        <Input
-          key={linjeKursGrad.id}
-          label={linjeKursGradLabel}
-          type="text"
-          bredde={'L'}
-          onChange={(e) =>
-            settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
-          }
-          value={
-            utdanning?.linjeKursGrad?.verdi
-              ? utdanning?.linjeKursGrad?.verdi
-              : ''
-          }
-        />
-      </FeltGruppe>
+      {utdanning?.skoleUtdanningssted?.verdi && (
+        <FeltGruppe>
+          <Input
+            key={linjeKursGrad.id}
+            label={linjeKursGradLabel}
+            type="text"
+            bredde={'L'}
+            onChange={(e) =>
+              settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
+            }
+            value={
+              utdanning?.linjeKursGrad?.verdi
+                ? utdanning?.linjeKursGrad?.verdi
+                : ''
+            }
+          />
+        </FeltGruppe>
+      )}
     </>
   );
 };

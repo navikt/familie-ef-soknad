@@ -35,6 +35,8 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
     settUtdanning({
       ...utdanning,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },

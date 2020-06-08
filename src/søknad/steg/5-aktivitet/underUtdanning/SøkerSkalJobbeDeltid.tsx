@@ -60,18 +60,20 @@ const SøkerSkalJobbeDeltid: React.FC<Props> = ({
           }
         />
       </KomponentGruppe>
-      <KomponentGruppe>
-        <Textarea
-          label={målMedUtdanningLabel}
-          value={
-            utdanning.målMedUtdanning?.verdi
-              ? utdanning.målMedUtdanning?.verdi
-              : ''
-          }
-          maxLength={1000}
-          onChange={(e) => settMålMedUtdanning(e)}
-        />
-      </KomponentGruppe>
+      {utdanning.arbeidsmengde?.verdi && (
+        <KomponentGruppe>
+          <Textarea
+            label={målMedUtdanningLabel}
+            value={
+              utdanning.målMedUtdanning?.verdi
+                ? utdanning.målMedUtdanning?.verdi
+                : ''
+            }
+            maxLength={1000}
+            onChange={(e) => settMålMedUtdanning(e)}
+          />
+        </KomponentGruppe>
+      )}
     </>
   );
 };

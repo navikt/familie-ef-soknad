@@ -1,4 +1,4 @@
-import { IBooleanFelt, ITekstFelt } from '../../søknadsfelter';
+import { IBooleanFelt, ISpørsmålFelt, ITekstFelt } from '../../søknadsfelter';
 import { IPeriode } from '../../periode';
 
 // --- INTERFACES
@@ -12,7 +12,7 @@ export interface IUtdanning {
 export interface IUnderUtdanning extends IUtdanning {
   skoleUtdanningssted: ITekstFelt;
   offentligEllerPrivat?: ITekstFelt;
-  heltidEllerDeltid?: ITekstFelt;
+  heltidEllerDeltid?: ISpørsmålFelt;
   arbeidsmengde?: ITekstFelt;
   målMedUtdanning?: ITekstFelt;
   harTattUtdanningEtterGrunnskolen?: IBooleanFelt;
