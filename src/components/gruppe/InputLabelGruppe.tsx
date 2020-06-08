@@ -35,11 +35,13 @@ interface Props {
     label: string
   ) => void;
   beskrivendeTekst: string;
+  value: string;
 }
 
 const InputLabelGruppe: React.FC<Props> = ({
   label,
   nøkkel,
+  value,
   type,
   bredde,
   settInputFelt,
@@ -54,6 +56,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         type={type}
         bredde={bredde}
         onChange={(e) => settInputFelt(e, nøkkel, label)}
+        value={value}
       />
       <Normaltekst>{beskrivendeTekst}</Normaltekst>
     </StyledComponent>

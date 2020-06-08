@@ -20,7 +20,10 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
-import { hentAktivitetSpørsmål } from '../../../helpers/aktivitet';
+import {
+  fjernArbeidssituasjonType,
+  hentAktivitetSpørsmål,
+} from '../../../helpers/aktivitet';
 import EgetAS from './aksjeselskap/EgetAS';
 
 const Aktivitet: React.FC = () => {
@@ -56,10 +59,13 @@ const Aktivitet: React.FC = () => {
       intl
     );
 
-    console.log(avhukedeSvar, svarider);
+    const endretArbeidssituasjon = fjernArbeidssituasjonType(
+      svarider,
+      arbeidssituasjon
+    );
 
     oppdaterArbeidssituasjon({
-      ...arbeidssituasjon,
+      ...endretArbeidssituasjon,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svarider,
