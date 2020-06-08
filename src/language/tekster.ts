@@ -477,7 +477,7 @@ export default {
       'Er utdanningen offentlig eller privat?',
     'utdanning.svar.offentlig': 'Offentlig',
     'utdanning.svar.privat': 'Privat',
-    'utdanning.datovelger.studieperiode': 'Når skal du være elev / student?',
+    'utdanning.datovelger.studieperiode': 'Når var du elev / student?',
     'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
     'utdanning.svar.heltid': 'Heltid',
     'utdanning.svar.deltid': 'Deltid',
@@ -504,7 +504,7 @@ export default {
     'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
     'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
 
-    'dinSituasjon.datovelger.utdanning': 'Når skal du begynne å ta utdanning?',
+    'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
     'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
 
     'dinSituasjon.spm.sagtOppEllerRedusertStilling':
@@ -567,12 +567,14 @@ export default {
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
     'dokumentasjon.beskrivelse':
-      'For at vi skal kunne behandle søknaden din så raskt som mulig, må du laste opp dokumentasjon som bekrefter opplysningene i søknaden.\n' +
-      'Ps! Du kan bruke bilder som vedlegg til søknaden. <br/><br/>' +
-      'Slik gjør du det:\n<br/>' +
-      '<ol><li>Ta bilde av dokumentet med smarttelefonen eller nettbrettet\n</li>' +
+      'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
+      ' <br/><br/>' +
+      'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
+      '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
       '<li>Sjekk at dokumentet er lett å lese\n</li>' +
-      '<li>Last opp bildene her</li></ol>',
+      '<li>Last opp bildene her</li></ol> ' +
+      'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/>' +
+      'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
     'dokumentasjon.checkbox.sendtTidligere':
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
 
