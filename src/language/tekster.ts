@@ -189,19 +189,19 @@ export default {
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
 
     'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
-      '<strong>Den tidligere samboeren må registrere ny adresse i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon. </strong> <br/>' +
-      '\n' +
-      '<br/>Hvis den tidligere samboeren ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres.\n' +
-      '\n' +
-      '<br/>Du kan også dokumentere at du bor alene med barn ved å sende inn for eksempel:<br/>' +
-      '\n <ul>' +
-      '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
-      '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren har flyttet ut</li>' +
+      '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +
+      '<br/>Du kan også dokumentere at du bor alene med barn og tidspunktet for når dere flyttet fra hverandre ved å legge ved:<br/>' +
+      '<ul>' +
+      '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren din har flyttet ut</li>' +
+      '<li>Informasjon om hvor den tidligere samboeren din bor nå</li></ul>' +
+      'Hvis du kan dokumentere begge punktene over, er dette som regel tilstrekkelig. Dersom du ikke har slik dokumentasjon, kan du for eksempel legge ved:' +
+      '<ul>' +
       '<li>Husleiekontrakt for begge parter</li>' +
-      '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
-      '<li>Bekreftelse fra for eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
+      '<li> Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+      '<li>Bekreftelse fra barnevernet på at du bor alene med barn</li>' +
       '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm, kommunale avgifter, osv</li>' +
-      '</ul>',
+      '</ul>' +
+      'En uttalelse fra barnehage, skole, helsestasjon eller lignende kan være en del av helhetsvurderingen dersom de kjenner familiesituasjonen din godt. De kan også uttale seg om hvem som henter og leverer. Dette kommer eventuelt i tillegg til annen dokumentasjon.',
 
     'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
       'Har du konkrete planer om å gifte deg eller bli samboer?',
