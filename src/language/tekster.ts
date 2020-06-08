@@ -634,7 +634,7 @@ export default {
       '<ul><li>når barnet ble sykt</li>' +
       '<li>når legen regner med at barnet vil bli friskt</li></ul>',
     'dokumentasjon.barnepass.tittel':
-      'Dokumentasjon på at du mangler barnepass. ',
+      'Dokumentasjon på at du mangler barnepass ',
     'dokumentasjon.barnepass.beskrivelse':
       'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.' +
       'Dokumentasjonen må tydelig vise <ul>' +
