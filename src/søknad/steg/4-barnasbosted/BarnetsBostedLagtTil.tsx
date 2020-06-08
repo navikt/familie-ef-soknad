@@ -2,7 +2,7 @@ import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import BarnasBostedHeader from './BarnasBostedHeader';
-import { formatDate } from '../../../utils/dato';
+import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
@@ -68,7 +68,9 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Element>
               {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
             </Element>
-            <Normaltekst>{formatDate(forelder.fødselsdato.verdi)}</Normaltekst>
+            <Normaltekst>
+              {formatDate(strengTilDato(forelder.fødselsdato.verdi))}
+            </Normaltekst>
           </div>
         )}
         <div className="spørsmål-og-svar">
@@ -145,17 +147,19 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
           </div>
         )}
-        {forelder.borISammeHus ? (
+        {forelder.borAnnenForelderISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
                 barn.navn.verdi,
                 intl.formatMessage({
-                  id: 'barnasbosted.spm.borISammeHus',
+                  id: 'barnasbosted.spm.borAnnenForelderISammeHus',
                 })
               )}
             </Element>
-            <Normaltekst>{forelder.borISammeHus.verdi}</Normaltekst>
+            <Normaltekst>
+              {forelder.borAnnenForelderISammeHus.verdi}
+            </Normaltekst>
           </div>
         ) : null}
         <LenkeMedIkon

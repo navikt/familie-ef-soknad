@@ -11,6 +11,7 @@ import nn from 'date-fns/locale/nn';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
+import { tilDato } from '../../utils/dato';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -19,10 +20,12 @@ export enum DatoBegrensning {
 }
 
 interface Props {
-  valgtDato: Date | undefined;
+  valgtDato: string | Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
   settDato: (date: Date | null) => void;
+  showMonthYearPicker?: Boolean;
+  disabled?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -30,6 +33,8 @@ const Datovelger: React.FC<Props> = ({
   datobegrensning,
   valgtDato,
   settDato,
+  showMonthYearPicker,
+  disabled,
 }) => {
   const [locale] = useSpråkContext();
 
@@ -58,32 +63,38 @@ const Datovelger: React.FC<Props> = ({
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
+                disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
                 placeholderText={'DD.MM.YYYY'}
-                selected={valgtDato !== undefined ? valgtDato : null}
+                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
+                showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : null}
           </div>

@@ -1,48 +1,64 @@
 import React, { useState, useEffect } from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarnasBostedHeader from './BarnasBostedHeader';
-import BostedOgSamvær from './BostedOgSamvær';
+import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import OmAndreForelder from './OmAndreForelder';
-import SkalBarnBoHosDeg from './SkalBarnBoHosDeg';
-import { boddSammenFør, borISammeHus, hvorMyeSammen } from './ForeldreConfig';
-import { EHvorMyeSammen } from '../../../models/steg/barnasbosted';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
-import { hentTekst } from '../../../utils/søknad';
-import { EBorISammeHus } from '../../../models/steg/barnasbosted';
+import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/barn';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { IForelder } from '../../../models/forelder';
+import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
-import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
+import { Element } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
+import {
+  erJaNeiSvar,
+  harValgtSvar,
+  hentBooleanFraValgtSvar,
+} from '../../../utils/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
+import {
+  erAlleFelterOgSpørsmålBesvart,
+  visBostedOgSamværSeksjon,
+  visSpørsmålHvisIkkeSammeForelder,
+} from '../../../helpers/forelder';
+import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
+import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
+import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
+import { erGyldigDato } from '../../../utils/dato';
+import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   aktivIndex: number;
+  sisteBarnUtfylt: boolean;
+  settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
   barn,
   settAktivIndex,
   aktivIndex,
+  settSisteBarnUtfylt,
+  sisteBarnUtfylt,
 }) => {
-  const intl = useIntl();
+  const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>({});
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(undefined);
+  const { borAnnenForelderISammeHus, boddSammenFør, flyttetFra } = forelder;
 
-  const [huketAvAnnenForelder, settHuketAvAnnenForelder] = useState<boolean>(
-    false
+  const intl = useIntl();
+
+  const jegKanIkkeOppgiLabel = hentTekst(
+    'barnasbosted.kanikkeoppgiforelder',
+    intl
   );
 
   useEffect(() => {
@@ -53,67 +69,28 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const nyForelder = {
+  useEffect(() => {
+    settForelder({
       ...forelder,
-      [boddSammenFør.søknadid]: {
-        spørsmålid: spørsmål.søknadid,
-        svarid: valgtSvar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentBooleanFraValgtSvar(valgtSvar),
+      kanIkkeOppgiAnnenForelderFar: {
+        label: jegKanIkkeOppgiLabel,
+        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
       },
-    };
+    });
 
-    if (valgtSvar.id === ESvar.NEI) {
-      delete nyForelder.flyttetFra;
-    }
+    //eslint-disable-next-line
+  }, []);
 
-    settForelder(nyForelder);
-  };
+  const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
+    return b !== barn && b.forelder;
+  });
 
-  const settBorISammeHus = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const nyForelder = {
-      ...forelder,
-      [borISammeHus.søknadid]: {
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.borISammeHus',
-        }),
-        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
-      },
-    };
-
-    if (
-      valgtSvar.id === EBorISammeHus.nei ||
-      valgtSvar.id === EBorISammeHus.vetikke
-    ) {
-      delete nyForelder.hvordanBorDere;
-    }
-
-    settForelder(nyForelder);
-  };
-
-  const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const nyForelder = {
-      ...forelder,
-      [hvorMyeSammen.søknadid]: {
-        label: intl.formatMessage({
-          id: 'barnasbosted.spm.hvorMyeSammen',
-        }),
-        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
-      },
-    };
-
-    if (
-      valgtSvar.id === EHvorMyeSammen.kunNårLeveres ||
-      valgtSvar.id === EHvorMyeSammen.møtesIkke
-    ) {
-      delete nyForelder.beskrivSamværUtenBarn;
-    }
-
-    settForelder(nyForelder);
-  };
+  const erPåSisteBarn: boolean =
+    søknad.person.barn.length - 1 === andreBarnMedForelder.length;
 
   const leggTilForelder = () => {
+    if (erPåSisteBarn && !sisteBarnUtfylt) settSisteBarnUtfylt(true);
+
     const nyBarneListe = søknad.person.barn.map((b) => {
       if (b === barn) {
         let nyttBarn = barn;
@@ -127,174 +104,135 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
 
     const nyIndex = aktivIndex + 1;
-
     settAktivIndex(nyIndex);
   };
 
-  const andreBarnMedForelder = søknad.person.barn.filter((b) => {
-    return b !== barn && b.forelder;
-  });
+  const visOmAndreForelder =
+    andreBarnMedForelder.length === 0 ||
+    (andreBarnMedForelder.length > 0 && barnHarSammeForelder === false) ||
+    (barnHarSammeForelder === false &&
+      (barn.harSammeAdresse.verdi ||
+        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
+
+  const nyForelderOgKanOppgiAndreForelder =
+    !barnHarSammeForelder &&
+    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+    erGyldigDato(forelder.fødselsdato?.verdi);
+
+  const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const nyForelder = {
+      ...forelder,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: erJaNeiSvar(svar)
+          ? hentBooleanFraValgtSvar(svar)
+          : hentTekst(svar.svar_tekstid, intl),
+      },
+    };
+
+    if (
+      spørsmål.søknadid === EForelder.borINorge &&
+      nyForelder.land &&
+      svar.id === ESvar.JA
+    ) {
+      delete nyForelder.land;
+    }
+    settForelder(nyForelder);
+    settDokumentasjonsbehov(spørsmål, svar);
+  };
 
   return (
     <>
       <div className="barnas-bosted">
         <BarnasBostedHeader barn={barn} />
         <div className="barnas-bosted__innhold">
-          <SkalBarnBoHosDeg
-            forelder={forelder}
-            settForelder={settForelder}
-            barn={barn}
-          />
-          <FeltGruppe>
-            <AnnenForelderKnapper
+          {!barn.harSammeAdresse.verdi && (
+            <SkalBarnetBoHosSøker
               barn={barn}
-              andreBarnMedForelder={andreBarnMedForelder}
-              settForelder={settForelder}
               forelder={forelder}
-              settHuketAvAnnenForelder={settHuketAvAnnenForelder}
-            />
-          </FeltGruppe>
-          {!huketAvAnnenForelder ? (
-            <OmAndreForelder
-              barn={barn}
               settForelder={settForelder}
-              forelder={forelder}
             />
-          ) : null}
-          <BostedOgSamvær
-            settForelder={settForelder}
-            forelder={forelder}
-            huketAvAnnenForelder={huketAvAnnenForelder}
-          />
-          {!huketAvAnnenForelder ? (
-            <>
-              <KomponentGruppe>
-                <MultiSvarSpørsmål
-                  key={borISammeHus.søknadid}
-                  spørsmål={borISammeHus}
-                  valgtSvar={forelder.borISammeHus?.verdi}
-                  settSpørsmålOgSvar={(spørsmål, svar) =>
-                    settBorISammeHus(spørsmål, svar)
-                  }
-                />
-              </KomponentGruppe>
-              {forelder.borISammeHus?.verdi ===
-              hentTekst('barnasbosted.spm.ja', intl) ? (
-                <>
-                  <div className="margin-bottom-05">
-                    <Normaltekst>
-                      {intl.formatMessage({
-                        id: 'barnasbosted.spm.hvordanBorDere',
-                      })}
-                    </Normaltekst>
-                  </div>
-                  <FeltGruppe>
-                    <Textarea
-                      value={
-                        forelder.hvordanBorDere && forelder.hvordanBorDere.verdi
-                          ? forelder.hvordanBorDere.verdi
-                          : ''
-                      }
-                      onChange={(e: any) =>
-                        settForelder({
-                          ...forelder,
-                          hvordanBorDere: {
-                            label: hentTekst(
-                              'barnasbosted.spm.hvordanBorDere',
-                              intl
-                            ),
-                            verdi: e.target.value,
-                          },
-                        })
-                      }
-                      label=""
-                    />
-                  </FeltGruppe>
-                </>
-              ) : null}
+          )}
 
-              <KomponentGruppe>
-                <JaNeiSpørsmål
-                  spørsmål={boddSammenFør}
-                  onChange={(spørsmål, svar) =>
-                    settHarBoddsammenFør(spørsmål, svar)
-                  }
-                  valgtSvar={forelder.boddSammenFør?.verdi}
+          {(barn.harSammeAdresse?.verdi ||
+            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
+            <>
+              <FeltGruppe>
+                <Element>
+                  {barn.navn.verdi}
+                  {hentTekst('barnasbosted.element.andreforelder', intl)}
+                </Element>
+              </FeltGruppe>
+
+              {andreBarnMedForelder.length > 0 && (
+                <AnnenForelderKnapper
+                  barn={barn}
+                  andreBarnMedForelder={andreBarnMedForelder}
+                  settForelder={settForelder}
+                  forelder={forelder}
+                  settBarnHarSammeForelder={settBarnHarSammeForelder}
                 />
-              </KomponentGruppe>
-              {forelder.boddSammenFør?.verdi ? (
-                <KomponentGruppe>
-                  <Datovelger
-                    settDato={(e: Date | null) => {
-                      e !== null &&
-                        settForelder({
-                          ...forelder,
-                          flyttetFra: {
-                            label: intl.formatMessage({
-                              id: 'barnasbosted.normaltekst.nårflyttetfra',
-                            }),
-                            verdi: e,
-                          },
-                        });
-                    }}
-                    valgtDato={
-                      forelder.flyttetFra && forelder.flyttetFra.verdi
-                        ? forelder.flyttetFra.verdi
-                        : undefined
-                    }
-                    tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
-                    datobegrensning={DatoBegrensning.TidligereDatoer}
-                  />
-                </KomponentGruppe>
-              ) : null}
-              <KomponentGruppe>
-                <MultiSvarSpørsmål
-                  key={hvorMyeSammen.søknadid}
-                  spørsmål={hvorMyeSammen}
-                  valgtSvar={forelder.hvorMyeSammen?.verdi}
-                  settSpørsmålOgSvar={(spørsmål, svar) =>
-                    settHvorMyeSammen(spørsmål, svar)
-                  }
+              )}
+              {visOmAndreForelder && (
+                <OmAndreForelder
+                  barn={barn}
+                  settForelder={settForelder}
+                  forelder={forelder}
                 />
-              </KomponentGruppe>
-              {forelder.hvorMyeSammen?.verdi ===
-              hentTekst('barnasbosted.spm.møtesUtenom', intl) ? (
-                <>
-                  <div className="margin-bottom-05">
-                    <Normaltekst>
-                      {intl.formatMessage({
-                        id: 'barnasbosted.spm.beskrivSamværUtenBarn',
-                      })}
-                    </Normaltekst>
-                  </div>
-                  <FeltGruppe>
-                    <Textarea
-                      value={
-                        forelder.beskrivSamværUtenBarn &&
-                        forelder.beskrivSamværUtenBarn.verdi
-                          ? forelder.beskrivSamværUtenBarn.verdi
-                          : ''
-                      }
-                      onChange={(e: any) =>
-                        settForelder({
-                          ...forelder,
-                          beskrivSamværUtenBarn: {
-                            label: hentTekst(
-                              'barnasbosted.spm.beskrivSamværUtenBarn',
-                              intl
-                            ),
-                            verdi: e.target.value,
-                          },
-                        })
-                      }
-                      label=""
-                    />
-                  </FeltGruppe>
-                </>
-              ) : null}
+              )}
             </>
-          ) : null}
-          <Knapp onClick={leggTilForelder}>Lagre</Knapp>
+          )}
+
+          {nyForelderOgKanOppgiAndreForelder && (
+            <BorForelderINorge
+              forelder={forelder}
+              settForelder={settForelder}
+              settFelt={settBorINorgeFelt}
+            />
+          )}
+
+          {(visBostedOgSamværSeksjon(
+            forelder,
+            nyForelderOgKanOppgiAndreForelder
+          ) ||
+            barnHarSammeForelder) && (
+            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
+          )}
+
+          {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            <>
+              <BorAnnenForelderISammeHus
+                forelder={forelder}
+                settForelder={settForelder}
+              />
+
+              {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+                borAnnenForelderISammeHus?.svarid !==
+                  EBorAnnenForelderISammeHus.ja) ||
+                harValgtSvar(
+                  forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
+                )) && (
+                <BoddSammenFør
+                  forelder={forelder}
+                  settForelder={settForelder}
+                />
+              )}
+              {(boddSammenFør?.svarid === ESvar.NEI ||
+                erGyldigDato(flyttetFra?.verdi)) && (
+                <HvorMyeSammen
+                  forelder={forelder}
+                  settForelder={settForelder}
+                />
+              )}
+            </>
+          )}
+          {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
+            <Knapp onClick={leggTilForelder}>
+              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
+            </Knapp>
+          )}
         </div>
       </div>
     </>

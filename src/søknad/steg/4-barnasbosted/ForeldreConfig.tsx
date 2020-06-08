@@ -2,9 +2,9 @@ import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsv
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
-  EBorISammeHus,
+  EBorAnnenForelderISammeHus,
   EHvorMyeSammen,
-  ESkalBarnBoHosDeg,
+  ESkalBarnetBoHosSøker,
   EHvorforIkkeOppgi,
 } from '../../../models/steg/barnasbosted';
 import { JaNeiSvar } from '../../../helpers/standardSvar';
@@ -20,8 +20,8 @@ import { NeiSvar } from '../../../helpers/svar';
 
 const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.BARN_BOR_HOS_SØKER,
-  spørsmålid: EForelder.skalBarnBoHosDeg,
-  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+  spørsmålid: EForelder.skalBarnetBoHosSøker,
+  svarid: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
   tittel: 'dokumentasjon.barnBorHosSøker.tittel',
   beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
   harSendtInn: false,
@@ -30,18 +30,17 @@ const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
 const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
-  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
-  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
+  svarid: ESvar.JA,
+  tittel: 'dokumentasjon.deltBosted.tittel',
+  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
   harSendtInn: false,
 };
 
 const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
-  spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESvar.JA,
-  tittel: 'dokumentasjon.deltBosted.tittel',
-  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
+  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
+  svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
+  tittel: 'dokumentasjon.samværsavtale.tittel',
   harSendtInn: false,
 };
 
@@ -49,8 +48,7 @@ const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
   spørsmålid: EForelder.harDereSkriftligSamværsavtale,
   svarid: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
-  tittel: 'dokumentasjon.samvær.tittel',
-  beskrivelse: 'dokumentasjon.samvær.beskrivelse',
+  tittel: 'dokumentasjon.samværsavtale.tittel',
   harSendtInn: false,
 };
 // --- Spørsmål
@@ -63,7 +61,7 @@ export const borINorge: ISpørsmål = {
 };
 
 export const avtaleOmDeltBosted: ISpørsmål = {
-  søknadid: 'avtaleOmDeltBosted',
+  søknadid: EForelder.avtaleOmDeltBosted,
   tekstid: 'barnasbosted.avtale',
   flersvar: false,
   lesmer: {
@@ -90,7 +88,7 @@ export const boddSammenFør: ISpørsmål = {
 };
 
 export const hvorforIkkeOppgi: ISpørsmål = {
-  søknadid: 'hvorforIkkeOppgi',
+  søknadid: EForelder.hvorforIkkeOppgi,
   tekstid: 'barnasbosted.spm.hvorforikkeoppgi',
   flersvar: false,
   svaralternativer: [
@@ -106,7 +104,7 @@ export const hvorforIkkeOppgi: ISpørsmål = {
 };
 
 export const harAnnenForelderSamværMedBarn: ISpørsmål = {
-  søknadid: 'harAnnenForelderSamværMedBarn',
+  søknadid: EForelder.harAnnenForelderSamværMedBarn,
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
   flersvar: false,
   lesmer: {
@@ -134,6 +132,12 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   søknadid: EForelder.harDereSkriftligSamværsavtale,
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   flersvar: false,
+  lesmer: {
+    innholdTekstid:
+      'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale',
+    åpneTekstid: 'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     {
       id: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
@@ -152,26 +156,27 @@ export const harDereSkriftligSamværsavtale: ISpørsmål = {
   ],
 };
 
-export const borISammeHus: ISpørsmål = {
-  søknadid: 'borISammeHus',
-  tekstid: 'barnasbosted.spm.borISammeHus',
+export const borAnnenForelderISammeHus: ISpørsmål = {
+  søknadid: 'borAnnenForelderISammeHus',
+  tekstid: 'barnasbosted.spm.borAnnenForelderISammeHus',
   lesmer: {
-    åpneTekstid: 'barnasbosted.hjelpetekst.borisammehus.apne',
+    åpneTekstid: 'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne',
     lukkeTekstid: '',
-    innholdTekstid: 'barnasbosted.hjelpetekst.borisammehus.innhold',
+    innholdTekstid:
+      'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold',
   },
   flersvar: false,
   svaralternativer: [
     {
-      id: EBorISammeHus.ja,
+      id: EBorAnnenForelderISammeHus.ja,
       svar_tekstid: 'barnasbosted.spm.ja',
     },
     {
-      id: EBorISammeHus.nei,
+      id: EBorAnnenForelderISammeHus.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
     {
-      id: EBorISammeHus.vetikke,
+      id: EBorAnnenForelderISammeHus.vetikke,
       svar_tekstid: 'barnasbosted.spm.vetikke',
     },
   ],
@@ -197,22 +202,22 @@ export const hvorMyeSammen: ISpørsmål = {
   ],
 };
 
-export const skalBarnBoHosDeg: ISpørsmål = {
-  søknadid: EForelder.skalBarnBoHosDeg,
-  tekstid: 'barnasbosted.spm.skalBarnBoHosDeg',
+export const skalBarnetBoHosSøker: ISpørsmål = {
+  søknadid: EForelder.skalBarnetBoHosSøker,
+  tekstid: 'barnasbosted.spm.skalBarnetBoHosSøker',
   flersvar: false,
   svaralternativer: [
     {
-      id: ESkalBarnBoHosDeg.ja,
+      id: ESkalBarnetBoHosSøker.ja,
       svar_tekstid: 'barnasbosted.spm.jaFolkeregistrert',
     },
     {
-      id: ESkalBarnBoHosDeg.jaMenSamarbeiderIkke,
+      id: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
       svar_tekstid: 'barnasbosted.spm.jaMenSamarbeiderIkke',
       dokumentasjonsbehov: DokumentasjonBarnBorHosDeg,
     },
     {
-      id: ESkalBarnBoHosDeg.nei,
+      id: ESkalBarnetBoHosSøker.nei,
       svar_tekstid: 'barnasbosted.spm.nei',
     },
   ],

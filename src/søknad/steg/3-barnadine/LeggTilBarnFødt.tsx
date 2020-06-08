@@ -55,7 +55,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             />
             <Input
               key={'tlf'}
-              label={intl.formatMessage({ id: 'person.nr' }).trim()}
+              label={intl.formatMessage({ id: 'person.nr.barn' }).trim()}
               type="text"
               value={personnummer}
               bredde={'S'}

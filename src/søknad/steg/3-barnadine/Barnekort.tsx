@@ -37,8 +37,8 @@ const Barnekort: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
-  const formatFnr = (fnr: string) => {
-    return fnr.substring(0, 6) + ' ' + fnr.substring(6, 11);
+  const formatFnr = (fødselsnummer: string) => {
+    return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
   const ikoner = [barn1, barn2, barn3];

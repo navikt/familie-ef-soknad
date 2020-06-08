@@ -20,6 +20,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
+import { hentAktivitetSpørsmål } from '../../../helpers/aktivitet';
+import EgetAS from './aksjeselskap/EgetAS';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -27,6 +29,7 @@ const Aktivitet: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
+    ...søknad.aktivitet,
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
@@ -52,6 +55,8 @@ const Aktivitet: React.FC = () => {
       svar,
       intl
     );
+
+    console.log(avhukedeSvar, svarider);
 
     oppdaterArbeidssituasjon({
       ...arbeidssituasjon,
@@ -80,7 +85,10 @@ const Aktivitet: React.FC = () => {
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
-          spørsmål={hvaErDinArbeidssituasjonSpm}
+          spørsmål={hentAktivitetSpørsmål(
+            søknad.person,
+            hvaErDinArbeidssituasjonSpm
+          )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}
         />
@@ -104,6 +112,19 @@ const Aktivitet: React.FC = () => {
             settArbeidssituasjon={settArbeidssituasjon}
           />
         ))}
+      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
+        <OmArbeidsforholdetDitt
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
+
+      {erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) && (
+        <EgetAS
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      )}
 
       {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidssøker) && (
         <Arbeidssøker

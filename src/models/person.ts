@@ -1,4 +1,5 @@
 import { IBarn } from './barn';
+import { IDatoFelt, ITekstFelt } from './søknadsfelter';
 
 export interface IPerson {
   søker: ISøker;
@@ -30,7 +31,7 @@ export interface IAdresse {
 }
 
 export interface IPersonDetaljer {
-  navn?: string;
-  fødselsdato?: Date;
-  fødselsnummer?: string;
+  navn?: ITekstFelt;
+  fødselsdato?: IDatoFelt;
+  fødselsnummer?: ITekstFelt;
 }

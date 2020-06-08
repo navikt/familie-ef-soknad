@@ -48,7 +48,7 @@ const PersonInfoGruppe: FC<Props> = ({
         {navn && (
           <>
             <Datovelger
-              valgtDato={fødselsdato}
+              valgtDato={fødselsdato?.verdi}
               tekstid={'datovelger.fødselsdato'}
               datobegrensning={DatoBegrensning.TidligereDatoer}
               settDato={(e) => settFødselsdato(e)}

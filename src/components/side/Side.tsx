@@ -10,11 +10,13 @@ import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
+import SendBrevSVG from '../../assets/SendSøknadSVG';
 
 interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
+  mellomlagreOvergangsstønad?: () => void;
 }
 
 const Side: React.FC<ISide> = ({
@@ -22,6 +24,7 @@ const Side: React.FC<ISide> = ({
   children,
   erSpørsmålBesvart,
   skalViseKnapper,
+  mellomlagreOvergangsstønad,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -49,12 +52,19 @@ const Side: React.FC<ISide> = ({
           aktivtSteg={aktivtSteg}
           steg={stegobjekter}
         />
+        {!skalViseKnapper && (
+          <div className={'brev_ikon'}>
+            <SendBrevSVG />
+          </div>
+        )}
+
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>
             {children}
           </main>
         </Panel>
+
         {skalViseKnapper && (
           <StyledNavigeringsWrapper
             classname={
@@ -68,7 +78,7 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.tilbake'} />
             </KnappBase>
-            {(erSpørsmålBesvart || !erSpørsmålBesvart) && (
+            {(erSpørsmålBesvart || true) && (
               <KnappBase
                 type={'hoved'}
                 onClick={() => history.push(nesteRoute.path)}
@@ -86,6 +96,15 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
+            {mellomlagreOvergangsstønad && (
+              <KnappBase
+                className={'mellomlagre'}
+                type={'flat'}
+                onClick={mellomlagreOvergangsstønad}
+              >
+                <LocaleTekst tekst={'knapp.mellomlagre'} />
+              </KnappBase>
+            )}
           </StyledNavigeringsWrapper>
         )}
       </div>

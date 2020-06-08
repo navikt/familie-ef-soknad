@@ -7,7 +7,7 @@ import TestsideInformasjon from './components/TestsideInformasjon';
 import { hentPersonData } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName, Toggles } from './models/toggles';
+import { ToggleName } from './models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -16,16 +16,22 @@ import mockPersonMedBarn from './mock/person.json';
 import { settLabelOgVerdi } from './utils/søknad';
 import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
+import { useToggles } from './context/TogglesContext';
 
 const App = () => {
-  const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
   const { søknad, settSøknad } = useSøknad();
+  const { settToggles, toggles } = useToggles();
+  const [barneliste, settBarneliste] = useState([]);
 
   autentiseringsInterceptor();
+
+  const kallApi = () =>
+    process.env.NODE_ENV !== 'development' ||
+    process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -43,6 +49,7 @@ const App = () => {
             type: PersonActionTypes.HENT_PERSON,
             payload: response,
           });
+          settBarneliste(response.barn);
         });
       };
       fetchPersonData();
@@ -53,7 +60,9 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    const barnMedLabels = mockPersonMedBarn.barn.map((barn) => {
+    let mapBarn = kallApi() ? barneliste : mockPersonMedBarn.barn;
+
+    const barnMedLabels = mapBarn.map((barn: any) => {
       const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
 
       return nyttBarn;
@@ -61,13 +70,13 @@ const App = () => {
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
     // eslint-disable-next-line
-  }, [person]);
+  }, [person, barneliste]);
 
   if (!fetching && autentisert) {
     if (!error) {
       return (
         <>
-          <TestsideInformasjon />
+          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
               {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}

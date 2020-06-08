@@ -1,16 +1,17 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
   andreBarnMedForelder: IBarn[];
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
-  settHuketAvAnnenForelder: Function;
+  settBarnHarSammeForelder: Function;
 }
 
 const AnnenForelderKnapper: React.FC<Props> = ({
@@ -18,7 +19,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   andreBarnMedForelder,
   settForelder,
   forelder,
-  settHuketAvAnnenForelder,
+  settBarnHarSammeForelder,
 }) => {
   const intl = useIntl();
 
@@ -30,7 +31,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     e: SyntheticEvent<EventTarget, Event>,
     detAndreBarnet: IBarn
   ) => {
-    settHuketAvAnnenForelder(true);
+    settBarnHarSammeForelder(true);
     const denAndreForelderen = detAndreBarnet.forelder;
     settAndreForelderRadioVerdi(detAndreBarnet.navn.verdi);
 
@@ -42,7 +43,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
       borINorge: denAndreForelderen?.borINorge,
       hvordanPraktiseresSamværet:
         denAndreForelderen?.hvordanPraktiseresSamværet,
-      borISammeHus: denAndreForelderen?.borISammeHus,
+      borAnnenForelderISammeHus: denAndreForelderen?.borAnnenForelderISammeHus,
       boddSammenFør: denAndreForelderen?.boddSammenFør,
       flyttetFra: denAndreForelderen?.flyttetFra,
       hvorMyeSammen: denAndreForelderen?.hvorMyeSammen,
@@ -50,47 +51,45 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelder = () => {
-    settHuketAvAnnenForelder(false);
+    settBarnHarSammeForelder(false);
     settAndreForelderRadioVerdi('annen-forelder');
-    settForelder({});
+
+    !barn.harSammeAdresse.verdi &&
+    harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
+      ? settForelder({ skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker })
+      : settForelder({});
   };
 
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
 
   return (
-    <>
-      <Element>
-        {barn.navn.verdi}
-        {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
-      </Element>
-      {andreBarnMedForelder.length ? (
-        <div className="andre-forelder-valg">
-          {andreBarnMedForelder.map((b) => {
-            return (
-              <RadioPanel
-                key={`${andreForelder}${b.navn}`}
-                name={`${andreForelder}${barn.navn}`}
-                label={`${intl.formatMessage({
-                  id: 'barnasbosted.forelder.sammesom',
-                })} ${b.navn.verdi}`}
-                value={`${andreForelder}${b.navn}`}
-                checked={andreForelderRadioVerdi === b.navn.verdi}
-                onChange={(e) => leggTilSammeForelder(e, b)}
-              />
-            );
-          })}
-          <RadioPanel
-            key={andreForelderAnnen}
-            name={`${andreForelder}${barn.navn}`}
-            label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
-            value={andreForelderAnnen}
-            checked={andreForelderRadioVerdi === 'annen-forelder'}
-            onChange={() => leggTilAnnenForelder()}
-          />
-        </div>
-      ) : null}
-    </>
+    <KomponentGruppe>
+      <div className="andre-forelder-valg">
+        {andreBarnMedForelder.map((b) => {
+          return (
+            <RadioPanel
+              key={`${andreForelder}${b.navn}`}
+              name={`${andreForelder}${barn.navn}`}
+              label={`${intl.formatMessage({
+                id: 'barnasbosted.forelder.sammesom',
+              })} ${b.navn.verdi}`}
+              value={`${andreForelder}${b.navn}`}
+              checked={andreForelderRadioVerdi === b.navn.verdi}
+              onChange={(e) => leggTilSammeForelder(e, b)}
+            />
+          );
+        })}
+        <RadioPanel
+          key={andreForelderAnnen}
+          name={`${andreForelder}${barn.navn}`}
+          label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+          value={andreForelderAnnen}
+          checked={andreForelderRadioVerdi === 'annen-forelder'}
+          onChange={() => leggTilAnnenForelder()}
+        />
+      </div>
+    </KomponentGruppe>
   );
 };
 

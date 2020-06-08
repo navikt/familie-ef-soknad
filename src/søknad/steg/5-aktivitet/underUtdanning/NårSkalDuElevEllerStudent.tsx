@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
+import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -25,7 +26,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
           ...utdanning.periode,
           [nøkkel]: {
             label: 'utdanning.datovelger.studieperiode',
-            verdi: dato !== null ? dato : undefined,
+            verdi: dato !== null ? datoTilStreng(dato) : undefined,
           },
         },
       });

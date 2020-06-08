@@ -10,7 +10,7 @@ export enum EHarSkriftligSamværsavtale {
   nei = 'nei',
 }
 
-export enum EBorISammeHus {
+export enum EBorAnnenForelderISammeHus {
   ja = 'ja',
   nei = 'nei',
   vetikke = 'vetikke',
@@ -22,7 +22,7 @@ export enum EHvorMyeSammen {
   møtesUtenom = 'møtesUtenom',
 }
 
-export enum ESkalBarnBoHosDeg {
+export enum ESkalBarnetBoHosSøker {
   ja = 'ja',
   jaMenSamarbeiderIkke = 'jaMenSamarbeiderIkke',
   nei = 'nei',

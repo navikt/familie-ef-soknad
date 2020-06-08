@@ -12,6 +12,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { EFirma, IFirma } from '../../../models/steg/aktivitet/firma';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -34,7 +35,10 @@ const OmFirmaetDitt: React.FC<Props> = ({
     dato !== null &&
       settFirma({
         ...firma,
-        etableringsdato: { label: 'datovelger tekstid', verdi: dato },
+        etableringsdato: {
+          label: 'datovelger tekstid',
+          verdi: datoTilStreng(dato),
+        },
       });
   };
 

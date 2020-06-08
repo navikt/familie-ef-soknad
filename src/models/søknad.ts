@@ -9,6 +9,7 @@ import { IMedlemskap } from './steg/omDeg/medlemskap';
 import { IDokumentasjon } from './dokumentasjon';
 
 export interface ISøknad {
+  innsendingsdato?: Date;
   person: IPerson;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
   sivilstatus: ISivilstatus;
