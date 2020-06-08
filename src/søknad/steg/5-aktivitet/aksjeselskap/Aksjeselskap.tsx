@@ -92,6 +92,7 @@ const Aksjeselskap: FC<Props> = ({
           type="text"
           bredde={'L'}
           onChange={(e) => settTekstInputFelt(e, navnLabel, EAksjeselskap.navn)}
+          value={aksjeselskap?.navn?.verdi ? aksjeselskap.navn.verdi : ''}
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -100,6 +101,11 @@ const Aksjeselskap: FC<Props> = ({
           nøkkel={EAksjeselskap.arbeidsmengde}
           type={'number'}
           bredde={'XS'}
+          value={
+            aksjeselskap?.arbeidsmengde?.verdi
+              ? aksjeselskap?.arbeidsmengde?.verdi
+              : ''
+          }
           settInputFelt={(e) =>
             settTekstInputFelt(
               e,

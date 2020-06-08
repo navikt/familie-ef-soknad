@@ -53,6 +53,11 @@ const SøkerSkalJobbeDeltid: React.FC<Props> = ({
             settInputFelt(EUtdanning.arbeidsmengde, arbeidsmengdeLabel, e)
           }
           beskrivendeTekst={'%'}
+          value={
+            utdanning?.arbeidsmengde?.verdi
+              ? utdanning?.arbeidsmengde?.verdi
+              : ''
+          }
         />
       </KomponentGruppe>
       <KomponentGruppe>

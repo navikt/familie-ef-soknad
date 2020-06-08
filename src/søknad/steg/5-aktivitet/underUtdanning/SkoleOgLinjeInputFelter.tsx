@@ -8,12 +8,13 @@ import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 
 interface Props {
   utdanning: IUnderUtdanning;
   oppdaterUtdanning: (nøkkel: EUtdanning, label: string, verdi: string) => void;
 }
-const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
+const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
   const intl = useIntl();
 
   const settInputFelt = (
@@ -38,6 +39,11 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
           label={skoleUtdanningstedLabel}
           type="text"
           bredde={'L'}
+          value={
+            utdanning?.skoleUtdanningssted?.verdi
+              ? utdanning?.skoleUtdanningssted?.verdi
+              : ''
+          }
           onChange={(e) =>
             settInputFelt(
               EUtdanning.skoleUtdanningssted,
@@ -55,6 +61,11 @@ const SkoleOgLinje: React.FC<Props> = ({ oppdaterUtdanning }) => {
           bredde={'L'}
           onChange={(e) =>
             settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
+          }
+          value={
+            utdanning?.linjeKursGrad?.verdi
+              ? utdanning?.linjeKursGrad?.verdi
+              : ''
           }
         />
       </FeltGruppe>
