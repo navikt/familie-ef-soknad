@@ -24,7 +24,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   settArbeidssituasjon,
 }) => {
   const intl = useIntl();
-  const [firma, settFirma] = useState<IFirma>({});
+  const [firma, settFirma] = useState<IFirma>(
+    arbeidssituasjon.firma ? arbeidssituasjon.firma : {}
+  );
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, firma: firma });
@@ -79,6 +81,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'L'}
           type={'text'}
           onChange={(e) => settInputTekstFelt(e, EFirma.navn)}
+          value={firma?.navn ? firma?.navn.verdi : ''}
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -87,6 +90,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'L'}
           type={'text'}
           onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
+          value={
+            firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
+          }
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -105,6 +111,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'XS'}
           settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
           beskrivendeTekst={'%'}
+          value={firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''}
         />
       </FeltGruppe>
       <FeltGruppe>
