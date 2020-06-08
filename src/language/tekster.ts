@@ -422,7 +422,7 @@ export default {
       'Om virksomheten du etablerer',
     'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
     'arbeidssituasjon.alert.etablererEgenVirksomhet':
-      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuell en annen kompetent instans.',
+      'Hvis du ikke mottar dagpenger under etableringen av virksomheten, må du legge ved næringsfaglig vurdering fra kommunen eller fylkeskommunen, eventuelt en annen kompetent instans.',
     'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
 
     'arbeidssøker.tittel': 'Når du er arbeidssøker',
@@ -469,8 +469,8 @@ export default {
     'utdanning.lesmer-åpne.kanFåStønad':
       'Hva slags utdanning kan du få stønad til?',
     'utdanning.lesmer-innhold.kanFåStønad':
-      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv. \n' +
-      'Når du søker om overgangsstønad vil vi vurdere utdanningen din." ',
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv. ' +
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din. ',
     'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
     'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
     'utdanning.spm.privatEllerOffentlig':
