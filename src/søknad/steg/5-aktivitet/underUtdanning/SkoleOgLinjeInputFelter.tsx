@@ -8,7 +8,6 @@ import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 
 interface Props {
   utdanning: IUnderUtdanning;
