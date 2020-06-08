@@ -136,35 +136,40 @@ const Arbeidsgiver: React.FC<Props> = ({
           onChange={(e) => settTekstInputFelt(e, EArbeidsgiver.navn, navnLabel)}
         />
       </FeltGruppe>
-      <FeltGruppe>
-        <InputLabelGruppe
-          label={arbeidsmengdeLabel}
-          nøkkel={EArbeidsgiver.arbeidsmengde}
-          type={'number'}
-          bredde={'XS'}
-          settInputFelt={(e) =>
-            settTekstInputFelt(
-              e,
-              EArbeidsgiver.arbeidsmengde,
-              arbeidsmengdeLabel
-            )
-          }
-          value={
-            arbeidsgiver?.arbeidsmengde?.verdi
-              ? arbeidsgiver?.arbeidsmengde?.verdi
-              : ''
-          }
-          beskrivendeTekst={'%'}
-        />
-      </FeltGruppe>
-      <FeltGruppe>
-        <MultiSvarSpørsmål
-          toKorteSvar={false}
-          spørsmål={hvaSlagsStilling}
-          settSpørsmålOgSvar={settSpørsmålOgSvar}
-          valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}
-        />
-      </FeltGruppe>
+      {arbeidsgiver.navn?.verdi && (
+        <FeltGruppe>
+          <InputLabelGruppe
+            label={arbeidsmengdeLabel}
+            nøkkel={EArbeidsgiver.arbeidsmengde}
+            type={'number'}
+            bredde={'XS'}
+            settInputFelt={(e) =>
+              settTekstInputFelt(
+                e,
+                EArbeidsgiver.arbeidsmengde,
+                arbeidsmengdeLabel
+              )
+            }
+            value={
+              arbeidsgiver?.arbeidsmengde?.verdi
+                ? arbeidsgiver?.arbeidsmengde?.verdi
+                : ''
+            }
+            beskrivendeTekst={'%'}
+          />
+        </FeltGruppe>
+      )}
+      {arbeidsgiver.arbeidsmengde?.verdi && (
+        <FeltGruppe>
+          <MultiSvarSpørsmål
+            toKorteSvar={false}
+            spørsmål={hvaSlagsStilling}
+            settSpørsmålOgSvar={settSpørsmålOgSvar}
+            valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}
+          />
+        </FeltGruppe>
+      )}
+
       {arbeidsgiver.ansettelsesforhold?.svarid === EStilling.lærling && (
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>

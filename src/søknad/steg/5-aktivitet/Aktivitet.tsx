@@ -104,22 +104,14 @@ const Aktivitet: React.FC = () => {
         <HjemmeMedBarnUnderEttÅr />
       )}
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.etablererEgenVirksomhet) && (
-        <EtablererEgenVirksomhet
+      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
+        <OmArbeidsforholdetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />
       )}
-
-      {erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) ||
-        (erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
-          <OmArbeidsforholdetDitt
-            arbeidssituasjon={arbeidssituasjon}
-            settArbeidssituasjon={settArbeidssituasjon}
-          />
-        ))}
-      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
-        <OmArbeidsforholdetDitt
+      {erAktivitetHuketAv(ArbeidssituasjonType.etablererEgenVirksomhet) && (
+        <EtablererEgenVirksomhet
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />
