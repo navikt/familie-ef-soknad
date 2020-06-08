@@ -525,13 +525,21 @@ export default {
       'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
 
     'dinSituasjon.alert.redusertStilling':
-      'Du må legge ved dokumentasjon påarbeidsforholdet og årsaken til at du reduserte arbeidstiden',
+      'Du må legge ved dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dinSituasjon.fritekst.redusertStilling':
       'Hvorfor reduserte du arbeidstiden?',
     'dinSituasjon.datovelger.redusertStilling':
       'Når reduserte du arbeidstiden?',
     'dinSituasjon.datovelger-alert.redusertStilling':
       'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+
+    'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
+    'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
+      'Når reduserte du arbeidstiden?',
+    'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
+      'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+    'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
+      'Du må legge ved dokumentasjon på arbeidsforholdet, årsaken til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
 
     'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
     'dinSituasjon.lesmer-åpne.overgangsstønad': 'Når kan jeg søke fra?',
