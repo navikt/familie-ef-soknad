@@ -28,6 +28,7 @@ import { isValid } from 'date-fns';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
+import { hentUid } from '../../../utils/uuid';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
@@ -48,7 +49,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
 
-  const [forelder, settForelder] = useState<IForelder>({});
+  const [forelder, settForelder] = useState<IForelder>(
+    barn.forelder ? barn.forelder : {id: hentUid()}
+  );
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
@@ -62,14 +65,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   useEffect(() => {
-    if (barn.forelder) {
-      settForelder(barn.forelder);
-    }
+    console.log("NY FORELDER", forelder);
 
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
     settForelder({
       ...forelder,
       kanIkkeOppgiAnnenForelderFar: {
@@ -142,6 +139,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
+
+  console.log("OPPDATERTFORELDER", forelder);
 
   return (
     <>

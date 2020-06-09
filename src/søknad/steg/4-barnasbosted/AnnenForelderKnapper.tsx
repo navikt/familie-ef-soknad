@@ -56,8 +56,8 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
     !barn.harSammeAdresse.verdi &&
     harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
-      ? settForelder({ skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker })
-      : settForelder({});
+      ? settForelder({ ...forelder, skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker })
+      : settForelder(forelder);
   };
 
   const andreForelder = 'andre-forelder-';

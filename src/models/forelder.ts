@@ -7,6 +7,7 @@ import {
 } from './søknadsfelter';
 
 export interface IForelder {
+  id?: string;
   navn?: ITekstFelt;
   skalBarnetBoHosSøker?: ISpørsmålFelt;
   fødselsdato?: IDatoFelt | null;
