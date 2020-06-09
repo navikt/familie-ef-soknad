@@ -18,8 +18,6 @@ const BarnasBosted: React.FC = () => {
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
-  console.log(barna);
-
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
