@@ -82,7 +82,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const andreBarnMedForelderUnik = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)))
   .map(id => {
-    if (!id) return;
+    if (!id) return null;
     return andreBarnMedForelder.find(b => b.forelder?.id === id);
   }).filter(Boolean);
 
