@@ -8,7 +8,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
-  andreBarnMedForelder: IBarn[];
+  andreBarnMedForelderUnik?: (IBarn | undefined)[];
   settForelder: Function;
   forelder: IForelder;
   settBarnHarSammeForelder: Function;
@@ -16,7 +16,7 @@ interface Props {
 
 const AnnenForelderKnapper: React.FC<Props> = ({
   barn,
-  andreBarnMedForelder,
+  andreBarnMedForelderUnik,
   settForelder,
   forelder,
   settBarnHarSammeForelder,
@@ -26,13 +26,6 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] = useState<
     string
   >('');
-
-  const andreBarnMedForelderUnik = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)))
-  .map(id => {
-    return andreBarnMedForelder.find(b => b.forelder?.id === id);
-  })
-
-  console.log("ANDREBARNUNIK", andreBarnMedForelderUnik)
 
   const leggTilSammeForelder = (
     e: SyntheticEvent<EventTarget, Event>,
@@ -70,6 +63,8 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
+
+  if (!andreBarnMedForelderUnik) return null;
 
   return (
     <KomponentGruppe>

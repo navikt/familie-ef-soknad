@@ -15,6 +15,7 @@ import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
+import { hentUid } from '../../../utils/uuid';
 import { useIntl } from 'react-intl';
 
 interface Props {
@@ -78,6 +79,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
       delete nyForelder.navn;
       delete nyForelder.fødselsdato;
       delete nyForelder.personnr;
+      delete nyForelder.id;
     }
 
     if (!e.target.checked) {
@@ -85,6 +87,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
+      nyForelder.id = hentUid();
     }
 
     settForelder({

@@ -65,8 +65,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   useEffect(() => {
-    console.log("NY FORELDER", forelder);
-
     settForelder({
       ...forelder,
       kanIkkeOppgiAnnenForelderFar: {
@@ -81,6 +79,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
     return b !== barn && b.forelder;
   });
+
+  const andreBarnMedForelderUnik = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)))
+  .map(id => {
+    if (!id) return;
+    return andreBarnMedForelder.find(b => b.forelder?.id === id);
+  }).filter(Boolean);
 
   const erPåSisteBarn: boolean =
     søknad.person.barn.length - 1 === andreBarnMedForelder.length;
@@ -105,8 +109,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    andreBarnMedForelder.length === 0 ||
-    (andreBarnMedForelder.length > 0 && barnHarSammeForelder === false) ||
+    andreBarnMedForelderUnik.length === 0 ||
+    (andreBarnMedForelderUnik.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
@@ -165,10 +169,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 </Element>
               </FeltGruppe>
 
-              {andreBarnMedForelder.length > 0 && (
+              {andreBarnMedForelderUnik.length > 0 && (
                 <AnnenForelderKnapper
                   barn={barn}
-                  andreBarnMedForelder={andreBarnMedForelder}
+                  andreBarnMedForelderUnik={andreBarnMedForelderUnik}
                   settForelder={settForelder}
                   forelder={forelder}
                   settBarnHarSammeForelder={settBarnHarSammeForelder}
