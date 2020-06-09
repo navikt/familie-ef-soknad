@@ -84,7 +84,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   .map(id => {
     if (!id) return null;
     return andreBarnMedForelder.find(b => b.forelder?.id === id);
-  }).filter(Boolean);
+  }).filter(Boolean).map(b => b || barn);
 
   const erPåSisteBarn: boolean =
     søknad.person.barn.length - 1 === andreBarnMedForelder.length;

@@ -8,7 +8,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
-  andreBarnMedForelderUnik?: (IBarn | undefined)[];
+  andreBarnMedForelderUnik?: IBarn[];
   settForelder: Function;
   forelder: IForelder;
   settBarnHarSammeForelder: Function;
