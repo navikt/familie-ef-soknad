@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import personIngenBarn from '../mock/personIngenBarn.json';
+import { dagensDatoStreng } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
@@ -10,6 +11,10 @@ import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
 } from '../helpers/dokumentasjon';
+import {
+  hentMellomlagretOvergangsstønadFraDokument,
+  mellomlagreOvergangsstønadTilDokument,
+} from '../utils/søknad';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -39,6 +44,7 @@ const initialState: ISøknad = {
       label: '',
       verdi: [],
     },
+    søknadsdato: { label: '', verdi: dagensDatoStreng },
   },
   dokumentasjonsbehov: [],
   vedleggsliste: [],
@@ -46,6 +52,20 @@ const initialState: ISøknad = {
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
+
+  const hentMellomlagretOvergangsstønad = () => {
+    hentMellomlagretOvergangsstønadFraDokument()
+      .then((mellomlagretSøknad: ISøknad) => {
+        settSøknad(mellomlagretSøknad);
+      })
+      .catch(() => {
+        settSøknad(initialState);
+      });
+  };
+
+  const mellomlagreOvergangsstønad = () => {
+    mellomlagreOvergangsstønadTilDokument(søknad);
+  };
 
   const settDokumentasjonsbehov = (
     spørsmål: ISpørsmål,
@@ -71,7 +91,13 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     settSøknad({ ...søknad, dokumentasjonsbehov: endretDokumentasjonsbehov });
   };
 
-  return { søknad, settSøknad, settDokumentasjonsbehov };
+  return {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    hentMellomlagretOvergangsstønad,
+    mellomlagreOvergangsstønad,
+  };
 });
 
 export { SøknadProvider, useSøknad };

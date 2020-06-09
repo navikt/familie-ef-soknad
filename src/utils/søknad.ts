@@ -1,9 +1,9 @@
 import Environment from '../Environment';
 import axios from 'axios';
 import { IntlShape } from 'react-intl';
-import { formatDate } from './dato';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
+import { ISøknad } from '../models/søknad';
 
 export const hentPersonData = () => {
   return axios
@@ -18,6 +18,30 @@ export const hentPersonData = () => {
     });
 };
 
+export const hentMellomlagretOvergangsstønadFraDokument = () => {
+  return axios
+    .get(`${Environment().mellomlagerUrl}`, {
+      withCredentials: true,
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+    })
+    .then((response: { data: ISøknad }) => {
+      return response.data;
+    });
+};
+
+export const mellomlagreOvergangsstønadTilDokument = (søknad: ISøknad) => {
+  return axios.post(`${Environment().mellomlagerUrl}`, søknad, {
+    withCredentials: true,
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  });
+};
+
 export const hentTekst = (id: string, intl: IntlShape) => {
   return intl.formatMessage({ id: id });
 };
@@ -28,25 +52,6 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
     return 0;
   }
   return parsed;
-};
-
-export const verdiTilTekstsvar = (
-  verdi: string | Date | boolean,
-  intl: IntlShape
-) => {
-  if (typeof verdi === 'string') {
-    return verdi;
-  } else if (typeof verdi === 'boolean') {
-    if (verdi === true) {
-      return hentTekst('svar.ja', intl);
-    } else {
-      return hentTekst('svar.nei', intl);
-    }
-  } else if (verdi instanceof Date) {
-    return formatDate(verdi);
-  } else {
-    return null;
-  }
 };
 
 export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {

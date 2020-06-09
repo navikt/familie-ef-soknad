@@ -8,6 +8,7 @@ import Datovelger, {
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -24,7 +25,7 @@ const SøkerSkalTaUtdanning: React.FC<Props> = ({
         ...dinSituasjon,
         datoOppstartUtdanning: {
           label: hentTekst('dinSituasjon.datovelger.utdanning', intl),
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };

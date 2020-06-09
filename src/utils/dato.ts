@@ -1,4 +1,4 @@
-import { format, formatISO, parse } from 'date-fns';
+import { format, formatISO, isValid, parse } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 
@@ -32,6 +32,18 @@ export const formatDateHour = (date: Date) => {
   return format(date, DATO_OG_TIME);
 };
 
+export const datoTilStreng = (date: Date): string => {
+  return date.toISOString();
+};
+
+export const strengTilDato = (datoStreng: string): Date => {
+  return new Date(datoStreng);
+};
+
+export const tilDato = (dato: string | Date): Date => {
+  return typeof dato === 'string' ? new Date(dato) : dato;
+};
+
 export const formatNårSøkerDuStønadFraMåned = (
   dato: Date,
   antallMåneder: number
@@ -42,3 +54,9 @@ export const formatNårSøkerDuStønadFraMåned = (
 };
 
 export const dagensDato = new Date();
+
+export const dagensDatoStreng = datoTilStreng(new Date());
+
+export const erGyldigDato = (verdi: string | undefined): boolean => {
+  return verdi ? isValid(verdi) : false;
+};

@@ -17,10 +17,11 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { hentUid } from '../../../utils/uuid';
 import { useIntl } from 'react-intl';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   barn: IBarn;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
 }
 
@@ -165,7 +166,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
                       ...forelder,
                       fødselsdato: {
                         label: 'Fødselsdato',
-                        verdi: e,
+                        verdi: datoTilStreng(e),
                       },
                     });
                 }}

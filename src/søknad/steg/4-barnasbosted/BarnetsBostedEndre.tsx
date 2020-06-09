@@ -24,11 +24,11 @@ import {
 } from '../../../helpers/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { isValid } from 'date-fns';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/uuid';
+import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 
 interface Props {
@@ -118,7 +118,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    isValid(forelder.fødselsdato?.verdi);
+    erGyldigDato(forelder.fødselsdato?.verdi);
 
   const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
@@ -223,7 +223,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 />
               )}
               {(boddSammenFør?.svarid === ESvar.NEI ||
-                isValid(flyttetFra?.verdi)) && (
+                erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}
                   settForelder={settForelder}

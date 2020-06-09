@@ -31,7 +31,9 @@ const Arbeidssøker: React.FC<Props> = ({
   settArbeidssituasjon,
 }) => {
   const intl = useIntl();
-  const [arbeidssøker, settArbeidssøker] = useState<IArbeidssøker>({});
+  const [arbeidssøker, settArbeidssøker] = useState<IArbeidssøker>(
+    arbeidssituasjon.arbeidssøker ? arbeidssituasjon.arbeidssøker : {}
+  );
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, arbeidssøker: arbeidssøker });
