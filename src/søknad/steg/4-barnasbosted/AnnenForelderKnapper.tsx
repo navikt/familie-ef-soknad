@@ -9,7 +9,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 interface Props {
   barn: IBarn;
   førsteBarnTilHverForelder?: IBarn[];
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
   settBarnHarSammeForelder: Function;
 }

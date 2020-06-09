@@ -26,9 +26,11 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
-  const [arbeidsforhold, settArbeidsforhold] = useState<IArbeidsgiver[]>([
-    tomArbeidsgiver,
-  ]);
+  const [arbeidsforhold, settArbeidsforhold] = useState<IArbeidsgiver[]>(
+    arbeidssituasjon.arbeidsforhold
+      ? arbeidssituasjon.arbeidsforhold
+      : [tomArbeidsgiver]
+  );
 
   useEffect(() => {
     settArbeidssituasjon({

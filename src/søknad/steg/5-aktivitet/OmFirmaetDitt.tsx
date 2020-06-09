@@ -12,6 +12,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { EFirma, IFirma } from '../../../models/steg/aktivitet/firma';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -23,7 +24,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   settArbeidssituasjon,
 }) => {
   const intl = useIntl();
-  const [firma, settFirma] = useState<IFirma>({});
+  const [firma, settFirma] = useState<IFirma>(
+    arbeidssituasjon.firma ? arbeidssituasjon.firma : {}
+  );
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, firma: firma });
@@ -34,7 +37,10 @@ const OmFirmaetDitt: React.FC<Props> = ({
     dato !== null &&
       settFirma({
         ...firma,
-        etableringsdato: { label: 'datovelger tekstid', verdi: dato },
+        etableringsdato: {
+          label: 'datovelger tekstid',
+          verdi: datoTilStreng(dato),
+        },
       });
   };
 
@@ -75,6 +81,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'L'}
           type={'text'}
           onChange={(e) => settInputTekstFelt(e, EFirma.navn)}
+          value={firma?.navn ? firma?.navn.verdi : ''}
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -83,6 +90,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'L'}
           type={'text'}
           onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
+          value={
+            firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
+          }
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -101,6 +111,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           bredde={'XS'}
           settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
           beskrivendeTekst={'%'}
+          value={firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''}
         />
       </FeltGruppe>
       <FeltGruppe>

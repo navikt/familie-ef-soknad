@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 interface Props {
   settFelt: (spørsmål: ISpørsmål, svar: ISvar) => void;
   forelder: IForelder;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
 }
 
 const BorForelderINorge: FC<Props> = ({ settForelder, forelder, settFelt }) => {

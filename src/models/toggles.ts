@@ -5,4 +5,5 @@ export interface Toggles {
 export enum ToggleName {
   vis_innsending = 'familie.ef.soknad.vis-innsending',
   send_søknad = 'familie.ef.soknad.send-soknad',
+  mellomlagre_søknad = 'familie.ef.soknad.mellomlagre-overgangsstonad',
 }

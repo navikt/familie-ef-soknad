@@ -10,10 +10,11 @@ import Datovelger, {
 import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
   forelder: IForelder;
-  settForelder: Function;
+  settForelder: (verdi: IForelder) => void;
 }
 const BoddSammenFør: FC<Props> = ({ forelder, settForelder }) => {
   const intl = useIntl();
@@ -56,7 +57,7 @@ const BoddSammenFør: FC<Props> = ({ forelder, settForelder }) => {
                     label: intl.formatMessage({
                       id: 'barnasbosted.normaltekst.nårflyttetfra',
                     }),
-                    verdi: e,
+                    verdi: datoTilStreng(e),
                   },
                 });
             }}

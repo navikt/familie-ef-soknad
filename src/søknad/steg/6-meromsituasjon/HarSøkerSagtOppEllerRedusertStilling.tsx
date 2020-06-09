@@ -18,7 +18,7 @@ import Datovelger, {
 import subMonths from 'date-fns/subMonths';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
-import { dagensDato } from '../../../utils/dato';
+import { dagensDato, datoTilStreng, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 
 interface Props {
@@ -85,7 +85,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
         ...dinSituasjon,
         datoSagtOppEllerRedusertStilling: {
           label: datovelgerLabel,
-          verdi: dato,
+          verdi: datoTilStreng(dato),
         },
       });
   };
@@ -124,7 +124,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
 
   const erValgtDatoMindreEnn6mndSiden =
     datoSagtOppEllerRedusertStilling &&
-    valgtDatoMindreEnn6mndSiden(datoSagtOppEllerRedusertStilling?.verdi);
+    valgtDatoMindreEnn6mndSiden(
+      strengTilDato(datoSagtOppEllerRedusertStilling.verdi)
+    );
 
   const alertLabel = hentLabelForSagtOppEllerRedusertStilling(
     'dinSituasjon.alert.sagtOpp',

@@ -132,6 +132,7 @@ const Arbeidsgiver: React.FC<Props> = ({
           label={navnLabel}
           type="text"
           bredde={'L'}
+          value={arbeidsgiver?.navn ? arbeidsgiver.navn.verdi : ''}
           onChange={(e) => settTekstInputFelt(e, EArbeidsgiver.navn, navnLabel)}
         />
       </FeltGruppe>
@@ -147,6 +148,11 @@ const Arbeidsgiver: React.FC<Props> = ({
               EArbeidsgiver.arbeidsmengde,
               arbeidsmengdeLabel
             )
+          }
+          value={
+            arbeidsgiver?.arbeidsmengde?.verdi
+              ? arbeidsgiver?.arbeidsmengde?.verdi
+              : ''
           }
           beskrivendeTekst={'%'}
         />
