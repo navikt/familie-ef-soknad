@@ -8,7 +8,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
-  andreBarnMedForelderUnik?: IBarn[];
+  førsteBarnTilHverForelder?: IBarn[];
   settForelder: Function;
   forelder: IForelder;
   settBarnHarSammeForelder: Function;
@@ -16,7 +16,7 @@ interface Props {
 
 const AnnenForelderKnapper: React.FC<Props> = ({
   barn,
-  andreBarnMedForelderUnik,
+  førsteBarnTilHverForelder,
   settForelder,
   forelder,
   settBarnHarSammeForelder,
@@ -64,12 +64,12 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
 
-  if (!andreBarnMedForelderUnik) return null;
+  if (!førsteBarnTilHverForelder) return null;
 
   return (
     <KomponentGruppe>
       <div className="andre-forelder-valg">
-        {andreBarnMedForelderUnik.map((b) => {
+        {førsteBarnTilHverForelder.map((b) => {
           if (!b) return null;
 
           return (

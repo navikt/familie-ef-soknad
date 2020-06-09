@@ -80,8 +80,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     return b !== barn && b.forelder;
   });
 
-  const andreBarnMedForelderUnik = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)))
-  .map(id => {
+  const unikeForeldreIDer = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)));
+
+  const førsteBarnTilHverForelder = unikeForeldreIDer.map(id => {
     if (!id) return null;
     return andreBarnMedForelder.find(b => b.forelder?.id === id);
   }).filter(Boolean).map(b => b || barn);
@@ -109,8 +110,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    andreBarnMedForelderUnik.length === 0 ||
-    (andreBarnMedForelderUnik.length > 0 && barnHarSammeForelder === false) ||
+  førsteBarnTilHverForelder.length === 0 ||
+    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
@@ -144,8 +145,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  console.log("OPPDATERTFORELDER", forelder);
-
   return (
     <>
       <div className="barnas-bosted">
@@ -169,10 +168,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 </Element>
               </FeltGruppe>
 
-              {andreBarnMedForelderUnik.length > 0 && (
+              {førsteBarnTilHverForelder.length > 0 && (
                 <AnnenForelderKnapper
                   barn={barn}
-                  andreBarnMedForelderUnik={andreBarnMedForelderUnik}
+                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
                   settForelder={settForelder}
                   forelder={forelder}
                   settBarnHarSammeForelder={settBarnHarSammeForelder}
