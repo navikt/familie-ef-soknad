@@ -27,6 +27,13 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     string
   >('');
 
+  const andreBarnMedForelderUnik = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)))
+  .map(id => {
+    return andreBarnMedForelder.find(b => b.forelder?.id === id);
+  })
+
+  console.log("ANDREBARNUNIK", andreBarnMedForelderUnik)
+
   const leggTilSammeForelder = (
     e: SyntheticEvent<EventTarget, Event>,
     detAndreBarnet: IBarn
@@ -37,6 +44,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
     settForelder({
       ...forelder,
+      id: denAndreForelderen?.id,
       navn: denAndreForelderen?.navn,
       fødselsdato: denAndreForelderen?.fødselsdato,
       personnr: denAndreForelderen?.personnr,
@@ -66,7 +74,9 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <div className="andre-forelder-valg">
-        {andreBarnMedForelder.map((b) => {
+        {andreBarnMedForelderUnik.map((b) => {
+          if (!b) return null;
+
           return (
             <RadioPanel
               key={`${andreForelder}${b.navn}`}
