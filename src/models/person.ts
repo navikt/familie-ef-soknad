@@ -2,6 +2,7 @@ import { IBarn } from './barn';
 import { IDatoFelt, ITekstFelt } from './søknadsfelter';
 
 export interface IPerson {
+  hash: string;
   søker: ISøker;
   barn: IBarn[];
 }
