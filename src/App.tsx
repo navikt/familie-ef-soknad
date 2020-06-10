@@ -23,7 +23,7 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { person, settPerson } = usePersonContext();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
   const [barneliste, settBarneliste] = useState([]);
 
@@ -44,18 +44,23 @@ const App = () => {
       });
 
       const fetchPersonData = () => {
-        hentPersonData().then((response) => {
-          settPerson({
-            type: PersonActionTypes.HENT_PERSON,
-            payload: response,
-          });
-          settBarneliste(response.barn);
-        });
+        hentPersonData()
+          .then((response) => {
+            settPerson({
+              type: PersonActionTypes.HENT_PERSON,
+              payload: response,
+            });
+            settBarneliste(response.barn);
+            hentMellomlagretOvergangsstønad()
+              .then(() => settFetching(false))
+              .catch(() => settFetching(false));
+          })
+          .catch(() => settError(true));
       };
       fetchPersonData();
-      settFetching(false);
     };
     fetchData();
+
     // eslint-disable-next-line
   }, []);
 

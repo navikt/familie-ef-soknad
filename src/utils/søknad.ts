@@ -3,7 +3,7 @@ import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
-import { ISøknad } from '../models/søknad';
+import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 
 export const hentPersonData = () => {
   return axios
@@ -27,13 +27,25 @@ export const hentMellomlagretOvergangsstønadFraDokument = () => {
         accept: 'application/json',
       },
     })
-    .then((response: { data: ISøknad }) => {
+    .then((response: { data?: IMellomlagretOvergangsstønad }) => {
       return response.data;
     });
 };
 
-export const mellomlagreOvergangsstønadTilDokument = (søknad: ISøknad) => {
+export const mellomlagreOvergangsstønadTilDokument = (
+  søknad: IMellomlagretOvergangsstønad
+) => {
   return axios.post(`${Environment().mellomlagerUrl}`, søknad, {
+    withCredentials: true,
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  });
+};
+
+export const nullstillMellomlagretOvergangsstønadTilDokument = (): Promise<any> => {
+  return axios.delete(`${Environment().mellomlagerUrl}`, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',

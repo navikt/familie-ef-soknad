@@ -14,7 +14,7 @@ import {
 } from '../../../helpers/omdeg';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const { søknad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
@@ -42,6 +42,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
       skalViseKnapper={!kommerFraOppsummering}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <Personopplysninger />
 
