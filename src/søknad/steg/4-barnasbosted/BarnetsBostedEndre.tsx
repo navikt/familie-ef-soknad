@@ -76,8 +76,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     //eslint-disable-next-line
   }, []);
 
-  console.log('forelder', forelder);
-
   const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
     return b !== barn && b.forelder;
   });
@@ -91,8 +89,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       if (!id) return null;
       return andreBarnMedForelder.find((b) => b.forelder?.id === id);
     })
-    .filter(Boolean)
-    .map((b) => b || barn);
+    .filter(Boolean) as IBarn[];
 
   const erPåSisteBarn: boolean =
     søknad.person.barn.length - 1 === andreBarnMedForelder.length;
