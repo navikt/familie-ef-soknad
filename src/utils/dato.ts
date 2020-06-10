@@ -58,5 +58,5 @@ export const dagensDato = new Date();
 export const dagensDatoStreng = datoTilStreng(new Date());
 
 export const erGyldigDato = (verdi: string | undefined): boolean => {
-  return verdi ? isValid(verdi) : false;
+  return verdi ? isValid(new Date(verdi)) : false;
 };

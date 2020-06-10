@@ -1,32 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
-import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Sidetittel } from 'nav-frontend-typografi';
+import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../../context/PersonContext';
 import { useSpråkContext } from '../../context/SpråkContext';
-import { Routes } from '../../routing/Routes';
-import { hentBeskjedMedNavn } from '../../utils/språk';
 import { injectIntl } from 'react-intl';
-import { hentNesteRoute } from '../../routing/utils';
-import { useLocation, useHistory } from 'react-router-dom';
-import KnappBase, { Knapp } from 'nav-frontend-knapper';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import LocaleTekst from '../../language/LocaleTekst';
 import { client } from '../../utils/sanity';
 import { useSøknad } from '../../context/SøknadContext';
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/toggles';
-const BlockContent = require('@sanity/block-content-to-react');
+import Forsideinformasjon from './Forsideinformasjon';
+import FortsettSøknad from './FortsettSøknad';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
-  const { hentMellomlagretOvergangsstønad } = useSøknad();
-  const [harBekreftet, settBekreftelse] = useState<boolean>(false);
-  const location = useLocation();
+  const {
+    mellomlagretOvergangsstønad,
+    brukMellomlagretOvergangsstønad,
+    nullstillMellomlagretOvergangsstønad,
+  } = useSøknad();
   const [locale] = useSpråkContext();
-  const history = useHistory();
-  const nestePath = hentNesteRoute(Routes, location.pathname);
   const [forside, settForside] = useState<any>({});
   // eslint-disable-next-line
   const [error, settError] = useState<boolean>(false);
@@ -49,26 +41,6 @@ const Forside: React.FC<any> = ({ intl }) => {
     fetchData();
   }, []);
 
-  const BlockRenderer = (props: any) => {
-    const { style = 'normal' } = props.node;
-
-    if (/^h\d/.test(style)) {
-      const level = style.replace(/[^\d]/g, '');
-      return React.createElement(
-        style,
-        { className: `heading-${level}` },
-        props.children
-      );
-    }
-
-    if (style === 'blockquote') {
-      return <blockquote>- {props.children}</blockquote>;
-    }
-
-    // Fall back to default handling
-    return BlockContent.defaultSerializers.types.block(props);
-  };
-
   const disclaimer = forside['disclaimer_' + locale];
   const seksjon = forside['seksjon_' + locale];
 
@@ -77,59 +49,23 @@ const Forside: React.FC<any> = ({ intl }) => {
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
-
-          {seksjon &&
-            seksjon.map((blokk: any) => {
-              return (
-                <div className="seksjon">
-                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
-                  <BlockContent
-                    className="typo-normal"
-                    blocks={blokk.innhold}
-                    serializers={{ types: { block: BlockRenderer } }}
-                  />
-                </div>
-              );
-            })}
-
-          {disclaimer && (
-            <div className="seksjon">
-              <AlertStripeAdvarsel>
-                {' '}
-                <BlockContent
-                  className="typo-normal"
-                  blocks={disclaimer}
-                  serializers={{ types: { block: BlockRenderer } }}
-                />
-                <BekreftCheckboksPanel
-                  onChange={(e) => settBekreftelse(!harBekreftet)}
-                  checked={harBekreftet}
-                  label={hentBeskjedMedNavn(
-                    person.søker.forkortetNavn,
-                    intl.formatMessage({ id: 'side.bekreftelse' })
-                  )}
-                />
-              </AlertStripeAdvarsel>
-            </div>
-          )}
-
-          {harBekreftet ? (
-            <FeltGruppe classname={'sentrert'}>
-              <KnappBase
-                onClick={() => history.push(nestePath.path)}
-                type={'hoved'}
-              >
-                <LocaleTekst tekst={'knapp.start'} />
-              </KnappBase>
-            </FeltGruppe>
-          ) : null}
-          {toggles[ToggleName.mellomlagre_søknad] && (
-            <Knapp
-              htmlType={'button'}
-              onClick={hentMellomlagretOvergangsstønad}
-            >
-              <LocaleTekst tekst={'knapp.hentMellomlagretOvergangsstønad'} />
-            </Knapp>
+          {toggles[ToggleName.mellomlagre_søknad] &&
+          mellomlagretOvergangsstønad !== undefined ? (
+            <FortsettSøknad
+              intl={intl}
+              mellomlagretOvergangsstønad={mellomlagretOvergangsstønad}
+              brukMellomlagretOvergangsstønad={brukMellomlagretOvergangsstønad}
+              nullstillMellomlagretOvergangsstønad={
+                nullstillMellomlagretOvergangsstønad
+              }
+            />
+          ) : (
+            <Forsideinformasjon
+              seksjon={seksjon}
+              disclaimer={disclaimer}
+              person={person}
+              intl={intl}
+            />
           )}
         </Panel>
       </main>

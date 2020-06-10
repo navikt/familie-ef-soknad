@@ -13,7 +13,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
@@ -28,6 +28,7 @@ const BarnaDine: React.FC = () => {
         tittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={!kommerFraOppsummering}
         erSpørsmålBesvart={true}
+        mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">

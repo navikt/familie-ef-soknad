@@ -16,7 +16,7 @@ interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
-  mellomlagreOvergangsstønad?: () => void;
+  mellomlagreOvergangsstønad?: (steg: string) => void;
 }
 
 const Side: React.FC<ISide> = ({
@@ -81,7 +81,12 @@ const Side: React.FC<ISide> = ({
             {erSpørsmålBesvart && (
               <KnappBase
                 type={'hoved'}
-                onClick={() => history.push(nesteRoute.path)}
+                onClick={() => {
+                  if (mellomlagreOvergangsstønad) {
+                    mellomlagreOvergangsstønad(location.pathname);
+                  }
+                  history.push(nesteRoute.path);
+                }}
                 className={classNames('neste', {
                   hideButton: nesteRoute === undefined,
                 })}
@@ -96,15 +101,6 @@ const Side: React.FC<ISide> = ({
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>
-            {mellomlagreOvergangsstønad && (
-              <KnappBase
-                className={'mellomlagre'}
-                type={'flat'}
-                onClick={mellomlagreOvergangsstønad}
-              >
-                <LocaleTekst tekst={'knapp.mellomlagre'} />
-              </KnappBase>
-            )}
           </StyledNavigeringsWrapper>
         )}
       </div>

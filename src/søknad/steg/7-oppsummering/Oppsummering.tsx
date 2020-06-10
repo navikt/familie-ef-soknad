@@ -9,14 +9,17 @@ import OppsummeringBarnaDine from './OppsummeringBarnaDine';
 import OppsummeringAktiviteter from './OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from './OppsummeringBosituasjon';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
+  const { mellomlagreOvergangsstønad } = useSøknad();
   return (
     <>
       <Side
         tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={true}
+        mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">

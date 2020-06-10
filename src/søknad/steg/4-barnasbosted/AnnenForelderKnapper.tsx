@@ -8,7 +8,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
-  andreBarnMedForelder: IBarn[];
+  førsteBarnTilHverForelder?: IBarn[];
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
   settBarnHarSammeForelder: Function;
@@ -16,7 +16,7 @@ interface Props {
 
 const AnnenForelderKnapper: React.FC<Props> = ({
   barn,
-  andreBarnMedForelder,
+  førsteBarnTilHverForelder,
   settForelder,
   forelder,
   settBarnHarSammeForelder,
@@ -37,6 +37,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
     settForelder({
       ...forelder,
+      id: denAndreForelderen?.id,
       navn: denAndreForelderen?.navn,
       fødselsdato: denAndreForelderen?.fødselsdato,
       personnr: denAndreForelderen?.personnr,
@@ -56,17 +57,24 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
     !barn.harSammeAdresse.verdi &&
     harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
-      ? settForelder({ skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker })
-      : settForelder({});
+      ? settForelder({
+          ...forelder,
+          skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker,
+        })
+      : settForelder(forelder);
   };
 
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
 
+  if (!førsteBarnTilHverForelder) return null;
+
   return (
     <KomponentGruppe>
       <div className="andre-forelder-valg">
-        {andreBarnMedForelder.map((b) => {
+        {førsteBarnTilHverForelder.map((b) => {
+          if (!b) return null;
+
           return (
             <RadioPanel
               key={`${andreForelder}${b.navn}`}

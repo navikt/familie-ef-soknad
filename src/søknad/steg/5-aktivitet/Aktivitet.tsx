@@ -20,7 +20,12 @@ import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/arbeidssituasjo
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    mellomlagreOvergangsstønad,
+  } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
@@ -88,6 +93,7 @@ const Aktivitet: React.FC = () => {
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
@@ -111,8 +117,6 @@ const Aktivitet: React.FC = () => {
             ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
             : true
           : true;
-
-        console.log('visSeksjon', visSeksjon, svarid);
 
         return (
           visSeksjon && (

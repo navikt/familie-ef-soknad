@@ -14,7 +14,9 @@ import {
 import {
   hentMellomlagretOvergangsstønadFraDokument,
   mellomlagreOvergangsstønadTilDokument,
+  nullstillMellomlagretOvergangsstønadTilDokument,
 } from '../utils/søknad';
+import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -52,19 +54,39 @@ const initialState: ISøknad = {
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
+  const [
+    mellomlagretOvergangsstønad,
+    settMellomlagretOvergangsstønad,
+  ] = useState<IMellomlagretOvergangsstønad>();
 
-  const hentMellomlagretOvergangsstønad = () => {
-    hentMellomlagretOvergangsstønadFraDokument()
-      .then((mellomlagretSøknad: ISøknad) => {
-        settSøknad(mellomlagretSøknad);
-      })
-      .catch(() => {
-        settSøknad(initialState);
-      });
+  const hentMellomlagretOvergangsstønad = (): Promise<void> => {
+    return hentMellomlagretOvergangsstønadFraDokument().then(
+      (mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
+        if (mellomlagretVersjon) {
+          // TODO: Verifiser at modellen og personHash er gyldig
+          settMellomlagretOvergangsstønad(mellomlagretVersjon);
+        }
+      }
+    );
   };
 
-  const mellomlagreOvergangsstønad = () => {
-    mellomlagreOvergangsstønadTilDokument(søknad);
+  const brukMellomlagretOvergangsstønad = () => {
+    if (mellomlagretOvergangsstønad) {
+      settSøknad(mellomlagretOvergangsstønad.søknad);
+    }
+  };
+
+  const mellomlagreOvergangsstønad = (steg: string) => {
+    mellomlagreOvergangsstønadTilDokument({
+      søknad: søknad,
+      personHash: 'abcdef',
+      modellVersjon: 1,
+      gjeldendeSteg: steg,
+    });
+  };
+
+  const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {
+    return nullstillMellomlagretOvergangsstønadTilDokument();
   };
 
   const settDokumentasjonsbehov = (
@@ -95,8 +117,11 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     søknad,
     settSøknad,
     settDokumentasjonsbehov,
+    mellomlagretOvergangsstønad,
     hentMellomlagretOvergangsstønad,
     mellomlagreOvergangsstønad,
+    brukMellomlagretOvergangsstønad,
+    nullstillMellomlagretOvergangsstønad,
   };
 });
 

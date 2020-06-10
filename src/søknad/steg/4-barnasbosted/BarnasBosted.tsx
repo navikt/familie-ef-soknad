@@ -12,7 +12,7 @@ const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
-  const { søknad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
   const barna = søknad.person.barn;
@@ -23,6 +23,7 @@ const BarnasBosted: React.FC = () => {
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={sisteBarnUtfylt}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       {barna.map((barn, index) => {
         const key = barn.fødselsdato.verdi + index;
