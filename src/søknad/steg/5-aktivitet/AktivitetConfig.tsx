@@ -1,6 +1,6 @@
 import { ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
-  ArbeidssituasjonType,
+  EAktivitet,
   EArbeidssituasjon,
 } from '../../../models/steg/aktivitet/aktivitet';
 import {
@@ -13,7 +13,7 @@ import {
 const DokumentasjonUtdanning: IDokumentasjon = {
   id: AktivitetDokumentasjon.UTDANNING,
   spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-  svarid: ArbeidssituasjonType.tarUtdanning,
+  svarid: EAktivitet.tarUtdanning,
   tittel: 'dokumentasjon.utdanning.tittel',
   beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
   harSendtInn: false,
@@ -27,37 +27,37 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   flersvar: true,
   svaralternativer: [
     {
-      id: ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr,
+      id: EAktivitet.erHjemmeMedBarnUnderEttÅr,
       svar_tekstid: 'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr',
     },
     {
-      id: ArbeidssituasjonType.erArbeidstaker,
+      id: EAktivitet.erArbeidstaker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
-      id: ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser,
+      id: EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser,
       svar_tekstid:
         'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
     },
     {
-      id: ArbeidssituasjonType.erAnsattIEgetAS,
+      id: EAktivitet.erAnsattIEgetAS,
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
-      id: ArbeidssituasjonType.etablererEgenVirksomhet,
+      id: EAktivitet.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
     },
     {
-      id: ArbeidssituasjonType.erArbeidssøker,
+      id: EAktivitet.erArbeidssøker,
       svar_tekstid: 'arbeidssituasjon.svar.erArbeidssøker',
     },
     {
-      id: ArbeidssituasjonType.tarUtdanning,
+      id: EAktivitet.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
       dokumentasjonsbehov: DokumentasjonUtdanning,
     },
     {
-      id: ArbeidssituasjonType.erHverkenIArbeidUtdanningEllerArbeidssøker,
+      id: EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker,
       svar_tekstid:
         'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker',
     },

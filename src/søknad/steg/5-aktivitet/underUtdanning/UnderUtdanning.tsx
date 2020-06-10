@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
-  EStudieandel,
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
@@ -21,6 +20,7 @@ import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import { erUtdanningFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -110,8 +110,7 @@ const UnderUtdanning: React.FC<Props> = ({
         )}
       </SeksjonGruppe>
 
-      {(underUtdanning?.heltidEllerDeltid?.svarid === EStudieandel.heltid ||
-        underUtdanning?.målMedUtdanning?.verdi) && (
+      {underUtdanning && erUtdanningFerdigUtfylt(underUtdanning) && (
         <>
           <TidligereUtdanning
             underUtdanning={underUtdanning}

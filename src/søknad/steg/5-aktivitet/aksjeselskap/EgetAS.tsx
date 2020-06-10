@@ -12,6 +12,7 @@ import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
+import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -39,11 +40,6 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
     settArbeidssituasjon({ ...arbeidssituasjon, egetAS: arbeidsforhold });
   };
 
-  const erAksjeselskapFerdigUtfylt = arbeidssituasjon.egetAS?.some(
-    (aksjeselskap, index) =>
-      index === egetAS?.length - 1 && aksjeselskap.arbeidsmengde?.verdi
-  );
-
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
@@ -63,7 +59,7 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
           </SeksjonGruppe>
         );
       })}
-      {erAksjeselskapFerdigUtfylt && (
+      {erAksjeselskapFerdigUtfylt(egetAS) && (
         <KomponentGruppe>
           <FeltGruppe>
             <Element>
