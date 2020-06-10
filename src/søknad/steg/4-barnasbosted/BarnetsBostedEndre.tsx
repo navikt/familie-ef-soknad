@@ -50,7 +50,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const { søknad, settSøknad } = useSøknad();
 
   const [forelder, settForelder] = useState<IForelder>(
-    barn.forelder ? barn.forelder : {id: hentUid()}
+    barn.forelder ? barn.forelder : { id: hentUid() }
   );
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
@@ -76,16 +76,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     //eslint-disable-next-line
   }, []);
 
+  console.log('forelder', forelder);
+
   const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
     return b !== barn && b.forelder;
   });
 
-  const unikeForeldreIDer = Array.from(new Set(andreBarnMedForelder.map(b => b.forelder?.id)));
+  const unikeForeldreIDer = Array.from(
+    new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
+  );
 
-  const førsteBarnTilHverForelder = unikeForeldreIDer.map(id => {
-    if (!id) return null;
-    return andreBarnMedForelder.find(b => b.forelder?.id === id);
-  }).filter(Boolean).map(b => b || barn);
+  const førsteBarnTilHverForelder = unikeForeldreIDer
+    .map((id) => {
+      if (!id) return null;
+      return andreBarnMedForelder.find((b) => b.forelder?.id === id);
+    })
+    .filter(Boolean)
+    .map((b) => b || barn);
 
   const erPåSisteBarn: boolean =
     søknad.person.barn.length - 1 === andreBarnMedForelder.length;
@@ -110,7 +117,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-  førsteBarnTilHverForelder.length === 0 ||
+    førsteBarnTilHverForelder.length === 0 ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
