@@ -40,8 +40,6 @@ export default {
     'knapp.tilbake': 'Tilbake',
     'knapp.neste': 'Neste',
     'knapp.avbryt': 'Avbryt',
-    'knapp.mellomlagre': 'Mellomlagre søknad',
-    'knapp.hentMellomlagretOvergangsstønad': 'Fortsett på mellomlagret søknad',
     'knapp.start': 'Start søknad',
     'knapp.sendSøknad': 'Send søknad',
 
@@ -66,6 +64,10 @@ export default {
       'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
     'side.info.overgangsstønad':
       'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
+    'side.fortsettSøknad.påbegyntSøknad':
+      'Du har en påbegynt søknad. Vil du fortsette på denne eller starte en ny?',
+    'side.fortsettSøknad.knapp.startPåNytt': 'Start på nytt',
+    'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
 
     'person.navn': 'Navn',
     'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
