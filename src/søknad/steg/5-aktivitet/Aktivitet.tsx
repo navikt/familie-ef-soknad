@@ -28,7 +28,12 @@ import EgetAS from './aksjeselskap/EgetAS';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+    mellomlagreOvergangsstønad,
+  } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
@@ -88,6 +93,7 @@ const Aktivitet: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål

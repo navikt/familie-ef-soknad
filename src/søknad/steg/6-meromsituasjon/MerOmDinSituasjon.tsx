@@ -28,8 +28,6 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
-import { useToggles } from '../../../context/TogglesContext';
-import { ToggleName } from '../../../models/toggles';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -39,7 +37,6 @@ const MerOmDinSituasjon: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
   } = useSøknad();
-  const { toggles } = useToggles();
   const history = useHistory();
   const location = useLocation();
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>({
@@ -134,11 +131,7 @@ const MerOmDinSituasjon: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreOvergangsstønad={
-        toggles[ToggleName.mellomlagre_søknad]
-          ? mellomlagreOvergangsstønad
-          : undefined
-      }
+      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <KomponentGruppe>
