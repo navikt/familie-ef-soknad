@@ -16,10 +16,7 @@ import {
   fjernAktivitet,
 } from '../../../helpers/arbeidssituasjon/aktivitet';
 import AktivitetOppfølgingSpørsmål from './AktivitetOppfølgingSpørsmål';
-import {
-  erAktivitetSeksjonFerdigUtfylt,
-  erForrigeAktivitetSpørsmålSeksjonFerdigUtfylt,
-} from '../../../helpers/arbeidssituasjon/aktivitetvalidering';
+import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -73,7 +70,18 @@ const Aktivitet: React.FC = () => {
   );
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
-    hvaErDinArbeidssituasjon.svarid !== [] && erAlleFelterUtfylt;
+    hvaErDinArbeidssituasjon.svarid.length !== 0 && erAlleFelterUtfylt;
+
+  const erSpørsmålFørAktivitetBesvart = (
+    svarid: string,
+    arbeidssituasjon: IAktivitet
+  ) => {
+    return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
+      .filter((aktivitet) => aktivitet !== svarid)
+      .every(
+        (id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon) === true
+      );
+  };
 
   return (
     <Side
@@ -93,18 +101,18 @@ const Aktivitet: React.FC = () => {
       </SeksjonGruppe>
 
       {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid) => {
-        const harValgtFlereEnnEn = hvaErDinArbeidssituasjon.svarid.length > 1;
+        const harValgtFlereEnnEn = hvaErDinArbeidssituasjon.svarid.length !== 0;
+
         const erValgtFørsteAktivitet =
           hvaErDinArbeidssituasjon.svarid[0] === svarid;
 
         const visSeksjon = harValgtFlereEnnEn
           ? !erValgtFørsteAktivitet
-            ? erForrigeAktivitetSpørsmålSeksjonFerdigUtfylt(
-                svarid,
-                arbeidssituasjon
-              )
+            ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
             : true
           : true;
+
+        console.log('visSeksjon', visSeksjon, svarid);
 
         return (
           visSeksjon && (

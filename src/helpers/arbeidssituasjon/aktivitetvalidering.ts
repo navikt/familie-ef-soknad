@@ -88,19 +88,3 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return false;
   }
 };
-
-export const erForrigeAktivitetSpørsmålSeksjonFerdigUtfylt = (
-  svarid: string,
-  arbeidssituasjon: IAktivitet
-) => {
-  const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
-  const svaridPos = hvaErDinArbeidssituasjon.svarid.findIndex(
-    (s) => s === svarid
-  );
-  const forrigeValgtAktivitet = hvaErDinArbeidssituasjon.svarid[svaridPos - 1];
-
-  return erAktivitetSeksjonFerdigUtfylt(
-    forrigeValgtAktivitet,
-    arbeidssituasjon
-  );
-};
