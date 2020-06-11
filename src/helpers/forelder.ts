@@ -13,32 +13,13 @@ export const visBostedOgSamværSeksjon = (
   forelder: IForelder,
   visesBorINorgeSpørsmål: boolean
 ) => {
-  const {
-    hvorforIkkeOppgi,
-    kanIkkeOppgiAnnenForelderFar,
-    ikkeOppgittAnnenForelderBegrunnelse,
-  } = forelder;
-
-  const erAnnetBegrunnelseUtfylt =
-    hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
-    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi.verdi &&
-    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== '';
-
-  const kanIkkeOppgiDenAndreForelderen =
-    kanIkkeOppgiAnnenForelderFar && hvorforIkkeOppgi
-      ? kanIkkeOppgiAnnenForelderFar?.verdi && erAnnetBegrunnelseUtfylt
-      : false;
-
   const borForelderINorgeSpm =
     forelder.borINorge?.svarid === ESvar.JA ||
     (forelder.land && forelder.land?.verdi !== '');
 
-  return (
-    kanIkkeOppgiDenAndreForelderen ||
-    (visesBorINorgeSpørsmål
-      ? borForelderINorgeSpm
-      : erGyldigDato(forelder.fødselsdato?.verdi))
-  );
+  return visesBorINorgeSpørsmål
+    ? borForelderINorgeSpm
+    : erGyldigDato(forelder.fødselsdato?.verdi);
 };
 
 export const harForelderSamværMedBarn = (svarid: string | undefined) => {
@@ -108,9 +89,13 @@ export const erAlleFelterOgSpørsmålBesvart = (
     hvorMyeSammen,
     beskrivSamværUtenBarn,
     hvorforIkkeOppgi,
+    ikkeOppgittAnnenForelderBegrunnelse,
   } = forelder;
 
   const erDonorbarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
+  const erAnnetBegrunnelseUtfylt =
+    harValgtSvar(ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
+    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
 
   if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
     return (
@@ -124,7 +109,8 @@ export const erAlleFelterOgSpørsmålBesvart = (
       (harValgtSvar(hvorMyeSammen?.verdi) &&
         hvorMyeSammen?.svarid !== EHvorMyeSammen.møtesUtenom) ||
       harValgtSvar(beskrivSamværUtenBarn?.verdi) ||
-      erDonorbarn
+      erDonorbarn ||
+      erAnnetBegrunnelseUtfylt
     );
   }
 };
