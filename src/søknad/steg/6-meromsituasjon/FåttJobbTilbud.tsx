@@ -49,7 +49,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
         </Normaltekst>
       </AlertStripe>
       <Datovelger
-        valgtDato={dinSituasjon.datoOppstartUtdanning?.verdi}
+        valgtDato={dinSituasjon.datoOppstartJobb?.verdi}
         tekstid={'dinSituasjon.datovelger.jobb'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
         settDato={settDato}
