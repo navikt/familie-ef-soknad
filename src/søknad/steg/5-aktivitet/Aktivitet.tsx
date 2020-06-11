@@ -107,12 +107,13 @@ const Aktivitet: React.FC = () => {
       </SeksjonGruppe>
 
       {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid) => {
-        const harValgtFlereEnnEn = hvaErDinArbeidssituasjon.svarid.length !== 0;
+        const harValgtFlereEnnNull =
+          hvaErDinArbeidssituasjon.svarid.length !== 0;
 
         const erValgtFørsteAktivitet =
           hvaErDinArbeidssituasjon.svarid[0] === svarid;
 
-        const visSeksjon = harValgtFlereEnnEn
+        const visSeksjon = harValgtFlereEnnNull
           ? !erValgtFørsteAktivitet
             ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
             : true
