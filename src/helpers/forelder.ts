@@ -26,9 +26,7 @@ export const visBostedOgSamværSeksjon = (
 
   const kanIkkeOppgiDenAndreForelderen =
     kanIkkeOppgiAnnenForelderFar && hvorforIkkeOppgi
-      ? kanIkkeOppgiAnnenForelderFar?.verdi &&
-        (hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn ||
-          erAnnetBegrunnelseUtfylt)
+      ? kanIkkeOppgiAnnenForelderFar?.verdi && erAnnetBegrunnelseUtfylt
       : false;
 
   const borForelderINorgeSpm =
@@ -109,7 +107,11 @@ export const erAlleFelterOgSpørsmålBesvart = (
     hvordanPraktiseresSamværet,
     hvorMyeSammen,
     beskrivSamværUtenBarn,
+    hvorforIkkeOppgi,
   } = forelder;
+
+  const erDonorbarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
+
   if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
     return (
       harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
@@ -121,7 +123,8 @@ export const erAlleFelterOgSpørsmålBesvart = (
     return (
       (harValgtSvar(hvorMyeSammen?.verdi) &&
         hvorMyeSammen?.svarid !== EHvorMyeSammen.møtesUtenom) ||
-      harValgtSvar(beskrivSamværUtenBarn?.verdi)
+      harValgtSvar(beskrivSamværUtenBarn?.verdi) ||
+      erDonorbarn
     );
   }
 };
