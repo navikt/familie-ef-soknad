@@ -81,8 +81,11 @@ const Aktivitet: React.FC = () => {
     svarid: string,
     arbeidssituasjon: IAktivitet
   ) => {
+    const svaridPos = arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.indexOf(
+      svarid
+    );
     return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
-      .filter((aktivitet) => aktivitet !== svarid)
+      .filter((aktivitet, index) => index < svaridPos)
       .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon));
   };
 
@@ -105,13 +108,13 @@ const Aktivitet: React.FC = () => {
       </SeksjonGruppe>
 
       {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid) => {
-        const harValgtFlereEnnNull =
+        const harValgtMinstEnAktivitet =
           hvaErDinArbeidssituasjon.svarid.length !== 0;
 
         const erValgtFørsteAktivitet =
           hvaErDinArbeidssituasjon.svarid[0] === svarid;
 
-        const visSeksjon = harValgtFlereEnnNull
+        const visSeksjon = harValgtMinstEnAktivitet
           ? !erValgtFørsteAktivitet
             ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
             : true
