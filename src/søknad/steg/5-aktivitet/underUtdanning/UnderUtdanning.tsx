@@ -20,6 +20,7 @@ import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import { erUtdanningFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -83,17 +84,19 @@ const UnderUtdanning: React.FC<Props> = ({
           oppdaterUtdanning={oppdaterUtdanning}
         />
 
-        <ErUtdanningenOffentligEllerPrivat
-          utdanning={utdanning}
-          settUtdanning={settUtdanning}
-        />
+        {utdanning.linjeKursGrad?.verdi && (
+          <ErUtdanningenOffentligEllerPrivat
+            utdanning={utdanning}
+            settUtdanning={settUtdanning}
+          />
+        )}
         {utdanning.offentligEllerPrivat?.verdi && (
           <NårSkalDuVæreElevEllerStudent
             utdanning={utdanning}
             settUtdanning={settUtdanning}
           />
         )}
-        {utdanning.offentligEllerPrivat?.verdi && (
+        {utdanning.periode?.til.verdi && utdanning.periode?.fra.verdi && (
           <ErUtdanningenPåHeltidEllerDeltid
             utdanning={utdanning}
             settUtdanning={settUtdanning}
@@ -107,7 +110,7 @@ const UnderUtdanning: React.FC<Props> = ({
         )}
       </SeksjonGruppe>
 
-      {underUtdanning && underUtdanning.heltidEllerDeltid && (
+      {underUtdanning && erUtdanningFerdigUtfylt(underUtdanning) && (
         <>
           <TidligereUtdanning
             underUtdanning={underUtdanning}

@@ -10,6 +10,7 @@ import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
+import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -68,18 +69,21 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
           </SeksjonGruppe>
         );
       })}
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
-            <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+
+      {erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold) && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
+              <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };

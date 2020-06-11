@@ -5,7 +5,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
 import {
-  ArbeidssituasjonType,
+  EAktivitet,
   EArbeidssituasjon,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
@@ -32,7 +32,7 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
       ...arbeidssituasjon,
       etablererEgenVirksomhet: {
         spørsmålid: EArbeidssituasjon.etablererEgenVirksomhet,
-        svarid: ArbeidssituasjonType.etablererEgenVirksomhet,
+        svarid: EAktivitet.etablererEgenVirksomhet,
         label: intl.formatMessage({ id: spørsmål.tekstid }),
         verdi: e.target.value,
       },

@@ -84,45 +84,59 @@ const OmFirmaetDitt: React.FC<Props> = ({
           value={firma?.navn ? firma?.navn.verdi : ''}
         />
       </FeltGruppe>
-      <FeltGruppe>
-        <Input
-          label={intl.formatMessage({ id: 'firma.label.organisasjonnr' })}
-          bredde={'L'}
-          type={'text'}
-          onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
-          value={
-            firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
-          }
-        />
-      </FeltGruppe>
-      <FeltGruppe>
-        <Datovelger
-          valgtDato={firma?.etableringsdato?.verdi}
-          tekstid={'firma.datovelger.etablering'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-          settDato={(e) => settDatoFelt(e)}
-        />
-      </FeltGruppe>
-      <FeltGruppe>
-        <InputLabelGruppe
-          label={labelArbeidsmengde}
-          nøkkel={labelArbeidsmengde}
-          type={'number'}
-          bredde={'XS'}
-          settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
-          beskrivendeTekst={'%'}
-          value={firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''}
-        />
-      </FeltGruppe>
-      <FeltGruppe>
-        <Textarea
-          key={labelArbeidsmengde}
-          label={labelArbeidsuke}
-          value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
-          maxLength={1000}
-          onChange={(e) => settArbeidsukeTekst(e)}
-        />
-      </FeltGruppe>
+
+      {firma.navn?.verdi && (
+        <FeltGruppe>
+          <Input
+            label={intl.formatMessage({ id: 'firma.label.organisasjonnr' })}
+            bredde={'L'}
+            type={'text'}
+            onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
+            value={
+              firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
+            }
+          />
+        </FeltGruppe>
+      )}
+
+      {firma.organisasjonsnummer?.verdi && (
+        <FeltGruppe>
+          <Datovelger
+            valgtDato={firma?.etableringsdato?.verdi}
+            tekstid={'firma.datovelger.etablering'}
+            datobegrensning={DatoBegrensning.TidligereDatoer}
+            settDato={(e) => settDatoFelt(e)}
+          />
+        </FeltGruppe>
+      )}
+
+      {firma.etableringsdato?.verdi && (
+        <FeltGruppe>
+          <InputLabelGruppe
+            label={labelArbeidsmengde}
+            nøkkel={labelArbeidsmengde}
+            type={'number'}
+            bredde={'XS'}
+            settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
+            beskrivendeTekst={'%'}
+            value={
+              firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''
+            }
+          />
+        </FeltGruppe>
+      )}
+
+      {firma.arbeidsmengde?.verdi && (
+        <FeltGruppe>
+          <Textarea
+            key={labelArbeidsmengde}
+            label={labelArbeidsuke}
+            value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
+            maxLength={1000}
+            onChange={(e) => settArbeidsukeTekst(e)}
+          />
+        </FeltGruppe>
+      )}
     </SeksjonGruppe>
   );
 };

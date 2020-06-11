@@ -1,11 +1,8 @@
-import { IPerson } from '../models/person';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import {
-  ArbeidssituasjonType,
-  IAktivitet,
-} from '../models/steg/aktivitet/aktivitet';
+import { IPerson } from '../../models/person';
+import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { EAktivitet, IAktivitet } from '../../models/steg/aktivitet/aktivitet';
 
-export const hentAktivitetSpørsmål = (
+export const filtrerAktivitetSvaralternativer = (
   person: IPerson,
   aktivitetSpørsmål: ISpørsmål
 ): ISpørsmål => {
@@ -16,7 +13,7 @@ export const hentAktivitetSpørsmål = (
 
   if (!harSøkerBarnUnderEttÅr) {
     const filtrerteSvaralternativer: ISvar[] = AktivitetSpørsmål.svaralternativer.filter(
-      (svar) => svar.id !== ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr
+      (svar) => svar.id !== EAktivitet.erHjemmeMedBarnUnderEttÅr
     );
     return {
       ...AktivitetSpørsmål,
@@ -25,45 +22,42 @@ export const hentAktivitetSpørsmål = (
   } else return AktivitetSpørsmål;
 };
 
-export const fjernArbeidssituasjonType = (
+export const fjernAktivitet = (
   svarider: string[],
   arbeidssituasjon: IAktivitet
 ) => {
   const endretArbeidssituasjon = arbeidssituasjon;
 
-  const erSvarid = (arbeidssituasjonType: ArbeidssituasjonType) => {
-    return svarider.find((svarid) => svarid === arbeidssituasjonType);
+  const erSvarid = (aktivitet: EAktivitet) => {
+    return svarider.find((svarid) => svarid === aktivitet);
   };
 
   if (
-    !erSvarid(ArbeidssituasjonType.erArbeidstaker) &&
+    !erSvarid(EAktivitet.erArbeidstaker) &&
     endretArbeidssituasjon.arbeidsforhold
   )
     delete endretArbeidssituasjon.arbeidsforhold;
 
   if (
-    !erSvarid(ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser) &&
+    !erSvarid(EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser) &&
     endretArbeidssituasjon.firma
   )
     delete endretArbeidssituasjon.firma;
   if (
-    !erSvarid(ArbeidssituasjonType.etablererEgenVirksomhet) &&
+    !erSvarid(EAktivitet.etablererEgenVirksomhet) &&
     endretArbeidssituasjon.etablererEgenVirksomhet
   )
     delete endretArbeidssituasjon.etablererEgenVirksomhet;
 
-  if (
-    !erSvarid(ArbeidssituasjonType.erAnsattIEgetAS) &&
-    endretArbeidssituasjon.egetAS
-  )
+  if (!erSvarid(EAktivitet.erAnsattIEgetAS) && endretArbeidssituasjon.egetAS)
     delete endretArbeidssituasjon.egetAS;
   if (
-    !erSvarid(ArbeidssituasjonType.erArbeidssøker) &&
+    !erSvarid(EAktivitet.erArbeidssøker) &&
     endretArbeidssituasjon.arbeidssøker
   )
     delete endretArbeidssituasjon.arbeidssøker;
   if (
-    !erSvarid(ArbeidssituasjonType.tarUtdanning) &&
+    !erSvarid(EAktivitet.tarUtdanning) &&
     endretArbeidssituasjon.underUtdanning
   )
     delete endretArbeidssituasjon.underUtdanning;

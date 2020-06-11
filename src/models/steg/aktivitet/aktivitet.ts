@@ -23,7 +23,7 @@ export enum EArbeidssituasjon {
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',
 }
 
-export enum ArbeidssituasjonType {
+export enum EAktivitet {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
   erArbeidstaker = 'erArbeidstaker',
   erSelvstendigNæringsdriveneEllerFrilanser = 'erSelvstendigNæringsdriveneEllerFrilanser',

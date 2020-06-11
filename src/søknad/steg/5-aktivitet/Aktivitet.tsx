@@ -2,29 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import Side from '../../../components/side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import HjemmeMedBarnUnderEttÅr from './HjemmeMedBarnUnderEttÅr';
-import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
-import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
-import {
-  ArbeidssituasjonType,
-  IAktivitet,
-} from '../../../models/steg/aktivitet/aktivitet';
-import UnderUtdanning from './underUtdanning/UnderUtdanning';
-import Arbeidssøker from './arbeidssøker/Arbeidssøker';
+import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import OmFirmaetDitt from './OmFirmaetDitt';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
-  fjernArbeidssituasjonType,
-  hentAktivitetSpørsmål,
-} from '../../../helpers/aktivitet';
-import EgetAS from './aksjeselskap/EgetAS';
+  filtrerAktivitetSvaralternativer,
+  fjernAktivitet,
+} from '../../../helpers/arbeidssituasjon/aktivitet';
+import AktivitetOppfølgingSpørsmål from './AktivitetOppfølgingSpørsmål';
+import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/arbeidssituasjon/aktivitetvalidering';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -64,10 +56,7 @@ const Aktivitet: React.FC = () => {
       intl
     );
 
-    const endretArbeidssituasjon = fjernArbeidssituasjonType(
-      svarider,
-      arbeidssituasjon
-    );
+    const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
 
     oppdaterArbeidssituasjon({
       ...endretArbeidssituasjon,
@@ -81,23 +70,35 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
-  const erAktivitetHuketAv = (aktivitet: ArbeidssituasjonType): boolean => {
-    const tekstid: string = 'arbeidssituasjon.svar.' + aktivitet;
-    const svarTekst: string = intl.formatMessage({ id: tekstid });
-    return hvaErDinArbeidssituasjon.verdi.some((svarHuketAvISøknad: string) => {
-      return svarHuketAvISøknad === svarTekst;
-    });
+  const erAlleFelterUtfylt = hvaErDinArbeidssituasjon.svarid.every((id) =>
+    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon)
+  );
+
+  const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
+    hvaErDinArbeidssituasjon.svarid.length !== 0 && erAlleFelterUtfylt;
+
+  const erSpørsmålFørAktivitetBesvart = (
+    svarid: string,
+    arbeidssituasjon: IAktivitet
+  ) => {
+    const svaridPos = arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.indexOf(
+      svarid
+    );
+    return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
+      .filter((aktivitet, index) => index < svaridPos)
+      .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon));
   };
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
+      erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
-          spørsmål={hentAktivitetSpørsmål(
+          spørsmål={filtrerAktivitetSvaralternativer(
             søknad.person,
             hvaErDinArbeidssituasjonSpm
           )}
@@ -106,53 +107,30 @@ const Aktivitet: React.FC = () => {
         />
       </SeksjonGruppe>
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.erHjemmeMedBarnUnderEttÅr) && (
-        <HjemmeMedBarnUnderEttÅr />
-      )}
+      {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid) => {
+        const harValgtMinstEnAktivitet =
+          hvaErDinArbeidssituasjon.svarid.length !== 0;
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.etablererEgenVirksomhet) && (
-        <EtablererEgenVirksomhet
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={settArbeidssituasjon}
-        />
-      )}
+        const erValgtFørsteAktivitet =
+          hvaErDinArbeidssituasjon.svarid[0] === svarid;
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidstaker) && (
-        <OmArbeidsforholdetDitt
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={settArbeidssituasjon}
-        />
-      )}
+        const visSeksjon = harValgtMinstEnAktivitet
+          ? !erValgtFørsteAktivitet
+            ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
+            : true
+          : true;
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.erAnsattIEgetAS) && (
-        <EgetAS
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={settArbeidssituasjon}
-        />
-      )}
+        return (
+          visSeksjon && (
+            <AktivitetOppfølgingSpørsmål
+              svarid={svarid}
+              arbeidssituasjon={arbeidssituasjon}
+              settArbeidssituasjon={settArbeidssituasjon}
+            />
+          )
+        );
+      })}
 
-      {erAktivitetHuketAv(ArbeidssituasjonType.erArbeidssøker) && (
-        <Arbeidssøker
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={oppdaterArbeidssituasjon}
-        />
-      )}
-
-      {erAktivitetHuketAv(
-        ArbeidssituasjonType.erSelvstendigNæringsdriveneEllerFrilanser
-      ) && (
-        <OmFirmaetDitt
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={oppdaterArbeidssituasjon}
-        />
-      )}
-
-      {erAktivitetHuketAv(ArbeidssituasjonType.tarUtdanning) && (
-        <UnderUtdanning
-          arbeidssituasjon={arbeidssituasjon}
-          settArbeidssituasjon={settArbeidssituasjon}
-        />
-      )}
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp
