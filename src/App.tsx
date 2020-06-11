@@ -17,19 +17,19 @@ import { settLabelOgVerdi } from './utils/søknad';
 import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
+import { IPerson } from './models/person';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
-  const { person, settPerson } = usePersonContext();
+  const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
-  const [barneliste, settBarneliste] = useState([]);
 
   autentiseringsInterceptor();
 
-  const kallApi = () =>
+  const dataFraApi = () =>
     process.env.NODE_ENV !== 'development' ||
     process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
@@ -37,45 +37,44 @@ const App = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  useEffect(() => {
-    const fetchData = () => {
-      hentToggles(settToggles).catch((err: Error) => {
-        settError(true);
-      });
+  const fetchPersonData = () => {
+    return hentPersonData()
+      .then((response) => {
+        settPerson({
+          type: PersonActionTypes.HENT_PERSON,
+          payload: response,
+        });
+        oppdaterSøknadMedBarn(response, response.barn);
+      })
+      .catch(() => settError(true));
+  };
 
-      const fetchPersonData = () => {
-        hentPersonData()
-          .then((response) => {
-            settPerson({
-              type: PersonActionTypes.HENT_PERSON,
-              payload: response,
-            });
-            settBarneliste(response.barn);
-            hentMellomlagretOvergangsstønad()
-              .then(() => settFetching(false))
-              .catch(() => settFetching(false));
-          })
-          .catch(() => settError(true));
-      };
-      fetchPersonData();
-    };
-    fetchData();
-
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    let mapBarn = kallApi() ? barneliste : mockPersonMedBarn.barn;
+  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
+    const mapBarn = dataFraApi() ? barneliste : mockPersonMedBarn.barn;
 
     const barnMedLabels = mapBarn.map((barn: any) => {
-      const nyttBarn = settLabelOgVerdi(barn, standardLabelsBarn);
-
-      return nyttBarn;
+      return settLabelOgVerdi(barn, standardLabelsBarn);
     });
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+  };
+
+  const fetchToggles = () => {
+    return hentToggles(settToggles).catch((err: Error) => {
+      settError(true);
+    });
+  };
+
+  useEffect(() => {
+    Promise.all([
+      fetchToggles(),
+      fetchPersonData(),
+      hentMellomlagretOvergangsstønad(),
+    ])
+      .then(() => settFetching(false))
+      .catch(() => settFetching(false));
     // eslint-disable-next-line
-  }, [person, barneliste]);
+  }, []);
 
   if (!fetching && autentisert) {
     if (!error) {
