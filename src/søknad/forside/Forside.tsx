@@ -12,6 +12,7 @@ import Forsideinformasjon from './Forsideinformasjon';
 import { hentBeskjedMedNavn } from '../../utils/språk';
 import FortsettSøknad from './FortsettSøknad';
 import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
+import Environment from '../../Environment';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -46,6 +47,13 @@ const Forside: React.FC<any> = ({ intl }) => {
   const disclaimer = forside['disclaimer_' + locale];
   const seksjon = forside['seksjon_' + locale];
 
+  const kanBrukeMellomlagretSøknad =
+    mellomlagretOvergangsstønad !== undefined &&
+    mellomlagretOvergangsstønad.søknad.person.hash === person.hash &&
+    mellomlagretOvergangsstønad.modellVersjon === Environment().modellVersjon;
+
+  // TODO: Må si ifra at den mellomlagrede versjonen ikke kan brukes pga endring i personopplysninger?
+
   return (
     <div className={'forside'}>
       <main className={'forside__innhold'}>
@@ -60,7 +68,8 @@ const Forside: React.FC<any> = ({ intl }) => {
           </div>
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
           {toggles[ToggleName.mellomlagre_søknad] &&
-          mellomlagretOvergangsstønad !== undefined ? (
+          kanBrukeMellomlagretSøknad &&
+          mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}
               mellomlagretOvergangsstønad={mellomlagretOvergangsstønad}

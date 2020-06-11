@@ -1,5 +1,10 @@
 import axios, { AxiosError } from 'axios';
 import Environment from '../Environment';
+import {
+  arbeidssøkerSkjemaForsideUrl,
+  erUrlArbeidssøkerSkjema,
+} from '../arbeidssøkerskjema/routes/Routes';
+import { overgangsstønadForsideUrl } from '../routing/Routes';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
@@ -8,8 +13,11 @@ const loggInn = () =>
   process.env.NODE_ENV !== 'development' ||
   process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
-const getLoginUrl = () =>
-  Environment().loginService + '?redirect=' + window.location.href;
+const getLoginUrl = () => {
+  return erUrlArbeidssøkerSkjema()
+    ? Environment().loginService + '?redirect=' + arbeidssøkerSkjemaForsideUrl()
+    : Environment().loginService + '?redirect=' + overgangsstønadForsideUrl();
+};
 
 export const autentiseringsInterceptor = () => {
   axios.interceptors.response.use(
