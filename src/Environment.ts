@@ -1,12 +1,14 @@
-interface IEnvUrls {
+interface EnvironmentProps {
   veiviserUrl: string;
   apiUrl: string;
   loginService: string;
   dokumentUrl: string;
   mellomlagerUrl: string;
+  modellVersjon: number;
 }
 
-const Environment = (): IEnvUrls => {
+const Environment = (): EnvironmentProps => {
+  const modellVersjon = 1;
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
@@ -16,6 +18,7 @@ const Environment = (): IEnvUrls => {
         'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl:
         'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/overgangsstonad',
+      modellVersjon: modellVersjon,
     };
   } else if (window.location.hostname.indexOf('www') > -1) {
     return {
@@ -26,6 +29,7 @@ const Environment = (): IEnvUrls => {
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl:
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/overgangsstonad',
+      modellVersjon: modellVersjon,
     };
   } else {
     return {
@@ -34,6 +38,7 @@ const Environment = (): IEnvUrls => {
       loginService: `http://localhost:8091/local/cookie`,
       dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
       mellomlagerUrl: `http://localhost:8082/api/soknad/overgangsstonad`,
+      modellVersjon: modellVersjon,
     };
   }
 };

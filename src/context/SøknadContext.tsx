@@ -17,6 +17,7 @@ import {
   nullstillMellomlagretOvergangsstønadTilDokument,
 } from '../utils/søknad';
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import Environment from '../Environment';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -63,7 +64,6 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     return hentMellomlagretOvergangsstønadFraDokument().then(
       (mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
         if (mellomlagretVersjon) {
-          // TODO: Verifiser at modellen og personHash er gyldig
           settMellomlagretOvergangsstønad(mellomlagretVersjon);
         }
       }
@@ -79,8 +79,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   const mellomlagreOvergangsstønad = (steg: string) => {
     mellomlagreOvergangsstønadTilDokument({
       søknad: søknad,
-      personHash: 'abcdef',
-      modellVersjon: 1,
+      modellVersjon: Environment().modellVersjon,
       gjeldendeSteg: steg,
     });
   };
