@@ -70,8 +70,8 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
-  const erAlleFelterUtfylt = hvaErDinArbeidssituasjon.svarid.every(
-    (id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon) === true
+  const erAlleFelterUtfylt = hvaErDinArbeidssituasjon.svarid.every((id) =>
+    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon)
   );
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
@@ -83,9 +83,7 @@ const Aktivitet: React.FC = () => {
   ) => {
     return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
       .filter((aktivitet) => aktivitet !== svarid)
-      .every(
-        (id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon) === true
-      );
+      .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon));
   };
 
   return (
