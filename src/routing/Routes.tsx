@@ -57,3 +57,6 @@ export const Routes: IRoute[] = [
 export const hentPath = (routes: IRoute[], route: RouteEnum) => {
   return routes.find((r) => r.route === route)?.path;
 };
+
+export const overgangsstønadForsideUrl = (): string =>
+  window.location.origin + process.env.PUBLIC_URL;

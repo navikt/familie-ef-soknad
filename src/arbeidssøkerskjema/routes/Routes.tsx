@@ -45,3 +45,14 @@ export const hentNesteRoute = (routes: IRoute[], currentPath: string) => {
   const nesteRoute = routes[routeIndex + 1];
   return nesteRoute;
 };
+
+export const erUrlArbeidssøkerSkjema = (): boolean => {
+  return window.location.href.includes(
+    process.env.PUBLIC_URL + hentPath(Routes, RouteEnum.Forside)
+  );
+};
+
+export const arbeidssøkerSkjemaForsideUrl = (): string =>
+  window.location.origin +
+  process.env.PUBLIC_URL +
+  hentPath(Routes, RouteEnum.Forside);
