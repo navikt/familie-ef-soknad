@@ -53,28 +53,33 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return true;
 
     case EAktivitet.erArbeidstaker:
-      return arbeidsforhold !== undefined
-        ? erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold)
-        : false;
+      return (
+        arbeidsforhold !== undefined &&
+        erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold)
+      );
 
     case EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser:
       return harValgtSvar(firma?.arbeidsuke?.verdi);
 
     case EAktivitet.erAnsattIEgetAS:
-      return egetAS ? erAksjeselskapFerdigUtfylt(egetAS) : false;
+      return egetAS !== undefined && erAksjeselskapFerdigUtfylt(egetAS);
 
     case EAktivitet.etablererEgenVirksomhet:
-      return etablererEgenVirksomhet
-        ? harValgtSvar(etablererEgenVirksomhet.verdi)
-        : false;
+      return (
+        etablererEgenVirksomhet !== undefined &&
+        harValgtSvar(etablererEgenVirksomhet.verdi)
+      );
 
     case EAktivitet.erArbeidssøker:
-      return arbeidssøker
-        ? harValgtSvar(arbeidssøker.ønskerSøker50ProsentStilling?.verdi)
-        : false;
+      return (
+        arbeidssøker !== undefined &&
+        harValgtSvar(arbeidssøker.ønskerSøker50ProsentStilling?.verdi)
+      );
 
     case EAktivitet.tarUtdanning:
-      return underUtdanning ? erUtdanningFerdigUtfylt(underUtdanning) : false;
+      return (
+        underUtdanning !== undefined && erUtdanningFerdigUtfylt(underUtdanning)
+      );
 
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;
