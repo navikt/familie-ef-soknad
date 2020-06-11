@@ -11,7 +11,6 @@ import SyktBarn from './SyktBarn';
 import SøkerErSyk from './SøkerErSyk';
 import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
 import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
-import { dagensDatoStreng } from '../../../utils/dato';
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
