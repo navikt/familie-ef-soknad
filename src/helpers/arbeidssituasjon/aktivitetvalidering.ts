@@ -16,21 +16,16 @@ import {
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
 ) => {
-  return arbeidsforhold?.some(
-    (arbeidsgiver, index) =>
-      index === arbeidsforhold?.length - 1 &&
-      (arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig
-        ? arbeidsgiver.harSluttDato?.verdi === false ||
-          arbeidsgiver.sluttdato?.verdi
-        : arbeidsgiver.ansettelsesforhold?.verdi)
+  return arbeidsforhold?.every((arbeidsgiver) =>
+    arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig
+      ? arbeidsgiver.harSluttDato?.verdi === false ||
+        arbeidsgiver.sluttdato?.verdi
+      : arbeidsgiver.ansettelsesforhold?.verdi
   );
 };
 
 export const erAksjeselskapFerdigUtfylt = (egetAS: IAksjeselskap[]) => {
-  return egetAS?.some(
-    (aksjeselskap, index) =>
-      index === egetAS?.length - 1 && aksjeselskap.arbeidsmengde?.verdi
-  );
+  return egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi);
 };
 
 export const erUtdanningFerdigUtfylt = (underUtdanning: IUnderUtdanning) => {
