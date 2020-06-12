@@ -123,6 +123,11 @@ const MerOmDinSituasjon: React.FC = () => {
       erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon)
     );
 
+  const visNårSøkerDuStønadFra = søkerJobberMindreEnnFemtiProsent
+    ? harValgtMinstEttAlternativOgFelterFerdigUtfylt &&
+      harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon)
+    : harValgtMinstEttAlternativOgFelterFerdigUtfylt;
+
   const erAlleSpørsmålBesvart =
     søknadsdato?.verdi !== undefined ||
     søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
@@ -175,16 +180,14 @@ const MerOmDinSituasjon: React.FC = () => {
             />
           </SeksjonGruppe>
         )}
-      {søkerJobberMindreEnnFemtiProsent &&
-        harValgtMinstEttAlternativOgFelterFerdigUtfylt &&
-        harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon) && (
-          <SeksjonGruppe>
-            <NårSøkerDuOvergangsstønadFra
-              dinSituasjon={dinSituasjon}
-              settDinSituasjon={settDinSituasjon}
-            />
-          </SeksjonGruppe>
-        )}
+      {visNårSøkerDuStønadFra && (
+        <SeksjonGruppe>
+          <NårSøkerDuOvergangsstønadFra
+            dinSituasjon={dinSituasjon}
+            settDinSituasjon={settDinSituasjon}
+          />
+        </SeksjonGruppe>
+      )}
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp
