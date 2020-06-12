@@ -9,7 +9,9 @@ import { useSøknad } from '../../context/SøknadContext';
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/toggles';
 import Forsideinformasjon from './Forsideinformasjon';
+import { hentBeskjedMedNavn } from '../../utils/språk';
 import FortsettSøknad from './FortsettSøknad';
+import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
 import Environment from '../../Environment';
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -56,6 +58,14 @@ const Forside: React.FC<any> = ({ intl }) => {
     <div className={'forside'}>
       <main className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
+          <div className="veileder">
+            <VeilederSnakkeboble
+              tekst={hentBeskjedMedNavn(
+                person.søker.forkortetNavn,
+                intl.formatMessage({ id: 'skjema.hei' })
+              )}
+            />
+          </div>
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
           {toggles[ToggleName.mellomlagre_søknad] &&
           kanBrukeMellomlagretSøknad &&

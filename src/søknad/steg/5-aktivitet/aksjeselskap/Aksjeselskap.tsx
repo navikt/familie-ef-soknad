@@ -95,27 +95,29 @@ const Aksjeselskap: FC<Props> = ({
           value={aksjeselskap?.navn?.verdi ? aksjeselskap.navn.verdi : ''}
         />
       </FeltGruppe>
-      <FeltGruppe>
-        <InputLabelGruppe
-          label={arbeidsmengdeLabel}
-          nøkkel={EAksjeselskap.arbeidsmengde}
-          type={'number'}
-          bredde={'XS'}
-          value={
-            aksjeselskap?.arbeidsmengde?.verdi
-              ? aksjeselskap?.arbeidsmengde?.verdi
-              : ''
-          }
-          settInputFelt={(e) =>
-            settTekstInputFelt(
-              e,
-              arbeidsmengdeLabel,
-              EAksjeselskap.arbeidsmengde
-            )
-          }
-          beskrivendeTekst={'%'}
-        />
-      </FeltGruppe>
+      {aksjeselskap.navn?.verdi && (
+        <FeltGruppe>
+          <InputLabelGruppe
+            label={arbeidsmengdeLabel}
+            nøkkel={EAksjeselskap.arbeidsmengde}
+            type={'number'}
+            bredde={'XS'}
+            value={
+              aksjeselskap?.arbeidsmengde?.verdi
+                ? aksjeselskap?.arbeidsmengde?.verdi
+                : ''
+            }
+            settInputFelt={(e) =>
+              settTekstInputFelt(
+                e,
+                arbeidsmengdeLabel,
+                EAksjeselskap.arbeidsmengde
+              )
+            }
+            beskrivendeTekst={'%'}
+          />
+        </FeltGruppe>
+      )}
     </>
   );
 };

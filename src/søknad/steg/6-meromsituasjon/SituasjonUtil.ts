@@ -1,8 +1,13 @@
-import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import {
+  DinSituasjonType,
+  ESagtOppEllerRedusertStilling,
+  IDinSituasjon,
+} from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IntlShape } from 'react-intl';
 import { ISøknad } from '../../../models/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 export const erSituasjonIAvhukedeSvar = (
   situasjon: DinSituasjonType,
@@ -35,4 +40,31 @@ export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
     totalArbeidsmengde += arbeidsmengdeForArbeidsforhold;
   }
   return totalArbeidsmengde < 50 || totalArbeidsmengde === 50;
+};
+
+export const harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål = (
+  dinSituasjon: IDinSituasjon
+) => {
+  const {
+    sagtOppEllerRedusertStilling,
+    begrunnelseSagtOppEllerRedusertStilling,
+    datoSagtOppEllerRedusertStilling,
+  } = dinSituasjon;
+
+  const valgtSagtOppEllerRedusertStilling =
+    sagtOppEllerRedusertStilling?.svarid ===
+      ESagtOppEllerRedusertStilling.sagtOpp ||
+    sagtOppEllerRedusertStilling?.svarid ===
+      ESagtOppEllerRedusertStilling.redusertStilling;
+  const harSkrevetBegrunnelse = harValgtSvar(
+    begrunnelseSagtOppEllerRedusertStilling?.verdi
+  );
+  const harValgtDato = datoSagtOppEllerRedusertStilling?.verdi !== undefined;
+
+  return (
+    (valgtSagtOppEllerRedusertStilling &&
+      harSkrevetBegrunnelse &&
+      harValgtDato) ||
+    sagtOppEllerRedusertStilling?.svarid === ESagtOppEllerRedusertStilling.nei
+  );
 };

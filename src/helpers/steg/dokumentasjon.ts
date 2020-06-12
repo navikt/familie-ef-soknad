@@ -1,5 +1,5 @@
-import { IDokumentasjon } from '../models/dokumentasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { IDokumentasjon } from '../../models/dokumentasjon';
+import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
 
 export const hentDokumentasjonTilFlersvarSpørsmål = (
   erHuketAv: boolean | undefined,

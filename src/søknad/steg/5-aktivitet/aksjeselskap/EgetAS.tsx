@@ -12,6 +12,7 @@ import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
+import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -26,8 +27,6 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
   const [egetAS, settEgetAS] = useState<IAksjeselskap[]>(
     arbeidssituasjon.egetAS ? arbeidssituasjon.egetAS : [tomtAksjeselskap]
   );
-
-  console.log(egetAS, arbeidssituasjon.egetAS);
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, egetAS: egetAS });
@@ -60,19 +59,20 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
           </SeksjonGruppe>
         );
       })}
-
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst tekst={'egetAS.label.flere'} />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
-            <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+      {erAksjeselskapFerdigUtfylt(egetAS) && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst tekst={'egetAS.label.flere'} />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
+              <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };

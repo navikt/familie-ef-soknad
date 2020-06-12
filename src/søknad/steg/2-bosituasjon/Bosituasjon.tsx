@@ -19,7 +19,7 @@ import {
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { erFerdigUtfylt } from '../../../helpers/bosituasjon';
+import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();

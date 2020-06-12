@@ -12,7 +12,7 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { formatDateFnr, dagensDato } from '../../../utils/dato';
 import { parseISO } from 'date-fns';
 import { IBarn } from '../../../models/barn';
-import { hentNyttBarn } from '../../../helpers/barn';
+import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/spørsmålogsvar';
 
 interface Props {

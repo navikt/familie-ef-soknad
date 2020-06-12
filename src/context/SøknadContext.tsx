@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import personIngenBarn from '../mock/personIngenBarn.json';
-import { dagensDatoStreng } from '../utils/dato';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
@@ -10,7 +9,7 @@ import { ISøknad } from '../models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
-} from '../helpers/dokumentasjon';
+} from '../helpers/steg/dokumentasjon';
 import {
   hentMellomlagretOvergangsstønadFraDokument,
   mellomlagreOvergangsstønadTilDokument,
@@ -47,7 +46,6 @@ const initialState: ISøknad = {
       label: '',
       verdi: [],
     },
-    søknadsdato: { label: '', verdi: dagensDatoStreng },
   },
   dokumentasjonsbehov: [],
 };
