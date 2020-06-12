@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -23,6 +23,14 @@ const Personopplysninger: React.FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
+  const [harTlfnrIFolkeregisteret, settHarTlfnrIFolkeregisteret] = useState<
+    boolean
+  >(false);
+
+  useEffect(() => {
+    harSøkerTlfnr(søknad.person) && settHarTlfnrIFolkeregisteret(true);
+    // eslint-disable-next-line
+  }, []);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -41,7 +49,7 @@ const Personopplysninger: React.FC = () => {
     });
   };
 
-  const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
+  const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
     if (telefonnr.length >= 8) {
       settSøknad({
@@ -102,26 +110,28 @@ const Personopplysninger: React.FC = () => {
       </KomponentGruppe>
 
       {søkerBorPåRegistrertAdresse?.verdi &&
-        (!harSøkerTlfnr(søknad.person) ? (
-          <Input
-            key={'tlf'}
-            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-            type="tel"
-            bredde={'M'}
-            onChange={(e) => settTelefonnummer(e)}
-            onBlur={(e) => {
-              e.currentTarget.value.length >= 8
-                ? settFeilTelefonnr(false)
-                : settFeilTelefonnr(true);
-            }}
-            feil={
-              feilTelefonnr
-                ? intl.formatMessage({
-                    id: 'personopplysninger.feilmelding.telefonnr',
-                  })
-                : undefined
-            }
-          />
+        (!harTlfnrIFolkeregisteret ? (
+          <>
+            <Input
+              key={'tlf'}
+              label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+              type="tel"
+              bredde={'M'}
+              onChange={(e) => oppdaterTelefonnr(e)}
+              onBlur={(e) => {
+                e.currentTarget.value.length >= 8
+                  ? settFeilTelefonnr(false)
+                  : settFeilTelefonnr(true);
+              }}
+              feil={
+                feilTelefonnr
+                  ? intl.formatMessage({
+                      id: 'personopplysninger.feilmelding.telefonnr',
+                    })
+                  : undefined
+              }
+            />
+          </>
         ) : (
           <FeltGruppe>
             <Element>
