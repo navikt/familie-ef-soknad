@@ -42,6 +42,7 @@ const PersonInfoGruppe: FC<Props> = ({
           type="text"
           bredde={'L'}
           onChange={(e) => settPersonInfo(e, 'navn')}
+          value={valgtPersonInfo.navn?.verdi}
         />
       </FeltGruppe>
       <FeltGruppe classname={'datoOgPersonnummer'}>
@@ -58,6 +59,7 @@ const PersonInfoGruppe: FC<Props> = ({
               label={intl.formatMessage({ id: 'person.nr' }).trim()}
               type="text"
               bredde={'S'}
+              value={valgtPersonInfo.fødselsnummer?.verdi}
               onChange={(e) => settPersonInfo(e, 'fødselsnummer')}
             />
           </>
