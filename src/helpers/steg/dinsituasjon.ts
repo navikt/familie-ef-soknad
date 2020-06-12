@@ -7,7 +7,7 @@ export const erSituasjonSeksjonFerdigUtfylt = (
   svarid: string,
   dinSituasjon: IDinSituasjon
 ): boolean => {
-  const {} = dinSituasjon;
+  const { datoOppstartJobb, datoOppstartUtdanning } = dinSituasjon;
 
   switch (svarid) {
     case DinSituasjonType.erSyk:
@@ -21,9 +21,9 @@ export const erSituasjonSeksjonFerdigUtfylt = (
     case DinSituasjonType.harBarnMedSærligeBehov:
       return true;
     case DinSituasjonType.harFåttJobbTilbud:
-      return true;
+      return datoOppstartJobb?.verdi !== undefined;
     case DinSituasjonType.skalTaUtdanning:
-      return true;
+      return datoOppstartUtdanning?.verdi !== undefined;
 
     default:
       return false;
