@@ -14,7 +14,11 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
-import { harSøkerTlfnr, hentSøkersTlfnr } from '../../../../helpers/omdeg';
+import {
+  harSøkerTlfnr,
+  hentSivilstatus,
+  hentSøkersTlfnr,
+} from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -51,7 +55,7 @@ const Personopplysninger: React.FC = () => {
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
-    if (telefonnr.length >= 8) {
+    if (telefonnr.length >= 8 && /^\d+$/.test(telefonnr)) {
       settSøknad({
         ...søknad,
         person: {
@@ -60,6 +64,12 @@ const Personopplysninger: React.FC = () => {
         },
       });
     }
+  };
+
+  const oppdaterFeilmelding = (e: React.FormEvent<HTMLInputElement>) => {
+    e.currentTarget.value.length >= 8 && /^\d+$/.test(e.currentTarget.value)
+      ? settFeilTelefonnr(false)
+      : settFeilTelefonnr(true);
   };
 
   return (
@@ -83,6 +93,13 @@ const Personopplysninger: React.FC = () => {
             <LocaleTekst tekst={'person.statsborgerskap'} />
           </Element>
           <Normaltekst>{søker.statsborgerskap}</Normaltekst>
+        </FeltGruppe>
+
+        <FeltGruppe>
+          <Element>
+            <LocaleTekst tekst={'sivilstatus.tittel'} />
+          </Element>
+          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
@@ -118,11 +135,7 @@ const Personopplysninger: React.FC = () => {
               type="tel"
               bredde={'M'}
               onChange={(e) => oppdaterTelefonnr(e)}
-              onBlur={(e) => {
-                e.currentTarget.value.length >= 8
-                  ? settFeilTelefonnr(false)
-                  : settFeilTelefonnr(true);
-              }}
+              onBlur={(e) => oppdaterFeilmelding(e)}
               feil={
                 feilTelefonnr
                   ? intl.formatMessage({
