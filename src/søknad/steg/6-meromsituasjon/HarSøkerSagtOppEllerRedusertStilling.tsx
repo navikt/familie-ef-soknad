@@ -172,19 +172,21 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
               onChange={(e) => settBegrunnelse(e)}
             />
           </KomponentGruppe>
-          <KomponentGruppe>
-            <Datovelger
-              valgtDato={datoSagtOppEllerRedusertStilling?.verdi}
-              tekstid={datovelgerLabel}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-              settDato={settDato}
-            />
-            {erValgtDatoMindreEnn6mndSiden && (
-              <AlertStripe type={'info'} form={'inline'}>
-                <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-              </AlertStripe>
-            )}
-          </KomponentGruppe>
+          {begrunnelseSagtOppEllerRedusertStilling && (
+            <KomponentGruppe>
+              <Datovelger
+                valgtDato={datoSagtOppEllerRedusertStilling?.verdi}
+                tekstid={datovelgerLabel}
+                datobegrensning={DatoBegrensning.TidligereDatoer}
+                settDato={settDato}
+              />
+              {erValgtDatoMindreEnn6mndSiden && (
+                <AlertStripe type={'info'} form={'inline'}>
+                  <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
+                </AlertStripe>
+              )}
+            </KomponentGruppe>
+          )}
         </>
       )}
     </>

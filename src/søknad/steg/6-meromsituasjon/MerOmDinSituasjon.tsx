@@ -13,6 +13,7 @@ import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
   DinSituasjonType,
+  ESøkerFraBestemtMåned,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import {
@@ -43,8 +44,8 @@ const MerOmDinSituasjon: React.FC = () => {
     gjelderDetteDeg,
     datoOppstartJobb,
     datoOppstartUtdanning,
-    sagtOppEllerRedusertStilling,
-    begrunnelseSagtOppEllerRedusertStilling,
+    søknadsdato,
+    søkerFraBestemtMåned,
   } = dinSituasjon;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
@@ -122,11 +123,16 @@ const MerOmDinSituasjon: React.FC = () => {
       erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon)
     );
 
+  const erAlleSpørsmålBesvart =
+    søknadsdato?.verdi !== undefined ||
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
+
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
     >
       <SeksjonGruppe>
         <KomponentGruppe>

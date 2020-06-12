@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   DinSituasjonType,
   ESagtOppEllerRedusertStilling,
@@ -161,7 +161,7 @@ export const SøkerFraBestemtMånedSpm: ISpørsmål = {
   svaralternativer: [
     {
       id: ESøkerFraBestemtMåned.ja,
-      svar_tekstid: 'svar.ja',
+      svar_tekstid: ESvarTekstid.JA,
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,
