@@ -19,7 +19,7 @@ const Dokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
 
   return (
-    <Side tittel={sidetittel} skalViseKnapper={false}>
+    <Side tittel={sidetittel} skalViseKnapper={false} erSpørsmålBesvart={true}>
       <SeksjonGruppe>
         <Normaltekst>
           <FormattedHTMLMessage id={'dokumentasjon.beskrivelse'} />
