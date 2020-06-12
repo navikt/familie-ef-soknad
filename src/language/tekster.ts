@@ -146,6 +146,10 @@ export default {
       'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen / når skal endringen skje?',
+    'sivilstatus.hjelpetekst-åpne.begrunnelse':
+      'Grunnen til at vi spør om dette',
+    'sivilstatus.hjelpetekst-innhold.begrunnelse':
+      'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
 
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',
