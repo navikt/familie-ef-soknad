@@ -12,11 +12,6 @@ export const oppholderSegINorge: ISpørsmål = {
 export const bosattINorgeDeSisteTreÅr: ISpørsmål = {
   søknadid: 'søkerBosattINorgeSisteTreÅr',
   tekstid: 'medlemskap.spm.bosatt',
-  lesmer: {
-    åpneTekstid: 'medlemskap.hjelpetekst-åpne.bosatt',
-    lukkeTekstid: '',
-    innholdTekstid: 'medlemskap.hjelpetekst-innhold.bosatt',
-  },
   flersvar: false,
 
   svaralternativer: JaNeiSvar,
