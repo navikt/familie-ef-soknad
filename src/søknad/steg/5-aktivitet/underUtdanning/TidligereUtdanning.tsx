@@ -15,7 +15,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
 import { useIntl } from 'react-intl';
-import { lagTomUtdanning } from '../../../../helpers/utdanning';
+import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 interface Props {

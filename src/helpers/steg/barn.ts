@@ -1,10 +1,10 @@
 import { IntlShape } from 'react-intl';
-import { hentFeltObjekt, hentTekst } from '../utils/søknad';
+import { hentFeltObjekt, hentTekst } from '../../utils/søknad';
 import { differenceInYears } from 'date-fns';
-import { dagensDato, formatIsoDate } from '../utils/dato';
-import { hentUid } from '../utils/uuid';
-import { EBarn, IBarn } from '../models/barn';
-import { ESvar } from '../models/spørsmålogsvar';
+import { dagensDato, formatIsoDate } from '../../utils/dato';
+import { hentUid } from '../../utils/uuid';
+import { EBarn, IBarn } from '../../models/barn';
+import { ESvar } from '../../models/spørsmålogsvar';
 
 export const hentNyttBarn = (
   fnr: string,

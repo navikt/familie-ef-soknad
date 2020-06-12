@@ -10,7 +10,7 @@ import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
-import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
+import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

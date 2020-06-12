@@ -1,16 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import BarnMedSærligeBehov from './BarnMedSærligeBehov';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import FåttJobbTilbud from './FåttJobbTilbud';
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
-import SyktBarn from './SyktBarn';
-import SøkerErSyk from './SøkerErSyk';
-import SøkerSkalTaUtdanning from './SøkerSkalTaUtdanning';
-import SøktBarnepassOgVenterPåSvar from './SøktBarnepassOgVenterPåSvar';
+
 import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -18,15 +13,19 @@ import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
   DinSituasjonType,
+  ESøkerFraBestemtMåned,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import {
   erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
+  harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
 } from './SituasjonUtil';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import SituasjonOppfølgingSpørsmål from './SituasjonOppfølgingSpørsmål';
+import { erSituasjonSeksjonFerdigUtfylt } from '../../../helpers/steg/dinsituasjon';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -45,9 +44,14 @@ const MerOmDinSituasjon: React.FC = () => {
     gjelderDetteDeg,
     datoOppstartJobb,
     datoOppstartUtdanning,
+    søknadsdato,
+    søkerFraBestemtMåned,
   } = dinSituasjon;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
+  const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
+    søknad
+  );
 
   useEffect(() => {
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
@@ -103,33 +107,37 @@ const MerOmDinSituasjon: React.FC = () => {
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
-  const erSituasjonHuketAv = (situasjon: DinSituasjonType): boolean => {
-    return (
-      gjelderDetteDeg &&
-      erSituasjonIAvhukedeSvar(situasjon, gjelderDetteDeg.verdi, intl)
-    );
+  const erSpørsmålFørValgtAlternativBesvart = (
+    svarid: string,
+    dinSituasjon: IDinSituasjon
+  ) => {
+    const svaridPos = dinSituasjon.gjelderDetteDeg.svarid.indexOf(svarid);
+    return dinSituasjon.gjelderDetteDeg.svarid
+      .filter((situasjon, index) => index < svaridPos)
+      .every((id) => erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon));
   };
 
-  const erSykHuketav = erSituasjonHuketAv(DinSituasjonType.erSyk);
-  const harSyktBarnHuketAv = erSituasjonHuketAv(DinSituasjonType.harSyktBarn);
-  const harSøktBarnepassOgVenterPåSvar = erSituasjonHuketAv(
-    DinSituasjonType.harSøktBarnepassOgVenterEnnå
-  );
-  const harBarnMedSærligeBehov = erSituasjonHuketAv(
-    DinSituasjonType.harBarnMedSærligeBehov
-  );
-  const harFåttJobbTilbud = erSituasjonHuketAv(
-    DinSituasjonType.harFåttJobbTilbud
-  );
-  const skalTaUtdanning = erSituasjonHuketAv(DinSituasjonType.skalTaUtdanning);
-  const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
-    søknad
-  );
+  const harValgtMinstEttAlternativOgFelterFerdigUtfylt =
+    gjelderDetteDeg.svarid.length !== 0 &&
+    gjelderDetteDeg.svarid.every((id) =>
+      erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon)
+    );
+
+  const visNårSøkerDuStønadFra = søkerJobberMindreEnnFemtiProsent
+    ? harValgtMinstEttAlternativOgFelterFerdigUtfylt &&
+      harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon)
+    : harValgtMinstEttAlternativOgFelterFerdigUtfylt;
+
+  const erAlleSpørsmålBesvart =
+    søknadsdato?.verdi !== undefined ||
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
+
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
     >
       <SeksjonGruppe>
         <KomponentGruppe>
@@ -139,37 +147,47 @@ const MerOmDinSituasjon: React.FC = () => {
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>
-        {erSykHuketav && <SøkerErSyk />}
-        {harSyktBarnHuketAv && <SyktBarn />}
-        {harSøktBarnepassOgVenterPåSvar && <SøktBarnepassOgVenterPåSvar />}
-        {harBarnMedSærligeBehov && <BarnMedSærligeBehov />}
-        {harFåttJobbTilbud && (
-          <FåttJobbTilbud
-            dinSituasjon={dinSituasjon}
-            settDinSituasjon={settDinSituasjon}
-          />
-        )}
-        {skalTaUtdanning && (
-          <SøkerSkalTaUtdanning
-            dinSituasjon={dinSituasjon}
-            settDinSituasjon={settDinSituasjon}
-          />
-        )}
+        {dinSituasjon.gjelderDetteDeg.svarid.map((svarid) => {
+          const harValgtMinstEttAlternativ =
+            gjelderDetteDeg.svarid.length !== 0;
+
+          const erValgtAlternativDetFørste =
+            gjelderDetteDeg.svarid[0] === svarid;
+
+          const visSeksjon = harValgtMinstEttAlternativ
+            ? !erValgtAlternativDetFørste
+              ? erSpørsmålFørValgtAlternativBesvart(svarid, dinSituasjon)
+              : true
+            : true;
+
+          return (
+            visSeksjon && (
+              <SituasjonOppfølgingSpørsmål
+                dinSituasjon={dinSituasjon}
+                settDinSituasjon={settDinSituasjon}
+                svarid={svarid}
+              />
+            )
+          );
+        })}
       </SeksjonGruppe>
-      {søkerJobberMindreEnnFemtiProsent && (
+      {søkerJobberMindreEnnFemtiProsent &&
+        harValgtMinstEttAlternativOgFelterFerdigUtfylt && (
+          <SeksjonGruppe>
+            <HarSøkerSagtOppEllerRedusertStilling
+              dinSituasjon={dinSituasjon}
+              settDinSituasjon={settDinSituasjon}
+            />
+          </SeksjonGruppe>
+        )}
+      {visNårSøkerDuStønadFra && (
         <SeksjonGruppe>
-          <HarSøkerSagtOppEllerRedusertStilling
+          <NårSøkerDuOvergangsstønadFra
             dinSituasjon={dinSituasjon}
             settDinSituasjon={settDinSituasjon}
           />
         </SeksjonGruppe>
       )}
-      <SeksjonGruppe>
-        <NårSøkerDuOvergangsstønadFra
-          dinSituasjon={dinSituasjon}
-          settDinSituasjon={settDinSituasjon}
-        />
-      </SeksjonGruppe>
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp

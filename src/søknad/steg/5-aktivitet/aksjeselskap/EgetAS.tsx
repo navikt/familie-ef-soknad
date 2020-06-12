@@ -12,7 +12,7 @@ import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
-import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
+import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

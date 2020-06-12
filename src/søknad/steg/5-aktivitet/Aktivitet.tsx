@@ -14,9 +14,9 @@ import { useSøknad } from '../../../context/SøknadContext';
 import {
   filtrerAktivitetSvaralternativer,
   fjernAktivitet,
-} from '../../../helpers/arbeidssituasjon/aktivitet';
+} from '../../../helpers/steg/aktivitet';
 import AktivitetOppfølgingSpørsmål from './AktivitetOppfølgingSpørsmål';
-import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/arbeidssituasjon/aktivitetvalidering';
+import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();

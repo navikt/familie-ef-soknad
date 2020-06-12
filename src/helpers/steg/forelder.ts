@@ -3,11 +3,11 @@ import {
   EHarSkriftligSamværsavtale,
   EHvorforIkkeOppgi,
   EHvorMyeSammen,
-} from '../models/steg/barnasbosted';
-import { EForelder, IForelder } from '../models/forelder';
-import { ESvar, ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { harValgtSvar } from '../utils/spørsmålogsvar';
-import { erGyldigDato } from '../utils/dato';
+} from '../../models/steg/barnasbosted';
+import { EForelder, IForelder } from '../../models/forelder';
+import { ESvar, ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { harValgtSvar } from '../../utils/spørsmålogsvar';
+import { erGyldigDato } from '../../utils/dato';
 
 export const visBostedOgSamværSeksjon = (
   forelder: IForelder,
