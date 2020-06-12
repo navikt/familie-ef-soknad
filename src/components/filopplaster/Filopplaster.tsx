@@ -13,29 +13,32 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/vedlegg';
 import Environment from '../../Environment';
+import axios from 'axios';
+import { IDokumentasjon } from '../../models/dokumentasjon';
+import { hentTekst } from '../../utils/søknad';
 
 interface Props {
   intl: IntlShape;
-  settVedlegg: (vedleggliste: IVedlegg[]) => void;
-  vedleggsliste: IVedlegg[];
-  tittel: string;
-  dokumentasjonsType: string;
+  settDokumentasjon: (dokumentasjon: IDokumentasjon) => void;
+  dokumentasjon: IDokumentasjon;
   beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
   maxFilstørrelse?: number;
 }
 
+interface OpplastetVedlegg {
+  dokumentId: string;
+  filnavn: string;
+}
+
 const Filopplaster: React.FC<Props> = ({
   intl,
-  settVedlegg,
-  vedleggsliste,
-  tittel,
-  dokumentasjonsType,
+  settDokumentasjon,
+  dokumentasjon,
   beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
-  const [filliste, settFilliste] = useState<any>([]);
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
 
@@ -76,46 +79,61 @@ const Filopplaster: React.FC<Props> = ({
           return;
         }
 
-        const data = new FormData();
-        data.append('file', fil);
+        const requestData = new FormData();
+        requestData.append('file', fil);
 
-        fetch(`${Environment().dokumentUrl}`, {
-          method: 'POST',
-          body: data,
-        })
-          .then((response) => response.json())
-          .then((data) => {
+        axios
+          .post<OpplastetVedlegg>(`${Environment().dokumentUrl}`, requestData, {
+            withCredentials: true,
+            headers: {
+              'content-type': 'multipart/form-data',
+              accept: 'application/json',
+            },
+          })
+          .then((response: { data: OpplastetVedlegg }) => {
+            const { data } = response;
             nyeVedlegg.push({
               dokumentId: data.dokumentId,
-              navn: dokumentasjonsType,
-              label: tittel,
+              navn: fil.name,
+              label: hentTekst(dokumentasjon.tittel, intl),
+              størrelse: fil.size,
             });
-            settFilliste((prevListe: any) => [
-              { filObjekt: fil, dokumentId: data.dokumentId },
-              ...prevListe,
-            ]);
-            const nyVedleggsliste = [...vedleggsliste, ...nyeVedlegg];
 
-            settVedlegg(nyVedleggsliste);
+            const opplastedeVedlegg = dokumentasjon.opplastedeVedlegg || [];
+            settDokumentasjon({
+              ...dokumentasjon,
+              opplastedeVedlegg: [...opplastedeVedlegg, ...nyeVedlegg],
+            });
           })
           .catch((error) => {
-            console.log('Feil', error);
             feilmeldingsliste.push(
-              intl.formatMessage({ id: 'filopplaster.dra' })
+              intl.formatMessage({ id: 'filopplaster.feilmelding.generisk' })
             );
+            settFeilmeldinger(feilmeldingsliste);
+            settÅpenModal(true);
           });
       });
     },
     // eslint-disable-next-line
-    []
+    [dokumentasjon.opplastedeVedlegg]
   );
+
+  const slettVedlegg = (fil: IVedlegg) => {
+    const opplastedeVedlegg = dokumentasjon.opplastedeVedlegg || [];
+    const nyVedleggsliste = opplastedeVedlegg.filter((obj: IVedlegg) => {
+      return obj.dokumentId !== fil.dokumentId;
+    });
+    settDokumentasjon({ ...dokumentasjon, opplastedeVedlegg: nyVedleggsliste });
+  };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
-        <Undertittel className="tittel">{tittel}</Undertittel>
+        <Undertittel className="tittel">
+          {hentTekst(dokumentasjon.tittel, intl)}
+        </Undertittel>
 
         {beskrivelsesListe ? (
           <ul className="opplasting-liste">
@@ -128,7 +146,10 @@ const Filopplaster: React.FC<Props> = ({
         ) : null}
 
         <div className="opplastede-filer">
-          <OpplastedeFiler filliste={filliste} settFilliste={settFilliste} />
+          <OpplastedeFiler
+            filliste={dokumentasjon.opplastedeVedlegg || []}
+            slettVedlegg={slettVedlegg}
+          />
         </div>
       </div>
 

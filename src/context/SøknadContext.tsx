@@ -48,7 +48,6 @@ const initialState: ISøknad = {
     },
   },
   dokumentasjonsbehov: [],
-  vedleggsliste: [],
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
