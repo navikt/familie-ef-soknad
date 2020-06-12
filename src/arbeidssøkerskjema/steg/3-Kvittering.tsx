@@ -2,7 +2,7 @@ import React from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { dagensDato, formatDateHour } from '../../utils/dato';
 import { hentTekst } from '../../utils/søknad';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
