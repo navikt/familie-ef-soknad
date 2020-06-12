@@ -18,5 +18,4 @@ export interface ISøknad {
   aktivitet: IAktivitet;
   merOmDinSituasjon: IDinSituasjon;
   dokumentasjonsbehov: IDokumentasjon[];
-  vedleggsliste: IVedlegg[];
 }

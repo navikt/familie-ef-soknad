@@ -50,7 +50,6 @@ const initialState: ISøknad = {
     søknadsdato: { label: '', verdi: dagensDatoStreng },
   },
   dokumentasjonsbehov: [],
-  vedleggsliste: [],
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {

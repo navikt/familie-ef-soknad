@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LastOppVedlegg from './LastOppVedlegg';
 import Lenke from 'nav-frontend-lenker';
@@ -10,13 +10,31 @@ import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
 import SendSøknadKnapper from './SendSøknad';
+import { IDokumentasjon } from '../../../models/dokumentasjon';
+import { useLocation } from 'react-router-dom';
+import { usePrevious } from '../../../utils/hooks';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useSøknad();
-  const { dokumentasjonsbehov, aktivitet } = søknad;
-
+  const { søknad, settSøknad, mellomlagreOvergangsstønad } = useSøknad();
+  const location = useLocation();
+  const { aktivitet, dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
+  const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
+
+  const settDokumentasjon = (dokumentasjon: IDokumentasjon) => {
+    const dokumentasjonMedVedlegg = dokumentasjonsbehov.map((dok) => {
+      return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+    });
+    settSøknad({ ...søknad, dokumentasjonsbehov: dokumentasjonMedVedlegg });
+  };
+
+  useEffect(() => {
+    if (forrigeDokumentasjonsbehov !== undefined) {
+      mellomlagreOvergangsstønad(location.pathname);
+    }
+    // eslint-disable-next-line
+  }, [søknad.dokumentasjonsbehov]);
 
   return (
     <Side tittel={sidetittel} skalViseKnapper={false}>
@@ -34,10 +52,15 @@ const Dokumentasjon: React.FC = () => {
             </Lenke>
           </KomponentGruppe>
         )}
-        {dokumentasjonsbehov !== [] &&
-          dokumentasjonsbehov.map((dokumentasjon) => {
-            return <LastOppVedlegg dokumentasjon={dokumentasjon} />;
-          })}
+        {dokumentasjonsbehov.map((dokumentasjon, i) => {
+          return (
+            <LastOppVedlegg
+              key={i}
+              dokumentasjon={dokumentasjon}
+              settDokumentasjon={settDokumentasjon}
+            />
+          );
+        })}
       </SeksjonGruppe>
 
       <SendSøknadKnapper />
