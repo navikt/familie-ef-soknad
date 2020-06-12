@@ -21,7 +21,7 @@ import {
   harForelderSamværMedBarn,
   harSkriftligSamværsavtale,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
-} from '../../../../helpers/forelder';
+} from '../../../../helpers/steg/forelder';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;

@@ -21,7 +21,7 @@ import {
   erAlleFelterOgSpørsmålBesvart,
   visBostedOgSamværSeksjon,
   visSpørsmålHvisIkkeSammeForelder,
-} from '../../../helpers/forelder';
+} from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';

@@ -1,5 +1,5 @@
-import { ESøkerDelerBolig, IBosituasjon } from '../models/steg/bosituasjon';
-import { ESvar } from '../models/spørsmålogsvar';
+import { ESøkerDelerBolig, IBosituasjon } from '../../models/steg/bosituasjon';
+import { ESvar } from '../../models/spørsmålogsvar';
 
 export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
   const {

@@ -20,7 +20,7 @@ import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
-import { erUtdanningFerdigUtfylt } from '../../../../helpers/arbeidssituasjon/aktivitetvalidering';
+import { erUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
