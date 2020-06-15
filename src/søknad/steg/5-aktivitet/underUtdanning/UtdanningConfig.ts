@@ -14,6 +14,12 @@ export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   lukkeTekstid: '',
 };
 
+export const tidligereUtdanningHjelpetekst: IHjelpetekst = {
+  åpneTekstid: 'tidligereUtdanning.lesmer-åpne.kanFåStønad',
+  innholdTekstid: 'tidligereUtdanning.lesmer-innhold.kanFåStønad',
+  lukkeTekstid: '',
+};
+
 export const skoleUtdanningssted: ITekst = {
   id: EUtdanning.skoleUtdanningssted,
   label_tekstid: 'utdanning.label.skoleUtdanningssted',

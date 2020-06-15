@@ -8,6 +8,7 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KnappBase from 'nav-frontend-knapper';
+import Hjelpetekst from '../../../../components/Hjelpetekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';
 import { Element, Undertittel } from 'nav-frontend-typografi';
@@ -15,6 +16,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
 import { useIntl } from 'react-intl';
+import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';
 import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 
@@ -88,6 +90,12 @@ const TidligereUtdanning: React.FC<Props> = ({
         <Undertittel className={'sentrert'}>
           <LocaleTekst tekst={'utdanning.tittel.tidligere'} />
         </Undertittel>
+        <Hjelpetekst
+          className={'sentrert'}
+          åpneTekstid={tidligereUtdanningHjelpetekst.åpneTekstid}
+          innholdTekstid={tidligereUtdanningHjelpetekst.innholdTekstid}
+          html={true}
+        />
       </KomponentGruppe>
 
       <KomponentGruppe>
