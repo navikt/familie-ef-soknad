@@ -1,16 +1,20 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import FeltGruppe from './FeltGruppe';
 import { Checkbox, FnrInput } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
+import { hentTekst } from '../../utils/søknad';
+import { useIntl } from 'react-intl';
 
 interface Props {
   identLabel: string;
   datoLabel: string;
   checkboxLabel: string;
   ident: string | undefined;
-  fødselsdato: Date | undefined;
+  fødselsdato: string | undefined;
   checked: boolean;
-  settCheckbox: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  erGyldigIdent: boolean;
+  settGyldigIdent: (erGyldig: boolean) => void;
+  settChecked: (checked: boolean) => void;
   settFødselsdato: (date: Date | null) => void;
   settIdent: (ident: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -22,29 +26,37 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   checked,
   ident,
   fødselsdato,
-  settCheckbox,
+  erGyldigIdent,
+  settGyldigIdent,
+  settChecked,
   settIdent,
   settFødselsdato,
 }) => {
-  const [gyldig, settGyldig] = useState<boolean>();
+  const intl = useIntl();
+
+  const feilmelding: string = hentTekst('person.feilmelding.ident', intl);
 
   return (
     <>
       <FeltGruppe>
         <FnrInput
           className={'tjukk-tekst'}
-          key={'fødselsnr'}
+          key={'ident'}
           label={identLabel}
           disabled={checked}
           type="text"
           bredde={'L'}
           value={ident ? ident : ''}
           feil={
-            gyldig || ident ? undefined : 'Ugyldig fødselsnummer eller d-nummer'
+            erGyldigIdent || (ident && ident !== '') || checked
+              ? undefined
+              : feilmelding
           }
           inputMode={'numeric'}
           onChange={(e) => settIdent(e)}
-          onValidate={(valid) => settGyldig(valid)}
+          onValidate={(valid) => {
+            settGyldigIdent(valid);
+          }}
         />
       </FeltGruppe>
       <FeltGruppe>
@@ -52,7 +64,7 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
           className={'checkbox'}
           label={checkboxLabel}
           checked={checked}
-          onChange={(e) => settCheckbox(e)}
+          onChange={() => settChecked(!checked)}
         />
       </FeltGruppe>
 

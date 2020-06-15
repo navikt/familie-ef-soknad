@@ -71,13 +71,14 @@ export default {
 
     'person.navn': 'Navn',
     'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
-    'person.fnr': 'Fødselsnummer eller d-nummer',
-    'person.checkbox.fnr': 'Jeg kjenner ikke fødselsnummer / d-nummer',
+    'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
+    'person.ident': 'Fødselsnummer eller d-nummer',
+    'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
+    'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
-    'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
 
     barnet: 'Barnet',
 
