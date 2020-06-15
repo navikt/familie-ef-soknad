@@ -10,6 +10,7 @@ import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import OmFirmaetDitt from './OmFirmaetDitt';
 import EgetAS from './aksjeselskap/EgetAS';
+import FåttJobbTilbud from './FåttJobbTilbud';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -68,6 +69,14 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
     case EAktivitet.tarUtdanning:
       return (
         <UnderUtdanning
+          arbeidssituasjon={arbeidssituasjon}
+          settArbeidssituasjon={settArbeidssituasjon}
+        />
+      );
+
+    case EAktivitet.harFåttJobbTilbud:
+      return (
+        <FåttJobbTilbud
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />

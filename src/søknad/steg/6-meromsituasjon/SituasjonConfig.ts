@@ -46,22 +46,6 @@ export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
   beskrivelse: 'dokumentasjon.barnetilsynsbehov.beskrivelse',
   harSendtInn: false,
 };
-export const DokumentasjonArbeidskontrakt: IDokumentasjon = {
-  id: SituasjonDokumentasjon.ARBEIDSKONTRAKT,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.harFåttJobbTilbud,
-  tittel: 'dokumentasjon.arbeidskontrakt.tittel',
-  beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
-  harSendtInn: false,
-};
-export const DokumentasjonUtdanning: IDokumentasjon = {
-  id: SituasjonDokumentasjon.UTDANNING,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.skalTaUtdanning,
-  tittel: 'dokumentasjon.utdanning.tittel',
-  beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
-  harSendtInn: false,
-};
 
 export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
   id: SituasjonDokumentasjon.ARBEIDSFORHOLD_OPPSIGELSE,
@@ -72,7 +56,7 @@ export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
   harSendtInn: false,
 };
 
-export const ArbeidsforholdOgRedusertArbedistid: IDokumentasjon = {
+export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon = {
   id: SituasjonDokumentasjon.ARBEIDSFORHOLD_REDUSERT_ARBEIDSTID,
   spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
   svarid: ESagtOppEllerRedusertStilling.redusertStilling,
@@ -108,14 +92,8 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
       dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
     },
     {
-      id: DinSituasjonType.harFåttJobbTilbud,
-      svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
-      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
-    },
-    {
-      id: DinSituasjonType.skalTaUtdanning,
-      svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
-      dokumentasjonsbehov: DokumentasjonUtdanning,
+      id: DinSituasjonType.nei,
+      svar_tekstid: 'dinSituasjon.svar.nei',
     },
   ],
 };
@@ -140,7 +118,7 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
       id: ESagtOppEllerRedusertStilling.redusertStilling,
       svar_tekstid: 'dinSituasjon.svar.redusertStilling',
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
-      dokumentasjonsbehov: ArbeidsforholdOgRedusertArbedistid,
+      dokumentasjonsbehov: ArbeidsforholdOgRedusertArbeidstid,
     },
     {
       id: ESagtOppEllerRedusertStilling.nei,

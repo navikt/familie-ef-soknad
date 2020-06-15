@@ -46,6 +46,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
     etablererEgenVirksomhet,
     arbeidssøker,
     underUtdanning,
+    datoOppstartJobb,
   } = arbeidssituasjon;
 
   switch (svarid) {
@@ -80,6 +81,9 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return (
         underUtdanning !== undefined && erUtdanningFerdigUtfylt(underUtdanning)
       );
+
+    case EAktivitet.harFåttJobbTilbud:
+      return datoOppstartJobb !== undefined;
 
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;

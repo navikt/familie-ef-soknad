@@ -6,7 +6,9 @@ import {
 import {
   AktivitetDokumentasjon,
   IDokumentasjon,
+  SituasjonDokumentasjon,
 } from '../../../models/dokumentasjon';
+import { ESituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 // --- DOKUMENTASJON
 
@@ -16,6 +18,15 @@ const DokumentasjonUtdanning: IDokumentasjon = {
   svarid: EAktivitet.tarUtdanning,
   tittel: 'dokumentasjon.utdanning.tittel',
   beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
+  harSendtInn: false,
+};
+
+const DokumentasjonArbeidskontrakt: IDokumentasjon = {
+  id: SituasjonDokumentasjon.ARBEIDSKONTRAKT,
+  spørsmålid: ESituasjon.gjelderDetteDeg,
+  svarid: EAktivitet.harFåttJobbTilbud,
+  tittel: 'dokumentasjon.arbeidskontrakt.tittel',
+  beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
   harSendtInn: false,
 };
 
@@ -55,6 +66,11 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
       id: EAktivitet.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
       dokumentasjonsbehov: DokumentasjonUtdanning,
+    },
+    {
+      id: EAktivitet.harFåttJobbTilbud,
+      svar_tekstid: 'arbeidssituasjon.svar.harFåttJobbTilbud',
+      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
     },
     {
       id: EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker,
