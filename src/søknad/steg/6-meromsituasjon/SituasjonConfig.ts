@@ -56,7 +56,7 @@ export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
   harSendtInn: false,
 };
 
-export const ArbeidsforholdOgRedusertArbedistid: IDokumentasjon = {
+export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon = {
   id: SituasjonDokumentasjon.ARBEIDSFORHOLD_REDUSERT_ARBEIDSTID,
   spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
   svarid: ESagtOppEllerRedusertStilling.redusertStilling,
@@ -91,6 +91,10 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
       dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
     },
+    {
+      id: DinSituasjonType.nei,
+      svar_tekstid: 'dinSituasjon.svar.nei',
+    },
   ],
 };
 
@@ -114,7 +118,7 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
       id: ESagtOppEllerRedusertStilling.redusertStilling,
       svar_tekstid: 'dinSituasjon.svar.redusertStilling',
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
-      dokumentasjonsbehov: ArbeidsforholdOgRedusertArbedistid,
+      dokumentasjonsbehov: ArbeidsforholdOgRedusertArbeidstid,
     },
     {
       id: ESagtOppEllerRedusertStilling.nei,

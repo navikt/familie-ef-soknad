@@ -32,6 +32,7 @@ export enum DinSituasjonType {
   harSyktBarn = 'harSyktBarn',
   harSøktBarnepassOgVenterEnnå = 'harSøktBarnepassOgVenterEnnå',
   harBarnMedSærligeBehov = 'harBarnMedSærligeBehov',
+  nei = 'nei',
 }
 
 export enum ESagtOppEllerRedusertStilling {
