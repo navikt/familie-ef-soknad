@@ -11,36 +11,44 @@ import { hentTekst } from '../../utils/søknad';
 
 interface Props {
   intl: IntlShape;
-  tekstid: string;
+  tittel: string;
+  navnLabel: string;
+  identLabel: string;
+  checkboxLabel: string;
   valgtPersonInfo: IPersonDetaljer;
   settFødselsdato: (date: Date | null) => void;
   settPersonInfo: (
     e: React.FormEvent<HTMLInputElement>,
     navnEllerFødselsnummer: 'navn' | 'fødselsnummer'
   ) => void;
+  fødselsdatoLabel: string;
 }
 
 const PersonInfoGruppe: FC<Props> = ({
   intl,
-  tekstid,
+  tittel,
+  navnLabel,
+  identLabel,
+  checkboxLabel,
   settPersonInfo,
   settFødselsdato,
   valgtPersonInfo,
+  fødselsdatoLabel,
 }) => {
   const { fødselsdato, navn } = valgtPersonInfo;
   const [harFødselsnummer, settHarFødselsnummer] = useState<boolean>(false);
 
   return (
     <KomponentGruppe>
-      <FeltGruppe>
-        <Element>
-          <LocaleTekst tekst={tekstid} />
-        </Element>
-      </FeltGruppe>
+      {tittel && (
+        <FeltGruppe>
+          <Element>{tittel}</Element>
+        </FeltGruppe>
+      )}
       <FeltGruppe>
         <Input
-          key={'tlf'}
-          label={intl.formatMessage({ id: 'person.navn' }).trim()}
+          key={'navn'}
+          label={navnLabel}
           type="text"
           bredde={'L'}
           onChange={(e) => settPersonInfo(e, 'navn')}
@@ -52,8 +60,9 @@ const PersonInfoGruppe: FC<Props> = ({
           <FeltGruppe>
             {!harFødselsnummer ? (
               <Input
-                key={'tlf'}
-                label={intl.formatMessage({ id: 'person.fnr' }).trim()}
+                className={'tjukk-tekst'}
+                key={'fødselsnr'}
+                label={identLabel}
                 type="text"
                 bredde={'L'}
                 value={valgtPersonInfo.fødselsnummer?.verdi}
@@ -62,7 +71,7 @@ const PersonInfoGruppe: FC<Props> = ({
             ) : (
               <Datovelger
                 valgtDato={fødselsdato?.verdi}
-                tekstid={'datovelger.fødselsdato'}
+                tekstid={fødselsdatoLabel}
                 datobegrensning={DatoBegrensning.TidligereDatoer}
                 settDato={(e) => settFødselsdato(e)}
               />
@@ -71,7 +80,7 @@ const PersonInfoGruppe: FC<Props> = ({
           <FeltGruppe>
             <Checkbox
               className={'checkbox'}
-              label={hentTekst('person.checkbox.fnr', intl)}
+              label={checkboxLabel}
               checked={harFødselsnummer}
               onChange={() => settHarFødselsnummer(!harFødselsnummer)}
             />

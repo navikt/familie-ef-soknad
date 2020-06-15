@@ -73,13 +73,21 @@ const OmSamboerenDin: FC<Props> = ({
   return (
     <KomponentGruppe>
       <PersonInfoGruppe
-        tekstid={tittel}
         settPersonInfo={settSamboerInfo}
         settFødselsdato={settFødselsdato}
         valgtPersonInfo={samboerDetaljer ? samboerDetaljer : {}}
+        tittel={hentTekst(tittel, intl)}
+        navnLabel={hentTekst('person.navn', intl)}
+        identLabel={hentTekst('person.fnr', intl)}
+        fødselsdatoLabel={
+          ekteskapsLiknendeForhold
+            ? hentTekst('person.fødselsdato', intl)
+            : hentTekst('datovelger.fødselsdato', intl)
+        }
+        checkboxLabel={hentTekst('person.checkbox.fnr', intl)}
       />
 
-      {ekteskapsLiknendeForhold && samboerDetaljer?.fødselsdato && (
+      {ekteskapsLiknendeForhold && samboerDetaljer?.fødselsnummer && (
         <FeltGruppe>
           <Datovelger
             valgtDato={
