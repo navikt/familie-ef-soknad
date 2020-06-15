@@ -23,10 +23,14 @@ const Dokumentasjon: React.FC = () => {
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
   const settDokumentasjon = (dokumentasjon: IDokumentasjon) => {
-    const dokumentasjonMedVedlegg = dokumentasjonsbehov.map((dok) => {
-      return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+    settSøknad((prevSoknad) => {
+      const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
+        (dok) => {
+          return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+        }
+      );
+      return { ...prevSoknad, dokumentasjonsbehov: dokumentasjonMedVedlegg };
     });
-    settSøknad({ ...søknad, dokumentasjonsbehov: dokumentasjonMedVedlegg });
   };
 
   useEffect(() => {
