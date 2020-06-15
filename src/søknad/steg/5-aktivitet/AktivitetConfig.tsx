@@ -69,7 +69,7 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
     },
     {
       id: EAktivitet.harFåttJobbTilbud,
-      svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
+      svar_tekstid: 'arbeidssituasjon.svar.harFåttJobbTilbud',
       dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
     },
     {

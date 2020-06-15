@@ -2,6 +2,7 @@ import {
   ISpørsmålListeFelt,
   ISpørsmålFelt,
   ITekstFelt,
+  IDatoFelt,
 } from '../../søknadsfelter';
 import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
@@ -12,6 +13,7 @@ export interface IAktivitet {
   hvaErDinArbeidssituasjon: ISpørsmålListeFelt;
   etablererEgenVirksomhet?: ISpørsmålFelt;
   arbeidsforhold?: IArbeidsgiver[];
+  datoOppstartJobb?: IDatoFelt;
   arbeidssøker?: IArbeidssøker;
   egetAS?: IAksjeselskap[];
   firma?: IFirma;
@@ -21,6 +23,7 @@ export interface IAktivitet {
 export enum EArbeidssituasjon {
   hvaErDinArbeidssituasjon = 'hvaErDinArbeidssituasjon',
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',
+  datoOppstartJobb = 'datoOppstartJobb',
 }
 
 export enum EAktivitet {

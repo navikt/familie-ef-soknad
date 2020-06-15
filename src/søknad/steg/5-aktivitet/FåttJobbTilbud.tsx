@@ -7,23 +7,23 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { datoTilStreng } from '../../../utils/dato';
+import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 
 interface Props {
-  dinSituasjon: IDinSituasjon;
-  settDinSituasjon: (dinSituasjon: IDinSituasjon) => void;
+  arbeidssituasjon: IAktivitet;
+  settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
 }
 const FåttJobbTilbud: React.FC<Props> = ({
-  dinSituasjon,
-  settDinSituasjon,
+  arbeidssituasjon,
+  settArbeidssituasjon,
 }) => {
   const intl = useIntl();
 
   const settDato = (dato: Date | null) => {
     dato !== null &&
-      settDinSituasjon({
-        ...dinSituasjon,
+      settArbeidssituasjon({
+        ...arbeidssituasjon,
         datoOppstartJobb: {
           label: hentTekst('dinSituasjon.datovelger.jobb', intl),
           verdi: datoTilStreng(dato),
@@ -49,7 +49,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
         </Normaltekst>
       </AlertStripe>
       <Datovelger
-        valgtDato={dinSituasjon.datoOppstartJobb?.verdi}
+        valgtDato={arbeidssituasjon.datoOppstartJobb?.verdi}
         tekstid={'dinSituasjon.datovelger.jobb'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
         settDato={settDato}

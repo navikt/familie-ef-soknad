@@ -7,8 +7,6 @@ import {
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ISpørsmålListeFelt;
-  datoOppstartJobb?: IDatoFelt;
-  datoOppstartUtdanning?: IDatoFelt;
   søknadsdato?: IDatoFelt;
   sagtOppEllerRedusertStilling?: ISpørsmålFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
@@ -18,8 +16,6 @@ export interface IDinSituasjon {
 
 export enum ESituasjon {
   gjelderDetteDeg = 'gjelderDetteDeg',
-  datoOppstartJobb = 'datoOppstartJobb',
-  datoOppstartUtdanning = 'datoOppstartUtdanning',
   søknadsdato = 'søknadsdato',
   sagtOppEllerRedusertStilling = 'sagtOppEllerRedusertStilling',
   begrunnelseSagtOppEllerRedusertStilling = 'begrunnelseSagtOppEllerRedusertStilling',

@@ -374,6 +374,7 @@ export default {
     'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
     'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
       'Jeg er ikke i arbeid, utdanning eller arbeidssøker',
+    'arbeidssituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
 
     'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
       '<strong>Når barnet ditt er under 1 år kan du motta overgangsstønad uten å være i yrkesrettet aktivitet.</strong> <br/>' +
@@ -509,8 +510,7 @@ export default {
       'Jeg har søkt om barnepass, men ikke fått plass enda',
     'dinSituasjon.svar.harBarnMedSærligeBehov':
       'Jeg har barn som trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
-    'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
-    'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
+    'dinSituasjon.svar.nei': 'Nei',
 
     'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
     'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
