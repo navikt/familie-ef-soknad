@@ -116,7 +116,7 @@ export default {
     'sivilstatus.datovelger.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
-      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+      'Er du registrert som ugift i Folkeregisteret. Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
@@ -146,6 +146,10 @@ export default {
       'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen / når skal endringen skje?',
+    'sivilstatus.hjelpetekst-åpne.begrunnelse':
+      'Grunnen til at vi spør om dette',
+    'sivilstatus.hjelpetekst-innhold.begrunnelse':
+      'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
 
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',

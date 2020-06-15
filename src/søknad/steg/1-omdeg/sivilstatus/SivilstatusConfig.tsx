@@ -106,6 +106,11 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,
+  lesmer: {
+    innholdTekstid: 'sivilstatus.hjelpetekst-innhold.begrunnelse',
+    åpneTekstid: 'sivilstatus.hjelpetekst-åpne.begrunnelse',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     {
       id: EBegrunnelse.samlivsbruddForeldre,

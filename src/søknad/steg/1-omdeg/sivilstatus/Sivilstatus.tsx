@@ -5,9 +5,7 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
 import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { hentSivilstatus } from '../../../../helpers/omdeg';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
@@ -104,12 +102,6 @@ const Sivilstatus: React.FC = () => {
 
   return (
     <SeksjonGruppe>
-      <KomponentGruppe>
-        <Element>
-          <LocaleTekst tekst={'sivilstatus.tittel'} />
-        </Element>
-        <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
-      </KomponentGruppe>
       {erSøkerGift ? (
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}
