@@ -41,9 +41,11 @@ const OmSamboerenDin: FC<Props> = ({
 
   const settChecked = (checked: boolean) => {
     const endretSamboerInfo = samboerInfo;
-    if (checked && endretSamboerInfo.ident) delete samboerInfo.ident;
+    if (checked && endretSamboerInfo.ident) delete endretSamboerInfo.ident;
+    if (!checked && endretSamboerInfo.fødselsdato)
+      delete endretSamboerInfo.fødselsdato;
 
-    settSamboerInfo(endretSamboerInfo);
+    settBosituasjon({ ...bosituasjon, samboerDetaljer: endretSamboerInfo });
     settUkjentIdent(checked);
   };
 
@@ -136,7 +138,7 @@ const OmSamboerenDin: FC<Props> = ({
       )}
 
       {ekteskapsLiknendeForhold &&
-        (samboerInfo?.ident || samboerInfo?.fødselsdato) && (
+        (samboerDetaljer?.ident || samboerDetaljer?.fødselsdato) && (
           <FeltGruppe>
             <Datovelger
               valgtDato={

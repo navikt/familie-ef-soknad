@@ -13,13 +13,15 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     skalGifteSegEllerBliSamboer &&
     skalGifteSegEllerBliSamboer.svarid === ESvar.JA;
 
-  const harSattFødselsdato = samboerDetaljer?.fødselsdato ? true : false;
+  const harSattFødselsdato = samboerDetaljer?.fødselsdato?.verdi ? true : false;
+  const harSattIdent = samboerDetaljer?.ident?.verdi ? true : false;
+  const harFerdigUtfyltOmSamboer = harSattIdent || harSattFødselsdato;
 
   switch (delerBoligMedAndreVoksne.svarid) {
     case ESøkerDelerBolig.borAleneMedBarnEllerGravid:
       return (
         skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
-        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harSattFødselsdato)
+        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harFerdigUtfyltOmSamboer)
       );
     case ESøkerDelerBolig.borMidlertidigFraHverandre:
       return true;
@@ -30,12 +32,12 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     case ESøkerDelerBolig.delerBoligMedAndreVoksne:
       return (
         skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
-        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harSattFødselsdato)
+        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harFerdigUtfyltOmSamboer)
       );
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
       return (
         skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
-        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harSattFødselsdato)
+        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harFerdigUtfyltOmSamboer)
       );
   }
 };
