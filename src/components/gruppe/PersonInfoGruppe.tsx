@@ -1,12 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import KomponentGruppe from './KomponentGruppe';
 import FeltGruppe from './FeltGruppe';
 import { Element } from 'nav-frontend-typografi';
-import { Input } from 'nav-frontend-skjema';
+import { Checkbox, Input } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { injectIntl, IntlShape } from 'react-intl';
 import LocaleTekst from '../../language/LocaleTekst';
 import { IPersonDetaljer } from '../../models/person';
+import { hentTekst } from '../../utils/søknad';
 
 interface Props {
   intl: IntlShape;
@@ -27,6 +28,7 @@ const PersonInfoGruppe: FC<Props> = ({
   valgtPersonInfo,
 }) => {
   const { fødselsdato, navn } = valgtPersonInfo;
+  const [harFødselsnummer, settHarFødselsnummer] = useState<boolean>(false);
 
   return (
     <KomponentGruppe>
@@ -45,26 +47,37 @@ const PersonInfoGruppe: FC<Props> = ({
           value={valgtPersonInfo.navn?.verdi}
         />
       </FeltGruppe>
-      <FeltGruppe classname={'datoOgPersonnummer'}>
-        {navn && (
-          <>
-            <Datovelger
-              valgtDato={fødselsdato?.verdi}
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-              settDato={(e) => settFødselsdato(e)}
+      {navn && (
+        <>
+          <FeltGruppe>
+            {!harFødselsnummer ? (
+              <Input
+                key={'tlf'}
+                label={intl.formatMessage({ id: 'person.fnr' }).trim()}
+                type="text"
+                bredde={'L'}
+                value={valgtPersonInfo.fødselsnummer?.verdi}
+                onChange={(e) => settPersonInfo(e, 'fødselsnummer')}
+              />
+            ) : (
+              <Datovelger
+                valgtDato={fødselsdato?.verdi}
+                tekstid={'datovelger.fødselsdato'}
+                datobegrensning={DatoBegrensning.TidligereDatoer}
+                settDato={(e) => settFødselsdato(e)}
+              />
+            )}
+          </FeltGruppe>
+          <FeltGruppe>
+            <Checkbox
+              className={'checkbox'}
+              label={hentTekst('person.checkbox.fnr', intl)}
+              checked={harFødselsnummer}
+              onChange={() => settHarFødselsnummer(!harFødselsnummer)}
             />
-            <Input
-              key={'tlf'}
-              label={intl.formatMessage({ id: 'person.nr' }).trim()}
-              type="text"
-              bredde={'S'}
-              value={valgtPersonInfo.fødselsnummer?.verdi}
-              onChange={(e) => settPersonInfo(e, 'fødselsnummer')}
-            />
-          </>
-        )}
-      </FeltGruppe>
+          </FeltGruppe>
+        </>
+      )}
     </KomponentGruppe>
   );
 };

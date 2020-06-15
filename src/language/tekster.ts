@@ -73,6 +73,7 @@ export default {
     'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
     'person.nr': 'Personnummer 5 siffer (hvis du vet)',
     'person.fnr': 'Fødselsnummer eller d-nummer',
+    'person.checkbox.fnr': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
