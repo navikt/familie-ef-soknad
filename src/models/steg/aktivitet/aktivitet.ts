@@ -31,6 +31,7 @@ export enum EAktivitet {
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',
   erArbeidssøker = 'erArbeidssøker',
   tarUtdanning = 'tarUtdanning',
+  harFåttJobbTilbud = 'harFåttJobbTilbud',
   erHverkenIArbeidUtdanningEllerArbeidssøker = 'erHverkenIArbeidUtdanningEllerArbeidssøker',
 }
 

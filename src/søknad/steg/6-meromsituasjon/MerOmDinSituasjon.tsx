@@ -12,12 +12,10 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
-  DinSituasjonType,
   ESøkerFraBestemtMåned,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import {
-  erSituasjonIAvhukedeSvar,
   harSøkerMindreEnnHalvStilling,
   harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
 } from './SituasjonUtil';
@@ -25,7 +23,6 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from './SituasjonOppfølgingSpørsmål';
-import { erSituasjonSeksjonFerdigUtfylt } from '../../../helpers/steg/dinsituasjon';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -40,15 +37,8 @@ const MerOmDinSituasjon: React.FC = () => {
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>(
     søknad.merOmDinSituasjon
   );
-  const {
-    gjelderDetteDeg,
-    datoOppstartJobb,
-    datoOppstartUtdanning,
-    søknadsdato,
-    søkerFraBestemtMåned,
-  } = dinSituasjon;
+  const { gjelderDetteDeg, søknadsdato, søkerFraBestemtMåned } = dinSituasjon;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const avhukedeSvarISøknad: string[] = gjelderDetteDeg.verdi;
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
@@ -58,45 +48,21 @@ const MerOmDinSituasjon: React.FC = () => {
     // eslint-disable-next-line
   }, [dinSituasjon]);
 
-  const erFåttJobbTilbudISvar = erSituasjonIAvhukedeSvar(
-    DinSituasjonType.harFåttJobbTilbud,
-    avhukedeSvarISøknad,
-    intl
-  );
-  const erSkalTaUtdanningISvar = erSituasjonIAvhukedeSvar(
-    DinSituasjonType.skalTaUtdanning,
-    avhukedeSvarISøknad,
-    intl
-  );
-
-  const hentEndretSituasjon = (dinSituasjon: IDinSituasjon): IDinSituasjon => {
-    if (datoOppstartJobb || datoOppstartUtdanning) {
-      const endretSituasjon = dinSituasjon;
-      if (!erFåttJobbTilbudISvar && datoOppstartJobb) {
-        delete endretSituasjon.datoOppstartJobb;
-      } else if (!erSkalTaUtdanningISvar && datoOppstartUtdanning) {
-        delete endretSituasjon.datoOppstartUtdanning;
-      }
-      return endretSituasjon;
-    } else return dinSituasjon;
-  };
-
   const settDinSituasjonFelt = (
     spørsmål: ISpørsmål,
     svarHuketAv: boolean,
     svar: ISvar
   ) => {
     const spørsmålTekst = hentTekst(spørsmål.tekstid, intl);
-    const endretSituasjon = hentEndretSituasjon(dinSituasjon);
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
-      endretSituasjon.gjelderDetteDeg,
+      dinSituasjon.gjelderDetteDeg,
       svarHuketAv,
       svar,
       intl
     );
 
     settDinSituasjon({
-      ...endretSituasjon,
+      ...dinSituasjon,
       gjelderDetteDeg: {
         spørsmålid: spørsmål.søknadid,
         svarid: svarider,
@@ -107,26 +73,12 @@ const MerOmDinSituasjon: React.FC = () => {
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
-  const erSpørsmålFørValgtAlternativBesvart = (
-    svarid: string,
-    dinSituasjon: IDinSituasjon
-  ) => {
-    const svaridPos = dinSituasjon.gjelderDetteDeg.svarid.indexOf(svarid);
-    return dinSituasjon.gjelderDetteDeg.svarid
-      .filter((situasjon, index) => index < svaridPos)
-      .every((id) => erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon));
-  };
-
-  const harValgtMinstEttAlternativOgFelterFerdigUtfylt =
-    gjelderDetteDeg.svarid.length !== 0 &&
-    gjelderDetteDeg.svarid.every((id) =>
-      erSituasjonSeksjonFerdigUtfylt(id, dinSituasjon)
-    );
+  const harValgtMinstEttAlternativ = gjelderDetteDeg.svarid.length !== 0;
 
   const visNårSøkerDuStønadFra = søkerJobberMindreEnnFemtiProsent
-    ? harValgtMinstEttAlternativOgFelterFerdigUtfylt &&
+    ? harValgtMinstEttAlternativ &&
       harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon)
-    : harValgtMinstEttAlternativOgFelterFerdigUtfylt;
+    : harValgtMinstEttAlternativ;
 
   const erAlleSpørsmålBesvart =
     søknadsdato?.verdi !== undefined ||
@@ -151,35 +103,21 @@ const MerOmDinSituasjon: React.FC = () => {
           const harValgtMinstEttAlternativ =
             gjelderDetteDeg.svarid.length !== 0;
 
-          const erValgtAlternativDetFørste =
-            gjelderDetteDeg.svarid[0] === svarid;
-
-          const visSeksjon = harValgtMinstEttAlternativ
-            ? !erValgtAlternativDetFørste
-              ? erSpørsmålFørValgtAlternativBesvart(svarid, dinSituasjon)
-              : true
-            : true;
-
           return (
-            visSeksjon && (
-              <SituasjonOppfølgingSpørsmål
-                dinSituasjon={dinSituasjon}
-                settDinSituasjon={settDinSituasjon}
-                svarid={svarid}
-              />
+            harValgtMinstEttAlternativ && (
+              <SituasjonOppfølgingSpørsmål svarid={svarid} />
             )
           );
         })}
       </SeksjonGruppe>
-      {søkerJobberMindreEnnFemtiProsent &&
-        harValgtMinstEttAlternativOgFelterFerdigUtfylt && (
-          <SeksjonGruppe>
-            <HarSøkerSagtOppEllerRedusertStilling
-              dinSituasjon={dinSituasjon}
-              settDinSituasjon={settDinSituasjon}
-            />
-          </SeksjonGruppe>
-        )}
+      {søkerJobberMindreEnnFemtiProsent && harValgtMinstEttAlternativ && (
+        <SeksjonGruppe>
+          <HarSøkerSagtOppEllerRedusertStilling
+            dinSituasjon={dinSituasjon}
+            settDinSituasjon={settDinSituasjon}
+          />
+        </SeksjonGruppe>
+      )}
       {visNårSøkerDuStønadFra && (
         <SeksjonGruppe>
           <NårSøkerDuOvergangsstønadFra

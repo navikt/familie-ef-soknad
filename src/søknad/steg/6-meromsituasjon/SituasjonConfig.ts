@@ -46,22 +46,6 @@ export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
   beskrivelse: 'dokumentasjon.barnetilsynsbehov.beskrivelse',
   harSendtInn: false,
 };
-export const DokumentasjonArbeidskontrakt: IDokumentasjon = {
-  id: SituasjonDokumentasjon.ARBEIDSKONTRAKT,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.harFåttJobbTilbud,
-  tittel: 'dokumentasjon.arbeidskontrakt.tittel',
-  beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
-  harSendtInn: false,
-};
-export const DokumentasjonUtdanning: IDokumentasjon = {
-  id: SituasjonDokumentasjon.UTDANNING,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.skalTaUtdanning,
-  tittel: 'dokumentasjon.utdanning.tittel',
-  beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
-  harSendtInn: false,
-};
 
 export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
   id: SituasjonDokumentasjon.ARBEIDSFORHOLD_OPPSIGELSE,
@@ -106,16 +90,6 @@ export const gjelderNoeAvDetteDeg: ISpørsmål = {
       id: DinSituasjonType.harBarnMedSærligeBehov,
       svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
       dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
-    },
-    {
-      id: DinSituasjonType.harFåttJobbTilbud,
-      svar_tekstid: 'dinSituasjon.svar.harFåttJobbTilbud',
-      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
-    },
-    {
-      id: DinSituasjonType.skalTaUtdanning,
-      svar_tekstid: 'dinSituasjon.svar.skalTaUtdanning',
-      dokumentasjonsbehov: DokumentasjonUtdanning,
     },
   ],
 };
