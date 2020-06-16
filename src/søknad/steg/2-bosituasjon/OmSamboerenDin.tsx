@@ -26,20 +26,24 @@ const OmSamboerenDin: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { samboerDetaljer } = bosituasjon;
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(true);
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
   );
 
   useEffect(() => {
-    settBosituasjon({ ...bosituasjon, samboerDetaljer: samboerInfo });
+    settBosituasjon({
+      ...bosituasjon,
+      samboerDetaljer: { ...samboerInfo, erGyldigIdent: erGyldigIdent },
+    });
     // eslint-disable-next-line
-  }, [samboerInfo]);
+  }, [samboerInfo, erGyldigIdent]);
 
   const settChecked = (checked: boolean) => {
     const endretSamboerInfo = samboerInfo;
     if (checked && endretSamboerInfo.ident?.verdi) {
       delete endretSamboerInfo.ident;
+      delete endretSamboerInfo.erGyldigIdent;
     }
     if (!checked && endretSamboerInfo.fødselsdato?.verdi)
       delete endretSamboerInfo.fødselsdato;
@@ -59,13 +63,15 @@ const OmSamboerenDin: FC<Props> = ({
   };
 
   const settIdent = (e: React.FormEvent<HTMLInputElement>) => {
-    settSamboerInfo({
+    const samboerInfoMedIdentInput = {
       ...samboerInfo,
       [EPersonDetaljer.ident]: {
         label: hentTekst('person.ident', intl),
         verdi: e.currentTarget.value,
       },
-    });
+    };
+
+    settSamboerInfo(samboerInfoMedIdentInput);
   };
 
   const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
@@ -77,7 +83,6 @@ const OmSamboerenDin: FC<Props> = ({
       },
     });
   };
-
   return (
     <KomponentGruppe>
       <FeltGruppe>
@@ -91,7 +96,7 @@ const OmSamboerenDin: FC<Props> = ({
           type="text"
           bredde={'L'}
           onChange={(e) => settNavn(e)}
-          value={samboerDetaljer?.navn?.verdi}
+          value={samboerInfo?.navn?.verdi}
         />
       </FeltGruppe>
       {samboerDetaljer?.navn && (
@@ -103,9 +108,9 @@ const OmSamboerenDin: FC<Props> = ({
               : hentTekst('datovelger.fødselsdato', intl)
           }
           checkboxLabel={hentTekst('person.checkbox.ident', intl)}
-          ident={samboerInfo.ident?.verdi}
+          ident={samboerInfo.ident?.verdi ? samboerInfo.ident?.verdi : ''}
           fødselsdato={samboerInfo.fødselsdato?.verdi}
-          checked={samboerDetaljer?.kjennerIkkeIdent}
+          checked={samboerInfo?.kjennerIkkeIdent}
           erGyldigIdent={erGyldigIdent}
           settGyldigIdent={settGyldigIdent}
           settFødselsdato={settFødselsdato}

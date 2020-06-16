@@ -35,6 +35,7 @@ export interface IPersonDetaljer {
   navn?: ITekstFelt;
   ident?: ITekstFelt;
   fødselsdato?: IDatoFelt;
+  erGyldigIdent?: boolean;
   kjennerIkkeIdent: boolean;
 }
 
@@ -43,4 +44,5 @@ export enum EPersonDetaljer {
   ident = 'ident',
   fødselsdato = 'fødselsdato',
   kjennerIkkeIdent = 'kjennerIkkeIdent',
+  erGyldigIdent = 'erGyldigIdent',
 }

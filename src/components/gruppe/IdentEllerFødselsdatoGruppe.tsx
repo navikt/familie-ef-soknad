@@ -44,15 +44,9 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
           key={'ident'}
           label={identLabel}
           disabled={checked}
-          type="text"
           bredde={'L'}
-          value={ident ? ident : ''}
-          feil={
-            erGyldigIdent || (ident && ident !== '') || checked
-              ? undefined
-              : feilmelding
-          }
-          inputMode={'numeric'}
+          value={ident}
+          feil={erGyldigIdent || !ident ? undefined : feilmelding}
           onChange={(e) => settIdent(e)}
           onValidate={(valid) => {
             settGyldigIdent(valid);
