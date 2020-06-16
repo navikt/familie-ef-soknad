@@ -30,20 +30,22 @@ const OmSamboerenDin: FC<Props> = ({
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
   );
+  const [ident, settIdent] = useState<string>(
+    samboerInfo?.ident ? samboerInfo?.ident.verdi : ''
+  );
 
   useEffect(() => {
     settBosituasjon({
       ...bosituasjon,
-      samboerDetaljer: { ...samboerInfo, erGyldigIdent: erGyldigIdent },
+      samboerDetaljer: samboerInfo,
     });
     // eslint-disable-next-line
-  }, [samboerInfo, erGyldigIdent]);
+  }, [samboerInfo]);
 
   const settChecked = (checked: boolean) => {
     const endretSamboerInfo = samboerInfo;
     if (checked && endretSamboerInfo.ident?.verdi) {
       delete endretSamboerInfo.ident;
-      delete endretSamboerInfo.erGyldigIdent;
     }
     if (!checked && endretSamboerInfo.fødselsdato?.verdi)
       delete endretSamboerInfo.fødselsdato;
@@ -62,16 +64,20 @@ const OmSamboerenDin: FC<Props> = ({
       });
   };
 
-  const settIdent = (e: React.FormEvent<HTMLInputElement>) => {
-    const samboerInfoMedIdentInput = {
-      ...samboerInfo,
-      [EPersonDetaljer.ident]: {
-        label: hentTekst('person.ident', intl),
-        verdi: e.currentTarget.value,
-      },
-    };
+  const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
+    settGyldigIdent(erGyldig);
+    erGyldig &&
+      settSamboerInfo({
+        ...samboerInfo,
+        [EPersonDetaljer.ident]: {
+          label: hentTekst('person.ident', intl),
+          verdi: ident,
+        },
+      });
+  };
 
-    settSamboerInfo(samboerInfoMedIdentInput);
+  const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
+    settIdent(e.currentTarget.value);
   };
 
   const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
@@ -108,14 +114,14 @@ const OmSamboerenDin: FC<Props> = ({
               : hentTekst('datovelger.fødselsdato', intl)
           }
           checkboxLabel={hentTekst('person.checkbox.ident', intl)}
-          ident={samboerInfo.ident?.verdi ? samboerInfo.ident?.verdi : ''}
+          ident={ident}
           fødselsdato={samboerInfo.fødselsdato?.verdi}
           checked={samboerInfo?.kjennerIkkeIdent}
           erGyldigIdent={erGyldigIdent}
-          settGyldigIdent={settGyldigIdent}
+          settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}
           settFødselsdato={settFødselsdato}
           settChecked={settChecked}
-          settIdent={settIdent}
+          settIdent={oppdaterIdent}
         />
       )}
     </KomponentGruppe>
