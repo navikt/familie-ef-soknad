@@ -20,7 +20,7 @@ export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
 };
 
 export const verdiTilTekstsvar = (
-  verdi: string | Date | boolean | string[],
+  verdi: string | Date | boolean | number | string[],
   intl?: IntlShape
 ) => {
   if (Array.isArray(verdi)) {
@@ -33,6 +33,8 @@ export const verdiTilTekstsvar = (
         ))}
       </ul>
     );
+  } else if (typeof verdi === 'number') {
+    return <Normaltekst>{verdi.toString()}</Normaltekst>;
   } else if (typeof verdi === 'string') {
     try {
       if (isValidISODateString(verdi)) {
