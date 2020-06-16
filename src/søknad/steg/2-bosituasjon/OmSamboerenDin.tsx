@@ -26,11 +26,10 @@ const OmSamboerenDin: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { samboerDetaljer } = bosituasjon;
-  const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
-    samboerDetaljer ? samboerDetaljer : {}
-  );
-  const [erUkjentIdent, settUkjentIdent] = useState<boolean>(false);
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(true);
+  const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
+    samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
+  );
 
   useEffect(() => {
     settBosituasjon({ ...bosituasjon, samboerDetaljer: samboerInfo });
@@ -39,12 +38,13 @@ const OmSamboerenDin: FC<Props> = ({
 
   const settChecked = (checked: boolean) => {
     const endretSamboerInfo = samboerInfo;
-    if (checked && endretSamboerInfo.ident) delete endretSamboerInfo.ident;
-    if (!checked && endretSamboerInfo.fødselsdato)
+    if (checked && endretSamboerInfo.ident?.verdi) {
+      delete endretSamboerInfo.ident;
+    }
+    if (!checked && endretSamboerInfo.fødselsdato?.verdi)
       delete endretSamboerInfo.fødselsdato;
 
-    settBosituasjon({ ...bosituasjon, samboerDetaljer: endretSamboerInfo });
-    settUkjentIdent(checked);
+    settSamboerInfo({ ...endretSamboerInfo, kjennerIkkeIdent: checked });
   };
 
   const settFødselsdato = (date: Date | null) => {
@@ -59,28 +59,21 @@ const OmSamboerenDin: FC<Props> = ({
   };
 
   const settIdent = (e: React.FormEvent<HTMLInputElement>) => {
-    const endretPersonInfo = samboerDetaljer;
-    if (endretPersonInfo?.fødselsdato && !erUkjentIdent)
-      delete endretPersonInfo.fødselsdato;
-    let endretIdent = e.currentTarget.value;
-
     settSamboerInfo({
-      ...samboerDetaljer,
+      ...samboerInfo,
       [EPersonDetaljer.ident]: {
         label: hentTekst('person.ident', intl),
-        verdi: endretIdent,
+        verdi: e.currentTarget.value,
       },
     });
   };
+
   const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
-    settBosituasjon({
-      ...bosituasjon,
-      samboerDetaljer: {
-        ...samboerDetaljer,
-        [EPersonDetaljer.navn]: {
-          label: hentTekst('person.navn', intl),
-          verdi: e.currentTarget.value,
-        },
+    settSamboerInfo({
+      ...samboerInfo,
+      [EPersonDetaljer.navn]: {
+        label: hentTekst('person.navn', intl),
+        verdi: e.currentTarget.value,
       },
     });
   };
@@ -112,7 +105,7 @@ const OmSamboerenDin: FC<Props> = ({
           checkboxLabel={hentTekst('person.checkbox.ident', intl)}
           ident={samboerInfo.ident?.verdi}
           fødselsdato={samboerInfo.fødselsdato?.verdi}
-          checked={erUkjentIdent}
+          checked={samboerDetaljer?.kjennerIkkeIdent}
           erGyldigIdent={erGyldigIdent}
           settGyldigIdent={settGyldigIdent}
           settFødselsdato={settFødselsdato}

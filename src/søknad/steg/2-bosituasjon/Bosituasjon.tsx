@@ -3,7 +3,6 @@ import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import OmSamboerenDin from './OmSamboerenDin';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
