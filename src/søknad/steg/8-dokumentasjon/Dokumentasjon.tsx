@@ -40,11 +40,18 @@ const Dokumentasjon: React.FC = () => {
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);
 
+  const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
     <Side tittel={sidetittel} skalViseKnapper={false} erSpørsmålBesvart={true}>
       <SeksjonGruppe>
         <Normaltekst>
-          <FormattedHTMLMessage id={'dokumentasjon.beskrivelse'} />
+          <FormattedHTMLMessage
+            id={
+              harDokumentasjonsbehov
+                ? 'dokumentasjon.beskrivelse'
+                : 'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'
+            }
+          />
         </Normaltekst>
       </SeksjonGruppe>
       <SeksjonGruppe>
