@@ -70,14 +70,17 @@ export default {
     'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
 
     'person.navn': 'Navn',
-    'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
-    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
-    'person.fnr': 'Fødselsnummer eller d-nummer',
+    'barn.ident': 'Fødselsnummer',
+    'barn.checkbox.ident': 'Barnet har ikke fått fødselsnummer ennå',
+    'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
+    'person.fnr': 'Fødselsnummer',
+    'person.ident': 'Fødselsnummer eller d-nummer',
+    'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
+    'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
-    'person.fødselsdato': 'Fødselsdato',
 
     barnet: 'Barnet',
 

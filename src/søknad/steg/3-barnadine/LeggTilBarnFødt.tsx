@@ -1,26 +1,27 @@
-import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import { RadioPanel } from 'nav-frontend-skjema';
-import { Input } from 'nav-frontend-skjema';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { useIntl } from 'react-intl';
+import React, { useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { FormattedMessage } from 'react-intl';
+import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { datoTilStreng } from '../../../utils/dato';
 import { ESvar } from '../../../models/spørsmålogsvar';
+import { FormattedMessage } from 'react-intl';
+import { hentTekst } from '../../../utils/søknad';
+import { Input } from 'nav-frontend-skjema';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 
 interface Props {
   navn?: string;
   personnummer?: string;
   settNavn: Function;
-  settPersonnummer: Function;
+  settPersonnummer: (pnr: string) => void;
   settBo: Function;
   boHosDeg: string;
-  settDato: Function;
+  settDato: (dato: Date | null) => void;
   barnDato: Date | undefined;
+  kjennerIkkeIdent: boolean;
+  settKjennerIkkeIdent: (kjennerIkkeIdent: boolean) => void;
 }
 
 const LeggTilBarnFødt: React.FC<Props> = ({
@@ -32,8 +33,21 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   boHosDeg,
   settDato,
   barnDato,
+  kjennerIkkeIdent,
+  settKjennerIkkeIdent,
 }) => {
   const intl = useIntl();
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
+  const [ident, settIdent] = useState<string>(personnummer ? personnummer : '');
+
+  const hvisGyldigIdentSettPersonnummer = (erGyldig: boolean) => {
+    settGyldigIdent(erGyldig);
+    erGyldig && settPersonnummer(ident);
+  };
+
+  const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
+    settIdent(e.currentTarget.value);
+  };
 
   return (
     <>
@@ -46,24 +60,19 @@ const LeggTilBarnFødt: React.FC<Props> = ({
       </KomponentGruppe>
       {navn && (
         <KomponentGruppe>
-          <FeltGruppe classname={'datoOgPersonnummer'}>
-            <Datovelger
-              valgtDato={barnDato}
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-              settDato={(e) => settDato(e)}
-            />
-            <Input
-              key={'tlf'}
-              label={intl.formatMessage({ id: 'person.nr.barn' }).trim()}
-              type="text"
-              value={personnummer}
-              bredde={'S'}
-              onChange={(e) =>
-                settPersonnummer(e.target.value, 'fødselsnummer')
-              }
-            />
-          </FeltGruppe>
+          <IdentEllerFødselsdatoGruppe
+            identLabel={hentTekst('barn.ident', intl)}
+            datoLabel={hentTekst('datovelger.fødselsdato', intl)}
+            checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
+            ident={ident && !kjennerIkkeIdent ? ident : ''}
+            fødselsdato={barnDato ? datoTilStreng(barnDato) : undefined}
+            checked={kjennerIkkeIdent}
+            erGyldigIdent={erGyldigIdent}
+            settGyldigIdent={hvisGyldigIdentSettPersonnummer}
+            settFødselsdato={settDato}
+            settChecked={settKjennerIkkeIdent}
+            settIdent={oppdaterIdent}
+          />
         </KomponentGruppe>
       )}
       {barnDato && (

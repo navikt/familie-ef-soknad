@@ -26,8 +26,9 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
-  const [personnummer, settPersonnummer] = useState('');
+  const [personnummer, settPersonnummer] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState('');
+  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
 
   useEffect(() => {
     if (id) {
@@ -116,6 +117,8 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
           boHosDeg={boHosDeg}
           settDato={settDato}
           barnDato={barnDato}
+          kjennerIkkeIdent={kjennerIkkeIdent}
+          settKjennerIkkeIdent={settKjennerIkkeIdent}
         />
       ) : født === false ? (
         <LeggTilBarnUfødt
