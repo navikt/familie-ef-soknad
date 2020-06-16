@@ -29,10 +29,12 @@ const OppsummeringOmDeg = () => {
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
+  console.log('omDeg', omDeg);
+
   return (
     <Ekspanderbartpanel tittel="Om deg">
       <div className="spørsmål-og-svar">
-        <Element>Fødselsnummer</Element>
+        <Element>Fødselsnummer eller d-nummer</Element>
         <Normaltekst>{omDeg.fnr}</Normaltekst>
       </div>
       <div className="spørsmål-og-svar">
