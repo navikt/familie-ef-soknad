@@ -16,6 +16,8 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
   const harSattFødselsdato = samboerDetaljer?.fødselsdato?.verdi ? true : false;
   const harSattIdent = samboerDetaljer?.ident?.verdi ? true : false;
   const harFerdigUtfyltOmSamboer = harSattIdent || harSattFødselsdato;
+  const harFerdigUtfyltOmTidligereSamboer =
+    harSattIdent || samboerDetaljer?.kjennerIkkeIdent;
 
   switch (delerBoligMedAndreVoksne.svarid) {
     case ESøkerDelerBolig.borAleneMedBarnEllerGravid:
@@ -37,7 +39,8 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
       return (
         skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
-        (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harFerdigUtfyltOmSamboer)
+        (harPlanerOmÅBliSamboerEllerSkalGifteSeg &&
+          harFerdigUtfyltOmTidligereSamboer)
       );
   }
 };

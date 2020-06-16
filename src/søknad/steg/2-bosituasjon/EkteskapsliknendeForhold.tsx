@@ -39,7 +39,8 @@ const EkteskapsliknendeForhold: FC<Props> = ({
         settBosituasjon={settBosituasjon}
         bosituasjon={bosituasjon}
       />
-      {(samboerDetaljer?.ident || samboerDetaljer?.fødselsdato) && (
+      {(samboerDetaljer?.ident?.verdi ||
+        samboerDetaljer?.fødselsdato?.verdi) && (
         <FeltGruppe>
           <Datovelger
             valgtDato={

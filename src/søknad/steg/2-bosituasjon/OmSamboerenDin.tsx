@@ -46,6 +46,7 @@ const OmSamboerenDin: FC<Props> = ({
     const endretSamboerInfo = samboerInfo;
     if (checked && endretSamboerInfo.ident?.verdi) {
       delete endretSamboerInfo.ident;
+      settIdent('');
     }
     if (!checked && endretSamboerInfo.fødselsdato?.verdi)
       delete endretSamboerInfo.fødselsdato;
@@ -114,7 +115,7 @@ const OmSamboerenDin: FC<Props> = ({
               : hentTekst('datovelger.fødselsdato', intl)
           }
           checkboxLabel={hentTekst('person.checkbox.ident', intl)}
-          ident={ident}
+          ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
           fødselsdato={samboerInfo.fødselsdato?.verdi}
           checked={samboerInfo?.kjennerIkkeIdent}
           erGyldigIdent={erGyldigIdent}
