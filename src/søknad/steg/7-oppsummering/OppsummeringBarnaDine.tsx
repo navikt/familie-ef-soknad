@@ -4,19 +4,36 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
+import { hentTekst } from '../../../utils/søknad';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
 const OppsummeringBarnaDine: React.FC = () => {
   const { søknad } = useSøknad();
+  const intl = useIntl();
   const history = useHistory();
 
   const barna = søknad.person.barn;
 
   const felterAlleBarna = barna.map((barn, index) => {
+    let nyttBarn = barn;
+
+    if (!barn.født?.verdi) {
+      delete nyttBarn.fnr;
+      delete nyttBarn.personnummer;
+      delete nyttBarn.navn;
+      delete nyttBarn.alder;
+
+      nyttBarn.fødselsdato = {
+        label: 'Termindato',
+        verdi: hentTekst('barnadine.termindato', intl),
+      };
+    }
+
     return (
       <div className="oppsummering-barn">
-        {VisLabelOgSvar(barn)}
+        {VisLabelOgSvar(nyttBarn)}
         {index < barna.length - 1 && <hr />}
       </div>
     );
