@@ -9,6 +9,7 @@ import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { datoTilStreng } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
+import { førsteBokstavStor } from '../../../utils/språk';
 
 interface Props {
   tittel: string;
@@ -49,7 +50,7 @@ const OmSamboerenDin: FC<Props> = ({
       samboerDetaljer: {
         ...samboerDetaljer,
         [objektnøkkel]: {
-          label: objektnøkkel,
+          label: førsteBokstavStor(objektnøkkel),
           verdi: e.currentTarget.value,
         },
       },

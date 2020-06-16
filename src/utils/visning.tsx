@@ -73,15 +73,6 @@ export const VisLabelOgSvar = (objekt: Object) => {
       return null;
     }
 
-    if (spørsmål.navn && spørsmål.fødselsnummer) {
-      return (
-        <div className="spørsmål-og-svar">
-          <Element>{spørsmål.navn}</Element>
-          <Normaltekst>{spørsmål.fødselsnummer}</Normaltekst>
-        </div>
-      );
-    }
-
     return (
       <div className="spørsmål-og-svar">
         <Element>{spørsmål.label}</Element>
