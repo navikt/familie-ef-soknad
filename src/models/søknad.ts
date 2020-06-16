@@ -18,4 +18,5 @@ export interface ISøknad {
   aktivitet: IAktivitet;
   merOmDinSituasjon: IDinSituasjon;
   dokumentasjonsbehov: IDokumentasjon[];
+  harBekreftet?: boolean;
 }
