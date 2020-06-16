@@ -103,7 +103,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
                 tittel={
                   'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
                 }
-                ekteskapsLiknendeForhold={false}
+                erIdentEllerFødselsdatoObligatorisk={true}
                 settBosituasjon={settBosituasjon}
                 bosituasjon={bosituasjon}
               />

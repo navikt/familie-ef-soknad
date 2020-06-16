@@ -1,9 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
+
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { datoTilStreng } from '../../../utils/dato';
@@ -15,14 +13,14 @@ import { EPersonDetaljer, IPersonDetaljer } from '../../../models/person';
 
 interface Props {
   tittel: string;
-  ekteskapsLiknendeForhold: boolean;
+  erIdentEllerFødselsdatoObligatorisk: boolean;
   settBosituasjon: (bositasjon: IBosituasjon) => void;
   bosituasjon: IBosituasjon;
 }
 
 const OmSamboerenDin: FC<Props> = ({
   tittel,
-  ekteskapsLiknendeForhold,
+  erIdentEllerFødselsdatoObligatorisk,
   settBosituasjon,
   bosituasjon,
 }) => {
@@ -87,20 +85,6 @@ const OmSamboerenDin: FC<Props> = ({
     });
   };
 
-  const settDatoFlyttetSammen = (dato: Date | null) => {
-    dato !== null &&
-      settBosituasjon({
-        ...bosituasjon,
-        datoFlyttetSammenMedSamboer: {
-          label: datovelgerTekst,
-          verdi: datoTilStreng(dato),
-        },
-      });
-  };
-
-  const datovelgerTekst = intl.formatMessage({
-    id: 'bosituasjon.datovelger.nårFlyttetDereSammen',
-  });
   return (
     <KomponentGruppe>
       <FeltGruppe>
@@ -121,7 +105,7 @@ const OmSamboerenDin: FC<Props> = ({
         <IdentEllerFødselsdatoGruppe
           identLabel={hentTekst('person.ident', intl)}
           datoLabel={
-            ekteskapsLiknendeForhold
+            !erIdentEllerFødselsdatoObligatorisk
               ? hentTekst('person.fødselsdato', intl)
               : hentTekst('datovelger.fødselsdato', intl)
           }
@@ -136,22 +120,6 @@ const OmSamboerenDin: FC<Props> = ({
           settIdent={settIdent}
         />
       )}
-
-      {ekteskapsLiknendeForhold &&
-        (samboerDetaljer?.ident || samboerDetaljer?.fødselsdato) && (
-          <FeltGruppe>
-            <Datovelger
-              valgtDato={
-                bosituasjon.datoFlyttetSammenMedSamboer
-                  ? bosituasjon.datoFlyttetSammenMedSamboer.verdi
-                  : undefined
-              }
-              tekstid={'bosituasjon.datovelger.nårFlyttetDereSammen'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-              settDato={(e) => settDatoFlyttetSammen(e)}
-            />
-          </FeltGruppe>
-        )}
     </KomponentGruppe>
   );
 };

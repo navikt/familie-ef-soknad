@@ -195,7 +195,10 @@ export default {
 
     'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
     'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+    'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'bosituasjon.datovelger.nårFlyttetDereFraHverandre':
+      'Når flyttet dere fra hverandre?',
 
     'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
       '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +
