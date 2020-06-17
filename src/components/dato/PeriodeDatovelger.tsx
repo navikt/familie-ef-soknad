@@ -51,7 +51,9 @@ const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
         <Datovelger
           settDato={(e) => settPeriode(e, 'fra')}
           valgtDato={
-            periode.fra.verdi ? periode.fra.verdi : subDays(dagensDato, 1)
+            periode.fra.verdi
+              ? strengTilDato(periode.fra.verdi)
+              : subDays(dagensDato, 1)
           }
           tekstid={'periode.fra'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
@@ -59,7 +61,9 @@ const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
 
         <Datovelger
           settDato={(e) => settPeriode(e, 'til')}
-          valgtDato={periode.til.verdi ? periode.til.verdi : dagensDato}
+          valgtDato={
+            periode.til.verdi ? strengTilDato(periode.til.verdi) : dagensDato
+          }
           tekstid={'periode.til'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />

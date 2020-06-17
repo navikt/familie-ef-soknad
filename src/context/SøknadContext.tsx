@@ -48,6 +48,7 @@ const initialState: ISøknad = {
     },
   },
   dokumentasjonsbehov: [],
+  harBekreftet: false,
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
@@ -74,11 +75,13 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   };
 
   const mellomlagreOvergangsstønad = (steg: string) => {
-    mellomlagreOvergangsstønadTilDokument({
+    const utfyltSøknad = {
       søknad: søknad,
       modellVersjon: Environment().modellVersjon,
       gjeldendeSteg: steg,
-    });
+    };
+    mellomlagreOvergangsstønadTilDokument(utfyltSøknad);
+    settMellomlagretOvergangsstønad(utfyltSøknad);
   };
 
   const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {

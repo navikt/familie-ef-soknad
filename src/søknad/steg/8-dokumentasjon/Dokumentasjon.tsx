@@ -23,10 +23,14 @@ const Dokumentasjon: React.FC = () => {
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
   const settDokumentasjon = (dokumentasjon: IDokumentasjon) => {
-    const dokumentasjonMedVedlegg = dokumentasjonsbehov.map((dok) => {
-      return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+    settSøknad((prevSoknad) => {
+      const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
+        (dok) => {
+          return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+        }
+      );
+      return { ...prevSoknad, dokumentasjonsbehov: dokumentasjonMedVedlegg };
     });
-    settSøknad({ ...søknad, dokumentasjonsbehov: dokumentasjonMedVedlegg });
   };
 
   useEffect(() => {
@@ -36,11 +40,18 @@ const Dokumentasjon: React.FC = () => {
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);
 
+  const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
     <Side tittel={sidetittel} skalViseKnapper={false} erSpørsmålBesvart={true}>
       <SeksjonGruppe>
         <Normaltekst>
-          <FormattedHTMLMessage id={'dokumentasjon.beskrivelse'} />
+          <FormattedHTMLMessage
+            id={
+              harDokumentasjonsbehov
+                ? 'dokumentasjon.beskrivelse'
+                : 'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'
+            }
+          />
         </Normaltekst>
       </SeksjonGruppe>
       <SeksjonGruppe>

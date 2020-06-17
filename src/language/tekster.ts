@@ -578,6 +578,8 @@ export default {
     'oppsummering.tilbake': 'Til oppsummering',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
+    'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
+      'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
       'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
       ' <br/><br/>' +

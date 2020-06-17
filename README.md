@@ -11,6 +11,9 @@ Kjør uten redirect til autentisering lokalt:
 sett .env variabel: 
 REACT_APP_BRUK_API_I_DEV=false
 
+Med api må du sette cookie første gang:
+`http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad/`
+
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
 1. I IntelliJ, åpne `Preferences/Plugins` for så å søke opp og installere `File Watchers` og `Prettier` hvis dette ikke allerede er gjort.  
