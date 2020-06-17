@@ -9,18 +9,6 @@ import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import Datovelger from '../components/dato/Datovelger';
 
-// TODO: Dette kan umulig være riktig visning av denne komponenten? Ser ikke ut som begrunnelse blir satt heller
-export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
-  return verdi.map((v: IUtenlandsopphold) => {
-    return (
-      <>
-        {verdiTilTekstsvar(strengTilDato(v.periode.fra.verdi))}
-        {VisLabelOgSvar(v.begrunnelse)}
-      </>
-    );
-  });
-};
-
 export const verdiTilTekstsvar = (
   verdi: string | Date | boolean | number | string[],
   intl?: IntlShape
@@ -69,6 +57,31 @@ export const verdiTilTekstsvar = (
   }
 };
 
+export const VisPerioderBoddIUtlandet = (
+  verdi: IUtenlandsopphold[] | undefined
+) => {
+  if (!verdi) return null;
+  return verdi.map((v: IUtenlandsopphold) => {
+    console.log('VERDI', v);
+    return <>{VisLabelOgSvar(v)}</>;
+  });
+};
+
+export const VisPerioderUtland = (perioder: any[] | undefined) => {
+  if (!perioder) return null;
+
+  console.log('PERIODER INNI VISPERIODE', perioder);
+
+  const returnperioder = perioder.map((periode: any) => {
+    console.log('PERIODE INNI MAP', periode);
+    return <div>{VisLabelOgSvar(periode.begrunnelse)}</div>;
+  });
+
+  console.log('RETURNPERIODER', returnperioder);
+
+  return returnperioder;
+};
+
 const VisFraOgTil = (tittel: string, objekt: any) => {
   const intl = useIntl();
 
@@ -95,17 +108,12 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
   const intl = useIntl();
 
   if (!objekt) return null;
-  console.log('OBJEKT', objekt);
-
   return Object.values(objekt).map((spørsmål) => {
     if (!spørsmål) {
       return null;
     }
 
-    console.log('SPØRSMÅL', spørsmål);
-
     if (spørsmål.fra && spørsmål.til) {
-      console.log('JADDA FRA OG TIL');
       return VisFraOgTil(
         hentTekst('utdanning.datovelger.studieperiode', intl),
         spørsmål

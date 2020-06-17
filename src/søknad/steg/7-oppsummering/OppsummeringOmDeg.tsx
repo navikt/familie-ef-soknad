@@ -4,6 +4,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
   VisLabelOgSvar,
+  VisPerioderUtland,
   VisPerioderBoddIUtlandet,
 } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -22,14 +23,14 @@ const OppsummeringOmDeg = () => {
   const utlandet: IUtenlandsopphold[] | undefined =
     søknad.medlemskap.perioderBoddIUtlandet;
 
-  const perioderBoddIUtlandet = utlandet
-    ? VisPerioderBoddIUtlandet(utlandet)
-    : null;
-
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
-  console.log('omDeg', omDeg);
+  const perioderUtland = VisPerioderBoddIUtlandet(utlandet);
+
+  console.log('PERIODERUTLAND ETTER', console.log(perioderUtland));
+
+  console.log('perioder', utlandet);
 
   return (
     <Ekspanderbartpanel tittel="Om deg">
@@ -51,7 +52,7 @@ const OppsummeringOmDeg = () => {
       </div>
       {sivilstatusSpørsmål}
       {medlemskapSpørsmål}
-      {perioderBoddIUtlandet}
+      {perioderUtland}
       <LenkeMedIkon
         onClick={() =>
           history.push({
