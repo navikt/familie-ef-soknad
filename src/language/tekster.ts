@@ -71,13 +71,14 @@ export default {
 
     'person.navn': 'Navn',
     'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
-    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
-    'person.fnr': 'Fødselsnummer eller d-nummer',
+    'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
+    'person.ident': 'Fødselsnummer eller d-nummer',
+    'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
+    'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
-    'person.fødselsdato': 'Fødselsdato',
 
     barnet: 'Barnet',
 
@@ -194,7 +195,10 @@ export default {
 
     'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
     'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+    'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'bosituasjon.datovelger.nårFlyttetDereFraHverandre':
+      'Når flyttet dere fra hverandre?',
 
     'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
       '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +
