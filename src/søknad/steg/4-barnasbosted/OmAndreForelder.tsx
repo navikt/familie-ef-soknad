@@ -4,14 +4,10 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import styled from 'styled-components/macro';
+
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
-import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
@@ -27,9 +23,6 @@ interface Props {
   settKjennerIkkeIdent: (kjennerIkkeIdent: boolean) => void;
 }
 
-const StyledAndreForelderGruppe = styled.div`
-  min-width: 500px;
-`;
 const OmAndreForelder: React.FC<Props> = ({
   settForelder,
   forelder,

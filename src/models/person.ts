@@ -8,7 +8,7 @@ export interface IPerson {
 }
 
 export interface ISøker {
-  fnr: string;
+  ident: string;
   forkortetNavn: string;
   adresse: IAdresse;
   egenansatt: boolean;

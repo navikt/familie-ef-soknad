@@ -9,7 +9,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { formatDateFnr, dagensDato } from '../../../utils/dato';
+import { dagensDato } from '../../../utils/dato';
 import { parseISO } from 'date-fns';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
@@ -63,11 +63,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   };
 
   const leggTilBarn = (id: string | undefined) => {
-    const fødselsnummer =
-      barnDato && ident ? formatDateFnr(barnDato) + ident : '';
-
     const nyttBarn: IBarn = hentNyttBarn(
-      fødselsnummer,
       ident,
       barnDato,
       navn,
