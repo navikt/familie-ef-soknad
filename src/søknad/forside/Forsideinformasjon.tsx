@@ -5,7 +5,7 @@ import { hentBeskjedMedNavn } from '../../utils/språk';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import React, { useState } from 'react';
+import React from 'react';
 import { IPerson } from '../../models/person';
 import { IntlShape } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
