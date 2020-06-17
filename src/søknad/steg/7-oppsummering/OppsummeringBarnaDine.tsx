@@ -26,8 +26,8 @@ const OppsummeringBarnaDine: React.FC = () => {
       delete nyttBarn.alder;
 
       nyttBarn.fødselsdato = {
-        label: 'Termindato',
-        verdi: hentTekst('barnadine.termindato', intl),
+        label: hentTekst('barnadine.termindato', intl),
+        verdi: barn.fødselsdato.verdi,
       };
     }
 

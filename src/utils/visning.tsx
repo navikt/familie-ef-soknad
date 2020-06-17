@@ -6,6 +6,7 @@ import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 import { isValidISODateString } from 'iso-datestring-validator';
+import { hentBeskjedMedNavn } from '../utils/språk';
 
 // TODO: Dette kan umulig være riktig visning av denne komponenten? Ser ikke ut som begrunnelse blir satt heller
 export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
@@ -67,17 +68,27 @@ export const verdiTilTekstsvar = (
   }
 };
 
-export const VisLabelOgSvar = (objekt: Object) => {
+export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
   const intl = useIntl();
+
+  if (!objekt) return null;
+  console.log('OBJEKT', objekt);
 
   return Object.values(objekt).map((spørsmål) => {
     if (!spørsmål) {
       return null;
     }
 
+    console.log('LABEL', spørsmål.label);
+
+    const label =
+      navn && spørsmål.label
+        ? hentBeskjedMedNavn(navn, spørsmål.label)
+        : spørsmål.label;
+
     return (
       <div className="spørsmål-og-svar">
-        <Element>{spørsmål.label}</Element>
+        <Element>{label}</Element>
         {verdiTilTekstsvar(spørsmål.verdi, intl)}
       </div>
     );
