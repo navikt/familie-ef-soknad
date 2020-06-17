@@ -3,7 +3,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { datoTilStreng } from '../../../utils/dato';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar, ESvarTekstid } from '../../../models/spørsmålogsvar';
 import { FormattedMessage } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { Input } from 'nav-frontend-skjema';
@@ -13,10 +13,11 @@ import { useIntl } from 'react-intl';
 
 interface Props {
   navn?: string;
-  personnummer?: string;
+  fnrEllerDnr?: string;
   settNavn: Function;
-  settPersonnummer: (pnr: string) => void;
+  settFnrEllerDnr: (ident: string) => void;
   settBo: Function;
+  settBoHosDeg: (boHosDeg: string) => void;
   boHosDeg: string;
   settDato: (dato: Date | null) => void;
   barnDato: Date | undefined;
@@ -26,11 +27,12 @@ interface Props {
 
 const LeggTilBarnFødt: React.FC<Props> = ({
   navn,
-  personnummer,
+  fnrEllerDnr,
   settNavn,
-  settPersonnummer,
+  settFnrEllerDnr,
   settBo,
   boHosDeg,
+  settBoHosDeg,
   settDato,
   barnDato,
   kjennerIkkeIdent,
@@ -38,15 +40,28 @@ const LeggTilBarnFødt: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
-  const [ident, settIdent] = useState<string>(personnummer ? personnummer : '');
+  const [ident, settIdent] = useState<string>(fnrEllerDnr ? fnrEllerDnr : '');
 
-  const hvisGyldigIdentSettPersonnummer = (erGyldig: boolean) => {
+  const hvisGyldigIdentSettFnrEllerDnr = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig && settPersonnummer(ident);
+    erGyldig && settFnrEllerDnr(ident);
   };
 
   const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
     settIdent(e.currentTarget.value);
+  };
+
+  const settChecked = (checked: boolean) => {
+    if (checked) {
+      settFnrEllerDnr('');
+      settIdent('');
+    }
+    if (!checked && barnDato) {
+      settDato(null);
+    }
+
+    settBoHosDeg('');
+    settKjennerIkkeIdent(checked);
   };
 
   return (
@@ -68,14 +83,14 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             fødselsdato={barnDato ? datoTilStreng(barnDato) : undefined}
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
-            settGyldigIdent={hvisGyldigIdentSettPersonnummer}
+            settGyldigIdent={hvisGyldigIdentSettFnrEllerDnr}
             settFødselsdato={settDato}
-            settChecked={settKjennerIkkeIdent}
+            settChecked={settChecked}
             settIdent={oppdaterIdent}
           />
         </KomponentGruppe>
       )}
-      {barnDato && (
+      {(barnDato || (ident && erGyldigIdent)) && (
         <KomponentGruppe>
           <Normaltekst>
             {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
@@ -84,7 +99,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.JA}
               name={'radio-bosted'}
-              label="Ja"
+              label={hentTekst(ESvarTekstid.JA, intl)}
               value={ESvar.JA}
               checked={boHosDeg === ESvar.JA}
               onChange={(e) => settBo(e)}
@@ -92,7 +107,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.NEI}
               name={'radio-bosted'}
-              label="Nei"
+              label={hentTekst(ESvarTekstid.NEI, intl)}
               value={ESvar.NEI}
               checked={boHosDeg === ESvar.NEI}
               onChange={(e) => settBo(e)}

@@ -27,7 +27,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
   const [personnummer, settPersonnummer] = useState<string>('');
-  const [boHosDeg, settBoHosDeg] = useState('');
+  const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   }, []);
 
   const settDato = (date: Date | null): void => {
-    date !== null && settBarnDato(date);
+    date && settBarnDato(date);
   };
 
   const settBo = (event: any) => {
@@ -96,16 +96,14 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       <Undertittel>Legg til barn</Undertittel>
 
       <KomponentGruppe>
-        <div className="radiogruppe-2-svar">
-          <JaNeiSpørsmål
-            spørsmål={barnetFødt}
-            onChange={(_, svar) => {
-              tilbakestillFelt();
-              settBarnFødt(svar.id === ESvar.JA);
-            }}
-            valgtSvar={født}
-          />
-        </div>
+        <JaNeiSpørsmål
+          spørsmål={barnetFødt}
+          onChange={(_, svar) => {
+            tilbakestillFelt();
+            settBarnFødt(svar.id === ESvar.JA);
+          }}
+          valgtSvar={født}
+        />
       </KomponentGruppe>
       {født === true ? (
         <LeggTilBarnFødt
@@ -115,6 +113,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
           settPersonnummer={settPersonnummer}
           settBo={settBo}
           boHosDeg={boHosDeg}
+          settBoHosDeg={settBoHosDeg}
           settDato={settDato}
           barnDato={barnDato}
           kjennerIkkeIdent={kjennerIkkeIdent}
