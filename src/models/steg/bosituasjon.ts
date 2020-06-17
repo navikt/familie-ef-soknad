@@ -10,6 +10,7 @@ export interface IBosituasjon {
   skalGifteSegEllerBliSamboer?: ISpørsmålBooleanFelt;
   datoFlyttetSammenMedSamboer?: IDatoFelt;
   datoSkalGifteSegEllerBliSamboer?: IDatoFelt;
+  datoFlyttetFraHverandre?: IDatoFelt;
   samboerDetaljer?: IPersonDetaljer;
 }
 
@@ -17,6 +18,7 @@ export enum EBosituasjon {
   delerBoligMedAndreVoksne = 'delerBoligMedAndreVoksne',
   skalGifteSegEllerBliSamboer = 'skalGifteSegEllerBliSamboer',
   datoFlyttetSammenMedSamboer = 'datoFlyttetSammenMedSamboer',
+  datoFlyttetFraHverandre = 'datoFlyttetFraHverandre',
   datoSkalGifteSegEllerBliSamboer = 'datoSkalGifteSegEllerBliSamboer',
   samboerDetaljer = 'samboerDetaljer',
 }

@@ -1,5 +1,6 @@
 import { ESøkerDelerBolig, IBosituasjon } from '../../models/steg/bosituasjon';
 import { ESvar } from '../../models/spørsmålogsvar';
+import { erGyldigDato } from '../../utils/dato';
 
 export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
   const {
@@ -7,6 +8,7 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     samboerDetaljer,
     datoFlyttetSammenMedSamboer,
     skalGifteSegEllerBliSamboer,
+    datoFlyttetFraHverandre,
   } = bosituasjon;
 
   const harPlanerOmÅBliSamboerEllerSkalGifteSeg =
@@ -16,8 +18,6 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
   const harSattFødselsdato = samboerDetaljer?.fødselsdato?.verdi ? true : false;
   const harSattIdent = samboerDetaljer?.ident?.verdi ? true : false;
   const harFerdigUtfyltOmSamboer = harSattIdent || harSattFødselsdato;
-  const harFerdigUtfyltOmTidligereSamboer =
-    harSattIdent || samboerDetaljer?.kjennerIkkeIdent;
 
   switch (delerBoligMedAndreVoksne.svarid) {
     case ESøkerDelerBolig.borAleneMedBarnEllerGravid:
@@ -37,10 +37,6 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
         (harPlanerOmÅBliSamboerEllerSkalGifteSeg && harFerdigUtfyltOmSamboer)
       );
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
-      return (
-        skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
-        (harPlanerOmÅBliSamboerEllerSkalGifteSeg &&
-          harFerdigUtfyltOmTidligereSamboer)
-      );
+      return erGyldigDato(datoFlyttetFraHverandre?.verdi);
   }
 };
