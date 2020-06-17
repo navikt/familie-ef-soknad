@@ -17,7 +17,7 @@ export const hentNyttBarn = (
 ): IBarn => {
   return {
     fnr: hentFeltObjekt('person.fnr', fnr, intl),
-    ident: hentFeltObjekt('barnadine.personnummer', ident, intl),
+    ident: hentFeltObjekt('person.ident', ident, intl),
     alder: hentFeltObjekt(
       'person.alder',
       differenceInYears(dagensDato, barnDato ? barnDato : dagensDato),
