@@ -13,9 +13,9 @@ import { useIntl } from 'react-intl';
 
 interface Props {
   navn?: string;
-  fnrEllerDnr?: string;
+  ident?: string;
   settNavn: Function;
-  settFnrEllerDnr: (ident: string) => void;
+  settIdent: (ident: string) => void;
   settBo: Function;
   settBoHosDeg: (boHosDeg: string) => void;
   boHosDeg: string;
@@ -27,9 +27,9 @@ interface Props {
 
 const LeggTilBarnFødt: React.FC<Props> = ({
   navn,
-  fnrEllerDnr,
+  ident,
   settNavn,
-  settFnrEllerDnr,
+  settIdent,
   settBo,
   boHosDeg,
   settBoHosDeg,
@@ -40,21 +40,21 @@ const LeggTilBarnFødt: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
-  const [ident, settIdent] = useState<string>(fnrEllerDnr ? fnrEllerDnr : '');
+  const [identFelt, settIdentFelt] = useState<string>(ident ? ident : '');
 
-  const hvisGyldigIdentSettFnrEllerDnr = (erGyldig: boolean) => {
+  const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig && settFnrEllerDnr(ident);
+    erGyldig && settIdent(identFelt);
   };
 
   const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
-    settIdent(e.currentTarget.value);
+    settIdentFelt(e.currentTarget.value);
   };
 
   const settChecked = (checked: boolean) => {
     if (checked) {
-      settFnrEllerDnr('');
       settIdent('');
+      settIdentFelt('');
     }
     if (!checked && barnDato) {
       settDato(null);
@@ -79,11 +79,11 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             identLabel={hentTekst('barn.ident', intl)}
             datoLabel={hentTekst('datovelger.fødselsdato', intl)}
             checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
-            ident={ident && !kjennerIkkeIdent ? ident : ''}
+            ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
             fødselsdato={barnDato ? datoTilStreng(barnDato) : undefined}
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
-            settGyldigIdent={hvisGyldigIdentSettFnrEllerDnr}
+            settGyldigIdent={hvisGyldigIdentSettIdent}
             settFødselsdato={settDato}
             settChecked={settChecked}
             settIdent={oppdaterIdent}

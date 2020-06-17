@@ -42,11 +42,11 @@ const BarnaDine: React.FC = () => {
                 navn={barn.navn}
                 fnr={barn.fnr}
                 fødselsdato={barn.fødselsdato}
-                personnummer={
-                  barn.personnummer && barn.personnummer.verdi
-                    ? barn.personnummer
+                ident={
+                  barn.ident && barn.ident.verdi
+                    ? barn.ident
                     : {
-                        label: hentTekst('barnadine.personnummer', intl),
+                        label: hentTekst('barnadine.ident', intl),
                         verdi: '',
                       }
                 }

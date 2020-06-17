@@ -26,7 +26,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
-  const [personnummer, settPersonnummer] = useState<string>('');
+  const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
 
@@ -35,9 +35,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       const detteBarnet = søknad.person.barn.find((b) => b.id === id);
 
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
-      settPersonnummer(
-        detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
-      );
+      settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
       settDato(
@@ -60,17 +58,17 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const tilbakestillFelt = () => {
     settBarnDato(undefined);
     settNavn('');
-    settPersonnummer('');
+    settIdent('');
     settBoHosDeg('');
   };
 
   const leggTilBarn = (id: string | undefined) => {
     const fødselsnummer =
-      barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
+      barnDato && ident ? formatDateFnr(barnDato) + ident : '';
 
     const nyttBarn: IBarn = hentNyttBarn(
       fødselsnummer,
-      personnummer,
+      ident,
       barnDato,
       navn,
       boHosDeg,
@@ -108,9 +106,9 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       {født === true ? (
         <LeggTilBarnFødt
           navn={navn}
-          personnummer={personnummer}
+          ident={ident}
           settNavn={settNavn}
-          settPersonnummer={settPersonnummer}
+          settIdent={settIdent}
           settBo={settBo}
           boHosDeg={boHosDeg}
           settBoHosDeg={settBoHosDeg}

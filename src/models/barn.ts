@@ -10,7 +10,7 @@ export interface IBarn {
   alder: ITekstFelt;
   fnr: ITekstFelt;
   fødselsdato: ITekstFelt;
-  personnummer?: ITekstFelt;
+  ident?: ITekstFelt;
   harSammeAdresse: IBooleanFelt;
   navn: ITekstFelt;
   født?: ISpørsmålBooleanFelt;
@@ -22,7 +22,7 @@ export enum EBarn {
   alder = 'alder',
   fnr = 'fnr',
   fødselsdato = 'fødselsdato',
-  personnummer = 'personnummer',
+  ident = 'ident',
   harSammeAdresse = 'harSammeAdresse',
   navn = 'navn',
   født = 'født',

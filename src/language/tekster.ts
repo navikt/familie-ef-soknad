@@ -74,7 +74,7 @@ export default {
     'barn.checkbox.ident': 'Barnet har ikke fått fødselsnummer ennå',
     'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
     'person.fnr': 'Fødselsnummer',
-    'person.ident': 'Fødselsnummer eller d-nummer',
+    'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
     'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',

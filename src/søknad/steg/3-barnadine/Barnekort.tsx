@@ -15,7 +15,7 @@ interface Props {
   navn: ITekstFelt;
   fnr: ITekstFelt;
   fødselsdato: ITekstFelt;
-  personnummer: ITekstFelt;
+  ident: ITekstFelt;
   alder: ITekstFelt;
   harSammeAdresse: IBooleanFelt;
   lagtTil: boolean;
