@@ -79,7 +79,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
       søknadsdato:
-        svar.id == ESøkerFraBestemtMåned.neiNavKanVurdere
+        svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere
           ? undefined
           : dinSituasjon.søknadsdato,
     });
