@@ -80,7 +80,6 @@ const App = () => {
     ])
       .then(() => settFetching(false))
       .catch(() => {
-        console.log('wtf');
         settFetching(false);
       });
     // eslint-disable-next-line
