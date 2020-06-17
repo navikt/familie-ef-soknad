@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
+import Datovelger from '../components/dato/Datovelger';
 
 // TODO: Dette kan umulig være riktig visning av denne komponenten? Ser ikke ut som begrunnelse blir satt heller
 export const VisPerioderBoddIUtlandet = (verdi: IUtenlandsopphold[]) => {
@@ -68,6 +69,28 @@ export const verdiTilTekstsvar = (
   }
 };
 
+const VisFraOgTil = (tittel: string, objekt: any) => {
+  const intl = useIntl();
+
+  if (!(objekt && objekt.fra && objekt.til)) return null;
+
+  return (
+    <>
+      <div className="spørsmål-og-svar">
+        <Element>{tittel}</Element>
+      </div>
+      <div className="spørsmål-og-svar">
+        <Element>Fra</Element>
+        {verdiTilTekstsvar(objekt.fra.verdi, intl)}
+      </div>
+      <div className="spørsmål-og-svar">
+        <Element>Til</Element>
+        {verdiTilTekstsvar(objekt.til.verdi, intl)}
+      </div>
+    </>
+  );
+};
+
 export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
   const intl = useIntl();
 
@@ -79,7 +102,15 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       return null;
     }
 
-    console.log('LABEL', spørsmål.label);
+    console.log('SPØRSMÅL', spørsmål);
+
+    if (spørsmål.fra && spørsmål.til) {
+      console.log('JADDA FRA OG TIL');
+      return VisFraOgTil(
+        hentTekst('utdanning.datovelger.studieperiode', intl),
+        spørsmål
+      );
+    }
 
     const label =
       navn && spørsmål.label

@@ -13,6 +13,7 @@ import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -33,7 +34,10 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
       etablererEgenVirksomhet: {
         spørsmålid: EArbeidssituasjon.etablererEgenVirksomhet,
         svarid: EAktivitet.etablererEgenVirksomhet,
-        label: intl.formatMessage({ id: spørsmål.tekstid }),
+        label: hentTekst(
+          'arbeidssituasjon.label.etablererEgenVirksomhet',
+          intl
+        ),
         verdi: e.target.value,
       },
     });
