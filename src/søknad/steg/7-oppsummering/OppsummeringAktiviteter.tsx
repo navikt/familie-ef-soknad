@@ -50,6 +50,13 @@ const OppsummeringAktiviteter: React.FC = () => {
       )
     : null;
 
+  const egetAS = aktivitet.egetAS
+    ? visListeAvLabelOgSvar(
+        aktivitet.egetAS,
+        hentTekst('arbeidsforhold.tittel.egetAS', intl)
+      )
+    : null;
+
   const tidligereUtdanning = aktivitet.underUtdanning?.tidligereUtdanning
     ? visListeAvLabelOgSvar(
         aktivitet.underUtdanning.tidligereUtdanning,
@@ -76,6 +83,7 @@ const OppsummeringAktiviteter: React.FC = () => {
       ) : null}
       {arbeidsforhold ? <div className="seksjon">{arbeidsforhold}</div> : null}
       {firma ? <div className="seksjon">{firma}</div> : null}
+      {egetAS ? <div className="seksjon">{egetAS}</div> : null}
       {arbeidssøker ? <div className="seksjon">{arbeidssøker}</div> : null}
       {underUtdanning ? (
         <div className="seksjon">

@@ -392,6 +392,7 @@ export default {
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsforhold',
+    'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsforhold',
 
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
