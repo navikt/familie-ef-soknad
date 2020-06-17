@@ -13,6 +13,7 @@ export const hentSivilstatus = (statuskode: string) => {
       return 'Samboer';
 
     case 'SEPA':
+    case 'SEPR':
       return 'Separert';
 
     case 'SKIL':
@@ -22,7 +23,7 @@ export const hentSivilstatus = (statuskode: string) => {
       return 'Enke/ enkemann';
 
     default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
+      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
   }
 };
 
