@@ -5,12 +5,13 @@ import { hentBeskjedMedNavn } from '../../utils/språk';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import React, { useState } from 'react';
+import React from 'react';
 import { IPerson } from '../../models/person';
 import { IntlShape } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { hentNesteRoute } from '../../routing/utils';
 import { Routes } from '../../routing/Routes';
+import { useSøknad } from '../../context/SøknadContext';
 const BlockContent = require('@sanity/block-content-to-react');
 
 interface InnholdProps {
@@ -26,7 +27,14 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   person,
   intl,
 }) => {
-  const [harBekreftet, settBekreftelse] = useState<boolean>(false);
+  const { søknad, settSøknad } = useSøknad();
+
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
   const history = useHistory();
   const location = useLocation();
   const nestePath = hentNesteRoute(Routes, location.pathname);
@@ -77,8 +85,8 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
               serializers={{ types: { block: BlockRenderer } }}
             />
             <BekreftCheckboksPanel
-              onChange={(e) => settBekreftelse(!harBekreftet)}
-              checked={harBekreftet}
+              onChange={(e) => settBekreftelse(!søknad.harBekreftet)}
+              checked={!!søknad.harBekreftet}
               label={hentBeskjedMedNavn(
                 person.søker.forkortetNavn,
                 intl.formatMessage({ id: 'side.bekreftelse' })
@@ -88,7 +96,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         </div>
       )}
 
-      {harBekreftet ? (
+      {søknad.harBekreftet ? (
         <FeltGruppe classname={'sentrert'}>
           <KnappBase
             onClick={() => history.push(nestePath.path)}

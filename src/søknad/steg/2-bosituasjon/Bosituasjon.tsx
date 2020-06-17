@@ -3,7 +3,6 @@ import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import OmSamboerenDin from './OmSamboerenDin';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
@@ -21,6 +20,9 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
 
+import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
+import OmTidligereSamboer from './OmTidligereSamboer';
+
 const Bosituasjon: FC = () => {
   const intl = useIntl();
   const {
@@ -33,10 +35,10 @@ const Bosituasjon: FC = () => {
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
-
   const [bosituasjon, settBosituasjon] = useState<IBosituasjon>(
     søknad.bosituasjon
   );
+
   useEffect(() => {
     settSøknad({ ...søknad, bosituasjon: bosituasjon });
     // eslint-disable-next-line
@@ -77,9 +79,7 @@ const Bosituasjon: FC = () => {
     bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
     bosituasjon.delerBoligMedAndreVoksne.svarid ===
-      ESøkerDelerBolig.delerBoligMedAndreVoksne ||
-    bosituasjon.delerBoligMedAndreVoksne.svarid ===
-      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse;
+      ESøkerDelerBolig.delerBoligMedAndreVoksne;
 
   return (
     <Side
@@ -119,12 +119,18 @@ const Bosituasjon: FC = () => {
       )}
 
       {harSøkerEkteskapsliknendeForhold && (
+        <EkteskapsliknendeForhold
+          settBosituasjon={settBosituasjon}
+          bosituasjon={bosituasjon}
+        />
+      )}
+
+      {bosituasjon.delerBoligMedAndreVoksne.svarid ===
+        ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse && (
         <SeksjonGruppe>
-          <OmSamboerenDin
-            tittel={'bosituasjon.tittel.omSamboer'}
-            ekteskapsLiknendeForhold={harSøkerEkteskapsliknendeForhold}
-            settBosituasjon={settBosituasjon}
+          <OmTidligereSamboer
             bosituasjon={bosituasjon}
+            settBosituasjon={settBosituasjon}
           />
         </SeksjonGruppe>
       )}
