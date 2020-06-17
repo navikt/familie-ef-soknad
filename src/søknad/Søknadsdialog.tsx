@@ -10,20 +10,24 @@ import MerOmDinSituasjon from './steg/6-meromsituasjon/MerOmDinSituasjon';
 import Dokumentasjon from './steg/8-dokumentasjon/Dokumentasjon';
 import Oppsummering from './steg/7-oppsummering/Oppsummering';
 import Kvittering from './steg/9-kvittering/Kvittering';
+import RedirectTilStart from './forside/RedirectTilStart';
 
 const Søknadsdialog: FC = () => {
   return (
     <>
       <Switch>
-        <Route path={'/kvittering'} component={Kvittering} />
-        <Route path={'/dokumentasjon'} component={Dokumentasjon} />
-        <Route path={'/oppsummering'} component={Oppsummering} />
-        <Route path={'/din-situasjon'} component={MerOmDinSituasjon} />
-        <Route path={'/aktivitet'} component={Aktivitet} />
-        <Route path={'/barnas-bosted'} component={BarnasBosted} />
-        <Route path={'/barn'} component={BarnaDine} />
-        <Route path={'/bosituasjon'} component={Bosituasjon} />
-        <Route path={'/om-deg'} component={OmDeg} />
+        <RedirectTilStart path={'/kvittering'} component={Kvittering} />
+        <RedirectTilStart path={'/dokumentasjon'} component={Dokumentasjon} />
+        <RedirectTilStart path={'/oppsummering'} component={Oppsummering} />
+        <RedirectTilStart
+          path={'/din-situasjon'}
+          component={MerOmDinSituasjon}
+        />
+        <RedirectTilStart path={'/aktivitet'} component={Aktivitet} />
+        <RedirectTilStart path={'/barnas-bosted'} component={BarnasBosted} />
+        <RedirectTilStart path={'/barn'} component={BarnaDine} />
+        <RedirectTilStart path={'/bosituasjon'} component={Bosituasjon} />
+        <RedirectTilStart path={'/om-deg'} component={OmDeg} />
         <Route path={'/'} component={Forside} />
       </Switch>
     </>
