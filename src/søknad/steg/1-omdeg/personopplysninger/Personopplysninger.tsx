@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -14,11 +14,7 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
-import {
-  harSøkerTlfnr,
-  hentSivilstatus,
-  hentSøkersTlfnr,
-} from '../../../../helpers/omdeg';
+import { hentSivilstatus } from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
