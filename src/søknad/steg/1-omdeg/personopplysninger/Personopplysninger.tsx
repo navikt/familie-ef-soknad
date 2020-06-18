@@ -27,14 +27,6 @@ const Personopplysninger: React.FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
-  const [harTlfnrIFolkeregisteret, settHarTlfnrIFolkeregisteret] = useState<
-    boolean
-  >(false);
-
-  useEffect(() => {
-    harSøkerTlfnr(søknad.person) && settHarTlfnrIFolkeregisteret(true);
-    // eslint-disable-next-line
-  }, []);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -60,7 +52,7 @@ const Personopplysninger: React.FC = () => {
         ...søknad,
         person: {
           ...søknad.person,
-          søker: { ...søker, mobiltelefon: telefonnr },
+          søker: { ...søker, kontakttelefon: telefonnr },
         },
       });
     }
@@ -83,7 +75,7 @@ const Personopplysninger: React.FC = () => {
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'person.fnr'} />
+            <LocaleTekst tekst={'person.ident'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
@@ -126,33 +118,25 @@ const Personopplysninger: React.FC = () => {
         )}
       </KomponentGruppe>
 
-      {søkerBorPåRegistrertAdresse?.verdi &&
-        (!harTlfnrIFolkeregisteret ? (
-          <>
-            <Input
-              key={'tlf'}
-              label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-              type="tel"
-              bredde={'M'}
-              onChange={(e) => oppdaterTelefonnr(e)}
-              onBlur={(e) => oppdaterFeilmelding(e)}
-              feil={
-                feilTelefonnr
-                  ? intl.formatMessage({
-                      id: 'personopplysninger.feilmelding.telefonnr',
-                    })
-                  : undefined
-              }
-            />
-          </>
-        ) : (
-          <FeltGruppe>
-            <Element>
-              <LocaleTekst tekst={'person.telefonnr'} />
-            </Element>
-            <Normaltekst>{hentSøkersTlfnr(søknad.person)}</Normaltekst>
-          </FeltGruppe>
-        ))}
+      {søkerBorPåRegistrertAdresse?.verdi && (
+        <>
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+            type="tel"
+            bredde={'M'}
+            onChange={(e) => oppdaterTelefonnr(e)}
+            onBlur={(e) => oppdaterFeilmelding(e)}
+            feil={
+              feilTelefonnr
+                ? intl.formatMessage({
+                    id: 'personopplysninger.feilmelding.telefonnr',
+                  })
+                : undefined
+            }
+          />
+        </>
+      )}
     </SeksjonGruppe>
   );
 };
