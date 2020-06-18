@@ -13,7 +13,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
 import { Routes } from '../../../routing/Routes';
-import { sendInnSøknad } from '../../../innsending/api';
+import { hentFiltrerBarn, sendInnSøknad } from '../../../innsending/api';
 
 interface Innsending {
   status: string;
@@ -35,8 +35,13 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const sendSøknad = (søknad: ISøknad) => {
+    const filtrerteBarn = hentFiltrerBarn(søknad.person.barn);
+    const søknadMedFiltrerteBarn: ISøknad = {
+      ...søknad,
+      person: { ...søknad.person, barn: filtrerteBarn },
+    };
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknad)
+    sendInnSøknad(søknadMedFiltrerteBarn)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
