@@ -53,7 +53,13 @@ const App = () => {
     const mapBarn = dataFraApi() ? barneliste : mockPersonMedBarn.barn;
 
     const barnMedLabels = mapBarn.map((barn: any) => {
-      return settLabelOgVerdi(barn, standardLabelsBarn);
+      const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
+
+      console.log(barnMedLabel);
+      barnMedLabel['ident'] = barnMedLabel['fnr'];
+      delete barnMedLabel.fnr;
+      console.log(barnMedLabel);
+      return barnMedLabel;
     });
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });

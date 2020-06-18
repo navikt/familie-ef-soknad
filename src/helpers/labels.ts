@@ -1,5 +1,5 @@
 export const standardLabelsBarn: any = {
-  ident: 'Ident',
+  fnr: 'Fødselsnummer eller d-nummer',
   navn: 'Navn',
   alder: 'Alder',
   fødselsdato: 'Fødselsdato',
