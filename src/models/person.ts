@@ -18,9 +18,7 @@ export interface ISøker {
   sivilstand: string;
   språk: string;
   statsborgerskap: string;
-  privattelefon?: string;
-  mobiltelefon?: string;
-  jobbtelefon?: string;
+  kontakttelefon?: string;
   bankkontonummer?: string;
 }
 

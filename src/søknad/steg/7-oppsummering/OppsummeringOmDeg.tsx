@@ -45,7 +45,7 @@ const OppsummeringOmDeg = () => {
       </div>
       <div className="spørsmål-og-svar">
         <Element>Telefonnummer</Element>
-        <Normaltekst>{omDeg.mobiltelefon}</Normaltekst>
+        <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
       </div>
       {sivilstatusSpørsmål}
       {medlemskapSpørsmål}

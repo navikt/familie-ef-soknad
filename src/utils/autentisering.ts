@@ -5,13 +5,12 @@ import {
   erUrlArbeidssøkerSkjema,
 } from '../arbeidssøkerskjema/routes/Routes';
 import { overgangsstønadForsideUrl } from '../routing/Routes';
+import { erLokaltMedMock } from './miljø';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
 
-const loggInn = () =>
-  process.env.NODE_ENV !== 'development' ||
-  process.env.REACT_APP_BRUK_API_I_DEV === 'true';
+const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
   return erUrlArbeidssøkerSkjema()

@@ -1,4 +1,5 @@
 {
+  "hash": "",
   "søker": {
     "ident": "",
     "forkortetNavn": "",
@@ -8,6 +9,7 @@
       "kommune": "",
       "postnummer": ""
     },
+    "egenansatt": false,
     "innvandretDato": "",
     "utvandretDato": "",
     "oppholdstillatelse": "",

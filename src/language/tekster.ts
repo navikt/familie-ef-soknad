@@ -77,7 +77,7 @@ export default {
     'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
     'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
-    'person.telefonnr': 'Telefonnummer',
+    'person.telefonnr': 'Telefonnummer du kan kontaktes på',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',

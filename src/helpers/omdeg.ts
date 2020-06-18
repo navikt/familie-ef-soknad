@@ -13,6 +13,7 @@ export const hentSivilstatus = (statuskode: string) => {
       return 'Samboer';
 
     case 'SEPA':
+    case 'SEPR':
       return 'Separert';
 
     case 'SKIL':
@@ -22,17 +23,13 @@ export const hentSivilstatus = (statuskode: string) => {
       return 'Enke/ enkemann';
 
     default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL';
+      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
   }
 };
 
 export const hentSøkersTlfnr = (søker: IPerson): string => {
-  const { mobiltelefon, privattelefon, jobbtelefon } = søker.søker;
-  return (
-    [mobiltelefon, privattelefon, jobbtelefon].find(
-      (nr) => nr && nr.trim() !== ''
-    ) || ''
-  );
+  const { kontakttelefon } = søker.søker;
+  return kontakttelefon && kontakttelefon.trim() !== '' ? kontakttelefon : '';
 };
 
 export const harSøkerTlfnr = (søker: IPerson): boolean => {
