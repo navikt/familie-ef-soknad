@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -41,9 +41,13 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(!ident);
   const [identFelt, settIdentFelt] = useState<string>(ident ? ident : '');
 
+  useEffect(() => {
+    erGyldigIdent && settIdent(identFelt);
+    // eslint-disable-next-line
+  }, [erGyldigIdent, identFelt]);
+
   const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig && settIdent(identFelt);
   };
 
   const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
