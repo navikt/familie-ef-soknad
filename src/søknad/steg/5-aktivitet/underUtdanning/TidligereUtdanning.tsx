@@ -30,9 +30,12 @@ const TidligereUtdanning: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning[]>([
-    lagTomUtdanning(intl),
-  ]);
+  const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning[]>(
+    underUtdanning.tidligereUtdanning &&
+      underUtdanning.tidligereUtdanning.length > 0
+      ? underUtdanning.tidligereUtdanning
+      : [lagTomUtdanning(intl)]
+  );
 
   useEffect(() => {
     underUtdanning.harTattUtdanningEtterGrunnskolen &&

@@ -8,7 +8,7 @@ interface EnvironmentProps {
 }
 
 const Environment = (): EnvironmentProps => {
-  const modellVersjon = 1;
+  const modellVersjon = 3;
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',

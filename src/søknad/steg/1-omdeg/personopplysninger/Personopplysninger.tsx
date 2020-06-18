@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -14,7 +14,11 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
-import { harSøkerTlfnr, hentSøkersTlfnr } from '../../../../helpers/omdeg';
+import {
+  harSøkerTlfnr,
+  hentSivilstatus,
+  hentSøkersTlfnr,
+} from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -23,6 +27,14 @@ const Personopplysninger: React.FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
+  const [harTlfnrIFolkeregisteret, settHarTlfnrIFolkeregisteret] = useState<
+    boolean
+  >(false);
+
+  useEffect(() => {
+    harSøkerTlfnr(søknad.person) && settHarTlfnrIFolkeregisteret(true);
+    // eslint-disable-next-line
+  }, []);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -41,9 +53,9 @@ const Personopplysninger: React.FC = () => {
     });
   };
 
-  const settTelefonnummer = (e: React.FormEvent<HTMLInputElement>) => {
+  const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
-    if (telefonnr.length >= 8) {
+    if (telefonnr.length >= 8 && /^\d+$/.test(telefonnr)) {
       settSøknad({
         ...søknad,
         person: {
@@ -52,6 +64,12 @@ const Personopplysninger: React.FC = () => {
         },
       });
     }
+  };
+
+  const oppdaterFeilmelding = (e: React.FormEvent<HTMLInputElement>) => {
+    e.currentTarget.value.length >= 8 && /^\d+$/.test(e.currentTarget.value)
+      ? settFeilTelefonnr(false)
+      : settFeilTelefonnr(true);
   };
 
   return (
@@ -79,6 +97,13 @@ const Personopplysninger: React.FC = () => {
 
         <FeltGruppe>
           <Element>
+            <LocaleTekst tekst={'sivilstatus.tittel'} />
+          </Element>
+          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+        </FeltGruppe>
+
+        <FeltGruppe>
+          <Element>
             <LocaleTekst tekst={'person.adresse'} />
           </Element>
           <Normaltekst>{søker.adresse.adresse}</Normaltekst>
@@ -102,26 +127,24 @@ const Personopplysninger: React.FC = () => {
       </KomponentGruppe>
 
       {søkerBorPåRegistrertAdresse?.verdi &&
-        (!harSøkerTlfnr(søknad.person) ? (
-          <Input
-            key={'tlf'}
-            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-            type="tel"
-            bredde={'M'}
-            onChange={(e) => settTelefonnummer(e)}
-            onBlur={(e) => {
-              e.currentTarget.value.length >= 8
-                ? settFeilTelefonnr(false)
-                : settFeilTelefonnr(true);
-            }}
-            feil={
-              feilTelefonnr
-                ? intl.formatMessage({
-                    id: 'personopplysninger.feilmelding.telefonnr',
-                  })
-                : undefined
-            }
-          />
+        (!harTlfnrIFolkeregisteret ? (
+          <>
+            <Input
+              key={'tlf'}
+              label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+              type="tel"
+              bredde={'M'}
+              onChange={(e) => oppdaterTelefonnr(e)}
+              onBlur={(e) => oppdaterFeilmelding(e)}
+              feil={
+                feilTelefonnr
+                  ? intl.formatMessage({
+                      id: 'personopplysninger.feilmelding.telefonnr',
+                    })
+                  : undefined
+              }
+            />
+          </>
         ) : (
           <FeltGruppe>
             <Element>

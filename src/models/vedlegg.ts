@@ -1,5 +1,6 @@
 export interface IVedlegg {
-  dokumentId?: string;
-  navn?: string;
-  label?: string;
+  dokumentId: string;
+  navn: string;
+  label: string;
+  størrelse: number;
 }

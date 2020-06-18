@@ -20,6 +20,7 @@ const Oppsummering: React.FC = () => {
         tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={true}
         mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+        erSpørsmålBesvart={true}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">

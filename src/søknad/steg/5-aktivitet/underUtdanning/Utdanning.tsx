@@ -101,6 +101,7 @@ const Utdanning: React.FC<Props> = ({
           key={linjeKursGrad.id}
           label={linjeKursGradLabel}
           type="text"
+          value={utdanning.linjeKursGrad?.verdi}
           bredde={'L'}
           onChange={(e) => settInputFelt(linjeKursGradLabel, e)}
         />

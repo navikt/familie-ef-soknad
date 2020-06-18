@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
-import personIngenBarn from '../mock/personIngenBarn.json';
+import tomPerson from '../mock/initialState.json';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
@@ -20,7 +20,7 @@ import Environment from '../Environment';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
-  person: personIngenBarn,
+  person: tomPerson,
   sivilstatus: {},
   medlemskap: {},
   bosituasjon: {
@@ -48,7 +48,7 @@ const initialState: ISøknad = {
     },
   },
   dokumentasjonsbehov: [],
-  vedleggsliste: [],
+  harBekreftet: false,
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
@@ -75,11 +75,13 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   };
 
   const mellomlagreOvergangsstønad = (steg: string) => {
-    mellomlagreOvergangsstønadTilDokument({
+    const utfyltSøknad = {
       søknad: søknad,
       modellVersjon: Environment().modellVersjon,
       gjeldendeSteg: steg,
-    });
+    };
+    mellomlagreOvergangsstønadTilDokument(utfyltSøknad);
+    settMellomlagretOvergangsstønad(utfyltSøknad);
   };
 
   const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {

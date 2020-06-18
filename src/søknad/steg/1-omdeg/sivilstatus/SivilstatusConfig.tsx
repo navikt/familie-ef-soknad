@@ -33,8 +33,8 @@ const DokumentasjonInngåttEkteskap: IDokumentasjon = {
   harSendtInn: false,
 };
 
-const DokumentasjonSeparertEllerSkilt: IDokumentasjon = {
-  id: OmDegDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
+const DokumentasjonUformeltSeparertEllerSkilt: IDokumentasjon = {
+  id: OmDegDokumentasjon.UFORMELL_SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
@@ -96,7 +96,7 @@ export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
       id: ESvar.JA,
       svar_tekstid: ESvarTekstid.JA,
       alert_tekstid: 'sivilstatus.alert.erUformeltSeparertEllerSkilt',
-      dokumentasjonsbehov: DokumentasjonSeparertEllerSkilt,
+      dokumentasjonsbehov: DokumentasjonUformeltSeparertEllerSkilt,
     },
     NeiSvar,
   ],
@@ -106,6 +106,11 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,
+  lesmer: {
+    innholdTekstid: 'sivilstatus.hjelpetekst-innhold.begrunnelse',
+    åpneTekstid: 'sivilstatus.hjelpetekst-åpne.begrunnelse',
+    lukkeTekstid: '',
+  },
   svaralternativer: [
     {
       id: EBegrunnelse.samlivsbruddForeldre,

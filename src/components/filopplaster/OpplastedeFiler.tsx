@@ -3,43 +3,19 @@ import slett from '../../assets/slett.svg';
 import vedlegg from '../../assets/vedlegg.svg';
 import { formaterFilstørrelse } from './utils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { useSøknad } from '../../context/SøknadContext';
+import { IVedlegg } from '../../models/vedlegg';
 
 interface Props {
-  filliste: any;
-  settFilliste: Function;
+  filliste: IVedlegg[];
+  slettVedlegg: (vedlegg: IVedlegg) => void;
 }
 
-const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
-  const { søknad, settSøknad } = useSøknad();
-
-  const slettFil = (filwrapper: any) => {
-    const fil = filwrapper.filObjekt;
-
-    const nyListe = filliste.filter((obj: any) => {
-      return obj.filObjekt !== fil;
-    });
-
-    const nyVedleggsliste = søknad.vedleggsliste.filter((obj: any) => {
-      return obj.dokumentId !== filwrapper.dokumentId;
-    });
-
-    settFilliste(nyListe);
-
-    settSøknad({
-      ...søknad,
-      vedleggsliste: nyVedleggsliste,
-    });
-  };
-
+const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
   return (
     <>
-      {filliste.map((filwrapper: any) => {
-        const fil = filwrapper.filObjekt;
-        const filKey = fil.name + fil.size;
-
+      {filliste.map((fil: IVedlegg) => {
         return (
-          <div key={filKey}>
+          <div key={fil.dokumentId}>
             <div className="fil">
               <div>
                 <img
@@ -47,15 +23,15 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, settFilliste }) => {
                   src={vedlegg}
                   alt="Vedleggsikon"
                 />
-                <Normaltekst className="filnavn">{fil.name}</Normaltekst>
+                <Normaltekst className="filnavn">{fil.navn}</Normaltekst>
                 <Normaltekst className="filstørrelse">
-                  ({formaterFilstørrelse(fil.size)})
+                  ({formaterFilstørrelse(fil.størrelse)})
                 </Normaltekst>
               </div>
               <div
                 className="slett"
                 onClick={() => {
-                  slettFil(filwrapper);
+                  slettVedlegg(fil);
                 }}
               >
                 <Normaltekst>slett</Normaltekst>

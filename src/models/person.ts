@@ -33,6 +33,14 @@ export interface IAdresse {
 
 export interface IPersonDetaljer {
   navn?: ITekstFelt;
+  ident?: ITekstFelt;
   fødselsdato?: IDatoFelt;
-  fødselsnummer?: ITekstFelt;
+  kjennerIkkeIdent: boolean;
+}
+
+export enum EPersonDetaljer {
+  navn = 'navn',
+  ident = 'ident',
+  fødselsdato = 'fødselsdato',
+  kjennerIkkeIdent = 'kjennerIkkeIdent',
 }

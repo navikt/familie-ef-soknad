@@ -14,7 +14,9 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   settUtdanning,
 }) => {
   useEffect(() => {
-    settUtdanning({ ...utdanning, periode: tomPeriode });
+    if (!utdanning.periode) {
+      settUtdanning({ ...utdanning, periode: tomPeriode });
+    }
     // eslint-disable-next-line
   }, []);
 

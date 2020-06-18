@@ -8,10 +8,13 @@ import { useIntl } from 'react-intl';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import { hentTekst } from '../../../utils/søknad';
 import { SøkerFraBestemtMånedSpm } from './SituasjonConfig';
-import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import {
+  ESøkerFraBestemtMåned,
+  IDinSituasjon,
+} from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { dagensDato } from '../../../utils/dato';
-import { ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentBeskjedMedFireParametre } from '../../../utils/språk';
 import { RadioPanel } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
@@ -66,7 +69,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
       });
   };
 
-  const settSøkerFraBestemtMåned = (spørsmål: any, svar: any) => {
+  const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {
     settDinSituasjon({
       ...dinSituasjon,
       [spørsmål.søknadid]: {
@@ -75,6 +78,10 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
+      søknadsdato:
+        svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere
+          ? undefined
+          : dinSituasjon.søknadsdato,
     });
   };
 

@@ -12,13 +12,16 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentisering';
-import mockPersonMedBarn from './mock/person.json';
+import mockPersonMedBarn from './mock/mockPerson.json';
+import mockPersonUtenBarn from './mock/mockPersonUtenBarn.json';
+import mockToggles from './mock/mockToggles.json';
 import { settLabelOgVerdi } from './utils/søknad';
 import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/person';
 import { Helmet } from 'react-helmet';
+import { erLokaltMedMock } from './utils/miljø';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -29,10 +32,6 @@ const App = () => {
   const { settToggles, toggles } = useToggles();
 
   autentiseringsInterceptor();
-
-  const dataFraApi = () =>
-    process.env.NODE_ENV !== 'development' ||
-    process.env.REACT_APP_BRUK_API_I_DEV === 'true';
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -51,9 +50,7 @@ const App = () => {
   };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
-    const mapBarn = dataFraApi() ? barneliste : mockPersonMedBarn.barn;
-
-    const barnMedLabels = mapBarn.map((barn: any) => {
+    const barnMedLabels = barneliste.map((barn: any) => {
       return settLabelOgVerdi(barn, standardLabelsBarn);
     });
 
@@ -67,13 +64,25 @@ const App = () => {
   };
 
   useEffect(() => {
+    if (erLokaltMedMock()) {
+      settPerson({
+        type: PersonActionTypes.HENT_PERSON,
+        payload: mockPersonUtenBarn,
+      });
+      oppdaterSøknadMedBarn(mockPersonUtenBarn, mockPersonMedBarn.barn);
+      settToggles(mockToggles);
+      settFetching(false);
+      return;
+    }
     Promise.all([
       fetchToggles(),
       fetchPersonData(),
       hentMellomlagretOvergangsstønad(),
     ])
       .then(() => settFetching(false))
-      .catch(() => settFetching(false));
+      .catch(() => {
+        settFetching(false);
+      });
     // eslint-disable-next-line
   }, []);
 

@@ -71,13 +71,14 @@ export default {
 
     'person.navn': 'Navn',
     'person.nr.barn': 'Personnummer 5 siffer (hvis barnet har fått)',
-    'person.nr': 'Personnummer 5 siffer (hvis du vet)',
-    'person.fnr': 'Fødselsnummer eller d-nummer',
+    'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
+    'person.ident': 'Fødselsnummer eller d-nummer',
+    'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
+    'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer',
     'person.statsborgerskap': 'Statsborgerskap',
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
-    'person.fødselsdato': 'Fødselsdato',
 
     barnet: 'Barnet',
 
@@ -116,7 +117,7 @@ export default {
     'sivilstatus.datovelger.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
-      'Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+      'Er du registrert som ugift i Folkeregisteret. Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
@@ -146,6 +147,10 @@ export default {
       'Du må legge ved erklæring om samlivsbrudd',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen / når skal endringen skje?',
+    'sivilstatus.hjelpetekst-åpne.begrunnelse':
+      'Grunnen til at vi spør om dette',
+    'sivilstatus.hjelpetekst-innhold.begrunnelse':
+      'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
 
     'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
     'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',
@@ -190,7 +195,10 @@ export default {
 
     'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
     'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+    'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
     'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+    'bosituasjon.datovelger.nårFlyttetDereFraHverandre':
+      'Når flyttet dere fra hverandre?',
 
     'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
       '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +
@@ -370,6 +378,7 @@ export default {
     'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar utdanning',
     'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
       'Jeg er ikke i arbeid, utdanning eller arbeidssøker',
+    'arbeidssituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
 
     'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
       '<strong>Når barnet ditt er under 1 år kan du motta overgangsstønad uten å være i yrkesrettet aktivitet.</strong> <br/>' +
@@ -514,8 +523,7 @@ export default {
       'Jeg har søkt om barnepass, men ikke fått plass enda',
     'dinSituasjon.svar.harBarnMedSærligeBehov':
       'Jeg har barn som trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
-    'dinSituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
-    'dinSituasjon.svar.skalTaUtdanning': 'Jeg skal begynne å ta utdanning',
+    'dinSituasjon.svar.nei': 'Nei',
 
     'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
     'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
@@ -579,6 +587,8 @@ export default {
     'oppsummering.tilbake': 'Til oppsummering',
 
     'dokumentasjon.tittel': 'Last opp dokumentasjon',
+    'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
+      'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
       'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
       ' <br/><br/>' +
