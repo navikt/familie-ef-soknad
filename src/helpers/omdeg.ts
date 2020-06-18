@@ -29,7 +29,7 @@ export const hentSivilstatus = (statuskode: string) => {
 
 export const hentSøkersTlfnr = (søker: IPerson): string => {
   const { kontakttelefon } = søker.søker;
-  return [kontakttelefon].find((nr) => nr && nr.trim() !== '') || '';
+  return kontakttelefon && kontakttelefon.trim() !== '' ? kontakttelefon || '';
 };
 
 export const harSøkerTlfnr = (søker: IPerson): boolean => {
