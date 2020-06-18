@@ -44,11 +44,18 @@ const Sivilstatus: React.FC = () => {
     // eslint-disable-next-line
   }, [sivilstatus]);
 
-  const erSøkerGift = sivilstand === ESivilstand.GIFT;
-  const erSøkerUgift = sivilstand === ESivilstand.UGIF;
-  const erSøkerEnke = sivilstand === ESivilstand.ENKE;
-  const erSøkerSeparert = sivilstand === ESivilstand.SEPA;
-  const erSøkerSkilt = sivilstand === ESivilstand.SKIL;
+  const erSøkerGift =
+    sivilstand === ESivilstand.GIFT || sivilstand === ESivilstand.REPA;
+  const erSøkerUgift =
+    sivilstand === ESivilstand.UGIF ||
+    sivilstand === null ||
+    sivilstand === 'NULL';
+  const erSøkerEnke =
+    sivilstand === ESivilstand.ENKE || sivilstand === ESivilstand.GJPA;
+  const erSøkerSeparert =
+    sivilstand === ESivilstand.SEPA || sivilstand === ESivilstand.SEPR;
+  const erSøkerSkilt =
+    sivilstand === ESivilstand.SKIL || sivilstand === ESivilstand.SKPA;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
