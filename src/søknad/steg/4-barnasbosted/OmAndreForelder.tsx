@@ -146,7 +146,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
               settForelder({
                 ...forelder,
                 navn: {
-                  label: 'halla',
+                  label: hentTekst('person.navn', intl),
                   verdi: e.target.value,
                 },
               })
