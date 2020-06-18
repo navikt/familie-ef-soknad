@@ -21,8 +21,6 @@ const OppsummeringBosituasionenDin: React.FC = () => {
     ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
     : null;
 
-  console.log('BOSITUASJON', bosituasjon);
-
   return (
     <Ekspanderbartpanel tittel="Bosituasjonen din">
       <div className="oppsummering-bosituasjon">

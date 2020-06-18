@@ -9,6 +9,29 @@ import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import Datovelger from '../components/dato/Datovelger';
 
+export const visListeAvLabelOgSvar = (
+  liste: any[] | undefined,
+  overskrift: string
+) => {
+  if (!liste) return null;
+
+  return liste.map((el, index) => {
+    let tekst = overskrift;
+
+    if (liste.length > 1) {
+      tekst = tekst + ' ' + (index + 1);
+    }
+
+    return (
+      <div className="listeelement">
+        <Element>{tekst}</Element>
+        {VisLabelOgSvar(el)}
+        {index < liste.length - 1 && <hr />}
+      </div>
+    );
+  });
+};
+
 export const verdiTilTekstsvar = (
   verdi: string | Date | boolean | number | string[],
   intl?: IntlShape
@@ -57,41 +80,18 @@ export const verdiTilTekstsvar = (
   }
 };
 
-export const VisPerioderBoddIUtlandet = (
-  verdi: IUtenlandsopphold[] | undefined
-) => {
-  if (!verdi) return null;
-  return verdi.map((v: IUtenlandsopphold) => {
-    console.log('VERDI', v);
-    return <>{VisLabelOgSvar(v)}</>;
-  });
-};
-
-export const VisPerioderUtland = (perioder: any[] | undefined) => {
-  if (!perioder) return null;
-
-  console.log('PERIODER INNI VISPERIODE', perioder);
-
-  const returnperioder = perioder.map((periode: any) => {
-    console.log('PERIODE INNI MAP', periode);
-    return <div>{VisLabelOgSvar(periode.begrunnelse)}</div>;
-  });
-
-  console.log('RETURNPERIODER', returnperioder);
-
-  return returnperioder;
-};
-
-const VisFraOgTil = (tittel: string, objekt: any) => {
+const VisFraOgTil = (objekt: any, tittel?: string) => {
   const intl = useIntl();
 
   if (!(objekt && objekt.fra && objekt.til)) return null;
 
   return (
     <>
-      <div className="spørsmål-og-svar">
-        <Element>{tittel}</Element>
-      </div>
+      {tittel ? (
+        <div className="spørsmål-og-svar">
+          <Element>{tittel}</Element>
+        </div>
+      ) : null}
       <div className="spørsmål-og-svar">
         <Element>Fra</Element>
         {verdiTilTekstsvar(objekt.fra.verdi, intl)}
@@ -114,10 +114,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
     }
 
     if (spørsmål.fra && spørsmål.til) {
-      return VisFraOgTil(
-        hentTekst('utdanning.datovelger.studieperiode', intl),
-        spørsmål
-      );
+      return VisFraOgTil(spørsmål);
     }
 
     const label =
