@@ -7,8 +7,7 @@ import { EBarn, IBarn } from '../../models/barn';
 import { ESvar } from '../../models/spørsmålogsvar';
 
 export const hentNyttBarn = (
-  fnr: string,
-  personnummer: string,
+  ident: string,
   barnDato: Date | undefined,
   navn: string,
   boHosDeg: string,
@@ -16,8 +15,7 @@ export const hentNyttBarn = (
   intl: IntlShape
 ): IBarn => {
   return {
-    fnr: hentFeltObjekt('person.fnr', fnr, intl),
-    personnummer: hentFeltObjekt('barnadine.personnummer', personnummer, intl),
+    ident: hentFeltObjekt('person.ident', ident, intl),
     alder: hentFeltObjekt(
       'person.alder',
       differenceInYears(dagensDato, barnDato ? barnDato : dagensDato),

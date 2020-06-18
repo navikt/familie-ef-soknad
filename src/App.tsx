@@ -50,7 +50,10 @@ const App = () => {
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
     const barnMedLabels = barneliste.map((barn: any) => {
-      return settLabelOgVerdi(barn, standardLabelsBarn);
+      const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
+      barnMedLabel['ident'] = barnMedLabel['fnr'];
+      delete barnMedLabel.fnr;
+      return barnMedLabel;
     });
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
@@ -79,9 +82,7 @@ const App = () => {
       hentMellomlagretOvergangsstønad(),
     ])
       .then(() => settFetching(false))
-      .catch(() => {
-        settFetching(false);
-      });
+      .catch(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
 

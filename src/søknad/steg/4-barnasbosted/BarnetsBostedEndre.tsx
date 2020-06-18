@@ -55,6 +55,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
+  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
+
   const { borAnnenForelderISammeHus, boddSammenFør, flyttetFra } = forelder;
 
   const intl = useIntl();
@@ -123,7 +125,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    erGyldigDato(forelder.fødselsdato?.verdi);
+    harValgtSvar(forelder?.navn?.verdi);
 
   const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
@@ -183,9 +185,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
               {visOmAndreForelder && (
                 <OmAndreForelder
-                  barn={barn}
                   settForelder={settForelder}
                   forelder={forelder}
+                  kjennerIkkeIdent={kjennerIkkeIdent}
+                  settKjennerIkkeIdent={settKjennerIkkeIdent}
                 />
               )}
             </>

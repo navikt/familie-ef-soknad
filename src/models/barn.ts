@@ -8,9 +8,8 @@ import { IForelder } from './forelder';
 export interface IBarn {
   id: string;
   alder: ITekstFelt;
-  fnr: ITekstFelt;
   fødselsdato: ITekstFelt;
-  personnummer?: ITekstFelt;
+  ident: ITekstFelt;
   harSammeAdresse: IBooleanFelt;
   navn: ITekstFelt;
   født?: ISpørsmålBooleanFelt;
@@ -20,9 +19,8 @@ export interface IBarn {
 
 export enum EBarn {
   alder = 'alder',
-  fnr = 'fnr',
   fødselsdato = 'fødselsdato',
-  personnummer = 'personnummer',
+  ident = 'ident',
   harSammeAdresse = 'harSammeAdresse',
   navn = 'navn',
   født = 'født',

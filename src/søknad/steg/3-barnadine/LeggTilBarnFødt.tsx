@@ -1,39 +1,71 @@
-import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import { RadioPanel } from 'nav-frontend-skjema';
-import { Input } from 'nav-frontend-skjema';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { useIntl } from 'react-intl';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
+import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { ESvar, ESvarTekstid } from '../../../models/spørsmålogsvar';
 import { FormattedMessage } from 'react-intl';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { hentTekst } from '../../../utils/søknad';
+import { Input } from 'nav-frontend-skjema';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 
 interface Props {
   navn?: string;
-  personnummer?: string;
+  ident?: string;
   settNavn: Function;
-  settPersonnummer: Function;
+  settIdent: (ident: string) => void;
   settBo: Function;
+  settBoHosDeg: (boHosDeg: string) => void;
   boHosDeg: string;
-  settDato: Function;
+  settDato: (dato: Date | null) => void;
   barnDato: Date | undefined;
+  kjennerIkkeIdent: boolean;
+  settKjennerIkkeIdent: (kjennerIkkeIdent: boolean) => void;
 }
 
 const LeggTilBarnFødt: React.FC<Props> = ({
   navn,
-  personnummer,
+  ident,
   settNavn,
-  settPersonnummer,
+  settIdent,
   settBo,
   boHosDeg,
+  settBoHosDeg,
   settDato,
   barnDato,
+  kjennerIkkeIdent,
+  settKjennerIkkeIdent,
 }) => {
   const intl = useIntl();
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(!ident);
+  const [identFelt, settIdentFelt] = useState<string>(ident ? ident : '');
+
+  useEffect(() => {
+    erGyldigIdent && settIdent(identFelt);
+    // eslint-disable-next-line
+  }, [erGyldigIdent, identFelt]);
+
+  const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
+    settGyldigIdent(erGyldig);
+  };
+
+  const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
+    settIdentFelt(e.currentTarget.value);
+  };
+
+  const settChecked = (checked: boolean) => {
+    if (checked) {
+      settIdent('');
+      settIdentFelt('');
+    }
+    if (!checked && barnDato) {
+      settDato(null);
+    }
+
+    settBoHosDeg('');
+    settKjennerIkkeIdent(checked);
+  };
 
   return (
     <>
@@ -46,27 +78,22 @@ const LeggTilBarnFødt: React.FC<Props> = ({
       </KomponentGruppe>
       {navn && (
         <KomponentGruppe>
-          <FeltGruppe classname={'datoOgPersonnummer'}>
-            <Datovelger
-              valgtDato={barnDato}
-              tekstid={'datovelger.fødselsdato'}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
-              settDato={(e) => settDato(e)}
-            />
-            <Input
-              key={'tlf'}
-              label={intl.formatMessage({ id: 'person.nr.barn' }).trim()}
-              type="text"
-              value={personnummer}
-              bredde={'S'}
-              onChange={(e) =>
-                settPersonnummer(e.target.value, 'fødselsnummer')
-              }
-            />
-          </FeltGruppe>
+          <IdentEllerFødselsdatoGruppe
+            identLabel={hentTekst('barn.ident', intl)}
+            datoLabel={hentTekst('datovelger.fødselsdato', intl)}
+            checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
+            ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
+            fødselsdato={barnDato ? barnDato : undefined}
+            checked={kjennerIkkeIdent}
+            erGyldigIdent={erGyldigIdent}
+            settGyldigIdent={hvisGyldigIdentSettIdent}
+            settFødselsdato={settDato}
+            settChecked={settChecked}
+            settIdent={oppdaterIdent}
+          />
         </KomponentGruppe>
       )}
-      {barnDato && (
+      {(barnDato || (ident && erGyldigIdent)) && (
         <KomponentGruppe>
           <Normaltekst>
             {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
@@ -75,7 +102,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.JA}
               name={'radio-bosted'}
-              label="Ja"
+              label={hentTekst(ESvarTekstid.JA, intl)}
               value={ESvar.JA}
               checked={boHosDeg === ESvar.JA}
               onChange={(e) => settBo(e)}
@@ -83,7 +110,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.NEI}
               name={'radio-bosted'}
-              label="Nei"
+              label={hentTekst(ESvarTekstid.NEI, intl)}
               value={ESvar.NEI}
               checked={boHosDeg === ESvar.NEI}
               onChange={(e) => settBo(e)}
