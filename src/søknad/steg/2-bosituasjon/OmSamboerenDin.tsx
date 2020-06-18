@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { datoTilStreng } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
-import { førsteBokstavStor } from '../../../utils/språk';
 import { Element } from 'nav-frontend-typografi';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Input } from 'nav-frontend-skjema';

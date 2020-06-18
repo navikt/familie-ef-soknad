@@ -1,6 +1,5 @@
 import React from 'react';
 import { useSøknad } from '../../../context/SøknadContext';
-import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';

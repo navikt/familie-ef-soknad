@@ -4,10 +4,8 @@ import { hentTekst } from '../utils/søknad';
 import { formatDate, strengTilDato } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
-import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
-import Datovelger from '../components/dato/Datovelger';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
