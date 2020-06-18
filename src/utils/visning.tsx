@@ -80,7 +80,7 @@ export const verdiTilTekstsvar = (
   }
 };
 
-const VisFraOgTil = (objekt: any, tittel?: string) => {
+const VisPeriode = (objekt: any, tittel?: string) => {
   const intl = useIntl();
 
   if (!(objekt && objekt.fra && objekt.til)) return null;
@@ -114,7 +114,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
     }
 
     if (spørsmål.fra && spørsmål.til) {
-      return VisFraOgTil(spørsmål);
+      return VisPeriode(spørsmål);
     }
 
     const label =

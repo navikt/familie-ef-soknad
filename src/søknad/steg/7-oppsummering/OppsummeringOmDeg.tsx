@@ -19,14 +19,14 @@ const OppsummeringOmDeg = () => {
   const omDeg = søknad.person.søker;
   const sivilstatus = søknad.sivilstatus;
   const medlemskap = søknad.medlemskap;
-  const utlandet: IUtenlandsopphold[] | undefined =
+  const utenlandsopphold: IUtenlandsopphold[] | undefined =
     søknad.medlemskap.perioderBoddIUtlandet;
 
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
   const perioderUtland = visListeAvLabelOgSvar(
-    utlandet,
+    utenlandsopphold,
     hentTekst('medlemskap.periodeBoddIUtlandet.utenlandsopphold', intl)
   );
 
