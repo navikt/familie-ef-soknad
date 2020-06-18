@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { datoTilStreng } from '../../../utils/dato';
 import { ESvar, ESvarTekstid } from '../../../models/spørsmålogsvar';
 import { FormattedMessage } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
@@ -39,7 +38,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settKjennerIkkeIdent,
 }) => {
   const intl = useIntl();
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(!ident);
   const [identFelt, settIdentFelt] = useState<string>(ident ? ident : '');
 
   const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
@@ -80,7 +79,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
             datoLabel={hentTekst('datovelger.fødselsdato', intl)}
             checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
             ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
-            fødselsdato={barnDato ? datoTilStreng(barnDato) : undefined}
+            fødselsdato={barnDato ? barnDato : undefined}
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
             settGyldigIdent={hvisGyldigIdentSettIdent}

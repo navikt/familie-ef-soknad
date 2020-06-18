@@ -9,8 +9,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { dagensDato } from '../../../utils/dato';
-import { parseISO } from 'date-fns';
+import { strengTilDato } from '../../../utils/dato';
+
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/spørsmålogsvar';
@@ -38,11 +38,8 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
-      settDato(
-        detteBarnet?.fødselsdato
-          ? parseISO(detteBarnet.fødselsdato?.verdi)
-          : dagensDato
-      );
+      detteBarnet?.fødselsdato.verdi &&
+        settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
     }
     // eslint-disable-next-line
   }, []);

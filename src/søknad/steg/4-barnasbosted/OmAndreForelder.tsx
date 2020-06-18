@@ -13,7 +13,7 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { hentUid } from '../../../utils/uuid';
 import { useIntl } from 'react-intl';
-import { datoTilStreng } from '../../../utils/dato';
+import { datoTilStreng, strengTilDato } from '../../../utils/dato';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 
 interface Props {
@@ -182,7 +182,11 @@ const OmAndreForelder: React.FC<Props> = ({
             datoLabel={hentTekst('datovelger.fødselsdato', intl)}
             checkboxLabel={hentTekst('person.checkbox.ident', intl)}
             ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
-            fødselsdato={fødselsdato ? forelder?.fødselsdato?.verdi : undefined}
+            fødselsdato={
+              forelder?.fødselsdato?.verdi
+                ? strengTilDato(forelder?.fødselsdato?.verdi)
+                : undefined
+            }
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
             settGyldigIdent={hvisGyldigIdentSettIdent}

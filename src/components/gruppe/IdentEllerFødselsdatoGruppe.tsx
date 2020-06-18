@@ -11,7 +11,7 @@ interface Props {
   datoLabel: string;
   checkboxLabel: string;
   ident: string | undefined;
-  fødselsdato: string | undefined;
+  fødselsdato: Date | undefined;
   checked: boolean;
   erGyldigIdent: boolean;
   settGyldigIdent: (erGyldig: boolean) => void;
