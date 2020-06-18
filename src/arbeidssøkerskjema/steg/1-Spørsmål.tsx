@@ -80,7 +80,7 @@ const Spørsmål: FC = () => {
           <Element>
             <LocaleTekst tekst={'person.ident'} />
           </Element>
-          <Normaltekst>{person.søker.ident}</Normaltekst>
+          <Normaltekst>{person.søker.fnr}</Normaltekst>
         </FeltGruppe>
         <KomponentGruppe>
           <JaNeiSpørsmål

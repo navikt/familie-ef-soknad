@@ -33,7 +33,7 @@ const OppsummeringOmDeg = () => {
     <Ekspanderbartpanel tittel="Om deg">
       <div className="spørsmål-og-svar">
         <Element>Fødselsnummer</Element>
-        <Normaltekst>{omDeg.ident}</Normaltekst>
+        <Normaltekst>{omDeg.fnr}</Normaltekst>
       </div>
       <div className="spørsmål-og-svar">
         <Element>Statsborgerskap</Element>

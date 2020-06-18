@@ -85,7 +85,7 @@ const Personopplysninger: React.FC = () => {
           <Element>
             <LocaleTekst tekst={'person.ident'} />
           </Element>
-          <Normaltekst>{søker.ident}</Normaltekst>
+          <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
