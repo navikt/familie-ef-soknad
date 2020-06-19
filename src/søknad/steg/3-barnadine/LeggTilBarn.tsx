@@ -9,8 +9,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { formatDateFnr, dagensDato } from '../../../utils/dato';
-import { parseISO } from 'date-fns';
+import { strengTilDato } from '../../../utils/dato';
+
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/spørsmålogsvar';
@@ -26,30 +26,26 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
-  const [personnummer, settPersonnummer] = useState('');
-  const [boHosDeg, settBoHosDeg] = useState('');
+  const [ident, settIdent] = useState<string>('');
+  const [boHosDeg, settBoHosDeg] = useState<string>('');
+  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
 
   useEffect(() => {
     if (id) {
       const detteBarnet = søknad.person.barn.find((b) => b.id === id);
 
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
-      settPersonnummer(
-        detteBarnet?.personnummer?.verdi ? detteBarnet.personnummer.verdi : ''
-      );
+      settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
-      settDato(
-        detteBarnet?.fødselsdato
-          ? parseISO(detteBarnet.fødselsdato?.verdi)
-          : dagensDato
-      );
+      detteBarnet?.fødselsdato.verdi &&
+        settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
     }
     // eslint-disable-next-line
   }, []);
 
   const settDato = (date: Date | null): void => {
-    date !== null && settBarnDato(date);
+    date && settBarnDato(date);
   };
 
   const settBo = (event: any) => {
@@ -59,17 +55,13 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const tilbakestillFelt = () => {
     settBarnDato(undefined);
     settNavn('');
-    settPersonnummer('');
+    settIdent('');
     settBoHosDeg('');
   };
 
   const leggTilBarn = (id: string | undefined) => {
-    const fødselsnummer =
-      barnDato && personnummer ? formatDateFnr(barnDato) + personnummer : '';
-
     const nyttBarn: IBarn = hentNyttBarn(
-      fødselsnummer,
-      personnummer,
+      ident,
       barnDato,
       navn,
       boHosDeg,
@@ -95,27 +87,28 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       <Undertittel>Legg til barn</Undertittel>
 
       <KomponentGruppe>
-        <div className="radiogruppe-2-svar">
-          <JaNeiSpørsmål
-            spørsmål={barnetFødt}
-            onChange={(_, svar) => {
-              tilbakestillFelt();
-              settBarnFødt(svar.id === ESvar.JA);
-            }}
-            valgtSvar={født}
-          />
-        </div>
+        <JaNeiSpørsmål
+          spørsmål={barnetFødt}
+          onChange={(_, svar) => {
+            tilbakestillFelt();
+            settBarnFødt(svar.id === ESvar.JA);
+          }}
+          valgtSvar={født}
+        />
       </KomponentGruppe>
       {født === true ? (
         <LeggTilBarnFødt
           navn={navn}
-          personnummer={personnummer}
+          ident={ident}
           settNavn={settNavn}
-          settPersonnummer={settPersonnummer}
+          settIdent={settIdent}
           settBo={settBo}
           boHosDeg={boHosDeg}
+          settBoHosDeg={settBoHosDeg}
           settDato={settDato}
           barnDato={barnDato}
+          kjennerIkkeIdent={kjennerIkkeIdent}
+          settKjennerIkkeIdent={settKjennerIkkeIdent}
         />
       ) : født === false ? (
         <LeggTilBarnUfødt

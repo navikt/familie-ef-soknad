@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -14,11 +14,7 @@ import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
-import {
-  harSøkerTlfnr,
-  hentSivilstatus,
-  hentSøkersTlfnr,
-} from '../../../../helpers/omdeg';
+import { hentSivilstatus } from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -27,14 +23,6 @@ const Personopplysninger: React.FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
-  const [harTlfnrIFolkeregisteret, settHarTlfnrIFolkeregisteret] = useState<
-    boolean
-  >(false);
-
-  useEffect(() => {
-    harSøkerTlfnr(søknad.person) && settHarTlfnrIFolkeregisteret(true);
-    // eslint-disable-next-line
-  }, []);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -60,7 +48,7 @@ const Personopplysninger: React.FC = () => {
         ...søknad,
         person: {
           ...søknad.person,
-          søker: { ...søker, mobiltelefon: telefonnr },
+          søker: { ...søker, kontakttelefon: telefonnr },
         },
       });
     }
@@ -83,7 +71,7 @@ const Personopplysninger: React.FC = () => {
 
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'person.fnr'} />
+            <LocaleTekst tekst={'person.ident'} />
           </Element>
           <Normaltekst>{søker.fnr}</Normaltekst>
         </FeltGruppe>
@@ -126,33 +114,25 @@ const Personopplysninger: React.FC = () => {
         )}
       </KomponentGruppe>
 
-      {søkerBorPåRegistrertAdresse?.verdi &&
-        (!harTlfnrIFolkeregisteret ? (
-          <>
-            <Input
-              key={'tlf'}
-              label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-              type="tel"
-              bredde={'M'}
-              onChange={(e) => oppdaterTelefonnr(e)}
-              onBlur={(e) => oppdaterFeilmelding(e)}
-              feil={
-                feilTelefonnr
-                  ? intl.formatMessage({
-                      id: 'personopplysninger.feilmelding.telefonnr',
-                    })
-                  : undefined
-              }
-            />
-          </>
-        ) : (
-          <FeltGruppe>
-            <Element>
-              <LocaleTekst tekst={'person.telefonnr'} />
-            </Element>
-            <Normaltekst>{hentSøkersTlfnr(søknad.person)}</Normaltekst>
-          </FeltGruppe>
-        ))}
+      {søkerBorPåRegistrertAdresse?.verdi && (
+        <>
+          <Input
+            key={'tlf'}
+            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+            type="tel"
+            bredde={'M'}
+            onChange={(e) => oppdaterTelefonnr(e)}
+            onBlur={(e) => oppdaterFeilmelding(e)}
+            feil={
+              feilTelefonnr
+                ? intl.formatMessage({
+                    id: 'personopplysninger.feilmelding.telefonnr',
+                  })
+                : undefined
+            }
+          />
+        </>
+      )}
     </SeksjonGruppe>
   );
 };

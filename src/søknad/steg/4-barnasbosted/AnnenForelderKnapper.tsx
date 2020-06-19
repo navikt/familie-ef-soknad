@@ -40,7 +40,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
       id: denAndreForelderen?.id,
       navn: denAndreForelderen?.navn,
       fødselsdato: denAndreForelderen?.fødselsdato,
-      personnr: denAndreForelderen?.personnr,
+      ident: denAndreForelderen?.ident,
       borINorge: denAndreForelderen?.borINorge,
       hvordanPraktiseresSamværet:
         denAndreForelderen?.hvordanPraktiseresSamværet,

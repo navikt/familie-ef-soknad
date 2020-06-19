@@ -4,74 +4,80 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Input } from 'nav-frontend-skjema';
 import { Checkbox } from 'nav-frontend-skjema';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import styled from 'styled-components/macro';
+
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
-import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
 import { hentUid } from '../../../utils/uuid';
 import { useIntl } from 'react-intl';
-import { datoTilStreng } from '../../../utils/dato';
+import { datoTilStreng, strengTilDato } from '../../../utils/dato';
+import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 
 interface Props {
-  barn: IBarn;
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
+  kjennerIkkeIdent: boolean;
+  settKjennerIkkeIdent: (kjennerIkkeIdent: boolean) => void;
 }
 
-const StyledAndreForelderGruppe = styled.div`
-  display: grid;
-  min-width: 500px;
-  grid-template-columns: repeat(2, min-content);
-  grid-template-rows: repeat(3, min-content);
-  grid-gap: 1rem;
-  grid-template-areas:
-    'navn navn'
-    'fødselsdato personnr'
-    'checkbox checkbox';
-
-  @media all and (max-width: 420px) {
-    grid-template-columns: repeat(1, min-content);
-    grid-template-rows: repeat(4, min-content);
-    grid-gap: 1rem;
-    grid-template-areas:
-      'navn'
-      'fødselsdato'
-      'personnr'
-      'checkbox';
-  }
-  .foreldre-navn-input {
-    grid-area: navn;
-  }
-
-  .datovelger {
-    grid-area: fødselsdato;
-  }
-  .personnummer {
-    grid-area: personnr;
-    min-width: 300px;
-    .skjemaelement__label {
-      margin-bottom: 1rem;
-    }
-  }
-  .checkbox {
-    grid-area: checkbox;
-  }
-`;
-const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
+const OmAndreForelder: React.FC<Props> = ({
+  settForelder,
+  forelder,
+  kjennerIkkeIdent,
+  settKjennerIkkeIdent,
+}) => {
   const intl = useIntl();
+  const { fødselsdato, ident } = forelder;
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
   const jegKanIkkeOppgiLabel = hentTekst(
     'barnasbosted.kanikkeoppgiforelder',
     intl
   );
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
+  const [identFelt, settIdentFelt] = useState<string>(
+    ident?.verdi ? ident.verdi : ''
+  );
+
+  const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
+    settGyldigIdent(erGyldig);
+    erGyldig &&
+      settForelder({
+        ...forelder,
+        ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
+      });
+  };
+
+  const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
+    settIdentFelt(e.currentTarget.value);
+  };
+
+  const settChecked = (checked: boolean) => {
+    const endretForelder = forelder;
+    if (checked) {
+      delete endretForelder.ident;
+      settIdentFelt('');
+    }
+    if (!checked && fødselsdato) {
+      delete endretForelder.fødselsdato;
+    }
+
+    settKjennerIkkeIdent(checked);
+  };
+
+  const settDato = (dato: Date | null) => {
+    dato !== null &&
+      settForelder({
+        ...forelder,
+        fødselsdato: {
+          label: hentTekst('datovelger.fødselsdato', intl),
+          verdi: datoTilStreng(dato),
+        },
+      });
+  };
 
   const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
     const nyForelder = { ...forelder };
@@ -79,7 +85,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
     if (e.target.checked) {
       delete nyForelder.navn;
       delete nyForelder.fødselsdato;
-      delete nyForelder.personnr;
+      delete nyForelder.ident;
       delete nyForelder.id;
     }
 
@@ -139,7 +145,7 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   return (
     <>
       <KomponentGruppe>
-        <StyledAndreForelderGruppe>
+        <FeltGruppe>
           <Input
             className="foreldre-navn-input"
             onChange={(e) =>
@@ -155,43 +161,8 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
             label="Navn"
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
-
-          {forelder.navn && (
-            <>
-              <Datovelger
-                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
-                settDato={(e: Date | null) => {
-                  e !== null &&
-                    settForelder({
-                      ...forelder,
-                      fødselsdato: {
-                        label: 'Fødselsdato',
-                        verdi: datoTilStreng(e),
-                      },
-                    });
-                }}
-                valgtDato={forelder.fødselsdato?.verdi}
-                tekstid={'datovelger.fødselsdato'}
-                datobegrensning={DatoBegrensning.TidligereDatoer}
-              />
-              <Input
-                disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
-                className="personnummer"
-                onChange={(e) =>
-                  settForelder({
-                    ...forelder,
-                    personnr: {
-                      label: 'Personnr',
-                      verdi: e.target.value,
-                    },
-                  })
-                }
-                value={forelder.personnr ? forelder.personnr?.verdi : ''}
-                label="Personnummer"
-              />
-            </>
-          )}
-
+        </FeltGruppe>
+        <FeltGruppe>
           <Checkbox
             className={'checkbox'}
             label={hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
@@ -202,9 +173,29 @@ const OmAndreForelder: React.FC<Props> = ({ settForelder, forelder, barn }) => {
             }
             onChange={hukAvKanIkkeOppgiAnnenForelder}
           />
-        </StyledAndreForelderGruppe>
+        </FeltGruppe>
       </KomponentGruppe>
-
+      {forelder.navn && !forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
+        <>
+          <IdentEllerFødselsdatoGruppe
+            identLabel={hentTekst('person.ident', intl)}
+            datoLabel={hentTekst('datovelger.fødselsdato', intl)}
+            checkboxLabel={hentTekst('person.checkbox.ident', intl)}
+            ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
+            fødselsdato={
+              forelder?.fødselsdato?.verdi
+                ? strengTilDato(forelder?.fødselsdato?.verdi)
+                : undefined
+            }
+            checked={kjennerIkkeIdent}
+            erGyldigIdent={erGyldigIdent}
+            settGyldigIdent={hvisGyldigIdentSettIdent}
+            settFødselsdato={settDato}
+            settChecked={settChecked}
+            settIdent={oppdaterIdent}
+          />
+        </>
+      )}
       {forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
         <KomponentGruppe>
           <MultiSvarSpørsmål

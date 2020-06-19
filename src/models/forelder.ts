@@ -11,7 +11,7 @@ export interface IForelder {
   navn?: ITekstFelt;
   skalBarnetBoHosSøker?: ISpørsmålFelt;
   fødselsdato?: IDatoFelt | null;
-  personnr?: ITekstFelt;
+  ident?: ITekstFelt;
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
   hvorforIkkeOppgi?: ISpørsmålFelt;
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;

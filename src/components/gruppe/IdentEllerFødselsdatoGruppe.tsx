@@ -4,13 +4,14 @@ import { Checkbox, FnrInput } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
+import KomponentGruppe from './KomponentGruppe';
 
 interface Props {
   identLabel: string;
   datoLabel: string;
   checkboxLabel: string;
   ident: string | undefined;
-  fødselsdato: string | undefined;
+  fødselsdato: Date | undefined;
   checked: boolean;
   erGyldigIdent: boolean;
   settGyldigIdent: (erGyldig: boolean) => void;
@@ -37,7 +38,7 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   const feilmelding: string = hentTekst('person.feilmelding.ident', intl);
 
   return (
-    <>
+    <KomponentGruppe>
       <FeltGruppe>
         <FnrInput
           className={'tjukk-tekst'}
@@ -72,7 +73,7 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
           />
         </FeltGruppe>
       )}
-    </>
+    </KomponentGruppe>
   );
 };
 
