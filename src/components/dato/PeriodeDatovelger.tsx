@@ -14,9 +14,15 @@ interface Props {
   tekstid: string;
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
+  showMonthYearPicker?: boolean;
 }
 
-const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
+const PeriodeDatovelgere: FC<Props> = ({
+  periode,
+  settDato,
+  tekstid,
+  showMonthYearPicker,
+}) => {
   const [feilmelding, settFeilmelding] = useState('');
 
   const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
@@ -57,6 +63,7 @@ const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
           }
           tekstid={'periode.fra'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
+          showMonthYearPicker={showMonthYearPicker}
         />
 
         <Datovelger
@@ -66,6 +73,7 @@ const PeriodeDatovelgere: FC<Props> = ({ periode, settDato, tekstid }) => {
           }
           tekstid={'periode.til'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
+          showMonthYearPicker={showMonthYearPicker}
         />
         {feilmelding && feilmelding !== '' && (
           <div
