@@ -13,7 +13,6 @@ const Terminbekreftelse: IDokumentasjon = {
   spørsmålid: EBarn.født,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.terminbekreftelse.tittel',
-  beskrivelse: 'dokumentasjon.terminbekreftelse.beskrivelse',
   harSendtInn: false,
 };
 
