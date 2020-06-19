@@ -40,8 +40,9 @@ const SendSøknadKnapper: FC = () => {
       ...søknad,
       person: { ...søknad.person, barn: filtrerteBarn },
     };
+    console.log(søknadMedFiltrerteBarn);
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknadMedFiltrerteBarn)
+    sendInnSøknad(søknad)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,

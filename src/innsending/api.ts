@@ -19,15 +19,12 @@ export const hentFiltrerBarn = (barn: IBarn[]) => {
       const endretBarn = barn;
       if (barn.født?.verdi || endretBarn.ident.verdi === '')
         delete endretBarn.ident;
-      if (endretBarn.fødselsdato === undefined) delete endretBarn.fødselsdato;
-
-      console.log('Hvis ikke født, slett ident ', barn);
-
+      if (endretBarn.fødselsdato.verdi === undefined)
+        delete endretBarn.fødselsdato;
       return endretBarn;
     } else {
       return barn;
     }
   });
-  console.log(filtrerteBarn);
   return filtrerteBarn;
 };
