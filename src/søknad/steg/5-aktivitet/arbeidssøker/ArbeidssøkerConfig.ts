@@ -8,6 +8,7 @@ import {
   EArbeidssøker,
 } from '../../../../models/steg/aktivitet/arbeidssøker';
 import { JaNeiSvar, JaSvar } from '../../../../helpers/svar';
+import { DokumentasjonIkkeVilligTilArbeid } from '../AktivitetConfig';
 
 export const erSøkerArbeidssøker: ISpørsmål = {
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
@@ -38,6 +39,7 @@ export const erVilligTilÅTaImotTilbud: ISpørsmål = {
       id: ESvar.NEI,
       svar_tekstid: ESvarTekstid.NEI,
       alert_tekstid: 'arbeidssøker.alert.villig',
+      dokumentasjonsbehov: DokumentasjonIkkeVilligTilArbeid,
     },
   ],
 };
