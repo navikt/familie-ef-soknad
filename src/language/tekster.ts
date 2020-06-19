@@ -608,6 +608,10 @@ export default {
     'dokumentasjon.begrunnelse.beskrivelse':
       'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
 
+    'dokumentasjon.ikke.villig.til.arbeid.tittel':
+      'Dokumentasjon som beskriver grunnen til at du ikke kan ta ethvert arbeid',
+    'dokumentasjon.ikke.villig.til.arbeid.beskrivelse':
+      'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
     'dokumentasjon.ulikeAdresser.beskrivelse':

@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
 import {
   EAktivitet,
   EArbeidssituasjon,
@@ -9,6 +9,7 @@ import {
   SituasjonDokumentasjon,
 } from '../../../models/dokumentasjon';
 import { ESituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import { EArbeidssøker } from '../../../models/steg/aktivitet/arbeidssøker';
 
 // --- DOKUMENTASJON
 
@@ -27,6 +28,15 @@ const DokumentasjonArbeidskontrakt: IDokumentasjon = {
   svarid: EAktivitet.harFåttJobbTilbud,
   tittel: 'dokumentasjon.arbeidskontrakt.tittel',
   beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
+  harSendtInn: false,
+};
+
+export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
+  id: SituasjonDokumentasjon.IKKE_VILLIG_TIL_ARBEID,
+  spørsmålid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
+  svarid: ESvar.NEI,
+  tittel: 'dokumentasjon.ikke.villig.til.arbeid.tittel',
+  beskrivelse: 'dokumentasjon.ikke.villig.til.arbeid.beskrivelse',
   harSendtInn: false,
 };
 

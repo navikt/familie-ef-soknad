@@ -20,6 +20,7 @@ import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { useSøknad } from '../../../../context/SøknadContext';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -34,6 +35,7 @@ const Arbeidssøker: React.FC<Props> = ({
   const [arbeidssøker, settArbeidssøker] = useState<IArbeidssøker>(
     arbeidssituasjon.arbeidssøker ? arbeidssituasjon.arbeidssøker : {}
   );
+  const { settDokumentasjonsbehov } = useSøknad();
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, arbeidssøker: arbeidssøker });
@@ -52,6 +54,8 @@ const Arbeidssøker: React.FC<Props> = ({
         verdi: svar,
       },
     });
+
+    settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   const settMultiSvarSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
