@@ -17,6 +17,7 @@ import {
 } from '../utils/søknad';
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 import Environment from '../Environment';
+import { useIntl } from 'react-intl';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -57,6 +58,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     mellomlagretOvergangsstønad,
     settMellomlagretOvergangsstønad,
   ] = useState<IMellomlagretOvergangsstønad>();
+  const intl = useIntl();
 
   const hentMellomlagretOvergangsstønad = (): Promise<void> => {
     return hentMellomlagretOvergangsstønadFraDokument().then(
@@ -99,13 +101,15 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       endretDokumentasjonsbehov = hentDokumentasjonTilFlersvarSpørsmål(
         erHuketAv,
         søknad.dokumentasjonsbehov,
-        valgtSvar
+        valgtSvar,
+        intl
       );
     } else {
       endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmål(
         søknad.dokumentasjonsbehov,
         spørsmål,
-        valgtSvar
+        valgtSvar,
+        intl
       );
     }
 

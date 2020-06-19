@@ -95,7 +95,6 @@ const Filopplaster: React.FC<Props> = ({
             nyeVedlegg.push({
               dokumentId: data.dokumentId,
               navn: fil.name,
-              label: hentTekst(dokumentasjon.tittel, intl),
               størrelse: fil.size,
             });
 

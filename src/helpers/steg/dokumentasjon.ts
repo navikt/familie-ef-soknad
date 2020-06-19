@@ -1,10 +1,13 @@
 import { IDokumentasjon } from '../../models/dokumentasjon';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { hentTekst } from '../../utils/søknad';
+import { IntlShape } from 'react-intl';
 
 export const hentDokumentasjonTilFlersvarSpørsmål = (
   erHuketAv: boolean | undefined,
   dokumentasjonsbehov: IDokumentasjon[],
-  valgtSvar: ISvar
+  valgtSvar: ISvar,
+  intl: IntlShape
 ) => {
   let endretDokumentasjonsbehov = dokumentasjonsbehov;
   if (erHuketAv === true) {
@@ -15,13 +18,18 @@ export const hentDokumentasjonTilFlersvarSpørsmål = (
     valgtSvar.dokumentasjonsbehov &&
       endretDokumentasjonsbehov.push(valgtSvar.dokumentasjonsbehov);
   }
+  endretDokumentasjonsbehov.forEach(
+    (dokumentasjonsbehov) =>
+      (dokumentasjonsbehov.label = hentTekst(dokumentasjonsbehov.tittel, intl))
+  );
   return endretDokumentasjonsbehov;
 };
 
 export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
   dokumentasjonsbehov: IDokumentasjon[],
   spørsmål: ISpørsmål,
-  valgtSvar: ISvar
+  valgtSvar: ISvar,
+  intl: IntlShape
 ): IDokumentasjon[] => {
   let endretDokumentasjon = dokumentasjonsbehov;
 
@@ -43,7 +51,10 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
       valgtSvar
     );
   }
-
+  endretDokumentasjon.forEach(
+    (dokumentasjonsbehov) =>
+      (dokumentasjonsbehov.label = hentTekst(dokumentasjonsbehov.tittel, intl))
+  );
   return endretDokumentasjon;
 };
 
