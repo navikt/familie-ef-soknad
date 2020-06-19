@@ -403,6 +403,7 @@ export default {
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
     'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsforhold',
+    'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsforhold',
 
     'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
@@ -478,6 +479,14 @@ export default {
       'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
     'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
     'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
+
+    'tidligereUtdanning.lesmer-åpne.kanFåStønad':
+      'Grunnen til at vi spør om dette',
+    'tidligereUtdanning.lesmer-innhold.kanFåStønad':
+      'Vi spør om tidligere utdanning for å kunne vurdere om utdanningen du skal ta er nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
+      'Har du allerede en utdanning som gjør deg kvalifisert til et yrke eller som kan benyttes i flere yrker, vil du som hovedregel ikke få støtte til mer utdanning.<br/><br/>' +
+      'Vi kan gjøre unntak hvis du har en utdanning eller yrkeserfaring som ikke lenger er relevant i dagens arbeidsmarked. Høgskole eller universitetsutdanning blir ikke utdatert.<br/><br/>' +
+      'Vi kan også gjøre unntak fra denne regelen hvis utdanningen din/yrket ditt ikke er forenlig med omsorgen for barn. Dette gjelder ikke vanlig turnusarbeid.',
 
     'utdanning.tittel': 'Utdanningen du skal ta',
     'utdanning.undertittel': 'Utdanning',

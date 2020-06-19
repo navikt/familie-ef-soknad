@@ -75,7 +75,7 @@ const BarnaDine: React.FC = () => {
             isOpen={åpenModal}
             onRequestClose={() => settÅpenModal(false)}
             closeButton={true}
-            contentLabel="Halla"
+            contentLabel="Legg til barn"
           >
             <div className="legg-til-barn-modal">
               <LeggTilBarn settÅpenModal={settÅpenModal} />

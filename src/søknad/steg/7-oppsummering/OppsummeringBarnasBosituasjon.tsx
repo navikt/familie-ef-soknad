@@ -22,7 +22,15 @@ const OppsummeringBarnasBosituasjon = () => {
     .filter((barn) => barn.forelder)
     .map((barn, index) => {
       if (!barn.forelder) return null;
-      const forelderFelter = VisLabelOgSvar(barn.forelder);
+
+      let nyForelder = barn.forelder;
+
+      delete nyForelder.hvorforIkkeOppgi;
+
+      const barnetsNavn =
+        barn.født?.verdi && barn.navn.verdi ? barn.navn.verdi : 'barnet';
+
+      const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
         <div className="oppsummering-barn">

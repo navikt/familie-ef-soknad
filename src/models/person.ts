@@ -15,7 +15,7 @@ export interface ISøker {
   innvandretDato?: string;
   utvandretDato?: string;
   oppholdstillatelse?: string;
-  sivilstand: string;
+  sivilstand?: string;
   språk: string;
   statsborgerskap: string;
   kontakttelefon?: string;

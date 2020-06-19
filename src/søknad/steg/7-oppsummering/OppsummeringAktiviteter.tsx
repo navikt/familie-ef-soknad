@@ -1,32 +1,13 @@
 import React from 'react';
 import { useSøknad } from '../../../context/SøknadContext';
-import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
+import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { useHistory } from 'react-router-dom';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
-
-const visListeAvLabelOgSvar = (liste: any[], overskrift: string) => {
-  return liste.map((el, index) => {
-    let tekst = overskrift;
-
-    if (liste.length > 1) {
-      tekst = tekst + ' ' + (index + 1);
-    }
-
-    return (
-      <div className="listeelement">
-        <Element>{tekst}</Element>
-        {VisLabelOgSvar(el)}
-        {index < liste.length - 1 && <hr />}
-      </div>
-    );
-  });
-};
 
 const OppsummeringAktiviteter: React.FC = () => {
   const { søknad } = useSøknad();
@@ -47,6 +28,13 @@ const OppsummeringAktiviteter: React.FC = () => {
     ? visListeAvLabelOgSvar(
         aktivitet.arbeidsforhold,
         hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl)
+      )
+    : null;
+
+  const egetAS = aktivitet.egetAS
+    ? visListeAvLabelOgSvar(
+        aktivitet.egetAS,
+        hentTekst('arbeidsforhold.tittel.egetAS', intl)
       )
     : null;
 
@@ -76,6 +64,7 @@ const OppsummeringAktiviteter: React.FC = () => {
       ) : null}
       {arbeidsforhold ? <div className="seksjon">{arbeidsforhold}</div> : null}
       {firma ? <div className="seksjon">{firma}</div> : null}
+      {egetAS ? <div className="seksjon">{egetAS}</div> : null}
       {arbeidssøker ? <div className="seksjon">{arbeidssøker}</div> : null}
       {underUtdanning ? (
         <div className="seksjon">

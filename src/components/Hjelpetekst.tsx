@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../language/LocaleTekst';
 import { hentTekst } from '../utils/søknad';
+import { FormattedHTMLMessage } from 'react-intl';
 
 const StyledHjelpetekst = styled.div`
   .lesMerPanel {
@@ -50,6 +51,7 @@ interface Props {
   lukkeTekstid?: string;
   innholdTekstid?: string;
   innholdTekst?: string;
+  html?: boolean;
 }
 
 const Hjelpetekst: React.FC<Props> = ({
@@ -58,6 +60,7 @@ const Hjelpetekst: React.FC<Props> = ({
   lukkeTekstid,
   innholdTekstid,
   innholdTekst,
+  html,
 }) => {
   const intl = useIntl();
 
@@ -78,7 +81,10 @@ const Hjelpetekst: React.FC<Props> = ({
           >
             <Normaltekst>
               {innholdTekst && innholdTekst}
-              {!innholdTekst && innholdTekstid && (
+              {!innholdTekst && innholdTekstid && html && (
+                <FormattedHTMLMessage id={innholdTekstid} />
+              )}
+              {!innholdTekst && innholdTekstid && !html && (
                 <LocaleTekst tekst={innholdTekstid} />
               )}
             </Normaltekst>

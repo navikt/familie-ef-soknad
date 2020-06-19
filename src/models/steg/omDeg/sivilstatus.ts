@@ -7,10 +7,14 @@ import {
 
 export enum ESivilstand {
   GIFT = 'GIFT',
+  REPA = 'REPA',
   UGIF = 'UGIF',
   ENKE = 'ENKE',
+  GJPA = 'GJPA',
   SEPA = 'SEPA',
+  SEPR = 'SEPR',
   SKIL = 'SKIL',
+  SKPA = 'SKPA',
 }
 
 export interface ISivilstatus {
