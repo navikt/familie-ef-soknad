@@ -13,7 +13,9 @@ export const sendInnSøknad = (søknad: object) => {
     });
 };
 
-export const hentFiltrerBarn = (barn: IBarn[]): IBarn[] => {
+export const mapBarnTilEntenIdentEllerFødselsdato = (
+  barn: IBarn[]
+): IBarn[] => {
   const filtrerteBarn = barn.map((barn) => {
     if (barn.lagtTil) {
       const endretBarn = barn;

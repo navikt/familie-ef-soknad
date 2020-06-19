@@ -13,7 +13,10 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
 import { Routes } from '../../../routing/Routes';
-import { hentFiltrerBarn, sendInnSøknad } from '../../../innsending/api';
+import {
+  mapBarnTilEntenIdentEllerFødselsdato,
+  sendInnSøknad,
+} from '../../../innsending/api';
 
 interface Innsending {
   status: string;
@@ -36,10 +39,12 @@ const SendSøknadKnapper: FC = () => {
 
   const sendSøknad = (søknad: ISøknad) => {
     console.log('SØKNAD ', søknad);
-    const filtrerteBarn = hentFiltrerBarn(søknad.person.barn);
+    const barnMedEntenIdentEllerFødselsdato = mapBarnTilEntenIdentEllerFødselsdato(
+      søknad.person.barn
+    );
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
-      person: { ...søknad.person, barn: filtrerteBarn },
+      person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
     };
     console.log(
       'SØKNAD MED FILTRERTE BARN',
