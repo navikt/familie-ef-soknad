@@ -446,6 +446,8 @@ export default {
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
       'Du kan registrere deg etter at du har sendt inn dette skjemaet. Da hjelper vi deg videre til registreringen.',
+    'arbeidssøker.søknad.alert.forÅHaRett':
+      'Du kan registrere deg etter at du har sendt inn denne søknaden. Da hjelper vi deg videre til registreringen.',
     'arbeidssøker.hjelpetekst-åpne.registrert':
       'Hva vil det si å være registrert som arbeidssøker hos NAV?',
     'arbeidssøker.hjelpetekst-innhold.registrert':

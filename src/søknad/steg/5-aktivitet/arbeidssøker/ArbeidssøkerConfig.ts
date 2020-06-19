@@ -23,7 +23,7 @@ export const erSøkerArbeidssøker: ISpørsmål = {
     {
       id: ESvar.NEI,
       svar_tekstid: ESvarTekstid.NEI,
-      alert_tekstid: 'arbeidssøker.alert.forÅHaRett',
+      alert_tekstid: 'arbeidssøker.søknad.alert.forÅHaRett',
     },
   ],
 };
