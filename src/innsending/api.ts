@@ -13,13 +13,17 @@ export const sendInnSøknad = (søknad: object) => {
     });
 };
 
-export const hentFiltrerBarn = (barn: IBarn[]) => {
+export const hentFiltrerBarn = (barn: IBarn[]): IBarn[] => {
   const filtrerteBarn = barn.map((barn) => {
     if (barn.lagtTil) {
       const endretBarn = barn;
       if (endretBarn.ident.verdi === '') delete endretBarn.ident;
-      if (endretBarn.fødselsdato.verdi === undefined)
-        delete endretBarn.fødselsdato;
+      console.log(
+        'if endretBarn.fødselsdato is udnefined',
+        !endretBarn.fødselsdato.verdi,
+        endretBarn.fødselsdato
+      );
+      if (!endretBarn.fødselsdato.verdi) delete endretBarn.fødselsdato;
       return endretBarn;
     } else {
       return barn;
