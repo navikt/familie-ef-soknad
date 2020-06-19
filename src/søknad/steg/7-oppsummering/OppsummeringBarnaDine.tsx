@@ -20,8 +20,7 @@ const OppsummeringBarnaDine: React.FC = () => {
     let nyttBarn = barn;
 
     if (!barn.født?.verdi) {
-      delete nyttBarn.fnr;
-      delete nyttBarn.personnummer;
+      delete nyttBarn.ident;
       delete nyttBarn.navn;
       delete nyttBarn.alder;
 
