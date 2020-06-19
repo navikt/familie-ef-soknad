@@ -18,12 +18,11 @@ export const hentFiltrerBarn = (barn: IBarn[]): IBarn[] => {
     if (barn.lagtTil) {
       const endretBarn = barn;
       if (endretBarn.ident.verdi === '') delete endretBarn.ident;
-      console.log(
-        'if endretBarn.fødselsdato is udnefined',
-        !endretBarn.fødselsdato.verdi,
-        endretBarn.fødselsdato
-      );
-      if (!endretBarn.fødselsdato.verdi) delete endretBarn.fødselsdato;
+      if (
+        endretBarn.fødselsdato &&
+        !endretBarn.fødselsdato.hasOwnProperty('verdi')
+      )
+        delete endretBarn.fødselsdato;
       return endretBarn;
     } else {
       return barn;
