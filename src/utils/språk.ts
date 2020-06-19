@@ -11,6 +11,10 @@ export const getMessages = (locale: string) => {
   }
 };
 
+export const førsteBokstavStor = (tekst: string) => {
+  return tekst.charAt(0).toUpperCase() + tekst.slice(1);
+};
+
 export const hentListeMedSpråk = (): Språk[] => [
   { tittel: 'Bokmål', locale: 'nb' },
   { tittel: 'Nynorsk', locale: 'nn' },

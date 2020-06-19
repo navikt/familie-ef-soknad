@@ -20,6 +20,7 @@ import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/person';
+import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
 
 const App = () => {
@@ -90,6 +91,10 @@ const App = () => {
     if (!error) {
       return (
         <>
+          <Helmet>
+            <title>Søknad om overgangsstønad</title>
+          </Helmet>
+
           {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>

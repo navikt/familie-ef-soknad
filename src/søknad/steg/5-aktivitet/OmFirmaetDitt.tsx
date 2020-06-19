@@ -13,6 +13,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { EFirma, IFirma } from '../../../models/steg/aktivitet/firma';
 import { datoTilStreng } from '../../../utils/dato';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -38,7 +39,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
       settFirma({
         ...firma,
         etableringsdato: {
-          label: 'datovelger tekstid',
+          label: hentTekst('firma.datovelger.etablering', intl),
           verdi: datoTilStreng(dato),
         },
       });
@@ -49,24 +50,31 @@ const OmFirmaetDitt: React.FC<Props> = ({
   ): void => {
     settFirma({
       ...firma,
-      arbeidsuke: { label: 'tekstid', verdi: e.target.value },
+      arbeidsuke: {
+        label: hentTekst('firma.label.arbeidsuke', intl),
+        verdi: e.target.value,
+      },
     });
   };
 
   const settInputTekstFelt = (
     e: React.FormEvent<HTMLInputElement>,
-    nøkkel: EFirma
+    nøkkel: EFirma,
+    label: string
   ) => {
     settFirma({
       ...firma,
-      [nøkkel]: { label: '', verdi: e.currentTarget.value },
+      [nøkkel]: { label: label, verdi: e.currentTarget.value },
     });
   };
 
-  const labelArbeidsmengde = intl.formatMessage({
-    id: 'firma.label.arbeidsmengde',
-  });
-  const labelArbeidsuke = intl.formatMessage({ id: 'firma.label.arbeidsuke' });
+  const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
+
+  const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
+
+  const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
+
+  const labelNavn = hentTekst('firma.label.navn', intl);
 
   return (
     <SeksjonGruppe>
@@ -77,10 +85,10 @@ const OmFirmaetDitt: React.FC<Props> = ({
       </FeltGruppe>
       <FeltGruppe>
         <Input
-          label={intl.formatMessage({ id: 'firma.label.navn' })}
+          label={labelNavn}
           bredde={'L'}
           type={'text'}
-          onChange={(e) => settInputTekstFelt(e, EFirma.navn)}
+          onChange={(e) => settInputTekstFelt(e, EFirma.navn, labelNavn)}
           value={firma?.navn ? firma?.navn.verdi : ''}
         />
       </FeltGruppe>
@@ -88,10 +96,16 @@ const OmFirmaetDitt: React.FC<Props> = ({
       {firma.navn?.verdi && (
         <FeltGruppe>
           <Input
-            label={intl.formatMessage({ id: 'firma.label.organisasjonnr' })}
+            label={labelOrganisasjonsnr}
             bredde={'L'}
             type={'text'}
-            onChange={(e) => settInputTekstFelt(e, EFirma.organisasjonsnummer)}
+            onChange={(e) =>
+              settInputTekstFelt(
+                e,
+                EFirma.organisasjonsnummer,
+                labelOrganisasjonsnr
+              )
+            }
             value={
               firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
             }
@@ -117,7 +131,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
             nøkkel={labelArbeidsmengde}
             type={'number'}
             bredde={'XS'}
-            settInputFelt={(e) => settInputTekstFelt(e, EFirma.arbeidsmengde)}
+            settInputFelt={(e) =>
+              settInputTekstFelt(e, EFirma.arbeidsmengde, labelArbeidsmengde)
+            }
             beskrivendeTekst={'%'}
             value={
               firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''

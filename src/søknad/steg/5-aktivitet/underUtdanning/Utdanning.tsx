@@ -110,6 +110,7 @@ const Utdanning: React.FC<Props> = ({
         tekstid={'utdanning.datovelger.studieperiode'}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
+        showMonthYearPicker={true}
       />
     </KomponentGruppe>
   );
