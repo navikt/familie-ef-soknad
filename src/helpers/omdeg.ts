@@ -1,8 +1,11 @@
 import { IPerson } from '../models/person';
 import { EBegrunnelse, ISivilstatus } from '../models/steg/omDeg/sivilstatus';
 
-export const hentSivilstatus = (statuskode: string) => {
+export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
+    case 'REPA':
+      return 'Registrert partner';
+
     case 'GIFT':
       return 'Gift';
 
@@ -18,6 +21,9 @@ export const hentSivilstatus = (statuskode: string) => {
 
     case 'SKIL':
       return 'Skilt';
+
+    case 'GJPA':
+      return 'Gjenlevende partner';
 
     case 'ENKE':
       return 'Enke/ enkemann';
