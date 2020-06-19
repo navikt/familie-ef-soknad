@@ -1,5 +1,6 @@
 import {
   IDatoFelt,
+  ISpørsmålBooleanFelt,
   ISpørsmålFelt,
   ISpørsmålListeFelt,
   ITekstFelt,
@@ -11,7 +12,7 @@ export interface IDinSituasjon {
   sagtOppEllerRedusertStilling?: ISpørsmålFelt;
   begrunnelseSagtOppEllerRedusertStilling?: ITekstFelt;
   datoSagtOppEllerRedusertStilling?: IDatoFelt;
-  søkerFraBestemtMåned?: ISpørsmålFelt;
+  søkerFraBestemtMåned?: ISpørsmålBooleanFelt;
 }
 
 export enum ESituasjon {
