@@ -5,7 +5,7 @@ import {
   hentBeskjedMedNavn,
   hentBeskjedMedToParametre,
 } from '../../utils/språk';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
