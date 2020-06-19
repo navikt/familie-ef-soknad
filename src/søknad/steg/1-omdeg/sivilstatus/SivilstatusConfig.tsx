@@ -29,7 +29,6 @@ const DokumentasjonInngåttEkteskap: IDokumentasjon = {
   spørsmålid: ESivilstatusSøknadid.erUformeltGift,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.inngåttEkteskap.tittel',
-  beskrivelse: 'dokumentasjon.inngåttEkteskap.beskrivelse',
   harSendtInn: false,
 };
 
@@ -38,7 +37,6 @@ const DokumentasjonUformeltSeparertEllerSkilt: IDokumentasjon = {
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
-  beskrivelse: 'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse',
   harSendtInn: false,
 };
 

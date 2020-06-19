@@ -131,10 +131,6 @@ const Filopplaster: React.FC<Props> = ({
   return (
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
-        <Undertittel className="tittel">
-          {hentTekst(dokumentasjon.tittel, intl)}
-        </Undertittel>
-
         {beskrivelsesListe ? (
           <ul className="opplasting-liste">
             {beskrivelsesListe.map((el) => (
