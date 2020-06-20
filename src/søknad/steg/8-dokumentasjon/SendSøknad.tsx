@@ -38,10 +38,11 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const sendSøknad = (søknad: ISøknad) => {
-    console.log('SØKNAD ', søknad);
     const barnMedEntenIdentEllerFødselsdato = mapBarnTilEntenIdentEllerFødselsdato(
       søknad.person.barn
     );
+
+    console.log('FERDIGMAPPA BARN:', barnMedEntenIdentEllerFødselsdato);
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },

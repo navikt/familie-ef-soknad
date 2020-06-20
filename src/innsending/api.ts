@@ -13,19 +13,27 @@ export const sendInnSøknad = (søknad: object) => {
     });
 };
 
-export const mapBarnTilEntenIdentEllerFødselsdato = (
-  barn: IBarn[]
-): IBarn[] => {
+export const mapBarnTilEntenIdentEllerFødselsdato = (barn: IBarn[]) => {
   const filtrerteBarn = barn.map((barn) => {
     if (barn.lagtTil) {
-      const endretBarn = barn;
-      if (endretBarn.ident.verdi === '') delete endretBarn.ident;
-      if (
-        endretBarn.fødselsdato &&
-        !endretBarn.fødselsdato.hasOwnProperty('verdi')
-      )
-        delete endretBarn.fødselsdato;
-      return endretBarn;
+      console.log('---------------------');
+      console.log(
+        'ER BARN LAGT TIL?:',
+        barn.navn,
+        barn.ident,
+        barn.fødselsdato
+      );
+
+      if (barn.fødselsdato && !barn.fødselsdato.verdi) {
+        console.log('map fdato til tom streng');
+        return {
+          ...barn,
+          fødselsdato: { ...barn.fødselsdato, verdi: '' },
+        };
+      }
+
+      console.log('ENDRET BARN:', barn);
+      return barn;
     } else {
       return barn;
     }
