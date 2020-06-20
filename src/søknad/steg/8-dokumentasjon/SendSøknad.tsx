@@ -42,15 +42,10 @@ const SendSøknadKnapper: FC = () => {
       søknad.person.barn
     );
 
-    console.log('FERDIGMAPPA BARN:', barnMedEntenIdentEllerFødselsdato);
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
     };
-    console.log(
-      'SØKNAD MED FILTRERTE BARN',
-      JSON.parse(JSON.stringify(søknadMedFiltrerteBarn))
-    );
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnSøknad(søknadMedFiltrerteBarn)
       .then((kvittering) => {

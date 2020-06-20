@@ -16,27 +16,15 @@ export const sendInnSøknad = (søknad: object) => {
 export const mapBarnTilEntenIdentEllerFødselsdato = (barn: IBarn[]) => {
   const filtrerteBarn = barn.map((barn) => {
     if (barn.lagtTil) {
-      console.log('---------------------');
-      console.log(
-        'ER BARN LAGT TIL?:',
-        barn.navn,
-        barn.ident,
-        barn.fødselsdato
-      );
-
       if (barn.fødselsdato && !barn.fødselsdato.verdi) {
-        console.log('map fdato til tom streng');
-        return {
+        const endretBarn: IBarn = {
           ...barn,
           fødselsdato: { ...barn.fødselsdato, verdi: '' },
         };
+        return endretBarn;
       }
-
-      console.log('ENDRET BARN:', barn);
-      return barn;
-    } else {
-      return barn;
     }
+    return barn;
   });
   return filtrerteBarn;
 };
