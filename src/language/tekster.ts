@@ -504,6 +504,8 @@ export default {
     'utdanning.svar.offentlig': 'Offentlig',
     'utdanning.svar.privat': 'Privat',
     'utdanning.datovelger.studieperiode': 'Når var du elev / student?',
+    'utdanning.datovelger.studieperiode.fremtidig':
+      'Når skal du være elev/student?',
     'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
     'utdanning.svar.heltid': 'Heltid',
     'utdanning.svar.deltid': 'Deltid',
