@@ -83,6 +83,8 @@ export default {
     'person.alder': 'Alder',
 
     barnet: 'Barnet',
+    'ufødt.barn': 'barn med termin [0]',
+    'født.barn': 'barn født [0]',
 
     'stegtittel.omDeg': 'Om deg',
 

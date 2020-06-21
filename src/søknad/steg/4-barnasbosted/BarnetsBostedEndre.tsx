@@ -30,6 +30,8 @@ import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/uuid';
 import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
+import { førsteBokstavStor } from '../../../utils/språk';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 
 interface Props {
   barn: IBarn;
@@ -169,7 +171,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <>
               <FeltGruppe>
                 <Element>
-                  {barn.navn ? barn.navn.verdi : hentTekst('barnet', intl)}
+                  {førsteBokstavStor(
+                    hentBarnetsNavnEllerBeskrivelse(barn, intl)
+                  )}
                   {hentTekst('barnasbosted.element.andreforelder', intl)}
                 </Element>
               </FeltGruppe>

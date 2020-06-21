@@ -36,10 +36,8 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         {(forelder.navn || forelder.kanIkkeOppgiAnnenForelderFar) && (
           <div className="spørsmål-og-svar">
             <Element>
-              {hentBeskjedMedNavn(
-                barnetsNavn,
-                intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
-              )}
+              {barnetsNavn}
+              {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
             </Element>
             <Normaltekst>
               {forelder.navn?.verdi

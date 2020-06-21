@@ -4,8 +4,9 @@ import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import styled from 'styled-components/macro';
 import { IBarn } from '../../../models/barn';
-import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import { førsteBokstavStor } from '../../../utils/språk';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 
 const StyledBarnasBostedHeader = styled.div`
     .barnas-bosted-header {
@@ -76,7 +77,7 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
       </div>
       <div className="navn">
         <Element>
-          {barn.navn ? barn.navn.verdi : hentTekst('barnet', intl)}
+          {førsteBokstavStor(hentBarnetsNavnEllerBeskrivelse(barn, intl))}
         </Element>
       </div>
     </StyledBarnasBostedHeader>
