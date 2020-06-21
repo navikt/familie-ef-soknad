@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
+  EStudieandel,
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
@@ -12,15 +13,14 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SkoleOgLinje from './SkoleOgLinjeInputFelter';
-import SøkerSkalJobbeDeltid from './SøkerSkalJobbeDeltid';
+import StudieArbeidsmengde from './StudieArbeidsmengde';
 import TidligereUtdanning from './TidligereUtdanning';
-import { erValgtSvarLiktSomSvar } from '../../../../utils/spørsmålogsvar';
 import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import { erUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import MålMedUtdanningen from './MålMedUtdanningen';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -31,7 +31,6 @@ const UnderUtdanning: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
-  const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
     id: hentUid(),
@@ -59,11 +58,10 @@ const UnderUtdanning: React.FC<Props> = ({
       });
   };
 
-  const søkerSkalJobbeDeltid = erValgtSvarLiktSomSvar(
-    utdanning.heltidEllerDeltid?.verdi,
-    'utdanning.svar.deltid',
-    intl
-  );
+  const søkerSkalJobbeDeltid =
+    utdanning.heltidEllerDeltid?.svarid === EStudieandel.deltid;
+  const søkerSkalJobbeHeltid =
+    utdanning.heltidEllerDeltid?.svarid === EStudieandel.heltid;
 
   return (
     <>
@@ -102,11 +100,25 @@ const UnderUtdanning: React.FC<Props> = ({
             settUtdanning={settUtdanning}
           />
         )}
-        {søkerSkalJobbeDeltid && (
-          <SøkerSkalJobbeDeltid
+        {søkerSkalJobbeHeltid && (
+          <MålMedUtdanningen
             utdanning={utdanning}
             oppdaterUtdanning={oppdaterUtdanning}
           />
+        )}
+        {søkerSkalJobbeDeltid && (
+          <>
+            <StudieArbeidsmengde
+              utdanning={utdanning}
+              oppdaterUtdanning={oppdaterUtdanning}
+            />
+            {utdanning.arbeidsmengde && (
+              <MålMedUtdanningen
+                utdanning={utdanning}
+                oppdaterUtdanning={oppdaterUtdanning}
+              />
+            )}
+          </>
         )}
       </SeksjonGruppe>
 
