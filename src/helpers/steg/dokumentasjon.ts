@@ -18,11 +18,7 @@ export const hentDokumentasjonTilFlersvarSpørsmål = (
     valgtSvar.dokumentasjonsbehov &&
       endretDokumentasjonsbehov.push(valgtSvar.dokumentasjonsbehov);
   }
-  endretDokumentasjonsbehov.forEach(
-    (dokumentasjonsbehov) =>
-      (dokumentasjonsbehov.label = hentTekst(dokumentasjonsbehov.tittel, intl))
-  );
-  return endretDokumentasjonsbehov;
+  return leggTilDokumentasjonLabel(endretDokumentasjonsbehov, intl);
 };
 
 export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
@@ -51,12 +47,20 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
       valgtSvar
     );
   }
-  endretDokumentasjon.forEach(
-    (dokumentasjonsbehov) =>
-      (dokumentasjonsbehov.label = hentTekst(dokumentasjonsbehov.tittel, intl))
-  );
-  return endretDokumentasjon;
+  return leggTilDokumentasjonLabel(endretDokumentasjon, intl);
 };
+
+function leggTilDokumentasjonLabel(
+  dokumentasjon: IDokumentasjon[],
+  intl: IntlShape
+) {
+  return dokumentasjon.map((dokumentasjonsbehov) => {
+    return {
+      ...dokumentasjonsbehov,
+      label: hentTekst(dokumentasjonsbehov.tittel, intl),
+    };
+  });
+}
 
 export const leggTilDokumentasjonsbehov = (
   dokumentasjonsbehov: IDokumentasjon[],
