@@ -13,7 +13,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice-q.nav.no/login',
+      loginService: 'https://loginservice-q.nav.no/login?',
       dokumentUrl:
         'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl:
@@ -24,7 +24,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice.nav.no/login',
+      loginService: 'https://loginservice.nav.no/login?',
       dokumentUrl:
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl:
@@ -35,7 +35,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: 'http://localhost:8091',
-      loginService: `http://localhost:8091/local/cookie`,
+      loginService: `http://localhost:8091/local/cookie?subject=21057822284`,
       dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
       mellomlagerUrl: `http://localhost:8082/api/soknad/overgangsstonad`,
       modellVersjon: modellVersjon,

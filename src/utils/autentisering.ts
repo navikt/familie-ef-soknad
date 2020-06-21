@@ -14,8 +14,8 @@ const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
   return erUrlArbeidssøkerSkjema()
-    ? Environment().loginService + '?redirect=' + arbeidssøkerSkjemaForsideUrl()
-    : Environment().loginService + '?redirect=' + overgangsstønadForsideUrl();
+    ? Environment().loginService + '&redirect=' + arbeidssøkerSkjemaForsideUrl()
+    : Environment().loginService + '&redirect=' + overgangsstønadForsideUrl();
 };
 
 export const autentiseringsInterceptor = () => {
