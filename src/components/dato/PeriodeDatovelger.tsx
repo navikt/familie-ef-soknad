@@ -15,7 +15,7 @@ interface Props {
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
   showMonthYearPicker?: boolean;
-  datobegrensing?: any;
+  datobegrensing?: DatoBegrensning;
 }
 
 const PeriodeDatovelgere: FC<Props> = ({
