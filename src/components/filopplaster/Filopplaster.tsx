@@ -15,7 +15,6 @@ import { IVedlegg } from '../../models/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
 import { IDokumentasjon } from '../../models/dokumentasjon';
-import { hentTekst } from '../../utils/søknad';
 
 interface Props {
   intl: IntlShape;

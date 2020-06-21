@@ -17,7 +17,7 @@ const OppsummeringBarnaDine: React.FC = () => {
   const barna = søknad.person.barn;
 
   const felterAlleBarna = barna.map((barn, index) => {
-    let nyttBarn = barn;
+    let nyttBarn = { ...barn };
 
     if (!barn.født?.verdi) {
       delete nyttBarn.ident;
