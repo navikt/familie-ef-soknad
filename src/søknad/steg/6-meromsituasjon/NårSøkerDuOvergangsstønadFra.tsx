@@ -76,7 +76,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.id === ESøkerFraBestemtMåned.ja,
       },
       søknadsdato:
         svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere
@@ -85,7 +85,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
     });
   };
 
-  const valgtSvar = dinSituasjon.søkerFraBestemtMåned?.verdi;
+  const valgtSvar = dinSituasjon.søkerFraBestemtMåned?.svarid;
 
   const hjelpetekst = hentBeskjedMedFireParametre(
     hentTekst('dinSituasjon.lesmer-innhold.overgangsstønad', intl),
@@ -108,8 +108,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
           />
           <div className="radioknapp__multiSvar">
             {SøkerFraBestemtMånedSpm.svaralternativer.map((svar: ISvar) => {
-              const svarISøknad =
-                intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
+              const svarISøknad = svar.id === valgtSvar;
               return (
                 <RadioPanel
                   key={svar.svar_tekstid}
@@ -128,8 +127,7 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
           </div>
         </StyledMultisvarSpørsmål>
       </KomponentGruppe>
-      {dinSituasjon.søkerFraBestemtMåned?.verdi ===
-        hentTekst('svar.ja', intl) && (
+      {dinSituasjon.søkerFraBestemtMåned?.verdi === true && (
         <KomponentGruppe>
           <Element>
             <LocaleTekst tekst={'dinSituasjon.dato-tittel.overgangsstønad'} />

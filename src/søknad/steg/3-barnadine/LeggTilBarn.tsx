@@ -13,7 +13,7 @@ import { strengTilDato } from '../../../utils/dato';
 
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   settÅpenModal: Function;
@@ -82,6 +82,11 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     settÅpenModal(false);
   };
 
+  const settBarnFødtFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    tilbakestillFelt();
+    settBarnFødt(svar.id === ESvar.JA);
+  };
+
   return (
     <Seksjonsgruppe className="legg-til-barn">
       <Undertittel>Legg til barn</Undertittel>
@@ -89,10 +94,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       <KomponentGruppe>
         <JaNeiSpørsmål
           spørsmål={barnetFødt}
-          onChange={(_, svar) => {
-            tilbakestillFelt();
-            settBarnFødt(svar.id === ESvar.JA);
-          }}
+          onChange={settBarnFødtFelt}
           valgtSvar={født}
         />
       </KomponentGruppe>

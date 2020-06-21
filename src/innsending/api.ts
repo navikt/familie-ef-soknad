@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Environment from '../Environment';
+import { IBarn } from '../models/barn';
 
 export const sendInnSøknad = (søknad: object) => {
   return axios
@@ -10,4 +11,20 @@ export const sendInnSøknad = (søknad: object) => {
     .then((response: { data: any }) => {
       return response.data;
     });
+};
+
+export const mapBarnTilEntenIdentEllerFødselsdato = (barn: IBarn[]) => {
+  const filtrerteBarn = barn.map((barn) => {
+    if (barn.lagtTil) {
+      if (barn.fødselsdato && !barn.fødselsdato.verdi) {
+        const endretBarn: IBarn = {
+          ...barn,
+          fødselsdato: { ...barn.fødselsdato, verdi: '' },
+        };
+        return endretBarn;
+      }
+    }
+    return barn;
+  });
+  return filtrerteBarn;
 };
