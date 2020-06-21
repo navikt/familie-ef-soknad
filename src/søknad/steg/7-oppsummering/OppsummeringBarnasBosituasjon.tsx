@@ -15,9 +15,6 @@ const OppsummeringBarnasBosituasjon = () => {
   const barna = søknad.person.barn;
   const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
-  const { samboerDetaljer, ...bosituasjon } = søknad.bosituasjon;
-  const bosituasjonSpørsmål = VisLabelOgSvar(bosituasjon);
-
   const felterAlleForeldrene = barna
     .filter((barn) => barn.forelder)
     .map((barn, index) => {
@@ -44,7 +41,6 @@ const OppsummeringBarnasBosituasjon = () => {
   return (
     <Ekspanderbartpanel tittel="Barnas bosted">
       {felterAlleForeldrene}
-      {bosituasjonSpørsmål}
       <LenkeMedIkon
         onClick={() =>
           history.push({
