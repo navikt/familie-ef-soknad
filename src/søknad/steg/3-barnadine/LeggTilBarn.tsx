@@ -14,6 +14,7 @@ import { strengTilDato } from '../../../utils/dato';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { JaSvar, NeiSvar } from '../../../helpers/svar';
 
 interface Props {
   settÅpenModal: Function;
@@ -22,7 +23,7 @@ interface Props {
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
@@ -78,6 +79,9 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       ...søknad,
       person: { ...søknad.person, barn: nyBarneListe },
     });
+
+    const valgtSvar = født ? JaSvar : NeiSvar;
+    settDokumentasjonsbehov(barnetFødt, valgtSvar);
 
     settÅpenModal(false);
   };
