@@ -123,7 +123,7 @@ export default {
     'sivilstatus.datovelger.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
-      'Er du registrert som ugift i Folkeregisteret. Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+      'Du er registrert som ugift i Folkeregisteret. Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
     'sivilstatus.alert.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
