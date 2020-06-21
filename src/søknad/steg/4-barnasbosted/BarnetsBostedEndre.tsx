@@ -243,7 +243,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
           {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
             <Knapp onClick={leggTilForelder}>
-              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
+              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Neste'}
             </Knapp>
           )}
         </div>
