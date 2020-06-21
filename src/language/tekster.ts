@@ -82,7 +82,8 @@ export default {
     'person.adresse': 'Adresse',
     'person.alder': 'Alder',
 
-    barnet: 'Barnet',
+    'barnet.storForBokstav': 'Barnet',
+    'barnet.litenForBokstav': 'barnet',
 
     'stegtittel.omDeg': 'Om deg',
 
