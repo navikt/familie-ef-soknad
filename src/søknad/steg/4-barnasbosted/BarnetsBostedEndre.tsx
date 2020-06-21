@@ -37,6 +37,7 @@ interface Props {
   aktivIndex: number;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
+  scrollTilLagtTilBarn: () => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -45,6 +46,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   aktivIndex,
   settSisteBarnUtfylt,
   sisteBarnUtfylt,
+  scrollTilLagtTilBarn,
 }) => {
   const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
@@ -113,6 +115,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
+
+    scrollTilLagtTilBarn();
   };
 
   const visOmAndreForelder =
