@@ -7,14 +7,13 @@ import {
   ESkalBarnetBoHosSøker,
   EHvorforIkkeOppgi,
 } from '../../../models/steg/barnasbosted';
-import { JaNeiSvar } from '../../../helpers/standardSvar';
 import {
   BarnasBostedDokumentasjon,
   IDokumentasjon,
 } from '../../../models/dokumentasjon';
 
 import { EForelder } from '../../../models/forelder';
-import { NeiSvar } from '../../../helpers/svar';
+import { JaNeiSvar, NeiSvar } from '../../../helpers/svar';
 
 // --- Dokumentasjon
 

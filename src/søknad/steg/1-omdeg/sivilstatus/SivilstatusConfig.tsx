@@ -1,4 +1,3 @@
-import { NeiSvar } from '../../../../helpers/standardSvar';
 import {
   IDokumentasjon,
   OmDegDokumentasjon,
@@ -12,6 +11,7 @@ import {
   ESvarTekstid,
   ISpørsmål,
 } from '../../../../models/spørsmålogsvar';
+import { NeiSvar } from '../../../../helpers/svar';
 
 // DOKUMENTASJON CONFIG
 

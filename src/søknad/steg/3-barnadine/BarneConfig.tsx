@@ -1,7 +1,6 @@
 import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
-import { JaNeiSvar } from '../../../helpers/standardSvar';
 import { EBarn } from '../../../models/barn';
-import { NeiSvar } from '../../../helpers/svar';
+import { JaNeiSvar, JaSvar } from '../../../helpers/svar';
 import {
   BarnDokumentasjon,
   IDokumentasjon,
@@ -11,7 +10,7 @@ import {
 const Terminbekreftelse: IDokumentasjon = {
   id: BarnDokumentasjon.TERMINBEKREFTELSE,
   spørsmålid: EBarn.født,
-  svarid: ESvar.JA,
+  svarid: ESvar.NEI,
   tittel: 'dokumentasjon.terminbekreftelse.tittel',
   beskrivelse: 'dokumentasjon.terminbekreftelse.beskrivelse',
   harSendtInn: false,
@@ -24,12 +23,12 @@ export const barnetFødt: ISpørsmål = {
   tekstid: 'barnekort.spm.født',
   flersvar: false,
   svaralternativer: [
+    JaSvar,
     {
-      id: ESvar.JA,
-      svar_tekstid: ESvarTekstid.JA,
+      id: ESvar.NEI,
+      svar_tekstid: ESvarTekstid.NEI,
       dokumentasjonsbehov: Terminbekreftelse,
     },
-    NeiSvar,
   ],
 };
 

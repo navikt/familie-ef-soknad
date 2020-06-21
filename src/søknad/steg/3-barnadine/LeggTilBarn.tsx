@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
@@ -22,7 +22,7 @@ interface Props {
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
@@ -73,6 +73,10 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       ...søknad.person.barn.filter((b) => b.id !== id),
       nyttBarn,
     ];
+    const erBarnFødtSvar = barnetFødt.svaralternativer.find(
+      (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
+    );
+    erBarnFødtSvar && settDokumentasjonsbehov(barnetFødt, erBarnFødtSvar);
 
     settSøknad({
       ...søknad,
