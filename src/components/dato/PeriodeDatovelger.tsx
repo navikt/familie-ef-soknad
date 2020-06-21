@@ -15,6 +15,7 @@ interface Props {
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
   showMonthYearPicker?: boolean;
+  datobegrensing?: any;
 }
 
 const PeriodeDatovelgere: FC<Props> = ({
@@ -22,6 +23,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   settDato,
   tekstid,
   showMonthYearPicker,
+  datobegrensing,
 }) => {
   const [feilmelding, settFeilmelding] = useState('');
 
@@ -62,7 +64,9 @@ const PeriodeDatovelgere: FC<Props> = ({
               : subDays(dagensDato, 1)
           }
           tekstid={'periode.fra'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
+          datobegrensning={
+            datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
+          }
           showMonthYearPicker={showMonthYearPicker}
         />
 
@@ -72,7 +76,9 @@ const PeriodeDatovelgere: FC<Props> = ({
             periode.til.verdi ? strengTilDato(periode.til.verdi) : dagensDato
           }
           tekstid={'periode.til'}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
+          datobegrensning={
+            datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
+          }
           showMonthYearPicker={showMonthYearPicker}
         />
         {feilmelding && feilmelding !== '' && (

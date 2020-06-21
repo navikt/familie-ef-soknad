@@ -37,9 +37,10 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   return (
     <>
       <PeriodeDatovelgere
-        tekstid={'utdanning.datovelger.studieperiode'}
+        tekstid={'utdanning.datovelger.studieperiode.fremtidig'}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
+        datobegrensing={DatoBegrensning.FremtidigeDatoer}
       />
     </>
   );
