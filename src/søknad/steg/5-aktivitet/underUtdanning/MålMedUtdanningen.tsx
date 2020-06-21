@@ -74,7 +74,7 @@ const MålMedUtdanningen: React.FC<Props> = ({
       />
       <StyledDokumentasjonAlert>
         <div className="ikon-overskrift">
-          <img src={dokumentasjon}></img>{' '}
+          <img alt="Dokumentasjon" src={dokumentasjon}></img>{' '}
           <Sidetittel className="undertittel" tag="h4">
             Du må legge ved dokumentasjon på utdanningen du tar eller skal ta
           </Sidetittel>

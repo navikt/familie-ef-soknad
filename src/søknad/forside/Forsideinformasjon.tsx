@@ -7,7 +7,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import React from 'react';
 import { IPerson } from '../../models/person';
 import { IntlShape } from 'react-intl';
-import { Sidetittel, Undertittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory, useLocation } from 'react-router-dom';
 import { hentNesteRoute } from '../../routing/utils';
 import { Routes } from '../../routing/Routes';
