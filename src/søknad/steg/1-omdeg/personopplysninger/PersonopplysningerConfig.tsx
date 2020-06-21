@@ -1,5 +1,5 @@
-import { JaNeiSvar } from '../../../../helpers/standardSvar';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { JaNeiSvar } from '../../../../helpers/svar';
 
 export const borDuPåDenneAdressen: ISpørsmål = {
   søknadid: 'søkerBorPåRegistrertAdresse',

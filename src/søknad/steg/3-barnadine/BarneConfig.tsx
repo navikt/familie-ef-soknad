@@ -1,7 +1,6 @@
 import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
-import { JaNeiSvar } from '../../../helpers/standardSvar';
 import { EBarn } from '../../../models/barn';
-import { NeiSvar } from '../../../helpers/svar';
+import { JaNeiSvar, NeiSvar } from '../../../helpers/svar';
 import {
   BarnDokumentasjon,
   IDokumentasjon,
