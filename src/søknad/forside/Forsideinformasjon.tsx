@@ -1,4 +1,3 @@
-import { Element } from 'nav-frontend-typografi';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { hentBeskjedMedNavn } from '../../utils/språk';
@@ -8,10 +7,12 @@ import LocaleTekst from '../../language/LocaleTekst';
 import React from 'react';
 import { IPerson } from '../../models/person';
 import { IntlShape } from 'react-intl';
+import { Sidetittel, Undertittel } from 'nav-frontend-typografi';
 import { useHistory, useLocation } from 'react-router-dom';
 import { hentNesteRoute } from '../../routing/utils';
 import { Routes } from '../../routing/Routes';
 import { useSøknad } from '../../context/SøknadContext';
+import { hentTekst } from '../../utils/søknad';
 const BlockContent = require('@sanity/block-content-to-react');
 
 interface InnholdProps {
@@ -65,7 +66,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         seksjon.map((blokk: any, index: number) => {
           return (
             <div className="seksjon" key={index}>
-              {blokk.tittel && <Element>{blokk.tittel}</Element>}
+              {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
               <BlockContent
                 className="typo-normal"
                 blocks={blokk.innhold}
@@ -77,8 +78,10 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 
       {disclaimer && (
         <div className="seksjon">
+          <Undertittel className="disclaimer-tittel">
+            {hentTekst('skjema.forside.disclaimer.tittel', intl)}
+          </Undertittel>
           <AlertStripeAdvarsel>
-            {' '}
             <BlockContent
               className="typo-normal"
               blocks={disclaimer}
