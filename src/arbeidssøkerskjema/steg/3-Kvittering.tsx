@@ -68,7 +68,7 @@ const Kvittering: React.FC = () => {
         </FeltGruppe>
         <a
           className={'knapp knapp--standard kvittering'}
-          href={'https://www.nav.no/soknader/nb/person/arbeid/tilleggsstonader'}
+          href={'https://arbeidssokerregistrering.nav.no/'}
         >
           <LocaleTekst tekst={'arbeidssøker.knapp.tilleggstønad'} />
         </a>
