@@ -76,23 +76,23 @@ const LeggTilBarnFødt: React.FC<Props> = ({
           label="Barnets fulle navn, om dette er bestemt"
         />
       </KomponentGruppe>
-      {navn && (
-        <KomponentGruppe>
-          <IdentEllerFødselsdatoGruppe
-            identLabel={hentTekst('barn.ident', intl)}
-            datoLabel={hentTekst('datovelger.fødselsdato', intl)}
-            checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
-            ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
-            fødselsdato={barnDato ? barnDato : undefined}
-            checked={kjennerIkkeIdent}
-            erGyldigIdent={erGyldigIdent}
-            settGyldigIdent={hvisGyldigIdentSettIdent}
-            settFødselsdato={settDato}
-            settChecked={settChecked}
-            settIdent={oppdaterIdent}
-          />
-        </KomponentGruppe>
-      )}
+
+      <KomponentGruppe>
+        <IdentEllerFødselsdatoGruppe
+          identLabel={hentTekst('barn.ident', intl)}
+          datoLabel={hentTekst('datovelger.fødselsdato', intl)}
+          checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
+          ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
+          fødselsdato={barnDato ? barnDato : undefined}
+          checked={kjennerIkkeIdent}
+          erGyldigIdent={erGyldigIdent}
+          settGyldigIdent={hvisGyldigIdentSettIdent}
+          settFødselsdato={settDato}
+          settChecked={settChecked}
+          settIdent={oppdaterIdent}
+        />
+      </KomponentGruppe>
+
       {(barnDato || (ident && erGyldigIdent)) && (
         <KomponentGruppe>
           <Normaltekst>
