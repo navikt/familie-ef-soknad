@@ -1,21 +1,28 @@
 import React, { FC } from 'react';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { borAnnenForelderISammeHus } from '../ForeldreConfig';
 import { EBorAnnenForelderISammeHus } from '../../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../../utils/søknad';
 import { IForelder } from '../../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
+import { IBarn } from '../../../../models/barn';
+import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
+import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
 interface Props {
   forelder: IForelder;
   settForelder: (verdi: IForelder) => void;
+  barn: IBarn;
 }
-const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
+const BorAnnenForelderISammeHus: FC<Props> = ({
+  forelder,
+  settForelder,
+  barn,
+}) => {
   const intl = useIntl();
 
   const settBorAnnenForelderISammeHus = (
@@ -60,9 +67,14 @@ const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
   return (
     <>
       <KomponentGruppe>
-        <MultiSvarSpørsmål
+        <MultiSvarSpørsmålMedNavn
           key={borAnnenForelderISammeHus.søknadid}
           spørsmål={borAnnenForelderISammeHus}
+          spørsmålTekst={hentBarnNavnEllerBarnet(
+            barn,
+            borAnnenForelderISammeHus.tekstid,
+            intl
+          )}
           valgtSvar={forelder.borAnnenForelderISammeHus?.verdi}
           settSpørsmålOgSvar={(spørsmål, svar) =>
             settBorAnnenForelderISammeHus(spørsmål, svar)
@@ -73,11 +85,11 @@ const BorAnnenForelderISammeHus: FC<Props> = ({ forelder, settForelder }) => {
         EBorAnnenForelderISammeHus.ja && (
         <>
           <div className="margin-bottom-05">
-            <Normaltekst>
+            <Element>
               {intl.formatMessage({
                 id: 'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse',
               })}
-            </Normaltekst>
+            </Element>
           </div>
           <FeltGruppe>
             <Textarea

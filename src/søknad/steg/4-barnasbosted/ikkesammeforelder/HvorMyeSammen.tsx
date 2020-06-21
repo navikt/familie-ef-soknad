@@ -2,20 +2,23 @@ import { IForelder } from '../../../../models/forelder';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { hvorMyeSammen } from '../ForeldreConfig';
 import { hentTekst } from '../../../../utils/søknad';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Element } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Textarea } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { EHvorMyeSammen } from '../../../../models/steg/barnasbosted';
+import { IBarn } from '../../../../models/barn';
+import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
+import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
 interface Props {
   forelder: IForelder;
+  barn: IBarn;
   settForelder: (verdi: IForelder) => void;
 }
-const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
+const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
   const intl = useIntl();
 
   const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
@@ -52,9 +55,14 @@ const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
   return (
     <>
       <KomponentGruppe>
-        <MultiSvarSpørsmål
+        <MultiSvarSpørsmålMedNavn
           key={hvorMyeSammen.søknadid}
           spørsmål={hvorMyeSammen}
+          spørsmålTekst={hentBarnNavnEllerBarnet(
+            barn,
+            hvorMyeSammen.tekstid,
+            intl
+          )}
           valgtSvar={forelder.hvorMyeSammen?.verdi}
           settSpørsmålOgSvar={(spørsmål, svar) =>
             settHvorMyeSammen(spørsmål, svar)
@@ -65,11 +73,13 @@ const HvorMyeSammen: FC<Props> = ({ forelder, settForelder }) => {
         hentTekst('barnasbosted.spm.møtesUtenom', intl) && (
         <>
           <div className="margin-bottom-05">
-            <Normaltekst>
-              {intl.formatMessage({
-                id: 'barnasbosted.spm.beskrivSamværUtenBarn',
-              })}
-            </Normaltekst>
+            <Element>
+              {hentBarnNavnEllerBarnet(
+                barn,
+                'barnasbosted.spm.beskrivSamværUtenBarn',
+                intl
+              )}
+            </Element>
           </div>
           <FeltGruppe>
             <Textarea
