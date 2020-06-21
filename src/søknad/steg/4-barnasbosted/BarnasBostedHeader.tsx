@@ -4,6 +4,8 @@ import barn1 from '../../../assets/barn1.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import styled from 'styled-components/macro';
 import { IBarn } from '../../../models/barn';
+import { hentTekst } from '../../../utils/søknad';
+import { useIntl } from 'react-intl';
 
 const StyledBarnasBostedHeader = styled.div`
     .barnas-bosted-header {
@@ -63,6 +65,7 @@ interface Props {
 
 const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
   const ikon = barn.født?.verdi ? barn1 : ufødtIkon;
+  const intl = useIntl();
 
   return (
     <StyledBarnasBostedHeader>
@@ -72,7 +75,9 @@ const BarnasBostedHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="navn">
-        <Element>{barn.navn.verdi}</Element>
+        <Element>
+          {barn.navn ? barn.navn.verdi : hentTekst('barnet', intl)}
+        </Element>
       </div>
     </StyledBarnasBostedHeader>
   );

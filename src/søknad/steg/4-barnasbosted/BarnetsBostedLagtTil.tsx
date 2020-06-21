@@ -22,7 +22,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 }) => {
   const forelder = barn.forelder;
   const intl = useIntl();
-
+  const barnetsNavn = barn.navn ? barn.navn.verdi : hentTekst('barnet', intl);
   if (!forelder) return null;
 
   const endreInformasjon = () => {
@@ -37,7 +37,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn.verdi,
+                barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })
               )}
             </Element>
@@ -52,7 +52,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn.verdi,
+                barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.spm.hvorforikkeoppgi' })
               )}
             </Element>
@@ -76,7 +76,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn.verdi,
+              barnetsNavn,
               intl.formatMessage({ id: 'barnasbosted.borinorge' })
             )}
           </Element>
@@ -93,7 +93,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn.verdi,
+              barnetsNavn,
               intl.formatMessage({ id: 'barnasbosted.avtale' })
             )}
           </Element>
@@ -104,7 +104,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         <div className="spørsmål-og-svar">
           <Element>
             {hentBeskjedMedNavn(
-              barn.navn.verdi,
+              barnetsNavn,
               intl.formatMessage({
                 id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
               })
@@ -118,7 +118,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn.verdi,
+                barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
                 })
@@ -151,7 +151,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
           <div className="spørsmål-og-svar">
             <Element>
               {hentBeskjedMedNavn(
-                barn.navn.verdi,
+                barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.borAnnenForelderISammeHus',
                 })

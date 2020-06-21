@@ -169,7 +169,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <>
               <FeltGruppe>
                 <Element>
-                  {barn.navn.verdi}
+                  {barn.navn ? barn.navn.verdi : hentTekst('barnet', intl)}
                   {hentTekst('barnasbosted.element.andreforelder', intl)}
                 </Element>
               </FeltGruppe>
