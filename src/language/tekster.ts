@@ -95,6 +95,10 @@ export default {
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
 
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
+    'personopplysninger.lesmer-åpne.riktigAdresse':
+      'Hvis du har strengt fortrolig adresse',
+    'personopplysninger.lesmer-innhold.riktigAdresse':
+      'Hvis du har strengt fortrolig adresse, vises ikke adressen din her. Du kan svare Ja på dette spørsmålet og fortsette med den digitale søknaden.',
     'personopplysninger.alert.riktigAdresse':
       'Du må oppgi riktig adresse til Folkeregisteret for å bruker denne søknaden',
     'personopplysninger.info.endreAdresse':
