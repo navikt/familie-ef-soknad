@@ -626,8 +626,9 @@ export default {
     'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
       'Beskrivelse for separasjone eller skilsmisse',
     'dokumentasjon.søktSeparasjon.tittel':
-      'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon,  søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.søktSeparasjon.beskrivelse': '',
+      'Dokumentasjon på separasjon eller skilsmisse',
+    'dokumentasjon.søktSeparasjon.beskrivelse':
+      'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
     'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
     'dokumentasjon.begrunnelse.beskrivelse':
       'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',

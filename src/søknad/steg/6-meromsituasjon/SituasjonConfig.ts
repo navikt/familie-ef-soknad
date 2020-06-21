@@ -52,7 +52,6 @@ export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
   spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
   svarid: ESagtOppEllerRedusertStilling.sagtOpp,
   tittel: 'dokumentasjon.arbeidsforhold-oppsigelse.tittel',
-  beskrivelse: 'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse',
   harSendtInn: false,
 };
 
@@ -60,8 +59,7 @@ export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon = {
   id: SituasjonDokumentasjon.ARBEIDSFORHOLD_REDUSERT_ARBEIDSTID,
   spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
   svarid: ESagtOppEllerRedusertStilling.redusertStilling,
-  tittel: 'dokumentasjon.arbeidsforhold-.tittel',
-  beskrivelse: 'dokumentasjon.arbeidsforhold-.beskrivelse',
+  tittel: 'dokumentasjon.arbeidsforhold-redusert.tittel',
   harSendtInn: false,
 };
 

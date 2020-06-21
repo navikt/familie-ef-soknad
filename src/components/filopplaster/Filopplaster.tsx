@@ -5,7 +5,7 @@ import {
   hentBeskjedMedNavn,
   hentBeskjedMedToParametre,
 } from '../../utils/språk';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
@@ -130,10 +130,6 @@ const Filopplaster: React.FC<Props> = ({
   return (
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
-        <Undertittel className="tittel">
-          {hentTekst(dokumentasjon.tittel, intl)}
-        </Undertittel>
-
         {beskrivelsesListe ? (
           <ul className="opplasting-liste">
             {beskrivelsesListe.map((el) => (

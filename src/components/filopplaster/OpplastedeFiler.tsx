@@ -13,7 +13,7 @@ interface Props {
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
   return (
     <>
-      {filliste.map((fil: IVedlegg) => {
+      {filliste.map((fil: IVedlegg, index: number) => {
         return (
           <div key={fil.dokumentId}>
             <div className="fil">
@@ -38,7 +38,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                 <img className="slettikon" src={slett} alt="Rødt kryss" />
               </div>
             </div>
-            <hr />
+            {index === filliste.length - 1 ? '' : <hr />}
           </div>
         );
       })}
