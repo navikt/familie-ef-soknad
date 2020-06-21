@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LeggTilBarnFødt from './LeggTilBarnFødt';
@@ -14,7 +14,6 @@ import { strengTilDato } from '../../../utils/dato';
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { JaSvar, NeiSvar } from '../../../helpers/svar';
 
 interface Props {
   settÅpenModal: Function;
@@ -74,14 +73,15 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       ...søknad.person.barn.filter((b) => b.id !== id),
       nyttBarn,
     ];
+    const erBarnFødtSvar = barnetFødt.svaralternativer.find(
+      (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
+    );
+    erBarnFødtSvar && settDokumentasjonsbehov(barnetFødt, erBarnFødtSvar);
 
     settSøknad({
       ...søknad,
       person: { ...søknad.person, barn: nyBarneListe },
     });
-
-    const valgtSvar = født ? JaSvar : NeiSvar;
-    settDokumentasjonsbehov(barnetFødt, valgtSvar);
 
     settÅpenModal(false);
   };
