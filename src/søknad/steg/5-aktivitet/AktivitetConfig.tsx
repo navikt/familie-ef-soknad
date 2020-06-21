@@ -65,6 +65,11 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
       svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
+      id: EAktivitet.harFåttJobbTilbud,
+      svar_tekstid: 'arbeidssituasjon.svar.harFåttJobbTilbud',
+      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
+    },
+    {
       id: EAktivitet.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
     },
@@ -76,11 +81,6 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
       id: EAktivitet.tarUtdanning,
       svar_tekstid: 'arbeidssituasjon.svar.tarUtdanning',
       dokumentasjonsbehov: DokumentasjonUtdanning,
-    },
-    {
-      id: EAktivitet.harFåttJobbTilbud,
-      svar_tekstid: 'arbeidssituasjon.svar.harFåttJobbTilbud',
-      dokumentasjonsbehov: DokumentasjonArbeidskontrakt,
     },
     {
       id: EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker,
