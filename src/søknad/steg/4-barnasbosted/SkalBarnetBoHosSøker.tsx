@@ -104,6 +104,20 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
           </ul>
         </FeltGruppe>
       )}
+      {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja && (
+        <FeltGruppe>
+          <AlertStripe type={'info'} form={'inline'}>
+            {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.ja', intl)}
+          </AlertStripe>
+        </FeltGruppe>
+      )}
+      {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.nei && (
+        <FeltGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.nei', intl)}
+          </AlertStripe>
+        </FeltGruppe>
+      )}
     </>
   );
 };
