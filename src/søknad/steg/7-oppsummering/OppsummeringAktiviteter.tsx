@@ -41,7 +41,7 @@ const OppsummeringAktiviteter: React.FC = () => {
   const tidligereUtdanning = aktivitet.underUtdanning?.tidligereUtdanning
     ? visListeAvLabelOgSvar(
         aktivitet.underUtdanning.tidligereUtdanning,
-        hentTekst('utdanning.undertittel', intl)
+        hentTekst('utdanning.tittel.tidligere', intl)
       )
     : null;
 

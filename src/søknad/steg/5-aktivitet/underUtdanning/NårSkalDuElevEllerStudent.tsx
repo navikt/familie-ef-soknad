@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
@@ -27,7 +28,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
         periode: {
           ...utdanning.periode,
           [nøkkel]: {
-            label: 'utdanning.datovelger.studieperiode',
+            label: 'utdanning.datovelger.studieperiode.fremtidig',
             verdi: dato !== null ? datoTilStreng(dato) : undefined,
           },
         },
@@ -37,9 +38,10 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   return (
     <>
       <PeriodeDatovelgere
-        tekstid={'utdanning.datovelger.studieperiode'}
+        tekstid={'utdanning.datovelger.studieperiode.fremtidig'}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
+        datobegrensing={DatoBegrensning.FremtidigeDatoer}
       />
     </>
   );

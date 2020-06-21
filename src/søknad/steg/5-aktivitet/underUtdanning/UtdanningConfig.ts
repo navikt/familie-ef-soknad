@@ -36,6 +36,11 @@ export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'utdanning.lesmer-åpne.privatEllerOffentlig',
+    lukkeTekstid: '',
+    innholdTekstid: 'utdanning.lesmer-innhold.privatEllerOffentlig',
+  },
   svaralternativer: [
     {
       id: EUtdanningsform.offentlig,

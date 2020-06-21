@@ -186,6 +186,11 @@ export const hvorMyeSammen: ISpørsmål = {
   søknadid: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'barnasbosted.lesmer-åpne.hvorMyeSammen',
+    lukkeTekstid: '',
+    innholdTekstid: 'barnasbosted.lesmer-innhold.hvorMyeSammen',
+  },
   svaralternativer: [
     {
       id: EHvorMyeSammen.møtesIkke,

@@ -95,6 +95,10 @@ export default {
       'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
 
     'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
+    'personopplysninger.lesmer-åpne.riktigAdresse':
+      'Hvis du har strengt fortrolig adresse',
+    'personopplysninger.lesmer-innhold.riktigAdresse':
+      'Hvis du har strengt fortrolig adresse, vises ikke adressen din her. Du kan svare Ja på dette spørsmålet og fortsette med den digitale søknaden.',
     'personopplysninger.alert.riktigAdresse':
       'Du må oppgi riktig adresse til Folkeregisteret for å bruker denne søknaden',
     'personopplysninger.info.endreAdresse':
@@ -358,6 +362,9 @@ export default {
     'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
     'barnasbosted.spm.hvorMyeSammen':
       'Hvor mye er du sammen med den andre forelderen til [0]?',
+    'barnasbosted.lesmer-åpne.hvorMyeSammen': 'Grunnen til at vi spør om dette',
+    'barnasbosted.lesmer-innhold.hvorMyeSammen':
+      'Vi spør om dette for å kunne vurdere om du er så mye sammen med den andre av barnets foreldre at du ikke regnes som enslig mor eller far.',
     'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
     'barnasbosted.spm.kunNårLeveres':
       'Vi møtes kun når barnet skal hentes eller leveres',
@@ -446,6 +453,8 @@ export default {
       'Er du registrert som arbeidssøker hos NAV?',
     'arbeidssøker.alert.forÅHaRett':
       'Du kan registrere deg etter at du har sendt inn dette skjemaet. Da hjelper vi deg videre til registreringen.',
+    'arbeidssøker.søknad.alert.forÅHaRett':
+      'Du kan registrere deg etter at du har sendt inn denne søknaden. Da hjelper vi deg videre til registreringen.',
     'arbeidssøker.hjelpetekst-åpne.registrert':
       'Hva vil det si å være registrert som arbeidssøker hos NAV?',
     'arbeidssøker.hjelpetekst-innhold.registrert':
@@ -488,7 +497,7 @@ export default {
       'Vi kan gjøre unntak hvis du har en utdanning eller yrkeserfaring som ikke lenger er relevant i dagens arbeidsmarked. Høgskole eller universitetsutdanning blir ikke utdatert.<br/><br/>' +
       'Vi kan også gjøre unntak fra denne regelen hvis utdanningen din/yrket ditt ikke er forenlig med omsorgen for barn. Dette gjelder ikke vanlig turnusarbeid.',
 
-    'utdanning.tittel': 'Utdanningen du skal ta',
+    'utdanning.tittel': 'Utdanningen du tar eller skal ta',
     'utdanning.undertittel': 'Utdanning',
     'utdanning.lesmer-åpne.kanFåStønad':
       'Hva slags utdanning kan du få stønad til?',
@@ -499,9 +508,15 @@ export default {
     'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
     'utdanning.spm.privatEllerOffentlig':
       'Er utdanningen offentlig eller privat?',
+    'utdanning.lesmer-åpne.privatEllerOffentlig':
+      'Om godkjenning av privat utdanning',
+    'utdanning.lesmer-innhold.privatEllerOffentlig':
+      'Vi godkjenner kun privat utdanning dersom det offentlige skoleverket ikke har det samme tilbudet.<br/><br/>Vi kan godta privat utdanning dersom det er særlige grunner, for eksempel at du ikke har kommet inn ved offentlig skole eller at du har begynt på den private utdanningen før du ble enslig mor eller far.',
     'utdanning.svar.offentlig': 'Offentlig',
     'utdanning.svar.privat': 'Privat',
     'utdanning.datovelger.studieperiode': 'Når var du elev / student?',
+    'utdanning.datovelger.studieperiode.fremtidig':
+      'Når skal du være elev/student?',
     'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
     'utdanning.svar.heltid': 'Heltid',
     'utdanning.svar.deltid': 'Deltid',

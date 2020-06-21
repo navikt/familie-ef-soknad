@@ -87,7 +87,7 @@ const Arbeidssøker: React.FC<Props> = ({
           onChange={settJaNeiSpørsmål}
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
-        {arbeidssøker.registrertSomArbeidssøkerNav && (
+        {arbeidssøker.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
           <AlertStripe type={'info'} form={'inline'}>
             <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
           </AlertStripe>
