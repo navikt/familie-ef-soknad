@@ -18,10 +18,8 @@ import TidligereUtdanning from './TidligereUtdanning';
 import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import { erUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
-import SøkerSkalJobbeHeltid from './MålMedUtdanningen';
 import MålMedUtdanningen from './MålMedUtdanningen';
 
 interface Props {
@@ -33,7 +31,6 @@ const UnderUtdanning: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
-  const intl = useIntl();
   const { underUtdanning } = arbeidssituasjon;
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
     id: hentUid(),
