@@ -41,7 +41,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
         tekstid={'utdanning.datovelger.studieperiode.fremtidig'}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
-        datobegrensing={DatoBegrensning.FremtidigeDatoer}
+        datobegrensing={DatoBegrensning.AlleDatoer}
       />
     </>
   );
