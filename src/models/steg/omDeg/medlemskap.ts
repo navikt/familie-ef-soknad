@@ -12,3 +12,9 @@ export interface IUtenlandsopphold {
   periode: IPeriode;
   begrunnelse: ITekstFelt;
 }
+
+export enum EMedlemskap {
+  søkerOppholderSegINorge = 'søkerOppholderSegINorge',
+  søkerBosattINorgeSisteTreÅr = 'søkerBosattINorgeSisteTreÅr',
+  perioderBoddIUtlandet = 'perioderBoddIUtlandet',
+}

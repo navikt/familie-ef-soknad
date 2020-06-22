@@ -1,8 +1,9 @@
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
+import { EMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 
 export const oppholderSegINorge: ISpørsmål = {
-  søknadid: 'søkerOppholderSegINorge',
+  søknadid: EMedlemskap.søkerOppholderSegINorge,
   tekstid: 'medlemskap.spm.opphold',
   flersvar: false,
 
@@ -10,7 +11,7 @@ export const oppholderSegINorge: ISpørsmål = {
 };
 
 export const bosattINorgeDeSisteTreÅr: ISpørsmål = {
-  søknadid: 'søkerBosattINorgeSisteTreÅr',
+  søknadid: EMedlemskap.søkerBosattINorgeSisteTreÅr,
   tekstid: 'medlemskap.spm.bosatt',
   flersvar: false,
 

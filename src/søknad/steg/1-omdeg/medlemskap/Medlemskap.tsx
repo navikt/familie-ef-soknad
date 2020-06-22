@@ -54,7 +54,7 @@ const Medlemskap: React.FC = () => {
         />
       </KomponentGruppe>
 
-      {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
+      {søkerOppholderSegINorge?.verdi ? (
         <KomponentGruppe key={bosattINorgeDeSisteTreÅr.søknadid}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅr}
