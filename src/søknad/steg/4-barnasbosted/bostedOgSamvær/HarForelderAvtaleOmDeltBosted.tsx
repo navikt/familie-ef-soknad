@@ -10,6 +10,7 @@ import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpør
 import { IBarn } from '../../../../models/barn';
 import { useIntl } from 'react-intl';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   settBostedOgSamværFelt: (spørsmål: ISpørsmål, svar: ISvar) => void;
@@ -42,9 +43,9 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
               tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
             />
           </AlertStripe>
-          <AlertStripe type={'info'} form={'inline'}>
+          <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'} />
-          </AlertStripe>
+          </AlertStripeDokumentasjon>
         </>
       )}
     </KomponentGruppe>

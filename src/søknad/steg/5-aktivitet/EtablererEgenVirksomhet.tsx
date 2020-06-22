@@ -2,7 +2,6 @@ import React from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import {
   EAktivitet,
   EArbeidssituasjon,
@@ -12,6 +11,7 @@ import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -61,11 +61,11 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
         onChange={(e) => settTekstfelt(e)}
       />
       <FeltGruppe>
-        <AlertStripe type={'info'} form={'inline'}>
+        <AlertStripeDokumentasjon>
           <LocaleTekst
             tekst={'arbeidssituasjon.alert.etablererEgenVirksomhet'}
           />
-        </AlertStripe>
+        </AlertStripeDokumentasjon>
       </FeltGruppe>
     </SeksjonGruppe>
   );
