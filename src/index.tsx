@@ -9,6 +9,15 @@ import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
 import ContextProviders from './context/ContextProviders';
 import { ScrollToTop } from './utils/visning';
+import * as Sentry from '@sentry/browser';
+import Environment from './Environment';
+
+if (Environment().sentryUrl) {
+  Sentry.init({
+    dsn: Environment().sentryUrl,
+    environment: Environment().miljø,
+  });
+}
 
 ReactDOM.render(
   <SpråkProvider>
