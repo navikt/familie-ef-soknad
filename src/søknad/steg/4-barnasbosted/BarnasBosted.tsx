@@ -19,10 +19,17 @@ const BarnasBosted: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const { søknad, mellomlagreOvergangsstønad } = useSøknad();
-  const [aktivIndex, settAktivIndex] = useState<number>(0);
-  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
+
+  const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
+    (barn) => barn.forelder === undefined
+  );
+
+  const [aktivIndex, settAktivIndex] = useState<number>(
+    hentIndexFørsteBarnSomIkkeErUtfylt
+  );
 
   const lagtTilBarn = useRef(null);
 
