@@ -8,7 +8,7 @@ export const filtrerAktivitetSvaralternativer = (
 ): ISpørsmål => {
   const AktivitetSpørsmål: ISpørsmål = aktivitetSpørsmål;
   const harSøkerBarnUnderEttÅr: boolean = person.barn.some(
-    (barn) => !barn.født || parseInt(barn.alder.verdi) < 1
+    (barn) => !barn.født || (barn.alder && parseInt(barn.alder.verdi)) < 1
   );
 
   if (!harSøkerBarnUnderEttÅr) {

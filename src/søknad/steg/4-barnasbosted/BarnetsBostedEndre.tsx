@@ -30,6 +30,8 @@ import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/uuid';
 import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
+import { førsteBokstavStor } from '../../../utils/språk';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 
 interface Props {
   barn: IBarn;
@@ -37,6 +39,7 @@ interface Props {
   aktivIndex: number;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
+  scrollTilLagtTilBarn: () => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -45,6 +48,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   aktivIndex,
   settSisteBarnUtfylt,
   sisteBarnUtfylt,
+  scrollTilLagtTilBarn,
 }) => {
   const { settDokumentasjonsbehov } = useSøknad();
   const { søknad, settSøknad } = useSøknad();
@@ -113,6 +117,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
+
+    scrollTilLagtTilBarn();
   };
 
   const visOmAndreForelder =
@@ -169,7 +175,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <>
               <FeltGruppe>
                 <Element>
-                  {barn.navn.verdi}
+                  {førsteBokstavStor(
+                    hentBarnetsNavnEllerBeskrivelse(barn, intl)
+                  )}
                   {hentTekst('barnasbosted.element.andreforelder', intl)}
                 </Element>
               </FeltGruppe>
@@ -196,6 +204,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {nyForelderOgKanOppgiAndreForelder && (
             <BorForelderINorge
+              barn={barn}
               forelder={forelder}
               settForelder={settForelder}
               settFelt={settBorINorgeFelt}
@@ -207,7 +216,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             nyForelderOgKanOppgiAndreForelder
           ) ||
             barnHarSammeForelder) && (
-            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
+            <BostedOgSamvær
+              settForelder={settForelder}
+              forelder={forelder}
+              barn={barn}
+            />
           )}
 
           {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
@@ -215,6 +228,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               <BorAnnenForelderISammeHus
                 forelder={forelder}
                 settForelder={settForelder}
+                barn={barn}
               />
 
               {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
@@ -225,6 +239,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 )) && (
                 <BoddSammenFør
                   forelder={forelder}
+                  barn={barn}
                   settForelder={settForelder}
                 />
               )}
@@ -232,6 +247,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}
+                  barn={barn}
                   settForelder={settForelder}
                 />
               )}
@@ -239,7 +255,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
           {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
             <Knapp onClick={leggTilForelder}>
-              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Lagre'}
+              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Neste'}
             </Knapp>
           )}
         </div>

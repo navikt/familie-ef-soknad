@@ -56,7 +56,7 @@ const OppsummeringAktiviteter: React.FC = () => {
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
-      tittel="Arbeid, utdanning og mindre aktiviteter"
+      tittel={hentTekst('stegtittel.arbeidssituasjon', intl)}
     >
       {virksomhet ? <div className="seksjon">{virksomhet}</div> : null}
       {arbeidssituasjon ? (

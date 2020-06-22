@@ -10,10 +10,12 @@ import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IForelder } from '../../../models/forelder';
-import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
-import { hentSpørsmålTekstMedNavnEllerBarn } from '../../../utils/barn';
+import {
+  hentBarnNavnEllerBarnet,
+  hentSpørsmålTekstMedNavnEllerBarn,
+} from '../../../utils/barn';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 
 interface Props {
@@ -61,9 +63,10 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         <MultiSvarSpørsmålMedNavn
           key={skalBarnetBoHosSøker.søknadid}
           spørsmål={skalBarnetBoHosSøker}
-          spørsmålTekst={hentBeskjedMedNavn(
-            !barn.født ? hentTekst('barnet', intl) : barn.navn.verdi,
-            hentTekst(skalBarnetBoHosSøker.tekstid, intl)
+          spørsmålTekst={hentBarnNavnEllerBarnet(
+            barn,
+            skalBarnetBoHosSøker.tekstid,
+            intl
           )}
           valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}
           settSpørsmålOgSvar={settSkalBarnetBoHosSøkerFelt}
@@ -102,6 +105,20 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
               </Normaltekst>
             </li>
           </ul>
+        </FeltGruppe>
+      )}
+      {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja && (
+        <FeltGruppe>
+          <AlertStripe type={'info'} form={'inline'}>
+            {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.ja', intl)}
+          </AlertStripe>
+        </FeltGruppe>
+      )}
+      {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.nei && (
+        <FeltGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.nei', intl)}
+          </AlertStripe>
         </FeltGruppe>
       )}
     </>
