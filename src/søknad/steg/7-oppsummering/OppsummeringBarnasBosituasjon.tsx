@@ -4,6 +4,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
+import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -39,7 +40,7 @@ const OppsummeringBarnasBosituasjon = () => {
     });
 
   return (
-    <Ekspanderbartpanel tittel="Barnas bosted">
+    <Ekspanderbartpanel tittel={<Undertittel>Barnas bosted</Undertittel>}>
       {felterAlleForeldrene}
       <LenkeMedIkon
         onClick={() =>

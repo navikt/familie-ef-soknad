@@ -4,6 +4,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
+import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 
@@ -14,7 +15,9 @@ const OppsummeringDinSituasjon: React.FC = () => {
   const merOmDinSituasjon = søknad.merOmDinSituasjon;
 
   return (
-    <Ekspanderbartpanel tittel="Mer om din situasjon">
+    <Ekspanderbartpanel
+      tittel={<Undertittel>Mer om din situasjon</Undertittel>}
+    >
       {VisLabelOgSvar(merOmDinSituasjon)}
       <LenkeMedIkon
         onClick={() =>

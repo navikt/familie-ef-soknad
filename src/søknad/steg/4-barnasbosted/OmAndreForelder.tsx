@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
@@ -37,10 +37,21 @@ const OmAndreForelder: React.FC<Props> = ({
     'barnasbosted.kanikkeoppgiforelder',
     intl
   );
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
+    !!forelder?.ident?.verdi
+  );
   const [identFelt, settIdentFelt] = useState<string>(
     ident?.verdi ? ident.verdi : ''
   );
+
+  useEffect(() => {
+    erGyldigIdent &&
+      settForelder({
+        ...forelder,
+        ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
+      });
+    // eslint-disable-next-line
+  }, [erGyldigIdent, identFelt]);
 
   const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
