@@ -28,11 +28,6 @@ const SøkerErSyk: React.FC = () => {
             <li>når legen din regner med at du vil bli frisk</li>
           </ul>
         </Normaltekst>
-        <Normaltekst>
-          Du får muligheten til å laste ned eller skrive ut et følgebrev du kan
-          ta med til legen din for å dokumentere dette når du sender inn
-          søknaden.
-        </Normaltekst>
       </AlertStripeDokumentasjon>
     </KomponentGruppe>
   );
