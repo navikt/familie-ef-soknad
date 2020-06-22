@@ -59,8 +59,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
     samboerInfo?.ident ? samboerInfo?.ident.verdi : ''
   );
 
-  console.log('SIV', sivilstatus);
-
   useEffect(() => {
     settSivilstatus({
       ...sivilstatus,
@@ -68,8 +66,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
     });
     // eslint-disable-next-line
   }, [samboerInfo]);
-
-  console.log(tidligereSamboerDetaljer);
 
   const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
     settSamboerInfo({
