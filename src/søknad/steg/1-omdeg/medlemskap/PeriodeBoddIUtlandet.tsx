@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
@@ -6,90 +6,95 @@ import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
-import {
-  dagensDato,
-  dagensDatoStreng,
-  datoTilStreng,
-} from '../../../../utils/dato';
-import subDays from 'date-fns/subDays';
+
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { useSøknad } from '../../../../context/SøknadContext';
+import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
 const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknad();
-  const { perioderBoddIUtlandet } = søknad.medlemskap;
+  const { medlemskap } = søknad;
   const intl = useIntl();
-
-  const nyPeriode: IUtenlandsopphold = {
+  const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
-    periode: {
-      fra: {
-        label: hentTekst('periode.fra', intl),
-        verdi: datoTilStreng(subDays(dagensDato, 1)),
-      },
-      til: { label: hentTekst('periode.til', intl), verdi: dagensDatoStreng },
-    },
+    periode: tomPeriode,
     begrunnelse: {
       label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),
       verdi: '',
     },
   };
+  const [perioderBoddIUtlandet, settPerioderBoddIUtlandet] = useState<
+    IUtenlandsopphold[]
+  >(
+    medlemskap?.perioderBoddIUtlandet
+      ? medlemskap.perioderBoddIUtlandet
+      : [tomtUtenlandsopphold]
+  );
+
+  const erForrigePeriodeFyltUt: boolean = perioderBoddIUtlandet.every(
+    (utenlandsopphold) => utenlandsopphold.begrunnelse.verdi !== ''
+  );
+
+  useEffect(() => {
+    settSøknad({
+      ...søknad,
+      medlemskap: {
+        ...søknad.medlemskap,
+        perioderBoddIUtlandet: perioderBoddIUtlandet,
+      },
+    });
+    // eslint-disable-next-line
+  }, [perioderBoddIUtlandet]);
 
   const leggTilUtenlandsperiode = () => {
-    const nyttUtenlandsopphold: IUtenlandsopphold = nyPeriode;
     const alleUtenlandsopphold = perioderBoddIUtlandet;
-    alleUtenlandsopphold && alleUtenlandsopphold.push(nyttUtenlandsopphold);
+    alleUtenlandsopphold && alleUtenlandsopphold.push(tomtUtenlandsopphold);
     alleUtenlandsopphold &&
       settSøknad({
         ...søknad,
         medlemskap: {
-          ...søknad.medlemskap,
+          ...medlemskap,
           perioderBoddIUtlandet: alleUtenlandsopphold,
         },
       });
   };
-
-  useEffect(() => {
-    if (!søknad.medlemskap?.perioderBoddIUtlandet) {
-      settSøknad({
-        ...søknad,
-        medlemskap: {
-          ...søknad.medlemskap,
-          perioderBoddIUtlandet: [nyPeriode],
-        },
-      });
-    }
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <>
       {perioderBoddIUtlandet?.map((periode, index) => {
         return (
           <KomponentGruppe key={periode.id}>
-            <Utenlandsopphold utenlandsopphold={periode} oppholdsnr={index} />
+            <Utenlandsopphold
+              settPeriodeBoddIUtlandet={settPerioderBoddIUtlandet}
+              perioderBoddIUtlandet={perioderBoddIUtlandet}
+              utenlandsopphold={periode}
+              oppholdsnr={index}
+            />
           </KomponentGruppe>
         );
       })}
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst
-              tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
-            />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase
-            type={'standard'}
-            onClick={() => leggTilUtenlandsperiode()}
-          >
-            <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+
+      {erForrigePeriodeFyltUt && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst
+                tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
+              />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase
+              type={'standard'}
+              onClick={() => leggTilUtenlandsperiode()}
+            >
+              <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };

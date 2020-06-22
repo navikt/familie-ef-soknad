@@ -5,10 +5,9 @@ import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
-import { dagensDato, strengTilDato } from '../../utils/dato';
-import subDays from 'date-fns/subDays';
+import { strengTilDato } from '../../utils/dato';
+import { EPeriode, IPeriode } from '../../models/periode';
 import { compareAsc, isEqual } from 'date-fns';
-import { IPeriode } from '../../models/periode';
 
 interface Props {
   tekstid: string;
@@ -28,22 +27,36 @@ const PeriodeDatovelgere: FC<Props> = ({
   const [feilmelding, settFeilmelding] = useState('');
 
   const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
-    (dato: Date, periodenøkkel: 'fra' | 'til') => {
-      const fom: Date =
-        periodenøkkel === 'fra' ? dato : strengTilDato(periode.fra.verdi);
-      const tom: Date =
-        periodenøkkel === 'til' ? dato : strengTilDato(periode.til.verdi);
-      const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
-      const erDatoerLike = isEqual(fom, tom);
-      erFraDatoSenereEnnTilDato &&
-        settFeilmelding('datovelger.periode.feilFormat');
-      erDatoerLike && settFeilmelding('datovelger.periode.likeDatoer');
-      !erFraDatoSenereEnnTilDato && !erDatoerLike && settFeilmelding('');
+    (dato: Date, periodenøkkel: EPeriode) => {
+      const { fra, til } = periode;
+      const fom: Date | undefined =
+        periodenøkkel === EPeriode.fra
+          ? dato
+          : fra.verdi !== ''
+          ? strengTilDato(fra.verdi)
+          : undefined;
+
+      const tom: Date | undefined =
+        periodenøkkel === EPeriode.til
+          ? dato
+          : til.verdi !== ''
+          ? strengTilDato(til.verdi)
+          : undefined;
+
+      if (fom && tom) {
+        const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
+        const erDatoerLike = isEqual(fom, tom);
+
+        erFraDatoSenereEnnTilDato &&
+          settFeilmelding('datovelger.periode.feilFormat');
+        erDatoerLike && settFeilmelding('datovelger.periode.likeDatoer');
+        !erFraDatoSenereEnnTilDato && !erDatoerLike && settFeilmelding('');
+      }
     },
     [periode]
   );
 
-  const settPeriode = (dato: Date | null, objektnøkkel: 'til' | 'fra') => {
+  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
     dato !== null && settDato(dato, objektnøkkel);
     dato !== null && sammenlignDatoerOgOppdaterFeilmelding(dato, objektnøkkel);
   };
@@ -57,11 +70,11 @@ const PeriodeDatovelgere: FC<Props> = ({
       </FeltGruppe>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
-          settDato={(e) => settPeriode(e, 'fra')}
+          settDato={(e) => settPeriode(e, EPeriode.fra)}
           valgtDato={
-            periode.fra.verdi
+            periode.fra.verdi && periode.fra.verdi !== ''
               ? strengTilDato(periode.fra.verdi)
-              : subDays(dagensDato, 1)
+              : undefined
           }
           tekstid={'periode.fra'}
           datobegrensning={
@@ -71,9 +84,11 @@ const PeriodeDatovelgere: FC<Props> = ({
         />
 
         <Datovelger
-          settDato={(e) => settPeriode(e, 'til')}
+          settDato={(e) => settPeriode(e, EPeriode.til)}
           valgtDato={
-            periode.til.verdi ? strengTilDato(periode.til.verdi) : dagensDato
+            periode.til.verdi && periode.til.verdi !== ''
+              ? strengTilDato(periode.til.verdi)
+              : undefined
           }
           tekstid={'periode.til'}
           datobegrensning={

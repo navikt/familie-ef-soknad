@@ -1,5 +1,3 @@
-import { subDays } from 'date-fns';
-import { dagensDato, dagensDatoStreng, datoTilStreng } from '../utils/dato';
 import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
@@ -11,9 +9,9 @@ import { IPeriode } from '../models/periode';
 export const tomPeriode: IPeriode = {
   fra: {
     label: '',
-    verdi: datoTilStreng(subDays(dagensDato, 1)),
+    verdi: '',
   },
-  til: { label: '', verdi: dagensDatoStreng },
+  til: { label: '', verdi: '' },
 };
 
 export const nyttSpørsmålFelt: ISpørsmålFelt = {
