@@ -309,6 +309,7 @@ export default {
     'barnasbosted.alert.skalBarnetBoHosSøker.nei':
       'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
 
+    'barnasbosted.element.barnet': 'Barnet',
     'barnasbosted.element.andreforelder': 's andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
