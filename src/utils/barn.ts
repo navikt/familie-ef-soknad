@@ -20,6 +20,9 @@ export const hentBarnetsNavnEllerBeskrivelse = (
   if (barn.navn && barn.navn.verdi) {
     return barn.navn.verdi;
   }
+  if (!barn.fødselsdato.verdi) {
+    return hentTekst('barnet.litenForBokstav', intl);
+  }
   if (barn.født?.svarid === ESvar.JA) {
     return hentBeskjedMedNavn(
       formatDate(strengTilDato(barn.fødselsdato.verdi)),
