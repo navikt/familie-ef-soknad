@@ -54,7 +54,7 @@ const OppsummeringOmDeg = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.Oppsummering),
+            pathname: hentPath(Routes, RouteEnum.OmDeg),
             state: { kommerFraOppsummering: true },
           })
         }
