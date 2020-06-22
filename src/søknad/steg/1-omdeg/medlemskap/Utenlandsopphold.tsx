@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -12,13 +12,18 @@ import { useSøknad } from '../../../../context/SøknadContext';
 import { datoTilStreng } from '../../../../utils/dato';
 
 interface Props {
+  perioderBoddIUtlandet: IUtenlandsopphold[];
+  settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
 }
 
-const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
-  const { søknad, settSøknad } = useSøknad();
-  const { perioderBoddIUtlandet } = søknad.medlemskap;
+const Utenlandsopphold: FC<Props> = ({
+  perioderBoddIUtlandet,
+  settPeriodeBoddIUtlandet,
+  oppholdsnr,
+  utenlandsopphold,
+}) => {
   const { periode, begrunnelse } = utenlandsopphold;
   const intl = useIntl();
   const begrunnelseTekst = intl.formatMessage({
@@ -38,13 +43,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
       const utenlandsopphold = perioderBoddIUtlandet?.filter(
         (periode, index) => index !== oppholdsnr
       );
-      settSøknad({
-        ...søknad,
-        medlemskap: {
-          ...søknad.medlemskap,
-          perioderBoddIUtlandet: utenlandsopphold,
-        },
-      });
+      settPeriodeBoddIUtlandet(utenlandsopphold);
     }
   };
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
@@ -60,14 +59,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
         }
       }
     );
-    perioderBoddIUtlandet &&
-      settSøknad({
-        ...søknad,
-        medlemskap: {
-          ...søknad.medlemskap,
-          perioderBoddIUtlandet: perioderMedNyBegrunnelse,
-        },
-      });
+    perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
 
   const settPeriode = (date: Date | null, objektnøkkel: string): void => {
@@ -91,13 +83,7 @@ const Utenlandsopphold: FC<Props> = ({ oppholdsnr, utenlandsopphold }) => {
     );
     perioderBoddIUtlandet &&
       endretPeriodeIUtenlandsopphold &&
-      settSøknad({
-        ...søknad,
-        medlemskap: {
-          ...søknad.medlemskap,
-          perioderBoddIUtlandet: endretPeriodeIUtenlandsopphold,
-        },
-      });
+      settPeriodeBoddIUtlandet(endretPeriodeIUtenlandsopphold);
   };
 
   return (
