@@ -49,12 +49,15 @@ const Søknadsbegrunnelse: FC<Props> = ({
     tidligereSamboerDetaljer,
   } = sivilstatus;
 
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     tidligereSamboerDetaljer
       ? tidligereSamboerDetaljer
       : { kjennerIkkeIdent: false }
   );
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
+    !!tidligereSamboerDetaljer?.ident?.verdi
+  );
+
   const [ident, settIdent] = useState<string>(
     samboerInfo?.ident ? samboerInfo?.ident.verdi : ''
   );
@@ -66,6 +69,18 @@ const Søknadsbegrunnelse: FC<Props> = ({
     });
     // eslint-disable-next-line
   }, [samboerInfo]);
+
+  useEffect(() => {
+    erGyldigIdent &&
+      settSamboerInfo({
+        ...samboerInfo,
+        [EPersonDetaljer.ident]: {
+          label: hentTekst('person.ident', intl),
+          verdi: ident,
+        },
+      });
+    // eslint-disable-next-line
+  }, [erGyldigIdent, ident]);
 
   const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
     settSamboerInfo({
