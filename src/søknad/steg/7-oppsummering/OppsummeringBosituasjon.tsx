@@ -8,6 +8,7 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Element } from 'nav-frontend-typografi';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { useIntl } from 'react-intl';
+import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 
 const OppsummeringBosituasionenDin: React.FC = () => {
@@ -22,7 +23,7 @@ const OppsummeringBosituasionenDin: React.FC = () => {
     : null;
 
   return (
-    <Ekspanderbartpanel tittel="Bosituasjonen din">
+    <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
       <div className="oppsummering-bosituasjon">
         {VisLabelOgSvar(bosituasjon)}
         {samboerDetaljer && (
