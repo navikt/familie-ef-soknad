@@ -1,7 +1,6 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
 
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
@@ -22,13 +21,17 @@ import {
   harSkriftligSamværsavtale,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
 } from '../../../../helpers/steg/forelder';
+import { IBarn } from '../../../../models/barn';
+import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
+import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
+  barn: IBarn;
 }
 
-const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
+const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   const intl = useIntl();
   const { settDokumentasjonsbehov } = useSøknad();
 
@@ -68,13 +71,19 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
       <HarForelderAvtaleOmDeltBosted
         settBostedOgSamværFelt={settBostedOgSamværFelt}
         forelder={forelder}
+        barn={barn}
       />
 
       {harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) && (
         <KomponentGruppe>
-          <MultiSvarSpørsmål
+          <MultiSvarSpørsmålMedNavn
             key={harAnnenForelderSamværMedBarn.søknadid}
             spørsmål={harAnnenForelderSamværMedBarn}
+            spørsmålTekst={hentBarnNavnEllerBarnet(
+              barn,
+              harAnnenForelderSamværMedBarn.tekstid,
+              intl
+            )}
             valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
             settSpørsmålOgSvar={settBostedOgSamværFelt}
           />
@@ -86,6 +95,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder }) => {
         <HarForelderSkriftligSamværsavtale
           forelder={forelder}
           settBostedOgSamværFelt={settBostedOgSamværFelt}
+          barn={barn}
         />
       )}
       {harSkriftligSamværsavtale(

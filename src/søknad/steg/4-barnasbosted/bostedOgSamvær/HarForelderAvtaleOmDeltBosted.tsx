@@ -2,25 +2,36 @@ import React, { FC } from 'react';
 import { IForelder } from '../../../../models/forelder';
 import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { avtaleOmDeltBosted } from '../ForeldreConfig';
 import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
+import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
+import { IBarn } from '../../../../models/barn';
+import { useIntl } from 'react-intl';
+import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
 interface Props {
   settBostedOgSamværFelt: (spørsmål: ISpørsmål, svar: ISvar) => void;
   forelder: IForelder;
+  barn: IBarn;
 }
 
 const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
   forelder,
+  barn,
   settBostedOgSamværFelt,
 }) => {
+  const intl = useIntl();
   return (
     <KomponentGruppe>
-      <JaNeiSpørsmål
+      <JaNeiSpørsmålMedNavn
         spørsmål={avtaleOmDeltBosted}
+        spørsmålTekst={hentBarnNavnEllerBarnet(
+          barn,
+          avtaleOmDeltBosted.tekstid,
+          intl
+        )}
         onChange={settBostedOgSamværFelt}
         valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
       />

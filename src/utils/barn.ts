@@ -31,3 +31,13 @@ export const hentBarnetsNavnEllerBeskrivelse = (
     hentTekst('ufødt.barn', intl)
   );
 };
+export const hentBarnNavnEllerBarnet = (
+  barn: IBarn,
+  tekstid: string,
+  intl: IntlShape
+) => {
+  return hentBeskjedMedNavn(
+    !barn.født ? hentTekst('barnet.litenForBokstav', intl) : barn.navn.verdi,
+    hentTekst(tekstid, intl)
+  );
+};

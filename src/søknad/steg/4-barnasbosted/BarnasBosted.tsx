@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import BarnetsBostedEndre from './BarnetsBostedEndre';
 import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
 import Side from '../../../components/side/Side';
@@ -7,6 +7,12 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { RefObject } from 'react';
+
+const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
+  if (!ref || !ref.current) return;
+  window.scrollTo({ top: ref.current!.offsetTop, left: 0, behavior: 'smooth' });
+};
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
@@ -17,6 +23,14 @@ const BarnasBosted: React.FC = () => {
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+
+  const lagtTilBarn = useRef(null);
+
+  const scrollTilLagtTilBarn = () => {
+    setTimeout(() => scrollTilRef(lagtTilBarn), 120);
+  };
+
+  const antallBarnMedForeldre = barna.filter((barn) => barn.forelder).length;
 
   return (
     <Side
@@ -36,16 +50,20 @@ const BarnasBosted: React.FC = () => {
               settAktivIndex={settAktivIndex}
               aktivIndex={aktivIndex}
               key={key}
+              scrollTilLagtTilBarn={scrollTilLagtTilBarn}
             />
           );
         } else {
           return (
-            <BarnetsBostedLagtTil
-              barn={barn}
-              settAktivIndex={settAktivIndex}
-              index={index}
-              key={key}
-            />
+            <>
+              {index + 1 === antallBarnMedForeldre && <div ref={lagtTilBarn} />}
+              <BarnetsBostedLagtTil
+                barn={barn}
+                settAktivIndex={settAktivIndex}
+                index={index}
+                key={key}
+              />
+            </>
           );
         }
       })}

@@ -85,6 +85,8 @@ export default {
     barnet: 'Barnet',
     'ufødt.barn': 'barn med termin [0]',
     'født.barn': 'barn født [0]',
+    'barnet.storForBokstav': 'Barnet',
+    'barnet.litenForBokstav': 'barnet',
 
     'stegtittel.omDeg': 'Om deg',
 
@@ -301,6 +303,11 @@ export default {
       '<li>kopi av flyttemelding/tips til Folkeregisteret</li>' +
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
+
+    'barnasbosted.alert.skalBarnetBoHosSøker.ja':
+      'Du må oppdatere adressen i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon.',
+    'barnasbosted.alert.skalBarnetBoHosSøker.nei':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
 
     'barnasbosted.element.andreforelder': 's andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
@@ -876,6 +883,10 @@ export default {
     'barnasbosted.alert.hvisFaktiskBor':
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
     'barnasbosted.forelder.annen': 'Annen forelder',
+    'barnasbosted.alert.skalBarnetBoHosSøker.ja':
+      'Du må oppdatere adressen i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon.',
+    'barnasbosted.alert.skalBarnetBoHosSøker.nei':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
   },
   en: {
     'banner.tittel': 'Single parent',
