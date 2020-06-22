@@ -91,8 +91,8 @@ const NårSøkerDuOvergangsstønadFra: React.FC<Props> = ({
     hentTekst('dinSituasjon.lesmer-innhold.overgangsstønad', intl),
     '3',
     formatNårSøkerDuStønadFraMåned(dagensDato, 3),
-    '2',
-    formatNårSøkerDuStønadFraMåned(dagensDato, 2)
+    '5',
+    formatNårSøkerDuStønadFraMåned(dagensDato, 5)
   );
 
   return (
