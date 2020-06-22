@@ -5,6 +5,7 @@ import { IBarn } from '../../../models/barn';
 import { IForelder } from '../../../models/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 
 interface Props {
   barn: IBarn;
@@ -33,7 +34,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   ) => {
     settBarnHarSammeForelder(true);
     const denAndreForelderen = detAndreBarnet.forelder;
-    settAndreForelderRadioVerdi(detAndreBarnet.navn.verdi);
+    settAndreForelderRadioVerdi(detAndreBarnet.id);
 
     settForelder({
       ...forelder,
@@ -77,13 +78,13 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
           return (
             <RadioPanel
-              key={`${andreForelder}${b.navn}`}
-              name={`${andreForelder}${barn.navn}`}
+              key={`${andreForelder}${b.id}`}
+              name={`${andreForelder}${b.id}`}
               label={`${intl.formatMessage({
                 id: 'barnasbosted.forelder.sammesom',
-              })} ${b.navn.verdi}`}
-              value={`${andreForelder}${b.navn}`}
-              checked={andreForelderRadioVerdi === b.navn.verdi}
+              })} ${hentBarnetsNavnEllerBeskrivelse(b, intl)}`}
+              value={`${andreForelder}${b.id}`}
+              checked={andreForelderRadioVerdi === b.id}
               onChange={(e) => leggTilSammeForelder(e, b)}
             />
           );
