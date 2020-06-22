@@ -1,5 +1,4 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
@@ -8,6 +7,7 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import NårFlyttetDereFraHverandre from './begrunnelse/NårFlyttetDereFraHverandre';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
+import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -27,9 +27,9 @@ const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato, sivilstatus }) =>
         />
       </FeltGruppe>
       <FeltGruppe>
-        <AlertStripe type={'info'} form={'inline'}>
+        <AlertStripeDokumentasjon>
           <LocaleTekst tekst={'sivilstatus.alert-info.søktSeparasjon'} />
-        </AlertStripe>
+        </AlertStripeDokumentasjon>
       </FeltGruppe>
       {datoSøktSeparasjon && (
         <NårFlyttetDereFraHverandre
