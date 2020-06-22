@@ -4,6 +4,7 @@ import {
   ISpørsmålFelt,
   ISpørsmålBooleanFelt,
 } from '../../søknadsfelter';
+import { IPersonDetaljer } from '../../person';
 
 export enum ESivilstand {
   GIFT = 'GIFT',
@@ -26,6 +27,7 @@ export interface ISivilstatus {
   datoForSamlivsbrudd?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
   datoEndretSamvær?: IDatoFelt;
+  tidligereSamboerDetaljer?: IPersonDetaljer;
 }
 
 export enum EBegrunnelse {
