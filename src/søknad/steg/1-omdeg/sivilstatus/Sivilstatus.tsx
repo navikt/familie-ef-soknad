@@ -20,7 +20,8 @@ import {
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
 import { useSøknad } from '../../../../context/SøknadContext';
-import AlertStripe from 'nav-frontend-alertstriper';
+import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { datoTilStreng } from '../../../../utils/dato';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -94,7 +95,7 @@ const Sivilstatus: React.FC = () => {
         ...sivilstatus,
         [objektnøkkel]: {
           label: intl.formatMessage({ id: tekstid }),
-          verdi: date,
+          verdi: datoTilStreng(date),
         },
       });
   };
@@ -127,14 +128,14 @@ const Sivilstatus: React.FC = () => {
               )}
             />
             {sivilstatus.erUformeltGift?.svarid === ESvar.JA && (
-              <AlertStripe type={'info'} form={'inline'}>
+              <AlertstripeDokumentasjon>
                 <LocaleTekst
                   tekst={hentSvarAlertFraSpørsmål(
                     ESvar.JA,
                     erUformeltGiftSpørsmål
                   )}
                 />
-              </AlertStripe>
+              </AlertstripeDokumentasjon>
             )}
           </KomponentGruppe>
 
@@ -150,14 +151,14 @@ const Sivilstatus: React.FC = () => {
               />
               {sivilstatus.erUformeltSeparertEllerSkilt?.svarid ===
                 ESvar.JA && (
-                <AlertStripe type={'info'} form={'inline'}>
+                <AlertstripeDokumentasjon>
                   <LocaleTekst
                     tekst={hentSvarAlertFraSpørsmål(
                       ESvar.JA,
                       erUformeltSeparertEllerSkiltSpørsmål
                     )}
                   />
-                </AlertStripe>
+                </AlertstripeDokumentasjon>
               )}
             </KomponentGruppe>
           )}

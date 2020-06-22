@@ -5,6 +5,7 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
@@ -39,7 +40,7 @@ const OppsummeringBarnaDine: React.FC = () => {
   });
 
   return (
-    <Ekspanderbartpanel tittel="Barna dine">
+    <Ekspanderbartpanel tittel={<Undertittel>Barna dine</Undertittel>}>
       {felterAlleBarna}
       <LenkeMedIkon
         onClick={() =>

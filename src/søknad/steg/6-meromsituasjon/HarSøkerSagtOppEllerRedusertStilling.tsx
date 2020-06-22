@@ -5,7 +5,6 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
@@ -20,6 +19,7 @@ import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
 import { dagensDato, datoTilStreng, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -156,9 +156,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
       {(harSagtOpp || harRedusertStilling) && (
         <>
           <KomponentGruppe>
-            <AlertStripe type={'info'} form={'inline'}>
+            <AlertStripeDokumentasjon>
               <LocaleTekst tekst={alertLabel} />
-            </AlertStripe>
+            </AlertStripeDokumentasjon>
           </KomponentGruppe>
           <KomponentGruppe>
             <Textarea
@@ -181,9 +181,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
                 settDato={settDato}
               />
               {erValgtDatoMindreEnn6mndSiden && (
-                <AlertStripe type={'info'} form={'inline'}>
+                <AlertStripeDokumentasjon>
                   <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-                </AlertStripe>
+                </AlertStripeDokumentasjon>
               )}
             </KomponentGruppe>
           )}

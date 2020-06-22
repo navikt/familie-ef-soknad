@@ -9,6 +9,7 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { IUtenlandsopphold } from '../../../models/steg/omDeg/medlemskap';
 import { useIntl } from 'react-intl';
+import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 
 const OppsummeringOmDeg = () => {
@@ -31,7 +32,7 @@ const OppsummeringOmDeg = () => {
   );
 
   return (
-    <Ekspanderbartpanel tittel="Om deg">
+    <Ekspanderbartpanel tittel={<Undertittel>Om deg</Undertittel>}>
       <div className="spørsmål-og-svar">
         <Element>Fødselsnummer eller d-nummer</Element>
         <Normaltekst>{omDeg.fnr}</Normaltekst>
@@ -54,7 +55,7 @@ const OppsummeringOmDeg = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.Oppsummering),
+            pathname: hentPath(Routes, RouteEnum.OmDeg),
             state: { kommerFraOppsummering: true },
           })
         }

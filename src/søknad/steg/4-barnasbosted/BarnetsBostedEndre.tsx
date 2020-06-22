@@ -31,7 +31,7 @@ import { hentUid } from '../../../utils/uuid';
 import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import { førsteBokstavStor } from '../../../utils/språk';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 
 interface Props {
   barn: IBarn;
@@ -176,7 +176,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               <FeltGruppe>
                 <Element>
                   {førsteBokstavStor(
-                    hentBarnetsNavnEllerBeskrivelse(barn, intl)
+                    hentBarnNavnEllerBarnet(
+                      barn,
+                      'barnasbosted.element.barnet',
+                      intl
+                    )
                   )}
                   {hentTekst('barnasbosted.element.andreforelder', intl)}
                 </Element>
