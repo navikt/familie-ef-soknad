@@ -196,6 +196,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {nyForelderOgKanOppgiAndreForelder && (
             <BorForelderINorge
+              barn={barn}
               forelder={forelder}
               settForelder={settForelder}
               settFelt={settBorINorgeFelt}
@@ -207,7 +208,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             nyForelderOgKanOppgiAndreForelder
           ) ||
             barnHarSammeForelder) && (
-            <BostedOgSamvær settForelder={settForelder} forelder={forelder} />
+            <BostedOgSamvær
+              settForelder={settForelder}
+              forelder={forelder}
+              barn={barn}
+            />
           )}
 
           {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
@@ -215,6 +220,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               <BorAnnenForelderISammeHus
                 forelder={forelder}
                 settForelder={settForelder}
+                barn={barn}
               />
 
               {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
@@ -225,6 +231,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 )) && (
                 <BoddSammenFør
                   forelder={forelder}
+                  barn={barn}
                   settForelder={settForelder}
                 />
               )}
@@ -232,6 +239,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}
+                  barn={barn}
                   settForelder={settForelder}
                 />
               )}

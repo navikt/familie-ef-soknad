@@ -2,7 +2,6 @@ import { IForelder } from '../../../../models/forelder';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { boddSammenFør } from '../ForeldreConfig';
 import Datovelger, {
   DatoBegrensning,
@@ -11,12 +10,16 @@ import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { datoTilStreng } from '../../../../utils/dato';
+import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
+import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import { IBarn } from '../../../../models/barn';
 
 interface Props {
   forelder: IForelder;
   settForelder: (verdi: IForelder) => void;
+  barn: IBarn;
 }
-const BoddSammenFør: FC<Props> = ({ forelder, settForelder }) => {
+const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
   const intl = useIntl();
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
@@ -40,8 +43,13 @@ const BoddSammenFør: FC<Props> = ({ forelder, settForelder }) => {
   return (
     <>
       <KomponentGruppe>
-        <JaNeiSpørsmål
+        <JaNeiSpørsmålMedNavn
           spørsmål={boddSammenFør}
+          spørsmålTekst={hentBarnNavnEllerBarnet(
+            barn,
+            boddSammenFør.tekstid,
+            intl
+          )}
           onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar)}
           valgtSvar={forelder.boddSammenFør?.verdi}
         />
