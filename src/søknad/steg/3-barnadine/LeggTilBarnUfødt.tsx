@@ -10,6 +10,7 @@ import { ESvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   settBo: Function;
@@ -35,9 +36,9 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           tekstid={'barnadine.termindato'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
         />
-        <AlertStripe type="info" form="inline">
+        <AlertStripeDokumentasjon>
           <FormattedMessage id="barnadine.info.terminbekreftelse" />
-        </AlertStripe>
+        </AlertStripeDokumentasjon>
       </KomponentGruppe>
       {barnDato && (
         <KomponentGruppe>

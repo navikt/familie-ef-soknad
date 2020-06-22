@@ -1,12 +1,12 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 const SøkerErSyk: React.FC = () => {
   return (
     <KomponentGruppe>
-      <AlertStripe type={'info'} form={'inline'}>
+      <AlertStripeDokumentasjon>
         <Normaltekst>
           Hvis du ikke har sykemelding eller ikke mottar AAP eller uføretrygd,
           må du legge ved dokumentasjon
@@ -33,7 +33,7 @@ const SøkerErSyk: React.FC = () => {
           ta med til legen din for å dokumentere dette når du sender inn
           søknaden.
         </Normaltekst>
-      </AlertStripe>
+      </AlertStripeDokumentasjon>
     </KomponentGruppe>
   );
 };

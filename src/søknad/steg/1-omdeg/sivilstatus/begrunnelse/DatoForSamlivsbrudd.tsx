@@ -2,10 +2,10 @@ import React from 'react';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknadsfelter';
+import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
@@ -28,9 +28,9 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
           tekstid={'sivilstatus.datovelger.samlivsbrudd'}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
-        <AlertStripe type={'info'} form={'inline'}>
+        <AlertStripeDokumentasjon>
           <LocaleTekst tekst={datovelgerLabel} />
-        </AlertStripe>
+        </AlertStripeDokumentasjon>
       </KomponentGruppe>
     </>
   );

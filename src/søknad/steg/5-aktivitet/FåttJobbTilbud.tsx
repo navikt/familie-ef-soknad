@@ -1,5 +1,4 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
@@ -9,6 +8,7 @@ import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,7 +32,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
   };
   return (
     <KomponentGruppe>
-      <AlertStripe type={'info'} form={'inline'}>
+      <AlertStripeDokumentasjon>
         <Element>
           Du må legge ved arbeidskontrakt som viser at du har fått tilbud om
           arbeid.
@@ -47,7 +47,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
             <li>dato du fikk tilbudet</li>
           </ul>
         </Normaltekst>
-      </AlertStripe>
+      </AlertStripeDokumentasjon>
       <Datovelger
         valgtDato={arbeidssituasjon.datoOppstartJobb?.verdi}
         tekstid={'dinSituasjon.datovelger.jobb'}

@@ -21,6 +21,7 @@ import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { useSøknad } from '../../../../context/SøknadContext';
+import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -103,9 +104,9 @@ const Arbeidssøker: React.FC<Props> = ({
           />
           {arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.svarid ===
             ESvar.NEI && (
-            <AlertStripe type={'advarsel'} form={'inline'}>
+            <AlertStripeDokumentasjon>
               <LocaleTekst tekst={'arbeidssøker.alert.villig'} />
-            </AlertStripe>
+            </AlertStripeDokumentasjon>
           )}
         </KomponentGruppe>
       )}
