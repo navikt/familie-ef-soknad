@@ -301,6 +301,11 @@ export default {
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',
 
+    'barnasbosted.alert.skalBarnetBoHosSøker.ja':
+      'Du må oppdatere adressen i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon.',
+    'barnasbosted.alert.skalBarnetBoHosSøker.nei':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
+
     'barnasbosted.element.andreforelder': 's andre forelder',
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
@@ -875,6 +880,10 @@ export default {
     'barnasbosted.alert.hvisFaktiskBor':
       'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.',
     'barnasbosted.forelder.annen': 'Annen forelder',
+    'barnasbosted.alert.skalBarnetBoHosSøker.ja':
+      'Du må oppdatere adressen i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon.',
+    'barnasbosted.alert.skalBarnetBoHosSøker.nei':
+      'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
   },
   en: {
     'banner.tittel': 'Single parent',
