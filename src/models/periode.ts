@@ -4,3 +4,8 @@ export interface IPeriode {
   fra: IDatoFelt;
   til: IDatoFelt;
 }
+
+export enum EPeriode {
+  fra = 'fra',
+  til = 'til',
+}
