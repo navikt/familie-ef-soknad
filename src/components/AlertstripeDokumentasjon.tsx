@@ -21,6 +21,7 @@ const StyledAlertstripe = styled.div`
     flex: 1 1;
   }
 `;
+
 const AlertStripeDokumentasjon: FC = ({ children }) => {
   return (
     <StyledAlertstripe>
@@ -31,4 +32,5 @@ const AlertStripeDokumentasjon: FC = ({ children }) => {
     </StyledAlertstripe>
   );
 };
+
 export default AlertStripeDokumentasjon;
