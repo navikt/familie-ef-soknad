@@ -21,6 +21,7 @@ import {
 } from '../../../../models/steg/omDeg/sivilstatus';
 import { useSøknad } from '../../../../context/SøknadContext';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { datoTilStreng } from '../../../../utils/dato';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
@@ -94,7 +95,7 @@ const Sivilstatus: React.FC = () => {
         ...sivilstatus,
         [objektnøkkel]: {
           label: intl.formatMessage({ id: tekstid }),
-          verdi: date,
+          verdi: datoTilStreng(date),
         },
       });
   };
