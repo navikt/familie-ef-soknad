@@ -16,7 +16,7 @@ const BarnaDine: React.FC = () => {
   const { søknad, mellomlagreOvergangsstønad } = useSøknad();
   const history = useHistory();
   const location = useLocation();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
 
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -26,7 +26,7 @@ const BarnaDine: React.FC = () => {
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={!kommerFraOppsummering}
+        skalViseKnapper={true}
         erSpørsmålBesvart={true}
         mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
       >
@@ -82,7 +82,7 @@ const BarnaDine: React.FC = () => {
             </div>
           </Modal>
         </div>
-        {location.state?.kommerFraOppsummering ? (
+        {kommerFraOppsummering ? (
           <div className={'side'}>
             <Hovedknapp
               className="tilbake-til-oppsummering"

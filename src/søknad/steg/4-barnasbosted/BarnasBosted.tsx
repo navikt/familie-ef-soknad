@@ -22,7 +22,9 @@ const BarnasBosted: React.FC = () => {
   const [aktivIndex, settAktivIndex] = useState<number>(0);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
   const barna = søknad.person.barn;
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+
+  console.log('kommerFRaOppsummering:', kommerFraOppsummering);
 
   const lagtTilBarn = useRef(null);
 
@@ -35,7 +37,7 @@ const BarnasBosted: React.FC = () => {
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={true}
       erSpørsmålBesvart={sisteBarnUtfylt}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
