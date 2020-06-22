@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
@@ -9,7 +9,10 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import { useIntl } from 'react-intl';
-import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
+import {
+  EMedlemskap,
+  IMedlemskap,
+} from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
 
@@ -23,11 +26,20 @@ const Medlemskap: React.FC = () => {
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+    const endretMedlemskap = søknad.medlemskap;
+
+    if (
+      spørsmål.søknadid === EMedlemskap.søkerBosattINorgeSisteTreÅr &&
+      valgtSvar.id === ESvar.JA &&
+      endretMedlemskap.perioderBoddIUtlandet
+    ) {
+      delete endretMedlemskap.perioderBoddIUtlandet;
+    }
 
     settSøknad({
       ...søknad,
       medlemskap: {
-        ...søknad.medlemskap,
+        ...endretMedlemskap,
         [spørsmål.søknadid]: {
           label: intl.formatMessage({ id: spørsmål.tekstid }),
           verdi: svar,
