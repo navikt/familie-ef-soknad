@@ -1,5 +1,6 @@
 import { IPerson } from '../models/person';
 import { EBegrunnelse, ISivilstatus } from '../models/steg/omDeg/sivilstatus';
+import { IPeriode } from '../models/periode';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -65,4 +66,10 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     case EBegrunnelse.dødsfall:
       return true;
   }
+};
+
+export const erPeriodeDatoerValgt = (periode: IPeriode) => {
+  const fom = periode.fra.verdi && periode.fra.verdi !== '';
+  const tom = periode.til.verdi && periode.til.verdi !== '';
+  return fom && tom;
 };

@@ -33,6 +33,10 @@ const PeriodeBoddIUtlandet: FC = () => {
       : [tomtUtenlandsopphold]
   );
 
+  const erForrigePeriodeFyltUt: boolean = perioderBoddIUtlandet.every(
+    (utenlandsopphold) => utenlandsopphold.begrunnelse.verdi !== ''
+  );
+
   useEffect(() => {
     settSøknad({
       ...søknad,
@@ -41,15 +45,20 @@ const PeriodeBoddIUtlandet: FC = () => {
         perioderBoddIUtlandet: perioderBoddIUtlandet,
       },
     });
-
     // eslint-disable-next-line
   }, [perioderBoddIUtlandet]);
 
   const leggTilUtenlandsperiode = () => {
-    const nyttUtenlandsopphold: IUtenlandsopphold = tomtUtenlandsopphold;
     const alleUtenlandsopphold = perioderBoddIUtlandet;
-    alleUtenlandsopphold && alleUtenlandsopphold.push(nyttUtenlandsopphold);
-    alleUtenlandsopphold && settPerioderBoddIUtlandet(alleUtenlandsopphold);
+    alleUtenlandsopphold && alleUtenlandsopphold.push(tomtUtenlandsopphold);
+    alleUtenlandsopphold &&
+      settSøknad({
+        ...søknad,
+        medlemskap: {
+          ...medlemskap,
+          perioderBoddIUtlandet: alleUtenlandsopphold,
+        },
+      });
   };
 
   return (
@@ -67,23 +76,25 @@ const PeriodeBoddIUtlandet: FC = () => {
         );
       })}
 
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>
-            <LocaleTekst
-              tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
-            />
-          </Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <KnappBase
-            type={'standard'}
-            onClick={() => leggTilUtenlandsperiode()}
-          >
-            <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
-          </KnappBase>
-        </FeltGruppe>
-      </KomponentGruppe>
+      {erForrigePeriodeFyltUt && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>
+              <LocaleTekst
+                tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
+              />
+            </Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <KnappBase
+              type={'standard'}
+              onClick={() => leggTilUtenlandsperiode()}
+            >
+              <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
+            </KnappBase>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </>
   );
 };

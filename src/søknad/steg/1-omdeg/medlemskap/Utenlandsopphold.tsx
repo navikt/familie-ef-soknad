@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -8,8 +8,8 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { useSøknad } from '../../../../context/SøknadContext';
 import { datoTilStreng } from '../../../../utils/dato';
+import { erPeriodeDatoerValgt } from '../../../../helpers/omdeg';
 
 interface Props {
   perioderBoddIUtlandet: IUtenlandsopphold[];
@@ -104,14 +104,15 @@ const Utenlandsopphold: FC<Props> = ({
         periode={utenlandsopphold.periode}
         tekstid={'medlemskap.periodeBoddIUtlandet'}
       />
-
-      <Textarea
-        label={begrunnelseTekst}
-        placeholder={'...'}
-        value={begrunnelse.verdi}
-        maxLength={1000}
-        onChange={(e) => settBegrunnelse(e)}
-      />
+      {erPeriodeDatoerValgt(utenlandsopphold.periode) && (
+        <Textarea
+          label={begrunnelseTekst}
+          placeholder={'...'}
+          value={begrunnelse.verdi}
+          maxLength={1000}
+          onChange={(e) => settBegrunnelse(e)}
+        />
+      )}
     </div>
   );
 };
