@@ -27,8 +27,6 @@ const BarnasBosted: React.FC = () => {
     (barn) => barn.forelder === undefined
   );
 
-  console.log(hentIndexFørsteBarnSomIkkeErUtfylt);
-
   const [aktivIndex, settAktivIndex] = useState<number>(
     hentIndexFørsteBarnSomIkkeErUtfylt
   );
