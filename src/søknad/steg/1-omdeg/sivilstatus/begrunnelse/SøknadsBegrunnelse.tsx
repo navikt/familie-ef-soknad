@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 
 import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
 import EndringISamvær from './EndringISamvær';
@@ -8,6 +8,10 @@ import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
+import { Undertittel } from 'nav-frontend-typografi';
+import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
+import { Input } from 'nav-frontend-skjema';
+import IdentEllerFødselsdatoGruppe from '../../../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import {
   hentSvarAlertFraSpørsmål,
   hentTekst,
@@ -18,7 +22,9 @@ import {
 } from '../../../../../models/steg/omDeg/sivilstatus';
 import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { datoTilStreng, strengTilDato } from '../../../../../utils/dato';
 import { useSøknad } from '../../../../../context/SøknadContext';
+import { EPersonDetaljer, IPersonDetaljer } from '../../../../../models/person';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -40,7 +46,90 @@ const Søknadsbegrunnelse: FC<Props> = ({
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
     datoEndretSamvær,
+    tidligereSamboerDetaljer,
   } = sivilstatus;
+
+  const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
+    tidligereSamboerDetaljer
+      ? tidligereSamboerDetaljer
+      : { kjennerIkkeIdent: false }
+  );
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
+    !!tidligereSamboerDetaljer?.ident?.verdi
+  );
+
+  const [ident, settIdent] = useState<string>(
+    samboerInfo?.ident ? samboerInfo?.ident.verdi : ''
+  );
+
+  useEffect(() => {
+    settSivilstatus({
+      ...sivilstatus,
+      tidligereSamboerDetaljer: samboerInfo,
+    });
+    // eslint-disable-next-line
+  }, [samboerInfo]);
+
+  useEffect(() => {
+    erGyldigIdent &&
+      settSamboerInfo({
+        ...samboerInfo,
+        [EPersonDetaljer.ident]: {
+          label: hentTekst('person.ident', intl),
+          verdi: ident,
+        },
+      });
+    // eslint-disable-next-line
+  }, [erGyldigIdent, ident]);
+
+  const settNavn = (e: React.FormEvent<HTMLInputElement>) => {
+    settSamboerInfo({
+      ...samboerInfo,
+      [EPersonDetaljer.navn]: {
+        label: hentTekst('person.navn', intl),
+        verdi: e.currentTarget.value,
+      },
+    });
+  };
+
+  const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
+    settIdent(e.currentTarget.value);
+  };
+
+  const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
+    settGyldigIdent(erGyldig);
+    erGyldig &&
+      settSamboerInfo({
+        ...samboerInfo,
+        [EPersonDetaljer.ident]: {
+          label: hentTekst('person.ident', intl),
+          verdi: ident,
+        },
+      });
+  };
+
+  const settChecked = (checked: boolean) => {
+    const endretSamboerInfo = samboerInfo;
+    if (checked && endretSamboerInfo.ident?.verdi) {
+      delete endretSamboerInfo.ident;
+      settIdent('');
+    }
+    if (!checked && endretSamboerInfo.fødselsdato?.verdi)
+      delete endretSamboerInfo.fødselsdato;
+
+    settSamboerInfo({ ...endretSamboerInfo, kjennerIkkeIdent: checked });
+  };
+
+  const settFødselsdato = (date: Date | null) => {
+    date !== null &&
+      settSamboerInfo({
+        ...samboerInfo,
+        fødselsdato: {
+          label: hentTekst('datovelger.fødselsdato', intl),
+          verdi: datoTilStreng(date),
+        },
+      });
+  };
 
   const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
     return årsakEnslig?.svarid === svaralternativ;
@@ -115,6 +204,43 @@ const Søknadsbegrunnelse: FC<Props> = ({
       )}
 
       {samlivsbruddAndre && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Undertittel>Om den tidligere samboeren din</Undertittel>
+          </FeltGruppe>
+          <FeltGruppe>
+            <Input
+              key={'navn'}
+              label={hentTekst('person.navn', intl)}
+              type="text"
+              bredde={'L'}
+              onChange={(e) => settNavn(e)}
+              value={samboerInfo?.navn?.verdi}
+            />
+          </FeltGruppe>
+          <FeltGruppe>
+            <IdentEllerFødselsdatoGruppe
+              identLabel={hentTekst('person.ident', intl)}
+              datoLabel={hentTekst('person.fødselsdato', intl)}
+              checkboxLabel={hentTekst('person.checkbox.ident', intl)}
+              ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
+              fødselsdato={
+                samboerInfo.fødselsdato?.verdi
+                  ? strengTilDato(samboerInfo.fødselsdato?.verdi)
+                  : undefined
+              }
+              checked={samboerInfo?.kjennerIkkeIdent}
+              erGyldigIdent={erGyldigIdent}
+              settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}
+              settFødselsdato={settFødselsdato}
+              settChecked={settChecked}
+              settIdent={oppdaterIdent}
+            />
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
+
+      {samboerInfo?.navn?.verdi && (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}

@@ -26,13 +26,27 @@ const OmSamboerenDin: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { samboerDetaljer } = bosituasjon;
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(false);
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
   );
   const [ident, settIdent] = useState<string>(
     samboerInfo?.ident ? samboerInfo?.ident.verdi : ''
   );
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
+    !!samboerDetaljer?.ident?.verdi
+  );
+
+  useEffect(() => {
+    erGyldigIdent &&
+      settSamboerInfo({
+        ...samboerInfo,
+        [EPersonDetaljer.ident]: {
+          label: hentTekst('person.ident', intl),
+          verdi: ident,
+        },
+      });
+    // eslint-disable-next-line
+  }, [erGyldigIdent, ident]);
 
   useEffect(() => {
     settBosituasjon({
