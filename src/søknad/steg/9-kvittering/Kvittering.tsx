@@ -14,7 +14,9 @@ import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import SyktBarn from './SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
+import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -31,6 +33,10 @@ const Kvittering: React.FC = () => {
     hentTekst('kvittering.alert.mottatt', intl) +
     ` ${søknad?.innsendingsdato && formatDateHour(søknad?.innsendingsdato)} `;
 
+  const syktBarn = søknad.merOmDinSituasjon?.gjelderDetteDeg.svarid.includes(
+    DinSituasjonType.harSyktBarn
+  );
+
   return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
@@ -40,18 +46,13 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
+      {syktBarn && <SyktBarn />}
+
       {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
         <RegistrerDegSomArbeidssøker />
       )}
 
       <DineSaker />
-
-      <div>
-        <Element>
-          JSON (kopier denne og send til utviklere dersom noe ser feil ut):
-        </Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
 
       {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
@@ -60,6 +61,13 @@ const Kvittering: React.FC = () => {
       {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
         <TilleggsstønaderHarAktivitet />
       )}
+
+      <div>
+        <Element>
+          JSON (kopier denne og send til utviklere dersom noe ser feil ut):
+        </Element>
+        <pre>{JSON.stringify(søknad, null, 2)}</pre>
+      </div>
     </Side>
   ) : (
     <Feilside />
