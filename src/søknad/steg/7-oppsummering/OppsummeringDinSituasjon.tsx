@@ -22,7 +22,7 @@ const OppsummeringDinSituasjon: React.FC = () => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.BosituasjonenDin),
+            pathname: hentPath(Routes, RouteEnum.DinSituasjon),
             state: { kommerFraOppsummering: true },
           })
         }
