@@ -17,6 +17,7 @@ import { useIntl } from 'react-intl';
 import SyktBarn from './SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import SykSøker from './SykSøker';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -37,6 +38,10 @@ const Kvittering: React.FC = () => {
     DinSituasjonType.harSyktBarn
   );
 
+  const sykSøker = søknad.merOmDinSituasjon?.gjelderDetteDeg.svarid.includes(
+    DinSituasjonType.erSyk
+  );
+
   return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
@@ -45,6 +50,8 @@ const Kvittering: React.FC = () => {
       <SeksjonGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
+
+      {sykSøker && <SykSøker />}
 
       {syktBarn && <SyktBarn />}
 
