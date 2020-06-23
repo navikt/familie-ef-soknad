@@ -136,17 +136,9 @@ const Søknadsbegrunnelse: FC<Props> = ({
   const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
     return årsakEnslig?.svarid === svaralternativ;
   };
-
-  const samlivsbruddMedForelder = erBegrunnelse(
-    EBegrunnelse.samlivsbruddForeldre
-  );
   const samlivsbruddAndre: boolean = erBegrunnelse(
     EBegrunnelse.samlivsbruddAndre
   );
-  const endretSamvær: boolean = erBegrunnelse(
-    EBegrunnelse.endringISamværsordning
-  );
-  const dødsfall: boolean = erBegrunnelse(EBegrunnelse.dødsfall);
 
   const settÅrsakEnslig = (spørsmål: ISpørsmål, svar: ISvar) => {
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
@@ -200,7 +192,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         />
       </KomponentGruppe>
 
-      {samlivsbruddMedForelder && (
+      {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddForeldre && (
         <>
           <DatoForSamlivsbrudd
             settDato={settDato}
@@ -209,7 +201,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         </>
       )}
 
-      {samlivsbruddAndre && (
+      {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddAndre && (
         <KomponentGruppe>
           <FeltGruppe>
             <Undertittel>Om den tidligere samboeren din</Undertittel>
@@ -243,24 +235,24 @@ const Søknadsbegrunnelse: FC<Props> = ({
               settIdent={oppdaterIdent}
             />
           </FeltGruppe>
+
+          {samboerInfo?.navn?.verdi && (
+            <NårFlyttetDereFraHverandre
+              settDato={settDato}
+              datoFlyttetFraHverandre={datoFlyttetFraHverandre}
+            />
+          )}
         </KomponentGruppe>
       )}
 
-      {samboerInfo?.navn?.verdi && (
-        <NårFlyttetDereFraHverandre
-          settDato={settDato}
-          datoFlyttetFraHverandre={datoFlyttetFraHverandre}
-        />
-      )}
-
-      {endretSamvær && (
+      {årsakEnslig?.svarid === EBegrunnelse.endringISamværsordning && (
         <EndringISamvær
           settDato={settDato}
           datoEndretSamvær={datoEndretSamvær}
         />
       )}
 
-      {dødsfall && (
+      {årsakEnslig?.svarid === EBegrunnelse.dødsfall && (
         <KomponentGruppe>
           <AlertStripeInfo className={'fjernBakgrunn'}>
             <FormattedHTMLMessage id={alertTekstForDødsfall} />
