@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -22,6 +21,7 @@ import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
 
 import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
 import OmTidligereSamboer from './OmTidligereSamboer';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -97,14 +97,14 @@ const Bosituasjon: FC = () => {
         />
         {valgtSvar && valgtSvar.alert_tekstid && (
           <FeltGruppe>
-            <AlertStripe type={'advarsel'} form={'inline'}>
+            <AlertStripeDokumentasjon>
               {bosituasjon.delerBoligMedAndreVoksne.svarid ===
               ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
                 <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
               ) : (
                 <LocaleTekst tekst={valgtSvar.alert_tekstid} />
               )}
-            </AlertStripe>
+            </AlertStripeDokumentasjon>
           </FeltGruppe>
         )}
       </SeksjonGruppe>

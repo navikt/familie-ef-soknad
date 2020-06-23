@@ -293,13 +293,13 @@ export default {
     'barnasbosted.spm.jaMenSamarbeiderIkke':
       'Ja, men den andre forelderen samarbeider ikke om adresseendring',
     'barnasbosted.alert.hvisFaktiskBor':
-      'Hvis [0] faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.<br/>' +
+      'Hvis barnet faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.<br/>' +
       '\n' +
       '<br/>Hvis Folkeregisteret ikke kan hjelpe deg, kan du kontakte Familievernkontoret for råd og veiledning.<br/>' +
       '\n' +
-      '<br/>Du kan også dokumentere at [0] bor hos deg ved å sende inn for eksempel:<br/>' +
+      '<br/>Du kan også dokumentere at barnet bor hos deg ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
-      '<li>årsaken til manglende adresseendring for [0]</li>' +
+      '<li>årsaken til manglende adresseendring for barnet</li>' +
       '<li>kopi av flyttemelding/tips til Folkeregisteret</li>' +
       '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
       '</ul>',

@@ -63,15 +63,17 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 
   useEffect(() => {
-    settSivilstatus({
-      ...sivilstatus,
-      tidligereSamboerDetaljer: samboerInfo,
-    });
+    samlivsbruddAndre &&
+      settSivilstatus({
+        ...sivilstatus,
+        tidligereSamboerDetaljer: samboerInfo,
+      });
     // eslint-disable-next-line
   }, [samboerInfo]);
 
   useEffect(() => {
-    erGyldigIdent &&
+    samlivsbruddAndre &&
+      erGyldigIdent &&
       settSamboerInfo({
         ...samboerInfo,
         [EPersonDetaljer.ident]: {
@@ -162,6 +164,10 @@ const Søknadsbegrunnelse: FC<Props> = ({
     });
     settDokumentasjonsbehov(spørsmål, svar);
   };
+
+  if (!samlivsbruddAndre) {
+    delete sivilstatus.tidligereSamboerDetaljer;
+  }
 
   const fjernIrrelevanteSøknadsfelter = (svar: ISvar): ISivilstatus => {
     const nySivilStatusObjekt = sivilstatus;
