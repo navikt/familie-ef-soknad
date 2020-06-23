@@ -43,7 +43,7 @@ const Personopplysninger: React.FC = () => {
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
-    if (telefonnr.length >= 8 && /^\d+$/.test(telefonnr)) {
+    if (telefonnr.length >= 8 && /^[+\d\s]+$/.test(telefonnr)) {
       settSøknad({
         ...søknad,
         person: {
@@ -55,7 +55,8 @@ const Personopplysninger: React.FC = () => {
   };
 
   const oppdaterFeilmelding = (e: React.FormEvent<HTMLInputElement>) => {
-    e.currentTarget.value.length >= 8 && /^\d+$/.test(e.currentTarget.value)
+    e.currentTarget.value.length >= 8 &&
+    /^[+\d\s]+$/.test(e.currentTarget.value)
       ? settFeilTelefonnr(false)
       : settFeilTelefonnr(true);
   };
