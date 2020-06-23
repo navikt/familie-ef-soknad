@@ -27,6 +27,7 @@ const Kvittering: React.FC = () => {
     underUtdanning,
     arbeidsforhold,
     firma,
+    egetAS,
     etablererEgenVirksomhet,
   } = søknad.aktivitet;
 
@@ -65,7 +66,7 @@ const Kvittering: React.FC = () => {
 
       {underUtdanning && <TilleggsstønaderUnderUtdanning />}
 
-      {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
+      {(arbeidsforhold || firma || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />
       )}
 
