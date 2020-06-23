@@ -17,6 +17,7 @@ import {
   hentSpørsmålTekstMedNavnEllerBarn,
 } from '../../../utils/barn';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   barn: IBarn;
@@ -75,9 +76,9 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
       {forelder.skalBarnetBoHosSøker?.svarid ===
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
-          <AlertStripe type={'info'} form={'inline'}>
+          <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
-          </AlertStripe>
+          </AlertStripeDokumentasjon>
           <FeltGruppe>
             <Normaltekst className="innskutt">
               Familievernkontoret kan også hjelpe deg
