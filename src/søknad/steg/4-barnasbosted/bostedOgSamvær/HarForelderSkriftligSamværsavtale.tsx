@@ -11,6 +11,7 @@ import { IBarn } from '../../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { useIntl } from 'react-intl';
+import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   forelder: IForelder;
@@ -42,11 +43,11 @@ const HarForelderSkriftligSamværsavtale: FC<Props> = ({
           forelder.harDereSkriftligSamværsavtale?.svarid ===
             EHarSkriftligSamværsavtale.jaKonkreteTidspunkter) && (
           <FeltGruppe>
-            <AlertStripe type={'info'} form="inline">
+            <AlertStripeDokumentasjon>
               <LocaleTekst
                 tekst={'barnasbosted.alert.leggeVedSamværsavtalen'}
               />
-            </AlertStripe>
+            </AlertStripeDokumentasjon>
           </FeltGruppe>
         )}
       </KomponentGruppe>
