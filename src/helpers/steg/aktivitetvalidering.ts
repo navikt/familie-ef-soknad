@@ -9,7 +9,6 @@ import {
 } from '../../models/steg/aktivitet/aktivitet';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import {
-  EStudieandel,
   IUnderUtdanning,
   IUtdanning,
 } from '../../models/steg/aktivitet/utdanning';
