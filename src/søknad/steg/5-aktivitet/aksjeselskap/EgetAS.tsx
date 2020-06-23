@@ -22,6 +22,7 @@ interface Props {
 const tomtAksjeselskap: IAksjeselskap = {
   id: hentUid(),
   navn: nyttTekstFelt,
+  arbeidsmengde: nyttTekstFelt,
 };
 const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
   const [egetAS, settEgetAS] = useState<IAksjeselskap[]>(
