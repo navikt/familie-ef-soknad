@@ -3,7 +3,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { harDereSkriftligSamværsavtale } from '../ForeldreConfig';
 import { EHarSkriftligSamværsavtale } from '../../../../models/steg/barnasbosted';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { IForelder } from '../../../../models/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
