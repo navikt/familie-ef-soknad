@@ -11,7 +11,9 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import {
   EStudieandel,
   IUnderUtdanning,
+  IUtdanning,
 } from '../../models/steg/aktivitet/utdanning';
+import { erGyldigDato } from '../../utils/dato';
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
@@ -28,11 +30,21 @@ export const erAksjeselskapFerdigUtfylt = (egetAS: IAksjeselskap[]) => {
   return egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi);
 };
 
-export const erUtdanningFerdigUtfylt = (underUtdanning: IUnderUtdanning) => {
-  return (
-    underUtdanning?.heltidEllerDeltid?.svarid === EStudieandel.heltid ||
-    harValgtSvar(underUtdanning?.målMedUtdanning?.verdi)
+export const erTidligereUtdanningFerdigUtfylt = (
+  tidligereUtdanning: IUtdanning[]
+): boolean => {
+  return tidligereUtdanning.every(
+    (utdanning) =>
+      utdanning.linjeKursGrad?.verdi !== '' &&
+      erGyldigDato(utdanning?.periode?.fra.verdi) &&
+      erGyldigDato(utdanning?.periode?.til.verdi)
   );
+};
+
+export const erUnderUtdanningFerdigUtfylt = (
+  underUtdanning: IUnderUtdanning
+) => {
+  return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
 };
 
 export const erAktivitetSeksjonFerdigUtfylt = (
@@ -78,8 +90,13 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.tarUtdanning:
+      const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
       return (
-        underUtdanning !== undefined && erUtdanningFerdigUtfylt(underUtdanning)
+        underUtdanning !== undefined &&
+        erUnderUtdanningFerdigUtfylt(underUtdanning) &&
+        erTidligereUtdanningFerdigUtfylt(
+          tidligereUtdanning ? tidligereUtdanning : []
+        )
       );
 
     case EAktivitet.harFåttJobbTilbud:
