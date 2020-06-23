@@ -42,11 +42,6 @@ const Aksjeselskap: FC<Props> = ({
     // eslint-disable-next-line
   }, [aksjeselskap]);
 
-  const aksjeselskapTittel = hentTittelMedNr(
-    egetAS!,
-    aksjeselskapnummer,
-    intl.formatMessage({ id: 'egetAS.label.aksjeselskap' })
-  );
   const navnLabel: string = hentTekst('egetAS.label.navn', intl);
   const arbeidsmengdeLabel: string = hentTekst(
     'arbeidsforhold.label.arbeidsmengde',
@@ -76,7 +71,9 @@ const Aksjeselskap: FC<Props> = ({
   return (
     <>
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'}>{aksjeselskapTittel}</Undertittel>
+        <Undertittel className={'tittel'}>
+          {hentTekst('egetAS.om.tittel', intl)}
+        </Undertittel>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: egetAS?.length === 1,
