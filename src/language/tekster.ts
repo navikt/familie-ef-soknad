@@ -852,7 +852,7 @@ export default {
       'Hva må en skriftlig samværsavtale inneholde?',
     'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
       '"Vi trenger opplysninger om' +
-      '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
+      '<ul><li>hvor mange dager og netter barnet oppholder seg hos den andre forelderen i minst en to ukers-periode</li>' +
       '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
     'barnasbosted.spm.jaKonkreteTidspunkt':
       'Ja, og den inneholder konkrete tidspunkter for samvær',
