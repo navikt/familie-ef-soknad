@@ -14,6 +14,7 @@ import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { datoTilStreng } from '../../../../utils/dato';
+import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -106,12 +107,16 @@ const Utdanning: React.FC<Props> = ({
           onChange={(e) => settInputFelt(linjeKursGradLabel, e)}
         />
       </FeltGruppe>
-      <PeriodeDatovelgere
-        tekstid={'utdanning.datovelger.studieperiode'}
-        periode={utdanning.periode ? utdanning.periode : tomPeriode}
-        settDato={settPeriode}
-        showMonthYearPicker={true}
-      />
+      {harValgtSvar(utdanning.linjeKursGrad?.verdi) && (
+        <KomponentGruppe>
+          <PeriodeDatovelgere
+            tekstid={'utdanning.datovelger.studieperiode'}
+            periode={utdanning.periode ? utdanning.periode : tomPeriode}
+            settDato={settPeriode}
+            showMonthYearPicker={true}
+          />
+        </KomponentGruppe>
+      )}
     </KomponentGruppe>
   );
 };

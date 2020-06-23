@@ -19,8 +19,8 @@ import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
-import { erUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import MålMedUtdanningen from './MålMedUtdanningen';
+import { erUnderUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -121,7 +121,7 @@ const UnderUtdanning: React.FC<Props> = ({
         )}
       </SeksjonGruppe>
 
-      {underUtdanning && erUtdanningFerdigUtfylt(underUtdanning) && (
+      {underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning) && (
         <>
           <TidligereUtdanning
             underUtdanning={underUtdanning}
