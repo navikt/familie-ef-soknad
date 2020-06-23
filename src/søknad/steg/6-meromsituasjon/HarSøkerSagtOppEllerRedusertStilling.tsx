@@ -20,6 +20,7 @@ import isBefore from 'date-fns/isBefore';
 import { dagensDato, datoTilStreng, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -143,7 +144,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
 
   const valgtDatoMindreEnn6mndSidenAlert = hentLabelForSagtOppEllerRedusertStilling(
     'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp',
-    'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling'
+    'dinSituasjon.datovelger-alert.redusertStilling'
   );
 
   return (
@@ -181,9 +182,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
                 settDato={settDato}
               />
               {erValgtDatoMindreEnn6mndSiden && (
-                <AlertStripeDokumentasjon>
+                <AlertStripe type={'info'} form={'inline'}>
                   <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-                </AlertStripeDokumentasjon>
+                </AlertStripe>
               )}
             </KomponentGruppe>
           )}
