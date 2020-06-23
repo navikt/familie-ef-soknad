@@ -282,7 +282,7 @@ export default {
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
     'barnasbosted.alert-advarsel.avtaleDeltBosted':
-      'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far.',
+      'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
     'barnasbosted.alert-info.avtaleOmDeltBosted':
       'Du må legge ved avtale om delt bosted',
     'barnasbosted.alert.måBoHosDeg':
