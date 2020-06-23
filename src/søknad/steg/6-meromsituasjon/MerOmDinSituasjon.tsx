@@ -126,7 +126,7 @@ const MerOmDinSituasjon: React.FC = () => {
           />
         </SeksjonGruppe>
       )}
-      {kommerFraOppsummering ? (
+      {kommerFraOppsummering && erAlleSpørsmålBesvart ? (
         <div className={'side'}>
           <Hovedknapp
             className="tilbake-til-oppsummering"

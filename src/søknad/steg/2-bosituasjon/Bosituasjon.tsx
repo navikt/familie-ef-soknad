@@ -134,7 +134,7 @@ const Bosituasjon: FC = () => {
           />
         </SeksjonGruppe>
       )}
-      {kommerFraOppsummering ? (
+      {kommerFraOppsummering && erFerdigUtfylt(bosituasjon) ? (
         <div className={'side'}>
           <Hovedknapp
             className="tilbake-til-oppsummering"
