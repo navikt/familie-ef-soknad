@@ -23,7 +23,7 @@ export const hentNyttBarn = (
     ),
     navn: hentFeltObjekt('person.navn', navn, intl),
     fødselsdato: hentFeltObjekt(
-      'person.fødselsdato',
+      født ? 'person.fødselsdato' : 'barnadine.termindato',
       barnDato ? formatIsoDate(barnDato) : undefined,
       intl
     ),
