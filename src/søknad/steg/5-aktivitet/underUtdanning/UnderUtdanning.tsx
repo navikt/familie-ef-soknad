@@ -35,7 +35,6 @@ const UnderUtdanning: React.FC<Props> = ({
   const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
     id: hentUid(),
     skoleUtdanningssted: nyttTekstFelt,
-    linjeKursGrad: nyttTekstFelt,
   });
 
   useEffect(() => {
