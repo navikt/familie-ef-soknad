@@ -734,6 +734,13 @@ export default {
     'kvittering.tekst.dineSaker':
       'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
     'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
+    'kvittering.tittel.skolepenger':
+      'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
+    'kvittering.tekst.skolepenger':
+      'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
+    'kvittering.lenke.skolepenger': 'Les mer om stønad til skolepenger',
+    'kvittering.knapp.skolepenger': 'Søk stønad til skolepenger',
+
     'kvittering.tittel.tarUtdanning':
       'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
     'kvittering.beskrivelse.tarUtdanning':

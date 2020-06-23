@@ -24,6 +24,7 @@ const Kvittering: React.FC = () => {
     underUtdanning,
     arbeidsforhold,
     firma,
+    egetAS,
     etablererEgenVirksomhet,
   } = søknad.aktivitet;
 
@@ -40,11 +41,19 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
-      {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
+      {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI || (
         <RegistrerDegSomArbeidssøker />
       )}
 
       <DineSaker />
+
+      {arbeidssøker && <TilleggsstønaderArbeidssøker />}
+
+      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
+
+      {(arbeidsforhold || firma || etablererEgenVirksomhet || egetAS) && (
+        <TilleggsstønaderHarAktivitet />
+      )}
 
       <div>
         <Element>
@@ -52,14 +61,6 @@ const Kvittering: React.FC = () => {
         </Element>
         <pre>{JSON.stringify(søknad, null, 2)}</pre>
       </div>
-
-      {arbeidssøker && <TilleggsstønaderArbeidssøker />}
-
-      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
-
-      {(arbeidsforhold || firma || etablererEgenVirksomhet) && (
-        <TilleggsstønaderHarAktivitet />
-      )}
     </Side>
   ) : (
     <Feilside />
