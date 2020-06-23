@@ -19,6 +19,7 @@ import { useIntl } from 'react-intl';
 import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';
 import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { erTidligereUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -120,18 +121,22 @@ const TidligereUtdanning: React.FC<Props> = ({
               />
             );
           })}
-          <KomponentGruppe>
-            <FeltGruppe>
-              <Element>
-                <LocaleTekst tekst={'utdanning.label.leggtil'} />
-              </Element>
-            </FeltGruppe>
-            <FeltGruppe>
-              <KnappBase type={'standard'} onClick={() => leggTilUtdanning()}>
-                <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
-              </KnappBase>
-            </FeltGruppe>
-          </KomponentGruppe>
+          {erTidligereUtdanningFerdigUtfylt(
+            tidligereUtdanning ? tidligereUtdanning : []
+          ) && (
+            <KomponentGruppe>
+              <FeltGruppe>
+                <Element>
+                  <LocaleTekst tekst={'utdanning.label.leggtil'} />
+                </Element>
+              </FeltGruppe>
+              <FeltGruppe>
+                <KnappBase type={'standard'} onClick={() => leggTilUtdanning()}>
+                  <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
+                </KnappBase>
+              </FeltGruppe>
+            </KomponentGruppe>
+          )}
         </>
       )}
     </SeksjonGruppe>

@@ -60,7 +60,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
           </>
         )}
 
-      {kommerFraOppsummering ? (
+      {kommerFraOppsummering && søkerFyltUtAlleFelterOgSpørsmål() ? (
         <div className={'side'}>
           <Hovedknapp
             className="tilbake-til-oppsummering"

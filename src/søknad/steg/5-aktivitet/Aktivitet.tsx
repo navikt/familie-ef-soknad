@@ -131,7 +131,8 @@ const Aktivitet: React.FC = () => {
         );
       })}
 
-      {kommerFraOppsummering ? (
+      {kommerFraOppsummering &&
+      erSisteSpørsmålBesvartOgMinstEttAlternativValgt ? (
         <div className={'side'}>
           <Hovedknapp
             className="tilbake-til-oppsummering"
