@@ -22,6 +22,12 @@ export const hentNyttBarn = (
       intl
     ),
     navn: hentFeltObjekt('person.navn', navn, intl),
+    født: {
+      spørsmålid: EBarn.født,
+      svarid: født ? ESvar.JA : ESvar.NEI,
+      label: hentTekst('barnekort.spm.født', intl),
+      verdi: født,
+    },
     fødselsdato: hentFeltObjekt(
       født ? 'person.fødselsdato' : 'barnadine.termindato',
       barnDato ? formatIsoDate(barnDato) : undefined,
@@ -32,12 +38,6 @@ export const hentNyttBarn = (
       boHosDeg === ESvar.JA ? true : boHosDeg === ESvar.NEI ? false : undefined,
       intl
     ),
-    født: {
-      spørsmålid: EBarn.født,
-      svarid: født ? ESvar.JA : ESvar.NEI,
-      label: hentTekst('barnekort.spm.født', intl),
-      verdi: født,
-    },
     lagtTil: true,
     id: hentUid(),
   };
