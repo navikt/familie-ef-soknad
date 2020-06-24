@@ -25,11 +25,11 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
           valgtDato={
             datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
           }
-          tekstid={'sivilstatus.datovelger.samlivsbrudd'}
+          tekstid={datovelgerLabel}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
         <AlertStripeDokumentasjon>
-          <LocaleTekst tekst={datovelgerLabel} />
+          <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
         </AlertStripeDokumentasjon>
       </KomponentGruppe>
     </>
