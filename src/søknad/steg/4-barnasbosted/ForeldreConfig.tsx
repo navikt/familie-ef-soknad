@@ -31,7 +31,6 @@ const AvtaleOmDeltBosted: IDokumentasjon = {
   spørsmålid: EForelder.avtaleOmDeltBosted,
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.deltBosted.tittel',
-  beskrivelse: 'dokumentasjon.deltBosted.beskrivelse',
   harSendtInn: false,
 };
 
