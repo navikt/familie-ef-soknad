@@ -433,8 +433,7 @@ export default {
     'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsgivere?',
     'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til en arbeidsgiver',
 
-    'egetAS.om.tittel': 'Om aksjeselskapet ditt',
-    'egetAS.tittel': 'Aksjeselskap',
+    'egetAS.tittel': 'Om aksjeselskapet ditt',
     'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
     'egetAS.knapp.fjern': 'Fjern aksjeselskap',
     'egetAS.knapp.leggtil': 'Legg til et aksjeselskap',
