@@ -35,16 +35,16 @@ const FåttJobbTilbud: React.FC<Props> = ({
       <AlertStripeDokumentasjon>
         <Element>
           Du må legge ved arbeidskontrakt som viser at du har fått tilbud om
-          arbeid.
+          jobb.
         </Element>
         <br />
         <Normaltekst>
-          Dokumentasjonen må tydelig vise:
+          Dokumentasjonen må vise:
           <ul>
             <li>navn på arbeidsgiver</li>
             <li>stillingsprosent</li>
-            <li>dato for oppstart</li>
-            <li>dato du fikk tilbudet</li>
+            <li>datoen du begynner i jobben</li>
+            <li>datoen du fikk tilbudet</li>
           </ul>
         </Normaltekst>
       </AlertStripeDokumentasjon>

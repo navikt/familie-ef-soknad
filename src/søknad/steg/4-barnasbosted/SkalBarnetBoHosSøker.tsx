@@ -2,7 +2,6 @@ import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -77,7 +76,11 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripeDokumentasjon>
-            <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
+            {hentBarnNavnEllerBarnet(
+              barn,
+              'barnasbosted.alert.hvisFaktiskBor',
+              intl
+            )}
           </AlertStripeDokumentasjon>
           <FeltGruppe>
             <Normaltekst className="innskutt">
