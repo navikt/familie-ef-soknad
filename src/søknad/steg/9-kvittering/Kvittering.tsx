@@ -69,13 +69,6 @@ const Kvittering: React.FC = () => {
       {(arbeidsforhold || firma || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />
       )}
-
-      <div>
-        <Element>
-          JSON (kopier denne og send til utviklere dersom noe ser feil ut):
-        </Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
     </Side>
   ) : (
     <Feilside />

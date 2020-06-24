@@ -13,10 +13,6 @@ const Feilside: FC<{ tekst?: string }> = ({ tekst }) => {
         {intl.formatMessage({ id: 'feil.alert' })}
         <Normaltekst>{tekst}</Normaltekst>
       </AlertStripeFeil>
-      <div>
-        <Element>Kopier denne og send til utvikler for feilsøking:</Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
     </div>
   );
 };
