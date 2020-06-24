@@ -15,6 +15,7 @@ import {
   hentBarnNavnEllerBarnet,
   hentSpørsmålTekstMedNavnEllerBarn,
 } from '../../../utils/barn';
+import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
@@ -76,11 +77,13 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripeDokumentasjon>
-            {hentBarnNavnEllerBarnet(
-              barn,
-              'barnasbosted.alert.hvisFaktiskBor',
-              intl
-            )}
+            <FormattedHTMLMessage
+              id={hentBarnNavnEllerBarnet(
+                barn,
+                'barnasbosted.alert.hvisFaktiskBor',
+                intl
+              )}
+            />
           </AlertStripeDokumentasjon>
           <FeltGruppe>
             <Normaltekst className="innskutt">
