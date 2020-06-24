@@ -17,6 +17,7 @@ import {
 } from '../../../utils/barn';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   barn: IBarn;
@@ -76,11 +77,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripeDokumentasjon>
-            {hentBarnNavnEllerBarnet(
-              barn,
-              'barnasbosted.alert.hvisFaktiskBor',
-              intl
-            )}
+            <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
           </AlertStripeDokumentasjon>
           <FeltGruppe>
             <Normaltekst className="innskutt">

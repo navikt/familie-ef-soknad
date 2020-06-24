@@ -15,6 +15,8 @@ import {
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
+import AlertStripe from 'nav-frontend-alertstriper';
+import LocaleTekst from '../../../../language/LocaleTekst';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();
@@ -56,14 +58,24 @@ const Medlemskap: React.FC = () => {
     }
   };
 
+  const valgtSvarOppholderSegINorge = hentValgtSvar(
+    oppholderSegINorge,
+    søknad.medlemskap
+  );
+
   return (
     <SeksjonGruppe>
       <KomponentGruppe key={oppholderSegINorge.søknadid}>
         <JaNeiSpørsmål
           spørsmål={oppholderSegINorge}
-          valgtSvar={hentValgtSvar(oppholderSegINorge, søknad.medlemskap)}
+          valgtSvar={valgtSvarOppholderSegINorge}
           onChange={settMedlemskapBooleanFelt}
         />
+        {valgtSvarOppholderSegINorge === false && (
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            <LocaleTekst tekst={'medlemskap.alert-advarsel.opphold'} />
+          </AlertStripe>
+        )}
       </KomponentGruppe>
 
       {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (

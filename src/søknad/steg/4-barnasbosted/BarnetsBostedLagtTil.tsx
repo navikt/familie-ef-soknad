@@ -22,9 +22,10 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 }) => {
   const forelder = barn.forelder;
   const intl = useIntl();
-  const barnetsNavn = barn.navn
-    ? barn.navn.verdi
-    : hentTekst('barnet.litenForBokstav', intl);
+  const barnetsNavn =
+    barn.navn && barn.navn.verdi !== ''
+      ? barn.navn.verdi
+      : hentTekst('barnet.litenForBokstav', intl);
   if (!forelder) return null;
 
   const endreInformasjon = () => {
