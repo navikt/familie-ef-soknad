@@ -8,30 +8,24 @@ const SyktBarn: React.FC = () => {
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
         <Normaltekst>
-          Du må legge ved dokumentasjon om barnets sykdom og din mulighet til å
-          være i yrkesrettet aktivitet
+          Du må legge ved dokumentasjon som bekrefter at barnet ditt er sykt og
+          beskriver din mulighet til å være i yrkesrettet aktivitet.
         </Normaltekst>
         <br />
         <Normaltekst>
-          Dokumentasjonen fra legen din må tydelig vise:
+          Dokumentasjonen fra legen din må vise:
           <ul>
             <li>
-              årsaken til at barnets sykdom påvirker muligheten din til å være i
-              yrkesrettet aktivitet
+              grunnen til at barnets sykdom påvirker muligheten din til å være i
+              arbeid eller annen yrkesrettet aktivitet
             </li>
+            <li>når barnet ble sykt</li>
+            <li>når legen regner med at barnet vil bli friskt</li>
             <li>hvor mye du kan arbeide</li>
           </ul>
         </Normaltekst>
         <Normaltekst>
-          Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som
-          ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:
-          <ul>
-            <li>når barnet ble syk</li>
-            <li>når legen din regner med at barnet vil bli frisk</li>
-          </ul>
-        </Normaltekst>
-        <Normaltekst>
-          Du får muligheten til å laste ned eller skrive ut et følgebrev du kan
+          Du får muligheten til å laste ned eller skrive ut en huskeliste du kan
           ta med til legen din for å dokumentere dette når du sender inn
           søknaden.
         </Normaltekst>

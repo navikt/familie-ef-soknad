@@ -15,6 +15,7 @@ import {
   hentBarnNavnEllerBarnet,
   hentSpørsmålTekstMedNavnEllerBarn,
 } from '../../../utils/barn';
+import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
@@ -77,7 +78,13 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripeDokumentasjon>
-            <LocaleTekst tekst={'barnasbosted.alert.hvisFaktiskBor'} />
+            <FormattedHTMLMessage
+              id={hentBarnNavnEllerBarnet(
+                barn,
+                'barnasbosted.alert.hvisFaktiskBor',
+                intl
+              )}
+            />
           </AlertStripeDokumentasjon>
           <FeltGruppe>
             <Normaltekst className="innskutt">

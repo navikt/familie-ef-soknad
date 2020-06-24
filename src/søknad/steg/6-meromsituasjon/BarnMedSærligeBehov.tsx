@@ -8,7 +8,7 @@ const BarnMedSærligeBehov: React.FC = () => {
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
         <Normaltekst>
-          Du må legge ved dokumentasjon på barnets tilsynsbehov
+          Du må legge ved dokumentasjon om barnets tilsynsbehov
         </Normaltekst>
         <Normaltekst>
           <ul>
@@ -18,9 +18,9 @@ const BarnMedSærligeBehov: React.FC = () => {
               tilsyn.
             </li>
             <li>
-              Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og
-              hvordan dette påvirker muligheten din til å være i arbeid eller
-              yrkesrettet aktivitet.
+              Dokumentasjon som beskriver hvor mye og hvordan barnet ditt
+              trenger tilsyn, og hvordan dette påvirker muligheten din til å
+              være i yrkesrettet aktivitet.
             </li>
           </ul>
         </Normaltekst>
