@@ -22,8 +22,8 @@ export interface IAktivitet {
 
 export interface IAksjeselskap {
   id: string;
-  navn?: ITekstFelt;
-  arbeidsmengde?: ITekstFelt;
+  navn: ITekstFelt;
+  arbeidsmengde: ITekstFelt;
 }
 
 export enum EArbeidssituasjon {
