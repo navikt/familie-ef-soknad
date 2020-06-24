@@ -18,6 +18,7 @@ import {
 import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   barn: IBarn;

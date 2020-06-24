@@ -297,7 +297,7 @@ export default {
       '\n' +
       '<br/>Hvis Folkeregisteret ikke kan hjelpe deg, kan du kontakte Familievernkontoret for råd og veiledning.<br/>' +
       '\n' +
-      '<br/>Du kan også dokumentere at [0] bor hos deg ved å sende inn for eksempel:<br/>' +
+      '<br/>Du kan også dokumentere at barnet bor hos deg ved å sende inn for eksempel:<br/>' +
       '\n <ul>' +
       '<li>grunnen til manglende adresseendring for barnet</li>' +
       '<li>kopi av flyttemelding/tips til Folkeregisteret</li>' +

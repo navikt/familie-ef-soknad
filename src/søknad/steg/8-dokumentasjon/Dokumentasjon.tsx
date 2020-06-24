@@ -7,7 +7,7 @@ import Side from '../../../components/side/Side';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
 import SendSøknadKnapper from './SendSøknad';
 import { IDokumentasjon } from '../../../models/dokumentasjon';
@@ -73,14 +73,6 @@ const Dokumentasjon: React.FC = () => {
           );
         })}
       </SeksjonGruppe>
-
-      <div>
-        <Element>
-          JSON som sendes inn (kopier denne og send til utviklere dersom
-          innsending feiler):
-        </Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
 
       <SendSøknadKnapper />
     </Side>
