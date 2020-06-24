@@ -13,6 +13,7 @@ import { hentNesteRoute } from '../../routing/utils';
 import { Routes } from '../../routing/Routes';
 import { useSøknad } from '../../context/SøknadContext';
 import { hentTekst } from '../../utils/søknad';
+import { isIE } from 'react-device-detect';
 const BlockContent = require('@sanity/block-content-to-react');
 
 interface InnholdProps {
@@ -76,7 +77,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
           );
         })}
 
-      {disclaimer && (
+      {disclaimer && !isIE && (
         <div className="seksjon">
           <Undertittel className="disclaimer-tittel">
             {hentTekst('skjema.forside.disclaimer.tittel', intl)}

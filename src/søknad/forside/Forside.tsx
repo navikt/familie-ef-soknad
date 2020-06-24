@@ -13,6 +13,8 @@ import { hentBeskjedMedNavn } from '../../utils/språk';
 import FortsettSøknad from './FortsettSøknad';
 import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
 import Environment from '../../Environment';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { isIE } from 'react-device-detect';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -66,6 +68,17 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
+
+          {isIE && (
+            <div className="ie-feil">
+              <AlertStripeFeil>
+                Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi
+                anbefaler deg å bruke en annen nettleser, for eksempel Google
+                Chrome, Safari eller Firefox.
+              </AlertStripeFeil>
+            </div>
+          )}
+
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
           {toggles[ToggleName.mellomlagre_søknad] &&
           kanBrukeMellomlagretSøknad &&
