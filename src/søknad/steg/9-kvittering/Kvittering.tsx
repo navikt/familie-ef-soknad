@@ -12,7 +12,6 @@ import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
-import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import SyktBarn from './SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -69,13 +68,6 @@ const Kvittering: React.FC = () => {
       {(arbeidsforhold || firma || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />
       )}
-
-      <div>
-        <Element>
-          JSON (kopier denne og send til utviklere dersom noe ser feil ut):
-        </Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
     </Side>
   ) : (
     <Feilside />
