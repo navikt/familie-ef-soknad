@@ -8,28 +8,32 @@ const SøkerErSyk: React.FC = () => {
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
         <Normaltekst>
-          Hvis du ikke har sykemelding eller ikke mottar AAP eller uføretrygd,
-          må du legge ved dokumentasjon
+          Hvis du ikke har sykemelding eller ikke mottar arbeidsavklaringspenger
+          (AAP) eller uføretrygd, må du legge ved dokumentasjon som bekrefter at
+          du er syk.
         </Normaltekst>
         <br />
         <Normaltekst>
-          Dokumentasjonen fra legen din må tydelig vise:
+          Dokumentasjonen fra legen din må vise:
           <ul>
-            <li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>
+            <li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li>
+            <li>når du ble syk</li>
+            <li>når legen din regner med at du vil bli frisk</li>
             <li>hvor mye du kan arbeide</li>
           </ul>
         </Normaltekst>
         <Normaltekst>
-          Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke
-          er varig? Da trenger vi dokumentasjonen fra legen din selv om du har
-          sykemelding. Denne må vise:
-          <ul>
-            <li>når du ble syk</li>
-            <li>når legen din regner med at du vil bli frisk</li>
-          </ul>
+          Får du allerede overgangsstønad og søker du om å forlenge
+          stønadsperioden utover 3 år fordi du har en sykdom som ikke er varig?
+          Da trenger vi dokumentasjonen fra legen din selv om du har
+          sykemelding.
         </Normaltekst>
         <Normaltekst>
-          Du får muligheten til å laste ned eller skrive ut et følgebrev du kan
+          At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har
+          vart i mer enn 2 år eller vil vare i mer enn 2 år.
+        </Normaltekst>
+        <Normaltekst>
+          Du får muligheten til å laste ned eller skrive ut en huskeliste du kan
           ta med til legen din for å dokumentere dette når du sender inn
           søknaden.
         </Normaltekst>

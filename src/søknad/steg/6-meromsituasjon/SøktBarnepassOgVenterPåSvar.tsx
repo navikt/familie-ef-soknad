@@ -8,13 +8,13 @@ const SøktBarnepassOgVenterPåSvar: React.FC = () => {
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
         <Normaltekst>
-          Du må legge ved dokumentasjon på at du mangler barnepass. Det vil si
-          avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står
-          på venteliste.
+          Du må legge ved dokumentasjon som bekrefter at du mangler barnepass.
+          Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at
+          barnet står på venteliste.
         </Normaltekst>
         <br />
         <Normaltekst>
-          Dokumentasjonen må tydelig vise:
+          Dokumentasjonen må vise:
           <ul>
             <li>datoen du søkte</li>
             <li>datoen du ønsket plass fra</li>
