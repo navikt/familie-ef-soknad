@@ -5,9 +5,8 @@
     "forkortetNavn": "Nyan Cat",
     "adresse": {
       "adresse": "Meowt street 1",
-      "adressetillegg": "",
-      "kommune": "0104",
-      "postnummer": "1533"
+      "postnummer": "1533",
+      "poststed": ""
     },
     "egenansatt": false,
     "innvandretDato": "1991-12-28",

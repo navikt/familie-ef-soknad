@@ -44,6 +44,11 @@ const Environment = (): EnvironmentProps => {
       loginService: `http://localhost:8091/local/cookie?subject=21057822284`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
       mellomlagerUrl: `http://localhost:8082/api/soknad/overgangsstonad`,
+      /*loginService: `http://localhost:8091/local/cookie?subject=21057822284`,
+      dokumentUrl: `http://localhost:8091/dokumentmock/dokument/ANYTTHING`,
+      mellomlagerUrl: `http://localhost:8091/dokumentmock/mellomlager`,
+
+       */
       miljø: 'local',
       modellVersjon: modellVersjon,
     };

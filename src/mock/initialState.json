@@ -5,9 +5,8 @@
     "forkortetNavn": "",
     "adresse": {
       "adresse": "",
-      "adressetillegg": "",
-      "kommune": "",
-      "postnummer": ""
+      "postnummer": "",
+      "poststed": ""
     },
     "egenansatt": false,
     "innvandretDato": "",
