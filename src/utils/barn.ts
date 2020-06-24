@@ -40,7 +40,9 @@ export const hentBarnNavnEllerBarnet = (
   intl: IntlShape
 ) => {
   return hentBeskjedMedNavn(
-    !barn.født ? hentTekst('barnet.litenForBokstav', intl) : barn.navn.verdi,
+    !barn.født || barn.navn.verdi === ''
+      ? hentTekst('barnet.litenForBokstav', intl)
+      : barn.navn.verdi,
     hentTekst(tekstid, intl)
   );
 };
