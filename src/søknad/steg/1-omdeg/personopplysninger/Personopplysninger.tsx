@@ -96,6 +96,9 @@ const Personopplysninger: React.FC = () => {
             <LocaleTekst tekst={'person.adresse'} />
           </Element>
           <Normaltekst>{søker.adresse.adresse}</Normaltekst>
+          <Normaltekst>
+            {søker.adresse.postnummer} {søker.adresse.poststed}
+          </Normaltekst>
         </FeltGruppe>
       </KomponentGruppe>
 

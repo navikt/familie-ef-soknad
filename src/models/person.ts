@@ -24,9 +24,8 @@ export interface ISøker {
 
 export interface IAdresse {
   adresse: string;
-  adressetillegg: string;
-  kommune: string;
   postnummer: string;
+  poststed?: string;
 }
 
 export interface IPersonDetaljer {
