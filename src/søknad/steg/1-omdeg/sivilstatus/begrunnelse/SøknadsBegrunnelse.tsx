@@ -236,7 +236,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             />
           </FeltGruppe>
 
-          {samboerInfo?.navn?.verdi && (
+          {(samboerInfo?.navn?.verdi || samboerInfo?.kjennerIkkeIdent) && (
             <NårFlyttetDereFraHverandre
               settDato={settDato}
               datoFlyttetFraHverandre={datoFlyttetFraHverandre}

@@ -674,7 +674,6 @@ export default {
 
     'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
     'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
-    'dokumentasjon.deltBosted.beskrivelsel': '',
     'dokumentasjon.barnBorHosSøker.tittel':
       'Dokumentasjon på at barn bor hos deg',
     'dokumentasjon.barnBorHosSøker.beskrivelse':
