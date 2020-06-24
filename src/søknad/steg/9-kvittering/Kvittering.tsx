@@ -12,7 +12,6 @@ import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
-import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import SyktBarn from './SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';

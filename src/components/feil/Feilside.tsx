@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { useIntl } from 'react-intl';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
-import { useSøknad } from '../../context/SøknadContext';
+import { Normaltekst } from 'nav-frontend-typografi';
 
 const Feilside: FC<{ tekst?: string }> = ({ tekst }) => {
-  const { søknad } = useSøknad();
   const intl = useIntl();
   return (
     <div className="feilside">
