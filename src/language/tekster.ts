@@ -480,7 +480,7 @@ export default {
       'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei hver vei',
     'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
     'arbeidssøker.lesmer-åpne.ønsketArbeidssted':
-      'Dette betyr 1 times reisevei?',
+      'Dette betyr 1 times reisevei',
     'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
       '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time hver vei. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
     'arbeidssøker.label.halvstilling':
