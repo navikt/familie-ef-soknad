@@ -21,9 +21,10 @@ const OppsummeringBarnasBosituasjon = () => {
     .map((barn, index) => {
       if (!barn.forelder) return null;
 
-      let nyForelder = barn.forelder;
+      let nyForelder = { ...barn.forelder };
 
       delete nyForelder.hvorforIkkeOppgi;
+      delete nyForelder.kanIkkeOppgiAnnenForelderFar;
 
       const barnetsNavn =
         barn.født?.verdi && barn.navn.verdi ? barn.navn.verdi : 'barnet';
