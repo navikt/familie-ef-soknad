@@ -107,7 +107,7 @@ const Aktivitet: React.FC = () => {
         />
       </SeksjonGruppe>
 
-      {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid) => {
+      {arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.map((svarid, index) => {
         const harValgtMinstEnAktivitet =
           hvaErDinArbeidssituasjon.svarid.length !== 0;
 
@@ -123,6 +123,7 @@ const Aktivitet: React.FC = () => {
         return (
           visSeksjon && (
             <AktivitetOppfølgingSpørsmål
+              key={index}
               svarid={svarid}
               arbeidssituasjon={arbeidssituasjon}
               settArbeidssituasjon={settArbeidssituasjon}

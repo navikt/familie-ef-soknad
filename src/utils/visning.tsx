@@ -21,7 +21,7 @@ export const visListeAvLabelOgSvar = (
     }
 
     return (
-      <div className="listeelement">
+      <div className="listeelement" key={index}>
         <Element>{tekst}</Element>
         {VisLabelOgSvar(el)}
         {index < liste.length - 1 && <hr />}
@@ -37,8 +37,8 @@ export const verdiTilTekstsvar = (
   if (Array.isArray(verdi)) {
     return (
       <ul>
-        {verdi.map((v) => (
-          <li>
+        {verdi.map((v, index) => (
+          <li key={index}>
             <Normaltekst>{v}</Normaltekst>
           </li>
         ))}
@@ -106,7 +106,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
   const intl = useIntl();
 
   if (!objekt) return null;
-  return Object.values(objekt).map((spørsmål) => {
+  return Object.values(objekt).map((spørsmål, index) => {
     if (!spørsmål) {
       return null;
     }
@@ -121,7 +121,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
         : spørsmål.label;
 
     return (
-      <div className="spørsmål-og-svar">
+      <div className="spørsmål-og-svar" key={index}>
         <Element>{label}</Element>
         {verdiTilTekstsvar(spørsmål.verdi, intl)}
       </div>

@@ -31,7 +31,7 @@ const OppsummeringBarnasBosituasjon = () => {
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
-        <div className="oppsummering-barn">
+        <div className="oppsummering-barn" key={index}>
           <Element>{barn.navn?.verdi}</Element>
           {forelderFelter}
           {index < antallForeldre - 1 && <hr />}

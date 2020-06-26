@@ -32,7 +32,7 @@ const OppsummeringBarnaDine: React.FC = () => {
     }
 
     return (
-      <div className="oppsummering-barn">
+      <div className="oppsummering-barn" key={index}>
         {VisLabelOgSvar(nyttBarn)}
         {index < barna.length - 1 && <hr />}
       </div>
