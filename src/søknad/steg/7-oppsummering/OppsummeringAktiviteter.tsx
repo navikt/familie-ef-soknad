@@ -79,7 +79,7 @@ const OppsummeringAktiviteter: React.FC = () => {
       ) : null}
       <LenkeMedIkon
         onClick={() =>
-          history.push({
+          history.replace({
             pathname: hentPath(Routes, RouteEnum.Aktivitet),
             state: { kommerFraOppsummering: true },
           })

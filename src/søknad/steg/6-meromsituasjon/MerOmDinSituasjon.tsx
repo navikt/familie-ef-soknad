@@ -99,13 +99,13 @@ const MerOmDinSituasjon: React.FC = () => {
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
         </KomponentGruppe>
-        {dinSituasjon.gjelderDetteDeg.svarid.map((svarid) => {
+        {dinSituasjon.gjelderDetteDeg.svarid.map((svarid, index) => {
           const harValgtMinstEttAlternativ =
             gjelderDetteDeg.svarid.length !== 0;
 
           return (
             harValgtMinstEttAlternativ && (
-              <SituasjonOppfølgingSpørsmål svarid={svarid} />
+              <SituasjonOppfølgingSpørsmål key={index} svarid={svarid} />
             )
           );
         })}
