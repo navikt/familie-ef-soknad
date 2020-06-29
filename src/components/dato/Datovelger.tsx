@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { addDays, subDays } from 'date-fns';
+import { addDays, addYears, subDays, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -71,6 +71,7 @@ const Datovelger: React.FC<Props> = ({
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
+                minDate={subYears(new Date(), 200)}
                 showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
@@ -81,6 +82,7 @@ const Datovelger: React.FC<Props> = ({
                 placeholderText={'DD.MM.YYYY'}
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
+                maxDate={addYears(new Date(), 100)}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
                 showMonthYearPicker={showMonthYearPicker === true}
@@ -94,6 +96,8 @@ const Datovelger: React.FC<Props> = ({
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
                 dateFormat={'dd.MM.yyyy'}
                 locale={locale}
+                maxDate={addYears(new Date(), 100)}
+                minDate={subYears(new Date(), 200)}
                 showMonthYearPicker={showMonthYearPicker === true}
               />
             ) : null}
