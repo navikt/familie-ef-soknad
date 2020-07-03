@@ -62,6 +62,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
             intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
           return (
             <RadioPanel
+              className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekstid}`}
               key={svar.svar_tekstid}
               name={spørsmål.søknadid}
               label={intl.formatMessage({
