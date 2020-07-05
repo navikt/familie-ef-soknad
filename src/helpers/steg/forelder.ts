@@ -62,6 +62,7 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
     forelder.hvordanPraktiseresSamværet?.verdi !== ''
   )
     return true;
+  else if (forelder.avtaleOmDeltBosted?.svarid === ESvar.JA) return true;
 
   return false;
 };

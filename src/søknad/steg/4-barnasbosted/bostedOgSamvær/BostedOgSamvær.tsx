@@ -9,7 +9,6 @@ import { hentTekst } from '../../../../utils/søknad';
 import { EForelder, IForelder } from '../../../../models/forelder';
 import {
   erJaNeiSvar,
-  harValgtSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
@@ -74,7 +73,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
         barn={barn}
       />
 
-      {harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) && (
+      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn
             key={harAnnenForelderSamværMedBarn.søknadid}
@@ -89,15 +88,16 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
           />
         </KomponentGruppe>
       )}
-      {harForelderSamværMedBarn(
-        forelder.harAnnenForelderSamværMedBarn?.svarid
-      ) && (
-        <HarForelderSkriftligSamværsavtale
-          forelder={forelder}
-          settBostedOgSamværFelt={settBostedOgSamværFelt}
-          barn={barn}
-        />
-      )}
+      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI &&
+        harForelderSamværMedBarn(
+          forelder.harAnnenForelderSamværMedBarn?.svarid
+        ) && (
+          <HarForelderSkriftligSamværsavtale
+            forelder={forelder}
+            settBostedOgSamværFelt={settBostedOgSamværFelt}
+            barn={barn}
+          />
+        )}
       {harSkriftligSamværsavtale(
         forelder.harDereSkriftligSamværsavtale?.svarid
       ) && (
