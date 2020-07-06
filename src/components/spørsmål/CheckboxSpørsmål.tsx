@@ -48,6 +48,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
 
           return (
             <CheckboksPanel
+              className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekstid}`}
               key={svar.svar_tekstid}
               label={svarTekst}
               checked={alleredeHuketAvISøknad}
