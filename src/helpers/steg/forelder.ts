@@ -79,6 +79,15 @@ export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
   );
 };
 
+export const harSkriftligAvtaleOmDeltBosted = (
+  spørsmål: ISpørsmål,
+  svar: ISvar
+) => {
+  return (
+    spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
+  );
+};
+
 export const erAlleFelterOgSpørsmålBesvart = (
   forelder: IForelder,
   barnHarSammeForelder: boolean | undefined

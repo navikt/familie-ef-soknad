@@ -19,6 +19,7 @@ import {
   harForelderSamværMedBarn,
   harSkriftligSamværsavtale,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
+  harSkriftligAvtaleOmDeltBosted,
 } from '../../../../helpers/steg/forelder';
 import { IBarn } from '../../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -59,6 +60,10 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
       svar.id === ESvar.JA
     ) {
       delete nyForelder.land;
+    }
+
+    if (harSkriftligAvtaleOmDeltBosted(spørsmål, svar)) {
+      delete nyForelder.harAnnenForelderSamværMedBarn;
     }
 
     settForelder(nyForelder);
