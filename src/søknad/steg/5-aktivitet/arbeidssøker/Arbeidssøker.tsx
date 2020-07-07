@@ -6,7 +6,6 @@ import {
   erSøkerArbeidssøker,
   erVilligTilÅTaImotTilbud,
   kanBegynneInnenEnUke,
-  kanSkaffeBarnepassInnenEnUke,
   ønskerHalvStillig,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
@@ -121,16 +120,6 @@ const Arbeidssøker: React.FC<Props> = ({
       )}
 
       {arbeidssøker.kanBegynneInnenEnUke && (
-        <KomponentGruppe>
-          <JaNeiSpørsmål
-            spørsmål={kanSkaffeBarnepassInnenEnUke}
-            onChange={settJaNeiSpørsmål}
-            valgtSvar={arbeidssøker.kanSkaffeBarnepassInnenEnUke?.verdi}
-          />
-        </KomponentGruppe>
-      )}
-
-      {arbeidssøker.kanSkaffeBarnepassInnenEnUke && (
         <KomponentGruppe>
           <MultiSvarSpørsmål
             spørsmål={ønsketArbeidssted}
