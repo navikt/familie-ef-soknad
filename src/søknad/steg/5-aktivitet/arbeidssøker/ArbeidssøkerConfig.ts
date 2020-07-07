@@ -48,6 +48,11 @@ export const kanBegynneInnenEnUke: ISpørsmål = {
   søknadid: EArbeidssøker.kanBegynneInnenEnUke,
   tekstid: 'arbeidssøker.label.senestEnUke',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: '',
+    innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke',
+    lukkeTekstid: '',
+  },
   svaralternativer: JaNeiSvar,
 };
 

@@ -39,6 +39,10 @@ const BarnasBosted: React.FC = () => {
 
   const antallBarnMedForeldre = barna.filter((barn) => barn.forelder).length;
 
+  if (antallBarnMedForeldre === barna.length && !sisteBarnUtfylt) {
+    settSisteBarnUtfylt(true);
+  }
+
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}

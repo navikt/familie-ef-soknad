@@ -62,6 +62,7 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
     forelder.hvordanPraktiseresSamværet?.verdi !== ''
   )
     return true;
+  else if (forelder.avtaleOmDeltBosted?.svarid === ESvar.JA) return true;
 
   return false;
 };
@@ -75,6 +76,15 @@ export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
       svar.id === EHarSkriftligSamværsavtale.nei) ||
     (spørsmål.søknadid === EForelder.harAnnenForelderSamværMedBarn &&
       svar.id === EHarSamværMedBarn.nei)
+  );
+};
+
+export const harSkriftligAvtaleOmDeltBosted = (
+  spørsmål: ISpørsmål,
+  svar: ISvar
+) => {
+  return (
+    spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
   );
 };
 

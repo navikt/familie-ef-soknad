@@ -45,6 +45,13 @@ const StyledHjelpetekst = styled.div`
   }
 `;
 
+const StyledÅpenHjelpetekst = styled.div`
+  .typo-normal {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+`;
+
 interface Props {
   className?: string;
   åpneTekstid: string;
@@ -67,12 +74,14 @@ const Hjelpetekst: React.FC<Props> = ({
   return (
     <>
       {åpneTekstid === '' ? (
-        <Normaltekst>
-          {innholdTekst && innholdTekst}
-          {!innholdTekst && innholdTekstid && (
-            <LocaleTekst tekst={innholdTekstid} />
-          )}
-        </Normaltekst>
+        <StyledÅpenHjelpetekst>
+          <Normaltekst>
+            {innholdTekst && innholdTekst}
+            {!innholdTekst && innholdTekstid && (
+              <LocaleTekst tekst={innholdTekstid} />
+            )}
+          </Normaltekst>
+        </StyledÅpenHjelpetekst>
       ) : (
         <StyledHjelpetekst className={className}>
           <Lesmerpanel

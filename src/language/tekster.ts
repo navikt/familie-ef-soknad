@@ -474,6 +474,8 @@ export default {
       'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
     'arbeidssøker.label.senestEnUke':
       'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
+    'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke':
+      'Du må være tilgjengelig og raskt kunne ta stilling til tilbud om arbeid eller arbeidsmarkedstiltak. Du må derfor kunne skaffe barnepass på kort varsel.',
     'arbeidssøker.label.barnepass':
       'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
     'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',

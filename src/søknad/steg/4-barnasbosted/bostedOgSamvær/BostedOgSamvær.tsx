@@ -9,7 +9,6 @@ import { hentTekst } from '../../../../utils/søknad';
 import { EForelder, IForelder } from '../../../../models/forelder';
 import {
   erJaNeiSvar,
-  harValgtSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../../context/SøknadContext';
@@ -20,6 +19,7 @@ import {
   harForelderSamværMedBarn,
   harSkriftligSamværsavtale,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
+  harSkriftligAvtaleOmDeltBosted,
 } from '../../../../helpers/steg/forelder';
 import { IBarn } from '../../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -62,6 +62,11 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
       delete nyForelder.land;
     }
 
+    if (harSkriftligAvtaleOmDeltBosted(spørsmål, svar)) {
+      delete nyForelder.harAnnenForelderSamværMedBarn;
+      delete nyForelder.harDereSkriftligSamværsavtale;
+    }
+
     settForelder(nyForelder);
     settDokumentasjonsbehov(spørsmål, svar);
   };
@@ -74,7 +79,7 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
         barn={barn}
       />
 
-      {harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) && (
+      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn
             key={harAnnenForelderSamværMedBarn.søknadid}
@@ -89,15 +94,16 @@ const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
           />
         </KomponentGruppe>
       )}
-      {harForelderSamværMedBarn(
-        forelder.harAnnenForelderSamværMedBarn?.svarid
-      ) && (
-        <HarForelderSkriftligSamværsavtale
-          forelder={forelder}
-          settBostedOgSamværFelt={settBostedOgSamværFelt}
-          barn={barn}
-        />
-      )}
+      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI &&
+        harForelderSamværMedBarn(
+          forelder.harAnnenForelderSamværMedBarn?.svarid
+        ) && (
+          <HarForelderSkriftligSamværsavtale
+            forelder={forelder}
+            settBostedOgSamværFelt={settBostedOgSamværFelt}
+            barn={barn}
+          />
+        )}
       {harSkriftligSamværsavtale(
         forelder.harDereSkriftligSamværsavtale?.svarid
       ) && (

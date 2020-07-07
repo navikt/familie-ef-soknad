@@ -143,7 +143,12 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         {forelder.beskrivSamværUtenBarn && (
           <div className="spørsmål-og-svar">
             <Element>
-              {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.beskrivSamværUtenBarn',
+                })
+              )}
             </Element>
             <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
           </div>
