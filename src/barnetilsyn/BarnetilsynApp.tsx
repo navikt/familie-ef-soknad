@@ -2,25 +2,34 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import Søknadsdialog from './Søknadsdialog';
+import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName, Toggles } from '../models/toggles';
+import { ToggleName } from '../models/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentisering';
-import Forside from './Forside';
-import { SkjemaProvider } from './SkjemaContext';
-import OmDeg from './steg/1-omdeg/OmDeg';
+import mockPersonMedBarn from '../mock/mockPerson.json';
+import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
+import mockToggles from '../mock/mockToggles.json';
+import { settLabelOgVerdi } from '../utils/søknad';
+import { standardLabelsBarn } from '../helpers/labels';
+import { useSøknad } from '../context/SøknadContext';
+import { useToggles } from '../context/TogglesContext';
+import { IPerson } from '../models/person';
+import { Helmet } from 'react-helmet';
+import { erLokaltMedMock } from '../utils/miljø';
 
 const App = () => {
-  const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
-  const [feilmelding, settFeilmelding] = useState('');
   const { settPerson } = usePersonContext();
+  const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
+  const { settToggles, toggles } = useToggles();
 
   autentiseringsInterceptor();
 
@@ -28,33 +37,53 @@ const App = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  useEffect(() => {
-    const fetchData = () => {
-      hentToggles(settToggles).catch((err: Error) => {
-        settError(false);
-      });
+  const fetchPersonData = () => {
+    return hentPersonData()
+      .then((response) => {
+        settPerson({
+          type: PersonActionTypes.HENT_PERSON,
+          payload: response,
+        });
+        oppdaterSøknadMedBarn(response, response.barn);
+      })
+      .catch(() => settError(true));
+  };
 
-      const fetchPersonData = () => {
-        hentPersonData()
-          .then((response) => {
-            settPerson({
-              type: PersonActionTypes.HENT_PERSON,
-              payload: response,
-            });
-            settError(false);
-            settFeilmelding('');
-          })
-          .catch((e) => {
-            settError(false);
-            settFeilmelding(
-              'En feil oppstod ved uthenting av dine personopplysninger'
-            );
-          });
-      };
-      fetchPersonData();
+  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
+    const barnMedLabels = barneliste.map((barn: any) => {
+      const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
+      barnMedLabel['ident'] = barnMedLabel['fnr'];
+      delete barnMedLabel.fnr;
+      return barnMedLabel;
+    });
+
+    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+  };
+
+  const fetchToggles = () => {
+    return hentToggles(settToggles).catch((err: Error) => {
+      settError(true);
+    });
+  };
+
+  useEffect(() => {
+    if (erLokaltMedMock()) {
+      settPerson({
+        type: PersonActionTypes.HENT_PERSON,
+        payload: mockPersonUtenBarn,
+      });
+      oppdaterSøknadMedBarn(mockPersonUtenBarn, mockPersonMedBarn.barn);
+      settToggles(mockToggles);
       settFetching(false);
-    };
-    fetchData();
+      return;
+    }
+    Promise.all([
+      fetchToggles(),
+      fetchPersonData(),
+      hentMellomlagretOvergangsstønad(),
+    ])
+      .then(() => settFetching(false))
+      .catch(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
 
@@ -62,21 +91,20 @@ const App = () => {
     if (!error) {
       return (
         <>
-          <SkjemaProvider>
-            <Switch>
-              <Route exact path={'/barnetilsyn'}>
-                <Forside />
-                {toggles[ToggleName.vis_innsending] && <Forside />}
-              </Route>
-              <Route path={'/barnetilsyn/om-deg'}>
-                <OmDeg />
-              </Route>
-            </Switch>
-          </SkjemaProvider>
+          <Helmet>
+            <title>Søknad om overgangsstønad</title>
+          </Helmet>
+
+          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
+          <Switch>
+            <Route path={'/'}>
+              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+            </Route>
+          </Switch>
         </>
       );
     } else if (error) {
-      return <Feilside tekst={feilmelding} />;
+      return <Feilside />;
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }
