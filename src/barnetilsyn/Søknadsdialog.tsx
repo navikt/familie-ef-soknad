@@ -8,8 +8,8 @@ const Søknadsdialog: FC = () => {
   return (
     <>
       <Switch>
-        <RedirectTilStart path={'/om-deg'} component={OmDeg} />
-        <Route path={'/'} component={Forside} />
+        <Route path={'/barnetilsyn/om-deg'} component={OmDeg} />
+        <Route path={'/barnetilsyn'} component={Forside} />
       </Switch>
     </>
   );

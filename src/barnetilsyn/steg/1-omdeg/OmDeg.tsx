@@ -15,6 +15,7 @@ import {
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
@@ -28,7 +29,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const søkerFyltUtAlleFelterOgSpørsmål = () => {
     if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
       const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
-        (utenlandsopphold) =>
+        (utenlandsopphold: any) =>
           utenlandsopphold.begrunnelse.verdi === '' ||
           !utenlandsopphold.begrunnelse
       );
