@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Medlemskap from './medlemskap/Medlemskap';
 import Personopplysninger from './personopplysninger/Personopplysninger';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import Sivilstatus from './sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -15,6 +15,8 @@ import {
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+
+  console.log('SØKNAD', søknad);
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {

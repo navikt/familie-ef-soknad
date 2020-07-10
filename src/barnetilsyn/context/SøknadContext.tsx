@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../../mock/initialState.json';
+import { EArbeidssituasjon } from '../../models/steg/aktivitet/aktivitet';
+import { EBosituasjon } from '../../models/steg/bosituasjon';
+import { ESituasjon } from '../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
 import { ISøknad } from '../../models/søknad';
 import {
@@ -17,12 +20,40 @@ import Environment from '../../Environment';
 import { useIntl } from 'react-intl';
 
 // -----------  CONTEXT  -----------
-const initialState: any = {
+const initialState: ISøknad = {
   person: tomPerson,
+  sivilstatus: {},
+  medlemskap: {},
+  bosituasjon: {
+    delerBoligMedAndreVoksne: {
+      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+      svarid: '',
+      label: '',
+      verdi: '',
+    },
+  },
+  aktivitet: {
+    hvaErDinArbeidssituasjon: {
+      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
+  },
+  merOmDinSituasjon: {
+    gjelderDetteDeg: {
+      spørsmålid: ESituasjon.gjelderDetteDeg,
+      svarid: [],
+      label: '',
+      verdi: [],
+    },
+  },
+  dokumentasjonsbehov: [],
+  harBekreftet: false,
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
-  const [søknad, settSøknad] = useState<any>(initialState);
+  const [søknad, settSøknad] = useState<ISøknad>(initialState);
   const [
     mellomlagretOvergangsstønad,
     settMellomlagretOvergangsstønad,

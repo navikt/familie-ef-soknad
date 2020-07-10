@@ -13,7 +13,7 @@ import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
-import { hentPath, RouteEnum, Routes } from './routes/Routes';
+import { hentPath, RouteEnum, Routes } from './routing/Routes';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 const BlockContent = require('@sanity/block-content-to-react');
 
