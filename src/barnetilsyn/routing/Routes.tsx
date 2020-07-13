@@ -12,13 +12,25 @@ export enum RouteEnum {
 
 export const Routes: IRoute[] = [
   { path: '/barnetilsyn', label: 'Forside', route: RouteEnum.Forside },
-  { path: 'barnetilsyn/om-deg', label: 'Om deg', route: RouteEnum.OmDeg },
+  { path: '/barnetilsyn/om-deg', label: 'Om deg', route: RouteEnum.OmDeg },
   {
-    path: 'barnetilsyn/bosituasjon',
+    path: '/barnetilsyn/bosituasjon',
     label: 'Bosituasjonen din',
     route: RouteEnum.BosituasjonenDin,
   },
 ];
+
+export const hentForrigeRoute = (routes: IRoute[], currentPath: string) => {
+  const routeIndex = routes.findIndex((route) => route.path === currentPath);
+  const forrigeRoute = routes[routeIndex - 1];
+  return forrigeRoute;
+};
+
+export const hentNesteRoute = (routes: IRoute[], currentPath: string) => {
+  const routeIndex = routes.findIndex((route) => route.path === currentPath);
+  const nesteRoute = routes[routeIndex + 1];
+  return nesteRoute;
+};
 
 export const hentPath = (routes: IRoute[], route: RouteEnum) => {
   return routes.find((r) => r.route === route)?.path;
