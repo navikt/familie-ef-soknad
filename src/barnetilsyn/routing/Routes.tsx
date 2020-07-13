@@ -8,6 +8,7 @@ export enum RouteEnum {
   Forside = 'Forside',
   OmDeg = 'OmDeg',
   BosituasjonenDin = 'BosituasjonenDin',
+  BarnaDine = 'BarnaDine',
 }
 
 export const Routes: IRoute[] = [
@@ -17,6 +18,16 @@ export const Routes: IRoute[] = [
     path: '/barnetilsyn/bosituasjon',
     label: 'Bosituasjonen din',
     route: RouteEnum.BosituasjonenDin,
+  },
+  {
+    path: '/barnetilsyn/barn',
+    label: 'Barna dine',
+    route: RouteEnum.BarnaDine,
+  },
+  {
+    path: '/barnetilsyn/neste',
+    label: 'Barna dine',
+    route: RouteEnum.BarnaDine,
   },
 ];
 

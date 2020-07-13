@@ -1,6 +1,11 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'barnetilsyn.hjelpetekst-åpne.hvilke':
+      'Hvilke barn kan du få stønad til barnetilsyn for?',
+    'barnetilsyn.hjelpetekst-innhold.hvilke':
+      'Du kan få stønad til barnetilsyn for blabla',
+
     'skjema.hei': 'Hei, [0]!',
     'skjema.knapp.start': 'Start',
     'skjema.beskrivelse':
