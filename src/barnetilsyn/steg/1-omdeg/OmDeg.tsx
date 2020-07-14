@@ -14,7 +14,7 @@ import {
 } from '../../../helpers/omdeg';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const { søknad, mellomlagreOvergangsstønad, settSøknad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {

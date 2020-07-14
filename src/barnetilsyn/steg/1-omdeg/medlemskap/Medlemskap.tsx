@@ -14,7 +14,7 @@ import {
   IMedlemskap,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
+import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 

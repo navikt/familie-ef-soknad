@@ -12,7 +12,7 @@ import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { ISvar } from '../../../models/spørsmålogsvar';
-import { useSøknad } from '../../../context/SøknadContext';
+import { useSøknad } from '../../context/SøknadContext';
 import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {

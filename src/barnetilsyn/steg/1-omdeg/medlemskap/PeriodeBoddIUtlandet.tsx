@@ -10,7 +10,7 @@ import Utenlandsopphold from './Utenlandsopphold';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { useSøknad } from '../../../../context/SøknadContext';
+import { useSøknad } from '../../../context/SøknadContext';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
 const PeriodeBoddIUtlandet: FC = () => {
