@@ -8,7 +8,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
+import { useSøknad } from '../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
@@ -22,7 +22,10 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  const barna = søknad.person.barn;
+  const barna = søknad.person.barn.map((barn) => ({
+    ...barn,
+    medISøknad: false,
+  }));
 
   return (
     <>
@@ -71,6 +74,7 @@ const BarnaDine: React.FC = () => {
                       }
                 }
                 lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                medISøknad={barn.medISøknad ? barn.medISøknad : false}
               />
             ))}
             <div className="barnekort">

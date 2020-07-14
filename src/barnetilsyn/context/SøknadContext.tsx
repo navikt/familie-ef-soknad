@@ -5,7 +5,7 @@ import { EArbeidssituasjon } from '../../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../../models/steg/bosituasjon';
 import { ESituasjon } from '../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
-import { ISøknad } from '../../models/søknad';
+import { ISøknad } from '../models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -14,8 +14,8 @@ import {
   hentMellomlagretOvergangsstønadFraDokument,
   mellomlagreOvergangsstønadTilDokument,
   nullstillMellomlagretOvergangsstønadTilDokument,
-} from '../../utils/søknad';
-import { IMellomlagretOvergangsstønad } from '../../models/mellomlagretSøknad';
+} from '../utils/søknad';
+import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 import Environment from '../../Environment';
 import { useIntl } from 'react-intl';
 
@@ -32,14 +32,6 @@ const initialState: ISøknad = {
       verdi: '',
     },
   },
-  aktivitet: {
-    hvaErDinArbeidssituasjon: {
-      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-      svarid: [],
-      label: '',
-      verdi: [],
-    },
-  },
   merOmDinSituasjon: {
     gjelderDetteDeg: {
       spørsmålid: ESituasjon.gjelderDetteDeg,
@@ -52,7 +44,7 @@ const initialState: ISøknad = {
   harBekreftet: false,
 };
 
-const [SøknadProvider, useSøknad] = createUseContext(() => {
+const [BarnetilsynSøknadProvider, useSøknad] = createUseContext(() => {
   const [søknad, settSøknad] = useState<ISøknad>(initialState);
   const [
     mellomlagretOvergangsstønad,
@@ -128,4 +120,4 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   };
 });
 
-export { SøknadProvider, useSøknad };
+export { BarnetilsynSøknadProvider, useSøknad };
