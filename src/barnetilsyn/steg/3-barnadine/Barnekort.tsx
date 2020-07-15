@@ -21,7 +21,8 @@ interface Props {
   lagtTil: boolean;
   født: IBooleanFelt;
   id: string;
-  medISøknad: boolean;
+  medISøknad?: boolean;
+  toggleMedISøknadBarn: Function;
 }
 
 const Barnekort: React.FC<Props> = ({
@@ -34,6 +35,7 @@ const Barnekort: React.FC<Props> = ({
   født,
   fødselsdato,
   medISøknad,
+  toggleMedISøknadBarn,
 }) => {
   const intl = useIntl();
   const { søknad, settSøknad } = useSøknad();
@@ -68,13 +70,6 @@ const Barnekort: React.FC<Props> = ({
     const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
 
     settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
-  };
-
-  const toggleMedISøknadBarn = (id: string) => {
-    const detteBarnet = søknad.person.barn.find((b) => b.id === id);
-    const barnMedSøknad = detteBarnet ? detteBarnet.medISøknad : null;
-
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
   };
 
   return (
@@ -124,9 +119,14 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>{bosted}</Normaltekst>
           </div>
           {medISøknad ? (
-            <h3>Med</h3>
+            <h3 onClick={() => toggleMedISøknadBarn(id)}>Med</h3>
           ) : (
-            <Knapp className="legg-til-i-søknad-knapp">Legg til i søknad</Knapp>
+            <Knapp
+              className="legg-til-i-søknad-knapp"
+              onClick={() => toggleMedISøknadBarn(id)}
+            >
+              Legg til i søknad
+            </Knapp>
           )}
           {lagtTil ? (
             <div

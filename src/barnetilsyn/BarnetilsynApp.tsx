@@ -17,13 +17,13 @@ import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
 import mockToggles from '../mock/mockToggles.json';
 import { settLabelOgVerdi } from '../utils/søknad';
 import { standardLabelsBarn } from '../helpers/labels';
-import { useSøknad } from '../context/SøknadContext';
+import { useSøknad } from './context/SøknadContext';
 import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 
-const App = () => {
+const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
@@ -57,7 +57,8 @@ const App = () => {
       return barnMedLabel;
     });
 
-    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+    settSøknad &&
+      settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
   };
 
   const fetchToggles = () => {
@@ -113,4 +114,4 @@ const App = () => {
   }
 };
 
-export default App;
+export default BarnetilsynApp;
