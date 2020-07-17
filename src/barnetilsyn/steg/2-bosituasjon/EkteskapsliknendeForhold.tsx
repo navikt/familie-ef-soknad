@@ -31,8 +31,6 @@ const EkteskapsliknendeForhold: FC<Props> = ({
       });
   };
 
-  console.log('SAMBOERDETALJER', samboerDetaljer);
-
   return (
     <SeksjonGruppe>
       <OmSamboerenDin

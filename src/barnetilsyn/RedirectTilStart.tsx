@@ -21,7 +21,11 @@ const RedirectTilStart: React.FC<RedirectTilStartProps> = ({
     <Route
       {...rest}
       render={(props) =>
-        !søknad.harBekreftet ? <Redirect to={'/'} /> : <Component {...props} />
+        !søknad.harBekreftet ? (
+          <Redirect to={'/barnetilsyn'} />
+        ) : (
+          <Component {...props} />
+        )
       }
     />
   );

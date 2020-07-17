@@ -21,10 +21,6 @@ const BarnaDine: React.FC = () => {
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
 
-  useEffect(() => {
-    console.log(søknad.person.barn);
-  }, [søknad]);
-
   const [åpenModal, settÅpenModal] = useState(false);
 
   const barna = søknad.person.barn.map((barn: IBarn) => ({
@@ -35,22 +31,14 @@ const BarnaDine: React.FC = () => {
   const toggleMedISøknadBarn = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
 
-    console.log('førBarneListe', søknad.person.barn);
-
-    console.log('detteBarnet', detteBarnet);
-
     if (!detteBarnet) return null;
 
     const nyttBarn = { ...detteBarnet, medISøknad: !detteBarnet.medISøknad };
-
-    console.log('nyttBarn', nyttBarn);
 
     const nyBarneListe = [
       ...søknad.person.barn.filter((b: IBarn) => b.id !== id),
       nyttBarn,
     ];
-
-    console.log('nyBarneListe', nyBarneListe);
 
     settSøknad({
       ...søknad,

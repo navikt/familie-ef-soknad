@@ -39,8 +39,6 @@ const Bosituasjon: FC = () => {
     søknad.bosituasjon
   );
 
-  console.log('BOSITUASJON', bosituasjon);
-
   useEffect(() => {
     settSøknad({ ...søknad, bosituasjon: bosituasjon });
     // eslint-disable-next-line

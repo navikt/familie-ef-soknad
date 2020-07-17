@@ -67,20 +67,10 @@ const Side: React.FC<ISide> = ({
 
         {skalViseKnapper && (
           <StyledNavigeringsWrapper
-            classname={false ? 'side__knapper treKnapper' : 'side__knapper '}
+            classname={
+              erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
+            }
           >
-            {}
-            {[...Array(9).keys()].map((i: number) => {
-              return (
-                <KnappBase
-                  className={'tilbake'}
-                  type={'standard'}
-                  onClick={() => history.push(Routes[i + 1].path)}
-                >
-                  Side {i + 1}
-                </KnappBase>
-              );
-            })}
             <KnappBase
               className={'tilbake'}
               type={'standard'}
