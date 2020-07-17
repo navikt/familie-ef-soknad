@@ -119,13 +119,25 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>{bosted}</Normaltekst>
           </div>
           {medISøknad ? (
-            <h3 onClick={() => toggleMedISøknadBarn(id)}>Med</h3>
+            <>
+              <div className="med-i-søknaden-badge">
+                <Normaltekst>Med i søknaden</Normaltekst>
+              </div>
+              <div
+                className="barnekort__endre-barnekort"
+                onClick={() => toggleMedISøknadBarn(id)}
+              >
+                <Normaltekst>
+                  <span className="lenke">Fjern fra søknad</span>
+                </Normaltekst>
+              </div>
+            </>
           ) : (
             <Knapp
               className="legg-til-i-søknad-knapp"
               onClick={() => toggleMedISøknadBarn(id)}
             >
-              Legg til i søknad
+              Søk om stønad til barnetilsyn
             </Knapp>
           )}
           {lagtTil ? (

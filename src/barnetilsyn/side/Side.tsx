@@ -43,11 +43,6 @@ const Side: React.FC<ISide> = ({
   const nesteRoute = hentNesteRoute(Routes, location.pathname);
   const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
 
-  console.log('NESTE ROUTE', nesteRoute);
-  console.log('FORRIGE ROUTE', forrigeRoute);
-
-  console.log('ROUTES', routes);
-
   return (
     <div className={'søknadsdialog'}>
       <Banner tekstid={'banner.tittel'} />
@@ -82,7 +77,7 @@ const Side: React.FC<ISide> = ({
                   type={'standard'}
                   onClick={() => history.push(Routes[i + 1].path)}
                 >
-                  Sidde {i + 1}
+                  Side {i + 1}
                 </KnappBase>
               );
             })}
