@@ -15,6 +15,8 @@ import LocaleTekst from '../language/LocaleTekst';
 import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+
 const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -87,14 +89,25 @@ const Forside: React.FC<any> = ({ intl }) => {
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
               return (
-                <div className="seksjon" key={index}>
-                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
-                  <BlockContent
-                    className="typo-normal"
-                    blocks={blokk.innhold}
-                    serializers={{ types: { block: BlockRenderer } }}
-                  />
-                </div>
+                blokk._type === "dokumentasjonskrav" ?
+                  <div className="seksjon" key={index}>
+                    <Ekspanderbartpanel tittel={blokk.tittel}>
+                      <BlockContent
+                        className="typo-normal"
+                        blocks={blokk.innhold}
+                        serializers={{ types: { block: BlockRenderer } }}
+                      />
+                    </Ekspanderbartpanel>
+                  </div>
+                  :
+                  <div className="seksjon" key={index}>
+                    {blokk.tittel && <Element>{blokk.tittel}</Element>}
+                    <BlockContent
+                      className="typo-normal"
+                      blocks={blokk.innhold}
+                      serializers={{ types: { block: BlockRenderer } }}
+                    />
+                  </div>
               );
             })}
 
