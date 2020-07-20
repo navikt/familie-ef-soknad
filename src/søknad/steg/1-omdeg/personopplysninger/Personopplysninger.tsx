@@ -10,11 +10,12 @@ import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
+import { ESøknad } from '../../../../models/søknad';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
@@ -24,21 +25,39 @@ const Personopplysninger: React.FC = () => {
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
 
-  const settPersonopplysningerFelt = (
+  const settBorSøkerPåRegistrertAdresse = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar
   ) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
 
-    settSøknad({
-      ...søknad,
-      søkerBorPåRegistrertAdresse: {
-        spørsmålid: spørsmål.søknadid,
-        svarid: valgtSvar.id,
-        label: spørsmål.søknadid,
-        verdi: svar,
-      },
-    });
+    if (
+      spørsmål.søknadid === ESøknad.søkerBorPåRegistrertAdresse &&
+      valgtSvar.id === ESvar.NEI
+    ) {
+      settSøknad({
+        ...søknad,
+        søkerBorPåRegistrertAdresse: {
+          spørsmålid: spørsmål.søknadid,
+          svarid: valgtSvar.id,
+          label: spørsmål.søknadid,
+          verdi: svar,
+        },
+        sivilstatus: {},
+        medlemskap: {},
+        person: { ...person, søker: { ...person.søker, kontakttelefon: '' } },
+      });
+    } else {
+      settSøknad({
+        ...søknad,
+        søkerBorPåRegistrertAdresse: {
+          spørsmålid: spørsmål.søknadid,
+          svarid: valgtSvar.id,
+          label: spørsmål.søknadid,
+          verdi: svar,
+        },
+      });
+    }
   };
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
@@ -110,7 +129,7 @@ const Personopplysninger: React.FC = () => {
               ? søkerBorPåRegistrertAdresse.verdi
               : undefined
           }
-          onChange={settPersonopplysningerFelt}
+          onChange={settBorSøkerPåRegistrertAdresse}
         />
 
         {søkerBorPåRegistrertAdresse?.verdi === false && (
