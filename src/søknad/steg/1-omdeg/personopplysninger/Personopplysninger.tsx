@@ -21,8 +21,12 @@ const Personopplysninger: React.FC = () => {
   const { person } = usePersonContext();
   const { søker } = person;
   const { søknad, settSøknad } = useSøknad();
+  const { kontakttelefon } = søknad.person.søker;
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
+  const [telefonnummer, settTelefonnummer] = useState<string>(
+    kontakttelefon ? kontakttelefon : ''
+  );
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
@@ -43,12 +47,21 @@ const Personopplysninger: React.FC = () => {
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
+    settTelefonnummer(telefonnr);
     if (telefonnr.length >= 8 && /^[+\d\s]+$/.test(telefonnr)) {
       settSøknad({
         ...søknad,
         person: {
           ...søknad.person,
           søker: { ...søker, kontakttelefon: telefonnr },
+        },
+      });
+    } else {
+      settSøknad({
+        ...søknad,
+        person: {
+          ...søknad.person,
+          søker: { ...søker, kontakttelefon: '' },
         },
       });
     }
@@ -134,6 +147,7 @@ const Personopplysninger: React.FC = () => {
                   })
                 : undefined
             }
+            value={telefonnummer}
           />
         </>
       )}
