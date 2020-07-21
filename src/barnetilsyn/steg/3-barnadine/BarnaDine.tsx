@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Barnekort from './Barnekort';
 import LeggTilBarn from './LeggTilBarn';
 import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
@@ -23,10 +23,10 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  const barna = søknad.person.barn.map((barn: IBarn) => ({
+  /*  const barna = søknad.person.barn.map((barn: IBarn) => ({
     ...barn,
     medISøknad: false,
-  }));
+  }));*/
 
   const toggleMedISøknadBarn = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);

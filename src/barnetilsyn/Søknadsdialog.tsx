@@ -4,7 +4,6 @@ import Forside from './Forside';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
-import RedirectTilStart from './RedirectTilStart';
 
 const Søknadsdialog: FC = () => {
   return (

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../../mock/initialState.json';
-import { EArbeidssituasjon } from '../../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../../models/steg/bosituasjon';
 import { ESituasjon } from '../../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
