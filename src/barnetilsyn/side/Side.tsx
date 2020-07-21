@@ -45,7 +45,7 @@ const Side: React.FC<ISide> = ({
 
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={'banner.tittel'} />
+      <Banner tekstid={'barnetilsyn.sidetittel'} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}
