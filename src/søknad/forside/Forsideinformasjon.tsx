@@ -55,6 +55,16 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
       );
     }
 
+    if (props.node.markDefs.length > 0) {
+      return props.node.markDefs.map((mark: any, index: number) => {
+        let { _type = '' } = mark;
+        if (_type === 'link') {
+          return <span className='lenke-tekst' key={index}>{props.children}</span>
+        }
+        return props.children
+      })
+    }
+
     if (style === 'blockquote') {
       return <blockquote>- {props.children}</blockquote>;
     }
