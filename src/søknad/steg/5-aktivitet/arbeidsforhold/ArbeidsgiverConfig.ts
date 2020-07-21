@@ -14,6 +14,7 @@ const DokumentasjonLærling: IDokumentasjon = {
   id: AktivitetDokumentasjon.LÆRLING,
   spørsmålid: EArbeidsgiver.ansettelsesforhold,
   svarid: EStilling.lærling,
+  label: '',
   tittel: 'dokumentasjon.lærling.tittel',
   harSendtInn: false,
 };
