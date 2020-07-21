@@ -114,24 +114,24 @@ const Barnekort: React.FC<Props> = ({
             <Normaltekst>{bosted}</Normaltekst>
           </div>
           {lagtTil ? (
-            <div
-              className="barnekort__endre-barnekort"
-              onClick={() => settÅpenEndreModal(true)}
-            >
+            <div className="barnekort__endre-barnekort">
               <Normaltekst>
-                <span className="lenke">
+                <span 
+                  className="lenke" 
+                  onClick={() => settÅpenEndreModal(true)}
+                >
                   {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
                 </span>
               </Normaltekst>
             </div>
           ) : null}
           {lagtTil ? (
-            <div
-              className="barnekort__endre-barnekort"
-              onClick={() => fjernFraSøknad(id)}
-            >
+            <div className="barnekort__endre-barnekort">
               <Normaltekst>
-                <span className="lenke">
+                <span 
+                  className="lenke" 
+                  onClick={() => fjernFraSøknad(id)}
+                >
                   {intl.formatMessage({ id: 'barnekort.fjern' })}
                 </span>
               </Normaltekst>
