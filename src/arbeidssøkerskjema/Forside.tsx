@@ -16,6 +16,7 @@ import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import { useSkjema } from './SkjemaContext';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -23,13 +24,19 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
   const history = useHistory();
+  const { skjema, settSkjema } = useSkjema();
   const [forside, settForside] = useState<any>({});
   // eslint-disable-next-line
   const [error, settError] = useState<boolean>(false);
   // eslint-disable-next-line
   const [fetching, settFetching] = useState<boolean>(false);
 
-  const [bekreftet, settBekreftet] = useState<boolean>(false);
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSkjema({
+      ...skjema,
+      harBekreftet: bekreftelse,
+    });
+  };
 
   useEffect(() => {
     const fetchData = () => {
@@ -47,7 +54,7 @@ const Forside: React.FC<any> = ({ intl }) => {
   }, []);
 
   const onChange = () => {
-    settBekreftet(!bekreftet);
+    settBekreftelse(!skjema.harBekreftet);
   };
 
   const BlockRenderer = (props: any) => {
@@ -88,26 +95,25 @@ const Forside: React.FC<any> = ({ intl }) => {
           <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
-              return (
-                blokk._type === "dokumentasjonskrav" ?
-                  <div className="seksjon" key={index}>
-                    <Ekspanderbartpanel tittel={blokk.tittel}>
-                      <BlockContent
-                        className="typo-normal"
-                        blocks={blokk.innhold}
-                        serializers={{ types: { block: BlockRenderer } }}
-                      />
-                    </Ekspanderbartpanel>
-                  </div>
-                  :
-                  <div className="seksjon" key={index}>
-                    {blokk.tittel && <Element>{blokk.tittel}</Element>}
+              return blokk._type === 'dokumentasjonskrav' ? (
+                <div className="seksjon" key={index}>
+                  <Ekspanderbartpanel tittel={blokk.tittel}>
                     <BlockContent
                       className="typo-normal"
                       blocks={blokk.innhold}
                       serializers={{ types: { block: BlockRenderer } }}
                     />
-                  </div>
+                  </Ekspanderbartpanel>
+                </div>
+              ) : (
+                <div className="seksjon" key={index}>
+                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
+                  <BlockContent
+                    className="typo-normal"
+                    blocks={blokk.innhold}
+                    serializers={{ types: { block: BlockRenderer } }}
+                  />
+                </div>
               );
             })}
 
@@ -122,7 +128,7 @@ const Forside: React.FC<any> = ({ intl }) => {
                 </Normaltekst>
                 <BekreftCheckboksPanel
                   onChange={(e) => onChange()}
-                  checked={bekreftet ? true : false}
+                  checked={skjema.harBekreftet}
                   label={hentBeskjedMedNavn(
                     person.søker.forkortetNavn,
                     intl.formatMessage({ id: 'side.bekreftelse' })
@@ -132,7 +138,7 @@ const Forside: React.FC<any> = ({ intl }) => {
             </div>
           )}
 
-          {bekreftet ? (
+          {skjema.harBekreftet ? (
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
                 onClick={() =>
