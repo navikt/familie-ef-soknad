@@ -20,22 +20,22 @@ export const hentPersonData = () => {
 
 export const hentMellomlagretOvergangsstønadFraDokument = () => {
   return axios
-    .get(`${Environment().mellomlagerUrl}`, {
+    .get(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, {
       withCredentials: true,
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
       },
     })
-    .then((response: { data?: IMellomlagretOvergangsstønad }) => {
+    .then((response: { data?: IMellomlagretBarnetilsynSøknad }) => {
       return response.data;
     });
 };
 
 export const mellomlagreOvergangsstønadTilDokument = (
-  søknad: IMellomlagretOvergangsstønad
+  søknad: IMellomlagretBarnetilsynSøknad
 ) => {
-  return axios.post(`${Environment().mellomlagerUrl}`, søknad, {
+  return axios.post(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, søknad, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',
@@ -45,7 +45,7 @@ export const mellomlagreOvergangsstønadTilDokument = (
 };
 
 export const nullstillMellomlagretOvergangsstønadTilDokument = (): Promise<any> => {
-  return axios.delete(`${Environment().mellomlagerUrl}`, {
+  return axios.delete(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',

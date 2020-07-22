@@ -19,7 +19,7 @@ const Environment = (): EnvironmentProps => {
       dokumentUrl:
         'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl:
-        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/overgangsstonad',
+        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
@@ -32,7 +32,7 @@ const Environment = (): EnvironmentProps => {
       dokumentUrl:
         'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl:
-        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/overgangsstonad',
+        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
@@ -43,7 +43,7 @@ const Environment = (): EnvironmentProps => {
       apiUrl: 'http://localhost:8091',
       loginService: `http://localhost:8091/local/cookie?subject=21057822284`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
-      mellomlagerUrl: `http://localhost:8082/api/soknad/overgangsstonad`,
+      mellomlagerUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
     };
