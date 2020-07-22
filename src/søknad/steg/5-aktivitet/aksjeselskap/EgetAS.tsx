@@ -13,6 +13,7 @@ import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
 import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -68,9 +69,9 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
+            <LeggTilKnapp onClick={() => leggTilAksjeselskap()}>
               <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}

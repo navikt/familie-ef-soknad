@@ -20,6 +20,7 @@ import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';
 import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { erTidligereUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -131,9 +132,9 @@ const TidligereUtdanning: React.FC<Props> = ({
                 </Element>
               </FeltGruppe>
               <FeltGruppe>
-                <KnappBase type={'standard'} onClick={() => leggTilUtdanning()}>
+                <LeggTilKnapp onClick={() => leggTilUtdanning()}>
                   <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
-                </KnappBase>
+                </LeggTilKnapp>
               </FeltGruppe>
             </KomponentGruppe>
           )}

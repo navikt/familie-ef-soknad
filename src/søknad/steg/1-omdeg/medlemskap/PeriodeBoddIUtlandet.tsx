@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
-import KnappBase from 'nav-frontend-knapper';
+import KnappBase, { Knapp } from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
@@ -12,6 +12,11 @@ import { hentUid } from '../../../../utils/uuid';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { useSøknad } from '../../../../context/SøknadContext';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
+
+import add from '../../../../assets/add.svg';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+
+const addIkon = () => (add);
 
 const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknad();
@@ -86,12 +91,11 @@ const PeriodeBoddIUtlandet: FC = () => {
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase
-              type={'standard'}
+            <LeggTilKnapp 
               onClick={() => leggTilUtenlandsperiode()}
             >
               <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}
