@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { hentTekst } from '../utils/søknad';
 import { formatDate, strengTilDato } from '../utils/dato';
 import { IntlShape, useIntl } from 'react-intl';
@@ -22,7 +22,7 @@ export const visListeAvLabelOgSvar = (
 
     return (
       <div className="listeelement" key={index}>
-        <Element>{tekst}</Element>
+        <Ingress>{tekst}</Ingress>
         {VisLabelOgSvar(el)}
         {index < liste.length - 1 && <hr />}
       </div>

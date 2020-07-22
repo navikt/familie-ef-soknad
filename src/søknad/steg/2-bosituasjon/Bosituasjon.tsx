@@ -22,6 +22,7 @@ import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
 import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
 import OmTidligereSamboer from './OmTidligereSamboer';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -97,14 +98,16 @@ const Bosituasjon: FC = () => {
         />
         {valgtSvar && valgtSvar.alert_tekstid && (
           <FeltGruppe>
-            <AlertStripeDokumentasjon>
-              {bosituasjon.delerBoligMedAndreVoksne.svarid ===
-              ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+            {bosituasjon.delerBoligMedAndreVoksne.svarid ===
+            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+              <AlertStripeDokumentasjon>
                 <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
-              ) : (
+              </AlertStripeDokumentasjon>
+            ) : (
+              <AlertStripe type={'advarsel'} form={'inline'}>
                 <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-              )}
-            </AlertStripeDokumentasjon>
+              </AlertStripe>
+            )}
           </FeltGruppe>
         )}
       </SeksjonGruppe>
