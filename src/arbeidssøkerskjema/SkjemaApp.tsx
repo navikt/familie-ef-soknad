@@ -15,6 +15,7 @@ import Spørsmål from './steg/1-Spørsmål';
 import Oppsummering from './steg/2-Oppsummering';
 import Kvittering from './steg/3-Kvittering';
 import { SkjemaProvider } from './SkjemaContext';
+import RedirectArbeidssoker from './routes/RedirectArbeidssoker';
 
 const App = () => {
   const [toggles, settToggles] = useState<Toggles>({});
@@ -69,15 +70,18 @@ const App = () => {
               <Route exact path={'/arbeidssoker'}>
                 {toggles[ToggleName.vis_innsending] && <Forside />}
               </Route>
-              <Route path={'/arbeidssoker/sporsmal'}>
-                <Spørsmål />
-              </Route>
-              <Route path={'/arbeidssoker/oppsummering'}>
-                <Oppsummering />
-              </Route>
-              <Route path={'/arbeidssoker/kvittering'}>
-                <Kvittering />
-              </Route>
+              <RedirectArbeidssoker
+                path={'/arbeidssoker/sporsmal'}
+                component={Spørsmål}
+              />
+              <RedirectArbeidssoker
+                path={'/arbeidssoker/oppsummering'}
+                component={Oppsummering}
+              />
+              <RedirectArbeidssoker
+                path={'/arbeidssoker/kvittering'}
+                component={Kvittering}
+              />
             </Switch>
           </SkjemaProvider>
         </>
