@@ -1,21 +1,21 @@
 import { useState } from 'react';
 import createUseContext from 'constate';
-import tomPerson from '../../mock/initialState.json';
-import { EBosituasjon } from '../../models/steg/bosituasjon';
-import { ESituasjon } from '../../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
-import { ISøknad } from '../models/søknad';
+import tomPerson from '../mock/initialState.json';
+import { EBosituasjon } from '../models/steg/bosituasjon';
+import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
+import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
-} from '../../helpers/steg/dokumentasjon';
+} from '../helpers/steg/dokumentasjon';
 import {
   hentMellomlagretOvergangsstønadFraDokument,
   mellomlagreOvergangsstønadTilDokument,
   nullstillMellomlagretOvergangsstønadTilDokument,
-} from '../utils/søknad';
-import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
-import Environment from '../../Environment';
+} from './utils/søknad';
+import { IMellomlagretOvergangsstønad } from './models/mellomlagretSøknad';
+import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 
 // -----------  CONTEXT  -----------

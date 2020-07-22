@@ -4,7 +4,7 @@ import Personopplysninger from './personopplysninger/Personopplysninger';
 import Side from '../../side/Side';
 import Sivilstatus from './sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
-import { useSøknad } from '../../context/SøknadContext';
+import { useSøknad } from '../../BarnetilsynContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';

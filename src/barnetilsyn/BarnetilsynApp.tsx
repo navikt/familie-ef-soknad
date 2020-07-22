@@ -17,7 +17,7 @@ import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
 import mockToggles from '../mock/mockToggles.json';
 import { settLabelOgVerdi } from '../utils/søknad';
 import { standardLabelsBarn } from '../helpers/labels';
-import { useSøknad } from './context/SøknadContext';
+import { useSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';

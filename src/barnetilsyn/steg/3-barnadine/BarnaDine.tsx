@@ -8,7 +8,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../context/SøknadContext';
+import { useSøknad } from '../../BarnetilsynContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';

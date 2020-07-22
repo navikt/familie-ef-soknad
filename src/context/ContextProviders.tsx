@@ -2,7 +2,7 @@ import React from 'react';
 import { PersonProvider } from './PersonContext';
 import { SøknadProvider } from './SøknadContext';
 import { TogglesProvider } from './TogglesContext';
-import { BarnetilsynSøknadProvider } from '../barnetilsyn/context/SøknadContext';
+import { BarnetilsynSøknadProvider } from '../barnetilsyn/BarnetilsynContext';
 
 const ContextProviders: React.FC = ({ children }) => {
   return (

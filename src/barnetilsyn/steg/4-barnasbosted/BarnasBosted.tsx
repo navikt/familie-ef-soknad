@@ -4,10 +4,10 @@ import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
 import Side from '../../side/Side';
+import { useSøknad } from '../../BarnetilsynContext';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;

@@ -5,7 +5,6 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IForelder } from '../../../models/forelder';
@@ -18,6 +17,7 @@ import {
 import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import { skalBarnetBoHosSøker } from './ForeldreConfig';
 
 interface Props {
   barn: IBarn;

@@ -9,7 +9,7 @@ import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { useSøknad } from '../../context/SøknadContext';
+import { useSøknad } from '../../BarnetilsynContext';
 import {
   ESøkerDelerBolig,
   IBosituasjon,

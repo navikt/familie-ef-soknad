@@ -13,7 +13,7 @@ import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
-import { useSøknad } from '../../../context/SøknadContext';
+import { useSøknad } from '../../../BarnetilsynContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
 
 const Personopplysninger: React.FC = () => {

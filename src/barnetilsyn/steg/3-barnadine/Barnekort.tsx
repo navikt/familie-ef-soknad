@@ -8,7 +8,7 @@ import { useIntl } from 'react-intl';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
-import { useSøknad } from '../../context/SøknadContext';
+import { useSøknad } from '../../BarnetilsynContext';
 import { hentTekst } from '../../../utils/søknad';
 import { Knapp } from 'nav-frontend-knapper';
 

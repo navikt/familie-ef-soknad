@@ -19,7 +19,7 @@ import {
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import { useSøknad } from '../../../context/SøknadContext';
+import { useSøknad } from '../../../BarnetilsynContext';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { datoTilStreng } from '../../../../utils/dato';
 
