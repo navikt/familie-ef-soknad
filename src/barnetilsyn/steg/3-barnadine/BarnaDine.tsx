@@ -8,15 +8,19 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../BarnetilsynContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { IBarn } from '../../models/barn';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, mellomlagreOvergangsstønad } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    mellomlagreOvergangsstønad,
+  } = useBarnetilsynSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;

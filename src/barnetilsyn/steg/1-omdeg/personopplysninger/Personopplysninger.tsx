@@ -13,14 +13,14 @@ import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
-import { useSøknad } from '../../../BarnetilsynContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
+import { useBarnetilsynSøknad } from '../../../BarnetilsynContext';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const { søker } = person;
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
 

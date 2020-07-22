@@ -8,12 +8,12 @@ import { barnetFødt } from './BarneConfig';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { strengTilDato } from '../../../utils/dato';
 
 import { IBarn } from '../../../models/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Props {
   settÅpenModal: Function;
@@ -22,7 +22,11 @@ interface Props {
 
 const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useBarnetilsynSøknad();
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');

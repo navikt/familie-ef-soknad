@@ -6,7 +6,6 @@ import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { IForelder } from '../../../models/forelder';
 import { IBarn } from '../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -18,6 +17,7 @@ import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { skalBarnetBoHosSøker } from './ForeldreConfig';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Props {
   barn: IBarn;
@@ -31,7 +31,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   settForelder,
 }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
+  const { settDokumentasjonsbehov } = useBarnetilsynSøknad();
 
   const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settForelder({

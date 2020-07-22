@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
 import Side from '../../side/Side';
-import { useSøknad } from '../../BarnetilsynContext';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -18,9 +18,8 @@ const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
-  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useBarnetilsynSøknad();
   const barna = søknad.person.barn;
-  console.log(barna);
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 

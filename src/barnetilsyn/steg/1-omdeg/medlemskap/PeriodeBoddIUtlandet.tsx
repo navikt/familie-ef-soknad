@@ -10,11 +10,11 @@ import Utenlandsopphold from './Utenlandsopphold';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { useSøknad } from '../../../BarnetilsynContext';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
+import { useBarnetilsynSøknad } from '../../../BarnetilsynContext';
 
 const PeriodeBoddIUtlandet: FC = () => {
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const { medlemskap } = søknad;
   const intl = useIntl();
   const tomtUtenlandsopphold: IUtenlandsopphold = {

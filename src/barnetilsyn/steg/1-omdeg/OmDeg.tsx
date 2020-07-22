@@ -4,7 +4,6 @@ import Personopplysninger from './personopplysninger/Personopplysninger';
 import Side from '../../side/Side';
 import Sivilstatus from './sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
-import { useSøknad } from '../../BarnetilsynContext';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
@@ -12,9 +11,10 @@ import {
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+  const { søknad, mellomlagreOvergangsstønad } = useBarnetilsynSøknad();
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {

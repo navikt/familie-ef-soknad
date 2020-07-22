@@ -11,7 +11,6 @@ import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
 
 import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
@@ -24,6 +23,7 @@ import {
 import { IBarn } from '../../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import { useBarnetilsynSøknad } from '../../../BarnetilsynContext';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -33,7 +33,7 @@ interface Props {
 
 const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
+  const { settDokumentasjonsbehov } = useBarnetilsynSøknad();
 
   const settBostedOgSamværFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {

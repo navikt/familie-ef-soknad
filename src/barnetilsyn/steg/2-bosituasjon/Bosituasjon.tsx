@@ -9,7 +9,6 @@ import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { useSøknad } from '../../BarnetilsynContext';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
@@ -23,6 +22,7 @@ import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
 import OmTidligereSamboer from './OmTidligereSamboer';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -31,7 +31,7 @@ const Bosituasjon: FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
-  } = useSøknad();
+  } = useBarnetilsynSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
