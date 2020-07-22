@@ -14,6 +14,8 @@ import { Routes } from '../../routing/Routes';
 import { useSøknad } from '../../context/SøknadContext';
 import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
+import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+
 const BlockContent = require('@sanity/block-content-to-react');
 
 interface InnholdProps {
@@ -53,6 +55,16 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
       );
     }
 
+    if (props.node.markDefs.length > 0) {
+      return props.node.markDefs.map((mark: any, index: number) => {
+        let { _type = '' } = mark;
+        if (_type === 'link') {
+          return <span className='lenke-tekst' key={index}>{props.children}</span>
+        }
+        return props.children
+      })
+    }
+
     if (style === 'blockquote') {
       return <blockquote>- {props.children}</blockquote>;
     }
@@ -66,14 +78,25 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {
           return (
-            <div className="seksjon" key={index}>
-              {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
-              <BlockContent
-                className="typo-normal"
-                blocks={blokk.innhold}
-                serializers={{ types: { block: BlockRenderer } }}
-              />
-            </div>
+            blokk._type === "dokumentasjonskrav" ?
+              <div className="seksjon" key={index}>
+                <Ekspanderbartpanel tittel={blokk.tittel}>
+                  <BlockContent
+                    className="typo-normal"
+                    blocks={blokk.innhold}
+                    serializers={{ types: { block: BlockRenderer } }}
+                  />
+                </Ekspanderbartpanel>
+              </div>
+              :
+              <div className="seksjon" key={index}>
+                {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
+                <BlockContent
+                  className="typo-normal"
+                  blocks={blokk.innhold}
+                  serializers={{ types: { block: BlockRenderer } }}
+                />
+              </div>
           );
         })}
 
