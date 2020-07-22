@@ -159,6 +159,7 @@ const Personopplysninger: React.FC = () => {
             bredde={'M'}
             onChange={(e) => oppdaterTelefonnr(e)}
             onBlur={(e) => oppdaterFeilmelding(e)}
+            className="inputfelt-tekst"
             feil={
               feilTelefonnr
                 ? intl.formatMessage({

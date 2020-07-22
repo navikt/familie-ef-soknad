@@ -19,6 +19,10 @@ const StyledAlertstripe = styled.div`
     max-width: 37.5rem;
     display: block;
     flex: 1 1;
+
+    .typo-normal {
+      font-size: 18px;
+    }
   }
 `;
 

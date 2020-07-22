@@ -71,6 +71,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <Input
+          className="inputfelt-tekst"
           onChange={(e) => settNavn(e.target.value)}
           value={navn}
           label="Barnets fulle navn, om dette er bestemt"
@@ -95,7 +96,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
 
       {(barnDato || (ident && erGyldigIdent)) && (
         <KomponentGruppe>
-          <Normaltekst>
+          <Normaltekst className='label-normaltekst'>
             {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
           </Normaltekst>
           <div className="radiogruppe-2-svar">
