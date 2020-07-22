@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Arbeidsgiver from './Arbeidsgiver';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';

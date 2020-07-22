@@ -7,7 +7,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import KnappBase from 'nav-frontend-knapper';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';

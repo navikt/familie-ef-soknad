@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { useIntl } from 'react-intl';
 import add from '../../assets/add.svg';
 import { Element } from 'nav-frontend-typografi';
 
@@ -37,8 +36,6 @@ interface Props {
 }
 
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
-  const intl = useIntl();
-
   return (
     <StyledLeggTilKnapp>
       <div className="lenke-knapp" onClick={onClick}>

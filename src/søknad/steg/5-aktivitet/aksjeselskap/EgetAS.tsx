@@ -7,7 +7,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';

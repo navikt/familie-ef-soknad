@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
-import KnappBase, { Knapp } from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
@@ -13,10 +12,7 @@ import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { useSøknad } from '../../../../context/SøknadContext';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
-import add from '../../../../assets/add.svg';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
-
-const addIkon = () => (add);
 
 const PeriodeBoddIUtlandet: FC = () => {
   const { søknad, settSøknad } = useSøknad();
