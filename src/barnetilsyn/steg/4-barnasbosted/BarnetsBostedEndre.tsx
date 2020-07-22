@@ -8,7 +8,6 @@ import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/barn';
 import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
-import { useSøknad } from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import {
@@ -32,6 +31,7 @@ import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import { førsteBokstavStor } from '../../../utils/språk';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Props {
   barn: IBarn;
@@ -50,8 +50,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   sisteBarnUtfylt,
   scrollTilLagtTilBarn,
 }) => {
-  const { settDokumentasjonsbehov } = useSøknad();
-  const { søknad, settSøknad } = useSøknad();
+  const {
+    settDokumentasjonsbehov,
+    søknad,
+    settSøknad,
+  } = useBarnetilsynSøknad();
 
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder ? barn.forelder : { id: hentUid() }

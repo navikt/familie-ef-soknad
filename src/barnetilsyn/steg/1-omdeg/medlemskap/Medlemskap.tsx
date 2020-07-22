@@ -14,13 +14,13 @@ import {
   IMedlemskap,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../BarnetilsynContext';
+import { useBarnetilsynSøknad } from '../../../BarnetilsynContext';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 
 const Medlemskap: React.FC = () => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const {
     søkerOppholderSegINorge,
     søkerBosattINorgeSisteTreÅr,

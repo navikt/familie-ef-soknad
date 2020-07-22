@@ -19,16 +19,20 @@ import {
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import { useSøknad } from '../../../BarnetilsynContext';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { datoTilStreng } from '../../../../utils/dato';
+import { useBarnetilsynSøknad } from '../../../BarnetilsynContext';
 
 const Sivilstatus: React.FC = () => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useBarnetilsynSøknad();
   const [sivilstatus, settSivilstatus] = useState<ISivilstatus>(
     søknad.sivilstatus
   );

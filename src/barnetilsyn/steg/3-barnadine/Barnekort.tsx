@@ -8,9 +8,9 @@ import { useIntl } from 'react-intl';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
-import { useSøknad } from '../../BarnetilsynContext';
 import { hentTekst } from '../../../utils/søknad';
 import { Knapp } from 'nav-frontend-knapper';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Props {
   navn: ITekstFelt;
@@ -38,7 +38,7 @@ const Barnekort: React.FC<Props> = ({
   toggleMedISøknadBarn,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const formatFnr = (fødselsnummer: string) => {

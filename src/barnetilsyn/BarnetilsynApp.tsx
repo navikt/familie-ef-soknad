@@ -17,7 +17,7 @@ import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
 import mockToggles from '../mock/mockToggles.json';
 import { settLabelOgVerdi } from '../utils/søknad';
 import { standardLabelsBarn } from '../helpers/labels';
-import { useSøknad } from './BarnetilsynContext';
+import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';
@@ -28,7 +28,11 @@ const BarnetilsynApp = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { settPerson } = usePersonContext();
-  const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
+  const {
+    søknad,
+    settSøknad,
+    hentMellomlagretOvergangsstønad,
+  } = useBarnetilsynSøknad();
   const { settToggles, toggles } = useToggles();
 
   autentiseringsInterceptor();

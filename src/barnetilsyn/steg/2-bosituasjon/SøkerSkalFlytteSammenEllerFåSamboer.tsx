@@ -12,8 +12,8 @@ import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { ISvar } from '../../../models/spørsmålogsvar';
-import { useSøknad } from '../../BarnetilsynContext';
 import { datoTilStreng } from '../../../utils/dato';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -25,7 +25,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   bosituasjon,
 }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
+  const { settDokumentasjonsbehov } = useBarnetilsynSøknad();
 
   const {
     delerBoligMedAndreVoksne,
