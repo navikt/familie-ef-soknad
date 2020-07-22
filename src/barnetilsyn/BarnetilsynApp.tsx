@@ -28,11 +28,7 @@ const BarnetilsynApp = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const { settPerson } = usePersonContext();
-  const {
-    søknad,
-    settSøknad,
-    hentMellomlagretOvergangsstønad,
-  } = useBarnetilsynSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const { settToggles, toggles } = useToggles();
 
   autentiseringsInterceptor();
@@ -85,7 +81,7 @@ const BarnetilsynApp = () => {
     Promise.all([
       fetchToggles(),
       fetchPersonData(),
-      hentMellomlagretOvergangsstønad(),
+      // hentMellomlagretOvergangsstønad(),
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));

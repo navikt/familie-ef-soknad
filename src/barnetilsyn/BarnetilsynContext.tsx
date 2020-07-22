@@ -14,7 +14,7 @@ import {
   mellomlagreOvergangsstønadTilDokument,
   nullstillMellomlagretOvergangsstønadTilDokument,
 } from './utils/søknad';
-import { IMellomlagretOvergangsstønad } from './models/mellomlagretSøknad';
+import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 
@@ -50,12 +50,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const [
       mellomlagretOvergangsstønad,
       settMellomlagretOvergangsstønad,
-    ] = useState<IMellomlagretOvergangsstønad>();
+    ] = useState<IMellomlagretBarnetilsynSøknad>();
     const intl = useIntl();
 
     const hentMellomlagretOvergangsstønad = (): Promise<void> => {
       return hentMellomlagretOvergangsstønadFraDokument().then(
-        (mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
+        (mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
           if (mellomlagretVersjon) {
             settMellomlagretOvergangsstønad(mellomlagretVersjon);
           }

@@ -82,9 +82,9 @@ const Side: React.FC<ISide> = ({
               <KnappBase
                 type={'hoved'}
                 onClick={() => {
-                  if (mellomlagreOvergangsstønad) {
+                  /*if (mellomlagreOvergangsstønad) {
                     mellomlagreOvergangsstønad(location.pathname);
-                  }
+                  }*/
                   history.push(nesteRoute.path);
                 }}
                 className={classNames(
