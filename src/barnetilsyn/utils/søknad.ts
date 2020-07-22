@@ -3,7 +3,7 @@ import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { hentUid } from '../../utils/uuid';
 import { ISpørsmål } from '../../models/spørsmålogsvar';
-import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import { IMellomlagretBarnetilsynSøknad } from '../models/mellomlagretSøknad';
 
 export const hentPersonData = () => {
   return axios

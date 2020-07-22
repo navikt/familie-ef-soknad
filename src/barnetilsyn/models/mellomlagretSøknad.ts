@@ -1,6 +1,6 @@
 import { ISøknad } from './søknad';
 
-export interface IMellomlagretOvergangsstønad {
+export interface IMellomlagretBarnetilsynSøknad {
   søknad: ISøknad;
   modellVersjon: number;
   gjeldendeSteg: string;
