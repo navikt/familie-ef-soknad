@@ -9,6 +9,12 @@ export enum RouteEnum {
   OmDeg = 'OmDeg',
   BosituasjonenDin = 'BosituasjonenDin',
   BarnaDine = 'BarnaDine',
+  BostedOgSamvær = 'BostedOgSamvær',
+  Aktivitet = 'Aktivitet',
+  Barnepass = 'Barnepass',
+  Oppsummering = 'Oppsummering',
+  Dokumentasjon = 'Dokumentasjon',
+  Kvittering = 'Kvittering',
 }
 
 export const Routes: IRoute[] = [
@@ -25,9 +31,34 @@ export const Routes: IRoute[] = [
     route: RouteEnum.BarnaDine,
   },
   {
-    path: '/barnetilsyn/neste',
-    label: 'Barna dine',
-    route: RouteEnum.BarnaDine,
+    path: '/barnetilsyn/barnas-bosted',
+    label: 'Barnas bosted og foreldrenes samværsordning',
+    route: RouteEnum.BostedOgSamvær,
+  },
+  {
+    path: '/barnetilsyn/aktivitet',
+    label: 'Arbeid, utdanning og andre aktiviteter',
+    route: RouteEnum.Aktivitet,
+  },
+  {
+    path: '/barnetilsyn/barnepass',
+    label: 'barnepass',
+    route: RouteEnum.Barnepass,
+  },
+  {
+    path: '/barnetilsyn/oppsummering',
+    label: 'Oppsummering',
+    route: RouteEnum.Oppsummering,
+  },
+  {
+    path: '/barnetilsyn/dokumentasjon',
+    label: 'Dokumentasjon',
+    route: RouteEnum.Dokumentasjon,
+  },
+  {
+    path: '/barnetilsyn/kvittering',
+    label: 'Kvittering',
+    route: RouteEnum.Kvittering,
   },
 ];
 
