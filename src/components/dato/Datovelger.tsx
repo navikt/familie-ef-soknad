@@ -59,7 +59,10 @@ const Datovelger: React.FC<Props> = ({
         <Normaltekst>
           <LocaleTekst tekst={tekstid} />
         </Normaltekst>
-        <label className={'datovelger__wrapper'}>
+        <label
+          className={'datovelger__wrapper'}
+          onClick={(e) => e.preventDefault()}
+        >
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
