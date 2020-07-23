@@ -12,6 +12,7 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
+import classNames from 'classnames';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -26,6 +27,7 @@ interface Props {
   settDato: (date: Date | null) => void;
   showMonthYearPicker?: Boolean;
   disabled?: boolean;
+  fetSkrift?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -35,6 +37,7 @@ const Datovelger: React.FC<Props> = ({
   settDato,
   showMonthYearPicker,
   disabled,
+  fetSkrift,
 }) => {
   const [locale] = useSpråkContext();
 
@@ -54,7 +57,7 @@ const Datovelger: React.FC<Props> = ({
   settLocaleForDatePicker();
 
   return (
-    <div className={'datovelger'}>
+    <div className={fetSkrift ? 'datovelger-fetskrift' : 'datovelger'}>
       <FeltGruppe>
         <Normaltekst>
           <LocaleTekst tekst={tekstid} />
