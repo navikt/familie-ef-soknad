@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const StyledFeltGruppe = styled.div`
-  padding-bottom: 25px;
+  padding-bottom: 30px;
 
   .skjemaelement {
     margin-bottom: 0;
