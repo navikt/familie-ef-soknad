@@ -76,6 +76,7 @@ const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
             }
             tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
+            fetSkrift={true}
           />
         </KomponentGruppe>
       )}

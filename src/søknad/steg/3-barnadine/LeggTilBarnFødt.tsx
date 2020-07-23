@@ -71,7 +71,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <Input
-          className="inputfelt-tekst"
+          className="inputfelt-tekst-fetskrift"
           onChange={(e) => settNavn(e.target.value)}
           value={navn}
           label="Barnets fulle navn, om dette er bestemt"
@@ -91,6 +91,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
           settFødselsdato={settDato}
           settChecked={settChecked}
           settIdent={oppdaterIdent}
+          fetSkrift={true}
         />
       </KomponentGruppe>
 

@@ -35,6 +35,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           valgtDato={barnDato}
           tekstid={'barnadine.termindato'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
+          fetSkrift={true}
         />
         <AlertStripeDokumentasjon>
           <FormattedMessage id="barnadine.info.terminbekreftelse" />
@@ -42,7 +43,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
       </KomponentGruppe>
       {barnDato && (
         <KomponentGruppe>
-          <Normaltekst>
+          <Normaltekst className='label-normaltekst'>
             {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
           </Normaltekst>
           <div className="radiogruppe-2-svar">
