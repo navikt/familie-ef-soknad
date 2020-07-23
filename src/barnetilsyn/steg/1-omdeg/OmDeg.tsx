@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import Medlemskap from './medlemskap/Medlemskap';
-import Personopplysninger from './personopplysninger/Personopplysninger';
 import Side from '../../side/Side';
-import Sivilstatus from './sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -12,9 +9,21 @@ import {
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
+import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
+import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
+import { ISøker } from '../../../models/person';
+import { ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
+import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const { søknad, mellomlagreOvergangsstønad } = useBarnetilsynSøknad();
+  const {
+    søknad,
+    mellomlagreOvergangsstønad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useBarnetilsynSøknad();
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
@@ -23,8 +32,45 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = søknad.medlemskap;
   const location = useLocation();
   const history = useHistory();
-
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+
+  const settMedlemskap = (medlemskap: IMedlemskap) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        medlemskap: medlemskap,
+      };
+    });
+  };
+
+  const settSøker = (søker: ISøker) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, søker: søker },
+      };
+    });
+  };
+
+  const settSøkerBorPåRegistrertAdresse = (
+    søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
+  ) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
+      };
+    });
+  };
+
+  const settSivilstatus = (sivilstatus: ISivilstatus) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        sivilstatus: sivilstatus,
+      };
+    });
+  };
 
   const søkerFyltUtAlleFelterOgSpørsmål = () => {
     if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
@@ -45,18 +91,30 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       skalViseKnapper={!kommerFraOppsummering}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
-      <Personopplysninger />
+      <Personopplysninger
+        søker={søknad.person.søker}
+        settSøker={settSøker}
+        søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
+        settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
+      />
 
       {søknad.søkerBorPåRegistrertAdresse &&
         søknad.søkerBorPåRegistrertAdresse.verdi === true &&
         harSøkerTlfnr(søknad.person) && (
           <>
-            <Sivilstatus />
+            <Sivilstatus
+              sivilstatus={søknad.sivilstatus}
+              settSivilstatus={settSivilstatus}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+            />
 
             {harSøktSeparasjon ||
             harSøktSeparasjon === false ||
             erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
-              <Medlemskap />
+              <Medlemskap
+                medlemskap={søknad.medlemskap}
+                settMedlemskap={settMedlemskap}
+              />
             ) : null}
           </>
         )}

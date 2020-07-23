@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Søknadsdialog from './Søknadsdialog';
 import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
@@ -22,6 +21,7 @@ import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
+import SøknadsdialogBarnetilsyn from './Søknadsdialog';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -99,7 +99,9 @@ const BarnetilsynApp = () => {
           {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+              {toggles[ToggleName.vis_innsending] && (
+                <SøknadsdialogBarnetilsyn />
+              )}
             </Route>
           </Switch>
         </>

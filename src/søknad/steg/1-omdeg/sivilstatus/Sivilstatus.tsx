@@ -23,15 +23,25 @@ import { useSøknad } from '../../../../context/SøknadContext';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { datoTilStreng } from '../../../../utils/dato';
 
-const Sivilstatus: React.FC = () => {
+interface Props {
+  sivilstatus: ISivilstatus;
+  settSivilstatus: (sivilstatus: ISivilstatus) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+}
+
+const Sivilstatus: React.FC<Props> = ({
+  sivilstatus,
+  settSivilstatus,
+  settDokumentasjonsbehov,
+}) => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
-  const [sivilstatus, settSivilstatus] = useState<ISivilstatus>(
-    søknad.sivilstatus
-  );
   const {
     harSøktSeparasjon,
     datoSøktSeparasjon,
@@ -39,11 +49,6 @@ const Sivilstatus: React.FC = () => {
     erUformeltSeparertEllerSkilt,
     erUformeltGift,
   } = sivilstatus;
-
-  useEffect(() => {
-    settSøknad({ ...søknad, sivilstatus: sivilstatus });
-    // eslint-disable-next-line
-  }, [sivilstatus]);
 
   const erSøkerGift =
     sivilstand === ESivilstand.GIFT || sivilstand === ESivilstand.REPA;
@@ -122,10 +127,7 @@ const Sivilstatus: React.FC = () => {
             <JaNeiSpørsmål
               spørsmål={erUformeltGiftSpørsmål}
               onChange={settSivilstatusFelt}
-              valgtSvar={hentValgtSvar(
-                erUformeltGiftSpørsmål,
-                søknad.sivilstatus
-              )}
+              valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål, sivilstatus)}
             />
             {sivilstatus.erUformeltGift?.svarid === ESvar.JA && (
               <AlertstripeDokumentasjon>
@@ -146,7 +148,7 @@ const Sivilstatus: React.FC = () => {
                 onChange={settSivilstatusFelt}
                 valgtSvar={hentValgtSvar(
                   erUformeltSeparertEllerSkiltSpørsmål,
-                  søknad.sivilstatus
+                  sivilstatus
                 )}
               />
               {sivilstatus.erUformeltSeparertEllerSkilt?.svarid ===
@@ -174,6 +176,7 @@ const Sivilstatus: React.FC = () => {
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}
           settDato={settDato}
+          settDokumentasjonsbehov={settDokumentasjonsbehov}
         />
       ) : null}
     </SeksjonGruppe>

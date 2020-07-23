@@ -9,13 +9,16 @@ import Utenlandsopphold from './Utenlandsopphold';
 
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/uuid';
-import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { useSøknad } from '../../../../context/SøknadContext';
+import {
+  IMedlemskap,
+  IUtenlandsopphold,
+} from '../../../../models/steg/omDeg/medlemskap';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 
-const PeriodeBoddIUtlandet: FC = () => {
-  const { søknad, settSøknad } = useSøknad();
-  const { medlemskap } = søknad;
+const PeriodeBoddIUtlandet: FC<{
+  medlemskap: IMedlemskap;
+  settMedlemskap: (medlemskap: IMedlemskap) => void;
+}> = ({ medlemskap, settMedlemskap }) => {
   const intl = useIntl();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
@@ -38,12 +41,9 @@ const PeriodeBoddIUtlandet: FC = () => {
   );
 
   useEffect(() => {
-    settSøknad({
-      ...søknad,
-      medlemskap: {
-        ...søknad.medlemskap,
-        perioderBoddIUtlandet: perioderBoddIUtlandet,
-      },
+    settMedlemskap({
+      ...medlemskap,
+      perioderBoddIUtlandet: perioderBoddIUtlandet,
     });
     // eslint-disable-next-line
   }, [perioderBoddIUtlandet]);
@@ -52,12 +52,9 @@ const PeriodeBoddIUtlandet: FC = () => {
     const alleUtenlandsopphold = perioderBoddIUtlandet;
     alleUtenlandsopphold && alleUtenlandsopphold.push(tomtUtenlandsopphold);
     alleUtenlandsopphold &&
-      settSøknad({
-        ...søknad,
-        medlemskap: {
-          ...medlemskap,
-          perioderBoddIUtlandet: alleUtenlandsopphold,
-        },
+      settMedlemskap({
+        ...medlemskap,
+        perioderBoddIUtlandet: alleUtenlandsopphold,
       });
   };
 

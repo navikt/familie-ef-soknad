@@ -30,16 +30,21 @@ interface Props {
   sivilstatus: ISivilstatus;
   settSivilstatus: (sivilstatus: ISivilstatus) => void;
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const Søknadsbegrunnelse: FC<Props> = ({
   sivilstatus,
   settSivilstatus,
   settDato,
+  settDokumentasjonsbehov,
 }) => {
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
 
   const {
     årsakEnslig,

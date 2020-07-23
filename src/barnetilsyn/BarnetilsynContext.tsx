@@ -106,7 +106,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         );
       }
 
-      settSøknad({ ...søknad, dokumentasjonsbehov: endretDokumentasjonsbehov });
+      settSøknad((prevSoknad) => {
+        return {
+          ...prevSoknad,
+          dokumentasjonsbehov: endretDokumentasjonsbehov,
+        };
+      });
     };
 
     return {

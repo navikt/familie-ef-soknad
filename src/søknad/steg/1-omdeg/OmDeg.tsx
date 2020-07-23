@@ -12,9 +12,18 @@ import {
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
+import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
+import { ISøker } from '../../../models/person';
+import { ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+  const {
+    søknad,
+    mellomlagreOvergangsstønad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useSøknad();
   const { harSøktSeparasjon } = søknad.sivilstatus;
   const {
     søkerBosattINorgeSisteTreÅr,
@@ -22,6 +31,44 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = søknad.medlemskap;
   const location = useLocation();
   const history = useHistory();
+
+  const settMedlemskap = (medlemskap: IMedlemskap) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        medlemskap: medlemskap,
+      };
+    });
+  };
+
+  const settSøker = (søker: ISøker) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, søker: søker },
+      };
+    });
+  };
+
+  const settSøkerBorPåRegistrertAdresse = (
+    søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
+  ) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
+      };
+    });
+  };
+
+  const settSivilstatus = (sivilstatus: ISivilstatus) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        sivilstatus: sivilstatus,
+      };
+    });
+  };
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
@@ -44,18 +91,30 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       skalViseKnapper={!kommerFraOppsummering}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
-      <Personopplysninger />
+      <Personopplysninger
+        søker={søknad.person.søker}
+        settSøker={settSøker}
+        søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
+        settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
+      />
 
       {søknad.søkerBorPåRegistrertAdresse &&
         søknad.søkerBorPåRegistrertAdresse.verdi === true &&
         harSøkerTlfnr(søknad.person) && (
           <>
-            <Sivilstatus />
+            <Sivilstatus
+              sivilstatus={søknad.sivilstatus}
+              settSivilstatus={settSivilstatus}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+            />
 
             {harSøktSeparasjon ||
             harSøktSeparasjon === false ||
             erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
-              <Medlemskap />
+              <Medlemskap
+                medlemskap={søknad.medlemskap}
+                settMedlemskap={settMedlemskap}
+              />
             ) : null}
           </>
         )}

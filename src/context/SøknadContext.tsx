@@ -113,7 +113,9 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       );
     }
 
-    settSøknad({ ...søknad, dokumentasjonsbehov: endretDokumentasjonsbehov });
+    settSøknad((prevSoknad) => {
+      return { ...prevSoknad, dokumentasjonsbehov: endretDokumentasjonsbehov };
+    });
   };
 
   return {

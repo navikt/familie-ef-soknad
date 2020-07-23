@@ -6,7 +6,7 @@ import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
 import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
 
-const Søknadsdialog: FC = () => {
+const SøknadsdialogBarnetilsyn: FC = () => {
   return (
     <Switch>
       <Route path={'/barnetilsyn/barnas-bosted'} component={BarnasBosted} />
@@ -18,4 +18,4 @@ const Søknadsdialog: FC = () => {
   );
 };
 
-export default Søknadsdialog;
+export default SøknadsdialogBarnetilsyn;
