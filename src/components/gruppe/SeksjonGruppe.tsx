@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 const StyledFeltGruppe = styled.section`
-  padding-bottom: 75px;
+  padding-bottom: 80px;
 
   .alertstripe.fjernBakgrunn {
     background: transparent;
