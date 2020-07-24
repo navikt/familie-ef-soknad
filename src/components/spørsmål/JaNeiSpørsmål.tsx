@@ -15,6 +15,14 @@ const StyledJaNeiSpørsmål = styled.div`
       grid-gap: 1rem;
       padding-top: 1rem;
 
+      .inputPanel__label  {
+        font-size: 18px;
+      }
+
+      .typo_element {
+        font-size: 18px;
+      }
+
       @media all and (max-width: 420px) {
         grid-template-columns: 1fr;
       }

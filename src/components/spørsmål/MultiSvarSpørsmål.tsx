@@ -16,6 +16,10 @@ const StyledMultisvarSpørsmål = styled.div`
       grid-auto-rows: min-content;
       grid-gap: 1rem;
       padding-top: 1rem;
+
+      .inputPanel__label  {
+        font-size: 18px;
+      }
     }
   }
 
