@@ -41,6 +41,7 @@ const LeggTilBarn: React.FC<Props> = ({
   const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
+  const [medISøknad, settMedISøknad] = useState<boolean>();
 
   useEffect(() => {
     if (id) {
@@ -50,6 +51,7 @@ const LeggTilBarn: React.FC<Props> = ({
       settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
+      settMedISøknad(detteBarnet?.medISøknad?.verdi);
       detteBarnet?.fødselsdato.verdi &&
         settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
     }
@@ -71,17 +73,34 @@ const LeggTilBarn: React.FC<Props> = ({
     settBoHosDeg('');
   };
 
-  const leggTilBarn = (id: string | undefined) => {
+  const oppdaterBarneliste = (
+    barneListe: IBarn[],
+    id: string | undefined,
+    nyttBarn: IBarn
+  ) => {
+    const erEndringAvBarn = id !== undefined;
+    if (erEndringAvBarn) {
+      return barneListe.map((barn) => {
+        return barn.id === id ? nyttBarn : barn;
+      });
+    } else {
+      return [...barneListe.filter((b) => b.id !== id), nyttBarn];
+    }
+  };
+
+  const leggTilEllerEndreBarn = (id: string | undefined) => {
     const nyttBarn: IBarn = hentNyttBarn(
+      id,
       ident,
       barnDato,
       navn,
       boHosDeg,
       født ? født : false,
-      intl
+      intl,
+      medISøknad
     );
 
-    const nyBarneListe = [...barneListe.filter((b) => b.id !== id), nyttBarn];
+    const nyBarneListe = oppdaterBarneliste(barneListe, id, nyttBarn);
     const erBarnFødtSvar = barnetFødt.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
@@ -133,7 +152,7 @@ const LeggTilBarn: React.FC<Props> = ({
       {boHosDeg && (
         <Hovedknapp
           className="legg-til-barn__knapp"
-          onClick={() => leggTilBarn(id)}
+          onClick={() => leggTilEllerEndreBarn(id)}
         >
           Legg til barn
         </Hovedknapp>

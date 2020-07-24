@@ -1,5 +1,5 @@
-import { IBarn } from './barn';
 import { IDatoFelt, ITekstFelt } from '../../models/søknadsfelter';
+import { IBarn } from '../../models/barn';
 
 export interface IPerson {
   hash: string;

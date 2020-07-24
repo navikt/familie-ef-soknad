@@ -4,16 +4,16 @@ import Modal from 'nav-frontend-modal';
 import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
-import { hentTekst } from '../../../utils/søknad';
+import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { IBarn } from '../../models/barn';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
+import { IBarn } from '../../../models/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -29,23 +29,23 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  /*  const barna = søknad.person.barn.map((barn: IBarn) => ({
-    ...barn,
-    medISøknad: false,
-  }));*/
-
   const toggleMedISøknadBarn = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
 
     if (!detteBarnet) return null;
 
-    const nyttBarn = { ...detteBarnet, medISøknad: !detteBarnet.medISøknad };
+    const nyttBarn: IBarn = {
+      ...detteBarnet,
+      medISøknad: hentFeltObjekt(
+        'barnekort.medISøknad',
+        !detteBarnet.medISøknad?.verdi,
+        intl
+      ),
+    };
 
-    const nyBarneListe = [
-      ...søknad.person.barn.filter((b: IBarn) => b.id !== id),
-      nyttBarn,
-    ];
-
+    const nyBarneListe = søknad.person.barn.map((barn) => {
+      return barn.id === id ? nyttBarn : barn;
+    });
     settSøknad({
       ...søknad,
       person: { ...søknad.person, barn: nyBarneListe },
@@ -128,7 +128,7 @@ const BarnaDine: React.FC = () => {
                     <BarnMedISøknad
                       id={barn.id ? barn.id : ''}
                       toggleMedISøknadBarn={toggleMedISøknadBarn}
-                      medISøknad={!!barn.medISøknad}
+                      medISøknad={!!barn.medISøknad?.verdi}
                     />
                   }
                   slettBarn={slettBarn}

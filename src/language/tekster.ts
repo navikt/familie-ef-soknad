@@ -276,6 +276,7 @@ export default {
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
+    'barnekort.medISøknad': 'Skal barnet være med i søknaden?',
 
     'barnasbosted.kanikkeoppgiforelder':
       'Jeg kan ikke oppgi den andre forelderen',
