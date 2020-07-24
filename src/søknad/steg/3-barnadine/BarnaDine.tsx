@@ -10,10 +10,16 @@ import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
+import { IBarn } from '../../../models/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
-  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+  const {
+    søknad,
+    mellomlagreOvergangsstønad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useSøknad();
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
@@ -21,6 +27,25 @@ const BarnaDine: React.FC = () => {
   const [åpenModal, settÅpenModal] = useState(false);
 
   const barna = søknad.person.barn;
+  const slettBarn = (id: string) => {
+    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
+
+  const settBarneliste = (nyBarneListe: IBarn[]) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
 
   return (
     <>
@@ -60,6 +85,10 @@ const BarnaDine: React.FC = () => {
                       }
                 }
                 lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                slettBarn={slettBarn}
+                barneListe={søknad.person.barn}
+                settBarneListe={settBarneliste}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
               />
             ))}
             <div className="barnekort">
@@ -78,7 +107,12 @@ const BarnaDine: React.FC = () => {
             contentLabel="Legg til barn"
           >
             <div className="legg-til-barn-modal">
-              <LeggTilBarn settÅpenModal={settÅpenModal} />
+              <LeggTilBarn
+                settÅpenModal={settÅpenModal}
+                barneListe={søknad.person.barn}
+                settBarneListe={settBarneliste}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
+              />
             </div>
           </Modal>
         </div>

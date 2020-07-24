@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Barnekort from './Barnekort';
-import LeggTilBarn from './LeggTilBarn';
 import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import Side from '../../side/Side';
@@ -13,6 +11,9 @@ import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { IBarn } from '../../models/barn';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import BarnMedISøknad from './BarnMedISøknad';
+import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
+import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -20,6 +21,7 @@ const BarnaDine: React.FC = () => {
     søknad,
     settSøknad,
     mellomlagreOvergangsstønad,
+    settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const history = useHistory();
   const location = useLocation();
@@ -47,6 +49,26 @@ const BarnaDine: React.FC = () => {
     settSøknad({
       ...søknad,
       person: { ...søknad.person, barn: nyBarneListe },
+    });
+  };
+
+  const slettBarn = (id: string) => {
+    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
+
+  const settBarneliste = (nyBarneListe: IBarn[]) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
     });
   };
 
@@ -99,8 +121,17 @@ const BarnaDine: React.FC = () => {
                         }
                   }
                   lagtTil={barn.lagtTil ? barn.lagtTil : false}
-                  medISøknad={barn.medISøknad ? barn.medISøknad : false}
-                  toggleMedISøknadBarn={toggleMedISøknadBarn}
+                  barneListe={søknad.person.barn}
+                  settBarneListe={settBarneliste}
+                  settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  velgBarnForDenneSøknaden={
+                    <BarnMedISøknad
+                      id={barn.id ? barn.id : ''}
+                      toggleMedISøknadBarn={toggleMedISøknadBarn}
+                      medISøknad={!!barn.medISøknad}
+                    />
+                  }
+                  slettBarn={slettBarn}
                 />
               ))}
             <div className="barnekort">
@@ -119,7 +150,12 @@ const BarnaDine: React.FC = () => {
             contentLabel="Legg til barn"
           >
             <div className="legg-til-barn-modal">
-              <LeggTilBarn settÅpenModal={settÅpenModal} />
+              <LeggTilBarn
+                settÅpenModal={settÅpenModal}
+                barneListe={søknad.person.barn}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settBarneListe={settBarneliste}
+              />
             </div>
           </Modal>
         </div>

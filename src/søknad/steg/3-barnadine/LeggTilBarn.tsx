@@ -8,7 +8,6 @@ import { barnetFødt } from './BarneConfig';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { strengTilDato } from '../../../utils/dato';
 
 import { IBarn } from '../../../models/barn';
@@ -18,11 +17,24 @@ import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 interface Props {
   settÅpenModal: Function;
   id?: string;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+  barneListe: IBarn[];
+  settBarneListe: (barneListe: IBarn[]) => void;
 }
 
-const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
+const LeggTilBarn: React.FC<Props> = ({
+  settÅpenModal,
+  id,
+  barneListe,
+  settBarneListe,
+  settDokumentasjonsbehov,
+}) => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
@@ -32,7 +44,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
 
   useEffect(() => {
     if (id) {
-      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+      const detteBarnet = barneListe.find((b) => b.id === id);
 
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
       settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
@@ -69,19 +81,13 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       intl
     );
 
-    const nyBarneListe = [
-      ...søknad.person.barn.filter((b) => b.id !== id),
-      nyttBarn,
-    ];
+    const nyBarneListe = [...barneListe.filter((b) => b.id !== id), nyttBarn];
     const erBarnFødtSvar = barnetFødt.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
     erBarnFødtSvar && settDokumentasjonsbehov(barnetFødt, erBarnFødtSvar);
 
-    settSøknad({
-      ...søknad,
-      person: { ...søknad.person, barn: nyBarneListe },
-    });
+    settBarneListe(nyBarneListe);
 
     settÅpenModal(false);
   };
