@@ -663,7 +663,7 @@ export default {
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
     'dokumentasjon.ulikeAdresser.beskrivelse':
-      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <li>' +
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <ul>' +
       '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
       '<li>Kopi av flyttemelding/tips til folkeregisteret</li>' +
       '<li>Husleiekontrakt for begge parter</li>' +

@@ -6,6 +6,10 @@ const StyledFeltGruppe = styled.div`
 
   .skjemaelement {
     margin-bottom: 0;
+
+    &__label {
+      font-size: 18px !important;
+    }
   }
 
   &:last-child {
@@ -39,8 +43,12 @@ const StyledFeltGruppe = styled.div`
 
       .skjemaelement__label {
         margin-bottom: 1rem;
+        font-size: 18px;
       }
     }
+  }
+  .knapp {
+    font-size: 18px;
   }
 `;
 

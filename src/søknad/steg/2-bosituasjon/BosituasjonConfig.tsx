@@ -15,6 +15,7 @@ const DokumentasjonBorPåUlikeAdresser: IDokumentasjon = {
   id: BosituasjonDokumentasjon.BOR_PÅ_ULIKE_ADRESSER,
   spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
   svarid: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
+  label: '',
   tittel: 'dokumentasjon.ulikeAdresser.tittel',
   beskrivelse: 'dokumentasjon.ulikeAdresser.beskrivelse',
   harSendtInn: false,

@@ -14,6 +14,10 @@ const StyledKomponentGruppe = styled.div`
   .alertstripe {
     padding-top: 1rem;
   }
+
+  .typo-normal {
+    font-size: 18px;
+  }
 `;
 
 const KomponentGruppe: React.FC<{ className?: string }> = ({

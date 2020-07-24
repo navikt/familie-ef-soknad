@@ -8,6 +8,10 @@ const StyledNavigeringsKnapper = styled.div`
   justify-self: center;
   flex-direction: column;
 
+  .knapp {
+    font-size: 18px;
+  }
+
   .avbryt {
     margin-top: 1rem;
   }

@@ -42,7 +42,7 @@ export const erTidligereUtdanningFerdigUtfylt = (
 
 export const erUnderUtdanningFerdigUtfylt = (
   underUtdanning: IUnderUtdanning
-) => {
+): boolean => {
   return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
 };
 
@@ -89,14 +89,17 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.tarUtdanning:
-      const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
-      return (
-        underUtdanning !== undefined &&
-        erUnderUtdanningFerdigUtfylt(underUtdanning) &&
-        erTidligereUtdanningFerdigUtfylt(
-          tidligereUtdanning ? tidligereUtdanning : []
-        )
-      );
+      if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
+        return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
+      } else {
+        const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
+        return (
+          underUtdanning !== undefined &&
+          tidligereUtdanning !== undefined &&
+          erUnderUtdanningFerdigUtfylt(underUtdanning) &&
+          erTidligereUtdanningFerdigUtfylt(tidligereUtdanning)
+        );
+      }
 
     case EAktivitet.harFåttJobbTilbud:
       return datoOppstartJobb !== undefined;

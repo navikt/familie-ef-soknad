@@ -33,4 +33,8 @@ export const StyledKnapper = styled.div`
   .avbryt {
     grid-area: avbryt;
   }
+
+  .knapp {
+    font-size: 18px;
+  }
 `;

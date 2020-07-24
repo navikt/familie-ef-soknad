@@ -19,6 +19,7 @@ const ErklæringSamlivsbrudd: IDokumentasjon = {
   id: OmDegDokumentasjon.SAMLIVSBRUDD,
   spørsmålid: ESivilstatusSøknadid.årsakEnslig,
   svarid: EBegrunnelse.samlivsbruddForeldre,
+  label: '',
   tittel: 'dokumentasjon.begrunnelse.tittel',
   beskrivelse: 'dokumentasjon.begrunnelse.beskrivelse',
   harSendtInn: false,
@@ -28,6 +29,7 @@ const DokumentasjonInngåttEkteskap: IDokumentasjon = {
   id: OmDegDokumentasjon.INNGÅTT_EKTESKAP,
   spørsmålid: ESivilstatusSøknadid.erUformeltGift,
   svarid: ESvar.JA,
+  label: '',
   tittel: 'dokumentasjon.inngåttEkteskap.tittel',
   harSendtInn: false,
 };
@@ -36,6 +38,7 @@ const DokumentasjonUformeltSeparertEllerSkilt: IDokumentasjon = {
   id: OmDegDokumentasjon.UFORMELL_SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   svarid: ESvar.JA,
+  label: '',
   tittel: 'dokumentasjon.separasjonEllerSkilsmisse.tittel',
   harSendtInn: false,
 };
@@ -44,6 +47,7 @@ export const BekreftelseSeparasjonSøknad: IDokumentasjon = {
   id: OmDegDokumentasjon.SEPARASJON_ELLER_SKILSMISSE,
   spørsmålid: ESivilstatusSøknadid.harSøktSeparasjon,
   svarid: ESvar.JA,
+  label: '',
   tittel: 'dokumentasjon.søktSeparasjon.tittel',
   beskrivelse: 'dokumentasjon.søktSeparasjon.beskrivelse',
   harSendtInn: false,
