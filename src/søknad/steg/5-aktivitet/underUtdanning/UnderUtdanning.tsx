@@ -21,6 +21,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import MålMedUtdanningen from './MålMedUtdanningen';
 import { erUnderUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import { strengErMerEnnNull } from '../../../../utils/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -111,7 +112,7 @@ const UnderUtdanning: React.FC<Props> = ({
               utdanning={utdanning}
               oppdaterUtdanning={oppdaterUtdanning}
             />
-            {utdanning.arbeidsmengde && (
+            {strengErMerEnnNull(utdanning.arbeidsmengde?.verdi) && (
               <MålMedUtdanningen
                 utdanning={utdanning}
                 oppdaterUtdanning={oppdaterUtdanning}
