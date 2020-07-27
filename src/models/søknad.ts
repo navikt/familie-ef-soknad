@@ -1,6 +1,5 @@
 import { IAktivitet } from './steg/aktivitet/aktivitet';
 import { IPerson } from './person';
-import { IVedlegg } from './vedlegg';
 import { ISpørsmålBooleanFelt } from './søknadsfelter';
 import { IBosituasjon } from './steg/bosituasjon';
 import { IDinSituasjon } from './steg/dinsituasjon/meromsituasjon';

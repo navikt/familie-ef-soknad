@@ -10,6 +10,7 @@ import { IArbeidssøker } from './arbeidssøker';
 import { IFirma } from './firma';
 
 export interface IAktivitet {
+  erIArbeid?: ISpørsmålFelt;
   hvaErDinArbeidssituasjon: ISpørsmålListeFelt;
   etablererEgenVirksomhet?: ISpørsmålFelt;
   arbeidsforhold?: IArbeidsgiver[];
@@ -27,6 +28,7 @@ export interface IAksjeselskap {
 }
 
 export enum EArbeidssituasjon {
+  erDuIArbeid = 'erDuIArbeid',
   hvaErDinArbeidssituasjon = 'hvaErDinArbeidssituasjon',
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',
   datoOppstartJobb = 'datoOppstartJobb',

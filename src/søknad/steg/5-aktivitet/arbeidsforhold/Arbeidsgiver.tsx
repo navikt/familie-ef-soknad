@@ -20,7 +20,6 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { ISvar } from '../../../../models/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 const StyledArbeidsgiver = styled.div`
@@ -32,15 +31,20 @@ interface Props {
   arbeidsforhold: IArbeidsgiver[];
   settArbeidsforhold: (arbeidsforhold: IArbeidsgiver[]) => void;
   arbeidsgivernummer: number;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const Arbeidsgiver: React.FC<Props> = ({
   arbeidsforhold,
   settArbeidsforhold,
   arbeidsgivernummer,
+  settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
   const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
     if (index === arbeidsgivernummer) return arbeidsgiver;
   });
