@@ -19,23 +19,27 @@ import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { useSøknad } from '../../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const Arbeidssøker: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
+  settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
   const [arbeidssøker, settArbeidssøker] = useState<IArbeidssøker>(
     arbeidssituasjon.arbeidssøker ? arbeidssituasjon.arbeidssøker : {}
   );
-  const { settDokumentasjonsbehov } = useSøknad();
 
   useEffect(() => {
     settArbeidssituasjon({ ...arbeidssituasjon, arbeidssøker: arbeidssøker });

@@ -17,6 +17,7 @@ import {
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
+import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -29,6 +30,14 @@ const initialState: ISøknad = {
       svarid: '',
       label: '',
       verdi: '',
+    },
+  },
+  aktivitet: {
+    hvaErDinArbeidssituasjon: {
+      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+      svarid: [],
+      label: '',
+      verdi: [],
     },
   },
   merOmDinSituasjon: {

@@ -5,10 +5,12 @@ import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
 import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
+import Aktivitet from './steg/5-aktivitet/Aktivitet';
 
 const SøknadsdialogBarnetilsyn: FC = () => {
   return (
     <Switch>
+      <Route path={'/barnetilsyn/aktivitet'} component={Aktivitet} />
       <Route path={'/barnetilsyn/barnas-bosted'} component={BarnasBosted} />
       <Route path={'/barnetilsyn/barn'} component={BarnaDine} />
       <Route path={'/barnetilsyn/bosituasjon'} component={Bosituasjon} />

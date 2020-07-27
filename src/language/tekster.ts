@@ -392,6 +392,8 @@ export default {
       'Hvor mye er du sammen med den andre forelderen til [0]?',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+    'erDuIArbeid.spm': 'Er du i arbeid?',
+    'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',

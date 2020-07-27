@@ -127,6 +127,7 @@ const Aktivitet: React.FC = () => {
               svarid={svarid}
               arbeidssituasjon={arbeidssituasjon}
               settArbeidssituasjon={settArbeidssituasjon}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
           )
         );
