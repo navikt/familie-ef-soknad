@@ -35,7 +35,7 @@ const BarnasBosted: React.FC = () => {
     });
   };
 
-  const barna = søknad.person.barn;
+  const barna = søknad.person.barn.filter((barn) => barn.medISøknad?.verdi);
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
