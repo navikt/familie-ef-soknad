@@ -15,11 +15,11 @@ const StyledJaNeiSpørsmål = styled.div`
       grid-gap: 1rem;
       padding-top: 1rem;
 
-      .inputPanel__label {
+      .inputPanel__label  {
         font-size: 18px;
       }
 
-      .typo_element{
+      .typo_element {
         font-size: 18px;
       }
 

@@ -96,7 +96,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
 
       {(barnDato || (ident && erGyldigIdent)) && (
         <KomponentGruppe>
-          <Normaltekst className='label-normaltekst'>
+          <Normaltekst className="label-normaltekst">
             {intl.formatMessage({ id: 'barnadine.spm.borBarnHosDeg' })}
           </Normaltekst>
           <div className="radiogruppe-2-svar">

@@ -59,10 +59,14 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
       return props.node.markDefs.map((mark: any, index: number) => {
         let { _type = '' } = mark;
         if (_type === 'link') {
-          return <span className='lenke-tekst' key={index}>{props.children}</span>
+          return (
+            <span className="lenke-tekst" key={index}>
+              {props.children}
+            </span>
+          );
         }
-        return props.children
-      })
+        return props.children;
+      });
     }
 
     if (style === 'blockquote') {
@@ -77,26 +81,25 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
     <>
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {
-          return (
-            blokk._type === "dokumentasjonskrav" ?
-              <div className="seksjon" key={index}>
-                <Ekspanderbartpanel tittel={blokk.tittel}>
-                  <BlockContent
-                    className="typo-normal"
-                    blocks={blokk.innhold}
-                    serializers={{ types: { block: BlockRenderer } }}
-                  />
-                </Ekspanderbartpanel>
-              </div>
-              :
-              <div className="seksjon" key={index}>
-                {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
+          return blokk._type === 'dokumentasjonskrav' ? (
+            <div className="seksjon" key={index}>
+              <Ekspanderbartpanel tittel={blokk.tittel}>
                 <BlockContent
                   className="typo-normal"
                   blocks={blokk.innhold}
                   serializers={{ types: { block: BlockRenderer } }}
                 />
-              </div>
+              </Ekspanderbartpanel>
+            </div>
+          ) : (
+            <div className="seksjon" key={index}>
+              {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
+              <BlockContent
+                className="typo-normal"
+                blocks={blokk.innhold}
+                serializers={{ types: { block: BlockRenderer } }}
+              />
+            </div>
           );
         })}
 
