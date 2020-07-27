@@ -1,6 +1,4 @@
 import React, { useState, useRef } from 'react';
-import BarnetsBostedEndre from './BarnetsBostedEndre';
-import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -8,6 +6,9 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
 import Side from '../../side/Side';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
+import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
+import { IBarn } from '../../../models/barn';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -18,7 +19,22 @@ const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
-  const { søknad, mellomlagreOvergangsstønad } = useBarnetilsynSøknad();
+  const {
+    søknad,
+    mellomlagreOvergangsstønad,
+    settSøknad,
+    settDokumentasjonsbehov,
+  } = useBarnetilsynSøknad();
+
+  const settBarneliste = (nyBarneListe: IBarn[]) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
+
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
@@ -50,34 +66,41 @@ const BarnasBosted: React.FC = () => {
       erSpørsmålBesvart={sisteBarnUtfylt}
       mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
     >
-      {barna.map((barn, index) => {
-        const key = barn.fødselsdato.verdi + index;
-        if (index === aktivIndex) {
-          return (
-            <BarnetsBostedEndre
-              barn={barn}
-              sisteBarnUtfylt={sisteBarnUtfylt}
-              settSisteBarnUtfylt={settSisteBarnUtfylt}
-              settAktivIndex={settAktivIndex}
-              aktivIndex={aktivIndex}
-              key={key}
-              scrollTilLagtTilBarn={scrollTilLagtTilBarn}
-            />
-          );
-        } else {
-          return (
-            <>
-              {index + 1 === antallBarnMedForeldre && <div ref={lagtTilBarn} />}
-              <BarnetsBostedLagtTil
+      {barna
+        .filter((barn) => barn.medISøknad?.verdi === true)
+        .map((barn, index) => {
+          const key = barn.fødselsdato.verdi + index;
+          if (index === aktivIndex) {
+            return (
+              <BarnetsBostedEndre
                 barn={barn}
+                sisteBarnUtfylt={sisteBarnUtfylt}
+                settSisteBarnUtfylt={settSisteBarnUtfylt}
                 settAktivIndex={settAktivIndex}
-                index={index}
+                aktivIndex={aktivIndex}
                 key={key}
+                scrollTilLagtTilBarn={scrollTilLagtTilBarn}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settBarneListe={settBarneliste}
+                barneListe={søknad.person.barn}
               />
-            </>
-          );
-        }
-      })}
+            );
+          } else {
+            return (
+              <>
+                {index + 1 === antallBarnMedForeldre && (
+                  <div ref={lagtTilBarn} />
+                )}
+                <BarnetsBostedLagtTil
+                  barn={barn}
+                  settAktivIndex={settAktivIndex}
+                  index={index}
+                  key={key}
+                />
+              </>
+            );
+          }
+        })}
       {kommerFraOppsummering ? (
         <div className={'side'}>
           <Hovedknapp

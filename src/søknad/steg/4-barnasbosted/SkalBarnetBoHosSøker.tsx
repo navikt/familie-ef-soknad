@@ -7,7 +7,6 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { IForelder } from '../../../models/forelder';
 import { IBarn } from '../../../models/barn';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -23,15 +22,20 @@ interface Props {
   barn: IBarn;
   forelder: IForelder;
   settForelder: (forelder: IForelder) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const SkalBarnetBoHosSøker: React.FC<Props> = ({
   barn,
   forelder,
   settForelder,
+  settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
 
   const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settForelder({

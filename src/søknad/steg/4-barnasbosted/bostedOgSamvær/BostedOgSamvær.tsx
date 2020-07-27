@@ -29,11 +29,20 @@ interface Props {
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
   barn: IBarn;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
-const BostedOgSamvær: React.FC<Props> = ({ settForelder, forelder, barn }) => {
+const BostedOgSamvær: React.FC<Props> = ({
+  settForelder,
+  forelder,
+  barn,
+  settDokumentasjonsbehov,
+}) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
 
   const settBostedOgSamværFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {

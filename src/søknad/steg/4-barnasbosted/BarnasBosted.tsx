@@ -8,6 +8,7 @@ import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
+import { IBarn } from '../../../models/barn';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -18,10 +19,24 @@ const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const history = useHistory();
   const location = useLocation();
-  const { søknad, mellomlagreOvergangsstønad } = useSøknad();
+  const {
+    søknad,
+    mellomlagreOvergangsstønad,
+    settDokumentasjonsbehov,
+    settSøknad,
+  } = useSøknad();
   const barna = søknad.person.barn;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
+
+  const settBarneliste = (nyBarneListe: IBarn[]) => {
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
 
   const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
     (barn) => barn.forelder === undefined
@@ -62,6 +77,9 @@ const BarnasBosted: React.FC = () => {
               aktivIndex={aktivIndex}
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
+              barneListe={søknad.person.barn}
+              settBarneListe={settBarneliste}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
           );
         } else {
