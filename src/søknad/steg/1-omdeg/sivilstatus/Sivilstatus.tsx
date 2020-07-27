@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -19,7 +19,6 @@ import {
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import { useSøknad } from '../../../../context/SøknadContext';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { datoTilStreng } from '../../../../utils/dato';
 

@@ -11,7 +11,6 @@ import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
 
 import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';

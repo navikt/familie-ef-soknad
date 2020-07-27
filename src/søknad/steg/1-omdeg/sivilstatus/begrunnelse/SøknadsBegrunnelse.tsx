@@ -23,7 +23,6 @@ import {
 import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoTilStreng, strengTilDato } from '../../../../../utils/dato';
-import { useSøknad } from '../../../../../context/SøknadContext';
 import { EPersonDetaljer, IPersonDetaljer } from '../../../../../models/person';
 
 interface Props {
