@@ -13,6 +13,9 @@ import SendSøknadKnapper from './SendSøknad';
 import { IDokumentasjon } from '../../../models/dokumentasjon';
 import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
+import { erVedleggstidspunktGyldig } from '../../../utils/dato';
+import * as Sentry from '@sentry/browser';
+import { Severity } from '@sentry/browser';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -39,6 +42,28 @@ const Dokumentasjon: React.FC = () => {
     }
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);
+
+  // Fjern vedlegg som evt. har blitt slettet i familie-dokument
+  useEffect(() => {
+    søknad.dokumentasjonsbehov.forEach((dokBehov) => {
+      if (dokBehov.opplastedeVedlegg) {
+        const gyldigeVedlegg = dokBehov.opplastedeVedlegg.filter((vedlegg) =>
+          erVedleggstidspunktGyldig(vedlegg.tidspunkt)
+        );
+        if (gyldigeVedlegg.length !== dokBehov.opplastedeVedlegg.length) {
+          Sentry.captureEvent({
+            message: `Fjernet ugyldig vedlegg fra søknaden.`,
+            level: Severity.Warning,
+          });
+          settDokumentasjon({
+            ...dokBehov,
+            opplastedeVedlegg: gyldigeVedlegg,
+          });
+        }
+      }
+    });
+    // eslint-disable-next-line
+  }, []);
 
   const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
