@@ -796,6 +796,8 @@ export default {
       'Les mer om stønad til barnetilsyn',
     'kvittering.knapp.tilleggsstønader.aktivitetskrav':
       'Søk stønad til barnetilsyn',
+    'overgangsstønad.feilsituasjon':
+      'Vi har dessverre tekniske problemer, så du får ikke sendt inn søknaden akkurat nå. Vennligst prøv igjen litt senere. Vi beklager ulempen.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

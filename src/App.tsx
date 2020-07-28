@@ -22,6 +22,8 @@ import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import LocaleTekst from './language/LocaleTekst';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -95,6 +97,11 @@ const App = () => {
             <title>Søknad om overgangsstønad</title>
           </Helmet>
 
+          {toggles[ToggleName.feilsituasjon] && (
+            <AlertStripeFeil className={'varsel-feilsituasjon'}>
+              <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
+            </AlertStripeFeil>
+          )}
           {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
