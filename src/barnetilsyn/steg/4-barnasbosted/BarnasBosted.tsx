@@ -21,7 +21,7 @@ const BarnasBosted: React.FC = () => {
   const location = useLocation();
   const {
     søknad,
-    mellomlagreOvergangsstønad,
+    mellomlagreBarnetilsyn,
     settSøknad,
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
@@ -64,7 +64,7 @@ const BarnasBosted: React.FC = () => {
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={sisteBarnUtfylt}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       {barna
         .filter((barn) => barn.medISøknad?.verdi === true)

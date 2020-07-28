@@ -13,7 +13,7 @@ const Bosituasjon: FC = () => {
     søknad,
     settSøknad,
     settDokumentasjonsbehov,
-    mellomlagreOvergangsstønad,
+    mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
   const bosituasjon = søknad.bosituasjon;
   const location = useLocation();
@@ -33,7 +33,7 @@ const Bosituasjon: FC = () => {
       tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       <BosituasjonSpørsmål
         bosituasjon={bosituasjon}

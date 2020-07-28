@@ -30,7 +30,7 @@ const Aktivitet: React.FC = () => {
     søknad,
     settSøknad,
     settDokumentasjonsbehov,
-    mellomlagreOvergangsstønad,
+    mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
   const history = useHistory();
   const location = useLocation();
@@ -128,7 +128,7 @@ const Aktivitet: React.FC = () => {
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       <SeksjonGruppe>
         <KomponentGruppe>

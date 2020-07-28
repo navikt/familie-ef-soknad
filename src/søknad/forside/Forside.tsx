@@ -85,11 +85,9 @@ const Forside: React.FC<any> = ({ intl }) => {
           mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}
-              mellomlagretOvergangsstønad={mellomlagretOvergangsstønad}
-              brukMellomlagretOvergangsstønad={brukMellomlagretOvergangsstønad}
-              nullstillMellomlagretOvergangsstønad={
-                nullstillMellomlagretOvergangsstønad
-              }
+              gjeldendeSteg={mellomlagretOvergangsstønad.gjeldendeSteg}
+              brukMellomlagretSøknad={brukMellomlagretOvergangsstønad}
+              nullstillMellomlagretSøknad={nullstillMellomlagretOvergangsstønad}
             />
           ) : (
             <Forsideinformasjon
