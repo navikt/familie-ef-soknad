@@ -1,27 +1,33 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { useSøknad } from '../../../context/SøknadContext';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
-import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
-import { IUtenlandsopphold } from '../../../models/steg/omDeg/medlemskap';
-import { useIntl } from 'react-intl';
-import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
+import {
+  IMedlemskap,
+  IUtenlandsopphold,
+} from '../../../models/steg/omDeg/medlemskap';
+import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
+import { ISøker } from '../../../models/person';
+import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory } from 'react-router-dom';
+import { useIntl } from 'react-intl';
 
-const OppsummeringOmDeg = () => {
-  const { søknad } = useSøknad();
+interface Props {
+  søker: ISøker;
+  sivilstatus: ISivilstatus;
+  medlemskap: IMedlemskap;
+}
+const OppsummeringOmDeg: FC<Props> = ({ søker, sivilstatus, medlemskap }) => {
   const intl = useIntl();
 
   const history = useHistory();
-  const omDeg = søknad.person.søker;
-  const sivilstatus = søknad.sivilstatus;
-  const medlemskap = søknad.medlemskap;
+  const omDeg = søker;
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
-    søknad.medlemskap.perioderBoddIUtlandet;
+    medlemskap.perioderBoddIUtlandet;
 
   const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);

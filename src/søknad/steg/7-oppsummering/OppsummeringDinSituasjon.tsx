@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSøknad } from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -7,12 +6,16 @@ import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
-const OppsummeringDinSituasjon: React.FC = () => {
-  const { søknad } = useSøknad();
+interface Props {
+  dinSituasjon: IDinSituasjon;
+}
+
+const OppsummeringDinSituasjon: React.FC<Props> = ({ dinSituasjon }) => {
   const history = useHistory();
 
-  const merOmDinSituasjon = søknad.merOmDinSituasjon;
+  const merOmDinSituasjon = dinSituasjon;
 
   return (
     <Ekspanderbartpanel
