@@ -12,16 +12,14 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
 import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { usePersonContext } from '../../../../context/PersonContext';
 import { useSøknad } from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
 import { ESøknad } from '../../../../models/søknad';
 
 const Personopplysninger: React.FC = () => {
   const intl = useIntl();
-  const { person } = usePersonContext();
-  const { søker } = person;
   const { søknad, settSøknad } = useSøknad();
+  const { søker } = søknad.person;
   const { kontakttelefon } = søknad.person.søker;
   const { søkerBorPåRegistrertAdresse } = søknad;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
@@ -49,7 +47,10 @@ const Personopplysninger: React.FC = () => {
         },
         sivilstatus: {},
         medlemskap: {},
-        person: { ...person, søker: { ...person.søker, kontakttelefon: '' } },
+        person: {
+          ...søknad.person,
+          søker: { ...søker, kontakttelefon: '' },
+        },
       });
     } else {
       settSøknad({
@@ -120,7 +121,7 @@ const Personopplysninger: React.FC = () => {
           <Element>
             <LocaleTekst tekst={'sivilstatus.tittel'} />
           </Element>
-          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+          <Normaltekst>{hentSivilstatus(søker.sivilstand)}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>

@@ -86,10 +86,6 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
         verdi: verdi,
       };
     } else {
-      // NB: Skal ikke komme hit, men skjer tydeligvis
-      console.log(
-        `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`
-      );
       Sentry.captureEvent({
         message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
         level: Severity.Warning,
