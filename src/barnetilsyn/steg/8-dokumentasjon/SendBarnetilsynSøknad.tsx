@@ -4,7 +4,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { ISøknad } from '../../../models/søknad';
 import { parseISO } from 'date-fns';
-import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -17,6 +16,7 @@ import {
   mapBarnTilEntenIdentEllerFødselsdato,
   sendInnSøknad,
 } from '../../../innsending/api';
+import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 interface Innsending {
   status: string;
@@ -25,7 +25,7 @@ interface Innsending {
 }
 
 const SendSøknadKnapper: FC = () => {
-  const { søknad, settSøknad } = useSøknad();
+  const { søknad, settSøknad } = useBarnetilsynSøknad();
   const location = useLocation();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(Routes, location.pathname);

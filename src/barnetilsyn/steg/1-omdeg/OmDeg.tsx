@@ -20,7 +20,7 @@ import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const {
     søknad,
-    mellomlagreOvergangsstønad,
+    mellomlagreBarnetilsyn,
     settSøknad,
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
@@ -89,7 +89,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
       skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       <Personopplysninger
         søker={søknad.person.søker}

@@ -7,12 +7,12 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
-  const { mellomlagreOvergangsstønad } = useBarnetilsynSøknad();
+  const { mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={true}
     >
       <SeksjonGruppe></SeksjonGruppe>

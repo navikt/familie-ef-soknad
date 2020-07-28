@@ -5,7 +5,7 @@ import {
   RouteProps,
   RouteComponentProps,
 } from 'react-router-dom';
-import { useSøknad } from '../context/SøknadContext';
+import { useBarnetilsynSøknad } from './BarnetilsynContext';
 
 interface RedirectTilStartProps extends RouteProps {
   component:
@@ -16,7 +16,7 @@ const RedirectTilStart: React.FC<RedirectTilStartProps> = ({
   component: Component,
   ...rest
 }) => {
-  const { søknad } = useSøknad();
+  const { søknad } = useBarnetilsynSøknad();
   return (
     <Route
       {...rest}
