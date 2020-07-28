@@ -623,6 +623,9 @@ export default {
     'dinSituasjon.svar.neiNavKanVurdere':
       'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
 
+    'barnepass.sidetittel': 'Barnepassordning',
+    'barnepass.spm': '',
+
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
     'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',

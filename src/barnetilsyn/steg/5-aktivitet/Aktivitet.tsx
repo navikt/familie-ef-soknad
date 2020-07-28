@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Side from '../../../components/side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -23,6 +22,7 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
+import Side from '../../side/Side';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
