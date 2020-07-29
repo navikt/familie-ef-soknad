@@ -23,6 +23,10 @@ import {
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import Side from '../../side/Side';
+import AlertStripe from 'nav-frontend-alertstriper';
+import LocaleTekst from '../../../language/LocaleTekst';
+import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import { Element } from 'nav-frontend-typografi';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -138,6 +142,18 @@ const Aktivitet: React.FC = () => {
             valgtSvar={arbeidssituasjon?.erIArbeid?.verdi}
           />
         </KomponentGruppe>
+        {arbeidssituasjon.erIArbeid?.svarid === ErIArbeid.NeiFordiJegErSyk && (
+          <>
+            <AlertStripe type={'info'} form={'inline'}>
+              <Element>
+                <LocaleTekst tekst={'erDuIArbeid.alertsstripe-info'} />
+              </Element>
+            </AlertStripe>
+            <AlertStripeDokumentasjon>
+              <LocaleTekst tekst={'erDuIArbeid.alertsstripe-dokumentasjon'} />
+            </AlertStripeDokumentasjon>
+          </>
+        )}
         {arbeidssituasjon.erIArbeid?.svarid === ErIArbeid.JA && (
           <KomponentGruppe>
             <CheckboxSpørsmål

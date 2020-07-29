@@ -396,6 +396,15 @@ export default {
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'erDuIArbeid.spm': 'Er du i arbeid?',
     'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
+    'erDuIArbeid.alertsstripe-info':
+      'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.\n' +
+      '\n' +
+      'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. \n' +
+      '\n' +
+      'Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
+    'erDuIArbeid.alertsstripe-dokumentasjon':
+      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
