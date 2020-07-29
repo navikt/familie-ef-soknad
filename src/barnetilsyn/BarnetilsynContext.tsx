@@ -2,7 +2,6 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
-import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
 import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
 import { ISøknad } from './models/søknad';
 import {
@@ -40,14 +39,7 @@ const initialState: ISøknad = {
       verdi: [],
     },
   },
-  merOmDinSituasjon: {
-    gjelderDetteDeg: {
-      spørsmålid: ESituasjon.gjelderDetteDeg,
-      svarid: [],
-      label: '',
-      verdi: [],
-    },
-  },
+  barnepass: {},
   dokumentasjonsbehov: [],
   harBekreftet: false,
 };

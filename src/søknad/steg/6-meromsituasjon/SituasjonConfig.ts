@@ -127,11 +127,11 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
 
 export const SøkerFraBestemtMånedSpm: ISpørsmål = {
   søknadid: ESituasjon.søkerFraBestemtMåned,
-  tekstid: 'dinSituasjon.spm.søkerFraBestemtMåned',
+  tekstid: 'søkerFraBestemtMåned.spm.overgangsstønad',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'dinSituasjon.lesmer-åpne.overgangsstønad',
-    innholdTekstid: 'dinSituasjon.lesmer-innhold.overgangsstønad',
+    åpneTekstid: 'søkerFraBestemtMåned.hjelpetekst-åpne',
+    innholdTekstid: 'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad',
     lukkeTekstid: '',
   },
   svaralternativer: [
@@ -141,7 +141,7 @@ export const SøkerFraBestemtMånedSpm: ISpørsmål = {
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,
-      svar_tekstid: 'dinSituasjon.svar.neiNavKanVurdere',
+      svar_tekstid: 'søkerFraBestemtMåned.svar.neiNavKanVurdere',
     },
   ],
 };

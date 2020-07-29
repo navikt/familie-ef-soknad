@@ -63,6 +63,8 @@ export default {
 
     'periode.fra': 'Fra',
     'periode.til': 'Til',
+    'periode.startdato': 'Startdato',
+    'periode.sluttdato': 'Sluttdato',
     'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
     'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
 
@@ -610,21 +612,41 @@ export default {
     'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
       'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
 
-    'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
-    'dinSituasjon.lesmer-åpne.overgangsstønad':
+    'søkerFraBestemtMåned.datovelger': 'Når søker du stønad fra?',
+    'søkerFraBestemtMåned.spm.overgangsstønad':
+      'Søker du overgangsstønad fra en bestemt måned?',
+    'søkerFraBestemtMåned.spm.barnepass':
+      'Søker du barnepass fra en bestemt måned?',
+    'søkerFraBestemtMåned.hjelpetekst-åpne':
       'Om å søke fra et bestemt tidspunkt',
-    'dinSituasjon.lesmer-innhold.overgangsstønad':
-      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil [0] måneder før du søker. Det vil si fra og med [1]. Hvis du har fått barn i løpet av de siste [0] månedene, kan du få stønad i inntil [2] måneder før du søker. Det vil si fra og med [3]. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
-    'dinSituasjon.datovelger.overgangsstønad':
-      'Jeg søker overgangsstønad fra og med',
-
-    'dinSituasjon.spm.søkerFraBestemtMåned':
-      'Søker du om overgangsstønad fra en bestemt måned?',
-    'dinSituasjon.svar.neiNavKanVurdere':
+    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad':
+      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020. Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
+      'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+    'søkerFraBestemtMåned.svar.neiNavKanVurdere':
       'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
+
+    'søkerFraBestemtMåned.datovelger.overgangsstønad':
+      'Jeg søker overgangsstønad fra og med',
+    'søkerStønadFraBestemtMnd.datovelger.barnepass':
+      'Jeg søker stønad til barnetilsyn fra og med',
+    'barnepass.dokumentasjon.søkerStønadFraBestemtMnd':
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
 
     'barnepass.sidetittel': 'Barnepassordning',
     'barnepass.spm': '',
+
+    'barnepass.spm.hvaSlagsOrdning': 'Hva slags barnepassordning har [0]?',
+    'hvaSlagsOrdning.svar.barnehageOgLiknende': 'Barnehage, SFO eller liknende',
+    'hvaSlagsOrdning.svar.privat': 'Dagmamma eller annen privat ordning',
+    'barnepass.label.navnPåBarnepass':
+      'Navn på barnepassordningen eller personen som passer Fred',
+    'barnepass.datovelger.periodePåBarnepass':
+      'I hvilken periode har Fred denne barnepassordningen?',
+    'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
+    'barnepass.hjelpetekst-åpne.beløp': 'Hva betyr dette?',
+    'barnepass.hjelpetekst-innhold.beløp':
+      ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
@@ -749,6 +771,10 @@ export default {
     'dokumentasjon.arbeidsforhold-redusert.tittel':
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
+
+    'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
+    'dokumentasjon.tidligereFakturaer.beskrivelse':
+      'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
