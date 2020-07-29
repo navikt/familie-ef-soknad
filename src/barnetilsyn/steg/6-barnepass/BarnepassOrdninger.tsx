@@ -4,12 +4,12 @@ import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
 import BarnepassSpørsmål from './BarnepassSpørsmål';
 import { hentUid } from '../../../utils/uuid';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
 import { Element } from 'nav-frontend-typografi';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { useIntl } from 'react-intl';
 import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 interface Props {
   barn: IBarn;
@@ -27,10 +27,9 @@ const BarnepassOrdninger: FC<Props> = ({
   settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
-  const tomBarnepassOrdning = { id: hentUid() };
   const barnepass: IBarnepass = barn.barnepass
     ? barn.barnepass
-    : { barnepassordninger: [tomBarnepassOrdning] };
+    : { barnepassordninger: [{ id: hentUid() }] };
   const leggTilLabel = hentBarnNavnEllerBarnet(
     barn,
     'barnepass.label.leggTilOrdning',
@@ -56,28 +55,46 @@ const BarnepassOrdninger: FC<Props> = ({
 
   const leggTilBarnepassordning = () => {
     const endretBarnepassordninger = barnepass.barnepassordninger;
-    endretBarnepassordninger.push(tomBarnepassOrdning);
+    endretBarnepassordninger.push({ id: hentUid() });
     settBarnepass(
       { ...barn.barnepass, barnepassordninger: endretBarnepassordninger },
       barn.id
     );
   };
 
+  const fjernBarnepassOrdning = (barnepassordning: IBarnepassOrdning) => {
+    const barnepassordninger = barn.barnepass?.barnepassordninger;
+    if (barnepassordninger && barnepassordninger.length > 1) {
+      const endretBarnepassOrdning = barnepassordninger?.filter(
+        (ordning) => ordning.id !== barnepassordning.id
+      );
+      settBarnepass(
+        { ...barnepass, barnepassordninger: endretBarnepassOrdning },
+        barn.id
+      );
+    }
+  };
+
   return (
     <>
-      {barnepass?.barnepassordninger.map((barnepassordning) => (
+      {barnepass?.barnepassordninger.map((barnepassordning, index) => (
         <BarnepassSpørsmål
           barn={barn}
           barnepassOrdning={barnepassordning}
           settBarnepassOrdning={settBarnepassOrdning}
           settDokumentasjonsbehov={settDokumentasjonsbehov}
+          fjernBarnepassOrdning={fjernBarnepassOrdning}
         />
       ))}
       <KomponentGruppe>
-        <Element>{leggTilLabel}</Element>
-        <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
-          {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
-        </LeggTilKnapp>
+        <FeltGruppe>
+          <Element>{leggTilLabel}</Element>
+        </FeltGruppe>
+        <FeltGruppe>
+          <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
+            {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
+          </LeggTilKnapp>
+        </FeltGruppe>
       </KomponentGruppe>
     </>
   );

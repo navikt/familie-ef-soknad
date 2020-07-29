@@ -6,26 +6,32 @@ import {
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
 } from '../../models/barnepass';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
-import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
-import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
-import { useIntl } from 'react-intl';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentTekst } from '../../utils/søknad';
-import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
-import { Input } from 'nav-frontend-skjema';
-import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
-import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
-import { datoTilStreng } from '../../../utils/dato';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
-import LocaleTekst from '../../../language/LocaleTekst';
+import classnames from 'classnames';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../../language/LocaleTekst';
+import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
+import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
+import SlettKnapp from '../../../components/knapper/SlettKnapp';
+import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
+import { datoTilStreng } from '../../../utils/dato';
+import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
+import { hentTekst } from '../../utils/søknad';
+import { hentTittelMedNr } from '../../../language/utils';
+import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
+import { Input } from 'nav-frontend-skjema';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
   barnepassOrdning: IBarnepassOrdning;
   settBarnepassOrdning: (barnepassOrdning: IBarnepassOrdning) => void;
+  fjernBarnepassOrdning: (barnepassordning: IBarnepassOrdning) => void;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -36,6 +42,7 @@ interface Props {
 const BarnepassSpørsmål: FC<Props> = ({
   barn,
   settBarnepassOrdning,
+  fjernBarnepassOrdning,
   barnepassOrdning,
   settDokumentasjonsbehov,
 }) => {
@@ -64,6 +71,20 @@ const BarnepassSpørsmål: FC<Props> = ({
     'barnepass.datovelger.periodePåBarnepass',
     intl
   );
+
+  const barnepassordningNummer = barn.barnepass?.barnepassordninger.findIndex(
+    (barnepassordning) => barnepassordning.id === barnepassOrdning.id
+  );
+  const flereEnnEnOrdninger =
+    barn?.barnepass?.barnepassordninger !== undefined &&
+    barn?.barnepass?.barnepassordninger?.length > 1;
+  const barnepassordningTittel =
+    barnepassordningNummer !== undefined &&
+    hentTittelMedNr(
+      barn.barnepass?.barnepassordninger!,
+      barnepassordningNummer,
+      intl.formatMessage({ id: 'barnepass.tittel.ordning' })
+    );
 
   const settSpørsmålFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settBarnepassOrdning({
@@ -109,6 +130,20 @@ const BarnepassSpørsmål: FC<Props> = ({
 
   return (
     <SeksjonGruppe>
+      {flereEnnEnOrdninger && (
+        <TittelOgSlettKnapp>
+          <Undertittel className={'tittel'}>
+            {barnepassordningTittel}
+          </Undertittel>
+          <SlettKnapp
+            className={classnames('slettknapp', {
+              kunEn: barn.barnepass?.barnepassordninger?.length === 1,
+            })}
+            onClick={() => fjernBarnepassOrdning(barnepassOrdning)}
+            tekstid={'barnepass.knapp.slett'}
+          />
+        </TittelOgSlettKnapp>
+      )}
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
           spørsmål={HvaSlagsBarnepassOrdningSpm}
