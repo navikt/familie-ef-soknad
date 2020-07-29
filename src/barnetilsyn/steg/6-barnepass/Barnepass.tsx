@@ -56,12 +56,17 @@ const Barnepass: FC<Props> = () => {
     });
   };
 
+  const erBarnepassSpmBesvart: boolean =
+    (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
+      søknadsdato?.verdi !== undefined) ||
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
+
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
-      erSpørsmålBesvart={true}
+      erSpørsmålBesvart={erBarnepassSpmBesvart}
     >
       <SeksjonGruppe>
         <NårSøkerDuStønadFra
