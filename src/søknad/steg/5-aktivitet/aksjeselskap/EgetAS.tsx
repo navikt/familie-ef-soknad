@@ -7,12 +7,12 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import { hentUid } from '../../../../utils/uuid';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
 import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -68,9 +68,9 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase type={'standard'} onClick={() => leggTilAksjeselskap()}>
+            <LeggTilKnapp onClick={() => leggTilAksjeselskap()}>
               <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}

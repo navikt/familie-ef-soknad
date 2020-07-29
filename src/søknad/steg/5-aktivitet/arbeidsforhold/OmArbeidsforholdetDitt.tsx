@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Arbeidsgiver from './Arbeidsgiver';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
@@ -11,6 +10,7 @@ import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
 import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -78,9 +78,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
+            <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>
               <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}
