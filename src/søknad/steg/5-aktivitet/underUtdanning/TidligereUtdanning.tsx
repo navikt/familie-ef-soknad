@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   IUtdanning,
   IUnderUtdanning,
@@ -30,28 +30,22 @@ const TidligereUtdanning: React.FC<Props> = ({
   settUnderUtdanning,
 }) => {
   const intl = useIntl();
+  const tidligereUtdanning: IUtdanning[] = underUtdanning.tidligereUtdanning
+    ? underUtdanning.tidligereUtdanning
+    : [];
 
-  const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning[]>(
-    underUtdanning.tidligereUtdanning &&
-      underUtdanning.tidligereUtdanning.length > 0
-      ? underUtdanning.tidligereUtdanning
-      : [lagTomUtdanning(intl)]
-  );
-
-  useEffect(() => {
-    underUtdanning.harTattUtdanningEtterGrunnskolen &&
-      settUnderUtdanning({
-        ...underUtdanning,
-        tidligereUtdanning: tidligereUtdanning,
-      });
-
-    // eslint-disable-next-line
-  }, [tidligereUtdanning]);
+  const settTidligereUtdanning = (tidligereUtdanninger: IUtdanning[]) => {
+    settUnderUtdanning({
+      ...underUtdanning,
+      tidligereUtdanning: tidligereUtdanninger,
+    });
+  };
 
   const leggTilUtdanning = () => {
-    const nyUtdanning: IUtdanning = lagTomUtdanning(intl);
-    const allUtdanning: IUtdanning[] = tidligereUtdanning;
-    allUtdanning.push(nyUtdanning);
+    const allUtdanning: IUtdanning[] = [
+      ...tidligereUtdanning,
+      lagTomUtdanning(intl),
+    ];
     settUnderUtdanning({ ...underUtdanning, tidligereUtdanning: allUtdanning });
   };
 
@@ -66,25 +60,19 @@ const TidligereUtdanning: React.FC<Props> = ({
       verdi: svar,
     };
 
-    if (!svar && underUtdanning.tidligereUtdanning) {
+    if (!svar) {
       const endretUtdanning = underUtdanning;
       delete endretUtdanning.tidligereUtdanning;
       settUnderUtdanning({
         ...endretUtdanning,
         [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
       });
-    } else if (svar && !underUtdanning.tidligereUtdanning) {
+    } else if (svar) {
       settUnderUtdanning({
         ...underUtdanning,
         [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
         tidligereUtdanning: [lagTomUtdanning(intl)],
       });
-    } else {
-      underUtdanning &&
-        settUnderUtdanning({
-          ...underUtdanning,
-          [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
-        });
     }
   };
 
