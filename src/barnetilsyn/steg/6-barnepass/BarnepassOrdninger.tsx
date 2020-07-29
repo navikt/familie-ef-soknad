@@ -3,6 +3,9 @@ import { IBarn } from '../../../models/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
 import BarnepassSpørsmål from './BarnepassSpørsmål';
 import { hentUid } from '../../../utils/uuid';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { Element } from 'nav-frontend-typografi';
 
 interface Props {
   barn: IBarn;
@@ -39,6 +42,11 @@ const BarnepassOrdninger: FC<Props> = ({ barn, settBarnepass }) => {
           settBarnepassOrdning={settBarnepassOrdning}
         />
       ))}
+      <KomponentGruppe>
+        <Element>
+          <LocaleTekst tekst={'barnepass.label.leggTilOrdning'} />
+        </Element>
+      </KomponentGruppe>
     </>
   );
 };

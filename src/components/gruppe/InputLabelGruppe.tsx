@@ -2,15 +2,22 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { Input, Label } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
+import Hjelpetekst from '../Hjelpetekst';
+import { IHjelpetekst } from '../../models/hjelpetekst';
 
 const StyledComponent = styled.div`
   display: grid;
   grid-template-columns: min-content max-content;
-  grid-template-rows: repeat(2, min-content);
+  grid-template-rows: repeat(3, min-content);
   grid-template-areas:
     'label label'
+    'hjelpetekst hjelpetekst'
     'input tegn';
 
+  .hjelpetekst {
+    grid-area: hjelpetekst;
+    margin-bottom: 1rem;
+  }
   .skjemaelement__label {
     grid-area: label;
   }
@@ -26,6 +33,7 @@ const StyledComponent = styled.div`
 
 interface Props {
   label: string;
+  hjelpetekst?: IHjelpetekst;
   nøkkel: string;
   type: string;
   bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
@@ -41,6 +49,7 @@ interface Props {
 
 const InputLabelGruppe: React.FC<Props> = ({
   label,
+  hjelpetekst,
   nøkkel,
   value,
   type,
@@ -52,6 +61,13 @@ const InputLabelGruppe: React.FC<Props> = ({
   return (
     <StyledComponent>
       <Label htmlFor={label}> {label}</Label>
+      {hjelpetekst && (
+        <Hjelpetekst
+          className={'hjelpetekst'}
+          åpneTekstid={hjelpetekst.åpneTekstid}
+          innholdTekstid={hjelpetekst.innholdTekstid}
+        />
+      )}
       <Input
         id={label}
         key={label}

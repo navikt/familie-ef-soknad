@@ -4,7 +4,7 @@ import {
 } from '../../../models/dokumentasjon';
 import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
 import { ErIArbeid } from '../../../models/steg/aktivitet/aktivitet';
-import { EBarnepass } from '../../models/barnepass';
+import { EBarnepass, ETypeBarnepassOrdning } from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 // ----- DOKUMENTASJON
@@ -25,8 +25,14 @@ export const HvaSlagsBarnepassOrdningSpm: ISpørsmål = {
   tekstid: 'barnepass.spm.hvaSlagsOrdning',
   flersvar: false,
   svaralternativer: [
-    { id: ErIArbeid.JA, svar_tekstid: 'svar.ja' },
-    { id: ErIArbeid.NeiFordiJegErSyk, svar_tekstid: 'erDuIArbeid.svar.nei' },
+    {
+      id: ETypeBarnepassOrdning.barnehageOgLiknende,
+      svar_tekstid: 'hvaSlagsOrdning.svar.barnehageOgLiknende',
+    },
+    {
+      id: ETypeBarnepassOrdning.privat,
+      svar_tekstid: 'hvaSlagsOrdning.svar.privat',
+    },
   ],
 };
 export const SøkerDuStønadFraBestemtMndSpm: ISpørsmål = {

@@ -61,6 +61,8 @@ export default {
     'datovelger.fødselsdato': 'Fødselsdato',
     'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
 
+    'input.kroner': 'kroner',
+
     'periode.fra': 'Fra',
     'periode.til': 'Til',
     'periode.startdato': 'Startdato',
@@ -648,14 +650,29 @@ export default {
     'barnepass.spm.hvaSlagsOrdning': 'Hva slags barnepassordning har [0]?',
     'hvaSlagsOrdning.svar.barnehageOgLiknende': 'Barnehage, SFO eller liknende',
     'hvaSlagsOrdning.svar.privat': 'Dagmamma eller annen privat ordning',
-    'barnepass.label.navnPåBarnepass':
-      'Navn på barnepassordningen eller personen som passer Fred',
+    'barnehageOgLiknende.label.navnPåBarnepass': 'Navn på barnepassordningen',
+    'privat.label.navnPåBarnepass':
+      'Navn på barnepassordningen eller personen som passer [0]',
     'barnepass.datovelger.periodePåBarnepass':
-      'I hvilken periode har Fred denne barnepassordningen?',
+      'I hvilken periode har [0] denne barnepassordningen?',
     'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
-    'barnepass.hjelpetekst-åpne.beløp': 'Hva betyr dette?',
+    'barnepass.hjelpetekst-åpne.beløp': 'Dette kan du få støtte til',
     'barnepass.hjelpetekst-innhold.beløp':
       ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
+    'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
+      'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
+    'barnepass.alert-dokumentasjon.beløp.privat':
+      '<b>Du må legge ved avtalen du har med barnepasseren. Her er et forslag til hvordan en privat avtale om barnepass kan se ut. Avtalen må inneholde:</b> <ul>' +
+      '<li>ditt navn, fødseslnummer og adresse</li>' +
+      '<li> barnepasserens navn og adresse</li>' +
+      '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
+      '<li>perioden avtalen gjelder for</li>' +
+      '<li>dager i uken og klokkeslett for barnepass</li>' +
+      '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
+      '<li>signaturer fra deg og barnepasser </li></ul>',
+    'barnepass.label.leggTilOrdning':
+      'Har du flere barnepassordninger for [0]?',
+    'barnepass.knapp.leggTilOrdning': 'Legg til eb barnepassordning',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',

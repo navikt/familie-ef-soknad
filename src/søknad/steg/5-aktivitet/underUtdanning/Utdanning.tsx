@@ -110,7 +110,7 @@ const Utdanning: React.FC<Props> = ({
       {harValgtSvar(utdanning.linjeKursGrad?.verdi) && (
         <KomponentGruppe>
           <PeriodeDatovelgere
-            tekstid={'utdanning.datovelger.studieperiode'}
+            tekst={hentTekst('utdanning.datovelger.studieperiode', intl)}
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
             showMonthYearPicker={true}

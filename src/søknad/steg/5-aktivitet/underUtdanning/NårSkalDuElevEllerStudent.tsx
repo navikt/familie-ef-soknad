@@ -4,6 +4,8 @@ import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { datoTilStreng } from '../../../../utils/dato';
+import { hentTekst } from '../../../../utils/søknad';
+import { useIntl } from 'react-intl';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -14,6 +16,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   utdanning,
   settUtdanning,
 }) => {
+  const intl = useIntl();
   useEffect(() => {
     if (!utdanning.periode) {
       settUtdanning({ ...utdanning, periode: tomPeriode });
@@ -38,7 +41,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   return (
     <>
       <PeriodeDatovelgere
-        tekstid={'utdanning.datovelger.studieperiode.fremtidig'}
+        tekst={hentTekst('utdanning.datovelger.studieperiode.fremtidig', intl)}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
         datobegrensing={DatoBegrensning.AlleDatoer}

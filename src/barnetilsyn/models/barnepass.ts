@@ -21,3 +21,8 @@ export enum EBarnepass {
   belop = 'belop',
   søkerFraBestemtMåned = 'søkerFraBestemtMåned',
 }
+
+export enum ETypeBarnepassOrdning {
+  barnehageOgLiknende = 'barnehageOgLiknende',
+  privat = 'privat',
+}
