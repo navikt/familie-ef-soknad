@@ -20,7 +20,7 @@ const BarnaDine: React.FC = () => {
   const {
     søknad,
     settSøknad,
-    mellomlagreOvergangsstønad,
+    mellomlagreBarnetilsyn,
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const history = useHistory();
@@ -78,7 +78,7 @@ const BarnaDine: React.FC = () => {
         tittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={true}
         erSpørsmålBesvart={true}
-        mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+        mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">

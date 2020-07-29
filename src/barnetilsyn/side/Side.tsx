@@ -16,7 +16,7 @@ interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
-  mellomlagreOvergangsstønad?: (steg: string) => void;
+  mellomlagreBarnetilsyn?: (steg: string) => void;
 }
 
 const Side: React.FC<ISide> = ({
@@ -24,7 +24,7 @@ const Side: React.FC<ISide> = ({
   children,
   erSpørsmålBesvart,
   skalViseKnapper,
-  mellomlagreOvergangsstønad,
+  mellomlagreBarnetilsyn,
 }) => {
   const location = useLocation();
   const history = useHistory();
@@ -82,9 +82,9 @@ const Side: React.FC<ISide> = ({
               <KnappBase
                 type={'hoved'}
                 onClick={() => {
-                  /*if (mellomlagreOvergangsstønad) {
-                    mellomlagreOvergangsstønad(location.pathname);
-                  }*/
+                  if (mellomlagreBarnetilsyn) {
+                    mellomlagreBarnetilsyn(location.pathname);
+                  }
                   history.push(nesteRoute.path);
                 }}
                 className={classNames(

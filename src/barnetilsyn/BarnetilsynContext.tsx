@@ -9,9 +9,9 @@ import {
   oppdaterDokumentasjonTilEtSvarSpørsmål,
 } from '../helpers/steg/dokumentasjon';
 import {
-  hentMellomlagretOvergangsstønadFraDokument,
-  mellomlagreOvergangsstønadTilDokument,
-  nullstillMellomlagretOvergangsstønadTilDokument,
+  hentMellomlagretBarnetilsynFraDokument,
+  mellomlagreBarnetilsynTilDokument,
+  nullstillMellomlagretBarnetilsynTilDokument,
 } from './utils/søknad';
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
@@ -48,40 +48,39 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
     const [søknad, settSøknad] = useState<ISøknad>(initialState);
 
-    const [
-      mellomlagretOvergangsstønad,
-      settMellomlagretOvergangsstønad,
-    ] = useState<IMellomlagretBarnetilsynSøknad>();
+    const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<
+      IMellomlagretBarnetilsynSøknad
+    >();
     const intl = useIntl();
 
-    const hentMellomlagretOvergangsstønad = (): Promise<void> => {
-      return hentMellomlagretOvergangsstønadFraDokument().then(
+    const hentMellomlagretBarnetilsyn = (): Promise<void> => {
+      return hentMellomlagretBarnetilsynFraDokument().then(
         (mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
           if (mellomlagretVersjon) {
-            settMellomlagretOvergangsstønad(mellomlagretVersjon);
+            settMellomlagretBarnetilsyn(mellomlagretVersjon);
           }
         }
       );
     };
 
-    const brukMellomlagretOvergangsstønad = () => {
-      if (mellomlagretOvergangsstønad) {
-        settSøknad(mellomlagretOvergangsstønad.søknad);
+    const brukMellomlagretBarnetilsyn = () => {
+      if (mellomlagretBarnetilsyn) {
+        settSøknad(mellomlagretBarnetilsyn.søknad);
       }
     };
 
-    const mellomlagreOvergangsstønad = (steg: string) => {
+    const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
         søknad: søknad,
         modellVersjon: Environment().modellVersjon,
         gjeldendeSteg: steg,
       };
-      mellomlagreOvergangsstønadTilDokument(utfyltSøknad);
-      settMellomlagretOvergangsstønad(utfyltSøknad);
+      mellomlagreBarnetilsynTilDokument(utfyltSøknad);
+      settMellomlagretBarnetilsyn(utfyltSøknad);
     };
 
-    const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {
-      return nullstillMellomlagretOvergangsstønadTilDokument();
+    const nullstillMellomlagretBarnetilsyn = (): Promise<any> => {
+      return nullstillMellomlagretBarnetilsynTilDokument();
     };
 
     const settDokumentasjonsbehov = (
@@ -119,11 +118,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       søknad,
       settSøknad,
       settDokumentasjonsbehov,
-      mellomlagretOvergangsstønad,
-      hentMellomlagretOvergangsstønad,
-      mellomlagreOvergangsstønad,
-      brukMellomlagretOvergangsstønad,
-      nullstillMellomlagretOvergangsstønad,
+      mellomlagretBarnetilsyn,
+      hentMellomlagretBarnetilsyn,
+      mellomlagreBarnetilsyn,
+      brukMellomlagretBarnetilsyn,
+      nullstillMellomlagretBarnetilsyn,
     };
   }
 );

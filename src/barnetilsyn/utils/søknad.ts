@@ -18,7 +18,7 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentMellomlagretOvergangsstønadFraDokument = () => {
+export const hentMellomlagretBarnetilsynFraDokument = () => {
   return axios
     .get(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, {
       withCredentials: true,
@@ -32,7 +32,7 @@ export const hentMellomlagretOvergangsstønadFraDokument = () => {
     });
 };
 
-export const mellomlagreOvergangsstønadTilDokument = (
+export const mellomlagreBarnetilsynTilDokument = (
   søknad: IMellomlagretBarnetilsynSøknad
 ) => {
   return axios.post(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, søknad, {
@@ -44,7 +44,7 @@ export const mellomlagreOvergangsstønadTilDokument = (
   });
 };
 
-export const nullstillMellomlagretOvergangsstønadTilDokument = (): Promise<any> => {
+export const nullstillMellomlagretBarnetilsynTilDokument = (): Promise<any> => {
   return axios.delete(`${Environment().mellomlagerUrl + 'barnetilsyn'}`, {
     withCredentials: true,
     headers: {

@@ -16,11 +16,7 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
-  const {
-    søknad,
-    settSøknad,
-    mellomlagreOvergangsstønad,
-  } = useBarnetilsynSøknad();
+  const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   const location = useLocation();
   const { aktivitet, dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
@@ -39,7 +35,7 @@ const Dokumentasjon: React.FC = () => {
 
   useEffect(() => {
     if (forrigeDokumentasjonsbehov !== undefined) {
-      mellomlagreOvergangsstønad(location.pathname);
+      mellomlagreBarnetilsyn(location.pathname);
     }
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);

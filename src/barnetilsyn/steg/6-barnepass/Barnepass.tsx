@@ -14,11 +14,7 @@ import { IBarnepass } from '../../models/barnepass';
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
-  const {
-    søknad,
-    settSøknad,
-    mellomlagreOvergangsstønad,
-  } = useBarnetilsynSøknad();
+  const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad.barnepass;
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
@@ -64,7 +60,7 @@ const Barnepass: FC<Props> = () => {
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreOvergangsstønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={true}
     >
       <SeksjonGruppe>

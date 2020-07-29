@@ -10,19 +10,35 @@ import Oppsummering from './steg/7-oppsummering/Oppsummering';
 import Dokumentasjon from './steg/8-dokumentasjon/Dokumentasjon';
 import Kvittering from './steg/9-kvittering/Kvittering';
 import Barnepass from './steg/6-barnepass/Barnepass';
+import RedirectTilStart from './RedirectTilStart';
 
 const SøknadsdialogBarnetilsyn: FC = () => {
   return (
     <Switch>
-      <Route path={'/barnetilsyn/kvittering'} component={Kvittering} />
-      <Route path={'/barnetilsyn/dokumentasjon'} component={Dokumentasjon} />
-      <Route path={'/barnetilsyn/oppsummering'} component={Oppsummering} />
-      <Route path={'/barnetilsyn/barnepass'} component={Barnepass} />
-      <Route path={'/barnetilsyn/aktivitet'} component={Aktivitet} />
-      <Route path={'/barnetilsyn/barnas-bosted'} component={BarnasBosted} />
-      <Route path={'/barnetilsyn/barn'} component={BarnaDine} />
-      <Route path={'/barnetilsyn/bosituasjon'} component={Bosituasjon} />
-      <Route path={'/barnetilsyn/om-deg'} component={OmDeg} />
+      <RedirectTilStart
+        path={'/barnetilsyn/kvittering'}
+        component={Kvittering}
+      />
+      <RedirectTilStart
+        path={'/barnetilsyn/dokumentasjon'}
+        component={Dokumentasjon}
+      />
+      <RedirectTilStart
+        path={'/barnetilsyn/oppsummering'}
+        component={Oppsummering}
+      />
+      <RedirectTilStart path={'/barnetilsyn/barnepass'} component={Barnepass} />
+      <RedirectTilStart path={'/barnetilsyn/aktivitet'} component={Aktivitet} />
+      <RedirectTilStart
+        path={'/barnetilsyn/barnas-bosted'}
+        component={BarnasBosted}
+      />
+      <RedirectTilStart path={'/barnetilsyn/barn'} component={BarnaDine} />
+      <RedirectTilStart
+        path={'/barnetilsyn/bosituasjon'}
+        component={Bosituasjon}
+      />
+      <RedirectTilStart path={'/barnetilsyn/om-deg'} component={OmDeg} />
       <Route path={'/barnetilsyn'} component={Forside} />
     </Switch>
   );
