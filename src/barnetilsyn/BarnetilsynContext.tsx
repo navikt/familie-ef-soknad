@@ -39,7 +39,6 @@ const initialState: ISøknad = {
       verdi: [],
     },
   },
-  barnepass: {},
   dokumentasjonsbehov: [],
   harBekreftet: false,
 };

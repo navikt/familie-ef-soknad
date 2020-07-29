@@ -4,6 +4,7 @@ import {
   ITekstFelt,
 } from './søknadsfelter';
 import { IForelder } from './forelder';
+import { IBarnepass } from '../barnetilsyn/models/barnepass';
 
 export interface IBarn {
   id: string;
@@ -16,6 +17,7 @@ export interface IBarn {
   lagtTil?: boolean;
   forelder?: IForelder;
   medISøknad?: IBooleanFelt;
+  barnepass?: IBarnepass;
 }
 
 export enum EBarn {

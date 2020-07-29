@@ -1,21 +1,15 @@
-import {
-  IDatoFelt,
-  ISpørsmålBooleanFelt,
-  ISpørsmålFelt,
-  ITekstFelt,
-} from '../../models/søknadsfelter';
+import { ISpørsmålFelt, ITekstFelt } from '../../models/søknadsfelter';
 import { IPeriode } from '../../models/periode';
 
 export interface IBarnepass {
   årsakBarnepass?: ISpørsmålFelt;
-  barnepassOrdninger?: IBarnepassOrdning[];
-  søkerFraBestemtMåned?: ISpørsmålBooleanFelt;
-  søknadsdato?: IDatoFelt;
+  barnepassordninger: IBarnepassOrdning[];
 }
 
 export interface IBarnepassOrdning {
+  id: string;
   hvaSlagsBarnepassOrdning?: ISpørsmålFelt;
-  navn?: ISpørsmålFelt;
+  navn?: ITekstFelt;
   periode?: IPeriode;
   belop?: ITekstFelt;
 }
