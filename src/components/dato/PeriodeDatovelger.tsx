@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
-import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';

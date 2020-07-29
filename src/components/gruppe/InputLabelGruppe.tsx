@@ -20,6 +20,7 @@ const StyledComponent = styled.div`
   }
   .skjemaelement__label {
     grid-area: label;
+    font-size: 18px;
   }
   .skjemaelement {
     grid-area: input;

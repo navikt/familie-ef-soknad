@@ -723,7 +723,7 @@ export default {
     'dokumentasjon.ulikeAdresser.tittel':
       'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
     'dokumentasjon.ulikeAdresser.beskrivelse':
-      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <li>' +
+      'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <ul>' +
       '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
       '<li>Kopi av flyttemelding/tips til folkeregisteret</li>' +
       '<li>Husleiekontrakt for begge parter</li>' +
@@ -860,6 +860,8 @@ export default {
       'Les mer om stønad til barnetilsyn',
     'kvittering.knapp.tilleggsstønader.aktivitetskrav':
       'Søk stønad til barnetilsyn',
+    'overgangsstønad.feilsituasjon':
+      'Vi har dessverre tekniske problemer, så du får ikke sendt inn søknaden akkurat nå. Vennligst prøv igjen litt senere. Vi beklager ulempen.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

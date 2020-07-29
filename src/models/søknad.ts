@@ -19,3 +19,7 @@ export interface ISøknad {
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
 }
+
+export enum ESøknad {
+  søkerBorPåRegistrertAdresse = 'søkerBorPåRegistrertAdresse',
+}

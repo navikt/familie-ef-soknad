@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -12,7 +12,6 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { usePersonContext } from '../../../../context/PersonContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
 import { ISøker } from '../../../../models/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknadsfelter';
@@ -32,15 +31,22 @@ const Personopplysninger: React.FC<Props> = ({
   settSøkerBorPåRegistrertAdresse,
 }) => {
   const intl = useIntl();
-  const { person } = usePersonContext();
+
+  const { kontakttelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
+  const [telefonnummer, settTelefonnummer] = useState<string>(
+    kontakttelefon ? kontakttelefon : ''
+  );
+
+  useEffect(() => {
+    settTelefonnummer(kontakttelefon ? kontakttelefon : '');
+  }, [kontakttelefon]);
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar
   ) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-
     settSøkerBorPåRegistrertAdresse({
       spørsmålid: spørsmål.søknadid,
       svarid: valgtSvar.id,
@@ -51,8 +57,11 @@ const Personopplysninger: React.FC<Props> = ({
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
+    settTelefonnummer(telefonnr);
     if (telefonnr.length >= 8 && /^[+\d\s]+$/.test(telefonnr)) {
       settSøker({ ...søker, kontakttelefon: telefonnr });
+    } else {
+      settSøker({ ...søker, kontakttelefon: '' });
     }
   };
 
@@ -90,7 +99,7 @@ const Personopplysninger: React.FC<Props> = ({
           <Element>
             <LocaleTekst tekst={'sivilstatus.tittel'} />
           </Element>
-          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+          <Normaltekst>{hentSivilstatus(søker.sivilstand)}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
@@ -129,6 +138,7 @@ const Personopplysninger: React.FC<Props> = ({
             bredde={'M'}
             onChange={(e) => oppdaterTelefonnr(e)}
             onBlur={(e) => oppdaterFeilmelding(e)}
+            className="inputfelt-tekst"
             feil={
               feilTelefonnr
                 ? intl.formatMessage({
@@ -136,6 +146,7 @@ const Personopplysninger: React.FC<Props> = ({
                   })
                 : undefined
             }
+            value={telefonnummer}
           />
         </>
       )}

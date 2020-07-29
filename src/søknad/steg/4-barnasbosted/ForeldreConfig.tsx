@@ -21,6 +21,7 @@ const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.BARN_BOR_HOS_SØKER,
   spørsmålid: EForelder.skalBarnetBoHosSøker,
   svarid: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
+  label: '',
   tittel: 'dokumentasjon.barnBorHosSøker.tittel',
   beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
   harSendtInn: false,
@@ -30,6 +31,7 @@ const AvtaleOmDeltBosted: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.DELT_BOSTED,
   spørsmålid: EForelder.avtaleOmDeltBosted,
   svarid: ESvar.JA,
+  label: '',
   tittel: 'dokumentasjon.deltBosted.tittel',
   harSendtInn: false,
 };
@@ -38,6 +40,7 @@ const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
   spørsmålid: EForelder.harDereSkriftligSamværsavtale,
   svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
+  label: '',
   tittel: 'dokumentasjon.samværsavtale.tittel',
   harSendtInn: false,
 };
@@ -46,6 +49,7 @@ const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon = {
   id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
   spørsmålid: EForelder.harDereSkriftligSamværsavtale,
   svarid: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
+  label: '',
   tittel: 'dokumentasjon.samværsavtale.tittel',
   harSendtInn: false,
 };

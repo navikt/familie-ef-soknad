@@ -41,7 +41,7 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
     <KomponentGruppe>
       <FeltGruppe>
         <FnrInput
-          className={'tjukk-tekst'}
+          className={'tjukk-tekst inputfelt-tekst'}
           key={'ident'}
           label={identLabel}
           disabled={checked}

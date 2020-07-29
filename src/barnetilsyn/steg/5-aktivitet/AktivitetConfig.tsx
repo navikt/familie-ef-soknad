@@ -16,6 +16,7 @@ export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
   id: SituasjonDokumentasjon.IKKE_VILLIG_TIL_ARBEID,
   spørsmålid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   svarid: ESvar.NEI,
+  label: '',
   tittel: 'dokumentasjon.ikke.villig.til.arbeid.tittel',
   beskrivelse: 'dokumentasjon.ikke.villig.til.arbeid.beskrivelse',
   harSendtInn: false,

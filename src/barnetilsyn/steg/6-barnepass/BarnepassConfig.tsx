@@ -3,7 +3,6 @@ import {
   IDokumentasjon,
 } from '../../../models/dokumentasjon';
 import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
-import { ErIArbeid } from '../../../models/steg/aktivitet/aktivitet';
 import { EBarnepass, ETypeBarnepassOrdning } from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
@@ -12,6 +11,7 @@ import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/merom
 export const TidligereFakturaer: IDokumentasjon = {
   id: BarnetilsynDokumentasjon.TIDLIGERE_FAKTURAER,
   spørsmålid: EBarnepass.søkerFraBestemtMåned,
+  label: '',
   svarid: ESvar.JA,
   tittel: 'dokumentasjon.tidligereFakturaer.tittel',
   beskrivelse: 'dokumentasjon.tidligereFakturaer.beskrivelse',

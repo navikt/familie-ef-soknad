@@ -20,6 +20,10 @@ export const harValgtSvar = (svar: boolean | undefined | string) => {
   }
 };
 
+export const strengErMerEnnNull = (svar: string | undefined) => {
+  return svar ? parseInt(svar) > 0 : false;
+};
+
 export const erValgtSvarLiktSomSvar = (
   valgtSvar: string | undefined,
   annetSvarTekstid: string,

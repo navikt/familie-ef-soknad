@@ -4,6 +4,8 @@ import { IntlShape } from 'react-intl';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import * as Sentry from '@sentry/browser';
+import { Severity } from '@sentry/browser';
 
 export const hentPersonData = () => {
   return axios
@@ -88,7 +90,10 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
         verdi: verdi,
       };
     } else {
-      nyttObjekt[key] = verdi;
+      Sentry.captureEvent({
+        message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
+        level: Severity.Warning,
+      });
     }
   }
 

@@ -2,7 +2,6 @@ import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
-import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
@@ -14,6 +13,7 @@ import {
   IUtenlandsopphold,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
@@ -83,12 +83,9 @@ const PeriodeBoddIUtlandet: FC<{
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase
-              type={'standard'}
-              onClick={() => leggTilUtenlandsperiode()}
-            >
+            <LeggTilKnapp onClick={() => leggTilUtenlandsperiode()}>
               <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}

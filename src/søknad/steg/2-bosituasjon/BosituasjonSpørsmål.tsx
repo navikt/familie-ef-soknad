@@ -19,6 +19,7 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { useHistory, useLocation } from 'react-router';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -90,14 +91,16 @@ const BosituasjonSpørsmål: FC<Props> = ({
         />
         {valgtSvar && valgtSvar.alert_tekstid && (
           <FeltGruppe>
-            <AlertStripeDokumentasjon>
-              {bosituasjon.delerBoligMedAndreVoksne.svarid ===
-              ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+            {bosituasjon.delerBoligMedAndreVoksne.svarid ===
+            ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
+              <AlertStripeDokumentasjon>
                 <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
-              ) : (
+              </AlertStripeDokumentasjon>
+            ) : (
+              <AlertStripe type={'advarsel'} form={'inline'}>
                 <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-              )}
-            </AlertStripeDokumentasjon>
+              </AlertStripe>
+            )}
           </FeltGruppe>
         )}
       </SeksjonGruppe>

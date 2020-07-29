@@ -57,6 +57,12 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       return {
         ...prevSoknad,
         søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
+        sivilstatus: {},
+        medlemskap: {},
+        person: {
+          ...prevSoknad.person,
+          søker: { ...prevSoknad.person.søker, kontakttelefon: '' },
+        },
       };
     });
   };

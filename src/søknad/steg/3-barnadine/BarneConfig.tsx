@@ -11,6 +11,7 @@ const Terminbekreftelse: IDokumentasjon = {
   id: BarnDokumentasjon.TERMINBEKREFTELSE,
   spørsmålid: EBarn.født,
   svarid: ESvar.NEI,
+  label: '',
   tittel: 'dokumentasjon.terminbekreftelse.tittel',
   harSendtInn: false,
 };
