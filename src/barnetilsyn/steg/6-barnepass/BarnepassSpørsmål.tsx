@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { IBarn } from '../../../models/barn';
-import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
+import { IBarnepassOrdning } from '../../models/barnepass';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
