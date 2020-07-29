@@ -60,7 +60,7 @@ const Barnepass: FC<Props> = () => {
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
-      mellomlagreOvergangsstønad={mellomlagreBarnetilsyn}
+      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={true}
     >
       <SeksjonGruppe>

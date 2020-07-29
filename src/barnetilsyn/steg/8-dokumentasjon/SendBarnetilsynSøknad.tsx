@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
-import { ISøknad } from '../../../models/søknad';
 import { parseISO } from 'date-fns';
 import { useHistory, useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -17,6 +16,7 @@ import {
   sendInnSøknad,
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import { ISøknad } from '../../models/søknad';
 
 interface Innsending {
   status: string;
