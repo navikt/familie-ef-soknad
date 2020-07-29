@@ -672,7 +672,7 @@ export default {
       '<li>signaturer fra deg og barnepasser </li></ul>',
     'barnepass.label.leggTilOrdning':
       'Har du flere barnepassordninger for [0]?',
-    'barnepass.knapp.leggTilOrdning': 'Legg til eb barnepassordning',
+    'barnepass.knapp.leggTilOrdning': 'Legg til en barnepassordning',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
@@ -801,6 +801,23 @@ export default {
     'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
     'dokumentasjon.tidligereFakturaer.beskrivelse':
       'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
+
+    'dokumentasjon.barnehageOgLiknende.tittel':
+      'Faktura fra barnepassordningen',
+    'dokumentasjon.barnehageOgLiknende.beskrivelse':
+      'Den må stå i ditt navn, og utgifter til opphold må være spesifisert. \n' +
+      '\n' +
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+    'dokumentasjon.privatBarnepass.tittel': 'Avtalen du har med barnepasseren',
+    'dokumentasjon.privatBarnepass.beskrivelse':
+      'Avtalen må inneholde:\n<ul>' +
+      '<li>ditt navn, fødseslnummer og adresse</li>' +
+      '<li>barnepasserens navn og adresse</li>' +
+      '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
+      '<li>perioden avtalen gjelder for</li>' +
+      '<li>dager i uken og klokkeslett for barnepass</li>' +
+      '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
+      '<li>signaturer fra deg og barnepasser</li></ul>',
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',

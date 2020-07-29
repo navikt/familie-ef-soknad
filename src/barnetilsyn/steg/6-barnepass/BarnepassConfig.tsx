@@ -17,6 +17,24 @@ export const TidligereFakturaer: IDokumentasjon = {
   beskrivelse: 'dokumentasjon.tidligereFakturaer.beskrivelse',
   harSendtInn: false,
 };
+export const FakturaFraBarnepassordning: IDokumentasjon = {
+  id: BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING,
+  spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
+  label: '',
+  svarid: ETypeBarnepassOrdning.barnehageOgLiknende,
+  tittel: 'dokumentasjon.barnehageOgLiknende.tittel',
+  beskrivelse: 'dokumentasjon.barnehageOgLiknende.beskrivelse',
+  harSendtInn: false,
+};
+export const AvtaleMedBarnepasser: IDokumentasjon = {
+  id: BarnetilsynDokumentasjon.AVTALE_BARNEPASSER,
+  spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
+  label: '',
+  svarid: ETypeBarnepassOrdning.privat,
+  tittel: 'dokumentasjon.privatBarnepass.tittel',
+  beskrivelse: 'dokumentasjon.privatBarnepass.beskrivelse',
+  harSendtInn: false,
+};
 
 // --- SPØRSMÅL
 
@@ -28,10 +46,12 @@ export const HvaSlagsBarnepassOrdningSpm: ISpørsmål = {
     {
       id: ETypeBarnepassOrdning.barnehageOgLiknende,
       svar_tekstid: 'hvaSlagsOrdning.svar.barnehageOgLiknende',
+      dokumentasjonsbehov: FakturaFraBarnepassordning,
     },
     {
       id: ETypeBarnepassOrdning.privat,
       svar_tekstid: 'hvaSlagsOrdning.svar.privat',
+      dokumentasjonsbehov: AvtaleMedBarnepasser,
     },
   ],
 };

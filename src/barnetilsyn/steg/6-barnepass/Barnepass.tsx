@@ -15,7 +15,12 @@ import BarnepassOrdninger from './BarnepassOrdninger';
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
-  const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
+  const {
+    søknad,
+    settSøknad,
+    mellomlagreBarnetilsyn,
+    settDokumentasjonsbehov,
+  } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
   const barnMedISøknaden = søknad.person.barn.filter((barn) => barn.medISøknad);
 
@@ -71,6 +76,7 @@ const Barnepass: FC<Props> = () => {
         verdi: svar.id === ESøkerFraBestemtMåned.ja,
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const erBarnepassSpmBesvart: boolean =
@@ -87,7 +93,11 @@ const Barnepass: FC<Props> = () => {
     >
       {barnMedISøknaden.map((barn) => (
         <SeksjonGruppe>
-          <BarnepassOrdninger barn={barn} settBarnepass={settBarnepass} />
+          <BarnepassOrdninger
+            barn={barn}
+            settBarnepass={settBarnepass}
+            settDokumentasjonsbehov={settDokumentasjonsbehov}
+          />
         </SeksjonGruppe>
       ))}
       <SeksjonGruppe>

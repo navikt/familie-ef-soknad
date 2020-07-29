@@ -76,6 +76,7 @@ const Aktivitet: React.FC = () => {
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const settArbeidssituasjonFelt = (

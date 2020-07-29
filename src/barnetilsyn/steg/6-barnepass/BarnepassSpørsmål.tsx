@@ -26,12 +26,18 @@ interface Props {
   barn: IBarn;
   barnepassOrdning: IBarnepassOrdning;
   settBarnepassOrdning: (barnepassOrdning: IBarnepassOrdning) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const BarnepassSpørsmål: FC<Props> = ({
   barn,
   settBarnepassOrdning,
   barnepassOrdning,
+  settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
   const { hvaSlagsBarnepassOrdning } = barnepassOrdning;
@@ -69,6 +75,7 @@ const BarnepassSpørsmål: FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
+    settDokumentasjonsbehov(spørsmål, svar);
   };
 
   const settInputFelt = (
