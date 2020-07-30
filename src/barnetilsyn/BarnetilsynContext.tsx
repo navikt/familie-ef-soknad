@@ -71,7 +71,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
         søknad: søknad,
-        modellVersjon: Environment().modellVersjon,
+        modellVersjon: Environment().modellVersjon.barnetilsyn,
         gjeldendeSteg: steg,
       };
       mellomlagreBarnetilsynTilDokument(utfyltSøknad);

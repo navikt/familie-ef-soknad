@@ -44,7 +44,8 @@ const Forside: React.FC<any> = ({ intl }) => {
   const kanBrukeMellomlagretSøknad =
     mellomlagretBarnetilsyn !== undefined &&
     mellomlagretBarnetilsyn.søknad.person.hash === person.hash &&
-    mellomlagretBarnetilsyn.modellVersjon === Environment().modellVersjon;
+    mellomlagretBarnetilsyn.modellVersjon ===
+      Environment().modellVersjon.barnetilsyn;
 
   const disclaimer = forside['disclaimer_' + locale];
   const seksjon = forside['seksjon_' + locale];

@@ -6,11 +6,16 @@ interface EnvironmentProps {
   mellomlagerUrl: string;
   sentryUrl?: string;
   miljø: string;
-  modellVersjon: number;
+  modellVersjon: IModellversjon;
+}
+
+interface IModellversjon {
+  overgangsstønad: number;
+  barnetilsyn: number;
 }
 
 const Environment = (): EnvironmentProps => {
-  const modellVersjon = 5;
+  const modellVersjon = { overgangsstønad: 6, barnetilsyn: 1 };
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',

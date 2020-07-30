@@ -79,7 +79,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   const mellomlagreOvergangsstønad = (steg: string) => {
     const utfyltSøknad = {
       søknad: søknad,
-      modellVersjon: Environment().modellVersjon,
+      modellVersjon: Environment().modellVersjon.overgangsstønad,
       gjeldendeSteg: steg,
     };
     mellomlagreOvergangsstønadTilDokument(utfyltSøknad);

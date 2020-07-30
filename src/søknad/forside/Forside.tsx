@@ -52,7 +52,8 @@ const Forside: React.FC<any> = ({ intl }) => {
   const kanBrukeMellomlagretSøknad =
     mellomlagretOvergangsstønad !== undefined &&
     mellomlagretOvergangsstønad.søknad.person.hash === person.hash &&
-    mellomlagretOvergangsstønad.modellVersjon === Environment().modellVersjon;
+    mellomlagretOvergangsstønad.modellVersjon ===
+      Environment().modellVersjon.overgangsstønad;
 
   // TODO: Må si ifra at den mellomlagrede versjonen ikke kan brukes pga endring i personopplysninger?
 
