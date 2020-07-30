@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Knapp } from 'nav-frontend-knapper';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { useIntl } from 'react-intl';
 
 interface Props {
   medISøknad?: boolean;
@@ -13,17 +15,23 @@ const BarnMedISøknad: FC<Props> = ({
   toggleMedISøknadBarn,
   id,
 }) => {
+  const intl = useIntl();
   return medISøknad ? (
     <>
       <div className="med-i-søknaden-badge">
-        <Normaltekst>Med i søknaden</Normaltekst>
+        <Normaltekst>
+          <LocaleTekst tekst={'barnadine.label.medISøknad'} />
+        </Normaltekst>
       </div>
       <div
         className="barnekort__endre-barnekort"
         onClick={() => toggleMedISøknadBarn(id)}
       >
         <Normaltekst>
-          <span className="lenke">Fjern fra søknad</span>
+          <span className="lenke">
+            {intl.formatMessage({ id: 'barnadine.knapp.fjern' })}
+          </span>
+          ws
         </Normaltekst>
       </div>
     </>
@@ -32,7 +40,7 @@ const BarnMedISøknad: FC<Props> = ({
       className="legg-til-i-søknad-knapp"
       onClick={() => toggleMedISøknadBarn(id)}
     >
-      Søk om stønad til barnetilsyn
+      <LocaleTekst tekst={'barnadine.knapp.søkBarnetilsyn'} />
     </Knapp>
   );
 };

@@ -249,6 +249,9 @@ export default {
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.label.medISøknad': 'Med i søknaden',
+    'barnadine.knapp.fjern': 'Fjern fra søknad',
+    'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
