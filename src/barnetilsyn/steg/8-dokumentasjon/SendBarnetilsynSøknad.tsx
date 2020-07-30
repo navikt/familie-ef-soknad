@@ -13,6 +13,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
 import { Routes } from '../../../routing/Routes';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
+  sendInnBarnetilsynSøknad,
   sendInnSøknad,
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
@@ -47,7 +48,7 @@ const SendSøknadKnapper: FC = () => {
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
     };
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknadMedFiltrerteBarn)
+    sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
