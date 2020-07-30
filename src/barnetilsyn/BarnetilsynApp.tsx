@@ -3,7 +3,7 @@ import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import TestsideInformasjon from '../components/TestsideInformasjon';
-import { hentPersonData } from '../utils/søknad';
+import { hentPersonData, settLabelOgVerdi } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
 import { ToggleName } from '../models/toggles';
@@ -14,7 +14,6 @@ import {
 import mockPersonMedBarn from '../mock/mockPerson.json';
 import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
 import mockToggles from '../mock/mockToggles.json';
-import { settLabelOgVerdi } from '../utils/søknad';
 import { standardLabelsBarn } from '../helpers/labels';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';

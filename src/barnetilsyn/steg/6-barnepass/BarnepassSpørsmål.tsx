@@ -18,7 +18,6 @@ import SlettKnapp from '../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
 import { datoTilStreng } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
-import { hentTekst } from '../../utils/søknad';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
 import { Input } from 'nav-frontend-skjema';
@@ -26,6 +25,7 @@ import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
+import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
   barn: IBarn;
