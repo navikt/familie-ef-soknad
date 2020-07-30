@@ -60,21 +60,21 @@ const Barnepass: FC<Props> = () => {
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const endretSøknad = søknad;
-    if (
-      svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere &&
-      søknadsdato?.verdi
-    )
-      delete endretSøknad.søknadsdato;
-
-    settSøknad({
-      ...endretSøknad,
-      [spørsmål.søknadid]: {
-        spørsmålid: spørsmål.søknadid,
-        svarid: svar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar.id === ESøkerFraBestemtMåned.ja,
-      },
+    settSøknad((prevSoknad) => {
+      if (
+        svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere &&
+        søknadsdato?.verdi
+      )
+        delete prevSoknad.søknadsdato;
+      return {
+        ...prevSoknad,
+        [spørsmål.søknadid]: {
+          spørsmålid: spørsmål.søknadid,
+          svarid: svar.id,
+          label: hentTekst(spørsmål.tekstid, intl),
+          verdi: svar.id === ESøkerFraBestemtMåned.ja,
+        },
+      };
     });
     settDokumentasjonsbehov(spørsmål, svar);
   };
