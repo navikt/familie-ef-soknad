@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSøknad } from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import { hentTekst } from '../../../utils/søknad';
@@ -9,13 +8,18 @@ import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { useHistory } from 'react-router-dom';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 
-const OppsummeringAktiviteter: React.FC = () => {
-  const { søknad } = useSøknad();
+interface Props {
+  aktivitet: IAktivitet;
+}
+
+const OppsummeringAktiviteter: React.FC<Props> = ({ aktivitet }) => {
   const history = useHistory();
   const intl = useIntl();
-
-  const aktivitet = søknad.aktivitet;
+  const erIArbeid = aktivitet.erIArbeid
+    ? VisLabelOgSvar(aktivitet.erIArbeid)
+    : null;
 
   const virksomhet = aktivitet.etablererEgenVirksomhet
     ? VisLabelOgSvar(aktivitet.etablererEgenVirksomhet)
@@ -63,6 +67,7 @@ const OppsummeringAktiviteter: React.FC = () => {
         </Undertittel>
       }
     >
+      {erIArbeid && <div className={'seksjon'}>{erIArbeid} </div>}
       {virksomhet ? <div className="seksjon">{virksomhet}</div> : null}
       {arbeidssituasjon ? (
         <div className="seksjon">{arbeidssituasjon}</div>

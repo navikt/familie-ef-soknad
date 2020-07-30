@@ -50,12 +50,12 @@ const MultiSvarSpørsmål: FC<Props> = ({
   return (
     <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
       <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
-      {spørsmål.lesmer ? (
+      {spørsmål.lesmer && (
         <Hjelpetekst
           åpneTekstid={spørsmål.lesmer.åpneTekstid}
           innholdTekstid={spørsmål.lesmer.innholdTekstid}
         />
-      ) : null}
+      )}
       <div
         className={classNames('radioknapp__multiSvar', {
           toKorteSvar: toKorteSvar,

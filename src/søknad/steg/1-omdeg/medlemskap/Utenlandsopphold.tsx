@@ -102,7 +102,7 @@ const Utenlandsopphold: FC<Props> = ({
       <PeriodeDatovelgere
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
-        tekstid={'medlemskap.periodeBoddIUtlandet'}
+        tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
       />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) && (
         <Textarea

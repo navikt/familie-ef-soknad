@@ -14,21 +14,20 @@ import {
   IMedlemskap,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 
-const Medlemskap: React.FC = () => {
+interface Props {
+  medlemskap: IMedlemskap;
+  settMedlemskap: (medlemskap: IMedlemskap) => void;
+}
+const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
-  const {
-    søkerOppholderSegINorge,
-    søkerBosattINorgeSisteTreÅr,
-  } = søknad.medlemskap;
+  const { søkerOppholderSegINorge, søkerBosattINorgeSisteTreÅr } = medlemskap;
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-    const endretMedlemskap = søknad.medlemskap;
+    const endretMedlemskap = medlemskap;
 
     if (
       spørsmål.søknadid === EMedlemskap.søkerBosattINorgeSisteTreÅr &&
@@ -38,14 +37,11 @@ const Medlemskap: React.FC = () => {
       delete endretMedlemskap.perioderBoddIUtlandet;
     }
 
-    settSøknad({
-      ...søknad,
-      medlemskap: {
-        ...endretMedlemskap,
-        [spørsmål.søknadid]: {
-          label: intl.formatMessage({ id: spørsmål.tekstid }),
-          verdi: svar,
-        },
+    settMedlemskap({
+      ...endretMedlemskap,
+      [spørsmål.søknadid]: {
+        label: intl.formatMessage({ id: spørsmål.tekstid }),
+        verdi: svar,
       },
     });
   };
@@ -60,7 +56,7 @@ const Medlemskap: React.FC = () => {
 
   const valgtSvarOppholderSegINorge = hentValgtSvar(
     oppholderSegINorge,
-    søknad.medlemskap
+    medlemskap
   );
 
   return (
@@ -82,17 +78,17 @@ const Medlemskap: React.FC = () => {
         <KomponentGruppe key={bosattINorgeDeSisteTreÅr.søknadid}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅr}
-            valgtSvar={hentValgtSvar(
-              bosattINorgeDeSisteTreÅr,
-              søknad.medlemskap
-            )}
+            valgtSvar={hentValgtSvar(bosattINorgeDeSisteTreÅr, medlemskap)}
             onChange={settMedlemskapBooleanFelt}
           />
         </KomponentGruppe>
       ) : null}
 
       {søkerBosattINorgeSisteTreÅr?.verdi === false ? (
-        <PeriodeBoddIUtlandet />
+        <PeriodeBoddIUtlandet
+          medlemskap={medlemskap}
+          settMedlemskap={settMedlemskap}
+        />
       ) : null}
     </SeksjonGruppe>
   );

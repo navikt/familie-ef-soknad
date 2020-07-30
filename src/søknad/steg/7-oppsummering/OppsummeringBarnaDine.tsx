@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSøknad } from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -9,13 +8,15 @@ import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
-
-const OppsummeringBarnaDine: React.FC = () => {
-  const { søknad } = useSøknad();
+import { IBarn } from '../../../models/barn';
+interface Props {
+  barn: IBarn[];
+}
+const OppsummeringBarnaDine: React.FC<Props> = ({ barn }) => {
   const intl = useIntl();
   const history = useHistory();
 
-  const barna = søknad.person.barn;
+  const barna = barn;
 
   const felterAlleBarna = barna.map((barn, index) => {
     let nyttBarn = { ...barn };

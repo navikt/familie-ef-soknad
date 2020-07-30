@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
@@ -7,13 +7,15 @@ import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
-import { useSøknad } from '../../../context/SøknadContext';
+import { IBarn } from '../../../models/barn';
 
-const OppsummeringBarnasBosituasjon = () => {
-  const { søknad } = useSøknad();
+interface Props {
+  barn: IBarn[];
+}
+const OppsummeringBarnasBosituasjon: FC<Props> = ({ barn }) => {
   const history = useHistory();
 
-  const barna = søknad.person.barn;
+  const barna = barn;
   const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
   const felterAlleForeldrene = barna

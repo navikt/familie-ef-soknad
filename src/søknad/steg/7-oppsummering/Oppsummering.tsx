@@ -13,7 +13,7 @@ import { useSøknad } from '../../../context/SøknadContext';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
-  const { mellomlagreOvergangsstønad } = useSøknad();
+  const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   return (
     <>
       <Side
@@ -28,12 +28,16 @@ const Oppsummering: React.FC = () => {
           </Normaltekst>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg />
-            <OppsummeringBosituasjonenDin />
-            <OppsummeringBarnaDine />
-            <OppsummeringBarnasBosituasjon />
-            <OppsummeringAktiviteter />
-            <OppsummeringDinSituasjon />
+            <OppsummeringOmDeg
+              søker={søknad.person.søker}
+              sivilstatus={søknad.sivilstatus}
+              medlemskap={søknad.medlemskap}
+            />
+            <OppsummeringBosituasjonenDin bosituasjon={søknad.bosituasjon} />
+            <OppsummeringBarnaDine barn={søknad.person.barn} />
+            <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
+            <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
+            <OppsummeringDinSituasjon dinSituasjon={søknad.merOmDinSituasjon} />
           </KomponentGruppe>
         </div>
       </Side>

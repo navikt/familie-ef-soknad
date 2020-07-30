@@ -11,16 +11,23 @@ import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import OmFirmaetDitt from './OmFirmaetDitt';
 import EgetAS from './aksjeselskap/EgetAS';
 import FåttJobbTilbud from './FåttJobbTilbud';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
   svarid: string;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 const AktivitetOppfølgingSpørsmål: FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
   svarid,
+  settDokumentasjonsbehov,
 }) => {
   switch (svarid) {
     case EAktivitet.erHjemmeMedBarnUnderEttÅr:
@@ -31,6 +38,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
         <OmArbeidsforholdetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
+          settDokumentasjonsbehov={settDokumentasjonsbehov}
         />
       );
 
@@ -63,6 +71,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
         <Arbeidssøker
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
+          settDokumentasjonsbehov={settDokumentasjonsbehov}
         />
       );
 

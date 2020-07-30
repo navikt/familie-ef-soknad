@@ -11,10 +11,16 @@ import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
 import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const tomArbeidsgiver: IArbeidsgiver = {
@@ -26,6 +32,7 @@ const tomArbeidsgiver: IArbeidsgiver = {
 const OmArbeidsforholdetDitt: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
+  settDokumentasjonsbehov,
 }) => {
   const [arbeidsforhold, settArbeidsforhold] = useState<IArbeidsgiver[]>(
     arbeidssituasjon.arbeidsforhold
@@ -65,6 +72,7 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
               arbeidsforhold={arbeidsforhold}
               settArbeidsforhold={settArbeidsforhold}
               arbeidsgivernummer={index}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
           </SeksjonGruppe>
         );

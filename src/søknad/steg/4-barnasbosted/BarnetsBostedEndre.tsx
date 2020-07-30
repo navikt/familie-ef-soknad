@@ -8,7 +8,6 @@ import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/barn';
 import { EForelder, IForelder } from '../../../models/forelder';
 import { Knapp } from 'nav-frontend-knapper';
-import { useSøknad } from '../../../context/SøknadContext';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import {
@@ -40,6 +39,13 @@ interface Props {
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+  barneListe: IBarn[];
+  settBarneListe: (barneListe: IBarn[]) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -49,10 +55,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settSisteBarnUtfylt,
   sisteBarnUtfylt,
   scrollTilLagtTilBarn,
+  barneListe,
+  settBarneListe,
+  settDokumentasjonsbehov,
 }) => {
-  const { settDokumentasjonsbehov } = useSøknad();
-  const { søknad, settSøknad } = useSøknad();
-
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder ? barn.forelder : { id: hentUid() }
   );
@@ -82,7 +88,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     //eslint-disable-next-line
   }, []);
 
-  const andreBarnMedForelder: IBarn[] = søknad.person.barn.filter((b) => {
+  const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
   });
 
@@ -98,12 +104,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     .filter(Boolean) as IBarn[];
 
   const erPåSisteBarn: boolean =
-    søknad.person.barn.length - 1 === andreBarnMedForelder.length;
+    barneListe.length - 1 === andreBarnMedForelder.length;
 
   const leggTilForelder = () => {
     if (erPåSisteBarn && !sisteBarnUtfylt) settSisteBarnUtfylt(true);
 
-    const nyBarneListe = søknad.person.barn.map((b) => {
+    const nyBarneListe = barneListe.map((b) => {
       if (b === barn) {
         let nyttBarn = barn;
         nyttBarn.forelder = forelder;
@@ -113,7 +119,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       }
     });
 
-    settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
+    settBarneListe(nyBarneListe);
 
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
@@ -167,6 +173,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               barn={barn}
               forelder={forelder}
               settForelder={settForelder}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
           )}
 
@@ -224,6 +231,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               settForelder={settForelder}
               forelder={forelder}
               barn={barn}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
           )}
 

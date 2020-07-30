@@ -7,12 +7,14 @@ import { EBarn, IBarn } from '../../models/barn';
 import { ESvar } from '../../models/spørsmålogsvar';
 
 export const hentNyttBarn = (
+  id: string | undefined,
   ident: string,
   barnDato: Date | undefined,
   navn: string,
   boHosDeg: string,
   født: boolean,
-  intl: IntlShape
+  intl: IntlShape,
+  medISøknad?: boolean
 ): IBarn => {
   return {
     ident: hentFeltObjekt('person.ident', ident, intl),
@@ -39,6 +41,7 @@ export const hentNyttBarn = (
       intl
     ),
     lagtTil: true,
-    id: hentUid(),
+    id: id === undefined ? hentUid() : id,
+    medISøknad: hentFeltObjekt('barnekort.medISøknad', !!medISøknad, intl),
   };
 };

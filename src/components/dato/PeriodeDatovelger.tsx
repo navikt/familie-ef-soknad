@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
-import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
@@ -10,7 +9,7 @@ import { EPeriode, IPeriode } from '../../models/periode';
 import { compareAsc, isEqual } from 'date-fns';
 
 interface Props {
-  tekstid: string;
+  tekst: string;
   periode: IPeriode;
   settDato: (dato: Date | null, objektnøkkel: string) => void;
   showMonthYearPicker?: boolean;
@@ -20,7 +19,7 @@ interface Props {
 const PeriodeDatovelgere: FC<Props> = ({
   periode,
   settDato,
-  tekstid,
+  tekst,
   showMonthYearPicker,
   datobegrensing,
 }) => {
@@ -64,9 +63,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   return (
     <>
       <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
-        <Element>
-          <LocaleTekst tekst={tekstid} />
-        </Element>
+        <Element>{tekst}</Element>
       </FeltGruppe>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
