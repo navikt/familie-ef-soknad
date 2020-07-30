@@ -100,7 +100,9 @@ const BarnetilsynApp = () => {
             <title>Søknad om barnetilsyn</title>
           </Helmet>
 
-          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
+          {!toggles[ToggleName.send_barnetilsyn_søknad] && (
+            <TestsideInformasjon />
+          )}
           <Switch>
             <Route path={'/'}>
               {toggles[ToggleName.vis_innsending] && (
