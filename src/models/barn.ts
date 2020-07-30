@@ -16,8 +16,8 @@ export interface IBarn {
   født?: ISpørsmålBooleanFelt;
   lagtTil?: boolean;
   forelder?: IForelder;
-  medISøknad?: IBooleanFelt;
-  barnepass?: IBarnepass;
+  medISøknad?: IBooleanFelt; // Gjelder kun barnetilsyn
+  barnepass?: IBarnepass; // Gjelder kun barnetilsyn
 }
 
 export enum EBarn {
