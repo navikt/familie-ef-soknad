@@ -87,17 +87,17 @@ const BarnasBosted: React.FC = () => {
             );
           } else {
             return (
-              <>
+              <React.Fragment key={barn.id}>
                 {index + 1 === antallBarnMedForeldre && (
-                  <div ref={lagtTilBarn} />
+                  <div ref={lagtTilBarn} key={barn.id + '-ref'} />
                 )}
                 <BarnetsBostedLagtTil
                   barn={barn}
                   settAktivIndex={settAktivIndex}
                   index={index}
-                  key={key}
+                  key={barn.id}
                 />
-              </>
+              </React.Fragment>
             );
           }
         })}

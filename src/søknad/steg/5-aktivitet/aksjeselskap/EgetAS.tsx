@@ -17,16 +17,30 @@ import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
+  inkludertArbeidsmengde?: boolean;
 }
 
-const tomtAksjeselskap: IAksjeselskap = {
-  id: hentUid(),
-  navn: nyttTekstFelt,
-  arbeidsmengde: nyttTekstFelt,
+const tomtAksjeselskap = (inkludertArbeidsmengde: boolean): IAksjeselskap => {
+  return inkludertArbeidsmengde
+    ? {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+        arbeidsmengde: nyttTekstFelt,
+      }
+    : {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+      };
 };
-const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
+const EgetAS: FC<Props> = ({
+  arbeidssituasjon,
+  settArbeidssituasjon,
+  inkludertArbeidsmengde = true,
+}) => {
   const [egetAS, settEgetAS] = useState<IAksjeselskap[]>(
-    arbeidssituasjon.egetAS ? arbeidssituasjon.egetAS : [tomtAksjeselskap]
+    arbeidssituasjon.egetAS
+      ? arbeidssituasjon.egetAS
+      : [tomtAksjeselskap(inkludertArbeidsmengde)]
   );
 
   useEffect(() => {
@@ -35,7 +49,9 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
   }, [egetAS]);
 
   const leggTilAksjeselskap = () => {
-    const nyttAksjeselskap: IAksjeselskap = tomtAksjeselskap;
+    const nyttAksjeselskap: IAksjeselskap = tomtAksjeselskap(
+      inkludertArbeidsmengde
+    );
     const arbeidsforhold: IAksjeselskap[] = egetAS;
     arbeidsforhold.push(nyttAksjeselskap);
     settArbeidssituasjon({ ...arbeidssituasjon, egetAS: arbeidsforhold });
@@ -51,16 +67,17 @@ const EgetAS: FC<Props> = ({ arbeidssituasjon, settArbeidssituasjon }) => {
 
       {arbeidssituasjon.egetAS?.map((aksjeselskap, index) => {
         return (
-          <SeksjonGruppe>
+          <SeksjonGruppe key={index}>
             <Aksjeselskap
               egetAS={egetAS}
               settEgetAS={settEgetAS}
               aksjeselskapnummer={index}
+              inkludertArbeidsmengde={inkludertArbeidsmengde}
             />
           </SeksjonGruppe>
         );
       })}
-      {erAksjeselskapFerdigUtfylt(egetAS) && (
+      {erAksjeselskapFerdigUtfylt(egetAS, inkludertArbeidsmengde) && (
         <KomponentGruppe>
           <FeltGruppe>
             <Element>

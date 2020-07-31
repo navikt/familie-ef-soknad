@@ -31,6 +31,7 @@ interface Props {
   arbeidsforhold: IArbeidsgiver[];
   settArbeidsforhold: (arbeidsforhold: IArbeidsgiver[]) => void;
   arbeidsgivernummer: number;
+  inkludertArbeidsmengde: boolean;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -43,6 +44,7 @@ const Arbeidsgiver: React.FC<Props> = ({
   settArbeidsforhold,
   arbeidsgivernummer,
   settDokumentasjonsbehov,
+  inkludertArbeidsmengde,
 }) => {
   const intl = useIntl();
   const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
@@ -140,7 +142,7 @@ const Arbeidsgiver: React.FC<Props> = ({
           onChange={(e) => settTekstInputFelt(e, EArbeidsgiver.navn, navnLabel)}
         />
       </FeltGruppe>
-      {arbeidsgiver.navn?.verdi && (
+      {arbeidsgiver.navn?.verdi && inkludertArbeidsmengde && (
         <FeltGruppe>
           <InputLabelGruppe
             label={arbeidsmengdeLabel}
@@ -163,7 +165,8 @@ const Arbeidsgiver: React.FC<Props> = ({
           />
         </FeltGruppe>
       )}
-      {arbeidsgiver.arbeidsmengde?.verdi && (
+      {(arbeidsgiver.arbeidsmengde?.verdi ||
+        (arbeidsgiver.navn?.verdi && !inkludertArbeidsmengde)) && (
         <FeltGruppe>
           <MultiSvarSpørsmål
             toKorteSvar={false}

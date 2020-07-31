@@ -22,7 +22,9 @@ const Barnepass: FC<Props> = () => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
-  const barnMedISøknaden = søknad.person.barn.filter((barn) => barn.medISøknad);
+  const barnMedISøknaden = søknad.person.barn.filter(
+    (barn) => barn.medISøknad?.verdi === true
+  );
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
   const hjelpetekstInnholdTekstid =
@@ -92,7 +94,7 @@ const Barnepass: FC<Props> = () => {
       erSpørsmålBesvart={erBarnepassSpmBesvart}
     >
       {barnMedISøknaden.map((barn) => (
-        <SeksjonGruppe>
+        <SeksjonGruppe key={barn.id}>
           <BarnepassOrdninger
             barn={barn}
             settBarnepass={settBarnepass}

@@ -106,7 +106,7 @@ const Aktivitet: React.FC = () => {
   };
 
   const erAlleFelterUtfylt = hvaErDinArbeidssituasjon.svarid.every((id) =>
-    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon)
+    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon, false)
   );
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
@@ -124,7 +124,9 @@ const Aktivitet: React.FC = () => {
       svaridPos &&
       arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid
         .filter((aktivitet, index) => index < svaridPos)
-        .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon))
+        .every((id) =>
+          erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon, false)
+        )
     );
   };
 
