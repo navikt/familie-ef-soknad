@@ -17,7 +17,10 @@ import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
 import { datoTilStreng } from '../../../utils/dato';
-import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
+import {
+  hentBarnetsNavnEllerBeskrivelse,
+  hentBarnNavnEllerBarnet,
+} from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
 import { Input } from 'nav-frontend-skjema';
@@ -26,6 +29,7 @@ import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
 
 interface Props {
   barn: IBarn;
@@ -55,10 +59,9 @@ const BarnepassSpørsmål: FC<Props> = ({
       ? hentTekst('barnehageOgLiknende.label.navnPåBarnepass', intl)
       : hentBarnNavnEllerBarnet(barn, 'privat.label.navnPåBarnepass', intl);
   const beløpLabel = hentTekst('barnepass.label.beløp', intl);
-  const spørsmålTekstBarnepassOrdning = hentBarnNavnEllerBarnet(
-    barn,
-    HvaSlagsBarnepassOrdningSpm.tekstid,
-    intl
+  const spørsmålTekstBarnepassOrdning = hentBeskjedMedNavn(
+    hentBarnetsNavnEllerBeskrivelse(barn, intl),
+    hentTekst(HvaSlagsBarnepassOrdningSpm.tekstid, intl)
   );
   const alertstripeTekst =
     barnepassOrdning.hvaSlagsBarnepassOrdning?.svarid ===

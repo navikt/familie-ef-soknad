@@ -41,7 +41,7 @@ const LeggTilBarn: React.FC<Props> = ({
   const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
-  const [medISøknad, settMedISøknad] = useState<boolean>();
+  const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean>();
 
   useEffect(() => {
     if (id) {
@@ -51,7 +51,7 @@ const LeggTilBarn: React.FC<Props> = ({
       settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
-      settMedISøknad(detteBarnet?.medISøknad?.verdi);
+      settSkalHaBarnepass(detteBarnet?.skalHaBarnepass?.verdi);
       detteBarnet?.fødselsdato.verdi &&
         settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
     }
@@ -97,7 +97,7 @@ const LeggTilBarn: React.FC<Props> = ({
       boHosDeg,
       født ? født : false,
       intl,
-      medISøknad
+      skalHaBarnepass
     );
 
     const nyBarneListe = oppdaterBarneliste(barneListe, id, nyttBarn);

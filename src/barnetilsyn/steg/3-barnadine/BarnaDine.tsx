@@ -29,19 +29,24 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  const toggleMedISøknadBarn = (id: string) => {
+  const toggleSkalHaBarnepass = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
 
     if (!detteBarnet) return null;
 
+    const skalHaBarnepassVerdi = !detteBarnet.skalHaBarnepass?.verdi;
     const nyttBarn: IBarn = {
       ...detteBarnet,
-      medISøknad: hentFeltObjekt(
-        'barnekort.medISøknad',
-        !detteBarnet.medISøknad?.verdi,
+      skalHaBarnepass: hentFeltObjekt(
+        'barnekort.skalHaBarnepass',
+        skalHaBarnepassVerdi,
         intl
       ),
     };
+
+    if (!skalHaBarnepassVerdi) {
+      delete nyttBarn.barnepass;
+    }
 
     const nyBarneListe = søknad.person.barn.map((barn) => {
       return barn.id === id ? nyttBarn : barn;
@@ -127,8 +132,8 @@ const BarnaDine: React.FC = () => {
                   velgBarnForDenneSøknaden={
                     <BarnMedISøknad
                       id={barn.id ? barn.id : ''}
-                      toggleMedISøknadBarn={toggleMedISøknadBarn}
-                      medISøknad={!!barn.medISøknad?.verdi}
+                      toggleSkalHaBarnepass={toggleSkalHaBarnepass}
+                      skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
                     />
                   }
                   slettBarn={slettBarn}

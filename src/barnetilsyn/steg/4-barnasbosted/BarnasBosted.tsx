@@ -35,7 +35,9 @@ const BarnasBosted: React.FC = () => {
     });
   };
 
-  const barna = søknad.person.barn.filter((barn) => barn.medISøknad?.verdi);
+  const barna = søknad.person.barn.filter(
+    (barn) => barn.skalHaBarnepass?.verdi
+  );
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
@@ -67,7 +69,7 @@ const BarnasBosted: React.FC = () => {
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       {barna
-        .filter((barn) => barn.medISøknad?.verdi === true)
+        .filter((barn) => barn.skalHaBarnepass?.verdi)
         .map((barn, index) => {
           const key = barn.fødselsdato.verdi + index;
           if (index === aktivIndex) {

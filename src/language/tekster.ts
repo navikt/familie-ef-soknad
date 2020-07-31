@@ -249,7 +249,7 @@ export default {
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.leggtil': 'Legg til barn',
-    'barnadine.label.medISøknad': 'Med i søknaden',
+    'barnadine.label.skalHaBarnepass': 'Med i søknaden',
     'barnadine.knapp.fjern': 'Fjern fra søknad',
     'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
     'barnadine.personnummer': 'Personnummer',
@@ -283,7 +283,7 @@ export default {
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
-    'barnekort.medISøknad': 'Skal barnet være med i søknaden?',
+    'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
 
     'barnasbosted.kanikkeoppgiforelder':
       'Jeg kan ikke oppgi den andre forelderen',
