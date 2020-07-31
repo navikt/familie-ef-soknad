@@ -56,7 +56,12 @@ const Aktivitet: React.FC = () => {
   const settErDuIArbeid = (spørsmål: ISpørsmål, svar: ISvar) => {
     let endretArbeidssituasjon = arbeidssituasjon;
 
-    if (svar.id === ErIArbeid.NeiFordiJegErSyk)
+    if (svar.id === ErIArbeid.NeiFordiJegErSyk) {
+      delete endretArbeidssituasjon.egetAS;
+      delete endretArbeidssituasjon.arbeidsforhold;
+      delete endretArbeidssituasjon.firma;
+      delete endretArbeidssituasjon.etablererEgenVirksomhet;
+
       endretArbeidssituasjon = {
         ...endretArbeidssituasjon,
         hvaErDinArbeidssituasjon: {
@@ -66,7 +71,7 @@ const Aktivitet: React.FC = () => {
           verdi: [],
         },
       };
-
+    }
     oppdaterArbeidssituasjon({
       ...endretArbeidssituasjon,
       erIArbeid: {
