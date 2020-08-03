@@ -79,7 +79,7 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
       label: 'Født',
       verdi: true,
     },
-    medISøknad: { label: 'Med i søknaden', verdi: false },
+    skalHaBarnepass: { label: 'Med i søknaden', verdi: false },
   };
 
   for (const [key, verdi] of Object.entries(objekt)) {

@@ -32,6 +32,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
           settDokumentasjonsbehov={settDokumentasjonsbehov}
+          inkludertArbeidsmengde={false}
         />
       );
 
@@ -40,6 +41,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
         <OmFirmaetDitt
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
+          inkludertArbeidsmengde={false}
         />
       );
 
@@ -48,6 +50,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
         <EgetAS
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
+          inkludertArbeidsmengde={false}
         />
       );
 

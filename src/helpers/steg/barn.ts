@@ -14,7 +14,7 @@ export const hentNyttBarn = (
   boHosDeg: string,
   født: boolean,
   intl: IntlShape,
-  medISøknad?: boolean
+  skalHaBarnepass?: boolean
 ): IBarn => {
   return {
     ident: hentFeltObjekt('person.ident', ident, intl),
@@ -42,6 +42,10 @@ export const hentNyttBarn = (
     ),
     lagtTil: true,
     id: id === undefined ? hentUid() : id,
-    medISøknad: hentFeltObjekt('barnekort.medISøknad', !!medISøknad, intl),
+    skalHaBarnepass: hentFeltObjekt(
+      'barnekort.skalHaBarnepass',
+      !!skalHaBarnepass,
+      intl
+    ),
   };
 };

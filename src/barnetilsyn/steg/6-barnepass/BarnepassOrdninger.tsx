@@ -79,6 +79,7 @@ const BarnepassOrdninger: FC<Props> = ({
     <>
       {barnepass?.barnepassordninger.map((barnepassordning, index) => (
         <BarnepassSpørsmål
+          key={barnepassordning.id}
           barn={barn}
           barnepassOrdning={barnepassordning}
           settBarnepassOrdning={settBarnepassOrdning}

@@ -5,40 +5,39 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
 
 interface Props {
-  medISøknad?: boolean;
-  toggleMedISøknadBarn: Function;
+  skalHaBarnepass?: boolean;
+  toggleSkalHaBarnepass: Function;
   id: string;
 }
 
 const BarnMedISøknad: FC<Props> = ({
-  medISøknad,
-  toggleMedISøknadBarn,
+  skalHaBarnepass,
+  toggleSkalHaBarnepass,
   id,
 }) => {
   const intl = useIntl();
-  return medISøknad ? (
+  return skalHaBarnepass ? (
     <>
       <div className="med-i-søknaden-badge">
         <Normaltekst>
-          <LocaleTekst tekst={'barnadine.label.medISøknad'} />
+          <LocaleTekst tekst={'barnadine.label.skalHaBarnepass'} />
         </Normaltekst>
       </div>
       <div
         className="barnekort__endre-barnekort"
-        onClick={() => toggleMedISøknadBarn(id)}
+        onClick={() => toggleSkalHaBarnepass(id)}
       >
         <Normaltekst>
           <span className="lenke">
             {intl.formatMessage({ id: 'barnadine.knapp.fjern' })}
           </span>
-          ws
         </Normaltekst>
       </div>
     </>
   ) : (
     <Knapp
       className="legg-til-i-søknad-knapp"
-      onClick={() => toggleMedISøknadBarn(id)}
+      onClick={() => toggleSkalHaBarnepass(id)}
     >
       <LocaleTekst tekst={'barnadine.knapp.søkBarnetilsyn'} />
     </Knapp>

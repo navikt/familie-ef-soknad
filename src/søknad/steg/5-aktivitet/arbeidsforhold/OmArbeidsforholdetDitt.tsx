@@ -21,23 +21,32 @@ interface Props {
     valgtSvar: ISvar,
     erHuketAv?: boolean
   ) => void;
+  inkludertArbeidsmengde?: boolean;
 }
 
-const tomArbeidsgiver: IArbeidsgiver = {
-  id: hentUid(),
-  navn: nyttTekstFelt,
-  arbeidsmengde: nyttTekstFelt,
+const tomArbeidsgiver = (inkludertArbeidsmengde: boolean): IArbeidsgiver => {
+  return inkludertArbeidsmengde
+    ? {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+        arbeidsmengde: nyttTekstFelt,
+      }
+    : {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+      };
 };
 
 const OmArbeidsforholdetDitt: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
   settDokumentasjonsbehov,
+  inkludertArbeidsmengde = true,
 }) => {
   const [arbeidsforhold, settArbeidsforhold] = useState<IArbeidsgiver[]>(
     arbeidssituasjon.arbeidsforhold
       ? arbeidssituasjon.arbeidsforhold
-      : [tomArbeidsgiver]
+      : [tomArbeidsgiver(inkludertArbeidsmengde)]
   );
 
   useEffect(() => {
@@ -49,7 +58,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   }, [arbeidsforhold]);
 
   const leggTilArbeidsgiver = () => {
-    const nyArbeidsgiver: IArbeidsgiver = tomArbeidsgiver;
+    const nyArbeidsgiver: IArbeidsgiver = tomArbeidsgiver(
+      inkludertArbeidsmengde
+    );
     const alleArbeidsgivere = arbeidsforhold;
     alleArbeidsgivere.push(nyArbeidsgiver);
     settArbeidssituasjon({
@@ -73,6 +84,7 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
               settArbeidsforhold={settArbeidsforhold}
               arbeidsgivernummer={index}
               settDokumentasjonsbehov={settDokumentasjonsbehov}
+              inkludertArbeidsmengde={inkludertArbeidsmengde}
             />
           </SeksjonGruppe>
         );

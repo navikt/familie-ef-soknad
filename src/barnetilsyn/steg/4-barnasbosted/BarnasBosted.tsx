@@ -35,7 +35,9 @@ const BarnasBosted: React.FC = () => {
     });
   };
 
-  const barna = søknad.person.barn.filter((barn) => barn.medISøknad?.verdi);
+  const barna = søknad.person.barn.filter(
+    (barn) => barn.skalHaBarnepass?.verdi
+  );
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
@@ -67,7 +69,7 @@ const BarnasBosted: React.FC = () => {
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
     >
       {barna
-        .filter((barn) => barn.medISøknad?.verdi === true)
+        .filter((barn) => barn.skalHaBarnepass?.verdi)
         .map((barn, index) => {
           const key = barn.fødselsdato.verdi + index;
           if (index === aktivIndex) {
@@ -87,17 +89,17 @@ const BarnasBosted: React.FC = () => {
             );
           } else {
             return (
-              <>
+              <React.Fragment key={barn.id}>
                 {index + 1 === antallBarnMedForeldre && (
-                  <div ref={lagtTilBarn} />
+                  <div ref={lagtTilBarn} key={barn.id + '-ref'} />
                 )}
                 <BarnetsBostedLagtTil
                   barn={barn}
                   settAktivIndex={settAktivIndex}
                   index={index}
-                  key={key}
+                  key={barn.id}
                 />
-              </>
+              </React.Fragment>
             );
           }
         })}
