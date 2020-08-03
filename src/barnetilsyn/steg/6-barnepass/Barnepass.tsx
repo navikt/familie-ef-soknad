@@ -12,6 +12,7 @@ import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
 import ÅrsakBarnepass from './ÅrsakBarnepass';
+import { harBarnAvsluttetFjerdeKlasse } from '../../utils/validering-fns';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -94,11 +95,13 @@ const Barnepass: FC<Props> = () => {
     >
       {barnMedISøknaden.map((barn) => (
         <SeksjonGruppe>
-          <ÅrsakBarnepass
-            barn={barn}
-            settBarnepass={settBarnepass}
-            settDokumentasjonsbehov={settDokumentasjonsbehov}
-          />
+          {harBarnAvsluttetFjerdeKlasse(barn) && (
+            <ÅrsakBarnepass
+              barn={barn}
+              settBarnepass={settBarnepass}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+            />
+          )}
           <BarnepassOrdninger
             barn={barn}
             settBarnepass={settBarnepass}
