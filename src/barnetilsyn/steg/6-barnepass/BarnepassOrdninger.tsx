@@ -10,6 +10,7 @@ import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { useIntl } from 'react-intl';
 import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 
 interface Props {
   barn: IBarn;
@@ -76,7 +77,7 @@ const BarnepassOrdninger: FC<Props> = ({
   };
 
   return (
-    <>
+    <SeksjonGruppe>
       {barnepass?.barnepassordninger.map((barnepassordning, index) => (
         <BarnepassSpørsmål
           barn={barn}
@@ -96,7 +97,7 @@ const BarnepassOrdninger: FC<Props> = ({
           </LeggTilKnapp>
         </FeltGruppe>
       </KomponentGruppe>
-    </>
+    </SeksjonGruppe>
   );
 };
 

@@ -13,6 +13,7 @@ import { IBarnepass } from '../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
 import ÅrsakBarnepass from './ÅrsakBarnepass';
 import { harBarnAvsluttetFjerdeKlasse } from '../../utils/validering-fns';
+import BarneHeader from '../../../components/BarneHeader';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -93,22 +94,27 @@ const Barnepass: FC<Props> = () => {
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassSpmBesvart}
     >
-      {barnMedISøknaden.map((barn) => (
-        <SeksjonGruppe>
-          {harBarnAvsluttetFjerdeKlasse(barn) && (
-            <ÅrsakBarnepass
+      <SeksjonGruppe>
+        {barnMedISøknaden.map((barn) => (
+          <>
+            <SeksjonGruppe>
+              <BarneHeader barn={barn} />
+            </SeksjonGruppe>
+            {harBarnAvsluttetFjerdeKlasse(barn) && (
+              <ÅrsakBarnepass
+                barn={barn}
+                settBarnepass={settBarnepass}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
+              />
+            )}
+            <BarnepassOrdninger
               barn={barn}
               settBarnepass={settBarnepass}
               settDokumentasjonsbehov={settDokumentasjonsbehov}
             />
-          )}
-          <BarnepassOrdninger
-            barn={barn}
-            settBarnepass={settBarnepass}
-            settDokumentasjonsbehov={settDokumentasjonsbehov}
-          />
-        </SeksjonGruppe>
-      ))}
+          </>
+        ))}
+      </SeksjonGruppe>
       <SeksjonGruppe>
         <NårSøkerDuStønadFra
           spørsmål={SøkerDuStønadFraBestemtMndSpm}
