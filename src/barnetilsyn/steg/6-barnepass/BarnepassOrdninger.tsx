@@ -11,6 +11,7 @@ import { useIntl } from 'react-intl';
 import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { erBarnepassOrdningerUtfylt } from './hjelper';
 
 interface Props {
   barn: IBarn;
@@ -78,7 +79,7 @@ const BarnepassOrdninger: FC<Props> = ({
 
   return (
     <SeksjonGruppe>
-      {barnepass?.barnepassordninger.map((barnepassordning, index) => (
+      {barnepass?.barnepassordninger.map((barnepassordning) => (
         <BarnepassSpørsmål
           barn={barn}
           barnepassOrdning={barnepassordning}
@@ -87,16 +88,18 @@ const BarnepassOrdninger: FC<Props> = ({
           fjernBarnepassOrdning={fjernBarnepassOrdning}
         />
       ))}
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>{leggTilLabel}</Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
-            {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
-          </LeggTilKnapp>
-        </FeltGruppe>
-      </KomponentGruppe>
+      {erBarnepassOrdningerUtfylt(barnepass.barnepassordninger) && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>{leggTilLabel}</Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
+              {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
+            </LeggTilKnapp>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
     </SeksjonGruppe>
   );
 };

@@ -6,17 +6,13 @@ import {
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
 } from '../../models/barnepass';
-import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import classnames from 'classnames';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
-import { datoTilStreng } from '../../../utils/dato';
+import { datoTilStreng, erPeriodeGyldig } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
@@ -26,6 +22,9 @@ import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
+import BarnepassBeløp from './BarnepassBeløp';
+import { erÅrsakBarnepassSpmBesvart } from './hjelper';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
@@ -54,30 +53,23 @@ const BarnepassSpørsmål: FC<Props> = ({
     ETypeBarnepassOrdning.barnehageOgLiknende
       ? hentTekst('barnehageOgLiknende.label.navnPåBarnepass', intl)
       : hentBarnNavnEllerBarnet(barn, 'privat.label.navnPåBarnepass', intl);
-  const beløpLabel = hentTekst('barnepass.label.beløp', intl);
   const spørsmålTekstBarnepassOrdning = hentBarnNavnEllerBarnet(
     barn,
     HvaSlagsBarnepassOrdningSpm.tekstid,
     intl
   );
-  const alertstripeTekst =
-    barnepassOrdning.hvaSlagsBarnepassOrdning?.svarid ===
-    ETypeBarnepassOrdning.barnehageOgLiknende
-      ? 'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende'
-      : 'barnepass.alert-dokumentasjon.beløp.privat';
-
   const datovelgerTekst = hentBarnNavnEllerBarnet(
     barn,
     'barnepass.datovelger.periodePåBarnepass',
     intl
   );
-
   const barnepassordningNummer = barn.barnepass?.barnepassordninger.findIndex(
     (barnepassordning) => barnepassordning.id === barnepassOrdning.id
   );
   const flereEnnEnOrdninger =
     barn?.barnepass?.barnepassordninger !== undefined &&
     barn?.barnepass?.barnepassordninger?.length > 1;
+
   const barnepassordningTittel =
     barnepassordningNummer !== undefined &&
     hentTittelMedNr(
@@ -87,6 +79,11 @@ const BarnepassSpørsmål: FC<Props> = ({
     );
 
   const settSpørsmålFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const endretBarnepassordning = barnepassOrdning;
+    delete endretBarnepassordning.periode;
+    delete endretBarnepassordning.navn;
+    delete endretBarnepassordning.belop;
+
     settBarnepassOrdning({
       ...barnepassOrdning,
       hvaSlagsBarnepassOrdning: {
@@ -144,58 +141,45 @@ const BarnepassSpørsmål: FC<Props> = ({
           />
         </TittelOgSlettKnapp>
       )}
-      <KomponentGruppe>
-        <MultiSvarSpørsmålMedNavn
-          spørsmål={HvaSlagsBarnepassOrdningSpm}
-          spørsmålTekst={spørsmålTekstBarnepassOrdning}
-          settSpørsmålOgSvar={settSpørsmålFelt}
-          valgtSvar={hvaSlagsBarnepassOrdning?.verdi}
-        />
-      </KomponentGruppe>
-      <KomponentGruppe>
-        <Input
-          key={EBarnepass.navn}
-          label={navnLabel}
-          bredde={'L'}
-          type={'text'}
-          onChange={(e) => settInputFelt(e, EBarnepass.navn, navnLabel)}
-          value={barnepassOrdning?.navn ? barnepassOrdning?.navn.verdi : ''}
-        />
-      </KomponentGruppe>
-      <KomponentGruppe>
-        <PeriodeDatovelgere
-          tekst={datovelgerTekst}
-          periode={
-            barnepassOrdning.periode ? barnepassOrdning.periode : tomPeriode
-          }
-          settDato={settPeriode}
-        />
-      </KomponentGruppe>
-      <KomponentGruppe>
-        <FeltGruppe>
-          <InputLabelGruppe
-            label={hentTekst('barnepass.label.beløp', intl)}
-            nøkkel={EBarnepass.belop}
-            type={'text'}
-            hjelpetekst={{
-              innholdTekstid: 'barnepass.hjelpetekst-innhold.beløp',
-              åpneTekstid: 'barnepass.hjelpetekst-åpne.beløp',
-              lukkeTekstid: '',
-            }}
-            bredde={'S'}
-            settInputFelt={(e) =>
-              settInputFelt(e, EBarnepass.belop, beløpLabel)
-            }
-            beskrivendeTekst={hentTekst('input.kroner', intl)}
-            value={barnepassOrdning.belop ? barnepassOrdning.belop.verdi : ''}
+      {erÅrsakBarnepassSpmBesvart(barn) && (
+        <KomponentGruppe>
+          <MultiSvarSpørsmålMedNavn
+            spørsmål={HvaSlagsBarnepassOrdningSpm}
+            spørsmålTekst={spørsmålTekstBarnepassOrdning}
+            settSpørsmålOgSvar={settSpørsmålFelt}
+            valgtSvar={hvaSlagsBarnepassOrdning?.verdi}
           />
-        </FeltGruppe>
-        <FeltGruppe>
-          <AlertStripeDokumentasjon>
-            <LocaleTekst tekst={alertstripeTekst} />
-          </AlertStripeDokumentasjon>
-        </FeltGruppe>
-      </KomponentGruppe>
+        </KomponentGruppe>
+      )}
+      {hvaSlagsBarnepassOrdning?.verdi && (
+        <KomponentGruppe>
+          <Input
+            key={EBarnepass.navn}
+            label={navnLabel}
+            bredde={'L'}
+            type={'text'}
+            onChange={(e) => settInputFelt(e, EBarnepass.navn, navnLabel)}
+            value={barnepassOrdning?.navn ? barnepassOrdning?.navn.verdi : ''}
+          />
+        </KomponentGruppe>
+      )}
+      {harValgtSvar(barnepassOrdning?.navn?.verdi) && (
+        <KomponentGruppe>
+          <PeriodeDatovelgere
+            tekst={datovelgerTekst}
+            periode={
+              barnepassOrdning.periode ? barnepassOrdning.periode : tomPeriode
+            }
+            settDato={settPeriode}
+          />
+        </KomponentGruppe>
+      )}
+      {erPeriodeGyldig(barnepassOrdning.periode) && (
+        <BarnepassBeløp
+          barnepassOrdning={barnepassOrdning}
+          settInputFelt={settInputFelt}
+        />
+      )}
     </SeksjonGruppe>
   );
 };

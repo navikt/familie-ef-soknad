@@ -12,8 +12,13 @@ import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
 import ÅrsakBarnepass from './ÅrsakBarnepass';
-import { harBarnAvsluttetFjerdeKlasse } from '../../utils/validering-fns';
 import BarneHeader from '../../../components/BarneHeader';
+import {
+  erBarnepassFerdigUtfylt,
+  erBarnepassForAlleBarnUtfylt,
+  erÅrsakBarnepassSpmBesvart,
+  harBarnAvsluttetFjerdeKlasse,
+} from './hjelper';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -25,6 +30,7 @@ const Barnepass: FC<Props> = () => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
+
   const barnMedISøknaden = søknad.person.barn.filter((barn) => barn.medISøknad);
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
@@ -82,17 +88,12 @@ const Barnepass: FC<Props> = () => {
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  const erBarnepassSpmBesvart: boolean =
-    (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
-      søknadsdato?.verdi !== undefined) ||
-    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
-
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
-      erSpørsmålBesvart={erBarnepassSpmBesvart}
+      erSpørsmålBesvart={erBarnepassFerdigUtfylt(barnMedISøknaden, søknad)}
     >
       <SeksjonGruppe>
         {barnMedISøknaden.map((barn) => (
@@ -107,25 +108,29 @@ const Barnepass: FC<Props> = () => {
                 settDokumentasjonsbehov={settDokumentasjonsbehov}
               />
             )}
-            <BarnepassOrdninger
-              barn={barn}
-              settBarnepass={settBarnepass}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
-            />
+            {erÅrsakBarnepassSpmBesvart(barn) && (
+              <BarnepassOrdninger
+                barn={barn}
+                settBarnepass={settBarnepass}
+                settDokumentasjonsbehov={settDokumentasjonsbehov}
+              />
+            )}
           </>
         ))}
       </SeksjonGruppe>
-      <SeksjonGruppe>
-        <NårSøkerDuStønadFra
-          spørsmål={SøkerDuStønadFraBestemtMndSpm}
-          settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
-          settDato={settSøknadsdato}
-          søkerFraBestemtMåned={søkerFraBestemtMåned}
-          valgtDato={søknadsdato}
-          datovelgerLabel={datovelgerLabel}
-          hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
-        />
-      </SeksjonGruppe>
+      {erBarnepassForAlleBarnUtfylt(barnMedISøknaden) && (
+        <SeksjonGruppe>
+          <NårSøkerDuStønadFra
+            spørsmål={SøkerDuStønadFraBestemtMndSpm}
+            settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
+            settDato={settSøknadsdato}
+            søkerFraBestemtMåned={søkerFraBestemtMåned}
+            valgtDato={søknadsdato}
+            datovelgerLabel={datovelgerLabel}
+            hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
+          />
+        </SeksjonGruppe>
+      )}
     </Side>
   );
 };
