@@ -15,6 +15,7 @@ export interface IBarnepassOrdning {
 }
 
 export enum EBarnepass {
+  årsakBarnepass = 'årsakBarnepass',
   hvaSlagsBarnepassOrdning = 'hvaSlagsBarnepassOrdning',
   navn = 'navn',
   periode = 'periode',
@@ -25,4 +26,10 @@ export enum EBarnepass {
 export enum ETypeBarnepassOrdning {
   barnehageOgLiknende = 'barnehageOgLiknende',
   privat = 'privat',
+}
+
+export enum EÅrsakBarnepass {
+  trengerMerPassEnnJevnaldrede = 'trengerMerPassEnnJevnaldrede',
+  myeBortePgaJobb = 'myeBortePgaJobb',
+  utenomVanligArbeidstid = 'utenomVanligArbeidstid',
 }

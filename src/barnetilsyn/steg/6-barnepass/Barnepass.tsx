@@ -11,6 +11,7 @@ import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/merom
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
+import ÅrsakBarnepass from './ÅrsakBarnepass';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -93,6 +94,11 @@ const Barnepass: FC<Props> = () => {
     >
       {barnMedISøknaden.map((barn) => (
         <SeksjonGruppe>
+          <ÅrsakBarnepass
+            barn={barn}
+            settBarnepass={settBarnepass}
+            settDokumentasjonsbehov={settDokumentasjonsbehov}
+          />
           <BarnepassOrdninger
             barn={barn}
             settBarnepass={settBarnepass}

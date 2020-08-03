@@ -646,7 +646,22 @@ export default {
       'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
 
     'barnepass.sidetittel': 'Om barnepassordningen',
-    'barnepass.spm': '',
+    'barnepass.spm.årsak': 'Hvorfor trenger [0] pass?',
+    'barnepass.alert-advarsel.årsak':
+      '<b>Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår. </b> <br/><br/>' +
+      'På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.',
+    'barnepass.svar.trengerMerPassEnnJevnaldrede':
+      'Barnet har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende',
+    'barnepass.dokumentasjon.trengerMerPassEnnJevnaldrede':
+      'Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.',
+
+    'barnepass.svar.myeBortePgaJobb':
+      'Jeg må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'barnepass.alert-info.myeBortePgaJobb':
+      'For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag',
+    'barnepass.svar.utenomVanligArbeidstid':
+      'Jeg jobber turnus eller skift, og jobber på tider utenom vanlig arbeidstid',
+    'barnepass.dokumentasjon.arbeidstid': 'Du må dokumentere arbeidstiden din',
 
     'barnepass.spm.hvaSlagsOrdning': 'Hva slags barnepassordning har [0]?',
     'hvaSlagsOrdning.svar.barnehageOgLiknende': 'Barnehage, SFO eller liknende',
@@ -825,6 +840,11 @@ export default {
       '<li>dager i uken og klokkeslett for barnepass</li>' +
       '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
       '<li>signaturer fra deg og barnepasser</li></ul>',
+    'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel':
+      'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende' +
+      'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
+    'dokumentasjon.barnepassArbeidstid.tittel':
+      'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',

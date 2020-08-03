@@ -3,7 +3,11 @@ import {
   IDokumentasjon,
 } from '../../../models/dokumentasjon';
 import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
-import { EBarnepass, ETypeBarnepassOrdning } from '../../models/barnepass';
+import {
+  EBarnepass,
+  ETypeBarnepassOrdning,
+  EÅrsakBarnepass,
+} from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 // ----- DOKUMENTASJON
@@ -36,7 +40,58 @@ export const AvtaleMedBarnepasser: IDokumentasjon = {
   harSendtInn: false,
 };
 
+export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon = {
+  id: BarnetilsynDokumentasjon.TRENGER_MER_PASS_ENN_JEVNALDREDE,
+  spørsmålid: EBarnepass.årsakBarnepass,
+  label: '',
+  svarid: '',
+  tittel: 'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel',
+  harSendtInn: false,
+};
+export const DokumentasjonUtenomVanligArbeidstid: IDokumentasjon = {
+  id: BarnetilsynDokumentasjon.ARBEIDSTID,
+  spørsmålid: EBarnepass.årsakBarnepass,
+  label: '',
+  svarid: EÅrsakBarnepass.utenomVanligArbeidstid,
+  tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
+  harSendtInn: false,
+};
+export const DokumentasjonMyeBortePgaJobb: IDokumentasjon = {
+  id: BarnetilsynDokumentasjon.ARBEIDSTID,
+  spørsmålid: EBarnepass.årsakBarnepass,
+  label: '',
+  svarid: EÅrsakBarnepass.myeBortePgaJobb,
+  tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
+  harSendtInn: false,
+};
+
 // --- SPØRSMÅL
+
+export const årsakBarnepass: ISpørsmål = {
+  søknadid: EBarnepass.årsakBarnepass,
+  tekstid: 'barnepass.spm.årsak',
+  flersvar: false,
+  svaralternativer: [
+    {
+      id: EÅrsakBarnepass.trengerMerPassEnnJevnaldrede,
+      svar_tekstid: 'barnepass.svar.trengerMerPassEnnJevnaldrede',
+      alert_tekstid: 'barnepass.dokumentasjon.trengerMerPassEnnJevnaldrede',
+      dokumentasjonsbehov: DokumentasjonTrengerMerPassEnnJevnaldrede,
+    },
+    {
+      id: EÅrsakBarnepass.myeBortePgaJobb,
+      svar_tekstid: 'barnepass.svar.myeBortePgaJobb',
+      alert_tekstid: 'barnepass.dokumentasjon.arbeidstid',
+      dokumentasjonsbehov: DokumentasjonMyeBortePgaJobb,
+    },
+    {
+      id: EÅrsakBarnepass.utenomVanligArbeidstid,
+      svar_tekstid: 'barnepass.svar.utenomVanligArbeidstid',
+      alert_tekstid: 'barnepass.dokumentasjon.arbeidstid',
+      dokumentasjonsbehov: DokumentasjonUtenomVanligArbeidstid,
+    },
+  ],
+};
 
 export const HvaSlagsBarnepassOrdningSpm: ISpørsmål = {
   søknadid: EBarnepass.hvaSlagsBarnepassOrdning,
