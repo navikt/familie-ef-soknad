@@ -5,6 +5,7 @@ import {
   ErIArbeid,
 } from '../../../models/steg/aktivitet/aktivitet';
 import {
+  AktivitetDokumentasjon,
   IDokumentasjon,
   SituasjonDokumentasjon,
 } from '../../../models/dokumentasjon';
@@ -22,6 +23,16 @@ export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
   harSendtInn: false,
 };
 
+export const DokumentasjonSyk: IDokumentasjon = {
+  id: AktivitetDokumentasjon.FOR_SYK_TIL_Å_JOBBE,
+  spørsmålid: EArbeidssituasjon.erDuIArbeid,
+  svarid: ESvar.NEI,
+  label: '',
+  tittel: 'dokumentasjon.syk.tittel',
+  beskrivelse: 'dokumentasjon.syk.beskrivelse',
+  harSendtInn: false,
+};
+
 // --- SPØRSMÅL
 
 export const ErDuIArbeidSpm: ISpørsmål = {
@@ -30,7 +41,11 @@ export const ErDuIArbeidSpm: ISpørsmål = {
   flersvar: false,
   svaralternativer: [
     { id: ErIArbeid.JA, svar_tekstid: 'svar.ja' },
-    { id: ErIArbeid.NeiFordiJegErSyk, svar_tekstid: 'erDuIArbeid.svar.nei' },
+    {
+      id: ErIArbeid.NeiFordiJegErSyk,
+      svar_tekstid: 'erDuIArbeid.svar.nei',
+      dokumentasjonsbehov: DokumentasjonSyk,
+    },
   ],
 };
 

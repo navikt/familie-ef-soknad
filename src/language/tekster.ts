@@ -801,6 +801,10 @@ export default {
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
 
+    'dokumentasjon.syk.tittel': 'Dokumentasjon på at du er syk',
+    'dokumentasjon.syk.beskrivelse':
+      'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+
     'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
     'dokumentasjon.tidligereFakturaer.beskrivelse':
       'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
