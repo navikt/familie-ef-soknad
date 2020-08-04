@@ -77,12 +77,15 @@ const BarnaDine: React.FC = () => {
     });
   };
 
+  const harValgtMinstEttBarn = søknad.person.barn.some(
+    (b: IBarn) => b.skalHaBarnepass?.verdi
+  );
   return (
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={true}
-        erSpørsmålBesvart={true}
+        erSpørsmålBesvart={harValgtMinstEttBarn}
         mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       >
         <div className="barna-dine">
