@@ -82,11 +82,11 @@ export const erSpørsmålSeksjonForBarnFerdigUtfylt = (barn: IBarn) => {
 
 export const erBarnepassForBarnFørNåværendeUtfylt = (
   barn: IBarn,
-  barnMedISøknaden: IBarn[]
+  barnSomSkalHaBarnepass: IBarn[]
 ): boolean => {
-  const barnIndex: number = barnMedISøknaden.indexOf(barn);
+  const barnIndex: number = barnSomSkalHaBarnepass.indexOf(barn);
 
-  return barnMedISøknaden
+  return barnSomSkalHaBarnepass
     .filter((barn, index) => index < barnIndex)
     .every((barn) => erSpørsmålSeksjonForBarnFerdigUtfylt(barn));
 };
