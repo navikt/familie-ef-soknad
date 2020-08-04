@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { IBarn } from '../../../models/barn';
 import {
@@ -25,6 +25,8 @@ import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
 import { erÅrsakBarnepassSpmBesvart } from './hjelper';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import { EPeriode } from '../../../models/periode';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
 
 interface Props {
   barn: IBarn;
@@ -46,7 +48,10 @@ const BarnepassSpørsmål: FC<Props> = ({
   settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
-  const { hvaSlagsBarnepassOrdning } = barnepassOrdning;
+  const { hvaSlagsBarnepassOrdning, periode } = barnepassOrdning;
+  const [gyldigPeriode, settGyldigPeriode] = useState<boolean>(
+    periode ? erPeriodeGyldig(periode) : false
+  );
 
   const navnLabel =
     barnepassOrdning.hvaSlagsBarnepassOrdning?.svarid ===
@@ -58,7 +63,7 @@ const BarnepassSpørsmål: FC<Props> = ({
     HvaSlagsBarnepassOrdningSpm.tekstid,
     intl
   );
-  const datovelgerTekst = hentBarnNavnEllerBarnet(
+  const periodeTekst = hentBarnNavnEllerBarnet(
     barn,
     'barnepass.datovelger.periodePåBarnepass',
     intl
@@ -107,16 +112,22 @@ const BarnepassSpørsmål: FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: Date | null, objektnøkkel: string) => {
+  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
     const periode = barnepassOrdning.periode
       ? barnepassOrdning.periode
       : tomPeriode;
+
+    const datovelgerTekst =
+      objektnøkkel === EPeriode.fra
+        ? hentTekst('periode.startdato', intl)
+        : hentTekst('periode.sluttdato', intl);
 
     dato !== null &&
       settBarnepassOrdning({
         ...barnepassOrdning,
         periode: {
           ...periode,
+          label: periodeTekst,
           [objektnøkkel]: {
             label: datovelgerTekst,
             verdi: datoTilStreng(dato),

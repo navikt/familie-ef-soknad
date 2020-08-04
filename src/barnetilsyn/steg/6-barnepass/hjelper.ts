@@ -10,10 +10,6 @@ import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
-// ---- KONSTANTER
-
-// ---- VALIDERING
-
 export const harBarnAvsluttetFjerdeKlasse = (barn: IBarn): boolean => {
   const { alder, født, fødselsdato } = barn;
   const juniEllerFør = dagensDato.getUTCMonth() <= 6;
@@ -55,7 +51,7 @@ export const erBarnepassOrdningerUtfylt = (
   );
 };
 
-export const erBarnepassFerdigUtfylt = (
+export const erBarnepassStegFerdigUtfylt = (
   barnMedISøknad: IBarn[],
   søknad: ISøknad
 ): boolean => {
@@ -73,4 +69,24 @@ export const erBarnepassForAlleBarnUtfylt = (barn: IBarn[]) => {
       barn?.barnepass?.barnepassordninger &&
       erBarnepassOrdningerUtfylt(barn?.barnepass?.barnepassordninger)
   );
+};
+
+export const erSpørsmålSeksjonForBarnFerdigUtfylt = (barn: IBarn) => {
+  const barnepass = barn.barnepass;
+  return (
+    erÅrsakBarnepassSpmBesvart(barn) &&
+    barnepass?.barnepassordninger &&
+    erBarnepassOrdningerUtfylt(barnepass?.barnepassordninger)
+  );
+};
+
+export const erBarnepassForBarnFørNåværendeUtfylt = (
+  barn: IBarn,
+  barnMedISøknaden: IBarn[]
+): boolean => {
+  const barnIndex: number = barnMedISøknaden.indexOf(barn);
+
+  return barnMedISøknaden
+    .filter((barn, index) => index < barnIndex)
+    .every((barn) => erSpørsmålSeksjonForBarnFerdigUtfylt(barn));
 };

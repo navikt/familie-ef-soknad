@@ -14,8 +14,9 @@ import BarnepassOrdninger from './BarnepassOrdninger';
 import ÅrsakBarnepass from './ÅrsakBarnepass';
 import BarneHeader from '../../../components/BarneHeader';
 import {
-  erBarnepassFerdigUtfylt,
   erBarnepassForAlleBarnUtfylt,
+  erBarnepassForBarnFørNåværendeUtfylt,
+  erBarnepassStegFerdigUtfylt,
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
 } from './hjelper';
@@ -93,30 +94,37 @@ const Barnepass: FC<Props> = () => {
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
-      erSpørsmålBesvart={erBarnepassFerdigUtfylt(barnMedISøknaden, søknad)}
+      erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(barnMedISøknaden, søknad)}
     >
       <SeksjonGruppe>
-        {barnMedISøknaden.map((barn) => (
-          <>
-            <SeksjonGruppe>
-              <BarneHeader barn={barn} />
-            </SeksjonGruppe>
-            {harBarnAvsluttetFjerdeKlasse(barn) && (
-              <ÅrsakBarnepass
-                barn={barn}
-                settBarnepass={settBarnepass}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
-              />
-            )}
-            {erÅrsakBarnepassSpmBesvart(barn) && (
-              <BarnepassOrdninger
-                barn={barn}
-                settBarnepass={settBarnepass}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
-              />
-            )}
-          </>
-        ))}
+        {barnMedISøknaden.map((barn, index) => {
+          const visSeksjon =
+            index === 0 ||
+            erBarnepassForBarnFørNåværendeUtfylt(barn, barnMedISøknaden);
+          return (
+            visSeksjon && (
+              <>
+                <SeksjonGruppe>
+                  <BarneHeader barn={barn} />
+                </SeksjonGruppe>
+                {harBarnAvsluttetFjerdeKlasse(barn) && (
+                  <ÅrsakBarnepass
+                    barn={barn}
+                    settBarnepass={settBarnepass}
+                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  />
+                )}
+                {erÅrsakBarnepassSpmBesvart(barn) && (
+                  <BarnepassOrdninger
+                    barn={barn}
+                    settBarnepass={settBarnepass}
+                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  />
+                )}
+              </>
+            )
+          );
+        })}
       </SeksjonGruppe>
       {erBarnepassForAlleBarnUtfylt(barnMedISøknaden) && (
         <SeksjonGruppe>
