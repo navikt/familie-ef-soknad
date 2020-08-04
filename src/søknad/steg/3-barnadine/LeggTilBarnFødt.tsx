@@ -38,7 +38,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
   settKjennerIkkeIdent,
 }) => {
   const intl = useIntl();
-  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(!ident);
+  const [erGyldigIdent, settGyldigIdent] = useState<boolean>(!!ident);
   const [identFelt, settIdentFelt] = useState<string>(ident ? ident : '');
 
   useEffect(() => {
