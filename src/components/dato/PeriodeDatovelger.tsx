@@ -67,7 +67,7 @@ const PeriodeDatovelgere: FC<Props> = ({
         onValidate && onValidate(true);
       }
     },
-    [periode]
+    [periode, onValidate]
   );
 
   const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
