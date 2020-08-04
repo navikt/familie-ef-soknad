@@ -6,20 +6,19 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { useHistory } from 'react-router-dom';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
-import { IMellomlagretOvergangsstønad } from '../../models/mellomlagretSøknad';
 
 interface FortsettSøknadProps {
   intl: IntlShape;
-  mellomlagretOvergangsstønad: IMellomlagretOvergangsstønad;
-  brukMellomlagretOvergangsstønad: () => void;
-  nullstillMellomlagretOvergangsstønad: () => Promise<any>;
+  gjeldendeSteg: string;
+  brukMellomlagretSøknad: () => void;
+  nullstillMellomlagretSøknad: () => Promise<any>;
 }
 
 const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
   intl,
-  mellomlagretOvergangsstønad,
-  brukMellomlagretOvergangsstønad,
-  nullstillMellomlagretOvergangsstønad,
+  gjeldendeSteg,
+  brukMellomlagretSøknad,
+  nullstillMellomlagretSøknad,
 }) => {
   const history = useHistory();
 
@@ -34,8 +33,8 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
         <FortsettSøknadKnappWrapper>
           <KnappBase
             onClick={() => {
-              brukMellomlagretOvergangsstønad();
-              history.push(mellomlagretOvergangsstønad.gjeldendeSteg);
+              brukMellomlagretSøknad();
+              history.push(gjeldendeSteg);
             }}
             type={'hoved'}
             className={'fortsett'}
@@ -44,7 +43,7 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
           </KnappBase>
           <KnappBase
             onClick={() => {
-              nullstillMellomlagretOvergangsstønad().then(() => {
+              nullstillMellomlagretSøknad().then(() => {
                 window.location.reload();
               });
             }}

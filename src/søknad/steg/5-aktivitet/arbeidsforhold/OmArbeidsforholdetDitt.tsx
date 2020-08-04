@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Arbeidsgiver from './Arbeidsgiver';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
@@ -11,26 +10,43 @@ import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/uuid';
 import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+  inkludertArbeidsmengde?: boolean;
 }
 
-const tomArbeidsgiver: IArbeidsgiver = {
-  id: hentUid(),
-  navn: nyttTekstFelt,
-  arbeidsmengde: nyttTekstFelt,
+const tomArbeidsgiver = (inkludertArbeidsmengde: boolean): IArbeidsgiver => {
+  return inkludertArbeidsmengde
+    ? {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+        arbeidsmengde: nyttTekstFelt,
+      }
+    : {
+        id: hentUid(),
+        navn: nyttTekstFelt,
+      };
 };
 
 const OmArbeidsforholdetDitt: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
+  settDokumentasjonsbehov,
+  inkludertArbeidsmengde = true,
 }) => {
   const [arbeidsforhold, settArbeidsforhold] = useState<IArbeidsgiver[]>(
     arbeidssituasjon.arbeidsforhold
       ? arbeidssituasjon.arbeidsforhold
-      : [tomArbeidsgiver]
+      : [tomArbeidsgiver(inkludertArbeidsmengde)]
   );
 
   useEffect(() => {
@@ -42,7 +58,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   }, [arbeidsforhold]);
 
   const leggTilArbeidsgiver = () => {
-    const nyArbeidsgiver: IArbeidsgiver = tomArbeidsgiver;
+    const nyArbeidsgiver: IArbeidsgiver = tomArbeidsgiver(
+      inkludertArbeidsmengde
+    );
     const alleArbeidsgivere = arbeidsforhold;
     alleArbeidsgivere.push(nyArbeidsgiver);
     settArbeidssituasjon({
@@ -65,6 +83,8 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
               arbeidsforhold={arbeidsforhold}
               settArbeidsforhold={settArbeidsforhold}
               arbeidsgivernummer={index}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              inkludertArbeidsmengde={inkludertArbeidsmengde}
             />
           </SeksjonGruppe>
         );
@@ -78,9 +98,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             </Element>
           </FeltGruppe>
           <FeltGruppe>
-            <KnappBase type={'standard'} onClick={() => leggTilArbeidsgiver()}>
+            <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>
               <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
-            </KnappBase>
+            </LeggTilKnapp>
           </FeltGruppe>
         </KomponentGruppe>
       )}

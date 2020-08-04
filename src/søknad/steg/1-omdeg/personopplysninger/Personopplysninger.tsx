@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -10,79 +10,58 @@ import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { usePersonContext } from '../../../../context/PersonContext';
-import { useSøknad } from '../../../../context/SøknadContext';
 import { hentSivilstatus } from '../../../../helpers/omdeg';
-import { ESøknad } from '../../../../models/søknad';
+import { ISøker } from '../../../../models/person';
+import { ISpørsmålBooleanFelt } from '../../../../models/søknadsfelter';
 
-const Personopplysninger: React.FC = () => {
+interface Props {
+  søker: ISøker;
+  settSøker: (søker: ISøker) => void;
+  søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
+  settSøkerBorPåRegistrertAdresse: (
+    søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
+  ) => void;
+}
+const Personopplysninger: React.FC<Props> = ({
+  søker,
+  settSøker,
+  søkerBorPåRegistrertAdresse,
+  settSøkerBorPåRegistrertAdresse,
+}) => {
   const intl = useIntl();
-  const { person } = usePersonContext();
-  const { søker } = person;
-  const { søknad, settSøknad } = useSøknad();
-  const { kontakttelefon } = søknad.person.søker;
-  const { søkerBorPåRegistrertAdresse } = søknad;
+
+  const { kontakttelefon } = søker;
   const [feilTelefonnr, settFeilTelefonnr] = useState<boolean>(false);
   const [telefonnummer, settTelefonnummer] = useState<string>(
     kontakttelefon ? kontakttelefon : ''
   );
 
-  const settBorSøkerPåRegistrertAdresse = (
+  useEffect(() => {
+    settTelefonnummer(kontakttelefon ? kontakttelefon : '');
+  }, [kontakttelefon]);
+
+  const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar
   ) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-
-    if (
-      spørsmål.søknadid === ESøknad.søkerBorPåRegistrertAdresse &&
-      valgtSvar.id === ESvar.NEI
-    ) {
-      settSøknad({
-        ...søknad,
-        søkerBorPåRegistrertAdresse: {
-          spørsmålid: spørsmål.søknadid,
-          svarid: valgtSvar.id,
-          label: spørsmål.søknadid,
-          verdi: svar,
-        },
-        sivilstatus: {},
-        medlemskap: {},
-        person: { ...person, søker: { ...person.søker, kontakttelefon: '' } },
-      });
-    } else {
-      settSøknad({
-        ...søknad,
-        søkerBorPåRegistrertAdresse: {
-          spørsmålid: spørsmål.søknadid,
-          svarid: valgtSvar.id,
-          label: spørsmål.søknadid,
-          verdi: svar,
-        },
-      });
-    }
+    settSøkerBorPåRegistrertAdresse({
+      spørsmålid: spørsmål.søknadid,
+      svarid: valgtSvar.id,
+      label: spørsmål.søknadid,
+      verdi: svar,
+    });
   };
 
   const oppdaterTelefonnr = (e: React.FormEvent<HTMLInputElement>) => {
     const telefonnr = e.currentTarget.value;
     settTelefonnummer(telefonnr);
     if (telefonnr.length >= 8 && /^[+\d\s]+$/.test(telefonnr)) {
-      settSøknad({
-        ...søknad,
-        person: {
-          ...søknad.person,
-          søker: { ...søker, kontakttelefon: telefonnr },
-        },
-      });
+      settSøker({ ...søker, kontakttelefon: telefonnr });
     } else {
-      settSøknad({
-        ...søknad,
-        person: {
-          ...søknad.person,
-          søker: { ...søker, kontakttelefon: '' },
-        },
-      });
+      settSøker({ ...søker, kontakttelefon: '' });
     }
   };
 
@@ -120,7 +99,7 @@ const Personopplysninger: React.FC = () => {
           <Element>
             <LocaleTekst tekst={'sivilstatus.tittel'} />
           </Element>
-          <Normaltekst>{hentSivilstatus(person.søker.sivilstand)}</Normaltekst>
+          <Normaltekst>{hentSivilstatus(søker.sivilstand)}</Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>
@@ -142,7 +121,7 @@ const Personopplysninger: React.FC = () => {
               ? søkerBorPåRegistrertAdresse.verdi
               : undefined
           }
-          onChange={settBorSøkerPåRegistrertAdresse}
+          onChange={settPersonopplysningerFelt}
         />
 
         {søkerBorPåRegistrertAdresse?.verdi === false && (

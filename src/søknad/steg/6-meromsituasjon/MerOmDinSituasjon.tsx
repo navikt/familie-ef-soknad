@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import NårSøkerDuOvergangsstønadFra from './NårSøkerDuOvergangsstønadFra';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../../components/side/Side';
 
-import { gjelderNoeAvDetteDeg } from './SituasjonConfig';
+import {
+  gjelderNoeAvDetteDeg,
+  SøkerFraBestemtMånedSpm,
+} from './SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
@@ -23,6 +25,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from './SituasjonOppfølgingSpørsmål';
+import NårSøkerDuStønadFra from '../../../components/NårSøkerDuStønadFraGruppe';
+import { datoTilStreng } from '../../../utils/dato';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -42,6 +46,10 @@ const MerOmDinSituasjon: React.FC = () => {
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
+
+  const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
+  const hjelpetekstInnhold =
+    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad';
 
   useEffect(() => {
     settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
@@ -71,6 +79,33 @@ const MerOmDinSituasjon: React.FC = () => {
       },
     });
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
+  };
+
+  const settSøknadsdato = (dato: Date | null) => {
+    dato !== null &&
+      settDinSituasjon({
+        ...dinSituasjon,
+        søknadsdato: {
+          label: hentTekst(datovelgerLabel, intl),
+          verdi: datoTilStreng(dato),
+        },
+      });
+  };
+
+  const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {
+    settDinSituasjon({
+      ...dinSituasjon,
+      [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: hentTekst(spørsmål.tekstid, intl),
+        verdi: svar.id === ESøkerFraBestemtMåned.ja,
+      },
+      søknadsdato:
+        svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere
+          ? undefined
+          : dinSituasjon.søknadsdato,
+    });
   };
 
   const harValgtMinstEttAlternativ = gjelderDetteDeg.svarid.length !== 0;
@@ -120,9 +155,14 @@ const MerOmDinSituasjon: React.FC = () => {
       )}
       {visNårSøkerDuStønadFra && (
         <SeksjonGruppe>
-          <NårSøkerDuOvergangsstønadFra
-            dinSituasjon={dinSituasjon}
-            settDinSituasjon={settDinSituasjon}
+          <NårSøkerDuStønadFra
+            spørsmål={SøkerFraBestemtMånedSpm}
+            settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
+            søkerFraBestemtMåned={dinSituasjon.søkerFraBestemtMåned}
+            settDato={settSøknadsdato}
+            valgtDato={dinSituasjon.søknadsdato}
+            datovelgerLabel={datovelgerLabel}
+            hjelpetekstInnholdTekstid={hjelpetekstInnhold}
           />
         </SeksjonGruppe>
       )}

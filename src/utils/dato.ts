@@ -1,4 +1,13 @@
-import { format, formatISO, isValid, parse } from 'date-fns';
+import {
+  format,
+  formatISO,
+  isValid,
+  parse,
+  isAfter,
+  setHours,
+  setMinutes,
+  addDays,
+} from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 
@@ -59,4 +68,13 @@ export const dagensDatoStreng = datoTilStreng(new Date());
 
 export const erGyldigDato = (verdi: string | undefined): boolean => {
   return verdi ? isValid(new Date(verdi)) : false;
+};
+
+// Vedlegg er lagret ut neste døgn
+export const erVedleggstidspunktGyldig = (verdi: string): boolean => {
+  const grenseTidForVedlegg = addDays(
+    setMinutes(setHours(new Date(verdi), 23), 59),
+    1
+  );
+  return isAfter(grenseTidForVedlegg, dagensDato);
 };

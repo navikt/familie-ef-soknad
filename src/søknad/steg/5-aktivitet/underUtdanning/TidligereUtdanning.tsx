@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   IUtdanning,
   IUnderUtdanning,
@@ -7,7 +7,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import KnappBase from 'nav-frontend-knapper';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';
@@ -20,6 +19,7 @@ import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';
 import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { erTidligereUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -30,28 +30,22 @@ const TidligereUtdanning: React.FC<Props> = ({
   settUnderUtdanning,
 }) => {
   const intl = useIntl();
+  const tidligereUtdanning: IUtdanning[] = underUtdanning.tidligereUtdanning
+    ? underUtdanning.tidligereUtdanning
+    : [];
 
-  const [tidligereUtdanning, settTidligereUtdanning] = useState<IUtdanning[]>(
-    underUtdanning.tidligereUtdanning &&
-      underUtdanning.tidligereUtdanning.length > 0
-      ? underUtdanning.tidligereUtdanning
-      : [lagTomUtdanning(intl)]
-  );
-
-  useEffect(() => {
-    underUtdanning.harTattUtdanningEtterGrunnskolen &&
-      settUnderUtdanning({
-        ...underUtdanning,
-        tidligereUtdanning: tidligereUtdanning,
-      });
-
-    // eslint-disable-next-line
-  }, [tidligereUtdanning]);
+  const settTidligereUtdanning = (tidligereUtdanninger: IUtdanning[]) => {
+    settUnderUtdanning({
+      ...underUtdanning,
+      tidligereUtdanning: tidligereUtdanninger,
+    });
+  };
 
   const leggTilUtdanning = () => {
-    const nyUtdanning: IUtdanning = lagTomUtdanning(intl);
-    const allUtdanning: IUtdanning[] = tidligereUtdanning;
-    allUtdanning.push(nyUtdanning);
+    const allUtdanning: IUtdanning[] = [
+      ...tidligereUtdanning,
+      lagTomUtdanning(intl),
+    ];
     settUnderUtdanning({ ...underUtdanning, tidligereUtdanning: allUtdanning });
   };
 
@@ -66,25 +60,19 @@ const TidligereUtdanning: React.FC<Props> = ({
       verdi: svar,
     };
 
-    if (!svar && underUtdanning.tidligereUtdanning) {
+    if (!svar) {
       const endretUtdanning = underUtdanning;
       delete endretUtdanning.tidligereUtdanning;
       settUnderUtdanning({
         ...endretUtdanning,
         [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
       });
-    } else if (svar && !underUtdanning.tidligereUtdanning) {
+    } else if (svar) {
       settUnderUtdanning({
         ...underUtdanning,
         [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
         tidligereUtdanning: [lagTomUtdanning(intl)],
       });
-    } else {
-      underUtdanning &&
-        settUnderUtdanning({
-          ...underUtdanning,
-          [spørsmål.søknadid]: tattUtdanningEtterGrunnskolenFelt,
-        });
     }
   };
 
@@ -131,9 +119,9 @@ const TidligereUtdanning: React.FC<Props> = ({
                 </Element>
               </FeltGruppe>
               <FeltGruppe>
-                <KnappBase type={'standard'} onClick={() => leggTilUtdanning()}>
+                <LeggTilKnapp onClick={() => leggTilUtdanning()}>
                   <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
-                </KnappBase>
+                </LeggTilKnapp>
               </FeltGruppe>
             </KomponentGruppe>
           )}

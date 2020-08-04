@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSøknad } from '../../../context/SøknadContext';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -10,13 +9,14 @@ import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
+import { IBosituasjon } from '../../../models/steg/bosituasjon';
 
-const OppsummeringBosituasionenDin: React.FC = () => {
-  const { søknad } = useSøknad();
+interface Props {
+  bosituasjon: IBosituasjon;
+}
+const OppsummeringBosituasionenDin: React.FC<Props> = ({ bosituasjon }) => {
   const history = useHistory();
   const intl = useIntl();
-
-  const bosituasjon = søknad.bosituasjon;
 
   const samboerDetaljer = bosituasjon.samboerDetaljer
     ? VisLabelOgSvar(bosituasjon.samboerDetaljer)

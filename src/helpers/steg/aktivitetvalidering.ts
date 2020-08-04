@@ -25,8 +25,13 @@ export const erSisteArbeidsgiverFerdigUtfylt = (
   );
 };
 
-export const erAksjeselskapFerdigUtfylt = (egetAS: IAksjeselskap[]) => {
-  return egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi);
+export const erAksjeselskapFerdigUtfylt = (
+  egetAS: IAksjeselskap[],
+  inkludertArbeidsmengde: boolean
+) => {
+  return inkludertArbeidsmengde
+    ? egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi)
+    : egetAS?.every((aksjeselskap) => aksjeselskap.navn?.verdi);
 };
 
 export const erTidligereUtdanningFerdigUtfylt = (
@@ -42,13 +47,14 @@ export const erTidligereUtdanningFerdigUtfylt = (
 
 export const erUnderUtdanningFerdigUtfylt = (
   underUtdanning: IUnderUtdanning
-) => {
+): boolean => {
   return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
 };
 
 export const erAktivitetSeksjonFerdigUtfylt = (
   svarid: string,
-  arbeidssituasjon: IAktivitet
+  arbeidssituasjon: IAktivitet,
+  inkludertArbeidsmengde: boolean = true
 ): boolean => {
   const {
     arbeidsforhold,
@@ -74,7 +80,10 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return harValgtSvar(firma?.arbeidsuke?.verdi);
 
     case EAktivitet.erAnsattIEgetAS:
-      return egetAS !== undefined && erAksjeselskapFerdigUtfylt(egetAS);
+      return (
+        egetAS !== undefined &&
+        erAksjeselskapFerdigUtfylt(egetAS, inkludertArbeidsmengde)
+      );
 
     case EAktivitet.etablererEgenVirksomhet:
       return (
@@ -89,14 +98,17 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.tarUtdanning:
-      const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
-      return (
-        underUtdanning !== undefined &&
-        erUnderUtdanningFerdigUtfylt(underUtdanning) &&
-        erTidligereUtdanningFerdigUtfylt(
-          tidligereUtdanning ? tidligereUtdanning : []
-        )
-      );
+      if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
+        return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
+      } else {
+        const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
+        return (
+          underUtdanning !== undefined &&
+          tidligereUtdanning !== undefined &&
+          erUnderUtdanningFerdigUtfylt(underUtdanning) &&
+          erTidligereUtdanningFerdigUtfylt(tidligereUtdanning)
+        );
+      }
 
     case EAktivitet.harFåttJobbTilbud:
       return datoOppstartJobb !== undefined;

@@ -4,6 +4,8 @@ import { IntlShape } from 'react-intl';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import * as Sentry from '@sentry/browser';
+import { Severity } from '@sentry/browser';
 
 export const hentPersonData = () => {
   return axios
@@ -20,7 +22,7 @@ export const hentPersonData = () => {
 
 export const hentMellomlagretOvergangsstønadFraDokument = () => {
   return axios
-    .get(`${Environment().mellomlagerUrl}`, {
+    .get(`${Environment().mellomlagerUrl + 'overgangsstonad'}`, {
       withCredentials: true,
       headers: {
         'content-type': 'application/json',
@@ -35,17 +37,21 @@ export const hentMellomlagretOvergangsstønadFraDokument = () => {
 export const mellomlagreOvergangsstønadTilDokument = (
   søknad: IMellomlagretOvergangsstønad
 ) => {
-  return axios.post(`${Environment().mellomlagerUrl}`, søknad, {
-    withCredentials: true,
-    headers: {
-      'content-type': 'application/json',
-      accept: 'application/json',
-    },
-  });
+  return axios.post(
+    `${Environment().mellomlagerUrl + 'overgangsstonad'}`,
+    søknad,
+    {
+      withCredentials: true,
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json',
+      },
+    }
+  );
 };
 
 export const nullstillMellomlagretOvergangsstønadTilDokument = (): Promise<any> => {
-  return axios.delete(`${Environment().mellomlagerUrl}`, {
+  return axios.delete(`${Environment().mellomlagerUrl + 'overgangsstonad'}`, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',
@@ -73,6 +79,7 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
       label: 'Født',
       verdi: true,
     },
+    skalHaBarnepass: { label: 'Med i søknaden', verdi: false },
   };
 
   for (const [key, verdi] of Object.entries(objekt)) {
@@ -84,7 +91,10 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
         verdi: verdi,
       };
     } else {
-      nyttObjekt[key] = verdi;
+      Sentry.captureEvent({
+        message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
+        level: Severity.Warning,
+      });
     }
   }
 

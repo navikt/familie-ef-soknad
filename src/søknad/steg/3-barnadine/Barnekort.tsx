@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
-import LeggTilBarn from '../../steg/3-barnadine/LeggTilBarn';
+import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
-import { ITekstFelt, IBooleanFelt } from '../../../models/søknadsfelter';
-import { useSøknad } from '../../../context/SøknadContext';
+import { IBooleanFelt, ITekstFelt } from '../../../models/søknadsfelter';
 import { hentTekst } from '../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { IBarn } from '../../../models/barn';
 
 interface Props {
   navn: ITekstFelt;
@@ -20,6 +21,15 @@ interface Props {
   lagtTil: boolean;
   født: IBooleanFelt;
   id: string;
+  velgBarnForDenneSøknaden?: React.ReactNode;
+  slettBarn: Function;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+  barneListe: IBarn[];
+  settBarneListe: (barneListe: IBarn[]) => void;
 }
 
 const Barnekort: React.FC<Props> = ({
@@ -31,9 +41,13 @@ const Barnekort: React.FC<Props> = ({
   lagtTil,
   født,
   fødselsdato,
+  velgBarnForDenneSøknaden,
+  slettBarn,
+  settDokumentasjonsbehov,
+  barneListe,
+  settBarneListe,
 }) => {
   const intl = useIntl();
-  const { søknad, settSøknad } = useSøknad();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const formatFnr = (fødselsnummer: string) => {
@@ -60,12 +74,6 @@ const Barnekort: React.FC<Props> = ({
       ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
       : intl.formatMessage({ id: 'barnekort.adresse.uregistrert' });
   }
-
-  const fjernFraSøknad = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
-
-    settSøknad({ ...søknad, person: { ...søknad.person, barn: nyBarneListe } });
-  };
 
   return (
     <div className="barnekort">
@@ -113,11 +121,12 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
+          {velgBarnForDenneSøknaden}
           {lagtTil ? (
             <div className="barnekort__endre-barnekort">
               <Normaltekst>
-                <span 
-                  className="lenke" 
+                <span
+                  className="lenke"
                   onClick={() => settÅpenEndreModal(true)}
                 >
                   {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
@@ -128,10 +137,7 @@ const Barnekort: React.FC<Props> = ({
           {lagtTil ? (
             <div className="barnekort__endre-barnekort">
               <Normaltekst>
-                <span 
-                  className="lenke" 
-                  onClick={() => fjernFraSøknad(id)}
-                >
+                <span className="lenke" onClick={() => slettBarn(id)}>
                   {intl.formatMessage({ id: 'barnekort.fjern' })}
                 </span>
               </Normaltekst>
@@ -145,7 +151,13 @@ const Barnekort: React.FC<Props> = ({
           contentLabel="legg til barn modal"
         >
           <div style={{ padding: '2rem 2.5rem' }}>
-            <LeggTilBarn settÅpenModal={settÅpenEndreModal} id={id} />
+            <LeggTilBarn
+              settÅpenModal={settÅpenEndreModal}
+              id={id}
+              barneListe={barneListe}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settBarneListe={settBarneListe}
+            />
           </div>
         </Modal>
       </div>

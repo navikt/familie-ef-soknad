@@ -17,7 +17,7 @@ const StyledMultisvarSpørsmål = styled.div`
       grid-gap: 1rem;
       padding-top: 1rem;
 
-      .inputPanel__label {
+      .inputPanel__label  {
         font-size: 18px;
       }
     }

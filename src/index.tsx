@@ -4,6 +4,7 @@ import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import ArbeidssøkerApp from './arbeidssøkerskjema/SkjemaApp';
+import BarnetilsynApp from './barnetilsyn/BarnetilsynApp';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
@@ -26,6 +27,7 @@ ReactDOM.render(
         <ScrollToTop />
         <Switch>
           <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
+          <Route path={'/barnetilsyn'} component={BarnetilsynApp} />
           <Route path={'/'} component={App} />
         </Switch>
       </Router>

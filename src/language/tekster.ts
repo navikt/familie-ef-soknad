@@ -1,6 +1,12 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
+    'barnetilsyn.hjelpetekst-åpne.hvilke':
+      'Hvilke barn kan du få stønad til barnetilsyn for?',
+    'barnetilsyn.hjelpetekst-innhold.hvilke':
+      'Du kan få stønad til barnetilsyn for blabla',
+
     'skjema.hei': 'Hei, [0]!',
     'skjema.knapp.start': 'Start',
     'skjema.beskrivelse':
@@ -55,8 +61,12 @@ export default {
     'datovelger.fødselsdato': 'Fødselsdato',
     'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
 
+    'input.kroner': 'kroner',
+
     'periode.fra': 'Fra',
     'periode.til': 'Til',
+    'periode.startdato': 'Startdato',
+    'periode.sluttdato': 'Sluttdato',
     'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
     'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
 
@@ -239,6 +249,9 @@ export default {
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.leggtil': 'Legg til barn',
+    'barnadine.label.skalHaBarnepass': 'Med i søknaden',
+    'barnadine.knapp.fjern': 'Fjern fra søknad',
+    'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
@@ -270,6 +283,7 @@ export default {
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
+    'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
 
     'barnasbosted.kanikkeoppgiforelder':
       'Jeg kan ikke oppgi den andre forelderen',
@@ -385,6 +399,15 @@ export default {
       'Hvor mye er du sammen med den andre forelderen til [0]?',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+    'erDuIArbeid.spm': 'Er du i arbeid?',
+    'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
+    'erDuIArbeid.alertsstripe-info':
+      'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>' +
+      'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>' +
+      'Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
+    'erDuIArbeid.alertsstripe-dokumentasjon':
+      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
@@ -601,18 +624,58 @@ export default {
     'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
       'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
 
-    'dinSituasjon.dato-tittel.overgangsstønad': 'Når søker du stønad fra?',
-    'dinSituasjon.lesmer-åpne.overgangsstønad':
+    'søkerFraBestemtMåned.datovelger': 'Når søker du stønad fra?',
+    'søkerFraBestemtMåned.spm.overgangsstønad':
+      'Søker du overgangsstønad fra en bestemt måned?',
+    'søkerFraBestemtMåned.spm.barnepass':
+      'Søker du barnepass fra en bestemt måned?',
+    'søkerFraBestemtMåned.hjelpetekst-åpne':
       'Om å søke fra et bestemt tidspunkt',
-    'dinSituasjon.lesmer-innhold.overgangsstønad':
-      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil [0] måneder før du søker. Det vil si fra og med [1]. Hvis du har fått barn i løpet av de siste [0] månedene, kan du få stønad i inntil [2] måneder før du søker. Det vil si fra og med [3]. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
-    'dinSituasjon.datovelger.overgangsstønad':
-      'Jeg søker overgangsstønad fra og med',
-
-    'dinSituasjon.spm.søkerFraBestemtMåned':
-      'Søker du om overgangsstønad fra en bestemt måned?',
-    'dinSituasjon.svar.neiNavKanVurdere':
+    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad':
+      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020. Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
+      'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+    'søkerFraBestemtMåned.svar.neiNavKanVurdere':
       'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
+
+    'søkerFraBestemtMåned.datovelger.overgangsstønad':
+      'Jeg søker overgangsstønad fra og med',
+    'søkerStønadFraBestemtMnd.datovelger.barnepass':
+      'Jeg søker stønad til barnetilsyn fra og med',
+    'barnepass.dokumentasjon.søkerStønadFraBestemtMnd':
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+
+    'barnepass.sidetittel': 'Om barnepassordningen',
+    'barnepass.spm': '',
+
+    'barnepass.spm.hvaSlagsOrdning': 'Hva slags barnepassordning har [0]?',
+    'hvaSlagsOrdning.svar.barnehageOgLiknende': 'Barnehage, SFO eller liknende',
+    'hvaSlagsOrdning.svar.privat': 'Dagmamma eller annen privat ordning',
+    'barnehageOgLiknende.label.navnPåBarnepass': 'Navn på barnepassordningen',
+    'privat.label.navnPåBarnepass':
+      'Navn på barnepassordningen eller personen som passer [0]',
+    'barnepass.datovelger.periodePåBarnepass':
+      'I hvilken periode har [0] denne barnepassordningen?',
+    'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
+    'barnepass.hjelpetekst-åpne.beløp': 'Dette kan du få støtte til',
+    'barnepass.hjelpetekst-innhold.beløp':
+      ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
+    'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
+      'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
+    'barnepass.alert-dokumentasjon.beløp.privat':
+      '<b>Du må legge ved avtalen du har med barnepasseren. Her er et forslag til hvordan en privat avtale om barnepass kan se ut. Avtalen må inneholde:</b> <ul>' +
+      '<li>ditt navn, fødseslnummer og adresse</li>' +
+      '<li> barnepasserens navn og adresse</li>' +
+      '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
+      '<li>perioden avtalen gjelder for</li>' +
+      '<li>dager i uken og klokkeslett for barnepass</li>' +
+      '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
+      '<li>signaturer fra deg og barnepasser </li></ul>',
+    'barnepass.label.leggTilOrdning':
+      'Har du flere barnepassordninger for [0]?',
+    'barnepass.knapp.leggTilOrdning': 'Legg til en barnepassordning',
+    'barnepass.tittel.ordning': 'Barnepassordning',
+    'barnepass.knapp.slett': 'Fjern barnepassordning',
 
     'filopplaster.dra': 'Last opp dokumentasjon',
     'filopplaster.slipp': 'Slipp filen her...',
@@ -738,8 +801,31 @@ export default {
       'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
     'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
 
+    'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
+    'dokumentasjon.tidligereFakturaer.beskrivelse':
+      'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
+
+    'dokumentasjon.barnehageOgLiknende.tittel':
+      'Faktura fra barnepassordningen',
+    'dokumentasjon.barnehageOgLiknende.beskrivelse':
+      'Den må stå i ditt navn, og utgifter til opphold må være spesifisert. \n' +
+      '\n' +
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+    'dokumentasjon.privatBarnepass.tittel': 'Avtalen du har med barnepasseren',
+    'dokumentasjon.privatBarnepass.beskrivelse':
+      'Avtalen må inneholde:\n<ul>' +
+      '<li>ditt navn, fødseslnummer og adresse</li>' +
+      '<li>barnepasserens navn og adresse</li>' +
+      '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
+      '<li>perioden avtalen gjelder for</li>' +
+      '<li>dager i uken og klokkeslett for barnepass</li>' +
+      '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
+      '<li>signaturer fra deg og barnepasser</li></ul>',
+
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.barnetilsyn.alert.mottatt':
+      'Søknaden din om stønad til barnetilsyn er mottatt',
     'kvittering.tekst.arbeidssøker':
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
@@ -796,6 +882,8 @@ export default {
       'Les mer om stønad til barnetilsyn',
     'kvittering.knapp.tilleggsstønader.aktivitetskrav':
       'Søk stønad til barnetilsyn',
+    'overgangsstønad.feilsituasjon':
+      'Vi har dessverre tekniske problemer, så du får ikke sendt inn søknaden akkurat nå. Vennligst prøv igjen litt senere. Vi beklager ulempen.',
   },
   nn: {
     'banner.tittel': 'Einsleg forsørgjer',

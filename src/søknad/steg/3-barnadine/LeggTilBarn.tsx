@@ -8,7 +8,6 @@ import { barnetFødt } from './BarneConfig';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { useSøknad } from '../../../context/SøknadContext';
 import { strengTilDato } from '../../../utils/dato';
 
 import { IBarn } from '../../../models/barn';
@@ -18,26 +17,41 @@ import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 interface Props {
   settÅpenModal: Function;
   id?: string;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
+  barneListe: IBarn[];
+  settBarneListe: (barneListe: IBarn[]) => void;
 }
 
-const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
+const LeggTilBarn: React.FC<Props> = ({
+  settÅpenModal,
+  id,
+  barneListe,
+  settBarneListe,
+  settDokumentasjonsbehov,
+}) => {
   const intl = useIntl();
-  const { søknad, settSøknad, settDokumentasjonsbehov } = useSøknad();
+
   const [barnDato, settBarnDato] = useState<Date | undefined>();
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
   const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
+  const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean>();
 
   useEffect(() => {
     if (id) {
-      const detteBarnet = søknad.person.barn.find((b) => b.id === id);
+      const detteBarnet = barneListe.find((b) => b.id === id);
 
       settNavn(detteBarnet?.navn?.verdi ? detteBarnet.navn.verdi : '');
       settIdent(detteBarnet?.ident?.verdi ? detteBarnet.ident.verdi : '');
       settBarnFødt(detteBarnet?.født?.verdi);
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
+      settSkalHaBarnepass(detteBarnet?.skalHaBarnepass?.verdi);
       detteBarnet?.fødselsdato.verdi &&
         settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
     }
@@ -59,29 +73,40 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
     settBoHosDeg('');
   };
 
-  const leggTilBarn = (id: string | undefined) => {
+  const oppdaterBarneliste = (
+    barneListe: IBarn[],
+    id: string | undefined,
+    nyttBarn: IBarn
+  ) => {
+    const erEndringAvBarn = id !== undefined;
+    if (erEndringAvBarn) {
+      return barneListe.map((barn) => {
+        return barn.id === id ? nyttBarn : barn;
+      });
+    } else {
+      return [...barneListe.filter((b) => b.id !== id), nyttBarn];
+    }
+  };
+
+  const leggTilEllerEndreBarn = (id: string | undefined) => {
     const nyttBarn: IBarn = hentNyttBarn(
+      id,
       ident,
       barnDato,
       navn,
       boHosDeg,
       født ? født : false,
-      intl
+      intl,
+      skalHaBarnepass
     );
 
-    const nyBarneListe = [
-      ...søknad.person.barn.filter((b) => b.id !== id),
-      nyttBarn,
-    ];
+    const nyBarneListe = oppdaterBarneliste(barneListe, id, nyttBarn);
     const erBarnFødtSvar = barnetFødt.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
     erBarnFødtSvar && settDokumentasjonsbehov(barnetFødt, erBarnFødtSvar);
 
-    settSøknad({
-      ...søknad,
-      person: { ...søknad.person, barn: nyBarneListe },
-    });
+    settBarneListe(nyBarneListe);
 
     settÅpenModal(false);
   };
@@ -127,7 +152,7 @@ const LeggTilBarn: React.FC<Props> = ({ settÅpenModal, id }) => {
       {boHosDeg && (
         <Hovedknapp
           className="legg-til-barn__knapp"
-          onClick={() => leggTilBarn(id)}
+          onClick={() => leggTilEllerEndreBarn(id)}
         >
           Legg til barn
         </Hovedknapp>

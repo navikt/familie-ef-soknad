@@ -20,7 +20,6 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { ISpørsmål } from '../../../../models/spørsmålogsvar';
 import { ISvar } from '../../../../models/spørsmålogsvar';
-import { useSøknad } from '../../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 const StyledArbeidsgiver = styled.div`
@@ -32,15 +31,22 @@ interface Props {
   arbeidsforhold: IArbeidsgiver[];
   settArbeidsforhold: (arbeidsforhold: IArbeidsgiver[]) => void;
   arbeidsgivernummer: number;
+  inkludertArbeidsmengde: boolean;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
 }
 
 const Arbeidsgiver: React.FC<Props> = ({
   arbeidsforhold,
   settArbeidsforhold,
   arbeidsgivernummer,
+  settDokumentasjonsbehov,
+  inkludertArbeidsmengde,
 }) => {
   const intl = useIntl();
-  const { settDokumentasjonsbehov } = useSøknad();
   const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
     if (index === arbeidsgivernummer) return arbeidsgiver;
   });
@@ -136,7 +142,7 @@ const Arbeidsgiver: React.FC<Props> = ({
           onChange={(e) => settTekstInputFelt(e, EArbeidsgiver.navn, navnLabel)}
         />
       </FeltGruppe>
-      {arbeidsgiver.navn?.verdi && (
+      {arbeidsgiver.navn?.verdi && inkludertArbeidsmengde && (
         <FeltGruppe>
           <InputLabelGruppe
             label={arbeidsmengdeLabel}
@@ -159,7 +165,8 @@ const Arbeidsgiver: React.FC<Props> = ({
           />
         </FeltGruppe>
       )}
-      {arbeidsgiver.arbeidsmengde?.verdi && (
+      {(arbeidsgiver.arbeidsmengde?.verdi ||
+        (arbeidsgiver.navn?.verdi && !inkludertArbeidsmengde)) && (
         <FeltGruppe>
           <MultiSvarSpørsmål
             toKorteSvar={false}

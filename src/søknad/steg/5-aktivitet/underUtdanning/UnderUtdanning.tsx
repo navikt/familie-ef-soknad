@@ -15,12 +15,12 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import StudieArbeidsmengde from './StudieArbeidsmengde';
 import TidligereUtdanning from './TidligereUtdanning';
-import { hentUid } from '../../../../utils/uuid';
-import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import MålMedUtdanningen from './MålMedUtdanningen';
 import { erUnderUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import { strengErMerEnnNull } from '../../../../utils/spørsmålogsvar';
+import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,10 +32,9 @@ const UnderUtdanning: React.FC<Props> = ({
   settArbeidssituasjon,
 }) => {
   const { underUtdanning } = arbeidssituasjon;
-  const [utdanning, settUtdanning] = useState<IUnderUtdanning>({
-    id: hentUid(),
-    skoleUtdanningssted: nyttTekstFelt,
-  });
+  const [utdanning, settUtdanning] = useState<IUnderUtdanning>(
+    underUtdanning ? underUtdanning : lagTomUnderUtdanning()
+  );
 
   useEffect(() => {
     settArbeidssituasjon({
@@ -111,7 +110,7 @@ const UnderUtdanning: React.FC<Props> = ({
               utdanning={utdanning}
               oppdaterUtdanning={oppdaterUtdanning}
             />
-            {utdanning.arbeidsmengde && (
+            {strengErMerEnnNull(utdanning.arbeidsmengde?.verdi) && (
               <MålMedUtdanningen
                 utdanning={utdanning}
                 oppdaterUtdanning={oppdaterUtdanning}
