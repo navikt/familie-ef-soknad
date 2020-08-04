@@ -12,7 +12,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 export const harBarnAvsluttetFjerdeKlasse = (barn: IBarn): boolean => {
   const { alder, født, fødselsdato } = barn;
-  const juniEllerFør = dagensDato.getUTCMonth() <= 6;
+  const juniEllerFør = dagensDato.getUTCMonth() < 6;
 
   if (født?.verdi && parseInt(alder.verdi) >= 10)
     if (juniEllerFør) {
