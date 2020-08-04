@@ -24,7 +24,7 @@ const Kvittering: React.FC = () => {
   } = søknad.aktivitet;
 
   const mottattAlert: string =
-    hentTekst('kvittering.alert.mottatt', intl) +
+    hentTekst('kvittering.barnetilsyn.alert.mottatt', intl) +
     ` ${søknad?.innsendingsdato && formatDateHour(søknad?.innsendingsdato)} `;
 
   const sykSøker =
@@ -42,10 +42,6 @@ const Kvittering: React.FC = () => {
       {sykSøker && <SykSøker />}
 
       <DineSaker />
-
-      {(arbeidsforhold || firma || etablererEgenVirksomhet || egetAS) && (
-        <TilleggsstønaderHarAktivitet />
-      )}
     </Side>
   ) : (
     <Feilside />
