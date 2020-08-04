@@ -5,6 +5,7 @@ import { dagensDato, formatIsoDate } from '../../utils/dato';
 import { hentUid } from '../../utils/uuid';
 import { EBarn, IBarn } from '../../models/barn';
 import { ESvar } from '../../models/spørsmålogsvar';
+import navfaker from 'nav-faker';
 
 export const hentNyttBarn = (
   id: string | undefined,
@@ -16,6 +17,9 @@ export const hentNyttBarn = (
   intl: IntlShape,
   skalHaBarnepass?: boolean
 ): IBarn => {
+  if (!barnDato && ident) {
+    barnDato = navfaker.personIdentifikator.getFødselsdato(ident);
+  }
   return {
     ident: hentFeltObjekt('person.ident', ident, intl),
     alder: hentFeltObjekt(
