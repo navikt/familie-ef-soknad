@@ -7,6 +7,7 @@ import {
 import { IPeriode } from '../models/periode';
 
 export const tomPeriode: IPeriode = {
+  label: '',
   fra: {
     label: '',
     verdi: '',

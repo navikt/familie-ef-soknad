@@ -166,15 +166,19 @@ const BarnepassSpørsmål: FC<Props> = ({
       {harValgtSvar(barnepassOrdning?.navn?.verdi) && (
         <KomponentGruppe>
           <PeriodeDatovelgere
-            tekst={datovelgerTekst}
+            tekst={periodeTekst}
+            fomTekstid={'periode.startdato'}
+            tomTekstid={'periode.sluttdato'}
             periode={
               barnepassOrdning.periode ? barnepassOrdning.periode : tomPeriode
             }
+            datobegrensing={DatoBegrensning.FremtidigeDatoer}
             settDato={settPeriode}
+            onValidate={settGyldigPeriode}
           />
         </KomponentGruppe>
       )}
-      {erPeriodeGyldig(barnepassOrdning.periode) && (
+      {erPeriodeGyldig(barnepassOrdning.periode) && gyldigPeriode && (
         <BarnepassBeløp
           barnepassOrdning={barnepassOrdning}
           settInputFelt={settInputFelt}

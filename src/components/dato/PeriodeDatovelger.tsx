@@ -11,17 +11,23 @@ import { compareAsc, isEqual } from 'date-fns';
 interface Props {
   tekst: string;
   periode: IPeriode;
-  settDato: (dato: Date | null, objektnøkkel: string) => void;
+  fomTekstid?: string;
+  tomTekstid?: string;
+  settDato: (dato: Date | null, objektnøkkel: EPeriode) => void;
   showMonthYearPicker?: boolean;
   datobegrensing?: DatoBegrensning;
+  onValidate?: (isValid: boolean) => void;
 }
 
 const PeriodeDatovelgere: FC<Props> = ({
   periode,
   settDato,
   tekst,
+  fomTekstid,
+  tomTekstid,
   showMonthYearPicker,
   datobegrensing,
+  onValidate,
 }) => {
   const [feilmelding, settFeilmelding] = useState('');
 
@@ -46,10 +52,19 @@ const PeriodeDatovelgere: FC<Props> = ({
         const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
         const erDatoerLike = isEqual(fom, tom);
 
-        erFraDatoSenereEnnTilDato &&
+        if (erFraDatoSenereEnnTilDato) {
           settFeilmelding('datovelger.periode.feilFormat');
-        erDatoerLike && settFeilmelding('datovelger.periode.likeDatoer');
-        !erFraDatoSenereEnnTilDato && !erDatoerLike && settFeilmelding('');
+          onValidate && onValidate(false);
+        } else if (erDatoerLike) {
+          settFeilmelding('datovelger.periode.likeDatoer');
+          onValidate && onValidate(false);
+        } else {
+          settFeilmelding('');
+          onValidate && onValidate(true);
+        }
+      } else {
+        settFeilmelding('');
+        onValidate && onValidate(true);
       }
     },
     [periode]
@@ -73,7 +88,7 @@ const PeriodeDatovelgere: FC<Props> = ({
               ? strengTilDato(periode.fra.verdi)
               : undefined
           }
-          tekstid={'periode.fra'}
+          tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={
             datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
           }
@@ -87,7 +102,7 @@ const PeriodeDatovelgere: FC<Props> = ({
               ? strengTilDato(periode.til.verdi)
               : undefined
           }
-          tekstid={'periode.til'}
+          tekstid={tomTekstid ? tomTekstid : 'periode.til'}
           datobegrensning={
             datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
           }
