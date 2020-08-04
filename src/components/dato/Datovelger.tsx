@@ -12,7 +12,6 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
-import classNames from 'classnames';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
