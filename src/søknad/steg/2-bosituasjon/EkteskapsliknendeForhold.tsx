@@ -56,6 +56,7 @@ const EkteskapsliknendeForhold: FC<Props> = ({
                 hentTekst('bosituasjon.datovelger.nårFlyttetDereSammen', intl)
               )
             }
+            fetSkrift={true}
           />
         </FeltGruppe>
       )}

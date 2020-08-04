@@ -81,6 +81,7 @@ const BarnepassOrdninger: FC<Props> = ({
     <SeksjonGruppe>
       {barnepass?.barnepassordninger.map((barnepassordning) => (
         <BarnepassSpørsmål
+          key={barnepassordning.id}
           barn={barn}
           barnepassOrdning={barnepassordning}
           settBarnepassOrdning={settBarnepassOrdning}

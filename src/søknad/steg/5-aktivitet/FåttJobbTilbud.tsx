@@ -53,6 +53,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
         tekstid={'dinSituasjon.datovelger.jobb'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
         settDato={settDato}
+        fetSkrift={true}
       />
     </KomponentGruppe>
   );

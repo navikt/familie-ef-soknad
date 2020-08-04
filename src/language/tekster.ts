@@ -249,7 +249,7 @@ export default {
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.leggtil': 'Legg til barn',
-    'barnadine.label.medISøknad': 'Med i søknaden',
+    'barnadine.label.skalHaBarnepass': 'Med i søknaden',
     'barnadine.knapp.fjern': 'Fjern fra søknad',
     'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
     'barnadine.personnummer': 'Personnummer',
@@ -283,7 +283,7 @@ export default {
     'barnekort.adresse.skalBo': 'Skal bo hos deg',
     'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
     'barnekort.fjern': 'Fjern fra søknad',
-    'barnekort.medISøknad': 'Skal barnet være med i søknaden?',
+    'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
 
     'barnasbosted.kanikkeoppgiforelder':
       'Jeg kan ikke oppgi den andre forelderen',
@@ -848,6 +848,8 @@ export default {
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.barnetilsyn.alert.mottatt':
+      'Søknaden din om stønad til barnetilsyn er mottatt',
     'kvittering.tekst.arbeidssøker':
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',

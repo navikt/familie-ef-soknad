@@ -56,7 +56,12 @@ const Aktivitet: React.FC = () => {
   const settErDuIArbeid = (spørsmål: ISpørsmål, svar: ISvar) => {
     let endretArbeidssituasjon = arbeidssituasjon;
 
-    if (svar.id === ErIArbeid.NeiFordiJegErSyk)
+    if (svar.id === ErIArbeid.NeiFordiJegErSyk) {
+      delete endretArbeidssituasjon.egetAS;
+      delete endretArbeidssituasjon.arbeidsforhold;
+      delete endretArbeidssituasjon.firma;
+      delete endretArbeidssituasjon.etablererEgenVirksomhet;
+
       endretArbeidssituasjon = {
         ...endretArbeidssituasjon,
         hvaErDinArbeidssituasjon: {
@@ -66,7 +71,7 @@ const Aktivitet: React.FC = () => {
           verdi: [],
         },
       };
-
+    }
     oppdaterArbeidssituasjon({
       ...endretArbeidssituasjon,
       erIArbeid: {
@@ -106,7 +111,7 @@ const Aktivitet: React.FC = () => {
   };
 
   const erAlleFelterUtfylt = hvaErDinArbeidssituasjon.svarid.every((id) =>
-    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon)
+    erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon, false)
   );
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
@@ -124,7 +129,9 @@ const Aktivitet: React.FC = () => {
       svaridPos &&
       arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid
         .filter((aktivitet, index) => index < svaridPos)
-        .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon))
+        .every((id) =>
+          erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon, false)
+        )
     );
   };
 

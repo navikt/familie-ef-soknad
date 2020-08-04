@@ -112,7 +112,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             )}
           </Element>
           <Normaltekst>
-            {forelder.harAnnenForelderSamværMedBarn?.verdi}
+            {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
           </Normaltekst>
         </div>
         {forelder.harDereSkriftligSamværsavtale?.verdi ? (

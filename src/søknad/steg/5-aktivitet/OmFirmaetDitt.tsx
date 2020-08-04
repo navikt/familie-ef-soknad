@@ -18,11 +18,13 @@ import { hentTekst } from '../../../utils/søknad';
 interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
+  inkludertArbeidsmengde?: boolean;
 }
 
 const OmFirmaetDitt: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
+  inkludertArbeidsmengde = true,
 }) => {
   const intl = useIntl();
   const [firma, settFirma] = useState<IFirma>(
@@ -120,11 +122,12 @@ const OmFirmaetDitt: React.FC<Props> = ({
             tekstid={'firma.datovelger.etablering'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settDatoFelt(e)}
+            fetSkrift={true}
           />
         </FeltGruppe>
       )}
 
-      {firma.etableringsdato?.verdi && (
+      {firma.etableringsdato?.verdi && inkludertArbeidsmengde && (
         <FeltGruppe>
           <InputLabelGruppe
             label={labelArbeidsmengde}
@@ -142,10 +145,11 @@ const OmFirmaetDitt: React.FC<Props> = ({
         </FeltGruppe>
       )}
 
-      {firma.arbeidsmengde?.verdi && (
+      {(firma.arbeidsmengde?.verdi ||
+        (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (
         <FeltGruppe>
           <Textarea
-            key={labelArbeidsmengde}
+            key={labelArbeidsuke}
             label={labelArbeidsuke}
             value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
             maxLength={1000}

@@ -180,6 +180,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
                 tekstid={datovelgerLabel}
                 datobegrensning={DatoBegrensning.TidligereDatoer}
                 settDato={settDato}
+                fetSkrift={true}
               />
               {erValgtDatoMindreEnn6mndSiden && (
                 <AlertStripe type={'info'} form={'inline'}>

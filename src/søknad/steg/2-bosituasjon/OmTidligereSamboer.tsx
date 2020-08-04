@@ -50,6 +50,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
             tekstid={'bosituasjon.datovelger.nårFlyttetDereFraHverandre'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={settDatoFlyttetFraHverandre}
+            fetSkrift={true}
           />
         </FeltGruppe>
       )}

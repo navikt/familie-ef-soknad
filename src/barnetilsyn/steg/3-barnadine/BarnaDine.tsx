@@ -29,19 +29,24 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  const toggleMedISøknadBarn = (id: string) => {
+  const toggleSkalHaBarnepass = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
 
     if (!detteBarnet) return null;
 
+    const skalHaBarnepassVerdi = !detteBarnet.skalHaBarnepass?.verdi;
     const nyttBarn: IBarn = {
       ...detteBarnet,
-      medISøknad: hentFeltObjekt(
-        'barnekort.medISøknad',
-        !detteBarnet.medISøknad?.verdi,
+      skalHaBarnepass: hentFeltObjekt(
+        'barnekort.skalHaBarnepass',
+        skalHaBarnepassVerdi,
         intl
       ),
     };
+
+    if (!skalHaBarnepassVerdi) {
+      delete nyttBarn.barnepass;
+    }
 
     const nyBarneListe = søknad.person.barn.map((barn) => {
       return barn.id === id ? nyttBarn : barn;
@@ -72,12 +77,15 @@ const BarnaDine: React.FC = () => {
     });
   };
 
+  const harValgtMinstEttBarn = søknad.person.barn.some(
+    (b: IBarn) => b.skalHaBarnepass?.verdi
+  );
   return (
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={true}
-        erSpørsmålBesvart={true}
+        erSpørsmålBesvart={harValgtMinstEttBarn}
         mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
       >
         <div className="barna-dine">
@@ -127,14 +135,14 @@ const BarnaDine: React.FC = () => {
                   velgBarnForDenneSøknaden={
                     <BarnMedISøknad
                       id={barn.id ? barn.id : ''}
-                      toggleMedISøknadBarn={toggleMedISøknadBarn}
-                      medISøknad={!!barn.medISøknad?.verdi}
+                      toggleSkalHaBarnepass={toggleSkalHaBarnepass}
+                      skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
                     />
                   }
                   slettBarn={slettBarn}
                 />
               ))}
-            <div className="barnekort">
+            <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
                 <Element>{hentTekst('barnadine.leggtil.info', intl)}</Element>
                 <Knapp onClick={() => settÅpenModal(true)}>

@@ -4,6 +4,7 @@ import { Checkbox, FnrInput } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
+import classNames from 'classnames';
 import KomponentGruppe from './KomponentGruppe';
 
 interface Props {
@@ -18,6 +19,7 @@ interface Props {
   settChecked: (checked: boolean) => void;
   settFødselsdato: (date: Date | null) => void;
   settIdent: (ident: React.ChangeEvent<HTMLInputElement>) => void;
+  fetSkrift?: boolean;
 }
 
 const IdentEllerFødselsdatoGruppe: FC<Props> = ({
@@ -32,48 +34,53 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   settChecked,
   settIdent,
   settFødselsdato,
+  fetSkrift,
 }) => {
   const intl = useIntl();
 
   const feilmelding: string = hentTekst('person.feilmelding.ident', intl);
 
   return (
-    <KomponentGruppe>
-      <FeltGruppe>
-        <FnrInput
-          className={'tjukk-tekst inputfelt-tekst'}
-          key={'ident'}
-          label={identLabel}
-          disabled={checked}
-          bredde={'L'}
-          value={ident}
-          feil={erGyldigIdent || !ident ? undefined : feilmelding}
-          onChange={(e) => settIdent(e)}
-          onValidate={(valid) => {
-            settGyldigIdent(valid);
-          }}
-        />
-      </FeltGruppe>
-      <FeltGruppe>
-        <Checkbox
-          className={'checkbox'}
-          label={checkboxLabel}
-          checked={checked}
-          onChange={() => settChecked(!checked)}
-        />
-      </FeltGruppe>
-
-      {checked && (
+    <>
+      <KomponentGruppe>
         <FeltGruppe>
+          <FnrInput
+            className={classNames('inputfelt-tekst', {
+              fetSkrift: fetSkrift,
+            })}
+            key={'ident'}
+            label={identLabel}
+            disabled={checked}
+            bredde={'L'}
+            value={ident}
+            feil={erGyldigIdent || !ident ? undefined : feilmelding}
+            onChange={(e) => settIdent(e)}
+            onValidate={(valid) => {
+              settGyldigIdent(valid);
+            }}
+          />
+        </FeltGruppe>
+        <FeltGruppe>
+          <Checkbox
+            className={'checkbox'}
+            label={checkboxLabel}
+            checked={checked}
+            onChange={() => settChecked(!checked)}
+          />
+        </FeltGruppe>
+      </KomponentGruppe>
+      {checked && (
+        <KomponentGruppe>
           <Datovelger
             valgtDato={fødselsdato}
             tekstid={datoLabel}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settFødselsdato(e)}
+            fetSkrift={fetSkrift}
           />
-        </FeltGruppe>
+        </KomponentGruppe>
       )}
-    </KomponentGruppe>
+    </>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';

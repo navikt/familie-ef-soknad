@@ -25,8 +25,13 @@ export const erSisteArbeidsgiverFerdigUtfylt = (
   );
 };
 
-export const erAksjeselskapFerdigUtfylt = (egetAS: IAksjeselskap[]) => {
-  return egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi);
+export const erAksjeselskapFerdigUtfylt = (
+  egetAS: IAksjeselskap[],
+  inkludertArbeidsmengde: boolean
+) => {
+  return inkludertArbeidsmengde
+    ? egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi)
+    : egetAS?.every((aksjeselskap) => aksjeselskap.navn?.verdi);
 };
 
 export const erTidligereUtdanningFerdigUtfylt = (
@@ -47,7 +52,8 @@ export const erUnderUtdanningFerdigUtfylt = (
 
 export const erAktivitetSeksjonFerdigUtfylt = (
   svarid: string,
-  arbeidssituasjon: IAktivitet
+  arbeidssituasjon: IAktivitet,
+  inkludertArbeidsmengde: boolean = true
 ): boolean => {
   const {
     arbeidsforhold,
@@ -73,7 +79,10 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return harValgtSvar(firma?.arbeidsuke?.verdi);
 
     case EAktivitet.erAnsattIEgetAS:
-      return egetAS !== undefined && erAksjeselskapFerdigUtfylt(egetAS);
+      return (
+        egetAS !== undefined &&
+        erAksjeselskapFerdigUtfylt(egetAS, inkludertArbeidsmengde)
+      );
 
     case EAktivitet.etablererEgenVirksomhet:
       return (

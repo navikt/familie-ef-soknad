@@ -31,15 +31,16 @@ const Barnepass: FC<Props> = () => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
-
-  const barnMedISøknaden = søknad.person.barn.filter((barn) => barn.medISøknad);
+  const barnSomSkalHaBarnepass = søknad.person.barn.filter(
+    (barn) => barn.skalHaBarnepass?.verdi
+  );
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
   const hjelpetekstInnholdTekstid =
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
-    const endretBarn = barnMedISøknaden.map((barn) => {
+    const endretBarn = barnSomSkalHaBarnepass.map((barn) => {
       if (barn.id === barnid) {
         return {
           ...barn,
@@ -94,13 +95,16 @@ const Barnepass: FC<Props> = () => {
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
-      erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(barnMedISøknaden, søknad)}
+      erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
+        barnSomSkalHaBarnepass,
+        søknad
+      )}
     >
       <SeksjonGruppe>
-        {barnMedISøknaden.map((barn, index) => {
+        {barnSomSkalHaBarnepass.map((barn, index) => {
           const visSeksjon =
             index === 0 ||
-            erBarnepassForBarnFørNåværendeUtfylt(barn, barnMedISøknaden);
+            erBarnepassForBarnFørNåværendeUtfylt(barn, barnSomSkalHaBarnepass);
           return (
             visSeksjon && (
               <>
@@ -126,7 +130,7 @@ const Barnepass: FC<Props> = () => {
           );
         })}
       </SeksjonGruppe>
-      {erBarnepassForAlleBarnUtfylt(barnMedISøknaden) && (
+      {erBarnepassForAlleBarnUtfylt(barnSomSkalHaBarnepass) && (
         <SeksjonGruppe>
           <NårSøkerDuStønadFra
             spørsmål={SøkerDuStønadFraBestemtMndSpm}

@@ -18,12 +18,14 @@ interface Props {
   egetAS: IAksjeselskap[];
   settEgetAS: (egetAS: IAksjeselskap[]) => void;
   aksjeselskapnummer: number;
+  inkludertArbeidsmengde: boolean;
 }
 
 const Aksjeselskap: FC<Props> = ({
   egetAS,
   settEgetAS,
   aksjeselskapnummer,
+  inkludertArbeidsmengde,
 }) => {
   const intl = useIntl();
   const aksjeselskapFraSøknad = egetAS?.find((aksjeselskap, index) => {
@@ -95,7 +97,7 @@ const Aksjeselskap: FC<Props> = ({
           value={aksjeselskap?.navn?.verdi ? aksjeselskap.navn.verdi : ''}
         />
       </FeltGruppe>
-      {aksjeselskap.navn?.verdi && (
+      {aksjeselskap.navn?.verdi && inkludertArbeidsmengde && (
         <FeltGruppe>
           <InputLabelGruppe
             label={arbeidsmengdeLabel}

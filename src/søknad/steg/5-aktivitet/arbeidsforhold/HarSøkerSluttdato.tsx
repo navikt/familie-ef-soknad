@@ -81,6 +81,7 @@ const HarSøkerSluttdato: React.FC<Props> = ({
               tekstid={sluttdatoTekstid}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
               settDato={(e) => settDato(e)}
+              fetSkrift={true}
             />
           </FeltGruppe>
         )}
