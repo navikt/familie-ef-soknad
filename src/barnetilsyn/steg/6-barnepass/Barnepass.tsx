@@ -107,7 +107,7 @@ const Barnepass: FC<Props> = () => {
             erBarnepassForBarnFørNåværendeUtfylt(barn, barnSomSkalHaBarnepass);
           return (
             visSeksjon && (
-              <>
+              <React.Fragment key={barn.id}>
                 <SeksjonGruppe>
                   <BarneHeader barn={barn} />
                 </SeksjonGruppe>
@@ -125,7 +125,7 @@ const Barnepass: FC<Props> = () => {
                     settDokumentasjonsbehov={settDokumentasjonsbehov}
                   />
                 )}
-              </>
+              </React.Fragment>
             )
           );
         })}
