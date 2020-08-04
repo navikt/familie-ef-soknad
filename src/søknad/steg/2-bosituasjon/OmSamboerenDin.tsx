@@ -105,13 +105,14 @@ const OmSamboerenDin: FC<Props> = ({
     });
   };
   return (
-    <KomponentGruppe>
+    <>
       <FeltGruppe>
         <Element>{hentTekst(tittel, intl)}</Element>
       </FeltGruppe>
 
-      <FeltGruppe>
+      <KomponentGruppe>
         <Input
+          className={'inputfelt-tekst'}
           key={'navn'}
           label={hentTekst('person.navn', intl)}
           type="text"
@@ -119,7 +120,7 @@ const OmSamboerenDin: FC<Props> = ({
           onChange={(e) => settNavn(e)}
           value={samboerInfo?.navn?.verdi}
         />
-      </FeltGruppe>
+      </KomponentGruppe>
       {samboerDetaljer?.navn && (
         <IdentEllerFødselsdatoGruppe
           identLabel={hentTekst('person.ident', intl)}
@@ -143,7 +144,7 @@ const OmSamboerenDin: FC<Props> = ({
           settIdent={oppdaterIdent}
         />
       )}
-    </KomponentGruppe>
+    </>
   );
 };
 
