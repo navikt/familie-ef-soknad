@@ -21,23 +21,21 @@ const Oppsummering: React.FC = () => {
         mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
         erSpørsmålBesvart={true}
       >
-        <div className="oppsummering">
-          <Normaltekst className="disclaimer">
-            {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
-          </Normaltekst>
+        <Normaltekst className="disclaimer">
+          {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
+        </Normaltekst>
 
-          <KomponentGruppe>
-            <OppsummeringOmDeg
-              søker={søknad.person.søker}
-              sivilstatus={søknad.sivilstatus}
-              medlemskap={søknad.medlemskap}
-            />
-            <OppsummeringBosituasionenDin bosituasjon={søknad.bosituasjon} />
-            <OppsummeringBarnaDine barn={søknad.person.barn} />
-            <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
-            <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
-          </KomponentGruppe>
-        </div>
+        <KomponentGruppe>
+          <OppsummeringOmDeg
+            søker={søknad.person.søker}
+            sivilstatus={søknad.sivilstatus}
+            medlemskap={søknad.medlemskap}
+          />
+          <OppsummeringBosituasionenDin bosituasjon={søknad.bosituasjon} />
+          <OppsummeringBarnaDine barn={søknad.person.barn} />
+          <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
+          <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
+        </KomponentGruppe>
       </Side>
     </>
   );
