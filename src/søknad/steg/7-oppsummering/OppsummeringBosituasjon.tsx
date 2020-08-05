@@ -10,6 +10,7 @@ import { useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -24,7 +25,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({ bosituasjon }) => {
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
-      <div className="oppsummering-bosituasjon">
+      <EkspanderbarOppsummering>
         {VisLabelOgSvar(bosituasjon)}
         {samboerDetaljer && (
           <div className="seksjon-samboer">
@@ -47,7 +48,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({ bosituasjon }) => {
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </div>
+      </EkspanderbarOppsummering>
     </Ekspanderbartpanel>
   );
 };
