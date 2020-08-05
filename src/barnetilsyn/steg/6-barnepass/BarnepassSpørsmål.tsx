@@ -94,7 +94,7 @@ const BarnepassSpørsmål: FC<Props> = ({
       hvaSlagsBarnepassOrdning: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
+        label: hentBarnNavnEllerBarnet(barn, spørsmål.tekstid, intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
