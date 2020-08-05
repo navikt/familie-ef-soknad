@@ -8,6 +8,7 @@ import { IBarnepassOrdning } from '../../models/barnepass';
 import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import { erStrengGyldigTall } from '../../../utils/feltvalidering';
 
 export const harBarnAvsluttetFjerdeKlasse = (fødselsdato: string): boolean => {
   const juniEllerFør = dagensDato.getMonth() < 6;
@@ -29,21 +30,19 @@ export const erÅrsakBarnepassSpmBesvart = (barn: IBarn): boolean => {
   );
 };
 
-export const erBarnepassOrdningUtfylt = (
-  barnepassordning: IBarnepassOrdning
-) => {
-  const { hvaSlagsBarnepassOrdning, navn, periode, belop } = barnepassordning;
-  return (
-    hvaSlagsBarnepassOrdning?.verdi &&
-    harValgtSvar(navn?.verdi) &&
-    erPeriodeGyldig(periode) &&
-    harValgtSvar(belop?.verdi)
-  );
-};
-
 export const erBarnepassOrdningerUtfylt = (
   barnepassordninger: IBarnepassOrdning[]
 ): boolean => {
+  const erBarnepassOrdningUtfylt = (barnepassordning: IBarnepassOrdning) => {
+    const { hvaSlagsBarnepassOrdning, navn, periode, belop } = barnepassordning;
+    return (
+      hvaSlagsBarnepassOrdning?.verdi &&
+      harValgtSvar(navn?.verdi) &&
+      erPeriodeGyldig(periode) &&
+      erStrengGyldigTall(belop?.verdi)
+    );
+  };
+
   return barnepassordninger.every((barnepassordning) =>
     erBarnepassOrdningUtfylt(barnepassordning)
   );

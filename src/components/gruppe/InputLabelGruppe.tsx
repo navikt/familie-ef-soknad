@@ -46,6 +46,7 @@ interface Props {
   beskrivendeTekst: string;
   value: string;
   feil?: React.ReactNode | boolean;
+  placeholder?: string;
 }
 
 const InputLabelGruppe: React.FC<Props> = ({
@@ -58,6 +59,7 @@ const InputLabelGruppe: React.FC<Props> = ({
   settInputFelt,
   beskrivendeTekst,
   feil,
+  placeholder,
 }) => {
   return (
     <StyledComponent>
@@ -77,6 +79,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         onChange={(e) => settInputFelt(e, nøkkel, label)}
         value={value}
         feil={feil}
+        placeholder={placeholder}
       />
       <Normaltekst>{beskrivendeTekst}</Normaltekst>
     </StyledComponent>

@@ -183,7 +183,7 @@ const BarnepassSpørsmål: FC<Props> = ({
             periode={
               barnepassOrdning.periode ? barnepassOrdning.periode : tomPeriode
             }
-            datobegrensing={DatoBegrensning.FremtidigeDatoer}
+            datobegrensing={DatoBegrensning.AlleDatoer}
             settDato={settPeriode}
             onValidate={settGyldigPeriode}
           />
