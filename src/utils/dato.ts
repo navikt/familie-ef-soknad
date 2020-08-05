@@ -10,6 +10,7 @@ import {
 } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
+import { IPeriode } from '../models/periode';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
@@ -77,4 +78,8 @@ export const erVedleggstidspunktGyldig = (verdi: string): boolean => {
     1
   );
   return isAfter(grenseTidForVedlegg, dagensDato);
+};
+
+export const erPeriodeGyldig = (periode: IPeriode | undefined): boolean => {
+  return erGyldigDato(periode?.fra.verdi) && erGyldigDato(periode?.til.verdi);
 };

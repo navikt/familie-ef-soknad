@@ -45,10 +45,9 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
       <KomponentGruppe>
         <FeltGruppe>
           <FnrInput
-            className={
-              classNames('inputfelt-tekst', {
-                fetSkrift: fetSkrift,
-              })}
+            className={classNames('inputfelt-tekst', {
+              fetSkrift: fetSkrift,
+            })}
             key={'ident'}
             label={identLabel}
             disabled={checked}

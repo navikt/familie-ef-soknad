@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
-import BarnasBostedHeader from './BarnasBostedHeader';
+import BarneHeader from '../../../components/BarneHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
@@ -166,7 +166,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   return (
     <>
       <div className="barnas-bosted">
-        <BarnasBostedHeader barn={barn} />
+        <BarneHeader barn={barn} />
         <div className="barnas-bosted__innhold">
           {!barn.harSammeAdresse.verdi && (
             <SkalBarnetBoHosSøker

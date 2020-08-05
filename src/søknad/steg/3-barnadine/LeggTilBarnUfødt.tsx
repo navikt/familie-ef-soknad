@@ -43,7 +43,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
       </KomponentGruppe>
       {barnDato && (
         <KomponentGruppe>
-          <Normaltekst className='label-normaltekst'>
+          <Normaltekst className="label-normaltekst">
             {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
           </Normaltekst>
           <div className="radiogruppe-2-svar">

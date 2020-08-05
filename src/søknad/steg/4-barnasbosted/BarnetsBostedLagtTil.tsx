@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import BarnasBostedHeader from './BarnasBostedHeader';
+import BarneHeader from '../../../components/BarneHeader';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -34,7 +34,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 
   return (
     <div className="barnas-bosted-lagt-til">
-      <BarnasBostedHeader barn={barn} visBakgrunn={true} />
+      <BarneHeader barn={barn} visBakgrunn={true} />
       <div className="barnas-bosted-lagt-til__svar">
         {(forelder.navn || forelder.kanIkkeOppgiAnnenForelderFar) && (
           <div className="spørsmål-og-svar">

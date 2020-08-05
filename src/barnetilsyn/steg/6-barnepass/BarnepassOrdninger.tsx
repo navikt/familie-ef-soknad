@@ -1,15 +1,17 @@
 import React, { FC } from 'react';
+import BarnepassSpørsmål from './BarnepassSpørsmål';
+import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { Element } from 'nav-frontend-typografi';
+import { erBarnepassOrdningerUtfylt } from './hjelper';
+import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
+import { hentUid } from '../../../utils/uuid';
 import { IBarn } from '../../../models/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
-import BarnepassSpørsmål from './BarnepassSpørsmål';
-import { hentUid } from '../../../utils/uuid';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { Element } from 'nav-frontend-typografi';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { useIntl } from 'react-intl';
-import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 interface Props {
   barn: IBarn;
@@ -76,8 +78,8 @@ const BarnepassOrdninger: FC<Props> = ({
   };
 
   return (
-    <>
-      {barnepass?.barnepassordninger.map((barnepassordning, index) => (
+    <SeksjonGruppe key={barn.id}>
+      {barnepass?.barnepassordninger.map((barnepassordning) => (
         <BarnepassSpørsmål
           key={barnepassordning.id}
           barn={barn}
@@ -87,17 +89,19 @@ const BarnepassOrdninger: FC<Props> = ({
           fjernBarnepassOrdning={fjernBarnepassOrdning}
         />
       ))}
-      <KomponentGruppe>
-        <FeltGruppe>
-          <Element>{leggTilLabel}</Element>
-        </FeltGruppe>
-        <FeltGruppe>
-          <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
-            {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
-          </LeggTilKnapp>
-        </FeltGruppe>
-      </KomponentGruppe>
-    </>
+      {erBarnepassOrdningerUtfylt(barnepass.barnepassordninger) && (
+        <KomponentGruppe>
+          <FeltGruppe>
+            <Element>{leggTilLabel}</Element>
+          </FeltGruppe>
+          <FeltGruppe>
+            <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
+              {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
+            </LeggTilKnapp>
+          </FeltGruppe>
+        </KomponentGruppe>
+      )}
+    </SeksjonGruppe>
   );
 };
 

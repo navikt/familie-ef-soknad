@@ -10,6 +10,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { datoTilStreng } from '../../../../utils/dato';
 import { erPeriodeDatoerValgt } from '../../../../helpers/omdeg';
+import { EPeriode } from '../../../../models/periode';
 
 interface Props {
   perioderBoddIUtlandet: IUtenlandsopphold[];
@@ -62,7 +63,7 @@ const Utenlandsopphold: FC<Props> = ({
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
 
-  const settPeriode = (date: Date | null, objektnøkkel: string): void => {
+  const settPeriode = (date: Date | null, objektnøkkel: EPeriode): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {

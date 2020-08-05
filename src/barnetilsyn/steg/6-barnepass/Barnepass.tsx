@@ -11,6 +11,15 @@ import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/merom
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
+import ÅrsakBarnepass from './ÅrsakBarnepass';
+import BarneHeader from '../../../components/BarneHeader';
+import {
+  erBarnepassForAlleBarnUtfylt,
+  erBarnepassForBarnFørNåværendeUtfylt,
+  erBarnepassStegFerdigUtfylt,
+  erÅrsakBarnepassSpmBesvart,
+  harBarnAvsluttetFjerdeKlasse,
+} from './hjelper';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -81,38 +90,59 @@ const Barnepass: FC<Props> = () => {
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  const erBarnepassSpmBesvart: boolean =
-    (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
-      søknadsdato?.verdi !== undefined) ||
-    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
-
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={true}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
-      erSpørsmålBesvart={erBarnepassSpmBesvart}
+      erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
+        barnSomSkalHaBarnepass,
+        søknad
+      )}
     >
-      {barnSomSkalHaBarnepass.map((barn) => (
-        <SeksjonGruppe key={barn.id}>
-          <BarnepassOrdninger
-            barn={barn}
-            settBarnepass={settBarnepass}
-            settDokumentasjonsbehov={settDokumentasjonsbehov}
+      <SeksjonGruppe>
+        {barnSomSkalHaBarnepass.map((barn, index) => {
+          const visSeksjon =
+            index === 0 ||
+            erBarnepassForBarnFørNåværendeUtfylt(barn, barnSomSkalHaBarnepass);
+          return (
+            visSeksjon && (
+              <React.Fragment key={barn.id}>
+                <SeksjonGruppe>
+                  <BarneHeader barn={barn} />
+                </SeksjonGruppe>
+                {harBarnAvsluttetFjerdeKlasse(barn.fødselsdato.verdi) && (
+                  <ÅrsakBarnepass
+                    barn={barn}
+                    settBarnepass={settBarnepass}
+                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  />
+                )}
+                {erÅrsakBarnepassSpmBesvart(barn) && (
+                  <BarnepassOrdninger
+                    barn={barn}
+                    settBarnepass={settBarnepass}
+                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  />
+                )}
+              </React.Fragment>
+            )
+          );
+        })}
+      </SeksjonGruppe>
+      {erBarnepassForAlleBarnUtfylt(barnSomSkalHaBarnepass) && (
+        <SeksjonGruppe>
+          <NårSøkerDuStønadFra
+            spørsmål={SøkerDuStønadFraBestemtMndSpm}
+            settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
+            settDato={settSøknadsdato}
+            søkerFraBestemtMåned={søkerFraBestemtMåned}
+            valgtDato={søknadsdato}
+            datovelgerLabel={datovelgerLabel}
+            hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
           />
         </SeksjonGruppe>
-      ))}
-      <SeksjonGruppe>
-        <NårSøkerDuStønadFra
-          spørsmål={SøkerDuStønadFraBestemtMndSpm}
-          settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
-          settDato={settSøknadsdato}
-          søkerFraBestemtMåned={søkerFraBestemtMåned}
-          valgtDato={søknadsdato}
-          datovelgerLabel={datovelgerLabel}
-          hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
-        />
-      </SeksjonGruppe>
+      )}
     </Side>
   );
 };

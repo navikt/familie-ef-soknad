@@ -12,7 +12,7 @@ import {
   IUnderUtdanning,
   IUtdanning,
 } from '../../models/steg/aktivitet/utdanning';
-import { erGyldigDato } from '../../utils/dato';
+import { erPeriodeGyldig } from '../../utils/dato';
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
@@ -40,8 +40,7 @@ export const erTidligereUtdanningFerdigUtfylt = (
   return tidligereUtdanning.every(
     (utdanning) =>
       utdanning.linjeKursGrad?.verdi !== '' &&
-      erGyldigDato(utdanning?.periode?.fra.verdi) &&
-      erGyldigDato(utdanning?.periode?.til.verdi)
+      erPeriodeGyldig(utdanning?.periode)
   );
 };
 

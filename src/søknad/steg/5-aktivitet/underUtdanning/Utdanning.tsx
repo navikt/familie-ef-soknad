@@ -15,6 +15,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { datoTilStreng } from '../../../../utils/dato';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
+import { EPeriode } from '../../../../models/periode';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -65,7 +66,7 @@ const Utdanning: React.FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: Date | null, nøkkel: string): void => {
+  const settPeriode = (dato: Date | null, nøkkel: EPeriode): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,

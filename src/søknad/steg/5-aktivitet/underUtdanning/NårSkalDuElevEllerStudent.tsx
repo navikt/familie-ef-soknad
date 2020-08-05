@@ -6,6 +6,7 @@ import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { datoTilStreng } from '../../../../utils/dato';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import { EPeriode } from '../../../../models/periode';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -24,7 +25,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settPeriode = (dato: Date | null, nøkkel: string): void => {
+  const settPeriode = (dato: Date | null, nøkkel: EPeriode): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,
