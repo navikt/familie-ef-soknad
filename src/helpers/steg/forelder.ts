@@ -100,6 +100,7 @@ export const erAlleFelterOgSpørsmålBesvart = (
     beskrivSamværUtenBarn,
     hvorforIkkeOppgi,
     ikkeOppgittAnnenForelderBegrunnelse,
+    avtaleOmDeltBosted,
   } = forelder;
 
   const erDonorbarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
@@ -109,6 +110,7 @@ export const erAlleFelterOgSpørsmålBesvart = (
 
   if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
     return (
+      avtaleOmDeltBosted?.svarid === ESvar.JA ||
       harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
       harDereSkriftligSamværsavtale?.svarid ===
         EHarSkriftligSamværsavtale.jaKonkreteTidspunkter ||
