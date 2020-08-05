@@ -25,7 +25,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from './SituasjonOppfølgingSpørsmål';
-import NårSøkerDuStønadFra from '../../../components/NårSøkerDuStønadFraGruppe';
+import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { datoTilStreng } from '../../../utils/dato';
 
 const MerOmDinSituasjon: React.FC = () => {

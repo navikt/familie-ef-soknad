@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import classnames from 'classnames';

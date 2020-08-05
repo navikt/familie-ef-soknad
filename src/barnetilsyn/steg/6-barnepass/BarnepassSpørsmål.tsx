@@ -11,7 +11,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
-import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
+import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
 import { datoTilStreng, erPeriodeGyldig } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';

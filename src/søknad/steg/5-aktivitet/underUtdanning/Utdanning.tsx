@@ -4,7 +4,7 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { Input } from 'nav-frontend-skjema';
