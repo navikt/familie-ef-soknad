@@ -1,6 +1,8 @@
 // tslint:disable:max-line-length
 export default {
   nb: {
+    'skolepenger.sidetittel': 'Søknad om skolepenger',
+
     'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
     'barnetilsyn.hjelpetekst-åpne.hvilke':
       'Hvilke barn kan du få stønad til barnetilsyn for?',

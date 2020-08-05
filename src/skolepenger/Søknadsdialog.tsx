@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { Route, Switch } from 'react-router';
 import Forside from './Forside';
 import RedirectTilStart from './RedirectTilStart';
+import OmDeg from './steg/1-omdeg/OmDeg';
 
 const SøknadsdialogSkolepenger: FC = () => {
   return (
@@ -29,7 +30,7 @@ const SøknadsdialogSkolepenger: FC = () => {
       {/*  path={'/skolepenger/bosituasjon'}*/}
       {/*  component={Bosituasjon}*/}
       {/*/>*/}
-      {/*<RedirectTilStart path={'/skolepenger/om-deg'} component={OmDeg} />*/}
+      <RedirectTilStart path={'/skolepenger/om-deg'} component={OmDeg} />
       <Route path={'/skolepenger'} component={Forside} />
     </Switch>
   );
