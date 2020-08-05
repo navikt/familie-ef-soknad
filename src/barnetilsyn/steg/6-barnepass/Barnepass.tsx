@@ -111,7 +111,7 @@ const Barnepass: FC<Props> = () => {
                 <SeksjonGruppe>
                   <BarneHeader barn={barn} />
                 </SeksjonGruppe>
-                {harBarnAvsluttetFjerdeKlasse(barn) && (
+                {harBarnAvsluttetFjerdeKlasse(barn.fødselsdato.verdi) && (
                   <ÅrsakBarnepass
                     barn={barn}
                     settBarnepass={settBarnepass}

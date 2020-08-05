@@ -1,4 +1,3 @@
-import { subYears } from 'date-fns';
 import { IBarn } from '../../../models/barn';
 import {
   dagensDato,
@@ -10,24 +9,23 @@ import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
-export const harBarnAvsluttetFjerdeKlasse = (barn: IBarn): boolean => {
-  const { alder, født, fødselsdato } = barn;
-  const juniEllerFør = dagensDato.getUTCMonth() < 6;
+export const harBarnAvsluttetFjerdeKlasse = (fødselsdato: string): boolean => {
+  const juniEllerFør = dagensDato.getMonth() < 6;
+  const fødselsår: number = strengTilDato(fødselsdato).getFullYear();
+  const gjeldendeÅr: number = dagensDato.getFullYear();
 
-  if (født?.verdi && parseInt(alder.verdi) >= 10)
-    if (juniEllerFør) {
-      return subYears(dagensDato, 11) >= strengTilDato(fødselsdato.verdi);
-    } else {
-      return subYears(dagensDato, 10) >= strengTilDato(fødselsdato.verdi);
-    }
-  else return false;
+  if (juniEllerFør) {
+    return fødselsår + 11 <= gjeldendeÅr;
+  } else {
+    return fødselsår + 10 <= gjeldendeÅr;
+  }
 };
 
 export const erÅrsakBarnepassSpmBesvart = (barn: IBarn): boolean => {
   return (
-    (harBarnAvsluttetFjerdeKlasse(barn) &&
+    (harBarnAvsluttetFjerdeKlasse(barn.fødselsdato.verdi) &&
       barn.barnepass?.årsakBarnepass?.verdi !== undefined) ||
-    !harBarnAvsluttetFjerdeKlasse(barn)
+    !harBarnAvsluttetFjerdeKlasse(barn.fødselsdato.verdi)
   );
 };
 
