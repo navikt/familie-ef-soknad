@@ -71,7 +71,7 @@ export default {
     'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
     'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
 
-    'placeholder.beløp': 'F.eks. 5250,30',
+    'placeholder.beløp': 'F.eks. 5250.30',
 
     'side.bekreftelse':
       'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
