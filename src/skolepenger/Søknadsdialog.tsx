@@ -4,6 +4,7 @@ import Forside from './Forside';
 import RedirectTilStart from './RedirectTilStart';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
+import BarnaDine from './steg/3-barnadine/BarnaDine';
 
 const SøknadsdialogSkolepenger: FC = () => {
   return (
@@ -26,7 +27,7 @@ const SøknadsdialogSkolepenger: FC = () => {
       {/*  path={'/skolepenger/barnas-bosted'}*/}
       {/*  component={BarnasBosted}*/}
       {/*/>*/}
-      {/*<RedirectTilStart path={'/skolepenger/barn'} component={BarnaDine} />*/}
+      <RedirectTilStart path={'/skolepenger/barn'} component={BarnaDine} />
       <RedirectTilStart
         path={'/skolepenger/bosituasjon'}
         component={Bosituasjon}
