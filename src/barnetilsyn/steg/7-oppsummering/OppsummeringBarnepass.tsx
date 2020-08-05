@@ -16,6 +16,13 @@ import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/merom
 import { parseISO } from 'date-fns';
 import { formatDate, tilDato } from '../../../utils/dato';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import {
+  VisLabelOgSvar,
+  visLabelOgVerdiForSpørsmålFelt,
+} from '../../../utils/visning';
+import BarneHeader from '../../../components/BarneHeader';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 
 interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
@@ -31,11 +38,6 @@ const OppsummeringBarnepass: FC<Props> = ({
   const history = useHistory();
   const intl = useIntl();
 
-  const visLabelOgSvarForBarn = (barn: IBarn) => {
-    // VIS ÅRSAKBARN
-    // VIS BARNEPASSORDNINGER FOR BARN
-  };
-
   return (
     <Ekspanderbartpanel
       tittel={
@@ -45,12 +47,25 @@ const OppsummeringBarnepass: FC<Props> = ({
       }
     >
       <EkspanderbarOppsummering>
-        {barnSomSkalHaBarnepass.map((barn: IBarn) =>
-          visLabelOgSvarForBarn(barn)
-        )}
+        {barnSomSkalHaBarnepass.map((barn: IBarn) => {
+          const { barnepass } = barn;
+
+          return (
+            <SeksjonGruppe>
+              <BarneHeader barn={barn} />
+              {barnepass?.årsakBarnepass &&
+                visLabelOgVerdiForSpørsmålFelt(barnepass.årsakBarnepass, intl)}
+              {barnepass?.barnepassordninger.map((barnepassordning) =>
+                VisLabelOgSvar(barnepassordning)
+              )}
+            </SeksjonGruppe>
+          );
+        })}
 
         {søkerFraBestemtDato && (
-          <>
+          <SeksjonGruppe>
+            <hr />
+            <br />
             <FeltGruppe>
               <Element>{søkerFraBestemtDato.label}</Element>
               <Normaltekst>
@@ -72,9 +87,9 @@ const OppsummeringBarnepass: FC<Props> = ({
                   </Normaltekst>
                 </FeltGruppe>
               )}
-          </>
+          </SeksjonGruppe>
         )}
-        <FeltGruppe>
+        <KomponentGruppe>
           <LenkeMedIkon
             onClick={() =>
               history.push({
@@ -85,7 +100,7 @@ const OppsummeringBarnepass: FC<Props> = ({
             tekst_id="barnasbosted.knapp.endre"
             ikon={endre}
           />
-        </FeltGruppe>
+        </KomponentGruppe>
       </EkspanderbarOppsummering>
     </Ekspanderbartpanel>
   );
