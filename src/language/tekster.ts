@@ -53,6 +53,7 @@ export default {
     'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
     'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
     'feil.alert': 'Noe gikk galt!',
+    'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
     'datovelger.periode.feilFormat':
       'Startsdato må være tidligere enn sluttdato.',
@@ -69,6 +70,8 @@ export default {
     'periode.sluttdato': 'Sluttdato',
     'periode.lesmer-åpne': 'Husker du ikke nøyaktige datoer?',
     'periode.lesmer-innhold': 'Legg til omtrentelige datoer.',
+
+    'placeholder.beløp': 'F.eks. 5250,30',
 
     'side.bekreftelse':
       'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
