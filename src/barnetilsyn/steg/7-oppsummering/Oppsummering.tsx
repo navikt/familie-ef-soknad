@@ -9,10 +9,15 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import Side from '../../side/Side';
 import OppsummeringBosituasionenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
+import OppsummeringBarnepass from './OppsummeringBarnepass';
+import { IBarn } from '../../../models/barn';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreBarnetilsyn, søknad } = useBarnetilsynSøknad();
+  const barnSomSkalHaBarnepass: IBarn[] = søknad.person.barn.filter(
+    (barn) => barn.skalHaBarnepass?.verdi
+  );
   return (
     <>
       <Side
@@ -21,21 +26,28 @@ const Oppsummering: React.FC = () => {
         mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
         erSpørsmålBesvart={true}
       >
-        <Normaltekst className="disclaimer">
-          {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
-        </Normaltekst>
+        <div className={'oppsummering'}>
+          <Normaltekst className="disclaimer">
+            {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
+          </Normaltekst>
 
-        <KomponentGruppe>
-          <OppsummeringOmDeg
-            søker={søknad.person.søker}
-            sivilstatus={søknad.sivilstatus}
-            medlemskap={søknad.medlemskap}
-          />
-          <OppsummeringBosituasionenDin bosituasjon={søknad.bosituasjon} />
-          <OppsummeringBarnaDine barn={søknad.person.barn} />
-          <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
-          <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
-        </KomponentGruppe>
+          <KomponentGruppe>
+            <OppsummeringOmDeg
+              søker={søknad.person.søker}
+              sivilstatus={søknad.sivilstatus}
+              medlemskap={søknad.medlemskap}
+            />
+            <OppsummeringBosituasionenDin bosituasjon={søknad.bosituasjon} />
+            <OppsummeringBarnaDine barn={søknad.person.barn} />
+            <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
+            <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
+            <OppsummeringBarnepass
+              søkerFraBestemtDato={søknad.søkerFraBestemtMåned}
+              søknadsdato={søknad.søknadsdato}
+              barnSomSkalHaBarnepass={barnSomSkalHaBarnepass}
+            />
+          </KomponentGruppe>
+        </div>
       </Side>
     </>
   );
