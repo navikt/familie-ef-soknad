@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
 import { hentTekst } from '../../../utils/søknad';
