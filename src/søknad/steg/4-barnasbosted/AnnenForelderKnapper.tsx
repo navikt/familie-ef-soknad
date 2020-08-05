@@ -46,9 +46,13 @@ const AnnenForelderKnapper: React.FC<Props> = ({
       hvordanPraktiseresSamværet:
         denAndreForelderen?.hvordanPraktiseresSamværet,
       borAnnenForelderISammeHus: denAndreForelderen?.borAnnenForelderISammeHus,
+      borAnnenForelderISammeHusBeskrivelse:
+        denAndreForelderen?.borAnnenForelderISammeHusBeskrivelse,
       boddSammenFør: denAndreForelderen?.boddSammenFør,
       flyttetFra: denAndreForelderen?.flyttetFra,
       hvorMyeSammen: denAndreForelderen?.hvorMyeSammen,
+      beskrivSamværUtenBarn: denAndreForelderen?.beskrivSamværUtenBarn,
+      land: denAndreForelderen?.land,
     });
   };
 
