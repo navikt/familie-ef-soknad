@@ -12,10 +12,11 @@ interface EnvironmentProps {
 interface IModellversjon {
   overgangsstønad: number;
   barnetilsyn: number;
+  skolepenger: number;
 }
 
 const Environment = (): EnvironmentProps => {
-  const modellVersjon = { overgangsstønad: 6, barnetilsyn: 1 };
+  const modellVersjon = { overgangsstønad: 6, barnetilsyn: 1, skolepenger: 1 };
 
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
