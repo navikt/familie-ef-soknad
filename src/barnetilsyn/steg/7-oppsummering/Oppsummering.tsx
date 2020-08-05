@@ -8,6 +8,7 @@ import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import Side from '../../side/Side';
+import OppsummeringBosituasionenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -31,6 +32,7 @@ const Oppsummering: React.FC = () => {
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
             />
+            <OppsummeringBosituasionenDin bosituasjon={søknad.bosituasjon} />
             <OppsummeringBarnaDine barn={søknad.person.barn} />
             <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
             <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
