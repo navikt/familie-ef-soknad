@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router';
 import Forside from './Forside';
 import RedirectTilStart from './RedirectTilStart';
 
-const SøknadsdialogBarnetilsyn: FC = () => {
+const SøknadsdialogSkolepenger: FC = () => {
   return (
     <Switch>
       {/*<RedirectTilStart*/}
@@ -35,4 +35,4 @@ const SøknadsdialogBarnetilsyn: FC = () => {
   );
 };
 
-export default SøknadsdialogBarnetilsyn;
+export default SøknadsdialogSkolepenger;

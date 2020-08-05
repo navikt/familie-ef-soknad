@@ -20,7 +20,7 @@ import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
-import SøknadsdialogBarnetilsyn from './Søknadsdialog';
+import SøknadsdialogSkolepenger from './Søknadsdialog';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -105,7 +105,7 @@ const SkolepengerApp = () => {
           <Switch>
             <Route path={'/'}>
               {toggles[ToggleName.vis_innsending] && (
-                <SøknadsdialogBarnetilsyn />
+                <SøknadsdialogSkolepenger />
               )}
             </Route>
           </Switch>
