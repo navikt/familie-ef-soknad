@@ -8,15 +8,15 @@ import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
 } from '../helpers/steg/dokumentasjon';
-import {
-  hentMellomlagretBarnetilsynFraDokument,
-  mellomlagreBarnetilsynTilDokument,
-  nullstillMellomlagretBarnetilsynTilDokument,
-} from './utils/søknad';
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
+import {
+  hentMellomlagretSøknadFraDokument,
+  mellomlagreSøknadTilDokument,
+  nullstillMellomlagretSøknadTilDokument,
+} from '../utils/søknad';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -53,13 +53,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const intl = useIntl();
 
     const hentMellomlagretBarnetilsyn = (): Promise<void> => {
-      return hentMellomlagretBarnetilsynFraDokument().then(
-        (mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
-          if (mellomlagretVersjon) {
-            settMellomlagretBarnetilsyn(mellomlagretVersjon);
-          }
+      return hentMellomlagretSøknadFraDokument<IMellomlagretBarnetilsynSøknad>(
+        'barnetilsyn'
+      ).then((mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
+        if (mellomlagretVersjon) {
+          settMellomlagretBarnetilsyn(mellomlagretVersjon);
         }
-      );
+      });
     };
 
     const brukMellomlagretBarnetilsyn = () => {
@@ -74,12 +74,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         modellVersjon: Environment().modellVersjon.barnetilsyn,
         gjeldendeSteg: steg,
       };
-      mellomlagreBarnetilsynTilDokument(utfyltSøknad);
+      mellomlagreSøknadTilDokument(utfyltSøknad, 'barnetilsyn');
       settMellomlagretBarnetilsyn(utfyltSøknad);
     };
 
     const nullstillMellomlagretBarnetilsyn = (): Promise<any> => {
-      return nullstillMellomlagretBarnetilsynTilDokument();
+      return nullstillMellomlagretSøknadTilDokument('barnetilsyn');
     };
 
     const settDokumentasjonsbehov = (

@@ -7,17 +7,17 @@ import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
 } from '../helpers/steg/dokumentasjon';
-import {
-  hentMellomlagretSkolepengerFraDokument,
-  mellomlagreSkolepengerTilDokument,
-  nullstillMellomlagretSkolepengerTilDokument,
-} from './utils/søknad';
 import { IMellomlagretSkolepengerSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 import { hentUid } from '../utils/uuid';
 import { nyttTekstFelt } from '../helpers/tommeSøknadsfelter';
 import { ISøknad } from './models/søknad';
+import {
+  hentMellomlagretSøknadFraDokument,
+  mellomlagreSøknadTilDokument,
+  nullstillMellomlagretSøknadTilDokument,
+} from '../utils/søknad';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -50,13 +50,13 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
     const intl = useIntl();
 
     const hentMellomlagretSkolepenger = (): Promise<void> => {
-      return hentMellomlagretSkolepengerFraDokument().then(
-        (mellomlagretVersjon?: IMellomlagretSkolepengerSøknad) => {
-          if (mellomlagretVersjon) {
-            settMellomlagretSkolepenger(mellomlagretVersjon);
-          }
+      return hentMellomlagretSøknadFraDokument<IMellomlagretSkolepengerSøknad>(
+        'skolepenger'
+      ).then((mellomlagretVersjon?: IMellomlagretSkolepengerSøknad) => {
+        if (mellomlagretVersjon) {
+          settMellomlagretSkolepenger(mellomlagretVersjon);
         }
-      );
+      });
     };
 
     const brukMellomlagretSkolepenger = () => {
@@ -71,12 +71,12 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         modellVersjon: Environment().modellVersjon.skolepenger,
         gjeldendeSteg: steg,
       };
-      mellomlagreSkolepengerTilDokument(utfyltSøknad);
+      mellomlagreSøknadTilDokument(utfyltSøknad, 'skolepenger');
       settMellomlagretSkolepenger(utfyltSøknad);
     };
 
     const nullstillMellomlagretSkolepenger = (): Promise<any> => {
-      return nullstillMellomlagretSkolepengerTilDokument();
+      return nullstillMellomlagretSøknadTilDokument('skolepenger');
     };
 
     const settDokumentasjonsbehov = (

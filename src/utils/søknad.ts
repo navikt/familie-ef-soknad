@@ -3,7 +3,6 @@ import axios from 'axios';
 import { IntlShape } from 'react-intl';
 import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
-import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 
@@ -20,38 +19,39 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentMellomlagretOvergangsstønadFraDokument = () => {
+export const hentMellomlagretSøknadFraDokument = <T>(
+  stønadstype: string
+): Promise<T | undefined> => {
   return axios
-    .get(`${Environment().mellomlagerUrl + 'overgangsstonad'}`, {
+    .get(`${Environment().mellomlagerUrl + stønadstype}`, {
       withCredentials: true,
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
       },
     })
-    .then((response: { data?: IMellomlagretOvergangsstønad }) => {
+    .then((response: { data?: T }) => {
       return response.data;
     });
 };
 
-export const mellomlagreOvergangsstønadTilDokument = (
-  søknad: IMellomlagretOvergangsstønad
-) => {
-  return axios.post(
-    `${Environment().mellomlagerUrl + 'overgangsstonad'}`,
-    søknad,
-    {
-      withCredentials: true,
-      headers: {
-        'content-type': 'application/json',
-        accept: 'application/json',
-      },
-    }
-  );
+export const mellomlagreSøknadTilDokument = <T>(
+  søknad: T,
+  stønadstype: string
+): Promise<T> => {
+  return axios.post(`${Environment().mellomlagerUrl + stønadstype}`, søknad, {
+    withCredentials: true,
+    headers: {
+      'content-type': 'application/json',
+      accept: 'application/json',
+    },
+  });
 };
 
-export const nullstillMellomlagretOvergangsstønadTilDokument = (): Promise<any> => {
-  return axios.delete(`${Environment().mellomlagerUrl + 'overgangsstonad'}`, {
+export const nullstillMellomlagretSøknadTilDokument = (
+  stønadstype: string
+): Promise<any> => {
+  return axios.delete(`${Environment().mellomlagerUrl + stønadstype}`, {
     withCredentials: true,
     headers: {
       'content-type': 'application/json',

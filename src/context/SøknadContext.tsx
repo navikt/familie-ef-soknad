@@ -11,9 +11,9 @@ import {
   oppdaterDokumentasjonTilEtSvarSpørsmål,
 } from '../helpers/steg/dokumentasjon';
 import {
-  hentMellomlagretOvergangsstønadFraDokument,
-  mellomlagreOvergangsstønadTilDokument,
-  nullstillMellomlagretOvergangsstønadTilDokument,
+  hentMellomlagretSøknadFraDokument,
+  mellomlagreSøknadTilDokument,
+  nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 import Environment from '../Environment';
@@ -61,13 +61,13 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   const intl = useIntl();
 
   const hentMellomlagretOvergangsstønad = (): Promise<void> => {
-    return hentMellomlagretOvergangsstønadFraDokument().then(
-      (mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
-        if (mellomlagretVersjon) {
-          settMellomlagretOvergangsstønad(mellomlagretVersjon);
-        }
+    return hentMellomlagretSøknadFraDokument<IMellomlagretOvergangsstønad>(
+      'overgangsstonad'
+    ).then((mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
+      if (mellomlagretVersjon) {
+        settMellomlagretOvergangsstønad(mellomlagretVersjon);
       }
-    );
+    });
   };
 
   const brukMellomlagretOvergangsstønad = () => {
@@ -82,12 +82,12 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       modellVersjon: Environment().modellVersjon.overgangsstønad,
       gjeldendeSteg: steg,
     };
-    mellomlagreOvergangsstønadTilDokument(utfyltSøknad);
+    mellomlagreSøknadTilDokument(utfyltSøknad, 'overgangsstonad');
     settMellomlagretOvergangsstønad(utfyltSøknad);
   };
 
   const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {
-    return nullstillMellomlagretOvergangsstønadTilDokument();
+    return nullstillMellomlagretSøknadTilDokument('overgangsstonad');
   };
 
   const settDokumentasjonsbehov = (
