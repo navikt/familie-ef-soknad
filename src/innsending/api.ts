@@ -24,8 +24,16 @@ export const sendInnBarnetilsynSøknad = (søknad: object) => {
     });
 };
 
-export const mapBarnTilEntenIdentEllerFødselsdato = (barn: IBarn[]) => {
-  const filtrerteBarn = barn.map((barn) => {
+export const mapBarnUtenBarnepass = (barneliste: IBarn[]) => {
+  return barneliste.map((barn) => {
+    const kopiAvBarn = { ...barn };
+    delete kopiAvBarn.skalHaBarnepass;
+    return kopiAvBarn;
+  });
+};
+
+export const mapBarnTilEntenIdentEllerFødselsdato = (barneliste: IBarn[]) => {
+  return barneliste.map((barn) => {
     if (barn.lagtTil) {
       if (barn.fødselsdato && !barn.fødselsdato.verdi) {
         const endretBarn: IBarn = {
@@ -37,5 +45,4 @@ export const mapBarnTilEntenIdentEllerFødselsdato = (barn: IBarn[]) => {
     }
     return barn;
   });
-  return filtrerteBarn;
 };

@@ -15,6 +15,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
 import { Routes } from '../../../routing/Routes';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
+  mapBarnUtenBarnepass,
   sendInnSøknad,
 } from '../../../innsending/api';
 
@@ -38,8 +39,8 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const sendSøknad = (søknad: ISøknad) => {
-    const barnMedEntenIdentEllerFødselsdato = mapBarnTilEntenIdentEllerFødselsdato(
-      søknad.person.barn
+    const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
+      mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
 
     const søknadMedFiltrerteBarn: ISøknad = {
