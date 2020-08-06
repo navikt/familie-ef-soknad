@@ -16,6 +16,7 @@ import {
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
+import { IBarn } from '../../../models/barn';
 
 interface Innsending {
   status: string;
@@ -36,9 +37,13 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
+  const filtrerBarnSomSkalHaBarnepass = (barneliste: IBarn[]) => {
+    return barneliste.filter((barn) => barn.skalHaBarnepass?.verdi === true);
+  };
+
   const sendSøknad = (søknad: ISøknad) => {
-    const barnMedEntenIdentEllerFødselsdato = mapBarnTilEntenIdentEllerFødselsdato(
-      søknad.person.barn
+    const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
+      mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
 
     const søknadMedFiltrerteBarn: ISøknad = {
