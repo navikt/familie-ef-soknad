@@ -3,7 +3,7 @@ import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import TestsideInformasjon from '../components/TestsideInformasjon';
-import { hentPersonData, settLabelOgVerdi } from '../utils/søknad';
+import { hentPersonData, hentTekst, settLabelOgVerdi } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
 import { ToggleName } from '../models/toggles';
@@ -21,6 +21,7 @@ import { IPerson } from '../models/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import SøknadsdialogSkolepenger from './Søknadsdialog';
+import { useIntl } from 'react-intl';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -33,6 +34,7 @@ const SkolepengerApp = () => {
     hentMellomlagretSkolepenger,
   } = useSkolepengerSøknad();
   const { settToggles, toggles } = useToggles();
+  const intl = useIntl();
 
   autentiseringsInterceptor();
 
@@ -96,7 +98,7 @@ const SkolepengerApp = () => {
       return (
         <>
           <Helmet>
-            <title>Søknad om skolepenger</title>
+            <title>{hentTekst('skolepenger.sidetittel', intl)}</title>
           </Helmet>
 
           {!toggles[ToggleName.send_skolepenger_søknad] && (
