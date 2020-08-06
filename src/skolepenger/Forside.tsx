@@ -30,7 +30,7 @@ const Forside: React.FC<any> = ({ intl }) => {
   useEffect(() => {
     const fetchData = () => {
       client
-        .fetch('*[_type == $type][0]', { type: 'forside_barnetilsyn' }) // TODO: Må opprettes i sanity
+        .fetch('*[_type == $type][0]', { type: 'forside_skolepenger' })
         .then((res: any) => {
           settForside(res);
         })
