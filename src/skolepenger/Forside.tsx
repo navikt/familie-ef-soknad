@@ -11,6 +11,7 @@ import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
 import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -63,7 +64,7 @@ const Forside: React.FC<any> = ({ intl }) => {
             />
           </div>
           <Sidetittel>
-            Søknad om stønad til skolepenger for enslig mor eller far i arbeid
+            <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Sidetittel>
           {kanBrukeMellomlagretSøknad && mellomlagretSkolepenger ? (
             <FortsettSøknad
