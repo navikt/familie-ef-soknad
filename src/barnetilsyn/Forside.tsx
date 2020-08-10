@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
-import { client } from '../utils/sanity';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 import { hentPath, RouteEnum, Routes } from './routing/Routes';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 
@@ -30,26 +31,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     });
   };
 
-  const [forside, settForside] = useState<any>({});
-  // eslint-disable-next-line
-  const [error, settError] = useState<boolean>(false);
-  // eslint-disable-next-line
-  const [fetching, settFetching] = useState<boolean>(false);
-
-  useEffect(() => {
-    const fetchData = () => {
-      client
-        .fetch('*[_type == $type][0]', { type: 'forside_barnetilsyn' })
-        .then((res: any) => {
-          settForside(res);
-        })
-        .catch((err: any) => {
-          settError(true);
-        });
-      settFetching(false);
-    };
-    fetchData();
-  }, []);
+  const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretBarnetilsyn !== undefined &&
