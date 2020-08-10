@@ -63,28 +63,7 @@ const BarnaDine: React.FC = () => {
             {barna?.map((barn) => (
               <Barnekort
                 key={barn.id}
-                id={barn.id ? barn.id : ''}
-                navn={barn.navn}
-                fødselsdato={barn.fødselsdato}
-                ident={
-                  barn.ident && barn.ident.verdi
-                    ? barn.ident
-                    : {
-                        label: hentTekst('barnadine.ident', intl),
-                        verdi: '',
-                      }
-                }
-                alder={barn.alder}
-                harSammeAdresse={barn.harSammeAdresse}
-                født={
-                  barn.født
-                    ? barn.født
-                    : {
-                        label: hentTekst('barnekort.spm.født', intl),
-                        verdi: false,
-                      }
-                }
-                lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                gjeldendeBarn={barn}
                 slettBarn={slettBarn}
                 barneListe={søknad.person.barn}
                 settBarneListe={settBarneliste}
