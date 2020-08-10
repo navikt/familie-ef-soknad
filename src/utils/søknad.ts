@@ -5,6 +5,7 @@ import { hentUid } from '../utils/uuid';
 import { ISpørsmål } from '../models/spørsmålogsvar';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
+import { MellomlagredeStønadstyper } from '../models/stønadstyper';
 
 export const hentPersonData = () => {
   return axios
@@ -20,7 +21,7 @@ export const hentPersonData = () => {
 };
 
 export const hentMellomlagretSøknadFraDokument = <T>(
-  stønadstype: string
+  stønadstype: MellomlagredeStønadstyper
 ): Promise<T | undefined> => {
   return axios
     .get(`${Environment().mellomlagerUrl + stønadstype}`, {
@@ -37,7 +38,7 @@ export const hentMellomlagretSøknadFraDokument = <T>(
 
 export const mellomlagreSøknadTilDokument = <T>(
   søknad: T,
-  stønadstype: string
+  stønadstype: MellomlagredeStønadstyper
 ): Promise<T> => {
   return axios.post(`${Environment().mellomlagerUrl + stønadstype}`, søknad, {
     withCredentials: true,
@@ -49,7 +50,7 @@ export const mellomlagreSøknadTilDokument = <T>(
 };
 
 export const nullstillMellomlagretSøknadTilDokument = (
-  stønadstype: string
+  stønadstype: MellomlagredeStønadstyper
 ): Promise<any> => {
   return axios.delete(`${Environment().mellomlagerUrl + stønadstype}`, {
     withCredentials: true,

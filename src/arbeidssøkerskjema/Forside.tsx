@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Sidetittel, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -12,11 +12,12 @@ import { useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
-import { client } from '../utils/sanity';
 import { hentPath, RouteEnum, Routes } from './routes/Routes';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSkjema } from './SkjemaContext';
+import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -25,11 +26,6 @@ const Forside: React.FC<any> = ({ intl }) => {
   const [locale] = useSpråkContext();
   const history = useHistory();
   const { skjema, settSkjema } = useSkjema();
-  const [forside, settForside] = useState<any>({});
-  // eslint-disable-next-line
-  const [error, settError] = useState<boolean>(false);
-  // eslint-disable-next-line
-  const [fetching, settFetching] = useState<boolean>(false);
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSkjema({
@@ -37,21 +33,7 @@ const Forside: React.FC<any> = ({ intl }) => {
       harBekreftet: bekreftelse,
     });
   };
-
-  useEffect(() => {
-    const fetchData = () => {
-      client
-        .fetch('*[_type == $type][0]', { type: 'forside_arbeidssoker' })
-        .then((res: any) => {
-          settForside(res);
-        })
-        .catch((err: any) => {
-          settError(true);
-        });
-      settFetching(false);
-    };
-    fetchData();
-  }, []);
+  const forside = useForsideInnhold(ForsideType.arbeidssøker);
 
   const onChange = () => {
     settBekreftelse(!skjema.harBekreftet);
