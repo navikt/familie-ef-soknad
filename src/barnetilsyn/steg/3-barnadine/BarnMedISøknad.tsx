@@ -1,8 +1,24 @@
 import React, { FC } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import { Knapp } from 'nav-frontend-knapper';
-import LocaleTekst from '../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
+import { Checkbox } from 'nav-frontend-skjema';
+import { hentTekst } from '../../../utils/søknad';
+import styled from 'styled-components/macro';
+
+const StyledCheckbox = styled.div`
+  .skjemaelement {
+    &__label {
+      font-size: 18px !important;
+      text-align: left;
+
+      &:before {
+        box-sizing: border-box;
+      }
+    }
+    &.skalHaBarnepass {
+      margin: 0 1rem 1rem 1rem;
+    }
+  }
+`;
 
 interface Props {
   skalHaBarnepass?: boolean;
@@ -16,31 +32,16 @@ const BarnMedISøknad: FC<Props> = ({
   id,
 }) => {
   const intl = useIntl();
-  return skalHaBarnepass ? (
-    <>
-      <div className="med-i-søknaden-badge">
-        <Normaltekst>
-          <LocaleTekst tekst={'barnadine.label.skalHaBarnepass'} />
-        </Normaltekst>
-      </div>
-      <div
-        className="barnekort__endre-barnekort"
-        onClick={() => toggleSkalHaBarnepass(id)}
-      >
-        <Normaltekst>
-          <span className="lenke">
-            {intl.formatMessage({ id: 'barnadine.knapp.fjern' })}
-          </span>
-        </Normaltekst>
-      </div>
-    </>
-  ) : (
-    <Knapp
-      className="legg-til-i-søknad-knapp"
-      onClick={() => toggleSkalHaBarnepass(id)}
-    >
-      <LocaleTekst tekst={'barnadine.knapp.søkBarnetilsyn'} />
-    </Knapp>
+
+  return (
+    <StyledCheckbox>
+      <Checkbox
+        label={hentTekst('barnadine.knapp.søkBarnetilsyn', intl)}
+        className={'skalHaBarnepass'}
+        checked={skalHaBarnepass}
+        onChange={() => toggleSkalHaBarnepass(id)}
+      />
+    </StyledCheckbox>
   );
 };
 

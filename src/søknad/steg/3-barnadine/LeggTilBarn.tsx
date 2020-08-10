@@ -41,7 +41,9 @@ const LeggTilBarn: React.FC<Props> = ({
   const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
-  const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean>();
+  const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean | undefined>(
+    true
+  );
 
   useEffect(() => {
     if (id) {

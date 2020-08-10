@@ -258,7 +258,8 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.label.skalHaBarnepass': 'Med i søknaden',
     'barnadine.knapp.fjern': 'Fjern fra søknad',
-    'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
+    'barnadine.knapp.søkBarnetilsyn':
+      'Søk om stønad til barnetilsyn for barnet',
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
