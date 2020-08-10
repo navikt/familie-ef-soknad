@@ -48,7 +48,6 @@ const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
           settInputFelt={(e) => settInputFelt(e, EBarnepass.belop, beløpLabel)}
           beskrivendeTekst={hentTekst('input.kroner', intl)}
           value={beløp}
-          placeholder={intl.formatMessage({ id: 'placeholder.beløp' })}
         />
       </FeltGruppe>
       {!erStrengGyldigTall(beløp) && barnepassOrdning.belop && (

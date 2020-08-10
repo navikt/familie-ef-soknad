@@ -137,7 +137,9 @@ const Aktivitet: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
+      tittel={intl.formatMessage({
+        id: 'stegtittel.arbeidssituasjon.barnetilsyn',
+      })}
       skalViseKnapper={!kommerFraOppsummering}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
       mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}

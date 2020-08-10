@@ -37,7 +37,7 @@ export const Routes: IRoute[] = [
   },
   {
     path: '/barnetilsyn/aktivitet',
-    label: 'Arbeid, utdanning og andre aktiviteter',
+    label: 'Arbeidssituasjonen din',
     route: RouteEnum.Aktivitet,
   },
   {
