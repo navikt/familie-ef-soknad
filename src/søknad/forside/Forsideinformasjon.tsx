@@ -87,11 +87,13 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
           ) : (
             <div className="seksjon" key={index}>
               {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
-              <BlockContent
-                className="typo-normal"
-                blocks={blokk.innhold}
-                serializers={{ types: { block: BlockRenderer } }}
-              />
+              <div className={'typo-normal'}>
+                <BlockContent
+                  className="typo-normal"
+                  blocks={blokk.innhold}
+                  serializers={{ types: { block: BlockRenderer } }}
+                />
+              </div>
             </div>
           );
         })}
