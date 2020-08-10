@@ -10,7 +10,7 @@ import {
   EÅrsakBarnepass,
   IBarnepass,
   IBarnepassOrdning,
-} from '../../models/barnepass';
+} from '../../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';

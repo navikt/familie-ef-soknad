@@ -3,7 +3,7 @@ import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../../components/side/Side';
+import Side from '../../../overgangsstønad/side/Side';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';

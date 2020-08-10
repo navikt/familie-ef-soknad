@@ -9,7 +9,7 @@ import { erBarnepassOrdningerUtfylt } from './hjelper';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentUid } from '../../../utils/uuid';
 import { IBarn } from '../../../models/barn';
-import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
+import { IBarnepass, IBarnepassOrdning } from '../../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Feilside from './components/feil/Feilside';
 import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import Søknadsdialog from './søknad/Søknadsdialog';
+import Søknadsdialog from './overgangsstønad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
 import { hentPersonData } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';

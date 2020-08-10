@@ -6,7 +6,7 @@ import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
-} from '../../models/barnepass';
+} from '../../../models/barnepass';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';

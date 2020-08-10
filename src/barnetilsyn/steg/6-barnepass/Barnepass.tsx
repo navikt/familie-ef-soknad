@@ -9,7 +9,7 @@ import { datoTilStreng } from '../../../utils/dato';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
-import { IBarnepass } from '../../models/barnepass';
+import { IBarnepass } from '../../../models/barnepass';
 import BarnepassOrdninger from './BarnepassOrdninger';
 import ÅrsakBarnepass from './ÅrsakBarnepass';
 import BarneHeader from '../../../components/BarneHeader';

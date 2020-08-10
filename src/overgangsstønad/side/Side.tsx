@@ -1,15 +1,15 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import classNames from 'classnames';
-import Banner from '../Banner';
+import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Routes } from '../../routing/Routes';
-import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
+import { Routes } from '../routing/Routes';
+import { hentForrigeRoute, hentNesteRoute } from '../routing/utils';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
+import StyledNavigeringsWrapper from '../../components/knapper/StyledNavigeringsWrapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 
 interface ISide {

@@ -4,7 +4,7 @@ import {
   arbeidssøkerSkjemaForsideUrl,
   erUrlArbeidssøkerSkjema,
 } from '../arbeidssøkerskjema/routes/Routes';
-import { overgangsstønadForsideUrl } from '../routing/Routes';
+import { overgangsstønadForsideUrl } from '../overgangsstønad/routing/Routes';
 import { erLokaltMedMock } from './miljø';
 
 const er401Feil = (error: AxiosError) =>

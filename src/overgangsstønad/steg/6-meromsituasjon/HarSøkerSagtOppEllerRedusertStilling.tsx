@@ -7,7 +7,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { SagtOppEllerRedusertStillingSpm } from './SituasjonConfig';
+import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';

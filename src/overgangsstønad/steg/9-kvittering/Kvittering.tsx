@@ -1,22 +1,22 @@
 import React from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
-import DineSaker from './DineSaker';
+import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
 import Feilside from '../../../components/feil/Feilside';
-import RegistrerDegSomArbeidssøker from './RegistrerDegSomArbeidssøker';
+import RegistrerDegSomArbeidssøker from '../../../søknad/steg/9-kvittering/RegistrerDegSomArbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../../components/side/Side';
-import TilleggsstønaderArbeidssøker from './TilleggsstønaderArbeidssøker';
-import TilleggsstønaderHarAktivitet from './TilleggsstønaderHarAktivitet';
-import TilleggsstønaderUnderUtdanning from './TilleggsstønaderUnderUtdanning';
+import Side from '../../side/Side';
+import TilleggsstønaderArbeidssøker from '../../../søknad/steg/9-kvittering/TilleggsstønaderArbeidssøker';
+import TilleggsstønaderHarAktivitet from '../../../søknad/steg/9-kvittering/TilleggsstønaderHarAktivitet';
+import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
 import { ESvar } from '../../../models/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import SyktBarn from './SyktBarn';
+import SyktBarn from '../../../søknad/steg/9-kvittering/SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import SykSøker from './SykSøker';
+import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
