@@ -13,8 +13,7 @@ import { hentPath, RouteEnum, Routes } from '../../routing/Routes';
 import { IDatoFelt, ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
-import { parseISO } from 'date-fns';
-import { formatDate, tilDato } from '../../../utils/dato';
+import { formatDate, strengTilDato } from '../../../utils/dato';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import {
   VisLabelOgSvar,
@@ -83,7 +82,7 @@ const OppsummeringBarnepass: FC<Props> = ({
                 <FeltGruppe>
                   <Element>{søknadsdato.label}</Element>
                   <Normaltekst>
-                    {formatDate(tilDato(parseISO(søknadsdato?.verdi)))}
+                    {formatDate(strengTilDato(søknadsdato?.verdi))}
                   </Normaltekst>
                 </FeltGruppe>
               )}
