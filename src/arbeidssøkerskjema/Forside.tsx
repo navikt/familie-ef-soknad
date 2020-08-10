@@ -2,7 +2,7 @@ import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Sidetittel, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -17,6 +17,7 @@ import VeilederSnakkeboble from './VeilederSnakkeboble';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSkjema } from './SkjemaContext';
 import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -32,7 +33,7 @@ const Forside: React.FC<any> = ({ intl }) => {
       harBekreftet: bekreftelse,
     });
   };
-  const forside = useForsideInnhold('forside_arbeidssoker');
+  const forside = useForsideInnhold(ForsideType.arbeidssøker);
 
   const onChange = () => {
     settBekreftelse(!skjema.harBekreftet);

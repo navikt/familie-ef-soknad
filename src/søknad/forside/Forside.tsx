@@ -15,6 +15,7 @@ import Environment from '../../Environment';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
 import { useForsideInnhold } from '../../utils/hooks';
+import { ForsideType } from '../../models/stønadstyper';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -24,7 +25,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     nullstillMellomlagretOvergangsstønad,
   } = useSøknad();
   const [locale] = useSpråkContext();
-  const forside = useForsideInnhold('forside');
+  const forside = useForsideInnhold(ForsideType.overgangsstønad);
   const { toggles } = useToggles();
 
   const disclaimer = forside['disclaimer_' + locale];

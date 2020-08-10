@@ -11,6 +11,7 @@ import Environment from '../Environment';
 import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -21,7 +22,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     nullstillMellomlagretBarnetilsyn,
   } = useBarnetilsynSøknad();
 
-  const forside: any = useForsideInnhold('forside_barnetilsyn');
+  const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretBarnetilsyn !== undefined &&

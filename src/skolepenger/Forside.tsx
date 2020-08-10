@@ -12,6 +12,7 @@ import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
 import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -22,7 +23,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     nullstillMellomlagretSkolepenger,
   } = useSkolepengerSøknad();
 
-  const forside = useForsideInnhold('forside_skolepenger');
+  const forside = useForsideInnhold(ForsideType.skolepenger);
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretSkolepenger !== undefined &&

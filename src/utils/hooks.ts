@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { client } from './sanity';
+import { ForsideType } from '../models/stønadstyper';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -9,7 +10,7 @@ export const usePrevious = (value: any) => {
   return ref.current;
 };
 
-export const useForsideInnhold = (stønadstype: string): any => {
+export const useForsideInnhold = (stønadstype: ForsideType): any => {
   const [innhold, settInnhold] = useState({});
   useEffect(() => {
     client
