@@ -15,6 +15,8 @@ import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
 import Environment from '../../Environment';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
+import { RouteEnum, Routes } from '../../routing/Routes';
+import { hentPath } from '../../routing/Routes';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -22,6 +24,8 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretOvergangsstønad,
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
+    søknad,
+    settSøknad,
   } = useSøknad();
   const [locale] = useSpråkContext();
   const [forside, settForside] = useState<any>({});
@@ -30,6 +34,13 @@ const Forside: React.FC<any> = ({ intl }) => {
   // eslint-disable-next-line
   const [fetching, settFetching] = useState<boolean>(false);
   const { toggles } = useToggles();
+
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
 
   useEffect(() => {
     const fetchData = () => {
@@ -96,6 +107,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               disclaimer={disclaimer}
               person={person}
               intl={intl}
+              harBekreftet={søknad.harBekreftet}
+              settBekreftelse={settBekreftelse}
+              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
             />
           )}
         </Panel>
