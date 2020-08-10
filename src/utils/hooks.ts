@@ -17,6 +17,7 @@ export const useForsideInnhold = (stønadstype: string): any => {
       .then((res: any) => {
         settInnhold(res);
       });
+    // eslint-disable-next-line
   }, []);
   return innhold;
 };
