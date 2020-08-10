@@ -9,9 +9,10 @@ import { client } from '../utils/sanity';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
-import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
+import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
+import { hentPath, RouteEnum, Routes } from './routing/Routes';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -20,7 +21,16 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretSkolepenger,
     brukMellomlagretSkolepenger,
     nullstillMellomlagretSkolepenger,
+    søknad,
+    settSøknad,
   } = useSkolepengerSøknad();
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
+
   const [forside, settForside] = useState<any>({});
   // eslint-disable-next-line
   const [error, settError] = useState<boolean>(false);
@@ -79,6 +89,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               disclaimer={disclaimer}
               person={person}
               intl={intl}
+              harBekreftet={søknad.harBekreftet}
+              settBekreftelse={settBekreftelse}
+              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
             />
           )}
         </Panel>
