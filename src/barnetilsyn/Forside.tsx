@@ -8,10 +8,11 @@ import { injectIntl } from 'react-intl';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
-import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/stønadstyper';
+import { hentPath, RouteEnum, Routes } from './routing/Routes';
+import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -20,7 +21,15 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretBarnetilsyn,
     brukMellomlagretBarnetilsyn,
     nullstillMellomlagretBarnetilsyn,
+    søknad,
+    settSøknad,
   } = useBarnetilsynSøknad();
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
 
   const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
 
@@ -61,6 +70,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               disclaimer={disclaimer}
               person={person}
               intl={intl}
+              harBekreftet={søknad.harBekreftet}
+              settBekreftelse={settBekreftelse}
+              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
             />
           )}
         </Panel>

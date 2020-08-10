@@ -16,6 +16,8 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
 import { useForsideInnhold } from '../../utils/hooks';
 import { ForsideType } from '../../models/stønadstyper';
+import { RouteEnum, Routes } from '../../routing/Routes';
+import { hentPath } from '../../routing/Routes';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -23,10 +25,19 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretOvergangsstønad,
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
+    søknad,
+    settSøknad,
   } = useSøknad();
   const [locale] = useSpråkContext();
   const forside = useForsideInnhold(ForsideType.overgangsstønad);
   const { toggles } = useToggles();
+
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
 
   const disclaimer = forside['disclaimer_' + locale];
   const seksjon = forside['seksjon_' + locale];
@@ -36,8 +47,6 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretOvergangsstønad.søknad.person.hash === person.hash &&
     mellomlagretOvergangsstønad.modellVersjon ===
       Environment().modellVersjon.overgangsstønad;
-
-  // TODO: Må si ifra at den mellomlagrede versjonen ikke kan brukes pga endring i personopplysninger?
 
   return (
     <div className={'forside'}>
@@ -78,6 +87,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               disclaimer={disclaimer}
               person={person}
               intl={intl}
+              harBekreftet={søknad.harBekreftet}
+              settBekreftelse={settBekreftelse}
+              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
             />
           )}
         </Panel>

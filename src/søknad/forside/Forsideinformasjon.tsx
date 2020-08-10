@@ -8,12 +8,9 @@ import React from 'react';
 import { IPerson } from '../../models/person';
 import { IntlShape } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useHistory, useLocation } from 'react-router-dom';
-import { hentNesteRoute } from '../../routing/utils';
-import { Routes } from '../../routing/Routes';
-import { useSøknad } from '../../context/SøknadContext';
 import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
+import { useHistory } from 'react-router-dom';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 
 const BlockContent = require('@sanity/block-content-to-react');
@@ -23,6 +20,9 @@ interface InnholdProps {
   disclaimer?: any;
   person: IPerson;
   intl: IntlShape;
+  harBekreftet: boolean;
+  settBekreftelse: (bekreftet: boolean) => void;
+  nesteSide: string;
 }
 
 const Forsideinformasjon: React.FC<InnholdProps> = ({
@@ -30,18 +30,11 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   disclaimer,
   person,
   intl,
+  harBekreftet,
+  settBekreftelse,
+  nesteSide,
 }) => {
-  const { søknad, settSøknad } = useSøknad();
-
-  const settBekreftelse = (bekreftelse: boolean) => {
-    settSøknad({
-      ...søknad,
-      harBekreftet: bekreftelse,
-    });
-  };
   const history = useHistory();
-  const location = useLocation();
-  const nestePath = hentNesteRoute(Routes, location.pathname);
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -94,11 +87,13 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
           ) : (
             <div className="seksjon" key={index}>
               {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
-              <BlockContent
-                className="typo-normal"
-                blocks={blokk.innhold}
-                serializers={{ types: { block: BlockRenderer } }}
-              />
+              <div className={'typo-normal'}>
+                <BlockContent
+                  className="typo-normal"
+                  blocks={blokk.innhold}
+                  serializers={{ types: { block: BlockRenderer } }}
+                />
+              </div>
             </div>
           );
         })}
@@ -115,8 +110,8 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
               serializers={{ types: { block: BlockRenderer } }}
             />
             <BekreftCheckboksPanel
-              onChange={(e) => settBekreftelse(!søknad.harBekreftet)}
-              checked={!!søknad.harBekreftet}
+              onChange={(e) => settBekreftelse(!harBekreftet)}
+              checked={!!harBekreftet}
               label={hentBeskjedMedNavn(
                 person.søker.forkortetNavn,
                 intl.formatMessage({ id: 'side.bekreftelse' })
@@ -126,12 +121,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         </div>
       )}
 
-      {søknad.harBekreftet ? (
+      {harBekreftet ? (
         <FeltGruppe classname={'sentrert'}>
-          <KnappBase
-            onClick={() => history.push(nestePath.path)}
-            type={'hoved'}
-          >
+          <KnappBase onClick={() => history.push(nesteSide)} type={'hoved'}>
             <LocaleTekst tekst={'knapp.start'} />
           </KnappBase>
         </FeltGruppe>
