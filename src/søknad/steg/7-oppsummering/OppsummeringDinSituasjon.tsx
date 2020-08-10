@@ -5,14 +5,17 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
+  endreInformasjonPath?: string;
 }
 
-const OppsummeringDinSituasjon: React.FC<Props> = ({ dinSituasjon }) => {
+const OppsummeringDinSituasjon: React.FC<Props> = ({
+  dinSituasjon,
+  endreInformasjonPath,
+}) => {
   const history = useHistory();
 
   const merOmDinSituasjon = dinSituasjon;
@@ -25,7 +28,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({ dinSituasjon }) => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.DinSituasjon),
+            pathname: endreInformasjonPath,
             state: { kommerFraOppsummering: true },
           })
         }

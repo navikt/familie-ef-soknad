@@ -11,7 +11,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
-import TittelOgSlettKnapp from '../../../components/TittelOgSlettKnapp';
+import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
 import { datoTilStreng, erPeriodeGyldig } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
@@ -94,7 +94,7 @@ const BarnepassSpørsmål: FC<Props> = ({
       hvaSlagsBarnepassOrdning: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
+        label: hentBarnNavnEllerBarnet(barn, spørsmål.tekstid, intl),
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });

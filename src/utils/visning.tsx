@@ -6,6 +6,7 @@ import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
+import { ISpørsmålBooleanFelt, ISpørsmålFelt } from '../models/søknadsfelter';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -91,11 +92,11 @@ const VisPeriode = (objekt: any, tittel?: string) => {
         </div>
       ) : null}
       <div className="spørsmål-og-svar">
-        <Element>Fra</Element>
+        <Element>{objekt.fra.label}</Element>
         {verdiTilTekstsvar(objekt.fra.verdi, intl)}
       </div>
       <div className="spørsmål-og-svar">
-        <Element>Til</Element>
+        <Element>{objekt.til.label}</Element>
         {verdiTilTekstsvar(objekt.til.verdi, intl)}
       </div>
     </>
@@ -127,6 +128,18 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       </div>
     );
   });
+};
+
+export const visLabelOgVerdiForSpørsmålFelt = (
+  feltObjekt: ISpørsmålFelt | ISpørsmålBooleanFelt,
+  intl: IntlShape
+) => {
+  return (
+    <div className="spørsmål-og-svar" key={feltObjekt.spørsmålid}>
+      <Element>{feltObjekt.label}</Element>
+      {verdiTilTekstsvar(feltObjekt.verdi, intl)}
+    </div>
+  );
 };
 
 export const ScrollToTop = () => {

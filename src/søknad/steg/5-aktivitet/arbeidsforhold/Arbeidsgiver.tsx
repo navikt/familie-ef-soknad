@@ -6,7 +6,7 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import styled from 'styled-components/macro';
 import { Input } from 'nav-frontend-skjema';
-import TittelOgSlettKnapp from '../../../../components/TittelOgSlettKnapp';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import HarSøkerSluttdato from './HarSøkerSluttdato';

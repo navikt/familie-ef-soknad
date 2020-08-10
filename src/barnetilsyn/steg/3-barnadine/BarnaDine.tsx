@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
