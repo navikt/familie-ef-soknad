@@ -1,21 +1,24 @@
 import React from 'react';
+import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
-import { useHistory } from 'react-router-dom';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Element } from 'nav-frontend-typografi';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
-import { useIntl } from 'react-intl';
-import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+import { VisLabelOgSvar } from '../../../utils/visning';
 
 interface Props {
   bosituasjon: IBosituasjon;
+  endreInformasjonPath?: string;
 }
-const OppsummeringBosituasionenDin: React.FC<Props> = ({ bosituasjon }) => {
+const OppsummeringBosituasionenDin: React.FC<Props> = ({
+  bosituasjon,
+  endreInformasjonPath,
+}) => {
   const history = useHistory();
   const intl = useIntl();
 
@@ -41,7 +44,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({ bosituasjon }) => {
         <LenkeMedIkon
           onClick={() =>
             history.push({
-              pathname: hentPath(Routes, RouteEnum.BosituasjonenDin),
+              pathname: endreInformasjonPath,
               state: { kommerFraOppsummering: true },
             })
           }

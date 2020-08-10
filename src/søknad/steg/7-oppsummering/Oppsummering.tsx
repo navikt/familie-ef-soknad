@@ -10,6 +10,7 @@ import OppsummeringAktiviteter from './OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from './OppsummeringBosituasjon';
 import { useSøknad } from '../../../context/SøknadContext';
+import { hentPath, RouteEnum, Routes } from '../../../routing/Routes';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -32,12 +33,31 @@ const Oppsummering: React.FC = () => {
               søker={søknad.person.søker}
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
+              endreInformasjonPath={hentPath(Routes, RouteEnum.OmDeg)}
             />
-            <OppsummeringBosituasjonenDin bosituasjon={søknad.bosituasjon} />
-            <OppsummeringBarnaDine barn={søknad.person.barn} />
-            <OppsummeringBarnasBosituasjon barn={søknad.person.barn} />
-            <OppsummeringAktiviteter aktivitet={søknad.aktivitet} />
-            <OppsummeringDinSituasjon dinSituasjon={søknad.merOmDinSituasjon} />
+            <OppsummeringBosituasjonenDin
+              bosituasjon={søknad.bosituasjon}
+              endreInformasjonPath={hentPath(
+                Routes,
+                RouteEnum.BosituasjonenDin
+              )}
+            />
+            <OppsummeringBarnaDine
+              barn={søknad.person.barn}
+              endreInformasjonPath={hentPath(Routes, RouteEnum.Barn)}
+            />
+            <OppsummeringBarnasBosituasjon
+              barn={søknad.person.barn}
+              endreInformasjonPath={hentPath(Routes, RouteEnum.BarnasBosted)}
+            />
+            <OppsummeringAktiviteter
+              aktivitet={søknad.aktivitet}
+              endreInformasjonPath={hentPath(Routes, RouteEnum.Aktivitet)}
+            />
+            <OppsummeringDinSituasjon
+              dinSituasjon={søknad.merOmDinSituasjon}
+              endreInformasjonPath={hentPath(Routes, RouteEnum.DinSituasjon)}
+            />
           </KomponentGruppe>
         </div>
       </Side>

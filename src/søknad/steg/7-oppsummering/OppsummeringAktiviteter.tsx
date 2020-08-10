@@ -1,20 +1,23 @@
 import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
-import { hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
-import { Undertittel } from 'nav-frontend-typografi';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { useHistory } from 'react-router-dom';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
+import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory } from 'react-router-dom';
+import { useIntl } from 'react-intl';
+import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 
 interface Props {
   aktivitet: IAktivitet;
+  endreInformasjonPath?: string;
 }
 
-const OppsummeringAktiviteter: React.FC<Props> = ({ aktivitet }) => {
+const OppsummeringAktiviteter: React.FC<Props> = ({
+  aktivitet,
+  endreInformasjonPath,
+}) => {
   const history = useHistory();
   const intl = useIntl();
   const erIArbeid = aktivitet.erIArbeid
@@ -85,7 +88,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({ aktivitet }) => {
       <LenkeMedIkon
         onClick={() =>
           history.replace({
-            pathname: hentPath(Routes, RouteEnum.Aktivitet),
+            pathname: endreInformasjonPath,
             state: { kommerFraOppsummering: true },
           })
         }

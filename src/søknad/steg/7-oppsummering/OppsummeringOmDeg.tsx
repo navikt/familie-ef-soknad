@@ -11,7 +11,6 @@ import {
 } from '../../../models/steg/omDeg/medlemskap';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import { ISøker } from '../../../models/person';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -20,8 +19,14 @@ interface Props {
   søker: ISøker;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
+  endreInformasjonPath?: string;
 }
-const OppsummeringOmDeg: FC<Props> = ({ søker, sivilstatus, medlemskap }) => {
+const OppsummeringOmDeg: FC<Props> = ({
+  søker,
+  sivilstatus,
+  medlemskap,
+  endreInformasjonPath,
+}) => {
   const intl = useIntl();
 
   const history = useHistory();
@@ -61,7 +66,7 @@ const OppsummeringOmDeg: FC<Props> = ({ søker, sivilstatus, medlemskap }) => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.OmDeg),
+            pathname: endreInformasjonPath,
             state: { kommerFraOppsummering: true },
           })
         }

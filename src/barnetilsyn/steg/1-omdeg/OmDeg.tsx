@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import Side from '../../side/Side';
-import { IntlShape, injectIntl } from 'react-intl';
+import { injectIntl, IntlShape } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';

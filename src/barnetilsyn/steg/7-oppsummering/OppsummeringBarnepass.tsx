@@ -9,7 +9,6 @@ import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/barn';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
-import { hentPath, RouteEnum, Routes } from '../../routing/Routes';
 import { IDatoFelt, ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
@@ -27,12 +26,14 @@ interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
   søknadsdato?: IDatoFelt;
   barnSomSkalHaBarnepass: IBarn[];
+  endreInformasjonPath?: string;
 }
 
 const OppsummeringBarnepass: FC<Props> = ({
   barnSomSkalHaBarnepass,
   søknadsdato,
   søkerFraBestemtDato,
+  endreInformasjonPath,
 }) => {
   const history = useHistory();
   const intl = useIntl();
@@ -92,7 +93,7 @@ const OppsummeringBarnepass: FC<Props> = ({
           <LenkeMedIkon
             onClick={() =>
               history.push({
-                pathname: hentPath(Routes, RouteEnum.Barnepass),
+                pathname: endreInformasjonPath,
                 state: { kommerFraOppsummering: true },
               })
             }

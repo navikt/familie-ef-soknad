@@ -6,13 +6,16 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { IBarn } from '../../../models/barn';
 
 interface Props {
   barn: IBarn[];
+  endreInformasjonPath?: string;
 }
-const OppsummeringBarnasBosituasjon: FC<Props> = ({ barn }) => {
+const OppsummeringBarnasBosituasjon: FC<Props> = ({
+  barn,
+  endreInformasjonPath,
+}) => {
   const history = useHistory();
 
   const barna = barn;
@@ -48,7 +51,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({ barn }) => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.BarnasBosted),
+            pathname: endreInformasjonPath,
             state: { kommerFraOppsummering: true },
           })
         }

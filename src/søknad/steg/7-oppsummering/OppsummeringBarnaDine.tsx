@@ -7,12 +7,16 @@ import { useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
-import { Routes, RouteEnum, hentPath } from '../../../routing/Routes';
 import { IBarn } from '../../../models/barn';
+
 interface Props {
   barn: IBarn[];
+  endreInformasjonPath?: string;
 }
-const OppsummeringBarnaDine: React.FC<Props> = ({ barn }) => {
+const OppsummeringBarnaDine: React.FC<Props> = ({
+  barn,
+  endreInformasjonPath,
+}) => {
   const intl = useIntl();
   const history = useHistory();
 
@@ -46,7 +50,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({ barn }) => {
       <LenkeMedIkon
         onClick={() =>
           history.push({
-            pathname: hentPath(Routes, RouteEnum.Barn),
+            pathname: endreInformasjonPath,
             state: { kommerFraOppsummering: true },
           })
         }
