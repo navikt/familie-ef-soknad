@@ -6,12 +6,15 @@ import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import { hentSvarFraSpørsmål, hentTekst } from '../../utils/søknad';
 import { dagensDato } from '../../utils/dato';
-import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { hentBeskjedMedFireParametre } from '../../utils/språk';
 import { RadioPanel } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import { formatNårSøkerDuStønadFraMåned } from '../../utils/dato';
-import { IDatoFelt, ISpørsmålBooleanFelt } from '../../models/søknadsfelter';
+import {
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+} from '../../models/søknad/søknadsfelter';
 import LocaleTekst from '../../language/LocaleTekst';
 import { ESøkerFraBestemtMåned } from '../../models/steg/dinsituasjon/meromsituasjon';
 import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';

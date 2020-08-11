@@ -4,8 +4,8 @@ import tomPerson from '../mock/initialState.json';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { ISøknad } from '../models/søknad';
+import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
+import { ISøknad } from '../models/søknad/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -15,10 +15,10 @@ import {
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
-import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
-import { MellomlagredeStønadstyper } from '../models/stønadstyper';
+import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {

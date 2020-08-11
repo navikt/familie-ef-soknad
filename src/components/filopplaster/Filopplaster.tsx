@@ -11,10 +11,10 @@ import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
-import { IVedlegg } from '../../models/vedlegg';
+import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
-import { IDokumentasjon } from '../../models/dokumentasjon';
+import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoStreng } from '../../utils/dato';
 
 interface Props {

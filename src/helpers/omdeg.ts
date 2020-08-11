@@ -1,6 +1,6 @@
-import { IPerson } from '../models/person';
+import { IPerson } from '../models/søknad/person';
 import { EBegrunnelse, ISivilstatus } from '../models/steg/omDeg/sivilstatus';
-import { IPeriode } from '../models/periode';
+import { IPeriode } from '../models/felles/periode';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
