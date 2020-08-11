@@ -9,7 +9,18 @@ export default {
     'barnetilsyn.hjelpetekst-åpne.hvilke':
       'Hvilke barn kan du få stønad til barnetilsyn for?',
     'barnetilsyn.hjelpetekst-innhold.hvilke':
-      'Du kan få stønad til barnetilsyn for blabla',
+      'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for' +
+      '<br/><br/>' +
+      'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår. \n' +
+      '<br/><br/>' +
+      'På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n' +
+      '<br/><br/>' +
+      'I noen tilfeller kan du få stønad til barnetilsyn etter at barnet ditt er ferdig med fjerde skoleår:\n' +
+      '<ul>' +
+      '<li>Hvis du har barn som trenger vesentlig mer pass enn jevnaldrende. Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.</li>' +
+      '<li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li>' +
+      '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
+      '</ul>',
 
     'skjema.hei': 'Hei, [0]!',
     'skjema.knapp.start': 'Start',
@@ -258,10 +269,13 @@ export default {
     'barnadine.leggtil': 'Legg til barn',
     'barnadine.label.skalHaBarnepass': 'Med i søknaden',
     'barnadine.knapp.fjern': 'Fjern fra søknad',
-    'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn',
+    'barnadine.knapp.søkBarnetilsyn':
+      'Søk om stønad til barnetilsyn for barnet',
     'barnadine.personnummer': 'Personnummer',
     'barnadine.leggtil.info':
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'barnadine.leggtil.info.barnetilsyn':
+      'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
     'barnadine.advarsel.borikke':
       'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
     'barnadine.advarsel.skalikkebo':
@@ -406,6 +420,7 @@ export default {
       'Hvor mye er du sammen med den andre forelderen til [0]?',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
+    'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
     'erDuIArbeid.spm': 'Er du i arbeid?',
     'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
     'erDuIArbeid.alertsstripe-info':
@@ -416,6 +431,7 @@ export default {
       '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
 
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
+    'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
     'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
@@ -455,11 +471,11 @@ export default {
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
     'arbeidsforhold.label.ansettelsesforhold':
       'Hva slags ansettelsesforhold har du?',
-    'arbeidsforhold.svar.fast': 'Fast',
-    'arbeidsforhold.svar.midlertidig': 'Midlertidig',
+    'arbeidsforhold.svar.fast': 'Fast stilling',
+    'arbeidsforhold.svar.midlertidig': 'Midlertidig stilling',
     'arbeidsforhold.svar.lærling': 'Lærling',
     'arbeidsforhold.alert.lærling': 'Du må legge ved lærlingkontrakten din',
-    'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvakt eller liknende',
+    'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvikar eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
     'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsgivere?',

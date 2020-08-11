@@ -4,7 +4,7 @@ import {
   ITekstFelt,
 } from './søknadsfelter';
 import { IForelder } from './forelder';
-import { IBarnepass } from '../barnetilsyn/models/barnepass';
+import { IBarnepass } from './barnepass';
 
 export interface IBarn {
   id: string;

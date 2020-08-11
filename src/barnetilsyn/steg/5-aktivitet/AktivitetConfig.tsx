@@ -52,6 +52,11 @@ export const ErDuIArbeidSpm: ISpørsmål = {
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
+  lesmer: {
+    åpneTekstid: '',
+    lukkeTekstid: '',
+    innholdTekstid: 'arbeidssituasjon.spm.hjelpetekst',
+  },
   flersvar: true,
   svaralternativer: [
     {

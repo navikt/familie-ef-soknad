@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
-import { hvaErDinArbeidssituasjonSpm } from './AktivitetConfig';
+import { hvaErDinArbeidssituasjonSpm } from '../../../søknad/steg/5-aktivitet/AktivitetConfig';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
@@ -15,7 +15,7 @@ import {
   filtrerAktivitetSvaralternativer,
   fjernAktivitet,
 } from '../../../helpers/steg/aktivitet';
-import AktivitetOppfølgingSpørsmål from './AktivitetOppfølgingSpørsmål';
+import AktivitetOppfølgingSpørsmål from '../../../søknad/steg/5-aktivitet/AktivitetOppfølgingSpørsmål';
 import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
 
 const Aktivitet: React.FC = () => {

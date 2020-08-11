@@ -17,6 +17,7 @@ import {
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
+import { MellomlagredeStønadstyper } from '../models/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -54,7 +55,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     const hentMellomlagretBarnetilsyn = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretBarnetilsynSøknad>(
-        'barnetilsyn'
+        MellomlagredeStønadstyper.barnetilsyn
       ).then((mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
         if (mellomlagretVersjon) {
           settMellomlagretBarnetilsyn(mellomlagretVersjon);
@@ -74,12 +75,17 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         modellVersjon: Environment().modellVersjon.barnetilsyn,
         gjeldendeSteg: steg,
       };
-      mellomlagreSøknadTilDokument(utfyltSøknad, 'barnetilsyn');
+      mellomlagreSøknadTilDokument(
+        utfyltSøknad,
+        MellomlagredeStønadstyper.barnetilsyn
+      );
       settMellomlagretBarnetilsyn(utfyltSøknad);
     };
 
     const nullstillMellomlagretBarnetilsyn = (): Promise<any> => {
-      return nullstillMellomlagretSøknadTilDokument('barnetilsyn');
+      return nullstillMellomlagretSøknadTilDokument(
+        MellomlagredeStønadstyper.barnetilsyn
+      );
     };
 
     const settDokumentasjonsbehov = (

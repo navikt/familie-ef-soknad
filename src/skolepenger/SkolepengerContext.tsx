@@ -18,6 +18,7 @@ import {
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
+import { MellomlagredeStønadstyper } from '../models/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -51,7 +52,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
 
     const hentMellomlagretSkolepenger = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretSkolepengerSøknad>(
-        'skolepenger'
+        MellomlagredeStønadstyper.skolepenger
       ).then((mellomlagretVersjon?: IMellomlagretSkolepengerSøknad) => {
         if (mellomlagretVersjon) {
           settMellomlagretSkolepenger(mellomlagretVersjon);
@@ -71,12 +72,17 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         modellVersjon: Environment().modellVersjon.skolepenger,
         gjeldendeSteg: steg,
       };
-      mellomlagreSøknadTilDokument(utfyltSøknad, 'skolepenger');
+      mellomlagreSøknadTilDokument(
+        utfyltSøknad,
+        MellomlagredeStønadstyper.skolepenger
+      );
       settMellomlagretSkolepenger(utfyltSøknad);
     };
 
     const nullstillMellomlagretSkolepenger = (): Promise<any> => {
-      return nullstillMellomlagretSøknadTilDokument('skolepenger');
+      return nullstillMellomlagretSøknadTilDokument(
+        MellomlagredeStønadstyper.skolepenger
+      );
     };
 
     const settDokumentasjonsbehov = (

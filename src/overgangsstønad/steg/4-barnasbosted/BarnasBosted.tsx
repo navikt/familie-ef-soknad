@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
-import BarnetsBostedEndre from './BarnetsBostedEndre';
-import BarnetsBostedLagtTil from './BarnetsBostedLagtTil';
-import Side from '../../../components/side/Side';
+import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
+import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
+import Side from '../../side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';

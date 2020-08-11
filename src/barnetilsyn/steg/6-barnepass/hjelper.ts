@@ -4,7 +4,7 @@ import {
   erPeriodeGyldig,
   strengTilDato,
 } from '../../../utils/dato';
-import { IBarnepassOrdning } from '../../models/barnepass';
+import { IBarnepassOrdning } from '../../../models/barnepass';
 import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';

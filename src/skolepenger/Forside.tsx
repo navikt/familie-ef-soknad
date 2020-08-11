@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
-import { client } from '../utils/sanity';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
-import Forsideinformasjon from './Forsideinformasjon';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
+import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
+import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
+import { hentPath, RouteEnum, Routes } from './routing/Routes';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -20,27 +22,17 @@ const Forside: React.FC<any> = ({ intl }) => {
     mellomlagretSkolepenger,
     brukMellomlagretSkolepenger,
     nullstillMellomlagretSkolepenger,
+    søknad,
+    settSøknad,
   } = useSkolepengerSøknad();
-  const [forside, settForside] = useState<any>({});
-  // eslint-disable-next-line
-  const [error, settError] = useState<boolean>(false);
-  // eslint-disable-next-line
-  const [fetching, settFetching] = useState<boolean>(false);
+  const settBekreftelse = (bekreftelse: boolean) => {
+    settSøknad({
+      ...søknad,
+      harBekreftet: bekreftelse,
+    });
+  };
 
-  useEffect(() => {
-    const fetchData = () => {
-      client
-        .fetch('*[_type == $type][0]', { type: 'forside_skolepenger' })
-        .then((res: any) => {
-          settForside(res);
-        })
-        .catch((err: any) => {
-          settError(true);
-        });
-      settFetching(false);
-    };
-    fetchData();
-  }, []);
+  const forside = useForsideInnhold(ForsideType.skolepenger);
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretSkolepenger !== undefined &&
@@ -79,6 +71,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               disclaimer={disclaimer}
               person={person}
               intl={intl}
+              harBekreftet={søknad.harBekreftet}
+              settBekreftelse={settBekreftelse}
+              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
             />
           )}
         </Panel>

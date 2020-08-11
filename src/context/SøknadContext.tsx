@@ -18,6 +18,7 @@ import {
 import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
+import { MellomlagredeStønadstyper } from '../models/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -62,7 +63,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
 
   const hentMellomlagretOvergangsstønad = (): Promise<void> => {
     return hentMellomlagretSøknadFraDokument<IMellomlagretOvergangsstønad>(
-      'overgangsstonad'
+      MellomlagredeStønadstyper.overgangsstønad
     ).then((mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
       if (mellomlagretVersjon) {
         settMellomlagretOvergangsstønad(mellomlagretVersjon);
@@ -82,12 +83,17 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       modellVersjon: Environment().modellVersjon.overgangsstønad,
       gjeldendeSteg: steg,
     };
-    mellomlagreSøknadTilDokument(utfyltSøknad, 'overgangsstonad');
+    mellomlagreSøknadTilDokument(
+      utfyltSøknad,
+      MellomlagredeStønadstyper.overgangsstønad
+    );
     settMellomlagretOvergangsstønad(utfyltSøknad);
   };
 
   const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {
-    return nullstillMellomlagretSøknadTilDokument('overgangsstonad');
+    return nullstillMellomlagretSøknadTilDokument(
+      MellomlagredeStønadstyper.overgangsstønad
+    );
   };
 
   const settDokumentasjonsbehov = (

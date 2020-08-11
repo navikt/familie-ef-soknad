@@ -1,4 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { client } from './sanity';
+import { ForsideType } from '../models/stønadstyper';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -6,4 +8,17 @@ export const usePrevious = (value: any) => {
     ref.current = value;
   });
   return ref.current;
+};
+
+export const useForsideInnhold = (stønadstype: ForsideType): any => {
+  const [innhold, settInnhold] = useState({});
+  useEffect(() => {
+    client
+      .fetch('*[_type == $type][0]', { type: stønadstype })
+      .then((res: any) => {
+        settInnhold(res);
+      });
+    // eslint-disable-next-line
+  }, []);
+  return innhold;
 };

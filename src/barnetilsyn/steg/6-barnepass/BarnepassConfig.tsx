@@ -7,7 +7,7 @@ import {
   EBarnepass,
   ETypeBarnepassOrdning,
   EÅrsakBarnepass,
-} from '../../models/barnepass';
+} from '../../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 // ----- DOKUMENTASJON

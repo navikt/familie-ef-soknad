@@ -6,7 +6,7 @@ import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
-} from '../../models/barnepass';
+} from '../../../models/barnepass';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -48,7 +48,6 @@ const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
           settInputFelt={(e) => settInputFelt(e, EBarnepass.belop, beløpLabel)}
           beskrivendeTekst={hentTekst('input.kroner', intl)}
           value={beløp}
-          placeholder={intl.formatMessage({ id: 'placeholder.beløp' })}
         />
       </FeltGruppe>
       {!erStrengGyldigTall(beløp) && barnepassOrdning.belop && (

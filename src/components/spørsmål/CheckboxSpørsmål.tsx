@@ -5,6 +5,7 @@ import { Element } from 'nav-frontend-typografi';
 import { CheckboksPanel } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';
+import Hjelpetekst from '../Hjelpetekst';
 
 const StyledCheckboxSpørsmål = styled.div`
   .radioknapp {
@@ -43,6 +44,12 @@ const CheckboxSpørsmål: React.FC<Props> = ({
       <Element>
         <LocaleTekst tekst={spørsmål.tekstid} />
       </Element>
+      {spørsmål.lesmer && (
+        <Hjelpetekst
+          åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          innholdTekstid={spørsmål.lesmer.innholdTekstid}
+        />
+      )}
       <div className={'radioknapp__multiSvar'}>
         {spørsmål.svaralternativer.map((svar: ISvar) => {
           const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
