@@ -123,7 +123,6 @@ export const SøkerDuStønadFraBestemtMndSpm: ISpørsmål = {
     {
       id: ESøkerFraBestemtMåned.ja,
       svar_tekstid: 'svar.ja',
-      alert_tekstid: 'barnepass.dokumentasjon.søkerStønadFraBestemtMnd',
       dokumentasjonsbehov: TidligereFakturaer,
     },
     {

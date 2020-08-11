@@ -4,7 +4,7 @@ import KomponentGruppe from '../gruppe/KomponentGruppe';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
-import { hentSvarFraSpørsmål, hentTekst } from '../../utils/søknad';
+import { hentTekst } from '../../utils/søknad';
 import { dagensDato } from '../../utils/dato';
 import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
 import { hentBeskjedMedFireParametre } from '../../utils/språk';
@@ -13,7 +13,6 @@ import styled from 'styled-components/macro';
 import { formatNårSøkerDuStønadFraMåned } from '../../utils/dato';
 import { IDatoFelt, ISpørsmålBooleanFelt } from '../../models/søknadsfelter';
 import LocaleTekst from '../../language/LocaleTekst';
-import { ESøkerFraBestemtMåned } from '../../models/steg/dinsituasjon/meromsituasjon';
 import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
 
 const StyledMultisvarSpørsmål = styled.div`
@@ -48,6 +47,7 @@ interface Props {
   valgtDato: IDatoFelt | undefined;
   datovelgerLabel: string;
   hjelpetekstInnholdTekstid: string;
+  alertTekst?: string;
 }
 const NårSøkerDuStønadFra: React.FC<Props> = ({
   spørsmål,
@@ -57,6 +57,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
   valgtDato,
   datovelgerLabel,
   hjelpetekstInnholdTekstid,
+  alertTekst,
 }) => {
   const intl = useIntl();
 
@@ -68,10 +69,6 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
     formatNårSøkerDuStønadFraMåned(dagensDato, 5)
   );
 
-  const alertTekst: string | undefined = hentSvarFraSpørsmål(
-    ESøkerFraBestemtMåned.ja,
-    spørsmål
-  )?.alert_tekstid;
   return (
     <>
       <KomponentGruppe>
