@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import Medlemskap from './medlemskap/Medlemskap';
-import Personopplysninger from './personopplysninger/Personopplysninger';
-import Side from '../../../components/side/Side';
-import Sivilstatus from './sivilstatus/Sivilstatus';
+import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
+import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
+import Side from '../../side/Side';
+import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';

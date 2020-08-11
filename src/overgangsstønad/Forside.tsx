@@ -1,23 +1,23 @@
 import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
-import { usePersonContext } from '../../context/PersonContext';
-import { useSpråkContext } from '../../context/SpråkContext';
+import { usePersonContext } from '../context/PersonContext';
+import { useSpråkContext } from '../context/SpråkContext';
 import { injectIntl } from 'react-intl';
-import { useSøknad } from '../../context/SøknadContext';
-import { useToggles } from '../../context/TogglesContext';
-import { ToggleName } from '../../models/toggles';
-import Forsideinformasjon from './Forsideinformasjon';
-import { hentBeskjedMedNavn } from '../../utils/språk';
-import FortsettSøknad from './FortsettSøknad';
-import VeilederSnakkeboble from '../../assets/VeilederSnakkeboble';
-import Environment from '../../Environment';
+import { useSøknad } from '../context/SøknadContext';
+import { useToggles } from '../context/TogglesContext';
+import { ToggleName } from '../models/toggles';
+import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
+import { hentBeskjedMedNavn } from '../utils/språk';
+import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
+import Environment from '../Environment';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
-import { useForsideInnhold } from '../../utils/hooks';
-import { ForsideType } from '../../models/stønadstyper';
-import { RouteEnum, Routes } from '../../routing/Routes';
-import { hentPath } from '../../routing/Routes';
+import { RouteEnum, Routes } from './routing/Routes';
+import { hentPath } from './routing/Routes';
+import { useForsideInnhold } from '../utils/hooks';
+import { ForsideType } from '../models/stønadstyper';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();

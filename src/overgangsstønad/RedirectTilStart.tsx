@@ -5,7 +5,7 @@ import {
   RouteProps,
   RouteComponentProps,
 } from 'react-router-dom';
-import { useSøknad } from '../../context/SøknadContext';
+import { useSøknad } from '../context/SøknadContext';
 
 interface RedirectTilStartProps extends RouteProps {
   component:

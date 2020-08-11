@@ -5,7 +5,7 @@ import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
-} from '../../models/barnepass';
+} from '../../../models/barnepass';
 import classnames from 'classnames';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';

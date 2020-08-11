@@ -11,8 +11,8 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { hentForrigeRoute, hentNesteRoute } from '../../../routing/utils';
-import { Routes } from '../../../routing/Routes';
+import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
+import { Routes } from '../../routing/Routes';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,

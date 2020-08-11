@@ -1,16 +1,16 @@
 import React from 'react';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import OppsummeringOmDeg from './OppsummeringOmDeg';
-import OppsummeringBarnasBosituasjon from './OppsummeringBarnasBosituasjon';
-import OppsummeringBarnaDine from './OppsummeringBarnaDine';
-import OppsummeringAktiviteter from './OppsummeringAktiviteter';
-import OppsummeringDinSituasjon from './OppsummeringDinSituasjon';
-import OppsummeringBosituasjonenDin from './OppsummeringBosituasjon';
+import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
+import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
+import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
+import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
+import OppsummeringDinSituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringDinSituasjon';
+import OppsummeringBosituasjonenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
 import { useSøknad } from '../../../context/SøknadContext';
-import { hentPath, RouteEnum, Routes } from '../../../routing/Routes';
+import { hentPath, RouteEnum, Routes } from '../../routing/Routes';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();

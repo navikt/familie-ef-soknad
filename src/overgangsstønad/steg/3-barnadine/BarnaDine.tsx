@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Barnekort from './Barnekort';
-import LeggTilBarn from './LeggTilBarn';
+import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
+import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';

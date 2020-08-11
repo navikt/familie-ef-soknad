@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useLocation } from 'react-router-dom';
 import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
-import BosituasjonSpørsmål from './BosituasjonSpørsmål';
+import BosituasjonSpørsmål from '../../../søknad/steg/2-bosituasjon/BosituasjonSpørsmål';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();

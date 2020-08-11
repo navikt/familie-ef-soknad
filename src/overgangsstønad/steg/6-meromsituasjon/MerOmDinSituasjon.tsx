@@ -3,12 +3,12 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../../components/side/Side';
+import Side from '../../side/Side';
 
 import {
   gjelderNoeAvDetteDeg,
   SøkerFraBestemtMånedSpm,
-} from './SituasjonConfig';
+} from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
 import { useIntl } from 'react-intl';
@@ -20,11 +20,11 @@ import {
 import {
   harSøkerMindreEnnHalvStilling,
   harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
-} from './SituasjonUtil';
+} from '../../../søknad/steg/6-meromsituasjon/SituasjonUtil';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
-import SituasjonOppfølgingSpørsmål from './SituasjonOppfølgingSpørsmål';
+import SituasjonOppfølgingSpørsmål from '../../../søknad/steg/6-meromsituasjon/SituasjonOppfølgingSpørsmål';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { datoTilStreng } from '../../../utils/dato';
 
