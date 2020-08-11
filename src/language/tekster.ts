@@ -7,7 +7,7 @@ export default {
 
     'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
     'barnetilsyn.hjelpetekst-åpne.hvilke':
-      'Hvilke barn kan du få stønad til barnetilsyn for?',
+      'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
     'barnetilsyn.hjelpetekst-innhold.hvilke':
       'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for' +
       '<br/><br/>' +
@@ -428,7 +428,8 @@ export default {
       'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>' +
       'Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
     'erDuIArbeid.alertsstripe-dokumentasjon':
-      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>' +
+      'Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
 
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
     'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
@@ -701,7 +702,7 @@ export default {
     'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
       'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
     'barnepass.alert-dokumentasjon.beløp.privat':
-      '<b>Du må legge ved avtalen du har med barnepasseren. Her er et forslag til hvordan en privat avtale om barnepass kan se ut. Avtalen må inneholde:</b> <ul>' +
+      '<b>Du må legge ved avtalen du har med barnepasseren. <a href="/filer/Avtale_privat_barnepass.pdf">Her er et forslag</a> til hvordan en privat avtale om barnepass kan se ut. Avtalen må inneholde:</b> <ul>' +
       '<li>ditt navn, fødseslnummer og adresse</li>' +
       '<li> barnepasserens navn og adresse</li>' +
       '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
