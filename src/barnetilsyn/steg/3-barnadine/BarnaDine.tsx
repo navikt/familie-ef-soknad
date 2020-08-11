@@ -48,7 +48,7 @@ const BarnaDine: React.FC = () => {
       delete nyttBarn.barnepass;
     }
 
-    const nyBarneListe = søknad.person.barn.map((barn) => {
+    const nyBarneListe = søknad.person.barn.map((barn: IBarn) => {
       return barn.id === id ? nyttBarn : barn;
     });
     settSøknad({
@@ -58,7 +58,9 @@ const BarnaDine: React.FC = () => {
   };
 
   const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+    const nyBarneListe = søknad.person.barn.filter(
+      (barn: IBarn) => barn.id !== id
+    );
 
     settSøknad((prevSoknad) => {
       return {
