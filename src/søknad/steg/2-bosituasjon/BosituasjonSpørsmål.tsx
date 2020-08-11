@@ -15,7 +15,7 @@ import OmTidligereSamboer from './OmTidligereSamboer';
 import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
 import { useHistory, useLocation } from 'react-router';

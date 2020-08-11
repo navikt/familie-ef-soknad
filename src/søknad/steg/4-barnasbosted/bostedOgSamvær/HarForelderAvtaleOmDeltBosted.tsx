@@ -1,13 +1,17 @@
 import React, { FC } from 'react';
-import { IForelder } from '../../../../models/forelder';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { IForelder } from '../../../../models/steg/forelder';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { avtaleOmDeltBosted } from '../ForeldreConfig';
 import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import { useIntl } from 'react-intl';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';

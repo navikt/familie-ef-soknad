@@ -1,4 +1,4 @@
-import { IForelder } from '../../../../models/forelder';
+import { IForelder } from '../../../../models/steg/forelder';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
@@ -6,13 +6,17 @@ import { boddSammenFør } from '../ForeldreConfig';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { datoTilStreng } from '../../../../utils/dato';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 
 interface Props {
   forelder: IForelder;

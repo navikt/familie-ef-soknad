@@ -9,7 +9,7 @@ import Side from '../../side/Side';
 import TilleggsstønaderArbeidssøker from '../../../søknad/steg/9-kvittering/TilleggsstønaderArbeidssøker';
 import TilleggsstønaderHarAktivitet from '../../../søknad/steg/9-kvittering/TilleggsstønaderHarAktivitet';
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';

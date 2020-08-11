@@ -1,5 +1,5 @@
 import { IHjelpetekst } from './hjelpetekst';
-import { IDokumentasjon } from './dokumentasjon';
+import { IDokumentasjon } from '../steg/dokumentasjon';
 
 export enum ESvar {
   JA = 'JA',

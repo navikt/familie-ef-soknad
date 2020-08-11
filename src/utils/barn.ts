@@ -1,8 +1,8 @@
 import { IntlShape } from 'react-intl';
 import { hentTekst } from './søknad';
 import { hentBeskjedMedNavn } from './språk';
-import { IBarn } from '../models/barn';
-import { ESvar } from '../models/spørsmålogsvar';
+import { IBarn } from '../models/steg/barn';
+import { ESvar } from '../models/felles/spørsmålogsvar';
 import { formatDate, strengTilDato } from './dato';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (

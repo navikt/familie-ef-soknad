@@ -10,7 +10,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();

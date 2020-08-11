@@ -13,7 +13,7 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();

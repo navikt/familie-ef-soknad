@@ -6,7 +6,7 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
   barn: IBarn[];

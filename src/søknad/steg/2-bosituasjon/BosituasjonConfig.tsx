@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBosituasjon,
   ESøkerDelerBolig,
@@ -7,7 +7,7 @@ import { JaNeiSvar } from '../../../helpers/svar';
 import {
   BosituasjonDokumentasjon,
   IDokumentasjon,
-} from '../../../models/dokumentasjon';
+} from '../../../models/steg/dokumentasjon';
 
 // --- Dokumentasjon
 

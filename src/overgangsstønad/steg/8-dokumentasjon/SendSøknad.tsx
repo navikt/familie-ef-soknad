@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
-import { ISøknad } from '../../../models/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { parseISO } from 'date-fns';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router';
@@ -11,13 +11,13 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
-import { Routes } from '../../routing/Routes';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
   sendInnSøknad,
 } from '../../../innsending/api';
+import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 
 interface Innsending {
   status: string;
@@ -29,8 +29,11 @@ const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const location = useLocation();
   const history = useHistory();
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
+  const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
+  const forrigeRoute = hentForrigeRoute(
+    RoutesOvergangsstonad,
+    location.pathname
+  );
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -102,7 +105,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(Routes[0].path)}
+            onClick={() => history.push(RoutesOvergangsstonad[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

@@ -1,11 +1,11 @@
-import { IAktivitet } from './steg/aktivitet/aktivitet';
+import { IAktivitet } from '../steg/aktivitet/aktivitet';
 import { IPerson } from './person';
 import { ISpørsmålBooleanFelt } from './søknadsfelter';
-import { IBosituasjon } from './steg/bosituasjon';
-import { IDinSituasjon } from './steg/dinsituasjon/meromsituasjon';
-import { ISivilstatus } from './steg/omDeg/sivilstatus';
-import { IMedlemskap } from './steg/omDeg/medlemskap';
-import { IDokumentasjon } from './dokumentasjon';
+import { IBosituasjon } from '../steg/bosituasjon';
+import { IDinSituasjon } from '../steg/dinsituasjon/meromsituasjon';
+import { ISivilstatus } from '../steg/omDeg/sivilstatus';
+import { IMedlemskap } from '../steg/omDeg/medlemskap';
+import { IDokumentasjon } from '../steg/dokumentasjon';
 
 export interface ISøknad {
   innsendingsdato?: Date;

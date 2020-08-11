@@ -1,4 +1,4 @@
-import { IDatoFelt } from './søknadsfelter';
+import { IDatoFelt } from '../søknad/søknadsfelter';
 
 export interface IPeriode {
   label: string;

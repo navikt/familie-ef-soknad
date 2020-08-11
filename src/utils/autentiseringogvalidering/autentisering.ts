@@ -1,11 +1,11 @@
 import axios, { AxiosError } from 'axios';
-import Environment from '../Environment';
+import Environment from '../../Environment';
 import {
   arbeidssøkerSkjemaForsideUrl,
   erUrlArbeidssøkerSkjema,
-} from '../arbeidssøkerskjema/routes/Routes';
-import { overgangsstønadForsideUrl } from '../overgangsstønad/routing/Routes';
-import { erLokaltMedMock } from './miljø';
+} from '../../arbeidssøkerskjema/routes/routesArbeidssokerskjema';
+import { overgangsstønadForsideUrl } from '../../overgangsstønad/routing/routesOvergangsstonad';
+import { erLokaltMedMock } from '../miljø';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;

@@ -11,7 +11,7 @@ import UnderUtdanning from './underUtdanning/UnderUtdanning';
 import OmFirmaetDitt from './OmFirmaetDitt';
 import EgetAS from './aksjeselskap/EgetAS';
 import FåttJobbTilbud from './FåttJobbTilbud';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

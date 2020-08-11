@@ -6,7 +6,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Checkbox } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { IDokumentasjon } from '../../../models/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 
 interface Props {

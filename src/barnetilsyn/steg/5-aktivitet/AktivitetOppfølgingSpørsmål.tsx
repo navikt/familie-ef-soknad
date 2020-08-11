@@ -3,7 +3,7 @@ import {
   EAktivitet,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import OmArbeidsforholdetDitt from '../../../søknad/steg/5-aktivitet/arbeidsforhold/OmArbeidsforholdetDitt';
 import OmFirmaetDitt from '../../../søknad/steg/5-aktivitet/OmFirmaetDitt';
 import EgetAS from '../../../søknad/steg/5-aktivitet/aksjeselskap/EgetAS';

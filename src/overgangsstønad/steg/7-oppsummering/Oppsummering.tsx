@@ -10,7 +10,11 @@ import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/Oppsum
 import OppsummeringDinSituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
 import { useSøknad } from '../../../context/SøknadContext';
-import { hentPath, RouteEnum, Routes } from '../../routing/Routes';
+import {
+  ERouteOvergangsstønad,
+  RoutesOvergangsstonad,
+} from '../../routing/routesOvergangsstonad';
+import { hentPath } from '../../../utils/routing';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -33,30 +37,45 @@ const Oppsummering: React.FC = () => {
               søker={søknad.person.søker}
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.OmDeg)}
+              endreInformasjonPath={hentPath(
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.OmDeg
+              )}
             />
             <OppsummeringBosituasjonenDin
               bosituasjon={søknad.bosituasjon}
               endreInformasjonPath={hentPath(
-                Routes,
-                RouteEnum.BosituasjonenDin
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.BosituasjonenDin
               )}
             />
             <OppsummeringBarnaDine
               barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.Barn)}
+              endreInformasjonPath={hentPath(
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.Barn
+              )}
             />
             <OppsummeringBarnasBosituasjon
               barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.BarnasBosted)}
+              endreInformasjonPath={hentPath(
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.BarnasBosted
+              )}
             />
             <OppsummeringAktiviteter
               aktivitet={søknad.aktivitet}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.Aktivitet)}
+              endreInformasjonPath={hentPath(
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.Aktivitet
+              )}
             />
             <OppsummeringDinSituasjon
               dinSituasjon={søknad.merOmDinSituasjon}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.DinSituasjon)}
+              endreInformasjonPath={hentPath(
+                RoutesOvergangsstonad,
+                ERouteOvergangsstønad.DinSituasjon
+              )}
             />
           </KomponentGruppe>
         </div>

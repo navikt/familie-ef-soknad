@@ -6,11 +6,11 @@ import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { Routes } from '../routing/Routes';
-import { hentForrigeRoute, hentNesteRoute } from '../routing/Routes';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import StyledNavigeringsWrapper from '../../components/knapper/StyledNavigeringsWrapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
+import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 
 interface ISide {
   tittel: string;

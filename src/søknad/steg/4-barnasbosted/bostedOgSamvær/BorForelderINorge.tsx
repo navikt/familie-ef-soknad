@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { IForelder } from '../../../../models/forelder';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { IForelder } from '../../../../models/steg/forelder';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { borINorge } from '../ForeldreConfig';
 import { Input } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
 interface Props {

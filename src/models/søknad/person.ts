@@ -1,4 +1,4 @@
-import { IBarn } from './barn';
+import { IBarn } from '../steg/barn';
 import { IDatoFelt, ITekstFelt } from './søknadsfelter';
 
 export interface IPerson {

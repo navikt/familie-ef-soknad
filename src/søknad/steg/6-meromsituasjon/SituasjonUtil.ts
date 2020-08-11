@@ -4,7 +4,7 @@ import {
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IntlShape } from 'react-intl';
-import { ISøknad } from '../../../models/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';

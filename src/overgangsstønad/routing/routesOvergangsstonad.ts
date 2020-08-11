@@ -1,10 +1,6 @@
-export interface IRoute {
-  route: RouteEnum;
-  path: string;
-  label: string;
-}
+import { IRoute } from '../../models/routes';
 
-export enum RouteEnum {
+export enum ERouteOvergangsstønad {
   Forside = 'Forside',
   OmDeg = 'OmDeg',
   BosituasjonenDin = 'BosituasjonenDin',
@@ -17,46 +13,46 @@ export enum RouteEnum {
   Kvittering = 'Kvittering',
 }
 
-export const Routes: IRoute[] = [
-  { path: '/', label: 'Forside', route: RouteEnum.Forside },
-  { path: '/om-deg', label: 'Om deg', route: RouteEnum.OmDeg },
+export const RoutesOvergangsstonad: IRoute[] = [
+  { path: '/', label: 'Forside', route: ERouteOvergangsstønad.Forside },
+  { path: '/om-deg', label: 'Om deg', route: ERouteOvergangsstønad.OmDeg },
   {
     path: '/bosituasjon',
     label: 'Bosituasjonen din',
-    route: RouteEnum.BosituasjonenDin,
+    route: ERouteOvergangsstønad.BosituasjonenDin,
   },
-  { path: '/barn', label: 'Barn', route: RouteEnum.Barn },
+  { path: '/barn', label: 'Barn', route: ERouteOvergangsstønad.Barn },
   {
     path: '/barnas-bosted',
     label: 'Barnas bosted og foreldrenes samværsordning',
-    route: RouteEnum.BarnasBosted,
+    route: ERouteOvergangsstønad.BarnasBosted,
   },
   {
     path: '/aktivitet',
     label: 'Arbeid, utdanning og andre aktiviteter',
-    route: RouteEnum.Aktivitet,
+    route: ERouteOvergangsstønad.Aktivitet,
   },
   {
     path: '/din-situasjon',
     label: 'Din situasjon',
-    route: RouteEnum.DinSituasjon,
+    route: ERouteOvergangsstønad.DinSituasjon,
   },
   {
     path: '/oppsummering',
     label: 'Oppsummering',
-    route: RouteEnum.Oppsummering,
+    route: ERouteOvergangsstønad.Oppsummering,
   },
   {
     path: '/dokumentasjon',
     label: 'Dokumentasjon',
-    route: RouteEnum.Dokumentasjon,
+    route: ERouteOvergangsstønad.Dokumentasjon,
   },
-  { path: '/kvittering', label: 'Kvittering', route: RouteEnum.Kvittering },
+  {
+    path: '/kvittering',
+    label: 'Kvittering',
+    route: ERouteOvergangsstønad.Kvittering,
+  },
 ];
-
-export const hentPath = (routes: IRoute[], route: RouteEnum) => {
-  return routes.find((r) => r.route === route)?.path;
-};
 
 export const overgangsstønadForsideUrl = (): string =>
   window.location.origin + process.env.PUBLIC_URL;
