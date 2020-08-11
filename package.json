@@ -41,7 +41,7 @@
     "eslint-plugin-flowtype": "^4.6.0",
     "exenv": "^1.2.2",
     "express": "^4.17.1",
-    "express-http-proxy": "^1.6.0",
+    "express-http-proxy": "^1.6.2",
     "http-proxy-middleware": "^0.20.0",
     "install": "^0.13.0",
     "iso-datestring-validator": "^2.0.5",
