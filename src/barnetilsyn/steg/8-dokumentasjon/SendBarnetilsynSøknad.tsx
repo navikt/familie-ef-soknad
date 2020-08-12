@@ -9,14 +9,15 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { hentForrigeRoute, hentNesteRoute, Routes } from '../../routing/Routes';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   sendInnBarnetilsynSøknad,
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 
 interface Innsending {
   status: string;
@@ -28,8 +29,8 @@ const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useBarnetilsynSøknad();
   const location = useLocation();
   const history = useHistory();
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
+  const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
+  const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -105,7 +106,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(Routes[0].path)}
+            onClick={() => history.push(RoutesBarnetilsyn[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

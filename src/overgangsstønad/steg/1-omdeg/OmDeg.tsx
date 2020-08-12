@@ -13,8 +13,8 @@ import {
   harSøkerTlfnr,
 } from '../../../helpers/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
-import { ISøker } from '../../../models/person';
-import { ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import { ISøker } from '../../../models/søknad/person';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {

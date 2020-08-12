@@ -4,12 +4,12 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { borAnnenForelderISammeHus } from '../ForeldreConfig';
 import { EBorAnnenForelderISammeHus } from '../../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../../utils/søknad';
-import { IForelder } from '../../../../models/forelder';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { IForelder } from '../../../../models/steg/forelder';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { Element } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 

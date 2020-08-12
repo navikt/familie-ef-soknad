@@ -1,26 +1,17 @@
 import {
   BarnetilsynDokumentasjon,
   IDokumentasjon,
-} from '../../../models/dokumentasjon';
-import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
+} from '../../../models/steg/dokumentasjon';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBarnepass,
   ETypeBarnepassOrdning,
   EÅrsakBarnepass,
-} from '../../../models/barnepass';
+} from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 // ----- DOKUMENTASJON
 
-export const TidligereFakturaer: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.TIDLIGERE_FAKTURAER,
-  spørsmålid: EBarnepass.søkerFraBestemtMåned,
-  label: '',
-  svarid: ESvar.JA,
-  tittel: 'dokumentasjon.tidligereFakturaer.tittel',
-  beskrivelse: 'dokumentasjon.tidligereFakturaer.beskrivelse',
-  harSendtInn: false,
-};
 export const FakturaFraBarnepassordning: IDokumentasjon = {
   id: BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING,
   spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
@@ -46,6 +37,7 @@ export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon = {
   label: '',
   svarid: '',
   tittel: 'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel',
+  beskrivelse: 'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse',
   harSendtInn: false,
 };
 export const DokumentasjonUtenomVanligArbeidstid: IDokumentasjon = {
@@ -123,8 +115,6 @@ export const SøkerDuStønadFraBestemtMndSpm: ISpørsmål = {
     {
       id: ESøkerFraBestemtMåned.ja,
       svar_tekstid: 'svar.ja',
-      alert_tekstid: 'barnepass.dokumentasjon.søkerStønadFraBestemtMnd',
-      dokumentasjonsbehov: TidligereFakturaer,
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,

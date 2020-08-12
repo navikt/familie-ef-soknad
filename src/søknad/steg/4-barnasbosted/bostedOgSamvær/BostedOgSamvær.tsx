@@ -4,9 +4,13 @@ import { useIntl } from 'react-intl';
 import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
 
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
-import { EForelder, IForelder } from '../../../../models/forelder';
+import { EForelder, IForelder } from '../../../../models/steg/forelder';
 import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
@@ -20,7 +24,7 @@ import {
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
   harSkriftligAvtaleOmDeltBosted,
 } from '../../../../helpers/steg/forelder';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 

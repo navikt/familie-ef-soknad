@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';

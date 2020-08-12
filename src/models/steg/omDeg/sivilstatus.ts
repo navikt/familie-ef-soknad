@@ -3,8 +3,8 @@ import {
   IDatoFelt,
   ISpørsmålFelt,
   ISpørsmålBooleanFelt,
-} from '../../søknadsfelter';
-import { IPersonDetaljer } from '../../person';
+} from '../../søknad/søknadsfelter';
+import { IPersonDetaljer } from '../../søknad/person';
 
 export enum ESivilstand {
   GIFT = 'GIFT',

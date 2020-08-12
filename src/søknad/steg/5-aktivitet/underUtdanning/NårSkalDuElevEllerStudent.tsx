@@ -6,7 +6,7 @@ import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { datoTilStreng } from '../../../../utils/dato';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { EPeriode } from '../../../../models/periode';
+import { EPeriode } from '../../../../models/felles/periode';
 
 interface Props {
   utdanning: IUnderUtdanning;

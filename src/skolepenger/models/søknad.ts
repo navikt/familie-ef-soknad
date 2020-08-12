@@ -1,9 +1,9 @@
-import { ISpørsmålBooleanFelt } from '../../models/søknadsfelter';
+import { ISpørsmålBooleanFelt } from '../../models/søknad/søknadsfelter';
 import { IBosituasjon } from '../../models/steg/bosituasjon';
 import { ISivilstatus } from '../../models/steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
-import { IDokumentasjon } from '../../models/dokumentasjon';
-import { IPerson } from '../../models/person';
+import { IDokumentasjon } from '../../models/steg/dokumentasjon';
+import { IPerson } from '../../models/søknad/person';
 import { IDetaljertUtdanning } from './detaljertUtdanning';
 
 export interface ISøknad {

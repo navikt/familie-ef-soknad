@@ -1,10 +1,14 @@
-import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
-import { EBarn } from '../../../models/barn';
+import {
+  ESvar,
+  ESvarTekstid,
+  ISpørsmål,
+} from '../../../models/felles/spørsmålogsvar';
+import { EBarn } from '../../../models/steg/barn';
 import { JaNeiSvar, JaSvar } from '../../../helpers/svar';
 import {
   BarnDokumentasjon,
   IDokumentasjon,
-} from '../../../models/dokumentasjon';
+} from '../../../models/steg/dokumentasjon';
 
 // --- Dokumentasjon
 const Terminbekreftelse: IDokumentasjon = {

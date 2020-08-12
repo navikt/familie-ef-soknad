@@ -1,4 +1,4 @@
-import { hentUid } from '../../utils/uuid';
+import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { hentTekst } from '../../utils/søknad';
 import { linjeKursGrad } from '../../søknad/steg/5-aktivitet/underUtdanning/UtdanningConfig';
 import { IntlShape } from 'react-intl';

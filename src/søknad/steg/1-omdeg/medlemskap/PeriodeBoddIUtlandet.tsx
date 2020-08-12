@@ -7,7 +7,7 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
 
 import { hentTekst } from '../../../../utils/søknad';
-import { hentUid } from '../../../../utils/uuid';
+import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
 import {
   IMedlemskap,
   IUtenlandsopphold,

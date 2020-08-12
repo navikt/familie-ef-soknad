@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
 import { EMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 

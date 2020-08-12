@@ -5,7 +5,7 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import { hvaErDinArbeidssituasjonSpm } from '../../../søknad/steg/5-aktivitet/AktivitetConfig';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';

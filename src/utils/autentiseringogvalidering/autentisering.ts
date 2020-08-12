@@ -1,11 +1,19 @@
 import axios, { AxiosError } from 'axios';
-import Environment from '../Environment';
+import Environment from '../../Environment';
 import {
   arbeidssøkerSkjemaForsideUrl,
   erUrlArbeidssøkerSkjema,
-} from '../arbeidssøkerskjema/routes/Routes';
-import { overgangsstønadForsideUrl } from '../overgangsstønad/routing/Routes';
-import { erLokaltMedMock } from './miljø';
+} from '../../arbeidssøkerskjema/routes/routesArbeidssokerskjema';
+import { overgangsstønadForsideUrl } from '../../overgangsstønad/routing/routesOvergangsstonad';
+import { erLokaltMedMock } from '../miljø';
+import {
+  barnetilsynForsideUrl,
+  erUrlBarnetilsyn,
+} from '../../barnetilsyn/routing/routesBarnetilsyn';
+import {
+  erUrlSkolepenger,
+  skolepengerForsideUrl,
+} from '../../skolepenger/routing/Routes';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
@@ -13,9 +21,18 @@ const er401Feil = (error: AxiosError) =>
 const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
-  return erUrlArbeidssøkerSkjema()
-    ? Environment().loginService + '&redirect=' + arbeidssøkerSkjemaForsideUrl()
-    : Environment().loginService + '&redirect=' + overgangsstønadForsideUrl();
+  return Environment().loginService + '&redirect=' + getRedirectUrl();
+};
+
+const getRedirectUrl = () => {
+  if (erUrlArbeidssøkerSkjema()) {
+    return arbeidssøkerSkjemaForsideUrl();
+  } else if (erUrlBarnetilsyn()) {
+    return barnetilsynForsideUrl();
+  } else if (erUrlSkolepenger()) {
+    return skolepengerForsideUrl();
+  }
+  return overgangsstønadForsideUrl();
 };
 
 export const autentiseringsInterceptor = () => {

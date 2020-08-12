@@ -10,7 +10,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router-dom';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();

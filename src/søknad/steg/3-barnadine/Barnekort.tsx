@@ -8,8 +8,8 @@ import { useIntl } from 'react-intl';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
   gjeldendeBarn: IBarn;

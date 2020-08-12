@@ -7,11 +7,15 @@ import OppsummeringBarnepass from './OppsummeringBarnepass';
 import OppsummeringBosituasionenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import Side from '../../side/Side';
-import { hentPath, RouteEnum, Routes } from '../../routing/Routes';
-import { IBarn } from '../../../models/barn';
+import {
+  ERouteBarnetilsyn,
+  RoutesBarnetilsyn,
+} from '../../routing/routesBarnetilsyn';
+import { IBarn } from '../../../models/steg/barn';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { useIntl } from 'react-intl';
+import { hentPath } from '../../../utils/routing';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -37,32 +41,47 @@ const Oppsummering: React.FC = () => {
               søker={søknad.person.søker}
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.OmDeg)}
+              endreInformasjonPath={hentPath(
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.OmDeg
+              )}
             />
             <OppsummeringBosituasionenDin
               bosituasjon={søknad.bosituasjon}
               endreInformasjonPath={hentPath(
-                Routes,
-                RouteEnum.BosituasjonenDin
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.BosituasjonenDin
               )}
             />
             <OppsummeringBarnaDine
               barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.BarnaDine)}
+              endreInformasjonPath={hentPath(
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.BarnaDine
+              )}
             />
             <OppsummeringBarnasBosituasjon
               barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.BostedOgSamvær)}
+              endreInformasjonPath={hentPath(
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.BostedOgSamvær
+              )}
             />
             <OppsummeringAktiviteter
               aktivitet={søknad.aktivitet}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.Aktivitet)}
+              endreInformasjonPath={hentPath(
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.Aktivitet
+              )}
             />
             <OppsummeringBarnepass
               søkerFraBestemtDato={søknad.søkerFraBestemtMåned}
               søknadsdato={søknad.søknadsdato}
               barnSomSkalHaBarnepass={barnSomSkalHaBarnepass}
-              endreInformasjonPath={hentPath(Routes, RouteEnum.Barnepass)}
+              endreInformasjonPath={hentPath(
+                RoutesBarnetilsyn,
+                ERouteBarnetilsyn.Barnepass
+              )}
             />
           </KomponentGruppe>
         </div>

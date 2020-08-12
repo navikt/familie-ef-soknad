@@ -8,7 +8,7 @@ import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;

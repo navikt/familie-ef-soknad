@@ -10,7 +10,7 @@ import {
   SøkerFraBestemtMånedSpm,
 } from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
