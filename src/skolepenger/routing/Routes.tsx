@@ -1,4 +1,5 @@
 import { IRoute } from '../../models/routes';
+import { hentPath } from '../../utils/routing';
 
 export enum ERouteSkolepenger {
   Forside = 'Forside',
@@ -60,6 +61,12 @@ export const hentPathSkolepenger = (
   route: ERouteSkolepenger
 ) => {
   return routes.find((r) => r.route === route)?.path;
+};
+
+export const erUrlSkolepenger = (): boolean => {
+  return window.location.href.includes(
+    process.env.PUBLIC_URL + hentPath(Routes, ERouteSkolepenger.Forside)
+  );
 };
 
 export const skolepengerForsideUrl = (): string =>
