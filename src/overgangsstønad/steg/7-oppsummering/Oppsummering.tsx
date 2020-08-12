@@ -1,5 +1,4 @@
 import React from 'react';
-import Side from '../../side/Side';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -15,6 +14,7 @@ import {
   RoutesOvergangsstonad,
 } from '../../routing/routesOvergangsstonad';
 import { hentPath } from '../../../utils/routing';
+import Side, { ESide } from '../../../components/side/Side';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -23,9 +23,10 @@ const Oppsummering: React.FC = () => {
     <>
       <Side
         tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
-        skalViseKnapper={true}
-        mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+        skalViseKnapper={ESide.skjulKnapper}
         erSpørsmålBesvart={true}
+        mellomlagreStønad={mellomlagreOvergangsstønad}
+        routesStønad={RoutesOvergangsstonad}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">

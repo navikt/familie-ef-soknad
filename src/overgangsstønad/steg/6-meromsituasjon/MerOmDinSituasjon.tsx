@@ -3,7 +3,6 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import HarSøkerSagtOppEllerRedusertStilling from './HarSøkerSagtOppEllerRedusertStilling';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../side/Side';
 
 import {
   gjelderNoeAvDetteDeg,
@@ -27,6 +26,9 @@ import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from '../../../søknad/steg/6-meromsituasjon/SituasjonOppfølgingSpørsmål';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { datoTilStreng } from '../../../utils/dato';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import { hentPathOvergangsstønadOppsummering } from '../../utils';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -38,11 +40,14 @@ const MerOmDinSituasjon: React.FC = () => {
   } = useSøknad();
   const history = useHistory();
   const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const [dinSituasjon, settDinSituasjon] = useState<IDinSituasjon>(
     søknad.merOmDinSituasjon
   );
   const { gjelderDetteDeg, søknadsdato, søkerFraBestemtMåned } = dinSituasjon;
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
@@ -122,9 +127,11 @@ const MerOmDinSituasjon: React.FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
-      skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
+      mellomlagreStønad={mellomlagreOvergangsstønad}
+      routesStønad={RoutesOvergangsstonad}
+      tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
       <SeksjonGruppe>
         <KomponentGruppe>

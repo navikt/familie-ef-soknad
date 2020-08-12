@@ -3,7 +3,6 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LastOppVedlegg from '../../../søknad/steg/8-dokumentasjon/LastOppVedlegg';
 import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../side/Side';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
@@ -16,6 +15,8 @@ import { usePrevious } from '../../../utils/hooks';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -67,7 +68,13 @@ const Dokumentasjon: React.FC = () => {
 
   const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
-    <Side tittel={sidetittel} skalViseKnapper={false} erSpørsmålBesvart={true}>
+    <Side
+      tittel={sidetittel}
+      skalViseKnapper={ESide.skjulKnapper}
+      erSpørsmålBesvart={true}
+      mellomlagreStønad={mellomlagreOvergangsstønad}
+      routesStønad={RoutesOvergangsstonad}
+    >
       <SeksjonGruppe>
         <Normaltekst>
           <FormattedHTMLMessage
