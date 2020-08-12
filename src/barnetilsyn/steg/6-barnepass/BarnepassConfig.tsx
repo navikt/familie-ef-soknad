@@ -37,6 +37,7 @@ export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon = {
   label: '',
   svarid: '',
   tittel: 'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel',
+  beskrivelse: 'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse',
   harSendtInn: false,
 };
 export const DokumentasjonUtenomVanligArbeidstid: IDokumentasjon = {
