@@ -6,12 +6,12 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import OmSamboerenDin from './OmSamboerenDin';
-import { ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { ISvar } from '../../../models/spørsmålogsvar';
+import { ISvar } from '../../../models/felles/spørsmålogsvar';
 import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {

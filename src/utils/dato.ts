@@ -11,7 +11,7 @@ import {
 } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
-import { IPeriode } from '../models/periode';
+import { IPeriode } from '../models/felles/periode';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';

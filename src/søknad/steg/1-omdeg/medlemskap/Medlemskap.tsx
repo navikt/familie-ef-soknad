@@ -1,5 +1,9 @@
 import React from 'react';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,

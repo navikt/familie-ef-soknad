@@ -10,7 +10,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { datoTilStreng } from '../../../../utils/dato';
 import { erPeriodeDatoerValgt } from '../../../../helpers/omdeg';
-import { EPeriode } from '../../../../models/periode';
+import { EPeriode } from '../../../../models/felles/periode';
 
 interface Props {
   perioderBoddIUtlandet: IUtenlandsopphold[];

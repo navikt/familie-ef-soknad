@@ -12,7 +12,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';
 import { Element, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
 import { useIntl } from 'react-intl';
 import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';

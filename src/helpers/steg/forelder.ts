@@ -4,8 +4,8 @@ import {
   EHvorforIkkeOppgi,
   EHvorMyeSammen,
 } from '../../models/steg/barnasbosted';
-import { EForelder, IForelder } from '../../models/forelder';
-import { ESvar, ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { EForelder, IForelder } from '../../models/steg/forelder';
+import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erGyldigDato } from '../../utils/dato';
 

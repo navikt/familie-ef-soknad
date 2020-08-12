@@ -1,5 +1,5 @@
-import { IDokumentasjon } from '../../models/dokumentasjon';
-import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { IDokumentasjon } from '../../models/steg/dokumentasjon';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../utils/søknad';
 import { IntlShape } from 'react-intl';
 

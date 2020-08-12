@@ -1,4 +1,4 @@
-import { ESvar, ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EAktivitet,
   EArbeidssituasjon,
@@ -8,7 +8,7 @@ import {
   AktivitetDokumentasjon,
   IDokumentasjon,
   SituasjonDokumentasjon,
-} from '../../../models/dokumentasjon';
+} from '../../../models/steg/dokumentasjon';
 import { EArbeidssøker } from '../../../models/steg/aktivitet/arbeidssøker';
 
 // --- DOKUMENTASJON

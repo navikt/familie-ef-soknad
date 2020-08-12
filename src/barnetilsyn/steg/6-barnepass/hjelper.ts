@@ -1,4 +1,4 @@
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import {
   dagensDato,
   erEnMånedTilbakeITid,
@@ -8,12 +8,15 @@ import {
 import {
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
-} from '../../../models/barnepass';
+} from '../../models/barnepass';
 import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { erStrengGyldigTall } from '../../../utils/feltvalidering';
-import { IDatoFelt, ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import { erStrengGyldigTall } from '../../../utils/autentiseringogvalidering/feltvalidering';
+import {
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+} from '../../../models/søknad/søknadsfelter';
 
 export const harBarnAvsluttetFjerdeKlasse = (fødselsdato: string): boolean => {
   const juniEllerFør = dagensDato.getMonth() < 6;

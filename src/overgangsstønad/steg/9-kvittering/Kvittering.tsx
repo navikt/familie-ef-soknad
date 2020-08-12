@@ -9,7 +9,7 @@ import Side from '../../side/Side';
 import TilleggsstønaderArbeidssøker from '../../../søknad/steg/9-kvittering/TilleggsstønaderArbeidssøker';
 import TilleggsstønaderHarAktivitet from '../../../søknad/steg/9-kvittering/TilleggsstønaderHarAktivitet';
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
@@ -51,7 +51,13 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
-      {sykSøker && <SykSøker />}
+      {sykSøker && (
+        <SykSøker
+          filPath={
+            '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf'
+          }
+        />
+      )}
 
       {syktBarn && <SyktBarn />}
 

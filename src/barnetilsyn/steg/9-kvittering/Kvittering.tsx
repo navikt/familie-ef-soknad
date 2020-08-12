@@ -32,7 +32,13 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
-      {sykSøker && <SykSøker />}
+      {sykSøker && (
+        <SykSøker
+          filPath={
+            '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_BT.pdf'
+          }
+        />
+      )}
 
       <DineSaker />
     </Side>

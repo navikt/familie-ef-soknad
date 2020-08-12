@@ -6,12 +6,12 @@ import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
-} from '../../../models/barnepass';
+} from '../../models/barnepass';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
-import { erStrengGyldigTall } from '../../../utils/feltvalidering';
+import { erStrengGyldigTall } from '../../../utils/autentiseringogvalidering/feltvalidering';
 import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {

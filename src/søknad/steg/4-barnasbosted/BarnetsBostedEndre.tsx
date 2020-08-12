@@ -5,8 +5,8 @@ import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
-import { IBarn } from '../../../models/barn';
-import { EForelder, IForelder } from '../../../models/forelder';
+import { IBarn } from '../../../models/steg/barn';
+import { EForelder, IForelder } from '../../../models/steg/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
@@ -22,11 +22,11 @@ import {
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
-import { hentUid } from '../../../utils/uuid';
+import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import { førsteBokstavStor } from '../../../utils/språk';

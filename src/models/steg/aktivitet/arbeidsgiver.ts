@@ -3,7 +3,7 @@ import {
   IDatoFelt,
   ISpørsmålFelt,
   ITekstFelt,
-} from '../../søknadsfelter';
+} from '../../søknad/søknadsfelter';
 
 export interface IArbeidsgiver {
   id: string;

@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { Input, Label } from 'nav-frontend-skjema';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Hjelpetekst from '../Hjelpetekst';
-import { IHjelpetekst } from '../../models/hjelpetekst';
+import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 
 const StyledComponent = styled.div`
   display: grid;

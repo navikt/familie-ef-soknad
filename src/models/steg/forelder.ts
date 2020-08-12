@@ -4,7 +4,7 @@ import {
   ISpørsmålBooleanFelt,
   ISpørsmålFelt,
   ITekstFelt,
-} from './søknadsfelter';
+} from '../søknad/søknadsfelter';
 
 export interface IForelder {
   id?: string;

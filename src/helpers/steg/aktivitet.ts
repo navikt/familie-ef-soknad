@@ -1,5 +1,5 @@
-import { IPerson } from '../../models/person';
-import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { IPerson } from '../../models/søknad/person';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { EAktivitet, IAktivitet } from '../../models/steg/aktivitet/aktivitet';
 
 export const filtrerAktivitetSvaralternativer = (
