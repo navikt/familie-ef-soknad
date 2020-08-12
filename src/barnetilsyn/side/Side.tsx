@@ -1,22 +1,31 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
-import classNames from 'classnames';
 import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { RoutesBarnetilsyn } from '../routing/routesBarnetilsyn';
-import KnappBase from 'nav-frontend-knapper';
-import LocaleTekst from '../../language/LocaleTekst';
-import StyledNavigeringsWrapper from '../../components/knapper/StyledNavigeringsWrapper';
+import {
+  ERouteBarnetilsyn,
+  RoutesBarnetilsyn,
+} from '../routing/routesBarnetilsyn';
+import { Hovedknapp } from 'nav-frontend-knapper';
+
 import SendBrevSVG from '../../assets/SendSøknadSVG';
-import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
+import {
+  hentForrigeRoute,
+  hentNesteRoute,
+  hentPath,
+} from '../../utils/routing';
+import { hentTekst } from '../../utils/søknad';
+import { useIntl } from 'react-intl';
+import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 
 interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
   mellomlagreBarnetilsyn?: (steg: string) => void;
+  kommerFraOppsummering?: boolean;
 }
 
 const Side: React.FC<ISide> = ({
@@ -25,7 +34,9 @@ const Side: React.FC<ISide> = ({
   erSpørsmålBesvart,
   skalViseKnapper,
   mellomlagreBarnetilsyn,
+  kommerFraOppsummering,
 }) => {
+  const intl = useIntl();
   const location = useLocation();
   const history = useHistory();
 
@@ -65,48 +76,28 @@ const Side: React.FC<ISide> = ({
           </main>
         </Panel>
 
-        {skalViseKnapper && (
-          <StyledNavigeringsWrapper
-            classname={
-              erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
-            }
-          >
-            <KnappBase
-              className={'tilbake'}
-              type={'standard'}
-              onClick={() => history.push(forrigeRoute.path)}
+        {skalViseKnapper ? (
+          !kommerFraOppsummering ? (
+            <TilbakeNesteAvbrytKnapper
+              routesStønad={RoutesBarnetilsyn}
+              erSpørsmålBesvart={erSpørsmålBesvart}
+            />
+          ) : (
+            <Hovedknapp
+              className="tilbake-til-oppsummering"
+              onClick={() =>
+                history.push({
+                  pathname: hentPath(
+                    RoutesBarnetilsyn,
+                    ERouteBarnetilsyn.Oppsummering
+                  ),
+                })
+              }
             >
-              <LocaleTekst tekst={'knapp.tilbake'} />
-            </KnappBase>
-            {erSpørsmålBesvart && (
-              <KnappBase
-                type={'hoved'}
-                onClick={() => {
-                  if (mellomlagreBarnetilsyn) {
-                    mellomlagreBarnetilsyn(location.pathname);
-                  }
-                  history.push(nesteRoute.path);
-                }}
-                className={classNames(
-                  'neste',
-                  `neste-${nesteRoute.path.replace('/', '')}`,
-                  {
-                    hideButton: nesteRoute === undefined,
-                  }
-                )}
-              >
-                <LocaleTekst tekst={'knapp.neste'} />
-              </KnappBase>
-            )}
-            <KnappBase
-              className={'avbryt'}
-              type={'flat'}
-              onClick={() => history.push(RoutesBarnetilsyn[0].path)}
-            >
-              <LocaleTekst tekst={'knapp.avbryt'} />
-            </KnappBase>
-          </StyledNavigeringsWrapper>
-        )}
+              {hentTekst('oppsummering.tilbake', intl)}
+            </Hovedknapp>
+          )
+        ) : null}
       </div>
     </div>
   );
