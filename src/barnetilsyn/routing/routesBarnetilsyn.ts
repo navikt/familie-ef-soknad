@@ -63,6 +63,13 @@ export const RoutesBarnetilsyn: IRoute[] = [
   },
 ];
 
+export const erUrlBarnetilsyn = (): boolean => {
+  return window.location.href.includes(
+    process.env.PUBLIC_URL +
+      hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.Forside)
+  );
+};
+
 export const barnetilsynForsideUrl = (): string =>
   window.location.origin +
   process.env.PUBLIC_URL +

@@ -865,7 +865,8 @@ export default {
       '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
       '<li>signaturer fra deg og barnepasser</li></ul>',
     'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel':
-      'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende' +
+      'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende',
+    'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse':
       'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
     'dokumentasjon.barnepassArbeidstid.tittel':
       'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
