@@ -2,7 +2,7 @@ import {
   BarnetilsynDokumentasjon,
   IDokumentasjon,
 } from '../../../models/steg/dokumentasjon';
-import { ESvar, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBarnepass,
   ETypeBarnepassOrdning,
@@ -12,15 +12,6 @@ import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/merom
 
 // ----- DOKUMENTASJON
 
-export const TidligereFakturaer: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.TIDLIGERE_FAKTURAER,
-  spørsmålid: EBarnepass.søkerFraBestemtMåned,
-  label: '',
-  svarid: ESvar.JA,
-  tittel: 'dokumentasjon.tidligereFakturaer.tittel',
-  beskrivelse: 'dokumentasjon.tidligereFakturaer.beskrivelse',
-  harSendtInn: false,
-};
 export const FakturaFraBarnepassordning: IDokumentasjon = {
   id: BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING,
   spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
@@ -123,8 +114,6 @@ export const SøkerDuStønadFraBestemtMndSpm: ISpørsmål = {
     {
       id: ESøkerFraBestemtMåned.ja,
       svar_tekstid: 'svar.ja',
-      alert_tekstid: 'barnepass.dokumentasjon.søkerStønadFraBestemtMnd',
-      dokumentasjonsbehov: TidligereFakturaer,
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,

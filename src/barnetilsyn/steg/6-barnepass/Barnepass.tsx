@@ -19,6 +19,7 @@ import {
   erBarnepassStegFerdigUtfylt,
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
+  skalDokumentereTidligereFakturaer,
 } from './hjelper';
 
 interface Props {}
@@ -87,8 +88,15 @@ const Barnepass: FC<Props> = () => {
         },
       };
     });
-    settDokumentasjonsbehov(spørsmål, svar);
   };
+
+  const alertTekst: string = skalDokumentereTidligereFakturaer(
+    barnSomSkalHaBarnepass,
+    søkerFraBestemtMåned,
+    søknadsdato
+  )
+    ? hentTekst('barnepass.dokumentasjon.søkerStønadFraBestemtMnd', intl)
+    : '';
 
   return (
     <Side
@@ -140,6 +148,7 @@ const Barnepass: FC<Props> = () => {
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
             hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
+            alertTekst={alertTekst}
           />
         </SeksjonGruppe>
       )}
