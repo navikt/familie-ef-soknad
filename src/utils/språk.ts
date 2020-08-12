@@ -1,5 +1,5 @@
 import tekster from '../language/tekster';
-import { Språk } from '../models/språk';
+import { Språk } from '../models/felles/språk';
 
 export const getMessages = (locale: string) => {
   if (locale === 'en') {

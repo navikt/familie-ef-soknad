@@ -1,4 +1,8 @@
-import { ESvar, ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ESvarTekstid,
+  ISpørsmål,
+} from '../../../models/felles/spørsmålogsvar';
 import {
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
@@ -10,9 +14,9 @@ import {
 import {
   BarnasBostedDokumentasjon,
   IDokumentasjon,
-} from '../../../models/dokumentasjon';
+} from '../../../models/steg/dokumentasjon';
 
-import { EForelder } from '../../../models/forelder';
+import { EForelder } from '../../../models/steg/forelder';
 import { JaNeiSvar, NeiSvar } from '../../../helpers/svar';
 
 // --- Dokumentasjon

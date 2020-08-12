@@ -3,7 +3,7 @@ import slett from '../../assets/slett.svg';
 import vedlegg from '../../assets/vedlegg.svg';
 import { formaterFilstørrelse } from './utils';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { IVedlegg } from '../../models/vedlegg';
+import { IVedlegg } from '../../models/steg/vedlegg';
 
 interface Props {
   filliste: IVedlegg[];

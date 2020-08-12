@@ -9,7 +9,10 @@ import { hentTekst } from '../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Input } from 'nav-frontend-skjema';
-import { EPersonDetaljer, IPersonDetaljer } from '../../../models/person';
+import {
+  EPersonDetaljer,
+  IPersonDetaljer,
+} from '../../../models/søknad/person';
 
 interface Props {
   tittel: string;

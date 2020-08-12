@@ -6,7 +6,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { injectIntl } from 'react-intl';
 import { useSøknad } from '../context/SøknadContext';
 import { useToggles } from '../context/TogglesContext';
-import { ToggleName } from '../models/toggles';
+import { ToggleName } from '../models/søknad/toggles';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
@@ -14,10 +14,13 @@ import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import Environment from '../Environment';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
-import { RouteEnum, Routes } from './routing/Routes';
-import { hentPath } from './routing/Routes';
+import {
+  ERouteOvergangsstønad,
+  RoutesOvergangsstonad,
+} from './routing/routesOvergangsstonad';
 import { useForsideInnhold } from '../utils/hooks';
-import { ForsideType } from '../models/stønadstyper';
+import { ForsideType } from '../models/søknad/stønadstyper';
+import { hentPath } from '../utils/routing';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -89,7 +92,10 @@ const Forside: React.FC<any> = ({ intl }) => {
               intl={intl}
               harBekreftet={søknad.harBekreftet}
               settBekreftelse={settBekreftelse}
-              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
+              nesteSide={
+                hentPath(RoutesOvergangsstonad, ERouteOvergangsstønad.OmDeg) ||
+                ''
+              }
             />
           )}
         </Panel>

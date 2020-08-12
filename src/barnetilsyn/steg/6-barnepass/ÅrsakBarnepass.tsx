@@ -5,16 +5,16 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import {
   EÅrsakBarnepass,
   IBarnepass,
   IBarnepassOrdning,
-} from '../../../models/barnepass';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+} from '../../models/barnepass';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { hentUid } from '../../../utils/uuid';
+import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { årsakBarnepass } from './BarnepassConfig';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 

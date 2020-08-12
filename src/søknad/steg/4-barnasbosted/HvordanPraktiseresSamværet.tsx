@@ -4,7 +4,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
-import { IForelder } from '../../../models/forelder';
+import { IForelder } from '../../../models/steg/forelder';
 
 interface Props {
   forelder: any;

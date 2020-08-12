@@ -2,7 +2,7 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -10,7 +10,7 @@ import {
 import { IMellomlagretSkolepengerSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
-import { hentUid } from '../utils/uuid';
+import { hentUid } from '../utils/autentiseringogvalidering/uuid';
 import { nyttTekstFelt } from '../helpers/tommeSøknadsfelter';
 import { ISøknad } from './models/søknad';
 import {
@@ -18,7 +18,7 @@ import {
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
-import { MellomlagredeStønadstyper } from '../models/stønadstyper';
+import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {

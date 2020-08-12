@@ -1,4 +1,4 @@
-import { ESvar, ESvarTekstid, ISvar } from '../models/spørsmålogsvar';
+import { ESvar, ESvarTekstid, ISvar } from '../models/felles/spørsmålogsvar';
 
 export const JaNeiSvar: ISvar[] = [
   { id: ESvar.JA, svar_tekstid: ESvarTekstid.JA },

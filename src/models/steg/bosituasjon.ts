@@ -2,8 +2,8 @@ import {
   IDatoFelt,
   ISpørsmålBooleanFelt,
   ISpørsmålFelt,
-} from '../søknadsfelter';
-import { IPersonDetaljer } from '../person';
+} from '../søknad/søknadsfelter';
+import { IPersonDetaljer } from '../søknad/person';
 
 export interface IBosituasjon {
   delerBoligMedAndreVoksne: ISpørsmålFelt;

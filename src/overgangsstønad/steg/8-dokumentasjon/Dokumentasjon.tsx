@@ -4,13 +4,13 @@ import LastOppVedlegg from '../../../søknad/steg/8-dokumentasjon/LastOppVedlegg
 import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Side from '../../side/Side';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
 import SendSøknadKnapper from './SendSøknad';
-import { IDokumentasjon } from '../../../models/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';

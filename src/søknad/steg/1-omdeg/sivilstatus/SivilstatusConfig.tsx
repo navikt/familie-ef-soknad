@@ -1,7 +1,7 @@
 import {
   IDokumentasjon,
   OmDegDokumentasjon,
-} from '../../../../models/dokumentasjon';
+} from '../../../../models/steg/dokumentasjon';
 import {
   EBegrunnelse,
   ESivilstatusSøknadid,
@@ -10,7 +10,7 @@ import {
   ESvar,
   ESvarTekstid,
   ISpørsmål,
-} from '../../../../models/spørsmålogsvar';
+} from '../../../../models/felles/spørsmålogsvar';
 import { NeiSvar } from '../../../../helpers/svar';
 
 // DOKUMENTASJON CONFIG

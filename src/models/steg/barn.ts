@@ -2,9 +2,9 @@ import {
   IBooleanFelt,
   ISpørsmålBooleanFelt,
   ITekstFelt,
-} from './søknadsfelter';
+} from '../søknad/søknadsfelter';
 import { IForelder } from './forelder';
-import { IBarnepass } from './barnepass';
+import { IBarnepass } from '../../barnetilsyn/models/barnepass';
 
 export interface IBarn {
   id: string;

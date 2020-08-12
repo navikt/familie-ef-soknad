@@ -7,11 +7,11 @@ import TestsideInformasjon from './components/TestsideInformasjon';
 import { hentPersonData } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName } from './models/toggles';
+import { ToggleName } from './models/søknad/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
-} from './utils/autentisering';
+} from './utils/autentiseringogvalidering/autentisering';
 import mockPersonMedBarn from './mock/mockPerson.json';
 import mockPersonUtenBarn from './mock/mockPersonUtenBarn.json';
 import mockToggles from './mock/mockToggles.json';
@@ -19,7 +19,7 @@ import { settLabelOgVerdi } from './utils/søknad';
 import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
-import { IPerson } from './models/person';
+import { IPerson } from './models/søknad/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';

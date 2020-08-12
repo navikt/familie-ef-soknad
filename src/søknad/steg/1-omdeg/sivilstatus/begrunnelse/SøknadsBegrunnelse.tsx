@@ -20,10 +20,13 @@ import {
   EBegrunnelse,
   ISivilstatus,
 } from '../../../../../models/steg/omDeg/sivilstatus';
-import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../../models/felles/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoTilStreng, strengTilDato } from '../../../../../utils/dato';
-import { EPersonDetaljer, IPersonDetaljer } from '../../../../../models/person';
+import {
+  EPersonDetaljer,
+  IPersonDetaljer,
+} from '../../../../../models/søknad/person';
 
 interface Props {
   sivilstatus: ISivilstatus;

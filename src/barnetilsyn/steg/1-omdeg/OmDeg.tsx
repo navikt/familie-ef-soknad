@@ -12,8 +12,8 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
-import { ISøker } from '../../../models/person';
-import { ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import { ISøker } from '../../../models/søknad/person';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 

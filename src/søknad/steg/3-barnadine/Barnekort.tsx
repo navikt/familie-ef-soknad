@@ -7,10 +7,10 @@ import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
-import { IBooleanFelt, ITekstFelt } from '../../../models/søknadsfelter';
+import { IBooleanFelt, ITekstFelt } from '../../../models/søknad/søknadsfelter';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
   navn: ITekstFelt;
