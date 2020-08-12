@@ -4,9 +4,7 @@ import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../../../utils/søknad';
+import { useLocation } from 'react-router-dom';
 import {
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
@@ -20,6 +18,11 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     mellomlagreOvergangsstønad,
@@ -31,12 +34,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     søkerBosattINorgeSisteTreÅr,
     perioderBoddIUtlandet,
   } = søknad.medlemskap;
-  const location = useLocation();
-  const history = useHistory();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const skalViseKnapper = !kommerFraOppsummering
-    ? ESide.visTilbakeNesteAvbrytKnapp
-    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {

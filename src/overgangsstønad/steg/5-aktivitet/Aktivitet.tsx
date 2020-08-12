@@ -6,8 +6,7 @@ import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
 import {

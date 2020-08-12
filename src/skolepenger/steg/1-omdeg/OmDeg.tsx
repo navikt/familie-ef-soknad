@@ -1,9 +1,6 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { IntlShape, injectIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../../../utils/søknad';
+import { useLocation } from 'react-router-dom';
 import {
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
@@ -16,6 +13,9 @@ import { ISøker } from '../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesSkolepenger } from '../../routing/routes';
+import { hentPathSkolepengerOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const {
@@ -31,8 +31,10 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     perioderBoddIUtlandet,
   } = søknad.medlemskap;
   const location = useLocation();
-  const history = useHistory();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -94,8 +96,10 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
-      skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreSkolepenger={mellomlagreSkolepenger}
+      skalViseKnapper={skalViseKnapper}
+      routesStønad={RoutesSkolepenger}
+      mellomlagreStønad={mellomlagreSkolepenger}
+      tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
     >
       <Personopplysninger
         søker={søknad.person.søker}
@@ -124,21 +128,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
             ) : null}
           </>
         )}
-
-      {kommerFraOppsummering && søkerFyltUtAlleFelterOgSpørsmål() ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

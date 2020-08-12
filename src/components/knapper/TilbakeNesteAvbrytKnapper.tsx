@@ -6,7 +6,6 @@ import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useHistory, useLocation } from 'react-router';
 import styled from 'styled-components';
-import KomponentGruppe from '../gruppe/KomponentGruppe';
 
 const StyledNavigeringsKnapper = styled.div`
   padding: 2rem;
