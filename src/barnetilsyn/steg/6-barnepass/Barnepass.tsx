@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Side from '../../side/Side';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
@@ -21,7 +21,6 @@ import {
   harBarnAvsluttetFjerdeKlasse,
   skalLeggeVedDokumentasjonPåTidligereFakturaer,
 } from './hjelper';
-import { BarnetilsynDokumentasjon } from '../../../models/dokumentasjon';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -90,40 +89,6 @@ const Barnepass: FC<Props> = () => {
       };
     });
   };
-
-  useEffect(() => {
-    const søkerDuStønadFraBestemtMånedSvar:
-      | ISvar
-      | undefined = SøkerDuStønadFraBestemtMndSpm.svaralternativer.find(
-      (alternativ) => alternativ.id === søkerFraBestemtMåned?.svarid
-    );
-    const skalLeggeVedTidligereFakturaer = skalLeggeVedDokumentasjonPåTidligereFakturaer(
-      barnSomSkalHaBarnepass,
-      søkerFraBestemtMåned,
-      søknadsdato
-    );
-
-    if (søkerDuStønadFraBestemtMånedSvar !== undefined) {
-      const dokumentasjonsbehovFinnesFraFør = søknad.dokumentasjonsbehov.some(
-        (dok) => dok.id === BarnetilsynDokumentasjon.TIDLIGERE_FAKTURAER
-      );
-      if (dokumentasjonsbehovFinnesFraFør && !skalLeggeVedTidligereFakturaer) {
-        settDokumentasjonsbehov(SøkerDuStønadFraBestemtMndSpm, {
-          ...søkerDuStønadFraBestemtMånedSvar,
-          dokumentasjonsbehov: undefined,
-        });
-      } else if (
-        !dokumentasjonsbehovFinnesFraFør &&
-        skalLeggeVedTidligereFakturaer
-      ) {
-        settDokumentasjonsbehov(
-          SøkerDuStønadFraBestemtMndSpm,
-          søkerDuStønadFraBestemtMånedSvar
-        );
-      }
-    }
-    // eslint-disable-next-line
-  }, [søknadsdato, søkerFraBestemtMåned, barnSomSkalHaBarnepass]);
 
   const alertTekst: string = skalLeggeVedDokumentasjonPåTidligereFakturaer(
     barnSomSkalHaBarnepass,
