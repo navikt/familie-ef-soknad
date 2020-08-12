@@ -104,7 +104,7 @@ const harBarnMedBarbehageOgLignende = (barn: IBarn[]): boolean => {
   });
 };
 
-export const skalLeggeVedDokumentasjonPåTidligereFakturaer = (
+export const skalDokumentereTidligereFakturaer = (
   barnSomSkalHaBarnepass: IBarn[],
   søkerFraBestemtMåned?: ISpørsmålBooleanFelt,
   søknadsdato?: IDatoFelt

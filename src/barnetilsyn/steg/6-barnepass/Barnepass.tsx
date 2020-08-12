@@ -19,7 +19,7 @@ import {
   erBarnepassStegFerdigUtfylt,
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
-  skalLeggeVedDokumentasjonPåTidligereFakturaer,
+  skalDokumentereTidligereFakturaer,
 } from './hjelper';
 
 interface Props {}
@@ -90,7 +90,7 @@ const Barnepass: FC<Props> = () => {
     });
   };
 
-  const alertTekst: string = skalLeggeVedDokumentasjonPåTidligereFakturaer(
+  const alertTekst: string = skalDokumentereTidligereFakturaer(
     barnSomSkalHaBarnepass,
     søkerFraBestemtMåned,
     søknadsdato
