@@ -3,11 +3,13 @@ import { hentTekst } from '../../../utils/søknad';
 import { useHistory, useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { Hovedknapp } from 'nav-frontend-knapper';
-import Side from '../../side/Side';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -38,6 +40,9 @@ const BarnasBosted: React.FC = () => {
     (barn) => barn.skalHaBarnepass?.verdi
   );
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
   const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
@@ -63,9 +68,11 @@ const BarnasBosted: React.FC = () => {
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       {barna
         .filter((barn) => barn.skalHaBarnepass?.verdi)

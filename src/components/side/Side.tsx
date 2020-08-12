@@ -2,45 +2,44 @@ import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import {
-  ERouteBarnetilsyn,
-  RoutesBarnetilsyn,
-} from '../routing/routesBarnetilsyn';
 import { Hovedknapp } from 'nav-frontend-knapper';
-
 import SendBrevSVG from '../../assets/SendSøknadSVG';
-import {
-  hentForrigeRoute,
-  hentNesteRoute,
-  hentPath,
-} from '../../utils/routing';
 import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
+import { IRoute } from '../../models/routes';
+
+export enum ESide {
+  visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
+  visTilbakeTilOppsummeringKnapp = 'visTilbakeTilOppsummeringKnapp',
+  skjulKnapper = 'skjulKnapper',
+}
 
 interface ISide {
   tittel: string;
+  routesStønad: IRoute[];
+  skalViseKnapper: ESide;
   erSpørsmålBesvart?: boolean;
-  skalViseKnapper: boolean;
-  mellomlagreBarnetilsyn?: (steg: string) => void;
-  kommerFraOppsummering?: boolean;
+  mellomlagreStønad?: (steg: string) => void;
+  tilbakeTilOppsummeringPath?: string;
 }
 
 const Side: React.FC<ISide> = ({
   tittel,
   children,
+  routesStønad,
   erSpørsmålBesvart,
   skalViseKnapper,
-  mellomlagreBarnetilsyn,
-  kommerFraOppsummering,
+  mellomlagreStønad,
+  tilbakeTilOppsummeringPath,
 }) => {
   const intl = useIntl();
   const location = useLocation();
   const history = useHistory();
 
-  const routes = Object.values(RoutesBarnetilsyn);
+  const routes = Object.values(routesStønad);
   routes.shift();
   const stegobjekter = routes.map((steg, index) => {
     return {
@@ -51,8 +50,6 @@ const Side: React.FC<ISide> = ({
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
-  const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
-  const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
 
   return (
     <div className={'søknadsdialog'}>
@@ -75,22 +72,21 @@ const Side: React.FC<ISide> = ({
             {children}
           </main>
         </Panel>
+        {}
 
-        {skalViseKnapper ? (
-          !kommerFraOppsummering ? (
-            <TilbakeNesteAvbrytKnapper
-              routesStønad={RoutesBarnetilsyn}
-              erSpørsmålBesvart={erSpørsmålBesvart}
-            />
-          ) : (
+        {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
+          <TilbakeNesteAvbrytKnapper
+            routesStønad={routesStønad}
+            erSpørsmålBesvart={erSpørsmålBesvart}
+            mellomlagreStønad={mellomlagreStønad}
+          />
+        ) : skalViseKnapper === ESide.visTilbakeTilOppsummeringKnapp ? (
+          erSpørsmålBesvart && (
             <Hovedknapp
               className="tilbake-til-oppsummering"
               onClick={() =>
                 history.push({
-                  pathname: hentPath(
-                    RoutesBarnetilsyn,
-                    ERouteBarnetilsyn.Oppsummering
-                  ),
+                  pathname: tilbakeTilOppsummeringPath,
                 })
               }
             >

@@ -6,7 +6,6 @@ import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/
 import OppsummeringBarnepass from './OppsummeringBarnepass';
 import OppsummeringBosituasionenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
-import Side from '../../side/Side';
 import {
   ERouteBarnetilsyn,
   RoutesBarnetilsyn,
@@ -16,6 +15,7 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { useIntl } from 'react-intl';
 import { hentPath } from '../../../utils/routing';
+import Side, { ESide } from '../../../components/side/Side';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -27,9 +27,10 @@ const Oppsummering: React.FC = () => {
     <>
       <Side
         tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
-        skalViseKnapper={true}
-        mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
         erSpørsmålBesvart={true}
+        mellomlagreStønad={mellomlagreBarnetilsyn}
+        routesStønad={RoutesBarnetilsyn}
+        skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
       >
         <div className={'oppsummering'}>
           <Normaltekst className="disclaimer">

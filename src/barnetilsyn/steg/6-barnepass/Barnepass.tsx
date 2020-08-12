@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -20,6 +19,9 @@ import {
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
 } from './hjelper';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -93,12 +95,14 @@ const Barnepass: FC<Props> = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
-      skalViseKnapper={true}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
         barnSomSkalHaBarnepass,
         søknad
       )}
+      routesStønad={RoutesBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
         {barnSomSkalHaBarnepass.map((barn, index) => {

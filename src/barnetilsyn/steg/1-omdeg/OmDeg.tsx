@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { injectIntl, IntlShape } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
@@ -16,6 +15,12 @@ import { ISøker } from '../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import {
+  ERouteBarnetilsyn,
+  RoutesBarnetilsyn,
+} from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const {
@@ -32,7 +37,10 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = søknad.medlemskap;
   const location = useLocation();
   const history = useHistory();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering: string = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -94,8 +102,10 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
-      skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      skalViseKnapper={skalViseKnapper}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <Personopplysninger
         søker={søknad.person.søker}

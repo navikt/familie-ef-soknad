@@ -22,11 +22,13 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import Side from '../../side/Side';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { Element } from 'nav-frontend-typografi';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -43,7 +45,9 @@ const Aktivitet: React.FC = () => {
   );
   const { hvaErDinArbeidssituasjon, erIArbeid } = arbeidssituasjon;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   useEffect(() => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
@@ -140,9 +144,11 @@ const Aktivitet: React.FC = () => {
       tittel={intl.formatMessage({
         id: 'stegtittel.arbeidssituasjon.barnetilsyn',
       })}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
         <KomponentGruppe>
