@@ -182,7 +182,7 @@ export default {
     'sivilstatus.alert.dødsfall':
       'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
     'sivilstatus.alert.samlivsbrudd':
-      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet.',
+      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet. Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden. Dette er ikke meklingsattesten fra familievernkontoret.',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.hjelpetekst-åpne.begrunnelse':
@@ -754,9 +754,12 @@ export default {
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.søktSeparasjon.beskrivelse':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
+    'dokumentasjon.begrunnelse.tittel':
+      'Bekreftelse på samlivsbrudd med den andre forelderen',
     'dokumentasjon.begrunnelse.beskrivelse':
-      'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
+      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet.' +
+      '<br /><br /> Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden slik at du kan ettersende dette hvis du ikke allerede har en bekreftelse.' +
+      '<br /><br /> Dette er ikke meklingsattesten fra familievernkontoret.',
 
     'dokumentasjon.ikke.villig.til.arbeid.tittel':
       'Dokumentasjon som beskriver grunnen til at du ikke kan ta ethvert arbeid',
