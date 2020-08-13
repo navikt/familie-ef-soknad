@@ -1,8 +1,7 @@
 import React, { RefObject, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
@@ -18,7 +17,6 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const history = useHistory();
   const location = useLocation();
   const {
     søknad,
@@ -109,20 +107,6 @@ const BarnasBosted: React.FC = () => {
             );
           }
         })}
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

@@ -2,10 +2,9 @@ import React, { useState, useRef } from 'react';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
 import { IBarn } from '../../../models/steg/barn';
 import Side, { ESide } from '../../../components/side/Side';
@@ -19,7 +18,6 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const history = useHistory();
   const location = useLocation();
   const {
     søknad,
@@ -103,20 +101,6 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

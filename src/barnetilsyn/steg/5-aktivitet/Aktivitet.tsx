@@ -4,8 +4,7 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import {
   filtrerAktivitetSvaralternativer,
@@ -38,7 +37,6 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>(
     søknad?.aktivitet
@@ -215,22 +213,6 @@ const Aktivitet: React.FC = () => {
           );
         }
       )}
-
-      {kommerFraOppsummering &&
-      erSisteSpørsmålBesvartOgMinstEttAlternativValgt ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

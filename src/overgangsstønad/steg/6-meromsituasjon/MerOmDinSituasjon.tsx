@@ -20,8 +20,7 @@ import {
   harSøkerMindreEnnHalvStilling,
   harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
 } from '../../../søknad/steg/6-meromsituasjon/SituasjonUtil';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from '../../../søknad/steg/6-meromsituasjon/SituasjonOppfølgingSpørsmål';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
@@ -38,7 +37,6 @@ const MerOmDinSituasjon: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
   } = useSøknad();
-  const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
@@ -173,20 +171,6 @@ const MerOmDinSituasjon: React.FC = () => {
           />
         </SeksjonGruppe>
       )}
-      {kommerFraOppsummering && erAlleSpørsmålBesvart ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };
