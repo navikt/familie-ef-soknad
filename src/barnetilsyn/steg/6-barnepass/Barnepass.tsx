@@ -22,10 +22,16 @@ import {
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
+import { useLocation } from 'react-router';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     settSøknad,
@@ -95,7 +101,7 @@ const Barnepass: FC<Props> = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
-      skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
+      skalViseKnapper={skalViseKnapper}
       mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
         barnSomSkalHaBarnepass,

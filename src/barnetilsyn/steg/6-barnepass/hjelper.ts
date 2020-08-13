@@ -49,14 +49,20 @@ export const erBarnepassOrdningerUtfylt = (
 };
 
 export const erBarnepassStegFerdigUtfylt = (
-  barnMedISøknad: IBarn[],
+  barnSomSkalHaBarnepass: IBarn[],
   søknad: ISøknad
 ): boolean => {
   const { søkerFraBestemtMåned, søknadsdato } = søknad;
-  return (
+  const erSpørsmålSøkerFraBestemtMånedBesvart =
     (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
       søknadsdato?.verdi !== undefined) ||
-    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
+  const erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart = erBarnepassForAlleBarnUtfylt(
+    barnSomSkalHaBarnepass
+  );
+  return (
+    erSpørsmålSøkerFraBestemtMånedBesvart &&
+    erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart
   );
 };
 
