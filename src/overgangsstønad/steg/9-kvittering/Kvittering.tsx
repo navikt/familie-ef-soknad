@@ -16,6 +16,8 @@ import SyktBarn from '../../../søknad/steg/9-kvittering/SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
+import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
+import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 
@@ -43,6 +45,10 @@ const Kvittering: React.FC = () => {
     DinSituasjonType.erSyk
   );
 
+  const erklæringSamlivsbrudd =
+    søknad.sivilstatus.årsakEnslig?.svarid ===
+    EBegrunnelse.samlivsbruddForeldre;
+
   return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
@@ -62,7 +68,7 @@ const Kvittering: React.FC = () => {
       )}
 
       {syktBarn && <SyktBarn />}
-
+      {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
       {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
         <RegistrerDegSomArbeidssøker />
       )}

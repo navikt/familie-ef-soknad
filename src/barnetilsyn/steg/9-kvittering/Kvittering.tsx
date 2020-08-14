@@ -10,6 +10,8 @@ import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
 import { ErIArbeid } from '../../../models/steg/aktivitet/aktivitet';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
+import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 
@@ -23,6 +25,9 @@ const Kvittering: React.FC = () => {
 
   const sykSøker =
     søknad.aktivitet?.erIArbeid?.svarid === ErIArbeid.NeiFordiJegErSyk;
+  const erklæringSamlivsbrudd =
+    søknad.sivilstatus.årsakEnslig?.svarid ===
+    EBegrunnelse.samlivsbruddForeldre;
 
   return søknad.innsendingsdato ? (
     <Side
@@ -41,6 +46,7 @@ const Kvittering: React.FC = () => {
           }
         />
       )}
+      {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
 
       <DineSaker />
     </Side>
