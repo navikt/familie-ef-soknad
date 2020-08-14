@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
-import classNames from 'classnames';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useHistory, useLocation } from 'react-router';
@@ -101,13 +100,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
             }
             history.push(nesteRoute.path);
           }}
-          className={classNames(
-            'neste',
-            +`neste-${nesteRoute.path.replace('/', '')}`,
-            {
-              hideButton: nesteRoute === undefined,
-            }
-          )}
+          className={'neste'}
         >
           <LocaleTekst tekst={'knapp.neste'} />
         </KnappBase>

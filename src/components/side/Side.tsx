@@ -72,8 +72,6 @@ const Side: React.FC<ISide> = ({
             {children}
           </main>
         </Panel>
-        {}
-
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <TilbakeNesteAvbrytKnapper
             routesStønad={routesStønad}
