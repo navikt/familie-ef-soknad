@@ -8,7 +8,7 @@ import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { IBarn } from '../../../models/steg/barn';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';

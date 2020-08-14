@@ -59,7 +59,8 @@ export const RoutesSkolepenger: IRoute[] = [
 
 export const erUrlSkolepenger = (): boolean => {
   return window.location.href.includes(
-    process.env.PUBLIC_URL + hentPath(Routes, ERouteSkolepenger.Forside)
+    process.env.PUBLIC_URL +
+      hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside)
   );
 };
 
