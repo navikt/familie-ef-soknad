@@ -12,7 +12,7 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { hentSivilstatus } from '../../../../helpers/omdeg';
+import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
 import { ISøker } from '../../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 

@@ -5,7 +5,6 @@ import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
 import Feilside from '../../../components/feil/Feilside';
 import RegistrerDegSomArbeidssøker from '../../../søknad/steg/9-kvittering/RegistrerDegSomArbeidssøker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../side/Side';
 import TilleggsstønaderArbeidssøker from '../../../søknad/steg/9-kvittering/TilleggsstønaderArbeidssøker';
 import TilleggsstønaderHarAktivitet from '../../../søknad/steg/9-kvittering/TilleggsstønaderHarAktivitet';
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
@@ -19,6 +18,8 @@ import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasj
 import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
 import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -51,7 +52,8 @@ const Kvittering: React.FC = () => {
   return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
-      skalViseKnapper={false}
+      skalViseKnapper={ESide.skjulKnapper}
+      routesStønad={RoutesOvergangsstonad}
     >
       <SeksjonGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>

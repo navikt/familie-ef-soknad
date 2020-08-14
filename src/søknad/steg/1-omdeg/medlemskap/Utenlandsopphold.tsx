@@ -9,7 +9,7 @@ import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { datoTilStreng } from '../../../../utils/dato';
-import { erPeriodeDatoerValgt } from '../../../../helpers/omdeg';
+import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 
 interface Props {

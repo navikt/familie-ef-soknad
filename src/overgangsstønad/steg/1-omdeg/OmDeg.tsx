@@ -1,23 +1,29 @@
 import React, { FC } from 'react';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
-import Side from '../../side/Side';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../../../utils/søknad';
+import { useLocation } from 'react-router-dom';
 import {
+  erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
-} from '../../../helpers/omdeg';
+} from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import { hentPathOvergangsstønadOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     mellomlagreOvergangsstønad,
@@ -25,12 +31,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     settDokumentasjonsbehov,
   } = useSøknad();
   const { harSøktSeparasjon } = søknad.sivilstatus;
-  const {
-    søkerBosattINorgeSisteTreÅr,
-    perioderBoddIUtlandet,
-  } = søknad.medlemskap;
-  const location = useLocation();
-  const history = useHistory();
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -75,27 +75,20 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       };
     });
   };
-
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-
-  const søkerFyltUtAlleFelterOgSpørsmål = () => {
-    if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
-      const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
-        (utenlandsopphold) =>
-          utenlandsopphold.begrunnelse.verdi === '' ||
-          !utenlandsopphold.begrunnelse
-      );
-      return harFelterUtenUtfyltBegrunnelse ? false : true;
-    } else if (søkerBosattINorgeSisteTreÅr?.verdi) return true;
-    else return false;
-  };
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.person,
+    søknad.sivilstatus,
+    søknad.medlemskap
+  );
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
-      skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
+      skalViseKnapper={skalViseKnapper}
+      routesStønad={RoutesOvergangsstonad}
+      mellomlagreStønad={mellomlagreOvergangsstønad}
+      tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
       <Personopplysninger
         søker={søknad.person.søker}
@@ -124,21 +117,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
             ) : null}
           </>
         )}
-
-      {kommerFraOppsummering && søkerFyltUtAlleFelterOgSpørsmål() ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
@@ -14,6 +13,9 @@ import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { IBarn } from '../../../models/steg/barn';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -26,6 +28,9 @@ const BarnaDine: React.FC = () => {
   const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -86,9 +91,11 @@ const BarnaDine: React.FC = () => {
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={true}
+        skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={harValgtMinstEttBarn}
-        mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+        routesStønad={RoutesBarnetilsyn}
+        mellomlagreStønad={mellomlagreBarnetilsyn}
+        tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">
@@ -109,28 +116,7 @@ const BarnaDine: React.FC = () => {
               .map((barn: IBarn) => (
                 <Barnekort
                   key={barn.id}
-                  id={barn.id ? barn.id : ''}
-                  navn={barn.navn}
-                  fødselsdato={barn.fødselsdato}
-                  ident={
-                    barn.ident && barn.ident.verdi
-                      ? barn.ident
-                      : {
-                          label: hentTekst('barnadine.ident', intl),
-                          verdi: '',
-                        }
-                  }
-                  alder={barn.alder}
-                  harSammeAdresse={barn.harSammeAdresse}
-                  født={
-                    barn.født
-                      ? barn.født
-                      : {
-                          label: hentTekst('barnekort.spm.født', intl),
-                          verdi: false,
-                        }
-                  }
-                  lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                  gjeldendeBarn={barn}
                   barneListe={søknad.person.barn}
                   settBarneListe={settBarneliste}
                   settDokumentasjonsbehov={settDokumentasjonsbehov}

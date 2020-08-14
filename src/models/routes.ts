@@ -1,4 +1,4 @@
-import { ERouteSkolepenger } from '../skolepenger/routing/Routes';
+import { ERouteSkolepenger } from '../skolepenger/routing/routes';
 import { ERouteBarnetilsyn } from '../barnetilsyn/routing/routesBarnetilsyn';
 import { ERouteArbeidssøkerskjema } from '../arbeidssøkerskjema/routes/routesArbeidssokerskjema';
 import { ERouteOvergangsstønad } from '../overgangsstønad/routing/routesOvergangsstonad';

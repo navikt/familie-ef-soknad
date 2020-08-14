@@ -3,7 +3,6 @@ import React from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Side from '../../../overgangsstønad/side/Side';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
@@ -13,6 +12,8 @@ import { ErIArbeid } from '../../../models/steg/aktivitet/aktivitet';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -31,7 +32,8 @@ const Kvittering: React.FC = () => {
   return søknad.innsendingsdato ? (
     <Side
       tittel={intl.formatMessage({ id: 'kvittering.takk' })}
-      skalViseKnapper={false}
+      skalViseKnapper={ESide.skjulKnapper}
+      routesStønad={RoutesBarnetilsyn}
     >
       <SeksjonGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>

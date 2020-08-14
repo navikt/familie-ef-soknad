@@ -13,7 +13,7 @@ import {
 import {
   erUrlSkolepenger,
   skolepengerForsideUrl,
-} from '../../skolepenger/routing/Routes';
+} from '../../skolepenger/routing/routes';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
