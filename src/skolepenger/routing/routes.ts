@@ -57,6 +57,12 @@ export const RoutesSkolepenger: IRoute[] = [
   },
 ];
 
+export const erUrlSkolepenger = (): boolean => {
+  return window.location.href.includes(
+    process.env.PUBLIC_URL + hentPath(Routes, ERouteSkolepenger.Forside)
+  );
+};
+
 export const skolepengerForsideUrl = (): string =>
   window.location.origin +
   process.env.PUBLIC_URL +

@@ -7,6 +7,7 @@ import {
   setHours,
   setMinutes,
   addDays,
+  addMonths,
 } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
@@ -82,4 +83,8 @@ export const erVedleggstidspunktGyldig = (verdi: string): boolean => {
 
 export const erPeriodeGyldig = (periode: IPeriode | undefined): boolean => {
   return erGyldigDato(periode?.fra.verdi) && erGyldigDato(periode?.til.verdi);
+};
+
+export const erEnMånedTilbakeITid = (dato: string): boolean => {
+  return !isAfter(strengTilDato(dato), addMonths(dagensDato, -1));
 };
