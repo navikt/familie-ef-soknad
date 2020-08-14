@@ -6,9 +6,10 @@ import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router-dom';
 import {
+  erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
-} from '../../../helpers/omdeg';
+} from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
@@ -30,10 +31,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     settDokumentasjonsbehov,
   } = useSøknad();
   const { harSøktSeparasjon } = søknad.sivilstatus;
-  const {
-    søkerBosattINorgeSisteTreÅr,
-    perioderBoddIUtlandet,
-  } = søknad.medlemskap;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -78,23 +75,16 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
       };
     });
   };
-
-  const søkerFyltUtAlleFelterOgSpørsmål = () => {
-    if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
-      const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
-        (utenlandsopphold) =>
-          utenlandsopphold.begrunnelse.verdi === '' ||
-          !utenlandsopphold.begrunnelse
-      );
-      return harFelterUtenUtfyltBegrunnelse ? false : true;
-    } else if (søkerBosattINorgeSisteTreÅr?.verdi) return true;
-    else return false;
-  };
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.person,
+    søknad.sivilstatus,
+    søknad.medlemskap
+  );
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
       routesStønad={RoutesOvergangsstonad}
       mellomlagreStønad={mellomlagreOvergangsstønad}

@@ -2,9 +2,10 @@ import React, { FC } from 'react';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
+  erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
-} from '../../../helpers/omdeg';
+} from '../../../helpers/steg/omdeg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
@@ -18,6 +19,11 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     mellomlagreSkolepenger,
@@ -26,15 +32,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = useSkolepengerSøknad();
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
-  const {
-    søkerBosattINorgeSisteTreÅr,
-    perioderBoddIUtlandet,
-  } = søknad.medlemskap;
-  const location = useLocation();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const skalViseKnapper = !kommerFraOppsummering
-    ? ESide.visTilbakeNesteAvbrytKnapp
-    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -80,22 +77,16 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     });
   };
 
-  const søkerFyltUtAlleFelterOgSpørsmål = () => {
-    if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
-      const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
-        (utenlandsopphold: any) =>
-          utenlandsopphold.begrunnelse.verdi === '' ||
-          !utenlandsopphold.begrunnelse
-      );
-      return harFelterUtenUtfyltBegrunnelse ? false : true;
-    } else if (søkerBosattINorgeSisteTreÅr?.verdi) return true;
-    else return false;
-  };
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.person,
+    søknad.sivilstatus,
+    søknad.medlemskap
+  );
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
       routesStønad={RoutesSkolepenger}
       mellomlagreStønad={mellomlagreSkolepenger}
