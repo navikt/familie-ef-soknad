@@ -61,7 +61,7 @@ const Aktivitet: React.FC = () => {
     if (svar.id === ErIArbeid.NeiFordiJegErSyk) {
       delete endretArbeidssituasjon.egetAS;
       delete endretArbeidssituasjon.arbeidsforhold;
-      delete endretArbeidssituasjon.firma;
+      delete endretArbeidssituasjon.firmaer;
       delete endretArbeidssituasjon.etablererEgenVirksomhet;
 
       endretArbeidssituasjon = {

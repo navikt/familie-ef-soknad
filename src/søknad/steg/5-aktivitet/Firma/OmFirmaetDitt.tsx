@@ -5,34 +5,46 @@ import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
-} from '../../../components/dato/Datovelger';
-import InputLabelGruppe from '../../../components/gruppe/InputLabelGruppe';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import LocaleTekst from '../../../language/LocaleTekst';
-import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
-import { EFirma, IFirma } from '../../../models/steg/aktivitet/firma';
-import { datoTilStreng } from '../../../utils/dato';
-import { hentTekst } from '../../../utils/søknad';
+} from '../../../../components/dato/Datovelger';
+import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
+import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import { EFirma, IFirma } from '../../../../models/steg/aktivitet/firma';
+import { datoTilStreng } from '../../../../utils/dato';
+import { hentTekst } from '../../../../utils/søknad';
+import { hentTittelMedNr } from '../../../../language/utils';
+import classnames from 'classnames';
+import SlettKnapp from '../../../../components/knapper/SlettKnapp';
+import styled from 'styled-components/macro';
+
+const StyledFirma = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
 interface Props {
-  arbeidssituasjon: IAktivitet;
-  settArbeidssituasjon: (arbeidssituasjon: IAktivitet) => void;
+  firmaer: IFirma[];
+  firmanr: number;
+  settFirmaer: (firmaer: IFirma[]) => void;
   inkludertArbeidsmengde?: boolean;
 }
 
 const OmFirmaetDitt: React.FC<Props> = ({
-  arbeidssituasjon,
-  settArbeidssituasjon,
+  firmaer,
+  firmanr,
+  settFirmaer,
   inkludertArbeidsmengde = true,
 }) => {
   const intl = useIntl();
-  const [firma, settFirma] = useState<IFirma>(
-    arbeidssituasjon.firma ? arbeidssituasjon.firma : {}
-  );
+  const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
+  console.log(firmaFraSøknad);
+  const [firma, settFirma] = useState<IFirma>(firmaFraSøknad!);
 
   useEffect(() => {
-    settArbeidssituasjon({ ...arbeidssituasjon, firma: firma });
+    const endredeFirmaer = firmaer?.map((firmaFraSøknad, index) => {
+      return index === firmanr ? firma : firmaFraSøknad;
+    });
+
+    settFirmaer(endredeFirmaer);
     // eslint-disable-next-line
   }, [firma]);
 
@@ -70,6 +82,15 @@ const OmFirmaetDitt: React.FC<Props> = ({
     });
   };
 
+  const fjernFirma = () => {
+    if (firmaer && firmaer.length > 1) {
+      const oppdaterteFirmaer = firmaer?.filter(
+        (arbeidsgiver, index) => index !== firmanr
+      );
+      settFirmaer(oppdaterteFirmaer);
+    }
+  };
+
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
 
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
@@ -77,13 +98,23 @@ const OmFirmaetDitt: React.FC<Props> = ({
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
 
   const labelNavn = hentTekst('firma.label.navn', intl);
+  const firmaTittel = hentTittelMedNr(
+    firmaer!,
+    firmanr,
+    intl.formatMessage({ id: 'firma.tittel' })
+  );
 
   return (
-    <SeksjonGruppe>
+    <StyledFirma>
       <FeltGruppe>
-        <Undertittel className={'sentrert'}>
-          <LocaleTekst tekst={'firma.tittel'} />
-        </Undertittel>
+        <Undertittel className={'tittel'}>{firmaTittel}</Undertittel>
+        <SlettKnapp
+          className={classnames('slettknapp', {
+            kunEn: firmaer?.length === 1,
+          })}
+          onClick={() => fjernFirma()}
+          tekstid={'firma.knapp.slett'}
+        />
       </FeltGruppe>
       <FeltGruppe>
         <Input
@@ -157,7 +188,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           />
         </FeltGruppe>
       )}
-    </SeksjonGruppe>
+    </StyledFirma>
   );
 };
 

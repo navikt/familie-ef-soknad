@@ -30,7 +30,12 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
 
   const arbeidssituasjon = VisLabelOgSvar(aktivitet);
 
-  const firma = aktivitet.firma ? VisLabelOgSvar(aktivitet.firma) : null;
+  const firmaer = aktivitet.firmaer
+    ? visListeAvLabelOgSvar(
+        aktivitet.firmaer,
+        hentTekst('firmaer.tittel', intl)
+      )
+    : null;
 
   const arbeidsforhold = aktivitet.arbeidsforhold
     ? visListeAvLabelOgSvar(
@@ -76,7 +81,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
         <div className="seksjon">{arbeidssituasjon}</div>
       ) : null}
       {arbeidsforhold ? <div className="seksjon">{arbeidsforhold}</div> : null}
-      {firma ? <div className="seksjon">{firma}</div> : null}
+      {firmaer ? <div className="seksjon">{firmaer}</div> : null}
       {egetAS ? <div className="seksjon">{egetAS}</div> : null}
       {arbeidssøker ? <div className="seksjon">{arbeidssøker}</div> : null}
       {underUtdanning ? (

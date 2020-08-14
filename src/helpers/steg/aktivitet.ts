@@ -40,9 +40,9 @@ export const fjernAktivitet = (
 
   if (
     !erSvarid(EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser) &&
-    endretArbeidssituasjon.firma
+    endretArbeidssituasjon.firmaer
   )
-    delete endretArbeidssituasjon.firma;
+    delete endretArbeidssituasjon.firmaer;
   if (
     !erSvarid(EAktivitet.etablererEgenVirksomhet) &&
     endretArbeidssituasjon.etablererEgenVirksomhet

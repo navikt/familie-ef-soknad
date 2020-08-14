@@ -8,10 +8,10 @@ import OmArbeidsforholdetDitt from './arbeidsforhold/OmArbeidsforholdetDitt';
 import EtablererEgenVirksomhet from './EtablererEgenVirksomhet';
 import Arbeidssøker from './arbeidssøker/Arbeidssøker';
 import UnderUtdanning from './underUtdanning/UnderUtdanning';
-import OmFirmaetDitt from './OmFirmaetDitt';
 import EgetAS from './aksjeselskap/EgetAS';
 import FåttJobbTilbud from './FåttJobbTilbud';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import OmFirmaeneDine from './Firma/OmFirmaeneDine';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -44,7 +44,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
 
     case EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser:
       return (
-        <OmFirmaetDitt
+        <OmFirmaeneDine
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
         />

@@ -18,6 +18,7 @@ export interface IAktivitet {
   arbeidssøker?: IArbeidssøker;
   egetAS?: IAksjeselskap[];
   firma?: IFirma;
+  firmaer?: IFirma[];
   underUtdanning?: IUnderUtdanning;
 }
 
