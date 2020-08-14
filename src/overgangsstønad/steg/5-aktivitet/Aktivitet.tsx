@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
-import Side from '../../side/Side';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { hvaErDinArbeidssituasjonSpm } from '../../../søknad/steg/5-aktivitet/AktivitetConfig';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import { useSøknad } from '../../../context/SøknadContext';
 import {
@@ -17,6 +15,9 @@ import {
 } from '../../../helpers/steg/aktivitet';
 import AktivitetOppfølgingSpørsmål from '../../../søknad/steg/5-aktivitet/AktivitetOppfølgingSpørsmål';
 import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import { hentPathOvergangsstønadOppsummering } from '../../utils';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -26,15 +27,16 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
   } = useSøknad();
-  const history = useHistory();
   const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>({
     ...søknad.aktivitet,
     hvaErDinArbeidssituasjon: søknad.aktivitet.hvaErDinArbeidssituasjon,
   });
   const { hvaErDinArbeidssituasjon } = arbeidssituasjon;
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-
   useEffect(() => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
@@ -92,9 +94,11 @@ const Aktivitet: React.FC = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
-      mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+      mellomlagreStønad={mellomlagreOvergangsstønad}
+      routesStønad={RoutesOvergangsstonad}
+      tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
       <SeksjonGruppe>
         <CheckboxSpørsmål
@@ -132,22 +136,6 @@ const Aktivitet: React.FC = () => {
           )
         );
       })}
-
-      {kommerFraOppsummering &&
-      erSisteSpørsmålBesvartOgMinstEttAlternativValgt ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

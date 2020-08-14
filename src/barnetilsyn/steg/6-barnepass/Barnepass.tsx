@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -21,10 +20,19 @@ import {
   harBarnAvsluttetFjerdeKlasse,
   skalDokumentereTidligereFakturaer,
 } from './hjelper';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import { useLocation } from 'react-router';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     settSøknad,
@@ -101,12 +109,14 @@ const Barnepass: FC<Props> = () => {
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
-      skalViseKnapper={true}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      skalViseKnapper={skalViseKnapper}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
         barnSomSkalHaBarnepass,
         søknad
       )}
+      routesStønad={RoutesBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
         {barnSomSkalHaBarnepass.map((barn, index) => {

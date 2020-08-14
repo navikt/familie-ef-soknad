@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { IBarn } from '../../../models/steg/barn';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import { hentPathOvergangsstønadOppsummering } from '../../utils';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -20,9 +22,11 @@ const BarnaDine: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
   } = useSøknad();
-  const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -51,9 +55,11 @@ const BarnaDine: React.FC = () => {
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={true}
+        skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={true}
-        mellomlagreOvergangsstønad={mellomlagreOvergangsstønad}
+        routesStønad={RoutesOvergangsstonad}
+        mellomlagreStønad={mellomlagreOvergangsstønad}
+        tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
@@ -95,20 +101,6 @@ const BarnaDine: React.FC = () => {
             </div>
           </Modal>
         </div>
-        {kommerFraOppsummering ? (
-          <div className={'side'}>
-            <Hovedknapp
-              className="tilbake-til-oppsummering"
-              onClick={() =>
-                history.push({
-                  pathname: '/oppsummering',
-                })
-              }
-            >
-              {hentTekst('oppsummering.tilbake', intl)}
-            </Hovedknapp>
-          </div>
-        ) : null}
       </Side>
     </>
   );

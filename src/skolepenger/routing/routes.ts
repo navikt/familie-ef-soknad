@@ -13,7 +13,7 @@ export enum ERouteSkolepenger {
   Kvittering = 'Kvittering',
 }
 
-export const Routes: IRoute[] = [
+export const RoutesSkolepenger: IRoute[] = [
   { path: '/skolepenger', label: 'Forside', route: ERouteSkolepenger.Forside },
   {
     path: '/skolepenger/om-deg',
@@ -56,20 +56,15 @@ export const Routes: IRoute[] = [
     route: ERouteSkolepenger.Kvittering,
   },
 ];
-export const hentPathSkolepenger = (
-  routes: IRoute[],
-  route: ERouteSkolepenger
-) => {
-  return routes.find((r) => r.route === route)?.path;
-};
 
 export const erUrlSkolepenger = (): boolean => {
   return window.location.href.includes(
-    process.env.PUBLIC_URL + hentPath(Routes, ERouteSkolepenger.Forside)
+    process.env.PUBLIC_URL +
+      hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside)
   );
 };
 
 export const skolepengerForsideUrl = (): string =>
   window.location.origin +
   process.env.PUBLIC_URL +
-  hentPathSkolepenger(Routes, ERouteSkolepenger.Forside);
+  hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside);
