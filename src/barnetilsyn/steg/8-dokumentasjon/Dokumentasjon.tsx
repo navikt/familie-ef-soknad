@@ -45,8 +45,8 @@ const Dokumentasjon: React.FC = () => {
   return (
     <Side
       tittel={sidetittel}
-      skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
-      erSpørsmålBesvart={true}
+      skalViseKnapper={ESide.skjulKnapper}
+      erSpørsmålBesvart={false}
       routesStønad={RoutesBarnetilsyn}
     >
       <SeksjonGruppe>

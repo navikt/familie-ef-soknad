@@ -71,7 +71,7 @@ const Dokumentasjon: React.FC = () => {
     <Side
       tittel={sidetittel}
       skalViseKnapper={ESide.skjulKnapper}
-      erSpørsmålBesvart={true}
+      erSpørsmålBesvart={false}
       mellomlagreStønad={mellomlagreOvergangsstønad}
       routesStønad={RoutesOvergangsstonad}
     >
