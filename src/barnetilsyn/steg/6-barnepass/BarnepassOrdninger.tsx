@@ -7,10 +7,10 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Element } from 'nav-frontend-typografi';
 import { erBarnepassOrdningerUtfylt } from './hjelper';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
-import { hentUid } from '../../../utils/uuid';
-import { IBarn } from '../../../models/barn';
+import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
+import { IBarn } from '../../../models/steg/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 
 interface Props {

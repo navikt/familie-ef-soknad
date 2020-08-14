@@ -1,4 +1,4 @@
-import { ESvarTekstid, ISpørsmål } from '../../../models/spørsmålogsvar';
+import { ESvarTekstid, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   DinSituasjonType,
   ESagtOppEllerRedusertStilling,
@@ -8,7 +8,7 @@ import {
 import {
   IDokumentasjon,
   SituasjonDokumentasjon,
-} from '../../../models/dokumentasjon';
+} from '../../../models/steg/dokumentasjon';
 
 // DOKUMENTASJON
 export const DokumentasjonSykdom: IDokumentasjon = {

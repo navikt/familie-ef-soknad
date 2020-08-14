@@ -10,9 +10,13 @@ import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import { useForsideInnhold } from '../utils/hooks';
-import { ForsideType } from '../models/stønadstyper';
-import { hentPath, RouteEnum, Routes } from './routing/Routes';
+import { ForsideType } from '../models/søknad/stønadstyper';
+import {
+  ERouteBarnetilsyn,
+  RoutesBarnetilsyn,
+} from './routing/routesBarnetilsyn';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
+import { hentPath } from '../utils/routing';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -72,7 +76,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               intl={intl}
               harBekreftet={søknad.harBekreftet}
               settBekreftelse={settBekreftelse}
-              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
+              nesteSide={
+                hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.OmDeg) || ''
+              }
             />
           )}
         </Panel>

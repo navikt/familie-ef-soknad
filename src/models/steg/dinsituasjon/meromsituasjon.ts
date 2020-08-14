@@ -4,7 +4,7 @@ import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
   ITekstFelt,
-} from '../../søknadsfelter';
+} from '../../søknad/søknadsfelter';
 
 export interface IDinSituasjon {
   gjelderDetteDeg: ISpørsmålListeFelt;

@@ -1,5 +1,9 @@
 import React, { SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar, ESvarTekstid } from '../../models/spørsmålogsvar';
+import {
+  ISpørsmål,
+  ISvar,
+  ESvarTekstid,
+} from '../../models/felles/spørsmålogsvar';
 import { Element } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';

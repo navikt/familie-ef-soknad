@@ -6,7 +6,7 @@ import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {

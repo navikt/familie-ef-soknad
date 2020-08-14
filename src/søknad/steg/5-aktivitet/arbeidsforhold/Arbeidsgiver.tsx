@@ -18,8 +18,8 @@ import {
   EStilling,
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
-import { ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
+import { ISvar } from '../../../../models/felles/spørsmålogsvar';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 
 const StyledArbeidsgiver = styled.div`

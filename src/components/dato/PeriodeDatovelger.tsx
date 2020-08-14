@@ -5,7 +5,7 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
 import { strengTilDato } from '../../utils/dato';
-import { EPeriode, IPeriode } from '../../models/periode';
+import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { compareAsc, isEqual } from 'date-fns';
 
 interface Props {

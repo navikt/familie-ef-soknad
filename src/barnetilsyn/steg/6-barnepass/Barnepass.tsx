@@ -6,7 +6,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
@@ -19,6 +19,7 @@ import {
   erBarnepassStegFerdigUtfylt,
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
+  skalDokumentereTidligereFakturaer,
 } from './hjelper';
 
 interface Props {}
@@ -87,8 +88,15 @@ const Barnepass: FC<Props> = () => {
         },
       };
     });
-    settDokumentasjonsbehov(spørsmål, svar);
   };
+
+  const alertTekst: string = skalDokumentereTidligereFakturaer(
+    barnSomSkalHaBarnepass,
+    søkerFraBestemtMåned,
+    søknadsdato
+  )
+    ? hentTekst('barnepass.dokumentasjon.søkerStønadFraBestemtMnd', intl)
+    : '';
 
   return (
     <Side
@@ -140,6 +148,7 @@ const Barnepass: FC<Props> = () => {
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
             hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
+            alertTekst={alertTekst}
           />
         </SeksjonGruppe>
       )}

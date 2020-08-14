@@ -5,12 +5,12 @@ import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useLocation, useHistory } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Routes } from '../routing/Routes';
-import { hentForrigeRoute, hentNesteRoute } from '../routing/Routes';
+import { RoutesBarnetilsyn } from '../routing/routesBarnetilsyn';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import StyledNavigeringsWrapper from '../../components/knapper/StyledNavigeringsWrapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
+import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 
 interface ISide {
   tittel: string;
@@ -29,7 +29,7 @@ const Side: React.FC<ISide> = ({
   const location = useLocation();
   const history = useHistory();
 
-  const routes = Object.values(Routes);
+  const routes = Object.values(RoutesBarnetilsyn);
   routes.shift();
   const stegobjekter = routes.map((steg, index) => {
     return {
@@ -40,8 +40,8 @@ const Side: React.FC<ISide> = ({
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
+  const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
+  const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
 
   return (
     <div className={'søknadsdialog'}>
@@ -101,7 +101,7 @@ const Side: React.FC<ISide> = ({
             <KnappBase
               className={'avbryt'}
               type={'flat'}
-              onClick={() => history.push(Routes[0].path)}
+              onClick={() => history.push(RoutesBarnetilsyn[0].path)}
             >
               <LocaleTekst tekst={'knapp.avbryt'} />
             </KnappBase>

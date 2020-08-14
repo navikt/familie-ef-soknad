@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Environment from '../Environment';
-import { IBarn } from '../models/barn';
+import { IBarn } from '../models/steg/barn';
 
 export const sendInnSøknad = (søknad: object) => {
   return axios

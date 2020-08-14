@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import {
   EArbeidsgiver,
   EStilling,
@@ -7,7 +7,7 @@ import { JaNeiSvar } from '../../../../helpers/svar';
 import {
   AktivitetDokumentasjon,
   IDokumentasjon,
-} from '../../../../models/dokumentasjon';
+} from '../../../../models/steg/dokumentasjon';
 
 // DOKUMENTASJON
 const DokumentasjonLærling: IDokumentasjon = {

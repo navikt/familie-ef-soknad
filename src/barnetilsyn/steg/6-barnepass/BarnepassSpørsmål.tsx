@@ -1,11 +1,6 @@
 import React, { FC, useState } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { IBarn } from '../../../models/barn';
-import {
-  EBarnepass,
-  ETypeBarnepassOrdning,
-  IBarnepassOrdning,
-} from '../../models/barnepass';
+import { IBarn } from '../../../models/steg/barn';
 import classnames from 'classnames';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -17,7 +12,7 @@ import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
 import { Input } from 'nav-frontend-skjema';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
@@ -25,8 +20,13 @@ import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
 import { erÅrsakBarnepassSpmBesvart } from './hjelper';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { EPeriode } from '../../../models/periode';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
+import {
+  EBarnepass,
+  ETypeBarnepassOrdning,
+  IBarnepassOrdning,
+} from '../../models/barnepass';
+import { EPeriode } from '../../../models/felles/periode';
 
 interface Props {
   barn: IBarn;

@@ -19,11 +19,15 @@ import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
-import { ESvar, ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../utils/spørsmålogsvar';
 import { useSkjema } from '../SkjemaContext';
 import MultiSvarSpørsmål from '../../components/spørsmål/MultiSvarSpørsmål';
-import { hentPath, RouteEnum, Routes } from '../routes/Routes';
+import {
+  ERouteArbeidssøkerskjema,
+  RoutesArbeidssokerskjema,
+} from '../routes/routesArbeidssokerskjema';
+import { hentPath } from '../../utils/routing';
 
 const Spørsmål: FC = () => {
   const location = useLocation();
@@ -143,7 +147,10 @@ const Spørsmål: FC = () => {
           className="tilbake-til-oppsummering"
           onClick={() =>
             history.push({
-              pathname: hentPath(Routes, RouteEnum.Oppsummering),
+              pathname: hentPath(
+                RoutesArbeidssokerskjema,
+                ERouteArbeidssøkerskjema.Oppsummering
+              ),
             })
           }
         >

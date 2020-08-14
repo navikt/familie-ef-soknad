@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer } from 'react';
-import { IPerson } from '../models/person';
+import { IPerson } from '../models/søknad/person';
 import tomPerson from '../mock/initialState.json';
 
 // ----------- ACTIONS & TYPES -----------

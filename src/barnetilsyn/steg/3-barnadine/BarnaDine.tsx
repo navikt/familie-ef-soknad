@@ -13,7 +13,7 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -48,7 +48,7 @@ const BarnaDine: React.FC = () => {
       delete nyttBarn.barnepass;
     }
 
-    const nyBarneListe = søknad.person.barn.map((barn) => {
+    const nyBarneListe = søknad.person.barn.map((barn: IBarn) => {
       return barn.id === id ? nyttBarn : barn;
     });
     settSøknad({
@@ -58,7 +58,9 @@ const BarnaDine: React.FC = () => {
   };
 
   const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+    const nyBarneListe = søknad.person.barn.filter(
+      (barn: IBarn) => barn.id !== id
+    );
 
     settSøknad((prevSoknad) => {
       return {
@@ -107,28 +109,7 @@ const BarnaDine: React.FC = () => {
               .map((barn: IBarn) => (
                 <Barnekort
                   key={barn.id}
-                  id={barn.id ? barn.id : ''}
-                  navn={barn.navn}
-                  fødselsdato={barn.fødselsdato}
-                  ident={
-                    barn.ident && barn.ident.verdi
-                      ? barn.ident
-                      : {
-                          label: hentTekst('barnadine.ident', intl),
-                          verdi: '',
-                        }
-                  }
-                  alder={barn.alder}
-                  harSammeAdresse={barn.harSammeAdresse}
-                  født={
-                    barn.født
-                      ? barn.født
-                      : {
-                          label: hentTekst('barnekort.spm.født', intl),
-                          verdi: false,
-                        }
-                  }
-                  lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                  gjeldendeBarn={barn}
                   barneListe={søknad.person.barn}
                   settBarneListe={settBarneliste}
                   settDokumentasjonsbehov={settDokumentasjonsbehov}

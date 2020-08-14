@@ -2,7 +2,7 @@ import { useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
 import { ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
@@ -17,7 +17,7 @@ import {
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
-import { MellomlagredeStønadstyper } from '../models/stønadstyper';
+import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
