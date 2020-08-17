@@ -21,11 +21,15 @@ export const erSituasjonIAvhukedeSvar = (
   });
 };
 export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
-  const { firma, underUtdanning, arbeidsforhold } = søknad.aktivitet;
+  const { firmaer, underUtdanning, arbeidsforhold } = søknad.aktivitet;
 
   let totalArbeidsmengde: number = 0;
-  if (firma?.arbeidsmengde)
-    totalArbeidsmengde += fraStringTilTall(firma.arbeidsmengde.verdi);
+  if (firmaer)
+    totalArbeidsmengde += firmaer.reduce((initiell, firma) => {
+      return firma.arbeidsmengde?.verdi
+        ? initiell + fraStringTilTall(firma.arbeidsmengde?.verdi)
+        : initiell;
+    }, 0);
   if (underUtdanning?.arbeidsmengde)
     totalArbeidsmengde += fraStringTilTall(underUtdanning.arbeidsmengde.verdi);
   if (arbeidsforhold) {

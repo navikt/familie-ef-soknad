@@ -489,12 +489,16 @@ export default {
     'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
     'egetAS.label.aksjeselskap': 'Aksjeselskap',
 
-    'firma.tittel': 'Om firmaet du driver',
+    'firmaer.tittel': 'Om firmaet du driver',
+    'firma.tittel': 'Firma',
     'firma.label.navn': 'Navn på firma',
     'firma.label.organisasjonnr': 'Organisasjonsnummer',
     'firma.datovelger.etablering': 'Når etablerte du firmaet?',
     'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
     'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+    'firma.knapp.slett': 'Fjern firma',
+    'firmaer.label.flereFirmaer': 'Har du flere firmaer?',
+    'firmaer.knapp.leggTilFirma': 'Legg til firma',
 
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
