@@ -32,10 +32,11 @@ interface Props {
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
   barn: IBarn;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid?: string
   ) => void;
 }
 
@@ -43,7 +44,7 @@ const BostedOgSamvær: React.FC<Props> = ({
   settForelder,
   forelder,
   barn,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
 
@@ -80,7 +81,7 @@ const BostedOgSamvær: React.FC<Props> = ({
     }
 
     settForelder(nyForelder);
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
   return (

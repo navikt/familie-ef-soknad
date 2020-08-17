@@ -20,7 +20,7 @@ const BarnaDine: React.FC = () => {
     søknad,
     mellomlagreOvergangsstønad,
     settSøknad,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useSøknad();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
@@ -73,7 +73,7 @@ const BarnaDine: React.FC = () => {
                 slettBarn={slettBarn}
                 barneListe={søknad.person.barn}
                 settBarneListe={settBarneliste}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               />
             ))}
             <div className="barnekort legg-til">
@@ -96,7 +96,7 @@ const BarnaDine: React.FC = () => {
                 settÅpenModal={settÅpenModal}
                 barneListe={søknad.person.barn}
                 settBarneListe={settBarneliste}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               />
             </div>
           </Modal>

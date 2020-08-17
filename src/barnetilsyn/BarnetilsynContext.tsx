@@ -7,6 +7,7 @@ import { ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
+  oppdaterDokumentasjonTilEtSvarSpørsmålForBarn,
 } from '../helpers/steg/dokumentasjon';
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
@@ -88,6 +89,34 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       );
     };
 
+    const settDokumentasjonsbehovForBarn = (
+      spørsmål: ISpørsmål,
+      valgtSvar: ISvar,
+      barneid: string,
+      barnepassid?: string
+    ) => {
+      let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
+      if (spørsmål.flersvar) {
+        console.log('Ikke implementert');
+      } else {
+        endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
+          søknad.dokumentasjonsbehov,
+          spørsmål,
+          valgtSvar,
+          intl,
+          barneid,
+          barnepassid
+        );
+      }
+
+      settSøknad((prevSoknad) => {
+        return {
+          ...prevSoknad,
+          dokumentasjonsbehov: endretDokumentasjonsbehov,
+        };
+      });
+    };
+
     const settDokumentasjonsbehov = (
       spørsmål: ISpørsmål,
       valgtSvar: ISvar,
@@ -123,6 +152,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       søknad,
       settSøknad,
       settDokumentasjonsbehov,
+      settDokumentasjonsbehovForBarn,
       mellomlagretBarnetilsyn,
       hentMellomlagretBarnetilsyn,
       mellomlagreBarnetilsyn,

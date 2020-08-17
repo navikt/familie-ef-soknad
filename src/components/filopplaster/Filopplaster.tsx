@@ -19,7 +19,11 @@ import { dagensDatoStreng } from '../../utils/dato';
 
 interface Props {
   intl: IntlShape;
-  settDokumentasjon: (dokumentasjon: IDokumentasjon) => void;
+  oppdaterDokumentasjon: (
+    dokumentasjonsid: string,
+    opplastedeVedlegg: IVedlegg[] | undefined,
+    harSendtInnTidligere: boolean
+  ) => void;
   dokumentasjon: IDokumentasjon;
   beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
@@ -33,7 +37,7 @@ interface OpplastetVedlegg {
 
 const Filopplaster: React.FC<Props> = ({
   intl,
-  settDokumentasjon,
+  oppdaterDokumentasjon,
   dokumentasjon,
   beskrivelsesListe,
   tillatteFiltyper,
@@ -100,10 +104,11 @@ const Filopplaster: React.FC<Props> = ({
             });
 
             const opplastedeVedlegg = dokumentasjon.opplastedeVedlegg || [];
-            settDokumentasjon({
-              ...dokumentasjon,
-              opplastedeVedlegg: [...opplastedeVedlegg, ...nyeVedlegg],
-            });
+            oppdaterDokumentasjon(
+              dokumentasjon.id,
+              [...opplastedeVedlegg, ...nyeVedlegg],
+              dokumentasjon.harSendtInn
+            );
           })
           .catch((error) => {
             feilmeldingsliste.push(
@@ -123,7 +128,11 @@ const Filopplaster: React.FC<Props> = ({
     const nyVedleggsliste = opplastedeVedlegg.filter((obj: IVedlegg) => {
       return obj.dokumentId !== fil.dokumentId;
     });
-    settDokumentasjon({ ...dokumentasjon, opplastedeVedlegg: nyVedleggsliste });
+    oppdaterDokumentasjon(
+      dokumentasjon.id,
+      nyVedleggsliste,
+      dokumentasjon.harSendtInn
+    );
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

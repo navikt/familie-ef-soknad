@@ -22,10 +22,11 @@ interface Props {
   barn: IBarn;
   forelder: IForelder;
   settForelder: (forelder: IForelder) => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid?: string
   ) => void;
 }
 
@@ -33,7 +34,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   barn,
   forelder,
   settForelder,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
 
@@ -47,7 +48,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
   const hentSpørsmålTekst = (tekstid: string) => {

@@ -33,10 +33,11 @@ interface Props {
   barnepassOrdning: IBarnepassOrdning;
   settBarnepassOrdning: (barnepassOrdning: IBarnepassOrdning) => void;
   fjernBarnepassOrdning: (barnepassordning: IBarnepassOrdning) => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid: string
   ) => void;
 }
 
@@ -45,7 +46,7 @@ const BarnepassSpørsmål: FC<Props> = ({
   settBarnepassOrdning,
   fjernBarnepassOrdning,
   barnepassOrdning,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
   const { hvaSlagsBarnepassOrdning, periode } = barnepassOrdning;
@@ -98,7 +99,12 @@ const BarnepassSpørsmål: FC<Props> = ({
         verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(
+      spørsmål,
+      svar,
+      barn.id,
+      barnepassOrdning.id
+    );
   };
 
   const settInputFelt = (

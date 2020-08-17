@@ -16,17 +16,18 @@ import { useIntl } from 'react-intl';
 interface Props {
   barn: IBarn;
   settBarnepass: (barnepass: IBarnepass, barnid: string) => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid: string
   ) => void;
 }
 
 const BarnepassOrdninger: FC<Props> = ({
   barn,
   settBarnepass,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
   const barnepass: IBarnepass = barn.barnepass
@@ -85,7 +86,7 @@ const BarnepassOrdninger: FC<Props> = ({
           barn={barn}
           barnepassOrdning={barnepassordning}
           settBarnepassOrdning={settBarnepassOrdning}
-          settDokumentasjonsbehov={settDokumentasjonsbehov}
+          settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
           fjernBarnepassOrdning={fjernBarnepassOrdning}
         />
       ))}
