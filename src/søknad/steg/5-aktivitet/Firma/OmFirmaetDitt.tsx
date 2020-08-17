@@ -36,7 +36,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
-  console.log(firmaFraSøknad);
+
   const [firma, settFirma] = useState<IFirma>(firmaFraSøknad!);
 
   useEffect(() => {
