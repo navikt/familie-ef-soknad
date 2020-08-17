@@ -545,7 +545,6 @@ export default {
       'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
       'Stønadene kan dekke utgifter til <ul>' +
       '<li>barnepass</li>' +
-      '<li>reise når du er arbeidssøker</li>' +
       '<li>flytting</li>' +
       '</ul>' +
       'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
@@ -921,7 +920,6 @@ export default {
     'kvittering.beskrivelse.tilleggsstønader.arbeidssøker':
       'Stønadene kan dekke utgifter til <ul>' +
       '<li>barnepass</li>' +
-      '<li>reise når du er arbeidssøker</li>' +
       '<li>flytting</li></ul>' +
       '<i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
     'kvittering.lenke.tilleggsstønader.arbeidssøker':
