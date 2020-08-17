@@ -23,7 +23,7 @@ const BarnaDine: React.FC = () => {
     søknad,
     settSøknad,
     mellomlagreBarnetilsyn,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
   const history = useHistory();
   const location = useLocation();
@@ -119,7 +119,9 @@ const BarnaDine: React.FC = () => {
                   gjeldendeBarn={barn}
                   barneListe={søknad.person.barn}
                   settBarneListe={settBarneliste}
-                  settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  settDokumentasjonsbehovForBarn={
+                    settDokumentasjonsbehovForBarn
+                  }
                   velgBarnForDenneSøknaden={
                     <BarnMedISøknad
                       id={barn.id ? barn.id : ''}
@@ -151,7 +153,7 @@ const BarnaDine: React.FC = () => {
               <LeggTilBarn
                 settÅpenModal={settÅpenModal}
                 barneListe={søknad.person.barn}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
                 settBarneListe={settBarneliste}
               />
             </div>

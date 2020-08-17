@@ -5,11 +5,10 @@ import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
 import SendSøknadKnapper from './SendSøknad';
-import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';
@@ -17,6 +16,7 @@ import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import { IVedlegg } from '../../../models/steg/vedlegg';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -26,11 +26,21 @@ const Dokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
-  const settDokumentasjon = (dokumentasjon: IDokumentasjon) => {
+  const oppdaterDokumentasjon = (
+    dokumentasjonsid: string,
+    opplastedeVedlegg: IVedlegg[] | undefined,
+    harSendtInnTidligere: boolean
+  ) => {
     settSøknad((prevSoknad) => {
       const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
         (dok) => {
-          return dok.id === dokumentasjon.id ? dokumentasjon : dok;
+          return dok.id === dokumentasjonsid
+            ? {
+                ...dok,
+                opplastedeVedlegg: opplastedeVedlegg,
+                harSendtInn: harSendtInnTidligere,
+              }
+            : dok;
         }
       );
       return { ...prevSoknad, dokumentasjonsbehov: dokumentasjonMedVedlegg };
@@ -56,10 +66,11 @@ const Dokumentasjon: React.FC = () => {
             message: `Fjernet ugyldig vedlegg fra søknaden.`,
             level: Severity.Warning,
           });
-          settDokumentasjon({
-            ...dokBehov,
-            opplastedeVedlegg: gyldigeVedlegg,
-          });
+          oppdaterDokumentasjon(
+            dokBehov.id,
+            gyldigeVedlegg,
+            dokBehov.harSendtInn
+          );
         }
       }
     });
@@ -95,15 +106,17 @@ const Dokumentasjon: React.FC = () => {
             </Lenke>
           </KomponentGruppe>
         )}
-        {dokumentasjonsbehov.map((dokumentasjon, i) => {
-          return (
-            <LastOppVedlegg
-              key={i}
-              dokumentasjon={dokumentasjon}
-              settDokumentasjon={settDokumentasjon}
-            />
-          );
-        })}
+        {dokumentasjonsbehov
+          .filter(unikeDokumentasjonsbehov)
+          .map((dokumentasjon, i) => {
+            return (
+              <LastOppVedlegg
+                key={i}
+                dokumentasjon={dokumentasjon}
+                oppdaterDokumentasjon={oppdaterDokumentasjon}
+              />
+            );
+          })}
       </SeksjonGruppe>
 
       <SendSøknadKnapper />

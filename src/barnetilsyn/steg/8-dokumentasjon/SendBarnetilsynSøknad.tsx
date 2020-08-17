@@ -18,6 +18,7 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
+import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 
 interface Innsending {
   status: string;
@@ -46,10 +47,14 @@ const SendSøknadKnapper: FC = () => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
+      unikeDokumentasjonsbehov
+    );
 
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn)

@@ -9,6 +9,7 @@ import { ISøknad } from '../models/søknad/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
+  oppdaterDokumentasjonTilEtSvarSpørsmålForBarn,
 } from '../helpers/steg/dokumentasjon';
 import {
   hentMellomlagretSøknadFraDokument,
@@ -96,6 +97,34 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     );
   };
 
+  const settDokumentasjonsbehovForBarn = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    barneid: string,
+    barnepassid?: string
+  ) => {
+    let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
+    if (spørsmål.flersvar) {
+      console.error('Ikke implementert');
+    } else {
+      endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
+        søknad.dokumentasjonsbehov,
+        spørsmål,
+        valgtSvar,
+        intl,
+        barneid,
+        barnepassid
+      );
+    }
+
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        dokumentasjonsbehov: endretDokumentasjonsbehov,
+      };
+    });
+  };
+
   const settDokumentasjonsbehov = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -128,6 +157,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     søknad,
     settSøknad,
     settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
     mellomlagretOvergangsstønad,
     hentMellomlagretOvergangsstønad,
     mellomlagreOvergangsstønad,

@@ -35,7 +35,7 @@ export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon = {
   id: BarnetilsynDokumentasjon.TRENGER_MER_PASS_ENN_JEVNALDREDE,
   spørsmålid: EBarnepass.årsakBarnepass,
   label: '',
-  svarid: '',
+  svarid: EÅrsakBarnepass.trengerMerPassEnnJevnaldrede,
   tittel: 'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel',
   beskrivelse: 'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse',
   harSendtInn: false,

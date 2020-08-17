@@ -16,10 +16,11 @@ interface Props {
 
   velgBarnForDenneSøknaden?: React.ReactNode;
   slettBarn: Function;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid?: string
   ) => void;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
@@ -29,7 +30,7 @@ const Barnekort: React.FC<Props> = ({
   gjeldendeBarn,
   velgBarnForDenneSøknaden,
   slettBarn,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
   barneListe,
   settBarneListe,
 }) => {
@@ -151,7 +152,7 @@ const Barnekort: React.FC<Props> = ({
               settÅpenModal={settÅpenEndreModal}
               id={id}
               barneListe={barneListe}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               settBarneListe={settBarneListe}
             />
           </div>

@@ -39,10 +39,11 @@ interface Props {
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnapassid?: string
   ) => void;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
@@ -57,7 +58,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   scrollTilLagtTilBarn,
   barneListe,
   settBarneListe,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder ? barn.forelder : { id: hentUid() }
@@ -160,7 +161,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       delete nyForelder.land;
     }
     settForelder(nyForelder);
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
   return (
@@ -173,7 +174,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               barn={barn}
               forelder={forelder}
               settForelder={settForelder}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             />
           )}
 
@@ -231,7 +232,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               settForelder={settForelder}
               forelder={forelder}
               barn={barn}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             />
           )}
 

@@ -27,7 +27,7 @@ const BarnasBosted: React.FC = () => {
     søknad,
     mellomlagreSkolepenger,
     settSøknad,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
 
   const barna = søknad.person.barn;
@@ -83,7 +83,7 @@ const BarnasBosted: React.FC = () => {
               aktivIndex={aktivIndex}
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               settBarneListe={settBarneliste}
               barneListe={søknad.person.barn}
             />

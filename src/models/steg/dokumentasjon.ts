@@ -6,6 +6,8 @@ export interface IDokumentasjon {
   svarid: string;
   tittel: string;
   label: string;
+  barnepassid?: string;
+  barneid?: string;
   beskrivelse?: string;
   harSendtInn: boolean;
   opplastedeVedlegg?: IVedlegg[];

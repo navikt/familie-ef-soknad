@@ -37,7 +37,7 @@ const Barnepass: FC<Props> = () => {
     søknad,
     settSøknad,
     mellomlagreBarnetilsyn,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
@@ -133,14 +133,18 @@ const Barnepass: FC<Props> = () => {
                   <ÅrsakBarnepass
                     barn={barn}
                     settBarnepass={settBarnepass}
-                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                    settDokumentasjonsbehovForBarn={
+                      settDokumentasjonsbehovForBarn
+                    }
                   />
                 )}
                 {erÅrsakBarnepassSpmBesvart(barn) && (
                   <BarnepassOrdninger
                     barn={barn}
                     settBarnepass={settBarnepass}
-                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                    settDokumentasjonsbehovForBarn={
+                      settDokumentasjonsbehovForBarn
+                    }
                   />
                 )}
               </React.Fragment>

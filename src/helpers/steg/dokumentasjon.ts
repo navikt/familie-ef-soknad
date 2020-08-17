@@ -27,26 +27,46 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
   valgtSvar: ISvar,
   intl: IntlShape
 ): IDokumentasjon[] => {
-  let endretDokumentasjon = dokumentasjonsbehov;
-
-  const dokumentasjonsbehovMedLikSpørsmålid = dokumentasjonsbehov.find(
-    (dokbehov) => dokbehov.spørsmålid === spørsmål.søknadid
+  let endretDokumentasjon = dokumentasjonsbehov.filter(
+    (behov) => behov.spørsmålid !== spørsmål.søknadid
   );
+  endretDokumentasjon = leggTilDokumentasjonsbehov(
+    endretDokumentasjon,
+    valgtSvar
+  );
+  return leggTilDokumentasjonLabel(endretDokumentasjon, intl);
+};
 
-  if (dokumentasjonsbehovMedLikSpørsmålid) {
-    endretDokumentasjon = dokumentasjonsbehov.filter(
-      (behov) => behov.spørsmålid !== spørsmål.søknadid
-    );
-    endretDokumentasjon = leggTilDokumentasjonsbehov(
-      endretDokumentasjon,
-      valgtSvar
-    );
-  } else {
-    endretDokumentasjon = leggTilDokumentasjonsbehov(
-      dokumentasjonsbehov,
-      valgtSvar
-    );
-  }
+const gjelderDetteBarnet = (
+  dokbehov: IDokumentasjon,
+  spørsmål: ISpørsmål,
+  barneid: string,
+  barnepassid: string | undefined
+) => {
+  return (
+    dokbehov.spørsmålid === spørsmål.søknadid &&
+    dokbehov.barneid === barneid &&
+    (barnepassid === undefined || dokbehov.barnepassid === barnepassid)
+  );
+};
+
+export const oppdaterDokumentasjonTilEtSvarSpørsmålForBarn = (
+  dokumentasjonsbehov: IDokumentasjon[],
+  spørsmål: ISpørsmål,
+  valgtSvar: ISvar,
+  intl: IntlShape,
+  barneid: string,
+  barnepassid?: string
+): IDokumentasjon[] => {
+  let endretDokumentasjon = dokumentasjonsbehov.filter(
+    (dokbehov) => !gjelderDetteBarnet(dokbehov, spørsmål, barneid, barnepassid)
+  );
+  endretDokumentasjon = leggTilDokumentasjonsbehov(
+    endretDokumentasjon,
+    valgtSvar,
+    barneid,
+    barnepassid
+  );
   return leggTilDokumentasjonLabel(endretDokumentasjon, intl);
 };
 
@@ -64,10 +84,19 @@ function leggTilDokumentasjonLabel(
 
 export const leggTilDokumentasjonsbehov = (
   dokumentasjonsbehov: IDokumentasjon[],
-  valgtSvar: ISvar
+  valgtSvar: ISvar,
+  barneid?: string,
+  barnepassid?: string
 ) => {
   let endretDokBehov = dokumentasjonsbehov;
-  valgtSvar.dokumentasjonsbehov &&
-    endretDokBehov.push(valgtSvar.dokumentasjonsbehov);
+  if (valgtSvar.dokumentasjonsbehov) {
+    const nyttDokumentasjonsbehov = {
+      ...valgtSvar.dokumentasjonsbehov,
+      barneid: barneid,
+      barnepassid: barnepassid,
+    };
+    endretDokBehov.push(nyttDokumentasjonsbehov);
+  }
+
   return endretDokBehov;
 };

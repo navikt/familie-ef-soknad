@@ -21,17 +21,18 @@ import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasj
 interface Props {
   barn: IBarn;
   settBarnepass: (barnepass: IBarnepass, barneid: string) => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassordningid?: string
   ) => void;
 }
 
 const ÅrsakBarnepass: FC<Props> = ({
   barn,
   settBarnepass,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
   const { barnepass } = barn;
@@ -66,7 +67,7 @@ const ÅrsakBarnepass: FC<Props> = ({
       },
       barn.id
     );
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
   return (
     <SeksjonGruppe>
