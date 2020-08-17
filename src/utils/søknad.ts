@@ -6,6 +6,7 @@ import { ISpørsmål } from '../models/felles/spørsmålogsvar';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
+import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
 export const hentPersonData = () => {
   return axios
@@ -123,4 +124,12 @@ export const hentFeltObjekt = (
   intl: IntlShape
 ) => {
   return { label: hentTekst(tekstid, intl), verdi: verdi };
+};
+
+export const unikeDokumentasjonsbehov = (
+  behov: IDokumentasjon,
+  index: number,
+  alle: IDokumentasjon[]
+) => {
+  return alle.findIndex((item) => item.id === behov.id) === index;
 };

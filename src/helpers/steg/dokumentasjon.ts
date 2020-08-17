@@ -37,6 +37,19 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
   return leggTilDokumentasjonLabel(endretDokumentasjon, intl);
 };
 
+const gjelderDetteBarnet = (
+  dokbehov: IDokumentasjon,
+  spørsmål: ISpørsmål,
+  barneid: string,
+  barnepassid: string | undefined
+) => {
+  return (
+    dokbehov.spørsmålid === spørsmål.søknadid &&
+    dokbehov.barneid === barneid &&
+    (barnepassid === undefined || dokbehov.barnepassid === barnepassid)
+  );
+};
+
 export const oppdaterDokumentasjonTilEtSvarSpørsmålForBarn = (
   dokumentasjonsbehov: IDokumentasjon[],
   spørsmål: ISpørsmål,
@@ -46,12 +59,7 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmålForBarn = (
   barnepassid?: string
 ): IDokumentasjon[] => {
   let endretDokumentasjon = dokumentasjonsbehov.filter(
-    (dokbehov) =>
-      !(
-        dokbehov.spørsmålid === spørsmål.søknadid &&
-        dokbehov.barneid === barneid &&
-        (barnepassid === undefined || dokbehov.barnepassid === barnepassid)
-      )
+    (dokbehov) => !gjelderDetteBarnet(dokbehov, spørsmål, barneid, barnepassid)
   );
   endretDokumentasjon = leggTilDokumentasjonsbehov(
     endretDokumentasjon,

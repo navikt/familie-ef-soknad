@@ -4,7 +4,7 @@ import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
@@ -79,15 +79,17 @@ const Dokumentasjon: React.FC = () => {
             </Lenke>
           </KomponentGruppe>
         )}
-        {dokumentasjonsbehov.map((dokumentasjon, i) => {
-          return (
-            <LastOppVedlegg
-              key={i}
-              dokumentasjon={dokumentasjon}
-              oppdaterDokumentasjon={oppdaterDokumentasjon}
-            />
-          );
-        })}
+        {dokumentasjonsbehov
+          .filter(unikeDokumentasjonsbehov)
+          .map((dokumentasjon, i) => {
+            return (
+              <LastOppVedlegg
+                key={i}
+                dokumentasjon={dokumentasjon}
+                oppdaterDokumentasjon={oppdaterDokumentasjon}
+              />
+            );
+          })}
       </SeksjonGruppe>
       <div>
         <Element>

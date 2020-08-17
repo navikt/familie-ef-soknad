@@ -5,7 +5,7 @@ import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
 import SendSøknadKnapper from './SendSøknad';
@@ -106,15 +106,17 @@ const Dokumentasjon: React.FC = () => {
             </Lenke>
           </KomponentGruppe>
         )}
-        {dokumentasjonsbehov.map((dokumentasjon, i) => {
-          return (
-            <LastOppVedlegg
-              key={i}
-              dokumentasjon={dokumentasjon}
-              oppdaterDokumentasjon={oppdaterDokumentasjon}
-            />
-          );
-        })}
+        {dokumentasjonsbehov
+          .filter(unikeDokumentasjonsbehov)
+          .map((dokumentasjon, i) => {
+            return (
+              <LastOppVedlegg
+                key={i}
+                dokumentasjon={dokumentasjon}
+                oppdaterDokumentasjon={oppdaterDokumentasjon}
+              />
+            );
+          })}
       </SeksjonGruppe>
 
       <SendSøknadKnapper />

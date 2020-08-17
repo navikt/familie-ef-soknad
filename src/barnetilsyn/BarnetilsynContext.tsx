@@ -97,7 +97,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     ) => {
       let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
       if (spørsmål.flersvar) {
-        console.log('Ikke implementert');
+        console.error('Ikke implementert');
       } else {
         endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
           søknad.dokumentasjonsbehov,
