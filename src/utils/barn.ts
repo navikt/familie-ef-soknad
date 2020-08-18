@@ -34,15 +34,42 @@ export const hentBarnetsNavnEllerBeskrivelse = (
     hentTekst('ufødt.barn', intl)
   );
 };
+
+export const barnetsNavnEllerBarnet = (barn: IBarn, intl: IntlShape) => {
+  return !barn.født || barn.navn.verdi === ''
+    ? hentTekst('barnet.litenForBokstav', intl)
+    : barn.navn.verdi;
+};
+
+export const flereBarnsNavn = (
+  barneliste: IBarn[],
+  intl: IntlShape
+): string => {
+  if (barneliste.length === 0) {
+    return '';
+  } else if (barneliste.length === 1) {
+    return barnetsNavnEllerBarnet(barneliste[0], intl);
+  } else {
+    return barneliste.reduce((acc, barn, index, alleBarna) => {
+      const navn = barnetsNavnEllerBarnet(barn, intl);
+      switch (index) {
+        case 0:
+          return navn;
+        case alleBarna.length - 1:
+          return `${acc} og ${navn}`;
+        default:
+          return `${acc}, ${navn}`;
+      }
+    }, '');
+  }
+};
 export const hentBarnNavnEllerBarnet = (
   barn: IBarn,
   tekstid: string,
   intl: IntlShape
 ) => {
   return hentBeskjedMedNavn(
-    !barn.født || barn.navn.verdi === ''
-      ? hentTekst('barnet.litenForBokstav', intl)
-      : barn.navn.verdi,
+    barnetsNavnEllerBarnet(barn, intl),
     hentTekst(tekstid, intl)
   );
 };
