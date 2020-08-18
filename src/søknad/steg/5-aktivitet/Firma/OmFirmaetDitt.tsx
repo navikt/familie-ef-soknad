@@ -40,6 +40,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
 
   const [firma, settFirma] = useState<IFirma>(firmaFraSøknad!);
+  const [organisasjonsnummer, settOrganisasjonsnr] = useState<string>(
+    firma.organisasjonsnummer?.verdi ? firma.organisasjonsnummer.verdi : ''
+  );
 
   useEffect(() => {
     const endredeFirmaer = firmaer?.map((firmaFraSøknad, index) => {
@@ -103,7 +106,8 @@ const OmFirmaetDitt: React.FC<Props> = ({
     intl.formatMessage({ id: 'firma.tittel' })
   );
   const harValgtUgyldigOrganisasjonsnummer =
-    firma.organisasjonsnummer?.verdi &&
+    organisasjonsnummer !== '' &&
+    firma?.organisasjonsnummer?.verdi &&
     !erStrengGyldigOrganisasjonsnummer(firma?.organisasjonsnummer?.verdi);
 
   return (
@@ -135,18 +139,15 @@ const OmFirmaetDitt: React.FC<Props> = ({
               label={labelOrganisasjonsnr}
               bredde={'L'}
               type={'text'}
-              onChange={(e) =>
+              onChange={(e) => settOrganisasjonsnr(e.target.value)}
+              onBlur={(e) =>
                 settInputTekstFelt(
                   e,
                   EFirma.organisasjonsnummer,
                   labelOrganisasjonsnr
                 )
               }
-              value={
-                firma?.organisasjonsnummer
-                  ? firma?.organisasjonsnummer.verdi
-                  : ''
-              }
+              value={organisasjonsnummer ? organisasjonsnummer : ''}
               feil={harValgtUgyldigOrganisasjonsnummer}
             />
           </FeltGruppe>
