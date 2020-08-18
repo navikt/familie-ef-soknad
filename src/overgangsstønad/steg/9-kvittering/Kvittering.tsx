@@ -20,6 +20,8 @@ import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/Erklærin
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
+import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -82,6 +84,10 @@ const Kvittering: React.FC = () => {
       {(arbeidsforhold || firmaer || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />
       )}
+      <EttersendDokumentasjon
+        dokumentasjonsbehov={søknad.dokumentasjonsbehov}
+        stønadstype={Stønadstype.overgangsstønad}
+      />
     </Side>
   ) : (
     <Feilside />
