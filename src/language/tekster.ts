@@ -736,6 +736,7 @@ export default {
       'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
       'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen.' +
       ' <br/><br/>' +
       'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
       '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
