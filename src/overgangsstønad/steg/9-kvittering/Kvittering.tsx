@@ -20,7 +20,6 @@ import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/Erklærin
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
-import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/RegistrerBarnIFolkeregister';
 
 const Kvittering: React.FC = () => {

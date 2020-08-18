@@ -40,6 +40,7 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
       <KomponentGruppe>
         <a
           target={'_blank'}
+          rel={'noreferrer noopener'}
           className={'knapp knapp--standard kvittering'}
           href={
             'https://www.skatteetaten.no/person/folkeregister/flytte/i-norge/'
