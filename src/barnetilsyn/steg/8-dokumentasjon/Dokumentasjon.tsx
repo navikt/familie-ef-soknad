@@ -83,13 +83,6 @@ const Dokumentasjon: React.FC = () => {
             );
           })}
       </SeksjonGruppe>
-      <div>
-        <Element>
-          JSON som sendes inn (kopier denne og send til utviklere dersom
-          innsending feiler):
-        </Element>
-        <pre>{JSON.stringify(søknad, null, 2)}</pre>
-      </div>
       <SendSøknadKnapper />
     </Side>
   );
