@@ -1,8 +1,5 @@
 import React, { useEffect } from 'react';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import Lenke from 'nav-frontend-lenker';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -19,7 +16,7 @@ const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   const location = useLocation();
-  const { aktivitet, dokumentasjonsbehov } = søknad;
+  const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
