@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Feilmelding, Undertittel } from 'nav-frontend-typografi';
 
 import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
@@ -15,6 +15,8 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import styled from 'styled-components/macro';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -127,26 +129,46 @@ const OmFirmaetDitt: React.FC<Props> = ({
       </FeltGruppe>
 
       {firma.navn?.verdi && (
-        <FeltGruppe>
-          <Input
-            label={labelOrganisasjonsnr}
-            bredde={'L'}
-            type={'text'}
-            onChange={(e) =>
-              settInputTekstFelt(
-                e,
-                EFirma.organisasjonsnummer,
-                labelOrganisasjonsnr
-              )
-            }
-            value={
-              firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
-            }
-          />
-        </FeltGruppe>
+        <>
+          <FeltGruppe>
+            <Input
+              label={labelOrganisasjonsnr}
+              bredde={'L'}
+              type={'text'}
+              onChange={(e) =>
+                settInputTekstFelt(
+                  e,
+                  EFirma.organisasjonsnummer,
+                  labelOrganisasjonsnr
+                )
+              }
+              value={
+                firma?.organisasjonsnummer
+                  ? firma?.organisasjonsnummer.verdi
+                  : ''
+              }
+              feil={
+                firma.organisasjonsnummer?.verdi &&
+                !erStrengGyldigOrganisasjonsnummer(
+                  firma?.organisasjonsnummer?.verdi
+                )
+              }
+            />
+          </FeltGruppe>
+          {firma?.organisasjonsnummer?.verdi &&
+            !erStrengGyldigOrganisasjonsnummer(
+              firma?.organisasjonsnummer?.verdi
+            ) && (
+              <FeltGruppe>
+                <Feilmelding>
+                  <LocaleTekst tekst={'firma.feilmelding.organisasjonnr'} />
+                </Feilmelding>
+              </FeltGruppe>
+            )}
+        </>
       )}
 
-      {firma.organisasjonsnummer?.verdi && (
+      {erStrengGyldigOrganisasjonsnummer(firma.organisasjonsnummer?.verdi) && (
         <FeltGruppe>
           <Datovelger
             valgtDato={firma?.etableringsdato?.verdi}

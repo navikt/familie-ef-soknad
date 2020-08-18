@@ -493,6 +493,7 @@ export default {
     'firma.tittel': 'Firma',
     'firma.label.navn': 'Navn på firma',
     'firma.label.organisasjonnr': 'Organisasjonsnummer',
+    'firma.feilmelding.organisasjonnr': 'Organisasjonsnummeret må ha 9 siffer',
     'firma.datovelger.etablering': 'Når etablerte du firmaet?',
     'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
     'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
