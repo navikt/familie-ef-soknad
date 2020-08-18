@@ -71,14 +71,6 @@ const Dokumentasjon: React.FC = () => {
         </Normaltekst>
       </SeksjonGruppe>
       <SeksjonGruppe>
-        {aktivitet.arbeidssøker?.registrertSomArbeidssøkerNav?.svarid ===
-          ESvar.NEI && (
-          <KomponentGruppe>
-            <Lenke href={'https://arbeidssokerregistrering.nav.no/'}>
-              Registrer deg som arbeidssøker hos NAV
-            </Lenke>
-          </KomponentGruppe>
-        )}
         {dokumentasjonsbehov
           .filter(unikeDokumentasjonsbehov)
           .map((dokumentasjon, i) => {
