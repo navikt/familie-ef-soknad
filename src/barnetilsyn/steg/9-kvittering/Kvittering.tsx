@@ -41,6 +41,7 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
 
+      <DineSaker />
       {sykSøker && (
         <SykSøker
           filPath={
@@ -50,7 +51,6 @@ const Kvittering: React.FC = () => {
       )}
       {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
 
-      <DineSaker />
       <EttersendDokumentasjon
         dokumentasjonsbehov={søknad.dokumentasjonsbehov}
         stønadstype={Stønadstype.barnetilsyn}

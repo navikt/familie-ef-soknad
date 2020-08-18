@@ -60,6 +60,7 @@ const Kvittering: React.FC = () => {
       <SeksjonGruppe>
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
+      <DineSaker />
 
       {sykSøker && (
         <SykSøker
@@ -74,8 +75,6 @@ const Kvittering: React.FC = () => {
       {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
         <RegistrerDegSomArbeidssøker />
       )}
-
-      <DineSaker />
 
       {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
