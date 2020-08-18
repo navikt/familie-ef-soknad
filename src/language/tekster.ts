@@ -168,7 +168,7 @@ export default {
       'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
 
     'sivilstatus.spm.erUformeltSeparertEllerSkilt':
-      'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
+      'Er du separert eller skilt uten at dette er registrert i folkeregisteret i Norge?',
     'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
@@ -439,9 +439,10 @@ export default {
     'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
-    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+    'arbeidssituasjon.svar.erArbeidstaker':
+      'Jeg er arbeidstaker eller lønnsmottaker som frilanser',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
-      'Jeg er selvstendig næringsdrivende eller frilanser',
+      'Jeg er selvstendig næringsdrivende eller frilanser med eget firma',
     'arbeidssituasjon.svar.erAnsattIEgetAS':
       'Jeg er ansatt i eget aksjeselskap (AS)',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
@@ -740,6 +741,7 @@ export default {
       'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
       'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen.' +
       ' <br/><br/>' +
       'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
       '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
@@ -880,6 +882,14 @@ export default {
       'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
     'dokumentasjon.barnepassArbeidstid.tittel':
       'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'dokumentasjon.ettersend.tittel':
+      'Fikk du ikke lastet opp all dokumentasjonen?',
+    'dokumentasjon.ettersend.tekst.barnetilsyn':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'dokumentasjon.ettersend.tekst.overgangsstønad':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'dokumentasjon.ettersend.tekst.skolepenger':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',

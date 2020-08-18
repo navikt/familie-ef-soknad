@@ -12,11 +12,13 @@ import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 interface Props {
   aktivitet: IAktivitet;
   endreInformasjonPath?: string;
+  tittel: string;
 }
 
 const OppsummeringAktiviteter: React.FC<Props> = ({
   aktivitet,
   endreInformasjonPath,
+  tittel,
 }) => {
   const history = useHistory();
   const intl = useIntl();
@@ -69,11 +71,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
-      tittel={
-        <Undertittel>
-          {hentTekst('stegtittel.arbeidssituasjon', intl)}
-        </Undertittel>
-      }
+      tittel={<Undertittel>{tittel}</Undertittel>}
     >
       {erIArbeid && <div className={'seksjon'}>{erIArbeid} </div>}
       {virksomhet ? <div className="seksjon">{virksomhet}</div> : null}
