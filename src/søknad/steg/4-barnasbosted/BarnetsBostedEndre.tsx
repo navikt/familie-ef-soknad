@@ -31,6 +31,7 @@ import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import { førsteBokstavStor } from '../../../utils/språk';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 
 interface Props {
   barn: IBarn;
@@ -180,7 +181,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {(barn.harSammeAdresse?.verdi ||
             harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
-            <>
+            <SeksjonGruppe>
               <FeltGruppe>
                 <Element>
                   {førsteBokstavStor(
@@ -211,7 +212,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settKjennerIkkeIdent={settKjennerIkkeIdent}
                 />
               )}
-            </>
+            </SeksjonGruppe>
           )}
 
           {nyForelderOgKanOppgiAndreForelder && (

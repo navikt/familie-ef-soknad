@@ -189,7 +189,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 
   return (
-    <SeksjonGruppe>
+    <>
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={spørsmål.tekstid}
@@ -266,7 +266,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
           </AlertStripeInfo>
         </KomponentGruppe>
       )}
-    </SeksjonGruppe>
+    </>
   );
 };
 

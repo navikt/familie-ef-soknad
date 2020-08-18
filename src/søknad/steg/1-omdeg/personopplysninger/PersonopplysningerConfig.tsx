@@ -6,7 +6,7 @@ export const borDuPåDenneAdressen: ISpørsmål = {
   søknadid: ESøknad.søkerBorPåRegistrertAdresse,
   tekstid: 'personopplysninger.spm.riktigAdresse',
   lesmer: {
-    åpneTekstid: 'personopplysninger.lesmer-åpne.riktigAdresse',
+    åpneTekstid: '',
     lukkeTekstid: '',
     innholdTekstid: 'personopplysninger.lesmer-innhold.riktigAdresse',
   },

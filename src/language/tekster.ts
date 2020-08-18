@@ -637,7 +637,7 @@ export default {
 
     'dinSituasjon.alert.redusertStilling':
       'Du må legge ved dokumentasjon på arbeidsforholdet og grunnen til at du reduserte arbeidstiden.<br/><br/>' +
-      'Dokumentasjonen må vise:<br/><br/>' +
+      'Dokumentasjonen må vise:' +
       '<ul><li>arbeidsforholdet</li>' +
       '<li>grunnen til at du reduserte arbeidstiden</li>' +
       '<li>datoen du avtalte reduksjon i arbeidstiden</li></ul>',

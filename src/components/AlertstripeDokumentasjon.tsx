@@ -7,6 +7,9 @@ const StyledAlertstripe = styled.div`
   padding-top: 0.75rem;
   display: flex;
   align-content: center;
+  .typo-normal {
+    font-size: 1rem;
+  }
 
   .ikon {
     margin-right: 0.75rem;
@@ -19,10 +22,6 @@ const StyledAlertstripe = styled.div`
     max-width: 37.5rem;
     display: block;
     flex: 1 1;
-
-    .typo-normal {
-      font-size: 18px;
-    }
   }
 `;
 
