@@ -7,6 +7,7 @@
     background: none;
     border: none;
     margin-bottom: 1rem;
+    padding-left: 0;
 
     .alertstripe__tekst {
       font-weight: bold;
@@ -21,8 +22,11 @@
     width: 620px;
 
     .barnekort {
+      .typo-normal,
+      .typo-element {
+        font-size: 18px;
+      }
       margin: 0 1rem 1rem 0;
-      padding-bottom: 1rem;
       width: 276px;
       background-color: #e7e9e9;
 
@@ -49,17 +53,15 @@
       }
 
       &__informasjonsboks {
-        text-align: center;
-
+        padding: 2rem 2rem;
         .informasjonsboks-innhold {
           height: 100%;
-          padding-top: 9px;
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
 
           .informasjonselement {
-            margin: 10px;
+            margin: 10px 0 10px 0;
           }
         }
       }
@@ -78,7 +80,7 @@
         height: 200px;
 
         .typo-element {
-          padding: 30px;
+          padding-bottom: 2rem;
         }
       }
     }
@@ -88,6 +90,14 @@
     &__hvilke-barn {
       margin-bottom: 4rem;
       padding: 0 1rem 0 1rem;
+      .typo-element {
+        font-size: 18px;
+      }
+      .lesMerPanel__mer {
+        ul {
+          padding-inline-start: 1rem;
+        }
+      }
     }
   }
 

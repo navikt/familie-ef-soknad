@@ -31,7 +31,7 @@ const StyledHjelpetekst = styled.div`
       }
     }
     &__toggleTekst {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   &.sentrert {

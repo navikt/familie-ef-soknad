@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
@@ -79,11 +79,11 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Element>
+          <Undertittel>
             {født?.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
-          </Element>
+          </Undertittel>
           <div className="informasjonselement">
             {ident.verdi ? (
               <>
