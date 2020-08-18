@@ -94,17 +94,17 @@ const OmFirmaetDitt: React.FC<Props> = ({
   };
 
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
-
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
-
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
-
   const labelNavn = hentTekst('firma.label.navn', intl);
   const firmaTittel = hentTittelMedNr(
     firmaer!,
     firmanr,
     intl.formatMessage({ id: 'firma.tittel' })
   );
+  const harValgtUgyldigOrganisasjonsnummer =
+    firma.organisasjonsnummer?.verdi &&
+    !erStrengGyldigOrganisasjonsnummer(firma?.organisasjonsnummer?.verdi);
 
   return (
     <StyledFirma>
@@ -147,24 +147,16 @@ const OmFirmaetDitt: React.FC<Props> = ({
                   ? firma?.organisasjonsnummer.verdi
                   : ''
               }
-              feil={
-                firma.organisasjonsnummer?.verdi &&
-                !erStrengGyldigOrganisasjonsnummer(
-                  firma?.organisasjonsnummer?.verdi
-                )
-              }
+              feil={harValgtUgyldigOrganisasjonsnummer}
             />
           </FeltGruppe>
-          {firma?.organisasjonsnummer?.verdi &&
-            !erStrengGyldigOrganisasjonsnummer(
-              firma?.organisasjonsnummer?.verdi
-            ) && (
-              <FeltGruppe>
-                <Feilmelding>
-                  <LocaleTekst tekst={'firma.feilmelding.organisasjonnr'} />
-                </Feilmelding>
-              </FeltGruppe>
-            )}
+          {harValgtUgyldigOrganisasjonsnummer && (
+            <FeltGruppe>
+              <Feilmelding>
+                <LocaleTekst tekst={'firma.feilmelding.organisasjonnr'} />
+              </Feilmelding>
+            </FeltGruppe>
+          )}
         </>
       )}
 
