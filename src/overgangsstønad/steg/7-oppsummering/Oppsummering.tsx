@@ -15,6 +15,7 @@ import {
 } from '../../routing/routesOvergangsstonad';
 import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
+import { hentTekst } from '../../../utils/søknad';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -65,6 +66,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringAktiviteter
+              tittel={hentTekst('stegtittel.arbeidssituasjon', intl)}
               aktivitet={søknad.aktivitet}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
