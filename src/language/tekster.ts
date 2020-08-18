@@ -418,6 +418,10 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.spm.beskrivSamværUtenBarn':
       'Hvor mye er du sammen med den andre forelderen til [0]?',
+    'barnasbosted.skalBliFolkeregistrert.tekst':
+      'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
+    'barnasbosted.skalBliFolkeregistrert.knapp':
+      'Registrer adresse hos Folkeregisteret',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',

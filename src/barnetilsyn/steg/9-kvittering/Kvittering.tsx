@@ -14,10 +14,14 @@ import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/Erklærin
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/RegistrerBarnIFolkeregister';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
   const { søknad } = useBarnetilsynSøknad();
+  const barnSomSkalHaBarnepass = søknad.person.barn.filter(
+    (barn) => barn.skalHaBarnepass?.verdi
+  );
 
   const mottattAlert: string =
     hentTekst('kvittering.barnetilsyn.alert.mottatt', intl) +
@@ -49,6 +53,8 @@ const Kvittering: React.FC = () => {
       {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
 
       <DineSaker />
+
+      <RegistrerBarnIFolkeregister barna={barnSomSkalHaBarnepass} />
     </Side>
   ) : (
     <Feilside />
