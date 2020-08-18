@@ -10,3 +10,9 @@ export enum MellomlagredeStønadstyper {
   barnetilsyn = 'barnetilsyn',
   skolepenger = 'skolepenger',
 }
+
+export enum Stønadstype {
+  overgangsstønad = 'overgangsstønad',
+  barnetilsyn = 'barnetilsyn',
+  skolepenger = 'skolepenger',
+}
