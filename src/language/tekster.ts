@@ -168,7 +168,7 @@ export default {
       'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
 
     'sivilstatus.spm.erUformeltSeparertEllerSkilt':
-      'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
+      'Er du separert eller skilt uten at dette er registrert i folkeregisteret i Norge?',
     'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
