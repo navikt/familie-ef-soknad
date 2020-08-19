@@ -36,14 +36,10 @@ app.get('/ping', (req, res) => {
 // Nais functions
 app.get(`/internal/isAlive|isReady`, (req, res) => res.sendStatus(200));
 
-app.get('*', function(req, res) {
-  console.log(__dirname);
+app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, 'build/', 'index.html'));
 });
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 console.log('Node env: ', process.env.NODE_ENV);
-
-app.use(bodyParser.json({ limit: '200mb' }));
-app.use(bodyParser.urlencoded({ limit: '200mb', extended: true }));
