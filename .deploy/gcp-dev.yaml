@@ -14,12 +14,17 @@ spec:
     cpuThresholdPercentage: 50
   port: 8080
   liveness:
-    path: /
+    path: /status
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
   readiness:
-    path: /
+    path: /status
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
   prometheus:
-    enabled: true
-    path: /metrics
+    enabled: false
   ingresses:
     - "https://www.dev.nav.no/familie/alene-med-barn"
   accessPolicy:
