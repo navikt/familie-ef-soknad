@@ -6,7 +6,10 @@ import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
-import { ISpørsmålBooleanFelt, ISpørsmålFelt } from '../models/søknadsfelter';
+import {
+  ISpørsmålBooleanFelt,
+  ISpørsmålFelt,
+} from '../models/søknad/søknadsfelter';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,

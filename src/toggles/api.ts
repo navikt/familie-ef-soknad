@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Environment from '../Environment';
-import { Toggles } from '../models/toggles';
+import { Toggles } from '../models/søknad/toggles';
 
 const hentToggles = (settToggles: (toggles: Toggles) => void) => {
   return axios

@@ -28,7 +28,10 @@ const SyktBarn: FC = () => {
         dokumenterer de nødvendige opplysningene.
       </Normaltekst>
       <StyledLenke>
-        <Lenke href="/filer/Huskeliste_lege_sykt_barn_OS.pdf" download>
+        <Lenke
+          href="/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf"
+          download
+        >
           <img alt="Nedlastingsikon" src={download} />
           <Element>Last ned huskeliste til legen</Element>
         </Lenke>

@@ -1,5 +1,5 @@
-import { IPerson } from '../../models/person';
-import { ISpørsmål, ISvar } from '../../models/spørsmålogsvar';
+import { IPerson } from '../../models/søknad/person';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { EAktivitet, IAktivitet } from '../../models/steg/aktivitet/aktivitet';
 
 export const filtrerAktivitetSvaralternativer = (
@@ -40,9 +40,9 @@ export const fjernAktivitet = (
 
   if (
     !erSvarid(EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser) &&
-    endretArbeidssituasjon.firma
+    endretArbeidssituasjon.firmaer
   )
-    delete endretArbeidssituasjon.firma;
+    delete endretArbeidssituasjon.firmaer;
   if (
     !erSvarid(EAktivitet.etablererEgenVirksomhet) &&
     endretArbeidssituasjon.etablererEgenVirksomhet

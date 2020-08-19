@@ -11,9 +11,10 @@ import Environment from '../Environment';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
 import { useForsideInnhold } from '../utils/hooks';
-import { ForsideType } from '../models/stønadstyper';
+import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
-import { hentPath, RouteEnum, Routes } from './routing/Routes';
+import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
+import { hentPath } from '../utils/routing';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -73,7 +74,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               intl={intl}
               harBekreftet={søknad.harBekreftet}
               settBekreftelse={settBekreftelse}
-              nesteSide={hentPath(Routes, RouteEnum.OmDeg) || ''}
+              nesteSide={
+                hentPath(RoutesSkolepenger, ERouteSkolepenger.OmDeg) || ''
+              }
             />
           )}
         </Panel>

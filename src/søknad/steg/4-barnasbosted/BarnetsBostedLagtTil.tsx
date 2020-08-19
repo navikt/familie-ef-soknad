@@ -6,7 +6,7 @@ import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
@@ -74,15 +74,19 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </Normaltekst>
           </div>
         )}
-        <div className="spørsmål-og-svar">
-          <Element>
-            {hentBeskjedMedNavn(
-              barnetsNavn,
-              intl.formatMessage({ id: 'barnasbosted.borinorge' })
-            )}
-          </Element>
-          <Normaltekst>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</Normaltekst>
-        </div>
+        {forelder.borINorge && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({ id: 'barnasbosted.borinorge' })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.borINorge?.verdi ? 'Ja' : 'Nei'}
+            </Normaltekst>
+          </div>
+        )}
         {forelder.land && (
           <div className="spørsmål-og-svar">
             <Element>
@@ -91,30 +95,34 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>{forelder.land?.verdi}</Normaltekst>
           </div>
         )}
-        <div className="spørsmål-og-svar">
-          <Element>
-            {hentBeskjedMedNavn(
-              barnetsNavn,
-              intl.formatMessage({ id: 'barnasbosted.avtale' })
-            )}
-          </Element>
-          <Normaltekst>
-            {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
-          </Normaltekst>
-        </div>
-        <div className="spørsmål-og-svar">
-          <Element>
-            {hentBeskjedMedNavn(
-              barnetsNavn,
-              intl.formatMessage({
-                id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
-              })
-            )}
-          </Element>
-          <Normaltekst>
-            {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
-          </Normaltekst>
-        </div>
+        {forelder.avtaleOmDeltBosted && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({ id: 'barnasbosted.avtale' })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
+            </Normaltekst>
+          </div>
+        )}
+        {forelder.harAnnenForelderSamværMedBarn?.verdi && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+                })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
+            </Normaltekst>
+          </div>
+        )}
         {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>

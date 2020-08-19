@@ -1,5 +1,5 @@
 import React from 'react';
-import { LocaleString } from '../models/språk';
+import { LocaleString } from '../models/felles/språk';
 import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import { useSpråkContext } from '../context/SpråkContext';
 

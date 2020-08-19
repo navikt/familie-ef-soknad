@@ -5,7 +5,7 @@ import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import React from 'react';
-import { IPerson } from '../../models/person';
+import { IPerson } from '../../models/søknad/person';
 import { IntlShape } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../utils/søknad';

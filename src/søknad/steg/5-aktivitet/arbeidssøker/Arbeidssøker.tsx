@@ -10,7 +10,11 @@ import {
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';

@@ -3,7 +3,7 @@ import {
   ISpørsmålFelt,
   ITekstFelt,
   IDatoFelt,
-} from '../../søknadsfelter';
+} from '../../søknad/søknadsfelter';
 import { IUnderUtdanning } from './utdanning';
 import { IArbeidsgiver } from './arbeidsgiver';
 import { IArbeidssøker } from './arbeidssøker';
@@ -18,6 +18,7 @@ export interface IAktivitet {
   arbeidssøker?: IArbeidssøker;
   egetAS?: IAksjeselskap[];
   firma?: IFirma;
+  firmaer?: IFirma[];
   underUtdanning?: IUnderUtdanning;
 }
 

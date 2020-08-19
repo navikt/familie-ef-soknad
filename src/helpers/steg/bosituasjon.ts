@@ -1,5 +1,5 @@
 import { ESøkerDelerBolig, IBosituasjon } from '../../models/steg/bosituasjon';
-import { ESvar } from '../../models/spørsmålogsvar';
+import { ESvar } from '../../models/felles/spørsmålogsvar';
 import { erGyldigDato } from '../../utils/dato';
 
 export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {

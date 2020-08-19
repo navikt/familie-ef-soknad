@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
@@ -7,62 +7,59 @@ import ufødtIkon from '../../../assets/ufodt.svg';
 import { useIntl } from 'react-intl';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
-import { IBooleanFelt, ITekstFelt } from '../../../models/søknadsfelter';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
-import { IBarn } from '../../../models/barn';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
-  navn: ITekstFelt;
-  ident: ITekstFelt;
-  fødselsdato: ITekstFelt;
-  alder: ITekstFelt;
-  harSammeAdresse: IBooleanFelt;
-  lagtTil: boolean;
-  født: IBooleanFelt;
-  id: string;
+  gjeldendeBarn: IBarn;
+
   velgBarnForDenneSøknaden?: React.ReactNode;
   slettBarn: Function;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid?: string
   ) => void;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }
 
 const Barnekort: React.FC<Props> = ({
-  id,
-  navn,
-  ident,
-  alder,
-  harSammeAdresse,
-  lagtTil,
-  født,
-  fødselsdato,
+  gjeldendeBarn,
   velgBarnForDenneSøknaden,
   slettBarn,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
   barneListe,
   settBarneListe,
 }) => {
   const intl = useIntl();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
+  const {
+    id,
+    navn,
+    fødselsdato,
+    født,
+    ident,
+    alder,
+    lagtTil,
+    harSammeAdresse,
+  } = gjeldendeBarn;
 
   const formatFnr = (fødselsnummer: string) => {
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
   const ikoner = [barn1, barn2, barn3];
-  const ikon = født.verdi
+  const ikon = født?.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
 
   let bosted: string = '';
 
   if (lagtTil) {
-    bosted = født.verdi
+    bosted = født?.verdi
       ? harSammeAdresse.verdi
         ? hentTekst('barnekort.adresse.bor', intl)
         : hentTekst('barnekort.adresse.borIkke', intl)
@@ -82,11 +79,11 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Element>
-            {født.verdi
+          <Undertittel>
+            {født?.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
-          </Element>
+          </Undertittel>
           <div className="informasjonselement">
             {ident.verdi ? (
               <>
@@ -98,7 +95,7 @@ const Barnekort: React.FC<Props> = ({
             ) : (
               <>
                 <Normaltekst>
-                  {født.verdi
+                  {født?.verdi
                     ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                     : intl.formatMessage({ id: 'barnekort.termindato' })}
                 </Normaltekst>
@@ -111,8 +108,8 @@ const Barnekort: React.FC<Props> = ({
               {intl.formatMessage({ id: 'barnekort.alder' })}
             </Normaltekst>
             <Normaltekst>
-              {født.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
-              {født.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
+              {født?.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
+              {født?.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
           <div className="informasjonselement">
@@ -155,7 +152,7 @@ const Barnekort: React.FC<Props> = ({
               settÅpenModal={settÅpenEndreModal}
               id={id}
               barneListe={barneListe}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               settBarneListe={settBarneListe}
             />
           </div>

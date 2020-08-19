@@ -7,7 +7,7 @@ import { useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
   barn: IBarn[];

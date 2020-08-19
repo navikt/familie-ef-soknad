@@ -1,10 +1,10 @@
-import { ISpørsmål, ITekst } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ITekst } from '../../../../models/felles/spørsmålogsvar';
 import {
   EStudieandel,
   EUtdanning,
   EUtdanningsform,
 } from '../../../../models/steg/aktivitet/utdanning';
-import { IHjelpetekst } from '../../../../models/hjelpetekst';
+import { IHjelpetekst } from '../../../../models/felles/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
 
 // ----- TEKSTER

@@ -1,14 +1,22 @@
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import {
   dagensDato,
+  erEnMånedTilbakeITid,
   erPeriodeGyldig,
   strengTilDato,
 } from '../../../utils/dato';
-import { IBarnepassOrdning } from '../../models/barnepass';
+import {
+  ETypeBarnepassOrdning,
+  IBarnepassOrdning,
+} from '../../models/barnepass';
 import { ISøknad } from '../../models/søknad';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { erStrengGyldigTall } from '../../../utils/feltvalidering';
+import { erStrengGyldigTall } from '../../../utils/autentiseringogvalidering/feltvalidering';
+import {
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+} from '../../../models/søknad/søknadsfelter';
 
 export const harBarnAvsluttetFjerdeKlasse = (fødselsdato: string): boolean => {
   const juniEllerFør = dagensDato.getMonth() < 6;
@@ -49,14 +57,20 @@ export const erBarnepassOrdningerUtfylt = (
 };
 
 export const erBarnepassStegFerdigUtfylt = (
-  barnMedISøknad: IBarn[],
+  barnSomSkalHaBarnepass: IBarn[],
   søknad: ISøknad
 ): boolean => {
   const { søkerFraBestemtMåned, søknadsdato } = søknad;
-  return (
+  const erSpørsmålSøkerFraBestemtMånedBesvart =
     (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
       søknadsdato?.verdi !== undefined) ||
-    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
+  const erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart = erBarnepassForAlleBarnUtfylt(
+    barnSomSkalHaBarnepass
+  );
+  return (
+    erSpørsmålSøkerFraBestemtMånedBesvart &&
+    erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart
   );
 };
 
@@ -86,4 +100,36 @@ export const erBarnepassForBarnFørNåværendeUtfylt = (
   return barnSomSkalHaBarnepass
     .filter((barn, index) => index < barnIndex)
     .every((barn) => erSpørsmålSeksjonForBarnFerdigUtfylt(barn));
+};
+
+const harBarnMedBarbehageOgLignende = (barn: IBarn[]): boolean => {
+  return barn.some((b: IBarn) => {
+    return b.barnepass?.barnepassordninger.some((bpassordninger) => {
+      return (
+        bpassordninger.hvaSlagsBarnepassOrdning?.svarid ===
+        ETypeBarnepassOrdning.barnehageOgLiknende
+      );
+    });
+  });
+};
+
+export const skalDokumentereTidligereFakturaer = (
+  barnSomSkalHaBarnepass: IBarn[],
+  søkerFraBestemtMåned?: ISpørsmålBooleanFelt,
+  søknadsdato?: IDatoFelt
+): boolean => {
+  const harValgtBHGellerSFO = harBarnMedBarbehageOgLignende(
+    barnSomSkalHaBarnepass
+  );
+
+  const harSøktMinstEnMånedTilbakeITid: boolean =
+    søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
+    søknadsdato?.verdi !== undefined &&
+    erEnMånedTilbakeITid(søknadsdato.verdi);
+
+  return (
+    harSøktMinstEnMånedTilbakeITid &&
+    harValgtBHGellerSFO &&
+    søkerFraBestemtMåned?.verdi === true
+  );
 };

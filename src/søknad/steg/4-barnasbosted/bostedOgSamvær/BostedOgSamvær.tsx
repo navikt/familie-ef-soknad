@@ -4,9 +4,13 @@ import { useIntl } from 'react-intl';
 import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
 
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
-import { ESvar, ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
-import { EForelder, IForelder } from '../../../../models/forelder';
+import { EForelder, IForelder } from '../../../../models/steg/forelder';
 import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
@@ -20,7 +24,7 @@ import {
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
   harSkriftligAvtaleOmDeltBosted,
 } from '../../../../helpers/steg/forelder';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 
@@ -28,10 +32,11 @@ interface Props {
   settForelder: (verdi: IForelder) => void;
   forelder: IForelder;
   barn: IBarn;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid?: string
   ) => void;
 }
 
@@ -39,7 +44,7 @@ const BostedOgSamvær: React.FC<Props> = ({
   settForelder,
   forelder,
   barn,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
 
@@ -76,7 +81,7 @@ const BostedOgSamvær: React.FC<Props> = ({
     }
 
     settForelder(nyForelder);
-    settDokumentasjonsbehov(spørsmål, svar);
+    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
   return (

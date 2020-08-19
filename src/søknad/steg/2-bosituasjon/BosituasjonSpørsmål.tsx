@@ -12,13 +12,10 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
 import OmTidligereSamboer from './OmTidligereSamboer';
-import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
 import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
-import { useHistory, useLocation } from 'react-router';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
@@ -37,9 +34,6 @@ const BosituasjonSpørsmål: FC<Props> = ({
   settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
-  const history = useHistory();
-  const location = useLocation();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
 
@@ -131,20 +125,6 @@ const BosituasjonSpørsmål: FC<Props> = ({
           />
         </SeksjonGruppe>
       )}
-      {kommerFraOppsummering && erFerdigUtfylt(bosituasjon) ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </>
   );
 };

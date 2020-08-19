@@ -10,17 +10,18 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { strengTilDato } from '../../../utils/dato';
 
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 
 interface Props {
   settÅpenModal: Function;
   id?: string;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneidid: string,
+    barnepassid?: string
   ) => void;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
@@ -31,7 +32,7 @@ const LeggTilBarn: React.FC<Props> = ({
   id,
   barneListe,
   settBarneListe,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
 
@@ -106,7 +107,8 @@ const LeggTilBarn: React.FC<Props> = ({
     const erBarnFødtSvar = barnetFødt.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
-    erBarnFødtSvar && settDokumentasjonsbehov(barnetFødt, erBarnFødtSvar);
+    erBarnFødtSvar &&
+      settDokumentasjonsbehovForBarn(barnetFødt, erBarnFødtSvar, nyttBarn.id);
 
     settBarneListe(nyBarneListe);
 
