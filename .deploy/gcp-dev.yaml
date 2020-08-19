@@ -21,10 +21,6 @@ spec:
     enabled: true
     path: /metrics
   ingresses:
-    - "https://alene-med-barn.dev.nav.no"
-    - "https://www.dev.nav.no/familie/alene-med-barn/soknad"
-    - "https://familie-ef-soknad.dev.nav.no/familie/alene-med-barn"
-    - "https://dev.nav.no/familie/alene-med-barn"
     - "https://www.dev.nav.no/familie/alene-med-barn"
   accessPolicy:
     outbound:
