@@ -10,6 +10,8 @@ import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
+import { Stønadstype } from '../../models/søknad/stønadstyper';
+import { hentBannertittel } from '../../utils/stønadstype';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -18,7 +20,7 @@ export enum ESide {
 }
 
 interface ISide {
-  stønadTittelTekstid: string;
+  stønadstype: Stønadstype;
   stegtittel: string;
   routesStønad: IRoute[];
   skalViseKnapper: ESide;
@@ -28,7 +30,7 @@ interface ISide {
 }
 
 const Side: React.FC<ISide> = ({
-  stønadTittelTekstid,
+  stønadstype,
   stegtittel,
   children,
   routesStønad,
@@ -55,7 +57,7 @@ const Side: React.FC<ISide> = ({
 
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={stønadTittelTekstid} />
+      <Banner tekstid={hentBannertittel(stønadstype)} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}

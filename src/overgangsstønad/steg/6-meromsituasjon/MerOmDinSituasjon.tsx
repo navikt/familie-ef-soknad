@@ -28,6 +28,7 @@ import { datoTilStreng } from '../../../utils/dato';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -124,7 +125,7 @@ const MerOmDinSituasjon: React.FC = () => {
 
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}

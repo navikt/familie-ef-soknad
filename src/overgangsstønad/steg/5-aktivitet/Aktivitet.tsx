@@ -18,6 +18,7 @@ import { erAktivitetSeksjonFerdigUtfylt } from '../../../helpers/steg/aktivitetv
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -93,7 +94,7 @@ const Aktivitet: React.FC = () => {
 
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}

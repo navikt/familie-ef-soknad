@@ -13,6 +13,7 @@ import { IBarn } from '../../../models/steg/barn';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -54,7 +55,7 @@ const BarnaDine: React.FC = () => {
   return (
     <>
       <Side
-        stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+        stønadstype={Stønadstype.overgangsstønad}
         stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={true}

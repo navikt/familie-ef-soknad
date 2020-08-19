@@ -13,6 +13,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -53,7 +54,7 @@ const BarnaDine: React.FC = () => {
   return (
     <>
       <Side
-        stønadTittelTekstid={'banner.tittel.skolepenger'}
+        stønadstype={Stønadstype.skolepenger}
         stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={true}

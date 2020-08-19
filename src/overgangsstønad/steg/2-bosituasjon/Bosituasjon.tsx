@@ -8,6 +8,7 @@ import BosituasjonSpørsmål from '../../../søknad/steg/2-bosituasjon/Bosituasj
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -34,7 +35,7 @@ const Bosituasjon: FC = () => {
   };
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}

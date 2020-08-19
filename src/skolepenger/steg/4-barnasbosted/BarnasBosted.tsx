@@ -10,6 +10,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -64,7 +65,7 @@ const BarnasBosted: React.FC = () => {
 
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.skolepenger'}
+      stønadstype={Stønadstype.skolepenger}
       stegtittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}

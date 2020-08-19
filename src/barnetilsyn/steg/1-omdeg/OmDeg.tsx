@@ -17,6 +17,7 @@ import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation();
@@ -85,7 +86,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.barnetilsyn'}
+      stønadstype={Stønadstype.barnetilsyn}
       stegtittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}

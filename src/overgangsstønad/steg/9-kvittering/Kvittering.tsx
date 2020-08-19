@@ -54,7 +54,7 @@ const Kvittering: React.FC = () => {
 
   return søknad.innsendingsdato ? (
     <Side
-      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={ESide.skjulKnapper}
       routesStønad={RoutesOvergangsstonad}

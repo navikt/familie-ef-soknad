@@ -17,6 +17,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { useIntl } from 'react-intl';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const OmDeg: FC = () => {
   const intl = useIntl();
@@ -84,7 +85,7 @@ const OmDeg: FC = () => {
 
   return (
     <Side
-      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
