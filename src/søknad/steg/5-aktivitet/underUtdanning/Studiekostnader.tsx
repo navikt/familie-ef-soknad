@@ -9,7 +9,6 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import styled from 'styled-components';
 import { Undertittel } from 'nav-frontend-typografi';
-import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
