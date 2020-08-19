@@ -1,5 +1,5 @@
-import { IBooleanFelt, ITekstFelt } from '../../søknadsfelter';
-import { IPeriode } from '../../periode';
+import { IBooleanFelt, ITekstFelt } from '../../søknad/søknadsfelter';
+import { IPeriode } from '../../felles/periode';
 
 export interface IMedlemskap {
   søkerOppholderSegINorge?: IBooleanFelt;

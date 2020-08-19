@@ -15,7 +15,10 @@ const StyledKomponentGruppe = styled.div`
     padding-top: 1rem;
   }
 
-  .typo-normal {
+  .typo-normal,
+  .typo-element,
+  .inputPanel__label,
+  .skjemaelement__label {
     font-size: 18px;
   }
 `;

@@ -1,6 +1,6 @@
-import { ESvar, ISvar } from '../models/spørsmålogsvar';
+import { ESvar, ISvar } from '../models/felles/spørsmålogsvar';
 import { IntlShape } from 'react-intl';
-import { ISpørsmålListeFelt } from '../models/søknadsfelter';
+import { ISpørsmålListeFelt } from '../models/søknad/søknadsfelter';
 import { hentTekst } from './søknad';
 
 export const hentBooleanFraValgtSvar = (valgtSvar: ISvar) =>

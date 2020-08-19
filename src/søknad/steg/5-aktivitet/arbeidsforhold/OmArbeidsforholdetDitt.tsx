@@ -8,10 +8,10 @@ import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
-import { hentUid } from '../../../../utils/uuid';
+import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
 import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -96,8 +96,6 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             <Element>
               <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
             </Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>
               <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
             </LeggTilKnapp>

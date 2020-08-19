@@ -6,7 +6,7 @@ import {
   RouteComponentProps,
 } from 'react-router-dom';
 import { useSkjema } from '../SkjemaContext';
-import { Routes } from './Routes';
+import { RoutesArbeidssokerskjema } from './routesArbeidssokerskjema';
 
 interface RedirectProps extends RouteProps {
   component:
@@ -23,7 +23,7 @@ const RedirectArbeidssoker: React.FC<RedirectProps> = ({
       {...rest}
       render={(props) =>
         !skjema.harBekreftet ? (
-          <Redirect to={Routes[0].path} />
+          <Redirect to={RoutesArbeidssokerskjema[0].path} />
         ) : (
           <Component {...props} />
         )

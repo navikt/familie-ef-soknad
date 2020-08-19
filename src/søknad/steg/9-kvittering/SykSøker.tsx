@@ -19,7 +19,7 @@ const StyledLenke = styled.div`
   }
 `;
 
-const SykSøker: FC = () => {
+const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
   return (
     <SeksjonGruppe>
       <Normaltekst>
@@ -28,7 +28,7 @@ const SykSøker: FC = () => {
         nødvendige opplysningene.
       </Normaltekst>
       <StyledLenke>
-        <Lenke href="/filer/Huskeliste_lege_syk_OS.pdf" download>
+        <Lenke href={filPath} download>
           <img alt="Nedlastingsikon" src={download} />
           <Element>Last ned huskeliste til legen</Element>
         </Lenke>

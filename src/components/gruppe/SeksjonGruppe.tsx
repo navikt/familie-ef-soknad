@@ -9,6 +9,10 @@ const StyledFeltGruppe = styled.section`
     border: none;
     padding-left: 0;
   }
+  .typo-normal,
+  .typo-element {
+    font-size: 18px;
+  }
 `;
 
 const SeksjonGruppe: React.FC<{ className?: string }> = ({

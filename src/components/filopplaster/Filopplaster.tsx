@@ -11,15 +11,19 @@ import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
-import { IVedlegg } from '../../models/vedlegg';
+import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
-import { IDokumentasjon } from '../../models/dokumentasjon';
+import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoStreng } from '../../utils/dato';
 
 interface Props {
   intl: IntlShape;
-  settDokumentasjon: (dokumentasjon: IDokumentasjon) => void;
+  oppdaterDokumentasjon: (
+    dokumentasjonsid: string,
+    opplastedeVedlegg: IVedlegg[] | undefined,
+    harSendtInnTidligere: boolean
+  ) => void;
   dokumentasjon: IDokumentasjon;
   beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
@@ -33,7 +37,7 @@ interface OpplastetVedlegg {
 
 const Filopplaster: React.FC<Props> = ({
   intl,
-  settDokumentasjon,
+  oppdaterDokumentasjon,
   dokumentasjon,
   beskrivelsesListe,
   tillatteFiltyper,
@@ -100,10 +104,11 @@ const Filopplaster: React.FC<Props> = ({
             });
 
             const opplastedeVedlegg = dokumentasjon.opplastedeVedlegg || [];
-            settDokumentasjon({
-              ...dokumentasjon,
-              opplastedeVedlegg: [...opplastedeVedlegg, ...nyeVedlegg],
-            });
+            oppdaterDokumentasjon(
+              dokumentasjon.id,
+              [...opplastedeVedlegg, ...nyeVedlegg],
+              dokumentasjon.harSendtInn
+            );
           })
           .catch((error) => {
             feilmeldingsliste.push(
@@ -123,7 +128,11 @@ const Filopplaster: React.FC<Props> = ({
     const nyVedleggsliste = opplastedeVedlegg.filter((obj: IVedlegg) => {
       return obj.dokumentId !== fil.dokumentId;
     });
-    settDokumentasjon({ ...dokumentasjon, opplastedeVedlegg: nyVedleggsliste });
+    oppdaterDokumentasjon(
+      dokumentasjon.id,
+      nyVedleggsliste,
+      dokumentasjon.harSendtInn
+    );
   };
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

@@ -1,4 +1,4 @@
-import { IForelder } from '../../../../models/forelder';
+import { IForelder } from '../../../../models/steg/forelder';
 import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
@@ -7,9 +7,9 @@ import { hentTekst } from '../../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Textarea } from 'nav-frontend-skjema';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { EHvorMyeSammen } from '../../../../models/steg/barnasbosted';
-import { IBarn } from '../../../../models/barn';
+import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 

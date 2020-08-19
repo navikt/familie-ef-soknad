@@ -31,7 +31,10 @@ const StyledHjelpetekst = styled.div`
       }
     }
     &__toggleTekst {
-      font-size: 18px;
+      font-size: 16px !important;
+    }
+    .typo-normal {
+      font-size: 16px !important;
     }
   }
   &.sentrert {
@@ -49,6 +52,7 @@ const StyledÅpenHjelpetekst = styled.div`
   .typo-normal {
     margin-top: 1rem;
     margin-bottom: 1rem;
+    font-size: 1rem !important;
   }
 `;
 

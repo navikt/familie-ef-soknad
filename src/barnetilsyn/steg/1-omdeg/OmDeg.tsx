@@ -1,23 +1,29 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { injectIntl, IntlShape } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { hentTekst } from '../../../utils/søknad';
+import { useLocation } from 'react-router-dom';
 import {
+  erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
   harSøkerTlfnr,
-} from '../../../helpers/omdeg';
+} from '../../../helpers/steg/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
-import { ISøker } from '../../../models/person';
-import { ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import { ISøker } from '../../../models/søknad/person';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  const location = useLocation();
+  const kommerFraOppsummering: string = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     mellomlagreBarnetilsyn,
@@ -26,13 +32,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = useBarnetilsynSøknad();
 
   const { harSøktSeparasjon } = søknad.sivilstatus;
-  const {
-    søkerBosattINorgeSisteTreÅr,
-    perioderBoddIUtlandet,
-  } = søknad.medlemskap;
-  const location = useLocation();
-  const history = useHistory();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -78,24 +77,20 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     });
   };
 
-  const søkerFyltUtAlleFelterOgSpørsmål = () => {
-    if (søkerBosattINorgeSisteTreÅr?.verdi === false) {
-      const harFelterUtenUtfyltBegrunnelse = perioderBoddIUtlandet?.some(
-        (utenlandsopphold: any) =>
-          utenlandsopphold.begrunnelse.verdi === '' ||
-          !utenlandsopphold.begrunnelse
-      );
-      return harFelterUtenUtfyltBegrunnelse ? false : true;
-    } else if (søkerBosattINorgeSisteTreÅr?.verdi) return true;
-    else return false;
-  };
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.person,
+    søknad.sivilstatus,
+    søknad.medlemskap
+  );
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
-      erSpørsmålBesvart={søkerFyltUtAlleFelterOgSpørsmål()}
-      skalViseKnapper={!kommerFraOppsummering}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      erSpørsmålBesvart={erAlleSpørsmålBesvart}
+      skalViseKnapper={skalViseKnapper}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <Personopplysninger
         søker={søknad.person.søker}
@@ -124,21 +119,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
             ) : null}
           </>
         )}
-
-      {kommerFraOppsummering && søkerFyltUtAlleFelterOgSpørsmål() ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

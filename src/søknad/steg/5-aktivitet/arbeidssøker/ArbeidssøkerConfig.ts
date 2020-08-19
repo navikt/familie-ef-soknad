@@ -2,7 +2,7 @@ import {
   ESvar,
   ESvarTekstid,
   ISpørsmål,
-} from '../../../../models/spørsmålogsvar';
+} from '../../../../models/felles/spørsmålogsvar';
 import {
   EArbeidssted,
   EArbeidssøker,

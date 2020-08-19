@@ -7,26 +7,27 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Element } from 'nav-frontend-typografi';
 import { erBarnepassOrdningerUtfylt } from './hjelper';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
-import { hentUid } from '../../../utils/uuid';
-import { IBarn } from '../../../models/barn';
+import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
+import { IBarn } from '../../../models/steg/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn;
   settBarnepass: (barnepass: IBarnepass, barnid: string) => void;
-  settDokumentasjonsbehov: (
+  settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
-    erHuketAv?: boolean
+    barneid: string,
+    barnepassid: string
   ) => void;
 }
 
 const BarnepassOrdninger: FC<Props> = ({
   barn,
   settBarnepass,
-  settDokumentasjonsbehov,
+  settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useIntl();
   const barnepass: IBarnepass = barn.barnepass
@@ -85,7 +86,7 @@ const BarnepassOrdninger: FC<Props> = ({
           barn={barn}
           barnepassOrdning={barnepassordning}
           settBarnepassOrdning={settBarnepassOrdning}
-          settDokumentasjonsbehov={settDokumentasjonsbehov}
+          settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
           fjernBarnepassOrdning={fjernBarnepassOrdning}
         />
       ))}
@@ -93,8 +94,6 @@ const BarnepassOrdninger: FC<Props> = ({
         <KomponentGruppe>
           <FeltGruppe>
             <Element>{leggTilLabel}</Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
               {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
             </LeggTilKnapp>
