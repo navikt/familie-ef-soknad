@@ -20,7 +20,6 @@ export const DokumentasjonUtgifterUtdanning: IDokumentasjon = {
   svarid: EAktivitet.tarUtdanning,
   label: '',
   tittel: 'utdanning.label.utgifter',
-  beskrivelse: 'utdanning.label.utgifter',
   harSendtInn: false,
 };
 
