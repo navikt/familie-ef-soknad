@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import Side from '../../side/Side';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
 import { IBarnepass } from '../../models/barnepass';
@@ -19,16 +18,26 @@ import {
   erBarnepassStegFerdigUtfylt,
   erÅrsakBarnepassSpmBesvart,
   harBarnAvsluttetFjerdeKlasse,
+  skalDokumentereTidligereFakturaer,
 } from './hjelper';
+import Side, { ESide } from '../../../components/side/Side';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import { useLocation } from 'react-router';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
+  const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     settSøknad,
     mellomlagreBarnetilsyn,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
@@ -87,18 +96,27 @@ const Barnepass: FC<Props> = () => {
         },
       };
     });
-    settDokumentasjonsbehov(spørsmål, svar);
   };
+
+  const alertTekst: string = skalDokumentereTidligereFakturaer(
+    barnSomSkalHaBarnepass,
+    søkerFraBestemtMåned,
+    søknadsdato
+  )
+    ? hentTekst('barnepass.dokumentasjon.søkerStønadFraBestemtMnd', intl)
+    : '';
 
   return (
     <Side
       tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
-      skalViseKnapper={true}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      skalViseKnapper={skalViseKnapper}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(
         barnSomSkalHaBarnepass,
         søknad
       )}
+      routesStønad={RoutesBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
         {barnSomSkalHaBarnepass.map((barn, index) => {
@@ -115,14 +133,18 @@ const Barnepass: FC<Props> = () => {
                   <ÅrsakBarnepass
                     barn={barn}
                     settBarnepass={settBarnepass}
-                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                    settDokumentasjonsbehovForBarn={
+                      settDokumentasjonsbehovForBarn
+                    }
                   />
                 )}
                 {erÅrsakBarnepassSpmBesvart(barn) && (
                   <BarnepassOrdninger
                     barn={barn}
                     settBarnepass={settBarnepass}
-                    settDokumentasjonsbehov={settDokumentasjonsbehov}
+                    settDokumentasjonsbehovForBarn={
+                      settDokumentasjonsbehovForBarn
+                    }
                   />
                 )}
               </React.Fragment>
@@ -140,6 +162,7 @@ const Barnepass: FC<Props> = () => {
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
             hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
+            alertTekst={alertTekst}
           />
         </SeksjonGruppe>
       )}

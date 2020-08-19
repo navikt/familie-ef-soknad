@@ -1,13 +1,14 @@
 import React, { RefObject, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import Side from '../../side/Side';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -16,13 +17,12 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const history = useHistory();
   const location = useLocation();
   const {
     søknad,
     mellomlagreBarnetilsyn,
     settSøknad,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
@@ -38,6 +38,9 @@ const BarnasBosted: React.FC = () => {
     (barn) => barn.skalHaBarnepass?.verdi
   );
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
   const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
@@ -63,9 +66,11 @@ const BarnasBosted: React.FC = () => {
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       {barna
         .filter((barn) => barn.skalHaBarnepass?.verdi)
@@ -81,7 +86,7 @@ const BarnasBosted: React.FC = () => {
                 aktivIndex={aktivIndex}
                 key={key}
                 scrollTilLagtTilBarn={scrollTilLagtTilBarn}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
                 settBarneListe={settBarneliste}
                 barneListe={søknad.person.barn}
               />
@@ -102,20 +107,6 @@ const BarnasBosted: React.FC = () => {
             );
           }
         })}
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

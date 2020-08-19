@@ -4,21 +4,22 @@ import tomPerson from '../mock/initialState.json';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ESituasjon } from '../models/steg/dinsituasjon/meromsituasjon';
-import { ISpørsmål, ISvar } from '../models/spørsmålogsvar';
-import { ISøknad } from '../models/søknad';
+import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
+import { ISøknad } from '../models/søknad/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
+  oppdaterDokumentasjonTilEtSvarSpørsmålForBarn,
 } from '../helpers/steg/dokumentasjon';
 import {
   hentMellomlagretSøknadFraDokument,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
-import { IMellomlagretOvergangsstønad } from '../models/mellomlagretSøknad';
+import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSøknad';
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
-import { MellomlagredeStønadstyper } from '../models/stønadstyper';
+import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -96,6 +97,34 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     );
   };
 
+  const settDokumentasjonsbehovForBarn = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    barneid: string,
+    barnepassid?: string
+  ) => {
+    let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
+    if (spørsmål.flersvar) {
+      console.error('Ikke implementert');
+    } else {
+      endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
+        søknad.dokumentasjonsbehov,
+        spørsmål,
+        valgtSvar,
+        intl,
+        barneid,
+        barnepassid
+      );
+    }
+
+    settSøknad((prevSoknad) => {
+      return {
+        ...prevSoknad,
+        dokumentasjonsbehov: endretDokumentasjonsbehov,
+      };
+    });
+  };
+
   const settDokumentasjonsbehov = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -128,6 +157,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     søknad,
     settSøknad,
     settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
     mellomlagretOvergangsstønad,
     hentMellomlagretOvergangsstønad,
     mellomlagreOvergangsstønad,

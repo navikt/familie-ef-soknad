@@ -15,7 +15,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { datoTilStreng } from '../../../../utils/dato';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { EPeriode } from '../../../../models/periode';
+import { EPeriode } from '../../../../models/felles/periode';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];

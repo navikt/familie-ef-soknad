@@ -3,7 +3,7 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
-import { IDatoFelt } from '../../../../../models/søknadsfelter';
+import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 
 interface Props {
   settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;

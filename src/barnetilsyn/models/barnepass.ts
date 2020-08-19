@@ -1,5 +1,5 @@
-import { ISpørsmålFelt, ITekstFelt } from '../../models/søknadsfelter';
-import { IPeriode } from '../../models/periode';
+import { ISpørsmålFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
+import { IPeriode } from '../../models/felles/periode';
 
 export interface IBarnepass {
   årsakBarnepass?: ISpørsmålFelt;

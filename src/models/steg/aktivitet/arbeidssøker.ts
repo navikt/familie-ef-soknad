@@ -1,4 +1,4 @@
-import { ISpørsmålBooleanFelt, ITekstFelt } from '../../søknadsfelter';
+import { ISpørsmålBooleanFelt, ITekstFelt } from '../../søknad/søknadsfelter';
 
 export interface IArbeidssøker {
   registrertSomArbeidssøkerNav?: ISpørsmålBooleanFelt;

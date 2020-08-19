@@ -6,7 +6,7 @@ import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 
 interface Props {
@@ -102,19 +102,21 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
           </Normaltekst>
         </div>
-        <div className="spørsmål-og-svar">
-          <Element>
-            {hentBeskjedMedNavn(
-              barnetsNavn,
-              intl.formatMessage({
-                id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
-              })
-            )}
-          </Element>
-          <Normaltekst>
-            {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
-          </Normaltekst>
-        </div>
+        {forelder.harAnnenForelderSamværMedBarn?.verdi && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+                })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
+            </Normaltekst>
+          </div>
+        )}
         {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
             <Element>

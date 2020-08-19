@@ -9,14 +9,16 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { hentForrigeRoute, hentNesteRoute, Routes } from '../../routing/Routes';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   sendInnBarnetilsynSøknad,
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
+import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 
 interface Innsending {
   status: string;
@@ -28,8 +30,8 @@ const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useBarnetilsynSøknad();
   const location = useLocation();
   const history = useHistory();
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
+  const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
+  const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -45,10 +47,14 @@ const SendSøknadKnapper: FC = () => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
+      unikeDokumentasjonsbehov
+    );
 
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn)
@@ -105,7 +111,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(Routes[0].path)}
+            onClick={() => history.push(RoutesBarnetilsyn[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

@@ -2,10 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { ISpørsmål, ISvar } from '../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import {
   filtrerAktivitetSvaralternativer,
@@ -22,11 +21,13 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import Side from '../../side/Side';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { Element } from 'nav-frontend-typografi';
+import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
+import { hentPathBarnetilsynOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -36,14 +37,15 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const history = useHistory();
   const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>(
     søknad?.aktivitet
   );
   const { hvaErDinArbeidssituasjon, erIArbeid } = arbeidssituasjon;
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   useEffect(() => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
@@ -59,7 +61,7 @@ const Aktivitet: React.FC = () => {
     if (svar.id === ErIArbeid.NeiFordiJegErSyk) {
       delete endretArbeidssituasjon.egetAS;
       delete endretArbeidssituasjon.arbeidsforhold;
-      delete endretArbeidssituasjon.firma;
+      delete endretArbeidssituasjon.firmaer;
       delete endretArbeidssituasjon.etablererEgenVirksomhet;
 
       endretArbeidssituasjon = {
@@ -140,9 +142,11 @@ const Aktivitet: React.FC = () => {
       tittel={intl.formatMessage({
         id: 'stegtittel.arbeidssituasjon.barnetilsyn',
       })}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
-      mellomlagreBarnetilsyn={mellomlagreBarnetilsyn}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
         <KomponentGruppe>
@@ -209,22 +213,6 @@ const Aktivitet: React.FC = () => {
           );
         }
       )}
-
-      {kommerFraOppsummering &&
-      erSisteSpørsmålBesvartOgMinstEttAlternativValgt ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

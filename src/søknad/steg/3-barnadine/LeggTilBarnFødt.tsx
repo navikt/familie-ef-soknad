@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AlertStripe from 'nav-frontend-alertstriper';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { ESvar, ESvarTekstid } from '../../../models/spørsmålogsvar';
+import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { FormattedMessage } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { Input } from 'nav-frontend-skjema';

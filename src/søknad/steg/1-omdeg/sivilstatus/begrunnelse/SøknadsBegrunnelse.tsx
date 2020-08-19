@@ -5,7 +5,6 @@ import EndringISamvær from './EndringISamvær';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
-import SeksjonGruppe from '../../../../../components/gruppe/SeksjonGruppe';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -20,10 +19,13 @@ import {
   EBegrunnelse,
   ISivilstatus,
 } from '../../../../../models/steg/omDeg/sivilstatus';
-import { ISpørsmål, ISvar } from '../../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../../models/felles/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { datoTilStreng, strengTilDato } from '../../../../../utils/dato';
-import { EPersonDetaljer, IPersonDetaljer } from '../../../../../models/person';
+import {
+  EPersonDetaljer,
+  IPersonDetaljer,
+} from '../../../../../models/søknad/person';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -186,7 +188,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 
   return (
-    <SeksjonGruppe>
+    <>
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={spørsmål.tekstid}
@@ -263,7 +265,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
           </AlertStripeInfo>
         </KomponentGruppe>
       )}
-    </SeksjonGruppe>
+    </>
   );
 };
 
