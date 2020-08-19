@@ -29,7 +29,11 @@ import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import Studiekostnader from './Studiekostnader';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
+import styled from 'styled-components';
 
+const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
+  margin-top: -2rem;
+`;
 interface Props {
   underUtdanning?: IUnderUtdanning | IDetaljertUtdanning;
   oppdaterUnderUtdanning: (
@@ -74,22 +78,31 @@ const UnderUtdanning: React.FC<Props> = ({
     ? erDetaljertUtdanningFerdigUtfylt(utdanning)
     : erUnderUtdanningFerdigUtfylt(utdanning);
 
-  const hjelpetekstForStønad =
-    stønadstype === Stønadstype.overgangsstønad
-      ? utdanningDuKanFåStønadTil
-      : utdanningDuKanFåStønadTilSkolepenger;
   return (
     <>
       <SeksjonGruppe>
         <KomponentGruppe>
-          <Undertittel className={'sentrert'}>
-            <LocaleTekst tekst={'utdanning.tittel'} />
-          </Undertittel>
-          <Hjelpetekst
-            className={'sentrert'}
-            åpneTekstid={hjelpetekstForStønad.åpneTekstid}
-            innholdTekstid={hjelpetekstForStønad.innholdTekstid}
-          />
+          {stønadstype === Stønadstype.overgangsstønad && (
+            <>
+              <Undertittel className={'sentrert'}>
+                <LocaleTekst tekst={'utdanning.tittel'} />
+              </Undertittel>
+              <Hjelpetekst
+                className={'sentrert'}
+                åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
+                innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
+              />
+            </>
+          )}
+          {stønadstype === Stønadstype.skolepenger && (
+            <HjelpetekstUnderSidetittel
+              className={'sentrert'}
+              åpneTekstid={utdanningDuKanFåStønadTilSkolepenger.åpneTekstid}
+              innholdTekstid={
+                utdanningDuKanFåStønadTilSkolepenger.innholdTekstid
+              }
+            />
+          )}
         </KomponentGruppe>
 
         <SkoleOgLinje
