@@ -15,7 +15,10 @@ import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import StudieArbeidsmengde from './StudieArbeidsmengde';
 import TidligereUtdanning from './TidligereUtdanning';
 import { Undertittel } from 'nav-frontend-typografi';
-import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import {
+  utdanningDuKanFåStønadTil,
+  utdanningDuKanFåStønadTilSkolepenger,
+} from './UtdanningConfig';
 import MålMedUtdanningen from './MålMedUtdanningen';
 import {
   erDetaljertUtdanningFerdigUtfylt,
@@ -25,20 +28,22 @@ import { strengErMerEnnNull } from '../../../../utils/spørsmålogsvar';
 import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import Studiekostnader from './Studiekostnader';
+import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 
 interface Props {
   underUtdanning?: IUnderUtdanning | IDetaljertUtdanning;
   oppdaterUnderUtdanning: (
     utdanning: IUnderUtdanning | IDetaljertUtdanning
   ) => void;
-  skalHaDetaljertUtdanning?: boolean;
+  stønadstype: Stønadstype;
 }
 
 const UnderUtdanning: React.FC<Props> = ({
   underUtdanning,
   oppdaterUnderUtdanning,
-  skalHaDetaljertUtdanning = false,
+  stønadstype,
 }) => {
+  const skalHaDetaljertUtdanning = stønadstype === Stønadstype.skolepenger;
   const [utdanning, settUtdanning] = useState<
     IUnderUtdanning | IDetaljertUtdanning
   >(underUtdanning ? underUtdanning : lagTomUnderUtdanning());
@@ -68,6 +73,11 @@ const UnderUtdanning: React.FC<Props> = ({
   const visTidligereUtdanning = skalHaDetaljertUtdanning
     ? erDetaljertUtdanningFerdigUtfylt(utdanning)
     : erUnderUtdanningFerdigUtfylt(utdanning);
+
+  const hjelpetekstForStønad =
+    stønadstype === Stønadstype.overgangsstønad
+      ? utdanningDuKanFåStønadTil
+      : utdanningDuKanFåStønadTilSkolepenger;
   return (
     <>
       <SeksjonGruppe>
@@ -77,8 +87,8 @@ const UnderUtdanning: React.FC<Props> = ({
           </Undertittel>
           <Hjelpetekst
             className={'sentrert'}
-            åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
-            innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
+            åpneTekstid={hjelpetekstForStønad.åpneTekstid}
+            innholdTekstid={hjelpetekstForStønad.innholdTekstid}
           />
         </KomponentGruppe>
 

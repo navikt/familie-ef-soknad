@@ -55,7 +55,7 @@ const MålMedUtdanningen: React.FC<Props> = ({
           <Element>
             Du må legge ved dokumentasjon på utdanningen du tar eller skal ta
           </Element>
-          <Normaltekst>Dokumentasjonen må tydelig vise:</Normaltekst>
+          <Normaltekst>Dokumentasjonen må vise:</Normaltekst>
           <ul>
             <li>
               <Normaltekst>navn på studiested</Normaltekst>

@@ -14,6 +14,12 @@ export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   lukkeTekstid: '',
 };
 
+export const utdanningDuKanFåStønadTilSkolepenger: IHjelpetekst = {
+  åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
+  innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad.skolepenger',
+  lukkeTekstid: '',
+};
+
 export const tidligereUtdanningHjelpetekst: IHjelpetekst = {
   åpneTekstid: 'tidligereUtdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'tidligereUtdanning.lesmer-innhold.kanFåStønad',

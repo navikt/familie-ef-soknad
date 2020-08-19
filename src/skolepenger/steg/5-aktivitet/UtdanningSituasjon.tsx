@@ -8,6 +8,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import { IDetaljertUtdanning } from '../../models/detaljertUtdanning';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/UnderUtdanning';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -30,7 +31,7 @@ const UtdanningSituasjon: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.arbeidssituasjon' })}
+      tittel={intl.formatMessage({ id: 'stegtittel.utdanning' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
       mellomlagreStønad={mellomlagreSkolepenger}
@@ -40,7 +41,7 @@ const UtdanningSituasjon: React.FC = () => {
       <UnderUtdanning
         underUtdanning={søknad.utdanning}
         oppdaterUnderUtdanning={oppdaterUnderUtdanning}
-        skalHaDetaljertUtdanning={true}
+        stønadstype={Stønadstype.skolepenger}
       />
     </Side>
   );

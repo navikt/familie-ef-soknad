@@ -69,56 +69,50 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
             }
           />
         </FeltGruppe>
-        {harValgtSvar(utdanning.semesteravgift?.verdi) && (
-          <FeltGruppe>
-            <InputLabelGruppe
-              label={studieavgiftLabel}
-              nøkkel={EUtdanning.studieavgift}
-              type={'number'}
-              bredde={'XS'}
-              settInputFelt={(e) =>
-                settInputFelt(EUtdanning.studieavgift, studieavgiftLabel, e)
-              }
-              beskrivendeTekst={'kroner'}
-              value={
-                utdanning?.studieavgift?.verdi
-                  ? utdanning?.studieavgift?.verdi
-                  : ''
-              }
-            />
-          </FeltGruppe>
-        )}
-        {harValgtSvar(utdanning.studieavgift?.verdi) && (
-          <>
-            <FeltGruppe>
-              <InputLabelGruppe
-                label={eksamensgebyrLabel}
-                nøkkel={EUtdanning.eksamensgebyr}
-                type={'number'}
-                bredde={'XS'}
-                settInputFelt={(e) =>
-                  settInputFelt(EUtdanning.eksamensgebyr, eksamensgebyrLabel, e)
-                }
-                beskrivendeTekst={'kroner'}
-                value={
-                  utdanning?.eksamensgebyr?.verdi
-                    ? utdanning?.eksamensgebyr?.verdi
-                    : ''
-                }
-              />
-            </FeltGruppe>
-            <FeltGruppe>
-              <AlertStripeDokumentasjon>
-                {hentTekst('utdanning.andreUtgifter.fakturatekst', intl)}
-              </AlertStripeDokumentasjon>
-            </FeltGruppe>
-            <FeltGruppe>
-              <AlertStripeInfo className={'fjernBakgrunn'}>
-                <FormattedHTMLMessage id={'utdanning.andreUtgifter.tekst'} />
-              </AlertStripeInfo>
-            </FeltGruppe>
-          </>
-        )}
+        <FeltGruppe>
+          <InputLabelGruppe
+            label={studieavgiftLabel}
+            nøkkel={EUtdanning.studieavgift}
+            type={'number'}
+            bredde={'XS'}
+            settInputFelt={(e) =>
+              settInputFelt(EUtdanning.studieavgift, studieavgiftLabel, e)
+            }
+            beskrivendeTekst={'kroner'}
+            value={
+              utdanning?.studieavgift?.verdi
+                ? utdanning?.studieavgift?.verdi
+                : ''
+            }
+          />
+        </FeltGruppe>
+        <FeltGruppe>
+          <InputLabelGruppe
+            label={eksamensgebyrLabel}
+            nøkkel={EUtdanning.eksamensgebyr}
+            type={'number'}
+            bredde={'XS'}
+            settInputFelt={(e) =>
+              settInputFelt(EUtdanning.eksamensgebyr, eksamensgebyrLabel, e)
+            }
+            beskrivendeTekst={'kroner'}
+            value={
+              utdanning?.eksamensgebyr?.verdi
+                ? utdanning?.eksamensgebyr?.verdi
+                : ''
+            }
+          />
+        </FeltGruppe>
+        <FeltGruppe>
+          <AlertStripeDokumentasjon>
+            {hentTekst('utdanning.andreUtgifter.fakturatekst', intl)}
+          </AlertStripeDokumentasjon>
+        </FeltGruppe>
+        <FeltGruppe>
+          <AlertStripeInfo className={'fjernBakgrunn'}>
+            <FormattedHTMLMessage id={'utdanning.andreUtgifter.tekst'} />
+          </AlertStripeInfo>
+        </FeltGruppe>
       </KomponentGruppe>
     </>
   );

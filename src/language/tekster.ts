@@ -557,6 +557,7 @@ export default {
     'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
     'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
 
+    'stegtittel.utdanning': 'Utdanningen din',
     'tidligereUtdanning.lesmer-åpne.kanFåStønad':
       'Grunnen til at vi spør om dette',
     'tidligereUtdanning.lesmer-innhold.kanFåStønad':
@@ -569,12 +570,20 @@ export default {
     'utdanning.undertittel': 'Utdanning',
     'utdanning.lesmer-åpne.kanFåStønad': 'Utdanning du kan få stønad til',
     'utdanning.lesmer-innhold.kanFåStønad':
-      'For å få rett til stønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
-      'Da vurderer vi:<br/><br/>' +
+      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
+      'Da vurderer vi:' +
       '<ul><li>hva som er målet med utdanningen din</li>' +
       '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
       '<li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>' +
-      'Når du søker om stønad vil vi vurdere utdanningen din.',
+      'Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
+    'utdanning.lesmer-innhold.kanFåStønad.skolepenger':
+      'For å få rett til stønad til skolepenger, må denne utdanningen være nødvendig for at du skal kunne komme i jobb og forsørge deg selv. <br /><br />' +
+      'Vi vurderer:' +
+      '<ul><li>hvilket mål du har for å skaffe eller beholde inntektsgivende arbeid</li>' +
+      '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
+      '<li>om den aktuelle utdanningen er hensiktsmessig. Da vurderer vi blant annet arbeidsmarkedets behov og dine muligheter.</li>' +
+      '</ul>' +
+      'Vi vurderer utdanningen du vil ta når du søker om stønad. ',
     'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
     'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
     'utdanning.spm.privatEllerOffentlig':

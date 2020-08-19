@@ -13,6 +13,7 @@ import FåttJobbTilbud from './FåttJobbTilbud';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import OmFirmaeneDine from './Firma/OmFirmaeneDine';
 import { IUnderUtdanning } from '../../../models/steg/aktivitet/utdanning';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -79,6 +80,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
     case EAktivitet.tarUtdanning:
       return (
         <UnderUtdanning
+          stønadstype={Stønadstype.overgangsstønad}
           underUtdanning={arbeidssituasjon.underUtdanning}
           oppdaterUnderUtdanning={(utdanning: IUnderUtdanning) =>
             settArbeidssituasjon({
