@@ -6,6 +6,7 @@ import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
 import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
+import UtdanningSituasjon from './steg/5-aktivitet/UtdanningSituasjon';
 
 const SøknadsdialogSkolepenger: FC = () => {
   return (
@@ -22,8 +23,10 @@ const SøknadsdialogSkolepenger: FC = () => {
       {/*  path={'/skolepenger/oppsummering'}*/}
       {/*  component={Oppsummering}*/}
       {/*/>*/}
-      {/*<RedirectTilStart path={'/skolepenger/barnepass'} component={Barnepass} />*/}
-      {/*<RedirectTilStart path={'/skolepenger/aktivitet'} component={Aktivitet} />*/}
+      <RedirectTilStart
+        path={'/skolepenger/utdanning'}
+        component={UtdanningSituasjon}
+      />
       <RedirectTilStart
         path={'/skolepenger/barnas-bosted'}
         component={BarnasBosted}

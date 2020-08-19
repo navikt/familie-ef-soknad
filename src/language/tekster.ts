@@ -568,12 +568,12 @@ export default {
     'utdanning.undertittel': 'Utdanning',
     'utdanning.lesmer-åpne.kanFåStønad': 'Utdanning du kan få stønad til',
     'utdanning.lesmer-innhold.kanFåStønad':
-      'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
+      'For å få rett til stønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
       'Da vurderer vi:<br/><br/>' +
       '<ul><li>hva som er målet med utdanningen din</li>' +
       '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
       '<li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>' +
-      'Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
+      'Når du søker om stønad vil vi vurdere utdanningen din.',
     'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
     'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
     'utdanning.spm.privatEllerOffentlig':
@@ -593,6 +593,11 @@ export default {
     'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
     'utdanning.spm.mål': 'Hva er målet med utdanningen?',
 
+    'utdanning.label.utgifter': 'Utgifter til skolepenger',
+    'utdanning.label.utgifter.eksamensgebyr': 'Eksamensgebyr',
+    'utdanning.label.utgifter.studieavgift': 'Studieavgift',
+    'utdanning.label.utgifter.semesteravgift': 'Semesteravgift',
+
     'utdanning.tittel.tidligere': 'Tidligere utdanning',
     'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen?',
     'utdanning.lesmer-åpne.grunnskolen': 'Hva regnes som grunnskolen?',
@@ -601,6 +606,24 @@ export default {
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
     'utdanning.knapp.slett': 'Fjern utdanning',
+
+    'utdanning.andreUtgifter.tittel':
+      'Har du andre utgifter i forbindelse med utdanningen?',
+    'utdanning.andreUtgifter.tekst':
+      '<strong>Har du andre utgifter i forbindelse med utdanningen?</strong><br /><br />' +
+      'Tilleggsstønader kan dekke utgifter til:<ul>' +
+      '<li>barnepass</li>' +
+      '<li>læremidler</li>' +
+      '<li>daglig reise</li>' +
+      '<li>reise til samling</li>' +
+      '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
+      '<li>bolig og overnatting</li>' +
+      '<li>flytting</li>' +
+      '</ul>' +
+      'Vi viser deg videre til søknad om tilleggsstønader når du er ferdig med denne søknaden.\n' +
+      'Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad.',
+    'utdanning.andreUtgifter.fakturatekst':
+      'Du må legge ved faktura i ditt navn som viser utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr',
 
     'stegtittel.dinSituasjon': 'Mer om situasjonen din',
     'dinSituasjon.spm': 'Gjelder noe av dette deg?',

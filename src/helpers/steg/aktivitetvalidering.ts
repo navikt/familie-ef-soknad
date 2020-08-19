@@ -14,6 +14,7 @@ import {
 } from '../../models/steg/aktivitet/utdanning';
 import { erPeriodeGyldig } from '../../utils/dato';
 import { IFirma } from '../../models/steg/aktivitet/firma';
+import { IDetaljertUtdanning } from '../../skolepenger/models/detaljertUtdanning';
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
@@ -53,6 +54,31 @@ export const erUnderUtdanningFerdigUtfylt = (
   underUtdanning: IUnderUtdanning
 ): boolean => {
   return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
+};
+
+export const erDetaljertUtdanningFerdigUtfylt = (
+  detljertUtdanning: IDetaljertUtdanning
+): boolean => {
+  return (
+    harValgtSvar(detljertUtdanning.semesteravgift?.verdi) &&
+    harValgtSvar(detljertUtdanning.studieavgift?.verdi) &&
+    harValgtSvar(detljertUtdanning.eksamensgebyr?.verdi)
+  );
+};
+
+export const erAllUtdanningFerdigUtfylt = (
+  underUtdanning: IUnderUtdanning | IDetaljertUtdanning
+) => {
+  if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
+    return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
+  } else {
+    const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
+    return (
+      tidligereUtdanning !== undefined &&
+      erUnderUtdanningFerdigUtfylt(underUtdanning) &&
+      erTidligereUtdanningFerdigUtfylt(tidligereUtdanning)
+    );
+  }
 };
 
 export const erAktivitetSeksjonFerdigUtfylt = (
@@ -102,17 +128,10 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.tarUtdanning:
-      if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
-        return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
-      } else {
-        const tidligereUtdanning = underUtdanning?.tidligereUtdanning;
-        return (
-          underUtdanning !== undefined &&
-          tidligereUtdanning !== undefined &&
-          erUnderUtdanningFerdigUtfylt(underUtdanning) &&
-          erTidligereUtdanningFerdigUtfylt(tidligereUtdanning)
-        );
-      }
+      return (
+        underUtdanning !== undefined &&
+        erAllUtdanningFerdigUtfylt(underUtdanning)
+      );
 
     case EAktivitet.harFåttJobbTilbud:
       return datoOppstartJobb !== undefined;

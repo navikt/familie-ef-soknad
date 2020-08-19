@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
   EStudieandel,
   EUtdanning,
@@ -18,29 +17,34 @@ import TidligereUtdanning from './TidligereUtdanning';
 import { Undertittel } from 'nav-frontend-typografi';
 import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
 import MålMedUtdanningen from './MålMedUtdanningen';
-import { erUnderUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import {
+  erDetaljertUtdanningFerdigUtfylt,
+  erUnderUtdanningFerdigUtfylt,
+} from '../../../../helpers/steg/aktivitetvalidering';
 import { strengErMerEnnNull } from '../../../../utils/spørsmålogsvar';
 import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
+import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
+import Studiekostnader from './Studiekostnader';
 
 interface Props {
-  arbeidssituasjon: IAktivitet;
-  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
+  underUtdanning?: IUnderUtdanning | IDetaljertUtdanning;
+  oppdaterUnderUtdanning: (
+    utdanning: IUnderUtdanning | IDetaljertUtdanning
+  ) => void;
+  skalHaDetaljertUtdanning?: boolean;
 }
 
 const UnderUtdanning: React.FC<Props> = ({
-  arbeidssituasjon,
-  settArbeidssituasjon,
+  underUtdanning,
+  oppdaterUnderUtdanning,
+  skalHaDetaljertUtdanning = false,
 }) => {
-  const { underUtdanning } = arbeidssituasjon;
-  const [utdanning, settUtdanning] = useState<IUnderUtdanning>(
-    underUtdanning ? underUtdanning : lagTomUnderUtdanning()
-  );
+  const [utdanning, settUtdanning] = useState<
+    IUnderUtdanning | IDetaljertUtdanning
+  >(underUtdanning ? underUtdanning : lagTomUnderUtdanning());
 
   useEffect(() => {
-    settArbeidssituasjon({
-      ...arbeidssituasjon,
-      underUtdanning: utdanning,
-    });
+    oppdaterUnderUtdanning(utdanning);
     // eslint-disable-next-line
   }, [utdanning]);
 
@@ -61,6 +65,9 @@ const UnderUtdanning: React.FC<Props> = ({
   const søkerSkalJobbeHeltid =
     utdanning.heltidEllerDeltid?.svarid === EStudieandel.heltid;
 
+  const visTidligereUtdanning = skalHaDetaljertUtdanning
+    ? erDetaljertUtdanningFerdigUtfylt(utdanning)
+    : erUnderUtdanningFerdigUtfylt(utdanning);
   return (
     <>
       <SeksjonGruppe>
@@ -118,12 +125,19 @@ const UnderUtdanning: React.FC<Props> = ({
             )}
           </>
         )}
+        {skalHaDetaljertUtdanning &&
+          erUnderUtdanningFerdigUtfylt(utdanning) && (
+            <Studiekostnader
+              utdanning={utdanning}
+              oppdaterUtdanning={oppdaterUtdanning}
+            />
+          )}
       </SeksjonGruppe>
 
-      {underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning) && (
+      {visTidligereUtdanning && (
         <>
           <TidligereUtdanning
-            underUtdanning={underUtdanning}
+            underUtdanning={utdanning}
             settUnderUtdanning={settUtdanning}
           />
         </>

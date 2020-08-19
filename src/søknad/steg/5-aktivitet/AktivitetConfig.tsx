@@ -10,10 +10,21 @@ import {
 } from '../../../models/steg/dokumentasjon';
 import { ESituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { EArbeidssøker } from '../../../models/steg/aktivitet/arbeidssøker';
+import { EUtdanning } from '../../../models/steg/aktivitet/utdanning';
 
 // --- DOKUMENTASJON
 
-const DokumentasjonUtdanning: IDokumentasjon = {
+export const DokumentasjonUtgifterUtdanning: IDokumentasjon = {
+  id: AktivitetDokumentasjon.UTGIFTER_UTDANNING,
+  spørsmålid: EUtdanning.semesteravgift,
+  svarid: EAktivitet.tarUtdanning,
+  label: '',
+  tittel: 'utdanning.label.utgifter',
+  beskrivelse: 'utdanning.label.utgifter',
+  harSendtInn: false,
+};
+
+export const DokumentasjonUtdanning: IDokumentasjon = {
   id: AktivitetDokumentasjon.UTDANNING,
   spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   svarid: EAktivitet.tarUtdanning,
