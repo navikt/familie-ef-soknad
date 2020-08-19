@@ -3,7 +3,6 @@ import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { injectIntl } from 'react-intl';
 import { useSøknad } from '../context/SøknadContext';
 import { useToggles } from '../context/TogglesContext';
 import { ToggleName } from '../models/søknad/toggles';
@@ -21,8 +20,10 @@ import {
 import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
+import { useIntl } from 'react-intl';
 
-const Forside: React.FC<any> = ({ intl }) => {
+const Forside: React.FC = () => {
+  const intl = useIntl();
   const { person } = usePersonContext();
   const {
     mellomlagretOvergangsstønad,
@@ -104,4 +105,4 @@ const Forside: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Forside);
+export default Forside;
