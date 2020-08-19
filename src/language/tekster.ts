@@ -926,6 +926,8 @@ export default {
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.skolepenger.alert.mottatt':
+      'Søknaden din om stønad til skolepenger er mottatt',
     'kvittering.barnetilsyn.alert.mottatt':
       'Søknaden din om stønad til barnetilsyn er mottatt',
     'kvittering.tekst.arbeidssøker':

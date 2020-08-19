@@ -22,7 +22,7 @@ const Kvittering: React.FC = () => {
   const { søknad } = useSkolepengerSøknad();
 
   const mottattAlert: string =
-    hentTekst('kvittering.alert.mottatt', intl) +
+    hentTekst('kvittering.skolepenger.alert.mottatt', intl) +
     ` ${søknad?.innsendingsdato && formatDateHour(søknad?.innsendingsdato)} `;
 
   const erklæringSamlivsbrudd =
