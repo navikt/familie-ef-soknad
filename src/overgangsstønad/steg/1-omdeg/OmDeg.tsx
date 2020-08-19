@@ -84,7 +84,8 @@ const OmDeg: FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
+      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
       routesStønad={RoutesOvergangsstonad}

@@ -18,7 +18,8 @@ export enum ESide {
 }
 
 interface ISide {
-  tittel: string;
+  stønadTittelTekstid: string;
+  stegtittel: string;
   routesStønad: IRoute[];
   skalViseKnapper: ESide;
   erSpørsmålBesvart?: boolean;
@@ -27,7 +28,8 @@ interface ISide {
 }
 
 const Side: React.FC<ISide> = ({
-  tittel,
+  stønadTittelTekstid,
+  stegtittel,
   children,
   routesStønad,
   erSpørsmålBesvart,
@@ -53,7 +55,7 @@ const Side: React.FC<ISide> = ({
 
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={'barnetilsyn.sidetittel'} />
+      <Banner tekstid={stønadTittelTekstid} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}
@@ -68,7 +70,7 @@ const Side: React.FC<ISide> = ({
 
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
-            <Systemtittel>{tittel}</Systemtittel>
+            <Systemtittel>{stegtittel}</Systemtittel>
             {children}
           </main>
         </Panel>

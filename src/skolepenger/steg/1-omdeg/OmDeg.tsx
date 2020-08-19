@@ -85,7 +85,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
+      stønadTittelTekstid={'banner.tittel.skolepenger'}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
       routesStønad={RoutesSkolepenger}

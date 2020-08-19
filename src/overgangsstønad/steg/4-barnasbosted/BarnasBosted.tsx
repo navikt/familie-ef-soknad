@@ -63,7 +63,8 @@ const BarnasBosted: React.FC = () => {
 
   return (
     <Side
-      tittel={hentTekst('barnasbosted.sidetittel', intl)}
+      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stegtittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
       routesStønad={RoutesOvergangsstonad}

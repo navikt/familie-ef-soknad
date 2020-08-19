@@ -35,7 +35,8 @@ const Bosituasjon: FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
+      stønadTittelTekstid={'banner.tittel.barnetilsyn'}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
       routesStønad={RoutesBarnetilsyn}

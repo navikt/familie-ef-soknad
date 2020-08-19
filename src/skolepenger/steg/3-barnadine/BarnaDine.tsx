@@ -53,7 +53,8 @@ const BarnaDine: React.FC = () => {
   return (
     <>
       <Side
-        tittel={hentTekst('barnadine.sidetittel', intl)}
+        stønadTittelTekstid={'banner.tittel.skolepenger'}
+        stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={true}
         routesStønad={RoutesSkolepenger}

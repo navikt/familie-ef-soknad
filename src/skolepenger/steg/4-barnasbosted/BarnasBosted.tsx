@@ -64,7 +64,8 @@ const BarnasBosted: React.FC = () => {
 
   return (
     <Side
-      tittel={hentTekst('barnasbosted.sidetittel', intl)}
+      stønadTittelTekstid={'banner.tittel.skolepenger'}
+      stegtittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
       routesStønad={RoutesSkolepenger}

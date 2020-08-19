@@ -139,7 +139,8 @@ const Aktivitet: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({
+      stønadTittelTekstid={'banner.tittel.barnetilsyn'}
+      stegtittel={intl.formatMessage({
         id: 'stegtittel.arbeidssituasjon.barnetilsyn',
       })}
       skalViseKnapper={skalViseKnapper}

@@ -124,7 +124,8 @@ const MerOmDinSituasjon: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
+      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       mellomlagreStønad={mellomlagreOvergangsstønad}

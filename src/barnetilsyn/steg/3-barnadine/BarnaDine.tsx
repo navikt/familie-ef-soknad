@@ -90,7 +90,8 @@ const BarnaDine: React.FC = () => {
   return (
     <>
       <Side
-        tittel={hentTekst('barnadine.sidetittel', intl)}
+        stønadTittelTekstid={'banner.tittel.barnetilsyn'}
+        stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={harValgtMinstEttBarn}
         routesStønad={RoutesBarnetilsyn}

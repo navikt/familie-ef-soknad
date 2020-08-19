@@ -108,7 +108,8 @@ const Barnepass: FC<Props> = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
+      stønadTittelTekstid={'banner.tittel.barnetilsyn'}
+      stegtittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={skalViseKnapper}
       mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(

@@ -23,7 +23,8 @@ const Oppsummering: React.FC = () => {
   return (
     <>
       <Side
-        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+        stegtittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreOvergangsstønad}

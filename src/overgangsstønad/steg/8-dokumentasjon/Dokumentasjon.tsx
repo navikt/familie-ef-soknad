@@ -77,7 +77,8 @@ const Dokumentasjon: React.FC = () => {
   const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
     <Side
-      tittel={sidetittel}
+      stønadTittelTekstid={'banner.tittel.overgangsstønad'}
+      stegtittel={sidetittel}
       skalViseKnapper={ESide.skjulKnapper}
       erSpørsmålBesvart={false}
       mellomlagreStønad={mellomlagreOvergangsstønad}
