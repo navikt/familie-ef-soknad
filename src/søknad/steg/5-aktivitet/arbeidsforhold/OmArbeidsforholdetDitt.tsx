@@ -96,8 +96,6 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
             <Element>
               <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
             </Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>
               <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
             </LeggTilKnapp>

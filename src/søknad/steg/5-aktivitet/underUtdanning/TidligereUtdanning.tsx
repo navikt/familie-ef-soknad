@@ -117,8 +117,6 @@ const TidligereUtdanning: React.FC<Props> = ({
                 <Element>
                   <LocaleTekst tekst={'utdanning.label.leggtil'} />
                 </Element>
-              </FeltGruppe>
-              <FeltGruppe>
                 <LeggTilKnapp onClick={() => leggTilUtdanning()}>
                   <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
                 </LeggTilKnapp>

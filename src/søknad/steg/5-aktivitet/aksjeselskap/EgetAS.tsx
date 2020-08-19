@@ -83,8 +83,6 @@ const EgetAS: FC<Props> = ({
             <Element>
               <LocaleTekst tekst={'egetAS.label.flere'} />
             </Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilAksjeselskap()}>
               <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
             </LeggTilKnapp>

@@ -81,8 +81,6 @@ const PeriodeBoddIUtlandet: FC<{
                 tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
               />
             </Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilUtenlandsperiode()}>
               <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
             </LeggTilKnapp>

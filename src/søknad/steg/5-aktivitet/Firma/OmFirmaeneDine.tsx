@@ -82,8 +82,6 @@ const OmFirmaeneDine: React.FC<Props> = ({
             <Element>
               <LocaleTekst tekst={'firmaer.label.flereFirmaer'} />
             </Element>
-          </FeltGruppe>
-          <FeltGruppe>
             <LeggTilKnapp onClick={() => leggTilFirma()}>
               <LocaleTekst tekst={'firmaer.knapp.leggTilFirma'} />
             </LeggTilKnapp>
