@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const proxy = require('http-proxy-middleware');
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build'), { index: false }));
 
 app.use('/', function(req, res, next) {
   console.log(`Server: A new request received at ${process.env.NODE_ENV}`);
