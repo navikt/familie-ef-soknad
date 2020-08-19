@@ -22,7 +22,7 @@ spec:
     path: /metrics
   ingresses:
     - "https://familie-ef-soknad.dev-adeo.no"
-    - "https://familie-gcp.dev-nav.no/familie/alene-med-barn/soknad"
+    - "https://familie-gcp.dev.nav.no/familie/alene-med-barn/soknad"
   accessPolicy:
     outbound:
       rules:
