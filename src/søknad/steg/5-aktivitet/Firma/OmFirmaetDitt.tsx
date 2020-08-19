@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Feilmelding, Undertittel } from 'nav-frontend-typografi';
 
 import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
@@ -15,6 +15,8 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import styled from 'styled-components/macro';
+import LocaleTekst from '../../../../language/LocaleTekst';
+import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -38,6 +40,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
 
   const [firma, settFirma] = useState<IFirma>(firmaFraSøknad!);
+  const [organisasjonsnummer, settOrganisasjonsnr] = useState<string>(
+    firma.organisasjonsnummer?.verdi ? firma.organisasjonsnummer.verdi : ''
+  );
 
   useEffect(() => {
     const endredeFirmaer = firmaer?.map((firmaFraSøknad, index) => {
@@ -92,17 +97,18 @@ const OmFirmaetDitt: React.FC<Props> = ({
   };
 
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
-
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
-
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
-
   const labelNavn = hentTekst('firma.label.navn', intl);
   const firmaTittel = hentTittelMedNr(
     firmaer!,
     firmanr,
     intl.formatMessage({ id: 'firma.tittel' })
   );
+  const harValgtUgyldigOrganisasjonsnummer =
+    organisasjonsnummer !== '' &&
+    firma?.organisasjonsnummer?.verdi &&
+    !erStrengGyldigOrganisasjonsnummer(firma?.organisasjonsnummer?.verdi);
 
   return (
     <StyledFirma>
@@ -127,26 +133,35 @@ const OmFirmaetDitt: React.FC<Props> = ({
       </FeltGruppe>
 
       {firma.navn?.verdi && (
-        <FeltGruppe>
-          <Input
-            label={labelOrganisasjonsnr}
-            bredde={'L'}
-            type={'text'}
-            onChange={(e) =>
-              settInputTekstFelt(
-                e,
-                EFirma.organisasjonsnummer,
-                labelOrganisasjonsnr
-              )
-            }
-            value={
-              firma?.organisasjonsnummer ? firma?.organisasjonsnummer.verdi : ''
-            }
-          />
-        </FeltGruppe>
+        <>
+          <FeltGruppe>
+            <Input
+              label={labelOrganisasjonsnr}
+              bredde={'L'}
+              type={'text'}
+              onChange={(e) => settOrganisasjonsnr(e.target.value)}
+              onBlur={(e) =>
+                settInputTekstFelt(
+                  e,
+                  EFirma.organisasjonsnummer,
+                  labelOrganisasjonsnr
+                )
+              }
+              value={organisasjonsnummer ? organisasjonsnummer : ''}
+              feil={harValgtUgyldigOrganisasjonsnummer}
+            />
+          </FeltGruppe>
+          {harValgtUgyldigOrganisasjonsnummer && (
+            <FeltGruppe>
+              <Feilmelding>
+                <LocaleTekst tekst={'firma.feilmelding.organisasjonnr'} />
+              </Feilmelding>
+            </FeltGruppe>
+          )}
+        </>
       )}
 
-      {firma.organisasjonsnummer?.verdi && (
+      {erStrengGyldigOrganisasjonsnummer(firma.organisasjonsnummer?.verdi) && (
         <FeltGruppe>
           <Datovelger
             valgtDato={firma?.etableringsdato?.verdi}
