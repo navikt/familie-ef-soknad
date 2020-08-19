@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const proxy = require('http-proxy-middleware');
 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'build'), { index: false }));
 
 /*app.use('/', function(req, res, next) {
   console.log(`Server: A new request received at ${process.env.NODE_ENV}`);
@@ -38,6 +38,12 @@ app.get('/ping', (req, res) => {
 app.get(`/internal/isAlive|isReady`, (req, res) => res.sendStatus(200));
 
 app.get('/', function(req, res) {
+  console.log(`/`);
+  res.sendFile(path.join(__dirname, 'build/', 'index.html'));
+});
+
+app.get('/familie/alene-med-barn/soknad', function(req, res) {
+  console.log(`/familie/alene-med-barn/soknad`);
   res.sendFile(path.join(__dirname, 'build/', 'index.html'));
 });
 
