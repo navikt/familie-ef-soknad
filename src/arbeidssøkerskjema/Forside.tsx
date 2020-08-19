@@ -12,12 +12,16 @@ import { useHistory } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
-import { hentPath, RouteEnum, Routes } from './routes/Routes';
+import {
+  ERouteArbeidssøkerskjema,
+  RoutesArbeidssokerskjema,
+} from './routes/routesArbeidssokerskjema';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSkjema } from './SkjemaContext';
 import { useForsideInnhold } from '../utils/hooks';
-import { ForsideType } from '../models/stønadstyper';
+import { ForsideType } from '../models/søknad/stønadstyper';
+import { hentPath } from '../utils/routing';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -125,7 +129,10 @@ const Forside: React.FC<any> = ({ intl }) => {
               <KnappBase
                 onClick={() =>
                   history.push({
-                    pathname: hentPath(Routes, RouteEnum.Spørsmål),
+                    pathname: hentPath(
+                      RoutesArbeidssokerskjema,
+                      ERouteArbeidssøkerskjema.Spørsmål
+                    ),
                   })
                 }
                 type={'hoved'}

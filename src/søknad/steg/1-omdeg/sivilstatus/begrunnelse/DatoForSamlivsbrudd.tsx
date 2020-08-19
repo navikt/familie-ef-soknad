@@ -4,7 +4,7 @@ import Datovelger, {
 } from '../../../../../components/dato/Datovelger';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
-import { IDatoFelt } from '../../../../../models/søknadsfelter';
+import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 
 interface Props {

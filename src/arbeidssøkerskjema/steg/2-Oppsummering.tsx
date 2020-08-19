@@ -3,12 +3,9 @@ import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import endre from '../../assets/endre.svg';
 import {
-  hentForrigeRoute,
-  hentNesteRoute,
-  hentPath,
-  RouteEnum,
-  Routes,
-} from '../routes/Routes';
+  ERouteArbeidssøkerskjema,
+  RoutesArbeidssokerskjema,
+} from '../routes/routesArbeidssokerskjema';
 import { mapDataTilLabelOgVerdiTyper } from '../utils/innsending';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -26,6 +23,11 @@ import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
 import { parseISO } from 'date-fns';
+import {
+  hentForrigeRoute,
+  hentNesteRoute,
+  hentPath,
+} from '../../utils/routing';
 
 interface Innsending {
   status: IStatus;
@@ -43,8 +45,14 @@ const Oppsummering: React.FC = () => {
     melding: `Søknad kan sendes`,
     venter: false,
   });
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
+  const forrigeRoute = hentForrigeRoute(
+    RoutesArbeidssokerskjema,
+    location.pathname
+  );
+  const nesteRoute = hentNesteRoute(
+    RoutesArbeidssokerskjema,
+    location.pathname
+  );
   const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
 
   const sendSkjema = (arbeidssøker: IArbeidssøker) => {
@@ -90,7 +98,10 @@ const Oppsummering: React.FC = () => {
         <LenkeMedIkon
           onClick={() =>
             history.push({
-              pathname: hentPath(Routes, RouteEnum.Spørsmål),
+              pathname: hentPath(
+                RoutesArbeidssokerskjema,
+                ERouteArbeidssøkerskjema.Spørsmål
+              ),
               state: { kommerFraOppsummering: true },
             })
           }
@@ -130,7 +141,7 @@ const Oppsummering: React.FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(Routes[0].path)}
+            onClick={() => history.push(RoutesArbeidssokerskjema[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

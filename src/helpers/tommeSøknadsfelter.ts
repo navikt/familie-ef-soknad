@@ -3,8 +3,8 @@ import {
   ISpørsmålListeFelt,
   ITekstFelt,
   ITekstListeFelt,
-} from '../models/søknadsfelter';
-import { IPeriode } from '../models/periode';
+} from '../models/søknad/søknadsfelter';
+import { IPeriode } from '../models/felles/periode';
 
 export const tomPeriode: IPeriode = {
   label: '',

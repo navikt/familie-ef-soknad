@@ -1,14 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { hentTekst } from '../../../utils/søknad';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { RefObject } from 'react';
-import Side from '../../side/Side';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { RoutesSkolepenger } from '../../routing/routes';
+import { hentPathSkolepengerOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -17,14 +18,20 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const history = useHistory();
   const location = useLocation();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
   const {
     søknad,
     mellomlagreSkolepenger,
     settSøknad,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
+
+  const barna = søknad.person.barn;
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad) => {
@@ -34,10 +41,6 @@ const BarnasBosted: React.FC = () => {
       };
     });
   };
-
-  const barna = søknad.person.barn;
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
-  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
   const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
     (barn) => barn.forelder === undefined
@@ -62,9 +65,11 @@ const BarnasBosted: React.FC = () => {
   return (
     <Side
       tittel={hentTekst('barnasbosted.sidetittel', intl)}
-      skalViseKnapper={!kommerFraOppsummering}
+      skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
-      mellomlagreSkolepenger={mellomlagreSkolepenger}
+      routesStønad={RoutesSkolepenger}
+      mellomlagreStønad={mellomlagreSkolepenger}
+      tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
     >
       {barna.map((barn, index) => {
         const key = barn.fødselsdato.verdi + index;
@@ -78,7 +83,7 @@ const BarnasBosted: React.FC = () => {
               aktivIndex={aktivIndex}
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               settBarneListe={settBarneliste}
               barneListe={søknad.person.barn}
             />
@@ -99,20 +104,6 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
-      {kommerFraOppsummering ? (
-        <div className={'side'}>
-          <Hovedknapp
-            className="tilbake-til-oppsummering"
-            onClick={() =>
-              history.push({
-                pathname: '/oppsummering',
-              })
-            }
-          >
-            {hentTekst('oppsummering.tilbake', intl)}
-          </Hovedknapp>
-        </div>
-      ) : null}
     </Side>
   );
 };

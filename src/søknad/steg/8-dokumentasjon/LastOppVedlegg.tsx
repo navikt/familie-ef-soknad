@@ -6,29 +6,29 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Checkbox } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { IDokumentasjon } from '../../../models/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { IVedlegg } from '../../../models/steg/vedlegg';
 
 interface Props {
   dokumentasjon: IDokumentasjon;
-  settDokumentasjon: (dokumentasjon: IDokumentasjon) => void;
+  oppdaterDokumentasjon: (
+    dokumentasjonsid: string,
+    opplastedeVedlegg: IVedlegg[] | undefined,
+    harSendtInnTidligere: boolean
+  ) => void;
 }
 
 const LastOppVedlegg: React.FC<Props> = ({
   dokumentasjon,
-  settDokumentasjon,
+  oppdaterDokumentasjon,
 }) => {
   const intl = useIntl();
 
   const settHarSendtInnTidligere = (e: any) => {
     const huketAv = e.target.checked;
-    if (huketAv && dokumentasjon.opplastedeVedlegg) {
-      delete dokumentasjon.opplastedeVedlegg;
-    }
-    settDokumentasjon({
-      ...dokumentasjon,
-      harSendtInn: huketAv,
-    });
+    const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
+    oppdaterDokumentasjon(dokumentasjon.id, vedlegg, huketAv);
   };
 
   return (
@@ -54,7 +54,7 @@ const LastOppVedlegg: React.FC<Props> = ({
       </FeltGruppe>
       {!dokumentasjon.harSendtInn && (
         <Filopplaster
-          settDokumentasjon={settDokumentasjon}
+          oppdaterDokumentasjon={oppdaterDokumentasjon}
           dokumentasjon={dokumentasjon}
           maxFilstørrelse={1024 * 1024 * 20}
         />

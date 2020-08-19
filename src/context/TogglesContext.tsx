@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Toggles } from '../models/toggles';
+import { Toggles } from '../models/søknad/toggles';
 import createUseContext from 'constate';
 
 const [TogglesProvider, useToggles] = createUseContext(() => {

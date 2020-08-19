@@ -1,35 +1,45 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
-import classNames from 'classnames';
-import Banner from '../Banner';
+import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Systemtittel } from 'nav-frontend-typografi';
-import { Routes } from '../../routing/Routes';
-import { hentForrigeRoute, hentNesteRoute } from '../../routing/utils';
-import KnappBase from 'nav-frontend-knapper';
-import LocaleTekst from '../../language/LocaleTekst';
-import StyledNavigeringsWrapper from '../knapper/StyledNavigeringsWrapper';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
+import { hentTekst } from '../../utils/søknad';
+import { useIntl } from 'react-intl';
+import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
+import { IRoute } from '../../models/routes';
+
+export enum ESide {
+  visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
+  visTilbakeTilOppsummeringKnapp = 'visTilbakeTilOppsummeringKnapp',
+  skjulKnapper = 'skjulKnapper',
+}
 
 interface ISide {
   tittel: string;
+  routesStønad: IRoute[];
+  skalViseKnapper: ESide;
   erSpørsmålBesvart?: boolean;
-  skalViseKnapper: boolean;
-  mellomlagreOvergangsstønad?: (steg: string) => void;
+  mellomlagreStønad?: (steg: string) => void;
+  tilbakeTilOppsummeringPath?: string;
 }
 
 const Side: React.FC<ISide> = ({
   tittel,
   children,
+  routesStønad,
   erSpørsmålBesvart,
   skalViseKnapper,
-  mellomlagreOvergangsstønad,
+  mellomlagreStønad,
+  tilbakeTilOppsummeringPath,
 }) => {
+  const intl = useIntl();
   const location = useLocation();
   const history = useHistory();
 
-  const routes = Object.values(Routes);
+  const routes = Object.values(routesStønad);
   routes.shift();
   const stegobjekter = routes.map((steg, index) => {
     return {
@@ -40,12 +50,10 @@ const Side: React.FC<ISide> = ({
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
-  const nesteRoute = hentNesteRoute(Routes, location.pathname);
-  const forrigeRoute = hentForrigeRoute(Routes, location.pathname);
 
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={'banner.tittel'} />
+      <Banner tekstid={'barnetilsyn.sidetittel'} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}
@@ -64,45 +72,26 @@ const Side: React.FC<ISide> = ({
             {children}
           </main>
         </Panel>
-
-        {skalViseKnapper && (
-          <StyledNavigeringsWrapper
-            classname={
-              erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
-            }
-          >
-            <KnappBase
-              className={'tilbake'}
-              type={'standard'}
-              onClick={() => history.push(forrigeRoute.path)}
+        {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
+          <TilbakeNesteAvbrytKnapper
+            routesStønad={routesStønad}
+            erSpørsmålBesvart={erSpørsmålBesvart}
+            mellomlagreStønad={mellomlagreStønad}
+          />
+        ) : skalViseKnapper === ESide.visTilbakeTilOppsummeringKnapp ? (
+          erSpørsmålBesvart && (
+            <Hovedknapp
+              className="tilbake-til-oppsummering"
+              onClick={() =>
+                history.push({
+                  pathname: tilbakeTilOppsummeringPath,
+                })
+              }
             >
-              <LocaleTekst tekst={'knapp.tilbake'} />
-            </KnappBase>
-            {erSpørsmålBesvart && (
-              <KnappBase
-                type={'hoved'}
-                onClick={() => {
-                  if (mellomlagreOvergangsstønad) {
-                    mellomlagreOvergangsstønad(location.pathname);
-                  }
-                  history.push(nesteRoute.path);
-                }}
-                className={classNames('neste', {
-                  hideButton: nesteRoute === undefined,
-                })}
-              >
-                <LocaleTekst tekst={'knapp.neste'} />
-              </KnappBase>
-            )}
-            <KnappBase
-              className={'avbryt'}
-              type={'flat'}
-              onClick={() => history.push(Routes[0].path)}
-            >
-              <LocaleTekst tekst={'knapp.avbryt'} />
-            </KnappBase>
-          </StyledNavigeringsWrapper>
-        )}
+              {hentTekst('oppsummering.tilbake', intl)}
+            </Hovedknapp>
+          )
+        ) : null}
       </div>
     </div>
   );

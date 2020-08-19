@@ -32,6 +32,10 @@
   width: @panel-bredde;
   padding-bottom: 75px;
 
+  .tjukk-tekst {
+    font-weight: bold;
+  }
+
   @media @tablet {
     width: 100%;
   }
@@ -91,6 +95,7 @@
     display: block;
     margin-top: 2rem;
     max-width: 588px;
+    grid-area: knapper;
   }
 }
 .skjema_lenke {
@@ -106,34 +111,10 @@
     justify-content: center;
   }
 
-  .typo-normal {
-    font-size: 18px;
-    line-height: 26px;
-  }
-
-  .typo-element {
-    font-size: 18px;
-  }
-
   @media @tablet {
   }
 
   @media @mobile {
     padding: 0;
-  }
-}
-
-.fetSkrift {
-  font-weight: bold;
-  font-size: 18px;
-
-  .skjemaelement__label {
-    font-weight: bold;
-    font-size: 18px;
-  }
-
-  .typo-normal {
-    font-weight: bold !important;
-    font-size: 18px;
   }
 }

@@ -7,7 +7,7 @@ export default {
 
     'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
     'barnetilsyn.hjelpetekst-åpne.hvilke':
-      'Hvilke barn kan du få stønad til barnetilsyn for?',
+      'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
     'barnetilsyn.hjelpetekst-innhold.hvilke':
       'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for' +
       '<br/><br/>' +
@@ -155,7 +155,7 @@ export default {
     'sivilstatus.datovelger.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.spm.erUformeltGift':
-      'Du er registrert som ugift i Folkeregisteret. Er du gift uten at dette er formelt registrert eller godkjent i Norge?',
+      'Du er registrert som ugift i folkeregisteret. Er du gift uten at det er registrert i folkeregisteret i Norge?',
     'sivilstatus.alert.erUformeltGift':
       'Du må legge ved dokumentasjon på inngått ekteskap',
     'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
@@ -168,7 +168,7 @@ export default {
       'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
 
     'sivilstatus.spm.erUformeltSeparertEllerSkilt':
-      'Er du separert eller skilt uten at dette er formelt registrert eller godkjent i Norge?',
+      'Er du separert eller skilt uten at dette er registrert i folkeregisteret i Norge?',
     'sivilstatus.alert.erUformeltSeparertEllerSkilt':
       'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
     'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
@@ -182,7 +182,7 @@ export default {
     'sivilstatus.alert.dødsfall':
       'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
     'sivilstatus.alert.samlivsbrudd':
-      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet.',
+      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet. Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden. Dette er ikke meklingsattesten fra familievernkontoret.',
     'sivilstatus.begrunnelse.endring':
       'Når skjedde endringen / når skal endringen skje?',
     'sivilstatus.hjelpetekst-åpne.begrunnelse':
@@ -418,6 +418,10 @@ export default {
     'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
     'barnasbosted.spm.beskrivSamværUtenBarn':
       'Hvor mye er du sammen med den andre forelderen til [0]?',
+    'barnasbosted.skalBliFolkeregistrert.tekst':
+      'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
+    'barnasbosted.skalBliFolkeregistrert.knapp':
+      'Registrer adresse hos Folkeregisteret',
 
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
@@ -428,15 +432,17 @@ export default {
       'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>' +
       'Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
     'erDuIArbeid.alertsstripe-dokumentasjon':
-      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+      '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>' +
+      'Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
 
     'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
     'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
     'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
       'Jeg er hjemme med barn under 1 år',
-    'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+    'arbeidssituasjon.svar.erArbeidstaker':
+      'Jeg er arbeidstaker eller lønnsmottaker som frilanser',
     'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
-      'Jeg er selvstendig næringsdrivende eller frilanser',
+      'Jeg er selvstendig næringsdrivende eller frilanser med eget firma',
     'arbeidssituasjon.svar.erAnsattIEgetAS':
       'Jeg er ansatt i eget aksjeselskap (AS)',
     'arbeidssituasjon.svar.etablererEgenVirksomhet':
@@ -488,12 +494,17 @@ export default {
     'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
     'egetAS.label.aksjeselskap': 'Aksjeselskap',
 
-    'firma.tittel': 'Om firmaet du driver',
+    'firmaer.tittel': 'Om firmaet du driver',
+    'firma.tittel': 'Firma',
     'firma.label.navn': 'Navn på firma',
     'firma.label.organisasjonnr': 'Organisasjonsnummer',
+    'firma.feilmelding.organisasjonnr': 'Organisasjonsnummeret må ha 9 siffer',
     'firma.datovelger.etablering': 'Når etablerte du firmaet?',
     'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
     'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+    'firma.knapp.slett': 'Fjern firma',
+    'firmaer.label.flereFirmaer': 'Har du flere firmaer?',
+    'firmaer.knapp.leggTilFirma': 'Legg til firma',
 
     'arbeidssituasjon.tittel.etablererEgenVirksomhet':
       'Om virksomheten du etablerer',
@@ -540,7 +551,6 @@ export default {
       'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
       'Stønadene kan dekke utgifter til <ul>' +
       '<li>barnepass</li>' +
-      '<li>reise når du er arbeidssøker</li>' +
       '<li>flytting</li>' +
       '</ul>' +
       'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
@@ -628,7 +638,7 @@ export default {
 
     'dinSituasjon.alert.redusertStilling':
       'Du må legge ved dokumentasjon på arbeidsforholdet og grunnen til at du reduserte arbeidstiden.<br/><br/>' +
-      'Dokumentasjonen må vise:<br/><br/>' +
+      'Dokumentasjonen må vise:' +
       '<ul><li>arbeidsforholdet</li>' +
       '<li>grunnen til at du reduserte arbeidstiden</li>' +
       '<li>datoen du avtalte reduksjon i arbeidstiden</li></ul>',
@@ -701,7 +711,7 @@ export default {
     'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
       'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
     'barnepass.alert-dokumentasjon.beløp.privat':
-      '<b>Du må legge ved avtalen du har med barnepasseren. Her er et forslag til hvordan en privat avtale om barnepass kan se ut. Avtalen må inneholde:</b> <ul>' +
+      '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
       '<li>ditt navn, fødseslnummer og adresse</li>' +
       '<li> barnepasserens navn og adresse</li>' +
       '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
@@ -732,6 +742,7 @@ export default {
       'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
       'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen.' +
       ' <br/><br/>' +
       'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
       '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
@@ -753,9 +764,12 @@ export default {
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.søktSeparasjon.beskrivelse':
       'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
-    'dokumentasjon.begrunnelse.tittel': 'Erklæring om samlivsbrudd',
+    'dokumentasjon.begrunnelse.tittel':
+      'Bekreftelse på samlivsbrudd med den andre forelderen',
     'dokumentasjon.begrunnelse.beskrivelse':
-      'Søker du stønaden pga et samlivsbrudd trenger vi dokumentasjon på samlivsbruddet',
+      'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet.' +
+      '<br /><br /> Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden slik at du kan ettersende dette hvis du ikke allerede har en bekreftelse.' +
+      '<br /><br /> Dette er ikke meklingsattesten fra familievernkontoret.',
 
     'dokumentasjon.ikke.villig.til.arbeid.tittel':
       'Dokumentasjon som beskriver grunnen til at du ikke kan ta ethvert arbeid',
@@ -864,10 +878,19 @@ export default {
       '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
       '<li>signaturer fra deg og barnepasser</li></ul>',
     'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel':
-      'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende' +
+      'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende',
+    'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse':
       'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
     'dokumentasjon.barnepassArbeidstid.tittel':
       'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'dokumentasjon.ettersend.tittel':
+      'Fikk du ikke lastet opp all dokumentasjonen?',
+    'dokumentasjon.ettersend.tekst.barnetilsyn':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'dokumentasjon.ettersend.tekst.overgangsstønad':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'dokumentasjon.ettersend.tekst.skolepenger':
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
@@ -912,7 +935,6 @@ export default {
     'kvittering.beskrivelse.tilleggsstønader.arbeidssøker':
       'Stønadene kan dekke utgifter til <ul>' +
       '<li>barnepass</li>' +
-      '<li>reise når du er arbeidssøker</li>' +
       '<li>flytting</li></ul>' +
       '<i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
     'kvittering.lenke.tilleggsstønader.arbeidssøker':

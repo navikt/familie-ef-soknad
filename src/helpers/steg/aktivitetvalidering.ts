@@ -13,6 +13,7 @@ import {
   IUtdanning,
 } from '../../models/steg/aktivitet/utdanning';
 import { erPeriodeGyldig } from '../../utils/dato';
+import { IFirma } from '../../models/steg/aktivitet/firma';
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
@@ -23,6 +24,10 @@ export const erSisteArbeidsgiverFerdigUtfylt = (
         arbeidsgiver.sluttdato?.verdi
       : arbeidsgiver.ansettelsesforhold?.verdi
   );
+};
+
+export const erSisteFirmaUtfylt = (firmaer: IFirma[]) => {
+  return firmaer?.every((firma) => firma.arbeidsuke?.verdi);
 };
 
 export const erAksjeselskapFerdigUtfylt = (
@@ -57,7 +62,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
 ): boolean => {
   const {
     arbeidsforhold,
-    firma,
+    firmaer,
     egetAS,
     etablererEgenVirksomhet,
     arbeidssøker,
@@ -76,7 +81,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser:
-      return harValgtSvar(firma?.arbeidsuke?.verdi);
+      return firmaer !== undefined && erSisteFirmaUtfylt(firmaer);
 
     case EAktivitet.erAnsattIEgetAS:
       return (

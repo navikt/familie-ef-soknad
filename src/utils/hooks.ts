@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { client } from './sanity';
-import { ForsideType } from '../models/stønadstyper';
+import { ForsideType } from '../models/søknad/stønadstyper';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();

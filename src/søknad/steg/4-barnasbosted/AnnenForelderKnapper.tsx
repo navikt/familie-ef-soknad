@@ -1,8 +1,8 @@
 import React, { useState, SyntheticEvent } from 'react';
 import { useIntl } from 'react-intl';
 import { RadioPanel } from 'nav-frontend-skjema';
-import { IBarn } from '../../../models/barn';
-import { IForelder } from '../../../models/forelder';
+import { IBarn } from '../../../models/steg/barn';
+import { IForelder } from '../../../models/steg/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';

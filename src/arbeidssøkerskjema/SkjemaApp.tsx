@@ -5,11 +5,11 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName, Toggles } from '../models/toggles';
+import { ToggleName, Toggles } from '../models/søknad/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
-} from '../utils/autentisering';
+} from '../utils/autentiseringogvalidering/autentisering';
 import Forside from './Forside';
 import Spørsmål from './steg/1-Spørsmål';
 import Oppsummering from './steg/2-Oppsummering';

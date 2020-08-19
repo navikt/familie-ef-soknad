@@ -10,11 +10,11 @@ import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { Input } from 'nav-frontend-skjema';
-import { ISpørsmål, ISvar } from '../../../../models/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { hentSivilstatus } from '../../../../helpers/omdeg';
-import { ISøker } from '../../../../models/person';
-import { ISpørsmålBooleanFelt } from '../../../../models/søknadsfelter';
+import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
+import { ISøker } from '../../../../models/søknad/person';
+import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 
 interface Props {
   søker: ISøker;

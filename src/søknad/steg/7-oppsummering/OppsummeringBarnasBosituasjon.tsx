@@ -6,7 +6,9 @@ import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { hentTekst } from '../../../utils/søknad';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn[];
@@ -17,7 +19,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   endreInformasjonPath,
 }) => {
   const history = useHistory();
-
+  const intl = useIntl();
   const barna = barn;
   const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
@@ -46,7 +48,11 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     });
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel>Barnas bosted</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Undertittel>{hentTekst('barnasbosted.sidetittel', intl)}</Undertittel>
+      }
+    >
       {felterAlleForeldrene}
       <LenkeMedIkon
         onClick={() =>

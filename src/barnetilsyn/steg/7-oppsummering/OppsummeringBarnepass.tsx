@@ -6,10 +6,13 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
 import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
-import { IDatoFelt, ISpørsmålBooleanFelt } from '../../../models/søknadsfelter';
+import {
+  IDatoFelt,
+  ISpørsmålBooleanFelt,
+} from '../../../models/søknad/søknadsfelter';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 
 import { formatDate, strengTilDato } from '../../../utils/dato';

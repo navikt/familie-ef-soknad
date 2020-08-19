@@ -10,7 +10,7 @@ import {
   IUtenlandsopphold,
 } from '../../../models/steg/omDeg/medlemskap';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
-import { ISøker } from '../../../models/person';
+import { ISøker } from '../../../models/søknad/person';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';

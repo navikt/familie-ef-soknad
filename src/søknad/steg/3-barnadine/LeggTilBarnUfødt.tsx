@@ -6,7 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
-import { ESvar } from '../../../models/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';

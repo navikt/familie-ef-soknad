@@ -10,6 +10,7 @@ const StyledLeggTilKnapp = styled.div`
     align-items: center;
     width: fit-content;
     text-decoration: none;
+    padding-top: 1rem;
 
     .typo-element {
       margin-left: 1rem;

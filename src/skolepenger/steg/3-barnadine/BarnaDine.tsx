@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { Knapp, Hovedknapp } from 'nav-frontend-knapper';
+import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import Side from '../../side/Side';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { IBarn } from '../../../models/barn';
+import { IBarn } from '../../../models/steg/barn';
+import { RoutesSkolepenger } from '../../routing/routes';
+import { hentPathSkolepengerOppsummering } from '../../utils';
+import Side, { ESide } from '../../../components/side/Side';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -18,11 +20,13 @@ const BarnaDine: React.FC = () => {
     søknad,
     settSøknad,
     mellomlagreSkolepenger,
-    settDokumentasjonsbehov,
+    settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
-  const history = useHistory();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+  const skalViseKnapper = !kommerFraOppsummering
+    ? ESide.visTilbakeNesteAvbrytKnapp
+    : ESide.visTilbakeTilOppsummeringKnapp;
 
   const [åpenModal, settÅpenModal] = useState(false);
 
@@ -50,9 +54,11 @@ const BarnaDine: React.FC = () => {
     <>
       <Side
         tittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={true}
+        skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={true}
-        mellomlagreSkolepenger={mellomlagreSkolepenger}
+        routesStønad={RoutesSkolepenger}
+        mellomlagreStønad={mellomlagreSkolepenger}
+        tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
@@ -64,31 +70,12 @@ const BarnaDine: React.FC = () => {
               .map((barn: IBarn) => (
                 <Barnekort
                   key={barn.id}
-                  id={barn.id ? barn.id : ''}
-                  navn={barn.navn}
-                  fødselsdato={barn.fødselsdato}
-                  ident={
-                    barn.ident && barn.ident.verdi
-                      ? barn.ident
-                      : {
-                          label: hentTekst('barnadine.ident', intl),
-                          verdi: '',
-                        }
-                  }
-                  alder={barn.alder}
-                  harSammeAdresse={barn.harSammeAdresse}
-                  født={
-                    barn.født
-                      ? barn.født
-                      : {
-                          label: hentTekst('barnekort.spm.født', intl),
-                          verdi: false,
-                        }
-                  }
-                  lagtTil={barn.lagtTil ? barn.lagtTil : false}
+                  gjeldendeBarn={barn}
                   barneListe={søknad.person.barn}
                   settBarneListe={settBarneliste}
-                  settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  settDokumentasjonsbehovForBarn={
+                    settDokumentasjonsbehovForBarn
+                  }
                   slettBarn={slettBarn}
                 />
               ))}
@@ -111,26 +98,12 @@ const BarnaDine: React.FC = () => {
               <LeggTilBarn
                 settÅpenModal={settÅpenModal}
                 barneListe={søknad.person.barn}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
                 settBarneListe={settBarneliste}
               />
             </div>
           </Modal>
         </div>
-        {kommerFraOppsummering ? (
-          <div className={'side'}>
-            <Hovedknapp
-              className="tilbake-til-oppsummering"
-              onClick={() =>
-                history.push({
-                  pathname: '/oppsummering',
-                })
-              }
-            >
-              {hentTekst('oppsummering.tilbake', intl)}
-            </Hovedknapp>
-          </div>
-        ) : null}
       </Side>
     </>
   );

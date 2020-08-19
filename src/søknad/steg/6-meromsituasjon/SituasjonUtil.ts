@@ -4,7 +4,7 @@ import {
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IntlShape } from 'react-intl';
-import { ISøknad } from '../../../models/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
@@ -21,11 +21,15 @@ export const erSituasjonIAvhukedeSvar = (
   });
 };
 export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
-  const { firma, underUtdanning, arbeidsforhold } = søknad.aktivitet;
+  const { firmaer, underUtdanning, arbeidsforhold } = søknad.aktivitet;
 
   let totalArbeidsmengde: number = 0;
-  if (firma?.arbeidsmengde)
-    totalArbeidsmengde += fraStringTilTall(firma.arbeidsmengde.verdi);
+  if (firmaer)
+    totalArbeidsmengde += firmaer.reduce((initiell, firma) => {
+      return firma.arbeidsmengde?.verdi
+        ? initiell + fraStringTilTall(firma.arbeidsmengde?.verdi)
+        : initiell;
+    }, 0);
   if (underUtdanning?.arbeidsmengde)
     totalArbeidsmengde += fraStringTilTall(underUtdanning.arbeidsmengde.verdi);
   if (arbeidsforhold) {
