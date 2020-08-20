@@ -9,7 +9,9 @@ import { hentBeskjedMedNavn } from '../utils/språk';
 import {
   ISpørsmålBooleanFelt,
   ISpørsmålFelt,
+  ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
+import LabelVerdiGruppe from '../components/gruppe/LabelVerdiGruppe';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -135,13 +137,34 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
 
 export const visLabelOgVerdiForSpørsmålFelt = (
   feltObjekt: ISpørsmålFelt | ISpørsmålBooleanFelt,
-  intl: IntlShape
+  intl: IntlShape,
+  overskrift?: string
 ) => {
   return (
-    <div className="spørsmål-og-svar" key={feltObjekt.spørsmålid}>
-      <Element>{feltObjekt.label}</Element>
-      {verdiTilTekstsvar(feltObjekt.verdi, intl)}
-    </div>
+    <>
+      <Ingress>{overskrift}</Ingress>
+      <LabelVerdiGruppe>
+        <Element>{feltObjekt.label}</Element>
+        {verdiTilTekstsvar(feltObjekt.verdi, intl)}
+      </LabelVerdiGruppe>
+    </>
+  );
+};
+
+export const visLabelOgVerdiForSpørsmålListeFelt = (
+  feltListeObjekt: ISpørsmålListeFelt
+) => {
+  return (
+    <LabelVerdiGruppe>
+      <Element>{feltListeObjekt.label}</Element>
+      <ul className={'verdi'}>
+        {feltListeObjekt.verdi.map((svar) => (
+          <li>
+            <Normaltekst>{svar}</Normaltekst>
+          </li>
+        ))}
+      </ul>
+    </LabelVerdiGruppe>
   );
 };
 
