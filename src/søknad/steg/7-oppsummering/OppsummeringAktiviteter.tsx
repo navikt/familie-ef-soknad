@@ -7,7 +7,13 @@ import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
+import {
+  VisLabelOgSvar,
+  visLabelOgVerdiForSpørsmålFelt,
+  visLabelOgVerdiForSpørsmålListeFelt,
+  visListeAvLabelOgSvar,
+} from '../../../utils/visning';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 
 interface Props {
   aktivitet: IAktivitet;
@@ -22,72 +28,76 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
 }) => {
   const history = useHistory();
   const intl = useIntl();
-  const erIArbeid = aktivitet.erIArbeid
-    ? VisLabelOgSvar(aktivitet.erIArbeid)
-    : null;
-
-  const virksomhet = aktivitet.etablererEgenVirksomhet
-    ? VisLabelOgSvar(aktivitet.etablererEgenVirksomhet)
-    : null;
-
-  const arbeidssituasjon = VisLabelOgSvar(aktivitet);
-
-  const firmaer = aktivitet.firmaer
-    ? visListeAvLabelOgSvar(
-        aktivitet.firmaer,
-        hentTekst('firmaer.tittel', intl)
-      )
-    : null;
-
-  const arbeidsforhold = aktivitet.arbeidsforhold
-    ? visListeAvLabelOgSvar(
-        aktivitet.arbeidsforhold,
-        hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl)
-      )
-    : null;
-
-  const egetAS = aktivitet.egetAS
-    ? visListeAvLabelOgSvar(
-        aktivitet.egetAS,
-        hentTekst('arbeidsforhold.tittel.egetAS', intl)
-      )
-    : null;
-
-  const tidligereUtdanning = aktivitet.underUtdanning?.tidligereUtdanning
-    ? visListeAvLabelOgSvar(
-        aktivitet.underUtdanning.tidligereUtdanning,
-        hentTekst('utdanning.tittel.tidligere', intl)
-      )
-    : null;
-
-  const arbeidssøker = aktivitet.arbeidssøker
-    ? VisLabelOgSvar(aktivitet.arbeidssøker)
-    : null;
-
-  const underUtdanning = aktivitet.underUtdanning
-    ? VisLabelOgSvar(aktivitet.underUtdanning)
-    : null;
 
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
       tittel={<Undertittel>{tittel}</Undertittel>}
     >
-      {erIArbeid && <div className={'seksjon'}>{erIArbeid} </div>}
-      {virksomhet ? <div className="seksjon">{virksomhet}</div> : null}
-      {arbeidssituasjon ? (
-        <div className="seksjon">{arbeidssituasjon}</div>
-      ) : null}
-      {arbeidsforhold ? <div className="seksjon">{arbeidsforhold}</div> : null}
-      {firmaer ? <div className="seksjon">{firmaer}</div> : null}
-      {egetAS ? <div className="seksjon">{egetAS}</div> : null}
-      {arbeidssøker ? <div className="seksjon">{arbeidssøker}</div> : null}
-      {underUtdanning ? (
-        <div className="seksjon">
-          {underUtdanning}
-          {tidligereUtdanning}
-        </div>
-      ) : null}
+      {aktivitet.erIArbeid && (
+        <SeksjonGruppe>
+          {visLabelOgVerdiForSpørsmålFelt(aktivitet?.erIArbeid, intl)}
+        </SeksjonGruppe>
+      )}
+      {aktivitet.hvaErDinArbeidssituasjon && (
+        <SeksjonGruppe>
+          {visLabelOgVerdiForSpørsmålListeFelt(
+            aktivitet.hvaErDinArbeidssituasjon
+          )}
+        </SeksjonGruppe>
+      )}
+
+      {aktivitet.etablererEgenVirksomhet && (
+        <SeksjonGruppe>
+          {visLabelOgVerdiForSpørsmålFelt(
+            aktivitet.etablererEgenVirksomhet,
+            intl,
+            hentTekst('arbeidssituasjon.tittel.etablererEgenVirksomhet', intl)
+          )}
+        </SeksjonGruppe>
+      )}
+
+      {aktivitet.arbeidsforhold && (
+        <SeksjonGruppe>
+          {visListeAvLabelOgSvar(
+            aktivitet.arbeidsforhold,
+            hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl)
+          )}
+        </SeksjonGruppe>
+      )}
+
+      {aktivitet.firmaer && (
+        <SeksjonGruppe>
+          {visListeAvLabelOgSvar(
+            aktivitet.firmaer,
+            hentTekst('firmaer.tittel', intl)
+          )}
+        </SeksjonGruppe>
+      )}
+
+      {aktivitet.egetAS && (
+        <SeksjonGruppe>
+          {visListeAvLabelOgSvar(
+            aktivitet.egetAS,
+            hentTekst('arbeidsforhold.tittel.egetAS', intl)
+          )}
+        </SeksjonGruppe>
+      )}
+
+      {aktivitet.arbeidssøker && (
+        <SeksjonGruppe>{VisLabelOgSvar(aktivitet.arbeidssøker)}</SeksjonGruppe>
+      )}
+
+      {aktivitet.underUtdanning && (
+        <SeksjonGruppe>
+          {VisLabelOgSvar(aktivitet.underUtdanning)}
+          {aktivitet.underUtdanning?.tidligereUtdanning &&
+            visListeAvLabelOgSvar(
+              aktivitet.underUtdanning.tidligereUtdanning,
+              hentTekst('utdanning.tittel.tidligere', intl)
+            )}
+        </SeksjonGruppe>
+      )}
       <LenkeMedIkon
         onClick={() =>
           history.replace({
