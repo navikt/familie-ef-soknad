@@ -60,8 +60,8 @@ export const erDetaljertUtdanningFerdigUtfylt = (
   detljertUtdanning: IDetaljertUtdanning
 ): boolean => {
   return (
-    harValgtSvar(detljertUtdanning.semesteravgift?.verdi) &&
-    harValgtSvar(detljertUtdanning.studieavgift?.verdi) &&
+    harValgtSvar(detljertUtdanning.semesteravgift?.verdi) ||
+    harValgtSvar(detljertUtdanning.studieavgift?.verdi) ||
     harValgtSvar(detljertUtdanning.eksamensgebyr?.verdi)
   );
 };

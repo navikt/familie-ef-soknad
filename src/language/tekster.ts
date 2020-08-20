@@ -610,7 +610,7 @@ export default {
 
     'utdanning.tittel.tidligere': 'Tidligere utdanning',
     'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen?',
-    'utdanning.lesmer-åpne.grunnskolen': 'Hva regnes som grunnskolen?',
+    'utdanning.lesmer-åpne.grunnskolen': 'Dette regnes som grunnskolen',
     'utdanning.lesmer-innholde.grunnskolen':
       'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse.',
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',

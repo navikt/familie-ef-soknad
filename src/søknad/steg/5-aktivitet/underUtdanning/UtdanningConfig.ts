@@ -78,5 +78,10 @@ export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'utdanning.lesmer-åpne.grunnskolen',
+    innholdTekstid: 'utdanning.lesmer-innholde.grunnskolen',
+    lukkeTekstid: '',
+  },
   svaralternativer: JaNeiSvar,
 };
