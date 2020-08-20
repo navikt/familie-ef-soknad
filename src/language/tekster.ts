@@ -557,6 +557,7 @@ export default {
     'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
     'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
 
+    'stegtittel.utdanning': 'Utdanningen din',
     'tidligereUtdanning.lesmer-åpne.kanFåStønad':
       'Grunnen til at vi spør om dette',
     'tidligereUtdanning.lesmer-innhold.kanFåStønad':
@@ -570,11 +571,19 @@ export default {
     'utdanning.lesmer-åpne.kanFåStønad': 'Utdanning du kan få stønad til',
     'utdanning.lesmer-innhold.kanFåStønad':
       'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
-      'Da vurderer vi:<br/><br/>' +
+      'Da vurderer vi:' +
       '<ul><li>hva som er målet med utdanningen din</li>' +
       '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
       '<li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>' +
       'Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
+    'utdanning.lesmer-innhold.kanFåStønad.skolepenger':
+      'For å få rett til stønad til skolepenger, må denne utdanningen være nødvendig for at du skal kunne komme i jobb og forsørge deg selv. <br /><br />' +
+      'Vi vurderer:' +
+      '<ul><li>hvilket mål du har for å skaffe eller beholde inntektsgivende arbeid</li>' +
+      '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
+      '<li>om den aktuelle utdanningen er hensiktsmessig. Da vurderer vi blant annet arbeidsmarkedets behov og dine muligheter.</li>' +
+      '</ul>' +
+      'Vi vurderer utdanningen du vil ta når du søker om stønad. ',
     'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
     'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
     'utdanning.spm.privatEllerOffentlig':
@@ -594,14 +603,39 @@ export default {
     'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
     'utdanning.spm.mål': 'Hva er målet med utdanningen?',
 
+    'utdanning.label.utgifter': 'Utgifter til skolepenger',
+    'utdanning.label.utgifter.dokumentasjon':
+      'Dokumentasjon på utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr. <br />Det dokumenterer du med faktura i ditt navn.',
+    'utdanning.label.utgifter.eksamensgebyr': 'Eksamensgebyr',
+    'utdanning.label.utgifter.studieavgift': 'Studieavgift',
+    'utdanning.label.utgifter.semesteravgift': 'Semesteravgift',
+
     'utdanning.tittel.tidligere': 'Tidligere utdanning',
     'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen?',
-    'utdanning.lesmer-åpne.grunnskolen': 'Hva regnes som grunnskolen?',
+    'utdanning.lesmer-åpne.grunnskolen': 'Dette regnes som grunnskolen',
     'utdanning.lesmer-innholde.grunnskolen':
       'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse.',
     'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
     'utdanning.knapp.leggtil': 'Legg til en utdanning',
     'utdanning.knapp.slett': 'Fjern utdanning',
+
+    'utdanning.andreUtgifter.tittel':
+      'Har du andre utgifter i forbindelse med utdanningen?',
+    'utdanning.andreUtgifter.tekst':
+      '<strong>Har du andre utgifter i forbindelse med utdanningen?</strong><br /><br />' +
+      'Tilleggsstønader kan dekke utgifter til:<ul>' +
+      '<li>barnepass</li>' +
+      '<li>læremidler</li>' +
+      '<li>daglig reise</li>' +
+      '<li>reise til samling</li>' +
+      '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
+      '<li>bolig og overnatting</li>' +
+      '<li>flytting</li>' +
+      '</ul>' +
+      'Vi viser deg videre til søknad om tilleggsstønader når du er ferdig med denne søknaden.\n' +
+      'Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad.',
+    'utdanning.andreUtgifter.fakturatekst':
+      'Du må legge ved faktura i ditt navn som viser utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr',
 
     'stegtittel.dinSituasjon': 'Mer om situasjonen din',
     'dinSituasjon.spm': 'Gjelder noe av dette deg?',
@@ -741,14 +775,16 @@ export default {
     'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
       'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
-      'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
-      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen.' +
+      'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. ' +
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. ' +
+      'Du kan bruke filformatene PDF, jpg og png.' +
       ' <br/><br/>' +
       'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
       '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
       '<li>Sjekk at dokumentet er lett å lese\n</li>' +
       '<li>Last opp bildene her</li></ol> ' +
       'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/>' +
+      '<br />' +
       'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
     'dokumentasjon.checkbox.sendtTidligere':
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
@@ -835,14 +871,14 @@ export default {
       '<li>stillingsprosent</li>' +
       '<li>dato for oppstart</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
-    'dokumentasjon.utdanning.tittel': 'Dokumentasjon på utdanningen du skal ta',
+    'dokumentasjon.utdanning.tittel':
+      'Dokumentasjon på utdanningen du tar eller skal ta',
     'dokumentasjon.utdanning.beskrivelse':
-      'Dokumentasjonen må tydelig vise:<ul>' +
+      'Dokumentasjonen må vise:<ul>' +
       '<li>navn på studiested</li>' +
       '<li>navn på studie</li>' +
       '<li>hvor mye du skal studere</li>' +
-      '<li>periode du skal studere</li>' +
-      '<li>dato du fikk tilbudet</li></ul>',
+      '<li>perioden du skal studere</li></ul>',
 
     'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
 
@@ -894,6 +930,8 @@ export default {
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.skolepenger.alert.mottatt':
+      'Søknaden din om stønad til skolepenger er mottatt',
     'kvittering.barnetilsyn.alert.mottatt':
       'Søknaden din om stønad til barnetilsyn er mottatt',
     'kvittering.tekst.arbeidssøker':

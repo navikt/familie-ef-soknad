@@ -14,6 +14,12 @@ export const utdanningDuKanFåStønadTil: IHjelpetekst = {
   lukkeTekstid: '',
 };
 
+export const utdanningDuKanFåStønadTilSkolepenger: IHjelpetekst = {
+  åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
+  innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad.skolepenger',
+  lukkeTekstid: '',
+};
+
 export const tidligereUtdanningHjelpetekst: IHjelpetekst = {
   åpneTekstid: 'tidligereUtdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'tidligereUtdanning.lesmer-innhold.kanFåStønad',
@@ -72,5 +78,10 @@ export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: 'utdanning.lesmer-åpne.grunnskolen',
+    innholdTekstid: 'utdanning.lesmer-innholde.grunnskolen',
+    lukkeTekstid: '',
+  },
   svaralternativer: JaNeiSvar,
 };

@@ -73,7 +73,7 @@ const Utdanning: React.FC<Props> = ({
         periode: {
           ...utdanning.periode,
           [nøkkel]: {
-            label: 'utdanning.datovelger.studieperiode',
+            label: hentTekst('utdanning.datovelger.studieperiode', intl),
             verdi: dato !== null ? datoTilStreng(dato) : undefined,
           },
         },

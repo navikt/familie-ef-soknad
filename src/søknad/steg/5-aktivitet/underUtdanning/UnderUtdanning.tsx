@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import {
   EStudieandel,
   EUtdanning,
@@ -16,31 +15,45 @@ import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import StudieArbeidsmengde from './StudieArbeidsmengde';
 import TidligereUtdanning from './TidligereUtdanning';
 import { Undertittel } from 'nav-frontend-typografi';
-import { utdanningDuKanFåStønadTil } from './UtdanningConfig';
+import {
+  utdanningDuKanFåStønadTil,
+  utdanningDuKanFåStønadTilSkolepenger,
+} from './UtdanningConfig';
 import MålMedUtdanningen from './MålMedUtdanningen';
-import { erUnderUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
+import {
+  erDetaljertUtdanningFerdigUtfylt,
+  erUnderUtdanningFerdigUtfylt,
+} from '../../../../helpers/steg/aktivitetvalidering';
 import { strengErMerEnnNull } from '../../../../utils/spørsmålogsvar';
 import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
+import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
+import Studiekostnader from './Studiekostnader';
+import { Stønadstype } from '../../../../models/søknad/stønadstyper';
+import styled from 'styled-components';
 
+const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
+  margin-top: -2rem;
+`;
 interface Props {
-  arbeidssituasjon: IAktivitet;
-  settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
+  underUtdanning?: IUnderUtdanning | IDetaljertUtdanning;
+  oppdaterUnderUtdanning: (
+    utdanning: IUnderUtdanning | IDetaljertUtdanning
+  ) => void;
+  stønadstype: Stønadstype;
 }
 
 const UnderUtdanning: React.FC<Props> = ({
-  arbeidssituasjon,
-  settArbeidssituasjon,
+  underUtdanning,
+  oppdaterUnderUtdanning,
+  stønadstype,
 }) => {
-  const { underUtdanning } = arbeidssituasjon;
-  const [utdanning, settUtdanning] = useState<IUnderUtdanning>(
-    underUtdanning ? underUtdanning : lagTomUnderUtdanning()
-  );
+  const skalHaDetaljertUtdanning = stønadstype === Stønadstype.skolepenger;
+  const [utdanning, settUtdanning] = useState<
+    IUnderUtdanning | IDetaljertUtdanning
+  >(underUtdanning ? underUtdanning : lagTomUnderUtdanning());
 
   useEffect(() => {
-    settArbeidssituasjon({
-      ...arbeidssituasjon,
-      underUtdanning: utdanning,
-    });
+    oppdaterUnderUtdanning(utdanning);
     // eslint-disable-next-line
   }, [utdanning]);
 
@@ -61,18 +74,35 @@ const UnderUtdanning: React.FC<Props> = ({
   const søkerSkalJobbeHeltid =
     utdanning.heltidEllerDeltid?.svarid === EStudieandel.heltid;
 
+  const visTidligereUtdanning = skalHaDetaljertUtdanning
+    ? erDetaljertUtdanningFerdigUtfylt(utdanning)
+    : erUnderUtdanningFerdigUtfylt(utdanning);
+
   return (
     <>
       <SeksjonGruppe>
         <KomponentGruppe>
-          <Undertittel className={'sentrert'}>
-            <LocaleTekst tekst={'utdanning.tittel'} />
-          </Undertittel>
-          <Hjelpetekst
-            className={'sentrert'}
-            åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
-            innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
-          />
+          {stønadstype === Stønadstype.overgangsstønad && (
+            <>
+              <Undertittel className={'sentrert'}>
+                <LocaleTekst tekst={'utdanning.tittel'} />
+              </Undertittel>
+              <Hjelpetekst
+                className={'sentrert'}
+                åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
+                innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
+              />
+            </>
+          )}
+          {stønadstype === Stønadstype.skolepenger && (
+            <HjelpetekstUnderSidetittel
+              className={'sentrert'}
+              åpneTekstid={utdanningDuKanFåStønadTilSkolepenger.åpneTekstid}
+              innholdTekstid={
+                utdanningDuKanFåStønadTilSkolepenger.innholdTekstid
+              }
+            />
+          )}
         </KomponentGruppe>
 
         <SkoleOgLinje
@@ -118,12 +148,19 @@ const UnderUtdanning: React.FC<Props> = ({
             )}
           </>
         )}
+        {skalHaDetaljertUtdanning &&
+          erUnderUtdanningFerdigUtfylt(utdanning) && (
+            <Studiekostnader
+              utdanning={utdanning}
+              oppdaterUtdanning={oppdaterUtdanning}
+            />
+          )}
       </SeksjonGruppe>
 
-      {underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning) && (
+      {visTidligereUtdanning && (
         <>
           <TidligereUtdanning
-            underUtdanning={underUtdanning}
+            underUtdanning={utdanning}
             settUnderUtdanning={settUtdanning}
           />
         </>
