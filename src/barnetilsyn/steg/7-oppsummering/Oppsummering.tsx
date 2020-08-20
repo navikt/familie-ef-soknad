@@ -59,6 +59,7 @@ const Oppsummering: React.FC = () => {
             />
             <OppsummeringBarnaDine
               barn={søknad.person.barn}
+              stønadstype={Stønadstype.barnetilsyn}
               endreInformasjonPath={hentPath(
                 RoutesBarnetilsyn,
                 ERouteBarnetilsyn.BarnaDine

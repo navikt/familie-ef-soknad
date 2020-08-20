@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
-import { ISøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { parseISO } from 'date-fns';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router';
@@ -28,7 +28,7 @@ interface Innsending {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
   const forrigeRoute = hentForrigeRoute(

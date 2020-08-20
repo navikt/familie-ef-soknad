@@ -12,6 +12,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering/OppsummeringDetaljertUtdanning';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -19,7 +20,8 @@ const Oppsummering: React.FC = () => {
   return (
     <>
       <Side
-        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        stønadstype={Stønadstype.skolepenger}
+        stegtittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreSkolepenger}
@@ -48,6 +50,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringBarnaDine
+              stønadstype={Stønadstype.skolepenger}
               barn={søknad.person.barn}
               endreInformasjonPath={hentPath(
                 RoutesSkolepenger,

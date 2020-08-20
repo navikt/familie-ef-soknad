@@ -28,6 +28,7 @@ import {
   hentNesteRoute,
   hentPath,
 } from '../../utils/routing';
+import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 interface Innsending {
   status: IStatus;
@@ -36,7 +37,7 @@ interface Innsending {
 }
 
 const Oppsummering: React.FC = () => {
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();

@@ -269,7 +269,7 @@ export default {
     'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
     'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
     'barnadine.leggtil': 'Legg til barn',
-    'barnadine.label.skalHaBarnepass': 'Med i søknaden',
+    'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
     'barnadine.knapp.fjern': 'Fjern fra søknad',
     'barnadine.knapp.søkBarnetilsyn':
       'Søk om stønad til barnetilsyn for barnet',

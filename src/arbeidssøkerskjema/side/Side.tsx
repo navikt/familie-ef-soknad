@@ -10,6 +10,7 @@ import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useHistory } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
+import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 interface ISide {
   tittel: string;
@@ -23,7 +24,7 @@ const Side: React.FC<ISide> = ({
   skalViseKnapper,
   erSpørsmålBesvart,
 }) => {
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
 
   const routes = Object.values(RoutesArbeidssokerskjema);

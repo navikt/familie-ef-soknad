@@ -168,7 +168,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   return (
     <>
       <div className="barnas-bosted">
-        <BarneHeader barn={barn} />
+        <SeksjonGruppe>
+          <BarneHeader barn={barn} />
+        </SeksjonGruppe>
         <div className="barnas-bosted__innhold">
           {!barn.harSammeAdresse.verdi && (
             <SkalBarnetBoHosSøker

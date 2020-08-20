@@ -55,6 +55,7 @@ const Oppsummering: React.FC = () => {
             />
             <OppsummeringBarnaDine
               barn={søknad.person.barn}
+              stønadstype={Stønadstype.overgangsstønad}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
                 ERouteOvergangsstønad.Barn

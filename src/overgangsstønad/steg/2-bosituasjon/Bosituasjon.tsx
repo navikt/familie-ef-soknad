@@ -9,6 +9,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -19,7 +20,7 @@ const Bosituasjon: FC = () => {
     mellomlagreOvergangsstønad,
   } = useSøknad();
   const bosituasjon = søknad.bosituasjon;
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp

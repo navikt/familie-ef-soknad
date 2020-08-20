@@ -25,7 +25,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
   const barnetsNavn =
     barn.navn && barn.navn.verdi !== ''
       ? barn.navn.verdi
-      : hentTekst('barnet.litenForBokstav', intl);
+      : hentTekst('barnet.storForBokstav', intl);
   if (!forelder) return null;
 
   const endreInformasjon = () => {

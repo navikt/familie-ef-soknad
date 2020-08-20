@@ -1,6 +1,5 @@
 import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -8,21 +7,35 @@ import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
+import OppsummeringBarn from './OppsummeringBarn';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import BarneHeader from '../../../components/BarneHeader';
+import styled from 'styled-components';
+
+const StyledOppsummering = styled.section`
+  margin-top: 3rem;
+
+  .typo-element {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+  }
+`;
 
 interface Props {
   barn: IBarn[];
+  stønadstype: Stønadstype;
   endreInformasjonPath?: string;
 }
 const OppsummeringBarnaDine: React.FC<Props> = ({
   barn,
+  stønadstype,
   endreInformasjonPath,
 }) => {
   const intl = useIntl();
   const history = useHistory();
+  const barnaDine: IBarn[] = barn;
 
-  const barna = barn;
-
-  const felterAlleBarna = barna.map((barn, index) => {
+  const hentEndretBarn = (barn: IBarn) => {
     let nyttBarn = { ...barn };
 
     if (!barn.født?.verdi) {
@@ -35,18 +48,22 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
         verdi: barn.fødselsdato.verdi,
       };
     }
+    return nyttBarn;
+  };
+  const oppsummeringBarnaDine = barnaDine.map((barn, index) => {
+    const endretBarn = hentEndretBarn(barn);
 
     return (
-      <div className="oppsummering-barn" key={index}>
-        {VisLabelOgSvar(nyttBarn)}
-        {index < barna.length - 1 && <hr />}
-      </div>
+      <StyledOppsummering>
+        <BarneHeader barn={barn} />
+        <OppsummeringBarn stønadstype={stønadstype} barn={endretBarn} />
+      </StyledOppsummering>
     );
   });
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Barna dine</Undertittel>}>
-      {felterAlleBarna}
+      {oppsummeringBarnaDine}
       <LenkeMedIkon
         onClick={() =>
           history.push({

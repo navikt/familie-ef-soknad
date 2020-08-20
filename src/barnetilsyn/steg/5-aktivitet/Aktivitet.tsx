@@ -29,6 +29,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -38,7 +39,7 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>(
     søknad?.aktivitet
   );
