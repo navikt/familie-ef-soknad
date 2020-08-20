@@ -6,24 +6,30 @@ import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
 import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
+import UtdanningSituasjon from './steg/5-aktivitet/UtdanningSituasjon';
+import Oppsummering from './steg/6-oppsummering/Oppsummering';
+import Kvittering from './steg/8-kvittering/Kvittering';
+import Dokumentasjon from './steg/7-dokumentasjon/Dokumentasjon';
 
 const SøknadsdialogSkolepenger: FC = () => {
   return (
     <Switch>
-      {/*<RedirectTilStart*/}
-      {/*  path={'/skolepenger/kvittering'}*/}
-      {/*  component={Kvittering}*/}
-      {/*/>*/}
-      {/*<RedirectTilStart*/}
-      {/*  path={'/skolepenger/dokumentasjon'}*/}
-      {/*  component={Dokumentasjon}*/}
-      {/*/>*/}
-      {/*<RedirectTilStart*/}
-      {/*  path={'/skolepenger/oppsummering'}*/}
-      {/*  component={Oppsummering}*/}
-      {/*/>*/}
-      {/*<RedirectTilStart path={'/skolepenger/barnepass'} component={Barnepass} />*/}
-      {/*<RedirectTilStart path={'/skolepenger/aktivitet'} component={Aktivitet} />*/}
+      <RedirectTilStart
+        path={'/skolepenger/kvittering'}
+        component={Kvittering}
+      />
+      <RedirectTilStart
+        path={'/skolepenger/dokumentasjon'}
+        component={Dokumentasjon}
+      />
+      <RedirectTilStart
+        path={'/skolepenger/oppsummering'}
+        component={Oppsummering}
+      />
+      <RedirectTilStart
+        path={'/skolepenger/utdanning'}
+        component={UtdanningSituasjon}
+      />
       <RedirectTilStart
         path={'/skolepenger/barnas-bosted'}
         component={BarnasBosted}

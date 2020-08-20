@@ -5,31 +5,25 @@ import { useIntl } from 'react-intl';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
-import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
-import OppsummeringDinSituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
-import { useSøknad } from '../../../context/SøknadContext';
-import {
-  ERouteOvergangsstønad,
-  RoutesOvergangsstonad,
-} from '../../routing/routesOvergangsstonad';
+import { ERouteSkolepenger, RoutesSkolepenger } from '../../routing/routes';
 import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
-import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { useSkolepengerSøknad } from '../../SkolepengerContext';
+import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering/OppsummeringDetaljertUtdanning';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
-  const { mellomlagreOvergangsstønad, søknad } = useSøknad();
+  const { mellomlagreSkolepenger, søknad } = useSkolepengerSøknad();
   return (
     <>
       <Side
-        stønadstype={Stønadstype.overgangsstønad}
-        stegtittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
         erSpørsmålBesvart={true}
-        mellomlagreStønad={mellomlagreOvergangsstønad}
-        routesStønad={RoutesOvergangsstonad}
+        mellomlagreStønad={mellomlagreSkolepenger}
+        routesStønad={RoutesSkolepenger}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
@@ -42,45 +36,37 @@ const Oppsummering: React.FC = () => {
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
               endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.OmDeg
+                RoutesSkolepenger,
+                ERouteSkolepenger.OmDeg
               )}
             />
             <OppsummeringBosituasjonenDin
               bosituasjon={søknad.bosituasjon}
               endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.BosituasjonenDin
+                RoutesSkolepenger,
+                ERouteSkolepenger.BosituasjonenDin
               )}
             />
             <OppsummeringBarnaDine
               barn={søknad.person.barn}
-              stønadstype={Stønadstype.overgangsstønad}
               endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.Barn
+                RoutesSkolepenger,
+                ERouteSkolepenger.BarnaDine
               )}
             />
             <OppsummeringBarnasBosituasjon
               barn={søknad.person.barn}
               endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.BarnasBosted
+                RoutesSkolepenger,
+                ERouteSkolepenger.BostedOgSamvær
               )}
             />
-            <OppsummeringAktiviteter
-              tittel={hentTekst('stegtittel.arbeidssituasjon', intl)}
-              aktivitet={søknad.aktivitet}
+            <OppsummeringDetaljertUtdanning
+              tittel={hentTekst('stegtittel.utdanning', intl)}
+              utdanning={søknad.utdanning}
               endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.Aktivitet
-              )}
-            />
-            <OppsummeringDinSituasjon
-              dinSituasjon={søknad.merOmDinSituasjon}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.DinSituasjon
+                RoutesSkolepenger,
+                ERouteSkolepenger.Utdanning
               )}
             />
           </KomponentGruppe>

@@ -9,6 +9,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -65,7 +66,8 @@ const BarnasBosted: React.FC = () => {
 
   return (
     <Side
-      tittel={hentTekst('barnasbosted.sidetittel', intl)}
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={hentTekst('barnasbosted.sidetittel', intl)}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={sisteBarnUtfylt}
       routesStønad={RoutesBarnetilsyn}

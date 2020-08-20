@@ -24,6 +24,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { useLocation } from 'react-router';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -108,7 +109,8 @@ const Barnepass: FC<Props> = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={intl.formatMessage({ id: 'barnepass.sidetittel' })}
       skalViseKnapper={skalViseKnapper}
       mellomlagreStønad={mellomlagreBarnetilsyn}
       erSpørsmålBesvart={erBarnepassStegFerdigUtfylt(

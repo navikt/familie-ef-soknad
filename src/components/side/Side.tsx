@@ -10,6 +10,8 @@ import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
+import { Stønadstype } from '../../models/søknad/stønadstyper';
+import { hentBannertittel } from '../../utils/stønadstype';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -18,7 +20,8 @@ export enum ESide {
 }
 
 interface ISide {
-  tittel: string;
+  stønadstype: Stønadstype;
+  stegtittel: string;
   routesStønad: IRoute[];
   skalViseKnapper: ESide;
   erSpørsmålBesvart?: boolean;
@@ -27,7 +30,8 @@ interface ISide {
 }
 
 const Side: React.FC<ISide> = ({
-  tittel,
+  stønadstype,
+  stegtittel,
   children,
   routesStønad,
   erSpørsmålBesvart,
@@ -53,7 +57,7 @@ const Side: React.FC<ISide> = ({
 
   return (
     <div className={'søknadsdialog'}>
-      <Banner tekstid={'barnetilsyn.sidetittel'} />
+      <Banner tekstid={hentBannertittel(stønadstype)} />
       <div className={'side'}>
         <Stegindikator
           autoResponsiv={true}
@@ -68,7 +72,7 @@ const Side: React.FC<ISide> = ({
 
         <Panel className={'side__innhold'}>
           <main className={'innholdscontainer'}>
-            <Systemtittel>{tittel}</Systemtittel>
+            <Systemtittel>{stegtittel}</Systemtittel>
             {children}
           </main>
         </Panel>

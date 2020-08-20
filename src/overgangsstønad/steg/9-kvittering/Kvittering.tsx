@@ -54,7 +54,8 @@ const Kvittering: React.FC = () => {
 
   return søknad.innsendingsdato ? (
     <Side
-      tittel={intl.formatMessage({ id: 'kvittering.takk' })}
+      stønadstype={Stønadstype.overgangsstønad}
+      stegtittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={ESide.skjulKnapper}
       routesStønad={RoutesOvergangsstonad}
     >
@@ -79,7 +80,11 @@ const Kvittering: React.FC = () => {
 
       {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
-      {underUtdanning && <TilleggsstønaderUnderUtdanning />}
+      {underUtdanning && (
+        <TilleggsstønaderUnderUtdanning
+          stønadstype={Stønadstype.overgangsstønad}
+        />
+      )}
       <RegistrerBarnIFolkeregister barna={søknad.person.barn} />
       {(arbeidsforhold || firmaer || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />

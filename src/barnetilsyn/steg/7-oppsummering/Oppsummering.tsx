@@ -28,7 +28,8 @@ const Oppsummering: React.FC = () => {
   return (
     <>
       <Side
-        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        stønadstype={Stønadstype.barnetilsyn}
+        stegtittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreBarnetilsyn}
         routesStønad={RoutesBarnetilsyn}

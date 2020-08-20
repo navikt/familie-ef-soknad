@@ -35,6 +35,9 @@ export enum EUtdanning {
   målMedUtdanning = 'målMedUtdanning',
   harTattUtdanningEtterGrunnskolen = 'harTattUtdanningEtterGrunnskolen',
   tidligereUtdanning = 'tidligereUtdanning',
+  semesteravgift = 'semesteravgift',
+  studieavgift = 'studieavgift',
+  eksamensgebyr = 'eksamensgebyr',
 }
 
 export enum EUtdanningsform {

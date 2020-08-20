@@ -10,46 +10,62 @@ import {
 } from '../helpers/steg/dokumentasjon';
 import { IMellomlagretSkolepengerSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
-import { useIntl } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
 import { nyttTekstFelt } from '../helpers/tommeSøknadsfelter';
 import { ISøknad } from './models/søknad';
 import {
   hentMellomlagretSøknadFraDokument,
+  hentTekst,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
+import {
+  DokumentasjonUtdanning,
+  DokumentasjonUtgifterUtdanning,
+} from '../søknad/steg/5-aktivitet/AktivitetConfig';
 
 // -----------  CONTEXT  -----------
-const initialState: ISøknad = {
-  person: tomPerson,
-  sivilstatus: {},
-  medlemskap: {},
-  bosituasjon: {
-    delerBoligMedAndreVoksne: {
-      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
-      svarid: '',
-      label: '',
-      verdi: '',
+const initialState = (intl: IntlShape): ISøknad => {
+  return {
+    person: tomPerson,
+    sivilstatus: {},
+    medlemskap: {},
+    bosituasjon: {
+      delerBoligMedAndreVoksne: {
+        spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+        svarid: '',
+        label: '',
+        verdi: '',
+      },
     },
-  },
-  utdanning: {
-    id: hentUid(),
-    skoleUtdanningssted: nyttTekstFelt,
-  },
-  dokumentasjonsbehov: [],
-  harBekreftet: false,
+    utdanning: {
+      id: hentUid(),
+      skoleUtdanningssted: nyttTekstFelt,
+    },
+    dokumentasjonsbehov: [
+      {
+        ...DokumentasjonUtgifterUtdanning,
+        label: hentTekst(DokumentasjonUtgifterUtdanning.tittel, intl),
+      },
+      {
+        ...DokumentasjonUtdanning,
+        label: hentTekst(DokumentasjonUtdanning.tittel, intl),
+      },
+    ],
+    harBekreftet: false,
+  };
 };
 
 const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
   () => {
-    const [søknad, settSøknad] = useState<ISøknad>(initialState);
+    const intl = useIntl();
+    const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
     const [mellomlagretSkolepenger, settMellomlagretSkolepenger] = useState<
       IMellomlagretSkolepengerSøknad
     >();
-    const intl = useIntl();
 
     const hentMellomlagretSkolepenger = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretSkolepengerSøknad>(
