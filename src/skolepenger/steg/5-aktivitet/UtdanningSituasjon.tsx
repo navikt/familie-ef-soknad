@@ -9,11 +9,12 @@ import { IDetaljertUtdanning } from '../../models/detaljertUtdanning';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/UnderUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreSkolepenger } = useSkolepengerSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
@@ -31,7 +32,8 @@ const UtdanningSituasjon: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.utdanning' })}
+      stønadstype={Stønadstype.skolepenger}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.utdanning' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erSisteSpørsmålBesvartOgMinstEttAlternativValgt}
       mellomlagreStønad={mellomlagreSkolepenger}

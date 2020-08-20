@@ -5,6 +5,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useHistory, useLocation } from 'react-router';
 import styled from 'styled-components';
+import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 const StyledNavigeringsKnapper = styled.div`
   padding: 2rem;
@@ -73,7 +74,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
   erSpørsmålBesvart,
   mellomlagreStønad,
 }) => {
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(routesStønad, location.pathname);
   const forrigeRoute = hentForrigeRoute(routesStønad, location.pathname);

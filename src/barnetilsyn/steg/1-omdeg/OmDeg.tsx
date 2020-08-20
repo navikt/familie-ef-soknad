@@ -18,10 +18,11 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  const location = useLocation();
-  const kommerFraOppsummering: string = location.state?.kommerFraOppsummering;
+  const location = useLocation<LocationStateSøknad>();
+  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

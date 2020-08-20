@@ -14,6 +14,7 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -23,7 +24,7 @@ const BarnaDine: React.FC = () => {
     mellomlagreSkolepenger,
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp

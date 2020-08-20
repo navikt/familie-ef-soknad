@@ -12,6 +12,7 @@ import {
   ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
 import LabelVerdiGruppe from '../components/gruppe/LabelVerdiGruppe';
+import { LocationStateSøknad } from '../models/søknad/søknad';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -169,7 +170,7 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
 };
 
 export const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation<LocationStateSøknad>();
 
   useEffect(() => {
     window.scrollTo(0, 0);

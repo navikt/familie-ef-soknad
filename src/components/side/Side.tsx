@@ -12,6 +12,7 @@ import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbr
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
+import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -40,7 +41,7 @@ const Side: React.FC<ISide> = ({
   tilbakeTilOppsummeringPath,
 }) => {
   const intl = useIntl();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
 
   const routes = Object.values(routesStønad);

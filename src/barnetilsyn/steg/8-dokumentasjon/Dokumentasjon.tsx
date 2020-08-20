@@ -12,11 +12,12 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);

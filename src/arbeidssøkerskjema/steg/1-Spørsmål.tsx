@@ -28,9 +28,10 @@ import {
   RoutesArbeidssokerskjema,
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
+import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 const Spørsmål: FC = () => {
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const { person } = usePersonContext();
   const history = useHistory();
   const intl = useIntl();

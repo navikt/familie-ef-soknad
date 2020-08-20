@@ -14,11 +14,13 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreSkolepenger } = useSkolepengerSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
@@ -77,7 +79,8 @@ const Dokumentasjon: React.FC = () => {
   const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
     <Side
-      tittel={sidetittel}
+      stønadstype={Stønadstype.skolepenger}
+      stegtittel={sidetittel}
       skalViseKnapper={ESide.skjulKnapper}
       erSpørsmålBesvart={false}
       mellomlagreStønad={mellomlagreSkolepenger}

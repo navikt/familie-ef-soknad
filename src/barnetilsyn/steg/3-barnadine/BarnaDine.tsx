@@ -17,6 +17,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -27,7 +28,7 @@ const BarnaDine: React.FC = () => {
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
   const history = useHistory();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp

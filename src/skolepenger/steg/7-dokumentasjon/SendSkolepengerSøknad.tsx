@@ -19,6 +19,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
+import { LocationStateSøknad } from '../../../models/søknad/søknad';
 
 interface Innsending {
   status: string;
@@ -28,7 +29,7 @@ interface Innsending {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSkolepengerSøknad();
-  const location = useLocation();
+  const location = useLocation<LocationStateSøknad>();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesSkolepenger, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesSkolepenger, location.pathname);

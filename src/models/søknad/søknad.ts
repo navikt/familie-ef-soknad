@@ -23,3 +23,7 @@ export interface ISøknad {
 export enum ESøknad {
   søkerBorPåRegistrertAdresse = 'søkerBorPåRegistrertAdresse',
 }
+
+export interface LocationStateSøknad {
+  kommerFraOppsummering?: boolean;
+}
