@@ -37,9 +37,9 @@ const Environment = (): EnvironmentProps => {
       apiUrl: 'https://www.dev.nav.no/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice-q.nav.no/login?',
       dokumentUrl:
-        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+        'https://www.dev.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl:
-        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
+        'https://www.dev.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
