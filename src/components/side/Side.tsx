@@ -82,11 +82,14 @@ const Side: React.FC<ISide> = ({
           erSpørsmålBesvart && (
             <Hovedknapp
               className="tilbake-til-oppsummering"
-              onClick={() =>
+              onClick={() => {
+                if (mellomlagreStønad) {
+                  mellomlagreStønad(location.pathname);
+                }
                 history.push({
                   pathname: tilbakeTilOppsummeringPath,
-                })
-              }
+                });
+              }}
             >
               {hentTekst('oppsummering.tilbake', intl)}
             </Hovedknapp>
