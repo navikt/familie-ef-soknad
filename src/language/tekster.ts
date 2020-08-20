@@ -604,6 +604,8 @@ export default {
     'utdanning.spm.mål': 'Hva er målet med utdanningen?',
 
     'utdanning.label.utgifter': 'Utgifter til skolepenger',
+    'utdanning.label.utgifter.dokumentasjon':
+      'Dokumentasjon på utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr. <br />Det dokumenterer du med faktura i ditt navn.',
     'utdanning.label.utgifter.eksamensgebyr': 'Eksamensgebyr',
     'utdanning.label.utgifter.studieavgift': 'Studieavgift',
     'utdanning.label.utgifter.semesteravgift': 'Semesteravgift',
@@ -773,14 +775,16 @@ export default {
     'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
       'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
     'dokumentasjon.beskrivelse':
-      'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du kan bruke filformatene PDF, jpg og png.' +
-      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen.' +
+      'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. ' +
+      'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. ' +
+      'Du kan bruke filformatene PDF, jpg og png.' +
       ' <br/><br/>' +
       'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
       '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
       '<li>Sjekk at dokumentet er lett å lese\n</li>' +
       '<li>Last opp bildene her</li></ol> ' +
       'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/>' +
+      '<br />' +
       'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
     'dokumentasjon.checkbox.sendtTidligere':
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
@@ -867,14 +871,14 @@ export default {
       '<li>stillingsprosent</li>' +
       '<li>dato for oppstart</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
-    'dokumentasjon.utdanning.tittel': 'Dokumentasjon på utdanningen du skal ta',
+    'dokumentasjon.utdanning.tittel':
+      'Dokumentasjon på utdanningen du tar eller skal ta',
     'dokumentasjon.utdanning.beskrivelse':
-      'Dokumentasjonen må tydelig vise:<ul>' +
+      'Dokumentasjonen må vise:<ul>' +
       '<li>navn på studiested</li>' +
       '<li>navn på studie</li>' +
       '<li>hvor mye du skal studere</li>' +
-      '<li>periode du skal studere</li>' +
-      '<li>dato du fikk tilbudet</li></ul>',
+      '<li>perioden du skal studere</li></ul>',
 
     'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
 
@@ -926,6 +930,8 @@ export default {
 
     'kvittering.takk': 'Takk for søknaden',
     'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+    'kvittering.skolepenger.alert.mottatt':
+      'Søknaden din om stønad til skolepenger er mottatt',
     'kvittering.barnetilsyn.alert.mottatt':
       'Søknaden din om stønad til barnetilsyn er mottatt',
     'kvittering.tekst.arbeidssøker':

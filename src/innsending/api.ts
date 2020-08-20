@@ -24,6 +24,17 @@ export const sendInnBarnetilsynSøknad = (søknad: object) => {
     });
 };
 
+export const sendInnSkolepengerSøknad = (søknad: object) => {
+  return axios
+    .post(`${Environment().apiUrl}/api/soknad/skolepenger`, søknad, {
+      headers: { 'content-type': 'application/json;charset=utf-8' },
+      withCredentials: true,
+    })
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
+
 export const mapBarnUtenBarnepass = (barneliste: IBarn[]) => {
   return barneliste.map((barn) => {
     const kopiAvBarn = { ...barn };
