@@ -29,8 +29,6 @@ spec:
     - "https://www.dev.nav.no/familie/alene-med-barn/soknad"
   accessPolicy:
     outbound:
-      rules:
-        - application: familie-ef-soknad-api
       external:
         - host: appres-q0.nav.no
         - host: loginservice-q.nav.no

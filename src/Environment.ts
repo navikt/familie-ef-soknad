@@ -34,7 +34,7 @@ const Environment = (): EnvironmentProps => {
   } else if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://www.dev.nav.no/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice-q.nav.no/login?',
       dokumentUrl:
         'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
