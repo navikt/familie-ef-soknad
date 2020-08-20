@@ -16,6 +16,7 @@ import {
 import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -23,7 +24,8 @@ const Oppsummering: React.FC = () => {
   return (
     <>
       <Side
-        tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+        stønadstype={Stønadstype.overgangsstønad}
+        stegtittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreOvergangsstønad}

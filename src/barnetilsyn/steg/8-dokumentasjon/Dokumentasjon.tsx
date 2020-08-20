@@ -11,6 +11,7 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { IVedlegg } from '../../../models/steg/vedlegg';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -51,7 +52,8 @@ const Dokumentasjon: React.FC = () => {
   const harDokumentasjonsbehov = søknad.dokumentasjonsbehov.length > 0;
   return (
     <Side
-      tittel={sidetittel}
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={sidetittel}
       skalViseKnapper={ESide.skjulKnapper}
       erSpørsmålBesvart={false}
       routesStønad={RoutesBarnetilsyn}

@@ -8,6 +8,7 @@ import BosituasjonSpørsmål from '../../../søknad/steg/2-bosituasjon/Bosituasj
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -35,7 +36,8 @@ const Bosituasjon: FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={skalViseKnapper}
       erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
       routesStønad={RoutesBarnetilsyn}

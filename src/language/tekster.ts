@@ -48,7 +48,9 @@ export default {
     'skjema.takk': 'Takk',
     'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
 
-    'banner.tittel': 'Søknad om overgangsstønad',
+    'banner.tittel.overgangsstønad': 'Søknad om overgangsstønad',
+    'banner.tittel.barnetilsyn': 'Søknad om barnetilsyn',
+    'banner.tittel.skolepenger': 'Søknad om skolepenger',
     'banner.tittel.arbeidssøker': 'Enslig mor eller far som er arbeidssøker',
 
     'språk.bokmål': 'Bokmål',

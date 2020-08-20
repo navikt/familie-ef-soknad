@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
-import { IntlShape, injectIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router-dom';
 import {
@@ -17,8 +16,11 @@ import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
+import { useIntl } from 'react-intl';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
-const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+const OmDeg: FC = () => {
+  const intl = useIntl();
   const location = useLocation();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
@@ -83,7 +85,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
   return (
     <Side
-      tittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
+      stønadstype={Stønadstype.overgangsstønad}
+      stegtittel={intl.formatMessage({ id: 'stegtittel.omDeg' })}
       erSpørsmålBesvart={erAlleSpørsmålBesvart}
       skalViseKnapper={skalViseKnapper}
       routesStønad={RoutesOvergangsstonad}
@@ -121,4 +124,4 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(OmDeg);
+export default OmDeg;

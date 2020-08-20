@@ -28,6 +28,7 @@ import { Element } from 'nav-frontend-typografi';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -139,7 +140,8 @@ const Aktivitet: React.FC = () => {
 
   return (
     <Side
-      tittel={intl.formatMessage({
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={intl.formatMessage({
         id: 'stegtittel.arbeidssituasjon.barnetilsyn',
       })}
       skalViseKnapper={skalViseKnapper}

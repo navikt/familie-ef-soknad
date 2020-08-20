@@ -16,6 +16,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -90,7 +91,8 @@ const BarnaDine: React.FC = () => {
   return (
     <>
       <Side
-        tittel={hentTekst('barnadine.sidetittel', intl)}
+        stønadstype={Stønadstype.barnetilsyn}
+        stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
         erSpørsmålBesvart={harValgtMinstEttBarn}
         routesStønad={RoutesBarnetilsyn}
