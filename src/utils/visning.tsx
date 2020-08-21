@@ -79,7 +79,6 @@ export const verdiTilTekstsvar = (
       return <Normaltekst>{neiTekst}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
-    console.log('Bør ikke komme hit');
     return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
   } else {
     return null;
@@ -118,7 +117,6 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
     if (!spørsmål) {
       return null;
     }
-    console.log('Har valgt svar: ', spørsmål, harValgtSvar(spørsmål.verdi));
 
     if (spørsmål.fra && spørsmål.til) {
       return VisPeriode(spørsmål);
