@@ -63,7 +63,15 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
       <DineSaker />
+      <EttersendDokumentasjon
+        dokumentasjonsbehov={søknad.dokumentasjonsbehov}
+        stønadstype={Stønadstype.overgangsstønad}
+      />
+      {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
+        <RegistrerDegSomArbeidssøker />
+      )}
 
+      {syktBarn && <SyktBarn />}
       {sykSøker && (
         <SykSøker
           filPath={
@@ -72,11 +80,8 @@ const Kvittering: React.FC = () => {
         />
       )}
 
-      {syktBarn && <SyktBarn />}
       {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
-      {arbeidssøker?.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
-        <RegistrerDegSomArbeidssøker />
-      )}
+      <RegistrerBarnIFolkeregister barna={søknad.person.barn} />
 
       {arbeidssøker && <TilleggsstønaderArbeidssøker />}
 
@@ -85,14 +90,9 @@ const Kvittering: React.FC = () => {
           stønadstype={Stønadstype.overgangsstønad}
         />
       )}
-      <RegistrerBarnIFolkeregister barna={søknad.person.barn} />
       {(arbeidsforhold || firmaer || etablererEgenVirksomhet || egetAS) && (
         <TilleggsstønaderHarAktivitet />
       )}
-      <EttersendDokumentasjon
-        dokumentasjonsbehov={søknad.dokumentasjonsbehov}
-        stønadstype={Stønadstype.overgangsstønad}
-      />
     </Side>
   ) : (
     <Feilside />

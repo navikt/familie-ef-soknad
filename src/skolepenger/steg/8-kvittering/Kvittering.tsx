@@ -40,15 +40,15 @@ const Kvittering: React.FC = () => {
         <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
       </SeksjonGruppe>
       <DineSaker />
-      {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
-      {søknad.utdanning && (
-        <TilleggsstønaderUnderUtdanning stønadstype={Stønadstype.skolepenger} />
-      )}
-      <RegistrerBarnIFolkeregister barna={søknad.person.barn} />
       <EttersendDokumentasjon
         dokumentasjonsbehov={søknad.dokumentasjonsbehov}
         stønadstype={Stønadstype.overgangsstønad}
       />
+      {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
+      <RegistrerBarnIFolkeregister barna={søknad.person.barn} />
+      {søknad.utdanning && (
+        <TilleggsstønaderUnderUtdanning stønadstype={Stønadstype.skolepenger} />
+      )}
     </Side>
   ) : (
     <Feilside />
