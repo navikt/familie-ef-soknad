@@ -2,7 +2,7 @@ apiVersion: 'nais.io/v1alpha1'
 kind: 'Application'
 metadata:
   name: familie-ef-soknad
-  namespace: default
+  namespace: teamfamilie
   labels:
     team: teamfamilie
 spec:
@@ -14,24 +14,31 @@ spec:
     cpuThresholdPercentage: 50
   port: 8080
   liveness:
-    path: /
+    path: /status
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
   readiness:
-    path: /
+    path: /status
+    initialDelay: 5
+    periodSeconds: 5
+    failureThreshold: 30
   prometheus:
-    enabled: true
-    path: /metrics
+    enabled: false
   ingresses:
-    - https://www-q0.nav.no/familie/alene-med-barn/soknad
-    - https://familie-ef-soknad.nais.oera-q.local
-    - https://familie-ef-soknad.dev-sbs.nais.io
-  webproxy: true
+    - https://nav.no/familie/alene-med-barn/soknad
+  accessPolicy:
+    outbound:
+      external:
+        - host: appres-q0.nav.no
+        - host: loginservice.nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
     - name: APPRES_CMS_URL
-      value: https://appres-q0.nav.no
+      value: https://appres.nav.no
     - name: LOGINSERVICE_URL
-      value: https://loginservice-q.nav.no/login
+      value: https://loginservice.nav.no/login
     - name: UNLEASH_API_URL
       value: https://unleashproxy.nais.oera.no/api/
   resources:

@@ -18,28 +18,15 @@ interface IModellversjon {
 const Environment = (): EnvironmentProps => {
   const modellVersjon = { overgangsstønad: 6, barnetilsyn: 1, skolepenger: 1 };
 
-  if (window.location.hostname.indexOf('www-q0') > -1) {
+  if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice-q.nav.no/login?',
-      dokumentUrl:
-        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl:
-        'https://www-q0.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
-      sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
-      miljø: 'preprod',
-      modellVersjon: modellVersjon,
-    };
-  } else if (window.location.hostname.indexOf('dev.nav.no') > -1) {
-    return {
-      veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://dev.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice.dev.nav.no/login?',
       dokumentUrl:
-        'https://dev.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+        'https://familie.dev.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl:
-        'https://dev.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
+        'https://familie.dev.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,

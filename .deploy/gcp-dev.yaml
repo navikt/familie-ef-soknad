@@ -26,21 +26,19 @@ spec:
   prometheus:
     enabled: false
   ingresses:
-    - https://dev.nav.no/familie/alene-med-barn/soknad
-    - https://familie-ef.dev.nav.no/familie/alene-med-barn/soknad
+    - https://familie.dev.nav.no/familie/alene-med-barn/soknad
   accessPolicy:
     outbound:
       external:
         - host: appres-q0.nav.no
-        - host: loginservice-q.nav.no
-        - host: unleashproxy.nais.oera.no
+        - host: loginservice.dev.nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
     - name: APPRES_CMS_URL
       value: https://appres-q0.nav.no
     - name: LOGINSERVICE_URL
-      value: https://loginservice-q.nav.no/login
+      value: https://loginservice.dev.nav.no/login
     - name: UNLEASH_API_URL
       value: https://unleashproxy.nais.oera.no/api/
   resources:

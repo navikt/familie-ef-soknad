@@ -34,10 +34,10 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-sbs
-          RESOURCE: .deploy/sbs-dev.yaml
-      - name: Deploy til prod-sbs
+          RESOURCE: .deploy/gcp-dev.yaml
+      - name: Deploy til prod-gcp
         uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-sbs
-          RESOURCE: .deploy/sbs-prod.yaml
+          RESOURCE: .deploy/gcp-prod.yaml
