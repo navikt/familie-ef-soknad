@@ -15,8 +15,9 @@ Med api må du sette cookie første gang:
 `http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad/`
 
 ## Kjør lokalt med mellomlagring
-1. Kjør familie-dokument sin DevLauncher
-2. Kjør familie-ef-soknad-api sin ApplicationLocalLauncher
+1. Last ned (familie-dokument)[https://github.com/navikt/familie-dokument] og (familie-ef-soknad-api)[https://github.com/navikt/familie-ef-soknad-api]
+2. Kjør `mvn clean install` i begge prosjektene
+2. Kjør opp appene lokalt ved å kjøre familie-dokument din `DevLauncher` og familie-ef-soknad-api sin `ApplicationLocalLauncher` 
 
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
