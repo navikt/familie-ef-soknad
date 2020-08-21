@@ -26,7 +26,9 @@ spec:
   prometheus:
     enabled: false
   ingresses:
+    - https://familie.dev.nav.no/familie/alene-med-barn/soknad
     - https://familie-ef.dev.nav.no/familie/alene-med-barn/soknad
+    - https://familie-ef2.dev.nav.no/familie/alene-med-barn/soknad
   accessPolicy:
     outbound:
       external:
