@@ -27,7 +27,7 @@ spec:
     enabled: false
   ingresses:
     - https://dev.nav.no/familie/alene-med-barn/soknad
-    - https://familie.dev.nav.no/familie/alene-med-barn/soknad
+    - https://familie-ef.dev.nav.no/familie/alene-med-barn/soknad
   accessPolicy:
     outbound:
       external:
