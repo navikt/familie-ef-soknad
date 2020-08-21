@@ -13,6 +13,7 @@ import {
 } from '../models/søknad/søknadsfelter';
 import LabelVerdiGruppe from '../components/gruppe/LabelVerdiGruppe';
 import { LocationStateSøknad } from '../models/søknad/søknad';
+import { harValgtSvar } from './spørsmålogsvar';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -117,6 +118,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
     if (!spørsmål) {
       return null;
     }
+    console.log('Har valgt svar: ', spørsmål, harValgtSvar(spørsmål.verdi));
 
     if (spørsmål.fra && spørsmål.til) {
       return VisPeriode(spørsmål);
@@ -126,12 +128,14 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       navn && spørsmål.label
         ? hentBeskjedMedNavn(navn, spørsmål.label)
         : spørsmål.label;
-
     return (
-      <div className="spørsmål-og-svar" key={index}>
-        <Element>{label}</Element>
-        {verdiTilTekstsvar(spørsmål.verdi, intl)}
-      </div>
+      harValgtSvar(spørsmål.verdi) &&
+      label && (
+        <div className="spørsmål-og-svar" key={index}>
+          <Element>{label}</Element>
+          {verdiTilTekstsvar(spørsmål.verdi, intl)}
+        </div>
+      )
     );
   });
 };

@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { IBarn } from '../../../models/steg/barn';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { verdiTilTekstsvar } from '../../../utils/visning';
 import { useIntl } from 'react-intl';
@@ -27,54 +26,54 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
   return (
     <>
       {navn && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{navn?.label}</Element>
           <Normaltekst>{navn.verdi}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {ident && ident.verdi !== '' && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{ident?.label}</Element>
           <Normaltekst>{ident.verdi}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {alder && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{alder.label}</Element>
           <Normaltekst>{alder.verdi}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {fødselsdato.verdi !== '' && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{fødselsdato.label}</Element>
           <Normaltekst>{fødselsdato.verdi}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {født && lagtTil && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{født?.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {stønadstype === Stønadstype.barnetilsyn && skalHaBarnepass && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{skalHaBarnepass?.label}</Element>
           <Normaltekst>
             {verdiTilTekstsvar(skalHaBarnepass?.verdi, intl)}
           </Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
 
       {harSammeAdresse && (
-        <FeltGruppe>
+        <div className={'spørsmål-og-svar'}>
           <Element>{harSammeAdresse.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(harSammeAdresse.verdi)}</Normaltekst>
-        </FeltGruppe>
+        </div>
       )}
     </>
   );

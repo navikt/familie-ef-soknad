@@ -11,12 +11,14 @@ const StyledLabelVerdiGruppe = styled.div`
 
   .typo-element {
     grid-area: label;
-    padding-bottom: 15px;
+    padding-top: 15px;
   }
   .typo-normal,
   .verdi {
     grid-area: verdi;
-    padding-bottom: 15px;
+  }
+  .typo-normal {
+    margin-top: 0.5rem;
   }
 `;
 
