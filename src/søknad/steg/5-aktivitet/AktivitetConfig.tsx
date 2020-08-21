@@ -55,7 +55,7 @@ export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
 };
 
 export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon = {
-  id: AktivitetDokumentasjon.OM_VIRKSOMHETEN_DU_ETABLERER,
+  id: AktivitetDokumentasjon.ETABLERER_VIRKSOMHET,
   spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   svarid: EAktivitet.etablererEgenVirksomhet,
   label: '',
