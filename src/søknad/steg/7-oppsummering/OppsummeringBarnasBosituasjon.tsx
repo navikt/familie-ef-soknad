@@ -9,6 +9,8 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 
 interface Props {
   barn: IBarn[];
@@ -40,7 +42,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
 
       return (
         <div className="oppsummering-barn" key={index}>
-          <Element>{barn.navn?.verdi}</Element>
+          <Element>{hentBarnetsNavnEllerBeskrivelse(barn, intl)}</Element>
           {forelderFelter}
           {index < antallForeldre - 1 && <hr />}
         </div>
@@ -53,17 +55,19 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
         <Undertittel>{hentTekst('barnasbosted.sidetittel', intl)}</Undertittel>
       }
     >
-      {felterAlleForeldrene}
-      <LenkeMedIkon
-        onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
-        }
-        tekst_id="barnasbosted.knapp.endre"
-        ikon={endre}
-      />
+      <EkspanderbarOppsummering>
+        {felterAlleForeldrene}
+        <LenkeMedIkon
+          onClick={() =>
+            history.push({
+              pathname: endreInformasjonPath,
+              state: { kommerFraOppsummering: true },
+            })
+          }
+          tekst_id="barnasbosted.knapp.endre"
+          ikon={endre}
+        />
+      </EkspanderbarOppsummering>
     </Ekspanderbartpanel>
   );
 };

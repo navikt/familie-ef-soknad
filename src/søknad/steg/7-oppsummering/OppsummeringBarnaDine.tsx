@@ -11,13 +11,13 @@ import OppsummeringBarn from './OppsummeringBarn';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import BarneHeader from '../../../components/BarneHeader';
 import styled from 'styled-components';
+import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 
 const StyledOppsummering = styled.section`
   margin-top: 3rem;
 
   .typo-element {
     margin-top: 1.5rem;
-    margin-bottom: 1rem;
   }
 `;
 
@@ -63,17 +63,19 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Barna dine</Undertittel>}>
-      {oppsummeringBarnaDine}
-      <LenkeMedIkon
-        onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
-        }
-        tekst_id="barnasbosted.knapp.endre"
-        ikon={endre}
-      />
+      <EkspanderbarOppsummering>
+        {oppsummeringBarnaDine}
+        <LenkeMedIkon
+          onClick={() =>
+            history.push({
+              pathname: endreInformasjonPath,
+              state: { kommerFraOppsummering: true },
+            })
+          }
+          tekst_id="barnasbosted.knapp.endre"
+          ikon={endre}
+        />
+      </EkspanderbarOppsummering>
     </Ekspanderbartpanel>
   );
 };

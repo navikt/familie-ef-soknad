@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -24,17 +25,19 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
     <Ekspanderbartpanel
       tittel={<Undertittel>Mer om din situasjon</Undertittel>}
     >
-      {VisLabelOgSvar(merOmDinSituasjon)}
-      <LenkeMedIkon
-        onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
-        }
-        tekst_id="barnasbosted.knapp.endre"
-        ikon={endre}
-      />
+      <EkspanderbarOppsummering>
+        {VisLabelOgSvar(merOmDinSituasjon)}
+        <LenkeMedIkon
+          onClick={() =>
+            history.push({
+              pathname: endreInformasjonPath,
+              state: { kommerFraOppsummering: true },
+            })
+          }
+          tekst_id="barnasbosted.knapp.endre"
+          ikon={endre}
+        />
+      </EkspanderbarOppsummering>
     </Ekspanderbartpanel>
   );
 };

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 
 const StyledEkspanderbarOppsummering = styled.div`
   .listeelement {
+    .spørsmål-og-svar:first-of-type {
+      margin-top: 1rem;
+    }
     hr {
       margin-top: 2rem;
       margin-bottom: 2rem;

@@ -47,6 +47,10 @@ const Kvittering: React.FC = () => {
       </SeksjonGruppe>
 
       <DineSaker />
+      <EttersendDokumentasjon
+        dokumentasjonsbehov={søknad.dokumentasjonsbehov}
+        stønadstype={Stønadstype.barnetilsyn}
+      />
       {sykSøker && (
         <SykSøker
           filPath={
@@ -57,10 +61,6 @@ const Kvittering: React.FC = () => {
       {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}
 
       <RegistrerBarnIFolkeregister barna={barnSomSkalHaBarnepass} />
-      <EttersendDokumentasjon
-        dokumentasjonsbehov={søknad.dokumentasjonsbehov}
-        stønadstype={Stønadstype.barnetilsyn}
-      />
     </Side>
   ) : (
     <Feilside />
