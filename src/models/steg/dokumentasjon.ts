@@ -38,6 +38,7 @@ export enum AktivitetDokumentasjon {
   UTDANNING = 'UTDANNING',
   LÆRLING = 'LÆRLING',
   FOR_SYK_TIL_Å_JOBBE = 'FOR_SYK_TIL_Å_JOBBE',
+  ETABLERER_VIRKSOMHET = 'ETABLERER_VIRKSOMHET',
 }
 
 export enum SituasjonDokumentasjon {
