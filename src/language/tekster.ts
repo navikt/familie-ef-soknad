@@ -895,6 +895,11 @@ export default {
     'dokumentasjon.syk.beskrivelse':
       'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
 
+    'dokumentasjon.etablererEgenVirksomhet.tittel':
+      'Næringsfaglig vurdering av virksomheten du etablerer',
+    'dokumentasjon.etablererEgenVirksomhet.beskrivelse':
+      'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse. ',
+
     'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
     'dokumentasjon.tidligereFakturaer.beskrivelse':
       'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',

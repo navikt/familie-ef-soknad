@@ -54,6 +54,16 @@ export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
   harSendtInn: false,
 };
 
+export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon = {
+  id: AktivitetDokumentasjon.OM_VIRKSOMHETEN_DU_ETABLERER,
+  spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+  svarid: EAktivitet.etablererEgenVirksomhet,
+  label: '',
+  tittel: 'dokumentasjon.etablererEgenVirksomhet.tittel',
+  beskrivelse: 'dokumentasjon.etablererEgenVirksomhet.beskrivelse',
+  harSendtInn: false,
+};
+
 // --- SPØRSMÅL
 
 export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
@@ -86,6 +96,7 @@ export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
     {
       id: EAktivitet.etablererEgenVirksomhet,
       svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
+      dokumentasjonsbehov: DokumentasjonOmVirksomhetenDuEtablerer,
     },
     {
       id: EAktivitet.erArbeidssøker,
