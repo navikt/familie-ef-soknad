@@ -114,7 +114,7 @@ export const harAnnenForelderSamværMedBarn: ISpørsmål = {
   tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'barnasbosted.hjelpetekst.samvær.apne',
+    åpneTekstid: '',
     lukkeTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.samvær.innhold',
   },
