@@ -49,6 +49,17 @@ export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
   }
 };
 
+export const måBeskriveSamværet = (
+  samværsavtale: string | undefined,
+  samværMedBarn: string | undefined
+) => {
+  return (
+    samværMedBarn === EHarSamværMedBarn.jaMerEnnVanlig &&
+    (samværsavtale === EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter ||
+      samværsavtale === EHarSkriftligSamværsavtale.nei)
+  );
+};
+
 export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
   if (forelder.harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei)
     return true;
