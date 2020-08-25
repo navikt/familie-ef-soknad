@@ -20,9 +20,9 @@ import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
 import {
   harForelderSamværMedBarn,
-  harSkriftligSamværsavtale,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
   harSkriftligAvtaleOmDeltBosted,
+  måBeskriveSamværet,
 } from '../../../../helpers/steg/forelder';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -117,8 +117,9 @@ const BostedOgSamvær: React.FC<Props> = ({
             barn={barn}
           />
         )}
-      {harSkriftligSamværsavtale(
-        forelder.harDereSkriftligSamværsavtale?.svarid
+      {måBeskriveSamværet(
+        forelder.harDereSkriftligSamværsavtale?.svarid,
+        forelder.harAnnenForelderSamværMedBarn?.svarid
       ) && (
         <HvordanPraktiseresSamværet
           forelder={forelder}

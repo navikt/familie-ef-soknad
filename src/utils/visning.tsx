@@ -13,6 +13,7 @@ import {
 } from '../models/søknad/søknadsfelter';
 import LabelVerdiGruppe from '../components/gruppe/LabelVerdiGruppe';
 import { LocationStateSøknad } from '../models/søknad/søknad';
+import { harValgtSvar } from './spørsmålogsvar';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -78,7 +79,6 @@ export const verdiTilTekstsvar = (
       return <Normaltekst>{neiTekst}</Normaltekst>;
     }
   } else if (verdi instanceof Date) {
-    console.log('Bør ikke komme hit');
     return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
   } else {
     return null;
@@ -126,12 +126,14 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       navn && spørsmål.label
         ? hentBeskjedMedNavn(navn, spørsmål.label)
         : spørsmål.label;
-
     return (
-      <div className="spørsmål-og-svar" key={index}>
-        <Element>{label}</Element>
-        {verdiTilTekstsvar(spørsmål.verdi, intl)}
-      </div>
+      harValgtSvar(spørsmål.verdi) &&
+      label && (
+        <div className="spørsmål-og-svar" key={index}>
+          <Element>{label}</Element>
+          {verdiTilTekstsvar(spørsmål.verdi, intl)}
+        </div>
+      )
     );
   });
 };

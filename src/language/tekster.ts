@@ -2,8 +2,7 @@
 export default {
   nb: {
     'skolepenger.sidetittel': 'Søknad om skolepenger',
-    'skolepenger.overskrift':
-      'Søknad om stønad til skolepenger for enslig mor eller far i arbeid',
+    'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
 
     'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
     'barnetilsyn.hjelpetekst-åpne.hvilke':
@@ -368,9 +367,9 @@ export default {
     'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
     'barnasbosted.hjelpetekst.samvær.apne': 'Dette er vanlig samværsrett',
     'barnasbosted.hjelpetekst.samvær.innhold':
-      'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.<br/>' +
-      '\n' +
-      '<br/> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.',
+      'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
+      '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
+      '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
 
     'barnasbosted.spm.ja': 'Ja',
     'barnasbosted.spm.nei': 'Nei',
@@ -894,6 +893,11 @@ export default {
     'dokumentasjon.syk.tittel': 'Dokumentasjon på at du er syk',
     'dokumentasjon.syk.beskrivelse':
       'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+
+    'dokumentasjon.etablererEgenVirksomhet.tittel':
+      'Næringsfaglig vurdering av virksomheten du etablerer',
+    'dokumentasjon.etablererEgenVirksomhet.beskrivelse':
+      'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse. ',
 
     'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
     'dokumentasjon.tidligereFakturaer.beskrivelse':

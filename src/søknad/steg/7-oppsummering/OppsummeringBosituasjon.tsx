@@ -3,7 +3,7 @@ import EkspanderbarOppsummering from '../../../components/stegKomponenter/Ekspan
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Element } from 'nav-frontend-typografi';
+import { Ingress } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { Undertittel } from 'nav-frontend-typografi';
@@ -31,13 +31,13 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
       <EkspanderbarOppsummering>
         {VisLabelOgSvar(bosituasjon)}
         {samboerDetaljer && (
-          <div className="seksjon-samboer">
-            <Element>
+          <div className="spørsmål-og-svar">
+            <Ingress>
               {hentTekst(
                 'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
                 intl
               )}
-            </Element>
+            </Ingress>
           </div>
         )}
         {samboerDetaljer}
