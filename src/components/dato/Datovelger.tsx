@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { addDays, addYears, subDays, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import ReactDatePicker, {
+  registerLocale,
+  setDefaultLocale,
+} from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
@@ -38,6 +41,7 @@ const Datovelger: React.FC<Props> = ({
   disabled,
   fetSkrift,
 }) => {
+  const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
 
   const settLocaleForDatePicker = () => {
@@ -48,6 +52,9 @@ const Datovelger: React.FC<Props> = ({
       : registerLocale('en-US', en);
   };
 
+  function handleFocus() {
+    inputRef?.current?.setOpen(true);
+  }
   useEffect(() => {
     setDefaultLocale('nb');
     // eslint-disable-next-line
@@ -61,9 +68,9 @@ const Datovelger: React.FC<Props> = ({
         <Normaltekst>
           <LocaleTekst tekst={tekstid} />
         </Normaltekst>
-        <label
+        <div
           className={'datovelger__wrapper'}
-          onClick={(e) => e.preventDefault()}
+          // onClick={(e) => e.preventDefault()}
         >
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
@@ -78,6 +85,7 @@ const Datovelger: React.FC<Props> = ({
                 maxDate={addDays(new Date(), 0)}
                 minDate={subYears(new Date(), 200)}
                 showMonthYearPicker={showMonthYearPicker === true}
+                ref={inputRef}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
@@ -91,6 +99,7 @@ const Datovelger: React.FC<Props> = ({
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
                 showMonthYearPicker={showMonthYearPicker === true}
+                ref={inputRef}
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
@@ -104,13 +113,14 @@ const Datovelger: React.FC<Props> = ({
                 maxDate={addYears(new Date(), 100)}
                 minDate={subYears(new Date(), 200)}
                 showMonthYearPicker={showMonthYearPicker === true}
+                ref={inputRef}
               />
             ) : null}
           </div>
-          <div className={'ikon__wrapper'}>
+          <label className={'ikon__wrapper'} onClick={handleFocus}>
             <KalenderIkonSVG />
-          </div>
-        </label>
+          </label>
+        </div>
       </FeltGruppe>
     </div>
   );
