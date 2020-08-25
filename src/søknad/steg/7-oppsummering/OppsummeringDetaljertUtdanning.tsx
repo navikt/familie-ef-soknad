@@ -44,7 +44,7 @@ const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
       tittel={<Undertittel>{tittel}</Undertittel>}
     >
       <EkspanderbarOppsummering>
-        <KomponentGruppe className={'listeelement'}>
+        <KomponentGruppe>
           <Ingress>{hentTekst('utdanning.tittel', intl)}</Ingress>
           {underUtdanning}
           <TidligereUtdanningOppsummering>

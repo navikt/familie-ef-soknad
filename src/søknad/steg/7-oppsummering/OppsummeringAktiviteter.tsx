@@ -24,7 +24,7 @@ interface Props {
 }
 
 const TidligereUtdanningOppsummering = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 3rem;
 `;
 
 const OppsummeringAktiviteter: React.FC<Props> = ({
@@ -92,14 +92,14 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
         )}
 
         {aktivitet.arbeidssøker && (
-          <KomponentGruppe className={'listeelement'}>
+          <KomponentGruppe>
             <Ingress>{hentTekst('arbeidssøker.tittel', intl)}</Ingress>
             {VisLabelOgSvar(aktivitet.arbeidssøker)}
           </KomponentGruppe>
         )}
 
         {aktivitet.underUtdanning && (
-          <KomponentGruppe className={'listeelement'}>
+          <KomponentGruppe>
             <Ingress>{hentTekst('utdanning.tittel', intl)}</Ingress>
             {VisLabelOgSvar(aktivitet.underUtdanning)}
             {aktivitet.underUtdanning?.tidligereUtdanning && (

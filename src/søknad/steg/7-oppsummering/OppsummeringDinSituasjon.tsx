@@ -7,6 +7,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -26,7 +27,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
       tittel={<Undertittel>Mer om din situasjon</Undertittel>}
     >
       <EkspanderbarOppsummering>
-        {VisLabelOgSvar(merOmDinSituasjon)}
+        <KomponentGruppe>{VisLabelOgSvar(merOmDinSituasjon)}</KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>
             history.push({

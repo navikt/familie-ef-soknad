@@ -10,6 +10,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -29,18 +30,18 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
       <EkspanderbarOppsummering>
-        {VisLabelOgSvar(bosituasjon)}
+        <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (
-          <div className="spørsmål-og-svar">
+          <KomponentGruppe>
             <Ingress>
               {hentTekst(
                 'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
                 intl
               )}
             </Ingress>
-          </div>
+            {samboerDetaljer}
+          </KomponentGruppe>
         )}
-        {samboerDetaljer}
         <LenkeMedIkon
           onClick={() =>
             history.push({

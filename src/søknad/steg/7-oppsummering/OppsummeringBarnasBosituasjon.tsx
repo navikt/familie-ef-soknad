@@ -1,16 +1,28 @@
 import React, { FC } from 'react';
-import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
-import { useHistory } from 'react-router-dom';
-import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
+import { IBarn } from '../../../models/steg/barn';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
+import { VisLabelOgSvar } from '../../../utils/visning';
 import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import BarneHeader from '../../../components/BarneHeader';
+import styled from 'styled-components';
+
+const StyledOppsummering = styled.section`
+  &:first-child {
+    margin-top: 3rem;
+  }
+  padding-bottom: 60px;
+
+  .typo-element {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+`;
 
 interface Props {
   barn: IBarn[];
@@ -23,7 +35,6 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   const history = useHistory();
   const intl = useIntl();
   const barna = barn;
-  const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
   const felterAlleForeldrene = barna
     .filter((barn) => barn.forelder)
@@ -41,11 +52,10 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
-        <div className="oppsummering-barn" key={index}>
-          <Element>{hentBarnetsNavnEllerBeskrivelse(barn, intl)}</Element>
+        <StyledOppsummering>
+          <BarneHeader barn={barn} />
           {forelderFelter}
-          {index < antallForeldre - 1 && <hr />}
-        </div>
+        </StyledOppsummering>
       );
     });
 

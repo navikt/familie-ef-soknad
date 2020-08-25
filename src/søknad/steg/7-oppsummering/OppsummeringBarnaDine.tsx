@@ -12,12 +12,14 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import BarneHeader from '../../../components/BarneHeader';
 import styled from 'styled-components';
 import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 const StyledOppsummering = styled.section`
   margin-top: 3rem;
 
   .typo-element {
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -64,7 +66,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Barna dine</Undertittel>}>
       <EkspanderbarOppsummering>
-        {oppsummeringBarnaDine}
+        <KomponentGruppe>{oppsummeringBarnaDine}</KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>
             history.push({

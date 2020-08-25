@@ -2,14 +2,22 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 
 const StyledEkspanderbarOppsummering = styled.div`
-  .listeelement {
-    .spørsmål-og-svar:first-of-type {
+  .typo-ingress {
+    padding-bottom: 1rem;
+  }
+  .spørsmål-og-svar {
+    margin-top: 2rem;
+    .typo-normal {
       margin-top: 1rem;
     }
-    hr {
-      margin-top: 2rem;
-      margin-bottom: 2rem;
-    }
+  }
+  hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   }
 
   .disclaimer {
@@ -25,17 +33,6 @@ const StyledEkspanderbarOppsummering = styled.div`
   .seksjon {
     margin-top: 1rem;
     margin-bottom: 1rem;
-  }
-
-  .oppsummering-barn {
-    hr {
-      margin-top: 2rem;
-    }
-
-    .typo-element {
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-    }
   }
 
   .oppsummering-bosituasjon {
