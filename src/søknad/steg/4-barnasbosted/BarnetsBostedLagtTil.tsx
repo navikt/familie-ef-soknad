@@ -8,6 +8,7 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
+import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
@@ -148,19 +149,6 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </Normaltekst>
           </div>
         ) : null}
-        {forelder.beskrivSamværUtenBarn && (
-          <div className="spørsmål-og-svar">
-            <Element>
-              {hentBeskjedMedNavn(
-                barnetsNavn,
-                intl.formatMessage({
-                  id: 'barnasbosted.spm.beskrivSamværUtenBarn',
-                })
-              )}
-            </Element>
-            <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
-          </div>
-        )}
         {forelder.borAnnenForelderISammeHus ? (
           <div className="spørsmål-og-svar">
             <Element>
@@ -176,6 +164,64 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </Normaltekst>
           </div>
         ) : null}
+        {forelder?.boddSammenFør?.svarid ? (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.boddsammenfør',
+                })
+              )}
+            </Element>
+            <Normaltekst>
+              {forelder.boddSammenFør.svarid === ESvar.JA
+                ? hentTekst(ESvarTekstid.JA, intl)
+                : hentTekst(ESvarTekstid.NEI, intl)}
+            </Normaltekst>
+          </div>
+        ) : null}
+        {forelder?.flyttetFra?.verdi ? (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.normaltekst.nårflyttetfra',
+                })
+              )}
+            </Element>
+            <Normaltekst>
+              {formatDate(strengTilDato(forelder.flyttetFra.verdi))}
+            </Normaltekst>
+          </div>
+        ) : null}
+        {forelder?.hvorMyeSammen?.verdi ? (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.hvorMyeSammen',
+                })
+              )}
+            </Element>
+            <Normaltekst>{forelder.hvorMyeSammen.verdi}</Normaltekst>
+          </div>
+        ) : null}
+        {forelder.beskrivSamværUtenBarn && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {hentBeskjedMedNavn(
+                barnetsNavn,
+                intl.formatMessage({
+                  id: 'barnasbosted.spm.beskrivSamværUtenBarn',
+                })
+              )}
+            </Element>
+            <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
+          </div>
+        )}
         <LenkeMedIkon
           onClick={endreInformasjon}
           tekst_id="barnasbosted.knapp.endre"
