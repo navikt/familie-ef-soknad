@@ -62,6 +62,8 @@ const Datovelger: React.FC<Props> = ({
 
   settLocaleForDatePicker();
 
+  const datoFormat = showMonthYearPicker === true ? 'MMM yyyy' : 'dd.MM.yyyy';
+  const placeholderTekst = showMonthYearPicker === true ? '' : 'DD.MM.ÅÅÅÅ';
   return (
     <div className={fetSkrift ? 'datovelger-fetskrift' : 'datovelger'}>
       <FeltGruppe>
@@ -78,9 +80,9 @@ const Datovelger: React.FC<Props> = ({
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                placeholderText={'DD.MM.YYYY'}
+                placeholderText={placeholderTekst}
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={'dd.MM.yyyy'}
+                dateFormat={datoFormat}
                 locale={locale}
                 maxDate={addDays(new Date(), 0)}
                 minDate={subYears(new Date(), 200)}
@@ -92,9 +94,9 @@ const Datovelger: React.FC<Props> = ({
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                placeholderText={'DD.MM.YYYY'}
+                placeholderText={placeholderTekst}
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={'dd.MM.yyyy'}
+                dateFormat={datoFormat}
                 maxDate={addYears(new Date(), 100)}
                 minDate={subDays(new Date(), 0)}
                 locale={locale}
@@ -106,9 +108,9 @@ const Datovelger: React.FC<Props> = ({
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
-                placeholderText={'DD.MM.YYYY'}
+                placeholderText={placeholderTekst}
                 selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={'dd.MM.yyyy'}
+                dateFormat={datoFormat}
                 locale={locale}
                 maxDate={addYears(new Date(), 100)}
                 minDate={subYears(new Date(), 200)}
