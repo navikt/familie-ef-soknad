@@ -15,6 +15,7 @@ import { useIntl } from 'react-intl';
 import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
 import { ISøker } from '../../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
+import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 
 interface Props {
   søker: ISøker;
@@ -23,12 +24,14 @@ interface Props {
   settSøkerBorPåRegistrertAdresse: (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
   ) => void;
+  stønadstype: Stønadstype;
 }
 const Personopplysninger: React.FC<Props> = ({
   søker,
   settSøker,
   søkerBorPåRegistrertAdresse,
   settSøkerBorPåRegistrertAdresse,
+  stønadstype,
 }) => {
   const intl = useIntl();
 
@@ -125,7 +128,7 @@ const Personopplysninger: React.FC<Props> = ({
         />
 
         {søkerBorPåRegistrertAdresse?.verdi === false && (
-          <SøkerBorIkkePåAdresse />
+          <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
         )}
       </KomponentGruppe>
 

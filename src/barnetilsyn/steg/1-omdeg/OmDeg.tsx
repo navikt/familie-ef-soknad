@@ -100,6 +100,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
         settSøker={settSøker}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
+        stønadstype={Stønadstype.barnetilsyn}
       />
 
       {søknad.søkerBorPåRegistrertAdresse &&
