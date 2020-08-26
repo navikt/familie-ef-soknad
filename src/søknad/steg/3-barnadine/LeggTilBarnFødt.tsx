@@ -80,7 +80,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
 
       <KomponentGruppe>
         <IdentEllerFødselsdatoGruppe
-          identLabel={hentTekst('barn.ident', intl)}
+          identLabel={hentTekst('person.ident.visning', intl)}
           datoLabel={hentTekst('datovelger.fødselsdato', intl)}
           checkboxLabel={hentTekst('barn.checkbox.ident', intl)}
           ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}

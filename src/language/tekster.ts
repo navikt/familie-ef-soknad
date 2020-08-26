@@ -104,6 +104,7 @@ export default {
     'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
     'person.fnr': 'Fødselsnummer',
     'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
+    'person.ident.visning': 'Fødselsnummer eller d-nummer',
     'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer du kan kontaktes på',
