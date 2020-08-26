@@ -64,16 +64,16 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
   if (forelder.harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei)
     return true;
   else if (
-    forelder.harDereSkriftligSamværsavtale?.svarid ===
-    EHarSkriftligSamværsavtale.jaKonkreteTidspunkter
-  )
-    return true;
-  else if (
     forelder.hvordanPraktiseresSamværet &&
     forelder.hvordanPraktiseresSamværet?.verdi !== ''
   )
     return true;
   else if (forelder.avtaleOmDeltBosted?.svarid === ESvar.JA) return true;
+  else if (forelder.harDereSkriftligSamværsavtale?.svarid)
+    return !måBeskriveSamværet(
+      forelder.harDereSkriftligSamværsavtale.svarid,
+      forelder.harAnnenForelderSamværMedBarn?.svarid
+    );
 
   return false;
 };
