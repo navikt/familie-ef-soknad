@@ -13,6 +13,7 @@ import { ScrollToTop } from './utils/visning';
 import * as Sentry from '@sentry/browser';
 import Environment from './Environment';
 import SkolepengerApp from './skolepenger/SkolepengerApp';
+import MeldingMottattApp from './meldingmottatt/MeldingMottattApp';
 
 if (Environment().sentryUrl) {
   Sentry.init({
@@ -30,6 +31,10 @@ ReactDOM.render(
           <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
           <Route path={'/barnetilsyn'} component={BarnetilsynApp} />
           <Route path={'/skolepenger'} component={SkolepengerApp} />
+          <Route
+            path={'/meldingmottat/:soknadId'}
+            component={MeldingMottattApp}
+          />
           <Route path={'/'} component={App} />
         </Switch>
       </Router>

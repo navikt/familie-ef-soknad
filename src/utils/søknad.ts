@@ -21,6 +21,19 @@ export const hentPersonData = () => {
     });
 };
 
+export const hentMeldingMottatt = (id: string) => {
+  return axios
+    .get(`${Environment().apiUrl}/api/soknad/meldingmottatt/${id}`, {
+      headers: {
+        'content-type': 'application/json;charset=utf-8',
+      },
+      withCredentials: true,
+    })
+    .then((response: { data: any }) => {
+      return response && response.data;
+    });
+};
+
 export const hentMellomlagretSøknadFraDokument = <T>(
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T | undefined> => {

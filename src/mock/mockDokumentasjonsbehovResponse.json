@@ -1,0 +1,31 @@
+{
+  "dokumentasjonsbehov": [
+    {
+      "id": "INNGÅTT_EKTESKAP",
+      "label": "Ingått ektenskap",
+      "harSendtInn": false,
+      "opplastedeVedlegg": []
+    },
+    {
+      "id": "SAMLIVSBRUDD",
+      "label": "Samlivsbrudd",
+      "harSendtInn": false,
+      "opplastedeVedlegg": ["a.pdf", "b.pdf"]
+    },
+    {
+      "id": "BOR_PÅ_ULIKE_ADRESSER",
+      "label": "Bor på ulike adresser",
+      "harSendtInn": false,
+      "opplastedeVedlegg": ["c.pdf", "d.pdf"]
+    },
+    {
+      "id": "SEPARASJON_ELLER_SKILSMISSE",
+      "label": "Separasjon eller skilsmisse",
+      "harSendtInn": true,
+      "opplastedeVedlegg": []
+    }
+  ],
+  "innsendingstidspunkt": "2020-01-01",
+  "søknadType": "OVERGANGSSTØNAD",
+  "personIdent": "01018212345"
+}
