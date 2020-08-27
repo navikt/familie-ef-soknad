@@ -31,11 +31,12 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
         ...utdanning,
         periode: {
           ...utdanning.periode,
+          label: hentTekst(
+            'utdanning.datovelger.studieperiode.fremtidig',
+            intl
+          ),
           [nøkkel]: {
-            label: hentTekst(
-              'utdanning.datovelger.studieperiode.fremtidig',
-              intl
-            ),
+            label: hentTekst('periode.' + nøkkel, intl),
             verdi: dato !== null ? datoTilStreng(dato) : undefined,
           },
         },
