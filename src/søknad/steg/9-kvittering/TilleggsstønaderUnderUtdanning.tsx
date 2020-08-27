@@ -76,7 +76,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
       <KomponentGruppe>
         <Lenke
           href={
-            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-og-stonad-til-skolepenger'
+            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-for-enslig-mor-eller-far-som-tar-utdanning-eller-er-arbeidssoker'
           }
         >
           <Normaltekst>
