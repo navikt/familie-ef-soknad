@@ -21,7 +21,7 @@ export const hentNyttBarn = (
     barnDato = navfaker.personIdentifikator.getFødselsdato(ident);
   }
   return {
-    ident: hentFeltObjekt('person.ident', ident, intl),
+    ident: hentFeltObjekt('person.ident.visning', ident, intl),
     alder: hentFeltObjekt(
       'person.alder',
       differenceInYears(dagensDato, barnDato ? barnDato : dagensDato),
