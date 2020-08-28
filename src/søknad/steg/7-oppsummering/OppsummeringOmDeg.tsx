@@ -15,7 +15,11 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
+import {
+  SeksjonSpacingTop,
+  StyledOppsummering,
+  StyledOppsummeringMedUndertitler,
+} from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   søker: ISøker;
@@ -46,8 +50,8 @@ const OppsummeringOmDeg: FC<Props> = ({
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Om deg</Undertittel>}>
-      <StyledOppsummering>
-        <KomponentGruppe>
+      <KomponentGruppe>
+        <StyledOppsummering>
           <div className="spørsmål-og-svar">
             <Element>Fødselsnummer eller d-nummer</Element>
             <Normaltekst>{omDeg.fnr}</Normaltekst>
@@ -66,19 +70,22 @@ const OppsummeringOmDeg: FC<Props> = ({
           </div>
           {sivilstatusSpørsmål}
           {medlemskapSpørsmål}
-          {perioderUtland}
-        </KomponentGruppe>
-        <LenkeMedIkon
-          onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
-          }
-          tekst_id="barnasbosted.knapp.endre"
-          ikon={endre}
-        />
-      </StyledOppsummering>
+        </StyledOppsummering>
+
+        <StyledOppsummeringMedUndertitler>
+          <SeksjonSpacingTop>{perioderUtland}</SeksjonSpacingTop>
+        </StyledOppsummeringMedUndertitler>
+      </KomponentGruppe>
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: endreInformasjonPath,
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };
