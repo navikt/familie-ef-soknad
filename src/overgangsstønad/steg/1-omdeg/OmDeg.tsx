@@ -99,6 +99,7 @@ const OmDeg: FC = () => {
         settSøker={settSøker}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
+        stønadstype={Stønadstype.overgangsstønad}
       />
 
       {søknad.søkerBorPåRegistrertAdresse &&

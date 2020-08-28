@@ -4,7 +4,10 @@ import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Ingress } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import {
+  ESøkerDelerBolig,
+  IBosituasjon,
+} from '../../../models/steg/bosituasjon';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -27,18 +30,31 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
     ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
     : null;
 
+  const lagSamboerOverskrift = () => {
+    if (bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
+      return hentTekst(
+        'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
+        intl
+      );
+    } else if (
+      bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
+    ) {
+      return hentTekst('bosituasjon.tittel.omTidligereSamboer', intl);
+    } else if (
+      bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.harEkteskapsliknendeForhold
+    ) {
+      return hentTekst('bosituasjon.tittel.omSamboer', intl);
+    }
+  };
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
       <StyledOppsummering>
         <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (
           <KomponentGruppe>
-            <Ingress>
-              {hentTekst(
-                'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
-                intl
-              )}
-            </Ingress>
+            <Ingress>{lagSamboerOverskrift()}</Ingress>
             {samboerDetaljer}
           </KomponentGruppe>
         )}

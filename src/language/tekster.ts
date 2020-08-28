@@ -104,6 +104,7 @@ export default {
     'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
     'person.fnr': 'Fødselsnummer',
     'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
+    'person.ident.visning': 'Fødselsnummer eller d-nummer',
     'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer du kan kontaktes på',
@@ -744,7 +745,8 @@ export default {
     'barnepass.hjelpetekst-innhold.beløp':
       ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
     'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
-      'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
+      '<strong>Du må legge ved faktura fra barnepassordningen.</strong> <br />' +
+      'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år. Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.',
     'barnepass.alert-dokumentasjon.beløp.privat':
       '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
       '<li>ditt navn, fødseslnummer og adresse</li>' +
@@ -904,11 +906,13 @@ export default {
       'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
 
     'dokumentasjon.barnehageOgLiknende.tittel':
-      'Faktura fra barnepassordningen',
+      'Faktura fra barnepassordningen for perioden du søker om nå',
     'dokumentasjon.barnehageOgLiknende.beskrivelse':
-      'Den må stå i ditt navn, og utgifter til opphold må være spesifisert. \n' +
-      '\n' +
-      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+      'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år.' +
+      '<br />' +
+      'Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.' +
+      '<br />' +
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid.',
     'dokumentasjon.privatBarnepass.tittel': 'Avtalen du har med barnepasseren',
     'dokumentasjon.privatBarnepass.beskrivelse':
       'Avtalen må inneholde:\n<ul>' +
@@ -943,6 +947,8 @@ export default {
     'kvittering.tekst.arbeidssøker':
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'kvittering.tekst.altViTrenger':
+      'Spørsmålene i søknaden, sammen med eventuell dokumentasjon, gir oss svar på det vi trenger for å behandle søknaden din. Hvis vi trenger mer informasjon vil vi ta kontakt med deg.',
     'kvittering.tekst.dineSaker':
       'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
     'kvittering.knapp.dineSaker': 'Skriv ut kvittering',

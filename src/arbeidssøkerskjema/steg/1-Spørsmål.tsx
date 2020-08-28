@@ -82,7 +82,7 @@ const Spørsmål: FC = () => {
       <SeksjonGruppe>
         <FeltGruppe>
           <Element>
-            <LocaleTekst tekst={'person.ident'} />
+            <LocaleTekst tekst={'person.ident.visning'} />
           </Element>
           <Normaltekst>{person.søker.fnr}</Normaltekst>
         </FeltGruppe>

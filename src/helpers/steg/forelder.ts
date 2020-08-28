@@ -64,16 +64,16 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
   if (forelder.harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei)
     return true;
   else if (
-    forelder.harDereSkriftligSamværsavtale?.svarid ===
-    EHarSkriftligSamværsavtale.jaKonkreteTidspunkter
-  )
-    return true;
-  else if (
     forelder.hvordanPraktiseresSamværet &&
     forelder.hvordanPraktiseresSamværet?.verdi !== ''
   )
     return true;
   else if (forelder.avtaleOmDeltBosted?.svarid === ESvar.JA) return true;
+  else if (forelder.harDereSkriftligSamværsavtale?.svarid)
+    return !måBeskriveSamværet(
+      forelder.harDereSkriftligSamværsavtale.svarid,
+      forelder.harAnnenForelderSamværMedBarn?.svarid
+    );
 
   return false;
 };
@@ -119,12 +119,20 @@ export const erAlleFelterOgSpørsmålBesvart = (
     harValgtSvar(ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
 
+  const harIkkeBeskrivendeNokSamværsavtale =
+    harDereSkriftligSamværsavtale?.svarid ===
+      EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter ||
+    harDereSkriftligSamværsavtale?.svarid === EHarSkriftligSamværsavtale.nei;
+
   if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
     return (
       avtaleOmDeltBosted?.svarid === ESvar.JA ||
       harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
       harDereSkriftligSamværsavtale?.svarid ===
         EHarSkriftligSamværsavtale.jaKonkreteTidspunkter ||
+      (harAnnenForelderSamværMedBarn?.svarid ===
+        EHarSamværMedBarn.jaIkkeMerEnnVanlig &&
+        harIkkeBeskrivendeNokSamværsavtale) ||
       harValgtSvar(hvordanPraktiseresSamværet?.verdi)
     );
   } else {
