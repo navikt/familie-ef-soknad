@@ -144,11 +144,11 @@ export const visLabelOgVerdiForSpørsmålFelt = (
 ) => {
   return (
     <>
-      <Ingress>{overskrift}</Ingress>
+      {overskrift && <Ingress>{overskrift}</Ingress>}
       <div className="spørsmål-og-svar">
         <Element>{feltObjekt.label}</Element>
         {verdiTilTekstsvar(feltObjekt.verdi, intl)}
-      </div>{' '}
+      </div>
     </>
   );
 };
@@ -159,7 +159,7 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
   return (
     <div className="spørsmål-og-svar">
       <Element>{feltListeObjekt.label}</Element>
-      <ul className={'verdi'}>
+      <ul>
         {feltListeObjekt.verdi.map((svar) => (
           <li>
             <Normaltekst>{svar}</Normaltekst>

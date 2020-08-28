@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -26,7 +26,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
     <Ekspanderbartpanel
       tittel={<Undertittel>Mer om din situasjon</Undertittel>}
     >
-      <EkspanderbarOppsummering>
+      <StyledOppsummering>
         <KomponentGruppe>{VisLabelOgSvar(merOmDinSituasjon)}</KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>
@@ -38,7 +38,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </EkspanderbarOppsummering>
+      </StyledOppsummering>
     </Ekspanderbartpanel>
   );
 };

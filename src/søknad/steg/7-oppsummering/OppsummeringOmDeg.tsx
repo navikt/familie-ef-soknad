@@ -14,8 +14,8 @@ import { ISøker } from '../../../models/søknad/person';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   søker: ISøker;
@@ -46,7 +46,7 @@ const OppsummeringOmDeg: FC<Props> = ({
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Om deg</Undertittel>}>
-      <EkspanderbarOppsummering>
+      <StyledOppsummering>
         <KomponentGruppe>
           <div className="spørsmål-og-svar">
             <Element>Fødselsnummer eller d-nummer</Element>
@@ -64,8 +64,6 @@ const OppsummeringOmDeg: FC<Props> = ({
             <Element>Telefonnummer</Element>
             <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
           </div>
-        </KomponentGruppe>
-        <KomponentGruppe>
           {sivilstatusSpørsmål}
           {medlemskapSpørsmål}
           {perioderUtland}
@@ -80,7 +78,7 @@ const OppsummeringOmDeg: FC<Props> = ({
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </EkspanderbarOppsummering>
+      </StyledOppsummering>
     </Ekspanderbartpanel>
   );
 };

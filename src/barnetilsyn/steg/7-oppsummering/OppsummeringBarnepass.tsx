@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -23,7 +22,7 @@ import {
 } from '../../../utils/visning';
 import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
@@ -49,62 +48,61 @@ const OppsummeringBarnepass: FC<Props> = ({
         </Undertittel>
       }
     >
-      <EkspanderbarOppsummering>
-        {barnSomSkalHaBarnepass.map((barn: IBarn) => {
-          const { barnepass } = barn;
+      {barnSomSkalHaBarnepass.map((barn: IBarn) => {
+        const { barnepass } = barn;
 
-          return (
-            <SeksjonGruppe>
-              <BarneHeader barn={barn} />
+        return (
+          <KomponentGruppe>
+            <StyledOppsummeringForBarn>
+              <FeltGruppe>
+                <BarneHeader barn={barn} />
+              </FeltGruppe>
               {barnepass?.årsakBarnepass &&
                 visLabelOgVerdiForSpørsmålFelt(barnepass.årsakBarnepass, intl)}
               {barnepass?.barnepassordninger.map((barnepassordning) =>
                 VisLabelOgSvar(barnepassordning)
               )}
-            </SeksjonGruppe>
-          );
-        })}
+            </StyledOppsummeringForBarn>
+          </KomponentGruppe>
+        );
+      })}
 
-        {søkerFraBestemtDato && (
-          <SeksjonGruppe>
-            <hr />
-            <br />
-            <FeltGruppe>
-              <Element>{søkerFraBestemtDato.label}</Element>
-              <Normaltekst>
-                {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja
-                  ? hentTekst('svar.ja', intl)
-                  : hentTekst(
-                      'søkerFraBestemtMåned.svar.neiNavKanVurdere',
-                      intl
-                    )}
-              </Normaltekst>
-            </FeltGruppe>
-
-            {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja &&
-              søknadsdato?.verdi && (
-                <FeltGruppe>
-                  <Element>{søknadsdato.label}</Element>
-                  <Normaltekst>
-                    {formatDate(strengTilDato(søknadsdato?.verdi))}
-                  </Normaltekst>
-                </FeltGruppe>
-              )}
-          </SeksjonGruppe>
-        )}
+      {søkerFraBestemtDato && (
         <KomponentGruppe>
-          <LenkeMedIkon
-            onClick={() =>
-              history.push({
-                pathname: endreInformasjonPath,
-                state: { kommerFraOppsummering: true },
-              })
-            }
-            tekst_id="barnasbosted.knapp.endre"
-            ikon={endre}
-          />
+          <hr />
+          <br />
+          <div className={'spørsmål-og-svar'}>
+            <Element>{søkerFraBestemtDato.label}</Element>
+            <Normaltekst>
+              {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja
+                ? hentTekst('svar.ja', intl)
+                : hentTekst('søkerFraBestemtMåned.svar.neiNavKanVurdere', intl)}
+            </Normaltekst>
+          </div>
+
+          {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja &&
+            søknadsdato?.verdi && (
+              <div className={'spørsmål-og-svar'}>
+                <Element>{søknadsdato.label}</Element>
+                <Normaltekst>
+                  {formatDate(strengTilDato(søknadsdato?.verdi))}
+                </Normaltekst>
+              </div>
+            )}
         </KomponentGruppe>
-      </EkspanderbarOppsummering>
+      )}
+      <KomponentGruppe>
+        <LenkeMedIkon
+          onClick={() =>
+            history.push({
+              pathname: endreInformasjonPath,
+              state: { kommerFraOppsummering: true },
+            })
+          }
+          tekst_id="barnasbosted.knapp.endre"
+          ikon={endre}
+        />
+      </KomponentGruppe>
     </Ekspanderbartpanel>
   );
 };

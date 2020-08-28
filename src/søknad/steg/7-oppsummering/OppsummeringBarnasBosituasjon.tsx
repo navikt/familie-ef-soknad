@@ -8,21 +8,9 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import BarneHeader from '../../../components/BarneHeader';
-import styled from 'styled-components';
-
-const StyledOppsummering = styled.section`
-  &:first-child {
-    margin-top: 3rem;
-  }
-  padding-bottom: 60px;
-
-  .typo-element {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-`;
+import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   barn: IBarn[];
@@ -52,10 +40,10 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
-        <StyledOppsummering>
+        <StyledOppsummeringForBarn>
           <BarneHeader barn={barn} />
           {forelderFelter}
-        </StyledOppsummering>
+        </StyledOppsummeringForBarn>
       );
     });
 
@@ -65,19 +53,17 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
         <Undertittel>{hentTekst('barnasbosted.sidetittel', intl)}</Undertittel>
       }
     >
-      <EkspanderbarOppsummering>
-        {felterAlleForeldrene}
-        <LenkeMedIkon
-          onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
-          }
-          tekst_id="barnasbosted.knapp.endre"
-          ikon={endre}
-        />
-      </EkspanderbarOppsummering>
+      <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: endreInformasjonPath,
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };
