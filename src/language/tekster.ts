@@ -944,6 +944,8 @@ export default {
     'kvittering.tekst.arbeidssøker':
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'kvittering.tekst.altViTrenger':
+      'Spørsmålene i søknaden, sammen med eventuell dokumentasjon, gir oss svar på det vi trenger for å behandle søknaden din. Hvis vi trenger mer informasjon vil vi ta kontakt med deg.',
     'kvittering.tekst.dineSaker':
       'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
     'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
