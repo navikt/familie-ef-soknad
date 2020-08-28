@@ -21,9 +21,9 @@ export const hentPersonData = () => {
     });
 };
 
-export const hentMeldingMottatt = (id: string) => {
+export const hentMeldingMottatt = (søknadId: string) => {
   return axios
-    .get(`${Environment().apiUrl}/api/soknad/meldingmottatt/${id}`, {
+    .get(`${Environment().apiUrl}/api/dokumentasjonsbehov/${søknadId}`, {
       headers: {
         'content-type': 'application/json;charset=utf-8',
       },

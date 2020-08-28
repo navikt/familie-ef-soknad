@@ -72,7 +72,6 @@ const MeldingMottattApp = () => {
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
     // eslint-disable-next-line
-    settFetching(false);
   }, []);
 
   if (!fetching && autentisert) {
