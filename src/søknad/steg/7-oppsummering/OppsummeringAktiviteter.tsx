@@ -13,19 +13,17 @@ import {
   visLabelOgVerdiForSpørsmålListeFelt,
   visListeAvLabelOgSvar,
 } from '../../../utils/visning';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
-import styled from 'styled-components';
+import {
+  SeksjonSpacingBottom,
+  SeksjonSpacingTop,
+  StyledOppsummeringMedUndertitler,
+} from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   aktivitet: IAktivitet;
   endreInformasjonPath?: string;
   tittel: string;
 }
-
-const TidligereUtdanningOppsummering = styled.div`
-  margin-top: 1.5rem;
-`;
 
 const OppsummeringAktiviteter: React.FC<Props> = ({
   aktivitet,
@@ -40,77 +38,75 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
       className="aktiviteter"
       tittel={<Undertittel>{tittel}</Undertittel>}
     >
-      <EkspanderbarOppsummering>
-        {aktivitet.erIArbeid && (
-          <KomponentGruppe>
-            {visLabelOgVerdiForSpørsmålFelt(aktivitet?.erIArbeid, intl)}
-          </KomponentGruppe>
-        )}
+      <StyledOppsummeringMedUndertitler>
+        {aktivitet.erIArbeid &&
+          visLabelOgVerdiForSpørsmålFelt(aktivitet?.erIArbeid, intl)}
+
         {aktivitet.hvaErDinArbeidssituasjon && (
-          <KomponentGruppe>
+          <SeksjonSpacingBottom>
             {visLabelOgVerdiForSpørsmålListeFelt(
               aktivitet.hvaErDinArbeidssituasjon
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.etablererEgenVirksomhet && (
-          <KomponentGruppe>
+          <SeksjonSpacingBottom>
             {visLabelOgVerdiForSpørsmålFelt(
               aktivitet.etablererEgenVirksomhet,
               intl,
               hentTekst('arbeidssituasjon.tittel.etablererEgenVirksomhet', intl)
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.arbeidsforhold && (
-          <KomponentGruppe>
+          <SeksjonSpacingBottom>
             {visListeAvLabelOgSvar(
               aktivitet.arbeidsforhold,
               hentTekst('arbeidsforhold.tittel.arbeidsgiver', intl)
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.firmaer && (
-          <KomponentGruppe>
+          <SeksjonSpacingBottom>
             {visListeAvLabelOgSvar(
               aktivitet.firmaer,
               hentTekst('firmaer.tittel', intl)
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.egetAS && (
-          <KomponentGruppe>
+          <SeksjonSpacingBottom>
             {visListeAvLabelOgSvar(
               aktivitet.egetAS,
               hentTekst('arbeidsforhold.tittel.egetAS', intl)
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.arbeidssøker && (
-          <KomponentGruppe className={'listeelement'}>
+          <SeksjonSpacingBottom>
             <Ingress>{hentTekst('arbeidssøker.tittel', intl)}</Ingress>
             {VisLabelOgSvar(aktivitet.arbeidssøker)}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
 
         {aktivitet.underUtdanning && (
-          <KomponentGruppe className={'listeelement'}>
+          <SeksjonSpacingBottom>
             <Ingress>{hentTekst('utdanning.tittel', intl)}</Ingress>
             {VisLabelOgSvar(aktivitet.underUtdanning)}
             {aktivitet.underUtdanning?.tidligereUtdanning && (
-              <TidligereUtdanningOppsummering>
+              <SeksjonSpacingTop>
                 {visListeAvLabelOgSvar(
                   aktivitet.underUtdanning.tidligereUtdanning,
                   hentTekst('utdanning.tittel.tidligere', intl)
                 )}
-              </TidligereUtdanningOppsummering>
+              </SeksjonSpacingTop>
             )}
-          </KomponentGruppe>
+          </SeksjonSpacingBottom>
         )}
         <LenkeMedIkon
           onClick={() =>
@@ -122,7 +118,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </EkspanderbarOppsummering>
+      </StyledOppsummeringMedUndertitler>
     </Ekspanderbartpanel>
   );
 };

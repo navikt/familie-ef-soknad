@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
-import { Element } from 'nav-frontend-typografi';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import { VisLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
-import { useHistory } from 'react-router-dom';
-import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
+import { IBarn } from '../../../models/steg/barn';
+import { Undertittel } from 'nav-frontend-typografi';
+import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import { VisLabelOgSvar } from '../../../utils/visning';
+import BarneHeader from '../../../components/BarneHeader';
+import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   barn: IBarn[];
@@ -23,7 +23,6 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   const history = useHistory();
   const intl = useIntl();
   const barna = barn;
-  const antallForeldre = barna.filter((barn) => barn.forelder).length;
 
   const felterAlleForeldrene = barna
     .filter((barn) => barn.forelder)
@@ -41,11 +40,10 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
-        <div className="oppsummering-barn" key={index}>
-          <Element>{hentBarnetsNavnEllerBeskrivelse(barn, intl)}</Element>
+        <StyledOppsummeringForBarn>
+          <BarneHeader barn={barn} />
           {forelderFelter}
-          {index < antallForeldre - 1 && <hr />}
-        </div>
+        </StyledOppsummeringForBarn>
       );
     });
 
@@ -55,19 +53,17 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
         <Undertittel>{hentTekst('barnasbosted.sidetittel', intl)}</Undertittel>
       }
     >
-      <EkspanderbarOppsummering>
-        {felterAlleForeldrene}
-        <LenkeMedIkon
-          onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
-          }
-          tekst_id="barnasbosted.knapp.endre"
-          ikon={endre}
-        />
-      </EkspanderbarOppsummering>
+      <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: endreInformasjonPath,
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };

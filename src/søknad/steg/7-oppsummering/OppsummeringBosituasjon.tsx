@@ -1,5 +1,4 @@
 import React from 'react';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -13,6 +12,8 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -49,14 +50,14 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   };
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
-      <EkspanderbarOppsummering>
-        {VisLabelOgSvar(bosituasjon)}
+      <StyledOppsummering>
+        <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (
-          <div className="spørsmål-og-svar">
+          <KomponentGruppe>
             <Ingress>{lagSamboerOverskrift()}</Ingress>
-          </div>
+            {samboerDetaljer}
+          </KomponentGruppe>
         )}
-        {samboerDetaljer}
         <LenkeMedIkon
           onClick={() =>
             history.push({
@@ -67,7 +68,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </EkspanderbarOppsummering>
+      </StyledOppsummering>
     </Ekspanderbartpanel>
   );
 };
