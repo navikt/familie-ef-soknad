@@ -701,7 +701,11 @@ export default {
     'søkerFraBestemtMåned.hjelpetekst-åpne':
       'Om å søke fra et bestemt tidspunkt',
     'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad':
-      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020. Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden.' +
+      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020.' +
+      'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel.' +
+      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020.' +
+      'Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
       'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.svar.neiNavKanVurdere':
