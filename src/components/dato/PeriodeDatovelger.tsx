@@ -81,7 +81,7 @@ const PeriodeDatovelgere: FC<Props> = ({
 
   return (
     <>
-      <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
+      <div className={'utenlandsopphold__spørsmål'}>
         <Element>{tekst}</Element>
         {hjelpetekst && (
           <Hjelpetekst
@@ -90,7 +90,7 @@ const PeriodeDatovelgere: FC<Props> = ({
             lukkeTekstid={hjelpetekst.lukkeTekstid}
           />
         )}
-      </FeltGruppe>
+      </div>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.fra)}
