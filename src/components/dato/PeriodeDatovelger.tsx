@@ -7,9 +7,12 @@ import Feilmelding from '../feil/Feilmelding';
 import { strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { compareAsc, isEqual } from 'date-fns';
+import { IHjelpetekst } from '../../models/felles/hjelpetekst';
+import Hjelpetekst from '../Hjelpetekst';
 
 interface Props {
   tekst: string;
+  hjelpetekst?: IHjelpetekst;
   periode: IPeriode;
   fomTekstid?: string;
   tomTekstid?: string;
@@ -21,6 +24,7 @@ interface Props {
 
 const PeriodeDatovelgere: FC<Props> = ({
   periode,
+  hjelpetekst,
   settDato,
   tekst,
   fomTekstid,
@@ -79,6 +83,13 @@ const PeriodeDatovelgere: FC<Props> = ({
     <>
       <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
         <Element>{tekst}</Element>
+        {hjelpetekst && (
+          <Hjelpetekst
+            åpneTekstid={hjelpetekst.åpneTekstid}
+            innholdTekstid={hjelpetekst.innholdTekstid}
+            lukkeTekstid={hjelpetekst.lukkeTekstid}
+          />
+        )}
       </FeltGruppe>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
