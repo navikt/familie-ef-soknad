@@ -428,6 +428,8 @@ export default {
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
     'erDuIArbeid.spm': 'Er du i arbeid?',
+    'erDuIArbeid.hjelpetekst':
+      'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">stønad til pass av barn</a>.',
     'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
     'erDuIArbeid.alertsstripe-info':
       'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>' +

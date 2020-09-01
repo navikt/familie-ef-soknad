@@ -49,6 +49,11 @@ export const ErDuIArbeidSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.erDuIArbeid,
   tekstid: 'erDuIArbeid.spm',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: '',
+    lukkeTekstid: '',
+    innholdTekstid: 'erDuIArbeid.hjelpetekst',
+  },
   svaralternativer: [
     { id: ErIArbeid.JA, svar_tekstid: 'svar.ja' },
     {
