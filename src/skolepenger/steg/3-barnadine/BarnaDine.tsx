@@ -52,13 +52,15 @@ const BarnaDine: React.FC = () => {
     });
   };
 
+  const harMinstEttBarn = søknad.person.barn.length > 0;
+
   return (
     <>
       <Side
         stønadstype={Stønadstype.skolepenger}
         stegtittel={hentTekst('barnadine.sidetittel', intl)}
         skalViseKnapper={skalViseKnapper}
-        erSpørsmålBesvart={true}
+        erSpørsmålBesvart={harMinstEttBarn}
         routesStønad={RoutesSkolepenger}
         mellomlagreStønad={mellomlagreSkolepenger}
         tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
