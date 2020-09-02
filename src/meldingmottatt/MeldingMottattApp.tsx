@@ -11,13 +11,27 @@ import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import mockDokumentasjonsbehovResponse from '../mock/mockDokumentasjonsbehovResponse.json';
 import styled from 'styled-components/macro';
+import { Panel } from 'nav-frontend-paneler';
+import {
+  Normaltekst,
+  Sidetittel,
+  Systemtittel,
+  Undertekst,
+  Undertittel,
+} from 'nav-frontend-typografi';
+import LocaleTekst from '../language/LocaleTekst';
+import AlertStripe from 'nav-frontend-alertstriper';
+import { Stønadstype } from '../models/søknad/stønadstyper';
+import { hentBannertittel } from '../utils/stønadstype';
+import Banner from '../components/Banner';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const Header = styled.div`
   font-size: 18px;
   font-weight: bold;
 `;
 
-interface Dokumentasjonsehov {
+interface Dokumentasjonsbehov {
   label: string;
   id: string;
   harSendtInn: boolean;
@@ -30,8 +44,39 @@ enum SøknadType {
   SKOLEPENGER = 'SKOLEPENGER',
 }
 
+const søknadTypeTilStønadType = (type: SøknadType) => {
+  switch (type) {
+    case SøknadType.OVERGANGSSTØNAD:
+      return Stønadstype.overgangsstønad;
+    case SøknadType.BARNETILSYN:
+      return Stønadstype.barnetilsyn;
+    case SøknadType.SKOLEPENGER:
+      return Stønadstype.skolepenger;
+    default:
+      throw `Finner ikke søknadsType ${type}`;
+  }
+};
+
+const søknadTypeTilEttersendelseUrl = (type: SøknadType) => {
+  let skjemanummer;
+  switch (type) {
+    case SøknadType.OVERGANGSSTØNAD:
+      skjemanummer = 'NAV%2015-00.01';
+      break;
+    case SøknadType.BARNETILSYN:
+      skjemanummer = 'NAV%2015-00.02';
+      break;
+    case SøknadType.SKOLEPENGER:
+      skjemanummer = 'NAV%2015-00.04';
+      break;
+    default:
+      throw `Finner ikke søknadsType ${type}`;
+  }
+  return `https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/${skjemanummer}/ettersendelse`;
+};
+
 interface DokumentasjonsbehovResponse {
-  dokumentasjonsbehov: Dokumentasjonsehov[];
+  dokumentasjonsbehov: Dokumentasjonsbehov[];
   innsendingstidspunkt: string;
   søknadType: SøknadType;
   personIdent: String;
@@ -76,24 +121,17 @@ const MeldingMottattApp = () => {
 
   if (!fetching && autentisert) {
     if (!error && dokumentasjonsbehovResponse) {
-      const manglendeVedlegg = dokumentasjonsbehovResponse.dokumentasjonsbehov
-        .filter((it) => !it.harSendtInn && it.opplastedeVedlegg.length === 0)
-        .map((it) => <div>{it.label}</div>);
+      const manglendeVedlegg = dokumentasjonsbehovResponse.dokumentasjonsbehov.filter(
+        (it) => !it.harSendtInn && it.opplastedeVedlegg.length === 0
+      );
 
-      const harAlleredeSendtInn = dokumentasjonsbehovResponse.dokumentasjonsbehov
-        .filter((it) => it.harSendtInn)
-        .map((it) => <div>{it.label}</div>);
+      const harAlleredeSendtInn = dokumentasjonsbehovResponse.dokumentasjonsbehov.filter(
+        (it) => it.harSendtInn
+      );
 
-      const vedlegg = dokumentasjonsbehovResponse.dokumentasjonsbehov
-        .filter((it) => it.opplastedeVedlegg.length > 0)
-        .map((it) => (
-          <div>
-            <div>{it.label}</div>
-            {it.opplastedeVedlegg.map((vedlegg) => (
-              <div>{vedlegg}</div>
-            ))}
-          </div>
-        ));
+      const vedlegg = dokumentasjonsbehovResponse.dokumentasjonsbehov.filter(
+        (it) => it.opplastedeVedlegg.length > 0
+      );
 
       return (
         <>
@@ -101,37 +139,110 @@ const MeldingMottattApp = () => {
             <title>Melding mottatt</title>
           </Helmet>
 
-          <div>
-            <div>
-              <div>
-                Sendt inn: {dokumentasjonsbehovResponse.innsendingstidspunkt}
-              </div>
-              <div>Type søknad: {dokumentasjonsbehovResponse.søknadType}</div>
-            </div>
-            <br />
+          <div className={'meldingmottatt'}>
+            <Banner
+              tekstid={hentBannertittel(
+                søknadTypeTilStønadType(dokumentasjonsbehovResponse.søknadType)
+              )}
+            />
 
-            {manglendeVedlegg && (
-              <div>
-                <Header>Det ble ikke sendt inn noen vedlegg for:</Header>
-                {manglendeVedlegg}
-              </div>
-            )}
-            <br />
+            <main className={'meldingmottatt__innhold'}>
+              <Panel className={'meldingmottatt__panel'}>
+                <Sidetittel>Dokumentasjon til søknaden</Sidetittel>
+                <div className="seksjon">
+                  <Normaltekst>
+                    Det ser ut til at det mangler noe dokumentasjon i søknaden
+                    du har sendt oss. Hvis du i mellomtiden har sendt oss dette,
+                    kan du se bort fra denne meldingen.
+                  </Normaltekst>
+                </div>
 
-            {harAlleredeSendtInn && (
-              <div>
-                <Header>Det er allerede sendt inn vedlegg for</Header>
-                {harAlleredeSendtInn}
-              </div>
-            )}
-            <br />
+                <div className="seksjon">
+                  <Systemtittel>
+                    Dokumentasjon som ikke ble sendt inn sammen med søknaden
+                  </Systemtittel>
+                  {manglendeVedlegg.map((it) => (
+                    <div>
+                      <AlertStripe type={'advarsel'} form={'inline'}>
+                        <div>
+                          <Undertittel>
+                            <LocaleTekst tekst={it.label} />
+                          </Undertittel>{' '}
+                          {/* TODO finn tittel fra dokumentasjonen */}
+                          <Undertekst>
+                            {/* TODO skal alineas med teksten i AlertStripe*/}
+                            <LocaleTekst tekst={it.label} />{' '}
+                            {/* TODO beskrivelse */}
+                          </Undertekst>
+                        </div>
+                      </AlertStripe>
+                    </div>
+                  ))}
 
-            {vedlegg && (
-              <div>
-                <Header>Vedlegg som ble sendt inn</Header>
-                {vedlegg}
-              </div>
-            )}
+                  <Hovedknapp
+                    onClick={() => {
+                      window.location.href = søknadTypeTilEttersendelseUrl(
+                        dokumentasjonsbehovResponse?.søknadType
+                      );
+                    }}
+                  >
+                    Ettersend dokumentasjon
+                  </Hovedknapp>
+                </div>
+
+                <div className="seksjon">
+                  <Systemtittel>
+                    Dokumentasjon som ble sendt inn sammen med søknaden
+                  </Systemtittel>
+
+                  {harAlleredeSendtInn.map((it) => (
+                    <AlertStripe type={'suksess'} form={'inline'}>
+                      <div>
+                        <Undertittel>
+                          <LocaleTekst tekst={it.label} />
+                        </Undertittel>{' '}
+                        {/* TODO finn tittel fra dokumentasjonen */}
+                        {/* TODO liste vedlegg*/}
+                      </div>
+                    </AlertStripe>
+                  ))}
+                </div>
+
+                {/*<div>
+                  <div>
+                    <div>
+                      Sendt inn: {dokumentasjonsbehovResponse.innsendingstidspunkt}
+                    </div>
+                    <div>Type søknad: {dokumentasjonsbehovResponse.søknadType}</div>
+                  </div>
+                  <br />
+
+                  {manglendeVedlegg && (
+                      <div>
+                        <Header>Det ble ikke sendt inn noen vedlegg for:</Header>
+                        {manglendeVedlegg}
+                      </div>
+                  )}
+                  <br />
+
+                  {harAlleredeSendtInn && (
+                      <div>
+                        <Header>Det er allerede sendt inn vedlegg for</Header>
+                        {harAlleredeSendtInn}
+                      </div>
+                  )}
+                  <br />
+
+                  {vedlegg && (
+                      <div>
+                        <Header>Vedlegg som ble sendt inn</Header>
+                        {vedlegg}
+                      </div>
+                  )}
+                </div>
+                */}
+              </Panel>
+            </main>
           </div>
         </>
       );
