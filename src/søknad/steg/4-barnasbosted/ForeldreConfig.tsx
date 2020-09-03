@@ -4,59 +4,32 @@ import {
   ISpørsmål,
 } from '../../../models/felles/spørsmålogsvar';
 import {
+  EBorAnnenForelderISammeHus,
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
-  EBorAnnenForelderISammeHus,
+  EHvorforIkkeOppgi,
   EHvorMyeSammen,
   ESkalBarnetBoHosSøker,
-  EHvorforIkkeOppgi,
 } from '../../../models/steg/barnasbosted';
-import {
-  BarnasBostedDokumentasjon,
-  IDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 
 import { EForelder } from '../../../models/steg/forelder';
 import { JaNeiSvar, NeiSvar } from '../../../helpers/svar';
+import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 
 // --- Dokumentasjon
 
-const DokumentasjonBarnBorHosDeg: IDokumentasjon = {
-  id: BarnasBostedDokumentasjon.BARN_BOR_HOS_SØKER,
-  spørsmålid: EForelder.skalBarnetBoHosSøker,
-  svarid: ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke,
-  label: '',
-  tittel: 'dokumentasjon.barnBorHosSøker.tittel',
-  beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
-  harSendtInn: false,
-};
+const DokumentasjonBarnBorHosDeg: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonBarnBorHosDeg;
 
-const AvtaleOmDeltBosted: IDokumentasjon = {
-  id: BarnasBostedDokumentasjon.DELT_BOSTED,
-  spørsmålid: EForelder.avtaleOmDeltBosted,
-  svarid: ESvar.JA,
-  label: '',
-  tittel: 'dokumentasjon.deltBosted.tittel',
-  harSendtInn: false,
-};
+const AvtaleOmDeltBosted: IDokumentasjon =
+  DokumentasjonsConfig.AvtaleOmDeltBosted;
 
-const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon = {
-  id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
-  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
-  svarid: EHarSkriftligSamværsavtale.jaKonkreteTidspunkter,
-  label: '',
-  tittel: 'dokumentasjon.samværsavtale.tittel',
-  harSendtInn: false,
-};
+const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon =
+  DokumentasjonsConfig.SamværsavtaleMedKonkreteTidspunkter;
 
-const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon = {
-  id: BarnasBostedDokumentasjon.SAMVÆRSAVTALE,
-  spørsmålid: EForelder.harDereSkriftligSamværsavtale,
-  svarid: EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter,
-  label: '',
-  tittel: 'dokumentasjon.samværsavtale.tittel',
-  harSendtInn: false,
-};
+const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon =
+  DokumentasjonsConfig.SamværsavtaleUtenKonkreteTidspunkter;
 // --- Spørsmål
 
 export const borINorge: ISpørsmål = {

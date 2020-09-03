@@ -4,22 +4,13 @@ import {
   ESøkerDelerBolig,
 } from '../../../models/steg/bosituasjon';
 import { JaNeiSvar } from '../../../helpers/svar';
-import {
-  BosituasjonDokumentasjon,
-  IDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 
 // --- Dokumentasjon
 
-const DokumentasjonBorPåUlikeAdresser: IDokumentasjon = {
-  id: BosituasjonDokumentasjon.BOR_PÅ_ULIKE_ADRESSER,
-  spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
-  svarid: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
-  label: '',
-  tittel: 'dokumentasjon.ulikeAdresser.tittel',
-  beskrivelse: 'dokumentasjon.ulikeAdresser.beskrivelse',
-  harSendtInn: false,
-};
+const DokumentasjonBorPåUlikeAdresser: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonBorPåUlikeAdresser;
 
 // --- Spørsmål
 

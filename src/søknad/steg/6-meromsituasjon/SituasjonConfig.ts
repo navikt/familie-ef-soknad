@@ -5,69 +5,27 @@ import {
   ESituasjon,
   ESøkerFraBestemtMåned,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import {
-  IDokumentasjon,
-  SituasjonDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 
 // DOKUMENTASJON
-export const DokumentasjonSykdom: IDokumentasjon = {
-  id: SituasjonDokumentasjon.SYKDOM,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.erSyk,
-  label: '',
-  tittel: 'dokumentasjon.sykdom.tittel',
-  beskrivelse: 'dokumentasjon.sykdom.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonSykdom: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonSykdom;
 
-export const DokumentasjonSyktBarn: IDokumentasjon = {
-  id: SituasjonDokumentasjon.SYKT_BARN,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.harSyktBarn,
-  label: '',
-  tittel: 'dokumentasjon.syktBarn.tittel',
-  beskrivelse: 'dokumentasjon.syktBarn.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonSyktBarn: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonSyktBarn;
 
-export const DokumentasjonBarnepassMangel: IDokumentasjon = {
-  id: SituasjonDokumentasjon.BARNEPASS,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
-  label: '',
-  tittel: 'dokumentasjon.barnepass.tittel',
-  beskrivelse: 'dokumentasjon.barnepass.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonBarnepassMangel: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonBarnepassMangel;
 
-export const DokumentasjonBarnetilsynBehov: IDokumentasjon = {
-  id: SituasjonDokumentasjon.BARNETILSYN_BEHOV,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: DinSituasjonType.harBarnMedSærligeBehov,
-  label: '',
-  tittel: 'dokumentasjon.barnetilsynsbehov.tittel',
-  beskrivelse: 'dokumentasjon.barnetilsynsbehov.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonBarnetilsynBehov: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonBarnetilsynBehov;
 
-export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon = {
-  id: SituasjonDokumentasjon.ARBEIDSFORHOLD_OPPSIGELSE,
-  spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
-  svarid: ESagtOppEllerRedusertStilling.sagtOpp,
-  label: '',
-  tittel: 'dokumentasjon.arbeidsforhold-oppsigelse.tittel',
-  harSendtInn: false,
-};
+export const ArbeidsforholdOgOppsigelsesårsak: IDokumentasjon =
+  DokumentasjonsConfig.ArbeidsforholdOgOppsigelsesårsak;
 
-export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon = {
-  id: SituasjonDokumentasjon.ARBEIDSFORHOLD_REDUSERT_ARBEIDSTID,
-  spørsmålid: ESituasjon.sagtOppEllerRedusertStilling,
-  svarid: ESagtOppEllerRedusertStilling.redusertStilling,
-  label: '',
-  tittel: 'dokumentasjon.arbeidsforhold-redusert.tittel',
-  harSendtInn: false,
-};
+export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon =
+  DokumentasjonsConfig.ArbeidsforholdOgRedusertArbeidstid;
 
 // SPØRSMÅL
 export const gjelderNoeAvDetteDeg: ISpørsmål = {

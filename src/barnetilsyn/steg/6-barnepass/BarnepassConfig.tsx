@@ -1,7 +1,4 @@
-import {
-  BarnetilsynDokumentasjon,
-  IDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBarnepass,
@@ -9,53 +6,21 @@ import {
   EÅrsakBarnepass,
 } from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
+import { DokumentasjonsConfig } from '../../../søknad/DokumentasjonsConfig';
 
 // ----- DOKUMENTASJON
 
-export const FakturaFraBarnepassordning: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING,
-  spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
-  label: '',
-  svarid: ETypeBarnepassOrdning.barnehageOgLiknende,
-  tittel: 'dokumentasjon.barnehageOgLiknende.tittel',
-  beskrivelse: 'dokumentasjon.barnehageOgLiknende.beskrivelse',
-  harSendtInn: false,
-};
-export const AvtaleMedBarnepasser: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.AVTALE_BARNEPASSER,
-  spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
-  label: '',
-  svarid: ETypeBarnepassOrdning.privat,
-  tittel: 'dokumentasjon.privatBarnepass.tittel',
-  beskrivelse: 'dokumentasjon.privatBarnepass.beskrivelse',
-  harSendtInn: false,
-};
+export const FakturaFraBarnepassordning: IDokumentasjon =
+  DokumentasjonsConfig.FakturaFraBarnepassordning;
+export const AvtaleMedBarnepasser: IDokumentasjon =
+  DokumentasjonsConfig.AvtaleMedBarnepasser;
 
-export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.TRENGER_MER_PASS_ENN_JEVNALDREDE,
-  spørsmålid: EBarnepass.årsakBarnepass,
-  label: '',
-  svarid: EÅrsakBarnepass.trengerMerPassEnnJevnaldrede,
-  tittel: 'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel',
-  beskrivelse: 'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse',
-  harSendtInn: false,
-};
-export const DokumentasjonUtenomVanligArbeidstid: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.ARBEIDSTID,
-  spørsmålid: EBarnepass.årsakBarnepass,
-  label: '',
-  svarid: EÅrsakBarnepass.utenomVanligArbeidstid,
-  tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
-  harSendtInn: false,
-};
-export const DokumentasjonMyeBortePgaJobb: IDokumentasjon = {
-  id: BarnetilsynDokumentasjon.ARBEIDSTID,
-  spørsmålid: EBarnepass.årsakBarnepass,
-  label: '',
-  svarid: EÅrsakBarnepass.myeBortePgaJobb,
-  tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
-  harSendtInn: false,
-};
+export const DokumentasjonTrengerMerPassEnnJevnaldrede: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonTrengerMerPassEnnJevnaldrede;
+export const DokumentasjonUtenomVanligArbeidstid: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonUtenomVanligArbeidstid;
+export const DokumentasjonMyeBortePgaJobb: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonMyeBortePgaJobb;
 
 // --- SPØRSMÅL
 
