@@ -33,21 +33,6 @@
       grid-row-start: 1;
       grid-row-end: 3;
     }
-    .nav-veileder {
-      grid-area: veileder;
-    }
-    .nav-veileder__snakkeboble {
-      grid-area: snakkeboble;
-    }
-
-    .nav-veileder > .nav-veileder__frame {
-      background: @navLillaDarken20;
-
-      svg {
-        width: 100px;
-        height: 100px;
-      }
-    }
   }
 
   .meldingmottatt__innhold {
@@ -72,7 +57,34 @@
       }
     }
 
+    .fil {
+      position: relative;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+
+      .typo-normal {
+        display: inline-block;
+      }
+
+      .filnavn {
+        margin-left: 1rem;
+      }
+
+      .vedleggsikon {
+        position: relative;
+        top: 5px;
+      }
+    }
+
     .seksjon  {
+      .tekstblokk {
+        padding-bottom: 2rem;
+      }
+
+      .typo-systemtittel {
+        padding-bottom: 2rem;
+      }
+
       .typo-element {
         font-size: 20px;
       }

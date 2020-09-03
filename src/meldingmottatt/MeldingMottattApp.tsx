@@ -10,13 +10,11 @@ import {
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import mockDokumentasjonsbehovResponse from '../mock/mockDokumentasjonsbehovResponse.json';
-import styled from 'styled-components/macro';
 import { Panel } from 'nav-frontend-paneler';
 import {
   Normaltekst,
   Sidetittel,
   Systemtittel,
-  Undertekst,
   Undertittel,
 } from 'nav-frontend-typografi';
 import LocaleTekst from '../language/LocaleTekst';
@@ -25,11 +23,7 @@ import { Stønadstype } from '../models/søknad/stønadstyper';
 import { hentBannertittel } from '../utils/stønadstype';
 import Banner from '../components/Banner';
 import { Hovedknapp } from 'nav-frontend-knapper';
-
-const Header = styled.div`
-  font-size: 18px;
-  font-weight: bold;
-`;
+import { default as vedleggIkon } from '../assets/vedlegg.svg';
 
 interface Dokumentasjonsbehov {
   label: string;
@@ -72,7 +66,7 @@ const søknadTypeTilEttersendelseUrl = (type: SøknadType) => {
     default:
       throw `Finner ikke søknadsType ${type}`;
   }
-  return `https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/${skjemanummer}/ettersendelse`;
+  return `https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/${skjemanummer}/dokumentinnsending`;
 };
 
 interface DokumentasjonsbehovResponse {
@@ -132,7 +126,6 @@ const MeldingMottattApp = () => {
       const vedlegg = dokumentasjonsbehovResponse.dokumentasjonsbehov.filter(
         (it) => it.opplastedeVedlegg.length > 0
       );
-
       return (
         <>
           <Helmet>
@@ -162,18 +155,18 @@ const MeldingMottattApp = () => {
                     Dokumentasjon som ikke ble sendt inn sammen med søknaden
                   </Systemtittel>
                   {manglendeVedlegg.map((it) => (
-                    <div>
+                    <div className={'tekstblokk'}>
                       <AlertStripe type={'advarsel'} form={'inline'}>
                         <div>
                           <Undertittel>
                             <LocaleTekst tekst={it.label} />
                           </Undertittel>{' '}
                           {/* TODO finn tittel fra dokumentasjonen */}
-                          <Undertekst>
+                          <Normaltekst>
                             {/* TODO skal alineas med teksten i AlertStripe*/}
                             <LocaleTekst tekst={it.label} />{' '}
                             {/* TODO beskrivelse */}
-                          </Undertekst>
+                          </Normaltekst>
                         </div>
                       </AlertStripe>
                     </div>
@@ -195,52 +188,27 @@ const MeldingMottattApp = () => {
                     Dokumentasjon som ble sendt inn sammen med søknaden
                   </Systemtittel>
 
-                  {harAlleredeSendtInn.map((it) => (
+                  {vedlegg.map((dokumentasjonsbehov: Dokumentasjonsbehov) => (
                     <AlertStripe type={'suksess'} form={'inline'}>
                       <div>
                         <Undertittel>
-                          <LocaleTekst tekst={it.label} />
+                          <LocaleTekst tekst={dokumentasjonsbehov.label} />
                         </Undertittel>{' '}
                         {/* TODO finn tittel fra dokumentasjonen */}
-                        {/* TODO liste vedlegg*/}
+                        {dokumentasjonsbehov.opplastedeVedlegg.map((fil) => (
+                          <div className="fil">
+                            <img
+                              className="vedleggsikon"
+                              src={vedleggIkon}
+                              alt="Vedleggsikon"
+                            />
+                            <Normaltekst className="filnavn">{fil}</Normaltekst>
+                          </div>
+                        ))}
                       </div>
                     </AlertStripe>
                   ))}
                 </div>
-
-                {/*<div>
-                  <div>
-                    <div>
-                      Sendt inn: {dokumentasjonsbehovResponse.innsendingstidspunkt}
-                    </div>
-                    <div>Type søknad: {dokumentasjonsbehovResponse.søknadType}</div>
-                  </div>
-                  <br />
-
-                  {manglendeVedlegg && (
-                      <div>
-                        <Header>Det ble ikke sendt inn noen vedlegg for:</Header>
-                        {manglendeVedlegg}
-                      </div>
-                  )}
-                  <br />
-
-                  {harAlleredeSendtInn && (
-                      <div>
-                        <Header>Det er allerede sendt inn vedlegg for</Header>
-                        {harAlleredeSendtInn}
-                      </div>
-                  )}
-                  <br />
-
-                  {vedlegg && (
-                      <div>
-                        <Header>Vedlegg som ble sendt inn</Header>
-                        {vedlegg}
-                      </div>
-                  )}
-                </div>
-                */}
               </Panel>
             </main>
           </div>
