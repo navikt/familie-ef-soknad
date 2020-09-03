@@ -47,7 +47,7 @@ const søknadTypeTilStønadType = (type: SøknadType) => {
     case SøknadType.SKOLEPENGER:
       return Stønadstype.skolepenger;
     default:
-      throw `Finner ikke søknadsType ${type}`;
+      throw new Error(`Finner ikke søknadsType ${type}`);
   }
 };
 
@@ -64,7 +64,7 @@ const søknadTypeTilEttersendelseUrl = (type: SøknadType) => {
       skjemanummer = 'NAV%2015-00.04';
       break;
     default:
-      throw `Finner ikke søknadsType ${type}`;
+      throw new Error(`Finner ikke søknadsType ${type}`);
   }
   return `https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/${skjemanummer}/dokumentinnsending`;
 };
