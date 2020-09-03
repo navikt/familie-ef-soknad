@@ -32,7 +32,7 @@ ReactDOM.render(
           <Route path={'/barnetilsyn'} component={BarnetilsynApp} />
           <Route path={'/skolepenger'} component={SkolepengerApp} />
           <Route
-            path={'/dokumentasjon/:soknadId'}
+            path={'/innsendtsoknad/:soknadId'}
             component={MeldingMottattApp}
           />
           <Route path={'/'} component={App} />

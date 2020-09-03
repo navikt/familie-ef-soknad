@@ -150,65 +150,92 @@ const MeldingMottattApp = () => {
                   </Normaltekst>
                 </div>
 
-                <div className="seksjon">
-                  <Systemtittel>
-                    Dokumentasjon som ikke ble sendt inn sammen med søknaden
-                  </Systemtittel>
-                  {manglendeVedlegg.map((it) => (
-                    <div className={'tekstblokk'}>
-                      <AlertStripe type={'advarsel'} form={'inline'}>
+                {manglendeVedlegg && (
+                  <div className="seksjon">
+                    <Systemtittel>
+                      Dokumentasjon som ikke ble sendt inn sammen med søknaden
+                    </Systemtittel>
+                    {manglendeVedlegg.map((it) => (
+                      <div className={'tekstblokk'}>
+                        <AlertStripe type={'advarsel'} form={'inline'}>
+                          <div>
+                            <Undertittel>
+                              <LocaleTekst tekst={it.label} />
+                            </Undertittel>
+                            {/* TODO finn tittel fra dokumentasjonen */}
+                            <Normaltekst>
+                              {/* TODO skal alineas med teksten i AlertStripe*/}
+                              <LocaleTekst tekst={it.label} />{' '}
+                              {/* TODO beskrivelse */}
+                            </Normaltekst>
+                          </div>
+                        </AlertStripe>
+                      </div>
+                    ))}
+
+                    <Hovedknapp
+                      onClick={() => {
+                        window.location.href = søknadTypeTilEttersendelseUrl(
+                          dokumentasjonsbehovResponse?.søknadType
+                        );
+                      }}
+                    >
+                      Ettersend dokumentasjon
+                    </Hovedknapp>
+                  </div>
+                )}
+
+                {vedlegg && (
+                  <div className="seksjon">
+                    <Systemtittel>
+                      Dokumentasjon som ble sendt inn sammen med søknaden
+                    </Systemtittel>
+
+                    {vedlegg.map((dokumentasjonsbehov: Dokumentasjonsbehov) => (
+                      <AlertStripe type={'suksess'} form={'inline'}>
                         <div>
                           <Undertittel>
-                            <LocaleTekst tekst={it.label} />
-                          </Undertittel>{' '}
+                            <LocaleTekst tekst={dokumentasjonsbehov.label} />
+                          </Undertittel>
                           {/* TODO finn tittel fra dokumentasjonen */}
-                          <Normaltekst>
-                            {/* TODO skal alineas med teksten i AlertStripe*/}
-                            <LocaleTekst tekst={it.label} />{' '}
-                            {/* TODO beskrivelse */}
-                          </Normaltekst>
+                          {dokumentasjonsbehov.opplastedeVedlegg.map((fil) => (
+                            <div className="fil">
+                              <img
+                                className="vedleggsikon"
+                                src={vedleggIkon}
+                                alt="Vedleggsikon"
+                              />
+                              <Normaltekst className="filnavn">
+                                {fil}
+                              </Normaltekst>
+                            </div>
+                          ))}
                         </div>
                       </AlertStripe>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
+                )}
 
-                  <Hovedknapp
-                    onClick={() => {
-                      window.location.href = søknadTypeTilEttersendelseUrl(
-                        dokumentasjonsbehovResponse?.søknadType
-                      );
-                    }}
-                  >
-                    Ettersend dokumentasjon
-                  </Hovedknapp>
-                </div>
+                {harAlleredeSendtInn && (
+                  <div className="seksjon">
+                    <Systemtittel>
+                      Dokumentasjon du har oppgitt at du tidligere har sendt inn
+                      til oss
+                    </Systemtittel>
 
-                <div className="seksjon">
-                  <Systemtittel>
-                    Dokumentasjon som ble sendt inn sammen med søknaden
-                  </Systemtittel>
-
-                  {vedlegg.map((dokumentasjonsbehov: Dokumentasjonsbehov) => (
-                    <AlertStripe type={'suksess'} form={'inline'}>
-                      <div>
-                        <Undertittel>
-                          <LocaleTekst tekst={dokumentasjonsbehov.label} />
-                        </Undertittel>{' '}
-                        {/* TODO finn tittel fra dokumentasjonen */}
-                        {dokumentasjonsbehov.opplastedeVedlegg.map((fil) => (
-                          <div className="fil">
-                            <img
-                              className="vedleggsikon"
-                              src={vedleggIkon}
-                              alt="Vedleggsikon"
-                            />
-                            <Normaltekst className="filnavn">{fil}</Normaltekst>
+                    {harAlleredeSendtInn.map(
+                      (dokumentasjonsbehov: Dokumentasjonsbehov) => (
+                        <AlertStripe type={'suksess'} form={'inline'}>
+                          <div>
+                            <Undertittel>
+                              <LocaleTekst tekst={dokumentasjonsbehov.label} />
+                            </Undertittel>
                           </div>
-                        ))}
-                      </div>
-                    </AlertStripe>
-                  ))}
-                </div>
+                        </AlertStripe>
+                      )
+                    )}
+                  </div>
+                )}
               </Panel>
             </main>
           </div>
