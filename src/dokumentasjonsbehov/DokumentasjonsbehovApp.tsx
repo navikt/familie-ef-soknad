@@ -91,7 +91,7 @@ interface DokumentasjonsbehovResponse {
   personIdent: String;
 }
 
-const MeldingMottattApp = () => {
+const DokumentasjonsbehovApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
@@ -147,15 +147,15 @@ const MeldingMottattApp = () => {
             <title>Melding mottatt</title>
           </Helmet>
 
-          <div className={'meldingmottatt'}>
+          <div className={'dokumentasjonsbehov'}>
             <Banner
               tekstid={hentBannertittel(
                 søknadTypeTilStønadType(dokumentasjonsbehovResponse.søknadType)
               )}
             />
 
-            <main className={'meldingmottatt__innhold'}>
-              <Panel className={'meldingmottatt__panel'}>
+            <main className={'dokumentasjonsbehov__innhold'}>
+              <Panel className={'dokumentasjonsbehov__panel'}>
                 <Sidetittel>Dokumentasjon til søknaden</Sidetittel>
                 <div className="seksjon">
                   <Normaltekst>
@@ -294,4 +294,4 @@ const MeldingMottattApp = () => {
   }
 };
 
-export default MeldingMottattApp;
+export default DokumentasjonsbehovApp;
