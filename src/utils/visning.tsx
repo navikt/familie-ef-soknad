@@ -11,7 +11,6 @@ import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
-import LabelVerdiGruppe from '../components/gruppe/LabelVerdiGruppe';
 import { LocationStateSøknad } from '../models/søknad/søknad';
 import { harValgtSvar } from './spørsmålogsvar';
 
@@ -29,7 +28,7 @@ export const visListeAvLabelOgSvar = (
     }
 
     return (
-      <div className="listeelement" key={index}>
+      <div key={index}>
         <Ingress>{tekst}</Ingress>
         {VisLabelOgSvar(el)}
         {index < liste.length - 1 && <hr />}
@@ -145,11 +144,11 @@ export const visLabelOgVerdiForSpørsmålFelt = (
 ) => {
   return (
     <>
-      <Ingress>{overskrift}</Ingress>
-      <LabelVerdiGruppe>
+      {overskrift && <Ingress>{overskrift}</Ingress>}
+      <div className="spørsmål-og-svar">
         <Element>{feltObjekt.label}</Element>
         {verdiTilTekstsvar(feltObjekt.verdi, intl)}
-      </LabelVerdiGruppe>
+      </div>
     </>
   );
 };
@@ -158,16 +157,16 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
   feltListeObjekt: ISpørsmålListeFelt
 ) => {
   return (
-    <LabelVerdiGruppe>
+    <div className="spørsmål-og-svar">
       <Element>{feltListeObjekt.label}</Element>
-      <ul className={'verdi'}>
+      <ul>
         {feltListeObjekt.verdi.map((svar) => (
           <li>
             <Normaltekst>{svar}</Normaltekst>
           </li>
         ))}
       </ul>
-    </LabelVerdiGruppe>
+    </div>
   );
 };
 

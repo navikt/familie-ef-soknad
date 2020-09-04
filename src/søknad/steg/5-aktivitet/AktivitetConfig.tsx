@@ -1,68 +1,27 @@
-import { ESvar, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EAktivitet,
   EArbeidssituasjon,
 } from '../../../models/steg/aktivitet/aktivitet';
-import {
-  AktivitetDokumentasjon,
-  IDokumentasjon,
-  SituasjonDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
-import { ESituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { EArbeidssøker } from '../../../models/steg/aktivitet/arbeidssøker';
-import { EUtdanning } from '../../../models/steg/aktivitet/utdanning';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 
 // --- DOKUMENTASJON
 
-export const DokumentasjonUtgifterUtdanning: IDokumentasjon = {
-  id: AktivitetDokumentasjon.UTGIFTER_UTDANNING,
-  spørsmålid: EUtdanning.semesteravgift,
-  svarid: EAktivitet.tarUtdanning,
-  label: '',
-  tittel: 'utdanning.label.utgifter',
-  beskrivelse: 'utdanning.label.utgifter.dokumentasjon',
-  harSendtInn: false,
-};
+export const DokumentasjonUtgifterUtdanning: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonUtgifterUtdanning;
 
-export const DokumentasjonUtdanning: IDokumentasjon = {
-  id: AktivitetDokumentasjon.UTDANNING,
-  spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-  svarid: EAktivitet.tarUtdanning,
-  label: '',
-  tittel: 'dokumentasjon.utdanning.tittel',
-  beskrivelse: 'dokumentasjon.utdanning.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonUtdanning: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonUtdanning;
 
-const DokumentasjonArbeidskontrakt: IDokumentasjon = {
-  id: SituasjonDokumentasjon.ARBEIDSKONTRAKT,
-  spørsmålid: ESituasjon.gjelderDetteDeg,
-  svarid: EAktivitet.harFåttJobbTilbud,
-  label: '',
-  tittel: 'dokumentasjon.arbeidskontrakt.tittel',
-  beskrivelse: 'dokumentasjon.arbeidskontrakt.beskrivelse',
-  harSendtInn: false,
-};
+const DokumentasjonArbeidskontrakt: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonArbeidskontrakt;
 
-export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
-  id: SituasjonDokumentasjon.IKKE_VILLIG_TIL_ARBEID,
-  spørsmålid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
-  svarid: ESvar.NEI,
-  label: '',
-  tittel: 'dokumentasjon.ikke.villig.til.arbeid.tittel',
-  beskrivelse: 'dokumentasjon.ikke.villig.til.arbeid.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonIkkeVilligTilArbeid;
 
-export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon = {
-  id: AktivitetDokumentasjon.ETABLERER_VIRKSOMHET,
-  spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-  svarid: EAktivitet.etablererEgenVirksomhet,
-  label: '',
-  tittel: 'dokumentasjon.etablererEgenVirksomhet.tittel',
-  beskrivelse: 'dokumentasjon.etablererEgenVirksomhet.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonOmVirksomhetenDuEtablerer;
 
 // --- SPØRSMÅL
 

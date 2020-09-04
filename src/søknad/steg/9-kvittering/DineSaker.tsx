@@ -9,6 +9,11 @@ const DineSaker: FC = () => {
     <SeksjonGruppe>
       <KomponentGruppe>
         <Normaltekst>
+          <LocaleTekst tekst={'kvittering.tekst.altViTrenger'} />
+        </Normaltekst>
+      </KomponentGruppe>
+      <KomponentGruppe>
+        <Normaltekst>
           <LocaleTekst tekst={'kvittering.tekst.dineSaker'} />
         </Normaltekst>
       </KomponentGruppe>

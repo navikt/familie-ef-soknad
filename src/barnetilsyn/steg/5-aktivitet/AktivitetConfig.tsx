@@ -1,47 +1,19 @@
-import { ESvar, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EAktivitet,
   EArbeidssituasjon,
   ErIArbeid,
 } from '../../../models/steg/aktivitet/aktivitet';
-import {
-  AktivitetDokumentasjon,
-  IDokumentasjon,
-  SituasjonDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
-import { EArbeidssøker } from '../../../models/steg/aktivitet/arbeidssøker';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../../søknad/DokumentasjonsConfig';
 
 // --- DOKUMENTASJON
 
-export const DokumentasjonIkkeVilligTilArbeid: IDokumentasjon = {
-  id: SituasjonDokumentasjon.IKKE_VILLIG_TIL_ARBEID,
-  spørsmålid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
-  svarid: ESvar.NEI,
-  label: '',
-  tittel: 'dokumentasjon.ikke.villig.til.arbeid.tittel',
-  beskrivelse: 'dokumentasjon.ikke.villig.til.arbeid.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonSyk: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonSyk;
 
-export const DokumentasjonSyk: IDokumentasjon = {
-  id: AktivitetDokumentasjon.FOR_SYK_TIL_Å_JOBBE,
-  spørsmålid: EArbeidssituasjon.erDuIArbeid,
-  svarid: ESvar.NEI,
-  label: '',
-  tittel: 'dokumentasjon.syk.tittel',
-  beskrivelse: 'dokumentasjon.syk.beskrivelse',
-  harSendtInn: false,
-};
-
-export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon = {
-  id: AktivitetDokumentasjon.ETABLERER_VIRKSOMHET,
-  spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-  svarid: EAktivitet.etablererEgenVirksomhet,
-  label: '',
-  tittel: 'dokumentasjon.etablererEgenVirksomhet.tittel',
-  beskrivelse: 'dokumentasjon.etablererEgenVirksomhet.beskrivelse',
-  harSendtInn: false,
-};
+export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonOmVirksomhetenDuEtablerer;
 
 // --- SPØRSMÅL
 
@@ -49,6 +21,11 @@ export const ErDuIArbeidSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.erDuIArbeid,
   tekstid: 'erDuIArbeid.spm',
   flersvar: false,
+  lesmer: {
+    åpneTekstid: '',
+    lukkeTekstid: '',
+    innholdTekstid: 'erDuIArbeid.hjelpetekst',
+  },
   svaralternativer: [
     { id: ErIArbeid.JA, svar_tekstid: 'svar.ja' },
     {

@@ -104,6 +104,7 @@ export default {
     'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
     'person.fnr': 'Fødselsnummer',
     'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
+    'person.ident.visning': 'Fødselsnummer eller d-nummer',
     'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
     'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
     'person.telefonnr': 'Telefonnummer du kan kontaktes på',
@@ -427,6 +428,8 @@ export default {
     'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
     'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
     'erDuIArbeid.spm': 'Er du i arbeid?',
+    'erDuIArbeid.hjelpetekst':
+      'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">stønad til pass av barn</a>.',
     'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
     'erDuIArbeid.alertsstripe-info':
       'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>' +
@@ -700,7 +703,11 @@ export default {
     'søkerFraBestemtMåned.hjelpetekst-åpne':
       'Om å søke fra et bestemt tidspunkt',
     'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad':
-      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020. Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+      'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden.' +
+      'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020.' +
+      'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel.' +
+      'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020.' +
+      'Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
       'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.svar.neiNavKanVurdere':
@@ -744,7 +751,8 @@ export default {
     'barnepass.hjelpetekst-innhold.beløp':
       ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
     'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
-      'Du må legge ved faktura fra barnepassordningen. Den må stå i ditt navn, og utgifter til opphold må være spesifisert. ',
+      '<strong>Du må legge ved faktura fra barnepassordningen.</strong> <br />' +
+      'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år. Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.',
     'barnepass.alert-dokumentasjon.beløp.privat':
       '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
       '<li>ditt navn, fødseslnummer og adresse</li>' +
@@ -904,11 +912,13 @@ export default {
       'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
 
     'dokumentasjon.barnehageOgLiknende.tittel':
-      'Faktura fra barnepassordningen',
+      'Faktura fra barnepassordningen for perioden du søker om nå',
     'dokumentasjon.barnehageOgLiknende.beskrivelse':
-      'Den må stå i ditt navn, og utgifter til opphold må være spesifisert. \n' +
-      '\n' +
-      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+      'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år.' +
+      '<br />' +
+      'Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.' +
+      '<br />' +
+      'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid.',
     'dokumentasjon.privatBarnepass.tittel': 'Avtalen du har med barnepasseren',
     'dokumentasjon.privatBarnepass.beskrivelse':
       'Avtalen må inneholde:\n<ul>' +
@@ -925,6 +935,8 @@ export default {
       'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
     'dokumentasjon.barnepassArbeidstid.tittel':
       'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'dokumentasjon.barnepassRoterendeArbeidstid.tittel':
+      'Dokumentasjon på at du jobber turnus eller skift, og jobber på tider utenom vanlig arbeidstid',
     'dokumentasjon.ettersend.tittel':
       'Fikk du ikke lastet opp all dokumentasjonen?',
     'dokumentasjon.ettersend.tekst.barnetilsyn':
@@ -943,6 +955,8 @@ export default {
     'kvittering.tekst.arbeidssøker':
       'Husk å registrere deg som arbeidssøker hos NAV',
     'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'kvittering.tekst.altViTrenger':
+      'Spørsmålene i søknaden, sammen med eventuell dokumentasjon, gir oss svar på det vi trenger for å behandle søknaden din. Hvis vi trenger mer informasjon vil vi ta kontakt med deg.',
     'kvittering.tekst.dineSaker':
       'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
     'kvittering.knapp.dineSaker': 'Skriv ut kvittering',

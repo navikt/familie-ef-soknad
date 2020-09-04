@@ -35,7 +35,7 @@ const Oppsummering: React.FC = () => {
         routesStønad={RoutesBarnetilsyn}
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
       >
-        <div className={'oppsummering'}>
+        <div className="oppsummering">
           <Normaltekst className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
           </Normaltekst>

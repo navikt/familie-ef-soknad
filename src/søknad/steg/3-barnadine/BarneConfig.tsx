@@ -5,20 +5,12 @@ import {
 } from '../../../models/felles/spørsmålogsvar';
 import { EBarn } from '../../../models/steg/barn';
 import { JaNeiSvar, JaSvar } from '../../../helpers/svar';
-import {
-  BarnDokumentasjon,
-  IDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 
 // --- Dokumentasjon
-const Terminbekreftelse: IDokumentasjon = {
-  id: BarnDokumentasjon.TERMINBEKREFTELSE,
-  spørsmålid: EBarn.født,
-  svarid: ESvar.NEI,
-  label: '',
-  tittel: 'dokumentasjon.terminbekreftelse.tittel',
-  harSendtInn: false,
-};
+const Terminbekreftelse: IDokumentasjon =
+  DokumentasjonsConfig.Terminbekreftelse;
 
 // --- Spørsmål
 

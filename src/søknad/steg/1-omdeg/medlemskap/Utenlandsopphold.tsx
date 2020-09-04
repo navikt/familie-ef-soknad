@@ -71,6 +71,7 @@ const Utenlandsopphold: FC<Props> = ({
             ...utenlandsopphold,
             periode: {
               ...periode,
+              label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
               [objektnøkkel]: {
                 label: hentTekst('periode.' + objektnøkkel, intl),
                 verdi: date !== null ? datoTilStreng(date) : undefined,

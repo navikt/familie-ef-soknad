@@ -1,15 +1,19 @@
 import React from 'react';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { Ingress } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import {
+  ESøkerDelerBolig,
+  IBosituasjon,
+} from '../../../models/steg/bosituasjon';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -26,21 +30,34 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
     ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
     : null;
 
+  const lagSamboerOverskrift = () => {
+    if (bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
+      return hentTekst(
+        'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
+        intl
+      );
+    } else if (
+      bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
+    ) {
+      return hentTekst('bosituasjon.tittel.omTidligereSamboer', intl);
+    } else if (
+      bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.harEkteskapsliknendeForhold
+    ) {
+      return hentTekst('bosituasjon.tittel.omSamboer', intl);
+    }
+  };
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Bosituasjonen din</Undertittel>}>
-      <EkspanderbarOppsummering>
-        {VisLabelOgSvar(bosituasjon)}
+      <StyledOppsummering>
+        <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (
-          <div className="spørsmål-og-svar">
-            <Ingress>
-              {hentTekst(
-                'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
-                intl
-              )}
-            </Ingress>
-          </div>
+          <KomponentGruppe>
+            <Ingress>{lagSamboerOverskrift()}</Ingress>
+            {samboerDetaljer}
+          </KomponentGruppe>
         )}
-        {samboerDetaljer}
         <LenkeMedIkon
           onClick={() =>
             history.push({
@@ -51,7 +68,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
         />
-      </EkspanderbarOppsummering>
+      </StyledOppsummering>
     </Ekspanderbartpanel>
   );
 };

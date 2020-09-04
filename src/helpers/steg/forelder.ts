@@ -119,12 +119,20 @@ export const erAlleFelterOgSpørsmålBesvart = (
     harValgtSvar(ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
 
+  const harIkkeBeskrivendeNokSamværsavtale =
+    harDereSkriftligSamværsavtale?.svarid ===
+      EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter ||
+    harDereSkriftligSamværsavtale?.svarid === EHarSkriftligSamværsavtale.nei;
+
   if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
     return (
       avtaleOmDeltBosted?.svarid === ESvar.JA ||
       harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
       harDereSkriftligSamværsavtale?.svarid ===
         EHarSkriftligSamværsavtale.jaKonkreteTidspunkter ||
+      (harAnnenForelderSamværMedBarn?.svarid ===
+        EHarSamværMedBarn.jaIkkeMerEnnVanlig &&
+        harIkkeBeskrivendeNokSamværsavtale) ||
       harValgtSvar(hvordanPraktiseresSamværet?.verdi)
     );
   } else {

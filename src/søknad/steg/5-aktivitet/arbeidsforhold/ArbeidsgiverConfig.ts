@@ -4,20 +4,12 @@ import {
   EStilling,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { JaNeiSvar } from '../../../../helpers/svar';
-import {
-  AktivitetDokumentasjon,
-  IDokumentasjon,
-} from '../../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
 
 // DOKUMENTASJON
-const DokumentasjonLærling: IDokumentasjon = {
-  id: AktivitetDokumentasjon.LÆRLING,
-  spørsmålid: EArbeidsgiver.ansettelsesforhold,
-  svarid: EStilling.lærling,
-  label: '',
-  tittel: 'dokumentasjon.lærling.tittel',
-  harSendtInn: false,
-};
+const DokumentasjonLærling: IDokumentasjon =
+  DokumentasjonsConfig.DokumentasjonLærling;
 
 // SPØRSMÅL
 export const hvaSlagsStilling: ISpørsmål = {

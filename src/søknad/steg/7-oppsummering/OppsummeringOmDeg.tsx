@@ -14,7 +14,12 @@ import { ISøker } from '../../../models/søknad/person';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
-import EkspanderbarOppsummering from '../../../components/stegKomponenter/EkspanderbarOppsummering';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import {
+  SeksjonSpacingTop,
+  StyledOppsummering,
+  StyledOppsummeringMedUndertitler,
+} from '../../../components/stegKomponenter/StyledOppsummering';
 
 interface Props {
   søker: ISøker;
@@ -45,37 +50,42 @@ const OppsummeringOmDeg: FC<Props> = ({
 
   return (
     <Ekspanderbartpanel tittel={<Undertittel>Om deg</Undertittel>}>
-      <EkspanderbarOppsummering>
-        <div className="spørsmål-og-svar">
-          <Element>Fødselsnummer eller d-nummer</Element>
-          <Normaltekst>{omDeg.fnr}</Normaltekst>
-        </div>
-        <div className="spørsmål-og-svar">
-          <Element>Statsborgerskap</Element>
-          <Normaltekst>{omDeg.statsborgerskap}</Normaltekst>
-        </div>
-        <div className="spørsmål-og-svar">
-          <Element>Adresse</Element>
-          <Normaltekst>{omDeg.adresse.adresse}</Normaltekst>
-        </div>
-        <div className="spørsmål-og-svar">
-          <Element>Telefonnummer</Element>
-          <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
-        </div>
-        {sivilstatusSpørsmål}
-        {medlemskapSpørsmål}
-        {perioderUtland}
-        <LenkeMedIkon
-          onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
-          }
-          tekst_id="barnasbosted.knapp.endre"
-          ikon={endre}
-        />
-      </EkspanderbarOppsummering>
+      <KomponentGruppe>
+        <StyledOppsummering>
+          <div className="spørsmål-og-svar">
+            <Element>Fødselsnummer eller d-nummer</Element>
+            <Normaltekst>{omDeg.fnr}</Normaltekst>
+          </div>
+          <div className="spørsmål-og-svar">
+            <Element>Statsborgerskap</Element>
+            <Normaltekst>{omDeg.statsborgerskap}</Normaltekst>
+          </div>
+          <div className="spørsmål-og-svar">
+            <Element>Adresse</Element>
+            <Normaltekst>{omDeg.adresse.adresse}</Normaltekst>
+          </div>
+          <div className="spørsmål-og-svar">
+            <Element>Telefonnummer</Element>
+            <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
+          </div>
+          {sivilstatusSpørsmål}
+          {medlemskapSpørsmål}
+        </StyledOppsummering>
+
+        <StyledOppsummeringMedUndertitler>
+          <SeksjonSpacingTop>{perioderUtland}</SeksjonSpacingTop>
+        </StyledOppsummeringMedUndertitler>
+      </KomponentGruppe>
+      <LenkeMedIkon
+        onClick={() =>
+          history.push({
+            pathname: endreInformasjonPath,
+            state: { kommerFraOppsummering: true },
+          })
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
     </Ekspanderbartpanel>
   );
 };
