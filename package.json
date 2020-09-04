@@ -6,7 +6,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test-ci": "CI=true craco build",
+    "test-ci": "CI=true craco test",
     "test": "craco test",
     "serve": "NODE_ENV=production node server.js"
   },
