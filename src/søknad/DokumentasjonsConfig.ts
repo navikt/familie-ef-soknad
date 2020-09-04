@@ -39,7 +39,6 @@ import {
   EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../models/steg/omDeg/sivilstatus';
-import {type} from 'os';
 
 type IDokumentasjonsConfig = {
   [key in DokumentasjonsConfigKey]: IDokumentasjon;
