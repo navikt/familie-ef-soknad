@@ -123,6 +123,16 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
   },
 
   //BarnepassConfig
+  FakturaFraBarnepassordning: {
+    id: BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING,
+    spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
+    label: '',
+    svarid: ETypeBarnepassOrdning.barnehageOgLiknende,
+    tittel: 'dokumentasjon.barnehageOgLiknende.tittel',
+    beskrivelse: 'dokumentasjon.barnehageOgLiknende.beskrivelse',
+    harSendtInn: false,
+  },
+
   AvtaleMedBarnepasser: {
     id: BarnetilsynDokumentasjon.AVTALE_BARNEPASSER,
     spørsmålid: EBarnepass.hvaSlagsBarnepassOrdning,
