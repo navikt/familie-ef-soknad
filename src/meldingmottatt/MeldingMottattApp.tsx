@@ -25,11 +25,16 @@ import Banner from '../components/Banner';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { default as vedleggIkon } from '../assets/vedlegg.svg';
 
+interface Vedlegg {
+  id: string;
+  navn: string;
+}
+
 interface Dokumentasjonsbehov {
   label: string;
   id: string;
   harSendtInn: boolean;
-  opplastedeVedlegg: string[];
+  opplastedeVedlegg: Vedlegg[];
 }
 
 enum SøknadType {
@@ -206,7 +211,7 @@ const MeldingMottattApp = () => {
                                 alt="Vedleggsikon"
                               />
                               <Normaltekst className="filnavn">
-                                {fil}
+                                {fil.navn}
                               </Normaltekst>
                             </div>
                           ))}
