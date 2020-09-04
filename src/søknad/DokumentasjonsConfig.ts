@@ -153,11 +153,11 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
   },
 
   DokumentasjonMyeBortePgaJobb: {
-    id: BarnetilsynDokumentasjon.ARBEIDSTID,
+    id: BarnetilsynDokumentasjon.ROTERENDE_ARBEIDSTID,
     spørsmålid: EBarnepass.årsakBarnepass,
     label: '',
     svarid: EÅrsakBarnepass.myeBortePgaJobb,
-    tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
+    tittel: 'dokumentasjon.barnepassRoterendeArbeidstid.tittel',
     harSendtInn: false,
   },
 

@@ -935,6 +935,8 @@ export default {
       'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
     'dokumentasjon.barnepassArbeidstid.tittel':
       'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'dokumentasjon.barnepassRoterendeArbeidstid.tittel':
+      'Dokumentasjon på at du jobber turnus eller skift, og jobber på tider utenom vanlig arbeidstid',
     'dokumentasjon.ettersend.tittel':
       'Fikk du ikke lastet opp all dokumentasjonen?',
     'dokumentasjon.ettersend.tekst.barnetilsyn':
