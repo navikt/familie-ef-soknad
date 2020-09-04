@@ -24,6 +24,8 @@ import { hentBannertittel } from '../utils/stønadstype';
 import Banner from '../components/Banner';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { default as vedleggIkon } from '../assets/vedlegg.svg';
+import { IDokumentasjon } from '../models/steg/dokumentasjon';
+import { DokumentasjonsConfig } from '../søknad/DokumentasjonsConfig';
 
 interface Vedlegg {
   id: string;
@@ -73,6 +75,14 @@ const søknadTypeTilEttersendelseUrl = (type: SøknadType) => {
   }
   return `https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/${skjemanummer}/dokumentinnsending`;
 };
+
+const hentDokumentasjonsConfigInnslagForDokumentasjonsbehov = (
+  dokumentasjonsbehov: Dokumentasjonsbehov
+): IDokumentasjon =>
+  Object.values(DokumentasjonsConfig).filter(
+    (dokumentasjon: IDokumentasjon) =>
+      dokumentasjon.id === dokumentasjonsbehov.id
+  )[0];
 
 interface DokumentasjonsbehovResponse {
   dokumentasjonsbehov: Dokumentasjonsbehov[];
@@ -160,23 +170,32 @@ const MeldingMottattApp = () => {
                     <Systemtittel>
                       Dokumentasjon som ikke ble sendt inn sammen med søknaden
                     </Systemtittel>
-                    {manglendeVedlegg.map((it) => (
-                      <div className={'tekstblokk'}>
-                        <AlertStripe type={'advarsel'} form={'inline'}>
-                          <div>
-                            <Undertittel>
-                              <LocaleTekst tekst={it.label} />
-                            </Undertittel>
-                            {/* TODO finn tittel fra dokumentasjonen */}
-                            <Normaltekst>
-                              {/* TODO skal alineas med teksten i AlertStripe*/}
-                              <LocaleTekst tekst={it.label} />{' '}
-                              {/* TODO beskrivelse */}
-                            </Normaltekst>
-                          </div>
-                        </AlertStripe>
-                      </div>
-                    ))}
+                    {manglendeVedlegg.map((it) => {
+                      const dokumentasjonsConfig = hentDokumentasjonsConfigInnslagForDokumentasjonsbehov(
+                        it
+                      );
+                      return (
+                        <div className={'tekstblokk'} key={it.id}>
+                          <AlertStripe type={'advarsel'} form={'inline'}>
+                            <div>
+                              <Undertittel>
+                                <LocaleTekst
+                                  tekst={dokumentasjonsConfig.tittel}
+                                />
+                              </Undertittel>
+                              {dokumentasjonsConfig.beskrivelse && (
+                                <Normaltekst>
+                                  {/* TODO skal alineas med teksten i AlertStripe*/}
+                                  <LocaleTekst
+                                    tekst={dokumentasjonsConfig.beskrivelse}
+                                  />
+                                </Normaltekst>
+                              )}
+                            </div>
+                          </AlertStripe>
+                        </div>
+                      );
+                    })}
 
                     <Hovedknapp
                       onClick={() => {
@@ -197,14 +216,23 @@ const MeldingMottattApp = () => {
                     </Systemtittel>
 
                     {vedlegg.map((dokumentasjonsbehov: Dokumentasjonsbehov) => (
-                      <AlertStripe type={'suksess'} form={'inline'}>
+                      <AlertStripe
+                        type={'suksess'}
+                        form={'inline'}
+                        key={dokumentasjonsbehov.id}
+                      >
                         <div>
                           <Undertittel>
-                            <LocaleTekst tekst={dokumentasjonsbehov.label} />
+                            <LocaleTekst
+                              tekst={
+                                hentDokumentasjonsConfigInnslagForDokumentasjonsbehov(
+                                  dokumentasjonsbehov
+                                ).tittel
+                              }
+                            />
                           </Undertittel>
-                          {/* TODO finn tittel fra dokumentasjonen */}
                           {dokumentasjonsbehov.opplastedeVedlegg.map((fil) => (
-                            <div className="fil">
+                            <div className="fil" key={fil.id}>
                               <img
                                 className="vedleggsikon"
                                 src={vedleggIkon}
@@ -230,10 +258,20 @@ const MeldingMottattApp = () => {
 
                     {harAlleredeSendtInn.map(
                       (dokumentasjonsbehov: Dokumentasjonsbehov) => (
-                        <AlertStripe type={'suksess'} form={'inline'}>
+                        <AlertStripe
+                          type={'suksess'}
+                          form={'inline'}
+                          key={dokumentasjonsbehov.id}
+                        >
                           <div>
                             <Undertittel>
-                              <LocaleTekst tekst={dokumentasjonsbehov.label} />
+                              <LocaleTekst
+                                tekst={
+                                  hentDokumentasjonsConfigInnslagForDokumentasjonsbehov(
+                                    dokumentasjonsbehov
+                                  ).tittel
+                                }
+                              />
                             </Undertittel>
                           </div>
                         </AlertStripe>

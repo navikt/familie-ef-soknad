@@ -1,8 +1,20 @@
 {
   "dokumentasjonsbehov": [
     {
-      "id": "INNGÅTT_EKTESKAP",
-      "label": "Ingått ektenskap",
+      "id": "IKKE_VILLIG_TIL_ARBEID",
+      "label": "Ikke villig til arbeid",
+      "harSendtInn": false,
+      "opplastedeVedlegg": []
+    },
+    {
+      "id": "FOR_SYK_TIL_Å_JOBBE",
+      "label": "For syk til å jobbe",
+      "harSendtInn": false,
+      "opplastedeVedlegg": []
+    },
+    {
+      "id": "LÆRLING",
+      "label": "Lærling",
       "harSendtInn": false,
       "opplastedeVedlegg": []
     },
@@ -10,13 +22,19 @@
       "id": "SAMLIVSBRUDD",
       "label": "Samlivsbrudd",
       "harSendtInn": false,
-      "opplastedeVedlegg": ["a.pdf", "b.pdf"]
+      "opplastedeVedlegg": [
+        { "id": "123", "navn": "a.pdf" },
+        { "id": "456", "navn": "b.pdf" }
+      ]
     },
     {
       "id": "BOR_PÅ_ULIKE_ADRESSER",
       "label": "Bor på ulike adresser",
       "harSendtInn": false,
-      "opplastedeVedlegg": ["c.pdf", "d.pdf"]
+      "opplastedeVedlegg": [
+        { "id": "789", "navn": "c.pdf" },
+        { "id": "987", "navn": "d.pdf" }
+      ]
     },
     {
       "id": "SEPARASJON_ELLER_SKILSMISSE",
