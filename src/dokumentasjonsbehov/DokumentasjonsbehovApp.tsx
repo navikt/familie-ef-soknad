@@ -144,7 +144,7 @@ const DokumentasjonsbehovApp = () => {
       return (
         <>
           <Helmet>
-            <title>Melding mottatt</title>
+            <title>Dokumentasjonsbehov</title>
           </Helmet>
 
           <div className={'dokumentasjonsbehov'}>
@@ -175,25 +175,28 @@ const DokumentasjonsbehovApp = () => {
                         it
                       );
                       return (
-                        <div className={'tekstblokk'} key={it.id}>
-                          <AlertStripe type={'advarsel'} form={'inline'}>
-                            <div>
-                              <Undertittel>
+                        <AlertStripe
+                          type={'advarsel'}
+                          form={'inline'}
+                          className={'tekstblokk'}
+                          key={it.id}
+                        >
+                          <div>
+                            <Undertittel>
+                              <LocaleTekst
+                                tekst={dokumentasjonsConfig.tittel}
+                              />
+                            </Undertittel>
+                            {dokumentasjonsConfig.beskrivelse && (
+                              <Normaltekst>
+                                {/* TODO skal alineas med teksten i AlertStripe*/}
                                 <LocaleTekst
-                                  tekst={dokumentasjonsConfig.tittel}
+                                  tekst={dokumentasjonsConfig.beskrivelse}
                                 />
-                              </Undertittel>
-                              {dokumentasjonsConfig.beskrivelse && (
-                                <Normaltekst>
-                                  {/* TODO skal alineas med teksten i AlertStripe*/}
-                                  <LocaleTekst
-                                    tekst={dokumentasjonsConfig.beskrivelse}
-                                  />
-                                </Normaltekst>
-                              )}
-                            </div>
-                          </AlertStripe>
-                        </div>
+                              </Normaltekst>
+                            )}
+                          </div>
+                        </AlertStripe>
                       );
                     })}
 
@@ -262,6 +265,7 @@ const DokumentasjonsbehovApp = () => {
                           type={'suksess'}
                           form={'inline'}
                           key={dokumentasjonsbehov.id}
+                          className={'tekstblokk'}
                         >
                           <div>
                             <Undertittel>
