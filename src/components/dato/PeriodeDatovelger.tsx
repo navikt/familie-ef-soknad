@@ -1,15 +1,17 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
-import FeltGruppe from '../gruppe/FeltGruppe';
 import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
 import { strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { compareAsc, isEqual } from 'date-fns';
+import { IHjelpetekst } from '../../models/felles/hjelpetekst';
+import Hjelpetekst from '../Hjelpetekst';
 
 interface Props {
   tekst: string;
+  hjelpetekst?: IHjelpetekst;
   periode: IPeriode;
   fomTekstid?: string;
   tomTekstid?: string;
@@ -21,6 +23,7 @@ interface Props {
 
 const PeriodeDatovelgere: FC<Props> = ({
   periode,
+  hjelpetekst,
   settDato,
   tekst,
   fomTekstid,
@@ -77,9 +80,16 @@ const PeriodeDatovelgere: FC<Props> = ({
 
   return (
     <>
-      <FeltGruppe classname={'utenlandsopphold__spørsmål'}>
+      <div className={'utenlandsopphold__spørsmål'}>
         <Element>{tekst}</Element>
-      </FeltGruppe>
+        {hjelpetekst && (
+          <Hjelpetekst
+            åpneTekstid={hjelpetekst.åpneTekstid}
+            innholdTekstid={hjelpetekst.innholdTekstid}
+            lukkeTekstid={hjelpetekst.lukkeTekstid}
+          />
+        )}
+      </div>
       <div className={'utenlandsopphold__periodegruppe'}>
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.fra)}

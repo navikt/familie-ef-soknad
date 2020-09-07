@@ -746,6 +746,9 @@ export default {
       'Navn på barnepassordningen eller personen som passer [0]',
     'barnepass.datovelger.periodePåBarnepass':
       'I hvilken periode har [0] denne barnepassordningen?',
+    'barnepass.hjelpetekst.periodePåBarnepass':
+      'Stønad til barnetilsyn gis normalt for 1 år av gangen, og du må søke på nytt og dokumentere utgiftene hvert år. Du trenger bare oppgi perioden du søker for nå.',
+
     'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
     'barnepass.hjelpetekst-åpne.beløp': 'Dette kan du få støtte til',
     'barnepass.hjelpetekst-innhold.beløp':
