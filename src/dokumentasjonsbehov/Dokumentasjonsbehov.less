@@ -18,12 +18,6 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(5, 1fr);
-    grid-template-areas:
-      "."
-      "veileder"
-      "veileder"
-      "veileder"
-      "veileder";
 
     .banner {
       height: 199px;
@@ -44,17 +38,6 @@
 
     @media @mobile {
       width: 100%;
-    }
-
-    .veileder {
-      margin-bottom: 4rem;
-      display: inline-block;
-    }
-
-    .nav-veileder  {
-      &__snakkeboblePil {
-        height: 0;
-      }
     }
 
     .fil {
@@ -85,10 +68,6 @@
         padding-bottom: 2rem;
       }
 
-      .typo-element {
-        font-size: 20px;
-      }
-
       .typo-normal {
         font-size: 18px;
         line-height: 26px;
@@ -97,27 +76,6 @@
       .skjemaelement__label {
         font-size: 18px;
       }
-
-      .lenke-tekst :hover {
-        background-color: @fokusFarge;
-        color: white;
-        text-decoration: none;
-      }
-
-      .lenke-tekst a {
-        color: @navBla;
-        text-decoration: underline;
-        font-size: 18px;
-        line-height: 26px;
-      }
-
-      .ekspanderbartPanel  {
-        margin-top: -2rem;
-      }
-    }
-
-    .bekreftCheckboksPanel {
-      background-color: #ffe9cc;
     }
 
     .alertstripe__tekst {
