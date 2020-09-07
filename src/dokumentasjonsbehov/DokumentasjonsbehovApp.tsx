@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentMeldingMottatt } from '../utils/søknad';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -91,6 +91,8 @@ interface DokumentasjonsbehovResponse {
   personIdent: String;
 }
 
+const useQuery = () => new URLSearchParams(useLocation().search);
+
 const DokumentasjonsbehovApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
@@ -99,7 +101,8 @@ const DokumentasjonsbehovApp = () => {
     dokumentasjonsbehovResponse,
     settDokumentasjonsbehovResponse,
   ] = useState<DokumentasjonsbehovResponse>();
-  let { soknadId } = useParams();
+  let query = useQuery().get('soknad');
+  const søknadId = query !== null ? query.toString() : '';
 
   autentiseringsInterceptor();
 
@@ -108,7 +111,7 @@ const DokumentasjonsbehovApp = () => {
   }, [autentisert]);
 
   const fetchMeldingMottatt = () => {
-    return hentMeldingMottatt(soknadId)
+    return hentMeldingMottatt(søknadId)
       .then((response) => {
         settDokumentasjonsbehovResponse(response);
       })
@@ -122,6 +125,11 @@ const DokumentasjonsbehovApp = () => {
       settFetching(false);
       return;
     }
+    if (søknadId === '') {
+      settError(true);
+      return;
+    }
+
     Promise.all([fetchMeldingMottatt()])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));

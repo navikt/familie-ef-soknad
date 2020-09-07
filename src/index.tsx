@@ -31,10 +31,7 @@ ReactDOM.render(
           <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
           <Route path={'/barnetilsyn'} component={BarnetilsynApp} />
           <Route path={'/skolepenger'} component={SkolepengerApp} />
-          <Route
-            path={'/innsendtsoknad/:soknadId'}
-            component={DokumentasjonsbehovApp}
-          />
+          <Route path={'/innsendtsoknad'} component={DokumentasjonsbehovApp} />
           <Route path={'/'} component={App} />
         </Switch>
       </Router>
