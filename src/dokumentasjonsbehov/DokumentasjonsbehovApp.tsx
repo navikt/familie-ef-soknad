@@ -27,16 +27,16 @@ import { default as vedleggIkon } from '../assets/vedlegg.svg';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../søknad/DokumentasjonsConfig';
 
-interface Vedlegg {
+interface IVedlegg {
   id: string;
   navn: string;
 }
 
-interface Dokumentasjonsbehov {
+interface IDokumentasjonsbehov {
   label: string;
   id: string;
   harSendtInn: boolean;
-  opplastedeVedlegg: Vedlegg[];
+  opplastedeVedlegg: IVedlegg[];
 }
 
 enum SøknadType {
@@ -77,7 +77,7 @@ const søknadTypeTilEttersendelseUrl = (type: SøknadType) => {
 };
 
 const hentDokumentasjonsConfigInnslagForDokumentasjonsbehov = (
-  dokumentasjonsbehov: Dokumentasjonsbehov
+  dokumentasjonsbehov: IDokumentasjonsbehov
 ): IDokumentasjon =>
   Object.values(DokumentasjonsConfig).filter(
     (dokumentasjon: IDokumentasjon) =>
@@ -85,7 +85,7 @@ const hentDokumentasjonsConfigInnslagForDokumentasjonsbehov = (
   )[0];
 
 interface DokumentasjonsbehovResponse {
-  dokumentasjonsbehov: Dokumentasjonsbehov[];
+  dokumentasjonsbehov: IDokumentasjonsbehov[];
   innsendingstidspunkt: string;
   søknadType: SøknadType;
   personIdent: String;
@@ -189,7 +189,6 @@ const DokumentasjonsbehovApp = () => {
                             </Undertittel>
                             {dokumentasjonsConfig.beskrivelse && (
                               <Normaltekst>
-                                {/* TODO skal alineas med teksten i AlertStripe*/}
                                 <LocaleTekst
                                   tekst={dokumentasjonsConfig.beskrivelse}
                                 />
@@ -218,37 +217,41 @@ const DokumentasjonsbehovApp = () => {
                       Dokumentasjon som ble sendt inn sammen med søknaden
                     </Systemtittel>
 
-                    {vedlegg.map((dokumentasjonsbehov: Dokumentasjonsbehov) => (
-                      <AlertStripe
-                        type={'suksess'}
-                        form={'inline'}
-                        key={dokumentasjonsbehov.id}
-                      >
-                        <div>
-                          <Undertittel>
-                            <LocaleTekst
-                              tekst={
-                                hentDokumentasjonsConfigInnslagForDokumentasjonsbehov(
-                                  dokumentasjonsbehov
-                                ).tittel
-                              }
-                            />
-                          </Undertittel>
-                          {dokumentasjonsbehov.opplastedeVedlegg.map((fil) => (
-                            <div className="fil" key={fil.id}>
-                              <img
-                                className="vedleggsikon"
-                                src={vedleggIkon}
-                                alt="Vedleggsikon"
+                    {vedlegg.map(
+                      (dokumentasjonsbehov: IDokumentasjonsbehov) => (
+                        <AlertStripe
+                          type={'suksess'}
+                          form={'inline'}
+                          key={dokumentasjonsbehov.id}
+                        >
+                          <div>
+                            <Undertittel>
+                              <LocaleTekst
+                                tekst={
+                                  hentDokumentasjonsConfigInnslagForDokumentasjonsbehov(
+                                    dokumentasjonsbehov
+                                  ).tittel
+                                }
                               />
-                              <Normaltekst className="filnavn">
-                                {fil.navn}
-                              </Normaltekst>
-                            </div>
-                          ))}
-                        </div>
-                      </AlertStripe>
-                    ))}
+                            </Undertittel>
+                            {dokumentasjonsbehov.opplastedeVedlegg.map(
+                              (fil) => (
+                                <div className="fil" key={fil.id}>
+                                  <img
+                                    className="vedleggsikon"
+                                    src={vedleggIkon}
+                                    alt="Vedleggsikon"
+                                  />
+                                  <Normaltekst className="filnavn">
+                                    {fil.navn}
+                                  </Normaltekst>
+                                </div>
+                              )
+                            )}
+                          </div>
+                        </AlertStripe>
+                      )
+                    )}
                   </div>
                 )}
 
@@ -260,7 +263,7 @@ const DokumentasjonsbehovApp = () => {
                     </Systemtittel>
 
                     {harAlleredeSendtInn.map(
-                      (dokumentasjonsbehov: Dokumentasjonsbehov) => (
+                      (dokumentasjonsbehov: IDokumentasjonsbehov) => (
                         <AlertStripe
                           type={'suksess'}
                           form={'inline'}
