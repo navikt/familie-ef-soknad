@@ -1,9 +1,9 @@
-import { DokumentasjonsConfig } from './DokumentasjonsConfig';
+import {DokumentasjonsConfig} from './DokumentasjonsConfig';
 import {
   AktivitetDokumentasjon,
   BarnasBostedDokumentasjon,
   BarnDokumentasjon,
-  BarnetilsynDokumentasjon,
+  BarnetilsynDokumentasjon, BosituasjonDokumentasjon, IDokumentasjon,
   OmDegDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
@@ -14,6 +14,7 @@ it('Skal ha like mange keys i dokumentasjonsconfig som vi har i enums', () => {
 
   const alleEnums: number = [
     Object.keys(SituasjonDokumentasjon).length,
+    Object.keys(BosituasjonDokumentasjon).length,
     Object.keys(BarnetilsynDokumentasjon).length,
     Object.keys(AktivitetDokumentasjon).length,
     Object.keys(BarnasBostedDokumentasjon).length,
@@ -23,5 +24,27 @@ it('Skal ha like mange keys i dokumentasjonsconfig som vi har i enums', () => {
     return last + current;
   }, 0);
 
-  expect(antallKeysIDokumentasjonsconfig).toBe(alleEnums + 2); // TODO: Fiks denne
+  //DokumentasjonsConfig inneholder to innslag av Samværsavtale, derfor har den ett innslag ekstra
+  expect(antallKeysIDokumentasjonsconfig).toBe(alleEnums + 1);
 });
+
+it('Kun id SAMVÆRSAVTALE skal ha to innslag i DokumentasjonsConfig. Disse skal ha samme tittel og beskrivelse', () => {
+  const alleInnslagGruppertPåId: Map<string, IDokumentasjon[]> = groupBy(Object.values(DokumentasjonsConfig), 'id');
+  const alleInnslagMedSammeId: IDokumentasjon[][] = Object.values(alleInnslagGruppertPåId)
+      .filter((dokumentasjonListe) => (dokumentasjonListe.length > 1));
+
+  expect(alleInnslagMedSammeId.length).toBe(1);
+  expect(alleInnslagMedSammeId[0].length).toBe(2);
+  expect(alleInnslagMedSammeId[0][0].id).toBe(BarnasBostedDokumentasjon.SAMVÆRSAVTALE);
+  expect(alleInnslagMedSammeId[0][0].tittel).toBe(alleInnslagMedSammeId[0][1].tittel);
+  expect(alleInnslagMedSammeId[0][0].beskrivelse).toBe(alleInnslagMedSammeId[0][1].beskrivelse);
+});
+
+// @ts-ignore
+const groupBy = (xs, key: string): Map<string, IDokumentasjon[]> => {
+  // @ts-ignore
+  return xs.reduce((rv, x) => {
+    (rv[x[key]] = rv[x[key]] || []).push(x);
+    return rv;
+  }, {});
+};
