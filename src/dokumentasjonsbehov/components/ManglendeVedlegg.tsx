@@ -52,6 +52,7 @@ const ManglendeVedlegg: React.FC<Props> = ({
         onClick={() => {
           window.location.href = søknadTypeTilEttersendelseUrl(søknadType);
         }}
+        className={'ettersend__button'}
       >
         Ettersend dokumentasjon
       </Hovedknapp>

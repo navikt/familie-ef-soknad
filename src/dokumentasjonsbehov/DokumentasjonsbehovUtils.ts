@@ -41,3 +41,17 @@ export const hentDokumentasjonsConfigInnslagForDokumentasjonsbehov = (
     (dokumentasjon: IDokumentasjon) =>
       dokumentasjon.id === dokumentasjonsbehov.id
   )[0];
+
+export const hentIngressTekst = (dokumentasjonMangler: boolean): string => {
+  if (dokumentasjonMangler) {
+    return (
+      'Det ser ut til at det mangler noe dokumentasjon i søknaden du har sendt oss. ' +
+      'Hvis du i mellomtiden har sendt oss dette, kan du se bort fra denne meldingen.'
+    );
+  } else {
+    return (
+      'Her kan du se dokumentasjonen du sendte inn sammen med søknaden din. ' +
+      'Du kan ettersende dokumentasjon dersom du ser at noe mangler.'
+    );
+  }
+};

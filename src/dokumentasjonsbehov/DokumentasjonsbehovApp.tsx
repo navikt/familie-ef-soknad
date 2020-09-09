@@ -15,10 +15,15 @@ import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { hentBannertittel } from '../utils/stønadstype';
 import Banner from '../components/Banner';
 import { DokumentasjonsbehovResponse } from './DokumentasjonsbehovModel';
-import { søknadTypeTilStønadType } from './DokumentasjonsbehovUtils';
+import {
+  hentIngressTekst,
+  søknadTypeTilEttersendelseUrl,
+  søknadTypeTilStønadType,
+} from './DokumentasjonsbehovUtils';
 import ManglendeVedlegg from './components/ManglendeVedlegg';
 import InnsendteVedlegg from './components/InnsendteVedlegg';
 import AlleredeInnsendtVedlegg from './components/AlleredeInnsendtVedlegg';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -96,10 +101,20 @@ const DokumentasjonsbehovApp = () => {
                 <Sidetittel>Dokumentasjon til søknaden</Sidetittel>
                 <div className="seksjon">
                   <Normaltekst>
-                    Det ser ut til at det mangler noe dokumentasjon i søknaden
-                    du har sendt oss. Hvis du i mellomtiden har sendt oss dette,
-                    kan du se bort fra denne meldingen.
+                    {hentIngressTekst(manglendeVedlegg.length > 0)}
                   </Normaltekst>
+                  {manglendeVedlegg.length === 0 && (
+                    <Hovedknapp
+                      onClick={() => {
+                        window.location.href = søknadTypeTilEttersendelseUrl(
+                          dokumentasjonsbehovResponse?.søknadType
+                        );
+                      }}
+                      className={'ettersend__button'}
+                    >
+                      Ettersend dokumentasjon
+                    </Hovedknapp>
+                  )}
                 </div>
 
                 {manglendeVedlegg.length > 0 && (
