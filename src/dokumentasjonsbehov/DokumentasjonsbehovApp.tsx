@@ -102,16 +102,16 @@ const DokumentasjonsbehovApp = () => {
                   </Normaltekst>
                 </div>
 
-                {manglendeVedlegg && (
+                {manglendeVedlegg.length > 0 && (
                   <ManglendeVedlegg
                     manglendeVedlegg={manglendeVedlegg}
                     søknadType={dokumentasjonsbehovResponse?.søknadType}
                   />
                 )}
 
-                {vedlegg && <InnsendteVedlegg vedlegg={vedlegg} />}
+                {vedlegg.length > 0 && <InnsendteVedlegg vedlegg={vedlegg} />}
 
-                {alleredeSendtInn && (
+                {alleredeSendtInn.length > 0 && (
                   <AlleredeInnsendtVedlegg
                     alleredeSendtInn={alleredeSendtInn}
                   />
