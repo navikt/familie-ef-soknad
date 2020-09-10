@@ -71,14 +71,14 @@ const Arbeidssøker: React.FC<Props> = ({
       ...arbeidssøker,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
   };
 
   const registrertSomArbeidssøkerAlert = hentSvarAlertFraSpørsmål(
     ESvar.NEI,
-    erSøkerArbeidssøker
+    erSøkerArbeidssøker(intl)
   );
 
   return (
@@ -91,7 +91,7 @@ const Arbeidssøker: React.FC<Props> = ({
 
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={erSøkerArbeidssøker}
+          spørsmål={erSøkerArbeidssøker(intl)}
           onChange={settJaNeiSpørsmål}
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
@@ -105,7 +105,7 @@ const Arbeidssøker: React.FC<Props> = ({
       {arbeidssøker.registrertSomArbeidssøkerNav && (
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={erVilligTilÅTaImotTilbud}
+            spørsmål={erVilligTilÅTaImotTilbud(intl)}
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
           />
@@ -120,7 +120,7 @@ const Arbeidssøker: React.FC<Props> = ({
       {arbeidssøker.villigTilÅTaImotTilbudOmArbeid && (
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={kanBegynneInnenEnUke}
+            spørsmål={kanBegynneInnenEnUke(intl)}
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
           />
@@ -130,7 +130,7 @@ const Arbeidssøker: React.FC<Props> = ({
       {arbeidssøker.kanBegynneInnenEnUke && (
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            spørsmål={ønsketArbeidssted}
+            spørsmål={ønsketArbeidssted(intl)}
             settSpørsmålOgSvar={settMultiSvarSpørsmål}
             valgtSvar={arbeidssøker.hvorØnskerSøkerArbeid?.verdi}
           />
@@ -139,7 +139,7 @@ const Arbeidssøker: React.FC<Props> = ({
       {arbeidssøker.hvorØnskerSøkerArbeid && (
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={ønskerHalvStillig}
+            spørsmål={ønskerHalvStillig(intl)}
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
           />

@@ -36,6 +36,7 @@ interface Props {
   onClick: any;
 }
 
+//TODO FIKS STYLING
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
   return (
     <StyledLeggTilKnapp>

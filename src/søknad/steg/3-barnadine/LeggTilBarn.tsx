@@ -45,6 +45,7 @@ const LeggTilBarn: React.FC<Props> = ({
   const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean | undefined>(
     true
   );
+  const barnetFødtSpm = barnetFødt(intl);
 
   useEffect(() => {
     if (id) {
@@ -104,11 +105,15 @@ const LeggTilBarn: React.FC<Props> = ({
     );
 
     const nyBarneListe = oppdaterBarneliste(barneListe, id, nyttBarn);
-    const erBarnFødtSvar = barnetFødt.svaralternativer.find(
+    const erBarnFødtSvar = barnetFødtSpm.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
     erBarnFødtSvar &&
-      settDokumentasjonsbehovForBarn(barnetFødt, erBarnFødtSvar, nyttBarn.id);
+      settDokumentasjonsbehovForBarn(
+        barnetFødtSpm,
+        erBarnFødtSvar,
+        nyttBarn.id
+      );
 
     settBarneListe(nyBarneListe);
 
@@ -126,7 +131,7 @@ const LeggTilBarn: React.FC<Props> = ({
 
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={barnetFødt}
+          spørsmål={barnetFødtSpm}
           onChange={settBarnFødtFelt}
           valgtSvar={født}
         />

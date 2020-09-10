@@ -137,7 +137,7 @@ const MerOmDinSituasjon: React.FC = () => {
       <SeksjonGruppe>
         <KomponentGruppe>
           <CheckboxSpørsmål
-            spørsmål={gjelderNoeAvDetteDeg}
+            spørsmål={gjelderNoeAvDetteDeg(intl)}
             settValgteSvar={settDinSituasjonFelt}
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
@@ -164,7 +164,7 @@ const MerOmDinSituasjon: React.FC = () => {
       {visNårSøkerDuStønadFra && (
         <SeksjonGruppe>
           <NårSøkerDuStønadFra
-            spørsmål={SøkerFraBestemtMånedSpm}
+            spørsmål={SøkerFraBestemtMånedSpm(intl)}
             settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
             søkerFraBestemtMåned={dinSituasjon.søkerFraBestemtMåned}
             settDato={settSøknadsdato}

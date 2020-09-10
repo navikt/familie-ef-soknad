@@ -66,16 +66,13 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
           })}
         >
           {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad =
-              intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
+            const svarISøknad = svar.svar_tekst === valgtSvar;
             return (
               <RadioPanel
-                key={svar.svar_tekstid}
+                key={svar.svar_tekst}
                 name={spørsmål.søknadid}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
+                label={svar.svar_tekst}
+                value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={() => settSpørsmålOgSvar(spørsmål, svar)}
               />

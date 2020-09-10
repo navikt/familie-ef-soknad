@@ -26,10 +26,9 @@ export const strengErMerEnnNull = (svar: string | undefined) => {
 
 export const erValgtSvarLiktSomSvar = (
   valgtSvar: string | undefined,
-  annetSvarTekstid: string,
-  intl: IntlShape
+  annetSvarTekstid: string
 ) => {
-  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
+  return valgtSvar === annetSvarTekstid;
 };
 
 export const returnerAvhukedeSvar = (
@@ -40,7 +39,7 @@ export const returnerAvhukedeSvar = (
 ) => {
   let avhukedeSvar: string[] = spørsmålliste.verdi;
   let svarider: string[] = spørsmålliste.svarid;
-  const svarTekst = hentTekst(svar.svar_tekstid, intl);
+  const svarTekst = svar.svar_tekst;
 
   if (erHuketAv) {
     avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {

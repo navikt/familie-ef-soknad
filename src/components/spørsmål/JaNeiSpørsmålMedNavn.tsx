@@ -52,12 +52,10 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   };
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
-    if (
-      (svar.svar_tekstid === ESvarTekstid.JA && valgtSvar === true) ||
-      (svar.svar_tekstid === ESvarTekstid.NEI && valgtSvar === false)
-    )
-      return true;
-    else return false;
+    return (
+      (svar.svar_tekst === ESvarTekstid.JA && valgtSvar === true) ||
+      (svar.svar_tekst === ESvarTekstid.NEI && valgtSvar === false)
+    );
   };
 
   return (
@@ -76,12 +74,10 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
 
             return (
               <RadioPanel
-                key={svar.svar_tekstid}
+                key={svar.svar_tekst}
                 name={spørsmål.søknadid}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
+                label={svar.svar_tekst}
+                value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={(e) => onClickHandle(e, spørsmål, svar)}
               />

@@ -21,7 +21,7 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
 
   const settMultiSpørsmål = (spørsmål: ISpørsmål, svar: ISvar) => {
     const søkerVilStudereHeltid = spørsmål.svaralternativer.find(
-      (svarsalternativ) => svarsalternativ.svar_tekstid === svar.svar_tekstid
+      (svarsalternativ) => svarsalternativ.svar_tekst === svar.svar_tekst
     );
     if (
       (spørsmål.søknadid === EUtdanning.heltidEllerDeltid &&
@@ -38,14 +38,14 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
   };
   return (
     <KomponentGruppe>
       <MultiSvarSpørsmål
-        spørsmål={heltidEllerDeltidSpm}
+        spørsmål={heltidEllerDeltidSpm(intl)}
         settSpørsmålOgSvar={settMultiSpørsmål}
         valgtSvar={utdanning.heltidEllerDeltid?.verdi}
         className="toKorteSvar"

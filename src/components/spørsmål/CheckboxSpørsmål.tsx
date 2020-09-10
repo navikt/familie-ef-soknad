@@ -36,8 +36,6 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   settValgteSvar,
   valgteSvar,
 }) => {
-  const intl = useIntl();
-
   return (
     <SkjemaGruppe legend={<LocaleTekst tekst={spørsmål.tekstid} />}>
       <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
@@ -49,16 +47,15 @@ const CheckboxSpørsmål: React.FC<Props> = ({
         )}
         <div className={'radioknapp__multiSvar'}>
           {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
             const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
-              return valgtSvar === svarTekst;
+              return valgtSvar === svar.svar_tekst;
             });
 
             return (
               <CheckboksPanel
-                className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekstid}`}
-                key={svar.svar_tekstid}
-                label={svarTekst}
+                className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekst}`}
+                key={svar.svar_tekst}
+                label={svar.svar_tekst}
                 checked={alleredeHuketAvISøknad}
                 onChange={() =>
                   settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)

@@ -47,7 +47,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
       spørsmålid: spørsmål.søknadid,
       svarid: svar.id,
       label: hentTekst(spørsmål.tekstid, intl),
-      verdi: hentTekst(svar.svar_tekstid, intl),
+      verdi: svar.svar_tekst,
     };
     if (
       valgtSvarNei &&
@@ -150,7 +150,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   return (
     <>
       <MultiSvarSpørsmål
-        spørsmål={SagtOppEllerRedusertStillingSpm}
+        spørsmål={SagtOppEllerRedusertStillingSpm(intl)}
         settSpørsmålOgSvar={settSagtOppEllerRedusertStilling}
         valgtSvar={sagtOppEllerRedusertStilling?.verdi}
       />

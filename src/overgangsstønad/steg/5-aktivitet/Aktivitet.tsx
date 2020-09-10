@@ -107,7 +107,7 @@ const Aktivitet: React.FC = () => {
         <CheckboxSpørsmål
           spørsmål={filtrerAktivitetSvaralternativer(
             søknad.person,
-            hvaErDinArbeidssituasjonSpm
+            hvaErDinArbeidssituasjonSpm(intl)
           )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}

@@ -24,9 +24,10 @@ export interface ISpørsmål extends ILabel {
 
 export interface ISvar {
   id: string;
-  svar_tekstid: string;
+  svar_tekst: string;
   alert_tekstid?: string;
   dokumentasjonsbehov?: IDokumentasjon;
+  ikkeBrukIntl?: boolean;
 }
 
 export interface ITekst {

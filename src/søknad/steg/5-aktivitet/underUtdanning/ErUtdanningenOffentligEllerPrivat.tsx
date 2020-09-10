@@ -21,14 +21,14 @@ const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
       ...utdanning,
       [spørsmål.søknadid]: {
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
   };
   return (
     <KomponentGruppe>
       <MultiSvarSpørsmål
-        spørsmål={privatEllerOffentligSpm}
+        spørsmål={privatEllerOffentligSpm(intl)}
         settSpørsmålOgSvar={settMultiSpørsmål}
         valgtSvar={utdanning.offentligEllerPrivat?.verdi}
         className="toKorteSvar"

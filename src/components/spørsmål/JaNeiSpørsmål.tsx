@@ -3,6 +3,7 @@ import {
   ISpørsmål,
   ISvar,
   ESvarTekstid,
+  ESvar,
 } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
@@ -52,9 +53,10 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
+    console.log('svar', svar.svar_tekst);
     return (
-      (svar.svar_tekstid === ESvarTekstid.JA && valgtSvar === true) ||
-      (svar.svar_tekstid === ESvarTekstid.NEI && valgtSvar === false)
+      (svar.id === ESvar.JA && valgtSvar === true) ||
+      (svar.id === ESvar.NEI && valgtSvar === false)
     );
   };
 
@@ -74,13 +76,11 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
 
             return (
               <RadioPanel
-                className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekstid}`}
-                key={svar.svar_tekstid}
+                className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekst}`}
+                key={svar.svar_tekst}
                 name={spørsmål.søknadid}
-                label={intl.formatMessage({
-                  id: svar.svar_tekstid,
-                })}
-                value={svar.svar_tekstid}
+                label={svar.svar_tekst}
+                value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={(e) => onClickHandle(e, spørsmål, svar)}
               />

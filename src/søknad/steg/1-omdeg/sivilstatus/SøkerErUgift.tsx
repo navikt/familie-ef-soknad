@@ -11,6 +11,7 @@ import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
 import React from 'react';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import Show from '../../../../utils/showIf';
+import { useIntl } from 'react-intl';
 
 interface Props {
   sivilstatus: any;
@@ -23,6 +24,7 @@ const SøkerErUgift: React.FC<Props> = ({
   settSivilstatusFelt,
   erUformeltGift,
 }: Props) => {
+  const intl = useIntl();
   const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
     for (const [key, value] of Object.entries(sivilstatus)) {
       if (key === spørsmål.søknadid && value !== undefined) {
@@ -44,14 +46,17 @@ const SøkerErUgift: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={erUformeltGiftSpørsmål}
+          spørsmål={erUformeltGiftSpørsmål(intl)}
           onChange={settSivilstatusFelt}
-          valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål, sivilstatus)}
+          valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål(intl), sivilstatus)}
         />
         <Show if={harSvartJaPåUformeltGift}>
           <AlertstripeDokumentasjon>
             <LocaleTekst
-              tekst={hentSvarAlertFraSpørsmål(ESvar.JA, erUformeltGiftSpørsmål)}
+              tekst={hentSvarAlertFraSpørsmål(
+                ESvar.JA,
+                erUformeltGiftSpørsmål(intl)
+              )}
             />
           </AlertstripeDokumentasjon>
         </Show>
@@ -59,10 +64,10 @@ const SøkerErUgift: React.FC<Props> = ({
       <Show if={harSvartPåUformeltGiftSpørsmålet}>
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={erUformeltSeparertEllerSkiltSpørsmål}
+            spørsmål={erUformeltSeparertEllerSkiltSpørsmål(intl)}
             onChange={settSivilstatusFelt}
             valgtSvar={hentValgtSvar(
-              erUformeltSeparertEllerSkiltSpørsmål,
+              erUformeltSeparertEllerSkiltSpørsmål(intl),
               sivilstatus
             )}
           />
@@ -71,7 +76,7 @@ const SøkerErUgift: React.FC<Props> = ({
               <LocaleTekst
                 tekst={hentSvarAlertFraSpørsmål(
                   ESvar.JA,
-                  erUformeltSeparertEllerSkiltSpørsmål
+                  erUformeltSeparertEllerSkiltSpørsmål(intl)
                 )}
               />
             </AlertstripeDokumentasjon>

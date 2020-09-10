@@ -35,10 +35,10 @@ const BosituasjonSpørsmål: FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne;
+  const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne(intl);
 
   const settBosituasjonFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const svarTekst: string = hentTekst(svar.svar_tekstid, intl);
+    const svarTekst: string = svar.svar_tekst;
     const spørsmålTekst: string = hentTekst(spørsmål.tekstid, intl);
 
     const nyBosituasjon = {
@@ -59,8 +59,7 @@ const BosituasjonSpørsmål: FC<Props> = ({
     | undefined = hovedSpørsmål.svaralternativer.find((svar) =>
     erValgtSvarLiktSomSvar(
       bosituasjon.delerBoligMedAndreVoksne.verdi,
-      svar.svar_tekstid,
-      intl
+      svar.svar_tekst
     )
   );
 

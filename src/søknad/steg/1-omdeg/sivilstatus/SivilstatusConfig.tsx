@@ -8,8 +8,9 @@ import {
   ESvarTekstid,
   ISpørsmål,
 } from '../../../../models/felles/spørsmålogsvar';
-import { NeiSvar } from '../../../../helpers/svar';
+import { JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
+import { IntlShape } from 'react-intl';
 
 // DOKUMENTASJON CONFIG
 
@@ -27,21 +28,17 @@ export const BekreftelseSeparasjonSøknad: IDokumentasjon =
 
 // SPØRSMÅL CONFIG
 
-export const SeparasjonSpørsmål: ISpørsmål = {
+export const SeparasjonSpørsmål = (intl: IntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.harSøktSeparasjon,
   tekstid: 'sivilstatus.spm.søktSeparasjon',
   flersvar: false,
   svaralternativer: [
-    {
-      id: ESvar.JA,
-      svar_tekstid: ESvarTekstid.JA,
-      dokumentasjonsbehov: BekreftelseSeparasjonSøknad,
-    },
-    NeiSvar,
+    { ...JaSvar(intl), dokumentasjonsbehov: BekreftelseSeparasjonSøknad },
+    NeiSvar(intl),
   ],
-};
+});
 
-export const erUformeltGiftSpørsmål: ISpørsmål = {
+export const erUformeltGiftSpørsmål = (intl: IntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.erUformeltGift,
   tekstid: 'sivilstatus.spm.erUformeltGift',
   lesmer: {
@@ -52,31 +49,31 @@ export const erUformeltGiftSpørsmål: ISpørsmål = {
   flersvar: false,
   svaralternativer: [
     {
-      id: ESvar.JA,
-      svar_tekstid: ESvarTekstid.JA,
+      ...JaSvar(intl),
       alert_tekstid: 'sivilstatus.alert.erUformeltGift',
       dokumentasjonsbehov: DokumentasjonInngåttEkteskap,
     },
-    NeiSvar,
+    NeiSvar(intl),
   ],
-};
+});
 
-export const erUformeltSeparertEllerSkiltSpørsmål: ISpørsmål = {
+export const erUformeltSeparertEllerSkiltSpørsmål = (
+  intl: IntlShape
+): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   tekstid: 'sivilstatus.spm.erUformeltSeparertEllerSkilt',
   flersvar: false,
   svaralternativer: [
     {
-      id: ESvar.JA,
-      svar_tekstid: ESvarTekstid.JA,
+      ...JaSvar(intl),
       alert_tekstid: 'sivilstatus.alert.erUformeltSeparertEllerSkilt',
       dokumentasjonsbehov: DokumentasjonUformeltSeparertEllerSkilt,
     },
-    NeiSvar,
+    NeiSvar(intl),
   ],
-};
+});
 
-export const BegrunnelseSpørsmål: ISpørsmål = {
+export const BegrunnelseSpørsmål = (intl: IntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,
@@ -88,26 +85,32 @@ export const BegrunnelseSpørsmål: ISpørsmål = {
   svaralternativer: [
     {
       id: EBegrunnelse.samlivsbruddForeldre,
-      svar_tekstid: 'sivilstatus.svar.samlivsbruddForeldre',
+      svar_tekst: intl.formatMessage({
+        id: 'sivilstatus.svar.samlivsbruddForeldre',
+      }),
       alert_tekstid: 'sivilstatus.alert.samlivsbrudd',
       dokumentasjonsbehov: ErklæringSamlivsbrudd,
     },
     {
       id: EBegrunnelse.samlivsbruddAndre,
-      svar_tekstid: 'sivilstatus.svar.samlivsbruddAndre',
+      svar_tekst: intl.formatMessage({
+        id: 'sivilstatus.svar.samlivsbruddAndre',
+      }),
     },
     {
       id: EBegrunnelse.aleneFraFødsel,
-      svar_tekstid: 'sivilstatus.svar.aleneFraFødsel',
+      svar_tekst: intl.formatMessage({ id: 'sivilstatus.svar.aleneFraFødsel' }),
     },
     {
       id: EBegrunnelse.endringISamværsordning,
-      svar_tekstid: 'sivilstatus.svar.endringISamværsordning',
+      svar_tekst: intl.formatMessage({
+        id: 'sivilstatus.svar.endringISamværsordning',
+      }),
     },
     {
       id: EBegrunnelse.dødsfall,
-      svar_tekstid: 'sivilstatus.svar.dødsfall',
+      svar_tekst: intl.formatMessage({ id: 'sivilstatus.svar.dødsfall' }),
       alert_tekstid: 'sivilstatus.alert.dødsfall',
     },
   ],
-};
+});
