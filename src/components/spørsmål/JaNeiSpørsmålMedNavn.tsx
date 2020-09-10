@@ -4,8 +4,7 @@ import {
   ISvar,
   ESvarTekstid,
 } from '../../models/felles/spørsmålogsvar';
-import { Element } from 'nav-frontend-typografi';
-import { RadioPanel } from 'nav-frontend-skjema';
+import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
@@ -62,34 +61,35 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   };
 
   return (
-    <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
-      <Element>{spørsmålTekst}</Element>
-      {spørsmål.lesmer ? (
-        <Hjelpetekst
-          åpneTekstid={spørsmål.lesmer.åpneTekstid}
-          innholdTekstid={spørsmål.lesmer.innholdTekstid}
-        />
-      ) : null}
-      <div className={'radioknapp__jaNeiSvar'}>
-        {spørsmål.svaralternativer.map((svar: ISvar) => {
-          const svarISøknad =
-            valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
+    <SkjemaGruppe legend={spørsmålTekst}>
+      <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
+        {spørsmål.lesmer && (
+          <Hjelpetekst
+            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+            innholdTekstid={spørsmål.lesmer.innholdTekstid}
+          />
+        )}
+        <div className={'radioknapp__jaNeiSvar'}>
+          {spørsmål.svaralternativer.map((svar: ISvar) => {
+            const svarISøknad =
+              valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
 
-          return (
-            <RadioPanel
-              key={svar.svar_tekstid}
-              name={spørsmål.søknadid}
-              label={intl.formatMessage({
-                id: svar.svar_tekstid,
-              })}
-              value={svar.svar_tekstid}
-              checked={svarISøknad ? svarISøknad : false}
-              onChange={(e) => onClickHandle(e, spørsmål, svar)}
-            />
-          );
-        })}
-      </div>
-    </StyledJaNeiSpørsmål>
+            return (
+              <RadioPanel
+                key={svar.svar_tekstid}
+                name={spørsmål.søknadid}
+                label={intl.formatMessage({
+                  id: svar.svar_tekstid,
+                })}
+                value={svar.svar_tekstid}
+                checked={svarISøknad ? svarISøknad : false}
+                onChange={(e) => onClickHandle(e, spørsmål, svar)}
+              />
+            );
+          })}
+        </div>
+      </StyledJaNeiSpørsmål>
+    </SkjemaGruppe>
   );
 };
 

@@ -169,7 +169,6 @@ const Arbeidsgiver: React.FC<Props> = ({
         (arbeidsgiver.navn?.verdi && !inkludertArbeidsmengde)) && (
         <FeltGruppe>
           <MultiSvarSpørsmål
-            toKorteSvar={false}
             spørsmål={hvaSlagsStilling}
             settSpørsmålOgSvar={settSpørsmålOgSvar}
             valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}

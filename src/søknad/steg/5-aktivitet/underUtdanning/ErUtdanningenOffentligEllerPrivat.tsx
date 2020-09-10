@@ -31,7 +31,7 @@ const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
         spørsmål={privatEllerOffentligSpm}
         settSpørsmålOgSvar={settMultiSpørsmål}
         valgtSvar={utdanning.offentligEllerPrivat?.verdi}
-        toKorteSvar={true}
+        className="toKorteSvar"
       />
     </KomponentGruppe>
   );

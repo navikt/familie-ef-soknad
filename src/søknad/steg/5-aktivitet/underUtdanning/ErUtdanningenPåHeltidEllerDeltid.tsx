@@ -48,7 +48,7 @@ const ErUtdanningenPåHeltidEllerDeltid: React.FC<Props> = ({
         spørsmål={heltidEllerDeltidSpm}
         settSpørsmålOgSvar={settMultiSpørsmål}
         valgtSvar={utdanning.heltidEllerDeltid?.verdi}
-        toKorteSvar={true}
+        className="toKorteSvar"
       />
     </KomponentGruppe>
   );

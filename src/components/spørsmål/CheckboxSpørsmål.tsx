@@ -1,8 +1,7 @@
 import React from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
-import { Element } from 'nav-frontend-typografi';
-import { CheckboksPanel } from 'nav-frontend-skjema';
+import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';
 import Hjelpetekst from '../Hjelpetekst';
@@ -40,37 +39,36 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   const intl = useIntl();
 
   return (
-    <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
-      <Element>
-        <LocaleTekst tekst={spørsmål.tekstid} />
-      </Element>
-      {spørsmål.lesmer && (
-        <Hjelpetekst
-          åpneTekstid={spørsmål.lesmer.åpneTekstid}
-          innholdTekstid={spørsmål.lesmer.innholdTekstid}
-        />
-      )}
-      <div className={'radioknapp__multiSvar'}>
-        {spørsmål.svaralternativer.map((svar: ISvar) => {
-          const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
-          const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
-            return valgtSvar === svarTekst;
-          });
+    <SkjemaGruppe legend={<LocaleTekst tekst={spørsmål.tekstid} />}>
+      <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
+        {spørsmål.lesmer && (
+          <Hjelpetekst
+            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+            innholdTekstid={spørsmål.lesmer.innholdTekstid}
+          />
+        )}
+        <div className={'radioknapp__multiSvar'}>
+          {spørsmål.svaralternativer.map((svar: ISvar) => {
+            const svarTekst = intl.formatMessage({ id: svar.svar_tekstid });
+            const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
+              return valgtSvar === svarTekst;
+            });
 
-          return (
-            <CheckboksPanel
-              className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekstid}`}
-              key={svar.svar_tekstid}
-              label={svarTekst}
-              checked={alleredeHuketAvISøknad}
-              onChange={() =>
-                settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
-              }
-            />
-          );
-        })}
-      </div>
-    </StyledCheckboxSpørsmål>
+            return (
+              <CheckboksPanel
+                className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekstid}`}
+                key={svar.svar_tekstid}
+                label={svarTekst}
+                checked={alleredeHuketAvISøknad}
+                onChange={() =>
+                  settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
+                }
+              />
+            );
+          })}
+        </div>
+      </StyledCheckboxSpørsmål>
+    </SkjemaGruppe>
   );
 };
 

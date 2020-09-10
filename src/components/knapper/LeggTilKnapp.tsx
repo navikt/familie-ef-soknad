@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import add from '../../assets/add.svg';
 import { Element } from 'nav-frontend-typografi';
 
-const StyledLeggTilKnapp = styled.div`
+const StyledLeggTilKnapp = styled.button`
   .lenke-knapp {
     display: flex;
     margin-top: 0;

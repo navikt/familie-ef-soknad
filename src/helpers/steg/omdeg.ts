@@ -49,6 +49,7 @@ export const harSøkerTlfnr = (søker: IPerson): boolean => {
 };
 
 export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
+  console.log('sivilstatus', sivilstatus);
   const {
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
