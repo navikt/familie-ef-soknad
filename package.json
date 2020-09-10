@@ -23,7 +23,7 @@
     "@types/http-proxy-middleware": "^0.19.3",
     "@types/jest": "^24.9.1",
     "@types/node": "^12.12.50",
-    "@types/react": "^16.9.43",
+    "@types/react": "^16.9.46",
     "@types/react-aria-menubutton": "^6.2.5",
     "@types/react-datepicker": "^2.11.1",
     "@types/react-dom": "^16.9.8",
