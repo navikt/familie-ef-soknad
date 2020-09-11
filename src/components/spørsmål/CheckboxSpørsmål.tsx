@@ -1,6 +1,5 @@
 import React from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';

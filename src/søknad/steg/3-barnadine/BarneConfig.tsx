@@ -1,8 +1,4 @@
-import {
-  ESvar,
-  ESvarTekstid,
-  ISpørsmål,
-} from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import { EBarn } from '../../../models/steg/barn';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';

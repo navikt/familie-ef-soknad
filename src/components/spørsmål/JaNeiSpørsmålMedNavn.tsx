@@ -5,7 +5,6 @@ import {
   ESvarTekstid,
 } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 
@@ -41,8 +40,6 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   onChange,
   valgtSvar,
 }) => {
-  const intl = useIntl();
-
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,

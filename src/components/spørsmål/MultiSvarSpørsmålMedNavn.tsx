@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import { ISpørsmål } from '../../models/felles/spørsmålogsvar';
 import Hjelpetekst from '../Hjelpetekst';
 import { ISvar } from '../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import classNames from 'classnames';
@@ -47,8 +46,6 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
   settSpørsmålOgSvar,
   valgtSvar,
 }) => {
-  const intl = useIntl();
-
   return (
     <SkjemaGruppe legend={spørsmålTekst}>
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>

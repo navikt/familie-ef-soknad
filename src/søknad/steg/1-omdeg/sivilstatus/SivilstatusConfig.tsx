@@ -3,11 +3,7 @@ import {
   EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import {
-  ESvar,
-  ESvarTekstid,
-  ISpørsmål,
-} from '../../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
 import { IntlShape } from 'react-intl';

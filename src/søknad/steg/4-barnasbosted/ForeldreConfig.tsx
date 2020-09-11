@@ -1,8 +1,4 @@
-import {
-  ESvar,
-  ESvarTekstid,
-  ISpørsmål,
-} from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBorAnnenForelderISammeHus,
   EHarSamværMedBarn,

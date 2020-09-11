@@ -1,7 +1,6 @@
 import { ESvar, ISvar } from '../models/felles/spørsmålogsvar';
 import { IntlShape } from 'react-intl';
 import { ISpørsmålListeFelt } from '../models/søknad/søknadsfelter';
-import { hentTekst } from './søknad';
 
 export const hentBooleanFraValgtSvar = (valgtSvar: ISvar) =>
   valgtSvar.id === ESvar.JA;
