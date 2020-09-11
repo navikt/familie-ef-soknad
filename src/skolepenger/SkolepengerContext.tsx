@@ -25,6 +25,8 @@ import {
   DokumentasjonUtdanning,
   DokumentasjonUtgifterUtdanning,
 } from '../søknad/steg/5-aktivitet/AktivitetConfig';
+import { IPerson } from '../models/søknad/person';
+import { IBarn } from '../models/steg/barn';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: IntlShape): ISøknad => {
@@ -102,6 +104,17 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       );
     };
 
+    const nullstillSøknadSkolepenger = (
+      person: IPerson,
+      barnMedLabels: IBarn[]
+    ) => {
+      settSøknad({
+        ...initialState(intl),
+        person: { ...person, barn: barnMedLabels },
+      });
+      settMellomlagretSkolepenger(undefined);
+    };
+
     const settDokumentasjonsbehovForBarn = (
       spørsmål: ISpørsmål,
       valgtSvar: ISvar,
@@ -171,6 +184,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       mellomlagreSkolepenger,
       brukMellomlagretSkolepenger,
       nullstillMellomlagretSkolepenger,
+      nullstillSøknadSkolepenger,
     };
   }
 );

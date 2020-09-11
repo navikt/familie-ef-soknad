@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
@@ -6,7 +6,7 @@ import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
 import { formatDateHour } from '../../../utils/dato';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
@@ -16,10 +16,24 @@ import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/Regi
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
+import { usePersonContext } from '../../../context/PersonContext';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useSkolepengerSøknad();
+  const {
+    søknad,
+    nullstillMellomlagretSkolepenger,
+    nullstillSøknadSkolepenger,
+  } = useSkolepengerSøknad();
+  const { person } = usePersonContext();
+
+  useEffect(() => {
+    nullstillMellomlagretSkolepenger();
+    return () => {
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      nullstillSøknadSkolepenger(person, barnelisteMedLabels);
+    };
+  }, [nullstillMellomlagretSkolepenger, nullstillSøknadSkolepenger, person]);
 
   const mottattAlert: string =
     hentTekst('kvittering.skolepenger.alert.mottatt', intl) +

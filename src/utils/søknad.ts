@@ -7,6 +7,8 @@ import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
+import { standardLabelsBarn } from '../helpers/labels';
+import { IBarn } from '../models/steg/barn';
 
 export const hentPersonData = () => {
   return axios
@@ -146,3 +148,11 @@ export const unikeDokumentasjonsbehov = (
 ) => {
   return alle.findIndex((item) => item.id === behov.id) === index;
 };
+
+export const oppdaterBarnMedLabel = (barneliste: IBarn[]) =>
+  barneliste.map((barn: any) => {
+    const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
+    barnMedLabel['ident'] = barnMedLabel['fnr'];
+    delete barnMedLabel.fnr;
+    return barnMedLabel;
+  });

@@ -19,35 +19,39 @@ import {
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
+import { IPerson } from '../models/søknad/person';
+import { IBarn } from '../models/steg/barn';
 
 // -----------  CONTEXT  -----------
-const initialState: ISøknad = {
-  person: tomPerson,
-  sivilstatus: {},
-  medlemskap: {},
-  bosituasjon: {
-    delerBoligMedAndreVoksne: {
-      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
-      svarid: '',
-      label: '',
-      verdi: '',
+const initialState = (): ISøknad => {
+  return {
+    person: tomPerson,
+    sivilstatus: {},
+    medlemskap: {},
+    bosituasjon: {
+      delerBoligMedAndreVoksne: {
+        spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+        svarid: '',
+        label: '',
+        verdi: '',
+      },
     },
-  },
-  aktivitet: {
-    hvaErDinArbeidssituasjon: {
-      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-      svarid: [],
-      label: '',
-      verdi: [],
+    aktivitet: {
+      hvaErDinArbeidssituasjon: {
+        spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+        svarid: [],
+        label: '',
+        verdi: [],
+      },
     },
-  },
-  dokumentasjonsbehov: [],
-  harBekreftet: false,
+    dokumentasjonsbehov: [],
+    harBekreftet: false,
+  };
 };
 
 const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
-    const [søknad, settSøknad] = useState<ISøknad>(initialState);
+    const [søknad, settSøknad] = useState<ISøknad>(initialState());
 
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<
       IMellomlagretBarnetilsynSøknad
@@ -87,6 +91,17 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       return nullstillMellomlagretSøknadTilDokument(
         MellomlagredeStønadstyper.barnetilsyn
       );
+    };
+
+    const nullstillSøknadBarnetilsyn = (
+      person: IPerson,
+      barnMedLabels: IBarn[]
+    ) => {
+      settSøknad({
+        ...initialState(),
+        person: { ...person, barn: barnMedLabels },
+      });
+      settMellomlagretBarnetilsyn(undefined);
     };
 
     const settDokumentasjonsbehovForBarn = (
@@ -158,6 +173,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
       nullstillMellomlagretBarnetilsyn,
+      nullstillSøknadBarnetilsyn,
     };
   }
 );

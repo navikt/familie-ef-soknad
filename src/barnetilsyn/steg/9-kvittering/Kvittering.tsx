@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { formatDateHour } from '../../../utils/dato';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
@@ -17,13 +17,27 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/RegistrerBarnIFolkeregister';
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { usePersonContext } from '../../../context/PersonContext';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useBarnetilsynSøknad();
+  const {
+    søknad,
+    nullstillMellomlagretBarnetilsyn,
+    nullstillSøknadBarnetilsyn,
+  } = useBarnetilsynSøknad();
+  const { person } = usePersonContext();
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
     (barn) => barn.skalHaBarnepass?.verdi
   );
+
+  useEffect(() => {
+    nullstillMellomlagretBarnetilsyn();
+    return () => {
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      nullstillSøknadBarnetilsyn(person, barnelisteMedLabels);
+    };
+  }, [nullstillMellomlagretBarnetilsyn, nullstillSøknadBarnetilsyn, person]);
 
   const mottattAlert: string =
     hentTekst('kvittering.barnetilsyn.alert.mottatt', intl) +
