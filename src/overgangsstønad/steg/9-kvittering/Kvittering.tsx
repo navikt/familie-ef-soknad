@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import AlertStripe from 'nav-frontend-alertstriper';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
@@ -10,7 +10,7 @@ import TilleggsstønaderHarAktivitet from '../../../søknad/steg/9-kvittering/Ti
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
-import { hentTekst } from '../../../utils/søknad';
+import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import SyktBarn from '../../../søknad/steg/9-kvittering/SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -23,10 +23,17 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/RegistrerBarnIFolkeregister';
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { usePersonContext } from '../../../context/PersonContext';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
-  const { søknad } = useSøknad();
+  const {
+    søknad,
+    nullstillMellomlagretOvergangsstønad,
+    nullstillSøknadOvergangsstønad,
+  } = useSøknad();
+
+  const { person } = usePersonContext();
   const {
     arbeidssøker,
     underUtdanning,
@@ -35,6 +42,18 @@ const Kvittering: React.FC = () => {
     egetAS,
     etablererEgenVirksomhet,
   } = søknad.aktivitet;
+
+  useEffect(() => {
+    nullstillMellomlagretOvergangsstønad();
+    return () => {
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      nullstillSøknadOvergangsstønad(person, barnelisteMedLabels);
+    };
+  }, [
+    nullstillMellomlagretOvergangsstønad,
+    nullstillSøknadOvergangsstønad,
+    person,
+  ]);
 
   const mottattAlert: string =
     hentTekst('kvittering.alert.mottatt', intl) +
