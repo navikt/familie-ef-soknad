@@ -27,7 +27,6 @@ export interface ISvar {
   svar_tekst: string;
   alert_tekstid?: string;
   dokumentasjonsbehov?: IDokumentasjon;
-  ikkeBrukIntl?: boolean;
 }
 
 export interface ITekst {

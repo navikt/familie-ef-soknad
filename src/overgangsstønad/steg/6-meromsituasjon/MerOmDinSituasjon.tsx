@@ -57,8 +57,10 @@ const MerOmDinSituasjon: React.FC = () => {
     'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad';
 
   useEffect(() => {
-    settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
-    // eslint-disable-next-line
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
+      merOmDinSituasjon: dinSituasjon,
+    }));
   }, [dinSituasjon]);
 
   const settDinSituasjonFelt = (

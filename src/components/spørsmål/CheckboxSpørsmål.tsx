@@ -47,7 +47,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
         <div className={'radioknapp__multiSvar'}>
           {spørsmål.svaralternativer.map((svar: ISvar) => {
             const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
-              return valgtSvar === svar.svar_tekst;
+              return valgtSvar === svar.svar_tekst || valgtSvar === svar.id;
             });
 
             return (
