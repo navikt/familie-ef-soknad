@@ -61,7 +61,7 @@ const MerOmDinSituasjon: React.FC = () => {
       ...prevSøknad,
       merOmDinSituasjon: dinSituasjon,
     }));
-  }, [dinSituasjon]);
+  }, [dinSituasjon, settSøknad]);
 
   const settDinSituasjonFelt = (
     spørsmål: ISpørsmål,

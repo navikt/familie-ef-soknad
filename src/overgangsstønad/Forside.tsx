@@ -21,7 +21,6 @@ import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
-import LeggTilKnapp from '../components/knapper/LeggTilKnapp';
 
 const Forside: React.FC = () => {
   const intl = useIntl();

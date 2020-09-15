@@ -3,7 +3,6 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { useSøknad } from '../../../context/SøknadContext';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { storeForbokstaver } from '../../../utils/tekst';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { Textarea } from 'nav-frontend-skjema';
@@ -21,7 +20,7 @@ const BarnMedSærligeBehov: React.FC = () => {
   const { søknad, settSøknad } = useSøknad();
 
   const barnMedSærligeBehov = søknad.person.barn.filter(
-    (barn) => barn.harSærligeTilsynsbehov
+    (barn) => barn.særligeTilsynsbehov
   );
 
   const valgteSvar = barnMedSærligeBehov.map((barn) => barn.id);
@@ -40,11 +39,9 @@ const BarnMedSærligeBehov: React.FC = () => {
       const leggTilHarSærligeBehovFelt = () => {
         const oppdatertBarn = {
           ...barnMedSærligeBehov,
-          harSærligeTilsynsbehov: {
+          særligeTilsynsbehov: {
             verdi: '',
-            label: intl.formatMessage({
-              id: 'dinSituasjon.legend.særligTilsyn',
-            }),
+            label: 'Om barnets tilsynsbehov',
           },
         };
         return {
@@ -61,7 +58,7 @@ const BarnMedSærligeBehov: React.FC = () => {
       };
 
       const fjernSærligBehovFeltet = () => {
-        const { harSærligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
+        const { særligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
         return {
           ...prevSøknad,
           person: {
@@ -90,12 +87,12 @@ const BarnMedSærligeBehov: React.FC = () => {
     const indeksBarnSomErHuket = søknad.person.barn.findIndex(
       (barn) => barn.id === barnMedSærligeBehovBegrunnelse.id
     );
-    const barnMedSærligeBehov = søknad.person.barn[indeksBarnSomErHuket];
+    const barnMedSærligeBehov: IBarn = søknad.person.barn[indeksBarnSomErHuket];
 
     settSøknad((prevSøknad) => {
-      const oppdatertBarn = {
+      const oppdatertBarn: IBarn = {
         ...barnMedSærligeBehov,
-        harSærligeTilsynsbehov: {
+        særligeTilsynsbehov: {
           verdi: begrunnelse,
           label: intl.formatMessage({ id: 'dinSituasjon.legend.særligTilsyn' }),
         },
@@ -146,7 +143,7 @@ const BarnMedSærligeBehov: React.FC = () => {
               settBarnSærligBehovBegrunnelse(barn, e.target.value)
             }
             label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
-            value={barn.harSærligeTilsynsbehov?.verdi || ''}
+            value={barn.særligeTilsynsbehov?.verdi || ''}
             maxLength={MAX_LENGDE_BEGRUNDELSE}
           />
         );

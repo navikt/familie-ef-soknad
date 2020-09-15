@@ -16,7 +16,7 @@ export interface IBarn {
   født?: ISpørsmålBooleanFelt;
   lagtTil?: boolean;
   forelder?: IForelder;
-  harSærligeTilsynsbehov?: ITekstFelt;
+  særligeTilsynsbehov?: ITekstFelt;
   skalHaBarnepass?: IBooleanFelt; // Gjelder kun barnetilsyn
   barnepass?: IBarnepass; // Gjelder kun barnetilsyn
 }
