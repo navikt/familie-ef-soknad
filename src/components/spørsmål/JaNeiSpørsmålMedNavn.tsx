@@ -1,9 +1,5 @@
 import React, { SyntheticEvent } from 'react';
-import {
-  ISpørsmål,
-  ISvar,
-  ESvarTekstid,
-} from '../../models/felles/spørsmålogsvar';
+import { ISpørsmål, ISvar, ESvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
@@ -50,8 +46,8 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
     return (
-      (svar.svar_tekst === ESvarTekstid.JA && valgtSvar === true) ||
-      (svar.svar_tekst === ESvarTekstid.NEI && valgtSvar === false)
+      (svar.id === ESvar.JA && valgtSvar === true) ||
+      (svar.id === ESvar.NEI && valgtSvar === false)
     );
   };
 
