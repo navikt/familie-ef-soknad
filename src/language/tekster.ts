@@ -477,7 +477,7 @@ export default {
     'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
     'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
 
-    'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
+    'arbeidsforhold.label.navn': 'Navn på arbeidssted',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
     'arbeidsforhold.label.ansettelsesforhold':
       'Hva slags ansettelsesforhold har du?',
@@ -879,7 +879,7 @@ export default {
       'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
     'dokumentasjon.arbeidskontrakt.beskrivelse':
       'Dokumentasjonen må tydelig vise: <ul>' +
-      '<li>navn på arbeidsgiver</li>' +
+      '<li>navn på arbeidssted</li>' +
       '<li>stillingsprosent</li>' +
       '<li>dato for oppstart</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
