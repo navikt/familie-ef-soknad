@@ -689,7 +689,7 @@ export default {
     'dinSituasjon.legend.særligTilsyn':
       'Hvilket av barne dine har behov for særlig tilsyn?',
     'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
-    'harBarnMedSærligeBehov.alert-dok.tittel':
+    'dinSituasjon.alert-dok.tittel':
       'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
 
     'harBarnMedSærligeBehov.alert-dok.beskrivelse':
