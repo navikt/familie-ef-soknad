@@ -9,11 +9,13 @@ export const erJaNeiSvar = (svar: ISvar) => {
   return svar.id === ESvar.JA || svar.id === ESvar.NEI;
 };
 
-export const harValgtSvar = (svar: boolean | undefined | string) => {
+export const harValgtSvar = (svar: boolean | undefined | string | string[]) => {
   if (typeof svar === 'boolean') {
     return true;
   } else if (typeof svar === 'string') {
     return svar.toString() !== '';
+  } else if (Array.isArray(svar) && svar.length > 0) {
+    return true;
   } else {
     return false;
   }

@@ -26,8 +26,8 @@ const BarnMedSærligeBehovBegrunnelse = () => {
     const oppdatertBarn: IBarn = {
       ...barnMedSærligeBehov,
       særligeTilsynsbehov: {
+        ...barnMedSærligeBehov.særligeTilsynsbehov!,
         verdi: begrunnelse,
-        label: intl.formatMessage({ id: 'dinSituasjon.legend.særligTilsyn' }),
       },
     };
     oppdaterBarnISoknaden(oppdatertBarn, indeksBarnSomErHuket);
@@ -37,14 +37,16 @@ const BarnMedSærligeBehovBegrunnelse = () => {
     <>
       {barnMedSærligeBehov.map((barn) => {
         return (
-          <Textarea
-            onChange={(e) =>
-              settBarnSærligBehovBegrunnelse(barn, e.target.value)
-            }
-            label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
-            value={barn.særligeTilsynsbehov?.verdi || ''}
-            maxLength={MAX_LENGDE_BEGRUNDELSE}
-          />
+          <div className="blokk-m">
+            <Textarea
+              onChange={(e) =>
+                settBarnSærligBehovBegrunnelse(barn, e.target.value)
+              }
+              label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
+              value={barn.særligeTilsynsbehov?.verdi || ''}
+              maxLength={MAX_LENGDE_BEGRUNDELSE}
+            />
+          </div>
         );
       })}
     </>

@@ -1,7 +1,10 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import {
+  hentBarnetsNavnEllerBeskrivelse,
+  hentBarnetsNavnEllerBeskrivelseMedGenetiv,
+} from '../../../utils/barn';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -28,7 +31,15 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
         ...barnMedSærligeBehov,
         særligeTilsynsbehov: {
           verdi: '',
-          label: 'Om barnets tilsynsbehov',
+          label: intl.formatMessage(
+            { id: 'dinSituasjon.label.særligTilsyn' },
+            {
+              barnetsNavn: hentBarnetsNavnEllerBeskrivelseMedGenetiv(
+                barnMedSærligeBehov,
+                intl
+              ),
+            }
+          ),
         },
       };
       oppdaterBarnISoknaden(oppdatertBarn, indeksBarnSomErHuket);
@@ -38,7 +49,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     }
   };
 
-  const barnSvarsAlternativer: ISvar[] = barnMedSærligeBehov.map((barn) => ({
+  const barnSvarsAlternativer: ISvar[] = søknad.person.barn.map((barn) => ({
     id: barn.id,
     svar_tekst: hentBarnetsNavnEllerBeskrivelse(barn, intl),
   }));

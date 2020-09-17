@@ -13,6 +13,14 @@ export const hentSpørsmålTekstMedNavnEllerBarn = (
   return hentBeskjedMedNavn(navnEllerBarn, hentTekst(spørsmålTekstid, intl));
 };
 
+export const hentBarnetsNavnEllerBeskrivelseMedGenetiv = (
+  barn: IBarn,
+  intl: IntlShape
+) => {
+  const barnetsNavn = hentBarnetsNavnEllerBeskrivelse(barn, intl);
+  return barn.navn.verdi ? `${barnetsNavn}s` : `${barnetsNavn} sitt`;
+};
+
 export const hentBarnetsNavnEllerBeskrivelse = (
   barn: IBarn,
   intl: IntlShape
