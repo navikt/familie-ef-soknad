@@ -1006,7 +1006,7 @@ export default {
       'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
     'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
       'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
-      'Dersom du tjener mer enn 599 148 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
+      'Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
       'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
     'kvittering.lenke.tilleggsstønader.aktivitetskrav':
       'Les mer om stønad til barnetilsyn',
