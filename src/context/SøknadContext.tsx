@@ -22,42 +22,45 @@ import { useIntl } from 'react-intl';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
 import { oppdaterBarneliste } from '../utils/barn';
+import { IPerson } from '../models/søknad/person';
 
 // -----------  CONTEXT  -----------
-const initialState: ISøknad = {
-  person: tomPerson,
-  sivilstatus: {},
-  medlemskap: {},
-  bosituasjon: {
-    delerBoligMedAndreVoksne: {
-      spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
-      svarid: '',
-      label: '',
-      verdi: '',
+const initialState = (): ISøknad => {
+  return {
+    person: tomPerson,
+    sivilstatus: {},
+    medlemskap: {},
+    bosituasjon: {
+      delerBoligMedAndreVoksne: {
+        spørsmålid: EBosituasjon.delerBoligMedAndreVoksne,
+        svarid: '',
+        label: '',
+        verdi: '',
+      },
     },
-  },
-  aktivitet: {
-    hvaErDinArbeidssituasjon: {
-      spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
-      svarid: [],
-      label: '',
-      verdi: [],
+    aktivitet: {
+      hvaErDinArbeidssituasjon: {
+        spørsmålid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
+        svarid: [],
+        label: '',
+        verdi: [],
+      },
     },
-  },
-  merOmDinSituasjon: {
-    gjelderDetteDeg: {
-      spørsmålid: ESituasjon.gjelderDetteDeg,
-      svarid: [],
-      label: '',
-      verdi: [],
+    merOmDinSituasjon: {
+      gjelderDetteDeg: {
+        spørsmålid: ESituasjon.gjelderDetteDeg,
+        svarid: [],
+        label: '',
+        verdi: [],
+      },
     },
-  },
-  dokumentasjonsbehov: [],
-  harBekreftet: false,
+    dokumentasjonsbehov: [],
+    harBekreftet: false,
+  };
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
-  const [søknad, settSøknad] = useState<ISøknad>(initialState);
+  const [søknad, settSøknad] = useState<ISøknad>(initialState());
   const [
     mellomlagretOvergangsstønad,
     settMellomlagretOvergangsstønad,
@@ -97,6 +100,17 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     return nullstillMellomlagretSøknadTilDokument(
       MellomlagredeStønadstyper.overgangsstønad
     );
+  };
+
+  const nullstillSøknadOvergangsstønad = (
+    person: IPerson,
+    barnMedLabels: IBarn[]
+  ) => {
+    settSøknad({
+      ...initialState(),
+      person: { ...person, barn: barnMedLabels },
+    });
+    settMellomlagretOvergangsstønad(undefined);
   };
 
   const settDokumentasjonsbehovForBarn = (
@@ -176,6 +190,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
     oppdaterBarnISoknaden,
+    nullstillSøknadOvergangsstønad,
   };
 });
 

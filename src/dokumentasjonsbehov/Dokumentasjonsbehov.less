@@ -1,0 +1,92 @@
+.dokumentasjonsbehov {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+
+  .ie-feil {
+    margin-bottom: 2rem;
+  }
+
+  & > div,
+  h1 {
+    margin-bottom: 2rem;
+  }
+  .header {
+    width: 100%;
+    height: 250px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, 1fr);
+
+    .banner {
+      height: 199px;
+      background-color: @navLillaLighten60;
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+  }
+
+  .dokumentasjonsbehov__innhold {
+    margin: auto;
+    width: @panel-bredde;
+    @media @tablet {
+      width: 100%;
+    }
+
+    @media @mobile {
+      width: 100%;
+    }
+
+    .fil {
+      position: relative;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+
+      .typo-normal {
+        display: inline-block;
+      }
+
+      .filnavn {
+        margin-left: 1rem;
+      }
+
+      .vedleggsikon {
+        position: relative;
+        top: 5px;
+      }
+    }
+
+    .seksjon  {
+      .tekstblokk {
+        padding-bottom: 2rem;
+      }
+
+      .typo-systemtittel {
+        padding-bottom: 2rem;
+      }
+
+      .typo-normal {
+        font-size: 18px;
+        line-height: 26px;
+      }
+
+      .skjemaelement__label {
+        font-size: 18px;
+      }
+
+      .ettersend__button {
+        margin-top: 3rem;
+      }
+    }
+
+    .alertstripe__tekst {
+      padding-left: 1rem;
+    }
+  }
+  .dokumentasjonsbehov__panel {
+    padding: 6rem 2rem;
+  }
+}

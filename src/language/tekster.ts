@@ -755,6 +755,9 @@ export default {
       'Navn på barnepassordningen eller personen som passer [0]',
     'barnepass.datovelger.periodePåBarnepass':
       'I hvilken periode har [0] denne barnepassordningen?',
+    'barnepass.hjelpetekst.periodePåBarnepass':
+      'Stønad til barnetilsyn gis normalt for 1 år av gangen, og du må søke på nytt og dokumentere utgiftene hvert år. Du trenger bare oppgi perioden du søker for nå.',
+
     'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
     'barnepass.hjelpetekst-åpne.beløp': 'Dette kan du få støtte til',
     'barnepass.hjelpetekst-innhold.beløp':
@@ -1012,7 +1015,7 @@ export default {
       'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
     'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
       'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
-      'Dersom du tjener mer enn 599 148 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
+      'Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
       'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
     'kvittering.lenke.tilleggsstønader.aktivitetskrav':
       'Les mer om stønad til barnetilsyn',

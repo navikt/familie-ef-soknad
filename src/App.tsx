@@ -4,7 +4,7 @@ import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './overgangsstønad/Søknadsdialog';
 import TestsideInformasjon from './components/TestsideInformasjon';
-import { hentPersonData } from './utils/søknad';
+import { hentPersonData, oppdaterBarnMedLabel } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
 import { ToggleName } from './models/søknad/toggles';
@@ -15,8 +15,6 @@ import {
 import mockPersonMedBarn from './mock/mockPerson.json';
 import mockPersonUtenBarn from './mock/mockPersonUtenBarn.json';
 import mockToggles from './mock/mockToggles.json';
-import { settLabelOgVerdi } from './utils/søknad';
-import { standardLabelsBarn } from './helpers/labels';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/søknad/person';
@@ -52,12 +50,7 @@ const App = () => {
   };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
-    const barnMedLabels = barneliste.map((barn: any) => {
-      const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
-      barnMedLabel['ident'] = barnMedLabel['fnr'];
-      delete barnMedLabel.fnr;
-      return barnMedLabel;
-    });
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste);
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
   };
