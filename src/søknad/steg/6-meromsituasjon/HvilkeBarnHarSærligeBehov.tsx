@@ -2,12 +2,14 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import {
+  formatterBarnetsNavn,
   hentBarnetsNavnEllerBeskrivelse,
   hentBarnetsNavnEllerBeskrivelseMedGenetiv,
 } from '../../../utils/barn';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { useSøknad } from '../../../context/SøknadContext';
+import { storeForbokstaver } from '../../../utils/tekst';
 
 const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
@@ -27,6 +29,13 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     );
     const barnMedSærligeBehov = søknad.person.barn[indeksBarnSomErHuket];
     if (!erBarnetHuketAv) {
+      const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
+        barnMedSærligeBehov,
+        intl
+      );
+      const formattertNavn = barnMedSærligeBehov.navn.verdi
+        ? storeForbokstaver(barnetsNavn)
+        : barnetsNavn;
       const oppdatertBarn = {
         ...barnMedSærligeBehov,
         særligeTilsynsbehov: {
@@ -34,24 +43,23 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
           label: intl.formatMessage(
             { id: 'dinSituasjon.label.særligTilsyn' },
             {
-              barnetsNavn: hentBarnetsNavnEllerBeskrivelseMedGenetiv(
-                barnMedSærligeBehov,
-                intl
-              ),
+              barnetsNavn: formattertNavn,
             }
           ),
         },
       };
-      oppdaterBarnISoknaden(oppdatertBarn, indeksBarnSomErHuket);
+      oppdaterBarnISoknaden(oppdatertBarn);
     } else {
       const { særligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
-      oppdaterBarnISoknaden(barn, indeksBarnSomErHuket);
+      oppdaterBarnISoknaden(barn);
     }
   };
 
   const barnSvarsAlternativer: ISvar[] = søknad.person.barn.map((barn) => ({
     id: barn.id,
-    svar_tekst: hentBarnetsNavnEllerBeskrivelse(barn, intl),
+    svar_tekst: formatterBarnetsNavn(barn)(
+      hentBarnetsNavnEllerBeskrivelse(barn, intl)
+    ),
   }));
 
   const spørsmål: ISpørsmål = {

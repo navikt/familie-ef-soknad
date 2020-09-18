@@ -1,5 +1,4 @@
-export const storeForbokstaver = (tekster: string[]): string => {
-  const tekst = tekster.filter((s) => s).join(' ');
+export const storeForbokstaver = (tekst: string): string => {
   return tekst
     .split(' ')
     .map((ord) =>

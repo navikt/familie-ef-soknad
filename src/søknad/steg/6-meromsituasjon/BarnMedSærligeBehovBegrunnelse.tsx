@@ -1,10 +1,11 @@
 import { Textarea } from 'nav-frontend-skjema';
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import { IBarn } from '../../../models/steg/barn';
 import { IntlShape, useIntl } from 'react-intl';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
+import { storeForbokstaver } from '../../../utils/tekst';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -16,34 +17,35 @@ const BarnMedSærligeBehovBegrunnelse = () => {
   );
 
   const settBarnSærligBehovBegrunnelse = (
-    barnMedSærligeBehovBegrunnelse: IBarn,
-    begrunnelse: string
+    barnMedSærligeBehovBegrunnelse: IBarn
   ) => {
-    const indeksBarnSomErHuket = søknad.person.barn.findIndex(
-      (barn) => barn.id === barnMedSærligeBehovBegrunnelse.id
-    );
-    const barnMedSærligeBehov: IBarn = søknad.person.barn[indeksBarnSomErHuket];
-    const oppdatertBarn: IBarn = {
-      ...barnMedSærligeBehov,
-      særligeTilsynsbehov: {
-        ...barnMedSærligeBehov.særligeTilsynsbehov!,
-        verdi: begrunnelse,
-      },
+    return (event: ChangeEvent<HTMLTextAreaElement>) => {
+      const indeksBarnSomErHuket = søknad.person.barn.findIndex(
+        (barn) => barn.id === barnMedSærligeBehovBegrunnelse.id
+      );
+      const barnMedSærligeBehov: IBarn =
+        søknad.person.barn[indeksBarnSomErHuket];
+      const oppdatertBarn: IBarn = {
+        ...barnMedSærligeBehov,
+        særligeTilsynsbehov: {
+          ...barnMedSærligeBehov.særligeTilsynsbehov!,
+          verdi: event.target.value,
+        },
+      };
+      oppdaterBarnISoknaden(oppdatertBarn);
     };
-    oppdaterBarnISoknaden(oppdatertBarn, indeksBarnSomErHuket);
   };
 
   return (
     <>
       {barnMedSærligeBehov.map((barn) => {
+        const onChange = settBarnSærligBehovBegrunnelse(barn);
         return (
           <div className="blokk-m">
             <Textarea
-              onChange={(e) =>
-                settBarnSærligBehovBegrunnelse(barn, e.target.value)
-              }
+              onChange={onChange}
               label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
-              value={barn.særligeTilsynsbehov?.verdi || ''}
+              value={barn.særligeTilsynsbehov!.verdi}
               maxLength={MAX_LENGDE_BEGRUNDELSE}
             />
           </div>
@@ -57,10 +59,16 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
   barn: IBarn;
   intl: IntlShape;
 }> = (props: { barn: IBarn; intl: IntlShape }) => {
+  const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
+    props.barn,
+    props.intl
+  );
   return (
     <>
       <Element className="blokk-xs">
-        {`Om ${leggTilGenitiv(props.barn, props.intl)} tilsynsbehov`}
+        {`Om ${
+          props.barn.navn.verdi ? storeForbokstaver(barnetsNavn) : barnetsNavn
+        } tilsynsbehov`}
       </Element>
       <Normaltekst>Vi trenger opplysninger om:</Normaltekst>
       <ul>
@@ -71,11 +79,6 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
       </ul>
     </>
   );
-};
-
-const leggTilGenitiv = (barn: IBarn, intl: IntlShape) => {
-  const barnetsNavn = hentBarnetsNavnEllerBeskrivelse(barn, intl);
-  return barn.navn.verdi ? `${barnetsNavn}s` : `${barnetsNavn} sitt`;
 };
 
 export default BarnMedSærligeBehovBegrunnelse;

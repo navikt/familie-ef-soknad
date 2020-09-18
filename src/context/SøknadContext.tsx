@@ -21,7 +21,7 @@ import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
-import { oppdaterObjektIListe } from '../utils/array';
+import { oppdaterBarneliste } from '../utils/barn';
 
 // -----------  CONTEXT  -----------
 const initialState: ISøknad = {
@@ -155,19 +155,12 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     });
   };
 
-  const oppdaterBarnISoknaden = (
-    oppdatertBarn: IBarn,
-    indeksBarnSomErHuket: number
-  ) => {
+  const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
     settSøknad((prevSøknad) => ({
       ...prevSøknad,
       person: {
         ...prevSøknad.person,
-        barn: oppdaterObjektIListe<IBarn>(
-          søknad.person.barn,
-          oppdatertBarn,
-          indeksBarnSomErHuket
-        ),
+        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
       },
     }));
   };
