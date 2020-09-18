@@ -6,6 +6,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
+import './BarnMedSærligeBehovBegrunnelse.less';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -64,7 +65,7 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
     props.intl
   );
   return (
-    <>
+    <section className="om-barnets-tilsynsbehov">
       <Element className="blokk-xs">
         {`Om ${
           props.barn.navn.verdi ? storeForbokstaver(barnetsNavn) : barnetsNavn
@@ -77,7 +78,7 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
           hvordan det påvirker muligheten din til å være i yrkesrettet aktivitet
         </li>
       </ul>
-    </>
+    </section>
   );
 };
 
