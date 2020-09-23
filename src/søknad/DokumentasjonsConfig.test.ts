@@ -1,9 +1,11 @@
-import {DokumentasjonsConfig} from './DokumentasjonsConfig';
+import { DokumentasjonsConfig } from './DokumentasjonsConfig';
 import {
   AktivitetDokumentasjon,
   BarnasBostedDokumentasjon,
   BarnDokumentasjon,
-  BarnetilsynDokumentasjon, BosituasjonDokumentasjon, IDokumentasjon,
+  BarnetilsynDokumentasjon,
+  BosituasjonDokumentasjon,
+  IDokumentasjon,
   OmDegDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
@@ -29,15 +31,25 @@ it('Skal ha like mange keys i dokumentasjonsconfig som vi har i enums', () => {
 });
 
 it('Kun id SAMVÆRSAVTALE skal ha to innslag i DokumentasjonsConfig. Disse skal ha samme tittel og beskrivelse', () => {
-  const alleInnslagGruppertPåId: Map<string, IDokumentasjon[]> = groupBy(Object.values(DokumentasjonsConfig), 'id');
-  const alleInnslagMedSammeId: IDokumentasjon[][] = Object.values(alleInnslagGruppertPåId)
-      .filter((dokumentasjonListe) => (dokumentasjonListe.length > 1));
+  const alleInnslagGruppertPåId: Map<string, IDokumentasjon[]> = groupBy(
+    Object.values(DokumentasjonsConfig),
+    'id'
+  );
+  const alleInnslagMedSammeId: IDokumentasjon[][] = Object.values(
+    alleInnslagGruppertPåId
+  ).filter((dokumentasjonListe) => dokumentasjonListe.length > 1);
 
   expect(alleInnslagMedSammeId.length).toBe(1);
   expect(alleInnslagMedSammeId[0].length).toBe(2);
-  expect(alleInnslagMedSammeId[0][0].id).toBe(BarnasBostedDokumentasjon.SAMVÆRSAVTALE);
-  expect(alleInnslagMedSammeId[0][0].tittel).toBe(alleInnslagMedSammeId[0][1].tittel);
-  expect(alleInnslagMedSammeId[0][0].beskrivelse).toBe(alleInnslagMedSammeId[0][1].beskrivelse);
+  expect(alleInnslagMedSammeId[0][0].id).toBe(
+    BarnasBostedDokumentasjon.SAMVÆRSAVTALE
+  );
+  expect(alleInnslagMedSammeId[0][0].tittel).toBe(
+    alleInnslagMedSammeId[0][1].tittel
+  );
+  expect(alleInnslagMedSammeId[0][0].beskrivelse).toBe(
+    alleInnslagMedSammeId[0][1].beskrivelse
+  );
 });
 
 // @ts-ignore
