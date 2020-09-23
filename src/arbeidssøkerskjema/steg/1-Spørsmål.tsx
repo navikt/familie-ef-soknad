@@ -10,7 +10,7 @@ import {
   erSøkerArbeidssøker,
   erVilligTilÅTaImotTilbud,
   kanBegynneInnenEnUke,
-  ønskerHalvStillig,
+  ønskerHalvStilling,
   ønsketArbeidssted,
 } from '../../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -136,7 +136,7 @@ const Spørsmål: FC = () => {
         {arbeidssøker.hvorØnskerSøkerArbeid && (
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={ønskerHalvStillig}
+              spørsmål={ønskerHalvStilling}
               onChange={settJaNeiSpørsmål}
               valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
             />

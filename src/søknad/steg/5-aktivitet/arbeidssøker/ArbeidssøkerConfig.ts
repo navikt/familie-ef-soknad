@@ -84,7 +84,7 @@ export const ønsketArbeidssted: ISpørsmål = {
   ],
 };
 
-export const ønskerHalvStillig: ISpørsmål = {
+export const ønskerHalvStilling: ISpørsmål = {
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,

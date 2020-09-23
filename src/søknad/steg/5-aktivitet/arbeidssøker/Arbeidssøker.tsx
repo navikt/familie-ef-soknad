@@ -6,7 +6,7 @@ import {
   erSøkerArbeidssøker,
   erVilligTilÅTaImotTilbud,
   kanBegynneInnenEnUke,
-  ønskerHalvStillig,
+  ønskerHalvStilling,
   ønsketArbeidssted,
 } from './ArbeidssøkerConfig';
 import { IArbeidssøker } from '../../../../models/steg/aktivitet/arbeidssøker';
@@ -139,7 +139,7 @@ const Arbeidssøker: React.FC<Props> = ({
       {arbeidssøker.hvorØnskerSøkerArbeid && (
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={ønskerHalvStillig}
+            spørsmål={ønskerHalvStilling}
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
           />
