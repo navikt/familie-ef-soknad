@@ -550,7 +550,7 @@ export default {
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
     'arbeidssøker.alert.halvstilling':
-      'Som enslig mor eller far er det ikke krav til at du må søke heltidsarbeid. Det samme gjelder kvelds-, natt-, helg- og skiftarbeid. ',
+      'Du kan søke heltidsjobb, men som enslig mor eller far holder det at du jobber minst 50 prosent. Det er heller ikke krav om at du må jobbe kvelds-, natt-, helg- og skiftarbeid.',
     'arbeidssøker.tekst.tillegstønad':
       'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
       'Stønadene kan dekke utgifter til <ul>' +
