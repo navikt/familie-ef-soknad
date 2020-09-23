@@ -473,9 +473,9 @@ export default {
       'Du kan likevel få stønad hvis du ikke kan jobbe, studere eller søke arbeid på grunn av egen sykdom. Dette gjelder også hvis du har sykt barn eller mangler barnepass selv om du har søkt. Det samme gjelder dersom barnet ditt trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer.',
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
-    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
+    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidssted',
     'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
-    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidssted',
 
     'arbeidsforhold.label.navn': 'Navn på arbeidssted',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
@@ -488,8 +488,8 @@ export default {
     'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvikar eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
-    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsgivere?',
-    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til en arbeidsgiver',
+    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidssteder?',
+    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til et arbeidssted',
 
     'egetAS.tittel': 'Om aksjeselskapet ditt',
     'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
