@@ -25,11 +25,12 @@ interface Props {
 }
 const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
   const intl = useIntl();
+  const boddSammenFørSpm = boddSammenFør(intl);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,
-      [boddSammenFør.søknadid]: {
+      [boddSammenFørSpm.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
         label: hentTekst(spørsmål.tekstid, intl),
@@ -48,10 +49,10 @@ const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
     <>
       <KomponentGruppe>
         <JaNeiSpørsmålMedNavn
-          spørsmål={boddSammenFør}
+          spørsmål={boddSammenFørSpm}
           spørsmålTekst={hentBarnNavnEllerBarnet(
             barn,
-            boddSammenFør.tekstid,
+            boddSammenFørSpm.tekstid,
             intl
           )}
           onChange={(spørsmål, svar) => settHarBoddsammenFør(spørsmål, svar)}

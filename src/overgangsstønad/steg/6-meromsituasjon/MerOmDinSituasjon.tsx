@@ -19,6 +19,7 @@ import {
 import {
   harSøkerMindreEnnHalvStilling,
   harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
+  hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst,
 } from '../../../søknad/steg/6-meromsituasjon/SituasjonUtil';
 import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
@@ -30,6 +31,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -38,6 +40,7 @@ const MerOmDinSituasjon: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
+    oppdaterBarnISoknaden,
   } = useSøknad();
   const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
@@ -57,9 +60,17 @@ const MerOmDinSituasjon: React.FC = () => {
     'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad';
 
   useEffect(() => {
-    settSøknad({ ...søknad, merOmDinSituasjon: dinSituasjon });
-    // eslint-disable-next-line
-  }, [dinSituasjon]);
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
+      merOmDinSituasjon: dinSituasjon,
+    }));
+  }, [dinSituasjon, settSøknad]);
+
+  useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov(
+    søknad,
+    intl,
+    oppdaterBarnISoknaden
+  );
 
   const settDinSituasjonFelt = (
     spørsmål: ISpørsmål,
@@ -117,8 +128,10 @@ const MerOmDinSituasjon: React.FC = () => {
 
   const visNårSøkerDuStønadFra = søkerJobberMindreEnnFemtiProsent
     ? harValgtMinstEttAlternativ &&
-      harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon)
-    : harValgtMinstEttAlternativ;
+      harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon) &&
+      hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad)
+    : harValgtMinstEttAlternativ &&
+      hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad);
 
   const erAlleSpørsmålBesvart =
     søknadsdato?.verdi !== undefined ||
@@ -137,7 +150,7 @@ const MerOmDinSituasjon: React.FC = () => {
       <SeksjonGruppe>
         <KomponentGruppe>
           <CheckboxSpørsmål
-            spørsmål={gjelderNoeAvDetteDeg}
+            spørsmål={gjelderNoeAvDetteDeg(intl)}
             settValgteSvar={settDinSituasjonFelt}
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
           />
@@ -153,18 +166,20 @@ const MerOmDinSituasjon: React.FC = () => {
           );
         })}
       </SeksjonGruppe>
-      {søkerJobberMindreEnnFemtiProsent && harValgtMinstEttAlternativ && (
-        <SeksjonGruppe>
-          <HarSøkerSagtOppEllerRedusertStilling
-            dinSituasjon={dinSituasjon}
-            settDinSituasjon={settDinSituasjon}
-          />
-        </SeksjonGruppe>
-      )}
+      {søkerJobberMindreEnnFemtiProsent &&
+        harValgtMinstEttAlternativ &&
+        hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad) && (
+          <SeksjonGruppe>
+            <HarSøkerSagtOppEllerRedusertStilling
+              dinSituasjon={dinSituasjon}
+              settDinSituasjon={settDinSituasjon}
+            />
+          </SeksjonGruppe>
+        )}
       {visNårSøkerDuStønadFra && (
         <SeksjonGruppe>
           <NårSøkerDuStønadFra
-            spørsmål={SøkerFraBestemtMånedSpm}
+            spørsmål={SøkerFraBestemtMånedSpm(intl)}
             settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
             søkerFraBestemtMåned={dinSituasjon.søkerFraBestemtMåned}
             settDato={settSøknadsdato}

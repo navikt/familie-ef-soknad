@@ -8,26 +8,43 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IDinSituasjon } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
+import { ITekstFelt } from '../../../models/søknad/søknadsfelter';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
   endreInformasjonPath?: string;
+  barnMedsærligeTilsynsbehov: (ITekstFelt | undefined)[];
 }
 
 const OppsummeringDinSituasjon: React.FC<Props> = ({
   dinSituasjon,
   endreInformasjonPath,
+  barnMedsærligeTilsynsbehov,
 }) => {
   const history = useHistory();
 
-  const merOmDinSituasjon = dinSituasjon;
+  const { gjelderDetteDeg, ...rest } = dinSituasjon;
+
+  const barnMedsærligeTilsynsbehovlabelOgSvar = barnMedsærligeTilsynsbehov.reduce(
+    (acc, val, idx) => {
+      acc[`barnMedsærligeTilsynsbehov${idx}`] = val;
+      return acc;
+    },
+    {} as any
+  );
 
   return (
     <Ekspanderbartpanel
       tittel={<Undertittel>Mer om din situasjon</Undertittel>}
     >
       <StyledOppsummering>
-        <KomponentGruppe>{VisLabelOgSvar(merOmDinSituasjon)}</KomponentGruppe>
+        <KomponentGruppe>
+          {VisLabelOgSvar({
+            gjelderDetteDeg,
+            ...barnMedsærligeTilsynsbehovlabelOgSvar,
+            ...rest,
+          })}
+        </KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>
             history.push({

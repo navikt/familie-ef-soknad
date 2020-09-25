@@ -31,10 +31,10 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
   return (
     <KomponentGruppe>
       <JaNeiSpørsmålMedNavn
-        spørsmål={avtaleOmDeltBosted}
+        spørsmål={avtaleOmDeltBosted(intl)}
         spørsmålTekst={hentBarnNavnEllerBarnet(
           barn,
-          avtaleOmDeltBosted.tekstid,
+          avtaleOmDeltBosted(intl).tekstid,
           intl
         )}
         onChange={settBostedOgSamværFelt}
@@ -44,7 +44,10 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
         <>
           <AlertStripe type={'advarsel'} form={'inline'}>
             <LocaleTekst
-              tekst={hentSvarAlertFraSpørsmål(ESvar.JA, avtaleOmDeltBosted)}
+              tekst={hentSvarAlertFraSpørsmål(
+                ESvar.JA,
+                avtaleOmDeltBosted(intl)
+              )}
             />
           </AlertStripe>
           <AlertStripeDokumentasjon>

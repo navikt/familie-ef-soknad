@@ -1,7 +1,6 @@
 import { ESvar, ISvar } from '../models/felles/spørsmålogsvar';
 import { IntlShape } from 'react-intl';
 import { ISpørsmålListeFelt } from '../models/søknad/søknadsfelter';
-import { hentTekst } from './søknad';
 
 export const hentBooleanFraValgtSvar = (valgtSvar: ISvar) =>
   valgtSvar.id === ESvar.JA;
@@ -10,11 +9,13 @@ export const erJaNeiSvar = (svar: ISvar) => {
   return svar.id === ESvar.JA || svar.id === ESvar.NEI;
 };
 
-export const harValgtSvar = (svar: boolean | undefined | string) => {
+export const harValgtSvar = (svar: boolean | undefined | string | string[]) => {
   if (typeof svar === 'boolean') {
     return true;
   } else if (typeof svar === 'string') {
     return svar.toString() !== '';
+  } else if (Array.isArray(svar) && svar.length > 0) {
+    return true;
   } else {
     return false;
   }
@@ -26,10 +27,9 @@ export const strengErMerEnnNull = (svar: string | undefined) => {
 
 export const erValgtSvarLiktSomSvar = (
   valgtSvar: string | undefined,
-  annetSvarTekstid: string,
-  intl: IntlShape
+  annetSvarTekstid: string
 ) => {
-  return valgtSvar === intl.formatMessage({ id: annetSvarTekstid });
+  return valgtSvar === annetSvarTekstid;
 };
 
 export const returnerAvhukedeSvar = (
@@ -40,7 +40,7 @@ export const returnerAvhukedeSvar = (
 ) => {
   let avhukedeSvar: string[] = spørsmålliste.verdi;
   let svarider: string[] = spørsmålliste.svarid;
-  const svarTekst = hentTekst(svar.svar_tekstid, intl);
+  const svarTekst = svar.svar_tekst;
 
   if (erHuketAv) {
     avhukedeSvar = avhukedeSvar.filter((valgtSvar) => {

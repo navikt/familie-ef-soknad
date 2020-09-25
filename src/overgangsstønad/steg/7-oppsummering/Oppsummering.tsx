@@ -21,6 +21,11 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
+
+  const barnMedsærligeTilsynsbehov = søknad.person.barn
+    .filter((barn) => barn.særligeTilsynsbehov)
+    .map((barn) => barn.særligeTilsynsbehov);
+
   return (
     <>
       <Side
@@ -78,6 +83,7 @@ const Oppsummering: React.FC = () => {
             />
             <OppsummeringDinSituasjon
               dinSituasjon={søknad.merOmDinSituasjon}
+              barnMedsærligeTilsynsbehov={barnMedsærligeTilsynsbehov}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
                 ERouteOvergangsstønad.DinSituasjon
