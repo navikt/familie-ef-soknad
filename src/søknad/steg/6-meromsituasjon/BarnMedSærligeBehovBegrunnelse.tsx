@@ -7,6 +7,7 @@ import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
 import './BarnMedSærligeBehovBegrunnelse.less';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -42,14 +43,14 @@ const BarnMedSærligeBehovBegrunnelse = () => {
       {barnMedSærligeBehov.map((barn) => {
         const onChange = settBarnSærligBehovBegrunnelse(barn);
         return (
-          <div className="blokk-m">
+          <KomponentGruppe>
             <Textarea
               onChange={onChange}
               label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
               value={barn.særligeTilsynsbehov!.verdi}
               maxLength={MAX_LENGDE_BEGRUNDELSE}
             />
-          </div>
+          </KomponentGruppe>
         );
       })}
     </>

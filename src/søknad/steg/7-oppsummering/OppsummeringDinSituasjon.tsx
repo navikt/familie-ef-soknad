@@ -23,14 +23,27 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
 }) => {
   const history = useHistory();
 
+  const { gjelderDetteDeg, ...rest } = dinSituasjon;
+
+  const barnMedsærligeTilsynsbehovlabelOgSvar = barnMedsærligeTilsynsbehov.reduce(
+    (acc, val, idx) => {
+      acc[`barnMedsærligeTilsynsbehov${idx}`] = val;
+      return acc;
+    },
+    {} as any
+  );
+
   return (
     <Ekspanderbartpanel
       tittel={<Undertittel>Mer om din situasjon</Undertittel>}
     >
       <StyledOppsummering>
         <KomponentGruppe>
-          {VisLabelOgSvar(dinSituasjon)}
-          {barnMedsærligeTilsynsbehov.map((barn) => VisLabelOgSvar({ barn }))}
+          {VisLabelOgSvar({
+            gjelderDetteDeg,
+            ...barnMedsærligeTilsynsbehovlabelOgSvar,
+            ...rest,
+          })}
         </KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>

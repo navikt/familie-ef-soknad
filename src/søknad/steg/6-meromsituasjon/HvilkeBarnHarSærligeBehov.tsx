@@ -4,17 +4,21 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import {
   formatterBarnetsNavn,
   hentBarnetsNavnEllerBeskrivelse,
-  hentBarnetsNavnEllerBeskrivelseMedGenetiv,
 } from '../../../utils/barn';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { useSøknad } from '../../../context/SøknadContext';
-import { storeForbokstaver } from '../../../utils/tekst';
+import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { leggTilSærligeBehov } from './SituasjonUtil';
 
 const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
   const intl = useIntl();
 
+  //Hvis det kun er ett barn i søknaden, ska vi ikke å spørre hvilket barn det gjelder
+  if (søknad.person.barn.length === 1) {
+    return null;
+  }
   const barnMedSærligeBehov = søknad.person.barn.filter(
     (barn) => barn.særligeTilsynsbehov
   );
@@ -29,25 +33,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     );
     const barnMedSærligeBehov = søknad.person.barn[indeksBarnSomErHuket];
     if (!erBarnetHuketAv) {
-      const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
-        barnMedSærligeBehov,
-        intl
-      );
-      const formattertNavn = barnMedSærligeBehov.navn.verdi
-        ? storeForbokstaver(barnetsNavn)
-        : barnetsNavn;
-      const oppdatertBarn = {
-        ...barnMedSærligeBehov,
-        særligeTilsynsbehov: {
-          verdi: '',
-          label: intl.formatMessage(
-            { id: 'dinSituasjon.label.særligTilsyn' },
-            {
-              barnetsNavn: formattertNavn,
-            }
-          ),
-        },
-      };
+      const oppdatertBarn = leggTilSærligeBehov(barnMedSærligeBehov, intl);
       oppdaterBarnISoknaden(oppdatertBarn);
     } else {
       const { særligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
@@ -72,13 +58,13 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const valgteSvar = barnMedSærligeBehov.map((barn) => barn.id);
 
   return (
-    <div className="blokk-m">
+    <KomponentGruppe>
       <CheckboxSpørsmål
         spørsmål={spørsmål}
         valgteSvar={valgteSvar}
         settValgteSvar={settBarnTrengerSærligBehov}
       />
-    </div>
+    </KomponentGruppe>
   );
 };
 

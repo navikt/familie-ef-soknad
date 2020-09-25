@@ -10,16 +10,18 @@ import { useIntl } from 'react-intl';
 const BarnMedSærligeBehov: React.FC = () => {
   const intl = useIntl();
   return (
-    <KomponentGruppe>
-      <AlertStripeDokumentasjon>
-        <Normaltekst className="blokk-xs" style={{ fontWeight: 600 }}>
-          {intl.formatMessage({ id: 'dinSituasjon.alert-dok.tittel' })}
-        </Normaltekst>
-        <LocaleTekst tekst="harBarnMedSærligeBehov.alert-dok.beskrivelse" />
-      </AlertStripeDokumentasjon>
+    <>
+      <KomponentGruppe>
+        <AlertStripeDokumentasjon>
+          <Normaltekst className="blokk-xs" style={{ fontWeight: 600 }}>
+            {intl.formatMessage({ id: 'dinSituasjon.alert-dok.tittel' })}
+          </Normaltekst>
+          <LocaleTekst tekst="harBarnMedSærligeBehov.alert-dok.beskrivelse" />
+        </AlertStripeDokumentasjon>
+      </KomponentGruppe>
       <HvilkeBarnHarSærligeBehov />
       <BarnMedSærligeBehovBegrunnelse />
-    </KomponentGruppe>
+    </>
   );
 };
 

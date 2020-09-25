@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { client } from './sanity';
 import { ForsideType } from '../models/søknad/stønadstyper';
+import { DinSituasjonType } from '../models/steg/dinsituasjon/meromsituasjon';
+import { leggTilSærligeBehov } from '../søknad/steg/6-meromsituasjon/SituasjonUtil';
+import { ISøknad } from '../models/søknad/søknad';
+import { IntlShape } from 'react-intl';
+import { IBarn } from '../models/steg/barn';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -21,4 +26,33 @@ export const useForsideInnhold = (stønadstype: ForsideType): any => {
     // eslint-disable-next-line
   }, []);
   return innhold;
+};
+
+export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
+  søknad: ISøknad,
+  intl: IntlShape,
+  oppdaterBarnISoknaden: (barn: IBarn) => void
+): void => {
+  useEffect(() => {
+    if (søknad.person.barn.length === 1) {
+      const barn = søknad.person.barn[0];
+      const harBarnMedSærligeBehov =
+        søknad.merOmDinSituasjon.gjelderDetteDeg.svarid.findIndex(
+          (v) => v === DinSituasjonType.harBarnMedSærligeBehov
+        ) > -1;
+      if (!barn.særligeTilsynsbehov && harBarnMedSærligeBehov) {
+        const oppdatertBarn = leggTilSærligeBehov(barn, intl);
+        oppdaterBarnISoknaden(oppdatertBarn);
+      }
+      if (barn.særligeTilsynsbehov && !harBarnMedSærligeBehov) {
+        const { særligeTilsynsbehov, ...rest } = barn;
+        oppdaterBarnISoknaden(rest);
+      }
+    }
+  }, [
+    søknad.person.barn,
+    oppdaterBarnISoknaden,
+    søknad.merOmDinSituasjon.gjelderDetteDeg.svarid,
+    intl,
+  ]);
 };
