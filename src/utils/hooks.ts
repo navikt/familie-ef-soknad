@@ -36,15 +36,15 @@ export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
   useEffect(() => {
     if (søknad.person.barn.length === 1) {
       const barn = søknad.person.barn[0];
-      const harBarnMedSærligeBehov =
+      const harSvartJaPåAtHarBarnMedSærligeBehov =
         søknad.merOmDinSituasjon.gjelderDetteDeg.svarid.findIndex(
           (v) => v === DinSituasjonType.harBarnMedSærligeBehov
         ) > -1;
-      if (!barn.særligeTilsynsbehov && harBarnMedSærligeBehov) {
+      if (!barn.særligeTilsynsbehov && harSvartJaPåAtHarBarnMedSærligeBehov) {
         const oppdatertBarn = leggTilSærligeBehov(barn, intl);
         oppdaterBarnISoknaden(oppdatertBarn);
       }
-      if (barn.særligeTilsynsbehov && !harBarnMedSærligeBehov) {
+      if (barn.særligeTilsynsbehov && !harSvartJaPåAtHarBarnMedSærligeBehov) {
         const { særligeTilsynsbehov, ...rest } = barn;
         oppdaterBarnISoknaden(rest);
       }

@@ -89,7 +89,8 @@ export const hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst = (
     .map((b) => b.særligeTilsynsbehov);
 
   return harSvartJaPåHarBarnMedSærligeTilsyn
-    ? barnMedSærligeTilsyn.every((v) => (v ? v.verdi.length > 0 : false))
+    ? barnMedSærligeTilsyn.length > 0 &&
+        barnMedSærligeTilsyn.every((v) => (v ? v.verdi.length > 0 : false))
     : true;
 };
 
