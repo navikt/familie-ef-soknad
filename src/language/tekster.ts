@@ -802,8 +802,6 @@ export default {
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
 
     'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
-    'dokumentasjon.inngåttEkteskap.beskrivelse':
-      'Beskrivelse for inngått ekteskap',
     'dokumentasjon.separasjonEllerSkilsmisse.tittel':
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
