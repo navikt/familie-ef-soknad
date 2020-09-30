@@ -353,7 +353,8 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
-    'barnasbosted.hjelpetekst.bosted.apne': 'Dette er avtale om delt bosted',
+    'barnasbosted.hjelpetekst.bosted.apne':
+      ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
     'barnasbosted.hjelpetekst.bosted.innhold':
       'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
       '\n' +
