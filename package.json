@@ -44,7 +44,7 @@
     "express-http-proxy": "^1.6.2",
     "http-proxy-middleware": "^0.21.0",
     "install": "^0.13.0",
-    "iso-datestring-validator": "^2.0.5",
+    "iso-datestring-validator": "^2.1.0",
     "lodash.throttle": "^4.1.1",
     "moment": "^2.27.0",
     "mustache-express": "^1.3.0",
