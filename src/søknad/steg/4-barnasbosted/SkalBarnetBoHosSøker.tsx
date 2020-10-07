@@ -38,14 +38,15 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
+  const skalBarnetBoHosSøkerConfig = skalBarnetBoHosSøker(intl);
   const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     settForelder({
       ...forelder,
-      [skalBarnetBoHosSøker.søknadid]: {
+      [skalBarnetBoHosSøkerConfig.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst('barnasbosted.spm.skalBarnetBoHosSøker', intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
     settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
@@ -67,11 +68,11 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
       </FeltGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          key={skalBarnetBoHosSøker.søknadid}
-          spørsmål={skalBarnetBoHosSøker}
+          key={skalBarnetBoHosSøkerConfig.søknadid}
+          spørsmål={skalBarnetBoHosSøkerConfig}
           spørsmålTekst={hentBarnNavnEllerBarnet(
             barn,
-            skalBarnetBoHosSøker.tekstid,
+            skalBarnetBoHosSøkerConfig.tekstid,
             intl
           )}
           valgtSvar={forelder.skalBarnetBoHosSøker?.verdi}

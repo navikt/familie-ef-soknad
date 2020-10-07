@@ -6,6 +6,7 @@ import {
 } from '../../../../models/steg/aktivitet/utdanning';
 import { IHjelpetekst } from '../../../../models/felles/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
+import { IntlShape } from 'react-intl';
 
 // ----- TEKSTER
 export const utdanningDuKanFåStønadTil: IHjelpetekst = {
@@ -38,7 +39,7 @@ export const linjeKursGrad: ITekst = {
 
 // --- Spørsmål
 
-export const privatEllerOffentligSpm: ISpørsmål = {
+export const privatEllerOffentligSpm = (intl: IntlShape): ISpørsmål => ({
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   flersvar: false,
@@ -50,31 +51,31 @@ export const privatEllerOffentligSpm: ISpørsmål = {
   svaralternativer: [
     {
       id: EUtdanningsform.offentlig,
-      svar_tekstid: 'utdanning.svar.offentlig',
+      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.offentlig' }),
     },
     {
       id: EUtdanningsform.privat,
-      svar_tekstid: 'utdanning.svar.privat',
+      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.privat' }),
     },
   ],
-};
-export const heltidEllerDeltidSpm: ISpørsmål = {
+});
+export const heltidEllerDeltidSpm = (intl: IntlShape): ISpørsmål => ({
   søknadid: EUtdanning.heltidEllerDeltid,
   tekstid: 'utdanning.spm.studieandel',
   flersvar: false,
   svaralternativer: [
     {
       id: EStudieandel.heltid,
-      svar_tekstid: 'utdanning.svar.heltid',
+      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.heltid' }),
     },
     {
       id: EStudieandel.deltid,
-      svar_tekstid: 'utdanning.svar.deltid',
+      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.deltid' }),
     },
   ],
-};
+});
 
-export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
+export const utdanningEtterGrunnskolenSpm = (intl: IntlShape): ISpørsmål => ({
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,
@@ -83,5 +84,5 @@ export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
     innholdTekstid: 'utdanning.lesmer-innholde.grunnskolen',
     lukkeTekstid: '',
   },
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});

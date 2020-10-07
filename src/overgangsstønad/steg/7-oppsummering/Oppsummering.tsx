@@ -27,6 +27,10 @@ const Oppsummering: React.FC = () => {
     logEvent('sidevisning', { side: 'Oppsummering' });
   }, []);
 
+  const barnMedsærligeTilsynsbehov = søknad.person.barn
+    .filter((barn) => barn.særligeTilsynsbehov)
+    .map((barn) => barn.særligeTilsynsbehov);
+
   return (
     <>
       <Side
@@ -84,6 +88,7 @@ const Oppsummering: React.FC = () => {
             />
             <OppsummeringDinSituasjon
               dinSituasjon={søknad.merOmDinSituasjon}
+              barnMedsærligeTilsynsbehov={barnMedsærligeTilsynsbehov}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
                 ERouteOvergangsstønad.DinSituasjon

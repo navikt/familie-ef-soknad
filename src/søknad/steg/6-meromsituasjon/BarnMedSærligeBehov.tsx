@@ -1,31 +1,28 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import BarnMedSærligeBehovBegrunnelse from './BarnMedSærligeBehovBegrunnelse';
+import HvilkeBarnHarSærligeBehov from './HvilkeBarnHarSærligeBehov';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { Normaltekst } from 'nav-frontend-typografi';
+import { useIntl } from 'react-intl';
 
 const BarnMedSærligeBehov: React.FC = () => {
+  const intl = useIntl();
   return (
-    <KomponentGruppe>
-      <AlertStripeDokumentasjon>
-        <Normaltekst>
-          Du må legge ved dokumentasjon om barnets tilsynsbehov
-        </Normaltekst>
-        <Normaltekst>
-          <ul>
-            <li>
-              Dokumentasjon fra legen din som bekrefter at barnet har
-              medisinske, psykiske eller store sosiale problemer og trenger
-              tilsyn.
-            </li>
-            <li>
-              Dokumentasjon som beskriver hvor mye og hvordan barnet ditt
-              trenger tilsyn, og hvordan dette påvirker muligheten din til å
-              være i yrkesrettet aktivitet.
-            </li>
-          </ul>
-        </Normaltekst>
-      </AlertStripeDokumentasjon>
-    </KomponentGruppe>
+    <>
+      <KomponentGruppe>
+        <AlertStripeDokumentasjon>
+          <Normaltekst className="blokk-xs" style={{ fontWeight: 600 }}>
+            {intl.formatMessage({ id: 'dinSituasjon.alert-dok.tittel' })}
+          </Normaltekst>
+          <LocaleTekst tekst="harBarnMedSærligeBehov.alert-dok.beskrivelse" />
+        </AlertStripeDokumentasjon>
+      </KomponentGruppe>
+      <HvilkeBarnHarSærligeBehov />
+      <BarnMedSærligeBehovBegrunnelse />
+    </>
   );
 };
+
 export default BarnMedSærligeBehov;

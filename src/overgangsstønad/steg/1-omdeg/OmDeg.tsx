@@ -20,6 +20,7 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { useIntl } from 'react-intl';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import Show from '../../../utils/showIf';
 
 const OmDeg: FC = () => {
   const intl = useIntl();
@@ -34,7 +35,12 @@ const OmDeg: FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
   } = useSøknad();
-  const { harSøktSeparasjon } = søknad.sivilstatus;
+
+  const {
+    harSøktSeparasjon,
+    datoSøktSeparasjon,
+    datoFlyttetFraHverandre,
+  } = søknad.sivilstatus;
 
   useEffect(() => {
     logEvent('sidevisning', { side: 'OmDeg' });
@@ -64,7 +70,7 @@ const OmDeg: FC = () => {
     settSøknad((prevSoknad) => {
       return {
         ...prevSoknad,
-        søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
+        søkerBorPåRegistrertAdresse,
         sivilstatus: {},
         medlemskap: {},
         person: {
@@ -79,7 +85,7 @@ const OmDeg: FC = () => {
     settSøknad((prevSoknad) => {
       return {
         ...prevSoknad,
-        sivilstatus: sivilstatus,
+        sivilstatus,
       };
     });
   };
@@ -88,6 +94,22 @@ const OmDeg: FC = () => {
     søknad.sivilstatus,
     søknad.medlemskap
   );
+
+  const søkerBorPåRegistrertAdresseOgHarTlfNr =
+    søknad.søkerBorPåRegistrertAdresse &&
+    søknad.søkerBorPåRegistrertAdresse.verdi === true &&
+    harSøkerTlfnr(søknad.person);
+
+  const harFylltUtSeparasjonSpørsmålet =
+    harSøktSeparasjon !== undefined
+      ? harSøktSeparasjon.verdi
+        ? datoSøktSeparasjon && datoFlyttetFraHverandre
+        : true
+      : false;
+
+  const skallViseMedlemskapDialog =
+    harFylltUtSeparasjonSpørsmålet ||
+    erSøknadsBegrunnelseBesvart(søknad.sivilstatus);
 
   return (
     <Side
@@ -106,27 +128,20 @@ const OmDeg: FC = () => {
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
         stønadstype={Stønadstype.overgangsstønad}
       />
-
-      {søknad.søkerBorPåRegistrertAdresse &&
-        søknad.søkerBorPåRegistrertAdresse.verdi === true &&
-        harSøkerTlfnr(søknad.person) && (
-          <>
-            <Sivilstatus
-              sivilstatus={søknad.sivilstatus}
-              settSivilstatus={settSivilstatus}
-              settDokumentasjonsbehov={settDokumentasjonsbehov}
-            />
-
-            {harSøktSeparasjon ||
-            harSøktSeparasjon === false ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
-              <Medlemskap
-                medlemskap={søknad.medlemskap}
-                settMedlemskap={settMedlemskap}
-              />
-            ) : null}
-          </>
-        )}
+      <Show if={søkerBorPåRegistrertAdresseOgHarTlfNr}>
+        <Sivilstatus
+          sivilstatus={søknad.sivilstatus}
+          settSivilstatus={settSivilstatus}
+          settDokumentasjonsbehov={settDokumentasjonsbehov}
+          settMedlemskap={settMedlemskap}
+        />
+        <Show if={skallViseMedlemskapDialog}>
+          <Medlemskap
+            medlemskap={søknad.medlemskap}
+            settMedlemskap={settMedlemskap}
+          />
+        </Show>
+      </Show>
     </Side>
   );
 };

@@ -13,6 +13,7 @@ import { strengTilDato } from '../../../utils/dato';
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { oppdaterBarneliste } from '../../../utils/barn';
 
 interface Props {
   settÅpenModal: Function;
@@ -45,6 +46,7 @@ const LeggTilBarn: React.FC<Props> = ({
   const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean | undefined>(
     true
   );
+  const barnetFødtSpm = barnetFødt(intl);
 
   useEffect(() => {
     if (id) {
@@ -76,21 +78,6 @@ const LeggTilBarn: React.FC<Props> = ({
     settBoHosDeg('');
   };
 
-  const oppdaterBarneliste = (
-    barneListe: IBarn[],
-    id: string | undefined,
-    nyttBarn: IBarn
-  ) => {
-    const erEndringAvBarn = id !== undefined;
-    if (erEndringAvBarn) {
-      return barneListe.map((barn) => {
-        return barn.id === id ? nyttBarn : barn;
-      });
-    } else {
-      return [...barneListe.filter((b) => b.id !== id), nyttBarn];
-    }
-  };
-
   const leggTilEllerEndreBarn = (id: string | undefined) => {
     const nyttBarn: IBarn = hentNyttBarn(
       id,
@@ -103,12 +90,16 @@ const LeggTilBarn: React.FC<Props> = ({
       skalHaBarnepass
     );
 
-    const nyBarneListe = oppdaterBarneliste(barneListe, id, nyttBarn);
-    const erBarnFødtSvar = barnetFødt.svaralternativer.find(
+    const nyBarneListe = oppdaterBarneliste(barneListe, nyttBarn);
+    const erBarnFødtSvar = barnetFødtSpm.svaralternativer.find(
       (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
     );
     erBarnFødtSvar &&
-      settDokumentasjonsbehovForBarn(barnetFødt, erBarnFødtSvar, nyttBarn.id);
+      settDokumentasjonsbehovForBarn(
+        barnetFødtSpm,
+        erBarnFødtSvar,
+        nyttBarn.id
+      );
 
     settBarneListe(nyBarneListe);
 
@@ -126,7 +117,7 @@ const LeggTilBarn: React.FC<Props> = ({
 
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={barnetFødt}
+          spørsmål={barnetFødtSpm}
           onChange={settBarnFødtFelt}
           valgtSvar={født}
         />
