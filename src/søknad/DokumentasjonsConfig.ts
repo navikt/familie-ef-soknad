@@ -3,8 +3,7 @@ import {
   BarnasBostedDokumentasjon,
   BarnDokumentasjon,
   BarnetilsynDokumentasjon,
-  BosituasjonDokumentasjon,
-  IDokumentasjon,
+  BosituasjonDokumentasjon, IDokumentasjon,
   OmDegDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
@@ -45,35 +44,34 @@ type IDokumentasjonsConfig = {
   [key in DokumentasjonsConfigKey]: IDokumentasjon;
 };
 
-type DokumentasjonsConfigKey =
-  | 'DokumentasjonIkkeVilligTilArbeid'
-  | 'DokumentasjonSyk'
-  | 'DokumentasjonOmVirksomhetenDuEtablerer'
-  | 'DokumentasjonUtgifterUtdanning'
-  | 'DokumentasjonUtdanning'
-  | 'DokumentasjonArbeidskontrakt'
-  | 'DokumentasjonLærling'
-  | 'Terminbekreftelse'
-  | 'FakturaFraBarnepassordning'
-  | 'AvtaleMedBarnepasser'
-  | 'DokumentasjonTrengerMerPassEnnJevnaldrede'
-  | 'DokumentasjonUtenomVanligArbeidstid'
-  | 'DokumentasjonMyeBortePgaJobb'
-  | 'DokumentasjonBorPåUlikeAdresser'
-  | 'DokumentasjonBarnBorHosDeg'
-  | 'AvtaleOmDeltBosted'
-  | 'SamværsavtaleMedKonkreteTidspunkter'
-  | 'SamværsavtaleUtenKonkreteTidspunkter'
-  | 'DokumentasjonSykdom'
-  | 'DokumentasjonSyktBarn'
-  | 'DokumentasjonBarnepassMangel'
-  | 'DokumentasjonBarnetilsynBehov'
-  | 'ArbeidsforholdOgOppsigelsesårsak'
-  | 'ArbeidsforholdOgRedusertArbeidstid'
-  | 'ErklæringSamlivsbrudd'
-  | 'DokumentasjonInngåttEkteskap'
-  | 'DokumentasjonUformeltSeparertEllerSkilt'
-  | 'BekreftelseSeparasjonSøknad';
+type DokumentasjonsConfigKey = 'DokumentasjonIkkeVilligTilArbeid'
+    |'DokumentasjonSyk'
+    |'DokumentasjonOmVirksomhetenDuEtablerer'
+    |'DokumentasjonUtgifterUtdanning'
+    |'DokumentasjonUtdanning'
+    |'DokumentasjonArbeidskontrakt'
+    |'DokumentasjonLærling'
+    |'Terminbekreftelse'
+    |'FakturaFraBarnepassordning'
+    |'AvtaleMedBarnepasser'
+    |'DokumentasjonTrengerMerPassEnnJevnaldrede'
+    |'DokumentasjonUtenomVanligArbeidstid'
+    |'DokumentasjonMyeBortePgaJobb'
+    |'DokumentasjonBorPåUlikeAdresser'
+    |'DokumentasjonBarnBorHosDeg'
+    |'AvtaleOmDeltBosted'
+    |'SamværsavtaleMedKonkreteTidspunkter'
+    |'SamværsavtaleUtenKonkreteTidspunkter'
+    |'DokumentasjonSykdom'
+    |'DokumentasjonSyktBarn'
+    |'DokumentasjonBarnepassMangel'
+    |'DokumentasjonBarnetilsynBehov'
+    |'ArbeidsforholdOgOppsigelsesårsak'
+    |'ArbeidsforholdOgRedusertArbeidstid'
+    |'ErklæringSamlivsbrudd'
+    |'DokumentasjonInngåttEkteskap'
+    |'DokumentasjonUformeltSeparertEllerSkilt'
+    |'BekreftelseSeparasjonSøknad';
 
 export const DokumentasjonsConfig: IDokumentasjonsConfig = {
   //AktivitetsConfig

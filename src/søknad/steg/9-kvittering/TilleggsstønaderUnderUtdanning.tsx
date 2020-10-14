@@ -39,7 +39,9 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
           <KomponentGruppe>
             <Normaltekst>
               <Lenke
-                href={'https://www.nav.no/familie/alene-med-barn/skolepenger'}
+                href={
+                  'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-og-stonad-til-skolepenger'
+                }
               >
                 {hentTekst('kvittering.lenke.skolepenger', intl)}
               </Lenke>
@@ -73,7 +75,9 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
 
       <KomponentGruppe>
         <Lenke
-          href={'https://www.nav.no/familie/alene-med-barn/tilleggsstonader'}
+          href={
+            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-for-enslig-mor-eller-far-som-tar-utdanning-eller-er-arbeidssoker'
+          }
         >
           <Normaltekst>
             <LocaleTekst tekst={'kvittering.lenke.tilleggsstønader'} />

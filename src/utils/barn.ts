@@ -1,10 +1,9 @@
 import { IntlShape } from 'react-intl';
 import { hentTekst } from './søknad';
-import { førsteBokstavStor, hentBeskjedMedNavn } from './språk';
+import { hentBeskjedMedNavn } from './språk';
 import { IBarn } from '../models/steg/barn';
 import { ESvar } from '../models/felles/spørsmålogsvar';
 import { formatDate, strengTilDato } from './dato';
-import { storeForbokstaver } from './tekst';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
@@ -12,14 +11,6 @@ export const hentSpørsmålTekstMedNavnEllerBarn = (
   intl: IntlShape
 ) => {
   return hentBeskjedMedNavn(navnEllerBarn, hentTekst(spørsmålTekstid, intl));
-};
-
-export const hentBarnetsNavnEllerBeskrivelseMedGenetiv = (
-  barn: IBarn,
-  intl: IntlShape
-) => {
-  const barnetsNavn = hentBarnetsNavnEllerBeskrivelse(barn, intl);
-  return barn.navn.verdi ? `${barnetsNavn}s` : `${barnetsNavn} sitt`;
 };
 
 export const hentBarnetsNavnEllerBeskrivelse = (
@@ -81,24 +72,4 @@ export const hentBarnNavnEllerBarnet = (
     barnetsNavnEllerBarnet(barn, intl),
     hentTekst(tekstid, intl)
   );
-};
-
-export const oppdaterBarneliste = (barneListe: IBarn[], nyttBarn: IBarn) => {
-  const erEndringAvBarn =
-    barneListe.findIndex((barn) => barn.id === nyttBarn.id) >= 0;
-  if (erEndringAvBarn) {
-    return barneListe.map((barn) =>
-      barn.id === nyttBarn.id ? nyttBarn : barn
-    );
-  }
-  return [...barneListe, nyttBarn];
-};
-
-export const formatterBarnetsNavn = (barn: IBarn) => {
-  return (tekst: string) => {
-    if (barn.navn.verdi) {
-      return storeForbokstaver(tekst);
-    }
-    return førsteBokstavStor(tekst);
-  };
 };

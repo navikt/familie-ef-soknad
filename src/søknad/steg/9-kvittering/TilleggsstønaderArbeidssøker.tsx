@@ -35,7 +35,11 @@ const TilleggsstønaderArbeidssøker: FC = () => {
         </StyledBeskrivelse>
       </FeltGruppe>
       <KomponentGruppe>
-        <Lenke href={'https://www.nav.no/familie/alene-med-barn/skolepenger'}>
+        <Lenke
+          href={
+            'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-og-stonad-til-skolepenger'
+          }
+        >
           <Normaltekst>
             <LocaleTekst
               tekst={'kvittering.lenke.tilleggsstønader.arbeidssøker'}

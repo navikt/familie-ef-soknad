@@ -23,16 +23,15 @@ const HarForelderSkriftligSamværsavtale: FC<Props> = ({
   barn,
 }) => {
   const intl = useIntl();
-  const harDereSkriftligSamværsavtaleSpm = harDereSkriftligSamværsavtale(intl);
   return (
     <>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          key={harDereSkriftligSamværsavtaleSpm.søknadid}
-          spørsmål={harDereSkriftligSamværsavtaleSpm}
+          key={harDereSkriftligSamværsavtale.søknadid}
+          spørsmål={harDereSkriftligSamværsavtale}
           spørsmålTekst={hentBarnNavnEllerBarnet(
             barn,
-            harDereSkriftligSamværsavtaleSpm.tekstid,
+            harDereSkriftligSamværsavtale.tekstid,
             intl
           )}
           valgtSvar={forelder.harDereSkriftligSamværsavtale?.verdi}

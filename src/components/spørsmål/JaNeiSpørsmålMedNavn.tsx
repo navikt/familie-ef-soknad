@@ -1,6 +1,12 @@
 import React, { SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar, ESvar } from '../../models/felles/spørsmålogsvar';
-import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
+import {
+  ISpørsmål,
+  ISvar,
+  ESvarTekstid,
+} from '../../models/felles/spørsmålogsvar';
+import { Element } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 
@@ -36,6 +42,8 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   onChange,
   valgtSvar,
 }) => {
+  const intl = useIntl();
+
   const onClickHandle = (
     e: SyntheticEvent<EventTarget, Event>,
     spørsmål: ISpørsmål,
@@ -45,40 +53,43 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   };
 
   const erValgtSvarRadioKnapp = (svar: ISvar, valgtSvar: boolean): boolean => {
-    return (
-      (svar.id === ESvar.JA && valgtSvar === true) ||
-      (svar.id === ESvar.NEI && valgtSvar === false)
-    );
+    if (
+      (svar.svar_tekstid === ESvarTekstid.JA && valgtSvar === true) ||
+      (svar.svar_tekstid === ESvarTekstid.NEI && valgtSvar === false)
+    )
+      return true;
+    else return false;
   };
 
   return (
-    <SkjemaGruppe legend={spørsmålTekst}>
-      <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
-        {spørsmål.lesmer && (
-          <Hjelpetekst
-            åpneTekstid={spørsmål.lesmer.åpneTekstid}
-            innholdTekstid={spørsmål.lesmer.innholdTekstid}
-          />
-        )}
-        <div className={'radioknapp__jaNeiSvar'}>
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad =
-              valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
+    <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
+      <Element>{spørsmålTekst}</Element>
+      {spørsmål.lesmer ? (
+        <Hjelpetekst
+          åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          innholdTekstid={spørsmål.lesmer.innholdTekstid}
+        />
+      ) : null}
+      <div className={'radioknapp__jaNeiSvar'}>
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
+          const svarISøknad =
+            valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
 
-            return (
-              <RadioPanel
-                key={svar.svar_tekst}
-                name={spørsmål.søknadid}
-                label={svar.svar_tekst}
-                value={svar.svar_tekst}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => onClickHandle(e, spørsmål, svar)}
-              />
-            );
-          })}
-        </div>
-      </StyledJaNeiSpørsmål>
-    </SkjemaGruppe>
+          return (
+            <RadioPanel
+              key={svar.svar_tekstid}
+              name={spørsmål.søknadid}
+              label={intl.formatMessage({
+                id: svar.svar_tekstid,
+              })}
+              value={svar.svar_tekstid}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={(e) => onClickHandle(e, spørsmål, svar)}
+            />
+          );
+        })}
+      </div>
+    </StyledJaNeiSpørsmål>
   );
 };
 

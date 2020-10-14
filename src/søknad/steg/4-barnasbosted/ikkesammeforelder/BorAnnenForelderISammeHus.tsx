@@ -25,19 +25,17 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const borAnnenForelderISammeHusConfig = borAnnenForelderISammeHus(intl);
-
   const settBorAnnenForelderISammeHus = (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar
   ) => {
     const nyForelder = {
       ...forelder,
-      [borAnnenForelderISammeHusConfig.søknadid]: {
+      [borAnnenForelderISammeHus.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
         label: hentTekst('barnasbosted.spm.borAnnenForelderISammeHus', intl),
-        verdi: valgtSvar.svar_tekst,
+        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
       },
     };
 
@@ -70,11 +68,11 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
     <>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          key={borAnnenForelderISammeHusConfig.søknadid}
-          spørsmål={borAnnenForelderISammeHusConfig}
+          key={borAnnenForelderISammeHus.søknadid}
+          spørsmål={borAnnenForelderISammeHus}
           spørsmålTekst={hentBarnNavnEllerBarnet(
             barn,
-            borAnnenForelderISammeHusConfig.tekstid,
+            borAnnenForelderISammeHus.tekstid,
             intl
           )}
           valgtSvar={forelder.borAnnenForelderISammeHus?.verdi}

@@ -48,10 +48,6 @@ const BostedOgSamvær: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const harAnnenForelderSamværMedBarnConfig = harAnnenForelderSamværMedBarn(
-    intl
-  );
-
   const settBostedOgSamværFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {
       ...forelder,
@@ -61,7 +57,7 @@ const BostedOgSamvær: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: erJaNeiSvar(svar)
           ? hentBooleanFraValgtSvar(svar)
-          : svar.svar_tekst,
+          : hentTekst(svar.svar_tekstid, intl),
       },
     };
 
@@ -99,11 +95,11 @@ const BostedOgSamvær: React.FC<Props> = ({
       {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn
-            key={harAnnenForelderSamværMedBarnConfig.søknadid}
-            spørsmål={harAnnenForelderSamværMedBarnConfig}
+            key={harAnnenForelderSamværMedBarn.søknadid}
+            spørsmål={harAnnenForelderSamværMedBarn}
             spørsmålTekst={hentBarnNavnEllerBarnet(
               barn,
-              harAnnenForelderSamværMedBarnConfig.tekstid,
+              harAnnenForelderSamværMedBarn.tekstid,
               intl
             )}
             valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}

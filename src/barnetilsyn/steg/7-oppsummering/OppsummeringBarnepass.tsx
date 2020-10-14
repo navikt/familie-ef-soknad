@@ -53,7 +53,7 @@ const OppsummeringBarnepass: FC<Props> = ({
 
         return (
           <KomponentGruppe>
-            <StyledOppsummeringForBarn key={barn.id}>
+            <StyledOppsummeringForBarn>
               <FeltGruppe>
                 <BarneHeader barn={barn} />
               </FeltGruppe>

@@ -6,7 +6,6 @@ import {
 } from '../../../../models/steg/aktivitet/utdanning';
 import { IHjelpetekst } from '../../../../models/felles/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
-import { IntlShape } from 'react-intl';
 
 // ----- TEKSTER
 export const utdanningDuKanFåStønadTil: IHjelpetekst = {
@@ -39,7 +38,7 @@ export const linjeKursGrad: ITekst = {
 
 // --- Spørsmål
 
-export const privatEllerOffentligSpm = (intl: IntlShape): ISpørsmål => ({
+export const privatEllerOffentligSpm: ISpørsmål = {
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   flersvar: false,
@@ -51,31 +50,31 @@ export const privatEllerOffentligSpm = (intl: IntlShape): ISpørsmål => ({
   svaralternativer: [
     {
       id: EUtdanningsform.offentlig,
-      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.offentlig' }),
+      svar_tekstid: 'utdanning.svar.offentlig',
     },
     {
       id: EUtdanningsform.privat,
-      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.privat' }),
+      svar_tekstid: 'utdanning.svar.privat',
     },
   ],
-});
-export const heltidEllerDeltidSpm = (intl: IntlShape): ISpørsmål => ({
+};
+export const heltidEllerDeltidSpm: ISpørsmål = {
   søknadid: EUtdanning.heltidEllerDeltid,
   tekstid: 'utdanning.spm.studieandel',
   flersvar: false,
   svaralternativer: [
     {
       id: EStudieandel.heltid,
-      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.heltid' }),
+      svar_tekstid: 'utdanning.svar.heltid',
     },
     {
       id: EStudieandel.deltid,
-      svar_tekst: intl.formatMessage({ id: 'utdanning.svar.deltid' }),
+      svar_tekstid: 'utdanning.svar.deltid',
     },
   ],
-});
+};
 
-export const utdanningEtterGrunnskolenSpm = (intl: IntlShape): ISpørsmål => ({
+export const utdanningEtterGrunnskolenSpm: ISpørsmål = {
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,
@@ -84,5 +83,5 @@ export const utdanningEtterGrunnskolenSpm = (intl: IntlShape): ISpørsmål => ({
     innholdTekstid: 'utdanning.lesmer-innholde.grunnskolen',
     lukkeTekstid: '',
   },
-  svaralternativer: JaNeiSvar(intl),
-});
+  svaralternativer: JaNeiSvar,
+};

@@ -6,10 +6,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Checkbox } from 'nav-frontend-skjema';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import {
-  BarnetilsynDokumentasjon,
-  IDokumentasjon,
-} from '../../../models/steg/dokumentasjon';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 
@@ -34,9 +31,6 @@ const LastOppVedlegg: React.FC<Props> = ({
     oppdaterDokumentasjon(dokumentasjon.id, vedlegg, huketAv);
   };
 
-  const hvisIkkeFakturaForBarnepass =
-    dokumentasjon.id !== BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING;
-
   return (
     <SeksjonGruppe>
       <FeltGruppe>
@@ -51,15 +45,13 @@ const LastOppVedlegg: React.FC<Props> = ({
           </Normaltekst>
         </FeltGruppe>
       )}
-      {hvisIkkeFakturaForBarnepass && (
-        <FeltGruppe>
-          <Checkbox
-            label={hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
-            checked={dokumentasjon.harSendtInn}
-            onChange={settHarSendtInnTidligere}
-          />
-        </FeltGruppe>
-      )}
+      <FeltGruppe>
+        <Checkbox
+          label={hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
+          checked={dokumentasjon.harSendtInn}
+          onChange={settHarSendtInnTidligere}
+        />
+      </FeltGruppe>
       {!dokumentasjon.harSendtInn && (
         <Filopplaster
           oppdaterDokumentasjon={oppdaterDokumentasjon}

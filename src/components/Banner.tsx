@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Innholdstittel } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../language/LocaleTekst';
 
 const StyledBanner = styled.header`
@@ -16,9 +16,9 @@ const StyledBanner = styled.header`
 const Banner: React.FC<{ tekstid: string }> = ({ tekstid }) => {
   return (
     <StyledBanner>
-      <Innholdstittel>
+      <Undertittel>
         <LocaleTekst tekst={tekstid} />
-      </Innholdstittel>
+      </Undertittel>
     </StyledBanner>
   );
 };

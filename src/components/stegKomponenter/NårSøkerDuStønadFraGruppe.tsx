@@ -90,10 +90,12 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
               const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
               return (
                 <RadioPanel
-                  key={svar.svar_tekst}
+                  key={svar.svar_tekstid}
                   name={spørsmål.søknadid}
-                  label={svar.svar_tekst}
-                  value={svar.svar_tekst}
+                  label={intl.formatMessage({
+                    id: svar.svar_tekstid,
+                  })}
+                  value={svar.svar_tekstid}
                   checked={svarISøknad ? svarISøknad : false}
                   onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
                 />

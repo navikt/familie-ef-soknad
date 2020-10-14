@@ -69,7 +69,7 @@ const HarSøkerSluttdato: React.FC<Props> = ({
       <KomponentGruppe>
         <FeltGruppe>
           <JaNeiSpørsmål
-            spørsmål={harDuSluttdato(intl)}
+            spørsmål={harDuSluttdato}
             onChange={settHarSluttDato}
             valgtSvar={arbeidsgiver.harSluttDato?.verdi}
           />

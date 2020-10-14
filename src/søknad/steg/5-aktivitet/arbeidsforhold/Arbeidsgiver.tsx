@@ -82,7 +82,7 @@ const Arbeidsgiver: React.FC<Props> = ({
           spørsmålid: spørsmål.søknadid,
           svarid: svar.id,
           label: hentTekst(spørsmål.tekstid, intl),
-          verdi: svar.svar_tekst,
+          verdi: hentTekst(svar.svar_tekstid, intl),
         },
       });
     settDokumentasjonsbehov(spørsmål, svar);
@@ -169,7 +169,8 @@ const Arbeidsgiver: React.FC<Props> = ({
         (arbeidsgiver.navn?.verdi && !inkludertArbeidsmengde)) && (
         <FeltGruppe>
           <MultiSvarSpørsmål
-            spørsmål={hvaSlagsStilling(intl)}
+            toKorteSvar={false}
+            spørsmål={hvaSlagsStilling}
             settSpørsmålOgSvar={settSpørsmålOgSvar}
             valgtSvar={arbeidsgiver.ansettelsesforhold?.verdi}
           />

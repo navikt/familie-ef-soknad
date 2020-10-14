@@ -158,7 +158,7 @@ const Barnepass: FC<Props> = () => {
       {erBarnepassForAlleBarnUtfylt(barnSomSkalHaBarnepass) && (
         <SeksjonGruppe>
           <NårSøkerDuStønadFra
-            spørsmål={SøkerDuStønadFraBestemtMndSpm(intl)}
+            spørsmål={SøkerDuStønadFraBestemtMndSpm}
             settSøkerFraBestemtMåned={settSøkerFraBestemtMåned}
             settDato={settSøknadsdato}
             søkerFraBestemtMåned={søkerFraBestemtMåned}

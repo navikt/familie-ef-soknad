@@ -13,6 +13,7 @@ import {
 } from '../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
+import { hentTekst } from '../../../utils/søknad';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { årsakBarnepass } from './BarnepassConfig';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
@@ -36,11 +37,9 @@ const ÅrsakBarnepass: FC<Props> = ({
   const intl = useIntl();
   const { barnepass } = barn;
 
-  const årsakBarnepassConfig = årsakBarnepass(intl);
-
   const spørsmålTekstMedNavn = hentBarnNavnEllerBarnet(
     barn,
-    årsakBarnepassConfig.tekstid,
+    årsakBarnepass.tekstid,
     intl
   );
   const barnepassordningerListe: IBarnepassOrdning[] = barnepass?.barnepassordninger
@@ -50,7 +49,7 @@ const ÅrsakBarnepass: FC<Props> = ({
   const valgtÅrsak = barnepass?.årsakBarnepass?.svarid;
   const dokumentasjonsbehovTekst:
     | string
-    | undefined = årsakBarnepassConfig.svaralternativer.find(
+    | undefined = årsakBarnepass.svaralternativer.find(
     (svarsalternativ) => svarsalternativ.id === valgtÅrsak
   )?.alert_tekstid;
 
@@ -62,7 +61,7 @@ const ÅrsakBarnepass: FC<Props> = ({
           spørsmålid: spørsmål.søknadid,
           svarid: svar.id,
           label: spørsmålTekstMedNavn,
-          verdi: svar.svar_tekst,
+          verdi: hentTekst(svar.svar_tekstid, intl),
         },
         barnepassordninger: barnepassordningerListe,
       },
@@ -79,7 +78,7 @@ const ÅrsakBarnepass: FC<Props> = ({
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          spørsmål={årsakBarnepassConfig}
+          spørsmål={årsakBarnepass}
           spørsmålTekst={spørsmålTekstMedNavn}
           settSpørsmålOgSvar={settÅrsakBarnepass}
           valgtSvar={barnepass?.årsakBarnepass?.verdi}

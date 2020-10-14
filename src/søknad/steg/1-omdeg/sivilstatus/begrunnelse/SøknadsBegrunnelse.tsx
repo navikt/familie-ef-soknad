@@ -44,8 +44,8 @@ const Søknadsbegrunnelse: FC<Props> = ({
   settDato,
   settDokumentasjonsbehov,
 }) => {
+  const spørsmål: ISpørsmål = BegrunnelseSpørsmål;
   const intl = useIntl();
-  const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
 
   const {
     årsakEnslig,
@@ -157,7 +157,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: spørsmålTekst,
-        verdi: svar.svar_tekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
     settDokumentasjonsbehov(spørsmål, svar);

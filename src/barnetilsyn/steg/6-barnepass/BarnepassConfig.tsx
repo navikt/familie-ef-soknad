@@ -7,7 +7,6 @@ import {
 } from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { DokumentasjonsConfig } from '../../../søknad/DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
 
 // ----- DOKUMENTASJON
 
@@ -25,57 +24,50 @@ export const DokumentasjonMyeBortePgaJobb: IDokumentasjon =
 
 // --- SPØRSMÅL
 
-export const årsakBarnepass = (intl: IntlShape): ISpørsmål => ({
+export const årsakBarnepass: ISpørsmål = {
   søknadid: EBarnepass.årsakBarnepass,
   tekstid: 'barnepass.spm.årsak',
   flersvar: false,
   svaralternativer: [
     {
       id: EÅrsakBarnepass.trengerMerPassEnnJevnaldrede,
-      svar_tekst: intl.formatMessage({
-        id: 'barnepass.svar.trengerMerPassEnnJevnaldrede',
-      }),
+      svar_tekstid: 'barnepass.svar.trengerMerPassEnnJevnaldrede',
       alert_tekstid: 'barnepass.dokumentasjon.trengerMerPassEnnJevnaldrede',
       dokumentasjonsbehov: DokumentasjonTrengerMerPassEnnJevnaldrede,
     },
     {
       id: EÅrsakBarnepass.myeBortePgaJobb,
-      svar_tekst: intl.formatMessage({ id: 'barnepass.svar.myeBortePgaJobb' }),
+      svar_tekstid: 'barnepass.svar.myeBortePgaJobb',
       alert_tekstid: 'barnepass.dokumentasjon.arbeidstid',
       dokumentasjonsbehov: DokumentasjonMyeBortePgaJobb,
     },
     {
       id: EÅrsakBarnepass.utenomVanligArbeidstid,
-      svar_tekst: intl.formatMessage({
-        id: 'barnepass.svar.utenomVanligArbeidstid',
-      }),
+      svar_tekstid: 'barnepass.svar.utenomVanligArbeidstid',
       alert_tekstid: 'barnepass.dokumentasjon.arbeidstid',
       dokumentasjonsbehov: DokumentasjonUtenomVanligArbeidstid,
     },
   ],
-});
+};
 
-export const HvaSlagsBarnepassOrdningSpm = (intl: IntlShape): ISpørsmål => ({
+export const HvaSlagsBarnepassOrdningSpm: ISpørsmål = {
   søknadid: EBarnepass.hvaSlagsBarnepassOrdning,
   tekstid: 'barnepass.spm.hvaSlagsOrdning',
   flersvar: false,
   svaralternativer: [
     {
       id: ETypeBarnepassOrdning.barnehageOgLiknende,
-      svar_tekst: intl.formatMessage({
-        id: 'hvaSlagsOrdning.svar.barnehageOgLiknende',
-      }),
+      svar_tekstid: 'hvaSlagsOrdning.svar.barnehageOgLiknende',
       dokumentasjonsbehov: FakturaFraBarnepassordning,
     },
     {
       id: ETypeBarnepassOrdning.privat,
-      svar_tekst: intl.formatMessage({ id: 'hvaSlagsOrdning.svar.privat' }),
+      svar_tekstid: 'hvaSlagsOrdning.svar.privat',
       dokumentasjonsbehov: AvtaleMedBarnepasser,
     },
   ],
-});
-
-export const SøkerDuStønadFraBestemtMndSpm = (intl: IntlShape): ISpørsmål => ({
+};
+export const SøkerDuStønadFraBestemtMndSpm: ISpørsmål = {
   søknadid: EBarnepass.søkerFraBestemtMåned,
   tekstid: 'søkerFraBestemtMåned.spm.barnepass',
   flersvar: false,
@@ -87,13 +79,11 @@ export const SøkerDuStønadFraBestemtMndSpm = (intl: IntlShape): ISpørsmål =>
   svaralternativer: [
     {
       id: ESøkerFraBestemtMåned.ja,
-      svar_tekst: intl.formatMessage({ id: 'svar.ja' }),
+      svar_tekstid: 'svar.ja',
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,
-      svar_tekst: intl.formatMessage({
-        id: 'søkerFraBestemtMåned.svar.neiNavKanVurdere',
-      }),
+      svar_tekstid: 'søkerFraBestemtMåned.svar.neiNavKanVurdere',
     },
   ],
-});
+};

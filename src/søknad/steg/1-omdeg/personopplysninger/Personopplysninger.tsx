@@ -118,7 +118,7 @@ const Personopplysninger: React.FC<Props> = ({
 
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={borDuPåDenneAdressen(intl)}
+          spørsmål={borDuPåDenneAdressen}
           valgtSvar={
             søkerBorPåRegistrertAdresse
               ? søkerBorPåRegistrertAdresse.verdi

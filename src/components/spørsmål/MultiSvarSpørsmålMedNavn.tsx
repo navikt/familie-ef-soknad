@@ -2,10 +2,11 @@ import React, { FC } from 'react';
 import { ISpørsmål } from '../../models/felles/spørsmålogsvar';
 import Hjelpetekst from '../Hjelpetekst';
 import { ISvar } from '../../models/felles/spørsmålogsvar';
-import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
+import { Element } from 'nav-frontend-typografi';
+import { RadioPanel } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import classNames from 'classnames';
-import Show from '../../utils/showIf';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -46,38 +47,40 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
   settSpørsmålOgSvar,
   valgtSvar,
 }) => {
+  const intl = useIntl();
+
   return (
-    <SkjemaGruppe legend={spørsmålTekst}>
-      <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
-        <Show if={spørsmål.lesmer}>
-          <Hjelpetekst
-            åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.åpneTekstid : ''}
-            innholdTekstid={
-              spørsmål.lesmer ? spørsmål.lesmer.innholdTekstid : ''
-            }
-          />
-        </Show>
-        <div
-          className={classNames('radioknapp__multiSvar', {
-            toKorteSvar: toKorteSvar,
-          })}
-        >
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad = svar.svar_tekst === valgtSvar;
-            return (
-              <RadioPanel
-                key={svar.svar_tekst}
-                name={spørsmål.søknadid}
-                label={svar.svar_tekst}
-                value={svar.svar_tekst}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={() => settSpørsmålOgSvar(spørsmål, svar)}
-              />
-            );
-          })}
-        </div>
-      </StyledMultisvarSpørsmål>
-    </SkjemaGruppe>
+    <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
+      <Element>{spørsmålTekst}</Element>
+      {spørsmål.lesmer ? (
+        <Hjelpetekst
+          åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          innholdTekstid={spørsmål.lesmer.innholdTekstid}
+        />
+      ) : null}
+      <div
+        className={classNames('radioknapp__multiSvar', {
+          toKorteSvar: toKorteSvar,
+        })}
+      >
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
+          const svarISøknad =
+            intl.formatMessage({ id: svar.svar_tekstid }) === valgtSvar;
+          return (
+            <RadioPanel
+              key={svar.svar_tekstid}
+              name={spørsmål.søknadid}
+              label={intl.formatMessage({
+                id: svar.svar_tekstid,
+              })}
+              value={svar.svar_tekstid}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={() => settSpørsmålOgSvar(spørsmål, svar)}
+            />
+          );
+        })}
+      </div>
+    </StyledMultisvarSpørsmål>
   );
 };
 

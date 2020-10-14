@@ -1,20 +1,49 @@
 import React from 'react';
+import styled from 'styled-components/macro';
 import add from '../../assets/add.svg';
-import { Flatknapp } from 'nav-frontend-knapper';
 import { Element } from 'nav-frontend-typografi';
-import './LeggTilKnapp.less';
+
+const StyledLeggTilKnapp = styled.div`
+  .lenke-knapp {
+    display: flex;
+    margin-top: 0;
+    align-items: center;
+    width: fit-content;
+    text-decoration: none;
+    padding-top: 1rem;
+
+    .typo-element {
+      margin-left: 1rem;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      color: #19548a;
+
+      &:hover {
+        text-decoration: none;
+        cursor: pointer;
+        background-color: #254b6d;
+        color: white;
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+`;
 
 interface Props {
-  onClick: () => void;
+  onClick: any;
 }
 
-//TODO FIKS STYLING
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
   return (
-    <Flatknapp className="lenke-knapp" onClick={onClick}>
-      <img alt="Legg til" src={add} />
-      <Element>{children}</Element>
-    </Flatknapp>
+    <StyledLeggTilKnapp>
+      <div className="lenke-knapp" onClick={onClick}>
+        <img alt="Legg til" src={add} />
+        <Element>{children}</Element>
+      </div>
+    </StyledLeggTilKnapp>
   );
 };
 

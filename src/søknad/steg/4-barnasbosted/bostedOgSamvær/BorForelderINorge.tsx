@@ -28,12 +28,8 @@ const BorForelderINorge: FC<Props> = ({
     <>
       <KomponentGruppe>
         <JaNeiSpørsmålMedNavn
-          spørsmål={borINorge(intl)}
-          spørsmålTekst={hentBarnNavnEllerBarnet(
-            barn,
-            borINorge(intl).tekstid,
-            intl
-          )}
+          spørsmål={borINorge}
+          spørsmålTekst={hentBarnNavnEllerBarnet(barn, borINorge.tekstid, intl)}
           onChange={settFelt}
           valgtSvar={forelder.borINorge?.verdi}
         />

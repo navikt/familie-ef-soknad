@@ -40,7 +40,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
       return (
-        <StyledOppsummeringForBarn key={barn.id}>
+        <StyledOppsummeringForBarn>
           <BarneHeader barn={barn} />
           {forelderFelter}
         </StyledOppsummeringForBarn>

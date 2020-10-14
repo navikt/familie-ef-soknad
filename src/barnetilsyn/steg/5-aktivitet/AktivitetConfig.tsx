@@ -6,7 +6,6 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../../søknad/DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
 
 // --- DOKUMENTASJON
 
@@ -18,7 +17,7 @@ export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon =
 
 // --- SPØRSMÅL
 
-export const ErDuIArbeidSpm = (intl: IntlShape): ISpørsmål => ({
+export const ErDuIArbeidSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.erDuIArbeid,
   tekstid: 'erDuIArbeid.spm',
   flersvar: false,
@@ -28,16 +27,16 @@ export const ErDuIArbeidSpm = (intl: IntlShape): ISpørsmål => ({
     innholdTekstid: 'erDuIArbeid.hjelpetekst',
   },
   svaralternativer: [
-    { id: ErIArbeid.JA, svar_tekst: intl.formatMessage({ id: 'svar.ja' }) },
+    { id: ErIArbeid.JA, svar_tekstid: 'svar.ja' },
     {
       id: ErIArbeid.NeiFordiJegErSyk,
-      svar_tekst: intl.formatMessage({ id: 'erDuIArbeid.svar.nei' }),
+      svar_tekstid: 'erDuIArbeid.svar.nei',
       dokumentasjonsbehov: DokumentasjonSyk,
     },
   ],
-});
+};
 
-export const hvaErDinArbeidssituasjonSpm = (intl: IntlShape): ISpørsmål => ({
+export const hvaErDinArbeidssituasjonSpm: ISpørsmål = {
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
   lesmer: {
@@ -49,28 +48,21 @@ export const hvaErDinArbeidssituasjonSpm = (intl: IntlShape): ISpørsmål => ({
   svaralternativer: [
     {
       id: EAktivitet.erArbeidstaker,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erArbeidstaker',
-      }),
+      svar_tekstid: 'arbeidssituasjon.svar.erArbeidstaker',
     },
     {
       id: EAktivitet.erSelvstendigNæringsdriveneEllerFrilanser,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
-      }),
+      svar_tekstid:
+        'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser',
     },
     {
       id: EAktivitet.erAnsattIEgetAS,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erAnsattIEgetAS',
-      }),
+      svar_tekstid: 'arbeidssituasjon.svar.erAnsattIEgetAS',
     },
     {
       id: EAktivitet.etablererEgenVirksomhet,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
-      }),
+      svar_tekstid: 'arbeidssituasjon.svar.etablererEgenVirksomhet',
       dokumentasjonsbehov: DokumentasjonOmVirksomhetenDuEtablerer,
     },
   ],
-});
+};

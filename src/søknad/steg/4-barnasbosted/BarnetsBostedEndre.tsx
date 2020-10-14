@@ -150,7 +150,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: erJaNeiSvar(svar)
           ? hentBooleanFraValgtSvar(svar)
-          : svar.svar_tekst,
+          : hentTekst(svar.svar_tekstid, intl),
       },
     };
 

@@ -20,9 +20,8 @@ import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSø
 import Environment from '../Environment';
 import { useIntl } from 'react-intl';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
-import { IBarn } from '../models/steg/barn';
-import { oppdaterBarneliste } from '../utils/barn';
 import { IPerson } from '../models/søknad/person';
+import { IBarn } from '../models/steg/barn';
 
 // -----------  CONTEXT  -----------
 const initialState = (): ISøknad => {
@@ -169,16 +168,6 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     });
   };
 
-  const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
-    settSøknad((prevSøknad) => ({
-      ...prevSøknad,
-      person: {
-        ...prevSøknad.person,
-        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
-      },
-    }));
-  };
-
   return {
     søknad,
     settSøknad,
@@ -189,7 +178,6 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     mellomlagreOvergangsstønad,
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
-    oppdaterBarnISoknaden,
     nullstillSøknadOvergangsstønad,
   };
 });

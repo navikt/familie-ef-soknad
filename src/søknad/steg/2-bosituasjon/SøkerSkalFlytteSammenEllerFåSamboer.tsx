@@ -37,7 +37,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     datoSkalGifteSegEllerBliSamboer,
   } = bosituasjon;
 
-  const spørsmål: ISpørsmål = skalSøkerGifteSegMedSamboer(intl);
+  const spørsmål: ISpørsmål = skalSøkerGifteSegMedSamboer;
 
   const settSøkerSkalGifteSegEllerBliSamboer = (
     spørsmål: ISpørsmål,

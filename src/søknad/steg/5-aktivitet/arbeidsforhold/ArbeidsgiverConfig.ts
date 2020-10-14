@@ -6,43 +6,40 @@ import {
 import { JaNeiSvar } from '../../../../helpers/svar';
 import { IDokumentasjon } from '../../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
 
 // DOKUMENTASJON
 const DokumentasjonLærling: IDokumentasjon =
   DokumentasjonsConfig.DokumentasjonLærling;
 
 // SPØRSMÅL
-export const hvaSlagsStilling = (intl: IntlShape): ISpørsmål => ({
+export const hvaSlagsStilling: ISpørsmål = {
   søknadid: EArbeidsgiver.ansettelsesforhold,
   tekstid: 'arbeidsforhold.label.ansettelsesforhold',
   flersvar: false,
   svaralternativer: [
     {
       id: EStilling.fast,
-      svar_tekst: intl.formatMessage({ id: 'arbeidsforhold.svar.fast' }),
+      svar_tekstid: 'arbeidsforhold.svar.fast',
     },
     {
       id: EStilling.midlertidig,
-      svar_tekst: intl.formatMessage({ id: 'arbeidsforhold.svar.midlertidig' }),
+      svar_tekstid: 'arbeidsforhold.svar.midlertidig',
     },
     {
       id: EStilling.lærling,
-      svar_tekst: intl.formatMessage({ id: 'arbeidsforhold.svar.lærling' }),
+      svar_tekstid: 'arbeidsforhold.svar.lærling',
       dokumentasjonsbehov: DokumentasjonLærling,
     },
     {
       id: EStilling.tilkallingsvakt,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidsforhold.svar.tilkallingsvakt',
-      }),
+      svar_tekstid: 'arbeidsforhold.svar.tilkallingsvakt',
     },
   ],
-});
+};
 
-export const harDuSluttdato = (intl: IntlShape): ISpørsmål => ({
+export const harDuSluttdato: ISpørsmål = {
   søknadid: EArbeidsgiver.harSluttDato,
   tekstid: 'arbeidsforhold.label.sluttdato',
   flersvar: false,
-  svaralternativer: JaNeiSvar(intl),
-});
+  svaralternativer: JaNeiSvar,
+};

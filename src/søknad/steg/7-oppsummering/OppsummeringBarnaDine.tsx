@@ -46,7 +46,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     const endretBarn = hentEndretBarn(barn);
 
     return (
-      <StyledOppsummeringForBarn key={barn.id}>
+      <StyledOppsummeringForBarn>
         <BarneHeader barn={barn} />
         <OppsummeringBarn stønadstype={stønadstype} barn={endretBarn} />
       </StyledOppsummeringForBarn>

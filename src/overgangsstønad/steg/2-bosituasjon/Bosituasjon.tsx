@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
@@ -10,7 +10,6 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -26,10 +25,6 @@ const Bosituasjon: FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
-
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Bosituasjon' });
-  }, []);
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
     settSøknad((prevSoknad) => {

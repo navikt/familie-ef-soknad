@@ -66,7 +66,7 @@ const Spørsmål: FC = () => {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar.svar_tekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     });
   };
@@ -88,7 +88,7 @@ const Spørsmål: FC = () => {
         </FeltGruppe>
         <KomponentGruppe>
           <JaNeiSpørsmål
-            spørsmål={erSøkerArbeidssøker(intl)}
+            spørsmål={erSøkerArbeidssøker}
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
           />
@@ -102,7 +102,7 @@ const Spørsmål: FC = () => {
         {arbeidssøker.registrertSomArbeidssøkerNav && (
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={erVilligTilÅTaImotTilbud(intl)}
+              spørsmål={erVilligTilÅTaImotTilbud}
               onChange={settJaNeiSpørsmål}
               valgtSvar={arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.verdi}
             />
@@ -117,7 +117,7 @@ const Spørsmål: FC = () => {
         {arbeidssøker.villigTilÅTaImotTilbudOmArbeid && (
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={kanBegynneInnenEnUke(intl)}
+              spørsmål={kanBegynneInnenEnUke}
               onChange={settJaNeiSpørsmål}
               valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
             />
@@ -127,7 +127,7 @@ const Spørsmål: FC = () => {
         {arbeidssøker.kanBegynneInnenEnUke && (
           <KomponentGruppe>
             <MultiSvarSpørsmål
-              spørsmål={ønsketArbeidssted(intl)}
+              spørsmål={ønsketArbeidssted}
               settSpørsmålOgSvar={settMultiSvarSpørsmål}
               valgtSvar={arbeidssøker.hvorØnskerSøkerArbeid?.verdi}
             />
@@ -136,7 +136,7 @@ const Spørsmål: FC = () => {
         {arbeidssøker.hvorØnskerSøkerArbeid && (
           <KomponentGruppe>
             <JaNeiSpørsmål
-              spørsmål={ønskerHalvStilling(intl)}
+              spørsmål={ønskerHalvStilling}
               onChange={settJaNeiSpørsmål}
               valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
             />

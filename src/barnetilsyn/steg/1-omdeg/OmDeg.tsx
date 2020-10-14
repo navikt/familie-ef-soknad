@@ -19,7 +19,6 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import Show from '../../../utils/showIf';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation<LocationStateSøknad>();
@@ -34,11 +33,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
 
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = søknad.sivilstatus;
+  const { harSøktSeparasjon } = søknad.sivilstatus;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
@@ -90,18 +85,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     søknad.medlemskap
   );
 
-  const søkerBorPåRegistrertAdresseOgHarTlfNr =
-    søknad.søkerBorPåRegistrertAdresse &&
-    søknad.søkerBorPåRegistrertAdresse.verdi === true &&
-    harSøkerTlfnr(søknad.person);
-
-  const harFylltUtSeparasjonSpørsmålet =
-    harSøktSeparasjon !== undefined
-      ? harSøktSeparasjon.verdi
-        ? datoSøktSeparasjon && datoFlyttetFraHverandre
-        : true
-      : false;
-
   return (
     <Side
       stønadstype={Stønadstype.barnetilsyn}
@@ -120,26 +103,26 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
         stønadstype={Stønadstype.barnetilsyn}
       />
 
-      <Show if={søkerBorPåRegistrertAdresseOgHarTlfNr}>
-        <Sivilstatus
-          sivilstatus={søknad.sivilstatus}
-          settSivilstatus={settSivilstatus}
-          settDokumentasjonsbehov={settDokumentasjonsbehov}
-          settMedlemskap={settMedlemskap}
-        />
+      {søknad.søkerBorPåRegistrertAdresse &&
+        søknad.søkerBorPåRegistrertAdresse.verdi === true &&
+        harSøkerTlfnr(søknad.person) && (
+          <>
+            <Sivilstatus
+              sivilstatus={søknad.sivilstatus}
+              settSivilstatus={settSivilstatus}
+              settDokumentasjonsbehov={settDokumentasjonsbehov}
+            />
 
-        <Show
-          if={
-            harFylltUtSeparasjonSpørsmålet ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
-          }
-        >
-          <Medlemskap
-            medlemskap={søknad.medlemskap}
-            settMedlemskap={settMedlemskap}
-          />
-        </Show>
-      </Show>
+            {harSøktSeparasjon ||
+            harSøktSeparasjon === false ||
+            erSøknadsBegrunnelseBesvart(søknad.sivilstatus) ? (
+              <Medlemskap
+                medlemskap={søknad.medlemskap}
+                settMedlemskap={settMedlemskap}
+              />
+            ) : null}
+          </>
+        )}
     </Side>
   );
 };

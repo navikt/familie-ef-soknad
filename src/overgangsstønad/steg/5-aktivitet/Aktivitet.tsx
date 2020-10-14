@@ -20,7 +20,6 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -44,10 +43,6 @@ const Aktivitet: React.FC = () => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
-
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Aktivitet' });
-  }, []);
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
@@ -112,7 +107,7 @@ const Aktivitet: React.FC = () => {
         <CheckboxSpørsmål
           spørsmål={filtrerAktivitetSvaralternativer(
             søknad.person,
-            hvaErDinArbeidssituasjonSpm(intl)
+            hvaErDinArbeidssituasjonSpm
           )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}

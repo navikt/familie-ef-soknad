@@ -32,7 +32,7 @@ const OmAndreForelder: React.FC<Props> = ({
   const intl = useIntl();
   const { fødselsdato, ident } = forelder;
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
-  const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);
+  const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi.tekstid, intl);
   const jegKanIkkeOppgiLabel = hentTekst(
     'barnasbosted.kanikkeoppgiforelder',
     intl
@@ -124,13 +124,13 @@ const OmAndreForelder: React.FC<Props> = ({
       ...forelder,
       ikkeOppgittAnnenForelderBegrunnelse: {
         label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
-        verdi: svar.svar_tekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: svar.svar_tekst,
+        verdi: hentTekst(svar.svar_tekstid, intl),
       },
     };
 
@@ -210,7 +210,7 @@ const OmAndreForelder: React.FC<Props> = ({
       {forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            spørsmål={hvorforIkkeOppgi(intl)}
+            spørsmål={hvorforIkkeOppgi}
             settSpørsmålOgSvar={settHvorforIkkeOppgi}
             valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
           />

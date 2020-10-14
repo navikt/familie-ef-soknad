@@ -29,8 +29,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const intl = useIntl();
   const { søkerOppholderSegINorge, søkerBosattINorgeSisteTreÅr } = medlemskap;
 
-  const oppholderSegINorgeConfig = oppholderSegINorge(intl);
-  const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteTreÅr(intl);
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
     const endretMedlemskap = medlemskap;
@@ -61,15 +59,15 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   };
 
   const valgtSvarOppholderSegINorge = hentValgtSvar(
-    oppholderSegINorgeConfig,
+    oppholderSegINorge,
     medlemskap
   );
 
   return (
     <SeksjonGruppe>
-      <KomponentGruppe key={oppholderSegINorgeConfig.søknadid}>
+      <KomponentGruppe key={oppholderSegINorge.søknadid}>
         <JaNeiSpørsmål
-          spørsmål={oppholderSegINorgeConfig}
+          spørsmål={oppholderSegINorge}
           valgtSvar={valgtSvarOppholderSegINorge}
           onChange={settMedlemskapBooleanFelt}
         />
@@ -81,13 +79,10 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
       </KomponentGruppe>
 
       {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
-        <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
+        <KomponentGruppe key={bosattINorgeDeSisteTreÅr.søknadid}>
           <JaNeiSpørsmål
-            spørsmål={bosattINorgeDeSisteTreÅrConfig}
-            valgtSvar={hentValgtSvar(
-              bosattINorgeDeSisteTreÅrConfig,
-              medlemskap
-            )}
+            spørsmål={bosattINorgeDeSisteTreÅr}
+            valgtSvar={hentValgtSvar(bosattINorgeDeSisteTreÅr, medlemskap)}
             onChange={settMedlemskapBooleanFelt}
           />
         </KomponentGruppe>

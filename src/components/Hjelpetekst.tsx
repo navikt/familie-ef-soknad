@@ -6,7 +6,6 @@ import { useIntl } from 'react-intl';
 import LocaleTekst from '../language/LocaleTekst';
 import { hentTekst } from '../utils/søknad';
 import { FormattedHTMLMessage } from 'react-intl';
-import hiddenIf from '../utils/hiddenIf';
 
 const StyledHjelpetekst = styled.div`
   .lesMerPanel {
@@ -109,4 +108,4 @@ const Hjelpetekst: React.FC<Props> = ({
   );
 };
 
-export default hiddenIf(Hjelpetekst);
+export default Hjelpetekst;

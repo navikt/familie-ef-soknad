@@ -8,9 +8,6 @@ import { ISøknad } from '../../../models/søknad/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { IBarn } from '../../../models/steg/barn';
-import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
-import { storeForbokstaver } from '../../../utils/tekst';
 
 export const erSituasjonIAvhukedeSvar = (
   situasjon: DinSituasjonType,
@@ -74,48 +71,4 @@ export const harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål = (
       harValgtDato) ||
     sagtOppEllerRedusertStilling?.svarid === ESagtOppEllerRedusertStilling.nei
   );
-};
-
-export const hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst = (
-  søknad: ISøknad
-): boolean => {
-  const { merOmDinSituasjon, person } = søknad;
-
-  const harSvartJaPåHarBarnMedSærligeTilsyn = merOmDinSituasjon.gjelderDetteDeg.svarid.find(
-    (v) => v === DinSituasjonType.harBarnMedSærligeBehov
-  );
-  const barnMedSærligeTilsyn = person.barn
-    .filter((b) => b.særligeTilsynsbehov)
-    .map((b) => b.særligeTilsynsbehov);
-
-  return harSvartJaPåHarBarnMedSærligeTilsyn
-    ? barnMedSærligeTilsyn.length > 0 &&
-        barnMedSærligeTilsyn.every((v) => (v ? v.verdi.length > 0 : false))
-    : true;
-};
-
-export const leggTilSærligeBehov = (
-  barnMedSærligeBehov: IBarn,
-  intl: IntlShape
-) => {
-  const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
-    barnMedSærligeBehov,
-    intl
-  );
-  const formattertNavn = barnMedSærligeBehov.navn.verdi
-    ? storeForbokstaver(barnetsNavn)
-    : barnetsNavn;
-  const oppdatertBarn = {
-    ...barnMedSærligeBehov,
-    særligeTilsynsbehov: {
-      verdi: '',
-      label: intl.formatMessage(
-        { id: 'dinSituasjon.label.særligTilsyn' },
-        {
-          barnetsNavn: formattertNavn,
-        }
-      ),
-    },
-  };
-  return oppdatertBarn;
 };
