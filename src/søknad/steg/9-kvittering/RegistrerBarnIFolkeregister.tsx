@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/steg/barn';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { flereBarnsNavn } from '../../../utils/barn';
@@ -17,6 +17,7 @@ interface Props {
 
 const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   const intl = useIntl();
+
   const barnSomSkalRegistreresIFolkeregister = barna.filter((barn) => {
     return (
       barn?.forelder?.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja
@@ -26,14 +27,22 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   if (barnSomSkalRegistreresIFolkeregister.length === 0) {
     return null;
   }
+
   const barnasNavn = flereBarnsNavn(barnSomSkalRegistreresIFolkeregister, intl);
   const tekst = hentBeskjedMedNavn(
     barnasNavn,
     hentTekst('barnasbosted.skalBliFolkeregistrert.tekst', intl)
   );
+  const undertittelMedNavn = hentBeskjedMedNavn(
+    barnasNavn,
+    'Husk å registrere riktig adresse for [0] i Folkeregisteret.'
+  );
 
   return (
     <SeksjonGruppe>
+      <FeltGruppe>
+        <Undertittel>{undertittelMedNavn}</Undertittel>
+      </FeltGruppe>
       <FeltGruppe>
         <Normaltekst>{tekst}</Normaltekst>
       </FeltGruppe>
