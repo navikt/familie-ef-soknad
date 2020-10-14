@@ -241,24 +241,27 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
             <>
-              <BorAnnenForelderISammeHus
-                forelder={forelder}
-                settForelder={settForelder}
-                barn={barn}
-              />
+              {forelder.borINorge?.verdi && (
+                <BorAnnenForelderISammeHus
+                  forelder={forelder}
+                  settForelder={settForelder}
+                  barn={barn}
+                />
+              )}
 
-              {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+              {(harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
                 borAnnenForelderISammeHus?.svarid !==
                   EBorAnnenForelderISammeHus.ja) ||
                 harValgtSvar(
                   forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
-                )) && (
-                <BoddSammenFør
-                  forelder={forelder}
-                  barn={barn}
-                  settForelder={settForelder}
-                />
-              )}
+                ) ||
+                (!forelder.borINorge?.verdi && (
+                  <BoddSammenFør
+                    forelder={forelder}
+                    barn={barn}
+                    settForelder={settForelder}
+                  />
+                ))}
               {(boddSammenFør?.svarid === ESvar.NEI ||
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
