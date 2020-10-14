@@ -31,6 +31,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 
 const MerOmDinSituasjon: React.FC = () => {
@@ -54,6 +55,10 @@ const MerOmDinSituasjon: React.FC = () => {
   const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
     søknad
   );
+
+  useEffect(() => {
+    logEvent('sidevisning', { side: 'MerOmDinSituasjon' });
+  }, []);
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
   const hjelpetekstInnhold =
