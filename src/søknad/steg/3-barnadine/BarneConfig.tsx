@@ -1,12 +1,9 @@
-import {
-  ESvar,
-  ESvarTekstid,
-  ISpørsmål,
-} from '../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import { EBarn } from '../../../models/steg/barn';
-import { JaNeiSvar, JaSvar } from '../../../helpers/svar';
+import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
+import { IntlShape } from 'react-intl';
 
 // --- Dokumentasjon
 const Terminbekreftelse: IDokumentasjon =
@@ -14,30 +11,19 @@ const Terminbekreftelse: IDokumentasjon =
 
 // --- Spørsmål
 
-export const barnetFødt: ISpørsmål = {
+export const barnetFødt = (intl: IntlShape): ISpørsmål => ({
   søknadid: EBarn.født,
   tekstid: 'barnekort.spm.født',
   flersvar: false,
   svaralternativer: [
-    JaSvar,
-    {
-      id: ESvar.NEI,
-      svar_tekstid: ESvarTekstid.NEI,
-      dokumentasjonsbehov: Terminbekreftelse,
-    },
+    JaSvar(intl),
+    { ...NeiSvar(intl), dokumentasjonsbehov: Terminbekreftelse },
   ],
-};
+});
 
-export const skalBarnetBoHosSøker: ISpørsmål = {
+export const skalBarnetBoHosSøker = (intl: IntlShape): ISpørsmål => ({
   søknadid: EBarn.skalBarnetBoHosSøker,
   tekstid: 'barnekort.spm.skalBarnetBoHosSøker',
   flersvar: false,
-  svaralternativer: JaNeiSvar,
-};
-
-export const borBarnetHosDeg: ISpørsmål = {
-  søknadid: EBarn.skalBarnetBoHosSøker,
-  tekstid: 'barnekort.spm.skalBarnetBoHosSøker',
-  flersvar: false,
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});

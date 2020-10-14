@@ -92,7 +92,7 @@ const TidligereUtdanning: React.FC<Props> = ({
 
       <KomponentGruppe>
         <JaNeiSpørsmål
-          spørsmål={utdanningEtterGrunnskolenSpm}
+          spørsmål={utdanningEtterGrunnskolenSpm(intl)}
           onChange={settHarTattUtdanningEtterGrunnskolen}
           valgtSvar={underUtdanning.harTattUtdanningEtterGrunnskolen?.verdi}
         />

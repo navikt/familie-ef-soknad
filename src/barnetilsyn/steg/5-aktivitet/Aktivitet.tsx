@@ -82,7 +82,7 @@ const Aktivitet: React.FC = () => {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
     settDokumentasjonsbehov(spørsmål, svar);
@@ -154,7 +154,7 @@ const Aktivitet: React.FC = () => {
       <SeksjonGruppe>
         <KomponentGruppe>
           <MultiSvarSpørsmål
-            spørsmål={ErDuIArbeidSpm}
+            spørsmål={ErDuIArbeidSpm(intl)}
             settSpørsmålOgSvar={settErDuIArbeid}
             valgtSvar={arbeidssituasjon?.erIArbeid?.verdi}
           />
@@ -176,7 +176,7 @@ const Aktivitet: React.FC = () => {
             <CheckboxSpørsmål
               spørsmål={filtrerAktivitetSvaralternativer(
                 søknad.person,
-                hvaErDinArbeidssituasjonSpm
+                hvaErDinArbeidssituasjonSpm(intl)
               )}
               settValgteSvar={settArbeidssituasjonFelt}
               valgteSvar={

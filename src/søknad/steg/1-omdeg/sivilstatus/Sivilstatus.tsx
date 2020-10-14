@@ -1,34 +1,31 @@
 import React from 'react';
-import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
-import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
 import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
-import {
-  ESvar,
-  ISpørsmål,
-  ISvar,
-} from '../../../../models/felles/spørsmålogsvar';
+import { hentTekst } from '../../../../utils/søknad';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
-  erUformeltSeparertEllerSkiltSpørsmål,
-  erUformeltGiftSpørsmål,
-} from './SivilstatusConfig';
-import {
-  ESivilstand,
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { datoTilStreng } from '../../../../utils/dato';
+import SøkerErUgift from './SøkerErUgift';
+import {
+  erSøkerEnke,
+  erSøkerGift,
+  erSøkerSeparert,
+  erSøkerSkilt,
+  erSøkerUgift,
+} from '../../../../utils/sivilstatus';
+import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 
 interface Props {
   sivilstatus: ISivilstatus;
   settSivilstatus: (sivilstatus: ISivilstatus) => void;
+  settMedlemskap: (medlemskap: IMedlemskap) => void;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -40,31 +37,19 @@ const Sivilstatus: React.FC<Props> = ({
   sivilstatus,
   settSivilstatus,
   settDokumentasjonsbehov,
+  settMedlemskap,
 }) => {
   const intl = useIntl();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
   const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
     erUformeltSeparertEllerSkilt,
     erUformeltGift,
+    harSøktSeparasjon,
+    datoFlyttetFraHverandre,
+    datoSøktSeparasjon,
   } = sivilstatus;
-
-  const erSøkerGift =
-    sivilstand === ESivilstand.GIFT || sivilstand === ESivilstand.REPA;
-  const erSøkerUgift =
-    sivilstand === ESivilstand.UGIF ||
-    sivilstand === null ||
-    sivilstand === 'NULL';
-  const erSøkerEnke =
-    sivilstand === ESivilstand.ENKE || sivilstand === ESivilstand.GJPA;
-  const erSøkerSeparert =
-    sivilstand === ESivilstand.SEPA || sivilstand === ESivilstand.SEPR;
-  const erSøkerSkilt =
-    sivilstand === ESivilstand.SKIL || sivilstand === ESivilstand.SKPA;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -91,6 +76,7 @@ const Sivilstatus: React.FC<Props> = ({
 
     settSivilstatus(nySivilstatus);
     settDokumentasjonsbehov(spørsmål, valgtSvar);
+    settMedlemskap({});
   };
 
   const settDato = (
@@ -108,73 +94,27 @@ const Sivilstatus: React.FC<Props> = ({
       });
   };
 
-  const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
-    for (const [key, value] of Object.entries(sivilstatus)) {
-      if (key === spørsmål.søknadid && value !== undefined) {
-        return value.verdi;
-      }
-    }
-  };
-
   return (
     <SeksjonGruppe>
-      {erSøkerGift ? (
+      {erSøkerGift(sivilstand) ? (
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}
           settDato={settDato}
           sivilstatus={sivilstatus}
         />
-      ) : erSøkerUgift ? (
-        <>
-          <KomponentGruppe>
-            <JaNeiSpørsmål
-              spørsmål={erUformeltGiftSpørsmål}
-              onChange={settSivilstatusFelt}
-              valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål, sivilstatus)}
-            />
-            {sivilstatus.erUformeltGift?.svarid === ESvar.JA && (
-              <AlertstripeDokumentasjon>
-                <LocaleTekst
-                  tekst={hentSvarAlertFraSpørsmål(
-                    ESvar.JA,
-                    erUformeltGiftSpørsmål
-                  )}
-                />
-              </AlertstripeDokumentasjon>
-            )}
-          </KomponentGruppe>
+      ) : (
+        <SøkerErUgift
+          erUformeltGift={erUformeltGift}
+          settSivilstatusFelt={settSivilstatusFelt}
+          sivilstatus={sivilstatus}
+        />
+      )}
 
-          {erUformeltGift?.hasOwnProperty('verdi') && (
-            <KomponentGruppe>
-              <JaNeiSpørsmål
-                spørsmål={erUformeltSeparertEllerSkiltSpørsmål}
-                onChange={settSivilstatusFelt}
-                valgtSvar={hentValgtSvar(
-                  erUformeltSeparertEllerSkiltSpørsmål,
-                  sivilstatus
-                )}
-              />
-              {sivilstatus.erUformeltSeparertEllerSkilt?.svarid ===
-                ESvar.JA && (
-                <AlertstripeDokumentasjon>
-                  <LocaleTekst
-                    tekst={hentSvarAlertFraSpørsmål(
-                      ESvar.JA,
-                      erUformeltSeparertEllerSkiltSpørsmål
-                    )}
-                  />
-                </AlertstripeDokumentasjon>
-              )}
-            </KomponentGruppe>
-          )}
-        </>
-      ) : null}
-
-      {(erSøkerUgift &&
+      {(erSøkerUgift(sivilstand) &&
         erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
-      erSøkerSeparert ||
-      erSøkerSkilt ||
-      erSøkerEnke ? (
+      erSøkerSeparert(sivilstand) ||
+      erSøkerSkilt(sivilstand) ||
+      erSøkerEnke(sivilstand) ? (
         <Søknadsbegrunnelse
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}

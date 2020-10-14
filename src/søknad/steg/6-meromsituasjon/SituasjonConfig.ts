@@ -7,6 +7,7 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
+import { IntlShape } from 'react-intl';
 
 // DOKUMENTASJON
 export const DokumentasjonSykdom: IDokumentasjon =
@@ -28,39 +29,47 @@ export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon =
   DokumentasjonsConfig.ArbeidsforholdOgRedusertArbeidstid;
 
 // SPØRSMÅL
-export const gjelderNoeAvDetteDeg: ISpørsmål = {
-  søknadid: ESituasjon.gjelderDetteDeg,
-  tekstid: 'dinSituasjon.spm',
-  flersvar: true,
-  svaralternativer: [
-    {
-      id: DinSituasjonType.erSyk,
-      svar_tekstid: 'dinSituasjon.svar.erSyk',
-      dokumentasjonsbehov: DokumentasjonSykdom,
-    },
-    {
-      id: DinSituasjonType.harSyktBarn,
-      svar_tekstid: 'dinSituasjon.svar.harSyktBarn',
-      dokumentasjonsbehov: DokumentasjonSyktBarn,
-    },
-    {
-      id: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
-      svar_tekstid: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
-      dokumentasjonsbehov: DokumentasjonBarnepassMangel,
-    },
-    {
-      id: DinSituasjonType.harBarnMedSærligeBehov,
-      svar_tekstid: 'dinSituasjon.svar.harBarnMedSærligeBehov',
-      dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
-    },
-    {
-      id: DinSituasjonType.nei,
-      svar_tekstid: 'dinSituasjon.svar.nei',
-    },
-  ],
+export const gjelderNoeAvDetteDeg = (intl: IntlShape): ISpørsmål => {
+  return {
+    søknadid: ESituasjon.gjelderDetteDeg,
+    tekstid: intl.formatMessage({ id: 'dinSituasjon.spm' }),
+    flersvar: true,
+    svaralternativer: [
+      {
+        id: DinSituasjonType.erSyk,
+        svar_tekst: intl.formatMessage({ id: 'dinSituasjon.svar.erSyk' }),
+        dokumentasjonsbehov: DokumentasjonSykdom,
+      },
+      {
+        id: DinSituasjonType.harSyktBarn,
+        svar_tekst: intl.formatMessage({ id: 'dinSituasjon.svar.harSyktBarn' }),
+        dokumentasjonsbehov: DokumentasjonSyktBarn,
+      },
+      {
+        id: DinSituasjonType.harSøktBarnepassOgVenterEnnå,
+        svar_tekst: intl.formatMessage({
+          id: 'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå',
+        }),
+        dokumentasjonsbehov: DokumentasjonBarnepassMangel,
+      },
+      {
+        id: DinSituasjonType.harBarnMedSærligeBehov,
+        svar_tekst: intl.formatMessage({
+          id: 'dinSituasjon.svar.harBarnMedSærligeBehov',
+        }),
+        dokumentasjonsbehov: DokumentasjonBarnetilsynBehov,
+      },
+      {
+        id: DinSituasjonType.nei,
+        svar_tekst: intl.formatMessage({ id: 'dinSituasjon.svar.nei' }),
+      },
+    ],
+  };
 };
 
-export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
+export const SagtOppEllerRedusertStillingSpm = (
+  intl: IntlShape
+): ISpørsmål => ({
   søknadid: ESituasjon.sagtOppEllerRedusertStilling,
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
   flersvar: false,
@@ -72,24 +81,26 @@ export const SagtOppEllerRedusertStillingSpm: ISpørsmål = {
   svaralternativer: [
     {
       id: ESagtOppEllerRedusertStilling.sagtOpp,
-      svar_tekstid: 'dinSituasjon.svar.sagtOpp',
+      svar_tekst: intl.formatMessage({ id: 'dinSituasjon.svar.sagtOpp' }),
       alert_tekstid: 'dinSituasjon.alert.sagtOpp',
       dokumentasjonsbehov: ArbeidsforholdOgOppsigelsesårsak,
     },
     {
       id: ESagtOppEllerRedusertStilling.redusertStilling,
-      svar_tekstid: 'dinSituasjon.svar.redusertStilling',
+      svar_tekst: intl.formatMessage({
+        id: 'dinSituasjon.svar.redusertStilling',
+      }),
       alert_tekstid: 'dinSituasjon.alert.redusertStilling',
       dokumentasjonsbehov: ArbeidsforholdOgRedusertArbeidstid,
     },
     {
       id: ESagtOppEllerRedusertStilling.nei,
-      svar_tekstid: 'svar.nei',
+      svar_tekst: intl.formatMessage({ id: 'svar.nei' }),
     },
   ],
-};
+});
 
-export const SøkerFraBestemtMånedSpm: ISpørsmål = {
+export const SøkerFraBestemtMånedSpm = (intl: IntlShape): ISpørsmål => ({
   søknadid: ESituasjon.søkerFraBestemtMåned,
   tekstid: 'søkerFraBestemtMåned.spm.overgangsstønad',
   flersvar: false,
@@ -101,11 +112,13 @@ export const SøkerFraBestemtMånedSpm: ISpørsmål = {
   svaralternativer: [
     {
       id: ESøkerFraBestemtMåned.ja,
-      svar_tekstid: ESvarTekstid.JA,
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.JA }),
     },
     {
       id: ESøkerFraBestemtMåned.neiNavKanVurdere,
-      svar_tekstid: 'søkerFraBestemtMåned.svar.neiNavKanVurdere',
+      svar_tekst: intl.formatMessage({
+        id: 'søkerFraBestemtMåned.svar.neiNavKanVurdere',
+      }),
     },
   ],
-};
+});
