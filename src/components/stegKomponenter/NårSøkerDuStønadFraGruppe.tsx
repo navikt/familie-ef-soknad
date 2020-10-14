@@ -4,13 +4,9 @@ import KomponentGruppe from '../gruppe/KomponentGruppe';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
-import { hentTekst } from '../../utils/søknad';
-import { dagensDato } from '../../utils/dato';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import { hentBeskjedMedFireParametre } from '../../utils/språk';
 import { RadioPanel } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
-import { formatNårSøkerDuStønadFraMåned } from '../../utils/dato';
 import {
   IDatoFelt,
   ISpørsmålBooleanFelt,
@@ -68,14 +64,6 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const hjelpetekst = hentBeskjedMedFireParametre(
-    hentTekst(hjelpetekstInnholdTekstid, intl),
-    '3',
-    formatNårSøkerDuStønadFraMåned(dagensDato, 3),
-    '5',
-    formatNårSøkerDuStønadFraMåned(dagensDato, 5)
-  );
-
   return (
     <>
       <KomponentGruppe>
@@ -83,7 +71,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
           <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
           <Hjelpetekst
             åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-            innholdTekst={hjelpetekst}
+            innholdTekstid={hjelpetekstInnholdTekstid}
           />
           <div className="radioknapp__multiSvar">
             {spørsmål.svaralternativer.map((svar: ISvar) => {
