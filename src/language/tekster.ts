@@ -353,7 +353,8 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
-    'barnasbosted.hjelpetekst.bosted.apne': 'Dette er avtale om delt bosted',
+    'barnasbosted.hjelpetekst.bosted.apne':
+      ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
     'barnasbosted.hjelpetekst.bosted.innhold':
       'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
       '\n' +
@@ -473,11 +474,11 @@ export default {
       'Du kan likevel få stønad hvis du ikke kan jobbe, studere eller søke arbeid på grunn av egen sykdom. Dette gjelder også hvis du har sykt barn eller mangler barnepass selv om du har søkt. Det samme gjelder dersom barnet ditt trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer.',
 
     'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
-    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidsgiver',
+    'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidssted',
     'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
-    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidsgiver',
+    'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidssted',
 
-    'arbeidsforhold.label.navn': 'Navn på arbeidsgiveren',
+    'arbeidsforhold.label.navn': 'Navn på arbeidssted',
     'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
     'arbeidsforhold.label.ansettelsesforhold':
       'Hva slags ansettelsesforhold har du?',
@@ -488,8 +489,8 @@ export default {
     'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvikar eller liknende',
     'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
     'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
-    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidsgivere?',
-    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til en arbeidsgiver',
+    'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidssteder?',
+    'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til et arbeidssted',
 
     'egetAS.tittel': 'Om aksjeselskapet ditt',
     'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
@@ -686,6 +687,15 @@ export default {
       'Når reduserte du arbeidstiden?',
     'dinSituasjon.datovelger-alert.redusertStilling':
       'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+    'dinSituasjon.legend.særligTilsyn':
+      'Hvilket av barna dine har behov for særlig tilsyn?',
+    'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
+    'dinSituasjon.alert-dok.tittel':
+      'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
+
+    'harBarnMedSærligeBehov.alert-dok.beskrivelse':
+      'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
+      '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
 
     'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
     'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
@@ -707,7 +717,7 @@ export default {
       'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020.' +
       'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel.' +
       'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020.' +
-      'Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+      'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
       'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.svar.neiNavKanVurdere':
@@ -802,8 +812,6 @@ export default {
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
 
     'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
-    'dokumentasjon.inngåttEkteskap.beskrivelse':
-      'Beskrivelse for inngått ekteskap',
     'dokumentasjon.separasjonEllerSkilsmisse.tittel':
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
@@ -879,7 +887,7 @@ export default {
       'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
     'dokumentasjon.arbeidskontrakt.beskrivelse':
       'Dokumentasjonen må tydelig vise: <ul>' +
-      '<li>navn på arbeidsgiver</li>' +
+      '<li>navn på arbeidssted</li>' +
       '<li>stillingsprosent</li>' +
       '<li>dato for oppstart</li>' +
       '<li>dato du fikk tilbudet</li></ul>',
@@ -1006,7 +1014,7 @@ export default {
       'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
     'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
       'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
-      'Dersom du tjener mer enn 599 148 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
+      'Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
       'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
     'kvittering.lenke.tilleggsstønader.aktivitetskrav':
       'Les mer om stønad til barnetilsyn',

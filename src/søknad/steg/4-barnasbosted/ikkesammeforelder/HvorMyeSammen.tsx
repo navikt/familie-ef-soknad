@@ -21,14 +21,15 @@ interface Props {
 const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
   const intl = useIntl();
 
+  const hvorMyeSammenConfig = hvorMyeSammen(intl);
   const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,
-      [hvorMyeSammen.søknadid]: {
+      [hvorMyeSammenConfig.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
         label: hentTekst('barnasbosted.spm.hvorMyeSammen', intl),
-        verdi: hentTekst(valgtSvar.svar_tekstid, intl),
+        verdi: valgtSvar.svar_tekst,
       },
     };
 
@@ -56,11 +57,11 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
     <>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
-          key={hvorMyeSammen.søknadid}
-          spørsmål={hvorMyeSammen}
+          key={hvorMyeSammenConfig.søknadid}
+          spørsmål={hvorMyeSammenConfig}
           spørsmålTekst={hentBarnNavnEllerBarnet(
             barn,
-            hvorMyeSammen.tekstid,
+            hvorMyeSammenConfig.tekstid,
             intl
           )}
           valgtSvar={forelder.hvorMyeSammen?.verdi}

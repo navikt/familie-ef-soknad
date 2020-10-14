@@ -6,6 +6,7 @@ import {
 import { JaNeiSvar } from '../../../helpers/svar';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
+import { IntlShape } from 'react-intl';
 
 // --- Dokumentasjon
 
@@ -14,48 +15,59 @@ const DokumentasjonBorPåUlikeAdresser: IDokumentasjon =
 
 // --- Spørsmål
 
-export const delerSøkerBoligMedAndreVoksne: ISpørsmål = {
+export const delerSøkerBoligMedAndreVoksne = (intl: IntlShape): ISpørsmål => ({
   søknadid: EBosituasjon.delerBoligMedAndreVoksne,
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
   flersvar: false,
   svaralternativer: [
     {
       id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
-      svar_tekstid: 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+      }),
     },
     {
       id: ESøkerDelerBolig.borMidlertidigFraHverandre,
-      svar_tekstid: 'bosituasjon.svar.borMidlertidigFraHverandre',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.borMidlertidigFraHverandre',
+      }),
       alert_tekstid: 'bosituasjon.alert.borMidlertidigFraHverandre',
     },
     {
       id: ESøkerDelerBolig.borSammenOgVenterBarn,
-      svar_tekstid: 'bosituasjon.svar.borSammenOgVenterBarn',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.borSammenOgVenterBarn',
+      }),
       alert_tekstid: 'bosituasjon.alert.borSammenOgVenterBarn',
     },
     {
       id: ESøkerDelerBolig.harEkteskapsliknendeForhold,
-      svar_tekstid: 'bosituasjon.svar.harEkteskapsliknendeForhold',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.harEkteskapsliknendeForhold',
+      }),
       alert_tekstid: 'bosituasjon.alert.harEkteskapsliknendeForhold',
     },
     {
       id: ESøkerDelerBolig.delerBoligMedAndreVoksne,
-      svar_tekstid: 'bosituasjon.svar.delerBoligMedAndreVoksne',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.delerBoligMedAndreVoksne',
+      }),
     },
     {
       id: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
-      svar_tekstid:
-        'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
+      }),
       alert_tekstid:
         'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',
       dokumentasjonsbehov: DokumentasjonBorPåUlikeAdresser,
     },
   ],
-};
+});
 
-export const skalSøkerGifteSegMedSamboer: ISpørsmål = {
+export const skalSøkerGifteSegMedSamboer = (intl: IntlShape): ISpørsmål => ({
   søknadid: EBosituasjon.skalGifteSegEllerBliSamboer,
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
   flersvar: false,
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});

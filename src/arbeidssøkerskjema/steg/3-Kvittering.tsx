@@ -57,9 +57,7 @@ const Kvittering: React.FC = () => {
         </FeltGruppe>
         <FeltGruppe>
           <Lenke
-            href={
-              'https://www.nav.no/no/person/familie/enslig-mor-eller-far/tilleggsstonader-og-stonad-til-skolepenger'
-            }
+            href={'https://www.nav.no/familie/alene-med-barn/tilleggsstonader'}
           >
             <Normaltekst>
               <LocaleTekst tekst={'arbeidssøker.lenke.tilleggstønad'} />

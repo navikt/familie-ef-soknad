@@ -61,7 +61,7 @@ const BarnepassSpørsmål: FC<Props> = ({
       : hentBarnNavnEllerBarnet(barn, 'privat.label.navnPåBarnepass', intl);
   const spørsmålTekstBarnepassOrdning = hentBarnNavnEllerBarnet(
     barn,
-    HvaSlagsBarnepassOrdningSpm.tekstid,
+    HvaSlagsBarnepassOrdningSpm(intl).tekstid,
     intl
   );
   const periodeTekst = hentBarnNavnEllerBarnet(
@@ -96,7 +96,7 @@ const BarnepassSpørsmål: FC<Props> = ({
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentBarnNavnEllerBarnet(barn, spørsmål.tekstid, intl),
-        verdi: hentTekst(svar.svar_tekstid, intl),
+        verdi: svar.svar_tekst,
       },
     });
     settDokumentasjonsbehovForBarn(
@@ -161,7 +161,7 @@ const BarnepassSpørsmål: FC<Props> = ({
       {erÅrsakBarnepassSpmBesvart(barn) && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn
-            spørsmål={HvaSlagsBarnepassOrdningSpm}
+            spørsmål={HvaSlagsBarnepassOrdningSpm(intl)}
             spørsmålTekst={spørsmålTekstBarnepassOrdning}
             settSpørsmålOgSvar={settSpørsmålFelt}
             valgtSvar={hvaSlagsBarnepassOrdning?.verdi}
