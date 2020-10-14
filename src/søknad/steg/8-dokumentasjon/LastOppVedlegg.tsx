@@ -64,7 +64,7 @@ const LastOppVedlegg: React.FC<Props> = ({
         <Filopplaster
           oppdaterDokumentasjon={oppdaterDokumentasjon}
           dokumentasjon={dokumentasjon}
-          maxFilstørrelse={1024 * 1024 * 20}
+          maxFilstørrelse={1024 * 1024 * 10}
         />
       )}
     </SeksjonGruppe>
