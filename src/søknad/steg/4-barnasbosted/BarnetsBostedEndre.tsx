@@ -165,6 +165,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
+  const skalFylleUtHarBoddSammenFør =
+    (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+      borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
+    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
+    !forelder.borINorge?.verdi;
   return (
     <>
       <div className="barnas-bosted">
@@ -249,19 +254,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 />
               )}
 
-              {(harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
-                borAnnenForelderISammeHus?.svarid !==
-                  EBorAnnenForelderISammeHus.ja) ||
-                harValgtSvar(
-                  forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
-                ) ||
-                (!forelder.borINorge?.verdi && (
-                  <BoddSammenFør
-                    forelder={forelder}
-                    barn={barn}
-                    settForelder={settForelder}
-                  />
-                ))}
+              {skalFylleUtHarBoddSammenFør && (
+                <BoddSammenFør
+                  forelder={forelder}
+                  barn={barn}
+                  settForelder={settForelder}
+                />
+              )}
               {(boddSammenFør?.svarid === ESvar.NEI ||
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
