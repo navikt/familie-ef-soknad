@@ -1,16 +1,13 @@
-import {
-  ESvar,
-  ESvarTekstid,
-  ISpørsmål,
-} from '../../../../models/felles/spørsmålogsvar';
+import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import {
   EArbeidssted,
   EArbeidssøker,
 } from '../../../../models/steg/aktivitet/arbeidssøker';
-import { JaNeiSvar, JaSvar } from '../../../../helpers/svar';
+import { JaNeiSvar, JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonIkkeVilligTilArbeid } from '../AktivitetConfig';
+import { IntlShape } from 'react-intl';
 
-export const erSøkerArbeidssøker: ISpørsmål = {
+export const erSøkerArbeidssøker = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
   flersvar: false,
@@ -20,31 +17,26 @@ export const erSøkerArbeidssøker: ISpørsmål = {
     lukkeTekstid: '',
   },
   svaralternativer: [
-    JaSvar,
-    {
-      id: ESvar.NEI,
-      svar_tekstid: ESvarTekstid.NEI,
-      alert_tekstid: 'arbeidssøker.søknad.alert.forÅHaRett',
-    },
+    JaSvar(intl),
+    { ...NeiSvar(intl), alert_tekstid: 'arbeidssøker.søknad.alert.forÅHaRett' },
   ],
-};
+});
 
-export const erVilligTilÅTaImotTilbud: ISpørsmål = {
+export const erVilligTilÅTaImotTilbud = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   tekstid: 'arbeidssøker.label.villig',
   flersvar: false,
   svaralternativer: [
-    JaSvar,
+    JaSvar(intl),
     {
-      id: ESvar.NEI,
-      svar_tekstid: ESvarTekstid.NEI,
+      ...NeiSvar(intl),
       alert_tekstid: 'arbeidssøker.alert.villig',
       dokumentasjonsbehov: DokumentasjonIkkeVilligTilArbeid,
     },
   ],
-};
+});
 
-export const kanBegynneInnenEnUke: ISpørsmål = {
+export const kanBegynneInnenEnUke = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.kanBegynneInnenEnUke,
   tekstid: 'arbeidssøker.label.senestEnUke',
   flersvar: false,
@@ -53,17 +45,18 @@ export const kanBegynneInnenEnUke: ISpørsmål = {
     innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke',
     lukkeTekstid: '',
   },
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});
 
-export const kanSkaffeBarnepassInnenEnUke: ISpørsmål = {
+//TODO HVOR BRUKES DENNE?
+export const kanSkaffeBarnepassInnenEnUke = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.kanSkaffeBarnepassInnenEnUke,
   tekstid: 'arbeidssøker.label.barnepass',
   flersvar: false,
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});
 
-export const ønsketArbeidssted: ISpørsmål = {
+export const ønsketArbeidssted = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.hvorØnskerSøkerArbeid,
   tekstid: 'arbeidssøker.label.ønsketArbeidssted',
   flersvar: false,
@@ -75,16 +68,16 @@ export const ønsketArbeidssted: ISpørsmål = {
   svaralternativer: [
     {
       id: EArbeidssted.nærme,
-      svar_tekstid: 'arbeidssøker.svar.nærme',
+      svar_tekst: intl.formatMessage({ id: 'arbeidssøker.svar.nærme' }),
     },
     {
       id: EArbeidssted.hvorSomHelst,
-      svar_tekstid: 'arbeidssøker.svar.hvorSomHelst',
+      svar_tekst: intl.formatMessage({ id: 'arbeidssøker.svar.hvorSomHelst' }),
     },
   ],
-};
+});
 
-export const ønskerHalvStillig: ISpørsmål = {
+export const ønskerHalvStilling = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,
@@ -93,5 +86,5 @@ export const ønskerHalvStillig: ISpørsmål = {
     innholdTekstid: 'arbeidssøker.alert.halvstilling',
     lukkeTekstid: '',
   },
-  svaralternativer: JaNeiSvar,
-};
+  svaralternativer: JaNeiSvar(intl),
+});

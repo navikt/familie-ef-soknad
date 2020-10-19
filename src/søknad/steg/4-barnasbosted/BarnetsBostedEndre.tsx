@@ -150,7 +150,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: erJaNeiSvar(svar)
           ? hentBooleanFraValgtSvar(svar)
-          : hentTekst(svar.svar_tekstid, intl),
+          : svar.svar_tekst,
       },
     };
 
@@ -165,6 +165,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
+  const skalFylleUtHarBoddSammenFør =
+    (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+      borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
+    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
+    !forelder.borINorge?.verdi;
   return (
     <>
       <div className="barnas-bosted">
@@ -241,18 +246,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
           {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
             <>
-              <BorAnnenForelderISammeHus
-                forelder={forelder}
-                settForelder={settForelder}
-                barn={barn}
-              />
+              {forelder.borINorge?.verdi && (
+                <BorAnnenForelderISammeHus
+                  forelder={forelder}
+                  settForelder={settForelder}
+                  barn={barn}
+                />
+              )}
 
-              {((harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
-                borAnnenForelderISammeHus?.svarid !==
-                  EBorAnnenForelderISammeHus.ja) ||
-                harValgtSvar(
-                  forelder.borAnnenForelderISammeHusBeskrivelse?.verdi
-                )) && (
+              {skalFylleUtHarBoddSammenFør && (
                 <BoddSammenFør
                   forelder={forelder}
                   barn={barn}

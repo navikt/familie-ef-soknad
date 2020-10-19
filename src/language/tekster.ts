@@ -353,7 +353,8 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
-    'barnasbosted.hjelpetekst.bosted.apne': 'Dette er avtale om delt bosted',
+    'barnasbosted.hjelpetekst.bosted.apne':
+      ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
     'barnasbosted.hjelpetekst.bosted.innhold':
       'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
       '\n' +
@@ -550,7 +551,7 @@ export default {
     'arbeidssøker.label.halvstilling':
       'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
     'arbeidssøker.alert.halvstilling':
-      'Som enslig mor eller far er det ikke krav til at du må søke heltidsarbeid. Det samme gjelder kvelds-, natt-, helg- og skiftarbeid. ',
+      'Du kan søke heltidsjobb, men som enslig mor eller far holder det at du jobber minst 50 prosent. Det er heller ikke krav om at du må jobbe kvelds-, natt-, helg- og skiftarbeid.',
     'arbeidssøker.tekst.tillegstønad':
       'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
       'Stønadene kan dekke utgifter til <ul>' +
@@ -686,6 +687,15 @@ export default {
       'Når reduserte du arbeidstiden?',
     'dinSituasjon.datovelger-alert.redusertStilling':
       'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+    'dinSituasjon.legend.særligTilsyn':
+      'Hvilket av barna dine har behov for særlig tilsyn?',
+    'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
+    'dinSituasjon.alert-dok.tittel':
+      'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
+
+    'harBarnMedSærligeBehov.alert-dok.beskrivelse':
+      'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
+      '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
 
     'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
     'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
@@ -707,7 +717,7 @@ export default {
       'Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med april 2020.' +
       'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel.' +
       'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med februar 2020.' +
-      'Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+      'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
       'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
     'søkerFraBestemtMåned.svar.neiNavKanVurdere':
@@ -802,8 +812,6 @@ export default {
       'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
 
     'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
-    'dokumentasjon.inngåttEkteskap.beskrivelse':
-      'Beskrivelse for inngått ekteskap',
     'dokumentasjon.separasjonEllerSkilsmisse.tittel':
       'Dokumentasjon på separasjon eller skilsmisse',
     'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
