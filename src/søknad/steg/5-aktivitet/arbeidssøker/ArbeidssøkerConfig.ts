@@ -77,7 +77,7 @@ export const ønsketArbeidssted = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const ønskerHalvStillig = (intl: IntlShape): ISpørsmål => ({
+export const ønskerHalvStilling = (intl: IntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,
