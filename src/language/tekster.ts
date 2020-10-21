@@ -319,7 +319,9 @@ export default {
     'barnasbosted.spm.donorbarn': 'Donorbarn',
     'barnasbosted.spm.annet': 'Annet',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+      'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
+    'barnasbosted.avtale.ufødt':
+      'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
     'barnasbosted.alert-advarsel.avtaleDeltBosted':
       'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
     'barnasbosted.alert-info.avtaleOmDeltBosted':
@@ -356,11 +358,15 @@ export default {
     'barnasbosted.hjelpetekst.bosted.apne':
       ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
     'barnasbosted.hjelpetekst.bosted.innhold':
-      'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
+      'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/>' +
       '\n' +
-      '<br/>En skriftlig avtale om delt bosted innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
+      '<br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>' +
       '\n' +
-      '<br/>Når dere har en skriftlig avtale om delt bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
+      '<br/>Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/>' +
+      '\n' +
+      '<br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
+      '\n' +
+      '<br/>Når dere har en skriftlig avtale om delt fast bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
@@ -1076,7 +1082,9 @@ export default {
     'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
     'barnasbosted.land': 'Land',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+      'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
+    'barnasbosted.avtale.ufødt':
+      'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
@@ -1186,7 +1194,9 @@ export default {
       'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
     'barnasbosted.borinorge': 'Bor andre forelder i Norge?',
     'barnasbosted.avtale':
-      'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+      'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
+    'barnasbosted.avtale.ufødt':
+      'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
     'barnasbosted.spm.harAnnenForelderSamværMedBarn':
       'Har den andre forelderen samvær med [0]?',
     'barnasbosted.spm.jaIkkeMerEnnVanlig':
