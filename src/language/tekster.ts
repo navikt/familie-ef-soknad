@@ -355,13 +355,12 @@ export default {
     'barnasbosted.forelder.annen': 'Annen forelder',
     'barnasbosted.forelder.sammesom': 'Samme som',
     'barnasbosted.knapp.endre': 'Endre informasjon',
-    'barnasbosted.hjelpetekst.bosted.apne':
-      ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
-    'barnasbosted.hjelpetekst.bosted.innhold':
+    'barnasbosted.hjelpetekst.bosted.apne': 'Les mer om delt fast bosted',
+    'barnasbosted.hjelpetekst.halvåpen':
       'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/>' +
       '\n' +
-      '<br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>' +
-      '\n' +
+      '<br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
+    'barnasbosted.hjelpetekst.bosted.innhold':
       '<br/>Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/>' +
       '\n' +
       '<br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +

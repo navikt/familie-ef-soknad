@@ -44,7 +44,8 @@ export const avtaleOmDeltBosted = (
   tekstid: født ? 'barnasbosted.avtale' : 'barnasbosted.avtale.ufødt',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
+    halvåpenTekstid: 'barnasbosted.hjelpetekst.halvåpen',
+    åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
     lukkeTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
   },
