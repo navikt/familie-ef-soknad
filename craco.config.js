@@ -53,6 +53,25 @@ const norskeOrdMedÆØÅ = [
 
 module.exports = {
   plugins: [{ plugin: CracoLessPlugin }],
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        loaders: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                compileType: 'icss',
+              },
+            },
+          },
+          'less-loader',
+        ],
+      },
+    ],
+  },
   eslint: {
     enable: true,
     mode: 'extends',

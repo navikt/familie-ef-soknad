@@ -22,6 +22,7 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
 import { logEvent } from '../utils/amplitude';
+import Språkvelger from '../components/språkvelger/Språkvelger';
 
 const Forside: React.FC = () => {
   useEffect(() => {
@@ -69,6 +70,7 @@ const Forside: React.FC = () => {
               )}
             />
           </div>
+          <Språkvelger />
 
           {isIE && (
             <div className="ie-feil">
