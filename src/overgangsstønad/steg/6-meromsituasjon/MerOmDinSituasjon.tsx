@@ -25,7 +25,11 @@ import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from '../../../søknad/steg/6-meromsituasjon/SituasjonOppfølgingSpørsmål';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
-import { datoTilStreng } from '../../../utils/dato';
+import {
+  dagensDato,
+  datoTilStreng,
+  formatNårSøkerDuStønadFraMåned,
+} from '../../../utils/dato';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
@@ -33,7 +37,14 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logEvent } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
-
+import { hentBeskjedMedNavn } from '../../../utils/språk';
+import { Normaltekst } from 'nav-frontend-typografi';
+import styled from 'styled-components';
+const StyledHjelpetekst = styled.div`
+  .typo-normal {
+    padding-bottom: 1rem;
+  }
+`;
 const MerOmDinSituasjon: React.FC = () => {
   const intl = useIntl();
   const {
@@ -61,8 +72,32 @@ const MerOmDinSituasjon: React.FC = () => {
   }, []);
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
-  const hjelpetekstInnhold =
-    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad';
+
+  const hjelpetekstFørsteAvsnitt = hentTekst(
+    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1',
+    intl
+  );
+  const hjelpetekstAndreAvsnitt = hentBeskjedMedNavn(
+    formatNårSøkerDuStønadFraMåned(dagensDato, 3),
+    hentTekst(
+      'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2',
+      intl
+    )
+  );
+  const hjelpetekstTredjeAvsnitt = hentBeskjedMedNavn(
+    formatNårSøkerDuStønadFraMåned(dagensDato, 5),
+    hentTekst(
+      'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3',
+      intl
+    )
+  );
+  const hjelpetekst: JSX.Element = (
+    <StyledHjelpetekst>
+      <Normaltekst>{hjelpetekstFørsteAvsnitt}</Normaltekst>
+      <Normaltekst>{hjelpetekstAndreAvsnitt}</Normaltekst>
+      <Normaltekst>{hjelpetekstTredjeAvsnitt}</Normaltekst>
+    </StyledHjelpetekst>
+  );
 
   useEffect(() => {
     settSøknad((prevSøknad) => ({
@@ -190,7 +225,7 @@ const MerOmDinSituasjon: React.FC = () => {
             settDato={settSøknadsdato}
             valgtDato={dinSituasjon.søknadsdato}
             datovelgerLabel={datovelgerLabel}
-            hjelpetekstInnholdTekstid={hjelpetekstInnhold}
+            hjelpetekstInnholdTekst={hjelpetekst}
           />
         </SeksjonGruppe>
       )}

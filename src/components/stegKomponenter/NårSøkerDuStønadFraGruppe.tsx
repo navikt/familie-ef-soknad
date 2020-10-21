@@ -49,7 +49,7 @@ interface Props {
   settDato: (dato: Date | null) => void;
   valgtDato: IDatoFelt | undefined;
   datovelgerLabel: string;
-  hjelpetekstInnholdTekstid: string;
+  hjelpetekstInnholdTekst: string | React.ReactNode;
   alertTekst?: string;
 }
 const NårSøkerDuStønadFra: React.FC<Props> = ({
@@ -59,7 +59,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
   søkerFraBestemtMåned,
   valgtDato,
   datovelgerLabel,
-  hjelpetekstInnholdTekstid,
+  hjelpetekstInnholdTekst,
   alertTekst,
 }) => {
   const intl = useIntl();
@@ -71,7 +71,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
           <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
           <Hjelpetekst
             åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-            innholdTekstid={hjelpetekstInnholdTekstid}
+            innholdTekst={hjelpetekstInnholdTekst}
           />
           <div className="radioknapp__multiSvar">
             {spørsmål.svaralternativer.map((svar: ISvar) => {
