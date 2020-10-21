@@ -96,13 +96,14 @@ const Sivilstatus: React.FC<Props> = ({
 
   return (
     <SeksjonGruppe>
-      {erSøkerGift(sivilstand) ? (
+      {erSøkerGift(sivilstand) && (
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}
           settDato={settDato}
           sivilstatus={sivilstatus}
         />
-      ) : (
+      )}
+      {erSøkerUgift(sivilstand) && (
         <SøkerErUgift
           erUformeltGift={erUformeltGift}
           settSivilstatusFelt={settSivilstatusFelt}
