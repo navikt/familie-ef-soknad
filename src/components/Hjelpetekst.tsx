@@ -70,7 +70,7 @@ interface Props {
   åpneTekstid: string;
   lukkeTekstid?: string;
   innholdTekstid?: string;
-  innholdTekst?: string;
+  innholdTekst?: string | React.ReactNode;
   html?: boolean;
 }
 
