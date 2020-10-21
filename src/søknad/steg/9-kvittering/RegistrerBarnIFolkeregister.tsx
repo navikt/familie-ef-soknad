@@ -9,7 +9,7 @@ import { flereBarnsNavn } from '../../../utils/barn';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 
 interface Props {
   barna: IBarn[];
@@ -17,6 +17,7 @@ interface Props {
 
 const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   const intl = useIntl();
+
   const barnSomSkalRegistreresIFolkeregister = barna.filter((barn) => {
     return (
       barn?.forelder?.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja
@@ -26,17 +27,21 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   if (barnSomSkalRegistreresIFolkeregister.length === 0) {
     return null;
   }
+
   const barnasNavn = flereBarnsNavn(barnSomSkalRegistreresIFolkeregister, intl);
   const tekst = hentBeskjedMedNavn(
     barnasNavn,
     hentTekst('barnasbosted.skalBliFolkeregistrert.tekst', intl)
   );
+  const undertittelMedNavn = hentBeskjedMedNavn(
+    barnasNavn,
+    'Husk å registrere riktig adresse for [0] i Folkeregisteret.'
+  );
 
   return (
     <SeksjonGruppe>
-      <FeltGruppe>
-        <Normaltekst>{tekst}</Normaltekst>
-      </FeltGruppe>
+      <StyledUndertittel>{undertittelMedNavn}</StyledUndertittel>
+      <Normaltekst>{tekst}</Normaltekst>
       <KomponentGruppe>
         <a
           target={'_blank'}
