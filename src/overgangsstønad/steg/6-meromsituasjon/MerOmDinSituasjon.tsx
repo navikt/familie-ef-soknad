@@ -28,7 +28,7 @@ import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøk
 import {
   dagensDato,
   datoTilStreng,
-  formatNårSøkerDuStønadFraMåned,
+  formatMånederTilbake,
 } from '../../../utils/dato';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
@@ -73,23 +73,23 @@ const MerOmDinSituasjon: React.FC = () => {
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
 
-  const hjelpetekstFørsteAvsnitt = hentTekst(
-    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1',
-    intl
+  const hjelpetekstFørsteAvsnitt = hentBeskjedMedNavn(
+    formatMånederTilbake(dagensDato, 3),
+    hentTekst(
+      'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1',
+      intl
+    )
   );
   const hjelpetekstAndreAvsnitt = hentBeskjedMedNavn(
-    formatNårSøkerDuStønadFraMåned(dagensDato, 3),
+    formatMånederTilbake(dagensDato, 5),
     hentTekst(
       'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2',
       intl
     )
   );
-  const hjelpetekstTredjeAvsnitt = hentBeskjedMedNavn(
-    formatNårSøkerDuStønadFraMåned(dagensDato, 5),
-    hentTekst(
-      'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3',
-      intl
-    )
+  const hjelpetekstTredjeAvsnitt = hentTekst(
+    'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3',
+    intl
   );
   const hjelpetekst: JSX.Element = (
     <StyledHjelpetekst>
