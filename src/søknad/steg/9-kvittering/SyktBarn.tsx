@@ -4,7 +4,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Lenke from 'nav-frontend-lenker';
 import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;

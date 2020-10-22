@@ -2,7 +2,7 @@ import * as React from 'react';
 import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
 import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Wrapper, Button } from 'react-aria-menubutton';
