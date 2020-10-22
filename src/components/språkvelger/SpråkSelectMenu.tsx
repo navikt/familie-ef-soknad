@@ -55,7 +55,7 @@ const StyledMenuItem = styled(MenuItem)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, max-content);
-  grid-gap: 1.25rem;
+  grid-gap: 1.1rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
   outline: none;
   background-color: #ffffff;
