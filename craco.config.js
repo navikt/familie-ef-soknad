@@ -72,6 +72,7 @@ module.exports = {
       },
     ],
   },
+  webpack: {},
   eslint: {
     enable: true,
     mode: 'extends',
