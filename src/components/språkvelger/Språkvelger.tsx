@@ -8,11 +8,12 @@ import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Wrapper, Button } from 'react-aria-menubutton';
 import { hentListeMedSpråk, hentValgtSpråk } from '../../utils/språk';
 import { useSpråkContext } from '../../context/SpråkContext';
+import navFarger from 'nav-frontend-core';
 
 const StyledSpråkvelger = styled.div`
   display: flex;
   width: 170px;
-  border: 3px solid darkgrey;
+  border: 3px solid ${navFarger.navGra40};
   border-radius: 0.25rem;
 `;
 
@@ -30,7 +31,7 @@ const StyledButton = styled(Button)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px @orangeFocus;
+    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
     border-color: transparent;
   }
 `;

@@ -6,6 +6,7 @@ import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 import { FC } from 'react';
 import styled from 'styled-components';
 import { StyledTekst, SVGFlagg } from './Språkvelger';
+import navFarger from 'nav-frontend-core';
 
 const StyledSpråkMeny = styled(Menu)`
   width: 100%;
@@ -25,12 +26,12 @@ const StyledListe = styled.ul`
 
   &:hover {
     outline: none;
-    box-shadow: 0 0 0 3px @orangeFocus;
+    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px @orangeFocus;
+    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
   }
 
   ul {
@@ -58,19 +59,19 @@ const StyledMenuItem = styled(MenuItem)`
   padding: 0.5rem 1rem 0.5rem 1rem;
   outline: none;
   background-color: #ffffff;
-  border-bottom: 1px solid darkgrey;
-  border-left: 1px solid darkgrey;
-  border-right: 1px solid darkgrey;
+  border-bottom: 1px solid ${navFarger.navGra40};
+  border-left: 1px solid ${navFarger.navGra40};
+  border-right: 1px solid ${navFarger.navGra40};
 
   &:hover {
     outline: none;
     cursor: pointer;
-    box-shadow: 0 0 0 3px @orangeFocus;
+    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px @orangeFocus;
+    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
   }
 `;
 
