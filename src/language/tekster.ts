@@ -316,7 +316,7 @@ export default {
     'barnasbosted.land': 'Land',
     'barnasbosted.spm.hvorforikkeoppgi':
       'Hvorfor kan du ikke oppgi den andre forelderen?',
-    'barnasbosted.spm.donorbarn': 'Donorbarn',
+    'barnasbosted.spm.donorbarn': 'Donor',
     'barnasbosted.spm.annet': 'Annet',
     'barnasbosted.avtale':
       'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
