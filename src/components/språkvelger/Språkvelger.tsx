@@ -26,7 +26,7 @@ const StyledButton = styled(Button)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, max-content);
-  grid-gap: 1.1rem;
+  grid-gap: 1.22rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
 
   &:focus {
