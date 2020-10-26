@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext } from 'react';
 import { IntlProvider } from 'react-intl';
-import { getMessages } from '../utils/språk';
+import { getMessages } from '../language/utils';
 
 const SpråkContext = createContext<any>(['', () => {}]);
 const useSpråkContext = () => useContext(SpråkContext);

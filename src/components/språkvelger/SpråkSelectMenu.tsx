@@ -97,7 +97,9 @@ export const SpråkSelectMenu: FC<{
       <StyledListe>
         {språkObjekter.map((språkObj) => {
           return (
-            språkObj.locale !== locale && <SelectMenuItem språkObj={språkObj} />
+            språkObj.locale !== locale && (
+              <SelectMenuItem key={språkObj.locale} språkObj={språkObj} />
+            )
           );
         })}
       </StyledListe>

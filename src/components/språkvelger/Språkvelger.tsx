@@ -6,9 +6,9 @@ import styled from 'styled-components/macro';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Wrapper, Button } from 'react-aria-menubutton';
-import { hentListeMedSpråk, hentValgtSpråk } from '../../utils/språk';
 import { useSpråkContext } from '../../context/SpråkContext';
 import navFarger from 'nav-frontend-core';
+import { hentListeMedSpråk, hentValgtSpråk } from '../../language/utils';
 
 const StyledSpråkvelger = styled.div`
   display: flex;
