@@ -23,6 +23,7 @@ import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
 import { logEvent } from '../utils/amplitude';
 import Språkvelger from '../components/språkvelger/Språkvelger';
+import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC = () => {
   useEffect(() => {
@@ -82,7 +83,9 @@ const Forside: React.FC = () => {
             </div>
           )}
 
-          <Sidetittel>Søknad om overgangsstønad</Sidetittel>
+          <Sidetittel>
+            <LocaleTekst tekst="banner.tittel.overgangsstønad" />
+          </Sidetittel>
           {toggles[ToggleName.mellomlagre_søknad] &&
           kanBrukeMellomlagretSøknad &&
           mellomlagretOvergangsstønad ? (

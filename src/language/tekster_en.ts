@@ -54,7 +54,7 @@ export default {
   'skjema.alert.mottatt':
     'Information about you as a job seeker has been received',
 
-  'banner.tittel.overgangsstønad': 'Apply for transitional benefit',
+  'banner.tittel.overgangsstønad': 'Application for transitional benefit',
   'banner.tittel.barnetilsyn':
     'Application for child care benefit for working single parents',
   'banner.tittel.skolepenger': 'Application for support for school fees',
@@ -70,7 +70,7 @@ export default {
   'knapp.tilbake': 'Back',
   'knapp.neste': 'Next',
   'knapp.avbryt': 'Cancel',
-  'knapp.start': 'Start application',
+  'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
 
   'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
@@ -83,7 +83,7 @@ export default {
     'Start date has to be earlier than end date.',
   'datovelger.periode.likeDatoer':
     'The selected dates for the period has to be different dates',
-  'datovelger.fødselsdato': 'Birthday',
+  'datovelger.fødselsdato': 'Date of birth',
   'datovelger.nårSkalDetteSkje': 'When will this happen?',
 
   'input.kroner': 'kroner',
@@ -98,7 +98,7 @@ export default {
   'placeholder.beløp': 'For example 5250.30',
 
   'side.bekreftelse':
-    'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
+    'I, [0], hereby confirm that the information I provide is correct and complete',
   'side.info.overgangsstønad':
     'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
@@ -106,19 +106,21 @@ export default {
   'side.fortsettSøknad.knapp.startPåNytt': 'Start på nytt',
   'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
 
-  'person.navn': 'Navn',
-  'barn.ident': 'Fødselsnummer',
-  'barn.checkbox.ident': 'Barnet har ikke fått fødselsnummer ennå',
-  'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
-  'person.fnr': 'Fødselsnummer',
-  'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
-  'person.ident.visning': 'Fødselsnummer eller d-nummer',
-  'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
-  'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
-  'person.telefonnr': 'Telefonnummer du kan kontaktes på',
-  'person.statsborgerskap': 'Statsborgerskap',
-  'person.adresse': 'Adresse',
-  'person.alder': 'Alder',
+  'person.navn': 'Name',
+  'barn.ident': 'National identity number',
+  'barn.checkbox.ident':
+    'The child does not yet have a national identity number',
+  'person.fødselsdato': 'Date of birth (only if you know it)',
+  'person.fnr': 'National identity number',
+  'person.ident': 'Norwegian national identity number or D number (11 digits)',
+  'person.ident.visning': 'National identity number or D number ',
+  'person.checkbox.ident':
+    'I don’t know their national identity number or D number',
+  'person.feilmelding.ident': 'Invalid national identity number/ D number',
+  'person.telefonnr': 'Telephone number ',
+  'person.statsborgerskap': 'Nationality',
+  'person.adresse': 'Address',
+  'person.alder': 'Age',
 
   barnet: 'Barnet',
   'ufødt.barn': 'barn med termin [0]',
@@ -126,95 +128,114 @@ export default {
   'barnet.storForBokstav': 'Barnet',
   'barnet.litenForBokstav': 'barnet',
 
-  'stegtittel.omDeg': 'Om deg',
+  'stegtittel.omDeg': 'About you',
 
-  'personopplysninger.fnr': 'Fødselsnr',
-  'personopplysninger.telefonnr': 'Telefonnummer',
+  // --- OM DEG
+  'personopplysninger.fnr': 'National identity number',
+  'personopplysninger.telefonnr': 'Telephone number you can be contacted on',
   'personopplysninger.feilmelding.telefonnr':
-    'Telefonnummeret må ha minst 8 siffer',
-  'personopplysninger.statsborgerskap': 'Statsborgerskap',
+    'The telephone number must at least have 8 digits',
+  'personopplysninger.statsborgerskap': 'Nationality',
   'personopplysninger.alert.infohentet':
-    'Hvis opplysningene vi har om deg ikke stemmer, må du endre disse hos Folkeregisteret.',
+    'If the information we have about you is incorrect, you must change it with the National Registry.',
 
-  'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
+  'personopplysninger.spm.riktigAdresse': 'Do you live at this address?',
   'personopplysninger.lesmer-åpne.riktigAdresse':
-    'Hvis du har strengt fortrolig adresse',
+    'If you have a strictly confidential address',
   'personopplysninger.lesmer-innhold.riktigAdresse':
-    'Hvis du har strengt fortrolig adresse, vises ikke adressen din her. Du kan svare Ja på dette spørsmålet og fortsette med den digitale søknaden.',
+    'If you have a strictly confidential address, your address will not appear here. Answer Yes to this question and continue with the digital application.',
   'personopplysninger.alert.riktigAdresse':
-    'Du må oppgi riktig adresse til Folkeregisteret for å bruke denne søknaden',
+    'You must provide your true address to the National Registry in order to use this application.',
   'personopplysninger.info.endreAdresse':
-    'Skal du ikke endre adresse i Folkeregisteret?',
-  'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
+    'Are you not going to change your address in the National Registry?',
+  'personopplysninger.lenke.pdfskjema': 'Use the PDF form',
   'personopplysninger.info.pdfskjema':
-    'Skjemaet kan sendes inn elektronisk eller på papir',
+    'This form can be submitted electronically or on paper',
 
-  'sivilstatus.tittel': 'Sivilstatus',
+  // --- SIVILSTATUS
+  'sivilstatus.tittel': 'Marital status',
+  'sivilstatus.kode.REPA': 'Registered partner',
+  'sivilstatus.kode.GIFT': 'Married',
+  'sivilstatus.kode.UGIF': 'Unmarried',
+  'sivilstatus.kode.SAMB': 'Cohabitant',
+  'sivilstatus.kode.SEPR': 'Separated',
+  'sivilstatus.kode.SEPA': 'Separated',
+  'sivilstatus.kode.SKIL': 'Divorced',
+  'sivilstatus.kode.GJPA': 'Surviving partner',
+  'sivilstatus.kode.ENKE': 'Widow / widower',
+  'sivilstatus.kode.ANNET':
+    'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
+
   'sivilstatus.spm.søktSeparasjon':
-    'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
+    'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'You must submit confirmation from the County Governor or court',
   'sivilstatus.alert-advarsel.søktSeparasjon':
-    'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
+    'If you are married, you are not entitled to benefit for single parents',
   'sivilstatus.alert.samlivsbruddForeldre':
     'Du må legge ved erklæring om samlivsbrudd',
-  'sivilstatus.datovelger.søktSeparasjon': 'Når søkte dere eller reiste sak?',
-  'sivilstatus.datovelger.samlivsbrudd': 'Dato for samlivsbrudd',
-  'sivilstatus.datovelger.flyttetFraHverandre':
-    'Når flyttet dere fra hverandre?',
+  'sivilstatus.datovelger.søktSeparasjon':
+    'When did you apply or start legal proceedings?',
+  'sivilstatus.datovelger.samlivsbrudd': 'Date of end of relationship',
+  'sivilstatus.datovelger.flyttetFraHverandre': 'When did you move apart?',
   'sivilstatus.datovelger.endring':
     'Når skjedde endringen / når skal endringen skje?',
   'sivilstatus.spm.erUformeltGift':
-    'Du er registrert som ugift i folkeregisteret. Er du gift uten at det er registrert i folkeregisteret i Norge?',
+    'You are registered as unmarried in the National Registry. Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
-    'Du må legge ved dokumentasjon på inngått ekteskap',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
+    'You must provide documentation of your marriage',
+  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'The reason we ask about this',
   'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
     'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
   'sivilstatus.dok.søkerGiftIUtlandet':
     'Du må legge ved dokumentasjon på inngått ekteskap',
-  'sivilstatus.lesmer-åpne.erUformeltGift': 'Hvorfor spør vi om dette?',
+  'sivilstatus.lesmer-åpne.erUformeltGift': 'The reason we ask about this',
   'sivilstatus.lesmer-innhold.erUformeltGift':
-    'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret. ',
-
+    'We obtain our information from the National Registry. If you got married according to religious or cultural traditions and the marriage is not approved pursuant to Norwegian Marriage Act, this marriage will not be registered in the National Registry. ',
   'sivilstatus.spm.erUformeltSeparertEllerSkilt':
     'Er du separert eller skilt uten at dette er registrert i folkeregisteret i Norge?',
   'sivilstatus.alert.erUformeltSeparertEllerSkilt':
     'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
-  'sivilstatus.spm.begrunnelse': 'Hvorfor er du alene med barn?',
+  'sivilstatus.spm.begrunnelse': 'Why are you a sole caregiver?',
 
   'sivilstatus.svar.samlivsbruddForeldre':
-    'Samlivsbrudd med den andre forelderen',
-  'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd med noen andre',
-  'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
-  'sivilstatus.svar.endringISamværsordning': 'Endring i omsorgen for barn',
-  'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',
+    'My relationship with the other parent ended',
+  'sivilstatus.svar.samlivsbruddAndre':
+    'My relationship with someone else ended',
+  'sivilstatus.svar.aleneFraFødsel':
+    'I have been the sole caregiver from birth',
+  'sivilstatus.svar.endringISamværsordning':
+    'Change in the distribution of the care of the child',
+  'sivilstatus.svar.dødsfall': 'I am the sole caregiver due to death',
   'sivilstatus.alert.dødsfall':
-    'Når du er alene med barn på grunn av dødsfall, kan du ha rett til stønad til <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/ytelser-til-gjenlevende-ektefelle" target="_blank" >gjenlevende</a> og <a href="https://www.nav.no/no/person/pensjon/andre-pensjonsordninger/barnepensjon" target="_blank" >barnepensjon</a>. ',
+    'If you are a sole caregiver due to death, you may be entitled to benefits for ' +
+    '<a href="https://www.nav.no/en/home/benefits-and-services/relatert-informasjon/benefits-for-surviving-spouse" target="_blank" >survivors</a> ' +
+    'and <a href="https://www.nav.no/en/home/benefits-and-services/relatert-informasjon/childrens-pension" target="_blank" >child pension</a>. ',
   'sivilstatus.alert.samlivsbrudd':
-    'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet. Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden. Dette er ikke meklingsattesten fra familievernkontoret.',
-  'sivilstatus.begrunnelse.endring':
-    'Når skjedde endringen / når skal endringen skje?',
-  'sivilstatus.hjelpetekst-åpne.begrunnelse': 'Grunnen til at vi spør om dette',
+    'If you are not separated or divorced, please include confirmation of the end of your relationship. The confirmation must be signed by both of you and state the date of the break-up. You will receive a link to a template for a confirmation of the end of relationship when you submit your application. This is not the confirmation of mediation from the Family Counselling Office. ',
+  'sivilstatus.begrunnelse.endring': 'When did or will the change happen?',
+  'sivilstatus.hjelpetekst-åpne.begrunnelse': 'The reason we ask about this',
   'sivilstatus.hjelpetekst-innhold.begrunnelse':
-    'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
+    'We ask about this to work out what information we need from you.',
 
-  'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+  // --- MEDLEMSKAP
+  'medlemskap.spm.opphold': 'Are you currently living in Norway?',
   'medlemskap.alert-advarsel.opphold':
-    'Når du ikke oppholder deg i Norge, har du som hovedregel ikke rett på stønad til enslig mor eller far. Du kan likevel få stønad dersom du oppholder deg i utlandet fordi du arbeider for en norsk arbeidsgiver. Du kan også være i utlandet i inntil 6 uker i løpet av en 12 måneders periode.',
-  'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',
-  'medlemskap.hjelpetekst-åpne.bosatt': 'Hva vil det si å være bosatt i Norge?',
-  'medlemskap.hjelpetekst-innhold.bosatt':
-    'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
-  'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
+    'If you are not living in Norway, you are generally not entitled to benefit for single parents. ' +
+    'However, you can receive benefit if you are living overseas because you work for a Norwegian employer. ' +
+    'You can also spend up to six weeks outside Norway during a 12 month period.',
+  'medlemskap.spm.bosatt': 'Have you lived in Norway for the past three years?',
 
-  'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
-  'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
-  'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Hvorfor bodde du i utlandet?',
+  'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
+
+  'medlemskap.periodeBoddIUtlandet.slett': 'Remove period spent abroad',
+  'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
+  'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Why did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
-    'Har du hatt flere utenlandsopphold de siste 3 årene?',
-  'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+    'Have you spent more periods abroad during the last three years?',
+  'medlemskap.periodeBoddIUtlandet.knapp': 'Add a period spent abroad',
 
+  // --- BOSITUASJONEN DIN
   'stegtittel.bosituasjon': 'Bosituasjonen din',
 
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
@@ -242,10 +263,10 @@ export default {
 
   'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
   'bosituasjon.tittel.omSamboer': 'Om samboeren din',
-  'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
+  'bosituasjon.tittel.omTidligereSamboer': 'About your former cohabitant',
   'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
   'bosituasjon.datovelger.nårFlyttetDereFraHverandre':
-    'Når flyttet dere fra hverandre?',
+    'When did you move apart?',
 
   'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
     '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +

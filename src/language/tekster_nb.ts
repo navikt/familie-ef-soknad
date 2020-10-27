@@ -141,6 +141,17 @@ export default {
     'Skjemaet kan sendes inn elektronisk eller på papir',
 
   'sivilstatus.tittel': 'Sivilstatus',
+  'sivilstatus.kode.REPA': 'Registrert partner',
+  'sivilstatus.kode.GIFT': 'Gift',
+  'sivilstatus.kode.UGIF': 'Ugift',
+  'sivilstatus.kode.SAMB': 'Samboer',
+  'sivilstatus.kode.SEPR': 'Separert',
+  'sivilstatus.kode.SEPA': 'Separert',
+  'sivilstatus.kode.SKIL': 'Skilt',
+  'sivilstatus.kode.GJPA': 'Gjenlevende partner',
+  'sivilstatus.kode.ENKE': 'Enke/Enkemann',
+  'sivilstatus.kode.ANNET':
+    'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon':
     'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
   'sivilstatus.alert-info.søktSeparasjon':
@@ -194,9 +205,7 @@ export default {
   'medlemskap.alert-advarsel.opphold':
     'Når du ikke oppholder deg i Norge, har du som hovedregel ikke rett på stønad til enslig mor eller far. Du kan likevel få stønad dersom du oppholder deg i utlandet fordi du arbeider for en norsk arbeidsgiver. Du kan også være i utlandet i inntil 6 uker i løpet av en 12 måneders periode.',
   'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',
-  'medlemskap.hjelpetekst-åpne.bosatt': 'Hva vil det si å være bosatt i Norge?',
-  'medlemskap.hjelpetekst-innhold.bosatt':
-    'Hvis du har studert i utlandet med støtte fra lånekassen i denne perioden, regnes du som bosatt i Norge.',
+
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
 
   'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
