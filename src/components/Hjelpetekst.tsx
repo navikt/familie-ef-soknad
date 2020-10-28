@@ -57,8 +57,16 @@ const StyledÅpenHjelpetekst = styled.div`
   }
 `;
 
+const StyledHalvåpenHjelpetekst = styled.div`
+  .typo-normal {
+    margin-top: 1rem;
+    font-size: 1rem !important;
+  }
+`;
+
 interface Props {
   className?: string;
+  halvåpenTekstid?: string;
   åpneTekstid: string;
   lukkeTekstid?: string;
   innholdTekstid?: string;
@@ -68,6 +76,7 @@ interface Props {
 
 const Hjelpetekst: React.FC<Props> = ({
   className,
+  halvåpenTekstid,
   åpneTekstid,
   lukkeTekstid,
   innholdTekstid,
@@ -76,18 +85,27 @@ const Hjelpetekst: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  return (
-    <>
-      {åpneTekstid === '' ? (
-        <StyledÅpenHjelpetekst>
-          <Normaltekst>
-            {innholdTekst && innholdTekst}
-            {!innholdTekst && innholdTekstid && (
-              <LocaleTekst tekst={innholdTekstid} />
-            )}
-          </Normaltekst>
-        </StyledÅpenHjelpetekst>
-      ) : (
+  if (åpneTekstid === '') {
+    return (
+      <StyledÅpenHjelpetekst>
+        <Normaltekst>
+          {innholdTekst && innholdTekst}
+          {!innholdTekst && innholdTekstid && (
+            <LocaleTekst tekst={innholdTekstid} />
+          )}
+        </Normaltekst>
+      </StyledÅpenHjelpetekst>
+    );
+  } else {
+    return (
+      <>
+        {halvåpenTekstid && (
+          <StyledHalvåpenHjelpetekst>
+            <Normaltekst>
+              <LocaleTekst tekst={halvåpenTekstid} />
+            </Normaltekst>
+          </StyledHalvåpenHjelpetekst>
+        )}
         <StyledHjelpetekst className={className}>
           <Lesmerpanel
             apneTekst={hentTekst(åpneTekstid, intl)}
@@ -104,9 +122,9 @@ const Hjelpetekst: React.FC<Props> = ({
             </Normaltekst>
           </Lesmerpanel>
         </StyledHjelpetekst>
-      )}
-    </>
-  );
+      </>
+    );
+  }
 };
 
 export default hiddenIf(Hjelpetekst);
