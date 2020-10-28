@@ -36,11 +36,15 @@ export const borINorge = (intl: IntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const avtaleOmDeltBosted = (intl: IntlShape): ISpørsmål => ({
+export const avtaleOmDeltBosted = (
+  intl: IntlShape,
+  født: Boolean
+): ISpørsmål => ({
   søknadid: EForelder.avtaleOmDeltBosted,
-  tekstid: 'barnasbosted.avtale',
+  tekstid: født ? 'barnasbosted.avtale' : 'barnasbosted.avtale.ufødt',
   flersvar: false,
   lesmer: {
+    halvåpenTekstid: 'barnasbosted.hjelpetekst.halvåpen',
     åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
     lukkeTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
@@ -134,7 +138,7 @@ export const harDereSkriftligSamværsavtale = (intl: IntlShape): ISpørsmål => 
     },
     {
       id: EHarSkriftligSamværsavtale.nei,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.nei' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },
   ],
 });
@@ -210,7 +214,7 @@ export const skalBarnetBoHosSøker = (intl: IntlShape): ISpørsmål => ({
     },
     {
       id: ESkalBarnetBoHosSøker.nei,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.nei' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },
   ],
 });

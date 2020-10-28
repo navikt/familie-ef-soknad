@@ -60,6 +60,7 @@ export default {
 
   'knapp.tilbake': 'Tilbake',
   'knapp.neste': 'Neste',
+  'knapp.neste.barn': 'Neste barn',
   'knapp.avbryt': 'Avbryt',
   'knapp.start': 'Start søknad',
   'knapp.sendSøknad': 'Send søknad',
@@ -366,14 +367,14 @@ export default {
   'barnasbosted.forelder.annen': 'Annen forelder',
   'barnasbosted.forelder.sammesom': 'Samme som',
   'barnasbosted.knapp.endre': 'Endre informasjon',
-  'barnasbosted.hjelpetekst.bosted.apne':
-    ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
+  'barnasbosted.hjelpetekst.bosted.apne': 'Les mer om delt fast bosted',
+  'barnasbosted.hjelpetekst.halvåpen':
+    'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/>' +
+    '<br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
   'barnasbosted.hjelpetekst.bosted.innhold':
-    'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
-    '\n' +
-    '<br/>En skriftlig avtale om delt bosted innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
-    '\n' +
-    '<br/>Når dere har en skriftlig avtale om delt bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
+    '<br/>Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/>' +
+    '<br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
+    '<br/>Når dere har en skriftlig avtale om delt fast bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
@@ -389,7 +390,7 @@ export default {
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Har dere skriftlig samværsavtale for [0]?',
   'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
-    'Hva må en skriftlig samværsavtale inneholde?',
+    'Opplysninger vi trenger i samværsavtalen',
   'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
     'Vi trenger opplysninger om' +
     '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +

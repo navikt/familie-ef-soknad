@@ -69,6 +69,7 @@ export default {
 
   'knapp.tilbake': 'Back',
   'knapp.neste': 'Next',
+  'knapp.neste.barn': 'Next child',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
@@ -122,11 +123,11 @@ export default {
   'person.adresse': 'Address',
   'person.alder': 'Age',
 
-  barnet: 'Barnet',
-  'ufødt.barn': 'barn med termin [0]',
-  'født.barn': 'barn født [0]',
-  'barnet.storForBokstav': 'Barnet',
-  'barnet.litenForBokstav': 'barnet',
+  barnet: 'The child',
+  'ufødt.barn': 'The child with due date [0]',
+  'født.barn': 'The child born [0]',
+  'barnet.storForBokstav': 'The child',
+  'barnet.litenForBokstav': 'the child',
 
   'stegtittel.omDeg': 'About you',
 
@@ -212,7 +213,10 @@ export default {
     '<a href="https://www.nav.no/en/home/benefits-and-services/relatert-informasjon/benefits-for-surviving-spouse" target="_blank" >survivors</a> ' +
     'and <a href="https://www.nav.no/en/home/benefits-and-services/relatert-informasjon/childrens-pension" target="_blank" >child pension</a>. ',
   'sivilstatus.alert.samlivsbrudd':
-    'If you are not separated or divorced, please include confirmation of the end of your relationship. The confirmation must be signed by both of you and state the date of the break-up. You will receive a link to a template for a confirmation of the end of relationship when you submit your application. This is not the confirmation of mediation from the Family Counselling Office. ',
+    'If you are not separated or divorced, please include confirmation of the end of your relationship. ' +
+    'The confirmation must be signed by both of you and state the date of the break-up. ' +
+    'You will receive a link to a template for a confirmation of the end of relationship ' +
+    'when you submit your application. This is not the confirmation of mediation from the Family Counselling Office. ',
   'sivilstatus.begrunnelse.endring': 'When did or will the change happen?',
   'sivilstatus.hjelpetekst-åpne.begrunnelse': 'The reason we ask about this',
   'sivilstatus.hjelpetekst-innhold.begrunnelse':
@@ -338,123 +342,129 @@ export default {
   'barnadine.termindato': 'Expected date of delivery',
 
   // ----- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
+  'barnasbosted.sidetittel': 'The other parent and access',
   'barnasbosted.kanikkeoppgiforelder':
-    'Jeg kan ikke oppgi den andre forelderen',
-  'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
-  'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
-  'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
-  'barnasbosted.land': 'Land',
+    'I am unable to provide the name of the other parent',
   'barnasbosted.spm.hvorforikkeoppgi':
-    'Hvorfor kan du ikke oppgi den andre forelderen?',
-  'barnasbosted.spm.donorbarn': 'Donorbarn',
-  'barnasbosted.spm.annet': 'Annet',
+    'Why are you unable to provide the name of the other parent?',
+  'barnasbosted.borinorge': 'Does [0]’s other parent live in Norway?',
+  'barnasbosted.hvilketLand': 'What country does the other parent live in?',
+  'barnasbosted.land': 'Country',
+  'barnasbosted.spm.donorbarn': 'The child is a donor child',
+  'barnasbosted.spm.annet': 'Other',
   'barnasbosted.avtale':
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
   'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
+    'If you and the other parent have a written agreement on dual domicile, neither of you is entitled to benefit as a single parent for this child',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'Du må legge ved avtale om delt bosted',
+    'You must submit your agreement on dual domicile',
+
   'barnasbosted.alert.måBoHosDeg':
-    '[0] må bo hos deg for at du skal ha rett til stønad',
-  'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
+    '[0] must live with you in order for you to be entitled to benefit',
+  'barnasbosted.spm.skalBarnetBoHosSøker':
+    'Is [0] going to be registered as living at your address?',
   'barnasbosted.spm.jaFolkeregistrert':
-    'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
+    'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
-    'Ja, men den andre forelderen samarbeider ikke om adresseendring',
-  'barnasbosted.alert.hvisFaktiskBor':
-    'Hvis barnet faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.<br/>' +
-    '\n' +
-    '<br/>Hvis Folkeregisteret ikke kan hjelpe deg, kan du kontakte Familievernkontoret for råd og veiledning.<br/>' +
-    '\n' +
-    '<br/>Du kan også dokumentere at barnet bor hos deg ved å sende inn for eksempel:<br/>' +
-    '\n <ul>' +
-    '<li>grunnen til manglende adresseendring for barnet</li>' +
-    '<li>kopi av flyttemelding/tips til Folkeregisteret</li>' +
-    '<li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li>' +
-    '</ul>',
-
+    'Yes, but the other parent is not cooperating on registering the change of address',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
-    'Du må oppdatere adressen i Folkeregisteret så fort som mulig, slik at vi kan behandle søknaden din med riktig informasjon.',
+    'You must update the address in the National Registry as soon as possible so that we can process your application with the correct information.',
   'barnasbosted.alert.skalBarnetBoHosSøker.nei':
-    'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far.',
-
-  'barnasbosted.element.barnet': 'Barnet',
-  'barnasbosted.element.andreforelder': 's andre forelder',
-  'barnasbosted.forelder.annen': 'Annen forelder',
-  'barnasbosted.forelder.sammesom': 'Samme som',
-  'barnasbosted.knapp.endre': 'Endre informasjon',
+    'If the child does not live with you, you are not entitled to benefit for single parents',
+  'barnasbosted.alert.hvisFaktiskBor':
+    'If the child actually lives with you, please contact the National Registry for help registering the correct address. ' +
+    '<br/>' +
+    'If the National Registry cannot help you, contact the Family Counselling Office for advice and guidance.<br/>' +
+    '<br/>You can also document that the child lives with you by submitting, for example:<br/>' +
+    '<ul>' +
+    '<li>the reason why the child’s change of address has not been reported to the National Registry</li>' +
+    '<li>copy of the notification of change of address or tip-off to the National Registry</li>' +
+    '<li>confirmation from, for example, the child’s kindergarten / school, the child welfare services, or your child health centre</li>' +
+    '</ul>',
+  'barnasbosted.element.barnet': 'The child',
+  'barnasbosted.element.andreforelder': "'s other parent",
+  'barnasbosted.forelder.annen': 'The other parent',
+  'barnasbosted.forelder.sammesom': 'The same as',
+  'barnasbosted.knapp.endre': 'Change information',
   'barnasbosted.hjelpetekst.bosted.apne':
-    ' Avtale om delt bosted sier ikke kun noe om hvor mye tid barnet bor hos hver av dere',
+    'Read more about agreement on dual domicile',
+  'barnasbosted.hjelpetekst.halvåpen':
+    'A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, ' +
+    'such as where the child will go to kindergarten and where in Norway the child will live.',
   'barnasbosted.hjelpetekst.bosted.innhold':
-    'Foreldre kan velge å inngå en avtale om delt bosted for barnet/barna. Dette er en juridisk avtale i henhold til barneloven §36 som sier noe om hvilke avgjørelser dere må ta sammen - ikke hvor mye tid barnet er hos hver av dere.<br/>' +
-    '\n' +
-    '<br/>En skriftlig avtale om delt bosted innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
-    '\n' +
-    '<br/>Når dere har en skriftlig avtale om delt bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
+    '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/>' +
+    '<br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/>' +
+    '<br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
+
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
-    'Har den andre forelderen samvær med [0]?',
+    'Does the other parent have contact with [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
     'Is the other parent going to have contact with [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
-    'Ja, men ikke mer enn vanlig samværsrett',
-  'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
-  'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
-  'barnasbosted.hjelpetekst.samvær.apne': 'Dette er vanlig samværsrett',
+    'Yes, but no more than the standard amount of contact (right of access to a child)',
+  'barnasbosted.spm.jaMerEnnVanlig':
+    'Yes, more than the standard amount of contact (right of access to a child)',
+  'barnasbosted.spm.andreForelderenSamværNei': 'No',
+  'barnasbosted.hjelpetekst.samvær.apne':
+    'The standard amount of contact (right of access to a child)',
   'barnasbosted.hjelpetekst.samvær.innhold':
-    'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
-    '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
-    '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
+    'The standard amount of contact, defined as the non-custodial parent’s right of access to their child, is one afternoon a week, staying overnight, every other weekend, a total of three weeks during the summer holidays, and every other autumn half-term school holiday, Christmas holiday, winter half-term school holiday, and Easter holiday.' +
+    '<br /><br /> If you have an arrangement that corresponds to the same amount of access, but that is organised differently, this is treated as standard amount of contact (access).' +
+    '<br /><br />If the other parent only meets the child rarely and/or under supervision, this is also  treated as standard amount of contact (access).',
 
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
-    'Har dere skriftlig samværsavtale for [0]?',
+    'Do you have a written child access agreement for [0]?',
   'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
-    'Hva må en skriftlig samværsavtale inneholde?',
+    'Information we need from the child access agreement',
   'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
-    'Vi trenger opplysninger om' +
-    '<ul><li>hvor mange dager og netter barnet oppholder barnet seg hos den andre forelderen i minst en to ukers-periode</li>' +
-    '<li>når barnet reiser til og fra den andre forelderen</li></ul>',
-  'barnasbosted.spm.jaKonkreteTidspunkt':
-    'Ja, og den beskriver når barnet er sammen med hver av foreldrene',
-  'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
-    'Ja, men den beskriver ikke når barnet er sammen med hver av foreldrene',
-  'barnasbosted.alert.leggeVedSamværsavtalen': 'Du må legge ved samværsavtalen',
-  'barnasbosted.element.samvær': 'Hvordan praktiserer dere samværet?',
-  'barnasbosted.normaltekst.opplysninger': 'Vi trenger opplysninger om',
+    'We need information about' +
+    '<ul><li>how many days and nights the child spends with the other parent in a two-week period (or longer)</li>' +
+    '<li>when the child travels to and from the other parent</li></ul>',
+  'barnasbosted.element.samvær': 'How does access take place in practice?',
+  'barnasbosted.normaltekst.opplysninger': 'We need information about',
   'barnasbosted.normaltekst.hvormangedager':
-    'hvor mange dager og netter barnet oppholder seg hos den andre forelderen i minst en to ukers-periode',
+    'how many days and nights the child spends with the other parent in a two-week period (or longer)',
   'barnasbosted.normaltekst.nårreiserbarnet':
-    'når barnet reiser til og fra den andre forelderen',
+    'when the child travels to and from the other parent',
+  'barnasbosted.spm.jaKonkreteTidspunkt':
+    'Yes, and it describes when the child will spend time with each parent',
+  'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
+    'Yes, but it does not describe when the child will spend time with each parent',
+  'barnasbosted.alert.leggeVedSamværsavtalen':
+    'You must submit your child access agreement',
 
   'barnasbosted.spm.borAnnenForelderISammeHus':
-    'Bor du og den andre forelderen til [0] i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
-  'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse':
-    'Hvordan bor dere nærme hverandre?',
-  'barnasbosted.spm.vetikke': 'Jeg vet ikke hvor den andre forelderen bor',
+    'Do you and [0]’s other parent live in the same building, block, neighbourhood or road?/gate?',
+  'barnasbosted.spm.vetikke': 'I don’t know where the other parent lives',
   'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
-    'Grunnen til at vi spør om dette',
+    'The reason we ask about this',
   'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold':
-    'Når du bor svært nær den andre forelderen, regnes du ikke for å være alene om omsorgen for barn.',
+    'If you live very close to the other parent, you are not considered as having sole care of the child(ren).',
+  'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse':
+    'How do you live close to one another?',
 
   'barnasbosted.spm.boddsammenfør':
-    'Har du bodd sammen med den andre forelderen til [0] før?',
-  'barnasbosted.normaltekst.nårflyttetfra': 'Når flyttet dere fra hverandre?',
+    'Have you lived with [0]’s other parent in the past?',
+  'barnasbosted.normaltekst.nårflyttetfra': 'When did you move apart?',
   'barnasbosted.spm.hvorMyeSammen':
-    'Hvor mye er du sammen med den andre forelderen til [0]?',
-  'barnasbosted.lesmer-åpne.hvorMyeSammen': 'Grunnen til at vi spør om dette',
+    'How much time do you spend with [0]’s other parent?',
+  'barnasbosted.lesmer-åpne.hvorMyeSammen': 'The reason we ask about this',
   'barnasbosted.lesmer-innhold.hvorMyeSammen':
-    'Vi spør om dette for å kunne vurdere om du er så mye sammen med den andre av barnets foreldre at du ikke regnes som enslig mor eller far.',
-  'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
-  'barnasbosted.spm.kunNårLeveres':
-    'Vi møtes kun når barnet skal hentes eller leveres',
-  'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+    'We ask about this in order to be able to assess whether you spend so much time with the child’s other parent that you cannot be considered a single parent. ',
+  'barnasbosted.spm.møtesIkke': 'We do not meet',
+  'barnasbosted.spm.kunNårLeveres': 'We only meet when handing over the child',
+  'barnasbosted.spm.møtesUtenom':
+    'We also meet outside picking up and dropping off the child',
   'barnasbosted.spm.beskrivSamværUtenBarn':
-    'Hvor mye er du sammen med den andre forelderen til [0]?',
+    'How much time do you spend with [0]’s other parent?',
   'barnasbosted.skalBliFolkeregistrert.tekst':
-    'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
+    'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
-    'Registrer adresse hos Folkeregisteret',
+    'Register address at the National Registry',
+
+  // --- AKTIVITET (Steg 5)
 
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
