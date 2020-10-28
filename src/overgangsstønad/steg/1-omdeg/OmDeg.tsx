@@ -1,9 +1,10 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router-dom';
+import { logEvent } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
@@ -40,6 +41,14 @@ const OmDeg: FC = () => {
     datoSøktSeparasjon,
     datoFlyttetFraHverandre,
   } = søknad.sivilstatus;
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'OmDeg',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
+  }, []);
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {

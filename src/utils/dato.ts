@@ -55,10 +55,7 @@ export const tilDato = (dato: string | Date): Date => {
   return typeof dato === 'string' ? new Date(dato) : dato;
 };
 
-export const formatNårSøkerDuStønadFraMåned = (
-  dato: Date,
-  antallMåneder: number
-) => {
+export const formatMånederTilbake = (dato: Date, antallMåneder: number) => {
   const nyDato = subMonths(dato, antallMåneder);
 
   return format(nyDato, 'MMMM yyyy', { locale: nb });

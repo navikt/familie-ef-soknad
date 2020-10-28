@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
@@ -21,8 +21,17 @@ import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
+import { logEvent } from '../utils/amplitude';
 
 const Forside: React.FC = () => {
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
+  }, []);
+
   const intl = useIntl();
   const { person } = usePersonContext();
   const {
