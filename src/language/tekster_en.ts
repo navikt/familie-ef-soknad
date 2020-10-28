@@ -349,7 +349,9 @@ export default {
   'barnasbosted.spm.donorbarn': 'Donorbarn',
   'barnasbosted.spm.annet': 'Annet',
   'barnasbosted.avtale':
-    'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'Do you and the other parent have a written agreement on dual domicile for [0]?',
+  'barnasbosted.avtale.ufødt':
+    'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
   'barnasbosted.alert-advarsel.avtaleDeltBosted':
     'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
@@ -393,6 +395,8 @@ export default {
     '<br/>Når dere har en skriftlig avtale om delt bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
+  'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
+    'Is the other parent going to have contact with [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
     'Ja, men ikke mer enn vanlig samværsrett',
   'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',

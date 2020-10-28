@@ -319,9 +319,9 @@ export default {
   'barnadine.termindato': 'Termindato',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
+  'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
   'barnasbosted.kanikkeoppgiforelder':
     'Jeg kan ikke oppgi den andre forelderen',
-  'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
   'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
   'barnasbosted.hvilketLand': 'Hvilket land bor den andre forelderen i?',
   'barnasbosted.land': 'Land',
@@ -331,6 +331,8 @@ export default {
   'barnasbosted.spm.annet': 'Annet',
   'barnasbosted.avtale':
     'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+  'barnasbosted.avtale.ufødt':
+    'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
   'barnasbosted.alert-advarsel.avtaleDeltBosted':
     'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
