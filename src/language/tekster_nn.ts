@@ -229,7 +229,6 @@ export default {
   'bosituasjon.alert.harEkteskapsliknendeForhold':
     'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
 
-  'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
   'bosituasjon.tittel.omSamboer': 'Om samboeren din',
   'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
   'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
@@ -365,9 +364,6 @@ export default {
     'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
     '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
     '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
-
-  'barnasbosted.spm.ja': 'Ja',
-  'barnasbosted.spm.nei': 'Nei',
 
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Har dere skriftlig samværsavtale for [0]?',

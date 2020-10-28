@@ -74,7 +74,7 @@ const LeggTilBarnFødt: React.FC<Props> = ({
           className="inputfelt-tekst-fetskrift"
           onChange={(e) => settNavn(e.target.value)}
           value={navn}
-          label="Barnets fulle navn, om dette er bestemt"
+          label={hentTekst('barnadine.navn', intl)}
         />
       </KomponentGruppe>
 

@@ -109,7 +109,7 @@ export default {
   'person.navn': 'Name',
   'barn.ident': 'National identity number',
   'barn.checkbox.ident':
-    'The child does not yet have a national identity number',
+    'The child has not been given a Norwegian national identity number or D-number yet',
   'person.fødselsdato': 'Date of birth (only if you know it)',
   'person.fnr': 'National identity number',
   'person.ident': 'Norwegian national identity number or D number (11 digits)',
@@ -236,103 +236,108 @@ export default {
   'medlemskap.periodeBoddIUtlandet.knapp': 'Add a period spent abroad',
 
   // --- BOSITUASJONEN DIN
-  'stegtittel.bosituasjon': 'Bosituasjonen din',
+  'stegtittel.bosituasjon': 'Your living situation',
 
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
-    'Deler du bolig med andre voksne?',
+    'Do you share your home with other adults?',
 
   'bosituasjon.svar.borAleneMedBarnEllerGravid':
-    'Nei, jeg bor alene med barn eller jeg er gravid og bor alene',
+    'No, I live alone with my child(ren) or I am pregnant and live alone',
   'bosituasjon.svar.borMidlertidigFraHverandre':
-    'Ja, men jeg og den andre forelderen bor midlertidig fra hverandre',
+    'Yes, but the other parent and I are living apart temporarily',
   'bosituasjon.svar.borSammenOgVenterBarn':
-    'Ja, jeg bor sammen med en jeg har eller venter barn med',
+    'Yes, I live with someone I have or am expecting a child with',
   'bosituasjon.svar.harEkteskapsliknendeForhold':
-    'Ja, jeg har samboer og lever i et ekteskapslignende forhold',
+    'Yes, I live with my partner in a marriage-like relationship',
   'bosituasjon.svar.delerBoligMedAndreVoksne':
-    'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn, søsken eller egne foreldre',
+    'Yes, I share housing with other adults, such as my landlord, friends, siblings or my own parents',
   'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':
-    'Nei, men en tidligere samboer er fortsatt registrert på adressen min',
+    'No, but a former cohabiting partner is still registered as living at my address',
 
   'bosituasjon.alert.borMidlertidigFraHverandre':
-    'Når dere bor midlertidig fra hverandre, har du ikke rett til stønad til enslig mor eller far.',
+    'Couples who live apart temporarily are not entitled to benefit for single parents.',
   'bosituasjon.alert.borSammenOgVenterBarn':
-    'Når du bor sammen med en du har eller venter barn med, har du ikke rett til stønad til enslig mor eller far',
+    'If you live with someone you have or are expecting a child with, you are not entitled to benefit for single parents',
   'bosituasjon.alert.harEkteskapsliknendeForhold':
-    'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
+    'If you are living (cohabiting) with your partner, you are not entitled to benefit for single parents',
 
-  'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
-  'bosituasjon.tittel.omSamboer': 'Om samboeren din',
+  'bosituasjon.tittel.omSamboer': 'About your cohabitant',
   'bosituasjon.tittel.omTidligereSamboer': 'About your former cohabitant',
-  'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
+  'bosituasjon.datovelger.nårFlyttetDereSammen':
+    'When did you start living together?',
   'bosituasjon.datovelger.nårFlyttetDereFraHverandre':
     'When did you move apart?',
 
   'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse':
-    '<strong>Vi legger vekt på folkeregistrert adresse. Hvis den tidligere samboeren din ikke samarbeider om adresseendring, kan du kontakte Folkeregisteret for å få hjelp til å endre adressen deres. </strong> <br/>' +
-    '<br/>Du kan også dokumentere at du bor alene med barn og tidspunktet for når dere flyttet fra hverandre ved å legge ved:<br/>' +
+    '<strong>We use the address registered in the National Registry. If your former partner is not cooperating on the change of address, please contact the National Registry for help changing their address. </strong> <br/>' +
+    '<br/>You can also document that you live alone with children and the time of when you moved apart by submitting:<br/>' +
     '<ul>' +
-    '<li>Dokumentasjon som bekrefter at du har vært i kontakt med Folkeregisteret fordi den tidligere samboeren din har flyttet ut</li>' +
-    '<li>Informasjon om hvor den tidligere samboeren din bor nå</li></ul>' +
-    'Hvis du kan dokumentere begge punktene over, er dette som regel tilstrekkelig. Dersom du ikke har slik dokumentasjon, kan du for eksempel legge ved:' +
+    '<li>Documentation confirming that you have been in contact with the National Registry because your former cohabiting partner has moved out</li>' +
+    '<li>Information about where your former cohabiting partner lives now</li></ul>' +
+    'If you can provide documentation of both of the above, this is usually sufficient for our purposes. If you do not have this kind of documentation, you can submit, for example:' +
     '<ul>' +
-    '<li>Husleiekontrakt for begge parter</li>' +
+    '<li>Tenancy contracts for both parties</li>' +
     '<li> Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
-    '<li>Bekreftelse fra barnevernet på at du bor alene med barn</li>' +
-    '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm og kommunale avgifter.</li>' +
+    '<li>Documentation that your former shared home has been transferred to one of the parties. For example, a certificate of division of joint property and/or documentation showing who is the holder of the loan for the home you live in.</li>' +
+    '<li>Documentation of separate living and household expenses, such as bank statements showing paid rent, or other fixed housing expenses such as electricity and municipal taxes.</li>' +
     '</ul>' +
-    'Dersom barnehage, skole, helsestasjon eller lignende kjenner familiesituasjonen din godt, kan en uttalelse fra dem være en del av helhetsvurderingen vi gjør av bosituasjonen din. Dette kan inkludere informasjon om hvem som henter og leverer, og kommer eventuelt i tillegg til annen dokumentasjon.',
+    'If your child(ren)’s kindergarten, school, child health centre or similar know your family situation well, a statement from them can be used as part of the overall assessment we make of your living situation. This may include information about who drops off and picks up the child(ren), and will be in addition to other documentation.',
 
   'bosituasjon.spm.skalSøkerGifteSegMedSamboer':
-    'Har du konkrete planer om å gifte deg eller bli samboer?',
+    'Do you have concrete plans to marry or move in with your partner?',
   'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
-    'Hvem skal du gifte deg med eller bli samboer med?',
+    'Whom are you going to marry or start living with in a marriage-like relationship (cohabitation)?',
 
-  'barnadine.sidetittel': 'Barna dine',
+  // ---- BARNA DINE (STEG 3)
+  'barnadine.sidetittel': 'Your children',
   'barnadine.infohentet':
-    'Informasjonen er hentet fra Folkeregisteret. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
+    'This information has been obtained from the National Registry and only shows children under the age of 18. If any of this information is incorrect, you can change the information by contacting the National Registry. ',
+
+  // Barnekort
+  'barnekort.termindato': 'Expected date of delivery',
+  'barnekort.fødselsdato': 'Date of birth',
+  'barnekort.fødselsnummer': 'NATIONAL IDENTITY NUMBER OR D NUMBER',
+  'barnekort.alder': 'AGE',
+  'barnekort.bosted': 'PLACE OF RESIDENCE',
+  'barnekort.adresse.registrert': 'Registered as living at your address',
+  'barnekort.adresse.uregistrert': 'Not registered as living at your address',
+  'barnekort.adresse.bor': 'Lives with you',
+  'barnekort.adresse.borIkke': 'Does not live with you',
+  'barnekort.adresse.skalBo': 'Is going to live with you',
+  'barnekort.adresse.skalIkkeBo': 'Is not going to live with you',
+  'barnekort.år': 'year(s)',
+  'barnekort.lenke.endre': 'Change',
+  'barnekort.normaltekst.barn': 'Child',
+  'barnekort.fjern': 'Remove from application form',
+  'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
+  'barnekort.spm.skalBarnetBoHosSøker': 'Is the child going to live with you?',
+  'barnekort.spm.født': 'Has the child been born?',
+  'barnekort.erUfødt': 'Unborn',
+  'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
+  'barnekort.født': 'Er barnet født?',
 
   'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
   'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
-  'barnadine.leggtil': 'Legg til barn',
+  'barnadine.leggtil': 'Add child',
+  'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
   'barnadine.personnummer': 'Personnummer',
   'barnadine.leggtil.info':
-    'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+    'Are you pregnant or have you recently had a child who is not yet registered in the National Registry?',
   'barnadine.leggtil.info.barnetilsyn':
     'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
   'barnadine.advarsel.borikke':
-    'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+    'If the child does not live with you, you are not entitled to benefit for single parents',
   'barnadine.advarsel.skalikkebo':
-    'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
-  'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
-  'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
-  'barnadine.termindato': 'Termindato',
-  'barnekort.termindato': 'TERMINDATO',
-  'barnekort.fødselsdato': 'FØDSELSDATO',
-  'barnekort.fødselsnummer': 'FØDSELSNUMMER',
-  'barnekort.alder': 'ALDER',
-  'barnekort.bosted': 'BOSTED',
-  'barnekort.adresse.registrert': 'Registrert på adressen din',
-  'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
+    'If the child is not going to live with you, you are not entitled to benefit for single parents',
+  'barnadine.spm.borBarnHosDeg': 'Does the child live with you?',
+  'barnadine.info.terminbekreftelse':
+    'You must submit confirmation of your expected date of delivery',
+  'barnadine.termindato': 'Expected date of delivery',
 
-  'barnekort.år': 'år',
-  'barnekort.lenke.endre': 'Endre',
-  'barnekort.normaltekst.barn': 'Barn',
-  'barnekort.spm.skalBarnetBoHosSøker': 'Skal barnet bo hos deg?',
-  'barnekort.spm.født': 'Er barnet født?',
-  'barnekort.erUfødt': 'Ufødt',
-  'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
-  'barnekort.født': 'Er barnet født?',
-  'barnekort.adresse.bor': 'Bor hos deg',
-  'barnekort.adresse.borIkke': 'Bor ikke hos deg',
-  'barnekort.adresse.skalBo': 'Skal bo hos deg',
-  'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
-  'barnekort.fjern': 'Fjern fra søknad',
-  'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
-
+  // ----- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.kanikkeoppgiforelder':
     'Jeg kan ikke oppgi den andre forelderen',
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
@@ -397,9 +402,6 @@ export default {
     'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
     '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
     '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
-
-  'barnasbosted.spm.ja': 'Ja',
-  'barnasbosted.spm.nei': 'Nei',
 
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Har dere skriftlig samværsavtale for [0]?',

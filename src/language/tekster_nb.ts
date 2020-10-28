@@ -117,6 +117,7 @@ export default {
   'barnet.storForBokstav': 'Barnet',
   'barnet.litenForBokstav': 'barnet',
 
+  // --- OM DEG (Steg 1)
   'stegtittel.omDeg': 'Om deg',
 
   'personopplysninger.fnr': 'Fødselsnr',
@@ -140,6 +141,7 @@ export default {
   'personopplysninger.info.pdfskjema':
     'Skjemaet kan sendes inn elektronisk eller på papir',
 
+  // --- Sivilstatus
   'sivilstatus.tittel': 'Sivilstatus',
   'sivilstatus.kode.REPA': 'Registrert partner',
   'sivilstatus.kode.GIFT': 'Gift',
@@ -201,6 +203,7 @@ export default {
   'sivilstatus.hjelpetekst-innhold.begrunnelse':
     'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
 
+  // --- Medlemskap
   'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
   'medlemskap.alert-advarsel.opphold':
     'Når du ikke oppholder deg i Norge, har du som hovedregel ikke rett på stønad til enslig mor eller far. Du kan likevel få stønad dersom du oppholder deg i utlandet fordi du arbeider for en norsk arbeidsgiver. Du kan også være i utlandet i inntil 6 uker i løpet av en 12 måneders periode.',
@@ -215,6 +218,7 @@ export default {
     'Har du hatt flere utenlandsopphold de siste 3 årene?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
 
+  // --- BOSITUASJON (Steg 2)
   'stegtittel.bosituasjon': 'Bosituasjonen din',
 
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
@@ -240,7 +244,6 @@ export default {
   'bosituasjon.alert.harEkteskapsliknendeForhold':
     'Når du har samboer, har du ikke rett til stønad til enslig mor eller far',
 
-  'bosituasjon.tittel.omSamboerenDin': 'omSamboerenDin',
   'bosituasjon.tittel.omSamboer': 'Om samboeren din',
   'bosituasjon.tittel.omTidligereSamboer': 'Om den tidligere samboeren din',
   'bosituasjon.datovelger.nårFlyttetDereSammen': 'Når flyttet dere sammen?',
@@ -267,33 +270,16 @@ export default {
   'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed':
     'Hvem skal du gifte deg med eller bli samboer med?',
 
+  // --- BARNA DINE (steg 3)
   'barnadine.sidetittel': 'Barna dine',
   'barnadine.infohentet':
     'Informasjonen er hentet fra Folkeregisteret. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
 
-  'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
-  'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
-  'barnadine.leggtil': 'Legg til barn',
-  'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
-  'barnadine.knapp.fjern': 'Fjern fra søknad',
-  'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
-  'barnadine.personnummer': 'Personnummer',
-  'barnadine.leggtil.info':
-    'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
-  'barnadine.leggtil.info.barnetilsyn':
-    'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
-  'barnadine.advarsel.borikke':
-    'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
-  'barnadine.advarsel.skalikkebo':
-    'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
-  'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
-  'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
-  'barnadine.termindato': 'Termindato',
-  'barnekort.termindato': 'TERMINDATO',
-  'barnekort.fødselsdato': 'FØDSELSDATO',
-  'barnekort.fødselsnummer': 'FØDSELSNUMMER',
-  'barnekort.alder': 'ALDER',
-  'barnekort.bosted': 'BOSTED',
+  'barnekort.termindato': 'Termindato',
+  'barnekort.fødselsdato': 'Fødselsdato',
+  'barnekort.fødselsnummer': 'Fødselsnummer',
+  'barnekort.alder': 'Alder',
+  'barnekort.bosted': 'Bosted',
   'barnekort.adresse.registrert': 'Registrert på adressen din',
   'barnekort.adresse.uregistrert': 'Ikke registrert på adressen din',
 
@@ -312,6 +298,27 @@ export default {
   'barnekort.fjern': 'Fjern fra søknad',
   'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
 
+  'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
+  'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
+  'barnadine.leggtil': 'Legg til barn',
+  'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
+  'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
+  'barnadine.knapp.fjern': 'Fjern fra søknad',
+  'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
+  'barnadine.personnummer': 'Personnummer',
+  'barnadine.leggtil.info':
+    'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+  'barnadine.leggtil.info.barnetilsyn':
+    'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
+  'barnadine.advarsel.borikke':
+    'Når barnet ikke bor hos deg, har du ikke rett til stønad til enslig mor eller far',
+  'barnadine.advarsel.skalikkebo':
+    'Når barnet ikke skal bo hos deg, har du ikke rett til stønad til enslig mor eller far',
+  'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
+  'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
+  'barnadine.termindato': 'Termindato',
+
+  // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.kanikkeoppgiforelder':
     'Jeg kan ikke oppgi den andre forelderen',
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
@@ -376,9 +383,6 @@ export default {
     'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
     '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
     '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
-
-  'barnasbosted.spm.ja': 'Ja',
-  'barnasbosted.spm.nei': 'Nei',
 
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Har dere skriftlig samværsavtale for [0]?',
