@@ -65,8 +65,7 @@ const Aktivitet: React.FC = () => {
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
       hvaErDinArbeidssituasjon,
       svarHuketAv,
-      svar,
-      intl
+      svar
     );
 
     const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
