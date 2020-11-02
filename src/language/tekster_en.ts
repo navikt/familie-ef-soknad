@@ -398,6 +398,7 @@ export default {
     '<br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/>' +
     '<br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
 
+  // -- Foreldresamvær
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
@@ -466,232 +467,244 @@ export default {
 
   // --- AKTIVITET (Steg 5)
 
-  'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
-  'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
-  'erDuIArbeid.spm': 'Er du i arbeid?',
+  'stegtittel.arbeidssituasjon': 'Work, education and other activities',
+  'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
+  'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">stønad til pass av barn</a>.',
-  'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
+    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. ' +
+    'In either of these cases, you can apply for <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">supplemental benefit for supervision of children</a>.',
+  'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
-    'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>' +
-    'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>' +
-    'Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
+    'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>' +
+    'In this context, “disorder that is not chronic” means a health disorder that has not lasted more than two years or is not expected to last more than two years.  <br/><br/>' +
+    'It is a prerequisite that the child minding arrangements were made because you were working or going to start working and that the arrangements continue during the period you are ill.',
   'erDuIArbeid.alertsstripe-dokumentasjon':
-    '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>' +
-    'Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
+    '<b>We need documentation from your doctor stating:\n</b> ' +
+    '<ul>' +
+    '<li>the reason why you cannot be in occupational activity</li>' +
+    '<li>when your illness started</li>' +
+    '<li>when your doctor expects you to have recovered</li></ul>' +
+    'When you submit your application, you will be given the option to download or print a checklist that you can take with you when you go to your doctor to document this.',
 
-  'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
-  'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
+  'arbeidssituasjon.spm': 'What is your work situation?',
+  'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
-    'Jeg er hjemme med barn under 1 år',
+    'I am at home with children under the age of 1 year (only shown if the applicant has a child under the age of 1 year)',
   'arbeidssituasjon.svar.erArbeidstaker':
-    'Jeg er arbeidstaker eller lønnsmottaker som frilanser',
+    'I am employed or paid salary as a freelancer',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
-    'Jeg er selvstendig næringsdrivende eller frilanser med eget firma',
+    'I am self-employed or a freelancer with my own company',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
-    'Jeg er ansatt i eget aksjeselskap (AS)',
+    'I am employed in my own limited liability company (AS)',
   'arbeidssituasjon.svar.etablererEgenVirksomhet':
-    'Jeg etablerer egen virksomhet',
-  'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
-  'arbeidssituasjon.svar.tarUtdanning': 'Jeg tar eller skal ta utdanning',
+    'I am in the process of setting up my own business',
+  'arbeidssituasjon.svar.erArbeidssøker': 'I am a job seeker',
+  'arbeidssituasjon.svar.tarUtdanning':
+    'I am taking or going to take education',
   'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker':
-    'Jeg er ikke i arbeid, utdanning eller arbeidssøker',
-  'arbeidssituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
+    'I am not in work, education or a job seeker',
+  'arbeidssituasjon.svar.harFåttJobbTilbud': 'I have been offered a job',
 
   'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-    '<strong>Når barnet ditt er under 1 år kan du motta overgangsstønad uten å jobbe, studere eller søke arbeid.</strong> <br/>' +
-    '\n' +
-    '<br/>For å få overgangsstønad etter at barnet ditt har fylt 1 år, må du jobbe, studere eller søke arbeid.<br/>' +
-    '\n' +
-    '<br/>Du kan fylle aktivitetsplikten på én av disse måtene:<br/>' +
-    '\n <ul>' +
-    '<li>være i minst 50 prosent arbeid</li>' +
-    '<li>være registrert hos NAV som arbeidssøker</li>' +
-    '<li>være i minst 50 prosent utdanning som NAV har vurdert som nødvendig for at du skal kunne komme i jobb og forsørge deg selv</li>' +
-    '<li>etablere egen virksomhet</li>' +
+    '<strong>If your child is under the age of 1 year old, you can receive transitional benefit without having to work, study or seek work. </strong> <br/>' +
+    '<br/>To receive transitional benefit after your child has turned 1, you must work, study or seek work.<br/>' +
+    '<br/>You can meet the duty to be in work-related activity in one of the following ways:<br/>' +
+    '<ul>' +
+    '<li>be in at least 50 per cent work</li>' +
+    '<li>be registered with NAV as a job seeker</li>' +
+    '<li>be in at least 50 per cent education that NAV has assessed as necessary in order for you to be able to get a job and support yourself</li>' +
+    '<li>set up your own business</li>' +
     '</ul>' +
-    '<br/><br/>Det vil være fornuftig å starte planleggingen av barnepass og arbeid eller utdanning / opplæring så tidlig som mulig.<br/><br/>' +
-    'Du kan likevel få stønad hvis du ikke kan jobbe, studere eller søke arbeid på grunn av egen sykdom. Dette gjelder også hvis du har sykt barn eller mangler barnepass selv om du har søkt. Det samme gjelder dersom barnet ditt trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer.',
+    '<br/><br/>' +
+    'It is sensible to start planning child minding and work, education or training as early as possible.<br/><br/>' +
+    'You can nevertheless receive benefit if you are unable to work, study or seek work due to your own illness, or if you have a sick child or do not have child minding, despite applying. The same also applies if your child needs extra supervision due to physical, mental or major social problems.',
 
-  'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
-  'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidssted',
-  'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
-  'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidssted',
+  'arbeidsforhold.tittel': 'About your employment',
+  'arbeidsforhold.tittel.arbeidsgiver': 'Your employer',
+  'arbeidsforhold.tittel.egetAS': 'Limited liability company',
+  'arbeidsforhold.knapp.slettArbeidsgiver': 'Remove employer',
 
-  'arbeidsforhold.label.navn': 'Navn på arbeidssted',
-  'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
-  'arbeidsforhold.label.ansettelsesforhold':
-    'Hva slags ansettelsesforhold har du?',
-  'arbeidsforhold.svar.fast': 'Fast stilling',
-  'arbeidsforhold.svar.midlertidig': 'Midlertidig stilling',
-  'arbeidsforhold.svar.lærling': 'Lærling',
-  'arbeidsforhold.alert.lærling': 'Du må legge ved lærlingkontrakten din',
-  'arbeidsforhold.svar.tilkallingsvakt': 'Tilkallingsvikar eller liknende',
-  'arbeidsforhold.label.sluttdato': 'Har du en sluttdato?',
-  'arbeidsforhold.datovelger.sluttdato': 'Når skal du slutte?',
-  'arbeidsforhold.label.flereArbeidsgivere': 'Har du flere arbeidssteder?',
-  'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Legg til et arbeidssted',
+  'arbeidsforhold.label.navn': 'Your place of work',
+  'arbeidsforhold.label.arbeidsmengde': 'How much do you work?',
+  'arbeidsforhold.label.ansettelsesforhold': 'What is your employment status?',
+  'arbeidsforhold.svar.fast': 'Permanent position',
+  'arbeidsforhold.svar.midlertidig': 'Temporary position',
+  'arbeidsforhold.svar.lærling': 'Apprentice',
+  'arbeidsforhold.alert.lærling':
+    'You must submit a copy of your apprenticeship contract',
+  'arbeidsforhold.svar.tilkallingsvakt': 'On-call temp or similar',
+  'arbeidsforhold.label.sluttdato': 'Do you have an end date?',
+  'arbeidsforhold.datovelger.sluttdato': 'When will your employment end?',
+  'arbeidsforhold.label.flereArbeidsgivere':
+    'Do you have more than one employer?',
+  'arbeidsforhold.knapp.leggTilArbeidsgiver': 'Add another employer',
 
-  'egetAS.tittel': 'Om aksjeselskapet ditt',
-  'egetAS.label.flere': 'Har du flere egne aksjeselskap?',
-  'egetAS.knapp.fjern': 'Fjern aksjeselskap',
-  'egetAS.knapp.leggtil': 'Legg til et aksjeselskap',
-  'egetAS.label.navn': 'Navn på aksjeselskapet ditt',
-  'egetAS.label.aksjeselskap': 'Aksjeselskap',
+  'egetAS.tittel': 'About your limited liability company',
+  'egetAS.label.flere': 'Do you have any other limited liability companies?',
+  'egetAS.knapp.fjern': 'Remove limited liability company',
+  'egetAS.knapp.leggtil': 'Add another limited liability company',
+  'egetAS.label.navn': 'Name of your limited liability company',
+  'egetAS.label.aksjeselskap': 'Limited liability company',
 
-  'firmaer.tittel': 'Om firmaet du driver',
-  'firma.tittel': 'Firma',
-  'firma.label.navn': 'Navn på firma',
-  'firma.label.organisasjonnr': 'Organisasjonsnummer',
-  'firma.feilmelding.organisasjonnr': 'Organisasjonsnummeret må ha 9 siffer',
-  'firma.datovelger.etablering': 'Når etablerte du firmaet?',
-  'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
-  'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
-  'firma.knapp.slett': 'Fjern firma',
-  'firmaer.label.flereFirmaer': 'Har du flere firmaer?',
-  'firmaer.knapp.leggTilFirma': 'Legg til firma',
+  // FIRMA - COMPANY
+  'firmaer.tittel': 'About the company you run',
+  'firma.tittel': 'Company',
+  'firma.label.navn': 'Name of the company',
+  'firma.label.organisasjonnr': 'Organisation number',
+  'firma.feilmelding.organisasjonnr':
+    'The organisation number must have 9 digits',
+  'firma.datovelger.etablering': 'When did you set up the company?',
+  'firma.label.arbeidsmengde': 'How much do you work?',
+  'firma.label.arbeidsuke': 'What does your average work week look like?',
+  'firma.knapp.slett': 'Remove company',
+  'firmaer.label.flereFirmaer': 'Do you work elsewhere?',
+  'firmaer.knapp.leggTilFirma': 'Add a company',
 
   'arbeidssituasjon.tittel.etablererEgenVirksomhet':
-    'Om virksomheten du etablerer',
-  'arbeidssituasjon.label.etablererEgenVirksomhet': 'Beskriv virksomheten',
+    'About the business you are setting up',
+  'arbeidssituasjon.label.etablererEgenVirksomhet': 'Describe the business',
   'arbeidssituasjon.alert.etablererEgenVirksomhet':
-    'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse.<br/><br/>' +
-    'Vi trenger denne vurderingen når vi skal ta stilling til om virksomheten kan godkjennes som yrkesrettet aktivitet.',
-  'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
+    'If you do not receive unemployment benefit while you are setting up your own business, you must obtain a commercial assessment from the municipal or county authorities or another professional body. <br/><br/>' +
+    'We need this assessment to decide whether the business can be approved as occupational activity.',
+  'arbeidssituasjon.label.arbeidsmengde': 'How much do you work?',
 
-  'arbeidssøker.tittel': 'Når du er arbeidssøker',
-  'arbeidssøker.label.registrert': 'Er du registrert som arbeidssøker hos NAV?',
-  'arbeidssøker.alert.forÅHaRett':
-    'Du kan registrere deg etter at du har sendt inn dette skjemaet. Da hjelper vi deg videre til registreringen.',
+  // ARBEIDSSØKER
+  'arbeidssøker.tittel': 'If you are a job seeker',
+  'arbeidssøker.label.registrert':
+    'Are you registered with NAV as a job seeker?',
   'arbeidssøker.søknad.alert.forÅHaRett':
-    'Du kan registrere deg etter at du har sendt inn denne søknaden. Da hjelper vi deg videre til registreringen.',
+    'You can register after you have submitted this application. We will help you with the registration process.',
   'arbeidssøker.hjelpetekst-åpne.registrert':
-    'Om å være registrert som arbeidssøker hos NAV',
+    'About being registered with NAV as a job seeker',
   'arbeidssøker.hjelpetekst-innhold.registrert':
-    'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no. Hvis du ikke er registrert, kan du gjøre dette etter at du har sendt inn denne søknaden.',
+    'In order to qualify for transitional benefit, you must register as a job seeker at nav.no. If you are not already registered, you can register after you have submitted this application.',
   'arbeidssøker.label.villig':
-    'Er du villig til å ta imot tilbud om arbeid eller arbeidsmarkedstiltak?',
+    'Are you willing to accept offers of work or labour market schemes?',
   'arbeidssøker.alert.villig':
-    'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
+    'If you are unable to take any work at all due to your health, you must document this with a medical certificate from a doctor',
   'arbeidssøker.label.senestEnUke':
-    'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
+    'Can you start working no later than one week after you are offered a job?',
   'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke':
-    'Du må være tilgjengelig og raskt kunne ta stilling til tilbud om arbeid eller arbeidsmarkedstiltak. Du må derfor kunne skaffe barnepass på kort varsel.',
+    'You must be available and able to respond quickly to offers of work or labour market schemes. You must therefore be able to arrange child minding at short notice.',
   'arbeidssøker.label.barnepass':
-    'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
-  'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',
+    'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak? SKAL FJERNES I FØLGE INNHOLDSDOK (egen oppg)',
+  'arbeidssøker.label.ønsketArbeidssted': 'Where do you want to seek work?',
   'arbeidssøker.svar.nærme':
-    'Kun i bodistriktet mitt, ikke mer enn 1 times reisevei hver vei',
-  'arbeidssøker.svar.hvorSomHelst': 'Hvor som helst i landet',
-  'arbeidssøker.lesmer-åpne.ønsketArbeidssted': 'Dette betyr 1 times reisevei',
+    'Only in the area close to where I live – no more than one hour’s travel time each way',
+  'arbeidssøker.svar.hvorSomHelst': 'Anywhere in Norway',
+  'arbeidssøker.lesmer-åpne.ønsketArbeidssted':
+    'What does “one hour’s travel time” mean?',
   'arbeidssøker.lesmer-innhold.ønsketArbeidssted':
-    '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time hver vei. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
+    '“One hour’s travel time” means that the time it takes you to travel using a means of transport between your home and your place of work is not more than one hour. It does not include the time it takes you to walk from your home to the means of transport, and from the means of transport to your place of work.',
   'arbeidssøker.label.halvstilling':
-    'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
+    'Do you want to be registered as a job seeker looking for at least a 50 per cent position?',
   'arbeidssøker.alert.halvstilling':
-    'Du kan søke heltidsjobb, men som enslig mor eller far holder det at du jobber minst 50 prosent. Det er heller ikke krav om at du må jobbe kvelds-, natt-, helg- og skiftarbeid.',
+    'As a single parent, there is no requirement for you to apply for full-time work. or evening, night, weekend and shift work. ',
   'arbeidssøker.tekst.tillegstønad':
-    'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> ' +
-    'Stønadene kan dekke utgifter til <ul>' +
-    '<li>barnepass</li>' +
-    '<li>flytting</li>' +
+    'As a single parent looking for work, you may be entitled to some form of supplemental benefit<br/> ' +
+    'Supplemental benefit can be granted to cover expenses related to <ul>' +
+    '<li>child minding</li>' +
+    '<li>relocation</li>' +
     '</ul>' +
-    'NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
-  'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',
-  'arbeidssøker.knapp.tilleggstønad': 'Søk tilleggsstønader',
+    'NB! You can only receive supplemental benefit if you qualify for transitional benefit',
+  'arbeidssøker.lenke.tilleggstønad': 'Read more about supplemental benefit',
+  'arbeidssøker.knapp.tilleggstønad': 'Apply for supplemental benefit',
 
-  'stegtittel.utdanning': 'Utdanningen din',
-  'tidligereUtdanning.lesmer-åpne.kanFåStønad':
-    'Grunnen til at vi spør om dette',
-  'tidligereUtdanning.lesmer-innhold.kanFåStønad':
-    'Vi spør om tidligere utdanning for å kunne vurdere om utdanningen du skal ta er nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
-    'Har du allerede en utdanning som gjør deg kvalifisert til et yrke eller som kan benyttes i flere yrker, vil du som hovedregel ikke få støtte til mer utdanning.<br/><br/>' +
-    'Vi kan gjøre unntak hvis du har en utdanning eller yrkeserfaring som ikke lenger er relevant i dagens arbeidsmarked. Høgskole eller universitetsutdanning blir ikke utdatert.<br/><br/>' +
-    'Vi kan også gjøre unntak fra denne regelen hvis utdanningen din/yrket ditt ikke er forenlig med omsorgen for barn. Dette gjelder ikke vanlig turnusarbeid.',
+  // UTDANNING
+  'stegtittel.utdanning': 'Education',
 
-  'utdanning.tittel': 'Utdanningen du tar eller skal ta',
-  'utdanning.undertittel': 'Utdanning',
-  'utdanning.lesmer-åpne.kanFåStønad': 'Utdanning du kan få stønad til',
+  'utdanning.tittel': 'The education you are taking or are going to take',
+  'utdanning.undertittel': 'Education',
+  'utdanning.lesmer-åpne.kanFåStønad':
+    'Education for which you can receive support',
   'utdanning.lesmer-innhold.kanFåStønad':
-    'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>' +
-    'Da vurderer vi:' +
-    '<ul><li>hva som er målet med utdanningen din</li>' +
-    '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
-    '<li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>' +
-    'Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
+    'In order to qualify for transitional benefit while taking education, NAV must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>' +
+    'In this context, we will assess:  ' +
+    '<ul><li>your goal for taking this particular education  </li>' +
+    '<li>whether education is necessary for you to achieve this goal </li>' +
+    '<li>whether the education is appropriate. In this context, we will assess, among other things, both the needs on the labour market and the opportunities available to you </li></ul>' +
+    'When you apply for transitional benefit, we will assess the education you are taking.',
   'utdanning.lesmer-innhold.kanFåStønad.skolepenger':
-    'For å få rett til stønad til skolepenger, må denne utdanningen være nødvendig for at du skal kunne komme i jobb og forsørge deg selv. <br /><br />' +
-    'Vi vurderer:' +
-    '<ul><li>hvilket mål du har for å skaffe eller beholde inntektsgivende arbeid</li>' +
-    '<li>om det er nødvendig med utdanning for å kunne nå målet ditt</li>' +
-    '<li>om den aktuelle utdanningen er hensiktsmessig. Da vurderer vi blant annet arbeidsmarkedets behov og dine muligheter.</li>' +
+    'In order to qualify for support for school fees, the education you are taking must be necessary for you to be able to get a job and support yourself. <br /><br />' +
+    'We assess:' +
+    '<ul><li>your goal for getting or retaining paid work</li>' +
+    '<li>whether education is necessary for you to achieve this goal</li>' +
+    '<li>whether the education you have chosen is appropriate. In this context, we will assess, among other things, the needs on the labour market and the opportunities available to you</li>' +
     '</ul>' +
-    'Vi vurderer utdanningen du vil ta når du søker om stønad. ',
-  'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
-  'utdanning.label.linjeKursGrad': 'Linje / kurs / grad',
-  'utdanning.spm.privatEllerOffentlig':
-    'Er utdanningen offentlig eller privat?',
-  'utdanning.lesmer-åpne.privatEllerOffentlig':
-    'Om godkjenning av privat utdanning',
+    'We assess the education you want to take when you apply for benefit.',
+  'utdanning.label.skoleUtdanningssted': 'School / institution',
+  'utdanning.label.linjeKursGrad': 'Branch / course / level',
+  'utdanning.spm.privatEllerOffentlig': 'Is the education public or private?',
+  'utdanning.lesmer-åpne.privatEllerOffentlig': 'Approval of private education',
   'utdanning.lesmer-innhold.privatEllerOffentlig':
-    'Vi godkjenner kun privat utdanning dersom det offentlige skoleverket ikke har det samme tilbudet.<br/><br/>Vi kan godta privat utdanning dersom det er særlige grunner, for eksempel at du ikke har kommet inn ved offentlig skole eller at du har begynt på den private utdanningen før du ble enslig mor eller far.',
-  'utdanning.svar.offentlig': 'Offentlig',
-  'utdanning.svar.privat': 'Privat',
-  'utdanning.datovelger.studieperiode': 'Når var du elev / student?',
+    'We only approve private education if the public school system does not have the same offering. <br/><br/>' +
+    'We may accept private education in special circumstances, such as if you were not accepted at a public school or you had started the education at the private institution before you became a single parent.',
+  'utdanning.svar.offentlig': 'Public',
+  'utdanning.svar.privat': 'Private',
+  'utdanning.datovelger.studieperiode': 'When did you go to school / study?',
   'utdanning.datovelger.studieperiode.fremtidig':
-    'Når skal du være elev/student?',
-  'utdanning.spm.studieandel': 'Er utdanningen på heltid eller deltid?',
-  'utdanning.svar.heltid': 'Heltid',
-  'utdanning.svar.deltid': 'Deltid',
-  'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
-  'utdanning.spm.mål': 'Hva er målet med utdanningen?',
+    'When are you going to start school / studying?',
+  'utdanning.spm.studieandel': 'Is the education full-time or part-time?',
+  'utdanning.svar.heltid': 'Full-time',
+  'utdanning.svar.deltid': 'Part-time',
+  'utdanning.label.arbeidsmengde': 'How much are you going to study?',
+  'utdanning.spm.mål': 'What is your goal for taking this education?',
 
   'utdanning.label.utgifter': 'Utgifter til skolepenger',
   'utdanning.label.utgifter.dokumentasjon':
     'Dokumentasjon på utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr. <br />Det dokumenterer du med faktura i ditt navn.',
-  'utdanning.label.utgifter.eksamensgebyr': 'Eksamensgebyr',
-  'utdanning.label.utgifter.studieavgift': 'Studieavgift',
-  'utdanning.label.utgifter.semesteravgift': 'Semesteravgift',
+  'utdanning.label.utgifter.eksamensgebyr': 'Examination fees',
+  'utdanning.label.utgifter.studieavgift': 'Tuition fees',
+  'utdanning.label.utgifter.semesteravgift': 'Semester fees',
 
-  'utdanning.tittel.tidligere': 'Tidligere utdanning',
-  'utdanning.spm.grunnskole': 'Har du tatt utdanning etter grunnskolen?',
-  'utdanning.lesmer-åpne.grunnskolen': 'Dette regnes som grunnskolen',
+  'utdanning.tittel.tidligere': 'Previous education',
+  'tidligereUtdanning.lesmer-åpne.kanFåStønad': 'The reason we ask about this',
+  'tidligereUtdanning.lesmer-innhold.kanFåStønad':
+    'We ask about previous education in order to assess whether the education you are taking is necessary in order for you to be able to get a job and support yourself.<br/><br/>' +
+    'If you already have an education that means you are qualified for an occupation or that can be used in multiple occupations, you will not generally be granted support to take more education. <br/><br/>' +
+    'However, we may make exceptions if you have an education or occupational experience that is no longer relevant in today’s labour market. Education from a university college or university does not become outdated. <br/><br/>' +
+    'We may also make exceptions to this rule if your education or occupation is not compatible with looking after children. This does not apply to normal shift work.',
+
+  'utdanning.spm.grunnskole':
+    'Have you taken education above compulsory primary and lower secondary schooling?',
+  'utdanning.lesmer-åpne.grunnskolen':
+    'What is primary and lower secondary schooling',
   'utdanning.lesmer-innholde.grunnskolen':
-    'Grunnskolen er barne- og ungdomsskole, det vil si til og med 10. klasse.',
-  'utdanning.label.leggtil': 'Har du tatt mer utdanning?',
-  'utdanning.knapp.leggtil': 'Legg til en utdanning',
-  'utdanning.knapp.slett': 'Fjern utdanning',
+    'Primary and lower secondary schooling (in Norwegian “Grunnskolen”) is primary and lower secondary school, that is, up to and including 10th grade.',
+  'utdanning.label.leggtil': 'Have you taken more education?',
+  'utdanning.knapp.leggtil': 'Add an education',
+  'utdanning.knapp.slett': 'Remove education',
 
   'utdanning.andreUtgifter.tittel':
-    'Har du andre utgifter i forbindelse med utdanningen?',
+    'Do you have any other expenses in connection with your education?',
   'utdanning.andreUtgifter.tekst':
-    '<strong>Har du andre utgifter i forbindelse med utdanningen?</strong><br /><br />' +
-    'Tilleggsstønader kan dekke utgifter til:<ul>' +
-    '<li>barnepass</li>' +
-    '<li>læremidler</li>' +
-    '<li>daglig reise</li>' +
-    '<li>reise til samling</li>' +
-    '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
-    '<li>bolig og overnatting</li>' +
-    '<li>flytting</li>' +
+    '<strong>Do you have any other expenses in connection with your education?</strong><br /><br />' +
+    'Supplemental benefit can be granted to cover expenses related to:<ul>' +
+    '<li>child minding</li>' +
+    '<li>learning materials</li>' +
+    '<li>daily travel</li>' +
+    '<li>travel to gatherings</li>' +
+    '<li>travel due to start-up, conclusion or returning home</li>' +
+    '<li>housing and overnight accommodation</li>' +
+    '<li>relocation</li>' +
     '</ul>' +
-    'Vi viser deg videre til søknad om tilleggsstønader når du er ferdig med denne søknaden.\n' +
-    'Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad.',
+    'We will refer you to the application for supplemental benefit once you have completed this application. You can only receive supplemental benefit if you qualify for transitional benefit.',
   'utdanning.andreUtgifter.fakturatekst':
-    'Du må legge ved faktura i ditt navn som viser utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr',
+    'You must submit an invoice made out to you showing your expenses for tuition fees, semester fees and/or examination fees',
 
-  'stegtittel.dinSituasjon': 'Mer om situasjonen din',
-  'dinSituasjon.spm': 'Gjelder noe av dette deg?',
-  'dinSituasjon.svar.erSyk': 'Jeg er syk',
-  'dinSituasjon.svar.harSyktBarn': 'Barnet mitt er sykt',
+  // --- MER OM DIN SITUASJON (STEG 6)
+  'stegtittel.dinSituasjon': 'Your situation in more detail',
+  'dinSituasjon.spm': 'Does any of the following apply to you?',
+  'dinSituasjon.svar.erSyk': 'I am ill',
+  'dinSituasjon.svar.harSyktBarn': 'My child is ill',
   'dinSituasjon.svar.harSøktBarnepassOgVenterEnnå':
-    'Jeg har søkt om barnepass, men ikke fått plass enda',
+    'I have applied for child minding, but have not got a place yet',
   'dinSituasjon.svar.harBarnMedSærligeBehov':
-    'Jeg har barn som trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
-  'dinSituasjon.svar.nei': 'Nei',
+    'I have a child who needs extra supervision due to physical, mental or major social problems',
+  'dinSituasjon.svar.nei': 'No',
 
   'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
-  'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
+  'dinSituasjon.datovelger.jobb': 'When are you going to start your new job?',
 
   'dinSituasjon.spm.sagtOppEllerRedusertStilling':
     'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
@@ -922,13 +935,13 @@ export default {
     '<ul><li>Dokumentasjon fra legen din som bekrefter at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn.<li/>' +
     '<li>Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og hvordan dette påvirker muligheten din til å være i arbeid eller yrkesrettet aktivitet.</li></ul>',
   'dokumentasjon.arbeidskontrakt.tittel':
-    'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
+    'The work contract that proves that you have been offered a job',
   'dokumentasjon.arbeidskontrakt.beskrivelse':
-    'Dokumentasjonen må tydelig vise: <ul>' +
-    '<li>navn på arbeidssted</li>' +
-    '<li>stillingsprosent</li>' +
-    '<li>dato for oppstart</li>' +
-    '<li>dato du fikk tilbudet</li></ul>',
+    'The documentation must indicate: <ul>' +
+    '<li>the name of the employer</li>' +
+    '<li>your employment percentage</li>' +
+    '<li>the date you will start in the job </li>' +
+    '<li>the date you received the offer</li></ul>',
   'dokumentasjon.utdanning.tittel':
     'Dokumentasjon på utdanningen du tar eller skal ta',
   'dokumentasjon.utdanning.beskrivelse':
