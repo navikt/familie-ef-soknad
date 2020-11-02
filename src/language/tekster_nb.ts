@@ -658,7 +658,53 @@ export default {
     'Jeg har barn som trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer',
   'dinSituasjon.svar.nei': 'Nei',
 
-  'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
+  // SøkerErSyk
+
+  'dinSituasjon.alert.erSyk':
+    'Hvis du ikke har sykemelding eller ikke mottar arbeidsavklaringspenger (AAP) eller uføretrygd, må du legge ved dokumentasjon som bekrefter at du er syk. <br/><br/>' +
+    'Dokumentasjonen fra legen din må vise:' +
+    '<ul>' +
+    '<li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li>' +
+    '<li>når du ble syk</li>' +
+    '<li>når legen din regner med at du vil bli frisk</li>' +
+    '<li>hvor mye du kan arbeide</li>' +
+    '</ul>' +
+    'Får du allerede overgangsstønad og søker du om å forlenge stønadsperioden utover 3 år fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding.<br/><br/>' +
+    'At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>' +
+    'Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
+
+  // harSyktBarn
+  'dinSituasjon.alert.harSyktBarn':
+    'Du må legge ved dokumentasjon som bekrefter at barnet ditt er sykt og beskriver din mulighet til å være i yrkesrettet aktivitet. <br/><br/>' +
+    'Dokumentasjonen fra legen din må vise:' +
+    '<ul>' +
+    '<li>grunnen til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet </li>' +
+    '<li>når barnet ble sykt</li>' +
+    '<li>når legen regner med at barnet vil bli friskt</li>' +
+    '<li>hvor mye du kan arbeide</li>' +
+    '</ul>' +
+    'Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
+
+  // SøktBarnepassOgVenterPåSvar
+  'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
+    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. \n' +
+    'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
+    '   Dokumentasjonen må vise:' +
+    '<ul>' +
+    '<li>datoen du søkte</li>' +
+    '<li>datoen du ønsket plass fra</li>' +
+    '</ul>',
+
+  // barnHarSærligeBehov
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'Dokumentasjonen fra lege må bekrefte: ' +
+    '<ul>' +
+    '<li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
+    '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li>' +
+    '</ul>',
+
   'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
 
   'dinSituasjon.spm.sagtOppEllerRedusertStilling':
@@ -694,13 +740,7 @@ export default {
     'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
   'dinSituasjon.legend.særligTilsyn':
     'Hvilket av barna dine har behov for særlig tilsyn?',
-  'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
-  'dinSituasjon.alert-dok.tittel':
-    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
-
-  'harBarnMedSærligeBehov.alert-dok.beskrivelse':
-    'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
-    '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
+  'dinSituasjon.label.særligTilsyn': 'Om tilsynsbehovet til {barnetsNavn}',
 
   'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
   'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
@@ -861,23 +901,25 @@ export default {
     '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
     '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
     '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
-  'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.sykdom.beskrivelse':
+  'dokumentasjon.syk-dinSituasjon.tittel': 'Dokumentasjon på at du er syk',
+  'dokumentasjon.syk-dinSituasjon.beskrivelse':
+    'Hvis du ikke har sykemelding eller ikke mottar arbeidsavklaringspenger (AAP) eller uføretrygd, må du legge ved dokumentasjon på at du er syk. <br/><br/>' +
     'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
     '<li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
-    '<li>hvor mye du kan arbeide</li> </ul>' +
-    'Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding. Denne må vise:\n' +
-    '<ul><li>når du ble syk</li>' +
+    '<li>når du ble syk</li>' +
+    '<li>hvor mye du kan arbeide</li>' +
     '<li>når legen din regner med at du vil bli frisk</li></ul>' +
-    'Har du sendt inn dokumentasjon på dette tidligere, for eksempel i forbindelse med sykemelding, AAP eller uføretrygd?',
+    'Får du allerede overgangsstønad og søker du om å forlenge stønadsperioden utover 3 år fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding.',
   'dokumentasjon.syktBarn.tittel': 'Dokumentasjon på barnets sykdom',
   'dokumentasjon.syktBarn.beskrivelse':
-    'Dokumentasjonen fra lege må tydelig vise:\n' +
-    '<ul><li>årsaken til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet</li>' +
-    '<li>hvor mye kan du arbeide</li></ul>' +
-    'Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:\n' +
-    '<ul><li>når barnet ble sykt</li>' +
-    '<li>når legen regner med at barnet vil bli friskt</li></ul>',
+    'Dokumentasjon som bekrefter at barnet ditt er sykt og beskriver din mulighet til å være i yrkesrettet aktivitet' +
+    'Dokumentasjonen fra lege må tydelig vise:' +
+    '<ul>' +
+    '<li>årsaken til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet</li>' +
+    '<li>når barnet ble sykt</li>' +
+    '<li>når legen regner med at barnet vil bli friskt</li>' +
+    '<li>hvor mye kan du arbeide</li>' +
+    '</ul>',
   'dokumentasjon.barnepass.tittel': 'Dokumentasjon på at du mangler barnepass ',
   'dokumentasjon.barnepass.beskrivelse':
     'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.' +
@@ -904,29 +946,35 @@ export default {
     '<li>navn på studiested</li>' +
     '<li>navn på studie</li>' +
     '<li>hvor mye du skal studere</li>' +
-    '<li>perioden du skal studere</li></ul>',
+    '<li>perioden du skal studere</li></ul>' +
+    'Dokumentasjonen må vise tydelig hvem det gjelder. <br/><br/>' +
+    'Får du allerede overgangsstønad og søker om å forlenge stønadsperioden fordi du har fått tilbud om studieplass? Da må dokumentasjonen også vise datoen du takket ja til tilbudet.',
 
   'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
 
   'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
     'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
-  'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse': '',
+  'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse':
+    'Dokumentasjonen må vise: <ul>' +
+    '<li>arbeidsforholdet</li>' +
+    '<li>grunnen til at du sluttet</li>' +
+    '<li>datoen du sa opp eller avtalte frivillig permisjon </li>',
   'dokumentasjon.arbeidsforhold-redusert.tittel':
     'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
-  'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
+  'dokumentasjon.arbeidsforhold-redusert.beskrivelse':
+    'Dokumentasjonen må vise: <ul>' +
+    '<li>arbeidsforholdet</li>' +
+    '<li>grunnen til at du reduserte arbeidstiden</li>' +
+    '<li>datoen du avtalte reduksjon i arbeidstiden</li>',
 
-  'dokumentasjon.syk.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.syk.beskrivelse':
+  'dokumentasjon.syk-arbeid.tittel': 'Dokumentasjon på at du er syk',
+  'dokumentasjon.syk-arbeid.beskrivelse':
     'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
 
   'dokumentasjon.etablererEgenVirksomhet.tittel':
     'Næringsfaglig vurdering av virksomheten du etablerer',
   'dokumentasjon.etablererEgenVirksomhet.beskrivelse':
     'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse. ',
-
-  'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
-  'dokumentasjon.tidligereFakturaer.beskrivelse':
-    'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
 
   'dokumentasjon.barnehageOgLiknende.tittel':
     'Faktura fra barnepassordningen for perioden du søker om nå',
@@ -984,12 +1032,6 @@ export default {
   'kvittering.lenke.skolepenger': 'Les mer om stønad til skolepenger',
   'kvittering.knapp.skolepenger': 'Søk stønad til skolepenger',
 
-  'kvittering.tittel.tarUtdanning':
-    'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
-  'kvittering.beskrivelse.tarUtdanning':
-    'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
-  'kvittering.lenke.tarUtdanning': 'Les mer om stønad til skolepenger',
-  'kvittering.knapp.tarUtdanning': 'Søk stønad til skolepenger',
   'kvittering.tittel.tilleggsstønader':
     'Du kan også ha rett til tilleggsstønader når du er under utdanning',
   'kvittering.beskrivelse.tilleggsstønader':

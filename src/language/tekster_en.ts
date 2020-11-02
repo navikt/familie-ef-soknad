@@ -703,49 +703,97 @@ export default {
     'I have a child who needs extra supervision due to physical, mental or major social problems',
   'dinSituasjon.svar.nei': 'No',
 
-  'dinSituasjon.datovelger.utdanning': 'Når skal du starte utdanningen?',
+  // SøkerErSyk
+
+  'dinSituasjon.alert.erSyk':
+    'If you are not on sick leave and are not receiving work assessment allowance (AAP) or disability benefit, you must provide documentation confirming that you are ill <br/><br/>' +
+    '\n' +
+    'The documentation from your doctor must state:' +
+    '<ul>' +
+    '<li>the reason why you cannot be in occupational activity</li>' +
+    '<li>when your illness started</li>' +
+    '<li>when your doctor expects you to have recovered</li>' +
+    '<li>how much you can work</li>' +
+    '</ul>' +
+    'If you are already receiving transitional benefit and are applying for an extension of the benefit period beyond three years because you have a disorder that is not chronic: We will need special documentation from your doctor, even if you are already on sick leave.<br/><br/>' +
+    'In this context, “disorder that is not chronic” means a health disorder that has not lasted more than two years or is not expected to last more than two years.<br/><br/>' +
+    'When you submit your application, you will be given the option to download or print a checklist that you can take with you when you go to your doctor to document this.',
+
+  // harSyktBRN
+  'dinSituasjon.alert.harSyktBarn':
+    'You must provide documentation confirming that your child is ill and describing your ability to be in occupational activity.<br/>' +
+    'The documentation from your doctor must state:' +
+    '<ul>' +
+    '<li>why the child’s illness affects your ability to work or be in other occupational activity  </li>' +
+    '<li>when the child’s illness started </li>' +
+    '<li>when the doctor expects the child to have recovered </li>' +
+    '<li>how much you can work </li>' +
+    '</ul>' +
+    'When you submit your application, you will be given the option to download or print a checklist that you can take with you when you go to your doctor to document this.',
+
+  // SøktBarnepassOgVenterPåSvar
+  'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
+    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. \n' +
+    'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
+    '   Dokumentasjonen må vise:' +
+    '<ul>' +
+    '<li>datoen du søkte</li>' +
+    '<li>datoen du ønsket plass fra</li>' +
+    '</ul>',
+
+  // barnHarSærligeBehov
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'You must provide documentation of your child’s special supervision needs',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'Documentation from your doctor must confirm:' +
+    '<ul>' +
+    '<li>that the child has medical, mental or major social problems and needs supervision</li>' +
+    '<li>that this affects your ability to be in occupational activity</li>' +
+    '</ul>',
+
   'dinSituasjon.datovelger.jobb': 'When are you going to start your new job?',
 
   'dinSituasjon.spm.sagtOppEllerRedusertStilling':
-    'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
-  'dinSituasjon.lesmer-åpne': 'Grunnen til at vi spør om dette',
+    'Have you resigned from your job or reduced your working hours in the past six months?',
+  'dinSituasjon.lesmer-åpne': 'The reason we ask about this',
   'dinSituasjon.lesmer-innhold':
-    'Har du sagt opp jobben uten rimelig grunn, kan du som hovedregel først ha rett til stønaden 6 måneder etter at du sa opp. Det samme gjelder hvis du har redusert arbeidstiden til under 50 prosent.',
+    'If you have resigned from your job for no reasonable reason, as a general rule you will not be entitled to benefit until six months after you resigned. The same applies if you have reduced your working hours to less than 50 per cent.',
 
   'dinSituasjon.svar.sagtOpp':
-    'Ja, jeg har sagt opp jobben eller tatt frivillig permisjon (ikke foreldrepermisjon)',
-  'dinSituasjon.svar.redusertStilling': 'Ja, jeg har redusert arbeidstiden',
+    'Yes, I have resigned from my job or taken a voluntary leave of absence (not parental leave)',
+  'dinSituasjon.svar.redusertStilling': 'Yes, I have reduced my working hours',
 
   'dinSituasjon.alert.sagtOpp':
-    'Du må legge ved dokumentasjon om arbeidsforholdet og grunnen til at du sluttet. Dokumentasjonen må vise:<br/><br/>' +
-    '<ul><li>arbeidsforholdet</li>' +
-    '<li>grunnen til at du sluttet</li>' +
-    '<li>datoen du sa opp eller avtalte frivillig permisjon</li></ul>',
-  'dinSituasjon.fritekst.sagtOpp': 'Hvorfor sa du opp?',
-  'sagtOppEller.datovelger.sagtOpp': 'Når sa du opp?',
+    'You must provide documentation of your employment and the reason you resigned. \n' +
+    '<br/><br/>The documentation must indicate:' +
+    '<ul><li>your employment </li>' +
+    '<li>the reason you resigned  </li>' +
+    '<li>the date you resigned or arranged a voluntary leave of absence</li></ul>',
+  'dinSituasjon.fritekst.sagtOpp': 'Why did you resign?',
+  'sagtOppEller.datovelger.sagtOpp': 'When did you resign?',
   'dinSituasjon.datovelger-alert.sagtOpp':
-    'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
+    'If you have resigned from your job for no reasonable reason, you will not be entitled to benefit until six months after you resigned.',
 
   'dinSituasjon.alert.redusertStilling':
-    'Du må legge ved dokumentasjon på arbeidsforholdet og grunnen til at du reduserte arbeidstiden.<br/><br/>' +
-    'Dokumentasjonen må vise:' +
-    '<ul><li>arbeidsforholdet</li>' +
-    '<li>grunnen til at du reduserte arbeidstiden</li>' +
-    '<li>datoen du avtalte reduksjon i arbeidstiden</li></ul>',
+    'You must provide documentation of your employment and the reason you reduced your working hours.<br/><br/>' +
+    'The documentation must indicate: \n' +
+    '<ul><li>your employment</li>' +
+    '<li>the reason you reduced your working hours </li>' +
+    '<li>the date you arranged reduced working hours </li></ul>',
   'dinSituasjon.fritekst.redusertStilling':
-    'Hvorfor reduserte du arbeidstiden?',
-  'dinSituasjon.datovelger.redusertStilling': 'Når reduserte du arbeidstiden?',
+    'Why did you reduce your working hours?',
+  'dinSituasjon.datovelger.redusertStilling':
+    'When did you reduce your working hours?',
   'dinSituasjon.datovelger-alert.redusertStilling':
-    'Har du redusert arbeidstiden uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-  'dinSituasjon.legend.særligTilsyn':
-    'Hvilket av barna dine har behov for særlig tilsyn?',
-  'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
-  'dinSituasjon.alert-dok.tittel':
-    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
+    'If you have reduced your working hours for no reasonable reason, you will not be entitled to benefit until six months after you handed in your notice.',
 
   'harBarnMedSærligeBehov.alert-dok.beskrivelse':
     'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
     '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
+  'dinSituasjon.legend.særligTilsyn':
+    'Which of your children needs special supervision?',
+  'dinSituasjon.label.særligTilsyn':
+    'About {barnetsNavn}’s need for special supervision',
 
   'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
   'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
@@ -755,187 +803,207 @@ export default {
   'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
     'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
 
-  'søkerFraBestemtMåned.datovelger': 'Når søker du stønad fra?',
+  // NÅR SØKER DU FRA
+  'søkerFraBestemtMåned.datovelger': 'When are you applying for benefit from?',
   'søkerFraBestemtMåned.spm.overgangsstønad':
-    'Søker du overgangsstønad fra en bestemt måned?',
+    'Are you applying for transitional benefit from a specific month?',
   'søkerFraBestemtMåned.spm.barnepass':
-    'Søker du barnepass fra en bestemt måned?',
-  'søkerFraBestemtMåned.hjelpetekst-åpne': 'Om å søke fra et bestemt tidspunkt',
+    'Are you applying for child care benefit from a specific month? ',
+
+  'søkerFraBestemtMåned.hjelpetekst-åpne':
+    'About applying from a specific date',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
     'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. ' +
     'Du kan ha rett til stønad i inntil 3 måneder før du søker. ' +
     'Det vil si fra og med [0]. ',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2':
-    'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel. ' +
-    'Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. ' +
-    'Det vil si fra og med [0]. ',
+    'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.' +
+    'If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3':
-    'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
+    'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
+
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
-    'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+    'Child care benefit is paid from the month you meet the criteria for the benefit. <br/><br/>' +
+    'You can receive retroactive payment of benefit for up to three months from when you apply if you were entitled to benefit during this period.<br/><br/>' +
+    'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
+
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
+    'No, NAV can determine from which month I am entitled to benefit',
 
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
-    'Jeg søker overgangsstønad fra og med',
+    'I am applying for transitional benefit starting from',
   'søkerStønadFraBestemtMnd.datovelger.barnepass':
-    'Jeg søker stønad til barnetilsyn fra og med',
+    'I am applying for child care benefit starting from',
   'barnepass.dokumentasjon.søkerStønadFraBestemtMnd':
-    'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid',
+    'Remember to submit old invoices if you are applying for retroactive benefit',
 
-  'barnepass.sidetittel': 'Om barnepassordningen',
-  'barnepass.spm.årsak': 'Hvorfor trenger [0] pass?',
+  // ----- BARNEPASS
+  'barnepass.sidetittel': 'About the child minding arrangements',
+  'barnepass.spm.årsak': 'Why does [0] need looking after?',
   'barnepass.alert-advarsel.årsak':
-    '<b>Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår. </b> <br/><br/>' +
-    'På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.',
+    '<b>The main rule is that you can receive child care benefit until your child has completed their fourth year at school. \n </b> <br/><br/>' +
+    'At this stage, children have normally become sufficiently self-reliant and mature that they can cope on their own outside school hours both at home and in their usual local environment while you are absent due to work.',
   'barnepass.svar.trengerMerPassEnnJevnaldrede':
-    'Barnet har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende',
+    'The child needs significantly more looking after than is usual for children of this age',
   'barnepass.dokumentasjon.trengerMerPassEnnJevnaldrede':
-    'Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.',
+    'You must provide documentation of this need in the form of a statement from a doctor, specialist or other health care professional.',
 
   'barnepass.svar.myeBortePgaJobb':
-    'Jeg må være borte fra hjemmet i lengre perioder på grunn av jobb',
+    'I have to be away from home for extended periods of time for work',
   'barnepass.alert-info.myeBortePgaJobb':
-    'For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag',
+    'In order for an absence to be considered longer than usual, it must exceed ten hours per day. ',
   'barnepass.svar.utenomVanligArbeidstid':
-    'Jeg jobber turnus eller skift, og jobber på tider utenom vanlig arbeidstid',
-  'barnepass.dokumentasjon.arbeidstid': 'Du må dokumentere arbeidstiden din',
+    'I work shifts and work at times outside normal working hours',
+  'barnepass.dokumentasjon.arbeidstid':
+    'You must provide documentation of your working hours.',
 
-  'barnepass.spm.hvaSlagsOrdning': 'Hva slags barnepassordning har [0]?',
-  'hvaSlagsOrdning.svar.barnehageOgLiknende': 'Barnehage, SFO eller liknende',
-  'hvaSlagsOrdning.svar.privat': 'Dagmamma eller annen privat ordning',
-  'barnehageOgLiknende.label.navnPåBarnepass': 'Navn på barnepassordningen',
+  'barnepass.spm.hvaSlagsOrdning':
+    'What kind of child minding arrangements does [0] have??',
+  'hvaSlagsOrdning.svar.barnehageOgLiknende':
+    'Kindergarten, child care at school outside school hours (SFO) or similar',
+  'hvaSlagsOrdning.svar.privat':
+    'Child minder, babysitter or other private arrangements',
+  'barnehageOgLiknende.label.navnPåBarnepass': 'Name of the child minder',
   'privat.label.navnPåBarnepass':
-    'Navn på barnepassordningen eller personen som passer [0]',
+    'Name of the child minder or person who looks after [0]',
   'barnepass.datovelger.periodePåBarnepass':
-    'I hvilken periode har [0] denne barnepassordningen?',
+    'In what period is [0] with this child minder?',
   'barnepass.hjelpetekst.periodePåBarnepass':
-    'Stønad til barnetilsyn gis normalt for 1 år av gangen, og du må søke på nytt og dokumentere utgiftene hvert år. Du trenger bare oppgi perioden du søker for nå.',
+    'Child care benefit is normally granted for one year at a time, and you must reapply and provide documentation of your expenses each year. You only need to specify the period you are applying for now. ',
 
-  'barnepass.label.beløp': 'Beløp pr måned (ikke inkludert kost)',
-  'barnepass.hjelpetekst-åpne.beløp': 'Dette kan du få støtte til',
+  'barnepass.label.beløp': 'Amount per month (not including food)',
+  'barnepass.hjelpetekst-åpne.beløp': 'What you can receive support for',
   'barnepass.hjelpetekst-innhold.beløp':
-    ' Stønaden bidrar til utgifter du har til opphold. Utgifter til kost, bleier og lignende dekkes ikke.',
+    'The benefit contributes to your expenses related to having your child in day care. Expenses for food, nappies, etc. are not covered. ',
   'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
-    '<strong>Du må legge ved faktura fra barnepassordningen.</strong> <br />' +
-    'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år. Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.',
+    '<strong>You must submit an invoice from the child minder. </strong> <br />' +
+    'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke We must have a new invoice for each academic year. It is not sufficient that you have submitted an invoice for previous years.',
   'barnepass.alert-dokumentasjon.beløp.privat':
-    '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
-    '<li>ditt navn, fødseslnummer og adresse</li>' +
-    '<li> barnepasserens navn og adresse</li>' +
-    '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
-    '<li>perioden avtalen gjelder for</li>' +
-    '<li>dager i uken og klokkeslett for barnepass</li>' +
-    '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
-    '<li>signaturer fra deg og barnepasser </li></ul>',
-  'barnepass.label.leggTilOrdning': 'Har du flere barnepassordninger for [0]?',
-  'barnepass.knapp.leggTilOrdning': 'Legg til en barnepassordning',
-  'barnepass.tittel.ordning': 'Barnepassordning',
-  'barnepass.knapp.slett': 'Fjern barnepassordning',
+    '<b>You must submit the agreement you have with the child minder. Here is a <a href="/familie/alene-med-barn/soknad/filer/Agreement_on_private_child_minding_arrangements_EN.pdf" download>template for an agreement on private child minding arrangements</a>. The agreement must include:</b> <ul>' +
+    '<li>your name, national identity number and address</li>' +
+    '<li>the child minder’s name and address</li>' +
+    '<li>the name and national identity number of the child(ren) being looked after</li>' +
+    '<li>the period covered by the agreement</li>' +
+    '<li>the days of the week and times of child minding</li>' +
+    '<li>how much you pay for child minding per month, not including food</li>' +
+    '<li>be signed by you and the child minder</li></ul>',
+  'barnepass.label.leggTilOrdning':
+    'Do you have other child minding arrangements for [0]?',
+  'barnepass.knapp.leggTilOrdning': 'Add other child minding arrangements',
+  'barnepass.tittel.ordning': 'Child minding arrangement',
+  'barnepass.knapp.slett': 'Remove child minding arrangements',
 
-  'filopplaster.dra': 'Last opp dokumentasjon',
-  'filopplaster.slipp': 'Slipp filen her...',
-  'filopplaster.feilmelding.filtype': '[0] – Ugyldig filtype.',
-  'filopplaster.feilmelding.maks':
-    '[0] er for stor (maksimal filstørrelse er [1]).',
-  'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+  // FILOPPLASTER
 
-  'oppsummering.sidetittel': 'Oppsummering',
+  'filopplaster.dra': 'Upload a document',
+  'filopplaster.slipp': 'Drag and drop the file here...',
+  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
+  'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
+  'filopplaster.feilmelding.generisk': 'Could not upload file',
+
+  // --- OPPSUMMERING (steg 7)
+  'oppsummering.sidetittel': 'Summary',
   'oppsummering.normaltekst.lesgjennom':
-    'Les gjennom oppsummeringen før du sender inn søknaden. Hvis du trenger å gjøre endringer, kan du gå tilbake.',
-  'oppsummering.tilbake': 'Til oppsummering',
+    'Please review the summary before submitting your application.' +
+    'If you need to make changes you can go back.',
+  'oppsummering.tilbake': 'Back to summary',
 
-  'dokumentasjon.tittel': 'Last opp dokumentasjon',
+  // --- LAST OPP DOKUMENTASJON (steg 8)
+  'dokumentasjon.tittel': 'Upload documentation',
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
-    'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
+    'It doesn’t look like you need to submit any documentation.  We will contact you if it turns out we do need documentation from you.',
   'dokumentasjon.beskrivelse':
-    'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. ' +
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. ' +
-    'Du kan bruke filformatene PDF, jpg og png.' +
+    'You must upload documentation confirming the information you have provided in the application. You will get a quicker response to your application if we have all the documentation we need when we start processing it. You can upload documentation in the following file formats: PDF, jpg and png.' +
     ' <br/><br/>' +
-    'Slik bruker du bilder som vedlegg til søknaden:<br/>' +
-    '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
-    '<li>Sjekk at dokumentet er lett å lese\n</li>' +
-    '<li>Last opp bildene her</li></ol> ' +
-    'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/>' +
+    'How to upload images as attachments to your application:<br/>' +
+    '<ol><li> Take a picture of the document with a smartphone or tablet</li>' +
+    '<li>Check that the document can be read</li>' +
+    '<li>Upload the images here </li></ol> ' +
+    'If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/>' +
     '<br />' +
-    'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
+    'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
-    'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
+    'I have already submitted this documentation to NAV in the past',
 
-  'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
+  'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
-    'Dokumentasjon på separasjon eller skilsmisse',
+    'Documentation of your separation or divorce',
   'dokumentasjon.separasjonEllerSkilsmisse.beskrivelse':
-    'Beskrivelse for separasjone eller skilsmisse',
+    'Confirmation from the County Governor or court of your application for a separation, application for a divorce or that a divorce case has been brought before the courts',
   'dokumentasjon.søktSeparasjon.tittel':
-    'Dokumentasjon på separasjon eller skilsmisse',
+    'Documentation of your separation or divorce ',
   'dokumentasjon.søktSeparasjon.beskrivelse':
-    'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
+    'Confirmation from the County Governor or court of your application for a separation, application for a divorce or that a divorce case has been brought before the courts',
   'dokumentasjon.begrunnelse.tittel':
-    'Bekreftelse på samlivsbrudd med den andre forelderen',
+    'Confirmation of end of relationship with the other parent',
   'dokumentasjon.begrunnelse.beskrivelse':
-    'Hvis dere ikke er separert eller skilt, må du legge ved bekreftelse på samlivsbruddet. Bekreftelsen må være signert av dere begge og vise dato for bruddet.' +
-    '<br /><br /> Du får lenke til et forslag til hvordan bekreftelsen kan se ut når du sender inn søknaden slik at du kan ettersende dette hvis du ikke allerede har en bekreftelse.' +
-    '<br /><br /> Dette er ikke meklingsattesten fra familievernkontoret.',
+    'If you are not separated or divorced, please include confirmation of the end of your relationship. The confirmation must be signed by both of you and state the date of the break-up. ' +
+    '<br/><br/>You will receive a link to a template for a confirmation when you submit your application, which you can upload later if you do not have a confirmation.' +
+    '<br/><br/>This is not the confirmation of mediation from the Family Counselling Office.',
 
   'dokumentasjon.ikke.villig.til.arbeid.tittel':
-    'Dokumentasjon som beskriver grunnen til at du ikke kan ta ethvert arbeid',
+    'Documentation explaining the reason why you cannot take any work at all',
   'dokumentasjon.ikke.villig.til.arbeid.beskrivelse':
-    'Hvis det er helsemessige grunner som hindrer deg fra å ta ethvert arbeid, må du dokumentere det med legeattest',
+    'If you are unable to take any work at all due to your health, you must document this with a medical certificate from a doctor',
   'dokumentasjon.ulikeAdresser.tittel':
-    'Dokumentasjon på at du og tidligere samboer bor på ulike adresser',
+    'Documentation that you and your former cohabiting partner now live at different addresses',
   'dokumentasjon.ulikeAdresser.beskrivelse':
-    'Dokumentasjon på at du og tidligere samboer bor på ulike adresser, for eksempel: <ul>' +
-    '<li>Informasjon om hvor den tidligere samboeren bor nå</li>' +
-    '<li>Kopi av flyttemelding/tips til folkeregisteret</li>' +
-    '<li>Husleiekontrakt for begge parter</li>' +
-    '<li>Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
-    '<li>Bekreftelse fra eksempel barnehage, skole, barnevern, helsestasjon eller lignende.</li>' +
-    '<li>Dokumentasjon på separate bo- og husholdningsutgifter. Dette kan være kontoutskrifter som viser betalt husleie, eller andre faste boutgifter slik som strøm og kommunale avgifter.</li></ul>',
+    'Documentation that you and your former cohabiting partner now live at different addresses: <ul>' +
+    '<li>Documentation confirming that you have been in contact with the National Registry because your former cohabiting partner has moved out</li>' +
+    '<li>Information about where your former cohabiting partner lives now</li></ul>' +
+    '<ul>If you can provide documentation of both of the above, this is usually sufficient for our purposes. If you do not have this kind of documentation, you can submit, for example:' +
+    '<li>Tenacy contracts for both parties</li>' +
+    '<li>Documentation that your former shared home has been transferred to one of the parties. For example, a certificate of division of joint property and/or documentation showing who is the holder of the loan for the home you live in.</li>' +
+    '<li>Confirmation from the child welfare services that you live alone with the child(ren)</li>' +
+    '<li>Documentation of separate living and household expenses, such as bank statements showing paid rent, or other fixed housing expenses such as electricity and municipal taxes.</li></ul>',
 
-  'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
+  'dokumentasjon.terminbekreftelse.tittel':
+    'Confirmation of your expected date of delivery',
   'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
-  'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
-  'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
+  'dokumentasjon.samværsavtale.tittel': 'Child access agreement ',
+  'dokumentasjon.deltBosted.tittel': 'Agreement on dual domicile for children',
   'dokumentasjon.barnBorHosSøker.tittel':
-    'Dokumentasjon på at barn bor hos deg',
+    'Documentation that children live with you \n',
   'dokumentasjon.barnBorHosSøker.beskrivelse':
-    ' Dokumentasjon på at barn bor hos deg, for eksempel:<ul>' +
-    '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
-    '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
-    '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
-  'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.sykdom.beskrivelse':
-    'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
-    '<li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
-    '<li>hvor mye du kan arbeide</li> </ul>' +
-    'Søker du om å forlenge stønadsperioden fordi du har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra legen din selv om du har sykemelding. Denne må vise:\n' +
-    '<ul><li>når du ble syk</li>' +
-    '<li>når legen din regner med at du vil bli frisk</li></ul>' +
-    'Har du sendt inn dokumentasjon på dette tidligere, for eksempel i forbindelse med sykemelding, AAP eller uføretrygd?',
-  'dokumentasjon.syktBarn.tittel': 'Dokumentasjon på barnets sykdom',
+    'Documentation that children live with you. For example:<ul>' +
+    '<li>the reason why the child’s change of address has not been reported to the National Registry</li>' +
+    '<li>copy of the notification of change of address or tip-off to the National Registry</li>' +
+    '<li>confirmation from, for example, the child’s kindergarten / school, the child welfare services, or your child health centre</li></ul>',
+  'dokumentasjon.syk-dinSituasjon.tittel':
+    'Documentation confirming that you are ill',
+  'dokumentasjon.syk-dinSituasjon.beskrivelse':
+    'If you are not on sick leave and are not receiving work assessment allowance (AAP) or disability benefit, you must provide documentation confirming that you are ill.<br/>' +
+    'The documentation from your doctor must state:<ul>' +
+    '<li>the reason why you cannot be in occupational activity</li>' +
+    '<li>when your illness started</li> ' +
+    '<li>when your doctor expects you to have recovered</li>' +
+    '<li>how much you can work</li></ul>' +
+    'If you are already receiving transitional benefit and are applying for an extension of the benefit period beyond three years because you have a disorder that is not chronic:' +
+    'We will need special documentation from your doctor, even if you are already on sick leave.',
+  'dokumentasjon.syktBarn.tittel':
+    'Documentation confirming that your child is ill and describing your ability to be in occupational activity',
   'dokumentasjon.syktBarn.beskrivelse':
-    'Dokumentasjonen fra lege må tydelig vise:\n' +
-    '<ul><li>årsaken til at barnets sykdom påvirker muligheten din til å være i arbeid eller annen yrkesrettet aktivitet</li>' +
-    '<li>hvor mye kan du arbeide</li></ul>' +
-    'Søker du om å forlenge stønadsperioden fordi barnet har en sykdom som ikke er varig? Da trenger vi dokumentasjonen fra lege som også viser:\n' +
-    '<ul><li>når barnet ble sykt</li>' +
-    '<li>når legen regner med at barnet vil bli friskt</li></ul>',
-  'dokumentasjon.barnepass.tittel': 'Dokumentasjon på at du mangler barnepass ',
+    'The documentation from the doctor must state:' +
+    '<ul>' +
+    '<li>why the child’s illness affects your ability to work or be in other occupational activity </li>' +
+    '<li>how much you can work</li>' +
+    '<li>when the child’s illness started </li>' +
+    '<li>when the doctor expects the child to have recovered </li></ul>',
+  'dokumentasjon.barnepass.tittel':
+    'Documentation confirming that you do not have child minding. ',
   'dokumentasjon.barnepass.beskrivelse':
-    'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.' +
-    'Dokumentasjonen må tydelig vise <ul>' +
-    '<li>datoen du søkte</li>' +
-    '<li>datoen du ønsket plass fra</li></ul>',
+    'This means denial of a place in a kindergarten or child care at school outside school hours (SFO), or confirmation that the child is on a waiting list.' +
+    'The documentation must state clearly:<ul>' +
+    '<li>the date you applied</li>' +
+    '<li>the date you wanted a place from</li></ul>',
   'dokumentasjon.barnetilsynsbehov.tittel':
-    'Dokumentasjon på barnets tilsynsbehov',
+    'Documentation of your child’s special supervision needs',
   'dokumentasjon.barnetilsynsbehov.beskrivelse':
-    '<ul><li>Dokumentasjon fra legen din som bekrefter at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn.<li/>' +
-    '<li>Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og hvordan dette påvirker muligheten din til å være i arbeid eller yrkesrettet aktivitet.</li></ul>',
+    '<ul><li>Documentation from your doctor confirming that the child has medical, mental or major social problems and needs supervision. <li/>' +
+    '<li>Documentation describing how much supervision your child needs, what kind of supervision, and how this affects your ability to be in occupational activity</li></ul>',
   'dokumentasjon.arbeidskontrakt.tittel':
-    'The work contract that proves that you have been offered a job',
+    'A work contract proving that you have been offered a job.',
   'dokumentasjon.arbeidskontrakt.beskrivelse':
     'The documentation must indicate: <ul>' +
     '<li>the name of the employer</li>' +
@@ -943,134 +1011,154 @@ export default {
     '<li>the date you will start in the job </li>' +
     '<li>the date you received the offer</li></ul>',
   'dokumentasjon.utdanning.tittel':
-    'Dokumentasjon på utdanningen du tar eller skal ta',
+    'Documentation of the education you are taking or are going to take',
   'dokumentasjon.utdanning.beskrivelse':
-    'Dokumentasjonen må vise:<ul>' +
-    '<li>navn på studiested</li>' +
-    '<li>navn på studie</li>' +
-    '<li>hvor mye du skal studere</li>' +
-    '<li>perioden du skal studere</li></ul>',
+    'The documentation must indicate:<ul>' +
+    '<li>the name of the place of study</li>' +
+    '<li>the name of the course or education</li>' +
+    '<li>how much you are going to study</li>' +
+    '<li>the period in which you are going to study</li></ul>' +
+    'The documentation must show clearly to whom it pertains. <br/><br/>' +
+    'If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
 
-  'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
+  'dokumentasjon.lærling.tittel': 'Apprenticeship contract',
 
   'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
-    'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
-  'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse': '',
+    'Documentation of your employment and the reason you resigned',
+  'dokumentasjon.arbeidsforhold-oppsigelse.beskrivelse':
+    'The documentation must indicate: <ul>' +
+    '<li>your employment</li>' +
+    '<li>the reason you resigned</li>' +
+    '<li>the date you resigned or arranged a voluntary leave of absence</li></ul>',
   'dokumentasjon.arbeidsforhold-redusert.tittel':
-    'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
-  'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
+    'Documentation of your employment and the reason you reduced your working hours',
+  'dokumentasjon.arbeidsforhold-redusert.beskrivelse':
+    'The documentation must indicate: <ul>' +
+    '<li>your employment</li>' +
+    '<li>the reason you reduced your working hours</li>' +
+    '<li>the date you arranged reduced working hours</li>',
 
-  'dokumentasjon.syk.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.syk.beskrivelse':
-    'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
+  'dokumentasjon.syk-arbeid.tittel':
+    'Documentation confirming that you are ill',
+  'dokumentasjon.syk-arbeid.beskrivelse':
+    'If you are not on sick leave and are not receiving work assessment allowance (AAP) or disability benefit, you must provide documentation confirming that you are ill.<br/>' +
+    'The documentation from your doctor must state:<ul>' +
+    '<li>the reason why you cannot be in occupational activity</li>' +
+    '<li>when your illness started</li> ' +
+    '<li>when your doctor expects you to have recovered</li>' +
+    '<li>how much you can work</li></ul>' +
+    'If you are already receiving transitional benefit and are applying for an extension of the benefit period beyond three years because you have a disorder that is not chronic:' +
+    'We will need special documentation from your doctor, even if you are already on sick leave.',
 
   'dokumentasjon.etablererEgenVirksomhet.tittel':
-    'Næringsfaglig vurdering av virksomheten du etablerer',
+    'Commercial assessment of the business you are setting up',
   'dokumentasjon.etablererEgenVirksomhet.beskrivelse':
-    'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse. ',
-
-  'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
-  'dokumentasjon.tidligereFakturaer.beskrivelse':
-    'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
+    'If you do not receive unemployment benefit while you are setting up your own business, you must obtain a commercial assessment from the municipal or county authorities or another professional body.',
 
   'dokumentasjon.barnehageOgLiknende.tittel':
-    'Faktura fra barnepassordningen for perioden du søker om nå',
+    'Invoice from the child minder for the period you are currently applying for',
   'dokumentasjon.barnehageOgLiknende.beskrivelse':
-    'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år.' +
+    'We must have a new invoice for each academic year. It is not sufficient that you have submitted an invoice for previous years.' +
     '<br />' +
-    'Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.' +
+    'The invoice must be made out to you and must specify the expenses related to having a child in day care separately.' +
     '<br />' +
-    'Husk å legge ved tidligere fakturaer hvis du søker stønad tilbake i tid.',
-  'dokumentasjon.privatBarnepass.tittel': 'Avtalen du har med barnepasseren',
+    'Remember to submit old invoices if you are applying for retroactive benefit',
+  'dokumentasjon.privatBarnepass.tittel':
+    'The agreement you have with the child minder',
   'dokumentasjon.privatBarnepass.beskrivelse':
-    'Avtalen må inneholde:\n<ul>' +
-    '<li>ditt navn, fødseslnummer og adresse</li>' +
-    '<li>barnepasserens navn og adresse</li>' +
-    '<li>navn og fødselsnummer for barnet/barna som passes</li>' +
-    '<li>perioden avtalen gjelder for</li>' +
-    '<li>dager i uken og klokkeslett for barnepass</li>' +
-    '<li>hvor mye du betaler for barnepass per måned, ikke inkludert kostpenger</li>' +
-    '<li>signaturer fra deg og barnepasser</li></ul>',
-  'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel':
-    'Dokumentasjon på at barnet ditt har behov for vesentlig mer pass enn det som er vanlig for jevnaldrende',
-  'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse':
-    'Det dokumenterer du med uttalelse fra lege, spesialist eller annet helsepersonell.',
-  'dokumentasjon.barnepassArbeidstid.tittel':
-    'Dokumentasjon på at du må være borte fra hjemmet i lengre perioder på grunn av jobb',
-  'dokumentasjon.barnepassRoterendeArbeidstid.tittel':
-    'Dokumentasjon på at du jobber turnus eller skift, og jobber på tider utenom vanlig arbeidstid',
-  'dokumentasjon.ettersend.tittel':
-    'Fikk du ikke lastet opp all dokumentasjonen?',
-  'dokumentasjon.ettersend.tekst.barnetilsyn':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
-  'dokumentasjon.ettersend.tekst.overgangsstønad':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
-  'dokumentasjon.ettersend.tekst.skolepenger':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'The agreement must include<ul>' +
+    '<li>your name, national identity number and address</li>' +
+    '<li>the child minder’s name and address</li>' +
+    '<li>the name and national identity number of the child(ren) being looked after</li>' +
+    '<li>the period covered by the agreement</li>' +
+    '<li>the days of the week and times of child minding</li>' +
+    '<li>how much you pay for child minding per month, not including food</li>' +
+    '<li>be signed by you and the child minder</li></ul>',
 
-  'kvittering.takk': 'Takk for søknaden',
-  'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
+  'dokumentasjon.trengerMerPassEnnJevnaldrede.tittel':
+    'Documentation that your child needs significantly more looking after than other children of the same age',
+  'dokumentasjon.trengerMerPassEnnJevnaldrede.beskrivelse':
+    'You can document this need with a statement from a doctor, specialist or other health care professional.',
+
+  'dokumentasjon.barnepassArbeidstid.tittel':
+    'Documentation that you have to be away from home for extended periods of time for work',
+  'dokumentasjon.barnepassRoterendeArbeidstid.tittel':
+    'Documentation that you work shifts and work at times outside normal working hours',
+
+  'dokumentasjon.ettersend.tittel':
+    'Unable to upload all the required documentation?',
+  'dokumentasjon.ettersend.tekst.barnetilsyn':
+    'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+  'dokumentasjon.ettersend.tekst.overgangsstønad':
+    'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+  'dokumentasjon.ettersend.tekst.skolepenger':
+    'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+
+  // ---- KVITTERING (STEG 9)
+  'kvittering.takk': 'Thank you for applying',
+  'kvittering.alert.mottatt':
+    'Your application for transitional benefit has been received',
   'kvittering.skolepenger.alert.mottatt':
-    'Søknaden din om stønad til skolepenger er mottatt',
+    'Your application for support for school fees has been received',
   'kvittering.barnetilsyn.alert.mottatt':
-    'Søknaden din om stønad til barnetilsyn er mottatt',
+    'Your application for child care benefit has been received ',
+
   'kvittering.tekst.arbeidssøker':
-    'Husk å registrere deg som arbeidssøker hos NAV',
-  'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
+    'Remember to register with NAV as a job seeker',
+  'kvittering.knapp.arbeidssøker': 'Register as a job seeker',
   'kvittering.tekst.altViTrenger':
-    'Spørsmålene i søknaden, sammen med eventuell dokumentasjon, gir oss svar på det vi trenger for å behandle søknaden din. Hvis vi trenger mer informasjon vil vi ta kontakt med deg.',
+    'The questions in the application, along with any documentation, tell us what we need to know to be able to process your application. We will contact you if we need more information.',
   'kvittering.tekst.dineSaker':
     'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
-  'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
-  'kvittering.tittel.skolepenger':
-    'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
-  'kvittering.tekst.skolepenger':
-    'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
-  'kvittering.lenke.skolepenger': 'Les mer om stønad til skolepenger',
-  'kvittering.knapp.skolepenger': 'Søk stønad til skolepenger',
+  'kvittering.knapp.dineSaker': 'Download receipt',
 
-  'kvittering.tittel.tarUtdanning':
-    'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
-  'kvittering.beskrivelse.tarUtdanning':
-    'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
-  'kvittering.lenke.tarUtdanning': 'Les mer om stønad til skolepenger',
-  'kvittering.knapp.tarUtdanning': 'Søk stønad til skolepenger',
+  'kvittering.tittel.skolepenger':
+    'As a single parent in education, you may be entitled to support for school fees',
+  'kvittering.tekst.skolepenger':
+    'If we conclude that this education is necessary for you to be able to get a job and support yourself, you may be entitled to support to cover your school fees, i.e. support to cover tuition fees, semester fees and examination fees.',
+  'kvittering.lenke.skolepenger': 'Read more about support for school fees',
+  'kvittering.knapp.skolepenger': 'Apply for support for school fees',
+
   'kvittering.tittel.tilleggsstønader':
-    'Du kan også ha rett til tilleggsstønader når du er under utdanning',
+    'You may also be entitled to supplemental benefit if you are taking education',
   'kvittering.beskrivelse.tilleggsstønader':
-    'Stønadene kan dekke utgifter til <ul>' +
-    '<li>barnepass</li>' +
-    '<li>læremidler</li>' +
-    '<li>daglig reise</li>' +
-    '<li>reise til samling</li>' +
-    '<li>reise på grunn av oppstart, avslutning eller hjemreise</li>' +
-    '<li>bolig og overnatting</li>' +
-    '<li>flytting</li> </ul>' +
-    '<br/> <i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
-  'kvittering.lenke.tilleggsstønader': 'Les mer om tilleggsstønader',
-  'kvittering.knapp.tilleggsstønader': 'Søk tilleggsstønader',
+    'Supplemental benefit can be granted to cover expenses related to<ul>' +
+    '<li>child minding</li>' +
+    '<li>learning materials</li>' +
+    '<li>daily travel</li>' +
+    '<li>travel to gatherings</li>' +
+    '<li>travel due to start-up, conclusion or returning home</li>' +
+    '<li>housing and overnight accommodation</li>' +
+    '<li>relocation</li> </ul>' +
+    '<br/> <i>NB! You can only receive supplemental benefit if you qualify for transitional benefit</i>',
+  'kvittering.lenke.tilleggsstønader': 'Read more about supplemental benefit',
+  'kvittering.knapp.tilleggsstønader': 'Apply for supplemental benefit',
 
   'kvittering.tittel.tilleggsstønader.arbeidssøker':
-    'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader',
+    'As a single parent looking for work, you may be entitled to some form of supplemental benefit',
   'kvittering.beskrivelse.tilleggsstønader.arbeidssøker':
-    'Stønadene kan dekke utgifter til <ul>' +
-    '<li>barnepass</li>' +
-    '<li>flytting</li></ul>' +
-    '<i>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad</i>',
+    'Supplemental benefit can be granted to cover expenses related to<ul>' +
+    '<li>child minding</li>' +
+    '<li>relocation</li></ul>' +
+    '<i>NB! You can only receive supplemental benefit if you qualify for transitional benefit</i>',
   'kvittering.lenke.tilleggsstønader.arbeidssøker':
-    'Les mer om tilleggsstønader',
-  'kvittering.knapp.tilleggsstønader.arbeidssøker': 'Søk tilleggsstønader',
+    'Read more about supplemental benefit',
+  'kvittering.knapp.tilleggsstønader.arbeidssøker':
+    'Apply for supplemental benefit',
 
   'kvittering.tittel.tilleggsstønader.aktivitetskrav':
-    'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
+    'As a working single parent, you may be entitled to child care benefit',
   'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
-    'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> ' +
-    'Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>' +
-    'Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
+    'This benefit covers 64 per cent of your child minding expenses, such as kindergarten, child care at school outside school hours (SFO), or a babysitter or child minder.  <br/><br/> ' +
+    'If you earn more than NOK 608 106 a year, you are not entitled to this benefit.<br/><br/>' +
+    'As a general rule, you can receive this benefit until the child completes their fourth year of school.',
   'kvittering.lenke.tilleggsstønader.aktivitetskrav':
-    'Les mer om stønad til barnetilsyn',
+    'Read more about child care benefit',
   'kvittering.knapp.tilleggsstønader.aktivitetskrav':
-    'Søk stønad til barnetilsyn',
+    'Apply for child care benefit',
   'overgangsstønad.feilsituasjon':
-    'Vi har dessverre tekniske problemer, så du får ikke sendt inn søknaden akkurat nå. Vennligst prøv igjen litt senere. Vi beklager ulempen.',
+    'Sorry! We have technical issues, thus the form can not be submitted right now. Please try again later.',
 };

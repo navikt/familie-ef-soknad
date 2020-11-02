@@ -80,7 +80,7 @@ export const SøkerDuStønadFraBestemtMndSpm = (intl: IntlShape): ISpørsmål =>
   tekstid: 'søkerFraBestemtMåned.spm.barnepass',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'søkerFraBestemtMåned.hjelpetekst-åpne.barnepass',
+    åpneTekstid: '',
     innholdTekstid: 'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass',
     lukkeTekstid: '',
   },

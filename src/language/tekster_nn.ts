@@ -673,8 +673,6 @@ export default {
   'dinSituasjon.legend.særligTilsyn':
     'Hvilket av barna dine har behov for særlig tilsyn?',
   'dinSituasjon.label.særligTilsyn': 'Om {barnetsNavn} tilsynsbehov',
-  'dinSituasjon.alert-dok.tittel':
-    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
 
   'harBarnMedSærligeBehov.alert-dok.beskrivelse':
     'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
@@ -839,8 +837,8 @@ export default {
     '<li>Redegjørelse for årsaken til manglende adresseendring for barnet</li>' +
     '<li>Kopi av flyttemelding/tips til Folkeregisteret</li>' +
     '<li>Bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
-  'dokumentasjon.sykdom.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.sykdom.beskrivelse':
+  'dokumentasjon.syk-dinSituasjon.tittel': 'Dokumentasjon på at du er syk',
+  'dokumentasjon.syk-dinSituasjon.beskrivelse':
     'Dokumentasjonen fra legen din må tydelig vise:<ul>' +
     '<li>årsaken til at du ikke kan være i yrkesrettet aktivitet</li>' +
     '<li>hvor mye du kan arbeide</li> </ul>' +
@@ -893,18 +891,14 @@ export default {
     'Dokumentasjon på arbeidsforholdet og årsaken til at du reduserte arbeidstiden',
   'dokumentasjon.arbeidsforhold-redusert.beskrivelse': '',
 
-  'dokumentasjon.syk.tittel': 'Dokumentasjon på at du er syk',
-  'dokumentasjon.syk.beskrivelse':
+  'dokumentasjon.syk-arbeid.tittel': 'Dokumentasjon på at du er syk',
+  'dokumentasjon.syk-arbeid.beskrivelse':
     'Dokumentasjonen fra legen din må tydelig vise: <b/><b/> <ul><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>',
 
   'dokumentasjon.etablererEgenVirksomhet.tittel':
     'Næringsfaglig vurdering av virksomheten du etablerer',
   'dokumentasjon.etablererEgenVirksomhet.beskrivelse':
     'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse. ',
-
-  'dokumentasjon.tidligereFakturaer.tittel': 'Tidligere fakturaer',
-  'dokumentasjon.tidligereFakturaer.beskrivelse':
-    'Hvis du søker stønader tilbake i tid, må du legge ved tidligere fakturaer.',
 
   'dokumentasjon.barnehageOgLiknende.tittel':
     'Faktura fra barnepassordningen for perioden du søker om nå',
@@ -962,12 +956,6 @@ export default {
   'kvittering.lenke.skolepenger': 'Les mer om stønad til skolepenger',
   'kvittering.knapp.skolepenger': 'Søk stønad til skolepenger',
 
-  'kvittering.tittel.tarUtdanning':
-    'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
-  'kvittering.beskrivelse.tarUtdanning':
-    'Hvis vi kommer frem til at denne utdanningen er nødvendig for at du skal kunne komme i jobb og forsørge deg selv, kan du ha rett til skolepenger. Det vil si studieavgift, semesteravgift og eksamensgebyr.',
-  'kvittering.lenke.tarUtdanning': 'Les mer om stønad til skolepenger',
-  'kvittering.knapp.tarUtdanning': 'Søk stønad til skolepenger',
   'kvittering.tittel.tilleggsstønader':
     'Du kan også ha rett til tilleggsstønader når du er under utdanning',
   'kvittering.beskrivelse.tilleggsstønader':
