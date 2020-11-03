@@ -25,7 +25,6 @@ export const hentTittelMedNr = (
 
 export const hentListeMedSpråk = (): Språk[] => [
   { tittel: 'Bokmål', locale: 'nb' },
-  { tittel: 'Nynorsk', locale: 'nn' },
   { tittel: 'English', locale: 'en' },
 ];
 
