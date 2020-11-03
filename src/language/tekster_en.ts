@@ -103,9 +103,9 @@ export default {
   'side.info.overgangsstønad':
     'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
-    'Du har en påbegynt søknad. Vil du fortsette på denne eller starte en ny?',
-  'side.fortsettSøknad.knapp.startPåNytt': 'Start på nytt',
-  'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
+    'You have an ongoing application form. Would you like to continue applying on this one or begin a new one?',
+  'side.fortsettSøknad.knapp.startPåNytt': 'Start over',
+  'side.fortsettSøknad.knapp.fortsett': 'Continue ongoing application',
 
   'person.navn': 'Name',
   'barn.ident': 'National identity number',
