@@ -11,13 +11,15 @@ import navFarger from 'nav-frontend-core';
 import { hentListeMedSpråk, hentValgtSpråk } from '../../language/utils';
 
 const StyledSpråkvelger = styled.div`
+  width: 100%;
   display: flex;
-  width: 170px;
-  border: 3px solid ${navFarger.navGra40};
-  border-radius: 0.25rem;
+  justify-content: center;
 `;
 
 const StyledWrapper = styled(Wrapper)`
+  width: 170px;
+  border: 3px solid ${navFarger.navGra40};
+  border-radius: 0.25rem;
   position: relative;
   outline: none;
 `;

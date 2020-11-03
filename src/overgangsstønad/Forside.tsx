@@ -24,6 +24,7 @@ import { useIntl } from 'react-intl';
 import { logEvent } from '../utils/amplitude';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
+import FeltGruppe from '../components/gruppe/FeltGruppe';
 
 const Forside: React.FC = () => {
   useEffect(() => {
@@ -71,7 +72,9 @@ const Forside: React.FC = () => {
               )}
             />
           </div>
-          <Språkvelger />
+          <FeltGruppe>
+            <Språkvelger />
+          </FeltGruppe>
 
           {isIE && (
             <div className="ie-feil">
