@@ -125,8 +125,7 @@ const MerOmDinSituasjon: React.FC = () => {
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
       dinSituasjon.gjelderDetteDeg,
       svarHuketAv,
-      svar,
-      intl
+      svar
     );
 
     settDinSituasjon({
@@ -136,6 +135,7 @@ const MerOmDinSituasjon: React.FC = () => {
         svarid: svarider,
         label: spørsmålTekst,
         verdi: avhukedeSvar,
+        alternativer: dinSituasjon.gjelderDetteDeg.alternativer,
       },
     });
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
