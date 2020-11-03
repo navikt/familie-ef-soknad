@@ -9,30 +9,16 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
     case 'REPA':
-      return 'sivilstatus.kode.REPA';
-
     case 'GIFT':
-      return 'sivilstatus.kode.GIFT';
-
     case 'UGIF':
-      return 'sivilstatus.kode.UGIF';
-
     case 'SAMB':
-      return 'sivilstatus.kode.SAMB';
-
     case 'SEPA':
-      return 'sivilstatus.kode.SEPR';
     case 'SEPR':
-      return 'sivilstatus.kode.SEPA';
-
     case 'SKIL':
-      return 'sivilstatus.kode.SKIL';
-
     case 'GJPA':
-      return 'sivilstatus.kode.GJPA';
-
     case 'ENKE':
-      return 'sivilstatus.kode.ENKE';
+      return `sivilstatus.kode.${statuskode}
+   `;
 
     default:
       return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
