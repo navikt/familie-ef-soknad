@@ -750,7 +750,7 @@ export default {
     '<strong>Du må legge ved faktura fra barnepassordningen.</strong> <br />' +
     'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke tilstrekkelig at du har levert faktura for tidligere år. Fakturaen må stå i ditt navn, og utgifter til opphold må være spesifisert.',
   'barnepass.alert-dokumentasjon.beløp.privat':
-    '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
+    '<b>Du må legge ved avtalen du har med barnepasseren. Her er et <a href="/familie/alene-med-barn/soknad/filer/Avtale_privat_barnepass_NN.pdf" download>forslag til hvordan en privat avtale om barnepass kan se ut</a>. Avtalen må inneholde:</b> <ul>' +
     '<li>ditt navn, fødseslnummer og adresse</li>' +
     '<li> barnepasserens navn og adresse</li>' +
     '<li>navn og fødselsnummer for barnet/barna som passes</li>' +

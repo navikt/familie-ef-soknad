@@ -3,8 +3,7 @@ export const førsteBokstavStor = (tekst: string) => {
 };
 
 export const hentBeskjedMedNavn = (navn: string, tekststreng: string) => {
-  const tekst = tekststreng.replace('[0]', navn);
-  return tekst;
+  return tekststreng.replace('[0]', navn);
 };
 
 export const hentBeskjedMedToParametre = (
@@ -35,4 +34,18 @@ export const hentBeskjedMedFireParametre = (
   if (fire) tekst = tekst.replace(/\[3\]/g, fire);
 
   return tekst;
+};
+
+export const hentFilePath = (
+  locale: 'nb' | 'en' | 'nn',
+  filepaths: { nb: string; en: string; nn: string }
+): string => {
+  switch (locale) {
+    case 'nn':
+      return filepaths.nn;
+    case 'en':
+      return filepaths.en;
+    default:
+      return filepaths.nb;
+  }
 };

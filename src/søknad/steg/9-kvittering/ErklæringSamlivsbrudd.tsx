@@ -8,6 +8,8 @@ import styled from 'styled-components/macro';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
+import { hentFilePath } from '../../../utils/språk';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -24,6 +26,7 @@ const StyledLenke = styled.div`
 
 const ErklæringSamlivsbrudd: FC = () => {
   const intl = useIntl();
+  const { locale } = useSpråkContext();
 
   return (
     <SeksjonGruppe>
@@ -36,9 +39,14 @@ const ErklæringSamlivsbrudd: FC = () => {
 
       <StyledLenke>
         <Lenke
-          href={
-            '/familie/alene-med-barn/soknad/filer/Declaration_on_end_of_relationship_EN.pdf'
-          }
+          href={hentFilePath(locale, {
+            nb:
+              '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrudd.pdf',
+            en:
+              '/familie/alene-med-barn/soknad/filer/Declaration_on_end_of_relationship_EN.pdf',
+            nn:
+              '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrot_NN.pdf',
+          })}
           download
         >
           <img alt="Nedlastingsikon" src={download} />

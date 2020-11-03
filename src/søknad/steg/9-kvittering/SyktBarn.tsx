@@ -8,6 +8,8 @@ import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useIntl } from 'react-intl';
+import { hentFilePath } from '../../../utils/språk';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -24,6 +26,7 @@ const StyledLenke = styled.div`
 
 const SyktBarn: FC = () => {
   const intl = useIntl();
+  const { locale } = useSpråkContext();
   return (
     <SeksjonGruppe>
       <StyledUndertittel>
@@ -34,7 +37,14 @@ const SyktBarn: FC = () => {
       </Normaltekst>
       <StyledLenke>
         <Lenke
-          href="/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf"
+          href={hentFilePath(locale, {
+            nb:
+              '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf',
+            en:
+              '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf',
+            nn:
+              '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukt_barn_OS_NN.pdf',
+          })}
           download
         >
           <img alt="Nedlastingsikon" src={download} />
