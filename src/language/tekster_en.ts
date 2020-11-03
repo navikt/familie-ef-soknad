@@ -7,20 +7,20 @@ export default {
 
   // ------ BARNETILSYN
   'barnetilsyn.sidetittel': 'Application for child care benefit',
+  'barnetilsyn.tekst.hvilke':
+    'Which children should be included in the application?',
   'barnetilsyn.hjelpetekst-åpne.hvilke':
-    'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
+    'What the regulations say about which children you can receive child care benefit for',
   'barnetilsyn.hjelpetekst-innhold.hvilke':
-    'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for' +
+    'The main rule is that you can receive child care benefit until your child has completed their fourth year at school. ' +
     '<br/><br/>' +
-    'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår. \n' +
+    'At this stage, children have normally become sufficiently self-reliant and mature that they can cope on their own outside school hours both at home and in their usual local environment while you are absent due to work.' +
     '<br/><br/>' +
-    'På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n' +
-    '<br/><br/>' +
-    'I noen tilfeller kan du få stønad til barnetilsyn etter at barnet ditt er ferdig med fjerde skoleår:\n' +
+    'In some cases, you may be entitled to receive child care benefit after your child has completed their fourth year of school:' +
     '<ul>' +
-    '<li>Hvis du har barn som trenger vesentlig mer pass enn jevnaldrende. Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.</li>' +
-    '<li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li>' +
-    '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
+    '<li>If you have children who need significantly more looking after than other children of the same age. You must provide documentation of this need in the form of a statement from a doctor, specialist or other health care professional.</li>' +
+    '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
+    '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
 
   // ------ SKJEMA - Arbeidssøker
@@ -30,7 +30,6 @@ export default {
   'skjema.beskrivelse':
     'We can inform you about and advise you on education and choice of occupation. We can also offer you courses, internships, etc., which will help you find work. \n' +
     '<br/><br/>If you are a job seeker and are applying for or receiving transitional benefit, you must:' +
-    '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start"> register with NAV </a> as a job seeker, if you have not already done so</li>' +
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">register your CV on nav.no</a> and keep it updated</li>' +
     '<li>search for vacant positions (jobs) <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
     '<li>submit an employment status card every 14 days</li></ol>',
@@ -73,6 +72,7 @@ export default {
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
+  'knapp.lukk': 'Close',
 
   'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
   'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
@@ -124,8 +124,8 @@ export default {
   'person.alder': 'Age',
 
   barnet: 'The child',
-  'ufødt.barn': 'The child with due date [0]',
-  'født.barn': 'The child born [0]',
+  'ufødt.barn': 'the child with due date [0]',
+  'født.barn': 'the child born [0]',
   'barnet.storForBokstav': 'The child',
   'barnet.litenForBokstav': 'the child',
 
@@ -313,25 +313,23 @@ export default {
   'barnekort.lenke.endre': 'Change',
   'barnekort.normaltekst.barn': 'Child',
   'barnekort.fjern': 'Remove from application form',
-  'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
+  'barnekort.skalHaBarnepass':
+    'Should the child be included in the application?',
   'barnekort.spm.skalBarnetBoHosSøker': 'Is the child going to live with you?',
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
-  'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
-  'barnekort.født': 'Er barnet født?',
+  'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
 
-  'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
-  'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
-  'barnadine.knapp.fjern': 'Fjern fra søknad',
-  'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
+  'barnadine.knapp.fjern': 'Remove from application form',
+  'barnadine.knapp.søkBarnetilsyn': 'Apply for child care benefit',
   'barnadine.personnummer': 'Personnummer',
   'barnadine.leggtil.info':
     'Are you pregnant or have you recently had a child who is not yet registered in the National Registry?',
   'barnadine.leggtil.info.barnetilsyn':
-    'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
+    'Have you assumed parental responsibility of a child(ren) without this having been registered in the National Registry yet?',
   'barnadine.advarsel.borikke':
     'If the child does not live with you, you are not entitled to benefit for single parents',
   'barnadine.advarsel.skalikkebo':
@@ -649,10 +647,22 @@ export default {
   'utdanning.svar.deltid': 'Part-time',
   'utdanning.label.arbeidsmengde': 'How much are you going to study?',
   'utdanning.spm.mål': 'What is your goal for taking this education?',
+  'utdanning.alert-tittel.mål':
+    'You must provide documentation of the education you are taking or are going to take',
+  'utdanning.alert-beskrivelse.mål':
+    'The documentation must indicate:<ul>' +
+    '<li>the name of the place of study</li>' +
+    '<li>the name of the course or education</li>' +
+    '<li>how much you are going to study</li>' +
+    '<li>the period in which you are going to study</li>' +
+    '</ul><br/><br/>' +
+    'The documentation must show clearly to whom it pertains. ' +
+    'If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
 
-  'utdanning.label.utgifter': 'Utgifter til skolepenger',
+  'utdanning.label.utgifter': 'Expenses for school fees',
   'utdanning.label.utgifter.dokumentasjon':
-    'Dokumentasjon på utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr. <br />Det dokumenterer du med faktura i ditt navn.',
+    'Documentation of your expenses for tuition fees, semester fees and/or examination fees <br/>' +
+    'Documentation in this context is an invoice made out to you',
   'utdanning.label.utgifter.eksamensgebyr': 'Examination fees',
   'utdanning.label.utgifter.studieavgift': 'Tuition fees',
   'utdanning.label.utgifter.semesteravgift': 'Semester fees',
@@ -733,7 +743,7 @@ export default {
 
   // SøktBarnepassOgVenterPåSvar
   'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
-    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. \n' +
+    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. ' +
     'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
     '   Dokumentasjonen må vise:' +
     '<ul>' +
@@ -1098,7 +1108,7 @@ export default {
     'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
 
   // ---- KVITTERING (STEG 9)
-  'kvittering.takk': 'Thank you for applying',
+  'kvittering.takk': 'Thank you!',
   'kvittering.alert.mottatt':
     'Your application for transitional benefit has been received',
   'kvittering.skolepenger.alert.mottatt':
@@ -1112,8 +1122,24 @@ export default {
   'kvittering.tekst.altViTrenger':
     'The questions in the application, along with any documentation, tell us what we need to know to be able to process your application. We will contact you if we need more information.',
   'kvittering.tekst.dineSaker':
-    'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
+    'You can find your application in "Dine saker" <a href="https://www.nav.no/no/ditt-nav">Your cases</a> once we start processing it. Find out about <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">how long it takes for applications to be processed</a> in your country.',
   'kvittering.knapp.dineSaker': 'Download receipt',
+
+  'kvittering.tittel.huskeliste.erSyk': 'Huskeliste til legen din',
+  'kvittering.beskrivelse.huskeliste.erSyk':
+    'Siden du skal dokumentere at du er syk, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
+  'kvittering.knapp.huskeliste.erSyk': 'Last ned huskeliste til legen',
+
+  'kvittering.tittel.huskeliste.syktBarn': 'Huskeliste til legen din',
+  'kvittering.beskrivelse.huskeliste.syktBarn':
+    '        Siden du skal dokumentere sykdom hos barnet ditt, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
+  'kvittering.knapp.huskeliste.syktBarn': 'Last ned huskeliste til legen',
+
+  'kvittering.tittel.samlivsbrudd': 'Bekreftelse på samlivsbrudd',
+  'kvittering.beskrivelse.samlivsbrudd':
+    'Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi laget et forslag til bekreftelse du kan bruke.\n',
+  'kvittering.knapp.samlivsbrudd':
+    'Last ned forslag til bekreftelse på samlivsbrudd',
 
   'kvittering.tittel.skolepenger':
     'As a single parent in education, you may be entitled to support for school fees',

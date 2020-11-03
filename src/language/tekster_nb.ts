@@ -3,12 +3,12 @@ export default {
   'skolepenger.sidetittel': 'Søknad om skolepenger',
   'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
 
+  // BARNETILSYN
   'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
+  'barnetilsyn.tekst.hvilke': 'Hvilke barn skal være med i søknaden?',
   'barnetilsyn.hjelpetekst-åpne.hvilke':
     'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
   'barnetilsyn.hjelpetekst-innhold.hvilke':
-    'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for' +
-    '<br/><br/>' +
     'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår. \n' +
     '<br/><br/>' +
     'På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n' +
@@ -20,12 +20,13 @@ export default {
     '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
     '</ul>',
 
+  // SKJEMA ARBEIDSSØKER
   'skjema.hei': 'Hei, [0]!',
   'skjema.knapp.start': 'Start',
   'skjema.beskrivelse':
     'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
     '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
-    '<ol><li><a classname="skjema_lenke" href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV, hvis du ikke allerede har gjort det</li>' +
+    '<ol><li><a  href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV, hvis du ikke allerede har gjort det</li>' +
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
     '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
     '<li>sende meldekort hver 14. dag</li></ol>',
@@ -64,6 +65,7 @@ export default {
   'knapp.avbryt': 'Avbryt',
   'knapp.start': 'Start søknad',
   'knapp.sendSøknad': 'Send søknad',
+  'knapp.lukk': 'Lukk',
 
   'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
   'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
@@ -291,16 +293,13 @@ export default {
   'barnekort.spm.født': 'Er barnet født?',
   'barnekort.erUfødt': 'Ufødt',
   'barnekort.spm.sammeAdresse': 'Har barnet samme adresse som deg?',
-  'barnekort.født': 'Er barnet født?',
   'barnekort.adresse.bor': 'Bor hos deg',
   'barnekort.adresse.borIkke': 'Bor ikke hos deg',
   'barnekort.adresse.skalBo': 'Skal bo hos deg',
   'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
   'barnekort.fjern': 'Fjern fra søknad',
-  'barnekort.skalHaBarnepass': 'Skal barnet være med i søknaden?',
+  'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
 
-  'barnadine.hjelpetekst.åpne': 'Hvilke barn kan du få stønad for?',
-  'barnadine.hjelpetekst.innhold': 'Lorem ipsum hjelpetekst jadda',
   'barnadine.leggtil': 'Legg til barn',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
@@ -613,6 +612,17 @@ export default {
   'utdanning.svar.deltid': 'Deltid',
   'utdanning.label.arbeidsmengde': 'Hvor mye skal du studere?',
   'utdanning.spm.mål': 'Hva er målet med utdanningen?',
+  'utdanning.alert-tittel.mål':
+    'Du må legge ved dokumentasjon på utdanningen du tar eller skal ta',
+  'utdanning.alert-beskrivelse.mål':
+    'Dokumentasjonen må vise: <ul>' +
+    '<li>navn på studiested</li>' +
+    '<li>navn på studie</li>' +
+    '<li>hvor mye du skal studere</li>' +
+    '<li>perioden du skal studere</li>' +
+    '</ul><br/><br/>' +
+    'Dokumentasjonen må vise tydelig hvem det gjelder. <br/>' +
+    'Får du allerede overgangsstønad og søker om å forlenge stønadsperioden fordi du har fått tilbud om studieplass? Da må dokumentasjonen også vise datoen du takket ja til tilbudet.',
 
   'utdanning.label.utgifter': 'Utgifter til skolepenger',
   'utdanning.label.utgifter.dokumentasjon':

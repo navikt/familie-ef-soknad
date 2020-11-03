@@ -6,6 +6,8 @@ import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import styled from 'styled-components/macro';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { useIntl } from 'react-intl';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -21,21 +23,24 @@ const StyledLenke = styled.div`
 `;
 
 const SyktBarn: FC = () => {
+  const intl = useIntl();
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>Huskeliste til legen din</StyledUndertittel>
+      <StyledUndertittel>
+        <LocaleTekst tekst={'kvittering.tittel.huskeliste.syktBarn'} />
+      </StyledUndertittel>
       <Normaltekst>
-        Siden du skal dokumentere sykdom hos barnet ditt, har vi laget en
-        huskeliste du kan ta med til legen for å være sikker på at legen
-        dokumenterer de nødvendige opplysningene.
+        <LocaleTekst tekst={'kvittering.beskrivelse.huskeliste.syktBarn'} />
       </Normaltekst>
       <StyledLenke>
         <Lenke
-          href="/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf"
+          href="/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf"
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Element>Last ned huskeliste til legen</Element>
+          <Element>
+            {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.syktBarn' })}
+          </Element>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

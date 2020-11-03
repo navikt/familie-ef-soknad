@@ -99,7 +99,7 @@ const Kvittering: React.FC = () => {
       {sykSøker && (
         <SykSøker
           filPath={
-            '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf'
+            '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_OS_EN.pdf'
           }
         />
       )}

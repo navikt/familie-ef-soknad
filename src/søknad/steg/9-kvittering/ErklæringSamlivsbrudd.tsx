@@ -6,6 +6,8 @@ import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components/macro';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { useIntl } from 'react-intl';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -21,23 +23,28 @@ const StyledLenke = styled.div`
 `;
 
 const ErklæringSamlivsbrudd: FC = () => {
+  const intl = useIntl();
+
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>Bekreftelse på samlivsbrudd</StyledUndertittel>
+      <StyledUndertittel>
+        <LocaleTekst tekst={'kvittering.tittel.samlivsbrudd'} />
+      </StyledUndertittel>
       <Normaltekst>
-        Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi
-        laget et forslag til bekreftelse du kan bruke.
+        <LocaleTekst tekst={'kvittering.beskrivelse.samlivsbrudd'} />
       </Normaltekst>
 
       <StyledLenke>
         <Lenke
           href={
-            '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrudd.pdf'
+            '/familie/alene-med-barn/soknad/filer/Declaration_on_end_of_relationship_EN.pdf'
           }
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Element>Last ned forslag til bekreftelse på samlivsbrudd</Element>
+          <Element>
+            {intl.formatMessage({ id: 'kvittering.knapp.samlivsbrudd' })}
+          </Element>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

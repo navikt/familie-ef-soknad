@@ -54,7 +54,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   const hentSpørsmålTekst = (tekstid: string) => {
     const navnEllerBarn = barn.født?.verdi
       ? barn.navn.verdi
-      : hentTekst('barnet', intl);
+      : hentTekst('barnet.storForBokstav', intl);
     return hentSpørsmålTekstMedNavnEllerBarn(tekstid, navnEllerBarn, intl);
   };
 
