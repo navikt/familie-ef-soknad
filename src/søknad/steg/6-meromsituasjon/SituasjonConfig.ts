@@ -106,7 +106,8 @@ export const SøkerFraBestemtMånedSpm = (intl: IntlShape): ISpørsmål => ({
   flersvar: false,
   lesmer: {
     åpneTekstid: 'søkerFraBestemtMåned.hjelpetekst-åpne',
-    innholdTekstid: 'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad',
+    innholdTekstid:
+      'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1',
     lukkeTekstid: '',
   },
   svaralternativer: [

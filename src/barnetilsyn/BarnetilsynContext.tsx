@@ -11,7 +11,7 @@ import {
 } from '../helpers/steg/dokumentasjon';
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
-import { useIntl } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentMellomlagretSøknadFraDokument,
@@ -21,9 +21,11 @@ import {
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
+import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
+import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 
 // -----------  CONTEXT  -----------
-const initialState = (): ISøknad => {
+const initialState = (intl: IntlShape): ISøknad => {
   return {
     person: tomPerson,
     sivilstatus: {},
@@ -42,6 +44,10 @@ const initialState = (): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
+        alternativer: oversettSvarsalternativer(
+          hvaErDinArbeidssituasjonSpm(intl).svaralternativer,
+          intl
+        ),
       },
     },
     dokumentasjonsbehov: [],
@@ -51,12 +57,11 @@ const initialState = (): ISøknad => {
 
 const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
-    const [søknad, settSøknad] = useState<ISøknad>(initialState());
-
+    const intl = useIntl();
+    const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<
       IMellomlagretBarnetilsynSøknad
     >();
-    const intl = useIntl();
 
     const hentMellomlagretBarnetilsyn = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretBarnetilsynSøknad>(
@@ -98,7 +103,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       barnMedLabels: IBarn[]
     ) => {
       settSøknad({
-        ...initialState(),
+        ...initialState(intl),
         person: { ...person, barn: barnMedLabels },
       });
       settMellomlagretBarnetilsyn(undefined);

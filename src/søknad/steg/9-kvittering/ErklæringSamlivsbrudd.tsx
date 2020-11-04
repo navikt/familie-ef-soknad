@@ -5,6 +5,7 @@ import Lenke from 'nav-frontend-lenker';
 import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components';
+import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -22,10 +23,12 @@ const StyledLenke = styled.div`
 const ErklæringSamlivsbrudd: FC = () => {
   return (
     <SeksjonGruppe>
+      <StyledUndertittel>Bekreftelse på samlivsbrudd</StyledUndertittel>
       <Normaltekst>
         Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi
         laget et forslag til bekreftelse du kan bruke.
       </Normaltekst>
+
       <StyledLenke>
         <Lenke
           href={

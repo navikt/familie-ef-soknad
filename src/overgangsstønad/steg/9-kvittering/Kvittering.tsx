@@ -24,6 +24,7 @@ import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/Regi
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
+import { logEvent } from '../../../utils/amplitude';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -32,6 +33,14 @@ const Kvittering: React.FC = () => {
     nullstillMellomlagretOvergangsstønad,
     nullstillSøknadOvergangsstønad,
   } = useSøknad();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Kvittering',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
+  }, []);
 
   const { person } = usePersonContext();
   const {

@@ -5,6 +5,7 @@ import Lenke from 'nav-frontend-lenker';
 import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components';
+import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -22,6 +23,7 @@ const StyledLenke = styled.div`
 const SyktBarn: FC = () => {
   return (
     <SeksjonGruppe>
+      <StyledUndertittel>Huskeliste til legen din</StyledUndertittel>
       <Normaltekst>
         Siden du skal dokumentere sykdom hos barnet ditt, har vi laget en
         huskeliste du kan ta med til legen for å være sikker på at legen

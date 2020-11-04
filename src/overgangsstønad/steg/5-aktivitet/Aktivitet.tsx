@@ -20,6 +20,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from '../../../utils/amplitude';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -44,6 +45,14 @@ const Aktivitet: React.FC = () => {
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
 
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Aktivitet',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
+  }, []);
+
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
   };
@@ -56,8 +65,7 @@ const Aktivitet: React.FC = () => {
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
       hvaErDinArbeidssituasjon,
       svarHuketAv,
-      svar,
-      intl
+      svar
     );
 
     const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
