@@ -2,11 +2,9 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import TestsideInformasjon from '../components/TestsideInformasjon';
 import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName } from '../models/søknad/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -31,7 +29,7 @@ const BarnetilsynApp = () => {
     settSøknad,
     hentMellomlagretBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const { settToggles, toggles } = useToggles();
+  const { settToggles } = useToggles();
 
   autentiseringsInterceptor();
 
@@ -92,14 +90,9 @@ const BarnetilsynApp = () => {
             <title>Søknad om barnetilsyn</title>
           </Helmet>
 
-          {!toggles[ToggleName.send_barnetilsyn_søknad] && (
-            <TestsideInformasjon />
-          )}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && (
-                <SøknadsdialogBarnetilsyn />
-              )}
+              <SøknadsdialogBarnetilsyn />
             </Route>
           </Switch>
         </>
