@@ -85,7 +85,10 @@ const Oppsummering: React.FC = () => {
   };
 
   return (
-    <Side tittel={'Oppsummering'} skalViseKnapper={false}>
+    <Side
+      tittel={intl.formatMessage({ id: 'oppsummering.sidetittel' })}
+      skalViseKnapper={false}
+    >
       <SeksjonGruppe>
         <div className="oppsummering-arbeidssøker">
           <p className="typo-normal disclaimer">

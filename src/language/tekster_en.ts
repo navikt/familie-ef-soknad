@@ -27,11 +27,13 @@ export default {
 
   'skjema.hei': 'Hello, [0]!',
   'skjema.knapp.start': 'Start',
+  'skjema.sidetittel': 'Single parent who is a job seeker',
   'skjema.beskrivelse':
     'We can inform you about and advise you on education and choice of occupation. We can also offer you courses, internships, etc., which will help you find work. \n' +
     '<br/><br/>If you are a job seeker and are applying for or receiving transitional benefit, you must:' +
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">register your CV on nav.no</a> and keep it updated</li>' +
-    '<li>search for vacant positions (jobs) <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
+    '<li>search for vacant positions (jobs)' +
+    ' <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
     '<li>submit an employment status card every 14 days</li></ol>',
 
   'skjema.tittel.omarbeidssøker': 'Information about you as a job seeker',

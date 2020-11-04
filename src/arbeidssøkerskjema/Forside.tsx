@@ -22,6 +22,7 @@ import { useSkjema } from './SkjemaContext';
 import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
+import Språkvelger from '../components/språkvelger/Språkvelger';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -78,7 +79,12 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
-          <Sidetittel>Enslig mor eller far som arbeidssøker</Sidetittel>
+          <FeltGruppe>
+            <Språkvelger />
+          </FeltGruppe>
+          <Sidetittel>
+            <LocaleTekst tekst={'skjema.sidetittel'} />
+          </Sidetittel>
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
               return blokk._type === 'dokumentasjonskrav' ? (

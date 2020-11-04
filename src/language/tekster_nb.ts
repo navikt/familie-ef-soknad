@@ -23,6 +23,7 @@ export default {
   // SKJEMA ARBEIDSSØKER
   'skjema.hei': 'Hei, [0]!',
   'skjema.knapp.start': 'Start',
+  'skjema.sidetittel': 'Enslig mor eller far som arbeidssøker',
   'skjema.beskrivelse':
     'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.' +
     '<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: ' +
