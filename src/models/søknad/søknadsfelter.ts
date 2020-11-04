@@ -31,4 +31,5 @@ export interface ISpørsmålBooleanFelt extends IBooleanFelt {
 export interface ISpørsmålListeFelt extends ITekstListeFelt {
   spørsmålid: string;
   svarid: string[];
+  alternativer: string[];
 }

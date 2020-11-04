@@ -56,6 +56,7 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst
+            halvåpenTekstid={spørsmål.lesmer.halvåpenTekstid}
             åpneTekstid={spørsmål.lesmer.åpneTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />
