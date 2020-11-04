@@ -85,9 +85,7 @@ const Forside: React.FC = () => {
           )}
 
           <Sidetittel>Søknad om overgangsstønad</Sidetittel>
-          {toggles[ToggleName.mellomlagre_søknad] &&
-          kanBrukeMellomlagretSøknad &&
-          mellomlagretOvergangsstønad ? (
+          {kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}
               gjeldendeSteg={mellomlagretOvergangsstønad.gjeldendeSteg}

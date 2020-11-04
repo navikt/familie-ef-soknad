@@ -99,14 +99,9 @@ const SkolepengerApp = () => {
             <title>{hentTekst('skolepenger.sidetittel', intl)}</title>
           </Helmet>
 
-          {!toggles[ToggleName.send_skolepenger_søknad] && (
-            <TestsideInformasjon />
-          )}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && (
-                <SøknadsdialogSkolepenger />
-              )}
+              <SøknadsdialogSkolepenger />
             </Route>
           </Switch>
         </>

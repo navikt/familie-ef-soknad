@@ -68,7 +68,7 @@ const App = () => {
           <SkjemaProvider>
             <Switch>
               <Route exact path={'/arbeidssoker'}>
-                {toggles[ToggleName.vis_innsending] && <Forside />}
+                <Forside />
               </Route>
               <RedirectArbeidssoker
                 path={'/arbeidssoker/sporsmal'}

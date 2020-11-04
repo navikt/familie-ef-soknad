@@ -95,10 +95,9 @@ const App = () => {
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
             </AlertStripeFeil>
           )}
-          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+              <Søknadsdialog />
             </Route>
           </Switch>
         </>
