@@ -101,7 +101,11 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Element>
               {hentBeskjedMedNavn(
                 barnetsNavn,
-                intl.formatMessage({ id: 'barnasbosted.avtale' })
+                intl.formatMessage({
+                  id: barn.født?.verdi
+                    ? 'barnasbosted.avtale'
+                    : 'barnasbosted.avtale.ufødt',
+                })
               )}
             </Element>
             <Normaltekst>

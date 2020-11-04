@@ -35,7 +35,11 @@ const Kvittering: React.FC = () => {
   } = useSøknad();
 
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Kvittering' });
+    logEvent('sidevisning', {
+      side: 'Kvittering',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
   }, []);
 
   const { person } = usePersonContext();

@@ -1,6 +1,7 @@
 import { ESvar, ISvar } from '../models/felles/spørsmålogsvar';
 import { IntlShape } from 'react-intl';
 import { ISpørsmålListeFelt } from '../models/søknad/søknadsfelter';
+import { hentTekst } from './søknad';
 
 export const hentBooleanFraValgtSvar = (valgtSvar: ISvar) =>
   valgtSvar.id === ESvar.JA;
@@ -35,8 +36,7 @@ export const erValgtSvarLiktSomSvar = (
 export const returnerAvhukedeSvar = (
   spørsmålliste: ISpørsmålListeFelt,
   erHuketAv: boolean,
-  svar: ISvar,
-  intl: IntlShape
+  svar: ISvar
 ) => {
   let avhukedeSvar: string[] = spørsmålliste.verdi;
   let svarider: string[] = spørsmålliste.svarid;
@@ -54,4 +54,11 @@ export const returnerAvhukedeSvar = (
     svarider.push(svar.id);
   }
   return { avhukedeSvar, svarider };
+};
+
+export const oversettSvarsalternativer = (
+  svarsalternativer: ISvar[],
+  intl: IntlShape
+): string[] => {
+  return svarsalternativer.map((svar) => hentTekst(svar.svar_tekst, intl));
 };

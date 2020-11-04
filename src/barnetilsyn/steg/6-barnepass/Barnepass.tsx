@@ -164,7 +164,7 @@ const Barnepass: FC<Props> = () => {
             søkerFraBestemtMåned={søkerFraBestemtMåned}
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
-            hjelpetekstInnholdTekstid={hjelpetekstInnholdTekstid}
+            hjelpetekstInnholdTekst={hjelpetekstInnholdTekstid}
             alertTekst={alertTekst}
           />
         </SeksjonGruppe>

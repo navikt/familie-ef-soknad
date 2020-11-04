@@ -25,7 +25,11 @@ import { logEvent } from '../utils/amplitude';
 
 const Forside: React.FC = () => {
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Forside' });
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
   }, []);
 
   const intl = useIntl();

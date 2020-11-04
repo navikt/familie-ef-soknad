@@ -73,6 +73,8 @@ const Aktivitet: React.FC = () => {
           svarid: [],
           label: '',
           verdi: [],
+          alternativer:
+            endretArbeidssituasjon.hvaErDinArbeidssituasjon.alternativer,
         },
       };
     }
@@ -96,8 +98,7 @@ const Aktivitet: React.FC = () => {
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
       hvaErDinArbeidssituasjon,
       svarHuketAv,
-      svar,
-      intl
+      svar
     );
 
     const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
@@ -109,6 +110,8 @@ const Aktivitet: React.FC = () => {
         svarid: svarider,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: avhukedeSvar,
+        alternativer:
+          endretArbeidssituasjon.hvaErDinArbeidssituasjon.alternativer,
       },
     });
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);

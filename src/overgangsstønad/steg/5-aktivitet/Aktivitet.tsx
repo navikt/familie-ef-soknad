@@ -46,7 +46,11 @@ const Aktivitet: React.FC = () => {
   }, [arbeidssituasjon]);
 
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Aktivitet' });
+    logEvent('sidevisning', {
+      side: 'Aktivitet',
+      team: 'familie',
+      app: 'OS-søknadsdialog',
+    });
   }, []);
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
@@ -61,8 +65,7 @@ const Aktivitet: React.FC = () => {
     const { avhukedeSvar, svarider } = returnerAvhukedeSvar(
       hvaErDinArbeidssituasjon,
       svarHuketAv,
-      svar,
-      intl
+      svar
     );
 
     const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
