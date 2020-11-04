@@ -28,13 +28,14 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
   settBostedOgSamværFelt,
 }) => {
   const intl = useIntl();
+  const født = !!barn.født?.verdi;
   return (
     <KomponentGruppe>
       <JaNeiSpørsmålMedNavn
-        spørsmål={avtaleOmDeltBosted(intl)}
+        spørsmål={avtaleOmDeltBosted(intl, født)}
         spørsmålTekst={hentBarnNavnEllerBarnet(
           barn,
-          avtaleOmDeltBosted(intl).tekstid,
+          avtaleOmDeltBosted(intl, født).tekstid,
           intl
         )}
         onChange={settBostedOgSamværFelt}
@@ -46,7 +47,7 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
             <LocaleTekst
               tekst={hentSvarAlertFraSpørsmål(
                 ESvar.JA,
-                avtaleOmDeltBosted(intl)
+                avtaleOmDeltBosted(intl, født)
               )}
             />
           </AlertStripe>

@@ -18,14 +18,17 @@ import {
 } from '../utils/søknad';
 import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSøknad';
 import Environment from '../Environment';
-import { useIntl } from 'react-intl';
+import { IntlShape, useIntl } from 'react-intl';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
 import { oppdaterBarneliste } from '../utils/barn';
 import { IPerson } from '../models/søknad/person';
+import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
+import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
+import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
 
 // -----------  CONTEXT  -----------
-const initialState = (): ISøknad => {
+const initialState = (intl: IntlShape): ISøknad => {
   return {
     person: tomPerson,
     sivilstatus: {},
@@ -44,6 +47,10 @@ const initialState = (): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
+        alternativer: oversettSvarsalternativer(
+          hvaErDinArbeidssituasjonSpm(intl).svaralternativer,
+          intl
+        ),
       },
     },
     merOmDinSituasjon: {
@@ -52,6 +59,10 @@ const initialState = (): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
+        alternativer: oversettSvarsalternativer(
+          gjelderNoeAvDetteDeg(intl).svaralternativer,
+          intl
+        ),
       },
     },
     dokumentasjonsbehov: [],
@@ -60,12 +71,13 @@ const initialState = (): ISøknad => {
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
-  const [søknad, settSøknad] = useState<ISøknad>(initialState());
+  const intl = useIntl();
+  const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
+
   const [
     mellomlagretOvergangsstønad,
     settMellomlagretOvergangsstønad,
   ] = useState<IMellomlagretOvergangsstønad>();
-  const intl = useIntl();
 
   const hentMellomlagretOvergangsstønad = (): Promise<void> => {
     return hentMellomlagretSøknadFraDokument<IMellomlagretOvergangsstønad>(
@@ -107,7 +119,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     barnMedLabels: IBarn[]
   ) => {
     settSøknad({
-      ...initialState(),
+      ...initialState(intl),
       person: { ...person, barn: barnMedLabels },
     });
     settMellomlagretOvergangsstønad(undefined);
