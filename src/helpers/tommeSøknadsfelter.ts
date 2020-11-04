@@ -27,6 +27,7 @@ export const nyttSpørsmålListeFelt: ISpørsmålListeFelt = {
   svarid: [],
   label: '',
   verdi: [],
+  alternativer: [],
 };
 
 export const nyttTekstFelt: ITekstFelt = {
