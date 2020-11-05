@@ -22,9 +22,7 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
 import { logEvent } from '../utils/amplitude';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
-import FeltGruppe from '../components/gruppe/FeltGruppe';
 
 const Forside: React.FC = () => {
   useEffect(() => {
@@ -72,16 +70,11 @@ const Forside: React.FC = () => {
               )}
             />
           </div>
-          <FeltGruppe>
-            <Språkvelger />
-          </FeltGruppe>
 
           {isIE && (
             <div className="ie-feil">
               <AlertStripeFeil>
-                Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi
-                anbefaler deg å bruke en annen nettleser, for eksempel Google
-                Chrome, Safari eller Firefox.
+                <LocaleTekst tekst={'side.alert.plsnoIE'} />
               </AlertStripeFeil>
             </div>
           )}

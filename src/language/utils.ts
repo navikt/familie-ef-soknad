@@ -2,11 +2,12 @@ import { Språk } from '../models/felles/språk';
 import tekster_en from './tekster_en';
 import tekster_nn from './tekster_nn';
 import tekster_nb from './tekster_nb';
+import { LangType, LocaleType } from './typer';
 
-export const getMessages = (locale: string) => {
-  if (locale === 'en') {
+export const getMessages = (locale: LocaleType) => {
+  if (locale === LocaleType.en) {
     return tekster_en;
-  } else if (locale === 'nn') {
+  } else if (locale === LocaleType.nn) {
     return tekster_nn;
   } else {
     return tekster_nb;
@@ -28,12 +29,12 @@ export const hentListeMedSpråk = (): Språk[] => [
   { tittel: 'English', locale: 'en' },
 ];
 
-export const hentValgtSpråk = (locale: string) => {
+export const hentValgtSpråk = (locale: LocaleType) => {
   let språk: string = '';
-  locale === 'en'
-    ? (språk = 'English')
-    : locale === 'nn'
-    ? (språk = 'Nynorsk')
-    : (språk = 'Bokmål');
+  locale === LocaleType.en
+    ? (språk = LangType.English)
+    : locale === LocaleType.nn
+    ? (språk = LangType.Nynorsk)
+    : (språk = LangType.Bokmål);
   return språk;
 };

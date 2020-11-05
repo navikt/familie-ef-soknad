@@ -1,12 +1,13 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { IntlProvider } from 'react-intl';
 import { getMessages } from '../language/utils';
+import { LocaleType } from '../language/typer';
 
 const SpråkContext = createContext<any>(['', () => {}]);
 const useSpråkContext = () => useContext(SpråkContext);
 
 const SpråkProvider: React.FC = ({ children }) => {
-  const [locale, setLocale] = useState<string>('nb');
+  const [locale, setLocale] = useState<LocaleType>(LocaleType.nb);
   const tekster = getMessages(locale);
 
   return (

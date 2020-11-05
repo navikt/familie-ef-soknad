@@ -15,8 +15,6 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
-import FeltGruppe from '../components/gruppe/FeltGruppe';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -58,9 +56,7 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
-          <FeltGruppe>
-            <Språkvelger />
-          </FeltGruppe>
+
           <Sidetittel>
             <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Sidetittel>

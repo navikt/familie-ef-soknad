@@ -17,8 +17,6 @@ import {
 } from './routing/routesBarnetilsyn';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
-import FeltGruppe from '../components/gruppe/FeltGruppe';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
@@ -61,9 +59,7 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
-          <FeltGruppe>
-            <Språkvelger />
-          </FeltGruppe>
+
           <Sidetittel>
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Sidetittel>

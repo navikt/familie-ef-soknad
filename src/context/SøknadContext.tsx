@@ -26,6 +26,8 @@ import { IPerson } from '../models/søknad/person';
 import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
+import { LocaleType } from '../language/typer';
+import { useSpråkContext } from './SpråkContext';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: IntlShape): ISøknad => {
@@ -67,11 +69,13 @@ const initialState = (intl: IntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
+    locale: LocaleType.nb,
   };
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   const intl = useIntl();
+  const { setLocale } = useSpråkContext();
   const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
   const [
@@ -84,6 +88,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       MellomlagredeStønadstyper.overgangsstønad
     ).then((mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
       if (mellomlagretVersjon) {
+        setLocale(mellomlagretVersjon.søknad.locale);
         settMellomlagretOvergangsstønad(mellomlagretVersjon);
       }
     });

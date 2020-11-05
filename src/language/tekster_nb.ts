@@ -100,6 +100,8 @@ export default {
     'Du har en påbegynt søknad. Vil du fortsette på denne eller starte en ny?',
   'side.fortsettSøknad.knapp.startPåNytt': 'Start på nytt',
   'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
+  'side.alert.plsnoIE':
+    'Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi anbefaler deg å bruke en annen nettleser, for eksempel Google Chrome, Safari eller Firefox.',
 
   'person.navn': 'Navn',
   'barn.ident': 'Fødselsnummer',
