@@ -49,6 +49,7 @@ const norskeOrdMedÆØÅ = [
   'TilleggsstønaderArbeidssøker',
   'RegistrerDegSomArbeidssøker',
   'ÅrsakBarnepass',
+  'Feilside',
 ];
 
 module.exports = {
@@ -57,18 +58,7 @@ module.exports = {
     rules: [
       {
         test: /\.less$/,
-        loaders: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                compileType: 'icss',
-              },
-            },
-          },
-          'less-loader',
-        ],
+        loaders: ['style-loader', 'less-loader'],
       },
     ],
   },
