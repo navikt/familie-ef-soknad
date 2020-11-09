@@ -24,7 +24,11 @@ import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC = () => {
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Forside' });
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'OS-soknadsdialog',
+    });
   }, []);
 
   const intl = useIntl();

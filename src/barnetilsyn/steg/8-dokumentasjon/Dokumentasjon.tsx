@@ -13,6 +13,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -27,6 +28,14 @@ const Dokumentasjon: React.FC = () => {
     opplastedeVedlegg: IVedlegg[] | undefined,
     harSendtInnTidligere: boolean
   ) => {
+    useEffect(() => {
+      logEvent('sidevisning', {
+        side: 'Dokumentasjon',
+        team: 'familie',
+        app: 'BT-soknadsdialog',
+      });
+    }, []);
+
     settSøknad((prevSoknad) => {
       const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
         (dok) => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
@@ -25,6 +25,7 @@ import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { ToggleName } from '../models/søknad/toggles';
 import { useToggles } from '../context/TogglesContext';
+import { logEvent } from 'amplitude-js';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -35,6 +36,14 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { toggles } = useToggles();
 
   const { skjema, settSkjema } = useSkjema();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'Arbeidssokerskjema',
+    });
+  }, []);
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSkjema({

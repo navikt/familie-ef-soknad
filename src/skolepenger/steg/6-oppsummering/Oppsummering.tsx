@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -13,10 +13,20 @@ import { hentTekst } from '../../../utils/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering/OppsummeringDetaljertUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { logEvent } from 'amplitude-js';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreSkolepenger, søknad } = useSkolepengerSøknad();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Oppsummering',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
+
   return (
     <>
       <Side

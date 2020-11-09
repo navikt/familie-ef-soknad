@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import endre from '../../assets/endre.svg';
@@ -29,6 +29,7 @@ import {
   hentPath,
 } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 interface Innsending {
   status: IStatus;
@@ -55,6 +56,14 @@ const Oppsummering: React.FC = () => {
     location.pathname
   );
   const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Oppsummering',
+      team: 'familie',
+      app: 'Arbeidssokerskjema',
+    });
+  }, []);
 
   const sendSkjema = (arbeidssøker: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(arbeidssøker);

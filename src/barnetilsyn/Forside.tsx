@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
@@ -20,6 +20,14 @@ import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Kvittering',
+      team: 'familie',
+      app: 'OS-soknadsdialog',
+    });
+  }, []);
+
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
   const {

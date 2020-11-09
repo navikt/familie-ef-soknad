@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -12,6 +12,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -31,6 +32,14 @@ const BarnasBosted: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'BarnasBosted',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
 
   const barna = søknad.person.barn;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);

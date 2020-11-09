@@ -46,7 +46,11 @@ const Aktivitet: React.FC = () => {
   }, [arbeidssituasjon]);
 
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Aktivitet' });
+    logEvent('sidevisning', {
+      side: 'Aktivitet',
+      team: 'familie',
+      app: 'OS-soknadsdialog',
+    });
   }, []);
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {

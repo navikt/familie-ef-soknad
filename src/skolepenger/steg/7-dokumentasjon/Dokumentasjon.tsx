@@ -16,6 +16,7 @@ import { IVedlegg } from '../../../models/steg/vedlegg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { logEvent } from 'amplitude-js';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -24,6 +25,14 @@ const Dokumentasjon: React.FC = () => {
   const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Dokumentasjon',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
 
   const oppdaterDokumentasjon = (
     dokumentasjonsid: string,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { erAllUtdanningFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
@@ -10,6 +10,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/UnderUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -19,6 +20,14 @@ const UtdanningSituasjon: React.FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Aktivitet',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
 
   const oppdaterUnderUtdanning = (underUtdanning: IDetaljertUtdanning) => {
     settSøknad((prevSøknad) => {

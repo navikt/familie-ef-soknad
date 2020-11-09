@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -12,6 +12,7 @@ import Feilside from '../../components/feil/Feilside';
 import Lenke from 'nav-frontend-lenker';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
+import { logEvent } from 'amplitude-js';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -24,6 +25,14 @@ const StyledBeskrivelse = styled.div`
 const Kvittering: React.FC = () => {
   const intl = useIntl();
   const { skjema } = useSkjema();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'Kvittering',
+    });
+  }, []);
 
   const mottattAlert: string =
     hentTekst('skjema.alert.mottatt', intl) +

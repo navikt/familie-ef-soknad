@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { injectIntl, IntlShape } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
@@ -20,8 +20,17 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
+import { logEvent } from 'amplitude-js';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'OmDeg',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
+
   const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering

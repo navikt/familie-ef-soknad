@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -15,6 +15,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -29,6 +30,14 @@ const BarnaDine: React.FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'BarnaDine',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
 
   const [åpenModal, settÅpenModal] = useState(false);
 

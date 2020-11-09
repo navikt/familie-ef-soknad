@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useLocation } from 'react-router-dom';
@@ -10,8 +10,17 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const Bosituasjon: FC = () => {
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Bosituasjon',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
+
   const intl = useIntl();
   const {
     søknad,

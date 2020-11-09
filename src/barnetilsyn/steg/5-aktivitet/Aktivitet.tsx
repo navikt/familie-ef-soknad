@@ -30,6 +30,7 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -52,6 +53,14 @@ const Aktivitet: React.FC = () => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Aktivitet',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });

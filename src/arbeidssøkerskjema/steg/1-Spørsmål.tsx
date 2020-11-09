@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -29,6 +29,7 @@ import {
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const Spørsmål: FC = () => {
   const location = useLocation<LocationStateSøknad>();
@@ -37,6 +38,14 @@ const Spørsmål: FC = () => {
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'Arbeidssokerskjema',
+    });
+  }, []);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 

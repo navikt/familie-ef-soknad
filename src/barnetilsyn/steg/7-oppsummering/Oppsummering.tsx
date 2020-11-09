@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
@@ -18,6 +18,7 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { logEvent } from 'amplitude-js';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -25,6 +26,15 @@ const Oppsummering: React.FC = () => {
   const barnSomSkalHaBarnepass: IBarn[] = søknad.person.barn.filter(
     (barn) => barn.skalHaBarnepass?.verdi
   );
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Oppsummering',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
+
   return (
     <>
       <Side

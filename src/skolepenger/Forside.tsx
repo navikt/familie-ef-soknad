@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
@@ -15,6 +15,7 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
+import { logEvent } from 'amplitude-js';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -26,6 +27,15 @@ const Forside: React.FC<any> = ({ intl }) => {
     søknad,
     settSøknad,
   } = useSkolepengerSøknad();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Forside',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
+
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({
       ...søknad,

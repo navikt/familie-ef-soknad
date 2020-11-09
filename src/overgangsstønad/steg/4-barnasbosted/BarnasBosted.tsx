@@ -36,7 +36,11 @@ const BarnasBosted: React.FC = () => {
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
   useEffect(() => {
-    logEvent('sidevisning', { side: 'BarnasBosted' });
+    logEvent('sidevisning', {
+      side: 'BarnasBosted',
+      team: 'familie',
+      app: 'OS-soknadsdialog',
+    });
   }, []);
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {

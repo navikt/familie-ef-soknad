@@ -20,6 +20,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { logEvent } from 'amplitude-js';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -33,6 +34,14 @@ const Kvittering: React.FC = () => {
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
     (barn) => barn.skalHaBarnepass?.verdi
   );
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Kvittering',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
 
   useEffect(() => {
     nullstillMellomlagretBarnetilsyn();

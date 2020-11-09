@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -26,6 +26,7 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { useLocation } from 'react-router';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -49,6 +50,14 @@ const Barnepass: FC<Props> = () => {
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
   const hjelpetekstInnholdTekstid =
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Barnepass',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
     const endretBarn = barnSomSkalHaBarnepass.map((barn) => {

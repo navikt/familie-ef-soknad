@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -19,8 +19,17 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { logEvent } from 'amplitude-js';
 
 const BarnaDine: React.FC = () => {
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'BarnaDine',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
+
   const intl = useIntl();
   const {
     søknad,

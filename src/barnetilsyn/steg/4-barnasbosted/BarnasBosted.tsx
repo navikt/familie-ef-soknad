@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useRef, useState, useEffect } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -11,11 +11,20 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logEvent } from 'amplitude-js';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
   window.scrollTo({ top: ref.current!.offsetTop, left: 0, behavior: 'smooth' });
 };
+
+useEffect(() => {
+  logEvent('sidevisning', {
+    side: 'BarnasBosted',
+    team: 'familie',
+    app: 'BT-soknadsdialog',
+  });
+}, []);
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();

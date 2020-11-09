@@ -24,7 +24,11 @@ const Oppsummering: React.FC = () => {
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
 
   useEffect(() => {
-    logEvent('sidevisning', { side: 'Oppsummering' });
+    logEvent('sidevisning', {
+      side: 'Oppsummering',
+      team: 'familie',
+      app: 'OS-soknadsdialog',
+    });
   }, []);
 
   const barnMedsærligeTilsynsbehov = søknad.person.barn

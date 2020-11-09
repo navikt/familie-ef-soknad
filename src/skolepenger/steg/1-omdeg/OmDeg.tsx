@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { IntlShape, injectIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
@@ -20,6 +20,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
+import { logEvent } from 'amplitude-js';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation<LocationStateSøknad>();
@@ -39,6 +40,14 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     datoSøktSeparasjon,
     datoFlyttetFraHverandre,
   } = søknad.sivilstatus;
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'OmDeg',
+      team: 'familie',
+      app: 'SP-soknadsdialog',
+    });
+  }, []);
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {
