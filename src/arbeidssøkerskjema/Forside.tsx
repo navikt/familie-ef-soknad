@@ -23,6 +23,8 @@ import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
+import { ToggleName } from '../models/søknad/toggles';
+import { useToggles } from '../context/TogglesContext';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -30,6 +32,8 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
   const history = useHistory();
+  const { toggles } = useToggles();
+
   const { skjema, settSkjema } = useSkjema();
 
   const settBekreftelse = (bekreftelse: boolean) => {
@@ -79,9 +83,11 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
-          <FeltGruppe>
-            <Språkvelger />
-          </FeltGruppe>
+          {toggles[ToggleName.vis_språkvelger] && (
+            <FeltGruppe>
+              <Språkvelger />
+            </FeltGruppe>
+          )}
           <Sidetittel>
             <LocaleTekst tekst={'skjema.sidetittel'} />
           </Sidetittel>
