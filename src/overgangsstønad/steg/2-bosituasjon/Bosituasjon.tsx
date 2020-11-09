@@ -28,11 +28,7 @@ const Bosituasjon: FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Bosituasjon',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'Bosituasjon' });
   }, []);
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {

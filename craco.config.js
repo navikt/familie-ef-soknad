@@ -49,10 +49,20 @@ const norskeOrdMedÆØÅ = [
   'TilleggsstønaderArbeidssøker',
   'RegistrerDegSomArbeidssøker',
   'ÅrsakBarnepass',
+  'Feilside',
 ];
 
 module.exports = {
   plugins: [{ plugin: CracoLessPlugin }],
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        loaders: ['style-loader', 'less-loader'],
+      },
+    ],
+  },
+  webpack: {},
   eslint: {
     enable: true,
     mode: 'extends',

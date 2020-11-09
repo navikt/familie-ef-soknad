@@ -12,6 +12,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   barn: IBarn[];
@@ -42,7 +43,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     }
     return nyttBarn;
   };
-  const oppsummeringBarnaDine = barnaDine.map((barn, index) => {
+  const oppsummeringBarnaDine = barnaDine.map((barn) => {
     const endretBarn = hentEndretBarn(barn);
 
     return (
@@ -54,7 +55,13 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   });
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel>Barna dine</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Undertittel>
+          <LocaleTekst tekst="barnadine.sidetittel" />
+        </Undertittel>
+      }
+    >
       <KomponentGruppe>{oppsummeringBarnaDine}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>

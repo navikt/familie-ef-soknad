@@ -121,7 +121,7 @@ const OmSamboerenDin: FC<Props> = ({
           type="text"
           bredde={'L'}
           onChange={(e) => settNavn(e)}
-          value={samboerInfo?.navn?.verdi}
+          value={samboerInfo.navn?.verdi ? samboerInfo.navn?.verdi : ''}
         />
       </KomponentGruppe>
       {samboerDetaljer?.navn && (

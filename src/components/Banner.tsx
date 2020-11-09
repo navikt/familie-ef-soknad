@@ -5,7 +5,8 @@ import LocaleTekst from '../language/LocaleTekst';
 
 const StyledBanner = styled.header`
   width: 100%;
-  height: 64px;
+  height: max-content;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   background-color: #c1b5d0;
   border-bottom: 4px solid #826ba1;
   display: flex;

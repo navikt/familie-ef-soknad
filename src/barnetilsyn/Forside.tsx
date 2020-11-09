@@ -17,6 +17,7 @@ import {
 } from './routing/routesBarnetilsyn';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
+import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -58,8 +59,9 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
+
           <Sidetittel>
-            Søknad om stønad til barnetilsyn for enslig mor eller far i arbeid
+            <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Sidetittel>
           {kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn ? (
             <FortsettSøknad

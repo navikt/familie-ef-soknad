@@ -4,8 +4,10 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Lenke from 'nav-frontend-lenker';
 import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
-import styled from 'styled-components';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
+import styled from 'styled-components/macro';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { useIntl } from 'react-intl';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -21,19 +23,22 @@ const StyledLenke = styled.div`
 `;
 
 const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
+  const intl = useIntl();
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>Huskeliste til legen din</StyledUndertittel>
+      <StyledUndertittel>
+        <LocaleTekst tekst={'kvittering.tittel.huskeliste.erSyk'} />
+      </StyledUndertittel>
 
       <Normaltekst>
-        Siden du skal dokumentere at du er syk, har vi laget en huskeliste du
-        kan ta med til legen for å være sikker på at legen dokumenterer de
-        nødvendige opplysningene.
+        <LocaleTekst tekst={'kvittering.beskrivelse.huskeliste.erSyk'} />
       </Normaltekst>
       <StyledLenke>
         <Lenke href={filPath} download>
           <img alt="Nedlastingsikon" src={download} />
-          <Element>Last ned huskeliste til legen</Element>
+          <Element>
+            {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.erSyk' })}
+          </Element>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

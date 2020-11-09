@@ -21,6 +21,7 @@ import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import LocaleTekst from './language/LocaleTekst';
+import { useIntl } from 'react-intl';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -29,6 +30,8 @@ const App = () => {
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
+
+  const intl = useIntl();
 
   autentiseringsInterceptor();
 
@@ -86,7 +89,9 @@ const App = () => {
       return (
         <>
           <Helmet>
-            <title>Søknad om overgangsstønad</title>
+            <title>
+              {intl.formatMessage({ id: 'banner.tittel.overgangsstønad' })}
+            </title>
           </Helmet>
 
           {toggles[ToggleName.feilsituasjon] && (

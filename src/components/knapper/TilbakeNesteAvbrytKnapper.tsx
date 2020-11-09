@@ -4,7 +4,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useHistory, useLocation } from 'react-router';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
 
 const StyledNavigeringsKnapper = styled.div`

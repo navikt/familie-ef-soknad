@@ -11,6 +11,7 @@ import { useIntl } from 'react-intl';
 
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
+import LocaleTekst from '../../../../language/LocaleTekst';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -52,31 +53,11 @@ const MålMedUtdanningen: React.FC<Props> = ({
 
       <FeltGruppe>
         <AlertStripeDokumentasjon>
-          <Element>
-            Du må legge ved dokumentasjon på utdanningen du tar eller skal ta
-          </Element>
-          <Normaltekst>Dokumentasjonen må vise:</Normaltekst>
-          <ul>
-            <li>
-              <Normaltekst>navn på studiested</Normaltekst>
-            </li>
-            <li>
-              <Normaltekst>navn på studie</Normaltekst>
-            </li>
-            <li>
-              <Normaltekst>hvor mye du skal studere</Normaltekst>
-            </li>
-            <li>
-              <Normaltekst>perioden du skal studere</Normaltekst>
-            </li>
-          </ul>
-          <Normaltekst className="tekstlinje">
-            Dokumentasjonen må vise tydelig hvem det gjelder.
-          </Normaltekst>
           <Normaltekst>
-            Får du allerede overgangsstønad og søker om å forlenge
-            stønadsperioden fordi du har fått tilbud om studieplass? Da må
-            dokumentasjonen også vise datoen du takket ja til tilbudet.
+            <Element>
+              <LocaleTekst tekst="utdanning.alert-tittel.mål" />
+            </Element>
+            <LocaleTekst tekst="utdanning.alert-beskrivelse.mål" />
           </Normaltekst>
         </AlertStripeDokumentasjon>
       </FeltGruppe>

@@ -68,11 +68,7 @@ const MerOmDinSituasjon: React.FC = () => {
   );
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'MerOmDinSituasjon',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'MerOmDinSituasjon' });
   }, []);
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';

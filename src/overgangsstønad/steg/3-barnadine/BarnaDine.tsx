@@ -34,11 +34,7 @@ const BarnaDine: React.FC = () => {
   const [åpenModal, settÅpenModal] = useState(false);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'BarnaDine',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'BarnaDine' });
   }, []);
 
   const barna = søknad.person.barn;

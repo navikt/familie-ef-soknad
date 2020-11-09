@@ -20,14 +20,11 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
 import { logEvent } from '../utils/amplitude';
+import LocaleTekst from '../language/LocaleTekst';
 
 const Forside: React.FC = () => {
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Forside',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'Forside' });
   }, []);
 
   const intl = useIntl();
@@ -74,14 +71,14 @@ const Forside: React.FC = () => {
           {isIE && (
             <div className="ie-feil">
               <AlertStripeFeil>
-                Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi
-                anbefaler deg å bruke en annen nettleser, for eksempel Google
-                Chrome, Safari eller Firefox.
+                <LocaleTekst tekst={'side.alert.plsnoIE'} />
               </AlertStripeFeil>
             </div>
           )}
 
-          <Sidetittel>Søknad om overgangsstønad</Sidetittel>
+          <Sidetittel>
+            <LocaleTekst tekst="banner.tittel.overgangsstønad" />
+          </Sidetittel>
           {kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}

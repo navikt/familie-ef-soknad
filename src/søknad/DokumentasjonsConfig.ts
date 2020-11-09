@@ -91,8 +91,8 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     spørsmålid: EArbeidssituasjon.erDuIArbeid,
     svarid: ESvar.NEI,
     label: '',
-    tittel: 'dokumentasjon.syk.tittel',
-    beskrivelse: 'dokumentasjon.syk.beskrivelse',
+    tittel: 'dokumentasjon.syk-arbeid.tittel',
+    beskrivelse: 'dokumentasjon.syk-arbeid.beskrivelse',
     harSendtInn: false,
   },
   DokumentasjonOmVirksomhetenDuEtablerer: {
@@ -253,8 +253,8 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     spørsmålid: ESituasjon.gjelderDetteDeg,
     svarid: DinSituasjonType.erSyk,
     label: '',
-    tittel: 'dokumentasjon.sykdom.tittel',
-    beskrivelse: 'dokumentasjon.sykdom.beskrivelse',
+    tittel: 'dokumentasjon.syk-dinSituasjon.tittel',
+    beskrivelse: 'dokumentasjon.syk-dinSituasjon.beskrivelse',
     harSendtInn: false,
   },
   DokumentasjonSyktBarn: {

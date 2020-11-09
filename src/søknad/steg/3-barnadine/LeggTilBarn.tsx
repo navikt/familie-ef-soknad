@@ -14,6 +14,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { oppdaterBarneliste } from '../../../utils/barn';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   settÅpenModal: Function;
@@ -149,7 +150,7 @@ const LeggTilBarn: React.FC<Props> = ({
           className="legg-til-barn__knapp"
           onClick={() => leggTilEllerEndreBarn(id)}
         >
-          Legg til barn
+          <LocaleTekst tekst={'barnadine.leggtil'} />
         </Hovedknapp>
       )}
     </Seksjonsgruppe>

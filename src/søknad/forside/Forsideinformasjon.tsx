@@ -12,6 +12,9 @@ import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
 import { useHistory } from 'react-router-dom';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
+import Språkvelger from '../../components/språkvelger/Språkvelger';
+import { useToggles } from '../../context/TogglesContext';
+import { ToggleName } from '../../models/søknad/toggles';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -35,6 +38,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   nesteSide,
 }) => {
   const history = useHistory();
+  const { toggles } = useToggles();
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -72,6 +76,11 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 
   return (
     <>
+      {toggles[ToggleName.vis_språkvelger] && (
+        <FeltGruppe>
+          <Språkvelger />
+        </FeltGruppe>
+      )}
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {
           return blokk._type === 'dokumentasjonskrav' ? (
