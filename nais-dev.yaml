@@ -23,7 +23,7 @@ spec:
   ingresses:
     - https://www-q0.nav.no/familie/alene-med-barn/soknad
     - https://familie-ef-soknad.nais.oera-q.local
-    - https://dev.nav.no/familie/alene-med-barn/soknad
+    - https://familie-ef-soknad.dev.nav.no
   webproxy: true
   env:
     - name: APP_VERSION
