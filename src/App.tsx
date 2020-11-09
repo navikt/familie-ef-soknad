@@ -3,7 +3,6 @@ import Feilside from './components/feil/Feilside';
 import hentToggles from './toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './overgangsstønad/Søknadsdialog';
-import TestsideInformasjon from './components/TestsideInformasjon';
 import { hentPersonData, oppdaterBarnMedLabel } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
@@ -100,10 +99,9 @@ const App = () => {
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
             </AlertStripeFeil>
           )}
-          {!toggles[ToggleName.send_søknad] && <TestsideInformasjon />}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && <Søknadsdialog />}
+              <Søknadsdialog />
             </Route>
           </Switch>
         </>

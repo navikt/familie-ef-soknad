@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import TestsideInformasjon from '../components/TestsideInformasjon';
 import {
   hentPersonData,
   hentTekst,
@@ -10,7 +9,6 @@ import {
 } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { ToggleName } from '../models/søknad/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -36,7 +34,7 @@ const SkolepengerApp = () => {
     settSøknad,
     hentMellomlagretSkolepenger,
   } = useSkolepengerSøknad();
-  const { settToggles, toggles } = useToggles();
+  const { settToggles } = useToggles();
   const intl = useIntl();
 
   autentiseringsInterceptor();
@@ -99,14 +97,9 @@ const SkolepengerApp = () => {
             <title>{hentTekst('skolepenger.sidetittel', intl)}</title>
           </Helmet>
 
-          {!toggles[ToggleName.send_skolepenger_søknad] && (
-            <TestsideInformasjon />
-          )}
           <Switch>
             <Route path={'/'}>
-              {toggles[ToggleName.vis_innsending] && (
-                <SøknadsdialogSkolepenger />
-              )}
+              <SøknadsdialogSkolepenger />
             </Route>
           </Switch>
         </>
