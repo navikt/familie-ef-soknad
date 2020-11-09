@@ -4,8 +4,6 @@ import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { useSøknad } from '../context/SøknadContext';
-import { useToggles } from '../context/TogglesContext';
-import { ToggleName } from '../models/søknad/toggles';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
@@ -40,7 +38,6 @@ const Forside: React.FC = () => {
   } = useSøknad();
   const [locale] = useSpråkContext();
   const forside = useForsideInnhold(ForsideType.overgangsstønad);
-  const { toggles } = useToggles();
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({
@@ -82,9 +79,7 @@ const Forside: React.FC = () => {
           <Sidetittel>
             <LocaleTekst tekst="banner.tittel.overgangsstønad" />
           </Sidetittel>
-          {toggles[ToggleName.mellomlagre_søknad] &&
-          kanBrukeMellomlagretSøknad &&
-          mellomlagretOvergangsstønad ? (
+          {kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}
               gjeldendeSteg={mellomlagretOvergangsstønad.gjeldendeSteg}
