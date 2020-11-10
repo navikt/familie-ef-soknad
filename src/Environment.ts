@@ -26,7 +26,7 @@ const Environment = (): EnvironmentProps => {
       : 'familie-ef-soknad-api.dev.nav.no';
     const dokumentPrefix = isQ0
       ? 'www-q0.nav.no'
-      : 'familie-dokument.dev.nav.no';
+      : 'familie-dokument.dev-sbs.nais.io';
     return {
       veiviserUrl: `https://${apiPrefix}/familie/alene-med-barn/veiviser`,
       apiUrl: `https://${apiPrefix}/familie/alene-med-barn/soknad-api`,
