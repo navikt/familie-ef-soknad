@@ -27,6 +27,8 @@ import {
 } from '../søknad/steg/5-aktivitet/AktivitetConfig';
 import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
+import { useSpråkContext } from '../context/SpråkContext';
+import { LocaleType } from '../language/typer';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: IntlShape): ISøknad => {
@@ -57,12 +59,14 @@ const initialState = (intl: IntlShape): ISøknad => {
       },
     ],
     harBekreftet: false,
+    locale: LocaleType.nb,
   };
 };
 
 const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
   () => {
     const intl = useIntl();
+    const { setLocale } = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
     const [mellomlagretSkolepenger, settMellomlagretSkolepenger] = useState<
@@ -74,6 +78,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         MellomlagredeStønadstyper.skolepenger
       ).then((mellomlagretVersjon?: IMellomlagretSkolepengerSøknad) => {
         if (mellomlagretVersjon) {
+          setLocale(mellomlagretVersjon.søknad.locale);
           settMellomlagretSkolepenger(mellomlagretVersjon);
         }
       });

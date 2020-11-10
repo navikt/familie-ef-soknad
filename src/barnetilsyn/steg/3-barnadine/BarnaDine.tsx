@@ -18,6 +18,7 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -102,7 +103,9 @@ const BarnaDine: React.FC = () => {
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">
-            <Element>Hvilke barn skal være med i søknaden?</Element>
+            <Element>
+              <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
+            </Element>
             <FeltGruppe>
               <Hjelpetekst
                 åpneTekstid={'barnetilsyn.hjelpetekst-åpne.hvilke'}

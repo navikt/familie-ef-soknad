@@ -1,39 +1,9 @@
-import tekster from '../language/tekster';
-import { Språk } from '../models/felles/språk';
-
-export const getMessages = (locale: string) => {
-  if (locale === 'en') {
-    return tekster.en;
-  } else if (locale === 'nn') {
-    return tekster.nn;
-  } else {
-    return tekster.nb;
-  }
-};
-
 export const førsteBokstavStor = (tekst: string) => {
   return tekst.charAt(0).toUpperCase() + tekst.slice(1);
 };
 
-export const hentListeMedSpråk = (): Språk[] => [
-  { tittel: 'Bokmål', locale: 'nb' },
-  { tittel: 'Nynorsk', locale: 'nn' },
-  { tittel: 'English', locale: 'en' },
-];
-
-export const hentValgtSpråk = (locale: string) => {
-  let språk: string = '';
-  locale === 'en'
-    ? (språk = 'English')
-    : locale === 'nn'
-    ? (språk = 'Nynorsk')
-    : (språk = 'Bokmål');
-  return språk;
-};
-
 export const hentBeskjedMedNavn = (navn: string, tekststreng: string) => {
-  const tekst = tekststreng.replace('[0]', navn);
-  return tekst;
+  return tekststreng.replace('[0]', navn);
 };
 
 export const hentBeskjedMedToParametre = (
@@ -64,4 +34,18 @@ export const hentBeskjedMedFireParametre = (
   if (fire) tekst = tekst.replace(/\[3\]/g, fire);
 
   return tekst;
+};
+
+export const hentFilePath = (
+  locale: 'nb' | 'en' | 'nn',
+  filepaths: { nb: string; en: string; nn: string }
+): string => {
+  switch (locale) {
+    case 'nn':
+      return filepaths.nn;
+    case 'en':
+      return filepaths.en;
+    default:
+      return filepaths.nb;
+  }
 };

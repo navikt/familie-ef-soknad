@@ -1,4 +1,4 @@
-import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
+import { ESvarTekstid, ISpørsmål } from '../../../models/felles/spørsmålogsvar';
 import {
   EBorAnnenForelderISammeHus,
   EHarSamværMedBarn,
@@ -138,7 +138,7 @@ export const harDereSkriftligSamværsavtale = (intl: IntlShape): ISpørsmål => 
     },
     {
       id: EHarSkriftligSamværsavtale.nei,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.nei' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },
   ],
 });
@@ -156,11 +156,11 @@ export const borAnnenForelderISammeHus = (intl: IntlShape): ISpørsmål => ({
   svaralternativer: [
     {
       id: EBorAnnenForelderISammeHus.ja,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.ja' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.JA }),
     },
     {
       id: EBorAnnenForelderISammeHus.nei,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.nei' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },
     {
       id: EBorAnnenForelderISammeHus.vetikke,
@@ -214,7 +214,7 @@ export const skalBarnetBoHosSøker = (intl: IntlShape): ISpørsmål => ({
     },
     {
       id: ESkalBarnetBoHosSøker.nei,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.nei' }),
+      svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },
   ],
 });

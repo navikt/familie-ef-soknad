@@ -169,7 +169,7 @@ const OmAndreForelder: React.FC<Props> = ({
               })
             }
             value={forelder.navn ? forelder.navn?.verdi : ''}
-            label="Navn"
+            label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
         </FeltGruppe>

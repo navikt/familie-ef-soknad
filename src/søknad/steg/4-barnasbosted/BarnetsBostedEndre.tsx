@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarneHeader from '../../../components/BarneHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
-import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/steg/barn';
 import { EForelder, IForelder } from '../../../models/steg/forelder';
 import { Knapp } from 'nav-frontend-knapper';
-import { Element } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import {
   erJaNeiSvar,
@@ -29,9 +27,9 @@ import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { erGyldigDato } from '../../../utils/dato';
 import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
-import { førsteBokstavStor } from '../../../utils/språk';
-import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   barn: IBarn;
@@ -189,18 +187,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           {(barn.harSammeAdresse?.verdi ||
             harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
             <SeksjonGruppe>
-              <FeltGruppe>
-                <Element>
-                  {førsteBokstavStor(
-                    hentBarnNavnEllerBarnet(
-                      barn,
-                      'barnasbosted.element.barnet',
-                      intl
-                    )
-                  )}
-                  {hentTekst('barnasbosted.element.andreforelder', intl)}
-                </Element>
-              </FeltGruppe>
+              <BarnetsAndreForelderTittel barn={barn} />
 
               {førsteBarnTilHverForelder.length > 0 && (
                 <AnnenForelderKnapper
@@ -273,7 +260,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
           {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
             <Knapp onClick={leggTilForelder}>
-              {!sisteBarnUtfylt && !erPåSisteBarn ? 'Neste Barn' : 'Neste'}
+              <LocaleTekst
+                tekst={
+                  !sisteBarnUtfylt && !erPåSisteBarn
+                    ? 'knapp.neste.barn'
+                    : 'knapp.neste'
+                }
+              />
             </Knapp>
           )}
         </div>

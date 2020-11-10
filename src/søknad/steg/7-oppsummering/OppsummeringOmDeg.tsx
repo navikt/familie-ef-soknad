@@ -20,6 +20,7 @@ import {
   StyledOppsummering,
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   søker: ISøker;
@@ -49,23 +50,37 @@ const OppsummeringOmDeg: FC<Props> = ({
   );
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel>Om deg</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Undertittel>
+          <LocaleTekst tekst="stegtittel.omDeg" />
+        </Undertittel>
+      }
+    >
       <KomponentGruppe>
         <StyledOppsummering>
           <div className="spørsmål-og-svar">
-            <Element>Fødselsnummer eller d-nummer</Element>
+            <Element>
+              <LocaleTekst tekst="person.ident" />
+            </Element>
             <Normaltekst>{omDeg.fnr}</Normaltekst>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>Statsborgerskap</Element>
+            <Element>
+              <LocaleTekst tekst="person.statsborgerskap" />
+            </Element>
             <Normaltekst>{omDeg.statsborgerskap}</Normaltekst>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>Adresse</Element>
+            <Element>
+              <LocaleTekst tekst="person.adresse" />
+            </Element>
             <Normaltekst>{omDeg.adresse.adresse}</Normaltekst>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>Telefonnummer</Element>
+            <Element>
+              <LocaleTekst tekst="person.telefonnr" />
+            </Element>
             <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
           </div>
           {sivilstatusSpørsmål}

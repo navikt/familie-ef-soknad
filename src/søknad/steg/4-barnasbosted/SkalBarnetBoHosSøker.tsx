@@ -4,7 +4,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { skalBarnetBoHosSøker } from './ForeldreConfig';
 import { useIntl } from 'react-intl';
 import { IForelder } from '../../../models/steg/forelder';
@@ -55,7 +54,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   const hentSpørsmålTekst = (tekstid: string) => {
     const navnEllerBarn = barn.født?.verdi
       ? barn.navn.verdi
-      : hentTekst('barnet', intl);
+      : hentTekst('barnet.storForBokstav', intl);
     return hentSpørsmålTekstMedNavnEllerBarn(tekstid, navnEllerBarn, intl);
   };
 
@@ -91,33 +90,6 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
               )}
             />
           </AlertStripeDokumentasjon>
-          <FeltGruppe>
-            <Normaltekst className="innskutt">
-              Familievernkontoret kan også hjelpe deg
-            </Normaltekst>
-          </FeltGruppe>
-          <Normaltekst className="innskutt">
-            Når det kommer til denne søknaden kan du dokumentere at Lise bor hos
-            deg ved å sende inn for eksempel:
-          </Normaltekst>
-          <ul className="dokumentere-bosted">
-            <li>
-              <Normaltekst>
-                redegjørelse for årsaken til manglende adresseendring for barnet
-              </Normaltekst>
-            </li>
-            <li>
-              <Normaltekst>
-                kopi av flyttemelding/tips til Folkeregisteret
-              </Normaltekst>
-            </li>
-            <li>
-              <Normaltekst>
-                bekreftelse fra for eksempel barnehage/skole, barnevern eller
-                helsestasjon
-              </Normaltekst>
-            </li>
-          </ul>
         </FeltGruppe>
       )}
       {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja && (

@@ -27,11 +27,7 @@ const Dokumentasjon: React.FC = () => {
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Dokumentasjon',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'Dokumentasjon' });
   }, []);
 
   const oppdaterDokumentasjon = (

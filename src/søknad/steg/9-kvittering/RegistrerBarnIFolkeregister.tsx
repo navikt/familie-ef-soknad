@@ -35,7 +35,7 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   );
   const undertittelMedNavn = hentBeskjedMedNavn(
     barnasNavn,
-    'Husk å registrere riktig adresse for [0] i Folkeregisteret.'
+    hentTekst('barnasbosted.skalBliFolkeregistrert.tekst', intl)
   );
 
   return (

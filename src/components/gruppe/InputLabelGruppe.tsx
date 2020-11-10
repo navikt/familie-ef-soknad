@@ -7,7 +7,7 @@ import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 
 const StyledComponent = styled.div`
   display: grid;
-  grid-template-columns: min-content max-content;
+  grid-template-columns: min-content auto;
   grid-template-rows: repeat(3, min-content);
   grid-template-areas:
     'label label'

@@ -22,11 +22,10 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
 }) => {
   const history = useHistory();
   const intl = useIntl();
-  const barna = barn;
 
-  const felterAlleForeldrene = barna
+  const felterAlleForeldrene = barn
     .filter((barn) => barn.forelder)
-    .map((barn, index) => {
+    .map((barn) => {
       if (!barn.forelder) return null;
 
       let nyForelder = { ...barn.forelder };
@@ -35,7 +34,9 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
 
       const barnetsNavn =
-        barn.født?.verdi && barn.navn.verdi ? barn.navn.verdi : 'barnet';
+        barn.født?.verdi && barn.navn.verdi
+          ? barn.navn.verdi
+          : 'barnet.storForBokstav';
 
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 

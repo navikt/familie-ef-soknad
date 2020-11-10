@@ -6,7 +6,7 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { FormattedMessage } from 'react-intl';
 import { useIntl } from 'react-intl';
-import { ESvar } from '../../../models/felles/spørsmålogsvar';
+import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
@@ -50,7 +50,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.JA}
               name={'radio-bosted'}
-              label={hentTekst('barnasbosted.spm.ja', intl)}
+              label={hentTekst(ESvarTekstid.JA, intl)}
               value={ESvar.JA}
               checked={boHosDeg === ESvar.JA}
               onChange={(e) => settBo(e)}
@@ -58,7 +58,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
             <RadioPanel
               key={ESvar.NEI}
               name={'radio-bosted'}
-              label={hentTekst('barnasbosted.spm.nei', intl)}
+              label={hentTekst(ESvarTekstid.NEI, intl)}
               value={ESvar.NEI}
               checked={boHosDeg === ESvar.NEI}
               onChange={(e) => settBo(e)}

@@ -109,7 +109,11 @@ const Hjelpetekst: React.FC<Props> = ({
         <StyledHjelpetekst className={className}>
           <Lesmerpanel
             apneTekst={hentTekst(åpneTekstid, intl)}
-            lukkTekst={lukkeTekstid ? hentTekst(lukkeTekstid, intl) : undefined}
+            lukkTekst={
+              lukkeTekstid
+                ? hentTekst(lukkeTekstid, intl)
+                : hentTekst('knapp.lukk', intl)
+            }
           >
             <Normaltekst>
               {innholdTekst && innholdTekst}

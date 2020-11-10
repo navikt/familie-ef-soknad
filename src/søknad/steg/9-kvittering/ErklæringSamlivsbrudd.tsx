@@ -4,8 +4,12 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Lenke from 'nav-frontend-lenker';
 import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
+import LocaleTekst from '../../../language/LocaleTekst';
+import { useIntl } from 'react-intl';
+import { hentFilePath } from '../../../utils/språk';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -21,23 +25,34 @@ const StyledLenke = styled.div`
 `;
 
 const ErklæringSamlivsbrudd: FC = () => {
+  const intl = useIntl();
+  const { locale } = useSpråkContext();
+
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>Bekreftelse på samlivsbrudd</StyledUndertittel>
+      <StyledUndertittel>
+        <LocaleTekst tekst={'kvittering.tittel.samlivsbrudd'} />
+      </StyledUndertittel>
       <Normaltekst>
-        Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi
-        laget et forslag til bekreftelse du kan bruke.
+        <LocaleTekst tekst={'kvittering.beskrivelse.samlivsbrudd'} />
       </Normaltekst>
 
       <StyledLenke>
         <Lenke
-          href={
-            '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrudd.pdf'
-          }
+          href={hentFilePath(locale, {
+            nb:
+              '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrudd.pdf',
+            en:
+              '/familie/alene-med-barn/soknad/filer/Declaration_on_end_of_relationship_EN.pdf',
+            nn:
+              '/familie/alene-med-barn/soknad/filer/Erklaering_om_samlivsbrot_NN.pdf',
+          })}
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Element>Last ned forslag til bekreftelse på samlivsbrudd</Element>
+          <Element>
+            {intl.formatMessage({ id: 'kvittering.knapp.samlivsbrudd' })}
+          </Element>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

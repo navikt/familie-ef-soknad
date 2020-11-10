@@ -4,6 +4,7 @@ import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { verdiTilTekstsvar } from '../../../utils/visning';
 import { useIntl } from 'react-intl';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -27,38 +28,48 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
     <>
       {navn && (
         <div className={'spørsmål-og-svar'}>
-          <Element>{navn?.label}</Element>
+          <Element>
+            <LocaleTekst tekst="person.navn" />
+          </Element>
           <Normaltekst>{navn.verdi}</Normaltekst>
         </div>
       )}
 
       {ident && ident.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
-          <Element>{ident?.label}</Element>
+          <Element>
+            <LocaleTekst tekst="person.fnr" />
+          </Element>
           <Normaltekst>{ident.verdi}</Normaltekst>
         </div>
       )}
 
       {alder && (
         <div className={'spørsmål-og-svar'}>
-          <Element>{alder.label}</Element>
+          <Element>
+            <LocaleTekst tekst="person.alder" />
+          </Element>
           <Normaltekst>{alder.verdi}</Normaltekst>
         </div>
       )}
 
       {fødselsdato.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
-          <Element>{fødselsdato.label}</Element>
+          <Element>
+            <LocaleTekst tekst="barnekort.fødselsdato" />
+          </Element>
           <Normaltekst>{fødselsdato.verdi}</Normaltekst>
         </div>
       )}
 
-      {født && lagtTil && (
-        <div className={'spørsmål-og-svar'}>
-          <Element>{født?.label}</Element>
-          <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
-        </div>
-      )}
+      {født &&
+        lagtTil && (
+          <div className={'spørsmål-og-svar'}>
+            <Element>{født?.label}</Element>
+            <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
+          </div>
+        ) &&
+        console.log(født?.label)}
 
       {stønadstype === Stønadstype.barnetilsyn && skalHaBarnepass && (
         <div className={'spørsmål-og-svar'}>

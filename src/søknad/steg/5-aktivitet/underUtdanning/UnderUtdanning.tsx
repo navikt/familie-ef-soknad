@@ -29,7 +29,7 @@ import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import Studiekostnader from './Studiekostnader';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
   margin-top: -2rem;

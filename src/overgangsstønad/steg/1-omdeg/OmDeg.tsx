@@ -43,11 +43,7 @@ const OmDeg: FC = () => {
   } = søknad.sivilstatus;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'OmDeg',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'OmDeg' });
   }, []);
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {

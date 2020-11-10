@@ -109,7 +109,9 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               )}
             </Element>
             <Normaltekst>
-              {forelder.avtaleOmDeltBosted?.verdi ? 'Ja' : 'Nei'}
+              {forelder.avtaleOmDeltBosted?.verdi
+                ? hentTekst(ESvarTekstid.JA, intl)
+                : hentTekst(ESvarTekstid.NEI, intl)}
             </Normaltekst>
           </div>
         )}

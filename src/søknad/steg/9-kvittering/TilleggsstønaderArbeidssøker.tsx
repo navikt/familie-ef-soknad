@@ -5,7 +5,7 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Lenke from 'nav-frontend-lenker';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {

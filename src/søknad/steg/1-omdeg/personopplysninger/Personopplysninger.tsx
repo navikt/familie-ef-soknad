@@ -102,7 +102,9 @@ const Personopplysninger: React.FC<Props> = ({
           <Element>
             <LocaleTekst tekst={'sivilstatus.tittel'} />
           </Element>
-          <Normaltekst>{hentSivilstatus(søker.sivilstand)}</Normaltekst>
+          <Normaltekst>
+            <LocaleTekst tekst={hentSivilstatus(søker.sivilstand)} />
+          </Normaltekst>
         </FeltGruppe>
 
         <FeltGruppe>

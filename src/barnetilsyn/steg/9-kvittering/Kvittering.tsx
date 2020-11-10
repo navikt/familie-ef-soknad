@@ -18,9 +18,12 @@ import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/Regi
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
+import { hentFilePath } from '../../../utils/språk';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
+  const { locale } = useSpråkContext();
   const {
     søknad,
     nullstillMellomlagretBarnetilsyn,
@@ -67,9 +70,14 @@ const Kvittering: React.FC = () => {
       />
       {sykSøker && (
         <SykSøker
-          filPath={
-            '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_BT.pdf'
-          }
+          filPath={hentFilePath(locale, {
+            nb:
+              '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_BT.pdf',
+            en:
+              '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_BT_EN.pdf',
+            nn:
+              '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_BT_NN.pdf',
+          })}
         />
       )}
       {erklæringSamlivsbrudd && <ErklæringSamlivsbrudd />}

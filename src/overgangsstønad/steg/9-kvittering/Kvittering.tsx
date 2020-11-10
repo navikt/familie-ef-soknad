@@ -25,6 +25,8 @@ import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/Ettersend
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
 import { logEvent } from '../../../utils/amplitude';
+import { useSpråkContext } from '../../../context/SpråkContext';
+import { hentFilePath } from '../../../utils/språk';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -35,14 +37,11 @@ const Kvittering: React.FC = () => {
   } = useSøknad();
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Kvittering',
-      team: 'familie',
-      app: 'OS-søknadsdialog',
-    });
+    logEvent('sidevisning', { side: 'Kvittering' });
   }, []);
 
   const { person } = usePersonContext();
+  const { locale } = useSpråkContext();
   const {
     arbeidssøker,
     underUtdanning,
@@ -102,9 +101,14 @@ const Kvittering: React.FC = () => {
       {syktBarn && <SyktBarn />}
       {sykSøker && (
         <SykSøker
-          filPath={
-            '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf'
-          }
+          filPath={hentFilePath(locale, {
+            nb:
+              '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf',
+            en:
+              '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_OS_EN.pdf',
+            nn:
+              '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_OS_NN.pdf',
+          })}
         />
       )}
 

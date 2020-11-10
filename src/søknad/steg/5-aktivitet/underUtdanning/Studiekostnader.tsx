@@ -7,7 +7,7 @@ import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';

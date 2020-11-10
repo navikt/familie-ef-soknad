@@ -56,6 +56,7 @@ const Forside: React.FC<any> = ({ intl }) => {
               )}
             />
           </div>
+
           <Sidetittel>
             <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Sidetittel>

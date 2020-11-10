@@ -14,9 +14,11 @@ const BarnMedSærligeBehov: React.FC = () => {
       <KomponentGruppe>
         <AlertStripeDokumentasjon>
           <Normaltekst className="blokk-xs" style={{ fontWeight: 600 }}>
-            {intl.formatMessage({ id: 'dinSituasjon.alert-dok.tittel' })}
+            {intl.formatMessage({
+              id: 'dinSituasjon.alert.harBarnMedSærligeBehov.tittel',
+            })}
           </Normaltekst>
-          <LocaleTekst tekst="harBarnMedSærligeBehov.alert-dok.beskrivelse" />
+          <LocaleTekst tekst="dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse" />
         </AlertStripeDokumentasjon>
       </KomponentGruppe>
       <HvilkeBarnHarSærligeBehov />
