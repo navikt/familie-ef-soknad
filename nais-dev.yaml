@@ -34,6 +34,8 @@ spec:
       value: https://loginservice-q.nav.no/login
     - name: UNLEASH_API_URL
       value: https://unleashproxy.nais.oera.no/api/
+    - name: FRONTENDLOGGER_URL
+      value: https://www-q0.nav.no/frontendlogger
   resources:
     limits:
       cpu: 2000m
