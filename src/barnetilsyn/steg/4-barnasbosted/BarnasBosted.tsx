@@ -18,14 +18,6 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   window.scrollTo({ top: ref.current!.offsetTop, left: 0, behavior: 'smooth' });
 };
 
-useEffect(() => {
-  logEvent('sidevisning', {
-    side: 'BarnasBosted',
-    team: 'familie',
-    app: 'BT-soknadsdialog',
-  });
-}, []);
-
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
   const location = useLocation<LocationStateSøknad>();
@@ -35,6 +27,14 @@ const BarnasBosted: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
+
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'BarnasBosted',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad) => {

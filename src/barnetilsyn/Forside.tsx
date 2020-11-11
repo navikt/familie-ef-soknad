@@ -18,6 +18,7 @@ import {
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
+import { logEvent } from 'amplitude-js';
 
 const Forside: React.FC<any> = ({ intl }) => {
   useEffect(() => {

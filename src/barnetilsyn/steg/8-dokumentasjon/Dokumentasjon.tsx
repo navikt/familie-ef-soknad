@@ -23,19 +23,19 @@ const Dokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
+  useEffect(() => {
+    logEvent('sidevisning', {
+      side: 'Dokumentasjon',
+      team: 'familie',
+      app: 'BT-soknadsdialog',
+    });
+  }, []);
+
   const oppdaterDokumentasjon = (
     dokumentasjonsid: string,
     opplastedeVedlegg: IVedlegg[] | undefined,
     harSendtInnTidligere: boolean
   ) => {
-    useEffect(() => {
-      logEvent('sidevisning', {
-        side: 'Dokumentasjon',
-        team: 'familie',
-        app: 'BT-soknadsdialog',
-      });
-    }, []);
-
     settSøknad((prevSoknad) => {
       const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
         (dok) => {
