@@ -18,7 +18,7 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();

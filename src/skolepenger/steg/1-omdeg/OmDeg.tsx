@@ -20,7 +20,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation<LocationStateSøknad>();

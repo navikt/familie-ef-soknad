@@ -19,7 +19,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const BarnaDine: React.FC = () => {
   useEffect(() => {

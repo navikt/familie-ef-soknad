@@ -29,7 +29,7 @@ import {
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../utils/amplitude';
 
 const Spørsmål: FC = () => {
   const location = useLocation<LocationStateSøknad>();

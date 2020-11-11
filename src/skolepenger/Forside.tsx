@@ -15,7 +15,7 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../utils/amplitude';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();

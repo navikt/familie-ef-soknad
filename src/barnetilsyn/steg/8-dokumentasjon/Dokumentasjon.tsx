@@ -13,7 +13,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();

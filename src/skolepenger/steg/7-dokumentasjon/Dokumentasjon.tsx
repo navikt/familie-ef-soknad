@@ -16,7 +16,7 @@ import { IVedlegg } from '../../../models/steg/vedlegg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();

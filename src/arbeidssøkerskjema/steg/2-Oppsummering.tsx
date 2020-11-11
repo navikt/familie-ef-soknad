@@ -29,7 +29,7 @@ import {
   hentPath,
 } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../utils/amplitude';
 
 interface Innsending {
   status: IStatus;

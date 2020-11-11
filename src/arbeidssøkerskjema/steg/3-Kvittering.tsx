@@ -12,7 +12,7 @@ import Feilside from '../../components/feil/Feilside';
 import Lenke from 'nav-frontend-lenker';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../utils/amplitude';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {

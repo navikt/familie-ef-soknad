@@ -20,7 +20,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();

@@ -17,7 +17,7 @@ import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/Ettersend
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { usePersonContext } from '../../../context/PersonContext';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();

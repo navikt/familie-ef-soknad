@@ -10,7 +10,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/UnderUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../../../utils/amplitude';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();

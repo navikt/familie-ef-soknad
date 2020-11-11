@@ -25,7 +25,7 @@ import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { ToggleName } from '../models/søknad/toggles';
 import { useToggles } from '../context/TogglesContext';
-import { logEvent } from 'amplitude-js';
+import { logEvent } from '../utils/amplitude';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
