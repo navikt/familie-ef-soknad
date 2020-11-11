@@ -30,7 +30,7 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -55,11 +55,7 @@ const Aktivitet: React.FC = () => {
   }, [arbeidssituasjon]);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Aktivitet',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('Aktivitet');
   }, []);
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {

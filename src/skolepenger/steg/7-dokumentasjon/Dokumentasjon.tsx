@@ -16,7 +16,7 @@ import { IVedlegg } from '../../../models/steg/vedlegg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -27,11 +27,7 @@ const Dokumentasjon: React.FC = () => {
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Dokumentasjon',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('Dokumentasjon');
   }, []);
 
   const oppdaterDokumentasjon = (

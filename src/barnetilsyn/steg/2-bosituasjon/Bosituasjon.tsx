@@ -10,15 +10,11 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 const Bosituasjon: FC = () => {
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Bosituasjon',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('Bosituasjon');
   }, []);
 
   const intl = useIntl();

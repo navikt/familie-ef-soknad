@@ -4,7 +4,7 @@ import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router-dom';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
@@ -43,11 +43,7 @@ const OmDeg: FC = () => {
   } = søknad.sivilstatus;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'OmDeg',
-      team: 'familie',
-      app: 'OS-soknadsdialog',
-    });
+    logSidevisningOvergangsstonad('OmDeg');
   }, []);
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {

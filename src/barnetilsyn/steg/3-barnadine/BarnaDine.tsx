@@ -19,15 +19,11 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 const BarnaDine: React.FC = () => {
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'BarnaDine',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('BarnaDine');
   }, []);
 
   const intl = useIntl();

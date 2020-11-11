@@ -15,7 +15,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -34,11 +34,7 @@ const BarnaDine: React.FC = () => {
   const [åpenModal, settÅpenModal] = useState(false);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'BarnaDine',
-      team: 'familie',
-      app: 'OS-soknadsdialog',
-    });
+    logSidevisningOvergangsstonad('BarnaDine');
   }, []);
 
   const barna = søknad.person.barn;

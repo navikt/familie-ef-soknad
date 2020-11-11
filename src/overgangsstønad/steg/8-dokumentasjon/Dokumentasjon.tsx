@@ -16,7 +16,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -27,11 +27,7 @@ const Dokumentasjon: React.FC = () => {
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Dokumentasjon',
-      team: 'familie',
-      app: 'OS-soknadsdialog',
-    });
+    logSidevisningOvergangsstonad('Dokumentasjon');
   }, []);
 
   const oppdaterDokumentasjon = (

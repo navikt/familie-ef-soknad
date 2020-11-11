@@ -15,7 +15,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -32,11 +32,7 @@ const BarnaDine: React.FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'BarnaDine',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('BarnaDine');
   }, []);
 
   const [åpenModal, settÅpenModal] = useState(false);

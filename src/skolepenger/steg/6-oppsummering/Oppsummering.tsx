@@ -13,18 +13,14 @@ import { hentTekst } from '../../../utils/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering/OppsummeringDetaljertUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreSkolepenger, søknad } = useSkolepengerSøknad();
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Oppsummering',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('Oppsummering');
   }, []);
 
   return (

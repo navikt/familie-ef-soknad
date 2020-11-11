@@ -10,7 +10,7 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -28,11 +28,7 @@ const Bosituasjon: FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Bosituasjon',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('Bosituasjon');
   }, []);
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {

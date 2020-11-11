@@ -29,7 +29,7 @@ import {
   hentPath,
 } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import { logEvent } from '../../utils/amplitude';
+import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 
 interface Innsending {
   status: IStatus;
@@ -58,11 +58,7 @@ const Oppsummering: React.FC = () => {
   const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Oppsummering',
-      team: 'familie',
-      app: 'Arbeidssokerskjema',
-    });
+    logSidevisningArbeidssokerskjema('Oppsummering');
   }, []);
 
   const sendSkjema = (arbeidssøker: IArbeidssøker) => {

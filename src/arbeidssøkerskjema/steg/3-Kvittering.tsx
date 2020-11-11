@@ -12,7 +12,7 @@ import Feilside from '../../components/feil/Feilside';
 import Lenke from 'nav-frontend-lenker';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
-import { logEvent } from '../../utils/amplitude';
+import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -27,11 +27,7 @@ const Kvittering: React.FC = () => {
   const { skjema } = useSkjema();
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Forside',
-      team: 'familie',
-      app: 'Kvittering',
-    });
+    logSidevisningArbeidssokerskjema('Kvittering');
   }, []);
 
   const mottattAlert: string =

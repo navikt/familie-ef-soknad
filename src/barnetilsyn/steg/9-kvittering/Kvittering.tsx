@@ -20,7 +20,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -36,11 +36,7 @@ const Kvittering: React.FC = () => {
   );
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Kvittering',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('Kvittering');
   }, []);
 
   useEffect(() => {

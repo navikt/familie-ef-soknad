@@ -18,15 +18,11 @@ import {
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
-import { logEvent } from '../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 
 const Forside: React.FC<any> = ({ intl }) => {
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Kvittering',
-      team: 'familie',
-      app: 'OS-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('Forside');
   }, []);
 
   const { person } = usePersonContext();

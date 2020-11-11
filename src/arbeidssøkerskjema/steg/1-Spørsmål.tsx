@@ -29,7 +29,7 @@ import {
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import { logEvent } from '../../utils/amplitude';
+import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 
 const Spørsmål: FC = () => {
   const location = useLocation<LocationStateSøknad>();
@@ -40,11 +40,7 @@ const Spørsmål: FC = () => {
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Forside',
-      team: 'familie',
-      app: 'Arbeidssokerskjema',
-    });
+    logSidevisningArbeidssokerskjema('OmArbeidssoker');
   }, []);
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;

@@ -15,7 +15,7 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
-import { logEvent } from '../utils/amplitude';
+import { logSidevisningSkolepenger } from '../utils/amplitude';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -29,11 +29,7 @@ const Forside: React.FC<any> = ({ intl }) => {
   } = useSkolepengerSøknad();
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Forside',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('Forside');
   }, []);
 
   const settBekreftelse = (bekreftelse: boolean) => {

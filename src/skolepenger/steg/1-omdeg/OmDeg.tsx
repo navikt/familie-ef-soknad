@@ -20,7 +20,7 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation<LocationStateSøknad>();
@@ -42,11 +42,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = søknad.sivilstatus;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'OmDeg',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('OmDeg');
   }, []);
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {

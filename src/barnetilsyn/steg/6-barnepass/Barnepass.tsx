@@ -26,7 +26,7 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { useLocation } from 'react-router';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -52,11 +52,7 @@ const Barnepass: FC<Props> = () => {
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Barnepass',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('Barnepass');
   }, []);
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {

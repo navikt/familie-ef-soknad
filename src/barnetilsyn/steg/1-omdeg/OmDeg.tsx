@@ -20,15 +20,11 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'OmDeg',
-      team: 'familie',
-      app: 'BT-soknadsdialog',
-    });
+    logSidevisningBarnetilsyn('OmDeg');
   }, []);
 
   const location = useLocation<LocationStateSøknad>();

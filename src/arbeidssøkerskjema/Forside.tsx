@@ -25,7 +25,7 @@ import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { ToggleName } from '../models/søknad/toggles';
 import { useToggles } from '../context/TogglesContext';
-import { logEvent } from '../utils/amplitude';
+import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -38,11 +38,7 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { skjema, settSkjema } = useSkjema();
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Forside',
-      team: 'familie',
-      app: 'Arbeidssokerskjema',
-    });
+    logSidevisningArbeidssokerskjema('Forside');
   }, []);
 
   const settBekreftelse = (bekreftelse: boolean) => {

@@ -10,7 +10,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/UnderUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -22,11 +22,7 @@ const UtdanningSituasjon: React.FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Aktivitet',
-      team: 'familie',
-      app: 'SP-soknadsdialog',
-    });
+    logSidevisningSkolepenger('Aktivitet');
   }, []);
 
   const oppdaterUnderUtdanning = (underUtdanning: IDetaljertUtdanning) => {

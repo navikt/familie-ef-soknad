@@ -10,7 +10,7 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -28,11 +28,7 @@ const Bosituasjon: FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   useEffect(() => {
-    logEvent('sidevisning', {
-      side: 'Bosituasjon',
-      team: 'familie',
-      app: 'OS-soknadsdialog',
-    });
+    logSidevisningOvergangsstonad('Bosituasjon');
   }, []);
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
