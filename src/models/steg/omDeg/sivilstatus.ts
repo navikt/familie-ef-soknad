@@ -7,7 +7,7 @@ import {
 import { IPersonDetaljer } from '../../søknad/person';
 
 export enum ESivilstand {
-  GIFT = 'GIFT',
+  //GIFT = 'GIFT',
   REPA = 'REPA',
   UGIF = 'UGIF',
   ENKE = 'ENKE',
@@ -16,6 +16,18 @@ export enum ESivilstand {
   SEPR = 'SEPR',
   SKIL = 'SKIL',
   SKPA = 'SKPA',
+  SAMB = 'SAMB',
+
+  UOPPGITT = 'UOPPGITT',
+  UGIFT = 'UGIFT',
+  GIFT = 'GIFT',
+  ENKE_ELLER_ENKEMANN = 'ENKE_ELLER_ENKEMANN',
+  SKILT = 'SKILT',
+  SEPARERT = 'SEPARERT',
+  PARTNER = 'PARTNER',
+  SEPARERT_PARTNER = 'SEPARERT_PARTNER',
+  SKILT_PARTNER = 'SKILT_PARTNER',
+  GJENLEVENDE_PARTNER = 'GJENLEVENDE_PARTNER',
 }
 
 export interface ISivilstatus {
