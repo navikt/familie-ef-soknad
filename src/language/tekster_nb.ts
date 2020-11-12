@@ -1038,6 +1038,23 @@ export default {
   'kvittering.tekst.dineSaker':
     'Du kan finne søknaden din i <a href="https://www.nav.no/no/ditt-nav">Dine saker</a> når vi starter å behandle den. Finn <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">saksbehandlingstiden</a> for ditt fylke.',
   'kvittering.knapp.dineSaker': 'Skriv ut kvittering',
+
+  'kvittering.tittel.huskeliste.erSyk': 'Huskeliste til legen din',
+  'kvittering.beskrivelse.huskeliste.erSyk':
+    'Siden du skal dokumentere at du er syk, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
+  'kvittering.knapp.huskeliste.erSyk': 'Last ned huskeliste til legen',
+
+  'kvittering.tittel.huskeliste.syktBarn': 'Huskeliste til legen din',
+  'kvittering.beskrivelse.huskeliste.syktBarn':
+    '        Siden du skal dokumentere sykdom hos barnet ditt, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
+  'kvittering.knapp.huskeliste.syktBarn': 'Last ned huskeliste til legen',
+
+  'kvittering.tittel.samlivsbrudd': 'Bekreftelse på samlivsbrudd',
+  'kvittering.beskrivelse.samlivsbrudd':
+    'Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi laget et forslag til bekreftelse du kan bruke.\n',
+  'kvittering.knapp.samlivsbrudd':
+    'Last ned forslag til bekreftelse på samlivsbrudd',
+
   'kvittering.tittel.skolepenger':
     'Som enslig mor eller far under utdanning, kan du ha rett til stønad til skolepenger',
   'kvittering.tekst.skolepenger':
