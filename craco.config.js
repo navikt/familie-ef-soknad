@@ -50,6 +50,9 @@ const norskeOrdMedÆØÅ = [
   'RegistrerDegSomArbeidssøker',
   'ÅrsakBarnepass',
   'Feilside',
+  'Spørsmål',
+  'Søknad',
+  'Spørsmal',
 ];
 
 module.exports = {
