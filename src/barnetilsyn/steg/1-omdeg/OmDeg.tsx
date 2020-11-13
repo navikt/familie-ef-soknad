@@ -20,8 +20,12 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+  useMount(() => logSidevisningBarnetilsyn('OmDeg'));
+
   const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering

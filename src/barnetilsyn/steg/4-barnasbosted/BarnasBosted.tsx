@@ -11,6 +11,8 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -26,6 +28,8 @@ const BarnasBosted: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
+
+  useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad) => {

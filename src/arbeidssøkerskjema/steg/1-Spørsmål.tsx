@@ -29,6 +29,8 @@ import {
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
+import { useMount } from '../../utils/hooks';
 
 const Spørsmål: FC = () => {
   const location = useLocation<LocationStateSøknad>();
@@ -37,6 +39,8 @@ const Spørsmål: FC = () => {
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
+
+  useMount(() => logSidevisningArbeidssokerskjema('OmArbeidssoker'));
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 
