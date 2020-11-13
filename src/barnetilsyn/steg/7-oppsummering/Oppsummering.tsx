@@ -18,6 +18,8 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -25,6 +27,9 @@ const Oppsummering: React.FC = () => {
   const barnSomSkalHaBarnepass: IBarn[] = søknad.person.barn.filter(
     (barn) => barn.skalHaBarnepass?.verdi
   );
+
+  useMount(() => logSidevisningBarnetilsyn('Oppsummering'));
+
   return (
     <>
       <Side

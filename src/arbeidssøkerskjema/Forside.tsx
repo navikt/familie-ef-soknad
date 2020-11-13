@@ -25,6 +25,8 @@ import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { ToggleName } from '../models/søknad/toggles';
 import { useToggles } from '../context/TogglesContext';
+import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
+import { useMount } from '../utils/hooks';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -35,6 +37,8 @@ const Forside: React.FC<any> = ({ intl }) => {
   const { toggles } = useToggles();
 
   const { skjema, settSkjema } = useSkjema();
+
+  useMount(() => logSidevisningArbeidssokerskjema('Forside'));
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSkjema({

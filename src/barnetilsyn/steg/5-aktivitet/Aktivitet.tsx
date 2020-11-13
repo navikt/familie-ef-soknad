@@ -30,6 +30,8 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -52,6 +54,8 @@ const Aktivitet: React.FC = () => {
     settSøknad({ ...søknad, aktivitet: arbeidssituasjon });
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
+
+  useMount(() => logSidevisningBarnetilsyn('Aktivitet'));
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });

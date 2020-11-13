@@ -26,6 +26,8 @@ import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { useLocation } from 'react-router';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -49,6 +51,8 @@ const Barnepass: FC<Props> = () => {
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
   const hjelpetekstInnholdTekstid =
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
+
+  useMount(() => logSidevisningBarnetilsyn('Barnepass'));
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
     const endretBarn = barnSomSkalHaBarnepass.map((barn) => {

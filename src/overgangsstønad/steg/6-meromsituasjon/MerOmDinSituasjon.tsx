@@ -35,11 +35,13 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
+import { useMount } from '../../../utils/hooks';
+
 const StyledHjelpetekst = styled.div`
   .typo-normal {
     padding-bottom: 1rem;
@@ -67,9 +69,7 @@ const MerOmDinSituasjon: React.FC = () => {
     søknad
   );
 
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'MerOmDinSituasjon' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('MerOmDinSituasjon'));
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
 

@@ -15,6 +15,8 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
+import { logSidevisningSkolepenger } from '../utils/amplitude';
+import { useMount } from '../utils/hooks';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -26,6 +28,9 @@ const Forside: React.FC<any> = ({ intl }) => {
     søknad,
     settSøknad,
   } = useSkolepengerSøknad();
+
+  useMount(() => logSidevisningSkolepenger('Forside'));
+
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({
       ...søknad,

@@ -29,6 +29,8 @@ import {
   hentPath,
 } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
+import { useMount } from '../../utils/hooks';
 
 interface Innsending {
   status: IStatus;
@@ -55,6 +57,8 @@ const Oppsummering: React.FC = () => {
     location.pathname
   );
   const spørsmålOgSvar = VisLabelOgSvar(skjema.arbeidssøker);
+
+  useMount(() => logSidevisningArbeidssokerskjema('Oppsummering'));
 
   const sendSkjema = (arbeidssøker: IArbeidssøker) => {
     const mappetSkjema = mapDataTilLabelOgVerdiTyper(arbeidssøker);

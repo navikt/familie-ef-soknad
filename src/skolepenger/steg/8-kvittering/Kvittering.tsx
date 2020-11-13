@@ -17,6 +17,8 @@ import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/Ettersend
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { usePersonContext } from '../../../context/PersonContext';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -26,6 +28,8 @@ const Kvittering: React.FC = () => {
     nullstillSøknadSkolepenger,
   } = useSkolepengerSøknad();
   const { person } = usePersonContext();
+
+  useMount(() => logSidevisningSkolepenger('Kvittering'));
 
   useEffect(() => {
     nullstillMellomlagretSkolepenger();

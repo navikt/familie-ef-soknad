@@ -56,3 +56,10 @@ export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
     intl,
   ]);
 };
+
+export const useMount = (fn: () => void) => {
+  useEffect(() => {
+    fn();
+    //eslint-disable-next-line
+  }, []);
+};
