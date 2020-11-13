@@ -1129,21 +1129,25 @@ export default {
     'You can find your application in "Dine saker" <a href="https://www.nav.no/no/ditt-nav">Your cases</a> once we start processing it. Find out about <a href="https://www.nav.no/no/nav-og-samfunn/om-nav/saksbehandlingstider-i-nav">how long it takes for applications to be processed</a> in your country.',
   'kvittering.knapp.dineSaker': 'Download receipt',
 
-  'kvittering.tittel.huskeliste.erSyk': 'Huskeliste til legen din',
+  'kvittering.tittel.huskeliste.erSyk':
+    'Checklist for your doctor’s appointment',
   'kvittering.beskrivelse.huskeliste.erSyk':
-    'Siden du skal dokumentere at du er syk, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
-  'kvittering.knapp.huskeliste.erSyk': 'Last ned huskeliste til legen',
+    'Since you have to provide documentation that you are ill, we have created a checklist that you can take with you when you go to the doctor to make sure that your doctor includes all the necessary information. ',
+  'kvittering.knapp.huskeliste.erSyk':
+    'Download the checklist for your doctor’s appointment',
 
-  'kvittering.tittel.huskeliste.syktBarn': 'Huskeliste til legen din',
+  'kvittering.tittel.huskeliste.syktBarn':
+    'Checklist for your doctor’s appointment',
   'kvittering.beskrivelse.huskeliste.syktBarn':
-    '        Siden du skal dokumentere sykdom hos barnet ditt, har vi laget en huskeliste du kan ta med til legen for å være sikker på at legen dokumenterer de nødvendige opplysningene.',
-  'kvittering.knapp.huskeliste.syktBarn': 'Last ned huskeliste til legen',
+    'Since you have to provide documentation of your child’s illness, we have created a checklist that you can take with you when you go to the doctor to make sure that your doctor includes all the necessary information. ',
+  'kvittering.knapp.huskeliste.syktBarn':
+    'Download the checklist for your doctor’s appointment',
 
-  'kvittering.tittel.samlivsbrudd': 'Bekreftelse på samlivsbrudd',
+  'kvittering.tittel.samlivsbrudd': 'Confirmation of end of relationship',
   'kvittering.beskrivelse.samlivsbrudd':
-    'Siden du skal dokumentere samlivsbrudd med den andre forelderen, har vi laget et forslag til bekreftelse du kan bruke.\n',
+    'Since you must provide documentation proving that your relationship with the other parent has ended, we have prepared a template confirmation that you can use.',
   'kvittering.knapp.samlivsbrudd':
-    'Last ned forslag til bekreftelse på samlivsbrudd',
+    'Download template confirmation of end of relationship',
 
   'kvittering.tittel.skolepenger':
     'As a single parent in education, you may be entitled to support for school fees',
