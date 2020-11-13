@@ -18,8 +18,12 @@ import {
 import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
+import { logSidevisningBarnetilsyn } from '../utils/amplitude';
+import { useMount } from '../utils/hooks';
 
 const Forside: React.FC<any> = ({ intl }) => {
+  useMount(() => logSidevisningBarnetilsyn('Forside'));
+
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
   const {

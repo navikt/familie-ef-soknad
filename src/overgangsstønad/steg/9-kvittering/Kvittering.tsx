@@ -24,9 +24,10 @@ import RegistrerBarnIFolkeregister from '../../../søknad/steg/9-kvittering/Regi
 import EttersendDokumentasjon from '../../../søknad/steg/9-kvittering/EttersendDokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { usePersonContext } from '../../../context/PersonContext';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { hentFilePath } from '../../../utils/språk';
+import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -36,9 +37,7 @@ const Kvittering: React.FC = () => {
     nullstillSøknadOvergangsstønad,
   } = useSøknad();
 
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Kvittering' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Kvittering'));
 
   const { person } = usePersonContext();
   const { locale } = useSpråkContext();

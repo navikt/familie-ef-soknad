@@ -13,3 +13,35 @@ amplitudeInstance.init('default', '', {
 export function logEvent(eventName: string, eventProperties: any) {
   amplitudeInstance.logEvent(eventName, eventProperties);
 }
+
+export const logSidevisningOvergangsstonad = (side: string) => {
+  logEvent('sidevisning', {
+    side,
+    team: 'familie',
+    app: 'OS-soknadsdialog',
+  });
+};
+
+export const logSidevisningArbeidssokerskjema = (side: string) => {
+  logEvent('sidevisning', {
+    side,
+    team: 'familie',
+    app: 'Arbeidssokerskjema',
+  });
+};
+
+export const logSidevisningBarnetilsyn = (side: string) => {
+  logEvent('sidevisning', {
+    side,
+    team: 'familie',
+    app: 'BT-soknadsdialog',
+  });
+};
+
+export const logSidevisningSkolepenger = (side: string) => {
+  logEvent('sidevisning', {
+    side,
+    team: 'familie',
+    app: 'SP-soknadsdialog',
+  });
+};

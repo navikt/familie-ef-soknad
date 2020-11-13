@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -17,15 +17,14 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
 
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Oppsummering' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
   const barnMedsærligeTilsynsbehov = søknad.person.barn
     .filter((barn) => barn.særligeTilsynsbehov)

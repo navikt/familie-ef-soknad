@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
@@ -10,7 +10,8 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -27,9 +28,7 @@ const Bosituasjon: FC = () => {
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Bosituasjon' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Bosituasjon'));
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
     settSøknad((prevSoknad) => {

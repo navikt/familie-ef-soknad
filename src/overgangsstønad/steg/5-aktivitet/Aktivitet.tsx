@@ -20,7 +20,8 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logEvent } from '../../../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -45,9 +46,7 @@ const Aktivitet: React.FC = () => {
     // eslint-disable-next-line
   }, [arbeidssituasjon]);
 
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Aktivitet' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Aktivitet'));
 
   const oppdaterArbeidssituasjon = (nyArbeidssituasjon: IAktivitet) => {
     settArbeidssituasjon({ ...arbeidssituasjon, ...nyArbeidssituasjon });
