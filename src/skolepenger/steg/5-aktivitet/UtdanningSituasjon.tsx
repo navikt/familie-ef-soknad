@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { erAllUtdanningFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
@@ -11,6 +11,7 @@ import UnderUtdanning from '../../../søknad/steg/5-aktivitet/underUtdanning/Und
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -21,9 +22,7 @@ const UtdanningSituasjon: React.FC = () => {
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  useEffect(() => {
-    logSidevisningSkolepenger('Aktivitet');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('Aktivitet'));
 
   const oppdaterUnderUtdanning = (underUtdanning: IDetaljertUtdanning) => {
     settSøknad((prevSøknad) => {

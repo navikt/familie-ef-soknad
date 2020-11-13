@@ -27,6 +27,7 @@ import { usePersonContext } from '../../../context/PersonContext';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { hentFilePath } from '../../../utils/språk';
+import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -36,9 +37,7 @@ const Kvittering: React.FC = () => {
     nullstillSøknadOvergangsstønad,
   } = useSøknad();
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('Kvittering');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Kvittering'));
 
   const { person } = usePersonContext();
   const { locale } = useSpråkContext();

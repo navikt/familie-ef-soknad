@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { injectIntl, IntlShape } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
@@ -21,11 +21,10 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
-  useEffect(() => {
-    logSidevisningBarnetilsyn('OmDeg');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('OmDeg'));
 
   const location = useLocation<LocationStateSøknad>();
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;

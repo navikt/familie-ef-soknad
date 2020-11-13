@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
@@ -21,6 +21,7 @@ import { useIntl } from 'react-intl';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
+import { useMount } from '../../../utils/hooks';
 
 const OmDeg: FC = () => {
   const intl = useIntl();
@@ -42,9 +43,7 @@ const OmDeg: FC = () => {
     datoFlyttetFraHverandre,
   } = søknad.sivilstatus;
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('OmDeg');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('OmDeg'));
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {

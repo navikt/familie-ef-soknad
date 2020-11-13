@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { Knapp } from 'nav-frontend-knapper';
@@ -16,6 +16,7 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -33,9 +34,7 @@ const BarnaDine: React.FC = () => {
 
   const [åpenModal, settÅpenModal] = useState(false);
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('BarnaDine');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('BarnaDine'));
 
   const barna = søknad.person.barn;
   const slettBarn = (id: string) => {

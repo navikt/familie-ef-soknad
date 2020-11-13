@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
@@ -27,6 +27,7 @@ import { useLocation } from 'react-router';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -51,9 +52,7 @@ const Barnepass: FC<Props> = () => {
   const hjelpetekstInnholdTekstid =
     'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
 
-  useEffect(() => {
-    logSidevisningBarnetilsyn('Barnepass');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('Barnepass'));
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
     const endretBarn = barnSomSkalHaBarnepass.map((barn) => {

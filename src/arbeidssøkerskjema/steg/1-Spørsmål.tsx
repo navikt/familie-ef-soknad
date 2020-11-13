@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import { useHistory, useLocation } from 'react-router-dom';
@@ -30,6 +30,7 @@ import {
 import { hentPath } from '../../utils/routing';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
+import { useMount } from '../../utils/hooks';
 
 const Spørsmål: FC = () => {
   const location = useLocation<LocationStateSøknad>();
@@ -39,9 +40,7 @@ const Spørsmål: FC = () => {
   const { skjema, settSkjema } = useSkjema();
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 
-  useEffect(() => {
-    logSidevisningArbeidssokerskjema('OmArbeidssoker');
-  }, []);
+  useMount(() => logSidevisningArbeidssokerskjema('OmArbeidssoker'));
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
@@ -16,6 +16,7 @@ import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
+import { useMount } from '../utils/hooks';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -28,9 +29,7 @@ const Forside: React.FC<any> = ({ intl }) => {
     settSøknad,
   } = useSkolepengerSøknad();
 
-  useEffect(() => {
-    logSidevisningSkolepenger('Forside');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('Forside'));
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({

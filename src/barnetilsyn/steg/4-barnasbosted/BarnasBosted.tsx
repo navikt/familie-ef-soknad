@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState, useEffect } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -12,6 +12,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -28,9 +29,7 @@ const BarnasBosted: React.FC = () => {
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
 
-  useEffect(() => {
-    logSidevisningBarnetilsyn('BarnasBosted');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad) => {

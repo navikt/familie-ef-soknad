@@ -40,6 +40,8 @@ import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../u
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
+import { useMount } from '../../../utils/hooks';
+
 const StyledHjelpetekst = styled.div`
   .typo-normal {
     padding-bottom: 1rem;
@@ -67,9 +69,7 @@ const MerOmDinSituasjon: React.FC = () => {
     søknad
   );
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('MerOmDinSituasjon');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('MerOmDinSituasjon'));
 
   const datovelgerLabel = 'søkerFraBestemtMåned.datovelger.overgangsstønad';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -20,11 +20,10 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const BarnaDine: React.FC = () => {
-  useEffect(() => {
-    logSidevisningBarnetilsyn('BarnaDine');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
 
   const intl = useIntl();
   const {

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useIntl } from 'react-intl';
@@ -13,6 +13,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -33,9 +34,7 @@ const BarnasBosted: React.FC = () => {
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
 
-  useEffect(() => {
-    logSidevisningSkolepenger('BarnasBosted');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('BarnasBosted'));
 
   const barna = søknad.person.barn;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);

@@ -17,6 +17,7 @@ import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -26,9 +27,7 @@ const Dokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('Dokumentasjon');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Dokumentasjon'));
 
   const oppdaterDokumentasjon = (
     dokumentasjonsid: string,

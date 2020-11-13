@@ -1,5 +1,4 @@
 import amplitude from 'amplitude-js';
-import { StringDecoder } from 'string_decoder';
 
 const amplitudeInstance = amplitude.getInstance();
 

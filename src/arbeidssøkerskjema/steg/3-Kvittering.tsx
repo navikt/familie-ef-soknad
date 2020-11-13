@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
@@ -13,6 +13,7 @@ import Lenke from 'nav-frontend-lenker';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
+import { useMount } from '../../utils/hooks';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -26,9 +27,7 @@ const Kvittering: React.FC = () => {
   const intl = useIntl();
   const { skjema } = useSkjema();
 
-  useEffect(() => {
-    logSidevisningArbeidssokerskjema('Kvittering');
-  }, []);
+  useMount(() => logSidevisningArbeidssokerskjema('Kvittering'));
 
   const mottattAlert: string =
     hentTekst('skjema.alert.mottatt', intl) +

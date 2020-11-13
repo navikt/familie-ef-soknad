@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import { hentTekst } from '../../../utils/søknad';
@@ -13,6 +13,7 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -35,9 +36,7 @@ const BarnasBosted: React.FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
 
-  useEffect(() => {
-    logSidevisningOvergangsstonad('BarnasBosted');
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad) => {

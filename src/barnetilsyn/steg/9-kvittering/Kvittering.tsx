@@ -21,6 +21,7 @@ import { usePersonContext } from '../../../context/PersonContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -35,9 +36,7 @@ const Kvittering: React.FC = () => {
     (barn) => barn.skalHaBarnepass?.verdi
   );
 
-  useEffect(() => {
-    logSidevisningBarnetilsyn('Kvittering');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('Kvittering'));
 
   useEffect(() => {
     nullstillMellomlagretBarnetilsyn();

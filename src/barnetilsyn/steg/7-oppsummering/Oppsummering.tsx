@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
@@ -19,6 +19,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -27,9 +28,7 @@ const Oppsummering: React.FC = () => {
     (barn) => barn.skalHaBarnepass?.verdi
   );
 
-  useEffect(() => {
-    logSidevisningBarnetilsyn('Oppsummering');
-  }, []);
+  useMount(() => logSidevisningBarnetilsyn('Oppsummering'));
 
   return (
     <>

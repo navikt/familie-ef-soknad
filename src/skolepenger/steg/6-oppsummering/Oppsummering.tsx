@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -14,14 +14,13 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering/OppsummeringDetaljertUtdanning';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreSkolepenger, søknad } = useSkolepengerSøknad();
 
-  useEffect(() => {
-    logSidevisningSkolepenger('Oppsummering');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('Oppsummering'));
 
   return (
     <>

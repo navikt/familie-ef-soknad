@@ -17,6 +17,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -26,9 +27,7 @@ const Dokumentasjon: React.FC = () => {
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);
 
-  useEffect(() => {
-    logSidevisningSkolepenger('Dokumentasjon');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('Dokumentasjon'));
 
   const oppdaterDokumentasjon = (
     dokumentasjonsid: string,

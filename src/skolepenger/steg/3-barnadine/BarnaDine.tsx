@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
@@ -16,6 +16,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -31,9 +32,7 @@ const BarnaDine: React.FC = () => {
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  useEffect(() => {
-    logSidevisningSkolepenger('BarnaDine');
-  }, []);
+  useMount(() => logSidevisningSkolepenger('BarnaDine'));
 
   const [åpenModal, settÅpenModal] = useState(false);
 
