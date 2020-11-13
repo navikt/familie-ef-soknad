@@ -18,7 +18,7 @@ export const logSidevisningOvergangsstonad = (side: string) => {
   logEvent('sidevisning', {
     side,
     team: 'familie',
-    app: 'OS-soknadsdialog',
+    applikasjon: 'OS-soknadsdialog',
   });
 };
 
@@ -26,7 +26,7 @@ export const logSidevisningArbeidssokerskjema = (side: string) => {
   logEvent('sidevisning', {
     side,
     team: 'familie',
-    app: 'Arbeidssokerskjema',
+    applikasjon: 'Arbeidssokerskjema',
   });
 };
 
@@ -34,7 +34,7 @@ export const logSidevisningBarnetilsyn = (side: string) => {
   logEvent('sidevisning', {
     side,
     team: 'familie',
-    app: 'BT-soknadsdialog',
+    applikasjon: 'BT-soknadsdialog',
   });
 };
 
@@ -42,6 +42,6 @@ export const logSidevisningSkolepenger = (side: string) => {
   logEvent('sidevisning', {
     side,
     team: 'familie',
-    app: 'SP-soknadsdialog',
+    applikasjon: 'SP-soknadsdialog',
   });
 };
