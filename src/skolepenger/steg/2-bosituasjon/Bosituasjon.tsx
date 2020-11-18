@@ -10,6 +10,8 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -25,6 +27,8 @@ const Bosituasjon: FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
+
+  useMount(() => logSidevisningSkolepenger('Bosituasjon'));
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
     settSøknad((prevSoknad) => {

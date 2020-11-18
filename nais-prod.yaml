@@ -30,8 +30,6 @@ spec:
       value: https://appres.nav.no
     - name: LOGINSERVICE_URL
       value: https://loginservice.nav.no/login
-    - name: UNLEASH_API_URL
-      value: https://unleashproxy.nais.oera.no/api/
   resources:
     limits:
       cpu: 2000m

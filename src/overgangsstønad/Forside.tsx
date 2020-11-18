@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Panel } from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
@@ -19,13 +19,12 @@ import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { useIntl } from 'react-intl';
-import { logEvent } from '../utils/amplitude';
+import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
+import { useMount } from '../utils/hooks';
 
 const Forside: React.FC = () => {
-  useEffect(() => {
-    logEvent('sidevisning', { side: 'Forside' });
-  }, []);
+  useMount(() => logSidevisningOvergangsstonad('Forside'));
 
   const intl = useIntl();
   const { person } = usePersonContext();

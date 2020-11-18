@@ -20,6 +20,8 @@ import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
+import { logSidevisningSkolepenger } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const location = useLocation<LocationStateSøknad>();
@@ -39,6 +41,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     datoSøktSeparasjon,
     datoFlyttetFraHverandre,
   } = søknad.sivilstatus;
+
+  useMount(() => logSidevisningSkolepenger('OmDeg'));
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad) => {

@@ -19,8 +19,12 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
 
 const BarnaDine: React.FC = () => {
+  useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
+
   const intl = useIntl();
   const {
     søknad,

@@ -17,8 +17,7 @@ export const hentSivilstatus = (statuskode?: string) => {
     case 'SKIL':
     case 'GJPA':
     case 'ENKE':
-      return `sivilstatus.kode.${statuskode}
-   `;
+      return `sivilstatus.kode.${statuskode}`;
 
     default:
       return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
