@@ -439,7 +439,7 @@ export default {
     'You must submit your child access agreement',
 
   'barnasbosted.spm.borAnnenForelderISammeHus':
-    'Do you and [0]’s other parent live in the same building, block, neighbourhood or road?/gate?',
+    'Do you and [0]’s other parent live in the same building, block, neighbourhood or road?',
   'barnasbosted.spm.vetikke': 'I don’t know where the other parent lives',
   'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne':
     'The reason we ask about this',
