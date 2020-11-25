@@ -1,6 +1,7 @@
 import { IPerson } from '../../models/søknad/person';
 import {
   EBegrunnelse,
+  ESivilstand,
   ISivilstatus,
 } from '../../models/steg/omDeg/sivilstatus';
 import { IPeriode } from '../../models/felles/periode';
@@ -8,15 +9,27 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
-    case 'REPA':
-    case 'GIFT':
-    case 'UGIF':
-    case 'SAMB':
-    case 'SEPA':
-    case 'SEPR':
-    case 'SKIL':
-    case 'GJPA':
-    case 'ENKE':
+    case ESivilstand.UOPPGITT:
+    case ESivilstand.UGIFT:
+    case ESivilstand.GIFT:
+    case ESivilstand.ENKE_ELLER_ENKEMANN:
+    case ESivilstand.SKILT:
+    case ESivilstand.SEPARERT:
+    case ESivilstand.PARTNER:
+    case ESivilstand.SEPARERT_PARTNER:
+    case ESivilstand.SKILT_PARTNER:
+    case ESivilstand.GJENLEVENDE_PARTNER:
+      return `sivilstatus.kode.${statuskode}`;
+    //TPS
+    //case ESivilstand.GIFT:
+    case ESivilstand.REPA:
+    case ESivilstand.UGIF:
+    case ESivilstand.SAMB:
+    case ESivilstand.SEPA:
+    case ESivilstand.SEPR:
+    case ESivilstand.SKIL:
+    case ESivilstand.GJPA:
+    case ESivilstand.ENKE:
       return `sivilstatus.kode.${statuskode}`;
 
     default:
