@@ -150,7 +150,7 @@ export default {
   // --- Sivilstatus
   'sivilstatus.tittel': 'Sivilstatus',
   'sivilstatus.kode.REPA': 'Registrert partner',
-  'sivilstatus.kode.GIFT': 'Gift',
+  //'sivilstatus.kode.GIFT': 'Gift',
   'sivilstatus.kode.UGIF': 'Ugift',
   'sivilstatus.kode.SAMB': 'Samboer',
   'sivilstatus.kode.SEPR': 'Separert',
@@ -158,6 +158,18 @@ export default {
   'sivilstatus.kode.SKIL': 'Skilt',
   'sivilstatus.kode.GJPA': 'Gjenlevende partner',
   'sivilstatus.kode.ENKE': 'Enke/Enkemann',
+
+  'sivilstatus.kode.UOPPGITT': 'Ikke oppgitt',
+  'sivilstatus.kode.UGIFT': 'Ugift',
+  'sivilstatus.kode.GIFT': 'Gift',
+  'sivilstatus.kode.ENKE_ELLER_ENKEMANN': 'Enke/Enkemann',
+  'sivilstatus.kode.SKILT': 'Skilt',
+  'sivilstatus.kode.SEPARERT': 'Separert',
+  'sivilstatus.kode.PARTNER': 'Partner',
+  'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
+  'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
+  'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
+
   'sivilstatus.kode.ANNET':
     'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon':

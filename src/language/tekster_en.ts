@@ -160,7 +160,7 @@ export default {
   // --- SIVILSTATUS
   'sivilstatus.tittel': 'Marital status',
   'sivilstatus.kode.REPA': 'Registered partner',
-  'sivilstatus.kode.GIFT': 'Married',
+  //'sivilstatus.kode.GIFT': 'Married',
   'sivilstatus.kode.UGIF': 'Unmarried',
   'sivilstatus.kode.SAMB': 'Cohabitant',
   'sivilstatus.kode.SEPR': 'Separated',
@@ -168,6 +168,18 @@ export default {
   'sivilstatus.kode.SKIL': 'Divorced',
   'sivilstatus.kode.GJPA': 'Surviving partner',
   'sivilstatus.kode.ENKE': 'Widow / widower',
+
+  'sivilstatus.kode.UOPPGITT': 'Not registered',
+  'sivilstatus.kode.UGIFT': 'Unmarried',
+  'sivilstatus.kode.GIFT': 'Married',
+  'sivilstatus.kode.ENKE_ELLER_ENKEMANN': 'Widow / widower',
+  'sivilstatus.kode.SKILT': 'Divorced',
+  'sivilstatus.kode.SEPARERT': 'Separated',
+  'sivilstatus.kode.PARTNER': 'Partner',
+  'sivilstatus.kode.SEPARERT_PARTNER': 'Separated',
+  'sivilstatus.kode.SKILT_PARTNER': 'Divorced',
+  'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Surviving partner',
+
   'sivilstatus.kode.ANNET':
     'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
 
