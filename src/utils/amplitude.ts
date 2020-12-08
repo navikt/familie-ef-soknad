@@ -71,6 +71,7 @@ export const logSidevisningOvergangsstonad = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'OS-soknadsdialog',
+    skjemanavn: 'Overgangsstønad',
   });
 };
 
@@ -79,6 +80,7 @@ export const logSidevisningArbeidssokerskjema = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'Arbeidssokerskjema',
+    skjemanavn: 'Arbeidssøker',
   });
 };
 
@@ -87,6 +89,7 @@ export const logSidevisningBarnetilsyn = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'BT-soknadsdialog',
+    skjemanavn: 'Barnetilsyn',
   });
 };
 
@@ -95,5 +98,6 @@ export const logSidevisningSkolepenger = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'SP-soknadsdialog',
+    skjemanavn: 'Skolepenger',
   });
 };

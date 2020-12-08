@@ -7,6 +7,8 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
 import classNames from 'classnames';
+import { urlTilSkjemanavn, skjemanavnTilId } from "../../utils/skjemanavn";
+import { logSpørsmålBesvart } from "../../utils/amplitude";
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -46,6 +48,10 @@ const MultiSvarSpørsmål: FC<Props> = ({
   valgtSvar,
 }) => {
   const intl = useIntl();
+
+  const url = window.location.href;
+  const skjemanavn = urlTilSkjemanavn(url);
+  const skjemaID = skjemanavnTilId(skjemanavn);
 
   const legend = intl.formatMessage({ id: spørsmål.tekstid });
   return (
