@@ -150,7 +150,7 @@ export default {
   // --- Sivilstatus
   'sivilstatus.tittel': 'Sivilstatus',
   'sivilstatus.kode.REPA': 'Registrert partner',
-  'sivilstatus.kode.GIFT': 'Gift',
+  //'sivilstatus.kode.GIFT': 'Gift',
   'sivilstatus.kode.UGIF': 'Ugift',
   'sivilstatus.kode.SAMB': 'Samboer',
   'sivilstatus.kode.SEPR': 'Separert',
@@ -158,6 +158,18 @@ export default {
   'sivilstatus.kode.SKIL': 'Skilt',
   'sivilstatus.kode.GJPA': 'Gjenlevende partner',
   'sivilstatus.kode.ENKE': 'Enke/Enkemann',
+
+  'sivilstatus.kode.UOPPGITT': 'Ikke oppgitt',
+  'sivilstatus.kode.UGIFT': 'Ugift',
+  'sivilstatus.kode.GIFT': 'Gift',
+  'sivilstatus.kode.ENKE_ELLER_ENKEMANN': 'Enke/Enkemann',
+  'sivilstatus.kode.SKILT': 'Skilt',
+  'sivilstatus.kode.SEPARERT': 'Separert',
+  'sivilstatus.kode.PARTNER': 'Partner',
+  'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
+  'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
+  'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
+
   'sivilstatus.kode.ANNET':
     'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon':
@@ -210,7 +222,7 @@ export default {
     'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
 
   // --- Medlemskap
-  'medlemskap.spm.opphold': 'Oppholder du deg i Norge?',
+  'medlemskap.spm.opphold': 'Oppholder du og barnet/barna dere i Norge?',
   'medlemskap.alert-advarsel.opphold':
     'Når du ikke oppholder deg i Norge, har du som hovedregel ikke rett på stønad til enslig mor eller far. Du kan likevel få stønad dersom du oppholder deg i utlandet fordi du arbeider for en norsk arbeidsgiver. Du kan også være i utlandet i inntil 6 uker i løpet av en 12 måneders periode.',
   'medlemskap.spm.bosatt': 'Har du bodd i Norge de siste tre årene?',
