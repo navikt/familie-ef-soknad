@@ -28,7 +28,7 @@ export const urlTilSkjemanavn = (url: string) => {
   }
 };
 
-export const hentSkjemaIdFraUrl = (url: string) => {
+export const urlTilSkjemaId = (url: string) => {
   if (url.includes('/barnetilsyn')) {
     return 150002;
   } else if (url.includes('/skolepenger')) {
