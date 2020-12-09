@@ -22,5 +22,4 @@ export interface ISøknad {
   søknadsdato?: IDatoFelt;
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
-  locale: LocaleType;
 }
