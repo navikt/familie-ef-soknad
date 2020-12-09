@@ -6,7 +6,6 @@ import { IDinSituasjon } from '../steg/dinsituasjon/meromsituasjon';
 import { ISivilstatus } from '../steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../steg/dokumentasjon';
-import { LocaleType } from '../../language/typer';
 
 export interface ISøknad {
   innsendingsdato?: Date;
@@ -19,7 +18,6 @@ export interface ISøknad {
   merOmDinSituasjon: IDinSituasjon;
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
-  locale: LocaleType;
 }
 
 export enum ESøknad {

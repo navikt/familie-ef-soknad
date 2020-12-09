@@ -6,6 +6,7 @@ import { IForelder } from '../../../models/steg/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 
 interface Props {
   barn: IBarn;
@@ -59,14 +60,15 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   const leggTilAnnenForelder = () => {
     settBarnHarSammeForelder(false);
     settAndreForelderRadioVerdi('annen-forelder');
+    const id = hentUid();
 
     !barn.harSammeAdresse.verdi &&
     harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
       ? settForelder({
-          ...forelder,
           skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker,
+          id
         })
-      : settForelder(forelder);
+      : settForelder({id});
   };
 
   const andreForelder = 'andre-forelder-';
