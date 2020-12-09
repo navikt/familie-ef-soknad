@@ -27,15 +27,3 @@ export const urlTilSkjemanavn = (url: string) => {
     return ESkjemanavn.Overgangsstønad;
   }
 };
-
-export const urlTilSkjemaId = (url: string) => {
-  if (url.includes('/barnetilsyn')) {
-    return 150002;
-  } else if (url.includes('/skolepenger')) {
-    return ESkjemanavn.Skolepenger;
-  } else if (url.includes('/arbeidssoker')) {
-    return ESkjemanavn.Arbeidssøker;
-  } else {
-    return ESkjemanavn.Overgangsstønad;
-  }
-};
