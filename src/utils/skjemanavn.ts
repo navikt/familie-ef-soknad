@@ -5,7 +5,7 @@ export enum ESkjemanavn {
   Overgangsstønad = 'Overgangsstønad',
 }
 
-const skjemanavnIdMapping = {
+export const skjemanavnIdMapping = {
   [ESkjemanavn.Barnetilsyn]: 150002,
   [ESkjemanavn.Skolepenger]: 150004,
   [ESkjemanavn.Arbeidssøker]: 150801,

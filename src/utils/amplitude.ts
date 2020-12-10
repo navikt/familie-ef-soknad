@@ -1,3 +1,4 @@
+import { ESkjemanavn, skjemanavnIdMapping } from './skjemanavn';
 import amplitude from 'amplitude-js';
 
 const amplitudeInstance = amplitude.getInstance();
@@ -34,8 +35,8 @@ export const logSpørsmålBesvartOvergangsstønad = (
   spørsmål: string,
   svar: string
 ) => {
-  const skjemanavn = 'Overgangsstønad';
-  const skjemaId = 150001;
+  const skjemanavn = ESkjemanavn.Overgangsstønad;
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
 };
 
@@ -43,8 +44,8 @@ export const logSpørsmålBesvartArbeidssokerskjema = (
   spørsmål: string,
   svar: string
 ) => {
-  const skjemanavn = 'Arbeidssøker';
-  const skjemaId = 150801;
+  const skjemanavn = ESkjemanavn.Arbeidssøker;
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Arbeidssøker];
   logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
 };
 
@@ -52,8 +53,8 @@ export const logSpørsmålBesvartBarnetilsyn = (
   spørsmål: string,
   svar: string
 ) => {
-  const skjemanavn = 'Barnetilsyn';
-  const skjemaId = 150002;
+  const skjemanavn = ESkjemanavn.Barnetilsyn;
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
   logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
 };
 
@@ -61,8 +62,8 @@ export const logSpørsmålBesvartSkolepenger = (
   spørsmål: string,
   svar: string
 ) => {
-  const skjemanavn = 'Skolepenger';
-  const skjemaId = 150004;
+  const skjemanavn = ESkjemanavn.Skolepenger;
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
   logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
 };
 
@@ -71,7 +72,7 @@ export const logSidevisningOvergangsstonad = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'OS-soknadsdialog',
-    skjemanavn: 'Overgangsstønad',
+    skjemanavn: ESkjemanavn.Overgangsstønad,
   });
 };
 
@@ -80,7 +81,7 @@ export const logSidevisningArbeidssokerskjema = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'Arbeidssokerskjema',
-    skjemanavn: 'Arbeidssøker',
+    skjemanavn: ESkjemanavn.Arbeidssøker,
   });
 };
 
@@ -89,7 +90,7 @@ export const logSidevisningBarnetilsyn = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'BT-soknadsdialog',
-    skjemanavn: 'Barnetilsyn',
+    skjemanavn: ESkjemanavn.Barnetilsyn,
   });
 };
 
@@ -98,6 +99,6 @@ export const logSidevisningSkolepenger = (side: string) => {
     side,
     team_id: 'familie',
     applikasjon: 'SP-soknadsdialog',
-    skjemanavn: 'Skolepenger',
+    skjemanavn: ESkjemanavn.Skolepenger,
   });
 };
