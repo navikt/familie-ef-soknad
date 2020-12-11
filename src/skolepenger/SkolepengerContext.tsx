@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
@@ -28,7 +28,6 @@ import {
 import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { useSpråkContext } from '../context/SpråkContext';
-import { LocaleType } from '../language/typer';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: IntlShape): ISøknad => {
@@ -59,26 +58,33 @@ const initialState = (intl: IntlShape): ISøknad => {
       },
     ],
     harBekreftet: false,
-    locale: LocaleType.nb,
   };
 };
 
 const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
   () => {
     const intl = useIntl();
-    const { setLocale } = useSpråkContext();
+    const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
     const [mellomlagretSkolepenger, settMellomlagretSkolepenger] = useState<
       IMellomlagretSkolepengerSøknad
     >();
 
+    useEffect(() => {
+      if (
+        mellomlagretSkolepenger?.locale &&
+        mellomlagretSkolepenger?.locale !== locale
+      ) {
+        setLocale(mellomlagretSkolepenger.locale);
+      }
+    }, [mellomlagretSkolepenger, locale, setLocale]);
+
     const hentMellomlagretSkolepenger = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretSkolepengerSøknad>(
         MellomlagredeStønadstyper.skolepenger
       ).then((mellomlagretVersjon?: IMellomlagretSkolepengerSøknad) => {
         if (mellomlagretVersjon) {
-          setLocale(mellomlagretVersjon.søknad.locale);
           settMellomlagretSkolepenger(mellomlagretVersjon);
         }
       });
@@ -95,6 +101,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         søknad: søknad,
         modellVersjon: Environment().modellVersjon.skolepenger,
         gjeldendeSteg: steg,
+        locale: locale,
       };
       mellomlagreSøknadTilDokument(
         utfyltSøknad,

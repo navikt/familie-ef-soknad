@@ -8,6 +8,7 @@ export const erSøkerGift = (sivilstand?: string) =>
 export const erSøkerUgift = (sivilstand?: string) =>
   sivilstand === ESivilstand.UGIF ||
   sivilstand === ESivilstand.UGIFT ||
+  sivilstand === ESivilstand.UOPPGITT ||
   sivilstand === null ||
   sivilstand === 'NULL';
 

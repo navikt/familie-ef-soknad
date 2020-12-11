@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
@@ -24,7 +24,6 @@ import { IBarn } from '../models/steg/barn';
 import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
-import { LocaleType } from '../language/typer';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: IntlShape): ISøknad => {
@@ -54,25 +53,32 @@ const initialState = (intl: IntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
-    locale: LocaleType.nb,
   };
 };
 
 const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
     const intl = useIntl();
-    const { setLocale } = useSpråkContext();
+    const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<
       IMellomlagretBarnetilsynSøknad
     >();
+
+    useEffect(() => {
+      if (
+        mellomlagretBarnetilsyn?.locale &&
+        mellomlagretBarnetilsyn?.locale !== locale
+      ) {
+        setLocale(mellomlagretBarnetilsyn.locale);
+      }
+    }, [mellomlagretBarnetilsyn, locale, setLocale]);
 
     const hentMellomlagretBarnetilsyn = (): Promise<void> => {
       return hentMellomlagretSøknadFraDokument<IMellomlagretBarnetilsynSøknad>(
         MellomlagredeStønadstyper.barnetilsyn
       ).then((mellomlagretVersjon?: IMellomlagretBarnetilsynSøknad) => {
         if (mellomlagretVersjon) {
-          setLocale(mellomlagretVersjon.søknad.locale);
           settMellomlagretBarnetilsyn(mellomlagretVersjon);
         }
       });
@@ -89,6 +95,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         søknad: søknad,
         modellVersjon: Environment().modellVersjon.barnetilsyn,
         gjeldendeSteg: steg,
+        locale: locale,
       };
       mellomlagreSøknadTilDokument(
         utfyltSøknad,
