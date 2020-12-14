@@ -4,4 +4,5 @@ export interface IMellomlagretBarnetilsynSøknad {
   søknad: ISøknad;
   modellVersjon: number;
   gjeldendeSteg: string;
+  locale: string;
 }

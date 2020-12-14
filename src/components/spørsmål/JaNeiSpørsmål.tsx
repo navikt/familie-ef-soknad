@@ -4,6 +4,8 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
+import { logSpørsmålBesvart } from "../../utils/amplitude";
+import { urlTilSkjemanavn, skjemanavnTilId } from "../../utils/skjemanavn";
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {
@@ -36,6 +38,11 @@ interface Props {
 }
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
   const intl = useIntl();
+
+  const url = window.location.href;
+
+  const skjemanavn = urlTilSkjemanavn(url);
+  const skjemaId = skjemanavnTilId(skjemanavn);
 
   const spørsmålTekst: string = intl.formatMessage({ id: spørsmål.tekstid });
 
@@ -76,7 +83,10 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
                 label={svar.svar_tekst}
                 value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => onClickHandle(e, spørsmål, svar)}
+                onChange={(e) => {
+                  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmålTekst, svar.svar_tekst)
+                  onClickHandle(e, spørsmål, svar)}
+                }
               />
             );
           })}

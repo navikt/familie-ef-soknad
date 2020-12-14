@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
@@ -26,7 +26,6 @@ import { IPerson } from '../models/søknad/person';
 import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
-import { LocaleType } from '../language/typer';
 import { useSpråkContext } from './SpråkContext';
 
 // -----------  CONTEXT  -----------
@@ -69,13 +68,12 @@ const initialState = (intl: IntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
-    locale: LocaleType.nb,
   };
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   const intl = useIntl();
-  const { setLocale } = useSpråkContext();
+  const [locale, setLocale] = useSpråkContext();
   const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
   const [
@@ -83,12 +81,20 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     settMellomlagretOvergangsstønad,
   ] = useState<IMellomlagretOvergangsstønad>();
 
+  useEffect(() => {
+    if (
+      mellomlagretOvergangsstønad?.locale &&
+      mellomlagretOvergangsstønad?.locale !== locale
+    ) {
+      setLocale(mellomlagretOvergangsstønad.locale);
+    }
+  }, [mellomlagretOvergangsstønad, locale, setLocale]);
+
   const hentMellomlagretOvergangsstønad = (): Promise<void> => {
     return hentMellomlagretSøknadFraDokument<IMellomlagretOvergangsstønad>(
       MellomlagredeStønadstyper.overgangsstønad
     ).then((mellomlagretVersjon?: IMellomlagretOvergangsstønad) => {
       if (mellomlagretVersjon) {
-        setLocale(mellomlagretVersjon.søknad.locale);
         settMellomlagretOvergangsstønad(mellomlagretVersjon);
       }
     });
@@ -105,6 +111,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       søknad: søknad,
       modellVersjon: Environment().modellVersjon.overgangsstønad,
       gjeldendeSteg: steg,
+      locale: locale,
     };
     mellomlagreSøknadTilDokument(
       utfyltSøknad,
