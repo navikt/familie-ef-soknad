@@ -49,8 +49,11 @@ const Barnepass: FC<Props> = () => {
   );
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
-  const hjelpetekstInnholdTekstid =
-    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass';
+
+  const hjelpetekstInnholdSøkerFraMndTekst = hentTekst(
+    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass',
+    intl
+  );
 
   useMount(() => logSidevisningBarnetilsyn('Barnepass'));
 
@@ -168,7 +171,7 @@ const Barnepass: FC<Props> = () => {
             søkerFraBestemtMåned={søkerFraBestemtMåned}
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
-            hjelpetekstInnholdTekst={hjelpetekstInnholdTekstid}
+            hjelpetekstInnholdTekst={hjelpetekstInnholdSøkerFraMndTekst}
             alertTekst={alertTekst}
           />
         </SeksjonGruppe>
