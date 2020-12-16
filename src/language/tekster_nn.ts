@@ -834,7 +834,7 @@ export default {
   'søkerFraBestemtMåned.spm.overgangsstønad':
     'Are you applying for transitional benefit from a specific month?',
   'søkerFraBestemtMåned.spm.barnepass':
-    'Are you applying for child care benefit from a specific month? ',
+    'Søkjer du om barnetilsyn frå ein bestemt månad?',
 
   'søkerFraBestemtMåned.hjelpetekst-åpne':
     'About applying from a specific date',

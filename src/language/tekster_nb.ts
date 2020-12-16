@@ -779,7 +779,7 @@ export default {
   'søkerFraBestemtMåned.spm.overgangsstønad':
     'Søker du overgangsstønad fra en bestemt måned?',
   'søkerFraBestemtMåned.spm.barnepass':
-    'Søker du barnepass fra en bestemt måned?',
+    'Søker du om stønad til barnetilsyn fra en bestemt måned? ',
   'søkerFraBestemtMåned.hjelpetekst-åpne': 'Om å søke fra et bestemt tidspunkt',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
     'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. ' +
