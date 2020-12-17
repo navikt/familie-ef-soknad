@@ -244,7 +244,7 @@ export default {
     'If you are not living in Norway, you are generally not entitled to benefit for single parents. ' +
     'However, you can receive benefit if you are living overseas because you work for a Norwegian employer. ' +
     'You can also spend up to six weeks outside Norway during a 12 month period.',
-  'medlemskap.spm.bosatt': 'Have you lived in Norway for the past three years?',
+  'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
 
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
 
