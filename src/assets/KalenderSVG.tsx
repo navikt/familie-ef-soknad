@@ -10,6 +10,7 @@ const KalenderIkonSVG = () => (
       strokeWidth={'1'}
       fill="none"
       fillRule="evenodd"
+      focusable={false}
     >
       <g id="Outline/22-time/calendar-3" fill="#3E3832">
         <path

@@ -4,8 +4,8 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
-import { logSpørsmålBesvart } from "../../utils/amplitude";
-import { urlTilSkjemanavn, skjemanavnTilId } from "../../utils/skjemanavn";
+import { logSpørsmålBesvart } from '../../utils/amplitude';
+import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {
@@ -32,6 +32,7 @@ const StyledJaNeiSpørsmål = styled.div`
 `;
 
 interface Props {
+  id?: string;
   spørsmål: ISpørsmål;
   onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;
@@ -62,7 +63,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <SkjemaGruppe legend={spørsmålTekst}>
+    <SkjemaGruppe key={spørsmål.tekstid} legend={spørsmålTekst}>
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst
@@ -77,6 +78,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
 
             return (
               <RadioPanel
+                id={svar.id}
                 className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekst}`}
                 key={svar.svar_tekst}
                 name={spørsmål.søknadid}
@@ -84,9 +86,14 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
                 value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={(e) => {
-                  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmålTekst, svar.svar_tekst)
-                  onClickHandle(e, spørsmål, svar)}
-                }
+                  logSpørsmålBesvart(
+                    skjemanavn,
+                    skjemaId,
+                    spørsmålTekst,
+                    svar.svar_tekst
+                  );
+                  onClickHandle(e, spørsmål, svar);
+                }}
               />
             );
           })}

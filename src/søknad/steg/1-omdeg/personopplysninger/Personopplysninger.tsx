@@ -137,6 +137,7 @@ const Personopplysninger: React.FC<Props> = ({
       {søkerBorPåRegistrertAdresse?.verdi && (
         <>
           <Input
+            id={'Telefonnummer'}
             key={'tlf'}
             label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
             type="tel"

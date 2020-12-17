@@ -68,6 +68,7 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
 
             return (
               <RadioPanel
+                id={svar.id}
                 key={svar.svar_tekst}
                 name={spørsmål.søknadid}
                 label={svar.svar_tekst}

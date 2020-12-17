@@ -36,7 +36,10 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   valgteSvar,
 }) => {
   return (
-    <SkjemaGruppe legend={<LocaleTekst tekst={spørsmål.tekstid} />}>
+    <SkjemaGruppe
+      key={spørsmål.tekstid}
+      legend={<LocaleTekst tekst={spørsmål.tekstid} />}
+    >
       <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst

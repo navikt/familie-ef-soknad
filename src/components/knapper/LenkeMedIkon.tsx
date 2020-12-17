@@ -33,7 +33,7 @@ const LenkeMedIkon: React.FC<Props> = ({ onClick, tekst_id, ikon }) => {
   return (
     <StyledLenkeMedIkon>
       <div className="lenke-knapp" onClick={onClick}>
-        <img alt="Endre" src={ikon} />
+        <img alt="Endre informasjon" src={ikon} />
         <Normaltekst>{intl.formatMessage({ id: tekst_id })}</Normaltekst>
       </div>
     </StyledLenkeMedIkon>
