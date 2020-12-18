@@ -18,6 +18,7 @@ export interface ISøknad {
   merOmDinSituasjon: IDinSituasjon;
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
+  locale?: any;
 }
 
 export enum ESøknad {
