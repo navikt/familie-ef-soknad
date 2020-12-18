@@ -66,7 +66,6 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
             const svarISøknad = svar.svar_tekst === valgtSvar;
             return (
               <RadioPanel
-                id={svar.id}
                 key={svar.svar_tekst}
                 name={spørsmål.søknadid}
                 label={svar.svar_tekst}

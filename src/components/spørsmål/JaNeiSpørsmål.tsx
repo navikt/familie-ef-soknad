@@ -78,7 +78,6 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
 
             return (
               <RadioPanel
-                id={svar.id}
                 className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekst}`}
                 key={svar.svar_tekst}
                 name={spørsmål.søknadid}
