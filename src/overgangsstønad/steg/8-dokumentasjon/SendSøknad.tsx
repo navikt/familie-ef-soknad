@@ -30,7 +30,7 @@ interface Innsending {
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const location = useLocation<LocationStateSøknad>();
-  const [locale, setLocale] = useSpråkContext();
+  const [locale] = useSpråkContext();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
   const forrigeRoute = hentForrigeRoute(
@@ -119,8 +119,6 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>
         </StyledKnapper>
-
-        {JSON.stringify(søknad)}
       </SeksjonGruppe>
     </>
   );
