@@ -252,7 +252,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Why did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
-    'Have you spent more periods abroad during the last three years?',
+    'Have you spent more periods abroad during the last five years?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Add a period spent abroad',
 
   // --- BOSITUASJONEN DIN

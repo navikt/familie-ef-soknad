@@ -233,7 +233,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet': 'Når bodde du i utlandet?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Hvorfor bodde du i utlandet?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
-    'Har du hatt flere utenlandsopphold de siste 3 årene?',
+    'Har du hatt flere utenlandsopphold de siste 5 årene?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
 
   // --- BOSITUASJON (Steg 2)
