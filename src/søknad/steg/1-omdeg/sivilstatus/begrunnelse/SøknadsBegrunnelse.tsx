@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 
 import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
 import EndringISamvær from './EndringISamvær';
@@ -26,6 +26,7 @@ import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../../../models/søknad/person';
+import LocaleTekst from '../../../../../language/LocaleTekst';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -210,7 +211,9 @@ const Søknadsbegrunnelse: FC<Props> = ({
       {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddAndre && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Undertittel>Om den tidligere samboeren din</Undertittel>
+            <Undertittel tag={'h3'}>
+              <LocaleTekst tekst={'sivilstatus.tittel.samlivsbruddAndre'} />
+            </Undertittel>
           </FeltGruppe>
           <FeltGruppe>
             <Input

@@ -208,6 +208,8 @@ export default {
   'sivilstatus.svar.samlivsbruddForeldre':
     'Samlivsbrudd med den andre forelderen',
   'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd med noen andre',
+  'sivilstatus.tittel.samlivsbruddAndre': 'Om den tidligere samboeren din',
+
   'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
   'sivilstatus.svar.endringISamværsordning': 'Endring i omsorgen for barn',
   'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',

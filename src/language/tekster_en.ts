@@ -219,6 +219,8 @@ export default {
     'My relationship with the other parent ended',
   'sivilstatus.svar.samlivsbruddAndre':
     'My relationship with someone else ended',
+  'sivilstatus.tittel.samlivsbruddAndre': 'About your former cohabitant',
+
   'sivilstatus.svar.aleneFraFødsel':
     'I have been the sole caregiver from birth',
   'sivilstatus.svar.endringISamværsordning':
