@@ -189,7 +189,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 
   return (
-    <>
+    <div aria-live="polite">
       <KomponentGruppe>
         <MultiSvarSpørsmål
           key={spørsmål.tekstid}
@@ -200,12 +200,10 @@ const Søknadsbegrunnelse: FC<Props> = ({
       </KomponentGruppe>
 
       {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddForeldre && (
-        <>
-          <DatoForSamlivsbrudd
-            settDato={settDato}
-            datoForSamlivsbrudd={datoForSamlivsbrudd}
-          />
-        </>
+        <DatoForSamlivsbrudd
+          settDato={settDato}
+          datoForSamlivsbrudd={datoForSamlivsbrudd}
+        />
       )}
 
       {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddAndre && (
@@ -268,7 +266,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
           </AlertStripeInfo>
         </KomponentGruppe>
       )}
-    </>
+    </div>
   );
 };
 

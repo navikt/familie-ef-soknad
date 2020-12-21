@@ -62,7 +62,7 @@ const InputLabelGruppe: React.FC<Props> = ({
   placeholder,
 }) => {
   return (
-    <StyledComponent>
+    <StyledComponent aria-live="polite">
       <Label htmlFor={label}> {label}</Label>
       {hjelpetekst && (
         <Hjelpetekst

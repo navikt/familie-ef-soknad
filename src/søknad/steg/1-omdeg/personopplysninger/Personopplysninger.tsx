@@ -138,6 +138,7 @@ const Personopplysninger: React.FC<Props> = ({
         <>
           <Input
             id={'Telefonnummer'}
+            aria-live={'polite'}
             key={'tlf'}
             label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
             type="tel"

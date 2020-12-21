@@ -66,7 +66,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   );
 
   return (
-    <SeksjonGruppe>
+    <SeksjonGruppe aria-live="polite">
       <KomponentGruppe key={oppholderSegINorgeConfig.søknadid}>
         <JaNeiSpørsmål
           spørsmål={oppholderSegINorgeConfig}
