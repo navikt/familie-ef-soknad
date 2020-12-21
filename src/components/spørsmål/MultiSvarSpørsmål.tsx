@@ -57,7 +57,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
   const legend = intl.formatMessage({ id: spørsmål.tekstid });
 
   return (
-    <SkjemaGruppe legend={legend} aria-live="polite">
+    <SkjemaGruppe legend={legend}>
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
           <Hjelpetekst

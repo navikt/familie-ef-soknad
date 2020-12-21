@@ -1,7 +1,15 @@
 import * as React from 'react';
 
 const KalenderIkonSVG = () => (
-  <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+  <svg
+    width="24px"
+    height="24px"
+    viewBox="0 0 24 24"
+    version="1.1"
+    focusable={false}
+    role="img"
+    aria-labelledby="Kalender"
+  >
     <title>Kalender</title>
     <desc>Created with Sketch.</desc>
     <g

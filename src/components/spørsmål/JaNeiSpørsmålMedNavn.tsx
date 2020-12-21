@@ -52,7 +52,7 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   };
 
   return (
-    <SkjemaGruppe legend={spørsmålTekst} aria-live="polite">
+    <SkjemaGruppe legend={spørsmålTekst}>
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst

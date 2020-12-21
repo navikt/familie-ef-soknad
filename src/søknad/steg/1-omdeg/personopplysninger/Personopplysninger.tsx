@@ -26,6 +26,7 @@ interface Props {
   ) => void;
   stønadstype: Stønadstype;
 }
+
 const Personopplysninger: React.FC<Props> = ({
   søker,
   settSøker,
@@ -76,7 +77,7 @@ const Personopplysninger: React.FC<Props> = ({
   };
 
   return (
-    <SeksjonGruppe>
+    <SeksjonGruppe aria-live={'polite'}>
       <KomponentGruppe>
         <FeltGruppe>
           <AlertStripe type={'info'} form={'inline'}>
@@ -118,7 +119,7 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
 
-      <KomponentGruppe>
+      <KomponentGruppe aria-live="polite">
         <JaNeiSpørsmål
           spørsmål={borDuPåDenneAdressen(intl)}
           valgtSvar={
@@ -135,27 +136,24 @@ const Personopplysninger: React.FC<Props> = ({
       </KomponentGruppe>
 
       {søkerBorPåRegistrertAdresse?.verdi && (
-        <>
-          <Input
-            id={'Telefonnummer'}
-            aria-live={'polite'}
-            key={'tlf'}
-            label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
-            type="tel"
-            bredde={'M'}
-            onChange={(e) => oppdaterTelefonnr(e)}
-            onBlur={(e) => oppdaterFeilmelding(e)}
-            className="inputfelt-tekst-fetskrift"
-            feil={
-              feilTelefonnr
-                ? intl.formatMessage({
-                    id: 'personopplysninger.feilmelding.telefonnr',
-                  })
-                : undefined
-            }
-            value={telefonnummer}
-          />
-        </>
+        <Input
+          id={'Telefonnummer'}
+          key={'tlf'}
+          label={intl.formatMessage({ id: 'person.telefonnr' }).trim()}
+          type="tel"
+          bredde={'M'}
+          onChange={(e) => oppdaterTelefonnr(e)}
+          onBlur={(e) => oppdaterFeilmelding(e)}
+          className="inputfelt-tekst-fetskrift"
+          feil={
+            feilTelefonnr
+              ? intl.formatMessage({
+                  id: 'personopplysninger.feilmelding.telefonnr',
+                })
+              : undefined
+          }
+          value={telefonnummer}
+        />
       )}
     </SeksjonGruppe>
   );

@@ -124,29 +124,31 @@ const OmSamboerenDin: FC<Props> = ({
           value={samboerInfo.navn?.verdi ? samboerInfo.navn?.verdi : ''}
         />
       </KomponentGruppe>
-      {samboerDetaljer?.navn && (
-        <IdentEllerFødselsdatoGruppe
-          identLabel={hentTekst('person.ident', intl)}
-          datoLabel={
-            !erIdentEllerFødselsdatoObligatorisk
-              ? hentTekst('person.fødselsdato', intl)
-              : hentTekst('datovelger.fødselsdato', intl)
-          }
-          checkboxLabel={hentTekst('person.checkbox.ident', intl)}
-          ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
-          fødselsdato={
-            samboerInfo.fødselsdato?.verdi
-              ? strengTilDato(samboerInfo.fødselsdato?.verdi)
-              : undefined
-          }
-          checked={samboerInfo?.kjennerIkkeIdent}
-          erGyldigIdent={erGyldigIdent}
-          settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}
-          settFødselsdato={settFødselsdato}
-          settChecked={settChecked}
-          settIdent={oppdaterIdent}
-        />
-      )}
+      <KomponentGruppe>
+        {samboerDetaljer?.navn && (
+          <IdentEllerFødselsdatoGruppe
+            identLabel={hentTekst('person.ident', intl)}
+            datoLabel={
+              !erIdentEllerFødselsdatoObligatorisk
+                ? hentTekst('person.fødselsdato', intl)
+                : hentTekst('datovelger.fødselsdato', intl)
+            }
+            checkboxLabel={hentTekst('person.checkbox.ident', intl)}
+            ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
+            fødselsdato={
+              samboerInfo.fødselsdato?.verdi
+                ? strengTilDato(samboerInfo.fødselsdato?.verdi)
+                : undefined
+            }
+            checked={samboerInfo?.kjennerIkkeIdent}
+            erGyldigIdent={erGyldigIdent}
+            settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}
+            settFødselsdato={settFødselsdato}
+            settChecked={settChecked}
+            settIdent={oppdaterIdent}
+          />
+        )}
+      </KomponentGruppe>
     </>
   );
 };

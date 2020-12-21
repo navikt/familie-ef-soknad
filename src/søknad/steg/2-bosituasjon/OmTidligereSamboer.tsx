@@ -32,7 +32,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
   };
 
   return (
-    <SeksjonGruppe>
+    <SeksjonGruppe aria-live="polite">
       <OmSamboerenDin
         tittel={'bosituasjon.tittel.omTidligereSamboer'}
         erIdentEllerFødselsdatoObligatorisk={false}
@@ -42,6 +42,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
       {samboerDetaljer?.navn && (
         <FeltGruppe>
           <Datovelger
+            aria-live="polite"
             valgtDato={
               bosituasjon.datoFlyttetFraHverandre
                 ? bosituasjon.datoFlyttetFraHverandre.verdi

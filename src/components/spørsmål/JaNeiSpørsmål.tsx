@@ -64,11 +64,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <SkjemaGruppe
-      key={spørsmål.tekstid}
-      legend={spørsmålTekst}
-      aria-live="polite"
-    >
+    <SkjemaGruppe key={spørsmål.tekstid} legend={spørsmålTekst}>
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst

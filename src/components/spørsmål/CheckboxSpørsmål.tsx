@@ -39,7 +39,6 @@ const CheckboxSpørsmål: React.FC<Props> = ({
     <SkjemaGruppe
       key={spørsmål.tekstid}
       legend={<LocaleTekst tekst={spørsmål.tekstid} />}
-      aria-live="polite"
     >
       <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (

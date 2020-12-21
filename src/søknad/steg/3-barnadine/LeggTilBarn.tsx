@@ -113,8 +113,10 @@ const LeggTilBarn: React.FC<Props> = ({
   };
 
   return (
-    <Seksjonsgruppe className="legg-til-barn">
-      <Undertittel>Legg til barn</Undertittel>
+    <Seksjonsgruppe className="legg-til-barn" aria-live="polite">
+      <Undertittel>
+        {intl.formatMessage({ id: 'barnadine.leggtil' })}
+      </Undertittel>
 
       <KomponentGruppe>
         <JaNeiSpørsmål
@@ -147,6 +149,7 @@ const LeggTilBarn: React.FC<Props> = ({
       ) : null}
       {boHosDeg && (
         <Hovedknapp
+          aria-live="polite"
           className="legg-til-barn__knapp"
           onClick={() => leggTilEllerEndreBarn(id)}
         >
