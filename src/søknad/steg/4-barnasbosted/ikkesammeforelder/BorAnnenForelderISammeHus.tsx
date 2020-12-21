@@ -6,7 +6,6 @@ import { EBorAnnenForelderISammeHus } from '../../../../models/steg/barnasbosted
 import { hentTekst } from '../../../../utils/søknad';
 import { IForelder } from '../../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-import { Element } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import { IBarn } from '../../../../models/steg/barn';
@@ -86,13 +85,6 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
       {forelder.borAnnenForelderISammeHus?.svarid ===
         EBorAnnenForelderISammeHus.ja && (
         <>
-          <div className="margin-bottom-05">
-            <Element>
-              {intl.formatMessage({
-                id: 'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse',
-              })}
-            </Element>
-          </div>
           <FeltGruppe>
             <Textarea
               value={
@@ -102,7 +94,9 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
                   : ''
               }
               onChange={settBorAnnenForelderISammeHusBeskrivelse}
-              label=""
+              label={intl.formatMessage({
+                id: 'barnasbosted.spm.borAnnenForelderISammeHusBeskrivelse',
+              })}
             />
           </FeltGruppe>
         </>
