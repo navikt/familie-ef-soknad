@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar, ESvar } from '../../models/felles/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
-import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {
@@ -37,6 +37,7 @@ interface Props {
   onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;
 }
+
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
   const intl = useIntl();
 
@@ -63,7 +64,11 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
   };
 
   return (
-    <SkjemaGruppe key={spørsmål.tekstid} legend={spørsmålTekst}>
+    <SkjemaGruppe
+      key={spørsmål.tekstid}
+      legend={spørsmålTekst}
+      aria-live="polite"
+    >
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <Hjelpetekst

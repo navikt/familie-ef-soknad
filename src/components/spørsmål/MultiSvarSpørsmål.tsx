@@ -7,8 +7,8 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
 import classNames from 'classnames';
-import { logSpørsmålBesvart } from "../../utils/amplitude";
-import { urlTilSkjemanavn, skjemanavnTilId } from "../../utils/skjemanavn";
+import { logSpørsmålBesvart } from '../../utils/amplitude';
+import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -55,9 +55,9 @@ const MultiSvarSpørsmål: FC<Props> = ({
   const skjemaId = skjemanavnTilId(skjemanavn);
 
   const legend = intl.formatMessage({ id: spørsmål.tekstid });
-  
+
   return (
-    <SkjemaGruppe legend={legend}>
+    <SkjemaGruppe legend={legend} aria-live="polite">
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
           <Hjelpetekst
@@ -79,7 +79,12 @@ const MultiSvarSpørsmål: FC<Props> = ({
                 value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={() => {
-                  logSpørsmålBesvart(skjemanavn, skjemaId, legend, svar.svar_tekst);
+                  logSpørsmålBesvart(
+                    skjemanavn,
+                    skjemaId,
+                    legend,
+                    svar.svar_tekst
+                  );
                   settSpørsmålOgSvar(spørsmål, svar);
                 }}
               />

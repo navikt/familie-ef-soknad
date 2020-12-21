@@ -47,7 +47,7 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
   valgtSvar,
 }) => {
   return (
-    <SkjemaGruppe legend={spørsmålTekst}>
+    <SkjemaGruppe legend={spørsmålTekst} aria-live="polite">
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
           <Hjelpetekst
