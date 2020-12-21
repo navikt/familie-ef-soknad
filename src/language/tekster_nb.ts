@@ -19,6 +19,7 @@ export default {
     '<li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li>' +
     '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
     '</ul>',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] tilsynsbehov',
 
   // SKJEMA ARBEIDSSØKER
   'skjema.hei': 'Hei, [0]!',

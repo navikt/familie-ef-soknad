@@ -150,7 +150,6 @@ const LeggTilBarn: React.FC<Props> = ({
       {boHosDeg && (
         <Hovedknapp
           aria-live="polite"
-          className="legg-til-barn__knapp"
           onClick={() => leggTilEllerEndreBarn(id)}
         >
           <LocaleTekst tekst={'barnadine.leggtil'} />

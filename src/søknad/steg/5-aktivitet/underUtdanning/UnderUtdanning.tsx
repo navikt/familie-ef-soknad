@@ -106,6 +106,7 @@ const UnderUtdanning: React.FC<Props> = ({
         </KomponentGruppe>
 
         <SkoleOgLinje
+          aria-live="polite"
           utdanning={utdanning}
           oppdaterUtdanning={oppdaterUtdanning}
         />

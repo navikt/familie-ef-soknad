@@ -8,6 +8,7 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
 import './BarnMedSærligeBehovBegrunnelse.less';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -65,20 +66,23 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
     props.barn,
     props.intl
   );
+  const intl = useIntl();
+  const navn = props.barn.navn.verdi
+    ? storeForbokstaver(barnetsNavn)
+    : barnetsNavn;
+  const omBarnetsTilsynsbehovLabel = hentBeskjedMedNavn(
+    navn,
+    intl.formatMessage({ id: 'barnetilsyn.omBarnetsTilsynsbehov' })
+  );
+
   return (
-    <section className="om-barnets-tilsynsbehov">
-      <Element className="blokk-xs">
-        {`Om ${
-          props.barn.navn.verdi ? storeForbokstaver(barnetsNavn) : barnetsNavn
-        } tilsynsbehov`}
-      </Element>
-      <Normaltekst>Vi trenger opplysninger om:</Normaltekst>
-      <ul>
-        <li>hvor mye og hvordan barnet ditt trenger tilsyn</li>
-        <li>
-          hvordan det påvirker muligheten din til å være i yrkesrettet aktivitet
-        </li>
-      </ul>
+    <section className="om-barnets-tilsynsbehov" aria-live="polite">
+      <Element className="blokk-xs">{omBarnetsTilsynsbehovLabel}</Element>
+      <Normaltekst>
+        {intl.formatMessage({
+          id: 'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse',
+        })}
+      </Normaltekst>
     </section>
   );
 };
