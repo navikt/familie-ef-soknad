@@ -110,7 +110,7 @@ const OmSamboerenDin: FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Element>{hentTekst(tittel, intl)}</Element>
+        <Element tag="h3">{hentTekst(tittel, intl)}</Element>
       </FeltGruppe>
 
       <KomponentGruppe>

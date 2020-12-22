@@ -72,7 +72,7 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst tekst={'arbeidsforhold.tittel'} />
         </Undertittel>
       </KomponentGruppe>

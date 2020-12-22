@@ -90,7 +90,7 @@ const Utenlandsopphold: FC<Props> = ({
 
   return (
     <div className="utenlandsopphold utenlandsopphold__container">
-      <Undertittel className={'utenlandsopphold__tittel'}>
+      <Undertittel className={'utenlandsopphold__tittel'} tag="h3">
         {periodeTittel}
       </Undertittel>
       <SlettKnapp
