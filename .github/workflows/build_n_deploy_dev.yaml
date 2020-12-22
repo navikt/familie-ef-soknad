@@ -1,9 +1,8 @@
 name: Build, push, and deploy app to dev
 
 on:
-  push:
-    branches-ignore:
-      - 'master'
+  pull_request:
+  workflow_dispatch:
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
