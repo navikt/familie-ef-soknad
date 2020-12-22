@@ -90,7 +90,9 @@ const Utdanning: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'}>{utdanningTittel}</Undertittel>
+        <Undertittel className={'tittel'} tag="h4">
+          {utdanningTittel}
+        </Undertittel>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: tidligereUtdanninger?.length === 1,

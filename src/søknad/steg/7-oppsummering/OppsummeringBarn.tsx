@@ -28,7 +28,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
     <>
       {navn && (
         <div className={'spørsmål-og-svar'}>
-          <Element>
+          <Element tag="h3">
             <LocaleTekst tekst="person.navn" />
           </Element>
           <Normaltekst>{navn.verdi}</Normaltekst>

@@ -36,7 +36,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
-      tittel={<Undertittel>{tittel}</Undertittel>}
+      tittel={<Undertittel tag="h3">{tittel}</Undertittel>}
     >
       <StyledOppsummeringMedUndertitler>
         {aktivitet.erIArbeid &&

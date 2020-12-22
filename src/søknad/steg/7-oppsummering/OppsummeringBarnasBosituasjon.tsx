@@ -51,7 +51,9 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   return (
     <Ekspanderbartpanel
       tittel={
-        <Undertittel>{hentTekst('barnasbosted.sidetittel', intl)}</Undertittel>
+        <Undertittel tag="h3">
+          {hentTekst('barnasbosted.sidetittel', intl)}
+        </Undertittel>
       }
     >
       <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>

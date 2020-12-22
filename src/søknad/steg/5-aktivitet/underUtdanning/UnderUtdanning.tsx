@@ -84,7 +84,7 @@ const UnderUtdanning: React.FC<Props> = ({
         <KomponentGruppe>
           {stønadstype === Stønadstype.overgangsstønad && (
             <>
-              <Undertittel className={'sentrert'}>
+              <Undertittel className={'sentrert'} tag="h3">
                 <LocaleTekst tekst={'utdanning.tittel'} />
               </Undertittel>
               <Hjelpetekst
