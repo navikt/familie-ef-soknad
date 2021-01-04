@@ -32,7 +32,6 @@ const StyledJaNeiSpørsmål = styled.div`
 `;
 
 interface Props {
-  id?: string;
   spørsmål: ISpørsmål;
   onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;

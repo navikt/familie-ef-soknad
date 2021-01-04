@@ -12,6 +12,7 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
+import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -40,6 +41,7 @@ const Datovelger: React.FC<Props> = ({
 }) => {
   const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
+  const datolabelid = hentUid();
 
   const settLocaleForDatePicker = () => {
     locale === 'nn'
@@ -65,7 +67,7 @@ const Datovelger: React.FC<Props> = ({
   return (
     <div className={fetSkrift ? 'datovelger-fetskrift' : 'datovelger'}>
       <FeltGruppe>
-        <label htmlFor={tekstid}>
+        <label htmlFor={datolabelid}>
           <Normaltekst>
             <LocaleTekst tekst={tekstid} />
           </Normaltekst>
@@ -77,7 +79,7 @@ const Datovelger: React.FC<Props> = ({
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
-                id={tekstid}
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
