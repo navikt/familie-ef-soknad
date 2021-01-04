@@ -94,7 +94,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
-                id={tekstid}
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
@@ -109,7 +109,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
-                id={tekstid}
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
