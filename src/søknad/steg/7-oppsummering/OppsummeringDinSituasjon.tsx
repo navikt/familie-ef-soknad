@@ -35,7 +35,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
 
   return (
     <Ekspanderbartpanel
-      tittel={<Undertittel>Mer om din situasjon</Undertittel>}
+      tittel={<Undertittel tag="h3">Mer om din situasjon</Undertittel>}
     >
       <StyledOppsummering>
         <KomponentGruppe>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import { førsteBokstavStor } from '../../../utils/språk';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTekst } from '../../../utils/søknad';
@@ -12,12 +12,12 @@ const BarnetsAndreForelderTittel: FC<{ barn: IBarn }> = ({ barn }) => {
   const intl = useIntl();
   return (
     <FeltGruppe>
-      <Element>
+      <Undertittel tag="h4">
         {førsteBokstavStor(
           hentBarnNavnEllerBarnet(barn, 'barnasbosted.element.barnet', intl)
         )}
         {hentTekst('barnasbosted.element.andreforelder', intl)}
-      </Element>
+      </Undertittel>
     </FeltGruppe>
   );
 };

@@ -79,7 +79,7 @@ const TidligereUtdanning: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Undertittel className={'sentrert'}>
+        <Undertittel className={'sentrert'} tag="h3">
           <LocaleTekst tekst={'utdanning.tittel.tidligere'} />
         </Undertittel>
         <Hjelpetekst

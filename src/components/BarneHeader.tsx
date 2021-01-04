@@ -1,5 +1,5 @@
 import React from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../assets/barn1.svg';
 import ufødtIkon from '../assets/ufodt.svg';
 import styled from 'styled-components/macro';
@@ -76,9 +76,9 @@ const BarneHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="navn">
-        <Element>
+        <Undertittel tag="h3">
           {førsteBokstavStor(hentBarnetsNavnEllerBeskrivelse(barn, intl))}
-        </Element>
+        </Undertittel>
       </div>
     </StyledBarnasBostedHeader>
   );
