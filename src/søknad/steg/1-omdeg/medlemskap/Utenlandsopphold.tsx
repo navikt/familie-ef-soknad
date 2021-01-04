@@ -92,9 +92,8 @@ const Utenlandsopphold: FC<Props> = ({
     <div
       className="utenlandsopphold utenlandsopphold__container"
       aria-live="polite"
-      tag="h3"
     >
-      <Undertittel className={'utenlandsopphold__tittel'}>
+      <Undertittel className={'utenlandsopphold__tittel'} tag="h3">
         {periodeTittel}
       </Undertittel>
       <SlettKnapp
