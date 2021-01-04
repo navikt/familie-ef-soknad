@@ -60,7 +60,7 @@ const EgetAS: FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst tekst={'egetAS.tittel'} />
         </Undertittel>
       </KomponentGruppe>

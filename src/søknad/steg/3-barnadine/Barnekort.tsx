@@ -78,7 +78,7 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Undertittel>
+          <Undertittel tag="h3">
             {født?.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}

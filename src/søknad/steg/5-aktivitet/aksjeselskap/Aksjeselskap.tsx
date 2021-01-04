@@ -78,7 +78,9 @@ const Aksjeselskap: FC<Props> = ({
   return (
     <div aria-live="polite" role="region">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'}>{aksjeselskapTittel}</Undertittel>
+        <Undertittel className={'tittel'} tag="h4">
+          {aksjeselskapTittel}
+        </Undertittel>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: egetAS?.length === 1,

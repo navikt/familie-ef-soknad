@@ -59,7 +59,7 @@ const OmFirmaeneDine: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst tekst={'firmaer.tittel'} />
         </Undertittel>
       </KomponentGruppe>

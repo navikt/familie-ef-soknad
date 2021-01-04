@@ -40,7 +40,7 @@ const LastOppVedlegg: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <FeltGruppe>
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst tekst={dokumentasjon.tittel} />
         </Undertittel>
       </FeltGruppe>

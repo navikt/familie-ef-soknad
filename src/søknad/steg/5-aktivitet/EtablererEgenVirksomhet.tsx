@@ -43,7 +43,7 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst
             tekst={'arbeidssituasjon.tittel.etablererEgenVirksomhet'}
           />

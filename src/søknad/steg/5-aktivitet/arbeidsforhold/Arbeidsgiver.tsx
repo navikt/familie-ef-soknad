@@ -123,7 +123,9 @@ const Arbeidsgiver: React.FC<Props> = ({
   return (
     <StyledArbeidsgiver aria-live="polite">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'}>{arbeidsgiverTittel}</Undertittel>
+        <Undertittel className={'tittel'} tag="h4">
+          {arbeidsgiverTittel}
+        </Undertittel>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: arbeidsforhold?.length === 1,

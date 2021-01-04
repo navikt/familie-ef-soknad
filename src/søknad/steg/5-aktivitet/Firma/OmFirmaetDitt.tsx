@@ -113,7 +113,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   return (
     <StyledFirma aria-live="polite">
       <FeltGruppe>
-        <Undertittel className={'tittel'}>{firmaTittel}</Undertittel>
+        <Undertittel className={'tittel'} tag="h4">
+          {firmaTittel}
+        </Undertittel>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: firmaer?.length === 1,

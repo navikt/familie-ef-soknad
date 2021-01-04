@@ -57,7 +57,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel
       tittel={
-        <Undertittel>
+        <Undertittel tag="h3">
           <LocaleTekst tekst="barnadine.sidetittel" />
         </Undertittel>
       }
