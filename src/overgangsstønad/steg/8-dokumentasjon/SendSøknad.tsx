@@ -19,6 +19,7 @@ import {
 } from '../../../innsending/api';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 interface Innsending {
   status: string;
@@ -29,6 +30,7 @@ interface Innsending {
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
   const location = useLocation<LocationStateSøknad>();
+  const [locale] = useSpråkContext();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
   const forrigeRoute = hentForrigeRoute(
@@ -50,14 +52,15 @@ const SendSøknadKnapper: FC = () => {
       unikeDokumentasjonsbehov
     );
 
-    const søknadMedFiltrerteBarn: ISøknad = {
+    const søknadKlarForSending: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
       dokumentasjonsbehov: dokumentasjonsbehov,
+      locale: locale,
     };
 
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknadMedFiltrerteBarn)
+    sendInnSøknad(søknadKlarForSending)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
