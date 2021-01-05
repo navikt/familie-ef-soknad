@@ -77,7 +77,7 @@ const Forside: React.FC<any> = ({ intl }) => {
 
   return (
     <div className={'forside'}>
-      <main className={'forside__innhold'}>
+      <div className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
           <div className="veileder">
             <VeilederSnakkeboble
@@ -158,7 +158,7 @@ const Forside: React.FC<any> = ({ intl }) => {
             </FeltGruppe>
           ) : null}
         </Panel>
-      </main>
+      </div>
     </div>
   );
 };
