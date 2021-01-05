@@ -33,7 +33,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^4.4.3",
     "amplitude-js": "^7.2.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "babel-plugin-styled-components": "^1.11.1",
     "babel-polyfill": "^6.26.0",
     "be-pretty": "^0.9.4",
