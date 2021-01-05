@@ -95,7 +95,7 @@ const Sivilstatus: React.FC<Props> = ({
   };
 
   return (
-    <SeksjonGruppe>
+    <SeksjonGruppe aria-live="polite">
       {erSøkerGift(sivilstand) && (
         <SøkerErGift
           settJaNeiFelt={settSivilstatusFelt}

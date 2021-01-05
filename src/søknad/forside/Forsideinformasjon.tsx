@@ -131,7 +131,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
       )}
 
       {harBekreftet ? (
-        <FeltGruppe classname={'sentrert'}>
+        <FeltGruppe classname={'sentrert'} aria-live="polite">
           <KnappBase onClick={() => history.push(nesteSide)} type={'hoved'}>
             <LocaleTekst tekst={'knapp.start'} />
           </KnappBase>

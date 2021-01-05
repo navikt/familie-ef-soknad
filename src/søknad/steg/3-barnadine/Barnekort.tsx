@@ -13,7 +13,6 @@ import { IBarn } from '../../../models/steg/barn';
 
 interface Props {
   gjeldendeBarn: IBarn;
-
   velgBarnForDenneSøknaden?: React.ReactNode;
   slettBarn: Function;
   settDokumentasjonsbehovForBarn: (
@@ -120,25 +119,24 @@ const Barnekort: React.FC<Props> = ({
           </div>
           {velgBarnForDenneSøknaden}
           {lagtTil ? (
-            <div className="barnekort__endre-barnekort">
+            <button
+              className="barnekort__endre-barnekort lenke"
+              onClick={() => settÅpenEndreModal(true)}
+            >
               <Normaltekst>
-                <span
-                  className="lenke"
-                  onClick={() => settÅpenEndreModal(true)}
-                >
-                  {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-                </span>
+                {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
               </Normaltekst>
-            </div>
+            </button>
           ) : null}
           {lagtTil ? (
-            <div className="barnekort__endre-barnekort">
+            <button
+              className="barnekort__endre-barnekort lenke"
+              onClick={() => slettBarn(id)}
+            >
               <Normaltekst>
-                <span className="lenke" onClick={() => slettBarn(id)}>
-                  {intl.formatMessage({ id: 'barnekort.fjern' })}
-                </span>
+                {intl.formatMessage({ id: 'barnekort.fjern' })}
               </Normaltekst>
-            </div>
+            </button>
           ) : null}
         </div>
         <Modal

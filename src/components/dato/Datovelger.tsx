@@ -1,13 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { addDays, addYears, subDays, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
-import ReactDatePicker, {
-  registerLocale,
-  setDefaultLocale,
-} from 'react-datepicker';
+import ReactDatePicker from 'react-datepicker';
+import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
 import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker from 'react-datepicker';
 import en from 'date-fns/locale/en-US';
 import nb from 'date-fns/locale/nb';
 import nn from 'date-fns/locale/nn';
@@ -15,6 +12,7 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
+import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -43,6 +41,7 @@ const Datovelger: React.FC<Props> = ({
 }) => {
   const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
+  const datolabelid = hentUid();
 
   const settLocaleForDatePicker = () => {
     locale === 'nn'
@@ -55,6 +54,7 @@ const Datovelger: React.FC<Props> = ({
   function handleFocus() {
     inputRef?.current?.setOpen(true);
   }
+
   useEffect(() => {
     setDefaultLocale('nb');
     // eslint-disable-next-line
@@ -67,9 +67,11 @@ const Datovelger: React.FC<Props> = ({
   return (
     <div className={fetSkrift ? 'datovelger-fetskrift' : 'datovelger'}>
       <FeltGruppe>
-        <Normaltekst>
-          <LocaleTekst tekst={tekstid} />
-        </Normaltekst>
+        <label htmlFor={datolabelid}>
+          <Normaltekst>
+            <LocaleTekst tekst={tekstid} />
+          </Normaltekst>
+        </label>
         <div
           className={'datovelger__wrapper'}
           // onClick={(e) => e.preventDefault()}
@@ -77,6 +79,7 @@ const Datovelger: React.FC<Props> = ({
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
               <DatePicker
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
@@ -91,6 +94,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
               <DatePicker
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}
@@ -105,6 +109,7 @@ const Datovelger: React.FC<Props> = ({
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
               <DatePicker
+                id={datolabelid}
                 disabled={disabled}
                 className={'datovelger__input'}
                 onChange={(e) => settDato(e)}

@@ -76,7 +76,7 @@ const Aksjeselskap: FC<Props> = ({
       });
   };
   return (
-    <>
+    <div aria-live="polite" role="region">
       <TittelOgSlettKnapp>
         <Undertittel className={'tittel'} tag="h4">
           {aksjeselskapTittel}
@@ -122,7 +122,7 @@ const Aksjeselskap: FC<Props> = ({
           />
         </FeltGruppe>
       )}
-    </>
+    </div>
   );
 };
 

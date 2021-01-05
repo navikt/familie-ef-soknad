@@ -121,7 +121,7 @@ const Arbeidsgiver: React.FC<Props> = ({
   );
 
   return (
-    <StyledArbeidsgiver>
+    <StyledArbeidsgiver aria-live="polite">
       <TittelOgSlettKnapp>
         <Undertittel className={'tittel'} tag="h4">
           {arbeidsgiverTittel}

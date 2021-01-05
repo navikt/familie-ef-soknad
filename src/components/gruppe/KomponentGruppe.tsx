@@ -28,7 +28,7 @@ const KomponentGruppe: React.FC<{ className?: string }> = ({
   children,
 }) => {
   return (
-    <StyledKomponentGruppe className={className}>
+    <StyledKomponentGruppe className={className} aria-live="polite">
       {children}
     </StyledKomponentGruppe>
   );

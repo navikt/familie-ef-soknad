@@ -90,7 +90,7 @@ const PeriodeDatovelgere: FC<Props> = ({
           />
         )}
       </div>
-      <div className={'utenlandsopphold__periodegruppe'}>
+      <div className={'utenlandsopphold__periodegruppe'} aria-live="polite">
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.fra)}
           valgtDato={

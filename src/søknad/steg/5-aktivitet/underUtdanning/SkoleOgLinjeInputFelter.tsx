@@ -8,11 +8,13 @@ import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   utdanning: IUnderUtdanning;
   oppdaterUtdanning: (nøkkel: EUtdanning, label: string, verdi: string) => void;
 }
+
 const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
   const intl = useIntl();
 
@@ -31,7 +33,7 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
   const linjeKursGradLabel = hentTekst(linjeKursGrad.label_tekstid, intl);
 
   return (
-    <>
+    <KomponentGruppe aria-live="polite">
       <FeltGruppe>
         <Input
           key={skoleUtdanningssted.id}
@@ -70,7 +72,7 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           />
         </FeltGruppe>
       )}
-    </>
+    </KomponentGruppe>
   );
 };
 

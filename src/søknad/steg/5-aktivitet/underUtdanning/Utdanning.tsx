@@ -101,7 +101,7 @@ const Utdanning: React.FC<Props> = ({
           tekstid={'utdanning.knapp.slett'}
         />
       </TittelOgSlettKnapp>
-      <FeltGruppe>
+      <FeltGruppe aria-live="polite">
         <Input
           key={linjeKursGrad.id}
           label={linjeKursGradLabel}
@@ -118,6 +118,7 @@ const Utdanning: React.FC<Props> = ({
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
             showMonthYearPicker={true}
+            aria-live="polite"
           />
         </KomponentGruppe>
       )}

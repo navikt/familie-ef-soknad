@@ -9,6 +9,9 @@ const StyledLenkeMedIkon = styled.div`
     margin-top: 2rem;
     color: @navBla;
     text-decoration: underline;
+    border: none;
+    text-align: left;
+    background: none;
 
     .typo-normal {
       margin-left: 1rem;
@@ -32,10 +35,10 @@ const LenkeMedIkon: React.FC<Props> = ({ onClick, tekst_id, ikon }) => {
 
   return (
     <StyledLenkeMedIkon>
-      <div className="lenke-knapp" onClick={onClick}>
-        <img alt="Endre" src={ikon} />
+      <button className="lenke-knapp" onClick={onClick}>
+        <img alt="Endre informasjon" src={ikon} />
         <Normaltekst>{intl.formatMessage({ id: tekst_id })}</Normaltekst>
-      </div>
+      </button>
     </StyledLenkeMedIkon>
   );
 };

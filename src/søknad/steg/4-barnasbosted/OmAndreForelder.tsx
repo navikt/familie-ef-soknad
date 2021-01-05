@@ -218,7 +218,7 @@ const OmAndreForelder: React.FC<Props> = ({
       )}
       {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
         <>
-          <FeltGruppe>
+          <FeltGruppe aria-live="polite">
             <Textarea
               value={
                 forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&

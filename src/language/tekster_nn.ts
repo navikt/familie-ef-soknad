@@ -22,6 +22,7 @@ export default {
     '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
     '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] barnet',
 
   // ------ SKJEMA - Arbeidssøker
 
@@ -219,6 +220,8 @@ export default {
     'My relationship with the other parent ended',
   'sivilstatus.svar.samlivsbruddAndre':
     'My relationship with someone else ended',
+  'sivilstatus.tittel.samlivsbruddAndre': 'Om den tidligere samboeren din',
+
   'sivilstatus.svar.aleneFraFødsel':
     'I have been the sole caregiver from birth',
   'sivilstatus.svar.endringISamværsordning':

@@ -19,6 +19,7 @@ export default {
     '<li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li>' +
     '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
     '</ul>',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] tilsynsbehov',
 
   // SKJEMA ARBEIDSSØKER
   'skjema.hei': 'Hei, [0]!',
@@ -208,6 +209,8 @@ export default {
   'sivilstatus.svar.samlivsbruddForeldre':
     'Samlivsbrudd med den andre forelderen',
   'sivilstatus.svar.samlivsbruddAndre': 'Samlivsbrudd med noen andre',
+  'sivilstatus.tittel.samlivsbruddAndre': 'Om den tidligere samboeren din',
+
   'sivilstatus.svar.aleneFraFødsel': 'Jeg er alene med barn fra fødsel',
   'sivilstatus.svar.endringISamværsordning': 'Endring i omsorgen for barn',
   'sivilstatus.svar.dødsfall': 'Jeg er alene med barn på grunn av dødsfall',

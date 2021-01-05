@@ -111,7 +111,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
     !erStrengGyldigOrganisasjonsnummer(firma?.organisasjonsnummer?.verdi);
 
   return (
-    <StyledFirma>
+    <StyledFirma aria-live="polite">
       <FeltGruppe>
         <Undertittel className={'tittel'} tag="h4">
           {firmaTittel}

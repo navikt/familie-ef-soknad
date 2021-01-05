@@ -84,6 +84,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       className={
         erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper '
       }
+      aria-live="polite"
     >
       <KnappBase
         className={'tilbake'}

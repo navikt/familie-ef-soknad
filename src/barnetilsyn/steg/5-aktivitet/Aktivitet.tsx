@@ -158,7 +158,7 @@ const Aktivitet: React.FC = () => {
       mellomlagreStønad={mellomlagreBarnetilsyn}
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
-      <SeksjonGruppe>
+      <SeksjonGruppe aria-live="polite">
         <KomponentGruppe>
           <MultiSvarSpørsmål
             spørsmål={ErDuIArbeidSpm(intl)}
@@ -194,35 +194,36 @@ const Aktivitet: React.FC = () => {
             />
           </KomponentGruppe>
         )}
+
+        {arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid.map(
+          (svarid, index) => {
+            const harValgtMinstEnAktivitet =
+              hvaErDinArbeidssituasjon?.svarid.length !== 0;
+
+            const erValgtFørsteAktivitet =
+              hvaErDinArbeidssituasjon?.svarid[0] === svarid;
+
+            const visSeksjon = harValgtMinstEnAktivitet
+              ? !erValgtFørsteAktivitet
+                ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
+                : true
+              : true;
+
+            return (
+              visSeksjon && (
+                <AktivitetOppfølgingSpørsmål
+                  aria-live="polite"
+                  key={index}
+                  svarid={svarid}
+                  arbeidssituasjon={arbeidssituasjon}
+                  settArbeidssituasjon={settArbeidssituasjon}
+                  settDokumentasjonsbehov={settDokumentasjonsbehov}
+                />
+              )
+            );
+          }
+        )}
       </SeksjonGruppe>
-
-      {arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid.map(
-        (svarid, index) => {
-          const harValgtMinstEnAktivitet =
-            hvaErDinArbeidssituasjon?.svarid.length !== 0;
-
-          const erValgtFørsteAktivitet =
-            hvaErDinArbeidssituasjon?.svarid[0] === svarid;
-
-          const visSeksjon = harValgtMinstEnAktivitet
-            ? !erValgtFørsteAktivitet
-              ? erSpørsmålFørAktivitetBesvart(svarid, arbeidssituasjon)
-              : true
-            : true;
-
-          return (
-            visSeksjon && (
-              <AktivitetOppfølgingSpørsmål
-                key={index}
-                svarid={svarid}
-                arbeidssituasjon={arbeidssituasjon}
-                settArbeidssituasjon={settArbeidssituasjon}
-                settDokumentasjonsbehov={settDokumentasjonsbehov}
-              />
-            )
-          );
-        }
-      )}
     </Side>
   );
 };
