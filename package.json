@@ -32,7 +32,7 @@
     "@types/react-modal": "^3.1.2",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^4.4.3",
-    "amplitude-js": "^7.2.2",
+    "amplitude-js": "^7.3.3",
     "axios": "^0.20.0",
     "babel-plugin-styled-components": "^1.11.1",
     "babel-polyfill": "^6.26.0",
