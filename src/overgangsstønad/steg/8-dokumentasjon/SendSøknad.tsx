@@ -10,6 +10,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentPath } from '../../../utils/routing';
+import { Link } from "react-router-dom";
 import { RoutesOvergangsstonad, ERouteOvergangsstønad } from '../../routing/routesOvergangsstonad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
