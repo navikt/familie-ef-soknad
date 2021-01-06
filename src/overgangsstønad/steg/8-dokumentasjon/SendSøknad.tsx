@@ -9,9 +9,10 @@ import { useHistory, useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
+import { hentPath } from '../../../utils/routing';
+import { RoutesOvergangsstonad, ERouteOvergangsstønad } from '../../routing/routesOvergangsstonad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
@@ -25,6 +26,10 @@ interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
+}
+
+const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
+  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
 }
 
 const SendSøknadKnapper: FC = () => {
@@ -93,6 +98,19 @@ const SendSøknadKnapper: FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+      <KomponentGruppe>
+        <AlertStripe type={'advarsel'} form={'inline'}>
+          <Normaltekst>Du må gå tilbake til steg 1 og <Link to={{
+      pathname: hentPath(
+        RoutesOvergangsstonad,
+        ERouteOvergangsstønad.OmDeg
+      ),
+      state: { kommerFraOppsummering: true },
+      }}>fylle inn</Link> manglende informasjon</Normaltekst>
+          </AlertStripe>
+      </KomponentGruppe>
+      )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -103,14 +121,14 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
 
-          <KnappBase
+          {validerSøkerBosattINorgeSisteTreÅr(søknad) && <KnappBase
             type={'hoved'}
             onClick={() => !innsendingState.venter && sendSøknad(søknad)}
             className={'neste'}
             spinner={innsendingState.venter}
           >
             <LocaleTekst tekst={'knapp.sendSøknad'} />
-          </KnappBase>
+          </KnappBase>}
           <KnappBase
             className={'avbryt'}
             type={'flat'}
