@@ -9,6 +9,7 @@ import { storeForbokstaver } from '../../../utils/tekst';
 import './BarnMedSærligeBehovBegrunnelse.less';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -72,16 +73,16 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
     : barnetsNavn;
   const omBarnetsTilsynsbehovLabel = hentBeskjedMedNavn(
     navn,
-    intl.formatMessage({ id: 'barnetilsyn.omBarnetsTilsynsbehov' })
+    intl.formatMessage({ id: 'barnetilsyn.OmBarnetsTilsynsbehov' })
   );
 
   return (
     <section className="om-barnets-tilsynsbehov" aria-live="polite">
       <Element className="blokk-xs">{omBarnetsTilsynsbehovLabel}</Element>
       <Normaltekst>
-        {intl.formatMessage({
-          id: 'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse',
-        })}
+        <LocaleTekst
+          tekst={'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse'}
+        />
       </Normaltekst>
     </section>
   );
