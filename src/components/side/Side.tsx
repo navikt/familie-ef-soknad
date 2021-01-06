@@ -72,10 +72,10 @@ const Side: React.FC<ISide> = ({
         )}
 
         <Panel className={'side__innhold'}>
-          <main className={'innholdscontainer'}>
+          <div className={'innholdscontainer'}>
             <Systemtittel>{stegtittel}</Systemtittel>
             {children}
-          </main>
+          </div>
         </Panel>
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <TilbakeNesteAvbrytKnapper
