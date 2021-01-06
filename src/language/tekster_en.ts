@@ -242,7 +242,8 @@ export default {
     'We ask about this to work out what information we need from you.',
 
   // --- MEDLEMSKAP
-  'medlemskap.spm.opphold': 'Are you currently living in Norway?',
+  'medlemskap.spm.opphold':
+    'Are you and your child(ren) currently living in Norway?',
   'medlemskap.alert-advarsel.opphold':
     'If you are not living in Norway, you are generally not entitled to benefit for single parents. ' +
     'However, you can receive benefit if you are living overseas because you work for a Norwegian employer. ' +
