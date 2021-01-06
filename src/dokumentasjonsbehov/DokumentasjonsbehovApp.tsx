@@ -96,7 +96,7 @@ const DokumentasjonsbehovApp = () => {
               )}
             />
 
-            <main className={'dokumentasjonsbehov__innhold'}>
+            <div className={'dokumentasjonsbehov__innhold'}>
               <Panel className={'dokumentasjonsbehov__panel'}>
                 <Sidetittel>Dokumentasjon til søknaden</Sidetittel>
                 <div className="seksjon">
@@ -132,7 +132,7 @@ const DokumentasjonsbehovApp = () => {
                   />
                 )}
               </Panel>
-            </main>
+            </div>
           </div>
         </>
       );

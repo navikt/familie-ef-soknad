@@ -60,10 +60,10 @@ const Side: React.FC<ISide> = ({
           steg={stegobjekter}
         />
         <Panel className={'side__innhold'}>
-          <main className={'innholdscontainer'}>
+          <div className={'innholdscontainer'}>
             <Systemtittel>{tittel}</Systemtittel>
             {children}
-          </main>
+          </div>
         </Panel>
         {skalViseKnapper && (
           <div

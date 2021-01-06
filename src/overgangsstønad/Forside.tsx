@@ -56,7 +56,7 @@ const Forside: React.FC = () => {
 
   return (
     <div className={'forside'}>
-      <main className={'forside__innhold'}>
+      <div className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
           <div className="veileder">
             <VeilederSnakkeboble
@@ -100,7 +100,7 @@ const Forside: React.FC = () => {
             />
           )}
         </Panel>
-      </main>
+      </div>
     </div>
   );
 };
