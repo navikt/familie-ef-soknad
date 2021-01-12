@@ -6,6 +6,7 @@ import {
 } from '../../models/steg/omDeg/sivilstatus';
 import { IPeriode } from '../../models/felles/periode';
 import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
+import { harFyltUtSamboerDetaljer } from '../../utils/person';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -53,6 +54,7 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     datoFlyttetFraHverandre,
     datoEndretSamvær,
     årsakEnslig,
+    tidligereSamboerDetaljer,
   } = sivilstatus;
 
   const valgtBegrunnelse = årsakEnslig?.svarid;
@@ -61,7 +63,11 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     case EBegrunnelse.samlivsbruddForeldre:
       return datoForSamlivsbrudd?.verdi !== undefined;
     case EBegrunnelse.samlivsbruddAndre:
-      return datoFlyttetFraHverandre?.verdi !== undefined;
+      return (
+        tidligereSamboerDetaljer &&
+        harFyltUtSamboerDetaljer(tidligereSamboerDetaljer, true) &&
+        datoFlyttetFraHverandre?.verdi !== undefined
+      );
     case EBegrunnelse.endringISamværsordning:
       return datoEndretSamvær?.verdi !== undefined;
     case EBegrunnelse.aleneFraFødsel:
