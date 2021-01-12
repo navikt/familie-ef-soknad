@@ -4,14 +4,15 @@ export const harFyltUtSamboerDetaljer = (
   samboerDetaljer: IPersonDetaljer,
   valgfriIdentEllerFødselsdato: boolean
 ): boolean => {
-  const harFyltUtFødselsdato =
-    (samboerDetaljer?.ident?.verdi !== '' &&
-      samboerDetaljer?.ident?.verdi !== undefined) ||
-    samboerDetaljer.fødselsdato?.verdi !== undefined;
+  const harFyltUtFødselsdatoEllerIdent = samboerDetaljer.kjennerIkkeIdent
+    ? samboerDetaljer.fødselsdato?.verdi !== undefined
+    : samboerDetaljer?.ident?.verdi !== '' &&
+      samboerDetaljer?.ident?.verdi !== undefined;
 
-  return (
-    samboerDetaljer?.navn?.verdi !== '' &&
-    samboerDetaljer.kjennerIkkeIdent === true &&
-    (valgfriIdentEllerFødselsdato || harFyltUtFødselsdato)
-  );
+  return valgfriIdentEllerFødselsdato
+    ? samboerDetaljer?.navn?.verdi !== '' &&
+        samboerDetaljer?.navn?.verdi !== undefined
+    : harFyltUtFødselsdatoEllerIdent &&
+        samboerDetaljer?.navn?.verdi !== '' &&
+        samboerDetaljer?.navn?.verdi !== undefined;
 };
