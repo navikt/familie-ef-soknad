@@ -9,6 +9,7 @@ import Datovelger, {
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
 import { useIntl } from 'react-intl';
+import { harFyltUtSamboerDetaljer } from '../../../utils/person';
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
   bosituasjon: IBosituasjon;
@@ -39,8 +40,7 @@ const EkteskapsliknendeForhold: FC<Props> = ({
         settBosituasjon={settBosituasjon}
         bosituasjon={bosituasjon}
       />
-      {(samboerDetaljer?.ident?.verdi ||
-        samboerDetaljer?.fødselsdato?.verdi) && (
+      {samboerDetaljer && harFyltUtSamboerDetaljer(samboerDetaljer, false) && (
         <FeltGruppe>
           <Datovelger
             valgtDato={
