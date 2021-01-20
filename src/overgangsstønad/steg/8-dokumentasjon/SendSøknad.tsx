@@ -102,13 +102,13 @@ const SendSøknadKnapper: FC = () => {
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
       <KomponentGruppe>
         <AlertStripe type={'advarsel'} form={'inline'}>
-          <Normaltekst>Du må gå tilbake til steg 1 og <Link to={{
+          <LocaleTekst tekst="dokumentasjon.alert.gåTilbake"/> <Link to={{
       pathname: hentPath(
         RoutesOvergangsstonad,
         ERouteOvergangsstønad.OmDeg
       ),
       state: { kommerFraOppsummering: true },
-      }}>fylle inn</Link> manglende informasjon</Normaltekst>
+      }}><LocaleTekst tekst="dokumentasjon.alert.link.fylleInn"/></Link> <LocaleTekst tekst="dokumentasjon.alert.manglende"/>
           </AlertStripe>
       </KomponentGruppe>
       )}
