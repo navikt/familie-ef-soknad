@@ -1,12 +1,13 @@
 .søknadsdialog > .side {
   display: grid;
   grid-template-columns: repeat(3, minmax(50px, auto));
-  grid-template-rows: repeat(5, min-content);
+  grid-template-rows: repeat(6, min-content);
   grid-template-areas:
     "stegindikator stegindikator stegindikator"
     ". ikon ."
     "tittel tittel tittel"
     "innhold innhold innhold"
+    ". uu-tekst ."
     "knapper knapper knapper";
 
   .stegindikator {
@@ -46,6 +47,10 @@
 
   &__innhold {
     grid-area: innhold;
+  }
+
+  &__uu-tekst {
+    grid-area: uu-tekst;
   }
 
   &__knapper {
