@@ -345,7 +345,7 @@ export default {
   'barnasbosted.land': 'Land',
   'barnasbosted.spm.hvorforikkeoppgi':
     'Hvorfor kan du ikke oppgi den andre forelderen?',
-  'barnasbosted.spm.donorbarn': 'Donorbarn',
+  'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Annet',
   'barnasbosted.avtale':
     'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
@@ -395,14 +395,14 @@ export default {
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
-    'Ja, men ikke mer enn vanlig samværsrett',
-  'barnasbosted.spm.jaMerEnnVanlig': 'Ja, mer enn vanlig samværsrett',
-  'barnasbosted.spm.andreForelderenSamværNei': 'Nei',
+    'Ja, men ikke mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
+  'barnasbosted.spm.jaMerEnnVanlig':
+    'Ja, mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
+  'barnasbosted.spm.andreForelderenSamværNei':
+    'Nei, den andre forelderen har ikke samvær med barnet',
   'barnasbosted.hjelpetekst.samvær.apne': 'Dette er vanlig samværsrett',
   'barnasbosted.hjelpetekst.samvær.innhold':
-    'Vanlig samværsrett vil si samvær én ettermiddag i uken med overnatting, samvær annenhver helg, til sammen tre uker i sommerferien og annenhver høst-, jule-, vinter- og påskeferie.' +
-    '<br /><br /> Hvis dere har en ordning som tilsvarer denne mengden samvær, men som foregår på andre dager, likestilles det med vanlig samværsrett.' +
-    '<br /><br />Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som ikke mer enn vanlig samværsrett.',
+    'Med samvær mener vi all tid som barnet tilbringer sammen med den andre forelderen, også dersom du er til stede. Det gjelder både hvis samværet foregår hos den andre forelderen, hjemme hos deg eller andre steder. Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som samvær.',
 
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Har dere skriftlig samværsavtale for [0]?',

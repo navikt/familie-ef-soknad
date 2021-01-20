@@ -9,13 +9,13 @@ import Datovelger, {
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
 import { useIntl } from 'react-intl';
+import { harFyltUtSamboerDetaljer } from '../../../utils/person';
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
   bosituasjon: IBosituasjon;
 }
 const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
   const intl = useIntl();
-  const { samboerDetaljer } = bosituasjon;
 
   const settDatoFlyttetFraHverandre = (dato: Date | null) => {
     dato !== null &&
@@ -39,22 +39,23 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
         settBosituasjon={settBosituasjon}
         bosituasjon={bosituasjon}
       />
-      {samboerDetaljer?.navn && (
-        <FeltGruppe>
-          <Datovelger
-            aria-live="polite"
-            valgtDato={
-              bosituasjon.datoFlyttetFraHverandre
-                ? bosituasjon.datoFlyttetFraHverandre.verdi
-                : undefined
-            }
-            tekstid={'bosituasjon.datovelger.nårFlyttetDereFraHverandre'}
-            datobegrensning={DatoBegrensning.TidligereDatoer}
-            settDato={settDatoFlyttetFraHverandre}
-            fetSkrift={true}
-          />
-        </FeltGruppe>
-      )}
+      {bosituasjon.samboerDetaljer &&
+        harFyltUtSamboerDetaljer(bosituasjon.samboerDetaljer, true) && (
+          <FeltGruppe>
+            <Datovelger
+              aria-live="polite"
+              valgtDato={
+                bosituasjon.datoFlyttetFraHverandre
+                  ? bosituasjon.datoFlyttetFraHverandre.verdi
+                  : undefined
+              }
+              tekstid={'bosituasjon.datovelger.nårFlyttetDereFraHverandre'}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
+              settDato={settDatoFlyttetFraHverandre}
+              fetSkrift={true}
+            />
+          </FeltGruppe>
+        )}
     </SeksjonGruppe>
   );
 };

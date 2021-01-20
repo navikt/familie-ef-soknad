@@ -27,6 +27,7 @@ import {
   IPersonDetaljer,
 } from '../../../../../models/søknad/person';
 import LocaleTekst from '../../../../../language/LocaleTekst';
+import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -243,7 +244,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             />
           </FeltGruppe>
 
-          {(samboerInfo?.navn?.verdi || samboerInfo?.kjennerIkkeIdent) && (
+          {harFyltUtSamboerDetaljer(samboerInfo, true) && (
             <NårFlyttetDereFraHverandre
               settDato={settDato}
               datoFlyttetFraHverandre={datoFlyttetFraHverandre}
