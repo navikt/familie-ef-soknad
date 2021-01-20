@@ -99,15 +99,15 @@ const OmDeg: FC = () => {
     søknad.søkerBorPåRegistrertAdresse.verdi === true &&
     harSøkerTlfnr(søknad.person);
 
-  const harFylltUtSeparasjonSpørsmålet =
+  const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
       ? harSøktSeparasjon.verdi
         ? datoSøktSeparasjon && datoFlyttetFraHverandre
         : true
       : false;
 
-  const skallViseMedlemskapDialog =
-    harFylltUtSeparasjonSpørsmålet ||
+  const skalViseMedlemskapDialog =
+    harFyltUtSeparasjonSpørsmålet ||
     erSøknadsBegrunnelseBesvart(søknad.sivilstatus);
 
   return (
@@ -134,7 +134,7 @@ const OmDeg: FC = () => {
           settDokumentasjonsbehov={settDokumentasjonsbehov}
           settMedlemskap={settMedlemskap}
         />
-        <Show if={skallViseMedlemskapDialog}>
+        <Show if={skalViseMedlemskapDialog}>
           <Medlemskap
             medlemskap={søknad.medlemskap}
             settMedlemskap={settMedlemskap}
