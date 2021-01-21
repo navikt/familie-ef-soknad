@@ -34,7 +34,7 @@
     "@types/styled-components": "^4.4.3",
     "amplitude-js": "^7.3.3",
     "axios": "^0.21.1",
-    "babel-plugin-styled-components": "^1.11.1",
+    "babel-plugin-styled-components": "^1.12.0",
     "babel-polyfill": "^6.26.0",
     "be-pretty": "^0.9.4",
     "body-parser": "^1.19.0",
