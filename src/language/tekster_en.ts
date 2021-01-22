@@ -907,7 +907,7 @@ export default {
     'The benefit contributes to your expenses related to having your child in day care. Expenses for food, nappies, etc. are not covered. ',
   'barnepass.alert-dokumentasjon.beløp.barnehageOgLiknende':
     '<strong>You must submit an invoice from the child minder. </strong> <br />' +
-    'Vi må ha ny faktura for hvert barnehage-/skoleår. Det er ikke We must have a new invoice for each academic year. It is not sufficient that you have submitted an invoice for previous years.',
+    'We must have a new invoice for each academic year. It is not sufficient that you have submitted an invoice for previous years.',
   'barnepass.alert-dokumentasjon.beløp.privat':
     '<b>You must submit the agreement you have with the child minder. Here is a <a href="/familie/alene-med-barn/soknad/filer/Agreement_on_private_child_minding_arrangements_EN.pdf" download>template for an agreement on private child minding arrangements</a>. The agreement must include:</b> <ul>' +
     '<li>your name, national identity number and address</li>' +
