@@ -368,7 +368,7 @@ export default {
   'barnasbosted.borinorge': 'Does [0]’s other parent live in Norway?',
   'barnasbosted.hvilketLand': 'What country does the other parent live in?',
   'barnasbosted.land': 'Country',
-  'barnasbosted.spm.donorbarn': 'The child is a donor child',
+  'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Other',
   'barnasbosted.avtale':
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
