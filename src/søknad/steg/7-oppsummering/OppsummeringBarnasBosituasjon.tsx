@@ -15,10 +15,12 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 interface Props {
   barn: IBarn[];
   endreInformasjonPath?: string;
+  tittel: string;
 }
 const OppsummeringBarnasBosituasjon: FC<Props> = ({
   barn,
   endreInformasjonPath,
+  tittel
 }) => {
   const history = useHistory();
   const intl = useIntl();
@@ -52,7 +54,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     <Ekspanderbartpanel
       tittel={
         <Undertittel tag="h3">
-          {hentTekst('barnasbosted.sidetittel', intl)}
+          {tittel}
         </Undertittel>
       }
     >

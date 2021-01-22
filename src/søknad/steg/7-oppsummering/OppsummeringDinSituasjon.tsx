@@ -14,12 +14,14 @@ interface Props {
   dinSituasjon: IDinSituasjon;
   endreInformasjonPath?: string;
   barnMedsærligeTilsynsbehov: (ITekstFelt | undefined)[];
+  tittel: string;
 }
 
 const OppsummeringDinSituasjon: React.FC<Props> = ({
   dinSituasjon,
   endreInformasjonPath,
   barnMedsærligeTilsynsbehov,
+  tittel
 }) => {
   const history = useHistory();
 
@@ -35,7 +37,7 @@ const OppsummeringDinSituasjon: React.FC<Props> = ({
 
   return (
     <Ekspanderbartpanel
-      tittel={<Undertittel tag="h3">Mer om din situasjon</Undertittel>}
+      tittel={<Undertittel tag="h3">{tittel}</Undertittel>}
     >
       <StyledOppsummering>
         <KomponentGruppe>

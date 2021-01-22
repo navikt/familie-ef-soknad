@@ -47,6 +47,7 @@ const Oppsummering: React.FC = () => {
 
           <KomponentGruppe>
             <OppsummeringOmDeg
+              tittel={hentTekst('stegtittel.omDeg', intl)}
               søker={søknad.person.søker}
               sivilstatus={søknad.sivilstatus}
               medlemskap={søknad.medlemskap}
@@ -56,6 +57,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringBosituasjonenDin
+              tittel={hentTekst('stegtittel.bosituasjon', intl)}
               bosituasjon={søknad.bosituasjon}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
@@ -63,6 +65,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringBarnaDine
+              tittel={hentTekst('barnadine.sidetittel', intl)}
               barn={søknad.person.barn}
               stønadstype={Stønadstype.overgangsstønad}
               endreInformasjonPath={hentPath(
@@ -71,6 +74,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringBarnasBosituasjon
+            tittel={hentTekst('barnasbosted.sidetittel', intl)}
               barn={søknad.person.barn}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,
@@ -86,6 +90,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringDinSituasjon
+              tittel={hentTekst('stegtittel.dinSituasjon', intl)}
               dinSituasjon={søknad.merOmDinSituasjon}
               barnMedsærligeTilsynsbehov={barnMedsærligeTilsynsbehov}
               endreInformasjonPath={hentPath(
