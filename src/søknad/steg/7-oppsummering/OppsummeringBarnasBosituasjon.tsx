@@ -2,11 +2,9 @@ import React, { FC } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
-import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import BarneHeader from '../../../components/BarneHeader';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
@@ -23,7 +21,6 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   tittel
 }) => {
   const history = useHistory();
-  const intl = useIntl();
 
   const felterAlleForeldrene = barn
     .filter((barn) => barn.forelder)
