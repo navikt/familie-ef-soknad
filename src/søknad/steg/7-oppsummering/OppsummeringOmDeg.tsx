@@ -27,12 +27,14 @@ interface Props {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   endreInformasjonPath?: string;
+  tittel: string;
 }
 const OppsummeringOmDeg: FC<Props> = ({
   søker,
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
+  tittel
 }) => {
   const intl = useIntl();
 
@@ -53,7 +55,7 @@ const OppsummeringOmDeg: FC<Props> = ({
     <Ekspanderbartpanel
       tittel={
         <Undertittel tag="h3">
-          <LocaleTekst tekst="stegtittel.omDeg" />
+          {tittel}
         </Undertittel>
       }
     >

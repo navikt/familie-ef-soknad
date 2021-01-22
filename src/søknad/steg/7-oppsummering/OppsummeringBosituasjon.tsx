@@ -14,16 +14,17 @@ import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
-import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   bosituasjon: IBosituasjon;
   endreInformasjonPath?: string;
+  tittel: string;
 }
 
 const OppsummeringBosituasionenDin: React.FC<Props> = ({
   bosituasjon,
   endreInformasjonPath,
+  tittel
 }) => {
   const history = useHistory();
   const intl = useIntl();
@@ -54,7 +55,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
     <Ekspanderbartpanel
       tittel={
         <Undertittel tag="h3">
-          <LocaleTekst tekst={'stegtittel.bosituasjon'} />
+          {tittel}
         </Undertittel>
       }
     >

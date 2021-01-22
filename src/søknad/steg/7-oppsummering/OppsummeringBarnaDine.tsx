@@ -12,17 +12,19 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
-import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   barn: IBarn[];
   stønadstype: Stønadstype;
   endreInformasjonPath?: string;
+  tittel: string;
 }
+
 const OppsummeringBarnaDine: React.FC<Props> = ({
   barn,
   stønadstype,
   endreInformasjonPath,
+  tittel
 }) => {
   const intl = useIntl();
   const history = useHistory();
@@ -58,7 +60,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     <Ekspanderbartpanel
       tittel={
         <Undertittel tag="h3">
-          <LocaleTekst tekst="barnadine.sidetittel" />
+          {tittel}
         </Undertittel>
       }
     >
