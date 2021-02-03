@@ -61,6 +61,8 @@ export default {
   'svar.ja': 'Ja',
   'svar.nei': 'Nei',
 
+  'knapp.uu-tekst':
+    'Du må svare på alle spørsmålene før du kan gå videre til neste steg',
   'knapp.tilbake': 'Tilbake',
   'knapp.neste': 'Neste',
   'knapp.neste.barn': 'Neste barn',
@@ -919,6 +921,10 @@ export default {
 
   'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
   'dokumentasjon.terminbekreftelse.beskrivelse': '',
+
+  'dokumentasjon.alert.gåTilbake': 'Du må gå tilbake til steg 1 og',
+  'dokumentasjon.alert.link.fylleInn': 'fylle inn',
+  'dokumentasjon.alert.manglende': 'manglende informasjon.',
 
   'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
   'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
