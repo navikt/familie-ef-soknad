@@ -61,6 +61,8 @@ export default {
   'svar.ja': 'Ja',
   'svar.nei': 'Nei',
 
+  'knapp.uu-tekst':
+    'Du må svare på alle spørsmålene før du kan gå videre til neste steg',
   'knapp.tilbake': 'Tilbake',
   'knapp.neste': 'Neste',
   'knapp.neste.barn': 'Neste barn',
