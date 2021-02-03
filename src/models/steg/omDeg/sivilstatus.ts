@@ -48,7 +48,6 @@ export enum EBegrunnelse {
   aleneFraFødsel = 'aleneFraFødsel',
   endringISamværsordning = 'endringISamværsordning',
   dødsfall = 'dødsfall',
-  annet = 'annet',
 }
 
 export enum ESivilstatusSøknadid {
