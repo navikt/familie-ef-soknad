@@ -922,6 +922,10 @@ export default {
   'dokumentasjon.terminbekreftelse.tittel': 'Terminbekreftelse',
   'dokumentasjon.terminbekreftelse.beskrivelse': '',
 
+  'dokumentasjon.alert.gåTilbake': 'Du må gå tilbake til steg 1 og',
+  'dokumentasjon.alert.link.fylleInn': 'fylle inn',
+  'dokumentasjon.alert.manglende': 'manglende informasjon.',
+
   'dokumentasjon.samværsavtale.tittel': 'Samværsavtale ',
   'dokumentasjon.deltBosted.tittel': 'Avtale om delt bosted',
   'dokumentasjon.barnBorHosSøker.tittel':
