@@ -3,7 +3,7 @@ import Stegindikator from 'nav-frontend-stegindikator';
 import Banner from '../../components/Banner';
 import { Panel } from 'nav-frontend-paneler';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
@@ -13,6 +13,7 @@ import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import LocaleTekst from '../../language/LocaleTekst';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -77,27 +78,38 @@ const Side: React.FC<ISide> = ({
             {children}
           </div>
         </Panel>
+
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
-          <TilbakeNesteAvbrytKnapper
-            routesStønad={routesStønad}
-            erSpørsmålBesvart={erSpørsmålBesvart}
-            mellomlagreStønad={mellomlagreStønad}
-          />
+          <>
+            <Normaltekst className={'side__uu-tekst'}>
+              <LocaleTekst tekst={'knapp.uu-tekst'} />
+            </Normaltekst>
+            <TilbakeNesteAvbrytKnapper
+              routesStønad={routesStønad}
+              erSpørsmålBesvart={erSpørsmålBesvart}
+              mellomlagreStønad={mellomlagreStønad}
+            />
+          </>
         ) : skalViseKnapper === ESide.visTilbakeTilOppsummeringKnapp ? (
           erSpørsmålBesvart && (
-            <Hovedknapp
-              className="tilbake-til-oppsummering"
-              onClick={() => {
-                if (mellomlagreStønad) {
-                  mellomlagreStønad(location.pathname);
-                }
-                history.push({
-                  pathname: tilbakeTilOppsummeringPath,
-                });
-              }}
-            >
-              {hentTekst('oppsummering.tilbake', intl)}
-            </Hovedknapp>
+            <>
+              <Normaltekst>
+                <LocaleTekst tekst={'knapp.uu-tekst'} />
+              </Normaltekst>
+              <Hovedknapp
+                className="tilbake-til-oppsummering"
+                onClick={() => {
+                  if (mellomlagreStønad) {
+                    mellomlagreStønad(location.pathname);
+                  }
+                  history.push({
+                    pathname: tilbakeTilOppsummeringPath,
+                  });
+                }}
+              >
+                {hentTekst('oppsummering.tilbake', intl)}
+              </Hovedknapp>
+            </>
           )
         ) : null}
       </div>
