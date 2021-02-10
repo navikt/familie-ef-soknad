@@ -24,7 +24,6 @@ import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { useIntl} from 'react-intl';
 import { IPerson } from '../../../models/søknad/person';
-import { IBarn } from '../../../models/steg/barn';
 import { barnetsNavnEllerBarnet } from "../../../utils/barn";
 
 interface Innsending {
