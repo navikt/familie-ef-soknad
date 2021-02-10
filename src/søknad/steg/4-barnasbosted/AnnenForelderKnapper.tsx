@@ -7,6 +7,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
+const _ = require('lodash/array');
 
 interface Props {
   barn: IBarn;
@@ -34,7 +35,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     detAndreBarnet: IBarn
   ) => {
     settBarnHarSammeForelder(true);
-    const denAndreForelderen = detAndreBarnet.forelder;
+    const denAndreForelderen = _.cloneDeep(detAndreBarnet.forelder);
     settAndreForelderRadioVerdi(detAndreBarnet.id);
 
     settForelder({

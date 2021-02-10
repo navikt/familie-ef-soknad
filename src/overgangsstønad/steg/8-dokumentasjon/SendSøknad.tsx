@@ -22,10 +22,9 @@ import {
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { IBarn } from '../../../models/steg/barn';
 import { useIntl} from 'react-intl';
 import { IPerson } from '../../../models/søknad/person';
-import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { IBarn } from '../../../models/steg/barn';
 import { barnetsNavnEllerBarnet } from "../../../utils/barn";
 
 interface Innsending {
@@ -56,24 +55,23 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const oppdaterBarnLabels = (person: IPerson) => {
-
+  const settOppdaterteBarnLabelsPåPerson = (person: IPerson) => {
     const nyeBarn = person.barn.map((barn: any) => {
       const navnEllerBarn = barnetsNavnEllerBarnet(barn, intl);
 
       const nyttBarn = {...barn};
-      
-      for (const [key, value] of Object.entries(nyttBarn.forelder)) {
+
+      Object.keys(nyttBarn.forelder).forEach(key => {
         if (!nyttBarn.forelder[key]?.label) {
-          continue;
+          return;
         }
   
-        let nyLabel = nyttBarn.forelder[key].label;
+        let labelMedNavnEllerBarnet = nyttBarn.forelder[key].label;
   
-        nyLabel = nyLabel?.replace("[0]", navnEllerBarn);
+        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace("[0]", navnEllerBarn);
   
-        nyttBarn.forelder[key].label = nyLabel;
-      }
+        nyttBarn.forelder[key].label = labelMedNavnEllerBarnet;
+      })
   
       return nyttBarn;
     });
@@ -91,7 +89,7 @@ const SendSøknadKnapper: FC = () => {
 
     const søknadKlarForSending: ISøknad = {
       ...søknad,
-      person: oppdaterBarnLabels(søknad.person),
+      person: settOppdaterteBarnLabelsPåPerson(søknad.person),
       dokumentasjonsbehov: dokumentasjonsbehov,
       locale: locale,
     };
