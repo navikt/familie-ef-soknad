@@ -22,6 +22,11 @@ import {
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { IBarn } from '../../../models/steg/barn';
+import { useIntl} from 'react-intl';
+import { IPerson } from '../../../models/søknad/person';
+import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
+import { barnetsNavnEllerBarnet } from "../../../utils/barn";
 
 interface Innsending {
   status: string;
@@ -39,6 +44,7 @@ const SendSøknadKnapper: FC = () => {
   const [locale] = useSpråkContext();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
+  const intl = useIntl();
   const forrigeRoute = hentForrigeRoute(
     RoutesOvergangsstonad,
     location.pathname
@@ -50,6 +56,31 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
+  const oppdaterBarnLabels = (person: IPerson) => {
+
+    const nyeBarn = person.barn.map((barn: any) => {
+      const navnEllerBarn = barnetsNavnEllerBarnet(barn, intl);
+
+      const nyttBarn = {...barn};
+      
+      for (const [key, value] of Object.entries(nyttBarn.forelder)) {
+        if (!nyttBarn.forelder[key]?.label) {
+          continue;
+        }
+  
+        let nyLabel = nyttBarn.forelder[key].label;
+  
+        nyLabel = nyLabel?.replace("[0]", navnEllerBarn);
+  
+        nyttBarn.forelder[key].label = nyLabel;
+      }
+  
+      return nyttBarn;
+    });
+  
+    return {...person, barn: [...nyeBarn]}
+  }
+
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
@@ -60,7 +91,7 @@ const SendSøknadKnapper: FC = () => {
 
     const søknadKlarForSending: ISøknad = {
       ...søknad,
-      person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      person: oppdaterBarnLabels(søknad.person),
       dokumentasjonsbehov: dokumentasjonsbehov,
       locale: locale,
     };
