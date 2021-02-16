@@ -12,9 +12,9 @@ import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
 import { useHistory } from 'react-router-dom';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
-import Språkvelger from '../../components/språkvelger/Språkvelger';
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
+import Sprakvelger from '../../../node_modules/@navikt/familie-sprakvelger/dist/src/Sprakvelger.js';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -78,7 +78,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
     <>
       {toggles[ToggleName.vis_språkvelger] && (
         <FeltGruppe>
-          <Språkvelger />
+          <Sprakvelger />
         </FeltGruppe>
       )}
       {seksjon &&
