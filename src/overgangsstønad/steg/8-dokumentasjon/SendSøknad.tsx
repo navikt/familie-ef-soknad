@@ -23,8 +23,8 @@ import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { useIntl} from 'react-intl';
-import { IPerson } from '../../../models/søknad/person';
 import { barnetsNavnEllerBarnet } from "../../../utils/barn";
+import { IBarn } from '../../../models/steg/barn';
 
 interface Innsending {
   status: string;
@@ -54,11 +54,11 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const settOppdaterteBarnLabelsPåPerson = (person: IPerson) => {
-    const oppdaterteBarn = person.barn.map((barn: any) => {
-      const navnEllerBarn = barnetsNavnEllerBarnet(barn, intl);
+  const oppdaterBarnLabels = (barn: IBarn[]) => {
+    const oppdaterteBarn = barn.map((barnet: any) => {
+      const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
 
-      const oppdatertBarn = {...barn};
+      const oppdatertBarn = {...barnet};
 
       Object.keys(oppdatertBarn.forelder).forEach(key => {
         if (!oppdatertBarn.forelder[key]?.label) {
@@ -75,20 +75,21 @@ const SendSøknadKnapper: FC = () => {
       return oppdatertBarn;
     });
   
-    return {...person, barn: [...oppdaterteBarn]}
+    return oppdaterteBarn;
   }
 
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const barnMedOppdaterteLabels = oppdaterBarnLabels(barnMedEntenIdentEllerFødselsdato);
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
 
     const søknadKlarForSending: ISøknad = {
       ...søknad,
-      person: settOppdaterteBarnLabelsPåPerson(søknad.person),
+      person: { ...søknad.person, barn: barnMedOppdaterteLabels },
       dokumentasjonsbehov: dokumentasjonsbehov,
       locale: locale,
     };

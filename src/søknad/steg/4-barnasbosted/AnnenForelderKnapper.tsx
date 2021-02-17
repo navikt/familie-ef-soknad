@@ -35,7 +35,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     detAndreBarnet: IBarn
   ) => {
     settBarnHarSammeForelder(true);
-    const denAndreForelderen = _.cloneDeep(detAndreBarnet.forelder);
+    const denAndreForelderen = cloneDeep(detAndreBarnet.forelder);
     settAndreForelderRadioVerdi(detAndreBarnet.id);
 
     settForelder({
