@@ -7,7 +7,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
-const _ = require('lodash/array');
+import { cloneDeep } from 'lodash';
 
 interface Props {
   barn: IBarn;
