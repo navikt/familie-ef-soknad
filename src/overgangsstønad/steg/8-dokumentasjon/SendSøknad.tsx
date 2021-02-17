@@ -55,27 +55,27 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const settOppdaterteBarnLabelsPåPerson = (person: IPerson) => {
-    const nyeBarn = person.barn.map((barn: any) => {
+    const oppdaterteBarn = person.barn.map((barn: any) => {
       const navnEllerBarn = barnetsNavnEllerBarnet(barn, intl);
 
-      const nyttBarn = {...barn};
+      const oppdatertBarn = {...barn};
 
-      Object.keys(nyttBarn.forelder).forEach(key => {
-        if (!nyttBarn.forelder[key]?.label) {
+      Object.keys(oppdatertBarn.forelder).forEach(key => {
+        if (!oppdatertBarn.forelder[key]?.label) {
           return;
         }
   
-        let labelMedNavnEllerBarnet = nyttBarn.forelder[key].label;
+        let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
   
         labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace("[0]", navnEllerBarn);
   
-        nyttBarn.forelder[key].label = labelMedNavnEllerBarnet;
+        oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
       })
   
-      return nyttBarn;
+      return oppdatertBarn;
     });
   
-    return {...person, barn: [...nyeBarn]}
+    return {...person, barn: [...oppdaterteBarn]}
   }
 
   const sendSøknad = (søknad: ISøknad) => {
