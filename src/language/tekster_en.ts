@@ -765,12 +765,12 @@ export default {
 
   // SøktBarnepassOgVenterPåSvar
   'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
-    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. ' +
-    'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
-    '   Dokumentasjonen må vise:' +
+    'You must provide documentation confirming that you do not have child minding.' +
+    'This means denial of a place in a kindergarten or child care at school outside school hours (SFO), or confirmation that the child is on a waiting list.<br/>' +
+    'The documentation must indicate:' +
     '<ul>' +
-    '<li>datoen du søkte</li>' +
-    '<li>datoen du ønsket plass fra</li>' +
+    '<li>the date you applied</li>' +
+    '<li>the date you wanted a place from</li>' +
     '</ul>',
 
   // barnHarSærligeBehov
@@ -819,9 +819,6 @@ export default {
   'dinSituasjon.datovelger-alert.redusertStilling':
     'If you have reduced your working hours for no reasonable reason, you will not be entitled to benefit until six months after you handed in your notice.',
 
-  'harBarnMedSærligeBehov.alert-dok.beskrivelse':
-    'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
-    '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
   'dinSituasjon.legend.særligTilsyn':
     'Which of your children needs special supervision?',
   'dinSituasjon.label.særligTilsyn':
