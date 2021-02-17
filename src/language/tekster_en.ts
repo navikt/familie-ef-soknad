@@ -824,13 +824,11 @@ export default {
   'dinSituasjon.label.særligTilsyn':
     'About {barnetsNavn}’s need for special supervision',
 
-  'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
+  'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'When did you resign?',
   'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
-    'Når reduserte du arbeidstiden?',
+    'When did you reduce your working hours?',
   'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
-    'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-  'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
-    'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
+    'If you have resigned from your job for no reasonable reason, you will not be entitled to benefit until six months after you resigned.',
 
   // NÅR SØKER DU FRA
   'søkerFraBestemtMåned.datovelger': 'When are you applying for benefit from?',
