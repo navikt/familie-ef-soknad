@@ -23,8 +23,10 @@ const Environment = (): EnvironmentProps => {
       veiviserUrl: 'https://www-q0.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www-q0.nav.no/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice-q.nav.no/login?',
-      dokumentUrl: 'https://familie-dokument.dev.nav.no/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl: 'https://familie-dokument.dev.nav.no/api/soknad/',
+      dokumentUrl:
+        'https://familie-dokument.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+      mellomlagerUrl:
+        'https://familie-dokument.dev.nav.no/familie/dokument/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
@@ -34,10 +36,8 @@ const Environment = (): EnvironmentProps => {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
       loginService: 'https://loginservice.nav.no/login?',
-      dokumentUrl:
-        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge,
-      mellomlagerUrl:
-        'https://www.nav.no/familie/alene-med-barn/mellomlagring/api/soknad/',
+      dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
+      mellomlagerUrl: `https://www.nav.no/familie/dokument/api/soknad/`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
