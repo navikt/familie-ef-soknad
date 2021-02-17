@@ -840,9 +840,9 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-åpne':
     'About applying from a specific date',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
-    'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. ' +
-    'Du kan ha rett til stønad i inntil 3 måneder før du søker. ' +
-    'Det vil si fra og med [0]. ',
+    'You can receive transitional benefit from the month after you qualify for the benefit.' +
+    'You may be entitled to benefit for up to three months before you applied.' +
+    'In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2':
     'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.' +
     'If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',
