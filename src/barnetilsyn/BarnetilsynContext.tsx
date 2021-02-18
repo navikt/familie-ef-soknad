@@ -59,6 +59,7 @@ const initialState = (intl: IntlShape): ISøknad => {
 const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
     const intl = useIntl();
+    BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<

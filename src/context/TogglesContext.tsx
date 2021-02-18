@@ -4,6 +4,7 @@ import createUseContext from 'constate';
 
 const [TogglesProvider, useToggles] = createUseContext(() => {
   const [toggles, settToggles] = useState<Toggles>({});
+  TogglesProvider.displayName = 'TOGGLES_PROVIDER';
 
   return { toggles, settToggles };
 });
