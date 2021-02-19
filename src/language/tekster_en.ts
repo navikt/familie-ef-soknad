@@ -512,6 +512,7 @@ export default {
     'I am at home with children under the age of 1 year (only shown if the applicant has a child under the age of 1 year)',
   'arbeidssituasjon.svar.erArbeidstaker':
     'I am employed or paid salary as a freelancer',
+  'arbeidssituasjon.svar.erFrilanser': 'Jeg er lønnsmottaker som frilanser',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
     'I am self-employed or a freelancer with my own company',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
