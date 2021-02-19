@@ -473,12 +473,12 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
-  'arbeidssituasjon.svar.erArbeidstaker':
-    'Jeg er arbeidstaker eller lønnsmottaker som frilanser',
+  'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
+  'arbeidssituasjon.svar.erFrilanser': 'Jeg er lønnsmottaker som frilanser',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
-    'Jeg er selvstendig næringsdrivende eller frilanser med eget firma',
+    'Jeg er selvstendig næringsdrivende eller frilanser med enkeltpersonforetak',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
-    'Jeg er ansatt i eget aksjeselskap (AS)',
+    'Jeg er selvstendig næringsdrivende og ansatt i mitt eget aksjeselskap (AS)',
   'arbeidssituasjon.svar.etablererEgenVirksomhet':
     'Jeg etablerer egen virksomhet',
   'arbeidssituasjon.svar.erArbeidssøker': 'Jeg er arbeidssøker',
