@@ -36,6 +36,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
       return <HjemmeMedBarnUnderEttÅr />;
 
     case EAktivitet.erArbeidstaker:
+    case EAktivitet.erFrilanser:
       return (
         <OmArbeidsforholdetDitt
           arbeidssituasjon={arbeidssituasjon}

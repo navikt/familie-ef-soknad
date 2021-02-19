@@ -101,6 +101,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       return true;
 
     case EAktivitet.erArbeidstaker:
+    case EAktivitet.erFrilanser:
       return (
         arbeidsforhold !== undefined &&
         erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold)
