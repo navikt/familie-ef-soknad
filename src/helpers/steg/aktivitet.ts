@@ -34,6 +34,7 @@ export const fjernAktivitet = (
 
   if (
     !erSvarid(EAktivitet.erArbeidstaker) &&
+    !erSvarid(EAktivitet.erFrilanser) &&
     endretArbeidssituasjon.arbeidsforhold
   )
     delete endretArbeidssituasjon.arbeidsforhold;
