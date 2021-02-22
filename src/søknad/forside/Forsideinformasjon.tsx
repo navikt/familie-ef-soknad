@@ -83,7 +83,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
           <Språkvelger />
         </FeltGruppe>
       )}
-      {locale == "en" && <AlertStripeAdvarsel>We are in the process of translating this application. The few missing translations will appear in Norwegian until we've translated them.</AlertStripeAdvarsel>}
+      {locale === "en" && <AlertStripeAdvarsel>We are in the process of translating this application. The few missing translations will appear in Norwegian until we've translated them.</AlertStripeAdvarsel>}
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {
           return blokk._type === 'dokumentasjonskrav' ? (
