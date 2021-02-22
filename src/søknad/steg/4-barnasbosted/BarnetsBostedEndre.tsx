@@ -5,13 +5,11 @@ import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
 import OmAndreForelder from './OmAndreForelder';
 import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/steg/barn';
-import { EForelder, IForelder } from '../../../models/steg/forelder';
+import { IForelder } from '../../../models/steg/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import {
-  erJaNeiSvar,
   harValgtSvar,
-  hentBooleanFraValgtSvar,
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
@@ -139,30 +137,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
     harValgtSvar(forelder?.navn?.verdi);
 
-  const settBorINorgeFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    const nyForelder = {
-      ...forelder,
-      [spørsmål.søknadid]: {
-        spørsmålid: spørsmål.søknadid,
-        svarid: svar.id,
-        label: hentTekst(spørsmål.tekstid, intl),
-        verdi: erJaNeiSvar(svar)
-          ? hentBooleanFraValgtSvar(svar)
-          : svar.svar_tekst,
-      },
-    };
-
-    if (
-      spørsmål.søknadid === EForelder.borINorge &&
-      nyForelder.land &&
-      svar.id === ESvar.JA
-    ) {
-      delete nyForelder.land;
-    }
-    settForelder(nyForelder);
-    settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
-  };
-
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
@@ -204,6 +178,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   forelder={forelder}
                   kjennerIkkeIdent={kjennerIkkeIdent}
                   settKjennerIkkeIdent={settKjennerIkkeIdent}
+                  settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               )}
             </SeksjonGruppe>
@@ -214,7 +189,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               barn={barn}
               forelder={forelder}
               settForelder={settForelder}
-              settFelt={settBorINorgeFelt}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             />
           )}
 
