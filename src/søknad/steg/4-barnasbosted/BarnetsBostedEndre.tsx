@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarneHeader from '../../../components/BarneHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
@@ -8,9 +8,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
-import {
-  harValgtSvar,
-} from '../../../utils/spørsmålogsvar';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
   erAlleFelterOgSpørsmålBesvart,
@@ -28,6 +26,23 @@ import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { erForelderUtfylt } from '../../../overgangsstønad/steg/5-aktivitet/helper';
+
+const lagOppdatertBarneliste = (
+  barneliste: IBarn[],
+  nåværendeBarn: IBarn,
+  forelder: IForelder
+) => {
+  return barneliste.map((b) => {
+    if (b === nåværendeBarn) {
+      let nyttBarn = nåværendeBarn;
+      nyttBarn.forelder = forelder;
+      return nyttBarn;
+    } else {
+      return b;
+    }
+  });
+};
 
 interface Props {
   barn: IBarn;
@@ -82,9 +97,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
       },
     });
-
     //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (sisteBarnUtfylt === true && !erForelderUtfylt(forelder)) {
+      const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
+      settBarneListe(nyBarneListe);
+      settSisteBarnUtfylt(false);
+    }
+  }, [
+    sisteBarnUtfylt,
+    settSisteBarnUtfylt,
+    forelder,
+    barneListe,
+    barn,
+    settBarneListe,
+  ]);
 
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
@@ -105,23 +134,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barneListe.length - 1 === andreBarnMedForelder.length;
 
   const leggTilForelder = () => {
-    if (erPåSisteBarn && !sisteBarnUtfylt) settSisteBarnUtfylt(true);
-
-    const nyBarneListe = barneListe.map((b) => {
-      if (b === barn) {
-        let nyttBarn = barn;
-        nyttBarn.forelder = forelder;
-        return nyttBarn;
-      } else {
-        return b;
-      }
-    });
+    if (erForelderUtfylt(forelder)) settSisteBarnUtfylt(true);
+    const nyIndex = aktivIndex + 1;
+    const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
 
     settBarneListe(nyBarneListe);
-
-    const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
-
     scrollTilLagtTilBarn();
   };
 

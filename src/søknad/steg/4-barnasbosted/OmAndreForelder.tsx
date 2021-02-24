@@ -21,6 +21,7 @@ interface Props {
   forelder: IForelder;
   kjennerIkkeIdent: boolean;
   settKjennerIkkeIdent: (kjennerIkkeIdent: boolean) => void;
+  settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }
 
 const OmAndreForelder: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const OmAndreForelder: React.FC<Props> = ({
   forelder,
   kjennerIkkeIdent,
   settKjennerIkkeIdent,
+  settSisteBarnUtfylt,
 }) => {
   const intl = useIntl();
   const { fødselsdato, ident } = forelder;
@@ -159,15 +161,18 @@ const OmAndreForelder: React.FC<Props> = ({
         <FeltGruppe>
           <Input
             className="foreldre-navn-input"
-            onChange={(e) =>
+            onChange={(e) => {
               settForelder({
                 ...forelder,
                 navn: {
                   label: hentTekst('person.navn', intl),
                   verdi: e.target.value,
                 },
-              })
-            }
+                borINorge:
+                  e.target.value === '' ? undefined : forelder.borINorge,
+              });
+              e.target.value === '' && settSisteBarnUtfylt(false);
+            }}
             value={forelder.navn ? forelder.navn?.verdi : ''}
             label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}

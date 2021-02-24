@@ -14,6 +14,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { erForelderUtfylt } from '../5-aktivitet/helper';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -62,8 +63,15 @@ const BarnasBosted: React.FC = () => {
   };
 
   const antallBarnMedForeldre = barna.filter((barn) => barn.forelder).length;
+  const erAlleForeldreTilBarnUtfylt: boolean = barna.every(
+    (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
+  );
 
-  if (antallBarnMedForeldre === barna.length && !sisteBarnUtfylt) {
+  if (
+    antallBarnMedForeldre === barna.length &&
+    !sisteBarnUtfylt &&
+    erAlleForeldreTilBarnUtfylt
+  ) {
     settSisteBarnUtfylt(true);
   }
 
@@ -103,6 +111,8 @@ const BarnasBosted: React.FC = () => {
                 settAktivIndex={settAktivIndex}
                 index={index}
                 key={key}
+                sisteBarnUtfylt={sisteBarnUtfylt}
+                settSisteBarnUtfylt={settSisteBarnUtfylt}
               />
             </>
           );

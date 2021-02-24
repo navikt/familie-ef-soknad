@@ -14,12 +14,16 @@ interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   index: number;
+  sisteBarnUtfylt: boolean;
+  settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }
 
 const BarnetsBostedLagtTil: React.FC<Props> = ({
   barn,
   settAktivIndex,
   index,
+  sisteBarnUtfylt,
+  settSisteBarnUtfylt,
 }) => {
   const forelder = barn.forelder;
   const intl = useIntl();
@@ -31,6 +35,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 
   const endreInformasjon = () => {
     settAktivIndex(index);
+    sisteBarnUtfylt === true && settSisteBarnUtfylt(false);
   };
 
   return (
