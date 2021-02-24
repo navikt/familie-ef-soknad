@@ -9,6 +9,8 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import BarneHeader from '../../../components/BarneHeader';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { hentTekst } from '../../../utils/søknad';
+import { useIntl } from 'react-intl';
 
 interface Props {
   barn: IBarn[];
@@ -21,6 +23,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   tittel
 }) => {
   const history = useHistory();
+  const intl = useIntl();
 
   const felterAlleForeldrene = barn
     .filter((barn) => barn.forelder)
@@ -35,7 +38,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       const barnetsNavn =
         barn.født?.verdi && barn.navn.verdi
           ? barn.navn.verdi
-          : 'barnet.storForBokstav';
+          : hentTekst('barnet.litenForBokstav', intl);
 
       const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
 
