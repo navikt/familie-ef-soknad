@@ -22,6 +22,9 @@ import {
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { useIntl} from 'react-intl';
+import { barnetsNavnEllerBarnet } from "../../../utils/barn";
+import { IBarn } from '../../../models/steg/barn';
 
 interface Innsending {
   status: string;
@@ -39,6 +42,7 @@ const SendSøknadKnapper: FC = () => {
   const [locale] = useSpråkContext();
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
+  const intl = useIntl();
   const forrigeRoute = hentForrigeRoute(
     RoutesOvergangsstonad,
     location.pathname
@@ -50,17 +54,42 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
+  const oppdaterBarnLabels = (barn: IBarn[]) => {
+    const oppdaterteBarn = barn.map((barnet: any) => {
+      const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
+
+      const oppdatertBarn = {...barnet};
+
+      Object.keys(oppdatertBarn.forelder).forEach(key => {
+        if (!oppdatertBarn.forelder[key]?.label) {
+          return;
+        }
+  
+        let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
+  
+        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace("[0]", navnEllerBarn);
+  
+        oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
+      })
+  
+      return oppdatertBarn;
+    });
+  
+    return oppdaterteBarn;
+  }
+
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const barnMedOppdaterteLabels = oppdaterBarnLabels(barnMedEntenIdentEllerFødselsdato);
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
 
     const søknadKlarForSending: ISøknad = {
       ...søknad,
-      person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      person: { ...søknad.person, barn: barnMedOppdaterteLabels },
       dokumentasjonsbehov: dokumentasjonsbehov,
       locale: locale,
     };

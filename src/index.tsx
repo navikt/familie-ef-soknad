@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import './utils/polyfills';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
