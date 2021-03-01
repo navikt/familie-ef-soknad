@@ -171,8 +171,6 @@ const OmAndreForelder: React.FC<Props> = ({
                   label: hentTekst('person.navn', intl),
                   verdi: e.target.value,
                 },
-                borINorge:
-                  e.target.value === '' ? undefined : forelder.borINorge,
               });
               e.target.value === '' && settSisteBarnUtfylt(false);
             }}
