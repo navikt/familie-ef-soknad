@@ -107,11 +107,12 @@ export default {
     'Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi anbefaler deg å bruke en annen nettleser, for eksempel Google Chrome, Safari eller Firefox.',
 
   'person.navn': 'Navn',
+  'person.feilmelding.navn': 'Du må fylle ut navn før du kan gå videre',
   'barn.ident': 'Fødselsnummer',
   'barn.checkbox.ident': 'Barnet har ikke fått fødselsnummer ennå',
   'person.fødselsdato': 'Fødselsdato (kun hvis du vet)',
   'person.fnr': 'Fødselsnummer',
-  'person.ident': 'Fødselsnummer (11 siffer) / d-nummer',
+  'person.ident': 'Fødselsnummer / d-nummer (11 siffer)',
   'person.ident.visning': 'Fødselsnummer eller d-nummer',
   'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
   'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',

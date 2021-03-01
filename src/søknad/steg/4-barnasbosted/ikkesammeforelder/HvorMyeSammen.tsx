@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { hvorMyeSammen } from '../ForeldreConfig';
 import { hentTekst } from '../../../../utils/søknad';
-import { Element } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Textarea } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';

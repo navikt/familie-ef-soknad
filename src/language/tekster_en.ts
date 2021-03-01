@@ -115,6 +115,7 @@ export default {
     'The application form is not compatible with Internet Explorer. Please use a different browser scuh as Google Chrome, Microsoft Edge, Safari or Mozilla Firefox.',
 
   'person.navn': 'Name',
+  'person.feilmelding.navn': 'Fill out a name before you can move on',
   'barn.ident': 'National identity number',
   'barn.checkbox.ident':
     'The child has not been given a Norwegian national identity number or D-number yet',

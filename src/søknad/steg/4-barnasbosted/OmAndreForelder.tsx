@@ -1,20 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Input } from 'nav-frontend-skjema';
-import { Checkbox } from 'nav-frontend-skjema';
+import { Checkbox, Input, Textarea } from 'nav-frontend-skjema';
 
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
 import { IForelder } from '../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { Textarea } from 'nav-frontend-skjema';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useIntl } from 'react-intl';
 import { datoTilStreng, strengTilDato } from '../../../utils/dato';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
+import { Feilmelding } from 'nav-frontend-typografi';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -34,6 +33,7 @@ const OmAndreForelder: React.FC<Props> = ({
   const intl = useIntl();
   const { fødselsdato, ident } = forelder;
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
+  const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);
   const jegKanIkkeOppgiLabel = hentTekst(
     'barnasbosted.kanikkeoppgiforelder',
@@ -78,6 +78,7 @@ const OmAndreForelder: React.FC<Props> = ({
       delete endretForelder.fødselsdato;
     }
 
+    settForelder(endretForelder);
     settKjennerIkkeIdent(checked);
   };
 
@@ -100,6 +101,7 @@ const OmAndreForelder: React.FC<Props> = ({
       delete nyForelder.fødselsdato;
       delete nyForelder.ident;
       delete nyForelder.id;
+      settFeilmeldingNavn(false);
     }
 
     if (!e.target.checked) {
@@ -108,6 +110,7 @@ const OmAndreForelder: React.FC<Props> = ({
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
       nyForelder.id = hentUid();
+      settFeilmeldingNavn(true);
     }
 
     settForelder({
@@ -173,10 +176,20 @@ const OmAndreForelder: React.FC<Props> = ({
               });
               e.target.value === '' && settSisteBarnUtfylt(false);
             }}
+            onBlur={(e) =>
+              e.target.value === ''
+                ? settFeilmeldingNavn(true)
+                : settFeilmeldingNavn(false)
+            }
             value={forelder.navn ? forelder.navn?.verdi : ''}
             label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
+          {feilmeldingNavn && (
+            <Feilmelding className={'skjemaelement__feilmelding'}>
+              {intl.formatMessage({ id: 'person.feilmelding.navn' })}
+            </Feilmelding>
+          )}
         </FeltGruppe>
         <FeltGruppe>
           <Checkbox
@@ -195,7 +208,7 @@ const OmAndreForelder: React.FC<Props> = ({
         <>
           <IdentEllerFødselsdatoGruppe
             identLabel={hentTekst('person.ident', intl)}
-            datoLabel={hentTekst('datovelger.fødselsdato', intl)}
+            datoLabel={hentTekst('person.fødselsdato', intl)}
             checkboxLabel={hentTekst('person.checkbox.ident', intl)}
             ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
             fødselsdato={
