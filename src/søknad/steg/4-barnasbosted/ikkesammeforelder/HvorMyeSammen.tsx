@@ -70,18 +70,8 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
           }
         />
       </KomponentGruppe>
-      {forelder.hvorMyeSammen?.verdi ===
-        hentTekst('barnasbosted.spm.møtesUtenom', intl) && (
+      {forelder.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom && (
         <>
-          <div className="margin-bottom-05">
-            <Element>
-              {hentBarnNavnEllerBarnet(
-                barn,
-                'barnasbosted.spm.beskrivSamværUtenBarn',
-                intl
-              )}
-            </Element>
-          </div>
           <FeltGruppe>
             <Textarea
               value={
@@ -91,7 +81,11 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
                   : ''
               }
               onChange={settBeskrivSamværUtenBarn}
-              label=""
+              label={hentBarnNavnEllerBarnet(
+                barn,
+                'barnasbosted.spm.beskrivSamværUtenBarn',
+                intl
+              )}
             />
           </FeltGruppe>
         </>
