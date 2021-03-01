@@ -11,8 +11,7 @@ import { useIntl } from 'react-intl';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
-  erAlleFelterOgSpørsmålBesvart,
-  visBostedOgSamværSeksjon,
+  erForelderUtfylt,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
@@ -26,7 +25,6 @@ import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { erForelderUtfylt } from '../../../overgangsstønad/steg/5-aktivitet/helper';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -42,6 +40,19 @@ const lagOppdatertBarneliste = (
       return b;
     }
   });
+};
+
+const visBostedOgSamværSeksjon = (
+  forelder: IForelder,
+  visesBorINorgeSpørsmål: boolean
+) => {
+  const borForelderINorgeSpm =
+    forelder.borINorge?.svarid === ESvar.JA ||
+    (forelder.land && forelder.land?.verdi !== '');
+
+  return visesBorINorgeSpørsmål
+    ? borForelderINorgeSpm
+    : erGyldigDato(forelder.fødselsdato?.verdi);
 };
 
 interface Props {
@@ -78,12 +89,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
-  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
-
-  const { borAnnenForelderISammeHus, boddSammenFør, flyttetFra } = forelder;
-
+  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
+    forelder.fødselsdato?.verdi ? true : false
+  );
   const intl = useIntl();
 
+  const {
+    borAnnenForelderISammeHus,
+    boddSammenFør,
+    flyttetFra,
+    fødselsdato,
+    ident,
+  } = forelder;
   const jegKanIkkeOppgiLabel = hentTekst(
     'barnasbosted.kanikkeoppgiforelder',
     intl
@@ -153,13 +170,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const nyForelderOgKanOppgiAndreForelder =
     !barnHarSammeForelder &&
     !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    harValgtSvar(forelder?.navn?.verdi);
+    harValgtSvar(forelder?.navn?.verdi) &&
+    (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent);
 
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
     harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
     !forelder.borINorge?.verdi;
+
   return (
     <>
       <div className="barnas-bosted">
@@ -251,7 +270,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
             </>
           )}
-          {erAlleFelterOgSpørsmålBesvart(forelder, barnHarSammeForelder) && (
+          {erForelderUtfylt(forelder) && (
             <Knapp onClick={leggTilForelder}>
               <LocaleTekst
                 tekst={

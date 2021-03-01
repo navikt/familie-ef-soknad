@@ -1,4 +1,5 @@
 import {
+  EBorAnnenForelderISammeHus,
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
   EHvorforIkkeOppgi,
@@ -9,17 +10,91 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erGyldigDato } from '../../utils/dato';
 
-export const visBostedOgSamværSeksjon = (
-  forelder: IForelder,
-  visesBorINorgeSpørsmål: boolean
-) => {
-  const borForelderINorgeSpm =
-    forelder.borINorge?.svarid === ESvar.JA ||
-    (forelder.land && forelder.land?.verdi !== '');
+export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
+  foreldre.every((forelder) => erForelderUtfylt(forelder));
 
-  return visesBorINorgeSpørsmål
-    ? borForelderINorgeSpm
-    : erGyldigDato(forelder.fødselsdato?.verdi);
+export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
+  const { navn, borINorge, land, avtaleOmDeltBosted } = forelder;
+  const forelderHarNavn = navn?.verdi !== '';
+  const utfyltBorINorge =
+    borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
+
+  const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
+  const forelderInfoOgSpørsmålBesvart: boolean | undefined =
+    forelderHarNavn &&
+    utfyltBorINorge &&
+    utfyltAvtaleDeltBosted &&
+    utfyltNødvendigeSamværSpørsmål(forelder) &&
+    utfyltNødvendigBostedSpørsmål(forelder);
+
+  const kanIkkeOppgiAnnenForelderRuteUtfylt = utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
+    forelder
+  );
+
+  return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
+};
+
+export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
+  forelder: IForelder
+) => {
+  const {
+    hvorforIkkeOppgi,
+    ikkeOppgittAnnenForelderBegrunnelse,
+    kanIkkeOppgiAnnenForelderFar,
+  } = forelder;
+
+  const pgaDonorBarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
+  const pgaAnnet =
+    hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
+    harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
+    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
+
+  return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
+};
+
+export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
+  const {
+    avtaleOmDeltBosted,
+    harAnnenForelderSamværMedBarn,
+    harDereSkriftligSamværsavtale,
+    hvordanPraktiseresSamværet,
+  } = forelder;
+  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.svarid === ESvar.NEI;
+
+  if (
+    harIkkeAvtaleOmDeltBosted &&
+    harForelderSamværMedBarn(harAnnenForelderSamværMedBarn?.svarid)
+  )
+    return harValgtSvar(harAnnenForelderSamværMedBarn?.verdi);
+  else if (
+    harIkkeAvtaleOmDeltBosted &&
+    måBeskriveSamværet(
+      harDereSkriftligSamværsavtale?.svarid,
+      harAnnenForelderSamværMedBarn?.svarid
+    )
+  )
+    return harValgtSvar(hvordanPraktiseresSamværet?.verdi);
+  else return true;
+};
+
+export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
+  const utfyltBorISammeHus =
+    forelder?.borINorge?.verdi &&
+    forelder?.borAnnenForelderISammeHus?.svarid ===
+      EBorAnnenForelderISammeHus.ja
+      ? forelder?.borAnnenForelderISammeHusBeskrivelse?.verdi !== ''
+      : true;
+  const utfyltBoddSammenFør =
+    forelder?.boddSammenFør?.svarid === ESvar.JA
+      ? harValgtSvar(forelder?.boddSammenFør?.verdi) &&
+        erGyldigDato(forelder.flyttetFra?.verdi)
+      : harValgtSvar(forelder?.boddSammenFør?.verdi);
+  const utfyltHvorMyeSammen =
+    forelder?.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom
+      ? harValgtSvar(forelder.beskrivSamværUtenBarn?.verdi)
+      : harValgtSvar(forelder?.hvorMyeSammen?.verdi);
+
+  return utfyltBorISammeHus && utfyltBoddSammenFør && utfyltHvorMyeSammen;
 };
 
 export const harForelderSamværMedBarn = (svarid: string | undefined) => {
@@ -97,51 +172,4 @@ export const harSkriftligAvtaleOmDeltBosted = (
   return (
     spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
   );
-};
-
-export const erAlleFelterOgSpørsmålBesvart = (
-  forelder: IForelder,
-  barnHarSammeForelder: boolean | undefined
-): boolean => {
-  const {
-    harAnnenForelderSamværMedBarn,
-    harDereSkriftligSamværsavtale,
-    hvordanPraktiseresSamværet,
-    hvorMyeSammen,
-    beskrivSamværUtenBarn,
-    hvorforIkkeOppgi,
-    ikkeOppgittAnnenForelderBegrunnelse,
-    avtaleOmDeltBosted,
-  } = forelder;
-
-  const erDonorbarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
-  const erAnnetBegrunnelseUtfylt =
-    harValgtSvar(ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
-    ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
-
-  const harIkkeBeskrivendeNokSamværsavtale =
-    harDereSkriftligSamværsavtale?.svarid ===
-      EHarSkriftligSamværsavtale.jaIkkeKonkreteTidspunkter ||
-    harDereSkriftligSamværsavtale?.svarid === EHarSkriftligSamværsavtale.nei;
-
-  if (harValgtSvar(barnHarSammeForelder) && barnHarSammeForelder === true) {
-    return (
-      avtaleOmDeltBosted?.svarid === ESvar.JA ||
-      harAnnenForelderSamværMedBarn?.svarid === EHarSamværMedBarn.nei ||
-      harDereSkriftligSamværsavtale?.svarid ===
-        EHarSkriftligSamværsavtale.jaKonkreteTidspunkter ||
-      (harAnnenForelderSamværMedBarn?.svarid ===
-        EHarSamværMedBarn.jaIkkeMerEnnVanlig &&
-        harIkkeBeskrivendeNokSamværsavtale) ||
-      harValgtSvar(hvordanPraktiseresSamværet?.verdi)
-    );
-  } else {
-    return (
-      (harValgtSvar(hvorMyeSammen?.verdi) &&
-        hvorMyeSammen?.svarid !== EHvorMyeSammen.møtesUtenom) ||
-      harValgtSvar(beskrivSamværUtenBarn?.verdi) ||
-      erDonorbarn ||
-      erAnnetBegrunnelseUtfylt
-    );
-  }
 };
