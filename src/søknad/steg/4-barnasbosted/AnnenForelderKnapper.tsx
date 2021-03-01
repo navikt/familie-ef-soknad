@@ -7,6 +7,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
+import { cloneDeep } from 'lodash';
 
 interface Props {
   barn: IBarn;
@@ -34,7 +35,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     detAndreBarnet: IBarn
   ) => {
     settBarnHarSammeForelder(true);
-    const denAndreForelderen = detAndreBarnet.forelder;
+    const denAndreForelderen = cloneDeep(detAndreBarnet.forelder);
     settAndreForelderRadioVerdi(detAndreBarnet.id);
 
     settForelder({
@@ -66,9 +67,9 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
       ? settForelder({
           skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker,
-          id
+          id,
         })
-      : settForelder({id});
+      : settForelder({ id });
   };
 
   const andreForelder = 'andre-forelder-';

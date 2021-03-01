@@ -511,8 +511,8 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year (only shown if the applicant has a child under the age of 1 year)',
-  'arbeidssituasjon.svar.erArbeidstaker':
-    'I am employed or paid salary as a freelancer',
+  'arbeidssituasjon.svar.erArbeidstaker': 'I am employed',
+  'arbeidssituasjon.svar.erFrilanser': 'I am paid a salary as a freelancer',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
     'I am self-employed or a freelancer with my own company',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
@@ -766,12 +766,12 @@ export default {
 
   // SøktBarnepassOgVenterPåSvar
   'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
-    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. ' +
-    'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
-    '   Dokumentasjonen må vise:' +
+    'You must provide documentation confirming that you do not have child minding.' +
+    'This means denial of a place in a kindergarten or child care at school outside school hours (SFO), or confirmation that the child is on a waiting list.<br/>' +
+    'The documentation must indicate:' +
     '<ul>' +
-    '<li>datoen du søkte</li>' +
-    '<li>datoen du ønsket plass fra</li>' +
+    '<li>the date you applied</li>' +
+    '<li>the date you wanted a place from</li>' +
     '</ul>',
 
   // barnHarSærligeBehov
@@ -820,21 +820,16 @@ export default {
   'dinSituasjon.datovelger-alert.redusertStilling':
     'If you have reduced your working hours for no reasonable reason, you will not be entitled to benefit until six months after you handed in your notice.',
 
-  'harBarnMedSærligeBehov.alert-dok.beskrivelse':
-    'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
-    '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
   'dinSituasjon.legend.særligTilsyn':
     'Which of your children needs special supervision?',
   'dinSituasjon.label.særligTilsyn':
     'About {barnetsNavn}’s need for special supervision',
 
-  'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'Når sa du opp?',
+  'sagtOppEllerRedusertStilling.datovelger.sagtOpp': 'When did you resign?',
   'sagtOppEllerRedusertStilling.datovelger.redusertStilling':
-    'Når reduserte du arbeidstiden?',
+    'When did you reduce your working hours?',
   'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
-    'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-  'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
-    'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
+    'If you have resigned from your job for no reasonable reason, you will not be entitled to benefit until six months after you resigned.',
 
   // NÅR SØKER DU FRA
   'søkerFraBestemtMåned.datovelger': 'When are you applying for benefit from?',
@@ -846,9 +841,9 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-åpne':
     'About applying from a specific date',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
-    'Du kan få overgangsstønad fra og med måneden etter at du har rett til stønaden. ' +
-    'Du kan ha rett til stønad i inntil 3 måneder før du søker. ' +
-    'Det vil si fra og med [0]. ',
+    'You can receive transitional benefit from the month after you qualify for the benefit.' +
+    'You may be entitled to benefit for up to three months before you applied.' +
+    'In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2':
     'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.' +
     'If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',

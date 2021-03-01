@@ -15,6 +15,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
+import { useSpråkContext } from '../../context/SpråkContext';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -38,6 +39,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   nesteSide,
 }) => {
   const history = useHistory();
+  const [locale] = useSpråkContext();
   const { toggles } = useToggles();
 
   const BlockRenderer = (props: any) => {
@@ -80,6 +82,12 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         <FeltGruppe>
           <Språkvelger />
         </FeltGruppe>
+      )}
+      {locale === 'en' && (
+        <AlertStripeAdvarsel>
+          We are in the process of translating this application. The few missing
+          translations will appear in Norwegian until we've translated them.
+        </AlertStripeAdvarsel>
       )}
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {

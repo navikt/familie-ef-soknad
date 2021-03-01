@@ -510,8 +510,8 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year (only shown if the applicant has a child under the age of 1 year)',
-  'arbeidssituasjon.svar.erArbeidstaker':
-    'I am employed or paid salary as a freelancer',
+  'arbeidssituasjon.svar.erArbeidstaker': 'I am employed',
+  'arbeidssituasjon.svar.erFrilanser': 'I am paid a salary as a freelancer',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
     'I am self-employed or a freelancer with my own company',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
@@ -819,9 +819,6 @@ export default {
   'dinSituasjon.datovelger-alert.redusertStilling':
     'If you have reduced your working hours for no reasonable reason, you will not be entitled to benefit until six months after you handed in your notice.',
 
-  'harBarnMedSærligeBehov.alert-dok.beskrivelse':
-    'Dokumentasjonen fra lege må bekrefte: <ul><li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
-    '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li></ul>',
   'dinSituasjon.legend.særligTilsyn':
     'Which of your children needs special supervision?',
   'dinSituasjon.label.særligTilsyn':
@@ -832,8 +829,6 @@ export default {
     'Når reduserte du arbeidstiden?',
   'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp':
     'Har du sagt opp jobben uten rimelig grunn, kan du først ha rett til stønaden 6 måneder etter at du sa opp.',
-  'sagtOppEllerRedusertStilling.datovelger-alert.redusertStilling':
-    'Du må legge ved dokumentasjon på arbeidsforholdet, grunnen til at du reduserte arbeidstiden og datoen du avtalte reduksjon i arbeidstiden',
 
   // NÅR SØKER DU FRA
   'søkerFraBestemtMåned.datovelger': 'When are you applying for benefit from?',
