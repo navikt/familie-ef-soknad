@@ -64,6 +64,7 @@ const initialState = (intl: IntlShape): ISøknad => {
 const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
   () => {
     const intl = useIntl();
+    SkolepengerSøknadProvider.displayName = 'SKOLEPENGER_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 

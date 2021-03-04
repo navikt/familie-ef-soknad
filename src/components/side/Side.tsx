@@ -13,7 +13,6 @@ import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import LocaleTekst from '../../language/LocaleTekst';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -82,7 +81,7 @@ const Side: React.FC<ISide> = ({
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <>
             <Normaltekst className={'side__uu-tekst'}>
-              <LocaleTekst tekst={'knapp.uu-tekst'} />
+              {intl.formatMessage({ id: 'knapp.uu-tekst' })}
             </Normaltekst>
             <TilbakeNesteAvbrytKnapper
               routesStønad={routesStønad}
@@ -94,7 +93,7 @@ const Side: React.FC<ISide> = ({
           erSpørsmålBesvart && (
             <>
               <Normaltekst>
-                <LocaleTekst tekst={'knapp.uu-tekst'} />
+                {intl.formatMessage({ id: 'knapp.uu-tekst' })}
               </Normaltekst>
               <Hovedknapp
                 className="tilbake-til-oppsummering"

@@ -9,6 +9,7 @@ const StyledFeltGruppe = styled.div`
 
     &__label {
       font-size: 18px !important;
+      margin-bottom: 1rem;
     }
   }
 

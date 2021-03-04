@@ -10,8 +10,11 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentPath } from '../../../utils/routing';
-import { Link } from "react-router-dom";
-import { RoutesOvergangsstonad, ERouteOvergangsstønad } from '../../routing/routesOvergangsstonad';
+import { Link } from 'react-router-dom';
+import {
+  RoutesOvergangsstonad,
+  ERouteOvergangsstønad,
+} from '../../routing/routesOvergangsstonad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import {
@@ -22,8 +25,8 @@ import {
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { useIntl} from 'react-intl';
-import { barnetsNavnEllerBarnet } from "../../../utils/barn";
+import { useIntl } from 'react-intl';
+import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 import { IBarn } from '../../../models/steg/barn';
 
 interface Innsending {
@@ -34,7 +37,7 @@ interface Innsending {
 
 const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
   return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
-}
+};
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
@@ -58,31 +61,36 @@ const SendSøknadKnapper: FC = () => {
     const oppdaterteBarn = barn.map((barnet: any) => {
       const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
 
-      const oppdatertBarn = {...barnet};
+      const oppdatertBarn = { ...barnet };
 
-      Object.keys(oppdatertBarn.forelder).forEach(key => {
+      Object.keys(oppdatertBarn.forelder).forEach((key) => {
         if (!oppdatertBarn.forelder[key]?.label) {
           return;
         }
-  
+
         let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
-  
-        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace("[0]", navnEllerBarn);
-  
+
+        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace(
+          '[0]',
+          navnEllerBarn
+        );
+
         oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
-      })
-  
+      });
+
       return oppdatertBarn;
     });
-  
+
     return oppdaterteBarn;
-  }
+  };
 
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
-    const barnMedOppdaterteLabels = oppdaterBarnLabels(barnMedEntenIdentEllerFødselsdato);
+    const barnMedOppdaterteLabels = oppdaterBarnLabels(
+      barnMedEntenIdentEllerFødselsdato
+    );
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
@@ -129,17 +137,23 @@ const SendSøknadKnapper: FC = () => {
         </KomponentGruppe>
       )}
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
-      <KomponentGruppe>
-        <AlertStripe type={'advarsel'} form={'inline'}>
-          <LocaleTekst tekst="dokumentasjon.alert.gåTilbake"/> <Link to={{
-      pathname: hentPath(
-        RoutesOvergangsstonad,
-        ERouteOvergangsstønad.OmDeg
-      ),
-      state: { kommerFraOppsummering: true },
-      }}><LocaleTekst tekst="dokumentasjon.alert.link.fylleInn"/></Link> <LocaleTekst tekst="dokumentasjon.alert.manglende"/>
+        <KomponentGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
+            <Link
+              to={{
+                pathname: hentPath(
+                  RoutesOvergangsstonad,
+                  ERouteOvergangsstønad.OmDeg
+                ),
+                state: { kommerFraOppsummering: true },
+              }}
+            >
+              <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
+            </Link>{' '}
+            <LocaleTekst tekst="dokumentasjon.alert.manglende" />
           </AlertStripe>
-      </KomponentGruppe>
+        </KomponentGruppe>
       )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
@@ -151,14 +165,16 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
 
-          {validerSøkerBosattINorgeSisteTreÅr(søknad) && <KnappBase
-            type={'hoved'}
-            onClick={() => !innsendingState.venter && sendSøknad(søknad)}
-            className={'neste'}
-            spinner={innsendingState.venter}
-          >
-            <LocaleTekst tekst={'knapp.sendSøknad'} />
-          </KnappBase>}
+          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+            <KnappBase
+              type={'hoved'}
+              onClick={() => !innsendingState.venter && sendSøknad(søknad)}
+              className={'neste'}
+              spinner={innsendingState.venter}
+            >
+              <LocaleTekst tekst={'knapp.sendSøknad'} />
+            </KnappBase>
+          )}
           <KnappBase
             className={'avbryt'}
             type={'flat'}

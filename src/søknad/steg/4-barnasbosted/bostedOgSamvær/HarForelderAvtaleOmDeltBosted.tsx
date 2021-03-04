@@ -44,12 +44,12 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
       {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
         <>
           <AlertStripe type={'advarsel'} form={'inline'}>
-            <LocaleTekst
-              tekst={hentSvarAlertFraSpørsmål(
+            {intl.formatMessage({
+              id: hentSvarAlertFraSpørsmål(
                 ESvar.JA,
                 avtaleOmDeltBosted(intl, født)
-              )}
-            />
+              ),
+            })}
           </AlertStripe>
           <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'} />

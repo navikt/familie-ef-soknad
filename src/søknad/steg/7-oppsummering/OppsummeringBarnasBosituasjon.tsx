@@ -20,7 +20,7 @@ interface Props {
 const OppsummeringBarnasBosituasjon: FC<Props> = ({
   barn,
   endreInformasjonPath,
-  tittel
+  tittel,
 }) => {
   const history = useHistory();
   const intl = useIntl();
@@ -51,13 +51,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     });
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Undertittel tag="h3">
-          {tittel}
-        </Undertittel>
-      }
-    >
+    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
       <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>

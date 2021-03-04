@@ -72,6 +72,7 @@ const initialState = (intl: IntlShape): ISøknad => {
 };
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
+  SøknadProvider.displayName = 'OVERGANGSSTØNAD_PROVIDER';
   const intl = useIntl();
   const [locale, setLocale] = useSpråkContext();
   const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));

@@ -9,17 +9,22 @@ import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
+import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 
 interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   index: number;
+  sisteBarnUtfylt: boolean;
+  settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }
 
 const BarnetsBostedLagtTil: React.FC<Props> = ({
   barn,
   settAktivIndex,
   index,
+  sisteBarnUtfylt,
+  settSisteBarnUtfylt,
 }) => {
   const forelder = barn.forelder;
   const intl = useIntl();
@@ -31,6 +36,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 
   const endreInformasjon = () => {
     settAktivIndex(index);
+    sisteBarnUtfylt === true && settSisteBarnUtfylt(false);
   };
 
   return (
@@ -65,7 +71,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </Normaltekst>
           </div>
         )}
-        {forelder.fødselsdato && (
+        {harValgtSvar(forelder.fødselsdato?.verdi) && forelder.fødselsdato && (
           <div className="spørsmål-og-svar">
             <Element>
               {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
@@ -73,6 +79,14 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <Normaltekst>
               {formatDate(strengTilDato(forelder.fødselsdato.verdi))}
             </Normaltekst>
+          </div>
+        )}
+        {forelder.ident && (
+          <div className="spørsmål-og-svar">
+            <Element>
+              {intl.formatMessage({ id: 'person.ident.visning' })}
+            </Element>
+            <Normaltekst>{forelder.ident.verdi}</Normaltekst>
           </div>
         )}
         {forelder.borINorge && (
