@@ -28,9 +28,9 @@ const Aksjeselskap: FC<Props> = ({
   inkludertArbeidsmengde,
 }) => {
   const intl = useIntl();
-  const aksjeselskapFraSøknad = egetAS?.find((aksjeselskap, index) => {
-    if (index === aksjeselskapnummer) return aksjeselskap;
-  });
+  const aksjeselskapFraSøknad = egetAS?.find(
+    (aksjeselskap, index) => index === aksjeselskapnummer && aksjeselskap
+  );
   const [aksjeselskap, settAksjeselskap] = useState<IAksjeselskap>(
     aksjeselskapFraSøknad!
   );
