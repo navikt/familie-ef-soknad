@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import OmSamboerenDin from './OmSamboerenDin';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
@@ -10,6 +10,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
 import { useIntl } from 'react-intl';
 import { harFyltUtSamboerDetaljer } from '../../../utils/person';
+
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
   bosituasjon: IBosituasjon;
@@ -39,6 +40,7 @@ const EkteskapsliknendeForhold: FC<Props> = ({
         erIdentEllerFødselsdatoObligatorisk={true}
         settBosituasjon={settBosituasjon}
         bosituasjon={bosituasjon}
+        samboerDetaljerType={EBosituasjon.samboerDetaljer}
       />
       {samboerDetaljer && harFyltUtSamboerDetaljer(samboerDetaljer, false) && (
         <FeltGruppe>

@@ -15,7 +15,10 @@ import OmTidligereSamboer from './OmTidligereSamboer';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { delerSøkerBoligMedAndreVoksne } from './BosituasjonConfig';
-import { erValgtSvarLiktSomSvar } from '../../../utils/spørsmålogsvar';
+import {
+  erValgtSvarLiktSomSvar,
+  harValgtSvar,
+} from '../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
 
 interface Props {
@@ -34,6 +37,12 @@ const BosituasjonSpørsmål: FC<Props> = ({
   settDokumentasjonsbehov,
 }) => {
   const intl = useIntl();
+
+  const {
+    delerBoligMedAndreVoksne,
+    samboerDetaljer,
+    datoFlyttetFraHverandre,
+  } = bosituasjon;
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne(intl);
 
@@ -57,21 +66,25 @@ const BosituasjonSpørsmål: FC<Props> = ({
   const valgtSvar:
     | ISvar
     | undefined = hovedSpørsmål.svaralternativer.find((svar) =>
-    erValgtSvarLiktSomSvar(
-      bosituasjon.delerBoligMedAndreVoksne.verdi,
-      svar.svar_tekst
-    )
+    erValgtSvarLiktSomSvar(delerBoligMedAndreVoksne.verdi, svar.svar_tekst)
   );
 
   const harSøkerEkteskapsliknendeForhold =
-    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+    delerBoligMedAndreVoksne.svarid ===
     ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
+  const tidligereSamboerFortsattRegistrertPåAdresse =
+    delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse &&
+    harValgtSvar(samboerDetaljer?.navn?.verdi) &&
+    harValgtSvar(datoFlyttetFraHverandre?.verdi);
+
   const planerOmÅFlytteSammenEllerFåSamboer =
-    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+    delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.borAleneMedBarnEllerGravid ||
-    bosituasjon.delerBoligMedAndreVoksne.svarid ===
-      ESøkerDelerBolig.delerBoligMedAndreVoksne;
+    delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.delerBoligMedAndreVoksne ||
+    tidligereSamboerFortsattRegistrertPåAdresse;
 
   return (
     <>
@@ -79,12 +92,12 @@ const BosituasjonSpørsmål: FC<Props> = ({
         <MultiSvarSpørsmål
           key={hovedSpørsmål.søknadid}
           spørsmål={hovedSpørsmål}
-          valgtSvar={bosituasjon.delerBoligMedAndreVoksne.verdi}
+          valgtSvar={delerBoligMedAndreVoksne.verdi}
           settSpørsmålOgSvar={settBosituasjonFelt}
         />
         {valgtSvar && valgtSvar.alert_tekstid && (
           <FeltGruppe>
-            {bosituasjon.delerBoligMedAndreVoksne.svarid ===
+            {delerBoligMedAndreVoksne.svarid ===
             ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <AlertStripeDokumentasjon>
                 <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
@@ -97,6 +110,16 @@ const BosituasjonSpørsmål: FC<Props> = ({
           </FeltGruppe>
         )}
       </SeksjonGruppe>
+
+      {delerBoligMedAndreVoksne.svarid ===
+        ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse && (
+        <SeksjonGruppe>
+          <OmTidligereSamboer
+            bosituasjon={bosituasjon}
+            settBosituasjon={settBosituasjon}
+          />
+        </SeksjonGruppe>
+      )}
 
       {planerOmÅFlytteSammenEllerFåSamboer && (
         <SeksjonGruppe>
@@ -113,16 +136,6 @@ const BosituasjonSpørsmål: FC<Props> = ({
           settBosituasjon={settBosituasjon}
           bosituasjon={bosituasjon}
         />
-      )}
-
-      {bosituasjon.delerBoligMedAndreVoksne.svarid ===
-        ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse && (
-        <SeksjonGruppe>
-          <OmTidligereSamboer
-            bosituasjon={bosituasjon}
-            settBosituasjon={settBosituasjon}
-          />
-        </SeksjonGruppe>
       )}
     </>
   );

@@ -3,7 +3,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 import { useIntl } from 'react-intl';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
 import { datoTilStreng, strengTilDato } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
@@ -19,6 +19,9 @@ interface Props {
   erIdentEllerFødselsdatoObligatorisk: boolean;
   settBosituasjon: (bositasjon: IBosituasjon) => void;
   bosituasjon: IBosituasjon;
+  samboerDetaljerType:
+    | EBosituasjon.samboerDetaljer
+    | EBosituasjon.vordendeSamboerEktefelle;
 }
 
 const OmSamboerenDin: FC<Props> = ({
@@ -26,9 +29,10 @@ const OmSamboerenDin: FC<Props> = ({
   erIdentEllerFødselsdatoObligatorisk,
   settBosituasjon,
   bosituasjon,
+  samboerDetaljerType,
 }) => {
   const intl = useIntl();
-  const { samboerDetaljer } = bosituasjon;
+  const samboerDetaljer = bosituasjon[samboerDetaljerType];
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
   );
@@ -54,7 +58,7 @@ const OmSamboerenDin: FC<Props> = ({
   useEffect(() => {
     settBosituasjon({
       ...bosituasjon,
-      samboerDetaljer: samboerInfo,
+      [samboerDetaljerType]: samboerInfo,
     });
     // eslint-disable-next-line
   }, [samboerInfo]);

@@ -38,6 +38,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
         erIdentEllerFødselsdatoObligatorisk={false}
         settBosituasjon={settBosituasjon}
         bosituasjon={bosituasjon}
+        samboerDetaljerType={EBosituasjon.samboerDetaljer}
       />
       {bosituasjon.samboerDetaljer &&
         harFyltUtSamboerDetaljer(bosituasjon.samboerDetaljer, true) && (
