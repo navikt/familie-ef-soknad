@@ -4,7 +4,6 @@ import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { hvorMyeSammen } from '../ForeldreConfig';
 import { hentTekst } from '../../../../utils/søknad';
-import { Element } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Textarea } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
@@ -70,18 +69,8 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
           }
         />
       </KomponentGruppe>
-      {forelder.hvorMyeSammen?.verdi ===
-        hentTekst('barnasbosted.spm.møtesUtenom', intl) && (
+      {forelder.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom && (
         <>
-          <div className="margin-bottom-05">
-            <Element>
-              {hentBarnNavnEllerBarnet(
-                barn,
-                'barnasbosted.spm.beskrivSamværUtenBarn',
-                intl
-              )}
-            </Element>
-          </div>
           <FeltGruppe>
             <Textarea
               value={
@@ -91,7 +80,11 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
                   : ''
               }
               onChange={settBeskrivSamværUtenBarn}
-              label=""
+              label={hentBarnNavnEllerBarnet(
+                barn,
+                'barnasbosted.spm.beskrivSamværUtenBarn',
+                intl
+              )}
             />
           </FeltGruppe>
         </>

@@ -109,6 +109,8 @@ const BarnasBosted: React.FC = () => {
                   settAktivIndex={settAktivIndex}
                   index={index}
                   key={barn.id}
+                  sisteBarnUtfylt={sisteBarnUtfylt}
+                  settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               </React.Fragment>
             );
