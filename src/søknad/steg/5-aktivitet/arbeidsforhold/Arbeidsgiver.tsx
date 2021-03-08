@@ -47,9 +47,9 @@ const Arbeidsgiver: React.FC<Props> = ({
   inkludertArbeidsmengde,
 }) => {
   const intl = useIntl();
-  const arbeidsgiverFraSøknad = arbeidsforhold?.find((arbeidsgiver, index) => {
-    if (index === arbeidsgivernummer) return arbeidsgiver;
-  });
+  const arbeidsgiverFraSøknad = arbeidsforhold?.find(
+    (arbeidsgiver, index) => index === arbeidsgivernummer && arbeidsgiver
+  );
   const [arbeidsgiver, settArbeidsgiver] = useState<IArbeidsgiver>(
     arbeidsgiverFraSøknad!
   );
@@ -61,7 +61,7 @@ const Arbeidsgiver: React.FC<Props> = ({
         else return arbeidsgiverFraSøknad;
       }
     );
-    settArbeidsforhold(endretArbeidsforhold);
+    endretArbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
     // eslint-disable-next-line
   }, [arbeidsgiver]);
 

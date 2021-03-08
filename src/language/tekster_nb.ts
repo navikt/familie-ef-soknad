@@ -1,4 +1,4 @@
-// tslint:disable:max-line-length
+// eslint-disable-next-line
 export default {
   'skolepenger.sidetittel': 'Søknad om skolepenger',
   'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
