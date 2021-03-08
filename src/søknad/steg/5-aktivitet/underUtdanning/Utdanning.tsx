@@ -29,9 +29,10 @@ const Utdanning: React.FC<Props> = ({
   utdanningsnummer,
 }) => {
   const intl = useIntl();
-  const utdanningFraSøknad = tidligereUtdanninger?.find((utdanning, index) => {
-    if (index === utdanningsnummer) return utdanning;
-  });
+  const utdanningFraSøknad = tidligereUtdanninger?.find(
+    (utdanning, index) => index === utdanningsnummer && utdanning
+  );
+
   const [utdanning, settUtdanning] = useState<IUtdanning>(utdanningFraSøknad!);
 
   useEffect(() => {
@@ -41,7 +42,8 @@ const Utdanning: React.FC<Props> = ({
         else return tidligereUtdanningFraSøknad;
       }
     );
-    settTidligereUtdanninger(endretTidligereUtdanninger);
+    endretTidligereUtdanninger &&
+      settTidligereUtdanninger(endretTidligereUtdanninger);
     // eslint-disable-next-line
   }, [utdanning]);
 
