@@ -40,7 +40,7 @@ const Aksjeselskap: FC<Props> = ({
       if (index === aksjeselskapnummer) return aksjeselskap;
       else return aksjeselskapFraSøknad;
     });
-    settEgetAS(endretAksjeselskap);
+    endretAksjeselskap && settEgetAS(endretAksjeselskap);
     // eslint-disable-next-line
   }, [aksjeselskap]);
 
@@ -60,7 +60,7 @@ const Aksjeselskap: FC<Props> = ({
       const endretAksjeselskap = egetAS?.filter(
         (aksjeselskap, index) => index !== aksjeselskapnummer
       );
-      settEgetAS(endretAksjeselskap);
+      endretAksjeselskap && settEgetAS(endretAksjeselskap);
     }
   };
 

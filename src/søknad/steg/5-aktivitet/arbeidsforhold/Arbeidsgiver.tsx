@@ -61,7 +61,7 @@ const Arbeidsgiver: React.FC<Props> = ({
         else return arbeidsgiverFraSøknad;
       }
     );
-    settArbeidsforhold(endretArbeidsforhold);
+    endretArbeidsforhold && settArbeidsforhold(endretArbeidsforhold);
     // eslint-disable-next-line
   }, [arbeidsgiver]);
 
