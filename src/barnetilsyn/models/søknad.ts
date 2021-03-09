@@ -8,7 +8,6 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { IAktivitet } from '../../models/steg/aktivitet/aktivitet';
 import { IPerson } from '../../models/søknad/person';
-import { LocaleType } from '../../language/typer';
 
 export interface ISøknad {
   innsendingsdato?: Date;

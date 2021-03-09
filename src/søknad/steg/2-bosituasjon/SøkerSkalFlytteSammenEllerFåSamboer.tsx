@@ -6,12 +6,15 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import OmSamboerenDin from './OmSamboerenDin';
-import { ISpørsmål } from '../../../models/felles/spørsmålogsvar';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import {
+  EBosituasjon,
+  ESøkerDelerBolig,
+  IBosituasjon,
+} from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
 import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { ISvar } from '../../../models/felles/spørsmålogsvar';
 import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
@@ -44,8 +47,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     valgtSvar: ISvar
   ) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-
-    settBosituasjon({
+    const nullstilltBosituasjon: IBosituasjon = {
       delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
       skalGifteSegEllerBliSamboer: {
         spørsmålid: spørsmål.søknadid,
@@ -53,7 +55,22 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar,
       },
-    });
+    };
+    svar &&
+    bosituasjon.delerBoligMedAndreVoksne.svarid ===
+      ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
+      ? settBosituasjon({
+          ...bosituasjon,
+          delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
+          skalGifteSegEllerBliSamboer: {
+            spørsmålid: spørsmål.søknadid,
+            svarid: valgtSvar.id,
+            label: hentTekst(spørsmål.tekstid, intl),
+            verdi: svar,
+          },
+        })
+      : settBosituasjon(nullstilltBosituasjon);
+
     settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
@@ -111,6 +128,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
                 erIdentEllerFødselsdatoObligatorisk={true}
                 settBosituasjon={settBosituasjon}
                 bosituasjon={bosituasjon}
+                samboerDetaljerType={EBosituasjon.vordendeSamboerEktefelle}
               />
             </KomponentGruppe>
           )}

@@ -38,6 +38,7 @@ const Bosituasjon: FC = () => {
       };
     });
   };
+
   return (
     <Side
       stønadstype={Stønadstype.overgangsstønad}

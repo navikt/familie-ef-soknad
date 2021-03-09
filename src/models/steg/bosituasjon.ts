@@ -12,6 +12,7 @@ export interface IBosituasjon {
   datoSkalGifteSegEllerBliSamboer?: IDatoFelt;
   datoFlyttetFraHverandre?: IDatoFelt;
   samboerDetaljer?: IPersonDetaljer;
+  vordendeSamboerEktefelle?: IPersonDetaljer;
 }
 
 export enum EBosituasjon {
@@ -21,6 +22,7 @@ export enum EBosituasjon {
   datoFlyttetFraHverandre = 'datoFlyttetFraHverandre',
   datoSkalGifteSegEllerBliSamboer = 'datoSkalGifteSegEllerBliSamboer',
   samboerDetaljer = 'samboerDetaljer',
+  vordendeSamboerEktefelle = 'vordendeSamboerEktefelle',
 }
 
 export enum ESøkerDelerBolig {
