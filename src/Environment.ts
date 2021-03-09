@@ -16,7 +16,7 @@ interface IModellversjon {
 }
 
 const Environment = (): EnvironmentProps => {
-  const modellVersjon = { overgangsstønad: 6, barnetilsyn: 1, skolepenger: 1 };
+  const modellVersjon = { overgangsstønad: 7, barnetilsyn: 2, skolepenger: 2 };
 
   if (window.location.hostname.indexOf('www-q0') > -1) {
     return {
