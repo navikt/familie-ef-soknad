@@ -24,22 +24,19 @@ interface Props {
 const OppsummeringBosituasionenDin: React.FC<Props> = ({
   bosituasjon,
   endreInformasjonPath,
-  tittel
+  tittel,
 }) => {
   const history = useHistory();
   const intl = useIntl();
 
-  const samboerDetaljer = bosituasjon.samboerDetaljer
-    ? VisLabelOgSvar(bosituasjon.samboerDetaljer)
-    : null;
+  const samboerDetaljer =
+    bosituasjon.samboerDetaljer && VisLabelOgSvar(bosituasjon.samboerDetaljer);
+  const vordendeSamboerEktefelle =
+    bosituasjon.vordendeSamboerEktefelle &&
+    VisLabelOgSvar(bosituasjon.vordendeSamboerEktefelle);
 
   const lagSamboerOverskrift = () => {
-    if (bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
-      return hentTekst(
-        'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
-        intl
-      );
-    } else if (
+    if (
       bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
     ) {
@@ -51,14 +48,9 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
       return hentTekst('bosituasjon.tittel.omSamboer', intl);
     }
   };
+
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Undertittel tag="h3">
-          {tittel}
-        </Undertittel>
-      }
-    >
+    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
       <StyledOppsummering>
         <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (
@@ -67,6 +59,19 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
             {samboerDetaljer}
           </KomponentGruppe>
         )}
+
+        {vordendeSamboerEktefelle && (
+          <KomponentGruppe>
+            <Ingress>
+              {hentTekst(
+                'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
+                intl
+              )}
+            </Ingress>
+            {vordendeSamboerEktefelle}
+          </KomponentGruppe>
+        )}
+
         <LenkeMedIkon
           onClick={() =>
             history.push({
