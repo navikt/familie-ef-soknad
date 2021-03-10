@@ -245,7 +245,7 @@ export default {
     'We ask about this to work out what information we need from you.',
 
   // --- MEDLEMSKAP
-  'medlemskap.spm.opphold': 'Are you currently living in Norway?',
+  'medlemskap.spm.opphold': 'Oppheld du deg i Noreg?',
   'medlemskap.alert-advarsel.opphold':
     'If you are not living in Norway, you are generally not entitled to benefit for single parents. ' +
     'However, you can receive benefit if you are living overseas because you work for a Norwegian employer. ' +
@@ -424,10 +424,10 @@ export default {
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
     'Is the other parent going to have contact with [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
-    'Yes, but no more than the standard amount of contact (right of access to a child)',
-  'barnasbosted.spm.jaMerEnnVanlig':
-    'Yes, more than the standard amount of contact (right of access to a child)',
-  'barnasbosted.spm.andreForelderenSamværNei': 'No',
+    'Ja, men ikkje meir enn vanleg samværsrett',
+  'barnasbosted.spm.jaMerEnnVanlig': 'Ja, meir enn vanleg samværsrett',
+  'barnasbosted.spm.andreForelderenSamværNei':
+    'No, the other parent does not have access to the child',
   'barnasbosted.hjelpetekst.samvær.apne':
     'The standard amount of contact (right of access to a child)',
   'barnasbosted.hjelpetekst.samvær.innhold':
@@ -444,11 +444,11 @@ export default {
     '<ul><li>how many days and nights the child spends with the other parent in a two-week period (or longer)</li>' +
     '<li>when the child travels to and from the other parent</li></ul>',
   'barnasbosted.element.samvær': 'How does access take place in practice?',
-  'barnasbosted.normaltekst.opplysninger': 'We need information about',
+  'barnasbosted.normaltekst.opplysninger': 'Vi treng opplysningar om',
   'barnasbosted.normaltekst.hvormangedager':
-    'how many days and nights the child spends with the other parent in a two-week period (or longer)',
+    'kor mange dagar og netter barnet oppheld seg hos den andre forelderen i minst ein periode på to veker',
   'barnasbosted.normaltekst.nårreiserbarnet':
-    'when the child travels to and from the other parent',
+    'når barnet reiser til og frå den andre forelderen',
   'barnasbosted.spm.jaKonkreteTidspunkt':
     'Yes, and it describes when the child will spend time with each parent',
   'barnasbosted.spm.jaIkkeKonkreteTidspunkt':
