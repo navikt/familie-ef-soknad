@@ -205,7 +205,7 @@ export default {
     'You are registered as unmarried in the National Registry. Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
     'You must provide documentation of your marriage',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'The reason we ask about this',
+  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Why are we asking this?',
   'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
     'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
   'sivilstatus.dok.søkerGiftIUtlandet':
@@ -246,7 +246,7 @@ export default {
 
   // --- MEDLEMSKAP
   'medlemskap.spm.opphold':
-    'Are you and your child(ren) currently living in Norway?',
+    'Are you and the child/children currently present in Norway?',
   'medlemskap.alert-advarsel.opphold':
     'If you are not living in Norway, you are generally not entitled to benefit for single parents. ' +
     'However, you can receive benefit if you are living overseas because you work for a Norwegian employer. ' +
@@ -412,8 +412,8 @@ export default {
   'barnasbosted.hjelpetekst.bosted.apne':
     'Read more about agreement on dual domicile',
   'barnasbosted.hjelpetekst.halvåpen':
-    'A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, ' +
-    'such as where the child will go to kindergarten and where in Norway the child will live.',
+    'Dual permanent residence means that the child has permanent residence with both parents.' +
+    '<br/>This is not the same as the child having a permanent residence with one parent and possibly staying overnight with the other in connection with access.',
   'barnasbosted.hjelpetekst.bosted.innhold':
     '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/>' +
     '<br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/>' +
@@ -425,21 +425,19 @@ export default {
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
     'Is the other parent going to have contact with [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
-    'Yes, but no more than the standard amount of contact (right of access to a child)',
+    'Yes, but no more than one afternoon a week with overnight stay and every other weekend or similar',
   'barnasbosted.spm.jaMerEnnVanlig':
-    'Yes, more than the standard amount of contact (right of access to a child)',
-  'barnasbosted.spm.andreForelderenSamværNei': 'No',
+    'Yes, more than one afternoon a week with overnight stay and every other weekend or similar',
+  'barnasbosted.spm.andreForelderenSamværNei':
+    'No, the other parent does not have access to the child',
   'barnasbosted.hjelpetekst.samvær.apne':
     'The standard amount of contact (right of access to a child)',
   'barnasbosted.hjelpetekst.samvær.innhold':
-    'The standard amount of contact, defined as the non-custodial parent’s right of access to their child, is one afternoon a week, staying overnight, every other weekend, a total of three weeks during the summer holidays, and every other autumn half-term school holiday, Christmas holiday, winter half-term school holiday, and Easter holiday.' +
-    '<br /><br /> If you have an arrangement that corresponds to the same amount of access, but that is organised differently, this is treated as standard amount of contact (access).' +
-    '<br /><br />If the other parent only meets the child rarely and/or under supervision, this is also  treated as standard amount of contact (access).',
-
+    'By access, we mean all the time that the child spends with the other parent, even if you are present. This applies both if the access takes place at the other parent’s residence, at your home or elsewhere. If the other parent sees the child rarely and/or under supervision, this is also considered access.',
   'barnasbosted.spm.harDereSkriftligSamværsavtale':
     'Do you have a written child access agreement for [0]?',
   'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale':
-    'Information we need from the child access agreement',
+    'Information we need from the access agreement',
   'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale':
     'We need information about' +
     '<ul><li>how many days and nights the child spends with the other parent in a two-week period (or longer)</li>' +
@@ -447,7 +445,7 @@ export default {
   'barnasbosted.element.samvær': 'How does access take place in practice?',
   'barnasbosted.normaltekst.opplysninger': 'We need information about',
   'barnasbosted.normaltekst.hvormangedager':
-    'how many days and nights the child spends with the other parent in a two-week period (or longer)',
+    'how many days and nights the child stays with the other parent over a 2-week period (or a longer period if the access varies over time)',
   'barnasbosted.normaltekst.nårreiserbarnet':
     'when the child travels to and from the other parent',
   'barnasbosted.spm.jaKonkreteTidspunkt':
