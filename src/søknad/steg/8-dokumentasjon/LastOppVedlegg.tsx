@@ -12,6 +12,7 @@ import {
 } from '../../../models/steg/dokumentasjon';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { IVedlegg } from '../../../models/steg/vedlegg';
+import { EFiltyper } from '../../../helpers/filtyper';
 
 interface Props {
   dokumentasjon: IDokumentasjon;
@@ -65,6 +66,12 @@ const LastOppVedlegg: React.FC<Props> = ({
           oppdaterDokumentasjon={oppdaterDokumentasjon}
           dokumentasjon={dokumentasjon}
           maxFilstørrelse={1024 * 1024 * 10}
+          tillatteFiltyper={[
+            EFiltyper.PNG,
+            EFiltyper.PDF,
+            EFiltyper.JPG,
+            EFiltyper.JPEG,
+          ]}
         />
       )}
     </SeksjonGruppe>
