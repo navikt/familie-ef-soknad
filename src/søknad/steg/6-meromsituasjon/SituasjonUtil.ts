@@ -46,7 +46,7 @@ export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
     );
     totalArbeidsmengde += arbeidsmengdeForArbeidsforhold;
   }
-  return totalArbeidsmengde < 50 || totalArbeidsmengde === 50;
+  return totalArbeidsmengde < 50;
 };
 
 export const harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål = (
