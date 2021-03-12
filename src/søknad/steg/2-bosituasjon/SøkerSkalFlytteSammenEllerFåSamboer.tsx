@@ -13,7 +13,10 @@ import {
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
 import { useIntl } from 'react-intl';
-import { hentBooleanFraValgtSvar } from '../../../utils/spørsmålogsvar';
+import {
+  harValgtSvar,
+  hentBooleanFraValgtSvar,
+} from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { datoTilStreng } from '../../../utils/dato';
 
@@ -56,7 +59,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         verdi: svar,
       },
     };
-    svar &&
+    harValgtSvar(svar) &&
     bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
       ? settBosituasjon({
