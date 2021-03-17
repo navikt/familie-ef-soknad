@@ -214,9 +214,9 @@ export default {
   'sivilstatus.lesmer-innhold.erUformeltGift':
     'We obtain our information from the National Registry. If you got married according to religious or cultural traditions and the marriage is not approved pursuant to Norwegian Marriage Act, this marriage will not be registered in the National Registry. ',
   'sivilstatus.spm.erUformeltSeparertEllerSkilt':
-    'Er du separert eller skilt uten at dette er registrert i folkeregisteret i Norge?',
+    'Are you separated or divorced without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltSeparertEllerSkilt':
-    'Du må legge ved dokumentasjon på separasjon eller skilsmisse',
+    'You must submit documentation of your separation or divorce',
   'sivilstatus.spm.begrunnelse': 'Why are you a sole caregiver?',
 
   'sivilstatus.svar.samlivsbruddForeldre':
@@ -304,7 +304,7 @@ export default {
     'If you can provide documentation of both of the above, this is usually sufficient for our purposes. If you do not have this kind of documentation, you can submit, for example:' +
     '<ul>' +
     '<li>Tenancy contracts for both parties</li>' +
-    '<li> Dokumentasjon på at tidligere felles bolig er overdratt til en av partene. Dette kan være skifte og/eller dokumentasjon på hvem som er låntaker for boligen du bor i.</li>' +
+    '<li> Documentation confirming that you have been in contact with the National Registry because your former cohabiting partner has moved out.</li>' +
     '<li>Documentation that your former shared home has been transferred to one of the parties. For example, a certificate of division of joint property and/or documentation showing who is the holder of the loan for the home you live in.</li>' +
     '<li>Documentation of separate living and household expenses, such as bank statements showing paid rent, or other fixed housing expenses such as electricity and municipal taxes.</li>' +
     '</ul>' +
