@@ -718,7 +718,7 @@ export default {
 
   // SøktBarnepassOgVenterPåSvar
   'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
-    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. \n' +
+    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. <br/>' +
     'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
     '   Dokumentasjonen må vise:' +
     '<ul>' +
