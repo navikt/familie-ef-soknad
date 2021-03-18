@@ -18,8 +18,8 @@ import { IDetaljertUtdanning } from '../../skolepenger/models/detaljertUtdanning
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
-) => {
-  return arbeidsforhold?.every((arbeidsgiver) =>
+): boolean => {
+  return arbeidsforhold.every((arbeidsgiver) =>
     arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig
       ? arbeidsgiver.harSluttDato?.verdi === false ||
         arbeidsgiver.sluttdato?.verdi
@@ -27,17 +27,17 @@ export const erSisteArbeidsgiverFerdigUtfylt = (
   );
 };
 
-export const erSisteFirmaUtfylt = (firmaer: IFirma[]) => {
-  return firmaer?.every((firma) => firma.arbeidsuke?.verdi);
+export const erSisteFirmaUtfylt = (firmaer: IFirma[]): boolean => {
+  return firmaer.every((firma) => firma.arbeidsuke?.verdi);
 };
 
 export const erAksjeselskapFerdigUtfylt = (
   egetAS: IAksjeselskap[],
   inkludertArbeidsmengde: boolean
-) => {
+): boolean => {
   return inkludertArbeidsmengde
-    ? egetAS?.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi)
-    : egetAS?.every((aksjeselskap) => aksjeselskap.navn?.verdi);
+    ? egetAS.every((aksjeselskap) => aksjeselskap.arbeidsmengde?.verdi)
+    : egetAS.every((aksjeselskap) => aksjeselskap.navn?.verdi);
 };
 
 export const erTidligereUtdanningFerdigUtfylt = (
@@ -100,8 +100,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
     case EAktivitet.erHjemmeMedBarnUnderEttÅr:
       return true;
 
-    case EAktivitet.erArbeidstaker:
-    case EAktivitet.erFrilanser:
+    case EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser:
       return (
         arbeidsforhold !== undefined &&
         erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold)

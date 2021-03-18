@@ -48,15 +48,9 @@ export const hvaErDinArbeidssituasjonSpm = (intl: IntlShape): ISpørsmål => ({
   flersvar: true,
   svaralternativer: [
     {
-      id: EAktivitet.erArbeidstaker,
+      id: EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser,
       svar_tekst: intl.formatMessage({
         id: 'arbeidssituasjon.svar.erArbeidstaker',
-      }),
-    },
-    {
-      id: EAktivitet.erFrilanser,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erFrilanser',
       }),
     },
     {

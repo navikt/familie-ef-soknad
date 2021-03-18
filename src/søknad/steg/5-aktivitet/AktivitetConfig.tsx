@@ -38,15 +38,9 @@ export const hvaErDinArbeidssituasjonSpm = (intl: IntlShape): ISpørsmål => ({
       }),
     },
     {
-      id: EAktivitet.erArbeidstaker,
+      id: EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser,
       svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erArbeidstaker',
-      }),
-    },
-    {
-      id: EAktivitet.erFrilanser,
-      svar_tekst: intl.formatMessage({
-        id: 'arbeidssituasjon.svar.erFrilanser',
+        id: 'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser',
       }),
     },
     {

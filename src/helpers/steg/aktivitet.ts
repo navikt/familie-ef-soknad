@@ -33,8 +33,7 @@ export const fjernAktivitet = (
   };
 
   if (
-    !erSvarid(EAktivitet.erArbeidstaker) &&
-    !erSvarid(EAktivitet.erFrilanser) &&
+    !erSvarid(EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser) &&
     endretArbeidssituasjon.arbeidsforhold
   )
     delete endretArbeidssituasjon.arbeidsforhold;
