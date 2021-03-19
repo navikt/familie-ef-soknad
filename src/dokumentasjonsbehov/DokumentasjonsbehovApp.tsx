@@ -10,7 +10,7 @@ import {
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import mockDokumentasjonsbehovResponse from '../mock/mockDokumentasjonsbehovResponse.json';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { hentBannertittel } from '../utils/stønadstype';
 import Banner from '../components/Banner';

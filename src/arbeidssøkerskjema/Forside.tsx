@@ -1,5 +1,4 @@
 import React from 'react';
-import { Panel } from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
@@ -27,6 +26,7 @@ import { ToggleName } from '../models/søknad/toggles';
 import { useToggles } from '../context/TogglesContext';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
+import Panel from 'nav-frontend-paneler';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
