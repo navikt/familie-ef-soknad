@@ -14,7 +14,10 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { erForelderUtfylt } from '../../../helpers/steg/forelder';
+import {
+  antallBarnMedForeldreUtfylt,
+  hentIndexFørsteBarnSomIkkeErUtfylt,
+} from '../../../utils/barn';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -35,7 +38,12 @@ const BarnasBosted: React.FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
-  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(false);
+
+  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
+
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
+    antallBarnMedForeldre === barna.length
+  );
 
   useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
 
@@ -48,12 +56,8 @@ const BarnasBosted: React.FC = () => {
     });
   };
 
-  const hentIndexFørsteBarnSomIkkeErUtfylt: number = barna.findIndex(
-    (barn) => barn.forelder === undefined
-  );
-
   const [aktivIndex, settAktivIndex] = useState<number>(
-    hentIndexFørsteBarnSomIkkeErUtfylt
+    hentIndexFørsteBarnSomIkkeErUtfylt(barna)
   );
 
   const lagtTilBarn = useRef(null);
@@ -61,19 +65,6 @@ const BarnasBosted: React.FC = () => {
   const scrollTilLagtTilBarn = () => {
     setTimeout(() => scrollTilRef(lagtTilBarn), 120);
   };
-
-  const antallBarnMedForeldre = barna.filter((barn) => barn.forelder).length;
-  const erAlleForeldreTilBarnUtfylt: boolean = barna.every(
-    (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
-  );
-
-  if (
-    antallBarnMedForeldre === barna.length &&
-    !sisteBarnUtfylt &&
-    erAlleForeldreTilBarnUtfylt
-  ) {
-    settSisteBarnUtfylt(true);
-  }
 
   return (
     <Side

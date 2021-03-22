@@ -5,6 +5,7 @@ import { IBarn } from '../models/steg/barn';
 import { ESvar } from '../models/felles/spørsmålogsvar';
 import { formatDate, strengTilDato } from './dato';
 import { storeForbokstaver } from './tekst';
+import { erForelderUtfylt } from '../helpers/steg/forelder';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
@@ -101,4 +102,16 @@ export const formatterBarnetsNavn = (barn: IBarn) => {
     }
     return førsteBokstavStor(tekst);
   };
+};
+
+export const hentIndexFørsteBarnSomIkkeErUtfylt = (barna: IBarn[]): number => {
+  return barna.findIndex(
+    (barn) => barn.forelder === undefined || !erForelderUtfylt(barn.forelder)
+  );
+};
+
+export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
+  return barna.filter(
+    (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
+  ).length;
 };

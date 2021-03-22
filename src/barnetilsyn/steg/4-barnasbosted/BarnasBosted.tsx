@@ -13,17 +13,14 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { erForelderUtfylt } from '../../../helpers/steg/forelder';
+import {
+  antallBarnMedForeldreUtfylt,
+  hentIndexFørsteBarnSomIkkeErUtfylt,
+} from '../../../utils/barn';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
   window.scrollTo({ top: ref.current!.offsetTop, left: 0, behavior: 'smooth' });
-};
-
-const hentIndexFørsteBarnSomIkkeErUtfylt = (barna: IBarn[]): number => {
-  return barna.findIndex(
-    (barn) => barn.forelder === undefined || erForelderUtfylt(barn.forelder)
-  );
 };
 
 const BarnasBosted: React.FC = () => {
@@ -54,9 +51,8 @@ const BarnasBosted: React.FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
-  const antallBarnMedForeldre = barna.filter(
-    (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
-  ).length;
+
+  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === barna.length
   );
