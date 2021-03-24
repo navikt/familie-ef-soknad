@@ -102,14 +102,11 @@ const LeggTilBarn: React.FC<Props> = ({
         nyttBarn.id
       );
 
+    console.log('erBarnFødtSvar', erBarnFødtSvar);
+
     settBarneListe(nyBarneListe);
 
     settÅpenModal(false);
-  };
-
-  const settBarnFødtFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    tilbakestillFelt();
-    settBarnFødt(svar.id === ESvar.JA);
   };
 
   return (
@@ -119,34 +116,13 @@ const LeggTilBarn: React.FC<Props> = ({
       </Undertittel>
 
       <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={barnetFødtSpm}
-          onChange={settBarnFødtFelt}
-          valgtSvar={født}
-        />
-      </KomponentGruppe>
-      {født === true ? (
-        <LeggTilBarnFødt
-          navn={navn}
-          ident={ident}
-          settNavn={settNavn}
-          settIdent={settIdent}
-          settBo={settBo}
-          boHosDeg={boHosDeg}
-          settBoHosDeg={settBoHosDeg}
-          settDato={settDato}
-          barnDato={barnDato}
-          kjennerIkkeIdent={kjennerIkkeIdent}
-          settKjennerIkkeIdent={settKjennerIkkeIdent}
-        />
-      ) : født === false ? (
         <LeggTilBarnUfødt
           settBo={settBo}
           boHosDeg={boHosDeg}
           settDato={settDato}
           barnDato={barnDato}
         />
-      ) : null}
+      </KomponentGruppe>
       {boHosDeg && (
         <Hovedknapp
           aria-live="polite"

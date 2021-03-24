@@ -327,8 +327,7 @@ export default {
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
   'barnadine.personnummer': 'Personnummer',
-  'barnadine.leggtil.info':
-    'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+  'barnadine.leggtil.info': 'Er du gravid?',
   'barnadine.leggtil.info.barnetilsyn':
     'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
   'barnadine.advarsel.borikke':
