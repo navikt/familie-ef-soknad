@@ -92,8 +92,6 @@ const LeggTilBarn: React.FC<Props> = ({
         nyttBarn.id
       );
 
-    console.log('erBarnFødtSvar', erBarnFødtSvar);
-
     settBarneListe(nyBarneListe);
 
     settÅpenModal(false);
