@@ -16,7 +16,7 @@ export const hentSivilstatus = (statuskode?: string) => {
     case ESivilstand.ENKE_ELLER_ENKEMANN:
     case ESivilstand.SKILT:
     case ESivilstand.SEPARERT:
-    case ESivilstand.PARTNER:
+    case ESivilstand.REGISTRERT_PARTNER:
     case ESivilstand.SEPARERT_PARTNER:
     case ESivilstand.SKILT_PARTNER:
     case ESivilstand.GJENLEVENDE_PARTNER:
