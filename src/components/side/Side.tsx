@@ -8,11 +8,14 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
+import Lenke from 'nav-frontend-lenker';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import styled from 'styled-components';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -111,6 +114,11 @@ const Side: React.FC<ISide> = ({
             </>
           )
         ) : null}
+        <AlertStripeInfo className="side__disclaimer" form="inline">
+          Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for
+          pga dødsfall, kan du ikke bruke denne digitale søknaden.{' '}
+          <Lenke href="https://vg.no">Bruk pdfskjema.</Lenke>
+        </AlertStripeInfo>
       </div>
     </div>
   );
