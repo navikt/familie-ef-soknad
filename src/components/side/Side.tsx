@@ -8,13 +8,11 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
 import { useIntl } from 'react-intl';
-import Lenke from 'nav-frontend-lenker';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
-import styled from 'styled-components';
 import LocaleTekst from '../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
