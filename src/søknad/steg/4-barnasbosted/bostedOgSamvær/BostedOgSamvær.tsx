@@ -66,7 +66,7 @@ const BostedOgSamvær: React.FC<Props> = ({
     };
 
     if (
-      hvisEndretSvarSlettFeltHvordanPraktiseresSamværet &&
+      hvisEndretSvarSlettFeltHvordanPraktiseresSamværet(spørsmål, svar) &&
       nyForelder.hvordanPraktiseresSamværet
     )
       delete nyForelder.hvordanPraktiseresSamværet;

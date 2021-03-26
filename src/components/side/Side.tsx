@@ -1,7 +1,7 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import Banner from '../../components/Banner';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';

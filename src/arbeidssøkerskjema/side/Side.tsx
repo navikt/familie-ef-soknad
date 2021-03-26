@@ -5,7 +5,7 @@ import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import Stegindikator from 'nav-frontend-stegindikator';
 
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useHistory } from 'react-router-dom';
