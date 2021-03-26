@@ -15,6 +15,7 @@ import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
 import styled from 'styled-components';
+import LocaleTekst from '../../language/LocaleTekst';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 export enum ESide {
@@ -31,6 +32,7 @@ interface ISide {
   erSpørsmålBesvart?: boolean;
   mellomlagreStønad?: (steg: string) => void;
   tilbakeTilOppsummeringPath?: string;
+  informasjonstekstId?: string;
 }
 
 const Side: React.FC<ISide> = ({
@@ -42,6 +44,7 @@ const Side: React.FC<ISide> = ({
   skalViseKnapper,
   mellomlagreStønad,
   tilbakeTilOppsummeringPath,
+  informasjonstekstId,
 }) => {
   const intl = useIntl();
   const location = useLocation<LocationStateSøknad>();
@@ -114,11 +117,11 @@ const Side: React.FC<ISide> = ({
             </>
           )
         ) : null}
-        <AlertStripeInfo className="side__disclaimer" form="inline">
-          Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for
-          pga dødsfall, kan du ikke bruke denne digitale søknaden.{' '}
-          <Lenke href="https://vg.no">Bruk pdfskjema.</Lenke>
-        </AlertStripeInfo>
+        {informasjonstekstId && (
+          <AlertStripeInfo className="side__informasjon" form="inline">
+            <LocaleTekst tekst={informasjonstekstId} />
+          </AlertStripeInfo>
+        )}
       </div>
     </div>
   );

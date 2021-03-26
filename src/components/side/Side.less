@@ -9,7 +9,7 @@
     "innhold innhold innhold"
     ". uu-tekst ."
     "knapper knapper knapper"
-    ". disclaimer .";
+    ". informasjon .";
 
   .stegindikator {
     grid-area: stegindikator;
@@ -55,10 +55,18 @@
     grid-area: uu-tekst;
   }
 
-  &__disclaimer {
-    grid-area: disclaimer;
+  &__informasjon {
+    grid-area: informasjon;
     max-width: 550px;
     margin: 0 auto;
+
+    a {
+      color: @navBla;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   &__knapper {

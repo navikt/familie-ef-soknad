@@ -337,6 +337,8 @@ export default {
   'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
   'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
   'barnadine.termindato': 'Termindato',
+  'barnadine.info.brukpdf':
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for pga dødsfall, kan du ikke bruke denne digitale søknaden. <a href="halla">Bruk pdfskjema.</a>',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',

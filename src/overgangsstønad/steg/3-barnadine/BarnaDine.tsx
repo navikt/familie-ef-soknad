@@ -69,6 +69,7 @@ const BarnaDine: React.FC = () => {
         routesStønad={RoutesOvergangsstonad}
         mellomlagreStønad={mellomlagreOvergangsstønad}
         tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
+        informasjonstekstId="barnadine.info.brukpdf"
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
