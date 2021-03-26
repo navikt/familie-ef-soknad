@@ -100,8 +100,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
     case EAktivitet.erHjemmeMedBarnUnderEttÅr:
       return true;
 
-    case EAktivitet.erArbeidstaker:
-    case EAktivitet.erFrilanser:
+    case EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser:
       return (
         arbeidsforhold !== undefined &&
         erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold)
