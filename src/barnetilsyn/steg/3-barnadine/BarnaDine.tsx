@@ -101,6 +101,7 @@ const BarnaDine: React.FC = () => {
         routesStønad={RoutesBarnetilsyn}
         mellomlagreStønad={mellomlagreBarnetilsyn}
         tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
+        informasjonstekstId={'barnadine.barnetilsyn.info.brukpdf'}
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">

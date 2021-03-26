@@ -339,6 +339,8 @@ export default {
   'barnadine.termindato': 'Termindato',
   'barnadine.info.brukpdf':
     'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for pga dødsfall, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">Bruk pdfskjema.</a>',
+  'barnadine.barnetilsyn.info.brukpdf':
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for pga dødsfall, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">Bruk pdfskjema.</a>',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
