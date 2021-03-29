@@ -93,7 +93,7 @@
     "nav-frontend-veilederpanel-style": "^0.0.40",
     "npm": "^7.6.0",
     "prop-types": "^15.7.2",
-    "react": "^16.14.0",
+    "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
     "react-aria-menubutton": "^6.3.0",
     "react-collapse": "^5.1.0",
