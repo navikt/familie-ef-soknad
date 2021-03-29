@@ -14,7 +14,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 
@@ -38,9 +38,9 @@ const BarnaDine: React.FC = () => {
 
   const barna = søknad.person.barn;
   const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+    const nyBarneListe = søknad.person.barn.filter((b: IBarn) => b.id !== id);
 
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -49,7 +49,7 @@ const BarnaDine: React.FC = () => {
   };
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -75,7 +75,7 @@ const BarnaDine: React.FC = () => {
             {hentTekst('barnadine.infohentet', intl)}
           </AlertStripeInfo>
           <div className="barnekort-wrapper">
-            {barna?.map((barn) => (
+            {barna?.map((barn: IBarn) => (
               <Barnekort
                 key={barn.id}
                 gjeldendeBarn={barn}

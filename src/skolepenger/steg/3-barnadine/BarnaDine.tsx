@@ -17,6 +17,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { ISøknad } from '../../models/søknad';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -37,9 +38,11 @@ const BarnaDine: React.FC = () => {
   const [åpenModal, settÅpenModal] = useState(false);
 
   const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b) => b.id !== id);
+    const nyBarneListe = søknad.person.barn.filter(
+      (barn: IBarn) => barn.id !== id
+    );
 
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -48,7 +51,7 @@ const BarnaDine: React.FC = () => {
   };
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },

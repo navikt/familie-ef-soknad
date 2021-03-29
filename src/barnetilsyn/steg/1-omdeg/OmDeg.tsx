@@ -22,6 +22,7 @@ import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { ISøknad } from '../../models/søknad';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -45,7 +46,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   } = søknad.sivilstatus;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         medlemskap: medlemskap,
@@ -54,7 +55,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   };
 
   const settSøker = (søker: ISøker) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, søker: søker },
@@ -65,7 +66,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const settSøkerBorPåRegistrertAdresse = (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
   ) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
@@ -80,7 +81,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   };
 
   const settSivilstatus = (sivilstatus: ISivilstatus) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         sivilstatus: sivilstatus,

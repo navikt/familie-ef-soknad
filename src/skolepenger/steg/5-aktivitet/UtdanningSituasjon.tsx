@@ -12,6 +12,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { ISøknad } from '../../models/søknad';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -25,7 +26,7 @@ const UtdanningSituasjon: React.FC = () => {
   useMount(() => logSidevisningSkolepenger('Aktivitet'));
 
   const oppdaterUnderUtdanning = (underUtdanning: IDetaljertUtdanning) => {
-    settSøknad((prevSøknad) => {
+    settSøknad((prevSøknad: ISøknad) => {
       return { ...prevSøknad, utdanning: underUtdanning };
     });
   };
