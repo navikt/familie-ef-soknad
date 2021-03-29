@@ -10,7 +10,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
-import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { IBarn } from '../../../models/steg/barn';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
