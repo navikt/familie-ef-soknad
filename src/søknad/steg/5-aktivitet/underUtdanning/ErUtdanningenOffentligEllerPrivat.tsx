@@ -20,6 +20,8 @@ const ErUtdanningenOffentligEllerPrivat: React.FC<Props> = ({
     settUtdanning({
       ...utdanning,
       [spørsmål.søknadid]: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar.svar_tekst,
       },

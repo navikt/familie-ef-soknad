@@ -477,8 +477,8 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
-  'arbeidssituasjon.svar.erArbeidstaker': 'Jeg er arbeidstaker',
-  'arbeidssituasjon.svar.erFrilanser': 'Jeg er lønnsmottaker som frilanser',
+  'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
+    'Jeg er arbeidstaker (og/eller lønnsmottaker som frilanser)',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
     'Jeg er selvstendig næringsdrivende eller frilanser med enkeltpersonforetak',
   'arbeidssituasjon.svar.erAnsattIEgetAS':
@@ -721,7 +721,7 @@ export default {
 
   // SøktBarnepassOgVenterPåSvar
   'dinSituasjon.alert.harSøktBarnepassOgVenterEnnå':
-    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. \n' +
+    'Du må legge ved dokumentasjon som bekrefter at du mangler barnepass. <br/>' +
     'Det vil si avslag på barnehageplass/SFO-plass eller bekreftelse på at barnet står på venteliste.<br/>' +
     '   Dokumentasjonen må vise:' +
     '<ul>' +

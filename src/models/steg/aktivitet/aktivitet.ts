@@ -37,8 +37,7 @@ export enum EArbeidssituasjon {
 
 export enum EAktivitet {
   erHjemmeMedBarnUnderEttÅr = 'erHjemmeMedBarnUnderEttÅr',
-  erArbeidstaker = 'erArbeidstaker',
-  erFrilanser = 'erFrilanser',
+  erArbeidstakerOgEllerLønnsmottakerFrilanser = 'erArbeidstakerOgEllerLønnsmottakerFrilanser',
   erSelvstendigNæringsdriveneEllerFrilanser = 'erSelvstendigNæringsdriveneEllerFrilanser',
   erAnsattIEgetAS = 'erAnsattIEgetAS',
   etablererEgenVirksomhet = 'etablererEgenVirksomhet',

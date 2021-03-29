@@ -3,7 +3,7 @@ import { ESivilstand } from '../models/steg/omDeg/sivilstatus';
 export const erSøkerGift = (sivilstand?: string) =>
   sivilstand === ESivilstand.GIFT ||
   sivilstand === ESivilstand.REPA ||
-  sivilstand === ESivilstand.PARTNER;
+  sivilstand === ESivilstand.REGISTRERT_PARTNER;
 
 export const erSøkerUgift = (sivilstand?: string) =>
   sivilstand === ESivilstand.UGIF ||

@@ -15,7 +15,7 @@ export interface IUtdanning {
 
 export interface IUnderUtdanning extends IUtdanning {
   skoleUtdanningssted: ITekstFelt;
-  offentligEllerPrivat?: ITekstFelt;
+  offentligEllerPrivat?: ISpørsmålFelt;
   heltidEllerDeltid?: ISpørsmålFelt;
   arbeidsmengde?: ITekstFelt;
   målMedUtdanning?: ITekstFelt;

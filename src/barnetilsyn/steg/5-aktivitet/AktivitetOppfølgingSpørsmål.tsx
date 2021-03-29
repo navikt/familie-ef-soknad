@@ -26,8 +26,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
   settDokumentasjonsbehov,
 }) => {
   switch (svarid) {
-    case EAktivitet.erArbeidstaker:
-    case EAktivitet.erFrilanser:
+    case EAktivitet.erArbeidstakerOgEllerLønnsmottakerFrilanser:
       return (
         <OmArbeidsforholdetDitt
           arbeidssituasjon={arbeidssituasjon}
