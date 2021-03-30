@@ -17,7 +17,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
   const intl = useIntl();
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
   const barnMedSærligeBehov = søknad.person.barn.filter(
-    (barn) => barn.særligeTilsynsbehov
+    (barn: IBarn) => barn.særligeTilsynsbehov
   );
 
   const settBarnSærligBehovBegrunnelse = (
@@ -25,7 +25,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
   ) => {
     return (event: ChangeEvent<HTMLTextAreaElement>) => {
       const indeksBarnSomErHuket = søknad.person.barn.findIndex(
-        (barn) => barn.id === barnMedSærligeBehovBegrunnelse.id
+        (barn: IBarn) => barn.id === barnMedSærligeBehovBegrunnelse.id
       );
       const barnMedSærligeBehov: IBarn =
         søknad.person.barn[indeksBarnSomErHuket];
@@ -42,7 +42,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
 
   return (
     <>
-      {barnMedSærligeBehov.map((barn) => {
+      {barnMedSærligeBehov.map((barn: IBarn) => {
         const onChange = settBarnSærligBehovBegrunnelse(barn);
         return (
           <KomponentGruppe>

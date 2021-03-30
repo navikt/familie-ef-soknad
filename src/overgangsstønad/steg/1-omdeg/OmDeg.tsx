@@ -19,7 +19,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { useIntl } from 'react-intl';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
 import { useMount } from '../../../utils/hooks';
 
@@ -46,7 +46,7 @@ const OmDeg: FC = () => {
   useMount(() => logSidevisningOvergangsstonad('OmDeg'));
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         medlemskap: medlemskap,
@@ -55,7 +55,7 @@ const OmDeg: FC = () => {
   };
 
   const settSøker = (søker: ISøker) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, søker: søker },
@@ -66,7 +66,7 @@ const OmDeg: FC = () => {
   const settSøkerBorPåRegistrertAdresse = (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
   ) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         søkerBorPåRegistrertAdresse,
@@ -81,7 +81,7 @@ const OmDeg: FC = () => {
   };
 
   const settSivilstatus = (sivilstatus: ISivilstatus) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         sivilstatus,

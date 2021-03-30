@@ -92,7 +92,7 @@ const Aktivitet: React.FC = () => {
       svarid
     );
     return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
-      .filter((aktivitet, index) => index < svaridPos)
+      .filter((aktivitet, index) => aktivitet && index < svaridPos)
       .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon));
   };
 

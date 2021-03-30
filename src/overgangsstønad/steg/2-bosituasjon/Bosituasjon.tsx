@@ -9,7 +9,7 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 
@@ -31,7 +31,7 @@ const Bosituasjon: FC = () => {
   useMount(() => logSidevisningOvergangsstonad('Bosituasjon'));
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         bosituasjon: bosituasjon,

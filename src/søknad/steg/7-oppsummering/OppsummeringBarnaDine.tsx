@@ -24,17 +24,17 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   barn,
   stønadstype,
   endreInformasjonPath,
-  tittel
+  tittel,
 }) => {
   const intl = useIntl();
   const history = useHistory();
   const barnaDine: IBarn[] = barn;
 
-  const hentEndretBarn = (barn: IBarn) => {
+  const hentEndretBarn = (barn: IBarn): IBarn => {
     let nyttBarn = { ...barn };
 
-    if (!barn.født?.verdi) {
-      delete nyttBarn.ident;
+    if (barn && !barn?.født?.verdi) {
+      delete nyttBarn?.ident;
       delete nyttBarn.navn;
       delete nyttBarn.alder;
 
@@ -57,13 +57,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   });
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Undertittel tag="h3">
-          {tittel}
-        </Undertittel>
-      }
-    >
+    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
       <KomponentGruppe>{oppsummeringBarnaDine}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>

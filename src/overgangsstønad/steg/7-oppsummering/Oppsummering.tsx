@@ -19,6 +19,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { IBarn } from '../../../models/steg/barn';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -27,8 +28,8 @@ const Oppsummering: React.FC = () => {
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
   const barnMedsærligeTilsynsbehov = søknad.person.barn
-    .filter((barn) => barn.særligeTilsynsbehov)
-    .map((barn) => barn.særligeTilsynsbehov);
+    .filter((barn: IBarn) => barn.særligeTilsynsbehov)
+    .map((barn: IBarn) => barn.særligeTilsynsbehov);
 
   return (
     <>
@@ -74,7 +75,7 @@ const Oppsummering: React.FC = () => {
               )}
             />
             <OppsummeringBarnasBosituasjon
-            tittel={hentTekst('barnasbosted.sidetittel', intl)}
+              tittel={hentTekst('barnasbosted.sidetittel', intl)}
               barn={søknad.person.barn}
               endreInformasjonPath={hentPath(
                 RoutesOvergangsstonad,

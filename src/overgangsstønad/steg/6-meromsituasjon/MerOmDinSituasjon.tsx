@@ -34,7 +34,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
@@ -100,7 +100,7 @@ const MerOmDinSituasjon: React.FC = () => {
   );
 
   useEffect(() => {
-    settSøknad((prevSøknad) => ({
+    settSøknad((prevSøknad: ISøknad) => ({
       ...prevSøknad,
       merOmDinSituasjon: dinSituasjon,
     }));

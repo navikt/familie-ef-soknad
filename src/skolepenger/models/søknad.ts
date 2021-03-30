@@ -5,7 +5,6 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { IPerson } from '../../models/søknad/person';
 import { IDetaljertUtdanning } from './detaljertUtdanning';
-import { LocaleType } from '../../language/typer';
 
 export interface ISøknad {
   innsendingsdato?: Date;

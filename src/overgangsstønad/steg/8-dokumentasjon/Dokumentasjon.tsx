@@ -15,9 +15,10 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -34,7 +35,7 @@ const Dokumentasjon: React.FC = () => {
     opplastedeVedlegg: IVedlegg[] | undefined,
     harSendtInnTidligere: boolean
   ) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       const dokumentasjonMedVedlegg = prevSoknad.dokumentasjonsbehov.map(
         (dok) => {
           return dok.id === dokumentasjonsid
@@ -59,7 +60,7 @@ const Dokumentasjon: React.FC = () => {
 
   // Fjern vedlegg som evt. har blitt slettet i familie-dokument
   useEffect(() => {
-    søknad.dokumentasjonsbehov.forEach((dokBehov) => {
+    søknad.dokumentasjonsbehov.forEach((dokBehov: IDokumentasjon) => {
       if (dokBehov.opplastedeVedlegg) {
         const gyldigeVedlegg = dokBehov.opplastedeVedlegg.filter((vedlegg) =>
           erVedleggstidspunktGyldig(vedlegg.tidspunkt)
@@ -104,7 +105,7 @@ const Dokumentasjon: React.FC = () => {
       <SeksjonGruppe>
         {dokumentasjonsbehov
           .filter(unikeDokumentasjonsbehov)
-          .map((dokumentasjon, i) => {
+          .map((dokumentasjon: IDokumentasjon, i: number) => {
             return (
               <LastOppVedlegg
                 key={i}

@@ -17,6 +17,7 @@ import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
+import { ISøknad } from '../../models/søknad';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -36,7 +37,7 @@ const BarnasBosted: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -45,7 +46,7 @@ const BarnasBosted: React.FC = () => {
   };
 
   const barna = søknad.person.barn.filter(
-    (barn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) => barn.skalHaBarnepass?.verdi
   );
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
@@ -78,8 +79,8 @@ const BarnasBosted: React.FC = () => {
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       {barna
-        .filter((barn) => barn.skalHaBarnepass?.verdi)
-        .map((barn, index) => {
+        .filter((barn: IBarn) => barn.skalHaBarnepass?.verdi)
+        .map((barn: IBarn, index: number) => {
           const key = barn.fødselsdato.verdi + index;
           if (index === aktivIndex) {
             return (

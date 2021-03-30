@@ -1,5 +1,5 @@
 import React from 'react';
-import { Panel } from 'nav-frontend-paneler';
+import Panel from 'nav-frontend-paneler';
 import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';

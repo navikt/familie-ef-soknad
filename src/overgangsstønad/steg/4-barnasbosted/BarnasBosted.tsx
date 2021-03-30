@@ -11,7 +11,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import {
@@ -48,7 +48,7 @@ const BarnasBosted: React.FC = () => {
   useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -76,7 +76,7 @@ const BarnasBosted: React.FC = () => {
       mellomlagreStønad={mellomlagreOvergangsstønad}
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
-      {barna.map((barn, index) => {
+      {barna.map((barn: IBarn, index: number) => {
         const key = barn.fødselsdato.verdi + index;
         if (index === aktivIndex) {
           return (

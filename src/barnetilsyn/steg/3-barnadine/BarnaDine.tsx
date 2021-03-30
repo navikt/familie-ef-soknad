@@ -21,6 +21,7 @@ import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { ISøknad } from '../../models/søknad';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -74,7 +75,7 @@ const BarnaDine: React.FC = () => {
       (barn: IBarn) => barn.id !== id
     );
 
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
@@ -83,7 +84,7 @@ const BarnaDine: React.FC = () => {
   };
 
   const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
