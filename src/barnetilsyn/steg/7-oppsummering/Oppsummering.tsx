@@ -25,7 +25,7 @@ const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreBarnetilsyn, søknad } = useBarnetilsynSøknad();
   const barnSomSkalHaBarnepass: IBarn[] = søknad.person.barn.filter(
-    (barn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) => barn.skalHaBarnepass?.verdi
   );
 
   useMount(() => logSidevisningBarnetilsyn('Oppsummering'));

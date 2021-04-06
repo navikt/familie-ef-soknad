@@ -12,6 +12,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { ISøknad } from '../../models/søknad';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -31,7 +32,7 @@ const Bosituasjon: FC = () => {
   useMount(() => logSidevisningSkolepenger('Bosituasjon'));
 
   const settBosituasjon = (bosituasjon: IBosituasjon) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
         bosituasjon: bosituasjon,

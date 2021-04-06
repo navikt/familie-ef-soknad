@@ -10,6 +10,7 @@ import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmå
 import { useSøknad } from '../../../context/SøknadContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { leggTilSærligeBehov } from './SituasjonUtil';
+import { IBarn } from '../../../models/steg/barn';
 
 const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
@@ -20,7 +21,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     return null;
   }
   const barnMedSærligeBehov = søknad.person.barn.filter(
-    (barn) => barn.særligeTilsynsbehov
+    (barn: IBarn) => barn.særligeTilsynsbehov
   );
 
   const settBarnTrengerSærligBehov = (
@@ -29,7 +30,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     svar: ISvar
   ) => {
     const indeksBarnSomErHuket = søknad.person.barn.findIndex(
-      (barn) => barn.id === svar.id
+      (barn: IBarn) => barn.id === svar.id
     );
     const barnMedSærligeBehov = søknad.person.barn[indeksBarnSomErHuket];
     if (!erBarnetHuketAv) {
@@ -41,12 +42,14 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     }
   };
 
-  const barnSvarsAlternativer: ISvar[] = søknad.person.barn.map((barn) => ({
-    id: barn.id,
-    svar_tekst: formatterBarnetsNavn(barn)(
-      hentBarnetsNavnEllerBeskrivelse(barn, intl)
-    ),
-  }));
+  const barnSvarsAlternativer: ISvar[] = søknad.person.barn.map(
+    (barn: IBarn) => ({
+      id: barn.id,
+      svar_tekst: formatterBarnetsNavn(barn)(
+        hentBarnetsNavnEllerBeskrivelse(barn, intl)
+      ),
+    })
+  );
 
   const spørsmål: ISpørsmål = {
     flersvar: true,
@@ -55,7 +58,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     tekstid: 'dinSituasjon.legend.særligTilsyn',
   };
 
-  const valgteSvar = barnMedSærligeBehov.map((barn) => barn.id);
+  const valgteSvar = barnMedSærligeBehov.map((barn: IBarn) => barn.id);
 
   return (
     <KomponentGruppe>

@@ -22,6 +22,7 @@ import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { IBarn } from '../../../models/steg/barn';
 
 const Kvittering: React.FC = () => {
   const intl = useIntl();
@@ -33,7 +34,7 @@ const Kvittering: React.FC = () => {
   } = useBarnetilsynSøknad();
   const { person } = usePersonContext();
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
-    (barn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) => barn.skalHaBarnepass?.verdi
   );
 
   useMount(() => logSidevisningBarnetilsyn('Kvittering'));

@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
-import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonData } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import { Switch, Route } from 'react-router-dom';
-import { Toggles } from '../models/søknad/toggles';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -18,8 +16,6 @@ import { SkjemaProvider } from './SkjemaContext';
 import RedirectArbeidssoker from './routes/RedirectArbeidssoker';
 
 const App = () => {
-  // eslint-disable-next-line
-  const [toggles, settToggles] = useState<Toggles>({});
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
@@ -34,10 +30,6 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = () => {
-      hentToggles(settToggles).catch((err: Error) => {
-        settError(false);
-      });
-
       const fetchPersonData = () => {
         hentPersonData()
           .then((response) => {

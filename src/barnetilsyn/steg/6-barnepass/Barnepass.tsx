@@ -28,6 +28,8 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { IBarn } from '../../../models/steg/barn';
+import { ISøknad } from '../../models/søknad';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -45,7 +47,7 @@ const Barnepass: FC<Props> = () => {
   } = useBarnetilsynSøknad();
   const { søknadsdato, søkerFraBestemtMåned } = søknad;
   const barnSomSkalHaBarnepass = søknad.person.barn.filter(
-    (barn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) => barn.skalHaBarnepass?.verdi
   );
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
@@ -58,7 +60,7 @@ const Barnepass: FC<Props> = () => {
   useMount(() => logSidevisningBarnetilsyn('Barnepass'));
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
-    const endretBarn = barnSomSkalHaBarnepass.map((barn) => {
+    const endretBarn = barnSomSkalHaBarnepass.map((barn: IBarn) => {
       if (barn.id === barnid) {
         return {
           ...barn,
@@ -67,7 +69,7 @@ const Barnepass: FC<Props> = () => {
       }
       return barn;
     });
-    settSøknad((prevSøknad) => {
+    settSøknad((prevSøknad: ISøknad) => {
       return {
         ...prevSøknad,
         person: { ...prevSøknad.person, barn: endretBarn },
@@ -77,7 +79,7 @@ const Barnepass: FC<Props> = () => {
 
   const settSøknadsdato = (dato: Date | null) => {
     dato !== null &&
-      settSøknad((prevSøknad) => {
+      settSøknad((prevSøknad: ISøknad) => {
         return {
           ...prevSøknad,
           søknadsdato: {
@@ -89,7 +91,7 @@ const Barnepass: FC<Props> = () => {
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {
-    settSøknad((prevSoknad) => {
+    settSøknad((prevSoknad: ISøknad) => {
       if (
         svar.id === ESøkerFraBestemtMåned.neiNavKanVurdere &&
         søknadsdato?.verdi
@@ -129,7 +131,7 @@ const Barnepass: FC<Props> = () => {
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <SeksjonGruppe>
-        {barnSomSkalHaBarnepass.map((barn, index) => {
+        {barnSomSkalHaBarnepass.map((barn: IBarn, index: number) => {
           const visSeksjon =
             index === 0 ||
             erBarnepassForBarnFørNåværendeUtfylt(barn, barnSomSkalHaBarnepass);
