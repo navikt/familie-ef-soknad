@@ -82,6 +82,12 @@ const Side: React.FC<ISide> = ({
           </div>
         </Panel>
 
+        {informasjonstekstId && (
+          <AlertStripeInfo className="side__informasjon" form="inline">
+            <LocaleTekst tekst={informasjonstekstId} />
+          </AlertStripeInfo>
+        )}
+
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <>
             <Normaltekst className={'side__uu-tekst'}>
@@ -115,11 +121,6 @@ const Side: React.FC<ISide> = ({
             </>
           )
         ) : null}
-        {informasjonstekstId && (
-          <AlertStripeInfo className="side__informasjon" form="inline">
-            <LocaleTekst tekst={informasjonstekstId} />
-          </AlertStripeInfo>
-        )}
       </div>
     </div>
   );
