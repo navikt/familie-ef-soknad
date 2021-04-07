@@ -80,9 +80,11 @@ const Side: React.FC<ISide> = ({
 
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <>
-            <Normaltekst className={'side__uu-tekst'}>
-              {intl.formatMessage({ id: 'knapp.uu-tekst' })}
-            </Normaltekst>
+            {!erSpørsmålBesvart && (
+              <Normaltekst className={'side__uu-tekst'}>
+                {intl.formatMessage({ id: 'knapp.uu-tekst' })}
+              </Normaltekst>
+            )}
             <TilbakeNesteAvbrytKnapper
               routesStønad={routesStønad}
               erSpørsmålBesvart={erSpørsmålBesvart}
