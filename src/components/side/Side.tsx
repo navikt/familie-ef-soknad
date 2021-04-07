@@ -14,7 +14,7 @@ import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -83,9 +83,9 @@ const Side: React.FC<ISide> = ({
         </Panel>
 
         {informasjonstekstId && (
-          <AlertStripeInfo className="side__informasjon" form="inline">
+          <AlertStripe type="info" className="side__informasjon" form="inline">
             <LocaleTekst tekst={informasjonstekstId} />
-          </AlertStripeInfo>
+          </AlertStripe>
         )}
 
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
