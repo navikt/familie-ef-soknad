@@ -71,6 +71,7 @@ const BarnaDine: React.FC = () => {
         routesStønad={RoutesSkolepenger}
         mellomlagreStønad={mellomlagreSkolepenger}
         tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
+        informasjonstekstId="barnadine.skolepenger.info.brukpdf"
       >
         <div className="barna-dine">
           <AlertStripeInfo className="informasjonstekst">
