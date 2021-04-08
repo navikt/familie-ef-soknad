@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import LeggTilBarnFødt from './LeggTilBarnFødt';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import { barnetFødt } from './BarneConfig';
@@ -43,7 +41,6 @@ const LeggTilBarn: React.FC<Props> = ({
   const [navn, settNavn] = useState('');
   const [ident, settIdent] = useState<string>('');
   const [boHosDeg, settBoHosDeg] = useState<string>('');
-  const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(false);
   const [skalHaBarnepass, settSkalHaBarnepass] = useState<boolean | undefined>(
     true
   );
@@ -70,13 +67,6 @@ const LeggTilBarn: React.FC<Props> = ({
 
   const settBo = (event: any) => {
     settBoHosDeg(event.target.value);
-  };
-
-  const tilbakestillFelt = () => {
-    settBarnDato(undefined);
-    settNavn('');
-    settIdent('');
-    settBoHosDeg('');
   };
 
   const leggTilEllerEndreBarn = (id: string | undefined) => {
@@ -107,11 +97,6 @@ const LeggTilBarn: React.FC<Props> = ({
     settÅpenModal(false);
   };
 
-  const settBarnFødtFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
-    tilbakestillFelt();
-    settBarnFødt(svar.id === ESvar.JA);
-  };
-
   return (
     <Seksjonsgruppe className="legg-til-barn" aria-live="polite">
       <Undertittel>
@@ -119,34 +104,13 @@ const LeggTilBarn: React.FC<Props> = ({
       </Undertittel>
 
       <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={barnetFødtSpm}
-          onChange={settBarnFødtFelt}
-          valgtSvar={født}
-        />
-      </KomponentGruppe>
-      {født === true ? (
-        <LeggTilBarnFødt
-          navn={navn}
-          ident={ident}
-          settNavn={settNavn}
-          settIdent={settIdent}
-          settBo={settBo}
-          boHosDeg={boHosDeg}
-          settBoHosDeg={settBoHosDeg}
-          settDato={settDato}
-          barnDato={barnDato}
-          kjennerIkkeIdent={kjennerIkkeIdent}
-          settKjennerIkkeIdent={settKjennerIkkeIdent}
-        />
-      ) : født === false ? (
         <LeggTilBarnUfødt
           settBo={settBo}
           boHosDeg={boHosDeg}
           settDato={settDato}
           barnDato={barnDato}
         />
-      ) : null}
+      </KomponentGruppe>
       {boHosDeg && (
         <Hovedknapp
           aria-live="polite"

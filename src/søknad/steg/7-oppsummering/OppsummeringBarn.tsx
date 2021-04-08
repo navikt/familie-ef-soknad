@@ -62,14 +62,12 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {født &&
-        lagtTil && (
-          <div className={'spørsmål-og-svar'}>
-            <Element>{født?.label}</Element>
-            <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
-          </div>
-        ) &&
-        console.log(født?.label)}
+      {født && lagtTil && (
+        <div className={'spørsmål-og-svar'}>
+          <Element>{født?.label}</Element>
+          <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
+        </div>
+      )}
 
       {stønadstype === Stønadstype.barnetilsyn && skalHaBarnepass && (
         <div className={'spørsmål-og-svar'}>
