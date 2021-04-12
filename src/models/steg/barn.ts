@@ -19,6 +19,7 @@ export interface IBarn {
   særligeTilsynsbehov?: ITekstFelt;
   skalHaBarnepass?: IBooleanFelt; // Gjelder kun barnetilsyn
   barnepass?: IBarnepass; // Gjelder kun barnetilsyn
+  annenForelder?: any;
 }
 
 export enum EBarn {

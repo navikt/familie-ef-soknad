@@ -48,6 +48,7 @@ const Barnekort: React.FC<Props> = ({
     alder,
     lagtTil,
     harSammeAdresse,
+    annenForelder,
   } = gjeldendeBarn;
 
   const formatFnr = (fødselsnummer: string) => {
@@ -121,6 +122,14 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
+          {annenForelder && (
+            <div className="informasjonselement">
+              <Normaltekst>
+                {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+              </Normaltekst>
+              <Normaltekst>{annenForelder?.verdi?.navn}</Normaltekst>
+            </div>
+          )}
           {velgBarnForDenneSøknaden}
           {lagtTil ? (
             <button

@@ -25,6 +25,8 @@ import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -34,6 +36,7 @@ const lagOppdatertBarneliste = (
   return barneliste.map((b) => {
     if (b === nåværendeBarn) {
       let nyttBarn = nåværendeBarn;
+
       nyttBarn.forelder = forelder;
       return nyttBarn;
     } else {
@@ -83,9 +86,28 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settBarneListe,
   settDokumentasjonsbehovForBarn,
 }) => {
+  const annenForelderFraRegisterMedLabel = (annenForelder: any) => {
+    return {
+      navn: {
+        label: 'Navn',
+        verdi: annenForelder.verdi.navn,
+      },
+    };
+  };
+
   const [forelder, settForelder] = useState<IForelder>(
-    barn.forelder ? barn.forelder : { id: hentUid() }
+    barn.forelder
+      ? barn.forelder
+      : barn.annenForelder
+      ? {
+          id: hentUid(),
+          ...annenForelderFraRegisterMedLabel(barn.annenForelder),
+        }
+      : {
+          id: hentUid(),
+        }
   );
+
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
@@ -161,17 +183,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    førsteBarnTilHverForelder.length === 0 ||
+    (!barn.annenForelder && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
-  const nyForelderOgKanOppgiAndreForelder =
-    !barnHarSammeForelder &&
-    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    harValgtSvar(forelder?.navn?.verdi) &&
-    (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent);
+  const visBorAnnenForelderINorge =
+    barn.annenForelder ||
+    (!barnHarSammeForelder &&
+      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+      harValgtSvar(forelder?.navn?.verdi) &&
+      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
 
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
@@ -218,10 +241,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               )}
+              {barn.annenForelder && (
+                <>
+                  <Element>Navn</Element>
+                  <Normaltekst>{barn.annenForelder.verdi.navn}</Normaltekst>
+                </>
+              )}
             </SeksjonGruppe>
           )}
 
-          {nyForelderOgKanOppgiAndreForelder && (
+          {visBorAnnenForelderINorge && (
             <BorForelderINorge
               barn={barn}
               forelder={forelder}
@@ -230,10 +259,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             />
           )}
 
-          {(visBostedOgSamværSeksjon(
-            forelder,
-            nyForelderOgKanOppgiAndreForelder
-          ) ||
+          {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
             barnHarSammeForelder) && (
             <BostedOgSamvær
               settForelder={settForelder}
