@@ -26,7 +26,6 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
-import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -86,11 +85,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settBarneListe,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const annenForelderFraRegisterMedLabel = (annenForelder: any) => {
+  const medForelderMedLabel = (medForelder: any) => {
     return {
       navn: {
         label: 'Navn',
-        verdi: annenForelder.verdi.navn,
+        verdi: medForelder.verdi.navn,
       },
     };
   };
@@ -98,10 +97,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? barn.forelder
-      : barn.annenForelder
+      : barn.medForelder
       ? {
           id: hentUid(),
-          ...annenForelderFraRegisterMedLabel(barn.annenForelder),
+          ...medForelderMedLabel(barn.medForelder),
         }
       : {
           id: hentUid(),
@@ -183,14 +182,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    (!barn.annenForelder && førsteBarnTilHverForelder.length === 0) ||
+    (!barn.medForelder && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    barn.annenForelder ||
+    barn.medForelder ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&
@@ -223,7 +222,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <SeksjonGruppe>
               <BarnetsAndreForelderTittel barn={barn} />
 
-              {førsteBarnTilHverForelder.length > 0 && (
+              {førsteBarnTilHverForelder.length > 0 && !barn.medForelder && (
                 <AnnenForelderKnapper
                   barn={barn}
                   førsteBarnTilHverForelder={førsteBarnTilHverForelder}
@@ -241,10 +240,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               )}
-              {barn.annenForelder && (
+              {barn.medForelder && (
                 <>
                   <Element>Navn</Element>
-                  <Normaltekst>{barn.annenForelder.verdi.navn}</Normaltekst>
+                  <Normaltekst>{barn.medForelder.verdi.navn}</Normaltekst>
                 </>
               )}
             </SeksjonGruppe>

@@ -48,12 +48,14 @@ const Barnekort: React.FC<Props> = ({
     alder,
     lagtTil,
     harSammeAdresse,
-    annenForelder,
+    medForelder,
   } = gjeldendeBarn;
 
   const formatFnr = (fødselsnummer: string) => {
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
+
+  console.log('GJELDENDEBARN', gjeldendeBarn);
 
   const ikoner = [barn1, barn2, barn3];
   const ikon = født?.verdi
@@ -122,12 +124,12 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
-          {annenForelder && (
+          {medForelder && (
             <div className="informasjonselement">
               <Normaltekst>
                 {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
               </Normaltekst>
-              <Normaltekst>{annenForelder?.verdi?.navn}</Normaltekst>
+              <Normaltekst>{medForelder?.verdi?.navn}</Normaltekst>
             </div>
           )}
           {velgBarnForDenneSøknaden}
