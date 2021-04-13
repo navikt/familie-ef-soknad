@@ -91,6 +91,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         label: 'Navn',
         verdi: medForelder.verdi.navn,
       },
+      alder: {
+        label: 'Alder',
+        verdi: medForelder.verdi.alder,
+      },
+      død: medForelder.død,
+      harAdressesperre: medForelder.harAdressesperre,
     };
   };
 

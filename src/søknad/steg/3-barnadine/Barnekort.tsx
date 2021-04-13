@@ -55,8 +55,6 @@ const Barnekort: React.FC<Props> = ({
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
-  console.log('GJELDENDEBARN', gjeldendeBarn);
-
   const ikoner = [barn1, barn2, barn3];
   const ikon = født?.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
@@ -124,7 +122,7 @@ const Barnekort: React.FC<Props> = ({
             </Normaltekst>
             <Normaltekst>{bosted}</Normaltekst>
           </div>
-          {medForelder && (
+          {medForelder && !medForelder.verdi?.død && (
             <div className="informasjonselement">
               <Normaltekst>
                 {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
