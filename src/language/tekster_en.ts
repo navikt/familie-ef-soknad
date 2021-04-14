@@ -489,6 +489,8 @@ export default {
     'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Register address at the National Registry',
+  'barnasbosted.kanGåVidere':
+    'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
 
   // --- AKTIVITET (Steg 5)
 

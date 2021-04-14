@@ -460,6 +460,8 @@ export default {
     'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Registrer adresse hos Folkeregisteret',
+  'barnasbosted.kanGåVidere':
+    'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
 
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
