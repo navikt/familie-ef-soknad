@@ -27,6 +27,7 @@ const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+  const [feilmelding, settFeilmelding] = useState<string>('');
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
@@ -48,7 +49,10 @@ const App = () => {
         });
         oppdaterSøknadMedBarn(response, response.barn);
       })
-      .catch(() => settError(true));
+      .catch((e) => {
+        settFeilmelding(e.response?.data?.feil);
+        settError(true);
+      });
   };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
@@ -107,7 +111,7 @@ const App = () => {
         </>
       );
     } else if (error) {
-      return <Feilside />;
+      return <Feilside tekst={feilmelding} />;
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }
