@@ -327,8 +327,7 @@ export default {
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
   'barnadine.personnummer': 'Personnummer',
-  'barnadine.leggtil.info':
-    'Er du gravid eller har du nylig fått barn som foreløpig ikke er registrert i Folkeregisteret?',
+  'barnadine.leggtil.info': 'Venter du barn?',
   'barnadine.leggtil.info.barnetilsyn':
     'Har du overtatt foreldreansvar for barn uten at dette ennå er registrert i Folkeregisteret?',
   'barnadine.advarsel.borikke':
@@ -338,6 +337,12 @@ export default {
   'barnadine.spm.borBarnHosDeg': 'Bor barnet hos deg?',
   'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
   'barnadine.termindato': 'Termindato',
+  'barnadine.info.brukpdf':
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">Bruk PDF-skjema.</a>',
+  'barnadine.barnetilsyn.info.brukpdf':
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">Bruk PDF-skjema.</a>',
+  'barnadine.skolepenger.info.brukpdf':
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">Bruk PDF-skjema.</a>',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',

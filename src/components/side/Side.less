@@ -1,12 +1,13 @@
 .søknadsdialog > .side {
   display: grid;
   grid-template-columns: repeat(3, minmax(50px, auto));
-  grid-template-rows: repeat(6, min-content);
+  grid-template-rows: repeat(7, min-content);
   grid-template-areas:
     "stegindikator stegindikator stegindikator"
     ". ikon ."
     "tittel tittel tittel"
     "innhold innhold innhold"
+    ". informasjon ."
     ". uu-tekst ."
     "knapper knapper knapper";
 
@@ -52,6 +53,22 @@
   &__uu-tekst {
     justify-self: center;
     grid-area: uu-tekst;
+  }
+
+  &__informasjon {
+    grid-area: informasjon;
+    max-width: 550px;
+    margin: 0 auto;
+
+    margin-bottom: 2rem;
+
+    a {
+      color: @navBla;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
   }
 
   &__knapper {

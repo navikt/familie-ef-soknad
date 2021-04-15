@@ -13,6 +13,8 @@ import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import { LocationStateSøknad } from '../../models/søknad/søknad';
+import LocaleTekst from '../../language/LocaleTekst';
+import AlertStripe from 'nav-frontend-alertstriper';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -28,6 +30,7 @@ interface ISide {
   erSpørsmålBesvart?: boolean;
   mellomlagreStønad?: (steg: string) => void;
   tilbakeTilOppsummeringPath?: string;
+  informasjonstekstId?: string;
 }
 
 const Side: React.FC<ISide> = ({
@@ -39,6 +42,7 @@ const Side: React.FC<ISide> = ({
   skalViseKnapper,
   mellomlagreStønad,
   tilbakeTilOppsummeringPath,
+  informasjonstekstId,
 }) => {
   const intl = useIntl();
   const location = useLocation<LocationStateSøknad>();
@@ -77,6 +81,12 @@ const Side: React.FC<ISide> = ({
             {children}
           </div>
         </Panel>
+
+        {informasjonstekstId && (
+          <AlertStripe type="info" className="side__informasjon" form="inline">
+            <LocaleTekst tekst={informasjonstekstId} />
+          </AlertStripe>
+        )}
 
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <>

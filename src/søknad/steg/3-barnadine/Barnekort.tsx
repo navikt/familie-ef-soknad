@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
@@ -35,6 +35,10 @@ const Barnekort: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
+  useEffect(() => {
+    Modal.setAppElement('#root');
+  }, []);
+
   const {
     id,
     navn,

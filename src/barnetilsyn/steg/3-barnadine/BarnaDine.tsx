@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { Hovedknapp, Knapp } from 'nav-frontend-knapper';
-import Modal from 'nav-frontend-modal';
+import React from 'react';
+import { Hovedknapp } from 'nav-frontend-knapper';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
@@ -11,7 +10,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
-import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { IBarn } from '../../../models/steg/barn';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
@@ -39,8 +37,6 @@ const BarnaDine: React.FC = () => {
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
-
-  const [åpenModal, settÅpenModal] = useState(false);
 
   const toggleSkalHaBarnepass = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
@@ -105,6 +101,7 @@ const BarnaDine: React.FC = () => {
         routesStønad={RoutesBarnetilsyn}
         mellomlagreStønad={mellomlagreBarnetilsyn}
         tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
+        informasjonstekstId={'barnadine.barnetilsyn.info.brukpdf'}
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">
@@ -143,32 +140,7 @@ const BarnaDine: React.FC = () => {
                   slettBarn={slettBarn}
                 />
               ))}
-            <div className="barnekort legg-til">
-              <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Element>
-                  {hentTekst('barnadine.leggtil.info.barnetilsyn', intl)}
-                </Element>
-                <Knapp onClick={() => settÅpenModal(true)}>
-                  {hentTekst('barnadine.leggtil', intl)}
-                </Knapp>
-              </div>
-            </div>
           </div>
-          <Modal
-            isOpen={åpenModal}
-            onRequestClose={() => settÅpenModal(false)}
-            closeButton={true}
-            contentLabel="Legg til barn"
-          >
-            <div className="legg-til-barn-modal">
-              <LeggTilBarn
-                settÅpenModal={settÅpenModal}
-                barneListe={søknad.person.barn}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-                settBarneListe={settBarneliste}
-              />
-            </div>
-          </Modal>
         </div>
         {kommerFraOppsummering ? (
           <div className={'side'}>
