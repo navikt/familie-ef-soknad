@@ -55,6 +55,8 @@ const Barnekort: React.FC<Props> = ({
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
+  const harAdressesperre = navn.verdi === '' && født;
+
   const ikoner = [barn1, barn2, barn3];
   const ikon = født?.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
@@ -84,29 +86,31 @@ const Barnekort: React.FC<Props> = ({
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
           <Undertittel tag="h3">
-            {født?.verdi
+            {navn.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Undertittel>
-          <div className="informasjonselement">
-            {ident.verdi ? (
-              <>
-                <Normaltekst>
-                  {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
-                </Normaltekst>
-                <Normaltekst>{formatFnr(ident.verdi)}</Normaltekst>
-              </>
-            ) : (
-              <>
-                <Normaltekst>
-                  {født?.verdi
-                    ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
-                    : intl.formatMessage({ id: 'barnekort.termindato' })}
-                </Normaltekst>
-                <Normaltekst>{fødselsdato.verdi}</Normaltekst>
-              </>
-            )}
-          </div>
+          {!harAdressesperre && (
+            <div className="informasjonselement">
+              {ident.verdi ? (
+                <>
+                  <Normaltekst>
+                    {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
+                  </Normaltekst>
+                  <Normaltekst>{formatFnr(ident.verdi)}</Normaltekst>
+                </>
+              ) : (
+                <>
+                  <Normaltekst>
+                    {født?.verdi
+                      ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
+                      : intl.formatMessage({ id: 'barnekort.termindato' })}
+                  </Normaltekst>
+                  <Normaltekst>{fødselsdato.verdi}</Normaltekst>
+                </>
+              )}
+            </div>
+          )}
           <div className="informasjonselement">
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
