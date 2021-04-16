@@ -132,7 +132,13 @@ const Barnekort: React.FC<Props> = ({
               <Normaltekst>
                 {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
               </Normaltekst>
-              <Normaltekst>{medForelder?.verdi?.navn}</Normaltekst>
+              <Normaltekst>
+                {medForelder.verdi.navn
+                  ? medForelder.verdi.navn
+                  : `${hentTekst('barnekort.medForelder.hemmelig', intl)}, ${
+                      medForelder.verdi.alder
+                    }`}
+              </Normaltekst>
             </div>
           )}
           {velgBarnForDenneSøknaden}

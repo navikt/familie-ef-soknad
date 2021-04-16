@@ -249,7 +249,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               {barn.medForelder && (
                 <>
                   <Element>Navn</Element>
-                  <Normaltekst>{barn.medForelder.verdi.navn}</Normaltekst>
+                  <Normaltekst>
+                    {barn.medForelder.verdi.navn
+                      ? barn.medForelder.verdi.navn
+                      : `${hentTekst(
+                          'barnekort.medForelder.hemmelig',
+                          intl
+                        )}, ${barn.medForelder.verdi.alder}`}
+                  </Normaltekst>
                 </>
               )}
             </SeksjonGruppe>

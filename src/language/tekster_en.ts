@@ -342,6 +342,7 @@ export default {
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
   'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
+  'barnekort.medForelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
