@@ -49,13 +49,12 @@ const Barnekort: React.FC<Props> = ({
     lagtTil,
     harSammeAdresse,
     medForelder,
+    harAdressesperre,
   } = gjeldendeBarn;
 
   const formatFnr = (fødselsnummer: string) => {
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
-
-  const harAdressesperre = navn.verdi === '' && født;
 
   const ikoner = [barn1, barn2, barn3];
   const ikon = født?.verdi
