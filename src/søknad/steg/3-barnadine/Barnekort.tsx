@@ -119,12 +119,14 @@ const Barnekort: React.FC<Props> = ({
               {født?.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
-          <div className="informasjonselement">
-            <Normaltekst>
-              {intl.formatMessage({ id: 'barnekort.bosted' })}
-            </Normaltekst>
-            <Normaltekst>{bosted}</Normaltekst>
-          </div>
+          {!harAdressesperre && (
+            <div className="informasjonselement">
+              <Normaltekst>
+                {intl.formatMessage({ id: 'barnekort.bosted' })}
+              </Normaltekst>
+              <Normaltekst>{bosted}</Normaltekst>
+            </div>
+          )}
           {medForelder && !medForelder.verdi?.død && (
             <div className="informasjonselement">
               <Normaltekst>

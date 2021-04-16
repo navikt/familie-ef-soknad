@@ -79,7 +79,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {harSammeAdresse && (
+      {!harAdressesperre && harSammeAdresse && (
         <div className={'spørsmål-og-svar'}>
           <Element>{harSammeAdresse.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(harSammeAdresse.verdi)}</Normaltekst>
