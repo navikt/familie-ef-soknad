@@ -191,7 +191,7 @@ const SendSøknadKnapper: FC = () => {
           <div className={'sentrert'}>
           <KnappBase
               type={'hoved'}
-              onClick={() => !innsendingState.venter && sendSøknad({...søknad, skalBehandlesINySaksbehandling:false})}
+              onClick={() => !innsendingState.venter && sendSøknad({...søknad, skalBehandlesINySaksbehandling:true})}
               spinner={innsendingState.venter}
           >
             Saksbehandle i ny løsning
