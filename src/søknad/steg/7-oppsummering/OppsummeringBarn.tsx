@@ -22,11 +22,12 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
     skalHaBarnepass,
     harSammeAdresse,
     lagtTil,
+    harAdressesperre,
   } = barn;
 
   return (
     <>
-      {navn && (
+      {!harAdressesperre && navn && (
         <div className={'spørsmål-og-svar'}>
           <Element tag="h3">
             <LocaleTekst tekst="person.navn" />
@@ -35,7 +36,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {ident && ident.verdi !== '' && (
+      {!harAdressesperre && ident && ident.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
           <Element>
             <LocaleTekst tekst="person.fnr" />
@@ -53,7 +54,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {fødselsdato.verdi !== '' && (
+      {!harAdressesperre && fødselsdato.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
           <Element>
             <LocaleTekst tekst="barnekort.fødselsdato" />
