@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
-import { hentPersonData } from '../utils/søknad';
-import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
+import { hentPersonDataArbeidssoker } from '../utils/søknad';
 import { Switch, Route } from 'react-router-dom';
 import {
   autentiseringsInterceptor,
@@ -20,7 +19,12 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState('');
-  const { settPerson } = usePersonContext();
+  const [ident, settIdent] = useState<string>('');
+  const [visningsnavn, settVisningsnavn] = useState<string>('');
+  const personProps = {
+    ident,
+    visningsnavn,
+  };
 
   autentiseringsInterceptor();
 
@@ -31,12 +35,11 @@ const App = () => {
   useEffect(() => {
     const fetchData = () => {
       const fetchPersonData = () => {
-        hentPersonData()
+        hentPersonDataArbeidssoker()
           .then((response) => {
-            settPerson({
-              type: PersonActionTypes.HENT_PERSON,
-              payload: response,
-            });
+            settIdent(response.ident);
+            settVisningsnavn(response.visningsnavn);
+
             settError(false);
             settFeilmelding('');
           })
@@ -61,11 +64,12 @@ const App = () => {
           <SkjemaProvider>
             <Switch>
               <Route exact path={'/arbeidssoker'}>
-                <Forside />
+                <Forside visningsnavn={visningsnavn} />
               </Route>
               <RedirectArbeidssoker
                 path={'/arbeidssoker/sporsmal'}
                 component={Spørsmål}
+                {...personProps}
               />
               <RedirectArbeidssoker
                 path={'/arbeidssoker/oppsummering'}
