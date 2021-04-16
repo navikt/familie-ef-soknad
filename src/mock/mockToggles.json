@@ -1,4 +1,5 @@
 {
   "familie.ef.soknad.feilsituasjon": false,
-  "familie.ef.soknad.sprakvelger": true
+  "familie.ef.soknad.sprakvelger": true,
+  "familie.ef.soknad.visSkalBehandlesINySaksbehandling": true
 }

@@ -28,6 +28,8 @@ import { useSpråkContext } from '../../../context/SpråkContext';
 import { useIntl } from 'react-intl';
 import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 import { IBarn } from '../../../models/steg/barn';
+import {useToggles} from "../../../context/TogglesContext";
+import {ToggleName} from "../../../models/søknad/toggles";
 
 interface Innsending {
   status: string;
@@ -41,6 +43,7 @@ const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
+  const {toggles} = useToggles();
   const location = useLocation<LocationStateSøknad>();
   const [locale] = useSpråkContext();
   const history = useHistory();
@@ -184,6 +187,17 @@ const SendSøknadKnapper: FC = () => {
           </KnappBase>
         </StyledKnapper>
       </SeksjonGruppe>
+      {toggles[ToggleName.visSkalBehandlesINySaksbehandling] && validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+          <div className={'sentrert'}>
+          <KnappBase
+              type={'hoved'}
+              onClick={() => !innsendingState.venter && sendSøknad({...søknad, skalBehandlesINySaksbehandling:false})}
+              spinner={innsendingState.venter}
+          >
+            Saksbehandle i ny løsning
+          </KnappBase>
+          </div>
+      )}
     </>
   );
 };

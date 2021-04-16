@@ -19,6 +19,7 @@ export interface ISøknad {
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
   locale?: any;
+  skalBehandlesINySaksbehandling?: boolean;
 }
 
 export enum ESøknad {
