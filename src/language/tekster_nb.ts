@@ -732,13 +732,22 @@ export default {
     '</ul>',
 
   // barnHarSærligeBehov
-  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
-    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn.',
-  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
-    'Dokumentasjonen fra lege må bekrefte: ' +
+  'dinSituasjon.dok.harBarnMedSærligeBehov.tittel':
+    'Du må legge ved dokumentasjon som bekrefter at barnet ditt har behov for særlig tilsyn',
+  'dinSituasjon.dok.harBarnMedSærligeBehov.beskrivelse':
+    'Dokumentasjonen fra lege må bekrefte:' +
     '<ul>' +
     '<li>at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn</li>' +
     '<li>at dette påvirker muligheten din til å være i yrkesrettet aktivitet</li>' +
+    '</ul>',
+
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'Om tilsynsbehovet til [0]',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'Vi trenger opplysninger om:' +
+    '<ul>' +
+    '<li>hvor mye og hvordan barnet ditt trenger tilsyn</li>' +
+    '<li>hvordan det påvirker muligheten din til å være i yrkesrettet aktivitet</li>' +
     '</ul>',
 
   'dinSituasjon.datovelger.jobb': 'Når skal du starte i ny jobb?',
