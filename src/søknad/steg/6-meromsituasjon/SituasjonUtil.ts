@@ -24,7 +24,7 @@ export const erSituasjonIAvhukedeSvar = (
   });
 };
 export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
-  const { firmaer, underUtdanning, arbeidsforhold } = søknad.aktivitet;
+  const { firmaer, arbeidsforhold, firma, egetAS } = søknad.aktivitet;
 
   let totalArbeidsmengde: number = 0;
   if (firmaer)
@@ -33,8 +33,14 @@ export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
         ? initiell + fraStringTilTall(firma.arbeidsmengde?.verdi)
         : initiell;
     }, 0);
-  if (underUtdanning?.arbeidsmengde)
-    totalArbeidsmengde += fraStringTilTall(underUtdanning.arbeidsmengde.verdi);
+  if (firma?.arbeidsmengde)
+    totalArbeidsmengde += fraStringTilTall(firma.arbeidsmengde.verdi);
+  if (egetAS)
+    totalArbeidsmengde += egetAS.reduce((initiell, selskap) => {
+      return selskap.arbeidsmengde?.verdi
+        ? initiell + fraStringTilTall(selskap.arbeidsmengde?.verdi)
+        : initiell;
+    }, 0);
   if (arbeidsforhold) {
     const arbeidsmengder = arbeidsforhold.map((arbeidsgiver: IArbeidsgiver) => {
       return arbeidsgiver.arbeidsmengde
