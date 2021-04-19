@@ -158,6 +158,26 @@ const SendSøknadKnapper: FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      {toggles[ToggleName.visSkalBehandlesINySaksbehandling] && (
+        <>
+          <div className={'sentrert'}>
+            <KnappBase
+              type={'hoved'}
+              onClick={() =>
+                !innsendingState.venter &&
+                sendSøknad({ ...søknad, skalBehandlesINySaksbehandling: true })
+              }
+              spinner={innsendingState.venter}
+            >
+              Saksbehandle i ny løsning
+            </KnappBase>
+          </div>
+          <Normaltekst style={{ marginBottom: 30 }}>
+            (For å IKKE forsøke automatisk journalføring og blankettbehandling
+            trykk på "Saksbehandle i ny løsning" knapp)
+          </Normaltekst>
+        </>
+      )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -187,21 +207,6 @@ const SendSøknadKnapper: FC = () => {
           </KnappBase>
         </StyledKnapper>
       </SeksjonGruppe>
-      {toggles[ToggleName.visSkalBehandlesINySaksbehandling] &&
-        validerSøkerBosattINorgeSisteTreÅr(søknad) && (
-          <div className={'sentrert'}>
-            <KnappBase
-              type={'hoved'}
-              onClick={() =>
-                !innsendingState.venter &&
-                sendSøknad({ ...søknad, skalBehandlesINySaksbehandling: true })
-              }
-              spinner={innsendingState.venter}
-            >
-              Saksbehandle i ny løsning
-            </KnappBase>
-          </div>
-        )}
     </>
   );
 };
