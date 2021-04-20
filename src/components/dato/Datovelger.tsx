@@ -1,17 +1,16 @@
-import React, { useEffect, useRef } from 'react';
-import { addDays, addYears, subDays, subYears } from 'date-fns';
+import React, { useRef } from 'react';
+import { addYears, subDays, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
 import ReactDatePicker from 'react-datepicker';
-import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { Datepicker, isISODateString } from 'nav-datovelger';
+
 import { useSpråkContext } from '../../context/SpråkContext';
 import 'react-datepicker/dist/react-datepicker.css';
-import en from 'date-fns/locale/en-US';
-import nb from 'date-fns/locale/nb';
-import nn from 'date-fns/locale/nn';
+
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KalenderIkonSVG from '../../assets/KalenderSVG';
 import LocaleTekst from '../../language/LocaleTekst';
-import { tilDato } from '../../utils/dato';
+import { datoTilStreng } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 
 export enum DatoBegrensning {
@@ -21,11 +20,10 @@ export enum DatoBegrensning {
 }
 
 interface Props {
-  valgtDato: string | Date | undefined;
+  valgtDato: string | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
-  settDato: (date: Date | null) => void;
-  showMonthYearPicker?: Boolean;
+  settDato: (date: string) => void;
   disabled?: boolean;
   fetSkrift?: boolean;
 }
@@ -35,35 +33,18 @@ const Datovelger: React.FC<Props> = ({
   datobegrensning,
   valgtDato,
   settDato,
-  showMonthYearPicker,
   disabled,
   fetSkrift,
 }) => {
+  // NOTE: Ble tidligere sendt inn som props til DatePicker (react sin)
   const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
-
-  const settLocaleForDatePicker = () => {
-    locale === 'nn'
-      ? registerLocale('nn', nn)
-      : locale === 'nb'
-      ? registerLocale('nb', nb)
-      : registerLocale('en-US', en);
-  };
 
   function handleFocus() {
     inputRef?.current?.setOpen(true);
   }
 
-  useEffect(() => {
-    setDefaultLocale('nb');
-    // eslint-disable-next-line
-  }, []);
-
-  settLocaleForDatePicker();
-
-  const datoFormat = showMonthYearPicker === true ? 'MMM yyyy' : 'dd.MM.yyyy';
-  const placeholderTekst = showMonthYearPicker === true ? '' : 'DD.MM.ÅÅÅÅ';
   return (
     <div className={fetSkrift ? 'datovelger-fetskrift' : 'datovelger'}>
       <FeltGruppe>
@@ -72,55 +53,70 @@ const Datovelger: React.FC<Props> = ({
             <LocaleTekst tekst={tekstid} />
           </Normaltekst>
         </label>
-        <div
-          className={'datovelger__wrapper'}
-          // onClick={(e) => e.preventDefault()}
-        >
+        <div className={'datovelger__wrapper'}>
           <div className={'datepicker__container'}>
             {datobegrensning === DatoBegrensning.TidligereDatoer ? (
-              <DatePicker
-                id={datolabelid}
-                disabled={disabled}
-                className={'datovelger__input'}
-                onChange={(e) => settDato(e)}
-                placeholderText={placeholderTekst}
-                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={datoFormat}
+              <Datepicker
+                inputId={datolabelid}
                 locale={locale}
-                maxDate={addDays(new Date(), 0)}
-                minDate={subYears(new Date(), 200)}
-                showMonthYearPicker={showMonthYearPicker === true}
-                ref={inputRef}
+                disabled={disabled}
+                onChange={(e) => settDato(e)}
+                value={valgtDato ? valgtDato : ''}
+                allowInvalidDateSelection={false}
+                showYearSelector={true}
+                limitations={{
+                  weekendsNotSelectable: true,
+                  invalidDateRanges: [],
+                  minDate: datoTilStreng(addYears(new Date(), 100)),
+                  maxDate: datoTilStreng(subDays(new Date(), 0)),
+                }}
+                inputProps={{
+                  name: 'dateInput',
+                  'aria-invalid':
+                    valgtDato !== '' && isISODateString(valgtDato) === false,
+                }}
               />
             ) : datobegrensning === DatoBegrensning.FremtidigeDatoer ? (
-              <DatePicker
-                id={datolabelid}
+              <Datepicker
+                inputId={datolabelid}
                 disabled={disabled}
-                className={'datovelger__input'}
-                onChange={(e) => settDato(e)}
-                placeholderText={placeholderTekst}
-                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={datoFormat}
-                maxDate={addYears(new Date(), 100)}
-                minDate={subDays(new Date(), 0)}
                 locale={locale}
-                showMonthYearPicker={showMonthYearPicker === true}
-                ref={inputRef}
+                onChange={(e) => settDato(e)}
+                value={valgtDato ? valgtDato : ''}
+                allowInvalidDateSelection={false}
+                showYearSelector={true}
+                limitations={{
+                  weekendsNotSelectable: true,
+                  invalidDateRanges: [],
+                  minDate: datoTilStreng(addYears(new Date(), 0)),
+                  maxDate: datoTilStreng(subDays(new Date(), 100)),
+                }}
+                inputProps={{
+                  name: 'dateInput',
+                  'aria-invalid':
+                    valgtDato !== '' && isISODateString(valgtDato) === false,
+                }}
               />
             ) : datobegrensning === DatoBegrensning.AlleDatoer ? (
-              <DatePicker
-                id={datolabelid}
+              <Datepicker
+                inputId={datolabelid}
                 disabled={disabled}
-                className={'datovelger__input'}
-                onChange={(e) => settDato(e)}
-                placeholderText={placeholderTekst}
-                selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-                dateFormat={datoFormat}
                 locale={locale}
-                maxDate={addYears(new Date(), 100)}
-                minDate={subYears(new Date(), 200)}
-                showMonthYearPicker={showMonthYearPicker === true}
-                ref={inputRef}
+                onChange={(e) => settDato(e)}
+                value={valgtDato ? valgtDato : ''}
+                allowInvalidDateSelection={false}
+                showYearSelector={true}
+                limitations={{
+                  weekendsNotSelectable: true,
+                  invalidDateRanges: [],
+                  maxDate: datoTilStreng(addYears(new Date(), 100)),
+                  minDate: datoTilStreng(subYears(new Date(), 200)),
+                }}
+                inputProps={{
+                  name: 'dateInput',
+                  'aria-invalid':
+                    valgtDato !== '' && isISODateString(valgtDato) === false,
+                }}
               />
             ) : null}
           </div>

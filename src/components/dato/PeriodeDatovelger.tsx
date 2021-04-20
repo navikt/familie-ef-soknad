@@ -15,7 +15,7 @@ interface Props {
   periode: IPeriode;
   fomTekstid?: string;
   tomTekstid?: string;
-  settDato: (dato: Date | null, objektnøkkel: EPeriode) => void;
+  settDato: (dato: string, objektnøkkel: EPeriode) => void;
   showMonthYearPicker?: boolean;
   datobegrensing?: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
@@ -73,9 +73,9 @@ const PeriodeDatovelgere: FC<Props> = ({
     [periode, onValidate]
   );
 
-  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
-    dato !== null && settDato(dato, objektnøkkel);
-    dato !== null && sammenlignDatoerOgOppdaterFeilmelding(dato, objektnøkkel);
+  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
+    settDato(dato, objektnøkkel);
+    sammenlignDatoerOgOppdaterFeilmelding(strengTilDato(dato), objektnøkkel);
   };
 
   return (
@@ -93,30 +93,20 @@ const PeriodeDatovelgere: FC<Props> = ({
       <div className={'utenlandsopphold__periodegruppe'} aria-live="polite">
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.fra)}
-          valgtDato={
-            periode.fra.verdi && periode.fra.verdi !== ''
-              ? strengTilDato(periode.fra.verdi)
-              : undefined
-          }
+          valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={
             datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
           }
-          showMonthYearPicker={showMonthYearPicker}
         />
 
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.til)}
-          valgtDato={
-            periode.til.verdi && periode.til.verdi !== ''
-              ? strengTilDato(periode.til.verdi)
-              : undefined
-          }
+          valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
           datobegrensning={
             datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
           }
-          showMonthYearPicker={showMonthYearPicker}
         />
         {feilmelding && feilmelding !== '' && (
           <div
