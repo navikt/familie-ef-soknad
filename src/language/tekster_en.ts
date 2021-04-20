@@ -779,13 +779,22 @@ export default {
     '</ul>',
 
   // barnHarSærligeBehov
-  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+  'dinSituasjon.dok.harBarnMedSærligeBehov.tittel':
     'You must provide documentation of your child’s special supervision needs',
-  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+  'dinSituasjon.dok.harBarnMedSærligeBehov.beskrivelse':
     'Documentation from your doctor must confirm:' +
     '<ul>' +
     '<li>that the child has medical, mental or major social problems and needs supervision</li>' +
     '<li>that this affects your ability to be in occupational activity</li>' +
+    '</ul>',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'About [0]’s need for special supervision',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'We need information about:' +
+    '<ul>' +
+    '<li>how much supervision your child needs</li>' +
+    '<li>what kind of supervision</li>' +
+    '<li>how this affects your ability to be in occupational activity</li>' +
     '</ul>',
 
   'dinSituasjon.datovelger.jobb': 'When are you going to start your new job?',
