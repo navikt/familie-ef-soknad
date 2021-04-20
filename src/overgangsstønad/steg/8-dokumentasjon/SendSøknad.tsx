@@ -28,6 +28,8 @@ import { useSpråkContext } from '../../../context/SpråkContext';
 import { useIntl } from 'react-intl';
 import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 import { IBarn } from '../../../models/steg/barn';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/søknad/toggles';
 
 interface Innsending {
   status: string;
@@ -41,6 +43,7 @@ const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
+  const { toggles } = useToggles();
   const location = useLocation<LocationStateSøknad>();
   const [locale] = useSpråkContext();
   const history = useHistory();
@@ -154,6 +157,26 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst="dokumentasjon.alert.manglende" />
           </AlertStripe>
         </KomponentGruppe>
+      )}
+      {toggles[ToggleName.visSkalBehandlesINySaksbehandling] && (
+        <>
+          <div className={'sentrert'}>
+            <KnappBase
+              type={'hoved'}
+              onClick={() =>
+                !innsendingState.venter &&
+                sendSøknad({ ...søknad, skalBehandlesINySaksbehandling: true })
+              }
+              spinner={innsendingState.venter}
+            >
+              Saksbehandle i ny løsning
+            </KnappBase>
+          </div>
+          <Normaltekst style={{ marginBottom: 30 }}>
+            (For å IKKE forsøke automatisk journalføring og blankettbehandling
+            trykk på "Saksbehandle i ny løsning" knapp)
+          </Normaltekst>
+        </>
       )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
