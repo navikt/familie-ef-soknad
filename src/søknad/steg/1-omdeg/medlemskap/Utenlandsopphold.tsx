@@ -8,7 +8,6 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { datoTilStreng } from '../../../../utils/dato';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 
@@ -63,7 +62,7 @@ const Utenlandsopphold: FC<Props> = ({
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
 
-  const settPeriode = (date: Date | null, objektnøkkel: EPeriode): void => {
+  const settPeriode = (date: string, objektnøkkel: EPeriode): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
@@ -74,7 +73,7 @@ const Utenlandsopphold: FC<Props> = ({
               label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
               [objektnøkkel]: {
                 label: hentTekst('periode.' + objektnøkkel, intl),
-                verdi: date !== null ? datoTilStreng(date) : undefined,
+                verdi: date,
               },
             },
           };

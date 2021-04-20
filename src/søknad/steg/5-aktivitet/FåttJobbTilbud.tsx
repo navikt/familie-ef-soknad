@@ -6,7 +6,6 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 
@@ -20,15 +19,14 @@ const FåttJobbTilbud: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const settDato = (dato: Date | null) => {
-    dato !== null &&
-      settArbeidssituasjon({
-        ...arbeidssituasjon,
-        datoOppstartJobb: {
-          label: hentTekst('dinSituasjon.datovelger.jobb', intl),
-          verdi: datoTilStreng(dato),
-        },
-      });
+  const settDato = (dato: string) => {
+    settArbeidssituasjon({
+      ...arbeidssituasjon,
+      datoOppstartJobb: {
+        label: hentTekst('dinSituasjon.datovelger.jobb', intl),
+        verdi: dato,
+      },
+    });
   };
   return (
     <KomponentGruppe>

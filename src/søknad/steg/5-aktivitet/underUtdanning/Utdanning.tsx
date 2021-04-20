@@ -13,7 +13,6 @@ import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { datoTilStreng } from '../../../../utils/dato';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
 
@@ -68,7 +67,7 @@ const Utdanning: React.FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: Date | null, nøkkel: EPeriode): void => {
+  const settPeriode = (dato: string, nøkkel: EPeriode): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,
@@ -77,7 +76,7 @@ const Utdanning: React.FC<Props> = ({
           label: hentTekst('utdanning.datovelger.studieperiode', intl),
           [nøkkel]: {
             label: hentTekst('periode.' + nøkkel, intl),
-            verdi: dato !== null ? datoTilStreng(dato) : undefined,
+            verdi: dato,
           },
         },
       });

@@ -4,7 +4,6 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
@@ -77,17 +76,16 @@ const Barnepass: FC<Props> = () => {
     });
   };
 
-  const settSøknadsdato = (dato: Date | null) => {
-    dato !== null &&
-      settSøknad((prevSøknad: ISøknad) => {
-        return {
-          ...prevSøknad,
-          søknadsdato: {
-            label: hentTekst(datovelgerLabel, intl),
-            verdi: datoTilStreng(dato),
-          },
-        };
-      });
+  const settSøknadsdato = (dato: string) => {
+    settSøknad((prevSøknad: ISøknad) => {
+      return {
+        ...prevSøknad,
+        søknadsdato: {
+          label: hentTekst(datovelgerLabel, intl),
+          verdi: dato,
+        },
+      };
+    });
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {

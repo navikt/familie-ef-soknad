@@ -3,7 +3,6 @@ import { IUnderUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
-import { datoTilStreng } from '../../../../utils/dato';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { EPeriode } from '../../../../models/felles/periode';
@@ -25,7 +24,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settPeriode = (dato: Date | null, nøkkel: EPeriode): void => {
+  const settPeriode = (dato: string, nøkkel: EPeriode): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,
@@ -37,7 +36,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
           ),
           [nøkkel]: {
             label: hentTekst('periode.' + nøkkel, intl),
-            verdi: dato !== null ? datoTilStreng(dato) : undefined,
+            verdi: dato,
           },
         },
       });

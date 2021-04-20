@@ -46,7 +46,7 @@ interface Props {
   spørsmål: ISpørsmål;
   settSøkerFraBestemtMåned: (spørsmål: ISpørsmål, svar: ISvar) => void;
   søkerFraBestemtMåned: ISpørsmålBooleanFelt | undefined;
-  settDato: (dato: Date | null) => void;
+  settDato: (dato: string) => void;
   valgtDato: IDatoFelt | undefined;
   datovelgerLabel: string;
   hjelpetekstInnholdTekst: string | React.ReactNode;
@@ -101,7 +101,6 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
               tekstid={datovelgerLabel}
               datobegrensning={DatoBegrensning.AlleDatoer}
               settDato={settDato}
-              showMonthYearPicker
             />
           </StyledDatovelger>
           {alertTekst && (

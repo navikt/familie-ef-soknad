@@ -7,7 +7,7 @@ import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvar
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
-import { datoTilStreng, erPeriodeGyldig } from '../../../utils/dato';
+import { erPeriodeGyldig } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
@@ -118,7 +118,7 @@ const BarnepassSpørsmål: FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
+  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
     const periode = barnepassOrdning.periode
       ? barnepassOrdning.periode
       : tomPeriode;
@@ -136,7 +136,7 @@ const BarnepassSpørsmål: FC<Props> = ({
           label: periodeTekst,
           [objektnøkkel]: {
             label: datovelgerTekst,
-            verdi: datoTilStreng(dato),
+            verdi: dato,
           },
         },
       });

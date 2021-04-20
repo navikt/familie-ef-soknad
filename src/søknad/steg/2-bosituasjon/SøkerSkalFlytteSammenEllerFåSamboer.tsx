@@ -18,7 +18,6 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -78,7 +77,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   };
 
   const settDatoSøkerSkalGifteSegEllerBliSamboer = (
-    dato: Date | null,
+    dato: string,
     label: string
   ) => {
     dato !== null &&
@@ -86,7 +85,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         ...bosituasjon,
         datoSkalGifteSegEllerBliSamboer: {
           label: label,
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };

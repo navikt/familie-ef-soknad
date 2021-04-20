@@ -6,7 +6,6 @@ import { barnetFødt } from './BarneConfig';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { strengTilDato } from '../../../utils/dato';
 
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
@@ -36,7 +35,7 @@ const LeggTilBarn: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const [barnDato, settBarnDato] = useState<Date | undefined>();
+  const [barnDato, settBarnDato] = useState<string>('');
   const [født, settBarnFødt] = useState<boolean>();
   const [navn, settNavn] = useState('');
   const [ident, settIdent] = useState<string>('');
@@ -56,12 +55,12 @@ const LeggTilBarn: React.FC<Props> = ({
       settBoHosDeg(detteBarnet?.harSammeAdresse?.verdi ? ESvar.JA : ESvar.NEI);
       settSkalHaBarnepass(detteBarnet?.skalHaBarnepass?.verdi);
       detteBarnet?.fødselsdato.verdi &&
-        settDato(strengTilDato(detteBarnet.fødselsdato?.verdi));
+        settDato(detteBarnet.fødselsdato?.verdi);
     }
     // eslint-disable-next-line
   }, []);
 
-  const settDato = (date: Date | null): void => {
+  const settDato = (date: string): void => {
     date && settBarnDato(date);
   };
 
