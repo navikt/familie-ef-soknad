@@ -18,6 +18,25 @@ const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   }
 `;
 
+const datoerFraDatobegrensning = (
+  datobegrensning: DatoBegrensning
+): DatepickerLimitations => {
+  switch (datobegrensning) {
+    case DatoBegrensning.AlleDatoer:
+      return {};
+    case DatoBegrensning.FremtidigeDatoer:
+      return {
+        minDate: formatIsoDate(new Date()),
+        maxDate: formatIsoDate(addYears(new Date(), 100)),
+      };
+    case DatoBegrensning.TidligereDatoer:
+      return {
+        minDate: formatIsoDate(subYears(new Date(), 100)),
+        maxDate: formatIsoDate(new Date()),
+      };
+  }
+};
+
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
   FremtidigeDatoer = 'FremtidigeDatoer',
@@ -44,6 +63,8 @@ const Datovelger: React.FC<Props> = ({
   // NOTE: Ble tidligere sendt inn som props til DatePicker (react sin)
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
+
+  // const erGyldigDato = (): boolean => {};
 
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
