@@ -66,20 +66,22 @@ const SendSøknadKnapper: FC = () => {
 
       const oppdatertBarn = { ...barnet };
 
-      Object.keys(oppdatertBarn.forelder).forEach((key) => {
-        if (!oppdatertBarn.forelder[key]?.label) {
-          return;
-        }
+      if (oppdatertBarn.forelder) {
+        Object.keys(oppdatertBarn.forelder).forEach((key) => {
+          if (!oppdatertBarn.forelder[key]?.label) {
+            return;
+          }
 
-        let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
+          let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
 
-        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace(
-          '[0]',
-          navnEllerBarn
-        );
+          labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace(
+            '[0]',
+            navnEllerBarn
+          );
 
-        oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
-      });
+          oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
+        });
+      }
 
       return oppdatertBarn;
     });
