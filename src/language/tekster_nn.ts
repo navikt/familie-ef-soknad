@@ -776,13 +776,22 @@ export default {
     '</ul>',
 
   // barnHarSærligeBehov
-  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
-    'You must provide documentation of your child’s special supervision needs',
-  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
-    'Documentation from your doctor must confirm:' +
+
+  'dinSituasjon.dok.harBarnMedSærligeBehov.tittel':
+    'Du må leggje ved dokumentasjon på tilsynsbehovet til barnet.',
+  'dinSituasjon.dok.harBarnMedSærligeBehov.beskrivelse':
+    'Dokumentasjon frå legen din som stadfestar: ' +
     '<ul>' +
-    '<li>that the child has medical, mental or major social problems and needs supervision</li>' +
-    '<li>that this affects your ability to be in occupational activity</li>' +
+    '<li>at barnet har medisinske, psykiske eller store sosiale problem og treng tilsyn</li>' +
+    '<li>kat dette påverkar i kva grad det er mogleg for deg å vere i yrkesretta aktivitet</li>' +
+    '</ul>',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'Om tilsynsbehovet til [0]',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'Vi treng opplysningar om:' +
+    '<ul>' +
+    '<li>kor mykje og korleis barnet ditt treng tilsyn</li>' +
+    '<li>korleis dette påverkar i kva grad det er mogleg for deg å vere i yrkesretta aktivitet</li>' +
     '</ul>',
 
   'dinSituasjon.datovelger.jobb': 'When are you going to start your new job?',
