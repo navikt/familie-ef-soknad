@@ -136,7 +136,7 @@ const Barnekort: React.FC<Props> = ({
                 {medforelder?.verdi && medforelder?.verdi.navn
                   ? medforelder?.verdi?.navn
                   : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
-                      medforelder.verdi.alder
+                      medforelder?.verdi?.alder
                     }`}
               </Normaltekst>
             </div>
