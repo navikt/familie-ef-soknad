@@ -127,20 +127,24 @@ const Barnekort: React.FC<Props> = ({
               <Normaltekst>{bosted}</Normaltekst>
             </div>
           )}
-          {medforelder && !medforelder.verdi?.død && (
-            <div className="informasjonselement">
-              <Normaltekst>
-                {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
-              </Normaltekst>
-              <Normaltekst>
-                {medforelder?.verdi && medforelder?.verdi.navn
-                  ? medforelder?.verdi?.navn
-                  : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
-                      medforelder?.verdi?.alder
-                    }`}
-              </Normaltekst>
-            </div>
-          )}
+          {medforelder &&
+            !medforelder.verdi?.død &&
+            (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
+              <div className="informasjonselement">
+                <Normaltekst>
+                  {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+                </Normaltekst>
+                <Normaltekst>
+                  {medforelder?.verdi && medforelder?.verdi.navn
+                    ? medforelder?.verdi?.navn
+                    : medforelder?.verdi?.alder
+                    ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                        medforelder.verdi.alder
+                      }`
+                    : null}
+                </Normaltekst>
+              </div>
+            )}
           {velgBarnForDenneSøknaden}
           {lagtTil ? (
             <button
