@@ -36,7 +36,7 @@ const BarnasBosted: React.FC = () => {
   } = useSøknad();
 
   const barna = søknad.person.barn.filter((barn: IBarn) => {
-    return !barn.medForelder || barn.medForelder.verdi.død === false;
+    return !barn.medforelder || barn.medforelder.verdi.død === false;
   });
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;

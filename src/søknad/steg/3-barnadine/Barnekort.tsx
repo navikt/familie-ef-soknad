@@ -48,7 +48,7 @@ const Barnekort: React.FC<Props> = ({
     alder,
     lagtTil,
     harSammeAdresse,
-    medForelder,
+    medforelder,
     harAdressesperre,
   } = gjeldendeBarn;
 
@@ -127,16 +127,16 @@ const Barnekort: React.FC<Props> = ({
               <Normaltekst>{bosted}</Normaltekst>
             </div>
           )}
-          {medForelder && !medForelder.verdi?.død && (
+          {medforelder && !medforelder.verdi?.død && (
             <div className="informasjonselement">
               <Normaltekst>
                 {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
               </Normaltekst>
               <Normaltekst>
-                {medForelder.verdi.navn
-                  ? medForelder.verdi.navn
-                  : `${hentTekst('barnekort.medForelder.hemmelig', intl)}, ${
-                      medForelder.verdi.alder
+                {medforelder.verdi.navn
+                  ? medforelder.verdi.navn
+                  : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                      medforelder.verdi.alder
                     }`}
               </Normaltekst>
             </div>

@@ -320,7 +320,7 @@ export default {
   'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
   'barnekort.fjern': 'Fjern fra søknad',
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
-  'barnekort.medForelder.hemmelig': 'Person',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Legg til barn',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',

@@ -20,7 +20,7 @@ export interface IBarn {
   skalHaBarnepass?: IBooleanFelt; // Gjelder kun barnetilsyn
   barnepass?: IBarnepass; // Gjelder kun barnetilsyn
   harAdressesperre?: any;
-  medForelder?: any;
+  medforelder?: any;
 }
 
 export enum EBarn {

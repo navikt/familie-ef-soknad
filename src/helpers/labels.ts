@@ -5,5 +5,5 @@ export const standardLabelsBarn: any = {
   fødselsdato: 'Fødselsdato',
   harSammeAdresse: 'Har barnet samme adresse som deg?',
   født: 'Er barnet født?',
-  medForelder: 'Annen forelder',
+  medforelder: 'Annen forelder',
 };
