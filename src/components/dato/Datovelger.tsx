@@ -19,6 +19,12 @@ const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   }
 `;
 
+export enum DatoBegrensning {
+  AlleDatoer = 'AlleDatoer',
+  FremtidigeDatoer = 'FremtidigeDatoer',
+  TidligereDatoer = 'TidligereDatoer',
+}
+
 const datoerFraDatobegrensning = (
   datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
@@ -37,12 +43,6 @@ const datoerFraDatobegrensning = (
       };
   }
 };
-
-export enum DatoBegrensning {
-  AlleDatoer = 'AlleDatoer',
-  FremtidigeDatoer = 'FremtidigeDatoer',
-  TidligereDatoer = 'TidligereDatoer',
-}
 
 interface Props {
   valgtDato: string | undefined;
@@ -52,25 +52,6 @@ interface Props {
   disabled?: boolean;
   fetSkrift?: boolean;
 }
-
-const datoerFraDatobegrensning = (
-  datobegrensning: DatoBegrensning
-): DatepickerLimitations => {
-  switch (datobegrensning) {
-    case DatoBegrensning.AlleDatoer:
-      return {};
-    case DatoBegrensning.FremtidigeDatoer:
-      return {
-        minDate: formatIsoDate(new Date()),
-        maxDate: formatIsoDate(addYears(new Date(), 100)),
-      };
-    case DatoBegrensning.TidligereDatoer:
-      return {
-        minDate: formatIsoDate(subYears(new Date(), 100)),
-        maxDate: formatIsoDate(new Date()),
-      };
-  }
-};
 
 const Datovelger: React.FC<Props> = ({
   tekstid,
