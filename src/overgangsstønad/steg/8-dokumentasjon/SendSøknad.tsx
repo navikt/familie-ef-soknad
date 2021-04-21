@@ -66,7 +66,7 @@ const SendSøknadKnapper: FC = () => {
 
       const oppdatertBarn = { ...barnet };
 
-      if (oppdatertBarn.forelder) {
+      if (oppdatertBarn?.forelder) {
         Object.keys(oppdatertBarn.forelder).forEach((key) => {
           if (!oppdatertBarn.forelder[key]?.label) {
             return;

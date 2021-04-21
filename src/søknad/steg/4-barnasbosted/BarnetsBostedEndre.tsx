@@ -103,7 +103,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? barn.forelder
-      : barn.medforelder
+      : barn.medforelder?.verdi
       ? {
           id: hentUid(),
           ...medforelderMedLabel(barn.medforelder),
@@ -188,14 +188,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    (!barn.medforelder && førsteBarnTilHverForelder.length === 0) ||
+    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    barn.medforelder ||
+    barn.medforelder?.verdi ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&
@@ -228,15 +228,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <SeksjonGruppe>
               <BarnetsAndreForelderTittel barn={barn} />
 
-              {førsteBarnTilHverForelder.length > 0 && !barn.medforelder && (
-                <AnnenForelderKnapper
-                  barn={barn}
-                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                  settForelder={settForelder}
-                  forelder={forelder}
-                  settBarnHarSammeForelder={settBarnHarSammeForelder}
-                />
-              )}
+              {førsteBarnTilHverForelder.length > 0 &&
+                !barn.medforelder?.verdi && (
+                  <AnnenForelderKnapper
+                    barn={barn}
+                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                    settForelder={settForelder}
+                    forelder={forelder}
+                    settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  />
+                )}
               {visOmAndreForelder && (
                 <OmAndreForelder
                   settForelder={settForelder}
@@ -246,7 +247,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               )}
-              {barn.medforelder && (
+              {barn.medforelder?.verdi && (
                 <>
                   <Element>Navn</Element>
                   <Normaltekst>
