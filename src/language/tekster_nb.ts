@@ -463,6 +463,8 @@ export default {
     'Registrer adresse hos Folkeregisteret',
   'barnasbosted.kanGåVidere':
     'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
+  'barnasbosted.feilmelding.adressebeskyttelse':
+    'Et eller flere av barna dine er registrert med adressebeskyttelse og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
 
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',

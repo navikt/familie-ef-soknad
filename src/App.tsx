@@ -28,6 +28,7 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
+  const [alvorlighetsgrad, settAlvorlighetsgrad] = useState('');
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
@@ -50,7 +51,19 @@ const App = () => {
         oppdaterSøknadMedBarn(response, response.barn);
       })
       .catch((e) => {
-        settFeilmelding(e.response?.data?.feil);
+        const feil = e.response?.data?.feil;
+
+        if (feil === 'adressesperre') {
+          settAlvorlighetsgrad('INFO');
+          settFeilmelding(
+            intl.formatMessage({
+              id: 'barnasbosted.feilmelding.adressebeskyttelse',
+            })
+          );
+        } else {
+          settFeilmelding(feil);
+        }
+
         settError(true);
       });
   };
@@ -111,7 +124,9 @@ const App = () => {
         </>
       );
     } else if (error) {
-      return <Feilside tekst={feilmelding} />;
+      return (
+        <Feilside tekst={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
+      );
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }
