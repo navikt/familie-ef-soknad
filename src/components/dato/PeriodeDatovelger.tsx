@@ -28,7 +28,6 @@ interface Props {
   fomTekstid?: string;
   tomTekstid?: string;
   settDato: (dato: string, objektnøkkel: EPeriode) => void;
-  showMonthYearPicker?: boolean;
   datobegrensing?: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
 }
@@ -40,7 +39,6 @@ const PeriodeDatovelgere: FC<Props> = ({
   tekst,
   fomTekstid,
   tomTekstid,
-  showMonthYearPicker,
   datobegrensing,
   onValidate,
 }) => {

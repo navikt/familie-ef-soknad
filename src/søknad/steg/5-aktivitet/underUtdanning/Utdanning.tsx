@@ -118,7 +118,6 @@ const Utdanning: React.FC<Props> = ({
             tekst={hentTekst('utdanning.datovelger.studieperiode', intl)}
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
-            showMonthYearPicker={true}
             aria-live="polite"
           />
         </KomponentGruppe>
