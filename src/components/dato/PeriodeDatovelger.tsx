@@ -1,13 +1,25 @@
 import React, { FC, useCallback, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
-import classNames from 'classnames';
 import Feilmelding from '../feil/Feilmelding';
 import { strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { compareAsc, isEqual } from 'date-fns';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import Hjelpetekst from '../Hjelpetekst';
+import styled from 'styled-components/macro';
+import FeltGruppe from '../gruppe/FeltGruppe';
+
+const PeriodeGruppe = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  grid-template-rows: repeat(2, min-content);
+  grid-gap: 2rem;
+
+  .feilmelding {
+    grid-column: 1/3;
+  }
+`;
 
 interface Props {
   tekst: string;
@@ -80,7 +92,7 @@ const PeriodeDatovelgere: FC<Props> = ({
 
   return (
     <>
-      <div className={'utenlandsopphold__spørsmål'}>
+      <FeltGruppe>
         <Element>{tekst}</Element>
         {hjelpetekst && (
           <Hjelpetekst
@@ -89,8 +101,8 @@ const PeriodeDatovelgere: FC<Props> = ({
             lukkeTekstid={hjelpetekst.lukkeTekstid}
           />
         )}
-      </div>
-      <div className={'utenlandsopphold__periodegruppe'} aria-live="polite">
+      </FeltGruppe>
+      <PeriodeGruppe aria-live="polite">
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.fra)}
           valgtDato={periode.fra.verdi}
@@ -109,15 +121,9 @@ const PeriodeDatovelgere: FC<Props> = ({
           }
         />
         {feilmelding && feilmelding !== '' && (
-          <div
-            className={classNames('datovelger__feilmelding ', {
-              gjemFeilmelding: feilmelding === '',
-            })}
-          >
-            <Feilmelding tekstid={feilmelding ? feilmelding : ''} />
-          </div>
+          <Feilmelding className={'feilmelding'} tekstid={feilmelding} />
         )}
-      </div>
+      </PeriodeGruppe>
     </>
   );
 };

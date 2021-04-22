@@ -6,6 +6,7 @@ import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { useIntl } from 'react-intl';
 import { EPeriode } from '../../../../models/felles/periode';
+import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -43,14 +44,14 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   };
 
   return (
-    <>
+    <KomponentGruppe>
       <PeriodeDatovelgere
         tekst={hentTekst('utdanning.datovelger.studieperiode.fremtidig', intl)}
         periode={utdanning.periode ? utdanning.periode : tomPeriode}
         settDato={settPeriode}
         datobegrensing={DatoBegrensning.AlleDatoer}
       />
-    </>
+    </KomponentGruppe>
   );
 };
 
