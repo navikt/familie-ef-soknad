@@ -66,13 +66,17 @@ const Datovelger: React.FC<Props> = ({
   const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato || '');
 
-  const limitations = datoerFraDatobegrensning(datobegrensning);
+  const limitations: DatepickerLimitations = datoerFraDatobegrensning(
+    datobegrensning
+  );
+  const ingenDatoBegrensninger = Object.keys(limitations).length === 0;
 
   const datoErInnenforDatobegrensninger = (dato: Date) =>
-    !!limitations.maxDate &&
-    dato <= new Date(limitations.maxDate) &&
-    !!limitations.minDate &&
-    dato >= new Date(limitations.minDate);
+    (!!limitations.maxDate &&
+      dato <= new Date(limitations.maxDate) &&
+      !!limitations.minDate &&
+      dato >= new Date(limitations.minDate)) ||
+    ingenDatoBegrensninger;
 
   const gyldigDato = (dato: string): boolean => {
     let gyldigDato = dato !== '' && isISODateString(dato) === true;
@@ -88,7 +92,6 @@ const Datovelger: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [_dato]);
 
-  // const erGyldigDato = (): boolean => {};
 
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
