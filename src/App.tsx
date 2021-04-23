@@ -125,7 +125,7 @@ const App = () => {
       );
     } else if (error) {
       return (
-        <Feilside tekst={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
+        <Feilside tekstId={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
       );
     } else {
       return <NavFrontendSpinner className="spinner" />;

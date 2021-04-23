@@ -45,9 +45,7 @@ const App = () => {
           })
           .catch((e) => {
             settError(true);
-            settFeilmelding(
-              'En feil oppstod ved uthenting av dine personopplysninger'
-            );
+            settFeilmelding('skjema.feilmelding.uthenting');
           });
       };
       fetchPersonData();
@@ -84,7 +82,7 @@ const App = () => {
         </>
       );
     } else if (error) {
-      return <Feilside tekst={feilmelding} />;
+      return <Feilside tekstId={feilmelding} />;
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }

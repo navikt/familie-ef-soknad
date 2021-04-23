@@ -4,7 +4,7 @@ import {
   AlertStripeAdvarsel,
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
-import { useIntl } from 'react-intl';
+import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 
@@ -12,8 +12,8 @@ const StyledNormaltekst = styled(Normaltekst)`
   margin-top: 1rem;
 `;
 
-const Feilside: FC<{ tekst?: string; alvorlighetsgrad?: string }> = ({
-  tekst,
+const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
+  tekstId,
   alvorlighetsgrad,
 }) => {
   let AlertStripeMedAlvorlighetsgrad = AlertStripeFeil;
@@ -32,8 +32,8 @@ const Feilside: FC<{ tekst?: string; alvorlighetsgrad?: string }> = ({
   return (
     <div className="feilside">
       <AlertStripeMedAlvorlighetsgrad>
-        {tekst ? (
-          <StyledNormaltekst>{tekst}</StyledNormaltekst>
+        {tekstId ? (
+          <FormattedHTMLMessage id={tekstId} />
         ) : (
           intl.formatMessage({ id: 'feil.alert' })
         )}

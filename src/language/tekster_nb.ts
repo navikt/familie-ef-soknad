@@ -32,6 +32,8 @@ export default {
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
     '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
     '<li>sende meldekort hver 14. dag</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
   'skjema.alert.registrert':

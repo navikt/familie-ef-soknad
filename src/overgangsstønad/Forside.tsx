@@ -11,6 +11,7 @@ import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import Environment from '../Environment';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
+import { FormattedHTMLMessage } from 'react-intl';
 import {
   ERouteOvergangsstønad,
   RoutesOvergangsstonad,

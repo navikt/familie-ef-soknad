@@ -36,6 +36,8 @@ export default {
     '<li>search for vacant positions (jobs)' +
     ' <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
     '<li>submit an employment status card every 14 days</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Information about you as a job seeker',
   'skjema.alert.registrert':
