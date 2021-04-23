@@ -25,7 +25,11 @@ import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
 import SituasjonOppfølgingSpørsmål from '../../../søknad/steg/6-meromsituasjon/SituasjonOppfølgingSpørsmål';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
-import { dagensDato, formatMånederTilbake } from '../../../utils/dato';
+import {
+  dagensDato,
+  datoTilStreng,
+  formatMånederTilbake,
+} from '../../../utils/dato';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
@@ -133,14 +137,15 @@ const MerOmDinSituasjon: React.FC = () => {
     settDokumentasjonsbehov(spørsmål, svar, svarHuketAv);
   };
 
-  const settSøknadsdato = (dato: string) => {
-    settDinSituasjon({
-      ...dinSituasjon,
-      søknadsdato: {
-        label: hentTekst(datovelgerLabel, intl),
-        verdi: dato,
-      },
-    });
+  const settSøknadsdato = (dato: Date | null) => {
+    dato !== null &&
+      settDinSituasjon({
+        ...dinSituasjon,
+        søknadsdato: {
+          label: hentTekst(datovelgerLabel, intl),
+          verdi: datoTilStreng(dato),
+        },
+      });
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {

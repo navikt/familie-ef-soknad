@@ -11,9 +11,7 @@ import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsi
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
+
 import subMonths from 'date-fns/subMonths';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
@@ -21,6 +19,9 @@ import { dagensDato, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import AlertStripe from 'nav-frontend-alertstriper';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
 
 interface Props {
   dinSituasjon: IDinSituasjon;

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
@@ -15,6 +14,7 @@ import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
+import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -67,7 +67,7 @@ const Utdanning: React.FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: string, nøkkel: EPeriode): void => {
+  const settPeriode = (dato: Date | null, nøkkel: EPeriode): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,
@@ -114,7 +114,7 @@ const Utdanning: React.FC<Props> = ({
       </FeltGruppe>
       {harValgtSvar(utdanning.linjeKursGrad?.verdi) && (
         <KomponentGruppe>
-          <PeriodeDatovelgere
+          <PeriodeÅrMånedvelgere
             tekst={hentTekst('utdanning.datovelger.studieperiode', intl)}
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}

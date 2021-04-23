@@ -20,13 +20,13 @@ import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
 import { erÅrsakBarnepassSpmBesvart } from './hjelper';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
 } from '../../models/barnepass';
 import { EPeriode } from '../../../models/felles/periode';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
 
 interface Props {
   barn: IBarn;

@@ -29,6 +29,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { ISøknad } from '../../models/søknad';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
@@ -76,16 +77,17 @@ const Barnepass: FC<Props> = () => {
     });
   };
 
-  const settSøknadsdato = (dato: string) => {
-    settSøknad((prevSøknad: ISøknad) => {
-      return {
-        ...prevSøknad,
-        søknadsdato: {
-          label: hentTekst(datovelgerLabel, intl),
-          verdi: dato,
-        },
-      };
-    });
+  const settSøknadsdato = (dato: Date | null) => {
+    dato !== null &&
+      settSøknad((prevSøknad: ISøknad) => {
+        return {
+          ...prevSøknad,
+          søknadsdato: {
+            label: hentTekst(datovelgerLabel, intl),
+            verdi: datoTilStreng(dato),
+          },
+        };
+      });
   };
 
   const settSøkerFraBestemtMåned = (spørsmål: ISpørsmål, svar: ISvar) => {

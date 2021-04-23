@@ -2,10 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { addYears, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Datepicker, isISODateString } from 'nav-datovelger';
-
 import { useSpråkContext } from '../../context/SpråkContext';
-import 'react-datepicker/dist/react-datepicker.css';
-
 import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { formatIsoDate } from '../../utils/dato';
@@ -13,7 +10,7 @@ import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 
-const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
+export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   .typo-normal {
     font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
   }
@@ -25,7 +22,7 @@ export enum DatoBegrensning {
   TidligereDatoer = 'TidligereDatoer',
 }
 
-const datoerFraDatobegrensning = (
+export const datoerFraDatobegrensning = (
   datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
   switch (datobegrensning) {
@@ -91,7 +88,6 @@ const Datovelger: React.FC<Props> = ({
     }
     // eslint-disable-next-line
   }, [_dato]);
-
 
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
