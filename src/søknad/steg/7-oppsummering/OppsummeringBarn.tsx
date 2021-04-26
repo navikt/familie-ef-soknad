@@ -55,7 +55,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {!harAdressesperre && fødselsdato.verdi !== '' && (
+      {!harAdressesperre && født?.verdi && fødselsdato.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
           <Element>
             <LocaleTekst tekst="barnekort.fødselsdato" />
@@ -66,7 +66,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {født && lagtTil && (
+      {født?.verdi && lagtTil && (
         <div className={'spørsmål-og-svar'}>
           <Element>{født?.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
