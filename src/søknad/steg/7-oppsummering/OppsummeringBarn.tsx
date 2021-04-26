@@ -5,6 +5,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { verdiTilTekstsvar } from '../../../utils/visning';
 import { useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { formatDate, strengTilDato } from '../../../utils/dato';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -59,7 +60,9 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
           <Element>
             <LocaleTekst tekst="barnekort.fødselsdato" />
           </Element>
-          <Normaltekst>{fødselsdato.verdi}</Normaltekst>
+          <Normaltekst>
+            {formatDate(strengTilDato(fødselsdato.verdi))}
+          </Normaltekst>
         </div>
       )}
 

@@ -10,6 +10,7 @@ import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
+import { formatDate, strengTilDato } from '../../../utils/dato';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -105,7 +106,9 @@ const Barnekort: React.FC<Props> = ({
                       ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                       : intl.formatMessage({ id: 'barnekort.termindato' })}
                   </Normaltekst>
-                  <Normaltekst>{fødselsdato.verdi}</Normaltekst>
+                  <Normaltekst>
+                    {formatDate(strengTilDato(fødselsdato.verdi))}
+                  </Normaltekst>
                 </>
               )}
             </div>
