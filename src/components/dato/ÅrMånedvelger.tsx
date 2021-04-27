@@ -14,12 +14,30 @@ import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { DatoBegrensning, StyledDatovelger } from './Datovelger';
 import styled from 'styled-components/macro';
 import KalenderKnapp from './KalenderKnapp';
+import { addYears, subYears } from 'date-fns';
 
 const InputContainer = styled.div`
   display: inline-block;
   width: 10rem;
   position: relative;
 `;
+
+const datoerFraDatobegrensning = (datobegrensning: DatoBegrensning) => {
+  switch (datobegrensning) {
+    case DatoBegrensning.AlleDatoer:
+      return {};
+    case DatoBegrensning.FremtidigeDatoer:
+      return {
+        minDate: new Date(),
+        maxDate: addYears(new Date(), 100),
+      };
+    case DatoBegrensning.TidligereDatoer:
+      return {
+        minDate: subYears(new Date(), 100),
+        maxDate: new Date(),
+      };
+  }
+};
 
 interface Props {
   valgtDato: string | Date | undefined;
@@ -41,6 +59,15 @@ const ÅrMånedVelger: React.FC<Props> = ({
   const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
+  const begrensninger = datoerFraDatobegrensning(datobegrensning);
+
+  const gyldigeDatoformater = [
+    'MMM yyyy',
+    'MM-yyyy',
+    'MM.yyyy',
+    'yyyy-MM',
+    'yyyy.MM',
+  ];
 
   const settLocaleForDatePicker = () => {
     locale === 'nn'
@@ -77,28 +104,44 @@ const ÅrMånedVelger: React.FC<Props> = ({
             isOpen={false}
             disabled={disabled}
           />
-          <DatePicker
-            name="dateInput"
-            ariaLabelledBy={'Datepicker - MM.yyyy format'}
-            id={datolabelid}
-            disabled={disabled}
-            className={'nav-datovelger__input'}
-            onChange={(e: Date | null) => {
-              settDato(e);
-            }}
-            selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
-            dateFormat={[
-              'MMM yyyy',
-              'MM-yyyy',
-              'MM.yyyy',
-              'yyyy-MM',
-              'yyyy.MM',
-            ]}
-            locale={locale}
-            showMonthYearPicker={true}
-            showTwoColumnMonthYearPicker={true}
-            ref={inputRef}
-          />
+          {datobegrensning === DatoBegrensning.AlleDatoer &&
+          begrensninger === {} ? (
+            <DatePicker
+              name="dateInput"
+              ariaLabelledBy={'Datepicker - MM.yyyy format'}
+              id={datolabelid}
+              disabled={disabled}
+              className={'nav-datovelger__input'}
+              onChange={(e: Date | null) => {
+                settDato(e);
+              }}
+              selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
+              dateFormat={gyldigeDatoformater}
+              locale={locale}
+              showMonthYearPicker={true}
+              showTwoColumnMonthYearPicker={true}
+              ref={inputRef}
+            />
+          ) : (
+            <DatePicker
+              name="dateInput"
+              ariaLabelledBy={'Datepicker - MM.yyyy format'}
+              id={datolabelid}
+              disabled={disabled}
+              className={'nav-datovelger__input'}
+              onChange={(e: Date | null) => {
+                settDato(e);
+              }}
+              selected={valgtDato !== undefined ? tilDato(valgtDato) : null}
+              dateFormat={gyldigeDatoformater}
+              locale={locale}
+              showMonthYearPicker={true}
+              showTwoColumnMonthYearPicker={true}
+              ref={inputRef}
+              minDate={begrensninger?.minDate}
+              maxDate={begrensninger?.maxDate}
+            />
+          )}
         </InputContainer>
       </FeltGruppe>
     </StyledDatovelger>

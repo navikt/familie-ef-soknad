@@ -22,7 +22,7 @@ export enum DatoBegrensning {
   TidligereDatoer = 'TidligereDatoer',
 }
 
-export const datoerFraDatobegrensning = (
+const datoerFraDatobegrensning = (
   datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
   switch (datobegrensning) {
