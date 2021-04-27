@@ -33,6 +33,7 @@ const PeriodeGruppe = styled.div`
 `;
 
 interface Props {
+  className?: string;
   tekst: string;
   hjelpetekst?: IHjelpetekst;
   periode: IPeriode;
@@ -44,6 +45,7 @@ interface Props {
 }
 
 const PeriodeDatovelgere: FC<Props> = ({
+  className,
   periode,
   hjelpetekst,
   settDato,
@@ -100,7 +102,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   };
 
   return (
-    <KomponentGruppe>
+    <KomponentGruppe className={className}>
       <FeltGruppe>
         <Element>{tekst}</Element>
         {hjelpetekst && (

@@ -10,6 +10,12 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
+import styled from 'styled-components/macro';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+
+const StyledTextarea = styled(Textarea)`
+  width: 100%;
+`;
 
 interface Props {
   perioderBoddIUtlandet: IUtenlandsopphold[];
@@ -61,7 +67,6 @@ const Utenlandsopphold: FC<Props> = ({
     );
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
-
   const settPeriode = (date: string, objektnøkkel: EPeriode): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
@@ -88,28 +93,28 @@ const Utenlandsopphold: FC<Props> = ({
   };
 
   return (
-    <div
-      className="utenlandsopphold utenlandsopphold__container"
-      aria-live="polite"
-    >
-      <Undertittel className={'utenlandsopphold__tittel'} tag="h3">
-        {periodeTittel}
-      </Undertittel>
-      <SlettKnapp
-        className={classnames('utenlandsopphold__slettknapp', {
-          kunEn: perioderBoddIUtlandet?.length === 1,
-        })}
-        onClick={() => fjernUtenlandsperiode()}
-        tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
-      />
+    <div aria-live="polite">
+      <TittelOgSlettKnapp>
+        <Undertittel className={'tittel'} tag="h3">
+          {periodeTittel}
+        </Undertittel>
+        <SlettKnapp
+          className={classnames('slettknapp', {
+            kunEn: perioderBoddIUtlandet?.length === 1,
+          })}
+          onClick={() => fjernUtenlandsperiode()}
+          tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
+        />
+      </TittelOgSlettKnapp>
 
       <PeriodeDatovelgere
+        className={'periodegruppe'}
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
       />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) && (
-        <Textarea
+        <StyledTextarea
           label={begrunnelseTekst}
           placeholder={'...'}
           value={begrunnelse.verdi}
