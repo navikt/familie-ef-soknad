@@ -102,7 +102,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
               tekstid={datovelgerLabel}
               datobegrensning={DatoBegrensning.AlleDatoer}
               settDato={settDato}
-              fetSkrift={true}
+              fetSkrift={false}
             />
           </StyledDatovelger>
           {alertTekst && (

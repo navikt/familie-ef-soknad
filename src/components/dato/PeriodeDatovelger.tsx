@@ -9,6 +9,7 @@ import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
+import KomponentGruppe from '../gruppe/KomponentGruppe';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -18,6 +19,16 @@ const PeriodeGruppe = styled.div`
 
   .feilmelding {
     grid-column: 1/3;
+  }
+
+  @media @mobile {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1rem;
+
+    .feilmelding {
+      grid-column: 1/2;
+    }
   }
 `;
 
@@ -89,7 +100,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   };
 
   return (
-    <>
+    <KomponentGruppe>
       <FeltGruppe>
         <Element>{tekst}</Element>
         {hjelpetekst && (
@@ -122,7 +133,7 @@ const PeriodeDatovelgere: FC<Props> = ({
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />
         )}
       </PeriodeGruppe>
-    </>
+    </KomponentGruppe>
   );
 };
 

@@ -11,11 +11,14 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import KalenderIkonSVG from '../../assets/KalenderIkonSVG';
 import { DatoBegrensning, StyledDatovelger } from './Datovelger';
 import styled from 'styled-components/macro';
+import KalenderKnapp from './KalenderKnapp';
 
-const DatePickerIkonWrapper = styled.div`
+const InputContainer = styled.div`
+  display: inline-block;
+  width: 10rem;
+  position: relative;
 `;
 
 interface Props {
@@ -67,13 +70,19 @@ const ÅrMånedVelger: React.FC<Props> = ({
           </Normaltekst>
         </label>
       </FeltGruppe>
-      <FeltGruppe>
-        <DatePickerIkonWrapper>
+      <FeltGruppe classname="nav-datovelger">
+        <InputContainer className="nav-datovelger__inputContainer">
+          <KalenderKnapp
+            onClick={handleFocus}
+            isOpen={false}
+            disabled={disabled}
+          />
           <DatePicker
+            name="dateInput"
             ariaLabelledBy={'Datepicker - MM.yyyy format'}
             id={datolabelid}
             disabled={disabled}
-            className={'datovelger__input'}
+            className={'nav-datovelger__input'}
             onChange={(e: Date | null) => {
               settDato(e);
             }}
@@ -87,12 +96,10 @@ const ÅrMånedVelger: React.FC<Props> = ({
             ]}
             locale={locale}
             showMonthYearPicker={true}
+            showTwoColumnMonthYearPicker={true}
             ref={inputRef}
           />
-          <label className={'ikon__wrapper'} onClick={handleFocus}>
-            <KalenderIkonSVG />
-          </label>
-        </DatePickerIkonWrapper>
+        </InputContainer>
       </FeltGruppe>
     </StyledDatovelger>
   );

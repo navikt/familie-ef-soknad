@@ -1,31 +1,31 @@
 import * as React from 'react';
-
-const KalenderIkonSVG = () => (
+import navFarger from 'nav-frontend-core';
+interface Props {
+  height?: number;
+  width?: number;
+}
+const KalenderIkonSVG: React.FC<Props> = ({ height, width }) => (
   <svg
-    width="24px"
-    height="24px"
-    viewBox="0 0 24 24"
+    width={width || 24}
+    height={height || 24}
     version="1.1"
-    focusable={false}
-    role="img"
     aria-labelledby="Kalender"
+    color={navFarger.navBla}
+    viewBox="0 0 18 18"
+    role="presentation"
+    focusable={false}
+    style={{ pointerEvents: 'none' }}
   >
-    <title>Kalender</title>
-    <desc>Created with Sketch.</desc>
+    <title>Kalenderikon</title>
     <g
       id="Kalender"
-      stroke="none"
+      stroke="#0067C5"
       strokeWidth={'1'}
       fill="none"
       fillRule="evenodd"
-      focusable={false}
     >
-      <g id="Outline/22-time/calendar-3" fill="#3E3832">
-        <path
-          d="M23.5,2 L20,2 L20,0.5 C20.0000001,0.224000001 19.7760001,3.80140364e-13 19.5,3.80140364e-13 L16.5,3.80140364e-13 C16.2240001,3.80140364e-13 16.0000001,0.224000001 16,0.5 L16,2 L8,2 L8,0.5 C8.00000003,0.224000001 7.77600003,3.80140364e-13 7.5,3.80140364e-13 L4.5,3.80140364e-13 C4.22400002,3.80140364e-13 4.00000002,0.224000001 4,0.5 L4,2 L0.5,2 C0.224000001,2.00000001 -3.55271368e-15,2.22400001 -3.55271368e-15,2.5 L-3.55271368e-15,23.5 C-3.55271368e-15,23.7760001 0.224000001,24.0000001 0.5,24 L23.5,24 C23.7760001,24.0000001 24.0000001,23.7760001 24,23.5 L24,2.5 C24.0000001,2.22400001 23.7760001,2.00000001 23.5,2 Z M17.0000001,1 L19.0000001,1 L19.0000001,4 L17.0000001,4 L17.0000001,1 Z M5.00000002,1 L7.00000002,1 L7.00000002,4 L5.00000002,4 L5.00000002,1 Z M4,3.00000001 L4,4.50000001 C4.00000002,4.77600002 4.22400002,5.00000002 4.5,5.00000001 L7.5,5.00000001 C7.77600003,5.00000002 8.00000003,4.77600002 8,4.50000001 L8,3.00000001 L16,3.00000001 L16,4.50000001 C16.0000001,4.77600002 16.2240001,5.00000002 16.5,5.00000001 L19.5,5.00000001 C19.7760001,5.00000002 20.0000001,4.77600002 20,4.50000001 L20,3.00000001 L23,3.00000001 L23,7.00000001 L1,7.00000001 L1,3.00000001 L4,3.00000001 Z M1,23 L1,8.00000003 L23,8.00000003 L23,23 L1,23 Z"
-          id="Combined-Shape"
-        ></path>
-      </g>
+      <path d="M4 2.667H1.333v14h15.334v-14H14" />
+      <path d="M4 1.333h2V4H4zm8 0h2V4h-2zM6 2h6M1.333 6h15.334" />
     </g>
   </svg>
 );
