@@ -5,7 +5,7 @@ import { Datepicker, isISODateString } from 'nav-datovelger';
 import { useSpråkContext } from '../../context/SpråkContext';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
-import { formatIsoDate } from '../../utils/dato';
+import { dagensDato, erGyldigDato, formatIsoDate } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
@@ -23,7 +23,7 @@ export enum DatoBegrensning {
   TidligereDatoer = 'TidligereDatoer',
 }
 
-const datoerFraDatobegrensning = (
+const hentDatobegrensninger = (
   datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
   switch (datobegrensning) {
@@ -31,15 +31,27 @@ const datoerFraDatobegrensning = (
       return {};
     case DatoBegrensning.FremtidigeDatoer:
       return {
-        minDate: formatIsoDate(new Date()),
-        maxDate: formatIsoDate(addYears(new Date(), 100)),
+        minDate: formatIsoDate(dagensDato),
+        maxDate: formatIsoDate(addYears(dagensDato, 100)),
       };
     case DatoBegrensning.TidligereDatoer:
       return {
-        minDate: formatIsoDate(subYears(new Date(), 100)),
-        maxDate: formatIsoDate(new Date()),
+        minDate: formatIsoDate(subYears(dagensDato, 100)),
+        maxDate: formatIsoDate(dagensDato),
       };
   }
+};
+
+const hentFeilmeldingTekstid = (
+  dato: string,
+  datobegrensning: DatoBegrensning
+): string => {
+  if (!erGyldigDato(dato)) return 'datovelger.ugyldigDato';
+  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
+    return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
+  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
+    return 'datovelger.ugyldigDato.kunTidligereDatoer';
+  else return '';
 };
 
 interface Props {
@@ -65,7 +77,7 @@ const Datovelger: React.FC<Props> = ({
   const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato || '');
 
-  const limitations: DatepickerLimitations = datoerFraDatobegrensning(
+  const limitations: DatepickerLimitations = hentDatobegrensninger(
     datobegrensning
   );
   const ingenDatoBegrensninger = Object.keys(limitations).length === 0;
@@ -78,15 +90,18 @@ const Datovelger: React.FC<Props> = ({
     ingenDatoBegrensninger;
 
   const gyldigDato = (dato: string): boolean => {
-    let gyldigDato = dato !== '' && isISODateString(dato) === true;
-    return gyldigDato && datoErInnenforDatobegrensninger(new Date(dato));
+    return (
+      dato !== '' &&
+      isISODateString(dato) === true &&
+      erGyldigDato(dato) &&
+      datoErInnenforDatobegrensninger(new Date(dato))
+    );
   };
 
   useEffect(() => {
     settDato(_dato);
     // eslint-disable-next-line
   }, [_dato]);
-
 
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
@@ -108,24 +123,19 @@ const Datovelger: React.FC<Props> = ({
           showYearSelector={true}
           limitations={limitations}
           inputProps={{
+            placeholder: 'DD.MM.YYYY',
             name: 'dateInput',
             'aria-invalid':
               _dato !== '' &&
+              isISODateString(_dato) === false &&
               valgtDato !== undefined &&
-              gyldigDato(valgtDato) &&
-              isISODateString(_dato) === false,
+              gyldigDato(valgtDato),
           }}
         />
       </FeltGruppe>
 
       {!gyldigDato(_dato) && _dato !== '' && !periodeDato && (
-        <Feilmelding
-          tekstid={
-            datobegrensning === DatoBegrensning.FremtidigeDatoer
-              ? 'datovelger.ugyldigDato.kunFremtidigeDatoer'
-              : 'datovelger.ugyldigDato.kunTidligereDatoer'
-          }
-        />
+        <Feilmelding tekstid={hentFeilmeldingTekstid(_dato, datobegrensning)} />
       )}
     </StyledDatovelger>
   );

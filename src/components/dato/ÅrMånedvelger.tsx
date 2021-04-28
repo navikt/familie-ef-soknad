@@ -22,7 +22,7 @@ const InputContainer = styled.div`
   position: relative;
 `;
 
-const datoerFraDatobegrensning = (datobegrensning: DatoBegrensning) => {
+const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
   switch (datobegrensning) {
     case DatoBegrensning.AlleDatoer:
       return {};
@@ -59,7 +59,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
   const inputRef = useRef<ReactDatePicker>(null);
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
-  const begrensninger = datoerFraDatobegrensning(datobegrensning);
+  const begrensninger = hentDatobegrensninger(datobegrensning);
 
   const gyldigeDatoformater = [
     'MMM yyyy',
@@ -121,6 +121,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
               showMonthYearPicker={true}
               showTwoColumnMonthYearPicker={true}
               ref={inputRef}
+              placeholderText={'MM.yyyy'}
             />
           ) : (
             <DatePicker
@@ -140,6 +141,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
               ref={inputRef}
               minDate={begrensninger?.minDate}
               maxDate={begrensninger?.maxDate}
+              placeholderText={'MM.yyyy'}
             />
           )}
         </InputContainer>
