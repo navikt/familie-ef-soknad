@@ -16,7 +16,6 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
   const intl = useIntl();
   const {
     alder,
-    fødselsdato,
     ident,
     navn,
     født,
@@ -52,17 +51,6 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
             <LocaleTekst tekst="person.alder" />
           </Element>
           <Normaltekst>{alder.verdi}</Normaltekst>
-        </div>
-      )}
-
-      {!harAdressesperre && født?.verdi && fødselsdato.verdi !== '' && (
-        <div className={'spørsmål-og-svar'}>
-          <Element>
-            <LocaleTekst tekst="barnekort.fødselsdato" />
-          </Element>
-          <Normaltekst>
-            {formatDate(strengTilDato(fødselsdato.verdi))}
-          </Normaltekst>
         </div>
       )}
 
