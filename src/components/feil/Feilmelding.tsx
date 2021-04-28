@@ -18,7 +18,7 @@ const StyledFeilmelding = styled.span`
 `;
 
 interface Props {
-  className: string;
+  className?: string;
   tekstid: string;
 }
 const Feilmelding: FC<Props> = ({ className, tekstid }) => {

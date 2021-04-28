@@ -77,6 +77,9 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
+  'datovelger.ugyldigDato.kunTidligereDatoer': 'Dato må være før dagens dato',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Dato må være etter dagens dato',
   'datovelger.periode.feilFormat':
     'Startsdato må være tidligere enn sluttdato.',
   'datovelger.periode.likeDatoer':

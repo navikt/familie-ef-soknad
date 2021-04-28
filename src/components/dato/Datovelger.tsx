@@ -9,6 +9,7 @@ import { formatIsoDate } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
+import Feilmelding from '../feil/Feilmelding';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   .typo-normal {
@@ -48,6 +49,7 @@ interface Props {
   settDato: (date: string) => void;
   disabled?: boolean;
   fetSkrift?: boolean;
+  periodeDato?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -57,8 +59,8 @@ const Datovelger: React.FC<Props> = ({
   settDato,
   disabled,
   fetSkrift,
+  periodeDato,
 }) => {
-  // NOTE: Ble tidligere sendt inn som props til DatePicker (react sin)
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato || '');
@@ -81,13 +83,10 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    if (gyldigDato(_dato)) {
-      settDato(_dato);
-    } else {
-      _settDato(valgtDato || ''); // setter forrige valgt dato hvis det ikke er gyldig
-    }
+    settDato(_dato);
     // eslint-disable-next-line
   }, [_dato]);
+
 
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
@@ -98,20 +97,36 @@ const Datovelger: React.FC<Props> = ({
           </Normaltekst>
         </label>
       </FeltGruppe>
-      <Datepicker
-        inputId={datolabelid}
-        locale={locale}
-        disabled={disabled}
-        onChange={_settDato}
-        value={_dato}
-        allowInvalidDateSelection={false}
-        showYearSelector={true}
-        limitations={limitations}
-        inputProps={{
-          name: 'dateInput',
-          'aria-invalid': _dato !== '' && isISODateString(_dato) === false,
-        }}
-      />
+      <FeltGruppe>
+        <Datepicker
+          inputId={datolabelid}
+          locale={locale}
+          disabled={disabled}
+          onChange={_settDato}
+          value={_dato}
+          allowInvalidDateSelection={false}
+          showYearSelector={true}
+          limitations={limitations}
+          inputProps={{
+            name: 'dateInput',
+            'aria-invalid':
+              _dato !== '' &&
+              valgtDato !== undefined &&
+              gyldigDato(valgtDato) &&
+              isISODateString(_dato) === false,
+          }}
+        />
+      </FeltGruppe>
+
+      {!gyldigDato(_dato) && _dato !== '' && !periodeDato && (
+        <Feilmelding
+          tekstid={
+            datobegrensning === DatoBegrensning.FremtidigeDatoer
+              ? 'datovelger.ugyldigDato.kunFremtidigeDatoer'
+              : 'datovelger.ugyldigDato.kunTidligereDatoer'
+          }
+        />
+      )}
     </StyledDatovelger>
   );
 };
