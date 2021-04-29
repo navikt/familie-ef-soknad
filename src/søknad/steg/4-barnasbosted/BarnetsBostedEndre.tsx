@@ -195,7 +195,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    barn.medforelder?.verdi ||
+    !!barn.medforelder?.verdi ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&

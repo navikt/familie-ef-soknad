@@ -4,6 +4,7 @@ import {
   ITekstFelt,
 } from '../søknad/søknadsfelter';
 import { IForelder } from './forelder';
+import { IMedforelderFelt } from './medforelder';
 import { IBarnepass } from '../../barnetilsyn/models/barnepass';
 
 export interface IBarn {
@@ -19,8 +20,8 @@ export interface IBarn {
   særligeTilsynsbehov?: ITekstFelt;
   skalHaBarnepass?: IBooleanFelt; // Gjelder kun barnetilsyn
   barnepass?: IBarnepass; // Gjelder kun barnetilsyn
-  harAdressesperre?: any;
-  medforelder?: any;
+  harAdressesperre?: boolean;
+  medforelder?: IMedforelderFelt;
 }
 
 export enum EBarn {
