@@ -5,12 +5,6 @@ import {
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
-import { Normaltekst } from 'nav-frontend-typografi';
-import styled from 'styled-components';
-
-const StyledNormaltekst = styled(Normaltekst)`
-  margin-top: 1rem;
-`;
 
 const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   tekstId,
