@@ -20,6 +20,7 @@ import { IPerson } from './models/søknad/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { EAlvorlighetsgrad } from './models/felles/feilmelding';
 import LocaleTekst from './language/LocaleTekst';
 import { useIntl } from 'react-intl';
 
@@ -54,7 +55,7 @@ const App = () => {
         const feil = e.response?.data?.feil;
 
         if (feil === 'adressesperre') {
-          settAlvorlighetsgrad('INFO');
+          settAlvorlighetsgrad(EAlvorlighetsgrad.INFO);
           settFeilmelding(
             intl.formatMessage({
               id: 'barnasbosted.feilmelding.adressebeskyttelse',

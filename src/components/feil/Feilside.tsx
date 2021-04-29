@@ -5,6 +5,7 @@ import {
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
 import { FormattedHTMLMessage, useIntl } from 'react-intl';
+import { EAlvorlighetsgrad } from '../../models/felles/feilmelding';
 
 const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   tekstId,
@@ -13,10 +14,10 @@ const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   let AlertStripeMedAlvorlighetsgrad = AlertStripeFeil;
 
   switch (alvorlighetsgrad) {
-    case 'INFO':
+    case EAlvorlighetsgrad.INFO:
       AlertStripeMedAlvorlighetsgrad = AlertStripeInfo;
       break;
-    case 'WARNING':
+    case EAlvorlighetsgrad.WARNING:
       AlertStripeMedAlvorlighetsgrad = AlertStripeAdvarsel;
       break;
     default:
