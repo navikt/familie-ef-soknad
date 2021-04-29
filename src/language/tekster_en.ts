@@ -350,8 +350,7 @@ export default {
   'barnadine.knapp.fjern': 'Remove from application form',
   'barnadine.knapp.søkBarnetilsyn': 'Apply for child care benefit',
   'barnadine.personnummer': 'Personnummer',
-  'barnadine.leggtil.info':
-    'Are you pregnant or have you recently had a child who is not yet registered in the National Registry?',
+  'barnadine.leggtil.info': 'Are you expecting a child?',
   'barnadine.leggtil.info.barnetilsyn':
     'Have you assumed parental responsibility of a child(ren) without this having been registered in the National Registry yet?',
   'barnadine.advarsel.borikke':
