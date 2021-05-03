@@ -1,10 +1,6 @@
 name: Build and push app to dev
 
-on:
-  pull_request:
-
-env:
-  IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
+on: [pull_request, workflow_dispatch]
 
 jobs:
   build:
@@ -19,6 +15,3 @@ jobs:
           npm install
           npm run test-ci
           npm run build
-          docker build . -t ${IMAGE}
-          docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
-          docker push ${IMAGE}
