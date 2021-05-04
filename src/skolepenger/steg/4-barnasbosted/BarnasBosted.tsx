@@ -41,7 +41,10 @@ const BarnasBosted: React.FC = () => {
 
   useMount(() => logSidevisningSkolepenger('BarnasBosted'));
 
-  const barna = søknad.person.barn;
+  const barna = søknad.person.barn.filter((barn: IBarn) => {
+    return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
+  });
+
   const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === barna.length

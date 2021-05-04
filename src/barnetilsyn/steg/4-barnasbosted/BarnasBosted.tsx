@@ -46,8 +46,11 @@ const BarnasBosted: React.FC = () => {
   };
 
   const barna = søknad.person.barn.filter(
-    (barn: IBarn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) =>
+      barn.skalHaBarnepass?.verdi &&
+      (!barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false)
   );
+
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
