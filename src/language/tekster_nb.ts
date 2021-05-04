@@ -181,7 +181,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'Du må legge ved bekreftelse fra Statsforvalteren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
   'sivilstatus.alert.samlivsbruddForeldre':

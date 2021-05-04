@@ -192,7 +192,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'You must submit confirmation from the County Governor or court',
+    'Du må leggje ved stadfesting frå Statsforvaltaren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
   'sivilstatus.alert.samlivsbruddForeldre':
