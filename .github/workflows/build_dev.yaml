@@ -1,7 +1,7 @@
-name: Build, push, and deploy app to dev
+name: Build and push app to dev
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 env:
   IMAGE: docker.pkg.github.com/${{ github.repository }}/familie-ef-soknad:${{ github.sha }}
@@ -22,14 +22,3 @@ jobs:
           docker build . -t ${IMAGE}
           docker login docker.pkg.github.com -u ${GITHUB_REPOSITORY} -p ${GITHUB_TOKEN}
           docker push ${IMAGE}
-  deploy:
-    name: Deploy to NAIS
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - uses: nais/deploy/actions/deploy@v1
-        env:
-          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
-          CLUSTER: dev-sbs
-          RESOURCE: nais-dev.yaml
