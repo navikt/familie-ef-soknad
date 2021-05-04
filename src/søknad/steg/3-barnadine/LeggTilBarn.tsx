@@ -83,7 +83,7 @@ const LeggTilBarn: React.FC<Props> = ({
 
     const nyBarneListe = oppdaterBarneliste(barneListe, nyttBarn);
     const erBarnFødtSvar = barnetFødtSpm.svaralternativer.find(
-      (svar) => svar.id === (født ? ESvar.JA : ESvar.NEI)
+      (svar) => svar.id === ESvar.NEI
     );
     erBarnFødtSvar &&
       settDokumentasjonsbehovForBarn(
