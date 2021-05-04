@@ -7,6 +7,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
@@ -114,6 +115,11 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
+      {!barna.length && (
+        <Normaltekst style={{ textAlign: 'center' }}>
+          {hentTekst('barnasbosted.kanGåVidere', intl)}
+        </Normaltekst>
+      )}
     </Side>
   );
 };

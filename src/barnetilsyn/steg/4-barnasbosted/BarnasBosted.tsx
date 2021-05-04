@@ -13,6 +13,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { Normaltekst } from 'nav-frontend-typografi';
 import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
@@ -118,6 +119,11 @@ const BarnasBosted: React.FC = () => {
             );
           }
         })}
+      {!barna.length && (
+        <Normaltekst style={{ textAlign: 'center' }}>
+          {hentTekst('barnasbosted.kanGåVidere', intl)}
+        </Normaltekst>
+      )}
     </Side>
   );
 };
