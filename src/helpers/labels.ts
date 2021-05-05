@@ -7,3 +7,12 @@ export const standardLabelsBarn: any = {
   født: 'Er barnet født?',
   medforelder: 'Annen forelder',
 };
+
+export const skalMappeBarnefeltUtenLabel = (key: string) => {
+  switch (key) {
+    case 'harAdressesperre':
+      return true;
+    default:
+      return false;
+  }
+};

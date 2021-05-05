@@ -7,7 +7,10 @@ import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
-import { standardLabelsBarn } from '../helpers/labels';
+import {
+  skalMappeBarnefeltUtenLabel,
+  standardLabelsBarn,
+} from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
 
 export const hentPersonData = () => {
@@ -102,7 +105,7 @@ export const fraStringTilTall = (tallAvTypenStreng: string) => {
   return parsed;
 };
 
-export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
+export const settBarnMedLabelOgVerdi = (barn: IBarn) => {
   const nyttObjekt: any = {
     id: hentUid(),
     født: {
@@ -111,18 +114,17 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
     },
     skalHaBarnepass: { label: 'Med i søknaden', verdi: false },
   };
-
-  for (const [key, verdi] of Object.entries(objekt)) {
-    const barnLabel = variabelTilLabel[key];
+  for (const [key, verdi] of Object.entries(barn)) {
+    const barnLabel = standardLabelsBarn[key];
 
     if (barnLabel) {
       nyttObjekt[key] = {
         label: barnLabel,
         verdi: verdi,
       };
-    } else {
+    } else if (skalMappeBarnefeltUtenLabel(key)) {
       nyttObjekt[key] = verdi;
-
+    } else {
       Sentry.captureEvent({
         message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
         level: Severity.Warning,
@@ -166,7 +168,7 @@ export const unikeDokumentasjonsbehov = (
 
 export const oppdaterBarnMedLabel = (barneliste: IBarn[]) =>
   barneliste.map((barn: any) => {
-    const barnMedLabel = settLabelOgVerdi(barn, standardLabelsBarn);
+    const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;
     return barnMedLabel;
