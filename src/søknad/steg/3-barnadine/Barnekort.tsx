@@ -10,6 +10,7 @@ import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
+import { formatDate, strengTilDato } from '../../../utils/dato';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -48,6 +49,8 @@ const Barnekort: React.FC<Props> = ({
     alder,
     lagtTil,
     harSammeAdresse,
+    medforelder,
+    harAdressesperre,
   } = gjeldendeBarn;
 
   const formatFnr = (fødselsnummer: string) => {
@@ -83,29 +86,33 @@ const Barnekort: React.FC<Props> = ({
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
           <Undertittel tag="h3">
-            {født?.verdi
+            {navn.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
           </Undertittel>
-          <div className="informasjonselement">
-            {ident.verdi ? (
-              <>
-                <Normaltekst>
-                  {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
-                </Normaltekst>
-                <Normaltekst>{formatFnr(ident.verdi)}</Normaltekst>
-              </>
-            ) : (
-              <>
-                <Normaltekst>
-                  {født?.verdi
-                    ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
-                    : intl.formatMessage({ id: 'barnekort.termindato' })}
-                </Normaltekst>
-                <Normaltekst>{fødselsdato.verdi}</Normaltekst>
-              </>
-            )}
-          </div>
+          {!harAdressesperre && (
+            <div className="informasjonselement">
+              {ident.verdi ? (
+                <>
+                  <Normaltekst>
+                    {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
+                  </Normaltekst>
+                  <Normaltekst>{formatFnr(ident.verdi)}</Normaltekst>
+                </>
+              ) : (
+                <>
+                  <Normaltekst>
+                    {født?.verdi
+                      ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
+                      : intl.formatMessage({ id: 'barnekort.termindato' })}
+                  </Normaltekst>
+                  <Normaltekst>
+                    {formatDate(strengTilDato(fødselsdato.verdi))}
+                  </Normaltekst>
+                </>
+              )}
+            </div>
+          )}
           <div className="informasjonselement">
             <Normaltekst>
               {intl.formatMessage({ id: 'barnekort.alder' })}
@@ -115,12 +122,32 @@ const Barnekort: React.FC<Props> = ({
               {født?.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
             </Normaltekst>
           </div>
-          <div className="informasjonselement">
-            <Normaltekst>
-              {intl.formatMessage({ id: 'barnekort.bosted' })}
-            </Normaltekst>
-            <Normaltekst>{bosted}</Normaltekst>
-          </div>
+          {!harAdressesperre && (
+            <div className="informasjonselement">
+              <Normaltekst>
+                {intl.formatMessage({ id: 'barnekort.bosted' })}
+              </Normaltekst>
+              <Normaltekst>{bosted}</Normaltekst>
+            </div>
+          )}
+          {medforelder &&
+            !medforelder.verdi?.død &&
+            (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
+              <div className="informasjonselement">
+                <Normaltekst>
+                  {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+                </Normaltekst>
+                <Normaltekst>
+                  {medforelder?.verdi && medforelder?.verdi.navn
+                    ? medforelder?.verdi?.navn
+                    : medforelder?.verdi?.alder
+                    ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                        medforelder.verdi.alder
+                      }`
+                    : null}
+                </Normaltekst>
+              </div>
+            )}
           {velgBarnForDenneSøknaden}
           {lagtTil ? (
             <button

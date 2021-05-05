@@ -32,6 +32,8 @@ export default {
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
     '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
     '<li>sende meldekort hver 14. dag</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
   'skjema.alert.registrert':
@@ -179,7 +181,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'Du må legge ved bekreftelse fra Statsforvalteren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
   'sivilstatus.alert.samlivsbruddForeldre':
@@ -320,6 +322,7 @@ export default {
   'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
   'barnekort.fjern': 'Fjern fra søknad',
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Legg til barn',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
@@ -338,11 +341,11 @@ export default {
   'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
   'barnadine.termindato': 'Termindato',
   'barnadine.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
@@ -460,6 +463,13 @@ export default {
     'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Registrer adresse hos Folkeregisteret',
+  'barnasbosted.kanGåVidere':
+    'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
+  'barnasbosted.feilmelding.adressebeskyttelse':
+    'Et eller flere av barna dine er registrert med adressebeskyttelse og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
+  'barnasbosted.oppsummering.navn.label': 'Navn på annen forelder',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',

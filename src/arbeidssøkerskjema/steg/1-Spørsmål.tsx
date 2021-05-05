@@ -14,7 +14,6 @@ import {
   ønsketArbeidssted,
 } from '../../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { usePersonContext } from '../../context/PersonContext';
 import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
@@ -32,9 +31,8 @@ import { LocationStateSøknad } from '../../models/søknad/søknad';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 
-const Spørsmål: FC = () => {
+const Spørsmål: FC<any> = ({ ident }) => {
   const location = useLocation<LocationStateSøknad>();
-  const { person } = usePersonContext();
   const history = useHistory();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
@@ -88,7 +86,7 @@ const Spørsmål: FC = () => {
           <Element>
             <LocaleTekst tekst={'person.ident.visning'} />
           </Element>
-          <Normaltekst>{person.søker.fnr}</Normaltekst>
+          <Normaltekst>{ident}</Normaltekst>
         </FeltGruppe>
         <KomponentGruppe>
           <JaNeiSpørsmål
