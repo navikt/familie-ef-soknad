@@ -27,6 +27,9 @@ export const hentBarnetsNavnEllerBeskrivelse = (
   barn: IBarn,
   intl: IntlShape
 ) => {
+  if (barn.harAdressesperre) {
+    return hentTekst('barnekort.normaltekst.barn', intl);
+  }
   if (barn.navn && barn.navn.verdi) {
     return barn.navn.verdi;
   }

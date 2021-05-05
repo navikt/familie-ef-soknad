@@ -25,6 +25,7 @@ import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -34,6 +35,7 @@ const lagOppdatertBarneliste = (
   return barneliste.map((b) => {
     if (b === nåværendeBarn) {
       let nyttBarn = nåværendeBarn;
+
       nyttBarn.forelder = forelder;
       return nyttBarn;
     } else {
@@ -83,9 +85,34 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settBarneListe,
   settDokumentasjonsbehovForBarn,
 }) => {
+  const medforelderMedLabel = (medforelder: any) => {
+    return {
+      navn: {
+        label: hentTekst('barnasbosted.medforelder.navn', intl),
+        verdi: medforelder.verdi.navn,
+      },
+      alder: {
+        label: hentTekst('barnasbosted.medforelder.alder', intl),
+        verdi: medforelder.verdi.alder,
+      },
+      død: medforelder.død,
+      harAdressesperre: medforelder.harAdressesperre,
+    };
+  };
+
   const [forelder, settForelder] = useState<IForelder>(
-    barn.forelder ? barn.forelder : { id: hentUid() }
+    barn.forelder
+      ? barn.forelder
+      : barn.medforelder?.verdi
+      ? {
+          id: hentUid(),
+          ...medforelderMedLabel(barn.medforelder),
+        }
+      : {
+          id: hentUid(),
+        }
   );
+
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
@@ -161,17 +188,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    førsteBarnTilHverForelder.length === 0 ||
+    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
-  const nyForelderOgKanOppgiAndreForelder =
-    !barnHarSammeForelder &&
-    !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-    harValgtSvar(forelder?.navn?.verdi) &&
-    (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent);
+  const visBorAnnenForelderINorge =
+    !!barn.medforelder?.verdi ||
+    (!barnHarSammeForelder &&
+      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+      harValgtSvar(forelder?.navn?.verdi) &&
+      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
 
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
@@ -200,15 +228,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             <SeksjonGruppe>
               <BarnetsAndreForelderTittel barn={barn} />
 
-              {førsteBarnTilHverForelder.length > 0 && (
-                <AnnenForelderKnapper
-                  barn={barn}
-                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                  settForelder={settForelder}
-                  forelder={forelder}
-                  settBarnHarSammeForelder={settBarnHarSammeForelder}
-                />
-              )}
+              {førsteBarnTilHverForelder.length > 0 &&
+                !barn.medforelder?.verdi && (
+                  <AnnenForelderKnapper
+                    barn={barn}
+                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                    settForelder={settForelder}
+                    forelder={forelder}
+                    settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  />
+                )}
               {visOmAndreForelder && (
                 <OmAndreForelder
                   settForelder={settForelder}
@@ -218,10 +247,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settSisteBarnUtfylt={settSisteBarnUtfylt}
                 />
               )}
+              {barn.medforelder?.verdi && (
+                <>
+                  <Element>Navn</Element>
+                  <Normaltekst>
+                    {barn.medforelder.verdi.navn
+                      ? barn.medforelder.verdi.navn
+                      : `${hentTekst(
+                          'barnekort.medforelder.hemmelig',
+                          intl
+                        )}, ${barn.medforelder.verdi.alder}`}
+                  </Normaltekst>
+                </>
+              )}
             </SeksjonGruppe>
           )}
 
-          {nyForelderOgKanOppgiAndreForelder && (
+          {visBorAnnenForelderINorge && (
             <BorForelderINorge
               barn={barn}
               forelder={forelder}
@@ -230,10 +272,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             />
           )}
 
-          {(visBostedOgSamværSeksjon(
-            forelder,
-            nyForelderOgKanOppgiAndreForelder
-          ) ||
+          {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
             barnHarSammeForelder) && (
             <BostedOgSamvær
               settForelder={settForelder}

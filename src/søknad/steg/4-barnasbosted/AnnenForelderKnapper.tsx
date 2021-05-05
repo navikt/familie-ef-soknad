@@ -26,9 +26,10 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] = useState<
-    string
-  >('');
+  const [
+    andreForelderRadioVerdi,
+    settAndreForelderRadioVerdi,
+  ] = useState<string>('');
 
   const leggTilSammeForelder = (
     e: SyntheticEvent<EventTarget, Event>,

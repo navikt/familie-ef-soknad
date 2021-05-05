@@ -13,6 +13,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { Normaltekst } from 'nav-frontend-typografi';
 import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
@@ -46,8 +47,11 @@ const BarnasBosted: React.FC = () => {
   };
 
   const barna = søknad.person.barn.filter(
-    (barn: IBarn) => barn.skalHaBarnepass?.verdi
+    (barn: IBarn) =>
+      barn.skalHaBarnepass?.verdi &&
+      (!barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false)
   );
+
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
@@ -115,6 +119,11 @@ const BarnasBosted: React.FC = () => {
             );
           }
         })}
+      {!barna.length && (
+        <Normaltekst style={{ textAlign: 'center' }}>
+          {hentTekst('barnasbosted.kanGåVidere', intl)}
+        </Normaltekst>
+      )}
     </Side>
   );
 };

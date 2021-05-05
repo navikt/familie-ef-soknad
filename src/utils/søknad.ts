@@ -23,6 +23,19 @@ export const hentPersonData = () => {
     });
 };
 
+export const hentPersonDataArbeidssoker = () => {
+  return axios
+    .get(`${Environment().apiUrl}/api/oppslag/sokerminimum`, {
+      headers: {
+        'content-type': 'application/json;charset=utf-8',
+      },
+      withCredentials: true,
+    })
+    .then((response: { data: any }) => {
+      return response && response.data;
+    });
+};
+
 export const hentMeldingMottatt = (søknadId: string) => {
   return axios
     .get(`${Environment().apiUrl}/api/dokumentasjonsbehov/${søknadId}`, {
@@ -108,6 +121,8 @@ export const settLabelOgVerdi = (objekt: any, variabelTilLabel: any) => {
         verdi: verdi,
       };
     } else {
+      nyttObjekt[key] = verdi;
+
       Sentry.captureEvent({
         message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
         level: Severity.Warning,
