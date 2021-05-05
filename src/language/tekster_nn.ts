@@ -487,6 +487,8 @@ export default {
     'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Register address at the National Registry',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   // --- AKTIVITET (Steg 5)
 

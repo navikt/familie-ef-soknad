@@ -342,7 +342,7 @@ export default {
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
   'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
-  'barnekort.medForelder.hemmelig': 'Person',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
@@ -491,6 +491,8 @@ export default {
     'Register address at the National Registry',
   'barnasbosted.kanGåVidere':
     'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   // --- AKTIVITET (Steg 5)
 
