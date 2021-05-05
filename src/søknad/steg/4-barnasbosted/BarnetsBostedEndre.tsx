@@ -86,6 +86,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settDokumentasjonsbehovForBarn,
 }) => {
   const medforelderMedLabel = (medforelder: any) => {
+    const intl = useIntl();
+
     return {
       navn: {
         label: hentTekst('barnasbosted.medforelder.navn', intl),
