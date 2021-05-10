@@ -19,6 +19,12 @@ Med api må du sette cookie første gang:
 2. Kjør `mvn clean install` i begge prosjektene
 2. Kjør opp appene lokalt ved å kjøre familie-dokument din `DevLauncher` og familie-ef-soknad-api sin `ApplicationLocalLauncher` 
 
+## Kjør testcafe lokalt
+1. Sørg for at du har testcafe installert lokalt `npm install -g testcafe`
+2. Kjør `familie-ef-soknad-api` lokalt
+3. Kjør søknaden lokalt med `npm start`
+4. Åpne en ny terminal og kjør `testcafe chrome test/test.js --skip-js-errors --live`
+
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
 1. I IntelliJ, åpne `Preferences/Plugins` for så å søke opp og installere `File Watchers` og `Prettier` hvis dette ikke allerede er gjort.  
