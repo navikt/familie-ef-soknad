@@ -1,16 +1,16 @@
-import { NesteKnapp, RadioPanel } from '../utils';
+import { hentNorskTekst, NeiSvar, NesteKnapp, RadioPanel } from '../utils';
 
 const TestSteg2 = async (t) => {
   const DelerDuBolig = await RadioPanel(
-    'Deler du bolig med andre voksne?',
-    'Nei, jeg bor alene med barn eller jeg er gravid og bor alene'
+    hentNorskTekst('bosituasjon.spm.delerSøkerBoligMedAndreVoksne'),
+    hentNorskTekst('bosituasjon.svar.borAleneMedBarnEllerGravid')
   );
 
   await t.click(DelerDuBolig);
 
   const KonkretePlaner = await RadioPanel(
-    'Har du konkrete planer om å gifte deg eller bli samboer?',
-    'Nei'
+    hentNorskTekst('bosituasjon.spm.skalSøkerGifteSegMedSamboer'),
+    NeiSvar
   );
 
   await t.click(KonkretePlaner);

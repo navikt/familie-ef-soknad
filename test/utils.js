@@ -17,9 +17,13 @@ export const NesteKnapp = async () => {
   return Selector('button').withExactText('NESTE');
 };
 
-export const hentNorskTekst = (tekstid) => {
-  return tekster_nb[tekstid];
+export const hentNorskTekst = (tekstid, navn) => {
+  const tekst = tekster_nb[tekstid];
+  const tekstMedNavn = navn && tekst.replace('[0]', navn);
+  return navn ? tekstMedNavn : tekst;
 };
+
+export const barnetsNavn = 'Hei På Deg';
 
 export const JaSvar = tekster_nb['svar.ja'];
 

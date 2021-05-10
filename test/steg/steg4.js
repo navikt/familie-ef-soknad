@@ -1,39 +1,48 @@
-import { NesteKnapp, RadioPanel } from '../utils';
-
+import {
+  NesteKnapp,
+  RadioPanel,
+  hentNorskTekst,
+  JaSvar,
+  NeiSvar,
+  barnetsNavn,
+} from '../utils';
 const TestSteg4 = async (t) => {
   const BorAnnenForelderINorge = await RadioPanel(
-    'Bor Hei På Degs andre forelder i Norge?',
-    'Ja'
+    hentNorskTekst('barnasbosted.borinorge', barnetsNavn),
+    JaSvar
   );
   await t.click(BorAnnenForelderINorge);
 
   const SkriftligAvtaleDeltBosted = await RadioPanel(
-    'Har du og den andre forelderen skriftlig avtale om delt bosted for Hei På Deg?',
-    'Nei'
+    hentNorskTekst('barnasbosted.avtale', barnetsNavn),
+    NeiSvar
   );
   await t.click(SkriftligAvtaleDeltBosted);
 
   const AnnenForelderSamvær = await RadioPanel(
-    'Har den andre forelderen samvær med Hei På Deg?',
-    'Nei, den andre forelderen har ikke samvær med barnet'
+    hentNorskTekst(
+      'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+      barnetsNavn
+    ),
+    hentNorskTekst('barnasbosted.spm.andreForelderenSamværNei')
   );
   await t.click(AnnenForelderSamvær);
 
   const SammeBoområde = await RadioPanel(
-    'Bor du og den andre forelderen til Hei På Deg i samme hus, blokk, gårdstun, kvartal eller vei/gate?',
-    'Nei'
+    hentNorskTekst('barnasbosted.spm.borAnnenForelderISammeHus', barnetsNavn),
+    NeiSvar
   );
   await t.click(SammeBoområde);
 
   const BoddSammenFør = await RadioPanel(
-    'Har du bodd sammen med den andre forelderen til Hei På Deg før?',
-    'Nei'
+    hentNorskTekst('barnasbosted.spm.boddsammenfør', barnetsNavn),
+    NeiSvar
   );
   await t.click(BoddSammenFør);
 
   const HvorMyeSammen = await RadioPanel(
-    'Hvor mye er du sammen med den andre forelderen til Hei På Deg?',
-    'Vi møtes ikke'
+    hentNorskTekst('barnasbosted.spm.hvorMyeSammen', barnetsNavn),
+    hentNorskTekst('barnasbosted.spm.møtesIkke')
   );
   await t.click(HvorMyeSammen);
 
