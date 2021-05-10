@@ -1,6 +1,6 @@
 import { NesteKnapp, RadioPanel } from '../utils';
 
-const Steg4 = async (t) => {
+const TestSteg4 = async (t) => {
   const BorAnnenForelderINorge = await RadioPanel(
     'Bor Hei På Degs andre forelder i Norge?',
     'Ja'
@@ -41,4 +41,4 @@ const Steg4 = async (t) => {
   await t.click(await NesteKnapp());
 };
 
-export default Steg4;
+export default TestSteg4;
