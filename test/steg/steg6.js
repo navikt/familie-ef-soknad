@@ -1,18 +1,21 @@
-import { NesteKnapp, RadioPanel } from '../utils';
+import { hentNorskTekst, NeiSvar, NesteKnapp, RadioPanel } from '../utils';
 
 const TestSteg6 = async (t) => {
-  const dinsituasjon = await RadioPanel('Gjelder noe av dette deg?', 'Nei');
+  const dinsituasjon = await RadioPanel(
+    hentNorskTekst('dinSituasjon.spm'),
+    NeiSvar
+  );
   await t.click(dinsituasjon);
 
   const sagtOppEllerRedusert = await RadioPanel(
-    'Har du sagt opp jobben eller redusert arbeidstiden de siste 6 månedene?',
-    'Nei'
+    hentNorskTekst('dinSituasjon.spm.sagtOppEllerRedusertStilling'),
+    NeiSvar
   );
   await t.click(sagtOppEllerRedusert);
 
   const søkerBestemtMnd = await RadioPanel(
-    'Søker du overgangsstønad fra en bestemt måned?',
-    'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad'
+    hentNorskTekst('søkerFraBestemtMåned.spm.overgangsstønad'),
+    hentNorskTekst('søkerFraBestemtMåned.svar.neiNavKanVurdere')
   );
   await t.click(søkerBestemtMnd);
 

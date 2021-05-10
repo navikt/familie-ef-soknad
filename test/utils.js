@@ -1,4 +1,5 @@
 import { Selector } from 'testcafe';
+import tekster_nb from '../src/language/tekster_nb.ts';
 
 export const RadioPanel = async (spørsmålstekst, svartekst) => {
   return Selector('legend')
@@ -15,3 +16,11 @@ export const Input = async (spørsmålstekst) => {
 export const NesteKnapp = async () => {
   return Selector('button').withExactText('NESTE');
 };
+
+export const hentNorskTekst = (tekstid) => {
+  return tekster_nb[tekstid];
+};
+
+export const JaSvar = tekster_nb['svar.ja'];
+
+export const NeiSvar = tekster_nb['svar.nei'];

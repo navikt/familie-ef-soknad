@@ -1,4 +1,10 @@
-import { RadioPanel, Input, NesteKnapp } from '../utils';
+import {
+  RadioPanel,
+  Input,
+  NesteKnapp,
+  hentNorskTekst,
+  JaSvar,
+} from '../utils';
 
 const TestSteg1 = async (t) => {
   await t
@@ -7,33 +13,33 @@ const TestSteg1 = async (t) => {
     .click('.knapp.knapp--hoved');
 
   const BorDuPåDenneAdressenJa = await RadioPanel(
-    'Bor du på denne adressen?',
-    'Ja'
+    hentNorskTekst('personopplysninger.spm.riktigAdresse'),
+    JaSvar
   );
 
   await t.click(BorDuPåDenneAdressenJa);
 
-  const Telefonnummer = await Input('Telefonnummer du kan kontaktes på');
+  const Telefonnummer = await Input(hentNorskTekst('person.telefonnr'));
 
   await t.typeText(Telefonnummer, '12345678');
 
   const HvorforAlene = await RadioPanel(
-    'Hvorfor er du alene med barn?',
-    'Jeg er alene med barn fra fødsel'
+    hentNorskTekst('sivilstatus.spm.begrunnelse'),
+    hentNorskTekst('sivilstatus.svar.aleneFraFødsel')
   );
 
   await t.click(HvorforAlene);
 
   const OppholderINorge = await RadioPanel(
-    'Oppholder du og barnet/barna dere i Norge?',
-    'Ja'
+    hentNorskTekst('medlemskap.spm.opphold'),
+    JaSvar
   );
 
   await t.click(OppholderINorge);
 
   const BoddINorge = await RadioPanel(
-    'Har du bodd i Norge de siste fem årene?',
-    'Ja'
+    hentNorskTekst('medlemskap.spm.bosatt'),
+    JaSvar
   );
 
   await t.click(BoddINorge);
