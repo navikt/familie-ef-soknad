@@ -1,5 +1,4 @@
-import { RadioPanel, Input, NesteKnapp } from '../utils';
-import { Selector, RequestMock, RequestLogger, ClientFunction } from 'testcafe';
+import { NesteKnapp, RadioPanel } from '../utils';
 
 const TestSteg2 = async (t) => {
   const DelerDuBolig = await RadioPanel(
@@ -8,6 +7,15 @@ const TestSteg2 = async (t) => {
   );
 
   await t.click(DelerDuBolig);
+
+  const KonkretePlaner = await RadioPanel(
+    'Har du konkrete planer om å gifte deg eller bli samboer?',
+    'Nei'
+  );
+
+  await t.click(KonkretePlaner);
+
+  await t.click(await NesteKnapp());
 };
 
 export default TestSteg2;

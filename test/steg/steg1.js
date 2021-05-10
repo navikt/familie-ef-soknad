@@ -1,5 +1,4 @@
 import { RadioPanel, Input, NesteKnapp } from '../utils';
-import { Selector, RequestMock, RequestLogger, ClientFunction } from 'testcafe';
 
 const TestSteg1 = async (t) => {
   await t

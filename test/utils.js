@@ -1,4 +1,4 @@
-import { Selector, RequestMock, RequestLogger, ClientFunction } from 'testcafe';
+import { Selector } from 'testcafe';
 
 export const RadioPanel = async (spørsmålstekst, svartekst) => {
   return Selector('legend')
