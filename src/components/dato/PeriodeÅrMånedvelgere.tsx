@@ -10,6 +10,7 @@ import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import ÅrMånedVelger from './ÅrMånedvelger';
+import { gyldigPeriode } from './utils';
 
 const PeriodeGruppe = styled.div`
   display: grid;

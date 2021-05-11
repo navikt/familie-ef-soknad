@@ -61,7 +61,6 @@ interface Props {
   settDato: (date: string) => void;
   disabled?: boolean;
   fetSkrift?: boolean;
-  periodeDato?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -71,7 +70,6 @@ const Datovelger: React.FC<Props> = ({
   settDato,
   disabled,
   fetSkrift,
-  periodeDato,
 }) => {
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
@@ -134,7 +132,7 @@ const Datovelger: React.FC<Props> = ({
         />
       </FeltGruppe>
 
-      {!gyldigDato(_dato) && _dato !== '' && !periodeDato && (
+      {!gyldigDato(_dato) && _dato !== '' && (
         <Feilmelding tekstid={hentFeilmeldingTekstid(_dato, datobegrensning)} />
       )}
     </StyledDatovelger>

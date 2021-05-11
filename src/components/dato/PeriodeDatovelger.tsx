@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState } from 'react';
+import React, { FC, useCallback, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
@@ -10,6 +10,7 @@ import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
+import { gyldigPeriode, harStartEllerSluttdato } from './utils';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -32,6 +33,18 @@ const PeriodeGruppe = styled.div`
   }
 `;
 
+const hentFeilmeldingTekstidForPeriode = (
+  periode: IPeriode,
+  datobegrensning: DatoBegrensning
+): string => {
+  if (!gyldigPeriode(periode, datobegrensning)) return 'datovelger.ugyldigDato';
+  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
+    return 'datovelger.periode.ugyldigDato.kunFremtidigeDatoer';
+  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
+    return 'datovelger.periode.ugyldigDato.kunTidligereDatoer';
+  else return '';
+};
+
 interface Props {
   className?: string;
   tekst: string;
@@ -40,7 +53,7 @@ interface Props {
   fomTekstid?: string;
   tomTekstid?: string;
   settDato: (dato: string, objektnøkkel: EPeriode) => void;
-  datobegrensing?: DatoBegrensning;
+  datobegrensing: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
 }
 
@@ -56,6 +69,9 @@ const PeriodeDatovelgere: FC<Props> = ({
   onValidate,
 }) => {
   const [feilmelding, settFeilmelding] = useState<string>('');
+  const periodeDatobegrensning: DatoBegrensning = datobegrensing
+    ? datobegrensing
+    : DatoBegrensning.TidligereDatoer;
 
   const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
     (dato: Date, periodenøkkel: EPeriode) => {
@@ -74,29 +90,33 @@ const PeriodeDatovelgere: FC<Props> = ({
           ? strengTilDato(til.verdi)
           : undefined;
 
-      if (fom && tom) {
-        const erFraDatoSenereEnnTilDato = compareAsc(fom, tom) === 1;
-        const erDatoerLike = isEqual(fom, tom);
+      const erFraDatoSenereEnnTilDato =
+        fom && tom && compareAsc(fom, tom) === 1;
+      const erDatoerLike = fom && tom && isEqual(fom, tom);
 
-        if (erFraDatoSenereEnnTilDato) {
-          settFeilmelding('datovelger.periode.feilFormat');
-          onValidate && onValidate(false);
-        } else if (erDatoerLike) {
-          settFeilmelding('datovelger.periode.likeDatoer');
-          onValidate && onValidate(false);
-        } else {
-          settFeilmelding('');
-          onValidate && onValidate(true);
-        }
-      } else {
-        settFeilmelding('');
-        onValidate && onValidate(true);
-      }
+      if (fom && tom) {
+        if (erFraDatoSenereEnnTilDato)
+          settFeilmelding('datovelger.periode.startFørSlutt');
+        else if (erDatoerLike) settFeilmelding('datovelger.periode.likeDatoer');
+        else if (!gyldigPeriode(periode, datobegrensing))
+          settFeilmelding('datovelger.periode.ugyldigDato');
+        else settFeilmelding('');
+      } else if (harStartEllerSluttdato(periode)) {
+        if (!gyldigPeriode(periode, datobegrensing))
+          settFeilmelding('datovelger.periode.ugyldigDato');
+        else settFeilmelding('');
+      } else settFeilmelding('');
     },
-    [periode, onValidate]
+    [periode, periodeDatobegrensning]
   );
 
+  useEffect(() => {
+    if (onValidate && feilmelding !== '') onValidate(true);
+    if (onValidate && feilmelding === '') onValidate(false);
+  }, [feilmelding, onValidate]);
+
   const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
+    console.log('SettPeriode');
     settDato(dato, objektnøkkel);
     sammenlignDatoerOgOppdaterFeilmelding(strengTilDato(dato), objektnøkkel);
   };
@@ -118,20 +138,14 @@ const PeriodeDatovelgere: FC<Props> = ({
           settDato={(e) => settPeriode(e, EPeriode.fra)}
           valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
-          datobegrensning={
-            datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
-          }
-          periodeDato={true}
+          datobegrensning={periodeDatobegrensning}
         />
 
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.til)}
           valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
-          datobegrensning={
-            datobegrensing ? datobegrensing : DatoBegrensning.TidligereDatoer
-          }
-          periodeDato={true}
+          datobegrensning={periodeDatobegrensning}
         />
         {feilmelding && feilmelding !== '' && (
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />

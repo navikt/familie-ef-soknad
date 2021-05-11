@@ -12,6 +12,8 @@ import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components/macro';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
+import { gyldigPeriode } from '../../../../components/dato/utils';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
@@ -112,16 +114,21 @@ const Utenlandsopphold: FC<Props> = ({
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
+        datobegrensing={DatoBegrensning.TidligereDatoer}
       />
-      {erPeriodeDatoerValgt(utenlandsopphold.periode) && (
-        <StyledTextarea
-          label={begrunnelseTekst}
-          placeholder={'...'}
-          value={begrunnelse.verdi}
-          maxLength={1000}
-          onChange={(e) => settBegrunnelse(e)}
-        />
-      )}
+      {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
+        gyldigPeriode(
+          utenlandsopphold.periode,
+          DatoBegrensning.TidligereDatoer
+        ) && (
+          <StyledTextarea
+            label={begrunnelseTekst}
+            placeholder={'...'}
+            value={begrunnelse.verdi}
+            maxLength={1000}
+            onChange={(e) => settBegrunnelse(e)}
+          />
+        )}
     </div>
   );
 };
