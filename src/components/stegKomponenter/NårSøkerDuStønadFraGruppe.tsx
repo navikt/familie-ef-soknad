@@ -14,6 +14,7 @@ import {
 import LocaleTekst from '../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
 import ÅrMånedVelger from '../dato/ÅrMånedvelger';
+import { strengTilDato } from '../../utils/dato';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -98,9 +99,11 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
           </Element>
           <StyledDatovelger>
             <ÅrMånedVelger
-              valgtDato={valgtDato?.verdi}
+              valgtDato={
+                valgtDato?.verdi ? strengTilDato(valgtDato?.verdi) : undefined
+              }
               tekstid={datovelgerLabel}
-              datobegrensning={DatoBegrensning.AlleDatoer}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
               settDato={settDato}
               fetSkrift={false}
             />

@@ -114,7 +114,7 @@ const Utenlandsopphold: FC<Props> = ({
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
-        datobegrensing={DatoBegrensning.TidligereDatoer}
+        datobegrensning={DatoBegrensning.TidligereDatoer}
       />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
         gyldigPeriode(

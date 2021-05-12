@@ -40,7 +40,7 @@ const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
 };
 
 interface Props {
-  valgtDato: string | Date | undefined;
+  valgtDato: Date | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
   settDato: (date: Date | null) => void;
@@ -87,7 +87,6 @@ const ÅrMånedVelger: React.FC<Props> = ({
 
   settLocaleForDatePicker();
 
-
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
       <FeltGruppe>
@@ -108,7 +107,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
           begrensninger === {} ? (
             <DatePicker
               name="dateInput"
-              ariaLabelledBy={'Datepicker - MM.yyyy format'}
+              ariaLabelledBy={'Datepicker - format (MM.yyyy)'}
               id={datolabelid}
               disabled={disabled}
               className={'nav-datovelger__input'}
@@ -126,7 +125,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
           ) : (
             <DatePicker
               name="dateInput"
-              ariaLabelledBy={'Datepicker - MM.yyyy format'}
+              ariaLabelledBy={'Datepicker - MM.yyyy (format)'}
               id={datolabelid}
               disabled={disabled}
               className={'nav-datovelger__input'}

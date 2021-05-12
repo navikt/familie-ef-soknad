@@ -15,6 +15,7 @@ import { useIntl } from 'react-intl';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
 import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -119,6 +120,7 @@ const Utdanning: React.FC<Props> = ({
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
             aria-live="polite"
+            datobegrensing={DatoBegrensning.TidligereDatoer}
           />
         </KomponentGruppe>
       )}

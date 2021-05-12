@@ -23,6 +23,18 @@ export enum DatoBegrensning {
   TidligereDatoer = 'TidligereDatoer',
 }
 
+const hentFeilmeldingTekstid = (
+  dato: string,
+  datobegrensning: DatoBegrensning
+): string => {
+  if (!erGyldigDato(dato)) return 'datovelger.ugyldigDato';
+  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
+    return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
+  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
+    return 'datovelger.ugyldigDato.kunTidligereDatoer';
+  else return '';
+};
+
 const hentDatobegrensninger = (
   datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
@@ -40,18 +52,6 @@ const hentDatobegrensninger = (
         maxDate: formatIsoDate(dagensDato),
       };
   }
-};
-
-const hentFeilmeldingTekstid = (
-  dato: string,
-  datobegrensning: DatoBegrensning
-): string => {
-  if (!erGyldigDato(dato)) return 'datovelger.ugyldigDato';
-  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
-    return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
-  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
-    return 'datovelger.ugyldigDato.kunTidligereDatoer';
-  else return '';
 };
 
 interface Props {

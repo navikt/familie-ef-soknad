@@ -78,26 +78,25 @@ export default {
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
   // DATOVELGER
-  'datovelger.ugyldigDato': 'Dato er ugyldig',
-  'datovelger.ugyldigDato.kunTidligereDatoer': 'Dato må være før dagens dato',
+  'datovelger.ugyldigDato':
+    'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Ugyldig dato. Velg en dato som er fremover i tid.',
   'datovelger.ugyldigDato.kunFremtidigeDatoer':
-    'Dato må være etter dagens dato',
-  'datovelger.periode.likeDatoer':
-    'Valgte datoer for perioden kan ikke være like',
+    'Ugyldig dato. Velg en dato som er bakover i tid.',
 
   // PERIODE DATOVELGER
   'datovelger.periode.ugyldigDato':
-    'Startsdato og/eller sluttdato er i feil format',
-  'datovelger.periode.startFørSlutt':
-    'Startsdato må være tidligere enn sluttdato.',
+    'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format',
+  'datovelger.periode.likeDatoer': 'Startsdato og sluttdato kan ikke være like',
+  'datovelger.periode.startFørSlutt': 'Startsdato må være før sluttdato',
 
   // PERIODE ÅRMND VELGER
-  'datovelger.periode.ugyldigMndÅr.kunTidligereDatoer':
-    'Til og fra måned og år må være før dagens måned og år',
-  'datovelger.periode.ugyldigMndÅr.kunFremtidigeDatoer':
-    'Til og fra måned og år må være etter dagens måned og år',
   'datovelger.periode.feilFormatMndÅr':
     'Startsdato må være tidligere enn sluttdato.',
+  'datovelger.periode.ugyldigMndÅr.kunTidligereDatoer':
+    'Til og fra måned og år må være før dagens måned og år',
+
   'datovelger.periode.likMndÅr':
     'Valgt måned og år for perioden kan ikke være like',
 

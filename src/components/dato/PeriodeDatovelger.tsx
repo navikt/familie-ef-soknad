@@ -1,16 +1,19 @@
-import React, { FC, useCallback, useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
-import { strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
-import { compareAsc, isEqual } from 'date-fns';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
-import { gyldigPeriode, harStartEllerSluttdato } from './utils';
+import {
+  erDatoerLike,
+  erFraDatoSenereEnnTilDato,
+  gyldigPeriode,
+  hentStartOgSluttDato,
+} from './utils';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -33,18 +36,6 @@ const PeriodeGruppe = styled.div`
   }
 `;
 
-const hentFeilmeldingTekstidForPeriode = (
-  periode: IPeriode,
-  datobegrensning: DatoBegrensning
-): string => {
-  if (!gyldigPeriode(periode, datobegrensning)) return 'datovelger.ugyldigDato';
-  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
-    return 'datovelger.periode.ugyldigDato.kunFremtidigeDatoer';
-  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
-    return 'datovelger.periode.ugyldigDato.kunTidligereDatoer';
-  else return '';
-};
-
 interface Props {
   className?: string;
   tekst: string;
@@ -53,7 +44,7 @@ interface Props {
   fomTekstid?: string;
   tomTekstid?: string;
   settDato: (dato: string, objektnøkkel: EPeriode) => void;
-  datobegrensing: DatoBegrensning;
+  datobegrensning: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
 }
 
@@ -65,60 +56,44 @@ const PeriodeDatovelgere: FC<Props> = ({
   tekst,
   fomTekstid,
   tomTekstid,
-  datobegrensing,
+  datobegrensning,
   onValidate,
 }) => {
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const periodeDatobegrensning: DatoBegrensning = datobegrensing
-    ? datobegrensing
+  const periodeDatobegrensning: DatoBegrensning = datobegrensning
+    ? datobegrensning
     : DatoBegrensning.TidligereDatoer;
 
-  const sammenlignDatoerOgOppdaterFeilmelding = useCallback(
-    (dato: Date, periodenøkkel: EPeriode) => {
-      const { fra, til } = periode;
-      const fom: Date | undefined =
-        periodenøkkel === EPeriode.fra
-          ? dato
-          : fra.verdi !== ''
-          ? strengTilDato(fra.verdi)
-          : undefined;
+  const sammenlignDatoerOgHentFeilmelding = (
+    periode: IPeriode,
+    datobegrensning: DatoBegrensning
+  ): string => {
+    const { startDato, sluttDato } = hentStartOgSluttDato(periode);
 
-      const tom: Date | undefined =
-        periodenøkkel === EPeriode.til
-          ? dato
-          : til.verdi !== ''
-          ? strengTilDato(til.verdi)
-          : undefined;
-
-      const erFraDatoSenereEnnTilDato =
-        fom && tom && compareAsc(fom, tom) === 1;
-      const erDatoerLike = fom && tom && isEqual(fom, tom);
-
-      if (fom && tom) {
-        if (erFraDatoSenereEnnTilDato)
-          settFeilmelding('datovelger.periode.startFørSlutt');
-        else if (erDatoerLike) settFeilmelding('datovelger.periode.likeDatoer');
-        else if (!gyldigPeriode(periode, datobegrensing))
-          settFeilmelding('datovelger.periode.ugyldigDato');
-        else settFeilmelding('');
-      } else if (harStartEllerSluttdato(periode)) {
-        if (!gyldigPeriode(periode, datobegrensing))
-          settFeilmelding('datovelger.periode.ugyldigDato');
-        else settFeilmelding('');
-      } else settFeilmelding('');
-    },
-    [periode, periodeDatobegrensning]
-  );
+    if (startDato && sluttDato) {
+      if (!erFraDatoSenereEnnTilDato(startDato, sluttDato))
+        return 'datovelger.periode.startFørSlutt';
+      else if (erDatoerLike(startDato, sluttDato))
+        return 'datovelger.periode.likeDatoer';
+      else if (!gyldigPeriode(periode, datobegrensning))
+        return 'datovelger.periode.ugyldigDato';
+      else return '';
+    } else return '';
+  };
 
   useEffect(() => {
+    const oppdatertFeilmelding = sammenlignDatoerOgHentFeilmelding(
+      periode,
+      datobegrensning
+    );
+    settFeilmelding(oppdatertFeilmelding);
+
     if (onValidate && feilmelding !== '') onValidate(true);
     if (onValidate && feilmelding === '') onValidate(false);
-  }, [feilmelding, onValidate]);
+  }, [feilmelding, onValidate, periode, datobegrensning]);
 
   const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
-    console.log('SettPeriode');
     settDato(dato, objektnøkkel);
-    sammenlignDatoerOgOppdaterFeilmelding(strengTilDato(dato), objektnøkkel);
   };
 
   return (
