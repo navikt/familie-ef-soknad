@@ -94,11 +94,10 @@ export default {
   // PERIODE ÅRMND VELGER
   'datovelger.periode.feilFormatMndÅr':
     'Startsdato må være tidligere enn sluttdato.',
-  'datovelger.periode.ugyldigMndÅr.kunTidligereDatoer':
-    'Til og fra måned og år må være før dagens måned og år',
-
   'datovelger.periode.likMndÅr':
     'Valgt måned og år for perioden kan ikke være like',
+  'datovelger.periode.startMndÅrFørSluttMndÅr':
+    'Start måned og år må være før dagens måned og år',
 
   'datovelger.fødselsdato': 'Fødselsdato',
   'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
