@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
@@ -13,9 +12,10 @@ import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
 import { useIntl } from 'react-intl';
-import { datoTilStreng } from '../../../../utils/dato';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
+import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -77,7 +77,7 @@ const Utdanning: React.FC<Props> = ({
           label: hentTekst('utdanning.datovelger.studieperiode', intl),
           [nøkkel]: {
             label: hentTekst('periode.' + nøkkel, intl),
-            verdi: dato !== null ? datoTilStreng(dato) : undefined,
+            verdi: dato,
           },
         },
       });
@@ -115,12 +115,12 @@ const Utdanning: React.FC<Props> = ({
       </FeltGruppe>
       {harValgtSvar(utdanning.linjeKursGrad?.verdi) && (
         <KomponentGruppe>
-          <PeriodeDatovelgere
+          <PeriodeÅrMånedvelgere
             tekst={hentTekst('utdanning.datovelger.studieperiode', intl)}
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
-            showMonthYearPicker={true}
             aria-live="polite"
+            datobegrensing={DatoBegrensning.TidligereDatoer}
           />
         </KomponentGruppe>
       )}

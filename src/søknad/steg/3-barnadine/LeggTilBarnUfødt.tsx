@@ -16,7 +16,7 @@ interface Props {
   settBo: Function;
   boHosDeg: string;
   settDato: Function;
-  barnDato: Date | undefined;
+  barnDato: string;
 }
 
 const LeggTilBarnUfødt: React.FC<Props> = ({

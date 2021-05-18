@@ -9,7 +9,6 @@ import Datovelger, {
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { EFirma, IFirma } from '../../../../models/steg/aktivitet/firma';
-import { datoTilStreng } from '../../../../utils/dato';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
@@ -53,13 +52,13 @@ const OmFirmaetDitt: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [firma]);
 
-  const settDatoFelt = (dato: Date | null): void => {
+  const settDatoFelt = (dato: string): void => {
     dato !== null &&
       settFirma({
         ...firma,
         etableringsdato: {
           label: hentTekst('firma.datovelger.etablering', intl),
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };

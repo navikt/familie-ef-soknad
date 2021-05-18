@@ -4,7 +4,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
 import { useIntl } from 'react-intl';
 import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
-import { datoTilStreng, strengTilDato } from '../../../utils/dato';
 import { hentTekst } from '../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
@@ -79,15 +78,14 @@ const OmSamboerenDin: FC<Props> = ({
     settSamboerInfo({ ...endretSamboerInfo, kjennerIkkeIdent: checked });
   };
 
-  const settFødselsdato = (date: Date | null) => {
-    date !== null &&
-      settSamboerInfo({
-        ...samboerInfo,
-        fødselsdato: {
-          label: hentTekst('datovelger.fødselsdato', intl),
-          verdi: datoTilStreng(date),
-        },
-      });
+  const settFødselsdato = (date: string) => {
+    settSamboerInfo({
+      ...samboerInfo,
+      fødselsdato: {
+        label: hentTekst('datovelger.fødselsdato', intl),
+        verdi: date,
+      },
+    });
   };
 
   const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
@@ -143,11 +141,7 @@ const OmSamboerenDin: FC<Props> = ({
             }
             checkboxLabel={hentTekst('person.checkbox.ident', intl)}
             ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
-            fødselsdato={
-              samboerInfo.fødselsdato?.verdi
-                ? strengTilDato(samboerInfo.fødselsdato?.verdi)
-                : undefined
-            }
+            fødselsdato={samboerInfo.fødselsdato?.verdi || ''}
             checked={samboerInfo?.kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
             settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}

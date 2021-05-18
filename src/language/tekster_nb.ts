@@ -79,10 +79,28 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
-  'datovelger.periode.feilFormat':
+  // DATOVELGER
+  'datovelger.ugyldigDato':
+    'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Ugyldig dato. Velg en dato som er fremover i tid.',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Ugyldig dato. Velg en dato som er bakover i tid.',
+
+  // PERIODE DATOVELGER
+  'datovelger.periode.ugyldigDato':
+    'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format',
+  'datovelger.periode.likeDatoer': 'Startsdato og sluttdato kan ikke være like',
+  'datovelger.periode.startFørSlutt': 'Startsdato må være før sluttdato',
+
+  // PERIODE ÅRMND VELGER
+  'datovelger.periode.feilFormatMndÅr':
     'Startsdato må være tidligere enn sluttdato.',
-  'datovelger.periode.likeDatoer':
-    'Valgte datoer for perioden kan ikke være like',
+  'datovelger.periode.likMndÅr':
+    'Valgt måned og år for perioden kan ikke være like',
+  'datovelger.periode.startMndÅrFørSluttMndÅr':
+    'Start måned og år må være før dagens måned og år',
+
   'datovelger.fødselsdato': 'Fødselsdato',
   'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
 

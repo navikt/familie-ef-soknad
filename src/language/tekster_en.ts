@@ -85,6 +85,12 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'The amount must be a valid number',
 
+  'datovelger.ugyldigDato': 'The date is in wrong format',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Date must be earlier than today',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer': 'Date must be after today',
+
+  'datovelger.periode.ugyldigDato': 'Start or/and end date is invalid format',
   'datovelger.periode.feilFormat':
     'Start date has to be earlier than end date.',
   'datovelger.periode.likeDatoer':

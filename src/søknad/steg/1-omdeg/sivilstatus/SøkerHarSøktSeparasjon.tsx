@@ -11,7 +11,7 @@ import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokument
 
 interface Props {
   sivilstatus: ISivilstatus;
-  settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekst: string) => void;
 }
 const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato, sivilstatus }) => {
   const { datoSøktSeparasjon, datoFlyttetFraHverandre } = sivilstatus;

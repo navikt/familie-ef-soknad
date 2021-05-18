@@ -1,7 +1,7 @@
 import React from 'react';
 import { Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
-import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
+import { DatoBegrensning } from '../dato/Datovelger';
 import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
@@ -13,6 +13,8 @@ import {
 } from '../../models/søknad/søknadsfelter';
 import LocaleTekst from '../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
+import ÅrMånedVelger from '../dato/ÅrMånedvelger';
+import { strengTilDato } from '../../utils/dato';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -96,12 +98,14 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
             <LocaleTekst tekst={'søkerFraBestemtMåned.datovelger'} />
           </Element>
           <StyledDatovelger>
-            <Datovelger
-              valgtDato={valgtDato?.verdi}
+            <ÅrMånedVelger
+              valgtDato={
+                valgtDato?.verdi ? strengTilDato(valgtDato?.verdi) : undefined
+              }
               tekstid={datovelgerLabel}
-              datobegrensning={DatoBegrensning.AlleDatoer}
+              datobegrensning={DatoBegrensning.TidligereDatoer}
               settDato={settDato}
-              showMonthYearPicker
+              fetSkrift={false}
             />
           </StyledDatovelger>
           {alertTekst && (

@@ -21,7 +21,6 @@ import {
 } from '../../../../../models/steg/omDeg/sivilstatus';
 import { ISpørsmål, ISvar } from '../../../../../models/felles/spørsmålogsvar';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { datoTilStreng, strengTilDato } from '../../../../../utils/dato';
 import {
   EPersonDetaljer,
   IPersonDetaljer,
@@ -32,7 +31,7 @@ import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 interface Props {
   sivilstatus: ISivilstatus;
   settSivilstatus: (sivilstatus: ISivilstatus) => void;
-  settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -130,15 +129,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
     settSamboerInfo({ ...endretSamboerInfo, kjennerIkkeIdent: checked });
   };
 
-  const settFødselsdato = (date: Date | null) => {
-    date !== null &&
-      settSamboerInfo({
-        ...samboerInfo,
-        fødselsdato: {
-          label: hentTekst('datovelger.fødselsdato', intl),
-          verdi: datoTilStreng(date),
-        },
-      });
+  const settFødselsdato = (date: string) => {
+    settSamboerInfo({
+      ...samboerInfo,
+      fødselsdato: {
+        label: hentTekst('datovelger.fødselsdato', intl),
+        verdi: date,
+      },
+    });
   };
 
   const erBegrunnelse = (svaralternativ: EBegrunnelse): boolean => {
@@ -230,11 +228,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
               datoLabel={hentTekst('person.fødselsdato', intl)}
               checkboxLabel={hentTekst('person.checkbox.ident', intl)}
               ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
-              fødselsdato={
-                samboerInfo.fødselsdato?.verdi
-                  ? strengTilDato(samboerInfo.fødselsdato?.verdi)
-                  : undefined
-              }
+              fødselsdato={samboerInfo.fødselsdato?.verdi || ''}
               checked={samboerInfo?.kjennerIkkeIdent}
               erGyldigIdent={erGyldigIdent}
               settGyldigIdent={hvisGyldigIdentSettIdentISamboerDetaljer}

@@ -7,7 +7,6 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 import { useIntl } from 'react-intl';
 import { harFyltUtSamboerDetaljer } from '../../../utils/person';
 
@@ -22,13 +21,13 @@ const EkteskapsliknendeForhold: FC<Props> = ({
   const intl = useIntl();
   const { samboerDetaljer } = bosituasjon;
 
-  const settDatoFlyttetSammen = (dato: Date | null, label: string) => {
+  const settDatoFlyttetSammen = (dato: string, label: string) => {
     dato !== null &&
       settBosituasjon({
         ...bosituasjon,
         datoFlyttetSammenMedSamboer: {
           label: label,
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };

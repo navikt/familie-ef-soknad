@@ -11,7 +11,6 @@ import {
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import { datoTilStreng } from '../../../../utils/dato';
 import SøkerErUgift from './SøkerErUgift';
 import {
   erSøkerEnke,
@@ -80,18 +79,17 @@ const Sivilstatus: React.FC<Props> = ({
   };
 
   const settDato = (
-    date: Date | null,
+    date: string,
     objektnøkkel: string,
     tekstid: string
   ): void => {
-    date !== null &&
-      settSivilstatus({
-        ...sivilstatus,
-        [objektnøkkel]: {
-          label: intl.formatMessage({ id: tekstid }),
-          verdi: datoTilStreng(date),
-        },
-      });
+    settSivilstatus({
+      ...sivilstatus,
+      [objektnøkkel]: {
+        label: intl.formatMessage({ id: tekstid }),
+        verdi: date,
+      },
+    });
   };
 
   return (

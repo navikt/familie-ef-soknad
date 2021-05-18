@@ -4,7 +4,6 @@ import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { SøkerDuStønadFraBestemtMndSpm } from './BarnepassConfig';
@@ -30,6 +29,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { ISøknad } from '../../models/søknad';
+import { datoTilStreng } from '../../../utils/dato';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {

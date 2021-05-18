@@ -11,7 +11,7 @@ import { useIntl } from 'react-intl';
 
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
-  settDato: (date: Date | null, objektnøkkel: string, tekst: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekst: string) => void;
   sivilstatus: ISivilstatus;
 }
 
