@@ -73,7 +73,9 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
     : barnetsNavn;
   const omBarnetsTilsynsbehovLabel = hentBeskjedMedNavn(
     navn,
-    intl.formatMessage({ id: 'barnetilsyn.OmBarnetsTilsynsbehov' })
+    intl.formatMessage({
+      id: 'dinSituasjon.alert.harBarnMedSærligeBehov.tittel',
+    })
   );
 
   return (

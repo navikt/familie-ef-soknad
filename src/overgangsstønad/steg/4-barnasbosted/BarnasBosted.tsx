@@ -14,6 +14,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { Normaltekst } from 'nav-frontend-typografi';
 import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
@@ -33,7 +34,11 @@ const BarnasBosted: React.FC = () => {
     settDokumentasjonsbehovForBarn,
     settSøknad,
   } = useSøknad();
-  const barna = søknad.person.barn;
+
+  const barna = søknad.person.barn.filter((barn: IBarn) => {
+    return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
+  });
+
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
@@ -109,6 +114,11 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
+      {!barna.length && (
+        <Normaltekst style={{ textAlign: 'center' }}>
+          {hentTekst('barnasbosted.kanGåVidere', intl)}
+        </Normaltekst>
+      )}
     </Side>
   );
 };

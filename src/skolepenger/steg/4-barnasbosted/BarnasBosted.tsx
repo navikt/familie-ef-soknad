@@ -7,6 +7,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
@@ -41,7 +42,10 @@ const BarnasBosted: React.FC = () => {
 
   useMount(() => logSidevisningSkolepenger('BarnasBosted'));
 
-  const barna = søknad.person.barn;
+  const barna = søknad.person.barn.filter((barn: IBarn) => {
+    return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
+  });
+
   const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === barna.length
@@ -111,6 +115,11 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
+      {!barna.length && (
+        <Normaltekst style={{ textAlign: 'center' }}>
+          {hentTekst('barnasbosted.kanGåVidere', intl)}
+        </Normaltekst>
+      )}
     </Side>
   );
 };

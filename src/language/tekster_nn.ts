@@ -36,6 +36,8 @@ export default {
     '<li>search for vacant positions (jobs)' +
     ' <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
     '<li>submit an employment status card every 14 days</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Information about you as a job seeker',
   'skjema.alert.registrert':
@@ -198,7 +200,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'You must submit confirmation from the County Governor or court',
+    'Du må leggje ved stadfesting frå Statsforvaltaren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
   'sivilstatus.alert.samlivsbruddForeldre':
@@ -349,6 +351,7 @@ export default {
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
   'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
@@ -492,6 +495,8 @@ export default {
     'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Register address at the National Registry',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   // --- AKTIVITET (Steg 5)
 
@@ -783,13 +788,22 @@ export default {
     '</ul>',
 
   // barnHarSærligeBehov
-  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
-    'You must provide documentation of your child’s special supervision needs',
-  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
-    'Documentation from your doctor must confirm:' +
+
+  'dinSituasjon.dok.harBarnMedSærligeBehov.tittel':
+    'Du må leggje ved dokumentasjon på tilsynsbehovet til barnet.',
+  'dinSituasjon.dok.harBarnMedSærligeBehov.beskrivelse':
+    'Dokumentasjon frå legen din som stadfestar: ' +
     '<ul>' +
-    '<li>that the child has medical, mental or major social problems and needs supervision</li>' +
-    '<li>that this affects your ability to be in occupational activity</li>' +
+    '<li>at barnet har medisinske, psykiske eller store sosiale problem og treng tilsyn</li>' +
+    '<li>kat dette påverkar i kva grad det er mogleg for deg å vere i yrkesretta aktivitet</li>' +
+    '</ul>',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.tittel':
+    'Om tilsynsbehovet til [0]',
+  'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse':
+    'Vi treng opplysningar om:' +
+    '<ul>' +
+    '<li>kor mykje og korleis barnet ditt treng tilsyn</li>' +
+    '<li>korleis dette påverkar i kva grad det er mogleg for deg å vere i yrkesretta aktivitet</li>' +
     '</ul>',
 
   'dinSituasjon.datovelger.jobb': 'When are you going to start your new job?',

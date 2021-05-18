@@ -15,18 +15,18 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
   const intl = useIntl();
   const {
     alder,
-    fødselsdato,
     ident,
     navn,
     født,
     skalHaBarnepass,
     harSammeAdresse,
     lagtTil,
+    harAdressesperre,
   } = barn;
 
   return (
     <>
-      {navn && (
+      {!harAdressesperre && navn && (
         <div className={'spørsmål-og-svar'}>
           <Element tag="h3">
             <LocaleTekst tekst="person.navn" />
@@ -35,7 +35,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {ident && ident.verdi !== '' && (
+      {!harAdressesperre && ident && ident.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
           <Element>
             <LocaleTekst tekst="person.fnr" />
@@ -53,16 +53,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {fødselsdato.verdi !== '' && (
-        <div className={'spørsmål-og-svar'}>
-          <Element>
-            <LocaleTekst tekst="barnekort.fødselsdato" />
-          </Element>
-          <Normaltekst>{fødselsdato.verdi}</Normaltekst>
-        </div>
-      )}
-
-      {født && lagtTil && (
+      {født?.verdi && lagtTil && (
         <div className={'spørsmål-og-svar'}>
           <Element>{født?.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(født.verdi)}</Normaltekst>
@@ -78,7 +69,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
         </div>
       )}
 
-      {harSammeAdresse && (
+      {!harAdressesperre && harSammeAdresse && (
         <div className={'spørsmål-og-svar'}>
           <Element>{harSammeAdresse.label}</Element>
           <Normaltekst>{verdiTilTekstsvar(harSammeAdresse.verdi)}</Normaltekst>

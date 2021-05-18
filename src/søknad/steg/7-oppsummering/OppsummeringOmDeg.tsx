@@ -34,7 +34,7 @@ const OppsummeringOmDeg: FC<Props> = ({
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
-  tittel
+  tittel,
 }) => {
   const intl = useIntl();
 
@@ -52,13 +52,7 @@ const OppsummeringOmDeg: FC<Props> = ({
   );
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Undertittel tag="h3">
-          {tittel}
-        </Undertittel>
-      }
-    >
+    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
       <KomponentGruppe>
         <StyledOppsummering>
           <div className="spørsmål-og-svar">
@@ -78,6 +72,9 @@ const OppsummeringOmDeg: FC<Props> = ({
               <LocaleTekst tekst="person.adresse" />
             </Element>
             <Normaltekst>{omDeg.adresse.adresse}</Normaltekst>
+            <Normaltekst>
+              {omDeg.adresse.postnummer} {omDeg.adresse.poststed}
+            </Normaltekst>
           </div>
           <div className="spørsmål-og-svar">
             <Element>

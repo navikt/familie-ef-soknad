@@ -30,7 +30,13 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     .map((barn) => {
       if (!barn.forelder) return null;
 
-      let nyForelder = { ...barn.forelder };
+      let nyForelder = {
+        ...barn.forelder,
+        navn: {
+          label: hentTekst('barnasbosted.oppsummering.navn.label', intl),
+          verdi: barn.forelder?.navn?.verdi,
+        },
+      };
 
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
