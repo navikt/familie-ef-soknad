@@ -10,10 +10,12 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
 import {
   erDatoerLike,
+  erDatoInnaforBegrensinger,
   erFraDatoSenereEnnTilDato,
-  gyldigPeriode,
+  erPeriodeInnaforBegrensninger,
   hentStartOgSluttDato,
 } from './utils';
+import { erGyldigDato, erPeriodeGyldig } from '../../utils/dato';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -60,40 +62,61 @@ const PeriodeDatovelgere: FC<Props> = ({
   onValidate,
 }) => {
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const periodeDatobegrensning: DatoBegrensning = datobegrensning
-    ? datobegrensning
-    : DatoBegrensning.TidligereDatoer;
 
   const sammenlignDatoerOgHentFeilmelding = (
     periode: IPeriode,
     datobegrensning: DatoBegrensning
   ): string => {
     const { startDato, sluttDato } = hentStartOgSluttDato(periode);
+    const { fra, til } = periode;
+    const erStartDatoUtenforBegrensninger: boolean =
+      fra.verdi !== '' &&
+      !erDatoInnaforBegrensinger(fra.verdi, datobegrensning);
+    const erSluttUtenforBegrensninger: boolean =
+      til.verdi !== '' &&
+      !erDatoInnaforBegrensinger(til.verdi, datobegrensning);
 
-    if (startDato && sluttDato) {
-      if (!erFraDatoSenereEnnTilDato(startDato, sluttDato))
-        return 'datovelger.periode.startFørSlutt';
-      else if (erDatoerLike(startDato, sluttDato))
-        return 'datovelger.periode.likeDatoer';
-      else if (!gyldigPeriode(periode, datobegrensning))
-        return 'datovelger.periode.ugyldigDato';
-      else return '';
-    } else return '';
+    if (
+      (fra.verdi !== '' && !erGyldigDato(fra.verdi)) ||
+      (til.verdi !== '' && !erGyldigDato(til.verdi))
+    )
+      return 'datovelger.periode.ugyldigDato';
+    else if (
+      (erStartDatoUtenforBegrensninger || erSluttUtenforBegrensninger) &&
+      datobegrensning === DatoBegrensning.TidligereDatoer
+    )
+      return 'datovelger.ugyldigDato.kunTidligereDatoer';
+    else if (
+      (erStartDatoUtenforBegrensninger || erSluttUtenforBegrensninger) &&
+      datobegrensning === DatoBegrensning.FremtidigeDatoer
+    )
+      return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
+    else if (startDato && sluttDato && erDatoerLike(startDato, sluttDato))
+      return 'datovelger.periode.likeDatoer';
+    else if (
+      startDato &&
+      sluttDato &&
+      !erFraDatoSenereEnnTilDato(startDato, sluttDato)
+    )
+      return 'datovelger.periode.startFørSlutt';
+    else return '';
   };
 
   useEffect(() => {
-    const oppdatertFeilmelding = sammenlignDatoerOgHentFeilmelding(
-      periode,
-      datobegrensning
-    );
-    settFeilmelding(oppdatertFeilmelding);
+    const harStartEllerSluttDato =
+      periode.fra.verdi !== '' || periode.til.verdi !== '';
+
+    harStartEllerSluttDato &&
+      settFeilmelding(
+        sammenlignDatoerOgHentFeilmelding(periode, datobegrensning)
+      );
 
     if (onValidate && feilmelding !== '') onValidate(true);
     if (onValidate && feilmelding === '') onValidate(false);
   }, [feilmelding, onValidate, periode, datobegrensning]);
 
   const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
-    settDato(dato, objektnøkkel);
+    dato !== '' && settDato(dato, objektnøkkel);
   };
 
   return (
@@ -113,14 +136,16 @@ const PeriodeDatovelgere: FC<Props> = ({
           settDato={(e) => settPeriode(e, EPeriode.fra)}
           valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
-          datobegrensning={periodeDatobegrensning}
+          datobegrensning={datobegrensning}
+          gjemFeilmelding={true}
         />
 
         <Datovelger
           settDato={(e) => settPeriode(e, EPeriode.til)}
           valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
-          datobegrensning={periodeDatobegrensning}
+          datobegrensning={datobegrensning}
+          gjemFeilmelding={true}
         />
         {feilmelding && feilmelding !== '' && (
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />

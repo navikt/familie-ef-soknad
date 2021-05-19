@@ -12,7 +12,7 @@ import ÅrMånedVelger from './ÅrMånedvelger';
 import {
   erDatoerLike,
   erFraDatoSenereEnnTilDato,
-  gyldigPeriode,
+  erPeriodeGyldigOgInnaforBegrensninger,
   hentStartOgSluttDato,
 } from './utils';
 
@@ -71,7 +71,7 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
         return 'datovelger.periode.startMndÅrFørSluttMndÅr';
       else if (erDatoerLike(startDato, sluttDato))
         return 'datovelger.periode.likMndÅr';
-      else if (!gyldigPeriode(periode, datobegrensning))
+      else if (!erPeriodeGyldigOgInnaforBegrensninger(periode, datobegrensning))
         return 'datovelger.periode.feilFormatMndÅr';
       else return '';
     } else return '';

@@ -3,7 +3,8 @@ import { addYears, compareAsc, isEqual, subYears } from 'date-fns';
 import { dagensDato, erGyldigDato, strengTilDato } from '../../utils/dato';
 import { IPeriode } from '../../models/felles/periode';
 
-export const gyldigDato = (
+// Brukes for å ikke vise nesteknapp vis dato er ugyldig format eller utenfor begrensninger
+export const erDatoGyldigOgInnaforBegrensninger = (
   dato: string,
   datobegrensning: DatoBegrensning
 ): boolean => {
@@ -34,14 +35,27 @@ export const erDatoInnaforBegrensinger = (
   }
 };
 
-export const gyldigPeriode = (
+export const erPeriodeInnaforBegrensninger = (
+  periode: IPeriode,
+  datobegrensning: DatoBegrensning
+): boolean => {
+  const erFraDatoInnafor = erDatoInnaforBegrensinger(
+    periode.fra.verdi,
+    datobegrensning
+  );
+  const erTilDatoInnafor = erDatoInnaforBegrensinger(
+    periode.til.verdi,
+    datobegrensning
+  );
+
+  return erFraDatoInnafor && erTilDatoInnafor;
+};
+
+export const erPeriodeGyldigOgInnaforBegrensninger = (
   periode: IPeriode,
   datobegrensning: DatoBegrensning
 ): boolean => {
   const { fra, til } = periode;
-
-  const gyldigFraDato: boolean = gyldigDato(periode.fra.verdi, datobegrensning);
-  const gyldigTilDato: boolean = gyldigDato(periode.til.verdi, datobegrensning);
 
   const fom: Date | undefined =
     periode.fra.verdi !== '' ? strengTilDato(fra.verdi) : undefined;
@@ -53,7 +67,9 @@ export const gyldigPeriode = (
   const erDatoerLike = fom && tom ? isEqual(fom, tom) : false;
 
   return (
-    erFraDatoSenereEnnTilDato && !erDatoerLike && gyldigTilDato && gyldigFraDato
+    erFraDatoSenereEnnTilDato &&
+    !erDatoerLike &&
+    erPeriodeInnaforBegrensninger(periode, datobegrensning)
   );
 };
 

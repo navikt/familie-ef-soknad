@@ -83,9 +83,9 @@ export default {
   'datovelger.ugyldigDato':
     'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
   'datovelger.ugyldigDato.kunTidligereDatoer':
-    'Ugyldig dato. Velg en dato som er fremover i tid.',
-  'datovelger.ugyldigDato.kunFremtidigeDatoer':
     'Ugyldig dato. Velg en dato som er bakover i tid.',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Ugyldig dato. Velg en dato som er fremover i tid.',
 
   // PERIODE DATOVELGER
   'datovelger.periode.ugyldigDato':

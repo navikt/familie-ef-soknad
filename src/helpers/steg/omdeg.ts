@@ -8,7 +8,7 @@ import { IPeriode } from '../../models/felles/periode';
 import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { gyldigDato } from '../../components/dato/utils';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -65,14 +65,17 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     case EBegrunnelse.samlivsbruddForeldre:
       return (
         datoForSamlivsbrudd?.verdi !== undefined &&
-        gyldigDato(datoForSamlivsbrudd.verdi, DatoBegrensning.TidligereDatoer)
+        erDatoGyldigOgInnaforBegrensninger(
+          datoForSamlivsbrudd.verdi,
+          DatoBegrensning.TidligereDatoer
+        )
       );
     case EBegrunnelse.samlivsbruddAndre:
       return (
         tidligereSamboerDetaljer &&
         harFyltUtSamboerDetaljer(tidligereSamboerDetaljer, true) &&
         datoFlyttetFraHverandre?.verdi !== undefined &&
-        gyldigDato(
+        erDatoGyldigOgInnaforBegrensninger(
           datoFlyttetFraHverandre.verdi,
           DatoBegrensning.TidligereDatoer
         )
@@ -80,7 +83,10 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     case EBegrunnelse.endringISamværsordning:
       return (
         datoEndretSamvær?.verdi !== undefined &&
-        gyldigDato(datoEndretSamvær?.verdi, DatoBegrensning.AlleDatoer)
+        erDatoGyldigOgInnaforBegrensninger(
+          datoEndretSamvær?.verdi,
+          DatoBegrensning.AlleDatoer
+        )
       );
     case EBegrunnelse.aleneFraFødsel:
       return true;

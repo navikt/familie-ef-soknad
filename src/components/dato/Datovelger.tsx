@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { addYears, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { Datepicker, isISODateString } from 'nav-datovelger';
+import { Datepicker } from 'nav-datovelger';
 import { useSpråkContext } from '../../context/SpråkContext';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
@@ -10,6 +10,7 @@ import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
+import { erDatoInnaforBegrensinger } from './utils';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   .typo-normal {
@@ -22,18 +23,6 @@ export enum DatoBegrensning {
   FremtidigeDatoer = 'FremtidigeDatoer',
   TidligereDatoer = 'TidligereDatoer',
 }
-
-const hentFeilmeldingTekstid = (
-  dato: string,
-  datobegrensning: DatoBegrensning
-): string => {
-  if (!erGyldigDato(dato)) return 'datovelger.ugyldigDato';
-  else if (datobegrensning === DatoBegrensning.FremtidigeDatoer)
-    return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
-  else if (datobegrensning === DatoBegrensning.TidligereDatoer)
-    return 'datovelger.ugyldigDato.kunTidligereDatoer';
-  else return '';
-};
 
 const hentDatobegrensninger = (
   datobegrensning: DatoBegrensning
@@ -61,6 +50,7 @@ interface Props {
   settDato: (date: string) => void;
   disabled?: boolean;
   fetSkrift?: boolean;
+  gjemFeilmelding?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -70,34 +60,42 @@ const Datovelger: React.FC<Props> = ({
   settDato,
   disabled,
   fetSkrift,
+  gjemFeilmelding,
 }) => {
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
-  const [_dato, _settDato] = useState<string>(valgtDato || '');
+  const [_dato, _settDato] = useState<string>(valgtDato ? valgtDato : '');
+  const [feilmelding, settFeilmelding] = useState<string>('');
 
   const limitations: DatepickerLimitations = hentDatobegrensninger(
     datobegrensning
   );
-  const ingenDatoBegrensninger = Object.keys(limitations).length === 0;
 
-  const datoErInnenforDatobegrensninger = (dato: Date) =>
-    (!!limitations.maxDate &&
-      dato <= new Date(limitations.maxDate) &&
-      !!limitations.minDate &&
-      dato >= new Date(limitations.minDate)) ||
-    ingenDatoBegrensninger;
-
-  const gyldigDato = (dato: string): boolean => {
-    return (
-      dato !== '' &&
-      isISODateString(dato) === true &&
-      erGyldigDato(dato) &&
-      datoErInnenforDatobegrensninger(new Date(dato))
-    );
+  const hentFeilmelding = (
+    dato: string,
+    datobegrensning: DatoBegrensning
+  ): string => {
+    if (!erGyldigDato(dato)) {
+      return 'datovelger.ugyldigDato';
+    } else if (
+      datobegrensning === DatoBegrensning.FremtidigeDatoer &&
+      !erDatoInnaforBegrensinger(dato, datobegrensning)
+    ) {
+      return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
+    } else if (
+      datobegrensning === DatoBegrensning.TidligereDatoer &&
+      !erDatoInnaforBegrensinger(dato, datobegrensning)
+    ) {
+      return 'datovelger.ugyldigDato.kunTidligereDatoer';
+    } else {
+      return '';
+    }
   };
 
   useEffect(() => {
-    settDato(_dato);
+    _dato !== '' && settDato(_dato);
+    _dato !== '' && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
+
     // eslint-disable-next-line
   }, [_dato]);
 
@@ -123,17 +121,13 @@ const Datovelger: React.FC<Props> = ({
           inputProps={{
             placeholder: 'DD.MM.YYYY',
             name: 'dateInput',
-            'aria-invalid':
-              _dato !== '' &&
-              isISODateString(_dato) === false &&
-              valgtDato !== undefined &&
-              gyldigDato(valgtDato),
+            'aria-invalid': _dato !== '' && feilmelding !== '',
           }}
         />
       </FeltGruppe>
 
-      {!gyldigDato(_dato) && _dato !== '' && (
-        <Feilmelding tekstid={hentFeilmeldingTekstid(_dato, datobegrensning)} />
+      {!gjemFeilmelding && _dato !== '' && feilmelding !== '' && (
+        <Feilmelding tekstid={feilmelding} />
       )}
     </StyledDatovelger>
   );
