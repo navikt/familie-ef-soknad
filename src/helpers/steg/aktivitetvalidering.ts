@@ -134,7 +134,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.harFåttJobbTilbud:
-      return datoOppstartJobb?.verdi ? true : false;
+      return !!datoOppstartJobb?.verdi;
 
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;
