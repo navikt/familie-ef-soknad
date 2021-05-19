@@ -12,9 +12,13 @@ import {
   IUnderUtdanning,
   IUtdanning,
 } from '../../models/steg/aktivitet/utdanning';
-import { erPeriodeGyldig } from '../../utils/dato';
 import { IFirma } from '../../models/steg/aktivitet/firma';
 import { IDetaljertUtdanning } from '../../skolepenger/models/detaljertUtdanning';
+import {
+  erDatoGyldigOgInnaforBegrensninger,
+  erPeriodeGyldigOgInnaforBegrensninger,
+} from '../../components/dato/utils';
+import { DatoBegrensning } from '../../components/dato/Datovelger';
 
 export const erSisteArbeidsgiverFerdigUtfylt = (
   arbeidsforhold: IArbeidsgiver[]
@@ -22,13 +26,26 @@ export const erSisteArbeidsgiverFerdigUtfylt = (
   return arbeidsforhold?.every((arbeidsgiver) =>
     arbeidsgiver.ansettelsesforhold?.svarid === EStilling.midlertidig
       ? arbeidsgiver.harSluttDato?.verdi === false ||
-        arbeidsgiver.sluttdato?.verdi
+        (arbeidsgiver?.sluttdato?.verdi &&
+          erDatoGyldigOgInnaforBegrensninger(
+            arbeidsgiver?.sluttdato?.verdi,
+            DatoBegrensning.FremtidigeDatoer
+          ))
       : arbeidsgiver.ansettelsesforhold?.verdi
   );
 };
 
 export const erSisteFirmaUtfylt = (firmaer: IFirma[]) => {
-  return firmaer?.every((firma) => firma.arbeidsuke?.verdi);
+  return firmaer?.every((firma) => {
+    return (
+      firma?.etableringsdato?.verdi &&
+      erDatoGyldigOgInnaforBegrensninger(
+        firma?.etableringsdato?.verdi,
+        DatoBegrensning.TidligereDatoer
+      ) &&
+      firma.arbeidsuke?.verdi
+    );
+  });
 };
 
 export const erAksjeselskapFerdigUtfylt = (
@@ -46,7 +63,11 @@ export const erTidligereUtdanningFerdigUtfylt = (
   return tidligereUtdanning.every(
     (utdanning) =>
       utdanning.linjeKursGrad?.verdi !== '' &&
-      erPeriodeGyldig(utdanning?.periode)
+      utdanning?.periode &&
+      erPeriodeGyldigOgInnaforBegrensninger(
+        utdanning?.periode,
+        DatoBegrensning.AlleDatoer
+      )
   );
 };
 
@@ -134,7 +155,13 @@ export const erAktivitetSeksjonFerdigUtfylt = (
       );
 
     case EAktivitet.harFåttJobbTilbud:
-      return datoOppstartJobb !== undefined;
+      return (
+        datoOppstartJobb !== undefined &&
+        erDatoGyldigOgInnaforBegrensninger(
+          datoOppstartJobb.verdi,
+          DatoBegrensning.FremtidigeDatoer
+        )
+      );
 
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;

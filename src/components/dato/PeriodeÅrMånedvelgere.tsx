@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
-import { strengTilDato } from '../../utils/dato';
+import { erGyldigDato, strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import Hjelpetekst from '../Hjelpetekst';
@@ -11,8 +11,8 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import ÅrMånedVelger from './ÅrMånedvelger';
 import {
   erDatoerLike,
+  erDatoInnaforBegrensinger,
   erFraDatoSenereEnnTilDato,
-  erPeriodeGyldigOgInnaforBegrensninger,
   hentStartOgSluttDato,
 } from './utils';
 
@@ -65,20 +65,49 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
     datobegrensning: DatoBegrensning
   ): string => {
     const { startDato, sluttDato } = hentStartOgSluttDato(periode);
+    const { fra, til } = periode;
 
-    if (startDato && sluttDato) {
-      if (!erFraDatoSenereEnnTilDato(startDato, sluttDato))
-        return 'datovelger.periode.startMndÅrFørSluttMndÅr';
-      else if (erDatoerLike(startDato, sluttDato))
-        return 'datovelger.periode.likMndÅr';
-      else if (!erPeriodeGyldigOgInnaforBegrensninger(periode, datobegrensning))
-        return 'datovelger.periode.feilFormatMndÅr';
-      else return '';
-    } else return '';
+    const erStartDatoUtenforBegrensninger: boolean =
+      fra.verdi !== '' &&
+      !erDatoInnaforBegrensinger(fra.verdi, datobegrensning);
+    const erSluttUtenforBegrensninger: boolean =
+      til.verdi !== '' &&
+      !erDatoInnaforBegrensinger(til.verdi, datobegrensning);
+
+    if (
+      (fra.verdi !== '' && !erGyldigDato(fra.verdi)) ||
+      (til.verdi !== '' && !erGyldigDato(til.verdi))
+    )
+      return 'datovelger.periode.feilFormatMndÅr';
+    else if (
+      (erStartDatoUtenforBegrensninger || erSluttUtenforBegrensninger) &&
+      datobegrensning === DatoBegrensning.TidligereDatoer
+    )
+      return 'datovelger.ugyldigDato.kunTidligereDatoer';
+    else if (
+      (erStartDatoUtenforBegrensninger || erSluttUtenforBegrensninger) &&
+      datobegrensning === DatoBegrensning.FremtidigeDatoer
+    )
+      return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
+    else if (startDato && sluttDato && erDatoerLike(startDato, sluttDato))
+      return 'datovelger.periode.likMndÅr';
+    else if (
+      startDato &&
+      sluttDato &&
+      !erFraDatoSenereEnnTilDato(startDato, sluttDato)
+    )
+      return 'datovelger.periode.startMndÅrFørSluttMndÅr';
+    else return '';
   };
 
   useEffect(() => {
-    settFeilmelding(sammenlignDatoerOgHentFeilmelding(periode, datobegrensing));
+    const harStartEllerSluttDato =
+      periode.fra.verdi !== '' || periode.til.verdi !== '';
+
+    harStartEllerSluttDato &&
+      settFeilmelding(
+        sammenlignDatoerOgHentFeilmelding(periode, datobegrensing)
+      );
     if (onValidate && feilmelding !== '') onValidate(true);
     if (onValidate && feilmelding === '') onValidate(false);
   }, [feilmelding, periode, datobegrensing, onValidate]);

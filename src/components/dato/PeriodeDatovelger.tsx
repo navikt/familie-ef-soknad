@@ -12,10 +12,9 @@ import {
   erDatoerLike,
   erDatoInnaforBegrensinger,
   erFraDatoSenereEnnTilDato,
-  erPeriodeInnaforBegrensninger,
   hentStartOgSluttDato,
 } from './utils';
-import { erGyldigDato, erPeriodeGyldig } from '../../utils/dato';
+import { erGyldigDato } from '../../utils/dato';
 
 const PeriodeGruppe = styled.div`
   display: grid;
