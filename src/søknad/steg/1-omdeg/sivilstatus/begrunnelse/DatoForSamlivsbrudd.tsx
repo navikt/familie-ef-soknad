@@ -17,7 +17,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   datoForSamlivsbrudd,
 }) => {
   const datovelgerLabel = 'sivilstatus.datovelger.samlivsbrudd';
-  console.log(datoForSamlivsbrudd);
+
   return (
     <>
       <KomponentGruppe>

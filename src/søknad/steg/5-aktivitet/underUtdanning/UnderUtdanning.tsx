@@ -30,6 +30,8 @@ import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtd
 import Studiekostnader from './Studiekostnader';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import styled from 'styled-components/macro';
+import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 
 const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
   margin-top: -2rem;
@@ -123,12 +125,16 @@ const UnderUtdanning: React.FC<Props> = ({
             settUtdanning={settUtdanning}
           />
         )}
-        {utdanning.periode?.til.verdi && utdanning.periode?.fra.verdi && (
-          <ErUtdanningenPåHeltidEllerDeltid
-            utdanning={utdanning}
-            settUtdanning={settUtdanning}
-          />
-        )}
+        {utdanning?.periode &&
+          erPeriodeGyldigOgInnaforBegrensninger(
+            utdanning?.periode,
+            DatoBegrensning.AlleDatoer
+          ) && (
+            <ErUtdanningenPåHeltidEllerDeltid
+              utdanning={utdanning}
+              settUtdanning={settUtdanning}
+            />
+          )}
         {søkerSkalJobbeHeltid && (
           <MålMedUtdanningen
             utdanning={utdanning}
