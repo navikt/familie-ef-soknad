@@ -81,14 +81,13 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     dato: string,
     label: string
   ) => {
-    dato !== null &&
-      settBosituasjon({
-        ...bosituasjon,
-        datoSkalGifteSegEllerBliSamboer: {
-          label: label,
-          verdi: dato,
-        },
-      });
+    settBosituasjon({
+      ...bosituasjon,
+      datoSkalGifteSegEllerBliSamboer: {
+        label: label,
+        verdi: dato,
+      },
+    });
   };
 
   const datovelgerTekst = intl.formatMessage({
@@ -101,11 +100,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         <JaNeiSpørsmål
           spørsmål={spørsmål}
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
-          valgtSvar={
-            skalGifteSegEllerBliSamboer
-              ? skalGifteSegEllerBliSamboer.verdi
-              : undefined
-          }
+          valgtSvar={skalGifteSegEllerBliSamboer?.verdi}
         />
       </KomponentGruppe>
       {skalGifteSegEllerBliSamboer &&

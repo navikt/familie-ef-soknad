@@ -1,5 +1,5 @@
 import { DatoBegrensning } from './Datovelger';
-import { addYears, compareAsc, isEqual, subYears } from 'date-fns';
+import { addYears, compareAsc, format, isEqual, subYears } from 'date-fns';
 import { dagensDato, erGyldigDato, strengTilDato } from '../../utils/dato';
 import { IPeriode } from '../../models/felles/periode';
 
@@ -15,6 +15,8 @@ export const erDatoInnaforBegrensinger = (
   dato: string,
   datobegrensning: DatoBegrensning
 ): boolean => {
+  const formatertDagensDato = format(dagensDato, 'MM/dd/yyyy');
+  const formatertDato = format(strengTilDato(dato), 'MM/dd/yyyy');
   switch (datobegrensning) {
     case DatoBegrensning.AlleDatoer:
       return dato !== '';
@@ -23,14 +25,14 @@ export const erDatoInnaforBegrensinger = (
       return (
         dato !== '' &&
         strengTilDato(dato) <= addYears(dagensDato, 100) &&
-        strengTilDato(dato) >= dagensDato
+        formatertDato >= formatertDagensDato
       );
 
     case DatoBegrensning.TidligereDatoer:
       return (
         dato !== '' &&
         strengTilDato(dato) >= subYears(dagensDato, 100) &&
-        strengTilDato(dato) <= dagensDato
+        formatertDato <= formatertDagensDato
       );
   }
 };
