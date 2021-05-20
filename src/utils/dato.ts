@@ -8,6 +8,8 @@ import {
   setMinutes,
   addDays,
   addMonths,
+  startOfDay,
+  startOfToday,
 } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
@@ -44,15 +46,15 @@ export const formatDateHour = (date: Date) => {
 };
 
 export const datoTilStreng = (date: Date): string => {
-  return date.toISOString();
+  return startOfDay(date).toISOString();
 };
 
 export const strengTilDato = (datoStreng: string): Date => {
-  return new Date(datoStreng);
+  return startOfDay(new Date(datoStreng));
 };
 
 export const tilDato = (dato: string | Date): Date => {
-  return typeof dato === 'string' ? new Date(dato) : dato;
+  return typeof dato === 'string' ? startOfDay(new Date(dato)) : dato;
 };
 
 export const formatMånederTilbake = (dato: Date, antallMåneder: number) => {
@@ -61,9 +63,9 @@ export const formatMånederTilbake = (dato: Date, antallMåneder: number) => {
   return format(nyDato, 'MMMM yyyy', { locale: nb });
 };
 
-export const dagensDato = new Date();
+export const dagensDato = startOfToday();
 
-export const dagensDatoStreng = datoTilStreng(new Date());
+export const dagensDatoMedTidspunktStreng = new Date().toISOString();
 
 export const erGyldigDato = (verdi: string | undefined): boolean => {
   return verdi ? isValid(new Date(verdi)) : false;
