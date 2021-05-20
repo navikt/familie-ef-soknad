@@ -8,7 +8,7 @@ import {
   ESkalBarnetBoHosSøker,
 } from '../../../models/steg/barnasbosted';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
-
+import { IBarn } from '../../../models/steg/barn';
 import { EForelder } from '../../../models/steg/forelder';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
@@ -82,9 +82,14 @@ export const hvorforIkkeOppgi = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const harAnnenForelderSamværMedBarn = (intl: IntlShape): ISpørsmål => ({
+export const harAnnenForelderSamværMedBarn = (
+  intl: IntlShape,
+  barn: IBarn
+): ISpørsmål => ({
   søknadid: EForelder.harAnnenForelderSamværMedBarn,
-  tekstid: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
+  tekstid: barn.født?.verdi
+    ? 'barnasbosted.spm.harAnnenForelderSamværMedBarn'
+    : 'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt',
   flersvar: false,
   lesmer: {
     åpneTekstid: '',
@@ -105,7 +110,9 @@ export const harAnnenForelderSamværMedBarn = (intl: IntlShape): ISpørsmål => 
     {
       id: EHarSamværMedBarn.nei,
       svar_tekst: intl.formatMessage({
-        id: 'barnasbosted.spm.andreForelderenSamværNei',
+        id: barn.født?.verdi
+          ? 'barnasbosted.spm.andreForelderenSamværNei'
+          : 'barnasbosted.spm.andreForelderenSamværNei.ufødt',
       }),
     },
   ],
@@ -169,7 +176,7 @@ export const borAnnenForelderISammeHus = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const hvorMyeSammen = (intl: IntlShape): ISpørsmål => ({
+export const hvorMyeSammen = (intl: IntlShape, barn: IBarn): ISpørsmål => ({
   søknadid: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   flersvar: false,
@@ -185,11 +192,15 @@ export const hvorMyeSammen = (intl: IntlShape): ISpørsmål => ({
     },
     {
       id: EHvorMyeSammen.kunNårLeveres,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.kunNårLeveres' }),
+      svar_tekst: barn.født?.verdi
+        ? intl.formatMessage({ id: 'barnasbosted.spm.kunNårLeveres' })
+        : intl.formatMessage({ id: 'barnasbosted.spm.kunNårLeveres.ufødt' }),
     },
     {
       id: EHvorMyeSammen.møtesUtenom,
-      svar_tekst: intl.formatMessage({ id: 'barnasbosted.spm.møtesUtenom' }),
+      svar_tekst: barn.født?.verdi
+        ? intl.formatMessage({ id: 'barnasbosted.spm.møtesUtenom' })
+        : intl.formatMessage({ id: 'barnasbosted.spm.møtesUtenom.ufødt' }),
     },
   ],
 });

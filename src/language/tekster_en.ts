@@ -442,6 +442,8 @@ export default {
     'Yes, more than one afternoon a week with overnight stay and every other weekend or similar',
   'barnasbosted.spm.andreForelderenSamværNei':
     'No, the other parent does not have access to the child',
+  'barnasbosted.spm.andreForelderenSamværNei.ufødt':
+    'Nei, den andre forelderen skal ikke ha samvær med barnet',
   'barnasbosted.hjelpetekst.samvær.apne':
     'The standard amount of contact (right of access to a child)',
   'barnasbosted.hjelpetekst.samvær.innhold':
@@ -487,8 +489,12 @@ export default {
     'We ask about this in order to be able to assess whether you spend so much time with the child’s other parent that you cannot be considered a single parent. ',
   'barnasbosted.spm.møtesIkke': 'We do not meet',
   'barnasbosted.spm.kunNårLeveres': 'We only meet when handing over the child',
+  'barnasbosted.spm.kunNårLeveres.ufødt':
+    'Vi skal kun møtes når barnet skal hentes eller leveres',
   'barnasbosted.spm.møtesUtenom':
     'We also meet outside picking up and dropping off the child',
+  'barnasbosted.spm.møtesUtenom.ufødt':
+    'Vi skal også møtes utenom henting og levering',
   'barnasbosted.spm.beskrivSamværUtenBarn':
     'How much time do you spend with [0]’s other parent?',
   'barnasbosted.skalBliFolkeregistrert.tekst':
