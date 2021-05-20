@@ -163,6 +163,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
         )
       );
 
+
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;
 
