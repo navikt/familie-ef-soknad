@@ -20,6 +20,8 @@ import {
   harValgtSvar,
 } from '../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -73,9 +75,18 @@ const BosituasjonSpørsmål: FC<Props> = ({
     delerBoligMedAndreVoksne.svarid ===
     ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
+  const harSattDatoFlyttetFraHverandre: boolean =
+    datoFlyttetFraHverandre?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoFlyttetFraHverandre?.verdi,
+      DatoBegrensning.TidligereDatoer
+    )
+      ? true
+      : false;
   const tidligereSamboerFortsattRegistrertPåAdresse =
     delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse &&
+    harSattDatoFlyttetFraHverandre &&
     harValgtSvar(samboerDetaljer?.navn?.verdi) &&
     harValgtSvar(datoFlyttetFraHverandre?.verdi);
 

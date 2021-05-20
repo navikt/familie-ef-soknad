@@ -1,6 +1,5 @@
 import { ESøkerDelerBolig, IBosituasjon } from '../../models/steg/bosituasjon';
 import { ESvar } from '../../models/felles/spørsmålogsvar';
-import { erGyldigDato } from '../../utils/dato';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { IPersonDetaljer } from '../../models/søknad/person';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
@@ -49,6 +48,14 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
         DatoBegrensning.FremtidigeDatoer
       ) &&
       harFerdigUtfyltOmSamboer(vordendeSamboerEktefelle, false));
+  const harSattDatoFlyttetFraHverandra: boolean =
+    datoFlyttetFraHverandre?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoFlyttetFraHverandre?.verdi,
+      DatoBegrensning.TidligereDatoer
+    )
+      ? true
+      : false;
 
   switch (delerBoligMedAndreVoksne.svarid) {
     case ESøkerDelerBolig.borAleneMedBarnEllerGravid:
@@ -63,6 +70,10 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     case ESøkerDelerBolig.harEkteskapsliknendeForhold:
       return !!(
         datoFlyttetSammenMedSamboer &&
+        erDatoGyldigOgInnaforBegrensninger(
+          datoFlyttetSammenMedSamboer.verdi,
+          DatoBegrensning.TidligereDatoer
+        ) &&
         samboerDetaljer &&
         harFyltUtSamboerDetaljer(samboerDetaljer, false)
       );
@@ -73,7 +84,7 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
       return (
         harFerdigUtfyltOmSamboer(samboerDetaljer, true) &&
-        erGyldigDato(datoFlyttetFraHverandre?.verdi) &&
+        harSattDatoFlyttetFraHverandra &&
         harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift
       );
   }

@@ -18,6 +18,7 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -121,19 +122,23 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
               fetSkrift={true}
             />
           </KomponentGruppe>
-          {datoSkalGifteSegEllerBliSamboer && (
-            <KomponentGruppe>
-              <OmSamboerenDin
-                tittel={
-                  'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
-                }
-                erIdentEllerFødselsdatoObligatorisk={true}
-                settBosituasjon={settBosituasjon}
-                bosituasjon={bosituasjon}
-                samboerDetaljerType={EBosituasjon.vordendeSamboerEktefelle}
-              />
-            </KomponentGruppe>
-          )}
+          {datoSkalGifteSegEllerBliSamboer?.verdi &&
+            erDatoGyldigOgInnaforBegrensninger(
+              datoSkalGifteSegEllerBliSamboer.verdi,
+              DatoBegrensning.FremtidigeDatoer
+            ) && (
+              <KomponentGruppe>
+                <OmSamboerenDin
+                  tittel={
+                    'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
+                  }
+                  erIdentEllerFødselsdatoObligatorisk={true}
+                  settBosituasjon={settBosituasjon}
+                  bosituasjon={bosituasjon}
+                  samboerDetaljerType={EBosituasjon.vordendeSamboerEktefelle}
+                />
+              </KomponentGruppe>
+            )}
         </>
       ) : null}
     </>
