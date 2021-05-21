@@ -18,6 +18,7 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;
@@ -80,14 +81,13 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     dato: string,
     label: string
   ) => {
-    dato !== null &&
-      settBosituasjon({
-        ...bosituasjon,
-        datoSkalGifteSegEllerBliSamboer: {
-          label: label,
-          verdi: dato,
-        },
-      });
+    settBosituasjon({
+      ...bosituasjon,
+      datoSkalGifteSegEllerBliSamboer: {
+        label: label,
+        verdi: dato,
+      },
+    });
   };
 
   const datovelgerTekst = intl.formatMessage({
@@ -100,11 +100,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         <JaNeiSpørsmål
           spørsmål={spørsmål}
           onChange={settSøkerSkalGifteSegEllerBliSamboer}
-          valgtSvar={
-            skalGifteSegEllerBliSamboer
-              ? skalGifteSegEllerBliSamboer.verdi
-              : undefined
-          }
+          valgtSvar={skalGifteSegEllerBliSamboer?.verdi}
         />
       </KomponentGruppe>
       {skalGifteSegEllerBliSamboer &&
@@ -121,19 +117,23 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
               fetSkrift={true}
             />
           </KomponentGruppe>
-          {datoSkalGifteSegEllerBliSamboer && (
-            <KomponentGruppe>
-              <OmSamboerenDin
-                tittel={
-                  'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
-                }
-                erIdentEllerFødselsdatoObligatorisk={true}
-                settBosituasjon={settBosituasjon}
-                bosituasjon={bosituasjon}
-                samboerDetaljerType={EBosituasjon.vordendeSamboerEktefelle}
-              />
-            </KomponentGruppe>
-          )}
+          {datoSkalGifteSegEllerBliSamboer?.verdi &&
+            erDatoGyldigOgInnaforBegrensninger(
+              datoSkalGifteSegEllerBliSamboer.verdi,
+              DatoBegrensning.FremtidigeDatoer
+            ) && (
+              <KomponentGruppe>
+                <OmSamboerenDin
+                  tittel={
+                    'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed'
+                  }
+                  erIdentEllerFødselsdatoObligatorisk={true}
+                  settBosituasjon={settBosituasjon}
+                  bosituasjon={bosituasjon}
+                  samboerDetaljerType={EBosituasjon.vordendeSamboerEktefelle}
+                />
+              </KomponentGruppe>
+            )}
         </>
       ) : null}
     </>

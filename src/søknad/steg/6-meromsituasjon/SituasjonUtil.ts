@@ -11,6 +11,8 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { storeForbokstaver } from '../../../utils/tekst';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
 
 export const erSituasjonIAvhukedeSvar = (
   situasjon: DinSituasjonType,
@@ -72,7 +74,12 @@ export const harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål = (
   const harSkrevetBegrunnelse = harValgtSvar(
     begrunnelseSagtOppEllerRedusertStilling?.verdi
   );
-  const harValgtDato = datoSagtOppEllerRedusertStilling?.verdi !== undefined;
+  const harValgtDato =
+    datoSagtOppEllerRedusertStilling?.verdi !== undefined &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoSagtOppEllerRedusertStilling?.verdi,
+      DatoBegrensning.TidligereDatoer
+    );
 
   return (
     (valgtSagtOppEllerRedusertStilling &&

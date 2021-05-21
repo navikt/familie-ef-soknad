@@ -13,7 +13,7 @@ import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components/macro';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
-import { gyldigPeriode } from '../../../../components/dato/utils';
+import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
@@ -117,7 +117,7 @@ const Utenlandsopphold: FC<Props> = ({
         datobegrensning={DatoBegrensning.TidligereDatoer}
       />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
-        gyldigPeriode(
+        erPeriodeGyldigOgInnaforBegrensninger(
           utenlandsopphold.periode,
           DatoBegrensning.TidligereDatoer
         ) && (
