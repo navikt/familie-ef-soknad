@@ -49,7 +49,8 @@ const BostedOgSamvær: React.FC<Props> = ({
   const intl = useIntl();
 
   const harAnnenForelderSamværMedBarnConfig = harAnnenForelderSamværMedBarn(
-    intl
+    intl,
+    barn
   );
 
   const settBostedOgSamværFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
