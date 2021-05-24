@@ -44,7 +44,7 @@
     "date-fns": "^2.16.1",
     "dayjs": "^1.10.4",
     "dotenv": "^8.1.0",
-    "eslint-plugin-flowtype": "^5.4.0",
+    "eslint-plugin-flowtype": "^5.7.2",
     "exenv": "^1.2.2",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
