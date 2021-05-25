@@ -25,6 +25,13 @@ export const GYLDIGE_DATOFORMAT = [
   'ddMMyy',
 ];
 
+const erGyldigFormat = (verdi: string) => {
+  var regEx = /^\d{4}-\d{2}-\d{2}$/;
+  if (!verdi.match(regEx)) return false;
+
+  return true;
+};
+
 export const parseDate = (date: string) => {
   return parse(date, STANDARD_DATOFORMAT, new Date());
 };
@@ -68,7 +75,7 @@ export const dagensDato = startOfToday();
 export const dagensDatoMedTidspunktStreng = new Date().toISOString();
 
 export const erGyldigDato = (verdi: string | undefined): boolean => {
-  return verdi ? isValid(new Date(verdi)) : false;
+  return verdi ? erGyldigFormat(verdi) && isValid(new Date(verdi)) : false;
 };
 
 // Vedlegg er lagret ut neste døgn
