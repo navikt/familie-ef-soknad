@@ -11,6 +11,7 @@ import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
 import { erDatoInnaforBegrensinger } from './utils';
+import { strengTilDato } from '../../utils/dato';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   .typo-normal {
@@ -67,6 +68,10 @@ const Datovelger: React.FC<Props> = ({
   const [_dato, _settDato] = useState<string>(valgtDato ? valgtDato : '');
   const [feilmelding, settFeilmelding] = useState<string>('');
 
+  const datoTilRiktigFormat = (dato: string) => {
+    return formatIsoDate(strengTilDato(dato));
+  };
+
   const limitations: DatepickerLimitations = hentDatobegrensninger(
     datobegrensning
   );
@@ -93,7 +98,7 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    _dato !== '' && settDato(_dato);
+    _dato !== '' && settDato(datoTilRiktigFormat(_dato));
     _dato !== '' && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
 
     // eslint-disable-next-line
