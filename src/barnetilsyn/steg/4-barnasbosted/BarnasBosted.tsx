@@ -14,6 +14,8 @@ import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { Normaltekst } from 'nav-frontend-typografi';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import BarneHeader from '../../../components/BarneHeader';
 import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
@@ -51,6 +53,10 @@ const BarnasBosted: React.FC = () => {
       barn.skalHaBarnepass?.verdi &&
       (!barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false)
   );
+
+  const barnMedDødMedforelder = søknad.person.barn.filter((barn: IBarn) => {
+    return barn.skalHaBarnepass?.verdi && barn.medforelder?.verdi?.død === true;
+  });
 
   const kommerFraOppsummering = location.state?.kommerFraOppsummering;
   const skalViseKnapper = !kommerFraOppsummering
@@ -119,11 +125,15 @@ const BarnasBosted: React.FC = () => {
             );
           }
         })}
-      {!barna.length && (
-        <Normaltekst style={{ textAlign: 'center' }}>
-          {hentTekst('barnasbosted.kanGåVidere', intl)}
-        </Normaltekst>
-      )}
+      {sisteBarnUtfylt &&
+        barnMedDødMedforelder.map((barn: IBarn) => (
+          <SeksjonGruppe>
+            <BarneHeader barn={barn} />
+            <Normaltekst style={{ textAlign: 'center', marginTop: '2rem' }}>
+              {hentTekst('barnasbosted.kanGåVidere', intl)}
+            </Normaltekst>
+          </SeksjonGruppe>
+        ))}
     </Side>
   );
 };
