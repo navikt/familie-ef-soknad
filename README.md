@@ -20,10 +20,11 @@ Med api må du sette cookie første gang:
 2. Kjør opp appene lokalt ved å kjøre familie-dokument din `DevLauncher` og familie-ef-soknad-api sin `ApplicationLocalLauncher` 
 
 ## Kjør testcafe lokalt
-1. Sørg for at du har testcafe installert lokalt `npm install -g testcafe`
-2. Kjør `familie-ef-soknad-api` lokalt
-3. Kjør søknaden lokalt med `npm start`
-4. Åpne en ny terminal og kjør `testcafe chrome test/test.js --skip-js-errors --live`
+1. Kjør `familie-ef-soknad-api` lokalt
+2. Kjør søknaden lokalt med `npm start`
+3. Åpne en ny terminal og kjør `testcafe chrome test/test.js --skip-js-errors --live`
+
+Hvis testcafe ikke er installert, kjør en `npm install` ev. installer testcafe globalt hos deg `npm install -g testcafe`
 
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
