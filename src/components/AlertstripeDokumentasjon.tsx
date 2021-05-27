@@ -4,7 +4,7 @@ import { ReactComponent as FilIkon } from '../assets/fil.svg';
 import { Normaltekst } from 'nav-frontend-typografi';
 
 const StyledAlertstripe = styled.div`
-  padding-top: 0.75rem;
+  padding-top: 2rem;
   display: flex;
   align-content: center;
   .typo-normal {

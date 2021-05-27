@@ -11,16 +11,17 @@ import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsi
 import { Textarea } from 'nav-frontend-skjema';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
+
 import subMonths from 'date-fns/subMonths';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
-import { dagensDato, datoTilStreng, strengTilDato } from '../../../utils/dato';
+import { dagensDato, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import AlertStripe from 'nav-frontend-alertstriper';
+import Datovelger, {
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -80,15 +81,14 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
     });
   };
 
-  const settDato = (dato: Date | null): void => {
-    dato !== null &&
-      settDinSituasjon({
-        ...dinSituasjon,
-        datoSagtOppEllerRedusertStilling: {
-          label: datovelgerLabel,
-          verdi: datoTilStreng(dato),
-        },
-      });
+  const settDato = (dato: string): void => {
+    settDinSituasjon({
+      ...dinSituasjon,
+      datoSagtOppEllerRedusertStilling: {
+        label: datovelgerLabel,
+        verdi: dato,
+      },
+    });
   };
 
   const valgtDatoMindreEnn6mndSiden = (valgtDato: Date) => {

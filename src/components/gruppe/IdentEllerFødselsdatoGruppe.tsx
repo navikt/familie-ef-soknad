@@ -12,12 +12,12 @@ interface Props {
   datoLabel: string;
   checkboxLabel: string;
   ident: string | undefined;
-  fødselsdato: Date | undefined;
+  fødselsdato: string;
   checked: boolean;
   erGyldigIdent: boolean;
   settGyldigIdent: (erGyldig: boolean) => void;
   settChecked: (checked: boolean) => void;
-  settFødselsdato: (date: Date | null) => void;
+  settFødselsdato: (date: string) => void;
   settIdent: (ident: React.ChangeEvent<HTMLInputElement>) => void;
   fetSkrift?: boolean;
 }

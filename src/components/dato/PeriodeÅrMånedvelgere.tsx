@@ -1,20 +1,20 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
-import Datovelger, { DatoBegrensning } from './Datovelger';
+import { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
+import { erGyldigDato, strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
-import KomponentGruppe from '../gruppe/KomponentGruppe';
+import ÅrMånedVelger from './ÅrMånedvelger';
 import {
   erDatoerLike,
   erDatoInnaforBegrensinger,
   erFraDatoSenereEnnTilDato,
   hentStartOgSluttDato,
 } from './utils';
-import { erGyldigDato } from '../../utils/dato';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -38,29 +38,27 @@ const PeriodeGruppe = styled.div`
 `;
 
 interface Props {
-  className?: string;
   tekst: string;
   hjelpetekst?: IHjelpetekst;
   periode: IPeriode;
   fomTekstid?: string;
   tomTekstid?: string;
-  settDato: (dato: string, objektnøkkel: EPeriode) => void;
-  datobegrensning: DatoBegrensning;
+  settDato: (dato: Date | null, objektnøkkel: EPeriode) => void;
+  datobegrensing: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
 }
 
-const PeriodeDatovelgere: FC<Props> = ({
-  className,
+const PeriodeÅrMånedvelgere: FC<Props> = ({
   periode,
   hjelpetekst,
   settDato,
   tekst,
   fomTekstid,
   tomTekstid,
-  datobegrensning,
+  datobegrensing,
   onValidate,
 }) => {
-  const [feilmelding, settFeilmelding] = useState<string>('');
+  const [feilmelding, settFeilmelding] = useState('');
 
   const sammenlignDatoerOgHentFeilmelding = (
     periode: IPeriode,
@@ -68,6 +66,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   ): string => {
     const { startDato, sluttDato } = hentStartOgSluttDato(periode);
     const { fra, til } = periode;
+
     const erStartDatoUtenforBegrensninger: boolean =
       fra.verdi !== '' &&
       !erDatoInnaforBegrensinger(fra.verdi, datobegrensning);
@@ -79,7 +78,7 @@ const PeriodeDatovelgere: FC<Props> = ({
       (fra.verdi !== '' && !erGyldigDato(fra.verdi)) ||
       (til.verdi !== '' && !erGyldigDato(til.verdi))
     )
-      return 'datovelger.periode.ugyldigDato';
+      return 'datovelger.periode.feilFormatMndÅr';
     else if (
       (erStartDatoUtenforBegrensninger || erSluttUtenforBegrensninger) &&
       datobegrensning === DatoBegrensning.TidligereDatoer
@@ -91,13 +90,13 @@ const PeriodeDatovelgere: FC<Props> = ({
     )
       return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
     else if (startDato && sluttDato && erDatoerLike(startDato, sluttDato))
-      return 'datovelger.periode.likeDatoer';
+      return 'datovelger.periode.likMndÅr';
     else if (
       startDato &&
       sluttDato &&
       !erFraDatoSenereEnnTilDato(startDato, sluttDato)
     )
-      return 'datovelger.periode.startFørSlutt';
+      return 'datovelger.periode.startMndÅrFørSluttMndÅr';
     else return '';
   };
 
@@ -107,19 +106,18 @@ const PeriodeDatovelgere: FC<Props> = ({
 
     harStartEllerSluttDato &&
       settFeilmelding(
-        sammenlignDatoerOgHentFeilmelding(periode, datobegrensning)
+        sammenlignDatoerOgHentFeilmelding(periode, datobegrensing)
       );
-
     if (onValidate && feilmelding !== '') onValidate(true);
     if (onValidate && feilmelding === '') onValidate(false);
-  }, [feilmelding, onValidate, periode, datobegrensning]);
+  }, [feilmelding, periode, datobegrensing, onValidate]);
 
-  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
-    dato !== '' && settDato(dato, objektnøkkel);
+  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
+    settDato(dato, objektnøkkel);
   };
 
   return (
-    <KomponentGruppe className={className}>
+    <>
       <FeltGruppe>
         <Element>{tekst}</Element>
         {hjelpetekst && (
@@ -130,28 +128,36 @@ const PeriodeDatovelgere: FC<Props> = ({
           />
         )}
       </FeltGruppe>
-      <PeriodeGruppe className="periodegruppe" aria-live="polite">
-        <Datovelger
-          settDato={(e) => settPeriode(e, EPeriode.fra)}
-          valgtDato={periode.fra.verdi}
-          tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
-          datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
-        />
+      <PeriodeGruppe aria-live="polite">
+        <>
+          <ÅrMånedVelger
+            settDato={(e) => settPeriode(e, EPeriode.fra)}
+            valgtDato={
+              periode.fra.verdi && periode.fra.verdi !== ''
+                ? strengTilDato(periode.fra.verdi)
+                : undefined
+            }
+            tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
+            datobegrensning={datobegrensing}
+          />
 
-        <Datovelger
-          settDato={(e) => settPeriode(e, EPeriode.til)}
-          valgtDato={periode.til.verdi}
-          tekstid={tomTekstid ? tomTekstid : 'periode.til'}
-          datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
-        />
+          <ÅrMånedVelger
+            settDato={(e) => settPeriode(e, EPeriode.til)}
+            valgtDato={
+              periode.til.verdi && periode.til.verdi !== ''
+                ? strengTilDato(periode.til.verdi)
+                : undefined
+            }
+            tekstid={tomTekstid ? tomTekstid : 'periode.til'}
+            datobegrensning={datobegrensing}
+          />
+        </>
         {feilmelding && feilmelding !== '' && (
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />
         )}
       </PeriodeGruppe>
-    </KomponentGruppe>
+    </>
   );
 };
 
-export default PeriodeDatovelgere;
+export default PeriodeÅrMånedvelgere;

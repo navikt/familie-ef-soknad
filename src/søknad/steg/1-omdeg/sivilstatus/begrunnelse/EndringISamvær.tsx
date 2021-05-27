@@ -6,7 +6,7 @@ import Datovelger, {
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 
 interface Props {
-  settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   datoEndretSamvær: IDatoFelt | undefined;
 }
 const EndringISamvær: React.FC<Props> = ({ settDato, datoEndretSamvær }) => {

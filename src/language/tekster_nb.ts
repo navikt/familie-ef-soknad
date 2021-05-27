@@ -79,10 +79,28 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
-  'datovelger.periode.feilFormat':
+  // DATOVELGER
+  'datovelger.ugyldigDato':
+    'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Ugyldig dato. Velg en dato som er bakover i tid.',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Ugyldig dato. Velg en dato som er fremover i tid.',
+
+  // PERIODE DATOVELGER
+  'datovelger.periode.ugyldigDato':
+    'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format',
+  'datovelger.periode.likeDatoer': 'Startsdato og sluttdato kan ikke være like',
+  'datovelger.periode.startFørSlutt': 'Startsdato må være før sluttdato',
+
+  // PERIODE ÅRMND VELGER
+  'datovelger.periode.feilFormatMndÅr':
     'Startsdato må være tidligere enn sluttdato.',
-  'datovelger.periode.likeDatoer':
-    'Valgte datoer for perioden kan ikke være like',
+  'datovelger.periode.likMndÅr':
+    'Valgt måned og år for perioden kan ikke være like',
+  'datovelger.periode.startMndÅrFørSluttMndÅr':
+    'Start måned og år må være før dagens måned og år',
+
   'datovelger.fødselsdato': 'Fødselsdato',
   'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
 
@@ -405,12 +423,16 @@ export default {
     '<br/>Når dere har en skriftlig avtale om delt fast bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
+  'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
+    'Skal den andre forelderen ha samvær med [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
     'Ja, men ikke mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
   'barnasbosted.spm.jaMerEnnVanlig':
     'Ja, mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
   'barnasbosted.spm.andreForelderenSamværNei':
     'Nei, den andre forelderen har ikke samvær med barnet',
+  'barnasbosted.spm.andreForelderenSamværNei.ufødt':
+    'Nei, den andre forelderen skal ikke ha samvær med barnet',
   'barnasbosted.hjelpetekst.samvær.apne': 'Dette er vanlig samværsrett',
   'barnasbosted.hjelpetekst.samvær.innhold':
     'Med samvær mener vi all tid som barnet tilbringer sammen med den andre forelderen, også dersom du er til stede. Det gjelder både hvis samværet foregår hos den andre forelderen, hjemme hos deg eller andre steder. Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som samvær.',
@@ -456,7 +478,11 @@ export default {
   'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
   'barnasbosted.spm.kunNårLeveres':
     'Vi møtes kun når barnet skal hentes eller leveres',
+  'barnasbosted.spm.kunNårLeveres.ufødt':
+    'Vi skal kun møtes når barnet skal hentes eller leveres',
   'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+  'barnasbosted.spm.møtesUtenom.ufødt':
+    'Vi skal også møtes utenom henting og levering',
   'barnasbosted.spm.beskrivSamværUtenBarn':
     'Hvor mye er du sammen med den andre forelderen til [0]?',
   'barnasbosted.skalBliFolkeregistrert.tekst':

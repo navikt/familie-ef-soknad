@@ -6,7 +6,7 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 
 interface Props {
-  settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   datoFlyttetFraHverandre: IDatoFelt | undefined;
 }
 

@@ -18,11 +18,12 @@ const StyledFeilmelding = styled.span`
 `;
 
 interface Props {
+  className?: string;
   tekstid: string;
 }
-const Feilmelding: FC<Props> = ({ tekstid }) => {
+const Feilmelding: FC<Props> = ({ className, tekstid }) => {
   return (
-    <StyledFeilmelding>
+    <StyledFeilmelding className={className}>
       <LocaleTekst tekst={tekstid} />
     </StyledFeilmelding>
   );

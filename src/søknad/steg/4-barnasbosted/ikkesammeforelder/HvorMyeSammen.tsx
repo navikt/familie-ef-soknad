@@ -20,7 +20,7 @@ interface Props {
 const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
   const intl = useIntl();
 
-  const hvorMyeSammenConfig = hvorMyeSammen(intl);
+  const hvorMyeSammenConfig = hvorMyeSammen(intl, barn);
   const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const nyForelder = {
       ...forelder,

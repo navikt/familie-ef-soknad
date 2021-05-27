@@ -8,9 +8,16 @@ import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
 import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
-import { datoTilStreng } from '../../../../utils/dato';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
+import styled from 'styled-components/macro';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
+import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+
+const StyledTextarea = styled(Textarea)`
+  width: 100%;
+`;
 
 interface Props {
   perioderBoddIUtlandet: IUtenlandsopphold[];
@@ -62,8 +69,7 @@ const Utenlandsopphold: FC<Props> = ({
     );
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
-
-  const settPeriode = (date: Date | null, objektnøkkel: EPeriode): void => {
+  const settPeriode = (date: string, objektnøkkel: EPeriode): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
@@ -74,7 +80,7 @@ const Utenlandsopphold: FC<Props> = ({
               label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
               [objektnøkkel]: {
                 label: hentTekst('periode.' + objektnøkkel, intl),
-                verdi: date !== null ? datoTilStreng(date) : undefined,
+                verdi: date,
               },
             },
           };
@@ -89,35 +95,40 @@ const Utenlandsopphold: FC<Props> = ({
   };
 
   return (
-    <div
-      className="utenlandsopphold utenlandsopphold__container"
-      aria-live="polite"
-    >
-      <Undertittel className={'utenlandsopphold__tittel'} tag="h3">
-        {periodeTittel}
-      </Undertittel>
-      <SlettKnapp
-        className={classnames('utenlandsopphold__slettknapp', {
-          kunEn: perioderBoddIUtlandet?.length === 1,
-        })}
-        onClick={() => fjernUtenlandsperiode()}
-        tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
-      />
+    <div aria-live="polite">
+      <TittelOgSlettKnapp>
+        <Undertittel className={'tittel'} tag="h3">
+          {periodeTittel}
+        </Undertittel>
+        <SlettKnapp
+          className={classnames('slettknapp', {
+            kunEn: perioderBoddIUtlandet?.length === 1,
+          })}
+          onClick={() => fjernUtenlandsperiode()}
+          tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
+        />
+      </TittelOgSlettKnapp>
 
       <PeriodeDatovelgere
+        className={'periodegruppe'}
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
+        datobegrensning={DatoBegrensning.TidligereDatoer}
       />
-      {erPeriodeDatoerValgt(utenlandsopphold.periode) && (
-        <Textarea
-          label={begrunnelseTekst}
-          placeholder={'...'}
-          value={begrunnelse.verdi}
-          maxLength={1000}
-          onChange={(e) => settBegrunnelse(e)}
-        />
-      )}
+      {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
+        erPeriodeGyldigOgInnaforBegrensninger(
+          utenlandsopphold.periode,
+          DatoBegrensning.TidligereDatoer
+        ) && (
+          <StyledTextarea
+            label={begrunnelseTekst}
+            placeholder={'...'}
+            value={begrunnelse.verdi}
+            maxLength={1000}
+            onChange={(e) => settBegrunnelse(e)}
+          />
+        )}
     </div>
   );
 };

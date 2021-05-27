@@ -8,7 +8,8 @@ import {
 import { EForelder, IForelder } from '../../models/steg/forelder';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
-import { erGyldigDato } from '../../utils/dato';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
+import { DatoBegrensning } from '../../components/dato/Datovelger';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
@@ -82,10 +83,19 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
       EBorAnnenForelderISammeHus.ja
       ? forelder?.borAnnenForelderISammeHusBeskrivelse?.verdi !== ''
       : true;
+
+  const harFlyttetFraDato: boolean =
+    forelder?.flyttetFra?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      forelder.flyttetFra?.verdi,
+      DatoBegrensning.TidligereDatoer
+    )
+      ? true
+      : false;
+
   const utfyltBoddSammenFør =
     forelder?.boddSammenFør?.svarid === ESvar.JA
-      ? harValgtSvar(forelder?.boddSammenFør?.verdi) &&
-        erGyldigDato(forelder.flyttetFra?.verdi)
+      ? harValgtSvar(forelder?.boddSammenFør?.verdi) && harFlyttetFraDato
       : harValgtSvar(forelder?.boddSammenFør?.verdi);
   const utfyltHvorMyeSammen =
     forelder?.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom

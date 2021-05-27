@@ -80,7 +80,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
         )}
       </KomponentGruppe>
 
-      {søkerOppholderSegINorge?.hasOwnProperty('verdi') ? (
+      {søkerOppholderSegINorge?.hasOwnProperty('verdi') && (
         <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅrConfig}
@@ -91,14 +91,14 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
             onChange={settMedlemskapBooleanFelt}
           />
         </KomponentGruppe>
-      ) : null}
+      )}
 
-      {søkerBosattINorgeSisteTreÅr?.verdi === false ? (
+      {søkerBosattINorgeSisteTreÅr?.verdi === false && (
         <PeriodeBoddIUtlandet
           medlemskap={medlemskap}
           settMedlemskap={settMedlemskap}
         />
-      ) : null}
+      )}
     </SeksjonGruppe>
   );
 };

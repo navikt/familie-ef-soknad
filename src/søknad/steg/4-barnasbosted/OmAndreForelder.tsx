@@ -11,7 +11,6 @@ import { IForelder } from '../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useIntl } from 'react-intl';
-import { datoTilStreng, strengTilDato } from '../../../utils/dato';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Feilmelding } from 'nav-frontend-typografi';
 
@@ -82,13 +81,13 @@ const OmAndreForelder: React.FC<Props> = ({
     settKjennerIkkeIdent(checked);
   };
 
-  const settDato = (dato: Date | null) => {
+  const settDato = (dato: string) => {
     dato !== null &&
       settForelder({
         ...forelder,
         fødselsdato: {
           label: hentTekst('datovelger.fødselsdato', intl),
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };
@@ -209,11 +208,7 @@ const OmAndreForelder: React.FC<Props> = ({
             datoLabel={hentTekst('person.fødselsdato', intl)}
             checkboxLabel={hentTekst('person.checkbox.ident', intl)}
             ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
-            fødselsdato={
-              forelder?.fødselsdato?.verdi
-                ? strengTilDato(forelder?.fødselsdato?.verdi)
-                : undefined
-            }
+            fødselsdato={forelder?.fødselsdato?.verdi || ''}
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
             settGyldigIdent={hvisGyldigIdentSettIdent}

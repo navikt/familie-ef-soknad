@@ -7,7 +7,6 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import { hentTekst } from '../../../utils/søknad';
-import { datoTilStreng } from '../../../utils/dato';
 import { useIntl } from 'react-intl';
 import { harFyltUtSamboerDetaljer } from '../../../utils/person';
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
   const intl = useIntl();
 
-  const settDatoFlyttetFraHverandre = (dato: Date | null) => {
+  const settDatoFlyttetFraHverandre = (dato: string) => {
     dato !== null &&
       settBosituasjon({
         ...bosituasjon,
@@ -26,7 +25,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
             'bosituasjon.datovelger.nårFlyttetDereFraHverandre',
             intl
           ),
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };

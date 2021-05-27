@@ -13,7 +13,6 @@ import {
 } from '../../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import { datoTilStreng } from '../../../../utils/dato';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { IBarn } from '../../../../models/steg/barn';
@@ -62,17 +61,16 @@ const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
       {forelder.boddSammenFør?.verdi && (
         <KomponentGruppe>
           <Datovelger
-            settDato={(e: Date | null) => {
-              e !== null &&
-                settForelder({
-                  ...forelder,
-                  flyttetFra: {
-                    label: intl.formatMessage({
-                      id: 'barnasbosted.normaltekst.nårflyttetfra',
-                    }),
-                    verdi: datoTilStreng(e),
-                  },
-                });
+            settDato={(dato: string) => {
+              settForelder({
+                ...forelder,
+                flyttetFra: {
+                  label: intl.formatMessage({
+                    id: 'barnasbosted.normaltekst.nårflyttetfra',
+                  }),
+                  verdi: dato,
+                },
+              });
             }}
             valgtDato={
               forelder.flyttetFra && forelder.flyttetFra.verdi
