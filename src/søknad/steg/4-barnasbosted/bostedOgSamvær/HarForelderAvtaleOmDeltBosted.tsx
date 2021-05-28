@@ -7,8 +7,7 @@ import {
 } from '../../../../models/felles/spørsmålogsvar';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { avtaleOmDeltBosted } from '../ForeldreConfig';
-import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
-import AlertStripe from 'nav-frontend-alertstriper';
+
 import LocaleTekst from '../../../../language/LocaleTekst';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { IBarn } from '../../../../models/steg/barn';
@@ -43,14 +42,7 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
       />
       {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
         <>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            {intl.formatMessage({
-              id: hentSvarAlertFraSpørsmål(
-                ESvar.JA,
-                avtaleOmDeltBosted(intl, født)
-              ),
-            })}
-          </AlertStripe>
+
           <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'} />
           </AlertStripeDokumentasjon>
