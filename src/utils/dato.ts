@@ -28,7 +28,7 @@ export const GYLDIGE_DATOFORMAT = [
 const erGyldigFormat = (verdi: string) => {
   const YYYYMMDD = /^\d{4}-\d{2}-\d{2}$/;
 
-  if (verdi && verdi.match(YYYYMMDD)) {
+  if (verdi && String(verdi).match(YYYYMMDD)) {
     return true;
   } else {
     return false;
