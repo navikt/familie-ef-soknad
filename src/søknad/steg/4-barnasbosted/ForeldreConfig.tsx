@@ -52,7 +52,6 @@ export const avtaleOmDeltBosted = (
   svaralternativer: [
     {
       ...JaSvar(intl),
-      alert_tekstid: 'barnasbosted.alert-advarsel.avtaleDeltBosted',
       dokumentasjonsbehov: AvtaleOmDeltBosted,
     },
     NeiSvar(intl),
