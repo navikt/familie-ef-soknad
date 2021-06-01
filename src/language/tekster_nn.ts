@@ -22,7 +22,7 @@ export default {
     '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
     '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
-  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] barnet',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] sitt tilsynsbehov',
 
   // ------ SKJEMA - Arbeidssøker
 
@@ -387,8 +387,7 @@ export default {
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'If you and the other parent have a written agreement on dual domicile, neither of you is entitled to benefit as a single parent for this child',
+
   'barnasbosted.alert-info.avtaleOmDeltBosted':
     'You must submit your agreement on dual domicile',
 
@@ -420,14 +419,13 @@ export default {
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
   'barnasbosted.hjelpetekst.bosted.apne':
-    'Read more about agreement on dual domicile',
+    'Les meir om delt fast bustad',
   'barnasbosted.hjelpetekst.halvåpen':
-    'A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, ' +
-    'such as where the child will go to kindergarten and where in Norway the child will live.',
+    'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
   'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/>' +
-    '<br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/>' +
-    '<br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
+    '<br/>Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova § 36.  <br/>' +
+    '<br/>Ein slik avtale inneber at begge foreldra i fellesskap tek større avgjerder på vegner av barnet, for eksempel kvar barnet skal gå i barnehage, og kvar i landet barnet skal bu.<br/>' +
+    '<br/>Når de har ein skriftleg avtale om delt bustad, blir ingen av dykk rekna for å ha åleineomsorga for barnet/barna. Dette gjeld sjølv om ein av dykk har klart meir av den daglege omsorga.',
 
   // -- Foreldresamvær
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':

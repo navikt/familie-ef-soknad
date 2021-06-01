@@ -22,7 +22,7 @@ export default {
     '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
     '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
-  'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0]s care benefit',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0] need for special supervision',
 
   // ------ SKJEMA - Arbeidssøker
 
@@ -389,8 +389,6 @@ export default {
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'If you and the other parent have a written agreement on dual domicile, neither of you is entitled to benefit as a single parent for this child',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
     'You must submit your agreement on dual domicile',
 
