@@ -131,7 +131,6 @@ const Barnekort: React.FC<Props> = ({
             </div>
           )}
           {medforelder &&
-            !medforelder.verdi?.død &&
             (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
               <div className="informasjonselement">
                 <Normaltekst>
