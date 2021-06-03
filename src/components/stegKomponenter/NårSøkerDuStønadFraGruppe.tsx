@@ -69,31 +69,31 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe>
-        <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
           <StyledMultisvarSpørsmål>
-            <Element>{intl.formatMessage({ id: spørsmål.tekstid })}</Element>
-            <Hjelpetekst
-              åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-              innholdTekst={hjelpetekstInnholdTekst}
-            />
-            <div className="radioknapp__multiSvar">
-              {spørsmål.svaralternativer.map((svar: ISvar) => {
-                const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
-                return (
-                  <RadioPanel
-                    key={svar.svar_tekst}
-                    name={spørsmål.søknadid}
-                    label={svar.svar_tekst}
-                    value={svar.svar_tekst}
-                    checked={svarISøknad ? svarISøknad : false}
-                    onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
-                  />
-                );
-              })}
-            </div>
+          <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
+              <Hjelpetekst
+                åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
+                innholdTekst={hjelpetekstInnholdTekst}
+              />
+              <div className="radioknapp__multiSvar">
+                {spørsmål.svaralternativer.map((svar: ISvar) => {
+                  const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
+                  return (
+                    <RadioPanel
+                      key={svar.svar_tekst}
+                      name={spørsmål.søknadid}
+                      label={svar.svar_tekst}
+                      value={svar.svar_tekst}
+                      checked={svarISøknad ? svarISøknad : false}
+                      onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
+                    />
+                  );
+                })}
+              </div>
+          </SkjemaGruppe>
           </StyledMultisvarSpørsmål>
-        </SkjemaGruppe>
       </KomponentGruppe>
+
       {søkerFraBestemtMåned?.verdi === true && (
         <KomponentGruppe>
           <Element>
