@@ -105,7 +105,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
                 valgtDato?.verdi ? strengTilDato(valgtDato?.verdi) : undefined
               }
               tekstid={datovelgerLabel}
-              datobegrensning={DatoBegrensning.TidligereDatoer}
+              datobegrensning={DatoBegrensning.TidligereDatoerOgSeksMånederFrem}
               settDato={settDato}
               fetSkrift={false}
             />

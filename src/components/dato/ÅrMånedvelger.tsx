@@ -14,7 +14,7 @@ import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { DatoBegrensning, StyledDatovelger } from './Datovelger';
 import styled from 'styled-components/macro';
 import KalenderKnapp from './KalenderKnapp';
-import { addYears, subYears } from 'date-fns';
+import { addYears, subYears, addMonths } from 'date-fns';
 
 const InputContainer = styled.div`
   display: inline-block;
@@ -35,6 +35,11 @@ const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
       return {
         minDate: subYears(new Date(), 100),
         maxDate: new Date(),
+      };
+    case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
+      return {
+        minDate: subYears(new Date(), 100),
+        maxDate: addMonths(new Date(), 6),
       };
   }
 };
