@@ -29,7 +29,10 @@ const Forside: React.FC<any> = ({ intl }) => {
     settSøknad,
   } = useSkolepengerSøknad();
 
-  useMount(() => logSidevisningSkolepenger('Forside'));
+  useMount(() => {
+    if (!(kanBrukeMellomlagretSøknad && mellomlagretSkolepenger))
+      logSidevisningSkolepenger('Forside');
+  });
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({

@@ -22,7 +22,10 @@ import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
 
 const Forside: React.FC<any> = ({ intl }) => {
-  useMount(() => logSidevisningBarnetilsyn('Forside'));
+  useMount(() => {
+    if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn))
+      logSidevisningBarnetilsyn('Forside');
+  });
 
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();

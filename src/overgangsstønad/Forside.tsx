@@ -24,7 +24,10 @@ import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 
 const Forside: React.FC = () => {
-  useMount(() => logSidevisningOvergangsstonad('Forside'));
+  useMount(() => {
+    if (!(kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad))
+      logSidevisningOvergangsstonad('Forside');
+  });
 
   const intl = useIntl();
   const { person } = usePersonContext();
