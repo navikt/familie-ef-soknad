@@ -17,6 +17,7 @@ import { ERouteSkolepenger, RoutesSkolepenger } from './routing/routes';
 import { hentPath } from '../utils/routing';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
+import { ESkjemanavn } from '../utils/skjemanavn';
 
 const Forside: React.FC<any> = ({ intl }) => {
   const { person } = usePersonContext();
@@ -32,6 +33,9 @@ const Forside: React.FC<any> = ({ intl }) => {
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretSkolepenger))
       logSidevisningSkolepenger('Forside');
+    else {
+      logSidevisningSkolepenger('FortsettMedMellomlagret');
+    }
   });
 
   const settBekreftelse = (bekreftelse: boolean) => {
@@ -74,6 +78,7 @@ const Forside: React.FC<any> = ({ intl }) => {
               gjeldendeSteg={mellomlagretSkolepenger.gjeldendeSteg}
               brukMellomlagretSøknad={brukMellomlagretSkolepenger}
               nullstillMellomlagretSøknad={nullstillMellomlagretSkolepenger}
+              skjemanavn={ESkjemanavn.Skolepenger}
             />
           ) : (
             <Forsideinformasjon

@@ -22,11 +22,15 @@ import { useIntl } from 'react-intl';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
+import { ESkjemanavn } from '../utils/skjemanavn';
 
 const Forside: React.FC = () => {
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad))
       logSidevisningOvergangsstonad('Forside');
+    else {
+      logSidevisningOvergangsstonad('FortsettMedMellomlagret');
+    }
   });
 
   const intl = useIntl();
@@ -87,6 +91,7 @@ const Forside: React.FC = () => {
               gjeldendeSteg={mellomlagretOvergangsstønad.gjeldendeSteg}
               brukMellomlagretSøknad={brukMellomlagretOvergangsstønad}
               nullstillMellomlagretSøknad={nullstillMellomlagretOvergangsstønad}
+              skjemanavn={ESkjemanavn.Overgangsstønad}
             />
           ) : (
             <Forsideinformasjon

@@ -20,11 +20,15 @@ import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
+import { ESkjemanavn } from '../utils/skjemanavn';
 
 const Forside: React.FC<any> = ({ intl }) => {
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn))
       logSidevisningBarnetilsyn('Forside');
+    else {
+      logSidevisningBarnetilsyn('FortsettMedMellomlagret');
+    }
   });
 
   const { person } = usePersonContext();
@@ -76,6 +80,7 @@ const Forside: React.FC<any> = ({ intl }) => {
               gjeldendeSteg={mellomlagretBarnetilsyn.gjeldendeSteg}
               brukMellomlagretSøknad={brukMellomlagretBarnetilsyn}
               nullstillMellomlagretSøknad={nullstillMellomlagretBarnetilsyn}
+              skjemanavn={ESkjemanavn.Barnetilsyn}
             />
           ) : (
             <Forsideinformasjon
