@@ -1,20 +1,9 @@
 const express = require('express');
-const path = require('path');
-const { injectDecoratorServerSide } = require("@navikt/nav-dekoratoren-moduler/ssr");
-const buildPath = path.resolve(__dirname, "../build");
-const basePath = "/person/personopplysninger";
+const routes = require('./routes');
 
+const BASE_PATH = '/familie/alene-med-barn/soknad';
 const app = express();
 
-const getHtmlWithDecorator = (filePath) =>
-    injectDecoratorServerSide({
-      env: process.env.ENV,
-      filePath: filePath});
+app.use(BASE_PATH, routes());
 
-app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-
-app.listen(9000);
+app.listen(8080);
