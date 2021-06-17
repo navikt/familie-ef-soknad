@@ -6,12 +6,14 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { useHistory } from 'react-router-dom';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
+import { logEvent } from '../../utils/amplitude';
 
 interface FortsettSøknadProps {
   intl: IntlShape;
   gjeldendeSteg: string;
   brukMellomlagretSøknad: () => void;
   nullstillMellomlagretSøknad: () => Promise<any>;
+  skjemanavn?: string;
 }
 
 const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
@@ -19,6 +21,7 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
   gjeldendeSteg,
   brukMellomlagretSøknad,
   nullstillMellomlagretSøknad,
+  skjemanavn,
 }) => {
   const history = useHistory();
 
@@ -33,6 +36,11 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
         <FortsettSøknadKnappWrapper>
           <KnappBase
             onClick={() => {
+              logEvent('klikk_mellomlagret', {
+                type: 'fortsett',
+                skjemanavn,
+                gjeldendeSteg,
+              });
               brukMellomlagretSøknad();
               history.push(gjeldendeSteg);
             }}
@@ -43,6 +51,11 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
           </KnappBase>
           <KnappBase
             onClick={() => {
+              logEvent('klikk_mellomlagret', {
+                type: 'nullstill',
+                skjemanavn,
+                gjeldendeSteg,
+              });
               nullstillMellomlagretSøknad().then(() => {
                 window.location.reload();
               });
