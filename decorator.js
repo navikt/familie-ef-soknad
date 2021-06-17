@@ -3,6 +3,7 @@ const { injectDecoratorServerSide } = require("@navikt/nav-dekoratoren-moduler/s
 const getHtmlWithDecorator = (filePath) =>
     injectDecoratorServerSide({
         env: process.env.ENV,
+        simple: true,
         filePath: filePath});
 
 
