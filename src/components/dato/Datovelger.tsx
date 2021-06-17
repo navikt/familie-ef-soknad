@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addYears, subYears } from 'date-fns';
+import { addYears, subYears, addMonths } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Datepicker } from 'nav-datovelger';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -22,6 +22,7 @@ export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
   FremtidigeDatoer = 'FremtidigeDatoer',
   TidligereDatoer = 'TidligereDatoer',
+  TidligereDatoerOgSeksMånederFrem = 'TidligereDatoerOgSeksMånederFrem',
 }
 
 const hentDatobegrensninger = (
@@ -39,6 +40,11 @@ const hentDatobegrensninger = (
       return {
         minDate: formatIsoDate(subYears(dagensDato, 100)),
         maxDate: formatIsoDate(dagensDato),
+      };
+    case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
+      return {
+        minDate: formatIsoDate(subYears(dagensDato, 100)),
+        maxDate: formatIsoDate(addMonths(dagensDato, 6)),
       };
   }
 };

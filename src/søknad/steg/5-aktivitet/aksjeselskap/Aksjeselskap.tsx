@@ -75,6 +75,8 @@ const Aksjeselskap: FC<Props> = ({
         [nøkkel]: { label: label, verdi: e.currentTarget.value },
       });
   };
+
+  console.log('eget AS', egetAS.length);
   return (
     <div aria-live="polite" role="region">
       <TittelOgSlettKnapp>

@@ -1,5 +1,5 @@
 import { DatoBegrensning } from './Datovelger';
-import { addYears, compareAsc, isEqual, subYears } from 'date-fns';
+import { addYears, compareAsc, isEqual, subYears, addMonths } from 'date-fns';
 import { dagensDato, erGyldigDato, strengTilDato } from '../../utils/dato';
 import { IPeriode } from '../../models/felles/periode';
 
@@ -31,6 +31,13 @@ export const erDatoInnaforBegrensinger = (
         dato !== '' &&
         strengTilDato(dato) >= subYears(dagensDato, 100) &&
         strengTilDato(dato) <= dagensDato
+      );
+
+    case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
+      return (
+        dato !== '' &&
+        strengTilDato(dato) >= subYears(dagensDato, 100) &&
+        strengTilDato(dato) <= addMonths(dagensDato, 6)
       );
   }
 };
