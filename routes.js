@@ -2,6 +2,7 @@ const express  = require('express');
 const path = require('path');
 const getHtmlWithDecorator = require("./decorator");
 const buildPath = path.resolve(__dirname, "build");
+const BASE_PATH = '/familie/alene-med-barn/soknad';
 
 const routes = () => {
     const expressRouter = express.Router();
@@ -14,7 +15,7 @@ const routes = () => {
         res.sendStatus(200)
     })
 
-    expressRouter.use(express.static(buildPath, {index: false}))
+    expressRouter.use(BASE_PATH, express.static(buildPath, {index: false}))
     expressRouter.get('*', (req, res) => {
         getHtmlWithDecorator((path.join(__dirname, 'build', 'index.html')))
             .then((html) => {
