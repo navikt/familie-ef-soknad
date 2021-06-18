@@ -76,7 +76,6 @@ const Aksjeselskap: FC<Props> = ({
       });
   };
 
-  console.log('eget AS', egetAS.length);
   return (
     <div aria-live="polite" role="region">
       <TittelOgSlettKnapp>
