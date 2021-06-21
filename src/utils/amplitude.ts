@@ -113,8 +113,6 @@ export const logDokumetasjonsbehov = (
       dokumentLabel: dok.label,
       dokumentTittel: dok.tittel,
       dokumentId: dok.id,
-      barnepassid: dok.barnepassid,
-      barneid: dok.barneid,
       harSendtInn: dok.harSendtInn,
       opplastedeVedlegg: dok.opplastedeVedlegg?.length,
       skjemanavn: skjemanavn,
