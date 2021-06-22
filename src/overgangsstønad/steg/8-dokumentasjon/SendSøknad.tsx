@@ -30,6 +30,8 @@ import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 import { IBarn } from '../../../models/steg/barn';
 import { useToggles } from '../../../context/TogglesContext';
 import { ToggleName } from '../../../models/søknad/toggles';
+import { logDokumetasjonsbehov } from '../../../utils/amplitude';
+import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 interface Innsending {
   status: string;
@@ -99,7 +101,7 @@ const SendSøknadKnapper: FC = () => {
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
-
+    logDokumetasjonsbehov(dokumentasjonsbehov, ESkjemanavn.Overgangsstønad);
     const søknadKlarForSending: ISøknad = {
       ...søknad,
       person: { ...søknad.person, barn: barnMedOppdaterteLabels },

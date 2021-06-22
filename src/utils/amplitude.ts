@@ -1,5 +1,6 @@
 import { ESkjemanavn, skjemanavnIdMapping } from './skjemanavn';
 import amplitude from 'amplitude-js';
+import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
 const amplitudeInstance = amplitude.getInstance();
 
@@ -101,4 +102,20 @@ export const logSidevisningSkolepenger = (side: string) => {
     applikasjon: 'SP-soknadsdialog',
     skjemanavn: ESkjemanavn.Skolepenger,
   });
+};
+
+export const logDokumetasjonsbehov = (
+  dokBehov: IDokumentasjon[],
+  skjemanavn: ESkjemanavn
+) => {
+  dokBehov.map((dok) =>
+    logEvent('dokumentasjonsbehov', {
+      dokumentLabel: dok.label,
+      dokumentTittel: dok.tittel,
+      dokumentId: dok.id,
+      harSendtInn: dok.harSendtInn,
+      opplastedeVedlegg: dok.opplastedeVedlegg?.length,
+      skjemanavn: skjemanavn,
+    })
+  );
 };
