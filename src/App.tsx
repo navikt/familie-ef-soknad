@@ -23,6 +23,8 @@ import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { EAlvorlighetsgrad } from './models/felles/feilmelding';
 import LocaleTekst from './language/LocaleTekst';
 import { useIntl } from 'react-intl';
+import { logAdressesperre } from './utils/amplitude';
+import { ESkjemanavn } from './utils/skjemanavn';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -58,6 +60,7 @@ const App = () => {
         const feil = e.response?.data?.feil;
 
         if (feil === 'adressesperre') {
+          logAdressesperre(ESkjemanavn.Overgangsstønad);
           settAlvorlighetsgrad(EAlvorlighetsgrad.INFO);
           settFeilmelding(
             intl.formatMessage({

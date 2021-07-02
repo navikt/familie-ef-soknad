@@ -119,3 +119,10 @@ export const logDokumetasjonsbehov = (
     })
   );
 };
+
+export const logAdressesperre = (skjemanavn: string) => {
+  logEvent('adressesperre', {
+    team_id: 'familie',
+    skjemanavn,
+  });
+};
