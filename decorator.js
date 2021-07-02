@@ -6,7 +6,7 @@ const getHtmlWithDecorator = (filePath) =>
         simple: true,
         enforceLogin: true,
         redirectToApp: true,
-        level: 4,
+        level: '4',
         filePath: filePath});
 
 

@@ -23,6 +23,7 @@ const routes = () => {
                 res.send(html);
             })
             .catch((e) => {
+                logger.error(`ENV er satt til ${process.env.ENV}`);
                 logger.error(e)
                 res.status(500).send(e);
             })})
