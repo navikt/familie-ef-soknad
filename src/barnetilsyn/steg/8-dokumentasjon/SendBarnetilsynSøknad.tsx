@@ -20,6 +20,8 @@ import { IBarn } from '../../../models/steg/barn';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
+import { logDokumetasjonsbehov } from '../../../utils/amplitude';
+import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 interface Innsending {
   status: string;
@@ -51,6 +53,7 @@ const SendSøknadKnapper: FC = () => {
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
+    logDokumetasjonsbehov(dokumentasjonsbehov, ESkjemanavn.Barnetilsyn);
 
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
