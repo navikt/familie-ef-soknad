@@ -102,3 +102,10 @@ export const logSidevisningSkolepenger = (side: string) => {
     skjemanavn: ESkjemanavn.Skolepenger,
   });
 };
+
+export const logAdressesperre = (skjemanavn: string) => {
+  logEvent('adressesperre', {
+    team_id: 'familie',
+    skjemanavn,
+  });
+};
