@@ -4,6 +4,9 @@ const getHtmlWithDecorator = (filePath) =>
     injectDecoratorServerSide({
         env: process.env.ENV,
         simple: true,
+        enforceLogin: true,
+        redirectToApp: true,
+        level: 4,
         filePath: filePath});
 
 

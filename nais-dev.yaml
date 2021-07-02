@@ -28,6 +28,8 @@ spec:
   env:
     - name: APP_VERSION
       value: '{{version}}'
+    - name: ENV
+      value: dev
   resources:
     limits:
       cpu: 2000m
