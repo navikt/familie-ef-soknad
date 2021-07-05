@@ -1,7 +1,6 @@
 const express  = require('express');
 const path = require('path');
 const getHtmlWithDecorator = require("./decorator");
-const logger = require("./logger");
 const buildPath = path.resolve(__dirname, "build");
 const BASE_PATH = '/familie/alene-med-barn/soknad';
 
@@ -23,8 +22,6 @@ const routes = () => {
                 res.send(html);
             })
             .catch((e) => {
-                logger.error(`ENV er satt til ${process.env.ENV}`);
-                logger.error(e)
                 res.status(500).send(e);
             })})
     return expressRouter
