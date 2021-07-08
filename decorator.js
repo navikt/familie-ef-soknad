@@ -8,7 +8,7 @@ const getHtmlWithDecorator = (filePath) =>
         port: 8080,
         enforceLogin: true,
         redirectToApp: true,
-        level: '4',
+        level: 'Level4',
         filePath: filePath}).catch((e) => logger.error(`Feil er hvor ${e}`))
 
 
