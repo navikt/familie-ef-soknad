@@ -1,5 +1,4 @@
 const {injectDecoratorServerSide} = require("@navikt/nav-dekoratoren-moduler/ssr");
-const logger = require("./logger");
 
 const getHtmlWithDecorator = (filePath) =>
     injectDecoratorServerSide({
@@ -9,7 +8,7 @@ const getHtmlWithDecorator = (filePath) =>
         enforceLogin: true,
         redirectToApp: true,
         level: 'Level4',
-        filePath: filePath}).catch((e) => logger.error(`Feil er hvor ${e}`))
+        filePath: filePath})
 
 
 module.exports = getHtmlWithDecorator;
