@@ -17,6 +17,7 @@ import styled from 'styled-components/macro';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -112,7 +113,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
   return (
     <StyledFirma aria-live="polite">
-      <FeltGruppe>
+      <TittelOgSlettKnapp>
         <Undertittel className={'tittel'} tag="h4">
           {firmaTittel}
         </Undertittel>
@@ -123,7 +124,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           onClick={() => fjernFirma()}
           tekstid={'firma.knapp.slett'}
         />
-      </FeltGruppe>
+      </TittelOgSlettKnapp>
       <FeltGruppe>
         <Input
           label={labelNavn}
