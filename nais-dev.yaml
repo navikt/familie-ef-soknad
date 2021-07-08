@@ -14,10 +14,10 @@ spec:
     cpuThresholdPercentage: 50
   port: 8080
   liveness:
-    path: /internal/isAlive
+    path: /familie/alene-med-barn/soknad/internal/isAlive
     initialDelay: 5
   readiness:
-    path: /internal/isReady
+    path: /familie/alene-med-barn/soknad/internal/isReady
     initialDelay: 5
   prometheus:
     enabled: true

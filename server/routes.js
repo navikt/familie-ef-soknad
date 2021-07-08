@@ -9,7 +9,7 @@ const BASE_PATH = '/familie/alene-med-barn/soknad';
 const routes = () => {
     const expressRouter = express.Router();
 
-    expressRouter.get(`/internal/isAlive|isReady`, (req, res) =>
+    expressRouter.get(`${BASE_PATH}/internal/isAlive|isReady`, (req, res) =>
         res.sendStatus(200)
     );
     expressRouter.use(BASE_PATH, express.static(buildPath, {index: false}));
