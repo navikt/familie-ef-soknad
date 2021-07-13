@@ -99,8 +99,8 @@ const Datovelger: React.FC<Props> = ({
   };
 
   useEffect(() => {
-    _dato !== '' && settDato(_dato);
-    _dato !== '' && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
+    settDato(_dato);
+    (_dato !== '') && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
 
     // eslint-disable-next-line
   }, [_dato]);
