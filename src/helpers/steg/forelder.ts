@@ -10,31 +10,39 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
+import { erGyldigDato } from '../../utils/dato';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
 
 export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
-  const { borINorge, land, avtaleOmDeltBosted } = forelder;
+  const { navn, fødselsdato, ident, borINorge, land, avtaleOmDeltBosted } = forelder;
   const utfyltBorINorge =
     borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
 
+  const erFeltTomtEllerUtfyltMedGyldigFødselsdato = (
+    erGyldigDato(fødselsdato?.verdi) || fødselsdato?.verdi === ""
+  );
+  const utfyltForelderInfo = navn?.verdi !== '' && (ident?.verdi !== '' || erFeltTomtEllerUtfyltMedGyldigFødselsdato);
+
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
+    utfyltForelderInfo &&
     utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt = utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
-    forelder
+    forelder,
   );
 
   return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
 };
 
+
 export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
-  forelder: IForelder
+  forelder: IForelder,
 ) => {
   const {
     hvorforIkkeOppgi,
@@ -69,7 +77,7 @@ export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
     harIkkeAvtaleOmDeltBosted &&
     måBeskriveSamværet(
       harDereSkriftligSamværsavtale?.svarid,
-      harAnnenForelderSamværMedBarn?.svarid
+      harAnnenForelderSamværMedBarn?.svarid,
     )
   )
     return harValgtSvar(hvordanPraktiseresSamværet?.verdi);
@@ -80,7 +88,7 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
   const utfyltBorISammeHus =
     forelder?.borINorge?.verdi &&
     forelder?.borAnnenForelderISammeHus?.svarid ===
-      EBorAnnenForelderISammeHus.ja
+    EBorAnnenForelderISammeHus.ja
       ? forelder?.borAnnenForelderISammeHusBeskrivelse?.verdi !== ''
       : true;
 
@@ -88,7 +96,7 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
     forelder?.flyttetFra?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       forelder.flyttetFra?.verdi,
-      DatoBegrensning.TidligereDatoer
+      DatoBegrensning.TidligereDatoer,
     )
       ? true
       : false;
@@ -134,7 +142,7 @@ export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
 
 export const måBeskriveSamværet = (
   samværsavtale: string | undefined,
-  samværMedBarn: string | undefined
+  samværMedBarn: string | undefined,
 ) => {
   return (
     samværMedBarn === EHarSamværMedBarn.jaMerEnnVanlig &&
@@ -155,7 +163,7 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
   else if (forelder.harDereSkriftligSamværsavtale?.svarid)
     return !måBeskriveSamværet(
       forelder.harDereSkriftligSamværsavtale.svarid,
-      forelder.harAnnenForelderSamværMedBarn?.svarid
+      forelder.harAnnenForelderSamværMedBarn?.svarid,
     );
 
   return false;
@@ -163,7 +171,7 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
 
 export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
   spørsmål: ISpørsmål,
-  svar: ISvar
+  svar: ISvar,
 ) => {
   return (
     (spørsmål.søknadid === EForelder.harDereSkriftligSamværsavtale &&
@@ -175,7 +183,7 @@ export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
 
 export const harSkriftligAvtaleOmDeltBosted = (
   spørsmål: ISpørsmål,
-  svar: ISvar
+  svar: ISvar,
 ) => {
   return (
     spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
