@@ -10,7 +10,11 @@ import { Knapp } from 'nav-frontend-knapper';
 import { useIntl } from 'react-intl';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
-import { erForelderUtfylt, visSpørsmålHvisIkkeSammeForelder } from '../../../helpers/steg/forelder';
+import {
+  erForelderUtfylt,
+  utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
+  visSpørsmålHvisIkkeSammeForelder,
+} from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
@@ -129,7 +133,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     intl,
   );
 
-  const erFødselsdatoUtfyltOgGyldig = (fødselsdato?: string) => (fødselsdato !== '' ? erGyldigDato(fødselsdato) : true);
+  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) => (erGyldigDato(fødselsdato) || fødselsdato === "");
 
   useEffect(() => {
     settForelder({
@@ -261,7 +265,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </SeksjonGruppe>
           )}
           {
-            erFødselsdatoUtfyltOgGyldig(forelder?.fødselsdato?.verdi) && (<>
+            erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi) && (<>
 
 
                 {visBorAnnenForelderINorge && (
@@ -314,7 +318,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             )
           }
 
-          {erForelderUtfylt(forelder) && erFødselsdatoUtfyltOgGyldig(forelder?.fødselsdato?.verdi) && (
+          {((erForelderUtfylt(forelder) && erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi))
+          || utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder)) && (
             <Knapp onClick={leggTilForelder}>
               <LocaleTekst
                 tekst={

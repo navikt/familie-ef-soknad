@@ -20,10 +20,10 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
   const utfyltBorINorge =
     borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
 
-  const utfyltFødselsdato = (
-    fødselsdato?.verdi !== '' ? erGyldigDato(fødselsdato?.verdi) : true
+  const erFeltTomtEllerUtfyltMedGyldigFødselsdato = (
+    erGyldigDato(fødselsdato?.verdi) || fødselsdato?.verdi === ""
   );
-  const utfyltForelderInfo = navn?.verdi !== '' && (ident?.verdi !== '' || utfyltFødselsdato);
+  const utfyltForelderInfo = navn?.verdi !== '' && (ident?.verdi !== '' || erFeltTomtEllerUtfyltMedGyldigFødselsdato);
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
