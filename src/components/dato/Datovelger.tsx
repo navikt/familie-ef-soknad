@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { addYears, subYears, addMonths } from 'date-fns';
+import { addMonths, addYears, subYears } from 'date-fns';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { Datepicker } from 'nav-datovelger';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -26,7 +26,7 @@ export enum DatoBegrensning {
 }
 
 const hentDatobegrensninger = (
-  datobegrensning: DatoBegrensning
+  datobegrensning: DatoBegrensning,
 ): DatepickerLimitations => {
   switch (datobegrensning) {
     case DatoBegrensning.AlleDatoer:
@@ -60,26 +60,26 @@ interface Props {
 }
 
 const Datovelger: React.FC<Props> = ({
-  tekstid,
-  datobegrensning,
-  valgtDato,
-  settDato,
-  disabled,
-  fetSkrift,
-  gjemFeilmelding,
-}) => {
+                                       tekstid,
+                                       datobegrensning,
+                                       valgtDato,
+                                       settDato,
+                                       disabled,
+                                       fetSkrift,
+                                       gjemFeilmelding,
+                                     }) => {
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato ? valgtDato : '');
   const [feilmelding, settFeilmelding] = useState<string>('');
 
   const limitations: DatepickerLimitations = hentDatobegrensninger(
-    datobegrensning
+    datobegrensning,
   );
 
   const hentFeilmelding = (
     dato: string,
-    datobegrensning: DatoBegrensning
+    datobegrensning: DatoBegrensning,
   ): string => {
     if (!erGyldigDato(dato)) {
       return 'datovelger.ugyldigDato';
