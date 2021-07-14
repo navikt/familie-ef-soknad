@@ -76,16 +76,16 @@ interface Props {
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
-                                               barn,
-                                               settAktivIndex,
-                                               aktivIndex,
-                                               settSisteBarnUtfylt,
-                                               sisteBarnUtfylt,
-                                               scrollTilLagtTilBarn,
-                                               barneListe,
-                                               settBarneListe,
-                                               settDokumentasjonsbehovForBarn,
-                                             }) => {
+   barn,
+   settAktivIndex,
+   aktivIndex,
+   settSisteBarnUtfylt,
+   sisteBarnUtfylt,
+   scrollTilLagtTilBarn,
+   barneListe,
+   settBarneListe,
+   settDokumentasjonsbehovForBarn,
+ }) => {
   const intl = useIntl();
 
   const medforelderMedLabel = (medforelder: any) => {
