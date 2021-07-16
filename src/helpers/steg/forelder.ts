@@ -10,24 +10,17 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { erGyldigDato } from '../../utils/dato';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
 
 export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
-  const { navn, fødselsdato, ident, borINorge, land, avtaleOmDeltBosted } = forelder;
+  const { borINorge, land, avtaleOmDeltBosted } = forelder;
   const utfyltBorINorge =
     borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
 
-  const erFeltTomtEllerUtfyltMedGyldigFødselsdato = (
-    erGyldigDato(fødselsdato?.verdi) || fødselsdato?.verdi === ""
-  );
-  const utfyltForelderInfo = navn?.verdi !== '' && (ident?.verdi !== '' || erFeltTomtEllerUtfyltMedGyldigFødselsdato);
-
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
-    utfyltForelderInfo &&
     utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
