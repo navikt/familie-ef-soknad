@@ -82,6 +82,8 @@ export default {
   // DATOVELGER
   'datovelger.ugyldigDato':
     'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.optional':
+    'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy eller la feltet stå tomt',
   'datovelger.ugyldigDato.kunTidligereDatoer':
     'Ugyldig dato. Velg en dato som er bakover i tid.',
   'datovelger.ugyldigDato.kunFremtidigeDatoer':
