@@ -332,7 +332,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 }
               />
             </Knapp>
-          )}
+          ))}
         </div>
       </div>
     </>
