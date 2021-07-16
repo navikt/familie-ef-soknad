@@ -133,7 +133,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     intl,
   );
 
-  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) => (erGyldigDato(fødselsdato) || fødselsdato === '');
+  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt =
+    (fødselsdato?: string) => (erGyldigDato(fødselsdato) || fødselsdato === '');
+  const harForelderFraPdl = (barn?.medforelder?.verdi.navn || false);
 
   useEffect(() => {
     settForelder({
@@ -208,6 +210,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
     harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
     !forelder.borINorge?.verdi;
+
+  console.log(forelder);
+  console.log(barn?.medforelder?.verdi);
 
   return (
     <>
@@ -312,8 +317,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-          {((erForelderUtfylt(forelder) && erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi))
-            || utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder)) && (
+          {((erForelderUtfylt(forelder) &&
+            (
+              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi) ||
+              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder)  ||
+              harForelderFraPdl)
+          ) && (
             <Knapp onClick={leggTilForelder}>
               <LocaleTekst
                 tekst={
