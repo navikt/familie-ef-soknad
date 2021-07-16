@@ -264,53 +264,55 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
             </SeksjonGruppe>
           )}
+          {erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi) && (<>
+            {visBorAnnenForelderINorge && (
+              <BorForelderINorge
+                barn={barn}
+                forelder={forelder}
+                settForelder={settForelder}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+              />
+            )}
 
-          {visBorAnnenForelderINorge && (
-            <BorForelderINorge
-              barn={barn}
-              forelder={forelder}
-              settForelder={settForelder}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
+            {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
+              barnHarSammeForelder) && (
+              <BostedOgSamvær
+                settForelder={settForelder}
+                forelder={forelder}
+                barn={barn}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+              />
+            )}
 
-          {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
-            barnHarSammeForelder) && (
-            <BostedOgSamvær
-              settForelder={settForelder}
-              forelder={forelder}
-              barn={barn}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
+            {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
+              <>
+                {forelder.borINorge?.verdi && (
+                  <BorAnnenForelderISammeHus
+                    forelder={forelder}
+                    settForelder={settForelder}
+                    barn={barn}
+                  />
+                )}
 
-          {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
-            <>
-              {forelder.borINorge?.verdi && (
-                <BorAnnenForelderISammeHus
-                  forelder={forelder}
-                  settForelder={settForelder}
-                  barn={barn}
-                />
-              )}
+                {skalFylleUtHarBoddSammenFør && (
+                  <BoddSammenFør
+                    forelder={forelder}
+                    barn={barn}
+                    settForelder={settForelder}
+                  />
+                )}
+                {(boddSammenFør?.svarid === ESvar.NEI ||
+                  erGyldigDato(flyttetFra?.verdi)) && (
+                  <HvorMyeSammen
+                    forelder={forelder}
+                    barn={barn}
+                    settForelder={settForelder}
+                  />
+                )}
+              </>
+            )}
+          </>)}
 
-              {skalFylleUtHarBoddSammenFør && (
-                <BoddSammenFør
-                  forelder={forelder}
-                  barn={barn}
-                  settForelder={settForelder}
-                />
-              )}
-              {(boddSammenFør?.svarid === ESvar.NEI ||
-                erGyldigDato(flyttetFra?.verdi)) && (
-                <HvorMyeSammen
-                  forelder={forelder}
-                  barn={barn}
-                  settForelder={settForelder}
-                />
-              )}
-            </>
-          )}
 
           {((erForelderUtfylt(forelder) && erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi))
             || utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder)) && (
