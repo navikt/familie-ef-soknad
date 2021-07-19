@@ -135,7 +135,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const erFødselsdatoUtfyltOgGyldigEllerTomtFelt =
     (fødselsdato?: string) => (erGyldigDato(fødselsdato) || fødselsdato === '');
-  const harForelderFraPdl = (barn?.medforelder?.verdi.navn || false);
+  const harForelderFraPdl = (barn?.medforelder?.verdi?.navn || false);
 
   useEffect(() => {
     settForelder({
