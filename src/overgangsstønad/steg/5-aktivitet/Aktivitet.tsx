@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { hvaErDinArbeidssituasjonSpm } from '../../../søknad/steg/5-aktivitet/AktivitetConfig';
-import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
+import {
+  EAktivitet,
+  IAktivitet,
+} from '../../../models/steg/aktivitet/aktivitet';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
@@ -65,8 +68,15 @@ const Aktivitet: React.FC = () => {
 
     const endretArbeidssituasjon = fjernAktivitet(svarider, arbeidssituasjon);
 
+    // bør løses bedre. Hvis "harFåttTilbudOmJobb" valget tas og senere fravelges må datofeltet for nyJobb slettes så det ikke sendes med i søknad.
+    const skalDatoNyjobbNulstilles =
+      svar.id === EAktivitet.harFåttJobbTilbud && svarHuketAv;
+
     oppdaterArbeidssituasjon({
       ...endretArbeidssituasjon,
+      datoOppstartJobb: skalDatoNyjobbNulstilles
+        ? undefined
+        : endretArbeidssituasjon.datoOppstartJobb,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svarider,
