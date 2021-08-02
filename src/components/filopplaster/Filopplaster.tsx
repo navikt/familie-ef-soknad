@@ -15,7 +15,7 @@ import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
-import { dagensDatoStreng } from '../../utils/dato';
+import { dagensDatoMedTidspunktStreng } from '../../utils/dato';
 
 interface Props {
   intl: IntlShape;
@@ -100,7 +100,7 @@ const Filopplaster: React.FC<Props> = ({
               dokumentId: data.dokumentId,
               navn: fil.name,
               størrelse: fil.size,
-              tidspunkt: dagensDatoStreng,
+              tidspunkt: dagensDatoMedTidspunktStreng,
             });
 
             const opplastedeVedlegg = dokumentasjon.opplastedeVedlegg || [];

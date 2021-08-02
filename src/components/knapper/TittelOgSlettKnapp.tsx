@@ -21,6 +21,11 @@ const StyledTittelOgSlettKnapp = styled.div`
   .slettknapp {
     grid-area: slett;
     justify-self: end;
+    display: flex;
+    padding-top: 2px;
+  }
+  .kunEn {
+    display: none;
   }
 `;
 

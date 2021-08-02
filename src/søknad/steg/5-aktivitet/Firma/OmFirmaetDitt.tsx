@@ -9,7 +9,6 @@ import Datovelger, {
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { EFirma, IFirma } from '../../../../models/steg/aktivitet/firma';
-import { datoTilStreng } from '../../../../utils/dato';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
@@ -17,6 +16,8 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -53,13 +54,13 @@ const OmFirmaetDitt: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [firma]);
 
-  const settDatoFelt = (dato: Date | null): void => {
+  const settDatoFelt = (dato: string): void => {
     dato !== null &&
       settFirma({
         ...firma,
         etableringsdato: {
           label: hentTekst('firma.datovelger.etablering', intl),
-          verdi: datoTilStreng(dato),
+          verdi: dato,
         },
       });
   };
@@ -112,7 +113,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
   return (
     <StyledFirma aria-live="polite">
-      <FeltGruppe>
+      <TittelOgSlettKnapp>
         <Undertittel className={'tittel'} tag="h4">
           {firmaTittel}
         </Undertittel>
@@ -123,7 +124,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           onClick={() => fjernFirma()}
           tekstid={'firma.knapp.slett'}
         />
-      </FeltGruppe>
+      </TittelOgSlettKnapp>
       <FeltGruppe>
         <Input
           label={labelNavn}
@@ -175,23 +176,28 @@ const OmFirmaetDitt: React.FC<Props> = ({
         </FeltGruppe>
       )}
 
-      {firma.etableringsdato?.verdi && inkludertArbeidsmengde && (
-        <FeltGruppe>
-          <InputLabelGruppe
-            label={labelArbeidsmengde}
-            nøkkel={labelArbeidsmengde}
-            type={'number'}
-            bredde={'XS'}
-            settInputFelt={(e) =>
-              settInputTekstFelt(e, EFirma.arbeidsmengde, labelArbeidsmengde)
-            }
-            beskrivendeTekst={'%'}
-            value={
-              firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''
-            }
-          />
-        </FeltGruppe>
-      )}
+      {firma.etableringsdato?.verdi &&
+        erDatoGyldigOgInnaforBegrensninger(
+          firma.etableringsdato?.verdi,
+          DatoBegrensning.TidligereDatoer
+        ) &&
+        inkludertArbeidsmengde && (
+          <FeltGruppe>
+            <InputLabelGruppe
+              label={labelArbeidsmengde}
+              nøkkel={labelArbeidsmengde}
+              type={'number'}
+              bredde={'XS'}
+              settInputFelt={(e) =>
+                settInputTekstFelt(e, EFirma.arbeidsmengde, labelArbeidsmengde)
+              }
+              beskrivendeTekst={'%'}
+              value={
+                firma?.arbeidsmengde?.verdi ? firma?.arbeidsmengde?.verdi : ''
+              }
+            />
+          </FeltGruppe>
+        )}
 
       {(firma.arbeidsmengde?.verdi ||
         (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (

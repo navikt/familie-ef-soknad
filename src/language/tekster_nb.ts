@@ -19,7 +19,7 @@ export default {
     '<li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li>' +
     '<li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li>' +
     '</ul>',
-  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] tilsynsbehov',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] sitt tilsynsbehov',
 
   // SKJEMA ARBEIDSSØKER
   'skjema.hei': 'Hei, [0]!',
@@ -32,6 +32,8 @@ export default {
     '<li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li>' +
     '<li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li>' +
     '<li>sende meldekort hver 14. dag</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
   'skjema.alert.registrert':
@@ -77,10 +79,28 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
 
-  'datovelger.periode.feilFormat':
+  // DATOVELGER
+  'datovelger.ugyldigDato':
+    'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Ugyldig dato. Velg en dato som er bakover i tid.',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Ugyldig dato. Velg en dato som er fremover i tid.',
+
+  // PERIODE DATOVELGER
+  'datovelger.periode.ugyldigDato':
+    'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format',
+  'datovelger.periode.likeDatoer': 'Startsdato og sluttdato kan ikke være like',
+  'datovelger.periode.startFørSlutt': 'Startsdato må være før sluttdato',
+
+  // PERIODE ÅRMND VELGER
+  'datovelger.periode.feilFormatMndÅr':
     'Startsdato må være tidligere enn sluttdato.',
-  'datovelger.periode.likeDatoer':
-    'Valgte datoer for perioden kan ikke være like',
+  'datovelger.periode.likMndÅr':
+    'Valgt måned og år for perioden kan ikke være like',
+  'datovelger.periode.startMndÅrFørSluttMndÅr':
+    'Start måned og år må være før dagens måned og år',
+
   'datovelger.fødselsdato': 'Fødselsdato',
   'datovelger.nårSkalDetteSkje': 'Når skal dette skje?',
 
@@ -179,7 +199,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'Du må legge bekreftelse fra Fylkesmannen eller domstolen',
+    'Du må legge ved bekreftelse fra Statsforvalteren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
   'sivilstatus.alert.samlivsbruddForeldre':
@@ -320,6 +340,7 @@ export default {
   'barnekort.adresse.skalIkkeBo': 'Skal ikke bo hos deg',
   'barnekort.fjern': 'Fjern fra søknad',
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Legg til barn',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
@@ -338,11 +359,11 @@ export default {
   'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
   'barnadine.termindato': 'Termindato',
   'barnadine.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
 
   // ---- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
@@ -356,13 +377,11 @@ export default {
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Annet',
   'barnasbosted.avtale':
-    'Har du og den andre forelderen skriftlig avtale om delt bosted for [0]?',
+    'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
   'barnasbosted.avtale.ufødt':
     'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'Når dere har avtale om delt bosted, har ingen av dere rett til stønad som enslig mor eller far for dette barnet.',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'Du må legge ved avtale om delt bosted',
+    'Du må legge ved avtale om delt fast bosted',
   'barnasbosted.alert.måBoHosDeg':
     '[0] må bo hos deg for at du skal ha rett til stønad',
   'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
@@ -399,15 +418,19 @@ export default {
   'barnasbosted.hjelpetekst.bosted.innhold':
     '<br/>Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/>' +
     '<br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/>' +
-    '<br/>Når dere har en skriftlig avtale om delt fast bosted, regnes ingen av dere for å ha aleneomsorg for barnet/barna. Dette gjelder selv om en av dere har klart mer av den daglige omsorgen.',
+    '<br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
+  'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
+    'Skal den andre forelderen ha samvær med [0]?',
   'barnasbosted.spm.jaIkkeMerEnnVanlig':
     'Ja, men ikke mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
   'barnasbosted.spm.jaMerEnnVanlig':
     'Ja, mer enn én ettermiddag i uken med overnatting og annenhver helg eller tilsvarende',
   'barnasbosted.spm.andreForelderenSamværNei':
     'Nei, den andre forelderen har ikke samvær med barnet',
+  'barnasbosted.spm.andreForelderenSamværNei.ufødt':
+    'Nei, den andre forelderen skal ikke ha samvær med barnet',
   'barnasbosted.hjelpetekst.samvær.apne': 'Dette er vanlig samværsrett',
   'barnasbosted.hjelpetekst.samvær.innhold':
     'Med samvær mener vi all tid som barnet tilbringer sammen med den andre forelderen, også dersom du er til stede. Det gjelder både hvis samværet foregår hos den andre forelderen, hjemme hos deg eller andre steder. Hvis den andre forelderen treffer barnet sjelden og/eller under tilsyn, regnes dette også som samvær.',
@@ -453,13 +476,24 @@ export default {
   'barnasbosted.spm.møtesIkke': 'Vi møtes ikke',
   'barnasbosted.spm.kunNårLeveres':
     'Vi møtes kun når barnet skal hentes eller leveres',
+  'barnasbosted.spm.kunNårLeveres.ufødt':
+    'Vi skal kun møtes når barnet skal hentes eller leveres',
   'barnasbosted.spm.møtesUtenom': 'Vi møtes også utenom henting og levering',
+  'barnasbosted.spm.møtesUtenom.ufødt':
+    'Vi skal også møtes utenom henting og levering',
   'barnasbosted.spm.beskrivSamværUtenBarn':
     'Hvor mye er du sammen med den andre forelderen til [0]?',
   'barnasbosted.skalBliFolkeregistrert.tekst':
     'Husk å registrere riktig adresse for [0] i Folkeregisteret.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Registrer adresse hos Folkeregisteret',
+  'barnasbosted.kanGåVidere':
+    'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
+  'barnasbosted.feilmelding.adressebeskyttelse':
+    'Et eller flere av barna dine er registrert med adressebeskyttelse og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
+  'barnasbosted.oppsummering.navn.label': 'Navn på annen forelder',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',

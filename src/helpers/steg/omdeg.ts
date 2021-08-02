@@ -7,6 +7,8 @@ import {
 import { IPeriode } from '../../models/felles/periode';
 import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
+import { DatoBegrensning } from '../../components/dato/Datovelger';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -61,15 +63,31 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
 
   switch (valgtBegrunnelse) {
     case EBegrunnelse.samlivsbruddForeldre:
-      return datoForSamlivsbrudd?.verdi !== undefined;
+      return (
+        datoForSamlivsbrudd?.verdi !== undefined &&
+        erDatoGyldigOgInnaforBegrensninger(
+          datoForSamlivsbrudd.verdi,
+          DatoBegrensning.TidligereDatoer
+        )
+      );
     case EBegrunnelse.samlivsbruddAndre:
       return (
         tidligereSamboerDetaljer &&
         harFyltUtSamboerDetaljer(tidligereSamboerDetaljer, true) &&
-        datoFlyttetFraHverandre?.verdi !== undefined
+        datoFlyttetFraHverandre?.verdi !== undefined &&
+        erDatoGyldigOgInnaforBegrensninger(
+          datoFlyttetFraHverandre.verdi,
+          DatoBegrensning.TidligereDatoer
+        )
       );
     case EBegrunnelse.endringISamværsordning:
-      return datoEndretSamvær?.verdi !== undefined;
+      return (
+        datoEndretSamvær?.verdi !== undefined &&
+        erDatoGyldigOgInnaforBegrensninger(
+          datoEndretSamvær?.verdi,
+          DatoBegrensning.AlleDatoer
+        )
+      );
     case EBegrunnelse.aleneFraFødsel:
       return true;
     case EBegrunnelse.dødsfall:
@@ -83,32 +101,33 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
   return fom && tom;
 };
 
-export const erStegFerdigUtfylt = (
-  person: IPerson,
-  sivilstatus: ISivilstatus,
-  medlemskap: IMedlemskap
-): boolean => {
-  const { harSøktSeparasjon } = sivilstatus;
+const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
   const manglerNoenBegrunnelserForUtenlandsopphold = perioderBoddIUtlandet?.some(
     (utenlandsopphold) =>
       utenlandsopphold.begrunnelse.verdi === '' || !utenlandsopphold.begrunnelse
   );
+  return søkerBosattINorgeSisteTreÅr?.verdi === false
+    ? manglerNoenBegrunnelserForUtenlandsopphold
+      ? false
+      : true
+    : søkerBosattINorgeSisteTreÅr?.verdi
+    ? true
+    : false;
+};
 
-  const erMedlemskapSpørsmålBesvart =
-    søkerBosattINorgeSisteTreÅr?.verdi === false
-      ? manglerNoenBegrunnelserForUtenlandsopphold
-        ? false
-        : true
-      : søkerBosattINorgeSisteTreÅr?.verdi
-      ? true
-      : false;
+export const erStegFerdigUtfylt = (
+  person: IPerson,
+  sivilstatus: ISivilstatus,
+  medlemskap: IMedlemskap
+): boolean => {
+  const { harSøktSeparasjon } = sivilstatus;
 
   return ((harSøkerTlfnr(person) && harSøktSeparasjon?.verdi) ||
     harSøktSeparasjon?.verdi === false ||
     erSøknadsBegrunnelseBesvart(sivilstatus)) &&
-    erMedlemskapSpørsmålBesvart
+    erMedlemskapSpørsmålBesvart(medlemskap)
     ? true
     : false;
 };

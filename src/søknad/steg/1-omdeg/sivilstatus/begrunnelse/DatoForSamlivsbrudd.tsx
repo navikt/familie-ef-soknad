@@ -8,7 +8,7 @@ import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
-  settDato: (date: Date | null, objektnøkkel: string, tekstid: string) => void;
+  settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   datoForSamlivsbrudd: IDatoFelt | undefined;
 }
 
@@ -17,14 +17,13 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   datoForSamlivsbrudd,
 }) => {
   const datovelgerLabel = 'sivilstatus.datovelger.samlivsbrudd';
+
   return (
     <>
       <KomponentGruppe>
         <Datovelger
           settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
-          valgtDato={
-            datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : undefined
-          }
+          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : ''}
           tekstid={datovelgerLabel}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />

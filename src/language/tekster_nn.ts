@@ -22,7 +22,7 @@ export default {
     '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
     '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
-  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] barnet',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] sitt tilsynsbehov',
 
   // ------ SKJEMA - Arbeidssøker
 
@@ -36,6 +36,8 @@ export default {
     '<li>search for vacant positions (jobs)' +
     ' <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">We have all sorts of tips on searching for jobs.</a></li>' +
     '<li>submit an employment status card every 14 days</li></ol>',
+  'skjema.feilmelding.uthenting':
+    'En feil oppstod ved uthenting av dine personopplysninger',
 
   'skjema.tittel.omarbeidssøker': 'Information about you as a job seeker',
   'skjema.alert.registrert':
@@ -85,6 +87,14 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'The amount must be a valid number',
 
+  'datovelger.ugyldigDato': 'Dato er ugyldig',
+  'datovelger.ugyldigDato.kunTidligereDatoer': 'Dato må være før dagens dato',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer':
+    'Dato må være etter dagens dato',
+  'datovelger.periode.ugyldigDato.kunTidligereDatoer':
+    'Til og fra dato må være før dagens dato',
+  'datovelger.periode.ugyldigDato.kunFremtidigeDatoer':
+    'Til og fra dato må være etter dagens dato',
   'datovelger.periode.feilFormat':
     'Start date has to be earlier than end date.',
   'datovelger.periode.likeDatoer':
@@ -190,7 +200,7 @@ export default {
   'sivilstatus.spm.søktSeparasjon':
     'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
-    'You must submit confirmation from the County Governor or court',
+    'Du må leggje ved stadfesting frå Statsforvaltaren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
   'sivilstatus.alert.samlivsbruddForeldre':
@@ -341,6 +351,7 @@ export default {
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
   'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
@@ -376,8 +387,7 @@ export default {
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'If you and the other parent have a written agreement on dual domicile, neither of you is entitled to benefit as a single parent for this child',
+
   'barnasbosted.alert-info.avtaleOmDeltBosted':
     'You must submit your agreement on dual domicile',
 
@@ -409,14 +419,13 @@ export default {
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
   'barnasbosted.hjelpetekst.bosted.apne':
-    'Read more about agreement on dual domicile',
+    'Les meir om delt fast bustad',
   'barnasbosted.hjelpetekst.halvåpen':
-    'A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, ' +
-    'such as where the child will go to kindergarten and where in Norway the child will live.',
+    'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
   'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/>' +
-    '<br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/>' +
-    '<br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
+    '<br/>Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova § 36.  <br/>' +
+    '<br/>Ein slik avtale inneber at begge foreldra i fellesskap tek større avgjerder på vegner av barnet, for eksempel kvar barnet skal gå i barnehage, og kvar i landet barnet skal bu.<br/>' +
+    '<br/>Når de har ein skriftleg avtale om delt bustad, blir ingen av dykk rekna for å ha åleineomsorga for barnet/barna. Dette gjeld sjølv om ein av dykk har klart meir av den daglege omsorga.',
 
   // -- Foreldresamvær
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
@@ -484,6 +493,8 @@ export default {
     'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Register address at the National Registry',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   // --- AKTIVITET (Steg 5)
 

@@ -7,6 +7,7 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
+import { Normaltekst } from 'nav-frontend-typografi';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
@@ -19,6 +20,8 @@ import {
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
 import { ISøknad } from '../../models/søknad';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import BarneHeader from '../../../components/BarneHeader';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -41,7 +44,14 @@ const BarnasBosted: React.FC = () => {
 
   useMount(() => logSidevisningSkolepenger('BarnasBosted'));
 
-  const barna = søknad.person.barn;
+  const barna = søknad.person.barn.filter((barn: IBarn) => {
+    return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
+  });
+
+  const barnMedDødMedforelder = søknad.person.barn.filter((barn: IBarn) => {
+    return barn.medforelder?.verdi?.død === true;
+  });
+
   const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === barna.length
@@ -111,6 +121,15 @@ const BarnasBosted: React.FC = () => {
           );
         }
       })}
+      {sisteBarnUtfylt &&
+        barnMedDødMedforelder.map((barn: IBarn) => (
+          <SeksjonGruppe>
+            <BarneHeader barn={barn} />
+            <Normaltekst style={{ textAlign: 'center', marginTop: '2rem' }}>
+              {hentTekst('barnasbosted.kanGåVidere', intl)}
+            </Normaltekst>
+          </SeksjonGruppe>
+        ))}
     </Side>
   );
 };

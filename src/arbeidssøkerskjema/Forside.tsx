@@ -3,7 +3,6 @@ import Panel from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
-import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
@@ -30,8 +29,7 @@ import { useMount } from '../utils/hooks';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
-const Forside: React.FC<any> = ({ intl }) => {
-  const { person } = usePersonContext();
+const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
   const [locale] = useSpråkContext();
   const history = useHistory();
   const { toggles } = useToggles();
@@ -82,7 +80,7 @@ const Forside: React.FC<any> = ({ intl }) => {
           <div className="veileder">
             <VeilederSnakkeboble
               tekst={hentBeskjedMedNavn(
-                person.søker.forkortetNavn,
+                visningsnavn,
                 intl.formatMessage({ id: 'skjema.hei' })
               )}
             />
@@ -132,7 +130,7 @@ const Forside: React.FC<any> = ({ intl }) => {
                   onChange={(e) => onChange()}
                   checked={skjema.harBekreftet}
                   label={hentBeskjedMedNavn(
-                    person.søker.forkortetNavn,
+                    visningsnavn,
                     intl.formatMessage({ id: 'side.bekreftelse' })
                   )}
                 />

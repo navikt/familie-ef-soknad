@@ -23,11 +23,19 @@ import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import SøknadsdialogSkolepenger from './Søknadsdialog';
 import { useIntl } from 'react-intl';
+import { logAdressesperre } from '../utils/amplitude';
+import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
+import { ESkjemanavn } from '../utils/skjemanavn';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
+  const [feilmelding, settFeilmelding] = useState<string>('');
+  const [
+    alvorlighetsgrad,
+    settAlvorlighetsgrad,
+  ] = useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
   const {
     søknad,
@@ -52,7 +60,23 @@ const SkolepengerApp = () => {
         });
         oppdaterSøknadMedBarn(response, response.barn);
       })
-      .catch(() => settError(true));
+      .catch((e) => {
+        const feil = e.response?.data?.feil;
+
+        if (feil === 'adressesperre') {
+          logAdressesperre(ESkjemanavn.Skolepenger);
+          settAlvorlighetsgrad(EAlvorlighetsgrad.INFO);
+          settFeilmelding(
+            intl.formatMessage({
+              id: 'barnasbosted.feilmelding.adressebeskyttelse',
+            })
+          );
+        } else {
+          settFeilmelding(feil);
+        }
+
+        settError(true);
+      });
   };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
@@ -105,7 +129,9 @@ const SkolepengerApp = () => {
         </>
       );
     } else if (error) {
-      return <Feilside />;
+      return (
+        <Feilside tekstId={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
+      );
     } else {
       return <NavFrontendSpinner className="spinner" />;
     }

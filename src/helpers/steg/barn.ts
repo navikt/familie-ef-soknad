@@ -1,7 +1,7 @@
 import { IntlShape } from 'react-intl';
 import { hentFeltObjekt, hentTekst } from '../../utils/søknad';
 import { differenceInYears } from 'date-fns';
-import { dagensDato, formatIsoDate } from '../../utils/dato';
+import { dagensDato, datoTilStreng, strengTilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { EBarn, IBarn } from '../../models/steg/barn';
 import { ESvar } from '../../models/felles/spørsmålogsvar';
@@ -10,7 +10,7 @@ import navfaker from 'nav-faker';
 export const hentNyttBarn = (
   id: string | undefined,
   ident: string,
-  barnDato: Date | undefined,
+  barnDato: string,
   navn: string,
   boHosDeg: string,
   født: boolean,
@@ -18,13 +18,18 @@ export const hentNyttBarn = (
   skalHaBarnepass?: boolean
 ): IBarn => {
   if (!barnDato && ident) {
-    barnDato = navfaker.personIdentifikator.getFødselsdato(ident);
+    barnDato = datoTilStreng(
+      navfaker.personIdentifikator.getFødselsdato(ident)
+    );
   }
   return {
     ident: hentFeltObjekt('person.ident.visning', ident, intl),
     alder: hentFeltObjekt(
       'person.alder',
-      differenceInYears(dagensDato, barnDato ? barnDato : dagensDato),
+      differenceInYears(
+        dagensDato,
+        strengTilDato(barnDato) ? strengTilDato(barnDato) : dagensDato
+      ),
       intl
     ),
     navn: hentFeltObjekt('person.navn', navn, intl),
@@ -36,7 +41,7 @@ export const hentNyttBarn = (
     },
     fødselsdato: hentFeltObjekt(
       født ? 'person.fødselsdato' : 'barnadine.termindato',
-      barnDato ? formatIsoDate(barnDato) : undefined,
+      barnDato || '',
       intl
     ),
     harSammeAdresse: hentFeltObjekt(

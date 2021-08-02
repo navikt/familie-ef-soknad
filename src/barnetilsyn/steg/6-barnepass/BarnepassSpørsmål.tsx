@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { IBarn } from '../../../models/steg/barn';
 import classnames from 'classnames';
@@ -7,7 +7,6 @@ import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvar
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
 import SlettKnapp from '../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
-import { datoTilStreng, erPeriodeGyldig } from '../../../utils/dato';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
@@ -20,13 +19,14 @@ import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
 import { erÅrsakBarnepassSpmBesvart } from './hjelper';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import {
   EBarnepass,
   ETypeBarnepassOrdning,
   IBarnepassOrdning,
 } from '../../models/barnepass';
 import { EPeriode } from '../../../models/felles/periode';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
+import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 
 interface Props {
   barn: IBarn;
@@ -50,9 +50,6 @@ const BarnepassSpørsmål: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const { hvaSlagsBarnepassOrdning, periode } = barnepassOrdning;
-  const [gyldigPeriode, settGyldigPeriode] = useState<boolean>(
-    periode ? erPeriodeGyldig(periode) : false
-  );
 
   const navnLabel =
     barnepassOrdning.hvaSlagsBarnepassOrdning?.svarid ===
@@ -118,7 +115,7 @@ const BarnepassSpørsmål: FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: Date | null, objektnøkkel: EPeriode) => {
+  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
     const periode = barnepassOrdning.periode
       ? barnepassOrdning.periode
       : tomPeriode;
@@ -136,7 +133,7 @@ const BarnepassSpørsmål: FC<Props> = ({
           label: periodeTekst,
           [objektnøkkel]: {
             label: datovelgerTekst,
-            verdi: datoTilStreng(dato),
+            verdi: dato,
           },
         },
       });
@@ -194,18 +191,21 @@ const BarnepassSpørsmål: FC<Props> = ({
             periode={
               barnepassOrdning.periode ? barnepassOrdning.periode : tomPeriode
             }
-            datobegrensing={DatoBegrensning.AlleDatoer}
+            datobegrensning={DatoBegrensning.AlleDatoer}
             settDato={settPeriode}
-            onValidate={settGyldigPeriode}
           />
         </KomponentGruppe>
       )}
-      {erPeriodeGyldig(barnepassOrdning.periode) && gyldigPeriode && (
-        <BarnepassBeløp
-          barnepassOrdning={barnepassOrdning}
-          settInputFelt={settInputFelt}
-        />
-      )}
+      {periode &&
+        erPeriodeGyldigOgInnaforBegrensninger(
+          periode,
+          DatoBegrensning.AlleDatoer
+        ) && (
+          <BarnepassBeløp
+            barnepassOrdning={barnepassOrdning}
+            settInputFelt={settInputFelt}
+          />
+        )}
     </SeksjonGruppe>
   );
 };

@@ -22,7 +22,7 @@ export default {
     '<li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li>' +
     '<li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li>' +
     '</ul>',
-  'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0]s care benefit',
+  'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0] need for special supervision',
 
   // ------ SKJEMA - Arbeidssøker
 
@@ -85,6 +85,12 @@ export default {
   'feil.alert': 'Noe gikk galt!',
   'feil.ugyldigTall.beløp': 'The amount must be a valid number',
 
+  'datovelger.ugyldigDato': 'The date is in wrong format',
+  'datovelger.ugyldigDato.kunTidligereDatoer':
+    'Date must be earlier than today',
+  'datovelger.ugyldigDato.kunFremtidigeDatoer': 'Date must be after today',
+
+  'datovelger.periode.ugyldigDato': 'Start or/and end date is invalid format',
   'datovelger.periode.feilFormat':
     'Start date has to be earlier than end date.',
   'datovelger.periode.likeDatoer':
@@ -342,6 +348,7 @@ export default {
   'barnekort.spm.født': 'Has the child been born?',
   'barnekort.erUfødt': 'Unborn',
   'barnekort.spm.sammeAdresse': 'Does the child have the same address as you?',
+  'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
   'barnadine.navn': 'The child’s full name, if decided',
@@ -361,11 +368,11 @@ export default {
     'You must submit confirmation of your expected date of delivery',
   'barnadine.termindato': 'Expected date of delivery',
   'barnadine.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">Bruk PDF-skjema.</a>',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
 
   // ----- BARNAS BOSTED OG FORELDRESAMVÆR (Steg 4)
   'barnasbosted.sidetittel': 'The other parent and access',
@@ -382,8 +389,6 @@ export default {
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-advarsel.avtaleDeltBosted':
-    'If you and the other parent have a written agreement on dual domicile, neither of you is entitled to benefit as a single parent for this child',
   'barnasbosted.alert-info.avtaleOmDeltBosted':
     'You must submit your agreement on dual domicile',
 
@@ -435,6 +440,8 @@ export default {
     'Yes, more than one afternoon a week with overnight stay and every other weekend or similar',
   'barnasbosted.spm.andreForelderenSamværNei':
     'No, the other parent does not have access to the child',
+  'barnasbosted.spm.andreForelderenSamværNei.ufødt':
+    'Nei, den andre forelderen skal ikke ha samvær med barnet',
   'barnasbosted.hjelpetekst.samvær.apne':
     'The standard amount of contact (right of access to a child)',
   'barnasbosted.hjelpetekst.samvær.innhold':
@@ -480,14 +487,22 @@ export default {
     'We ask about this in order to be able to assess whether you spend so much time with the child’s other parent that you cannot be considered a single parent. ',
   'barnasbosted.spm.møtesIkke': 'We do not meet',
   'barnasbosted.spm.kunNårLeveres': 'We only meet when handing over the child',
+  'barnasbosted.spm.kunNårLeveres.ufødt':
+    'Vi skal kun møtes når barnet skal hentes eller leveres',
   'barnasbosted.spm.møtesUtenom':
     'We also meet outside picking up and dropping off the child',
+  'barnasbosted.spm.møtesUtenom.ufødt':
+    'Vi skal også møtes utenom henting og levering',
   'barnasbosted.spm.beskrivSamværUtenBarn':
     'How much time do you spend with [0]’s other parent?',
   'barnasbosted.skalBliFolkeregistrert.tekst':
     'Remember to register the correct address for [0] the National Registry.',
   'barnasbosted.skalBliFolkeregistrert.knapp':
     'Register address at the National Registry',
+  'barnasbosted.kanGåVidere':
+    'Vi har opplysningene vi trenger. Du kan gå videre til neste steg.',
+  'barnasbosted.medforelder.navn': 'Navn',
+  'barnasbosted.medforelder.alder': 'Alder',
 
   // --- AKTIVITET (Steg 5)
 

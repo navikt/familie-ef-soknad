@@ -18,6 +18,7 @@ const RedirectArbeidssoker: React.FC<RedirectProps> = ({
   ...rest
 }) => {
   const { skjema } = useSkjema();
+
   return (
     <Route
       {...rest}
@@ -25,7 +26,7 @@ const RedirectArbeidssoker: React.FC<RedirectProps> = ({
         !skjema.harBekreftet ? (
           <Redirect to={RoutesArbeidssokerskjema[0].path} />
         ) : (
-          <Component {...props} />
+          <Component {...props} {...rest} />
         )
       }
     />
