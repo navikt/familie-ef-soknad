@@ -12,6 +12,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
   erForelderUtfylt,
+  utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
@@ -26,6 +27,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -133,6 +135,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     'barnasbosted.kanikkeoppgiforelder',
     intl
   );
+
+  const erIdentUtfyltOgGylding = (ident?: string): boolean =>
+    !!ident && erGyldigFødselsnummer(ident);
+  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
+    erGyldigDato(fødselsdato) || fødselsdato === '';
+  const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
 
   useEffect(() => {
     settForelder({
@@ -310,17 +318,24 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
             </>
           )}
-          {erForelderUtfylt(forelder) && (
-            <Knapp onClick={leggTilForelder}>
-              <LocaleTekst
-                tekst={
-                  !sisteBarnUtfylt && !erPåSisteBarn
-                    ? 'knapp.neste.barn'
-                    : 'knapp.neste'
-                }
-              />
-            </Knapp>
-          )}
+
+          {erForelderUtfylt(forelder) &&
+            (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
+              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+                forelder?.fødselsdato?.verdi
+              ) ||
+              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
+              harForelderFraPdl) && (
+              <Knapp onClick={leggTilForelder}>
+                <LocaleTekst
+                  tekst={
+                    !sisteBarnUtfylt && !erPåSisteBarn
+                      ? 'knapp.neste.barn'
+                      : 'knapp.neste'
+                  }
+                />
+              </Knapp>
+            )}
         </div>
       </div>
     </>
