@@ -185,7 +185,6 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
 
 export const oppdaterBarnMedLabel = (barneliste: IBarn[], intl: IntlShape) =>
   barneliste.map((barn: any) => {
-    console.log('BARN', barn);
     const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;

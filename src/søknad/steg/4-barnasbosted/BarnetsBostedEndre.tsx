@@ -152,15 +152,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     return b !== barn && b.forelder;
   });
 
-  console.log('ANDRE BARN MED FORELDER', andreBarnMedForelder);
-
   const unikeForeldreIDer = Array.from(
     new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
   );
-
-  console.log('UNIKE', unikeForeldreIDer);
-
-  // må også lage ID til nye foreldre generert av medforelder.
 
   const førsteBarnTilHverForelder = unikeForeldreIDer
     .map((id) => {
