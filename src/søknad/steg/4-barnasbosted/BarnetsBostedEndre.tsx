@@ -89,29 +89,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const medforelderMedLabel = (medforelder: any) => {
-    return {
-      navn: {
-        label: hentTekst('barnasbosted.medforelder.navn', intl),
-        verdi: medforelder.verdi.navn,
-      },
-      alder: {
-        label: hentTekst('barnasbosted.medforelder.alder', intl),
-        verdi: medforelder.verdi.alder,
-      },
-      død: medforelder.død,
-      harAdressesperre: medforelder.harAdressesperre,
-    };
-  };
-
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? barn.forelder
-      : barn.medforelder?.verdi
-      ? {
-          id: hentUid(),
-          ...medforelderMedLabel(barn.medforelder),
-        }
       : {
           id: hentUid(),
         }
@@ -172,9 +152,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     return b !== barn && b.forelder;
   });
 
+  console.log('ANDRE BARN MED FORELDER', andreBarnMedForelder);
+
   const unikeForeldreIDer = Array.from(
     new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
   );
+
+  console.log('UNIKE', unikeForeldreIDer);
+
+  // må også lage ID til nye foreldre generert av medforelder.
 
   const førsteBarnTilHverForelder = unikeForeldreIDer
     .map((id) => {

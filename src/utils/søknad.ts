@@ -12,6 +12,7 @@ import {
   standardLabelsBarn,
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
+import { useIntl } from 'react-intl';
 
 export const hentPersonData = () => {
   return axios
@@ -166,10 +167,35 @@ export const unikeDokumentasjonsbehov = (
   return alle.findIndex((item) => item.id === behov.id) === index;
 };
 
-export const oppdaterBarnMedLabel = (barneliste: IBarn[]) =>
+const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
+  return {
+    navn: {
+      label: hentTekst('barnasbosted.medforelder.navn', intl),
+      verdi: medforelder.verdi.navn,
+    },
+    alder: {
+      label: hentTekst('barnasbosted.medforelder.alder', intl),
+      verdi: medforelder.verdi.alder,
+    },
+    død: medforelder.død,
+    harAdressesperre: medforelder.harAdressesperre,
+    id: hentUid(),
+  };
+};
+
+export const oppdaterBarnMedLabel = (barneliste: IBarn[], intl: IntlShape) =>
   barneliste.map((barn: any) => {
+    console.log('BARN', barn);
     const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;
+
+    if (barnMedLabel.medforelder) {
+      barnMedLabel['forelder'] = medforelderMedLabel(
+        barnMedLabel.medforelder,
+        intl
+      );
+    }
+
     return barnMedLabel;
   });

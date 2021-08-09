@@ -109,6 +109,8 @@ const SendSøknadKnapper: FC = () => {
       locale: locale,
     };
 
+    console.log('SØKNAD KLAR FOR', søknadKlarForSending);
+
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnSøknad(søknadKlarForSending)
       .then((kvittering) => {

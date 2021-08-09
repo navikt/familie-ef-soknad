@@ -34,7 +34,7 @@ const Kvittering: React.FC = () => {
   useEffect(() => {
     nullstillMellomlagretSkolepenger();
     return () => {
-      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn, intl);
       nullstillSøknadSkolepenger(person, barnelisteMedLabels);
     };
   }, [nullstillMellomlagretSkolepenger, nullstillSøknadSkolepenger, person]);
