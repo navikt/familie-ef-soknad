@@ -100,6 +100,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
+
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
     forelder.fødselsdato?.verdi ? true : false
   );
@@ -195,6 +196,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
     harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
     !forelder.borINorge?.verdi;
+
+  console.log('ER UTdFYLT', erForelderUtfylt(forelder));
+
+  console.log('forelder', forelder);
+
+  console.log('barnHar', barnHarSammeForelder);
+
+  // HVORDAN REGISTRERE "BOR I NORGE" NÅR MAN HAR TRYKKET "SAMME SOM MEDFORELDER"
 
   return (
     <>

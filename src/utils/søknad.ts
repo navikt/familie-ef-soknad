@@ -173,6 +173,10 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
       label: hentTekst('barnasbosted.medforelder.navn', intl),
       verdi: medforelder.verdi.navn,
     },
+    ident: {
+      label: hentTekst('barnasbosted.medforelder.navn', intl),
+      verdi: medforelder.verdi.ident,
+    },
     alder: {
       label: hentTekst('barnasbosted.medforelder.alder', intl),
       verdi: medforelder.verdi.alder,
@@ -180,6 +184,7 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
     død: medforelder.død,
     harAdressesperre: medforelder.harAdressesperre,
     id: hentUid(),
+    fraFolkeregister: true,
   };
 };
 
