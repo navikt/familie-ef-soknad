@@ -45,7 +45,12 @@ const Kvittering: React.FC = () => {
       const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn, intl);
       nullstillSøknadBarnetilsyn(person, barnelisteMedLabels);
     };
-  }, [nullstillMellomlagretBarnetilsyn, nullstillSøknadBarnetilsyn, person]);
+  }, [
+    nullstillMellomlagretBarnetilsyn,
+    nullstillSøknadBarnetilsyn,
+    person,
+    intl,
+  ]);
 
   const mottattAlert: string =
     hentTekst('kvittering.barnetilsyn.alert.mottatt', intl) +

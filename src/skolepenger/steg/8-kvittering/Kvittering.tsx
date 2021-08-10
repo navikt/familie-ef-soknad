@@ -37,7 +37,12 @@ const Kvittering: React.FC = () => {
       const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn, intl);
       nullstillSøknadSkolepenger(person, barnelisteMedLabels);
     };
-  }, [nullstillMellomlagretSkolepenger, nullstillSøknadSkolepenger, person]);
+  }, [
+    nullstillMellomlagretSkolepenger,
+    nullstillSøknadSkolepenger,
+    person,
+    intl,
+  ]);
 
   const mottattAlert: string =
     hentTekst('kvittering.skolepenger.alert.mottatt', intl) +

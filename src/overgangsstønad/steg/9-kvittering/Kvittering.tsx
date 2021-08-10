@@ -60,6 +60,7 @@ const Kvittering: React.FC = () => {
     nullstillMellomlagretOvergangsstønad,
     nullstillSøknadOvergangsstønad,
     person,
+    intl,
   ]);
 
   const mottattAlert: string =

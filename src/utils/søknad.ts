@@ -12,7 +12,6 @@ import {
   standardLabelsBarn,
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
-import { useIntl } from 'react-intl';
 
 export const hentPersonData = () => {
   return axios
