@@ -30,6 +30,8 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     forelder
   );
 
+  console.log('BESVART', forelderInfoOgSpørsmålBesvart);
+
   return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
 };
 
