@@ -170,15 +170,15 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
   return {
     navn: {
       label: hentTekst('barnasbosted.medforelder.navn', intl),
-      verdi: medforelder.verdi.navn,
+      verdi: medforelder.verdi?.navn,
     },
     ident: {
       label: hentTekst('barnasbosted.medforelder.navn', intl),
-      verdi: medforelder.verdi.ident,
+      verdi: medforelder.verdi?.ident,
     },
     alder: {
       label: hentTekst('barnasbosted.medforelder.alder', intl),
-      verdi: medforelder.verdi.alder,
+      verdi: medforelder.verdi?.alder,
     },
     død: medforelder.død,
     harAdressesperre: medforelder.harAdressesperre,
@@ -193,7 +193,7 @@ export const oppdaterBarnMedLabel = (barneliste: IBarn[], intl: IntlShape) =>
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;
 
-    if (barnMedLabel.medforelder) {
+    if (barnMedLabel.medforelder?.verdi) {
       barnMedLabel['forelder'] = medforelderMedLabel(
         barnMedLabel.medforelder,
         intl
