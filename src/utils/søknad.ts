@@ -166,10 +166,39 @@ export const unikeDokumentasjonsbehov = (
   return alle.findIndex((item) => item.id === behov.id) === index;
 };
 
-export const oppdaterBarnMedLabel = (barneliste: IBarn[]) =>
+const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
+  return {
+    navn: {
+      label: hentTekst('barnasbosted.medforelder.navn', intl),
+      verdi: medforelder.verdi?.navn,
+    },
+    ident: {
+      label: hentTekst('barnasbosted.medforelder.navn', intl),
+      verdi: medforelder.verdi?.ident,
+    },
+    alder: {
+      label: hentTekst('barnasbosted.medforelder.alder', intl),
+      verdi: medforelder.verdi?.alder,
+    },
+    død: medforelder.død,
+    harAdressesperre: medforelder.harAdressesperre,
+    id: hentUid(),
+    fraFolkeregister: true,
+  };
+};
+
+export const oppdaterBarnMedLabel = (barneliste: IBarn[], intl: IntlShape) =>
   barneliste.map((barn: any) => {
     const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;
+
+    if (barnMedLabel.medforelder?.verdi) {
+      barnMedLabel['forelder'] = medforelderMedLabel(
+        barnMedLabel.medforelder,
+        intl
+      );
+    }
+
     return barnMedLabel;
   });

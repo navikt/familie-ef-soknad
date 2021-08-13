@@ -76,7 +76,7 @@ const App = () => {
   };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
-    const barnMedLabels = oppdaterBarnMedLabel(barneliste);
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
   };

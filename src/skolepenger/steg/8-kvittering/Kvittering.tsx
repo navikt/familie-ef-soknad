@@ -34,10 +34,15 @@ const Kvittering: React.FC = () => {
   useEffect(() => {
     nullstillMellomlagretSkolepenger();
     return () => {
-      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn, intl);
       nullstillSøknadSkolepenger(person, barnelisteMedLabels);
     };
-  }, [nullstillMellomlagretSkolepenger, nullstillSøknadSkolepenger, person]);
+  }, [
+    nullstillMellomlagretSkolepenger,
+    nullstillSøknadSkolepenger,
+    person,
+    intl,
+  ]);
 
   const mottattAlert: string =
     hentTekst('kvittering.skolepenger.alert.mottatt', intl) +

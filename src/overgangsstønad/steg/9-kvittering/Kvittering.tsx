@@ -53,13 +53,14 @@ const Kvittering: React.FC = () => {
   useEffect(() => {
     nullstillMellomlagretOvergangsstønad();
     return () => {
-      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn);
+      const barnelisteMedLabels = oppdaterBarnMedLabel(person.barn, intl);
       nullstillSøknadOvergangsstønad(person, barnelisteMedLabels);
     };
   }, [
     nullstillMellomlagretOvergangsstønad,
     nullstillSøknadOvergangsstønad,
     person,
+    intl,
   ]);
 
   const mottattAlert: string =
