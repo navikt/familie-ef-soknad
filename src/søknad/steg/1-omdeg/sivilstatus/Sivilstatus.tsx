@@ -45,7 +45,6 @@ const Sivilstatus: React.FC<Props> = ({
   const {
     erUformeltSeparertEllerSkilt,
     erUformeltGift,
-    harSøktSeparasjon,
     datoFlyttetFraHverandre,
     datoSøktSeparasjon,
   } = sivilstatus;
@@ -63,14 +62,9 @@ const Sivilstatus: React.FC<Props> = ({
         verdi: svar,
       },
     };
-    if (
-      spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
-      harSøktSeparasjon?.verdi === false &&
-      datoFlyttetFraHverandre &&
-      datoSøktSeparasjon
-    ) {
-      delete nySivilstatus.datoSøktSeparasjon;
-      delete nySivilstatus.datoFlyttetFraHverandre;
+    if (spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon) {
+      datoSøktSeparasjon && delete nySivilstatus.datoSøktSeparasjon;
+      datoFlyttetFraHverandre && delete nySivilstatus.datoFlyttetFraHverandre;
     }
 
     settSivilstatus(nySivilstatus);
