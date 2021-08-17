@@ -8,7 +8,7 @@
     "build": "craco build",
     "test-ci": "CI=true craco test",
     "test": "craco test",
-    "serve": "NODE_ENV=production node server.js"
+    "serve": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
     "@craco/craco": "^6.1.1",
@@ -43,11 +43,8 @@
     "craco-less": "^1.17.1",
     "date-fns": "^2.16.1",
     "dayjs": "^1.10.4",
-    "dotenv": "^8.1.0",
     "eslint-plugin-flowtype": "^5.4.0",
     "exenv": "^1.2.2",
-    "express": "^4.17.1",
-    "express-http-proxy": "^1.6.2",
     "http-proxy-middleware": "^0.21.0",
     "install": "^0.13.0",
     "iso-datestring-validator": "^2.1.4",

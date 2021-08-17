@@ -14,9 +14,11 @@ spec:
     cpuThresholdPercentage: 50
   port: 8080
   liveness:
-    path: /
+    path: /familie/alene-med-barn/soknad/internal/isAlive
+    initialDelay: 5
   readiness:
-    path: /
+    path: /familie/alene-med-barn/soknad/internal/isReady
+    initialDelay: 5
   prometheus:
     enabled: true
     path: /metrics
@@ -26,10 +28,8 @@ spec:
   env:
     - name: APP_VERSION
       value: '{{version}}'
-    - name: APPRES_CMS_URL
-      value: https://appres.nav.no
-    - name: LOGINSERVICE_URL
-      value: https://loginservice.nav.no/login
+    - name: ENV
+      value: prod
   resources:
     limits:
       cpu: 2000m

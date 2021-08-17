@@ -1,0 +1,75 @@
+version: 2
+
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "04:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: nav-frontend-paneler-style
+    versions:
+    - 1.0.2
+  - dependency-name: eslint-plugin-flowtype
+    versions:
+    - 5.4.0
+  - dependency-name: react
+    versions:
+    - 17.0.2
+  - dependency-name: nav-frontend-knapper-style
+    versions:
+    - 1.0.17
+  - dependency-name: pretty-quick
+    versions:
+    - 2.0.2
+  - dependency-name: be-pretty
+    versions:
+    - 1.0.1
+  - dependency-name: "@types/react-modal"
+    versions:
+    - 3.12.0
+  - dependency-name: "@types/react-dom"
+    versions:
+    - 17.0.1
+    - 17.0.2
+    - 17.0.3
+  - dependency-name: typescript
+    versions:
+    - 4.2.3
+  - dependency-name: constate
+    versions:
+    - 3.2.0
+  - dependency-name: prettier
+    versions:
+    - 2.2.1
+  - dependency-name: "@types/react-datepicker"
+    versions:
+    - 3.1.7
+  - dependency-name: "@types/react"
+    versions:
+    - 17.0.3
+  - dependency-name: react-scripts
+    versions:
+    - 4.0.3
+  - dependency-name: uuid
+    versions:
+    - 8.3.2
+  - dependency-name: nav-frontend-js-utils
+    versions:
+    - 1.0.17
+  - dependency-name: lodash
+    versions:
+    - 4.17.21
+  - dependency-name: nav-frontend-ikoner-assets
+    versions:
+    - 2.0.10
+  - dependency-name: "@types/styled-components"
+    versions:
+    - 5.1.7
+  - dependency-name: npm
+    versions:
+    - 7.6.0
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.20

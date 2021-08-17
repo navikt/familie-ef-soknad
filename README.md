@@ -26,6 +26,16 @@ Med api må du sette cookie første gang:
 
 Hvis testcafe ikke er installert, kjør en `npm install` ev. installer testcafe globalt hos deg `npm install -g testcafe`
 
+## Tekstinnhold
+I appen har vi tekstinnhold på norsk bokmål, engelsk og nynorsk. 
+Ønsker du å legge til eller redigere på en tekst, skal dette gjøres i exceldokumentet "EF Tekstinnhold App Søknadsdialog" som du finner på Teams under Team Familie > Enslige forsørgere > Filer > Søknadsdialog > "EF Tekstinnhold App Søknadsdialog". 
+1. Åpne "EF Tekstinnhold App Søknadsdialog" i nettleseren
+2. Trykk på "Automate" i fanen, og velg "EF Script - Konverter tabell til json format".
+
+Det skrives ut 3 ulike tekst bolker. Denne skal kopieres og limes inn i tilhørende "tekster_xx.json" fil. Husk å kjøre reformat (optn + cmd + l")
+
+
+
 ## Sett opp Prettier lokalt on save (IntelliJ)
 
 1. I IntelliJ, åpne `Preferences/Plugins` for så å søke opp og installere `File Watchers` og `Prettier` hvis dette ikke allerede er gjort.  

@@ -27,11 +27,12 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
   nåværendeBarn: IBarn,
-  forelder: IForelder,
+  forelder: IForelder
 ) => {
   return barneliste.map((b) => {
     if (b === nåværendeBarn) {
@@ -47,7 +48,7 @@ const lagOppdatertBarneliste = (
 
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
-  visesBorINorgeSpørsmål: boolean,
+  visesBorINorgeSpørsmål: boolean
 ) => {
   const borForelderINorgeSpm =
     forelder.borINorge?.svarid === ESvar.JA ||
@@ -69,56 +70,39 @@ interface Props {
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
     barneid: string,
-    barnapassid?: string,
+    barnapassid?: string
   ) => void;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
-   barn,
-   settAktivIndex,
-   aktivIndex,
-   settSisteBarnUtfylt,
-   sisteBarnUtfylt,
-   scrollTilLagtTilBarn,
-   barneListe,
-   settBarneListe,
-   settDokumentasjonsbehovForBarn,
- }) => {
+  barn,
+  settAktivIndex,
+  aktivIndex,
+  settSisteBarnUtfylt,
+  sisteBarnUtfylt,
+  scrollTilLagtTilBarn,
+  barneListe,
+  settBarneListe,
+  settDokumentasjonsbehovForBarn,
+}) => {
   const intl = useIntl();
-
-  const medforelderMedLabel = (medforelder: any) => {
-    return {
-      navn: {
-        label: hentTekst('barnasbosted.medforelder.navn', intl),
-        verdi: medforelder.verdi.navn,
-      },
-      alder: {
-        label: hentTekst('barnasbosted.medforelder.alder', intl),
-        verdi: medforelder.verdi.alder,
-      },
-      død: medforelder.død,
-      harAdressesperre: medforelder.harAdressesperre,
-    };
-  };
 
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? barn.forelder
-      : barn.medforelder?.verdi
-        ? {
+      : {
           id: hentUid(),
-          ...medforelderMedLabel(barn.medforelder),
         }
-        : {
-          id: hentUid(),
-        },
   );
 
-  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<boolean | undefined>(undefined);
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(undefined);
+
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
-    forelder.fødselsdato?.verdi ? true : false,
+    forelder.fødselsdato?.verdi ? true : false
   );
 
   const {
@@ -130,10 +114,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   } = forelder;
   const jegKanIkkeOppgiLabel = hentTekst(
     'barnasbosted.kanikkeoppgiforelder',
-    intl,
+    intl
   );
 
-  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) => (erGyldigDato(fødselsdato) || fødselsdato === '');
+  const erIdentUtfyltOgGylding = (ident?: string): boolean =>
+    !!ident && erGyldigFødselsnummer(ident);
+  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
+    erGyldigDato(fødselsdato) || fødselsdato === '';
+  const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
 
   useEffect(() => {
     settForelder({
@@ -166,7 +154,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   });
 
   const unikeForeldreIDer = Array.from(
-    new Set(andreBarnMedForelder.map((b) => b.forelder?.id)),
+    new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
   );
 
   const førsteBarnTilHverForelder = unikeForeldreIDer
@@ -211,11 +199,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   return (
     <>
-      <div className='barnas-bosted'>
+      <div className="barnas-bosted">
         <SeksjonGruppe>
           <BarneHeader barn={barn} />
         </SeksjonGruppe>
-        <div className='barnas-bosted__innhold'>
+        <div className="barnas-bosted__innhold">
           {!barn.harSammeAdresse.verdi && (
             <SkalBarnetBoHosSøker
               barn={barn}
@@ -231,15 +219,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               <BarnetsAndreForelderTittel barn={barn} />
 
               {førsteBarnTilHverForelder.length > 0 &&
-              !barn.medforelder?.verdi && (
-                <AnnenForelderKnapper
-                  barn={barn}
-                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                  settForelder={settForelder}
-                  forelder={forelder}
-                  settBarnHarSammeForelder={settBarnHarSammeForelder}
-                />
-              )}
+                !barn.medforelder?.verdi && (
+                  <AnnenForelderKnapper
+                    barn={barn}
+                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                    settForelder={settForelder}
+                    forelder={forelder}
+                    settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  />
+                )}
               {visOmAndreForelder && (
                 <OmAndreForelder
                   settForelder={settForelder}
@@ -256,9 +244,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                     {barn.medforelder.verdi.navn
                       ? barn.medforelder.verdi.navn
                       : `${hentTekst(
-                        'barnekort.medforelder.hemmelig',
-                        intl,
-                      )}, ${barn.medforelder.verdi.alder}`}
+                          'barnekort.medforelder.hemmelig',
+                          intl
+                        )}, ${barn.medforelder.verdi.alder}`}
                   </Normaltekst>
                 </>
               )}
@@ -314,18 +302,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           </>)}
 
 
-          {((erForelderUtfylt(forelder) && erFødselsdatoUtfyltOgGyldigEllerTomtFelt(forelder?.fødselsdato?.verdi))
-            || utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder)) && (
-            <Knapp onClick={leggTilForelder}>
-              <LocaleTekst
-                tekst={
-                  !sisteBarnUtfylt && !erPåSisteBarn
-                    ? 'knapp.neste.barn'
-                    : 'knapp.neste'
-                }
-              />
-            </Knapp>
-          )}
+          {erForelderUtfylt(forelder) &&
+            (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
+              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+                forelder?.fødselsdato?.verdi
+              ) ||
+              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
+              harForelderFraPdl) && (
+              <Knapp onClick={leggTilForelder}>
+                <LocaleTekst
+                  tekst={
+                    !sisteBarnUtfylt && !erPåSisteBarn
+                      ? 'knapp.neste.barn'
+                      : 'knapp.neste'
+                  }
+                />
+              </Knapp>
+            )}
         </div>
       </div>
     </>

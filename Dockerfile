@@ -1,6 +1,17 @@
-FROM navikt/pus-decorator:228.20190926.1521
-ENV APPLICATION_NAME=familie-ef-soknad
-ENV HEADER_TYPE=WITHOUT_MENU
-ENV CONTEXT_PATH=/familie/alene-med-barn/soknad/
-ENV DISABLE_UNLEASH=true
-COPY ./build /app
+FROM navikt/node-express:14-alpine
+
+USER root
+
+WORKDIR /app
+COPY ./build build
+COPY ./server server
+
+WORKDIR /app/server
+
+RUN npm ci
+
+EXPOSE 8080
+
+USER apprunner
+
+CMD ["node", "server.js"]
