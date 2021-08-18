@@ -1,4 +1,5 @@
-// eslint-disable-next-line
+// eslint-disable-next-line;  
+// sist redigert 18.08.2021 10:47  
 export default {
   'språk.bokmål': 'Bokmål',
   'språk.engelsk': 'English',
@@ -22,6 +23,7 @@ export default {
   'datovelger.ugyldigDato.kunTidligereDatoer': 'Ugyldig dato. Velg en dato som er bakover i tid.',
   'datovelger.ugyldigDato.kunFremtidigeDatoer': 'Ugyldig dato. Velg en dato som er fremover i tid.',
   'datovelger.periode.ugyldigDato': 'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format',
+  'datovelger.periode.ugyldigDato.potenial': 'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format eller la feltet stå tomt',
   'datovelger.periode.likeDatoer': 'Startsdato og sluttdato kan ikke være like',
   'datovelger.periode.startFørSlutt': 'Startsdato må være før sluttdato',
   'datovelger.periode.feilFormatMndÅr': 'Startsdato må være tidligere enn sluttdato.',
@@ -94,6 +96,7 @@ export default {
   'sivilstatus.kode.PARTNER': 'Partner',
   'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
   'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
+  'sivilstatus.kode.REGISTRERT_PARTNER': 'Registrert partner',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
   'sivilstatus.kode.ANNET': 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon': 'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
