@@ -21,10 +21,10 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
-    (utfyltBorINorge || fraFolkeregister) &&
+    utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
-    (utfyltNødvendigBostedSpørsmål(forelder) || fraFolkeregister);
+    utfyltNødvendigBostedSpørsmål(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt = utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
     forelder
