@@ -15,16 +15,16 @@ export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
 
 export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
-  const { borINorge, land, avtaleOmDeltBosted, fraFolkeregister } = forelder;
+  const { borINorge, land, avtaleOmDeltBosted } = forelder;
   const utfyltBorINorge =
     borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
-    (utfyltBorINorge || fraFolkeregister) &&
+    utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
-    (utfyltNødvendigBostedSpørsmål(forelder) || fraFolkeregister);
+    utfyltNødvendigBostedSpørsmål(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt = utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
     forelder
