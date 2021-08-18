@@ -122,9 +122,18 @@ export const erStegFerdigUtfylt = (
   sivilstatus: ISivilstatus,
   medlemskap: IMedlemskap
 ): boolean => {
-  const { harSøktSeparasjon } = sivilstatus;
+  const { harSøktSeparasjon, datoFlyttetFraHverandre } = sivilstatus;
 
-  return ((harSøkerTlfnr(person) && harSøktSeparasjon?.verdi) ||
+  const datoFlyttetfraHverandreErUtfyltOgGyldig =
+    datoFlyttetFraHverandre?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoFlyttetFraHverandre?.verdi,
+      DatoBegrensning.TidligereDatoer
+    );
+
+  return ((harSøkerTlfnr(person) &&
+    harSøktSeparasjon?.verdi &&
+    datoFlyttetfraHverandreErUtfyltOgGyldig) ||
     harSøktSeparasjon?.verdi === false ||
     erSøknadsBegrunnelseBesvart(sivilstatus)) &&
     erMedlemskapSpørsmålBesvart(medlemskap)
