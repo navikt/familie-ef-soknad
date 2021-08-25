@@ -6,15 +6,8 @@ import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad'
 import { parseISO } from 'date-fns';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useHistory, useLocation } from 'react-router';
-import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { hentPath } from '../../../utils/routing';
-import { Link } from 'react-router-dom';
-import {
-  RoutesOvergangsstonad,
-  ERouteOvergangsstønad,
-} from '../../routing/routesOvergangsstonad';
+import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import {
@@ -32,8 +25,10 @@ import { useToggles } from '../../../context/TogglesContext';
 import { ToggleName } from '../../../models/søknad/toggles';
 import { logDokumetasjonsbehov } from '../../../utils/amplitude';
 import { ESkjemanavn } from '../../../utils/skjemanavn';
+import InnsendingFeilet from './InnsendingFeilet';
+import ManglendeInformasjonAlert from './ManglendeInformasjonAlert';
 
-interface Innsending {
+export interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
@@ -137,30 +132,13 @@ const SendSøknadKnapper: FC = () => {
   return (
     <>
       {innsendingState.status === IStatus.FEILET && (
-        <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <Normaltekst>{innsendingState.melding}</Normaltekst>
-          </AlertStripe>
-        </KomponentGruppe>
+        <InnsendingFeilet
+          søknadForOvergangsstønad={søknad}
+          innsendingState={innsendingState}
+        />
       )}
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
-        <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
-            <Link
-              to={{
-                pathname: hentPath(
-                  RoutesOvergangsstonad,
-                  ERouteOvergangsstønad.OmDeg
-                ),
-                state: { kommerFraOppsummering: true },
-              }}
-            >
-              <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
-            </Link>{' '}
-            <LocaleTekst tekst="dokumentasjon.alert.manglende" />
-          </AlertStripe>
-        </KomponentGruppe>
+        <ManglendeInformasjonAlert />
       )}
       {toggles[ToggleName.visSkalBehandlesINySaksbehandling] && (
         <>
