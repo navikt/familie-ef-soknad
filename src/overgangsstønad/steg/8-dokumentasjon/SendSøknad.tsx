@@ -157,7 +157,7 @@ const SendSøknadKnapper: FC = () => {
               }}
             >
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
-            </Link>{' '}
+            </Link>
             <LocaleTekst tekst="dokumentasjon.alert.manglende" />
           </AlertStripe>
         </KomponentGruppe>
