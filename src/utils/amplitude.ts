@@ -126,3 +126,17 @@ export const logAdressesperre = (skjemanavn: string) => {
     skjemanavn,
   });
 };
+
+export const logInnsendingFeilet = (
+  skjemanavn: string,
+  skjemaId: number,
+  feilmelding: string,
+  props?: any
+) => {
+  logEvent('skjema_innsending_feilet', {
+    skjemanavn,
+    skjemaId,
+    feilmelding,
+    ...props,
+  });
+};
