@@ -89,29 +89,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const medforelderMedLabel = (medforelder: any) => {
-    return {
-      navn: {
-        label: hentTekst('barnasbosted.medforelder.navn', intl),
-        verdi: medforelder.verdi.navn,
-      },
-      alder: {
-        label: hentTekst('barnasbosted.medforelder.alder', intl),
-        verdi: medforelder.verdi.alder,
-      },
-      død: medforelder.død,
-      harAdressesperre: medforelder.harAdressesperre,
-    };
-  };
-
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? barn.forelder
-      : barn.medforelder?.verdi
-      ? {
-          id: hentUid(),
-          ...medforelderMedLabel(barn.medforelder),
-        }
       : {
           id: hentUid(),
         }
@@ -120,6 +100,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
   >(undefined);
+
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
     forelder.fødselsdato?.verdi ? true : false
   );

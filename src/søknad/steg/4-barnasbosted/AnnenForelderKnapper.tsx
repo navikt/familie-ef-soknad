@@ -56,6 +56,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
       hvorMyeSammen: denAndreForelderen?.hvorMyeSammen,
       beskrivSamværUtenBarn: denAndreForelderen?.beskrivSamværUtenBarn,
       land: denAndreForelderen?.land,
+      fraFolkeregister: denAndreForelderen?.fraFolkeregister,
     });
   };
 

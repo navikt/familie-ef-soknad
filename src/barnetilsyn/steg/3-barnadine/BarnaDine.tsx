@@ -91,6 +91,7 @@ const BarnaDine: React.FC = () => {
   const harValgtMinstEttBarn = søknad.person.barn.some(
     (b: IBarn) => b.skalHaBarnepass?.verdi
   );
+
   return (
     <>
       <Side

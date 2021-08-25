@@ -4,6 +4,9 @@ import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';
 import Hjelpetekst from '../Hjelpetekst';
+import { useIntl } from 'react-intl';
+import { logSpørsmålBesvart } from '../../utils/amplitude';
+import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
 
 const StyledCheckboxSpørsmål = styled.div`
   .radioknapp {
@@ -35,6 +38,15 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   settValgteSvar,
   valgteSvar,
 }) => {
+  const intl = useIntl();
+
+  const url = window.location.href;
+
+  const skjemanavn = urlTilSkjemanavn(url);
+  const skjemaId = skjemanavnTilId(skjemanavn);
+
+  const legend = intl.formatMessage({ id: spørsmål.tekstid });
+
   return (
     <SkjemaGruppe
       key={spørsmål.tekstid}
@@ -59,9 +71,18 @@ const CheckboxSpørsmål: React.FC<Props> = ({
                 key={svar.svar_tekst}
                 label={svar.svar_tekst}
                 checked={alleredeHuketAvISøknad}
-                onChange={() =>
-                  settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar)
-                }
+                onChange={() => {
+                  if (!alleredeHuketAvISøknad) {
+                    logSpørsmålBesvart(
+                      skjemanavn,
+                      skjemaId,
+                      legend,
+                      svar.svar_tekst
+                    );
+                  }
+
+                  settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar);
+                }}
               />
             );
           })}
