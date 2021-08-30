@@ -17,8 +17,22 @@ export const harFyltUtSamboerDetaljer = (
 
   return valgfriIdentEllerFødselsdato
     ? samboerDetaljer?.navn?.verdi !== '' &&
-        samboerDetaljer?.navn?.verdi !== undefined
+        samboerDetaljer?.navn?.verdi !== undefined &&
+        erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+          samboerDetaljer.fødselsdato?.verdi,
+          DatoBegrensning.TidligereDatoer
+        )
     : harFyltUtFødselsdatoEllerIdent &&
         samboerDetaljer?.navn?.verdi !== '' &&
         samboerDetaljer?.navn?.verdi !== undefined;
+};
+
+export const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (
+  dato: string | undefined,
+  begrensning: DatoBegrensning
+) => {
+  return (
+    (dato && erDatoGyldigOgInnaforBegrensninger(dato, begrensning)) ||
+    dato === ''
+  );
 };
