@@ -35,4 +35,4 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: .deploy/gcp-dev.yaml
+          RESOURCE: nais-dev.yaml
