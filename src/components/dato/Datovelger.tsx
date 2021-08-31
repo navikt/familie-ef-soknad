@@ -57,6 +57,7 @@ interface Props {
   disabled?: boolean;
   fetSkrift?: boolean;
   gjemFeilmelding?: boolean;
+  optional?: boolean;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -67,6 +68,7 @@ const Datovelger: React.FC<Props> = ({
                                        disabled,
                                        fetSkrift,
                                        gjemFeilmelding,
+                                       optional,
                                      }) => {
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
@@ -82,7 +84,7 @@ const Datovelger: React.FC<Props> = ({
     datobegrensning: DatoBegrensning,
   ): string => {
     if (!erGyldigDato(dato)) {
-      return 'datovelger.ugyldigDato';
+      return optional ? 'datovelger.ugyldigDato.optional':'datovelger.ugyldigDato';
     } else if (
       datobegrensning === DatoBegrensning.FremtidigeDatoer &&
       !erDatoInnaforBegrensinger(dato, datobegrensning)

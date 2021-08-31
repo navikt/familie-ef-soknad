@@ -58,10 +58,6 @@ const OmSamboerenDin: FC<Props> = ({
     settBosituasjon({
       ...bosituasjon,
       [samboerDetaljerType]: samboerInfo,
-      datoFlyttetFraHverandre:
-        samboerInfo.navn?.verdi === ''
-          ? undefined
-          : bosituasjon.datoFlyttetFraHverandre,
     });
     // eslint-disable-next-line
   }, [samboerInfo]);

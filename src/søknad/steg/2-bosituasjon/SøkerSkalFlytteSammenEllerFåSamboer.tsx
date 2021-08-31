@@ -103,8 +103,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
           valgtSvar={skalGifteSegEllerBliSamboer?.verdi}
         />
       </KomponentGruppe>
-      {skalGifteSegEllerBliSamboer &&
-      skalGifteSegEllerBliSamboer.verdi === true ? (
+      {skalGifteSegEllerBliSamboer && skalGifteSegEllerBliSamboer.verdi ? (
         <>
           <KomponentGruppe>
             <Datovelger
