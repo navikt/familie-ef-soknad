@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -20,16 +20,32 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
+import { useEffect } from 'react';
 
-const Oppsummering: React.FC = () => {
+interface Props {
+  history: any;
+}
+
+const Oppsummering: React.FC<Props> = ({ history }) => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
+  const [gikkTilbake, settGikkTilbake] = useState(false);
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
   const barnMedsærligeTilsynsbehov = søknad.person.barn
     .filter((barn: IBarn) => barn.særligeTilsynsbehov)
     .map((barn: IBarn) => barn.særligeTilsynsbehov);
+
+  console.log('h', history);
+
+  useEffect(() => {
+    const { action } = history;
+
+    if (action === 'POP') {
+      settGikkTilbake(true);
+    }
+  });
 
   return (
     <>
@@ -41,6 +57,12 @@ const Oppsummering: React.FC = () => {
         mellomlagreStønad={mellomlagreOvergangsstønad}
         routesStønad={RoutesOvergangsstonad}
       >
+        {gikkTilbake && (
+          <h1>
+            Du brukte tilbakeknappen i nettleseren for å nå denne siden.
+            blablabla
+          </h1>
+        )}
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
