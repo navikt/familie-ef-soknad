@@ -30,8 +30,11 @@ import { barnetsNavnEllerBarnet } from '../../../utils/barn';
 import { IBarn } from '../../../models/steg/barn';
 import { useToggles } from '../../../context/TogglesContext';
 import { ToggleName } from '../../../models/søknad/toggles';
-import { logDokumetasjonsbehov } from '../../../utils/amplitude';
-import { ESkjemanavn } from '../../../utils/skjemanavn';
+import {
+  logDokumetasjonsbehov,
+  logInnsendingFeilet,
+} from '../../../utils/amplitude';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
 interface Innsending {
   status: string;
@@ -109,6 +112,8 @@ const SendSøknadKnapper: FC = () => {
       locale: locale,
     };
 
+    const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
+
     settinnsendingState({ ...innsendingState, venter: true });
     sendInnSøknad(søknadKlarForSending)
       .then((kvittering) => {
@@ -124,14 +129,16 @@ const SendSøknadKnapper: FC = () => {
         });
         history.push(nesteRoute.path);
       })
-      .catch((e) =>
+      .catch((e) => {
         settinnsendingState({
           ...innsendingState,
           status: IStatus.FEILET,
           melding: `Noe gikk galt: ${e}`,
           venter: false,
-        })
-      );
+        });
+
+        logInnsendingFeilet(ESkjemanavn.Overgangsstønad, skjemaId, e);
+      });
   };
 
   return (
@@ -157,7 +164,7 @@ const SendSøknadKnapper: FC = () => {
               }}
             >
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
-            </Link>{' '}
+            </Link>
             <LocaleTekst tekst="dokumentasjon.alert.manglende" />
           </AlertStripe>
         </KomponentGruppe>

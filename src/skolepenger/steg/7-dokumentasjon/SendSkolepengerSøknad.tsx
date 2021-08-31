@@ -20,8 +20,11 @@ import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logDokumetasjonsbehov } from '../../../utils/amplitude';
-import { ESkjemanavn } from '../../../utils/skjemanavn';
+import {
+  logDokumetasjonsbehov,
+  logInnsendingFeilet,
+} from '../../../utils/amplitude';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
 interface Innsending {
   status: string;
@@ -35,6 +38,7 @@ const SendSøknadKnapper: FC = () => {
   const history = useHistory();
   const nesteRoute = hentNesteRoute(RoutesSkolepenger, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesSkolepenger, location.pathname);
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -73,14 +77,16 @@ const SendSøknadKnapper: FC = () => {
         });
         history.push(nesteRoute.path);
       })
-      .catch((e) =>
+      .catch((e) => {
         settinnsendingState({
           ...innsendingState,
           status: IStatus.FEILET,
           melding: `Noe gikk galt: ${e}`,
           venter: false,
-        })
-      );
+        });
+
+        logInnsendingFeilet(ESkjemanavn.Skolepenger, skjemaId, e);
+      });
   };
 
   return (

@@ -20,8 +20,11 @@ import { IBarn } from '../../../models/steg/barn';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
-import { logDokumetasjonsbehov } from '../../../utils/amplitude';
-import { ESkjemanavn } from '../../../utils/skjemanavn';
+import {
+  logDokumetasjonsbehov,
+  logInnsendingFeilet,
+} from '../../../utils/amplitude';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
 interface Innsending {
   status: string;
@@ -45,6 +48,8 @@ const SendSøknadKnapper: FC = () => {
   const filtrerBarnSomSkalHaBarnepass = (barneliste: IBarn[]) => {
     return barneliste.filter((barn) => barn.skalHaBarnepass?.verdi === true);
   };
+
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
 
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
@@ -75,14 +80,16 @@ const SendSøknadKnapper: FC = () => {
         });
         history.push(nesteRoute.path);
       })
-      .catch((e) =>
+      .catch((e) => {
         settinnsendingState({
           ...innsendingState,
           status: IStatus.FEILET,
           melding: `Noe gikk galt: ${e}`,
           venter: false,
-        })
-      );
+        });
+
+        logInnsendingFeilet(ESkjemanavn.Barnetilsyn, skjemaId, e);
+      });
   };
 
   return (
