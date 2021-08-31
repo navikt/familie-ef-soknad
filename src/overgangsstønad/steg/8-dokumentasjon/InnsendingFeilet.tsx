@@ -4,33 +4,106 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { Innsending } from './SendSøknad';
+import {
+  ESivilstand,
+  ISivilstatus,
+} from '../../../models/steg/omDeg/sivilstatus';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
+import { erSøknadsBegrunnelseBesvart } from '../../../helpers/steg/omdeg';
+import { erBosituasjonUtfylt } from '../../../helpers/steg/bosituasjon';
+import { Feiloppsummering } from 'nav-frontend-skjema';
+import { useIntl } from 'react-intl';
+import LocaleTekst from '../../../language/LocaleTekst';
+
+const datoFelt = {};
 
 interface Props {
   søknadForOvergangsstønad: ISøknad;
   innsendingState: Innsending;
 }
 
-const erNødvendigeDatofelterUtfylt = (søknad: ISøknad): boolean => {
+const validerSivilstatusDatoer = (
+  sivilstand: string,
+  sivilstatus: ISivilstatus
+): boolean => {
+  const {
+    harSøktSeparasjon,
+    datoSøktSeparasjon,
+    datoFlyttetFraHverandre,
+  } = sivilstatus;
+
+  if (sivilstand === ESivilstand.GIFT) {
+    const harSøktSeparasjonOgValgtObligatoriskeDatofelt =
+      harSøktSeparasjon?.verdi &&
+      datoSøktSeparasjon?.verdi &&
+      erDatoGyldigOgInnaforBegrensninger(
+        datoSøktSeparasjon?.verdi,
+        DatoBegrensning.TidligereDatoer
+      ) &&
+      datoFlyttetFraHverandre?.verdi &&
+      erDatoGyldigOgInnaforBegrensninger(
+        datoFlyttetFraHverandre?.verdi,
+        DatoBegrensning.TidligereDatoer
+      );
+    return (
+      harSøktSeparasjonOgValgtObligatoriskeDatofelt ||
+      harSøktSeparasjon?.verdi === false
+    );
+  } else {
+    return !!erSøknadsBegrunnelseBesvart(sivilstatus);
+  }
+};
+
+const erNødvendigeDatofelterUtfylt = (søknad: ISøknad) => {
+  const { sivilstatus, person, bosituasjon } = søknad;
   // Sjekk ut ifra sivilstatus og steg om deg
 
-  // Sjekk bosituasjon
-  // Sjekk steg 5 aktivitet
-  // steg 6 mer situasjon
-  // SJEKK OM OS, Barnetilsyn ell skolepenger
+  const erSivilstatusDatoerRiktigUtfylt =
+    person?.søker?.sivilstand &&
+    validerSivilstatusDatoer(person?.søker?.sivilstand, sivilstatus);
 
-  return false;
+  // Sjekk bosituasjon
+  const erBosituasjonDatoerRiktigUtfylt = erBosituasjonUtfylt(bosituasjon);
+
+  // Sjekk steg 5 aktivitet
+
+  // steg 6 mer situasjon
+  const erDinSituasjonDatoerRiktigUtfylt =
+    søknad.merOmDinSituasjon.søknadsdato?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      søknad.merOmDinSituasjon.søknadsdato?.verdi,
+      DatoBegrensning.AlleDatoer
+    );
+
+  return (
+    erSivilstatusDatoerRiktigUtfylt &&
+    erBosituasjonDatoerRiktigUtfylt &&
+    erDinSituasjonDatoerRiktigUtfylt
+  );
 };
+
+// LAG EN FUNKSJON SOM RETURNERER EN ARRAY MED DATOFELTENE SOM MÅ FIKSES OPP I
+// OG HVOR MAN FINNER DE FOR P SENDE DE INN I <FEILOPPSUMMERING/>
 
 const InnsendingFeilet: FC<Props> = ({
   søknadForOvergangsstønad,
   innsendingState,
 }) => {
-  // Hvis datofeltene er feil, gi feiloppsummering og hva som må fikses opp i.
+  const intl = useIntl();
+
+  // Hvis datofeltene er feil, gi feiloppsummering med detaljer om datofeltene som må fikses opp i og hvor man kan finne de.
   return !erNødvendigeDatofelterUtfylt(søknadForOvergangsstønad) ? (
     <KomponentGruppe>
       <AlertStripe type={'advarsel'} form={'inline'}>
-        <Normaltekst>BEDRE FEILMELDING</Normaltekst>
+        <Normaltekst>
+          <LocaleTekst tekst={'feil.alert'} />
+        </Normaltekst>
       </AlertStripe>
+      <Feiloppsummering
+        tittel={intl.formatMessage({ id: 'feil.alert.oppsummering' })}
+        feil={[]}
+      />
     </KomponentGruppe>
   ) : (
     <KomponentGruppe>

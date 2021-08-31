@@ -31,7 +31,7 @@ const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato, sivilstatus }) =>
           <LocaleTekst tekst={'sivilstatus.alert-info.søktSeparasjon'} />
         </AlertStripeDokumentasjon>
       </FeltGruppe>
-      {datoSøktSeparasjon && (
+      {datoSøktSeparasjon?.verdi !== '' && (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useIntl } from 'react-intl';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useLocation } from 'react-router-dom';
-import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
+import { erBosituasjonUtfylt } from '../../../helpers/steg/bosituasjon';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BosituasjonSpørsmål from '../../../søknad/steg/2-bosituasjon/BosituasjonSpørsmål';
 import Side, { ESide } from '../../../components/side/Side';
@@ -45,7 +45,7 @@ const Bosituasjon: FC = () => {
       stønadstype={Stønadstype.skolepenger}
       stegtittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={skalViseKnapper}
-      erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
+      erSpørsmålBesvart={erBosituasjonUtfylt(bosituasjon)}
       routesStønad={RoutesSkolepenger}
       mellomlagreStønad={mellomlagreSkolepenger}
       tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}

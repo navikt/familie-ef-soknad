@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useLocation } from 'react-router-dom';
-import { erFerdigUtfylt } from '../../../helpers/steg/bosituasjon';
+import { erBosituasjonUtfylt } from '../../../helpers/steg/bosituasjon';
 import BosituasjonSpørsmål from '../../../søknad/steg/2-bosituasjon/BosituasjonSpørsmål';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
@@ -44,7 +44,7 @@ const Bosituasjon: FC = () => {
       stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.bosituasjon' })}
       skalViseKnapper={skalViseKnapper}
-      erSpørsmålBesvart={erFerdigUtfylt(bosituasjon)}
+      erSpørsmålBesvart={erBosituasjonUtfylt(bosituasjon)}
       routesStønad={RoutesOvergangsstonad}
       mellomlagreStønad={mellomlagreOvergangsstønad}
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}

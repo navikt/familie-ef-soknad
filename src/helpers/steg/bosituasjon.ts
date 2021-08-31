@@ -6,7 +6,7 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 
-export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
+export const erBosituasjonUtfylt = (bosituasjon: IBosituasjon) => {
   const {
     delerBoligMedAndreVoksne,
     samboerDetaljer,
@@ -22,14 +22,15 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     skalGifteSegEllerBliSamboer.svarid === ESvar.JA;
 
   const harSattFødselsdato = (fødselsdato?: string): boolean =>
-    fødselsdato &&
-    erDatoGyldigOgInnaforBegrensninger(
-      fødselsdato,
-      DatoBegrensning.TidligereDatoer
-    )
-      ? true
-      : false;
-  const harSattIdent = (ident?: string): boolean => (ident ? true : false);
+    !!(
+      fødselsdato &&
+      erDatoGyldigOgInnaforBegrensninger(
+        fødselsdato,
+        DatoBegrensning.TidligereDatoer
+      )
+    );
+  const harSattIdent = (ident?: string): boolean => !!ident;
+
   const harFerdigUtfyltOmSamboer = (
     samboerDetaljer?: IPersonDetaljer,
     erIdentValgfritt?: boolean
@@ -39,6 +40,7 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
       ? true
       : harSattIdent(samboerDetaljer?.ident?.verdi) ||
         harSattFødselsdato(samboerDetaljer?.fødselsdato?.verdi));
+
   const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift =
     skalGifteSegEllerBliSamboer?.svarid === ESvar.NEI ||
     (harPlanerOmÅBliSamboerEllerSkalGifteSeg &&
@@ -48,14 +50,13 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
         DatoBegrensning.FremtidigeDatoer
       ) &&
       harFerdigUtfyltOmSamboer(vordendeSamboerEktefelle, false));
-  const harSattDatoFlyttetFraHverandra: boolean =
+  const harSattDatoFlyttetFraHverandra: boolean = !!(
     datoFlyttetFraHverandre?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
       DatoBegrensning.TidligereDatoer
     )
-      ? true
-      : false;
+  );
 
   switch (delerBoligMedAndreVoksne.svarid) {
     case ESøkerDelerBolig.borAleneMedBarnEllerGravid:

@@ -36,11 +36,15 @@ import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
-import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
+import {
+  useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov,
+  useMount,
+} from '../../../utils/hooks';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
-import { useMount } from '../../../utils/hooks';
+import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { DatoBegrensning } from '../../../components/dato/Datovelger';
 
 const StyledHjelpetekst = styled.div`
   .typo-normal {
@@ -173,8 +177,12 @@ const MerOmDinSituasjon: React.FC = () => {
     : harValgtMinstEttAlternativ &&
       hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad);
 
-  const erAlleSpørsmålBesvart =
-    søknadsdato?.verdi !== undefined ||
+  const erAlleSituasjonSpørsmålBesvart =
+    (søknadsdato?.verdi !== undefined &&
+      erDatoGyldigOgInnaforBegrensninger(
+        søknadsdato?.verdi,
+        DatoBegrensning.AlleDatoer
+      )) ||
     søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
 
   return (
@@ -182,7 +190,7 @@ const MerOmDinSituasjon: React.FC = () => {
       stønadstype={Stønadstype.overgangsstønad}
       stegtittel={intl.formatMessage({ id: 'stegtittel.dinSituasjon' })}
       skalViseKnapper={skalViseKnapper}
-      erSpørsmålBesvart={erAlleSpørsmålBesvart}
+      erSpørsmålBesvart={erAlleSituasjonSpørsmålBesvart}
       mellomlagreStønad={mellomlagreOvergangsstønad}
       routesStønad={RoutesOvergangsstonad}
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
