@@ -1,5 +1,5 @@
-// eslint-disable-next-line;
 // sist redigert 31.08.2021 14:11
+// eslint-disable-next-line
 export default {
   'språk.bokmål': 'Bokmål',
   'språk.engelsk': 'English',
