@@ -75,14 +75,13 @@ const BosituasjonSpørsmål: FC<Props> = ({
     delerBoligMedAndreVoksne.svarid ===
     ESøkerDelerBolig.harEkteskapsliknendeForhold;
 
-  const harSattDatoFlyttetFraHverandre: boolean =
+  const harSattDatoFlyttetFraHverandre: boolean = !!(
     datoFlyttetFraHverandre?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
       DatoBegrensning.TidligereDatoer
     )
-      ? true
-      : false;
+  );
   const tidligereSamboerFortsattRegistrertPåAdresse =
     delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse &&
