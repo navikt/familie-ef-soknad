@@ -2,7 +2,7 @@ apiVersion: 'nais.io/v1alpha1'
 kind: 'Application'
 metadata:
   name: familie-ef-soknad
-  namespace: default
+  namespace: teamfamilie
   labels:
     team: teamfamilie
 spec:
@@ -24,12 +24,21 @@ spec:
     path: /metrics
   ingresses:
     - https://www.nav.no/familie/alene-med-barn/soknad
-  webproxy: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: loginservice.nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
     - name: ENV
       value: prod
+    - name: APPRES_CMS_URL
+      value: https://appres.nav.no
+    - name: LOGINSERVICE_URL
+      value: https://loginservice.nav.no/login
+    - name: UNLEASH_API_URL
+      value: https://unleashproxy.nais.oera.no/api/
   resources:
     limits:
       cpu: 2000m
