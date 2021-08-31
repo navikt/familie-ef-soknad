@@ -1,5 +1,4 @@
 // sist redigert 31.08.2021 14:11
-// import/no-anonymous-default-export
 // eslint-disable-next-line
 export default {
   'språk.bokmål': 'Bokmål',
@@ -117,6 +116,7 @@ export default {
   'sivilstatus.kode.PARTNER': 'Partner',
   'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
   'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
+  'sivilstatus.kode.REGISTRERT_PARTNER': 'Registrert partner',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
   'sivilstatus.kode.ANNET':
     'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
