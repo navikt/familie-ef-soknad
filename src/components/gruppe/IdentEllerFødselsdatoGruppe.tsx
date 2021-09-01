@@ -20,7 +20,6 @@ interface Props {
   settFødselsdato: (date: string) => void;
   settIdent: (ident: React.ChangeEvent<HTMLInputElement>) => void;
   fetSkrift?: boolean;
-  optional?: boolean;
 }
 
 const IdentEllerFødselsdatoGruppe: FC<Props> = ({
@@ -36,7 +35,6 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   settIdent,
   settFødselsdato,
   fetSkrift,
-  optional
 }) => {
   const intl = useIntl();
 
@@ -79,7 +77,6 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settFødselsdato(e)}
             fetSkrift={fetSkrift}
-            optional={optional}
           />
         </KomponentGruppe>
       )}
