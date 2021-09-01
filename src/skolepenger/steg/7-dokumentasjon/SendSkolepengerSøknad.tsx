@@ -30,10 +30,6 @@ import {
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link } from 'react-router-dom';
-import {
-  ERouteOvergangsstønad,
-  RoutesOvergangsstonad,
-} from '../../../overgangsstønad/routing/routesOvergangsstonad';
 
 interface Innsending {
   status: string;
