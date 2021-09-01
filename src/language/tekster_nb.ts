@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 // sist redigert 31.08.2021 14:11
-=======
->>>>>>> parent of cf84c3ff... Utdypende feilmelding og tving bruker til å fikse opp i fødselsdato f… (#573)
 // eslint-disable-next-line
 export default {
   'språk.bokmål': 'Bokmål',
