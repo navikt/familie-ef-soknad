@@ -215,7 +215,6 @@ const OmAndreForelder: React.FC<Props> = ({
             settFødselsdato={settDato}
             settChecked={settChecked}
             settIdent={oppdaterIdent}
-            optional={true}
           />
         </>
       )}
