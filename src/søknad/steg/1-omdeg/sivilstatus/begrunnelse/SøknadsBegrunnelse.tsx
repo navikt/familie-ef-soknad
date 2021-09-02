@@ -238,7 +238,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             />
           </FeltGruppe>
 
-          {harFyltUtSamboerDetaljer(samboerInfo, true) && (
+          {harFyltUtSamboerDetaljer(samboerInfo) && (
             <NårFlyttetDereFraHverandre
               settDato={settDato}
               datoFlyttetFraHverandre={datoFlyttetFraHverandre}

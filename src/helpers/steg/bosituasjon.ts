@@ -75,7 +75,7 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
           DatoBegrensning.TidligereDatoer
         ) &&
         samboerDetaljer &&
-        harFyltUtSamboerDetaljer(samboerDetaljer, false)
+        harFyltUtSamboerDetaljer(samboerDetaljer)
       );
 
     case ESøkerDelerBolig.delerBoligMedAndreVoksne:

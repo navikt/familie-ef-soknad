@@ -3,8 +3,7 @@ import { erDatoGyldigOgInnaforBegrensninger } from '../components/dato/utils';
 import { DatoBegrensning } from '../components/dato/Datovelger';
 
 export const harFyltUtSamboerDetaljer = (
-  samboerDetaljer: IPersonDetaljer,
-  valgfriIdentEllerFødselsdato: boolean
+  samboerDetaljer: IPersonDetaljer
 ): boolean => {
   const harFyltUtFødselsdatoEllerIdent = samboerDetaljer.kjennerIkkeIdent
     ? samboerDetaljer.fødselsdato?.verdi !== undefined &&
@@ -15,16 +14,11 @@ export const harFyltUtSamboerDetaljer = (
     : samboerDetaljer?.ident?.verdi !== '' &&
       samboerDetaljer?.ident?.verdi !== undefined;
 
-  return valgfriIdentEllerFødselsdato
-    ? samboerDetaljer?.navn?.verdi !== '' &&
-        samboerDetaljer?.navn?.verdi !== undefined &&
-        erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-          samboerDetaljer.fødselsdato?.verdi,
-          DatoBegrensning.TidligereDatoer
-        )
-    : harFyltUtFødselsdatoEllerIdent &&
-        samboerDetaljer?.navn?.verdi !== '' &&
-        samboerDetaljer?.navn?.verdi !== undefined;
+  return (
+    harFyltUtFødselsdatoEllerIdent &&
+    samboerDetaljer?.navn?.verdi !== '' &&
+    samboerDetaljer?.navn?.verdi !== undefined
+  );
 };
 
 export const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (
