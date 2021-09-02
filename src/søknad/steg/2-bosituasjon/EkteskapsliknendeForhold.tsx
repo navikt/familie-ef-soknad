@@ -41,7 +41,7 @@ const EkteskapsliknendeForhold: FC<Props> = ({
         bosituasjon={bosituasjon}
         samboerDetaljerType={EBosituasjon.samboerDetaljer}
       />
-      {samboerDetaljer && harFyltUtSamboerDetaljer(samboerDetaljer) && (
+      {samboerDetaljer && harFyltUtSamboerDetaljer(samboerDetaljer, false) && (
         <FeltGruppe>
           <Datovelger
             valgtDato={

@@ -40,7 +40,7 @@ const OmTidligereSamboer: FC<Props> = ({ settBosituasjon, bosituasjon }) => {
         samboerDetaljerType={EBosituasjon.samboerDetaljer}
       />
       {bosituasjon.samboerDetaljer &&
-        harFyltUtSamboerDetaljer(bosituasjon.samboerDetaljer) && (
+        harFyltUtSamboerDetaljer(bosituasjon.samboerDetaljer, true) && (
           <FeltGruppe>
             <Datovelger
               aria-live="polite"
