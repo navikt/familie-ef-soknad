@@ -41,7 +41,7 @@
     "constate": "^3.2.0",
     "core-js": "^3.8.3",
     "craco-less": "^1.20.0",
-    "date-fns": "^2.16.1",
+    "date-fns": "^2.23.0",
     "dayjs": "^1.10.6",
     "eslint-plugin-flowtype": "^5.7.2",
     "exenv": "^1.2.2",
