@@ -23,6 +23,7 @@ import Show from '../../../utils/showIf';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
+import { erGyldigDato } from '../../../utils/dato';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -103,7 +104,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   const harFylltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
       ? harSøktSeparasjon.verdi
-        ? datoSøktSeparasjon && datoFlyttetFraHverandre
+        ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
+          erGyldigDato(datoFlyttetFraHverandre?.verdi)
         : true
       : false;
 
