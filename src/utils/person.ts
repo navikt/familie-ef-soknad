@@ -31,8 +31,5 @@ export const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (
   dato: string | undefined,
   begrensning: DatoBegrensning
 ) => {
-  return (
-    (dato && erDatoGyldigOgInnaforBegrensninger(dato, begrensning)) ||
-    dato === ''
-  );
+  return dato ? erDatoGyldigOgInnaforBegrensninger(dato, begrensning) : true;
 };
