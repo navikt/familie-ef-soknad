@@ -16,6 +16,7 @@ import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
 import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
+import { formatIsoDate } from '../../../../utils/dato';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -77,7 +78,7 @@ const Utdanning: React.FC<Props> = ({
           label: hentTekst('utdanning.datovelger.studieperiode', intl),
           [nøkkel]: {
             label: hentTekst('periode.' + nøkkel, intl),
-            verdi: dato,
+            verdi: dato && formatIsoDate(dato),
           },
         },
       });
