@@ -51,7 +51,7 @@
     "lodash": "^4.17.21",
     "lodash.throttle": "^4.1.1",
     "mustache-express": "^1.3.2",
-    "nav-datovelger": "^11.1.0",
+    "nav-datovelger": "^12.1.1",
     "nav-faker": "^3.2.4",
     "nav-frontend-alertstriper": "^4.0.1",
     "nav-frontend-alertstriper-style": "^3.0.1",
