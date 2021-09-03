@@ -61,7 +61,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
   disabled,
   fetSkrift,
 }) => {
-  const inputRef = useRef<ReactDatePicker>(null);
+  const inputRef = useRef<ReactDatePicker<any>>(null);
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
   const begrensninger = hentDatobegrensninger(datobegrensning);
