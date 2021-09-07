@@ -26,12 +26,12 @@ const StyledListe = styled.ul`
 
   &:hover {
     outline: none;
-    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
+    box-shadow: 0 0 0 3px ${navFarger.navOransjeLighten40};
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
+    box-shadow: 0 0 0 3px ${navFarger.navOransjeLighten40};
   }
 
   ul {
@@ -66,12 +66,12 @@ const StyledMenuItem = styled(MenuItem)`
   &:hover {
     outline: none;
     cursor: pointer;
-    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
+    box-shadow: 0 0 0 3px ${navFarger.navOransjeLighten40};
   }
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px ${navFarger.orangeFocus};
+    box-shadow: 0 0 0 3px ${navFarger.navOransjeLighten40};
   }
 `;
 
