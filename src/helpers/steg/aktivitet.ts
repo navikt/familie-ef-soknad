@@ -8,13 +8,14 @@ export const filtrerAktivitetSvaralternativer = (
 ): ISpørsmål => {
   const AktivitetSpørsmål: ISpørsmål = aktivitetSpørsmål;
   const harSøkerBarnUnderEttÅr: boolean = person.barn.some(
-    (barn) => !barn.født || (barn.alder && parseInt(barn.alder.verdi)) < 1
+    (barn) => !barn.født || (barn.alder && parseInt(barn.alder.verdi) < 1)
   );
 
   if (!harSøkerBarnUnderEttÅr) {
-    const filtrerteSvaralternativer: ISvar[] = AktivitetSpørsmål.svaralternativer.filter(
-      (svar) => svar.id !== EAktivitet.erHjemmeMedBarnUnderEttÅr
-    );
+    const filtrerteSvaralternativer: ISvar[] =
+      AktivitetSpørsmål.svaralternativer.filter(
+        (svar) => svar.id !== EAktivitet.erHjemmeMedBarnUnderEttÅr
+      );
     return {
       ...AktivitetSpørsmål,
       svaralternativer: filtrerteSvaralternativer,
