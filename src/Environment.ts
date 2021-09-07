@@ -18,15 +18,14 @@ interface IModellversjon {
 const Environment = (): EnvironmentProps => {
   const modellVersjon = { overgangsstønad: 7, barnetilsyn: 2, skolepenger: 2 };
 
-  if (window.location.hostname.indexOf('www-q0') > -1) {
+  if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice-q.nav.no/login?',
+      loginService: 'https://loginservice.dev.nav.no/login?',
       dokumentUrl:
-        'https://familie-dokument.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl:
-        'https://familie-dokument.dev.nav.no/familie/dokument/api/soknad/',
+        'https://familie.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
+      mellomlagerUrl: 'https://familie.dev.nav.no/familie/dokument/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
