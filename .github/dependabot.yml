@@ -10,6 +10,4 @@ updates:
   open-pull-requests-limit: 30
   versioning-strategy: increase
   ignore:
-    # ignore all GitHub linguist patch updates
-    - dependency-name: "github-linguist"
-      update-types: [ "version-update:semver-patch" ]
+    - update-types: [ "version-update:semver-patch" ]
