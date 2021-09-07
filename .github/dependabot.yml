@@ -10,5 +10,4 @@ updates:
   open-pull-requests-limit: 30
   versioning-strategy: increase
   ignore:
-    - dependency-name: "*"
-      update-types: [ "version-update:semver-patch" ]
+    - update-types: [ "version-update:semver-patch" ]
