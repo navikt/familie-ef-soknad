@@ -48,7 +48,7 @@ const Oppsummering: React.FC<Props> = ({ history }) => {
     if (action === 'POP') {
       logBrowserBackOppsummering(ESkjemanavn.Overgangsstønad, skjemaId);
     }
-  });
+  }, []);
 
   return (
     <>
