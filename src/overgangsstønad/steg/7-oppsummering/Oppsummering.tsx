@@ -17,19 +17,39 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import {
+  logSidevisningOvergangsstonad,
+  logBrowserBackOppsummering,
+} from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
+import { useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
-const Oppsummering: React.FC = () => {
+interface Props {
+  history: RouteComponentProps['history'];
+}
+
+const Oppsummering: React.FC<Props> = ({ history }) => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
   const barnMedsærligeTilsynsbehov = søknad.person.barn
     .filter((barn: IBarn) => barn.særligeTilsynsbehov)
     .map((barn: IBarn) => barn.særligeTilsynsbehov);
+
+  useEffect(() => {
+    const { action } = history;
+
+    if (action === 'POP') {
+      logBrowserBackOppsummering(ESkjemanavn.Overgangsstønad, skjemaId);
+    }
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <>
