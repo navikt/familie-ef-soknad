@@ -24,10 +24,11 @@ import {
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
 interface Props {
-  history: any;
+  history: RouteComponentProps['history'];
 }
 
 const Oppsummering: React.FC<Props> = ({ history }) => {
