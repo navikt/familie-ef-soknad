@@ -140,3 +140,15 @@ export const logInnsendingFeilet = (
     ...props,
   });
 };
+
+export const logBrowserBackOppsummering = (
+  skjemanavn: string,
+  skjemaId: number,
+  ...props: any
+) => {
+  logEvent('browser_back_oppsummering', {
+    skjemanavn,
+    skjemaId,
+    ...props,
+  });
+};
