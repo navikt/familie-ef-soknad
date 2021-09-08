@@ -17,10 +17,14 @@ import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
+import {
+  logSidevisningOvergangsstonad,
+  logBrowserBackOppsummering,
+} from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
 interface Props {
   history: any;
@@ -29,7 +33,7 @@ interface Props {
 const Oppsummering: React.FC<Props> = ({ history }) => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
-  const [gikkTilbake, settGikkTilbake] = useState(false);
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
@@ -37,13 +41,11 @@ const Oppsummering: React.FC<Props> = ({ history }) => {
     .filter((barn: IBarn) => barn.særligeTilsynsbehov)
     .map((barn: IBarn) => barn.særligeTilsynsbehov);
 
-  console.log('h', history);
-
   useEffect(() => {
     const { action } = history;
 
     if (action === 'POP') {
-      settGikkTilbake(true);
+      logBrowserBackOppsummering(ESkjemanavn.Overgangsstønad, skjemaId);
     }
   });
 
@@ -57,12 +59,6 @@ const Oppsummering: React.FC<Props> = ({ history }) => {
         mellomlagreStønad={mellomlagreOvergangsstønad}
         routesStønad={RoutesOvergangsstonad}
       >
-        {gikkTilbake && (
-          <h1>
-            Du brukte tilbakeknappen i nettleseren for å nå denne siden.
-            blablabla
-          </h1>
-        )}
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
