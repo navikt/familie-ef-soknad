@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
