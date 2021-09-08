@@ -8,6 +8,7 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import NårFlyttetDereFraHverandre from './begrunnelse/NårFlyttetDereFraHverandre';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { erGyldigDato } from '../../../../utils/dato';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -31,7 +32,7 @@ const SøkerHarSøktSeparasjon: React.FC<Props> = ({ settDato, sivilstatus }) =>
           <LocaleTekst tekst={'sivilstatus.alert-info.søktSeparasjon'} />
         </AlertStripeDokumentasjon>
       </FeltGruppe>
-      {datoSøktSeparasjon && (
+      {erGyldigDato(datoSøktSeparasjon?.verdi) && (
         <NårFlyttetDereFraHverandre
           settDato={settDato}
           datoFlyttetFraHverandre={datoFlyttetFraHverandre}
