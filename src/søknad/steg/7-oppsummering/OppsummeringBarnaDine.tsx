@@ -34,8 +34,11 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     let nyttBarn = { ...barn };
 
     if (barn && !barn?.født?.verdi) {
+      // @ts-ignore
       delete nyttBarn?.ident;
+      // @ts-ignore
       delete nyttBarn.navn;
+      // @ts-ignore
       delete nyttBarn.alder;
 
       nyttBarn.fødselsdato = {

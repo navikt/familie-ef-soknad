@@ -17,7 +17,11 @@ import {
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
 import { IBarn } from '../../../models/steg/barn';
-import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
+import {
+  hentForrigeRoute,
+  hentNesteRoute,
+  hentPath,
+} from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import {
@@ -25,12 +29,21 @@ import {
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import { Link } from 'react-router-dom';
+import {
+  ERouteSkolepenger,
+  RoutesSkolepenger,
+} from '../../../skolepenger/routing/routes';
 
 interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
 }
+
+const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
+  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
+};
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useBarnetilsynSøknad();
@@ -101,6 +114,22 @@ const SendSøknadKnapper: FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+        <KomponentGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
+            <Link
+              to={{
+                pathname: hentPath(RoutesSkolepenger, ERouteSkolepenger.OmDeg),
+                state: { kommerFraOppsummering: true },
+              }}
+            >
+              <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
+            </Link>
+            <LocaleTekst tekst="dokumentasjon.alert.manglende" />
+          </AlertStripe>
+        </KomponentGruppe>
+      )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -111,14 +140,16 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
 
-          <KnappBase
-            type={'hoved'}
-            onClick={() => !innsendingState.venter && sendSøknad(søknad)}
-            className={'neste'}
-            spinner={innsendingState.venter}
-          >
-            <LocaleTekst tekst={'knapp.sendSøknad'} />
-          </KnappBase>
+          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+            <KnappBase
+              type={'hoved'}
+              onClick={() => !innsendingState.venter && sendSøknad(søknad)}
+              className={'neste'}
+              spinner={innsendingState.venter}
+            >
+              <LocaleTekst tekst={'knapp.sendSøknad'} />
+            </KnappBase>
+          )}
           <KnappBase
             className={'avbryt'}
             type={'flat'}

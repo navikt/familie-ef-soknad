@@ -9,13 +9,17 @@ import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
-import { RoutesSkolepenger } from '../../routing/routes';
+import { ERouteSkolepenger, RoutesSkolepenger } from '../../routing/routes';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
   sendInnSkolepengerSøknad,
 } from '../../../innsending/api';
-import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
+import {
+  hentForrigeRoute,
+  hentNesteRoute,
+  hentPath,
+} from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
@@ -25,12 +29,17 @@ import {
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import { Link } from 'react-router-dom';
 
 interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
 }
+
+const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
+  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
+};
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSkolepengerSøknad();
@@ -98,6 +107,22 @@ const SendSøknadKnapper: FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+        <KomponentGruppe>
+          <AlertStripe type={'advarsel'} form={'inline'}>
+            <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
+            <Link
+              to={{
+                pathname: hentPath(RoutesSkolepenger, ERouteSkolepenger.OmDeg),
+                state: { kommerFraOppsummering: true },
+              }}
+            >
+              <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
+            </Link>
+            <LocaleTekst tekst="dokumentasjon.alert.manglende" />
+          </AlertStripe>
+        </KomponentGruppe>
+      )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -108,14 +133,16 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
 
-          <KnappBase
-            type={'hoved'}
-            onClick={() => !innsendingState.venter && sendSøknad(søknad)}
-            className={'neste'}
-            spinner={innsendingState.venter}
-          >
-            <LocaleTekst tekst={'knapp.sendSøknad'} />
-          </KnappBase>
+          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+            <KnappBase
+              type={'hoved'}
+              onClick={() => !innsendingState.venter && sendSøknad(søknad)}
+              className={'neste'}
+              spinner={innsendingState.venter}
+            >
+              <LocaleTekst tekst={'knapp.sendSøknad'} />
+            </KnappBase>
+          )}
           <KnappBase
             className={'avbryt'}
             type={'flat'}

@@ -2,7 +2,7 @@ apiVersion: 'nais.io/v1alpha1'
 kind: 'Application'
 metadata:
   name: familie-ef-soknad
-  namespace: default
+  namespace: teamfamilie
   labels:
     team: teamfamilie
 spec:
@@ -24,7 +24,10 @@ spec:
     path: /metrics
   ingresses:
     - https://www.nav.no/familie/alene-med-barn/soknad
-  webproxy: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: loginservice.nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
