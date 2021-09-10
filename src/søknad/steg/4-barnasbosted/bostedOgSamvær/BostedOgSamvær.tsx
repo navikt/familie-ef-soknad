@@ -97,7 +97,7 @@ const BostedOgSamvær: React.FC<Props> = ({
         barn={barn}
       />
 
-      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI && (
+      {forelder.avtaleOmDeltBosted?.verdi !== undefined && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn
             key={harAnnenForelderSamværMedBarnConfig.søknadid}
@@ -112,7 +112,7 @@ const BostedOgSamvær: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      {forelder.avtaleOmDeltBosted?.svarid === ESvar.NEI &&
+      {forelder.avtaleOmDeltBosted?.verdi !== undefined &&
         harForelderSamværMedBarn(
           forelder.harAnnenForelderSamværMedBarn?.svarid
         ) && (
