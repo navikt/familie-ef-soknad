@@ -43,7 +43,8 @@ const OppsummeringOmDeg: FC<Props> = ({
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
 
-  const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
+  const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
+  const tidligereSamboer = VisLabelOgSvar(sivilstatus.tidligereSamboerDetaljer);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
   const perioderUtland = visListeAvLabelOgSvar(
@@ -82,7 +83,11 @@ const OppsummeringOmDeg: FC<Props> = ({
             </Element>
             <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
           </div>
-          {sivilstatusSpørsmål}
+          <div className="deloverskrift">
+            <Element>Om tidligere samboer</Element>
+          </div>
+          {tidligereSamboer}
+          {datoFlyttetFraHverandre}
           {medlemskapSpørsmål}
         </StyledOppsummering>
 

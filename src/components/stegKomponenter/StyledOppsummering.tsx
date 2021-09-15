@@ -1,12 +1,17 @@
 import styled from 'styled-components/macro';
 
 export const StyledOppsummering = styled.div`
+  .deloverskrift {
+    margin-top: 2rem;
+  }
+
   .spørsmål-og-svar {
     margin-top: 2rem;
     .typo-normal {
       margin-top: 0.5rem;
     }
   }
+
   .person-info {
     margin-bottom: 1rem;
   }
