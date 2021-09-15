@@ -26,9 +26,8 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder);
 
-  const kanIkkeOppgiAnnenForelderRuteUtfylt = utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
-    forelder
-  );
+  const kanIkkeOppgiAnnenForelderRuteUtfylt =
+    utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder);
 
   return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
 };
@@ -151,7 +150,6 @@ export const visSpørsmålHvisIkkeSammeForelder = (forelder: IForelder) => {
     forelder.hvordanPraktiseresSamværet?.verdi !== ''
   )
     return true;
-  else if (forelder.avtaleOmDeltBosted?.svarid === ESvar.JA) return true;
   else if (forelder.harDereSkriftligSamværsavtale?.svarid)
     return !måBeskriveSamværet(
       forelder.harDereSkriftligSamværsavtale.svarid,

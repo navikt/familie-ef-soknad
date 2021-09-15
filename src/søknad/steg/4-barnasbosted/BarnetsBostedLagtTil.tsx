@@ -32,7 +32,12 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
     barn.navn && barn.navn.verdi !== ''
       ? barn.navn.verdi
       : hentTekst('barnet.storForBokstav', intl);
-  if (!forelder) return null;
+
+  if (
+    !forelder ||
+    (!barn.forelder?.borINorge && !barn.forelder?.kanIkkeOppgiAnnenForelderFar)
+  )
+    return null;
 
   const endreInformasjon = () => {
     settAktivIndex(index);
