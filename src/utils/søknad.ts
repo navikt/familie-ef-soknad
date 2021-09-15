@@ -173,7 +173,7 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
       verdi: medforelder.verdi?.navn,
     },
     ident: {
-      label: hentTekst('barnasbosted.medforelder.navn', intl),
+      label: hentTekst('person.ident.visning', intl),
       verdi: medforelder.verdi?.ident,
     },
     alder: {
