@@ -56,11 +56,6 @@ const OmAndreForelder: React.FC<Props> = ({
 
   const hvisGyldigIdentSettIdent = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig &&
-      settForelder({
-        ...forelder,
-        ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
-      });
   };
 
   const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {

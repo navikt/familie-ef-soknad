@@ -86,14 +86,6 @@ const OmSamboerenDin: FC<Props> = ({
 
   const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig &&
-      settSamboerInfo({
-        ...samboerInfo,
-        [EPersonDetaljer.ident]: {
-          label: hentTekst('person.ident', intl),
-          verdi: ident,
-        },
-      });
   };
 
   const oppdaterIdent = (e: React.FormEvent<HTMLInputElement>) => {
