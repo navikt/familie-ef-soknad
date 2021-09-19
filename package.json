@@ -43,7 +43,7 @@
     "craco-less": "^1.20.0",
     "date-fns": "^2.23.0",
     "dayjs": "^1.10.6",
-    "eslint-plugin-flowtype": "^5.9.2",
+    "eslint-plugin-flowtype": "^6.0.1",
     "exenv": "^1.2.2",
     "http-proxy-middleware": "^2.0.1",
     "install": "^0.13.0",
