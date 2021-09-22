@@ -26,10 +26,8 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const [
-    andreForelderRadioVerdi,
-    settAndreForelderRadioVerdi,
-  ] = useState<string>('');
+  const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] =
+    useState<string>('');
 
   const leggTilSammeForelder = (
     e: SyntheticEvent<EventTarget, Event>,
@@ -83,7 +81,11 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     <KomponentGruppe>
       <div className="andre-forelder-valg">
         {førsteBarnTilHverForelder.map((b) => {
-          if (!b) return null;
+          if (
+            !b.forelder?.borINorge &&
+            !b.forelder?.kanIkkeOppgiAnnenForelderFar
+          )
+            return null;
 
           return (
             <RadioPanel
