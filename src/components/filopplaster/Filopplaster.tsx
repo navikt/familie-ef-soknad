@@ -30,6 +30,10 @@ interface Props {
   maxFilstørrelse?: number;
 }
 
+interface OpplastetVedleggResponse {
+  data: OpplastetVedlegg;
+}
+
 interface OpplastetVedlegg {
   dokumentId: string;
   filnavn: string;
@@ -87,13 +91,17 @@ const Filopplaster: React.FC<Props> = ({
         requestData.append('file', fil);
 
         axios
-          .post<OpplastetVedlegg>(`${Environment().dokumentUrl}`, requestData, {
-            withCredentials: true,
-            headers: {
-              'content-type': 'multipart/form-data',
-              accept: 'application/json',
-            },
-          })
+          .post<FormData, OpplastetVedleggResponse>(
+            `${Environment().dokumentUrl}`,
+            requestData,
+            {
+              withCredentials: true,
+              headers: {
+                'content-type': 'multipart/form-data',
+                accept: 'application/json',
+              },
+            }
+          )
           .then((response: { data: OpplastetVedlegg }) => {
             const { data } = response;
             nyeVedlegg.push({
