@@ -28,7 +28,7 @@ Hvis testcafe ikke er installert, kjør en `npm install` ev. installer testcafe 
 
 ## Tekstinnhold
 I appen har vi tekstinnhold på norsk bokmål, engelsk og nynorsk. 
-Ønsker du å legge til eller redigere på en tekst, skal dette gjøres i exceldokumentet "EF Tekstinnhold App Søknadsdialog" som du finner på Teams under Team Familie > Enslige forsørgere > Filer > Søknadsdialog > "EF Tekstinnhold App Søknadsdialog". 
+Ønsker du å legge til eller redigere på en tekst, skal dette gjøres i exceldokumentet "EF Tekstinnhold App Søknadsdialog" som du finner på Teams under Team Familie > Enslig forsørger > Filer > Søknadsdialog > "EF Tekstinnhold App Søknadsdialog". 
 1. Åpne "EF Tekstinnhold App Søknadsdialog" i nettleseren
 2. Trykk på "Automate" i fanen, og velg "EF Script - Konverter tabell til json format".
 
