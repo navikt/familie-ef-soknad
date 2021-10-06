@@ -11,7 +11,7 @@ import {
 } from '../../../models/steg/omDeg/medlemskap';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import { ISøker } from '../../../models/søknad/person';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Undertittel, Ingress } from 'nav-frontend-typografi';
 import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -43,7 +43,8 @@ const OppsummeringOmDeg: FC<Props> = ({
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
 
-  const sivilstatusSpørsmål = VisLabelOgSvar(sivilstatus);
+  const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
+  const tidligereSamboer = VisLabelOgSvar(sivilstatus.tidligereSamboerDetaljer);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
   const perioderUtland = visListeAvLabelOgSvar(
@@ -82,7 +83,15 @@ const OppsummeringOmDeg: FC<Props> = ({
             </Element>
             <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
           </div>
-          {sivilstatusSpørsmål}
+          {tidligereSamboer && (
+            <div className="spørsmål-og-svar">
+              <Ingress>
+                {hentTekst('sivilstatus.tittel.samlivsbruddAndre', intl)}
+              </Ingress>
+              {tidligereSamboer}
+            </div>
+          )}
+          {datoFlyttetFraHverandre}
           {medlemskapSpørsmål}
         </StyledOppsummering>
 
