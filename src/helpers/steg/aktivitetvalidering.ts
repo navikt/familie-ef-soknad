@@ -78,18 +78,20 @@ export const erUnderUtdanningFerdigUtfylt = (
 };
 
 export const erDetaljertUtdanningFerdigUtfylt = (
-  detljertUtdanning: IDetaljertUtdanning
+  detaljertUtdanning: IDetaljertUtdanning
 ): boolean => {
   return (
-    harValgtSvar(detljertUtdanning.semesteravgift?.verdi) ||
-    harValgtSvar(detljertUtdanning.studieavgift?.verdi) ||
-    harValgtSvar(detljertUtdanning.eksamensgebyr?.verdi)
+    harValgtSvar(detaljertUtdanning.semesteravgift?.verdi) ||
+    harValgtSvar(detaljertUtdanning.studieavgift?.verdi) ||
+    harValgtSvar(detaljertUtdanning.eksamensgebyr?.verdi)
   );
 };
 
 export const erAllUtdanningFerdigUtfylt = (
   underUtdanning: IUnderUtdanning | IDetaljertUtdanning
 ) => {
+  if (!erDetaljertUtdanningFerdigUtfylt(underUtdanning)) return false;
+
   if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
     return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
   } else {
@@ -162,7 +164,6 @@ export const erAktivitetSeksjonFerdigUtfylt = (
           DatoBegrensning.FremtidigeDatoer
         )
       );
-
 
     case EAktivitet.erHverkenIArbeidUtdanningEllerArbeidssøker:
       return true;
