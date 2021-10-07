@@ -13,6 +13,7 @@ import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
+import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -31,9 +32,8 @@ const UtdanningSituasjon: React.FC = () => {
     });
   };
 
-  const erSisteSpørsmålBesvartOgMinstEttAlternativValgt = erAllUtdanningFerdigUtfylt(
-    søknad.utdanning
-  );
+  const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
+    erAllUtdanningFerdigUtfylt(søknad.utdanning, ESkjemanavn.Skolepenger);
 
   return (
     <Side
