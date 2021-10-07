@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
-import { erAllUtdanningFerdigUtfylt } from '../../../helpers/steg/aktivitetvalidering';
+import { erAllUtdanningFerdigUtfyltForSkolepenger } from '../../../helpers/steg/aktivitetvalidering';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
@@ -13,7 +13,6 @@ import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
-import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 const UtdanningSituasjon: React.FC = () => {
   const intl = useIntl();
@@ -33,7 +32,7 @@ const UtdanningSituasjon: React.FC = () => {
   };
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
-    erAllUtdanningFerdigUtfylt(søknad.utdanning, ESkjemanavn.Skolepenger);
+    erAllUtdanningFerdigUtfyltForSkolepenger(søknad.utdanning);
 
   return (
     <Side
