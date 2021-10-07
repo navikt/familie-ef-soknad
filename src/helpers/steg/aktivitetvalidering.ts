@@ -1,4 +1,3 @@
-import { ESkjemanavn } from './../../utils/skjemanavn';
 import {
   EStilling,
   IArbeidsgiver,
