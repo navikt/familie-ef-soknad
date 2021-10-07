@@ -1,3 +1,4 @@
+import { ESkjemanavn } from './../../utils/skjemanavn';
 import {
   EStilling,
   IArbeidsgiver,
@@ -88,9 +89,14 @@ export const erDetaljertUtdanningFerdigUtfylt = (
 };
 
 export const erAllUtdanningFerdigUtfylt = (
-  underUtdanning: IUnderUtdanning | IDetaljertUtdanning
+  underUtdanning: IUnderUtdanning | IDetaljertUtdanning,
+  skjema?: ESkjemanavn
 ) => {
-  if (!erDetaljertUtdanningFerdigUtfylt(underUtdanning)) return false;
+  if (
+    !erDetaljertUtdanningFerdigUtfylt(underUtdanning) &&
+    skjema === ESkjemanavn.Skolepenger
+  )
+    return false;
 
   if (underUtdanning?.harTattUtdanningEtterGrunnskolen?.verdi === false) {
     return underUtdanning && erUnderUtdanningFerdigUtfylt(underUtdanning);
