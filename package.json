@@ -35,7 +35,7 @@
     "amplitude-js": "^8.8.0",
     "axios": "^0.22.0",
     "babel-plugin-styled-components": "^1.13.2",
-    "be-pretty": "^1.0.1",
+    "be-pretty": "^1.1.0",
     "body-parser": "^1.19.0",
     "classnames": "^2.3.1",
     "constate": "^3.3.0",
