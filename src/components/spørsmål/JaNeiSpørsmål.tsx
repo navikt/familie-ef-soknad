@@ -40,6 +40,8 @@ interface Props {
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
   const intl = useIntl();
 
+  const skalLogges = true;
+
   const url = window.location.href;
 
   const skjemanavn = urlTilSkjemanavn(url);
@@ -89,7 +91,8 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
                     skjemanavn,
                     skjemaId,
                     spørsmålTekst,
-                    svar.svar_tekst
+                    svar.svar_tekst,
+                    skalLogges
                   );
                   onClickHandle(e, spørsmål, svar);
                 }}

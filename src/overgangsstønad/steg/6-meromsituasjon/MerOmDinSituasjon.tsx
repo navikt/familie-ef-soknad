@@ -65,9 +65,8 @@ const MerOmDinSituasjon: React.FC = () => {
     søknad.merOmDinSituasjon
   );
   const { gjelderDetteDeg, søknadsdato, søkerFraBestemtMåned } = dinSituasjon;
-  const søkerJobberMindreEnnFemtiProsent = harSøkerMindreEnnHalvStilling(
-    søknad
-  );
+  const søkerJobberMindreEnnFemtiProsent =
+    harSøkerMindreEnnHalvStilling(søknad);
 
   useMount(() => logSidevisningOvergangsstonad('MerOmDinSituasjon'));
 
@@ -193,6 +192,7 @@ const MerOmDinSituasjon: React.FC = () => {
             spørsmål={gjelderNoeAvDetteDeg(intl)}
             settValgteSvar={settDinSituasjonFelt}
             valgteSvar={søknad.merOmDinSituasjon.gjelderDetteDeg.verdi}
+            skalLogges={true}
           />
         </KomponentGruppe>
         {dinSituasjon.gjelderDetteDeg.svarid.map((svarid, index) => {

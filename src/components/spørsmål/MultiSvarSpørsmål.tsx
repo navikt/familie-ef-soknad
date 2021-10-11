@@ -49,6 +49,8 @@ const MultiSvarSpørsmål: FC<Props> = ({
 }) => {
   const intl = useIntl();
 
+  const skalLogges = true;
+
   const url = window.location.href;
 
   const skjemanavn = urlTilSkjemanavn(url);
@@ -83,7 +85,8 @@ const MultiSvarSpørsmål: FC<Props> = ({
                     skjemanavn,
                     skjemaId,
                     legend,
-                    svar.svar_tekst
+                    svar.svar_tekst,
+                    skalLogges
                   );
                   settSpørsmålOgSvar(spørsmål, svar);
                 }}

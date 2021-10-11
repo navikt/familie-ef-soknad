@@ -21,51 +21,58 @@ export const logSpørsmålBesvart = (
   skjemaId: number,
   spørsmål: string,
   svar: string,
+  skalLogges: boolean,
   props?: any
 ) => {
-  logEvent('skjema_spørsmål_besvart', {
-    skjemanavn,
-    skjemaId,
-    spørsmål,
-    svar,
-    ...props,
-  });
+  if (skalLogges) {
+    logEvent('skjema_spørsmål_besvart', {
+      skjemanavn,
+      skjemaId,
+      spørsmål,
+      svar,
+      ...props,
+    });
+  }
 };
 
 export const logSpørsmålBesvartOvergangsstønad = (
   spørsmål: string,
-  svar: string
+  svar: string,
+  skalLogges: boolean
 ) => {
   const skjemanavn = ESkjemanavn.Overgangsstønad;
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
-  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
+  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar, skalLogges);
 };
 
 export const logSpørsmålBesvartArbeidssokerskjema = (
   spørsmål: string,
-  svar: string
+  svar: string,
+  skalLogges: boolean
 ) => {
   const skjemanavn = ESkjemanavn.Arbeidssøker;
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Arbeidssøker];
-  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
+  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar, skalLogges);
 };
 
 export const logSpørsmålBesvartBarnetilsyn = (
   spørsmål: string,
-  svar: string
+  svar: string,
+  skalLogges: boolean
 ) => {
   const skjemanavn = ESkjemanavn.Barnetilsyn;
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
-  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
+  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar, skalLogges);
 };
 
 export const logSpørsmålBesvartSkolepenger = (
   spørsmål: string,
-  svar: string
+  svar: string,
+  skalLogges: boolean
 ) => {
   const skjemanavn = ESkjemanavn.Skolepenger;
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
-  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar);
+  logSpørsmålBesvart(skjemanavn, skjemaId, spørsmål, svar, skalLogges);
 };
 
 export const logSidevisningOvergangsstonad = (side: string) => {

@@ -98,9 +98,8 @@ const Aktivitet: React.FC = () => {
     svarid: string,
     arbeidssituasjon: IAktivitet
   ) => {
-    const svaridPos = arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.indexOf(
-      svarid
-    );
+    const svaridPos =
+      arbeidssituasjon.hvaErDinArbeidssituasjon.svarid.indexOf(svarid);
     return arbeidssituasjon.hvaErDinArbeidssituasjon.svarid
       .filter((aktivitet, index) => aktivitet && index < svaridPos)
       .every((id) => erAktivitetSeksjonFerdigUtfylt(id, arbeidssituasjon));
@@ -124,6 +123,7 @@ const Aktivitet: React.FC = () => {
           )}
           settValgteSvar={settArbeidssituasjonFelt}
           valgteSvar={hvaErDinArbeidssituasjon?.verdi}
+          skalLogges={true}
         />
       </SeksjonGruppe>
 

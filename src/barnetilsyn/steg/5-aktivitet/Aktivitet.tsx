@@ -133,9 +133,8 @@ const Aktivitet: React.FC = () => {
     svarid: string,
     arbeidssituasjon: IAktivitet
   ) => {
-    const svaridPos = arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid.indexOf(
-      svarid
-    );
+    const svaridPos =
+      arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid.indexOf(svarid);
     return (
       svaridPos &&
       arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid
@@ -191,6 +190,7 @@ const Aktivitet: React.FC = () => {
                   ? hvaErDinArbeidssituasjon?.verdi
                   : []
               }
+              skalLogges={true}
             />
           </KomponentGruppe>
         )}
