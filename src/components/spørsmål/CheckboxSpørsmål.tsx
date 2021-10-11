@@ -32,11 +32,13 @@ interface Props {
     svar: ISvar
   ) => void;
   valgteSvar: string[];
+  skalLogges: boolean;
 }
 const CheckboxSpørsmål: React.FC<Props> = ({
   spørsmål,
   settValgteSvar,
   valgteSvar,
+  skalLogges,
 }) => {
   const intl = useIntl();
 
@@ -77,7 +79,8 @@ const CheckboxSpørsmål: React.FC<Props> = ({
                       skjemanavn,
                       skjemaId,
                       legend,
-                      svar.svar_tekst
+                      svar.svar_tekst,
+                      skalLogges
                     );
                   }
 
