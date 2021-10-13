@@ -14,12 +14,14 @@ import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../utils/skjemanavn';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoMedTidspunktStreng } from '../../utils/dato';
 import {
   HEADER_NAV_CONSUMER_ID,
   HEADER_NAV_CONSUMER_ID_VALUE,
 } from '../../utils/apiutil';
+import { logFeilFilopplasting } from '../../utils/amplitude';
 
 interface Props {
   intl: IntlShape;
@@ -58,6 +60,8 @@ const Filopplaster: React.FC<Props> = ({
     settÅpenModal(false);
   };
 
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
+
   const onDrop = useCallback(
     (filer) => {
       const feilmeldingsliste: string[] = [];
@@ -66,13 +70,20 @@ const Filopplaster: React.FC<Props> = ({
       filer.forEach((fil: File) => {
         if (maxFilstørrelse && fil.size > maxFilstørrelse) {
           const maks = formaterFilstørrelse(maxFilstørrelse);
-          feilmeldingsliste.push(
-            hentBeskjedMedToParametre(
-              intl.formatMessage({ id: 'filopplaster.feilmelding.maks' }),
-              fil.name,
-              maks
-            )
+
+          const feilmelding = hentBeskjedMedToParametre(
+            intl.formatMessage({ id: 'filopplaster.feilmelding.maks' }),
+            fil.name,
+            maks
           );
+
+          feilmeldingsliste.push(feilmelding);
+
+          logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+            type_feil: 'For stor fil',
+            feilmelding: feilmelding,
+            filstørrelse: fil.size,
+          });
 
           settFeilmeldinger(feilmeldingsliste);
           settÅpenModal(true);
@@ -80,14 +91,20 @@ const Filopplaster: React.FC<Props> = ({
         }
 
         if (tillatteFiltyper && !tillatteFiltyper.includes(fil.type)) {
-          feilmeldingsliste.push(
-            hentBeskjedMedNavn(
-              fil.name,
-              intl.formatMessage({ id: 'filopplaster.feilmelding.filtype' })
-            )
+          const feilmelding = hentBeskjedMedNavn(
+            fil.name,
+            intl.formatMessage({ id: 'filopplaster.feilmelding.filtype' })
           );
+          feilmeldingsliste.push(feilmelding);
           settFeilmeldinger(feilmeldingsliste);
           settÅpenModal(true);
+
+          logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+            type_feil: 'Feil filtype',
+            feilmelding: feilmelding,
+            filtype: fil.type,
+          });
+
           return;
         }
 
@@ -124,9 +141,18 @@ const Filopplaster: React.FC<Props> = ({
             );
           })
           .catch((error) => {
-            feilmeldingsliste.push(
-              intl.formatMessage({ id: 'filopplaster.feilmelding.generisk' })
-            );
+            const feilmelding = intl.formatMessage({
+              id: 'filopplaster.feilmelding.generisk',
+            });
+            feilmeldingsliste.push(feilmelding);
+
+            logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+              type_feil: 'Generisk feil',
+              feilmelding: feilmelding,
+              filtype: fil.type,
+              filstørrelse: fil.size,
+            });
+
             settFeilmeldinger(feilmeldingsliste);
             settÅpenModal(true);
           });

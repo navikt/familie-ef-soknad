@@ -159,3 +159,15 @@ export const logBrowserBackOppsummering = (
     ...props,
   });
 };
+
+export const logFeilFilopplasting = (
+  skjemanavn: string,
+  skjemaId: number,
+  ...props: any
+) => {
+  logEvent('filopplasting_feilet', {
+    skjemanavn,
+    skjemaId,
+    ...props,
+  });
+};

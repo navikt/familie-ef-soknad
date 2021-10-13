@@ -37,11 +37,8 @@ const OmDeg: FC = () => {
     settDokumentasjonsbehov,
   } = useSøknad();
 
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = søknad.sivilstatus;
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    søknad.sivilstatus;
 
   useMount(() => logSidevisningOvergangsstonad('OmDeg'));
 
