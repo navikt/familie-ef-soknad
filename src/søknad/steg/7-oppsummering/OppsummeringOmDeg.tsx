@@ -43,7 +43,6 @@ const OppsummeringOmDeg: FC<Props> = ({
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
 
-  const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
   const tidligereSamboer = VisLabelOgSvar(sivilstatus.tidligereSamboerDetaljer);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
 
@@ -83,6 +82,14 @@ const OppsummeringOmDeg: FC<Props> = ({
             </Element>
             <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
           </div>
+          {sivilstatus.årsakEnslig && (
+            <div className="spørsmål-og-svar">
+              <Element>
+                <LocaleTekst tekst={sivilstatus.årsakEnslig.label} />
+              </Element>
+              <Normaltekst>{sivilstatus.årsakEnslig.verdi}</Normaltekst>
+            </div>
+          )}
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">
               <Ingress>
@@ -91,7 +98,18 @@ const OppsummeringOmDeg: FC<Props> = ({
               {tidligereSamboer}
             </div>
           )}
-          {datoFlyttetFraHverandre}
+          {sivilstatus.datoFlyttetFraHverandre && (
+            <div className="spørsmål-og-svar">
+              <Element>
+                <LocaleTekst
+                  tekst={sivilstatus.datoFlyttetFraHverandre.label}
+                />
+              </Element>
+              <Normaltekst>
+                {sivilstatus.datoFlyttetFraHverandre.verdi}
+              </Normaltekst>
+            </div>
+          )}
           {medlemskapSpørsmål}
         </StyledOppsummering>
 
