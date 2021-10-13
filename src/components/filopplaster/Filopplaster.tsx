@@ -16,6 +16,10 @@ import Environment from '../../Environment';
 import axios from 'axios';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoMedTidspunktStreng } from '../../utils/dato';
+import {
+  HEADER_NAV_CONSUMER_ID,
+  HEADER_NAV_CONSUMER_ID_VALUE,
+} from '../../utils/apiutil';
 
 interface Props {
   intl: IntlShape;
@@ -99,6 +103,7 @@ const Filopplaster: React.FC<Props> = ({
               headers: {
                 'content-type': 'multipart/form-data',
                 accept: 'application/json',
+                [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
               },
             }
           )

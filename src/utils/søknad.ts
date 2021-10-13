@@ -12,6 +12,10 @@ import {
   standardLabelsBarn,
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
+import {
+  HEADER_NAV_CONSUMER_ID,
+  HEADER_NAV_CONSUMER_ID_VALUE,
+} from './apiutil';
 
 export const hentPersonData = () => {
   return axios
@@ -61,6 +65,7 @@ export const hentMellomlagretSøknadFraDokument = <T>(
       headers: {
         'content-type': 'application/json',
         accept: 'application/json',
+        [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
       },
     })
     .then((response: { data?: T }) => {
@@ -77,6 +82,7 @@ export const mellomlagreSøknadTilDokument = <T>(
     headers: {
       'content-type': 'application/json',
       accept: 'application/json',
+      [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
     },
   });
 };
@@ -89,6 +95,7 @@ export const nullstillMellomlagretSøknadTilDokument = (
     headers: {
       'content-type': 'application/json',
       accept: 'application/json',
+      [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
     },
   });
 };
