@@ -14,7 +14,7 @@ import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
-import { ESkjemanavn, skjemanavnIdMapping } from '../../utils/skjemanavn';
+import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoMedTidspunktStreng } from '../../utils/dato';
 import {
@@ -60,7 +60,9 @@ const Filopplaster: React.FC<Props> = ({
     settÅpenModal(false);
   };
 
-  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
+  const url = window.location.href;
+  const skjemanavn = urlTilSkjemanavn(url);
+  const skjemaId = skjemanavnTilId(skjemanavn);
 
   const onDrop = useCallback(
     (filer) => {
@@ -79,7 +81,7 @@ const Filopplaster: React.FC<Props> = ({
 
           feilmeldingsliste.push(feilmelding);
 
-          logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+          logFeilFilopplasting(skjemanavn, skjemaId, {
             type_feil: 'For stor fil',
             feilmelding: feilmelding,
             filstørrelse: fil.size,
@@ -99,7 +101,7 @@ const Filopplaster: React.FC<Props> = ({
           settFeilmeldinger(feilmeldingsliste);
           settÅpenModal(true);
 
-          logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+          logFeilFilopplasting(skjemanavn, skjemaId, {
             type_feil: 'Feil filtype',
             feilmelding: feilmelding,
             filtype: fil.type,
@@ -146,7 +148,7 @@ const Filopplaster: React.FC<Props> = ({
             });
             feilmeldingsliste.push(feilmelding);
 
-            logFeilFilopplasting(ESkjemanavn.Overgangsstønad, skjemaId, {
+            logFeilFilopplasting(skjemanavn, skjemaId, {
               type_feil: 'Generisk feil',
               feilmelding: feilmelding,
               filtype: fil.type,
