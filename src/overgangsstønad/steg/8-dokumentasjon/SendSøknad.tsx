@@ -35,8 +35,6 @@ import {
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import styled from 'styled-components';
 
 interface Innsending {
   status: string;
@@ -47,10 +45,6 @@ interface Innsending {
 const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
   return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
 };
-
-const OppgraderingAdvarsel = styled(AlertStripeAdvarsel)`
-  margin-bottom: 1rem;
-`;
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
@@ -179,7 +173,6 @@ const SendSøknadKnapper: FC = () => {
         <>
           <div className={'sentrert'}>
             <KnappBase
-              disabled
               type={'hoved'}
               onClick={() =>
                 !innsendingState.venter &&
@@ -196,10 +189,6 @@ const SendSøknadKnapper: FC = () => {
           </Normaltekst>
         </>
       )}
-      <OppgraderingAdvarsel>
-        Vi oppgraderer for tiden søknadsdialogen. Du kan fylle ut og mellomlagre
-        søknaden din, men du får for øyeblikket ikke sendt inn.
-      </OppgraderingAdvarsel>
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -212,7 +201,6 @@ const SendSøknadKnapper: FC = () => {
 
           {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
             <KnappBase
-              disabled
               type={'hoved'}
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}
               className={'neste'}

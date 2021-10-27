@@ -136,7 +136,6 @@ const Oppsummering: React.FC = () => {
           </KnappBase>
 
           <KnappBase
-            disabled
             type={'hoved'}
             onClick={() =>
               !innsendingState.venter && sendSkjema(skjema.arbeidssøker)
