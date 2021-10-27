@@ -5,7 +5,7 @@ import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { parseISO } from 'date-fns';
 import { useHistory, useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
+import AlertStripe, { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
@@ -34,6 +34,7 @@ import {
   ERouteSkolepenger,
   RoutesSkolepenger,
 } from '../../../skolepenger/routing/routes';
+import styled from 'styled-components';
 
 interface Innsending {
   status: string;
@@ -44,6 +45,10 @@ interface Innsending {
 const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
   return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
 };
+
+const OppgraderingAdvarsel = styled(AlertStripeAdvarsel)`
+  margin-bottom: 1rem;
+`;
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useBarnetilsynSøknad();
@@ -130,6 +135,10 @@ const SendSøknadKnapper: FC = () => {
           </AlertStripe>
         </KomponentGruppe>
       )}
+      <OppgraderingAdvarsel>
+        Vi oppgraderer for tiden søknadsdialogen. Du kan fylle ut og mellomlagre
+        søknaden din, men du får for øyeblikket ikke sendt inn.
+      </OppgraderingAdvarsel>
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
           <KnappBase
@@ -142,6 +151,7 @@ const SendSøknadKnapper: FC = () => {
 
           {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
             <KnappBase
+              disabled
               type={'hoved'}
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}
               className={'neste'}

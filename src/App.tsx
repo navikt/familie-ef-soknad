@@ -19,22 +19,32 @@ import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/søknad/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import {
+  AlertStripeFeil,
+  AlertStripeAdvarsel,
+} from 'nav-frontend-alertstriper';
 import { EAlvorlighetsgrad } from './models/felles/feilmelding';
 import LocaleTekst from './language/LocaleTekst';
 import { useIntl } from 'react-intl';
 import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
+import styled from 'styled-components';
+import { Normaltekst } from 'nav-frontend-typografi';
+
+const OppgraderingAdvarsel = styled(AlertStripeAdvarsel)`
+  max-width: 565px;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const [
-    alvorlighetsgrad,
-    settAlvorlighetsgrad,
-  ] = useState<EAlvorlighetsgrad>();
+  const [alvorlighetsgrad, settAlvorlighetsgrad] =
+    useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
@@ -123,6 +133,14 @@ const App = () => {
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
             </AlertStripeFeil>
           )}
+
+          <OppgraderingAdvarsel>
+            <Normaltekst>
+              Vi oppgraderer for tiden søknadsdialogen. Du kan fylle ut og
+              mellomlagre søknaden din, men du får for øyeblikket ikke sendt
+              inn.
+            </Normaltekst>
+          </OppgraderingAdvarsel>
           <Switch>
             <Route path={'/'}>
               <Søknadsdialog />
