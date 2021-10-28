@@ -694,11 +694,11 @@ export default {
   'dokumentasjon.ettersend.tittel':
     'Fikk du ikke lastet opp all dokumentasjonen?',
   'dokumentasjon.ettersend.tekst.barnetilsyn':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/familie/alene-med-barn/ettersending">ettersende det som mangler</a>.',
   'dokumentasjon.ettersend.tekst.overgangsstønad':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/familie/alene-med-barn/ettersending">ettersende det som mangler</a>.',
   'dokumentasjon.ettersend.tekst.skolepenger':
-    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">ettersende det som mangler</a>.',
+    'Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Hvis du ikke fikk lastet opp alt nå, kan du <a href="https://www.nav.no/familie/alene-med-barn/ettersending">ettersende det som mangler</a>.',
   'kvittering.takk': 'Takk for søknaden',
   'kvittering.alert.mottatt': 'Søknaden din om overgangsstønad er mottatt',
   'kvittering.skolepenger.alert.mottatt':
