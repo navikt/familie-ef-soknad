@@ -1137,13 +1137,13 @@ export default {
     'Unable to upload all the required documentation?',
   'dokumentasjon.ettersend.tekst.barnetilsyn':
     'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
-    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/familie/alene-med-barn/ettersending">submit missing documentation later on</a>. ',
   'dokumentasjon.ettersend.tekst.overgangsstønad':
     'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
-    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/familie/alene-med-barn/ettersending">submit missing documentation later on</a>. ',
   'dokumentasjon.ettersend.tekst.skolepenger':
     'You will get a quicker response to your application if we have all the documentation we need when we start processing it. ' +
-    'If you were not able to upload everything now, you can <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/ettersendelse/dokumentinnsending">submit missing documentation later on</a>. ',
+    'If you were not able to upload everything now, you can <a href="https://www.nav.no/familie/alene-med-barn/ettersending">submit missing documentation later on</a>. ',
 
   // ---- KVITTERING (STEG 9)
   'kvittering.takk': 'Thank you!',
