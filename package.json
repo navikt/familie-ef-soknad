@@ -27,7 +27,7 @@
     "@types/react": "^17.0.33",
     "@types/react-aria-menubutton": "^6.2.8",
     "@types/react-collapse": "^5.0.1",
-    "@types/react-datepicker": "^4.3.0",
+    "@types/react-datepicker": "^4.3.2",
     "@types/react-dom": "^17.0.10",
     "@types/react-modal": "^3.13.1",
     "@types/react-router-dom": "^5.3.2",
