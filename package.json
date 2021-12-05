@@ -14,7 +14,7 @@
     "@craco/craco": "^6.4.0",
     "@navikt/fnrvalidator": "^1.1.4",
     "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/client": "^2.21.0",
+    "@sanity/client": "^2.22.3",
     "@sentry/browser": "^6.14.3",
     "@types/amplitude-js": "^8.0.1",
     "@types/body-parser": "^1.19.1",
