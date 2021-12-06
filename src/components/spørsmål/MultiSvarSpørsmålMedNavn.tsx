@@ -6,6 +6,9 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import classNames from 'classnames';
 import Show from '../../utils/showIf';
+import { useIntl } from 'react-intl';
+import { logSpørsmålBesvart } from '../../utils/amplitude';
+import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -46,6 +49,17 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
   settSpørsmålOgSvar,
   valgtSvar,
 }) => {
+  const intl = useIntl();
+
+  const url = window.location.href;
+
+  const skalLogges = true;
+
+  const skjemanavn = urlTilSkjemanavn(url);
+  const skjemaId = skjemanavnTilId(skjemanavn);
+
+  const spørsmålstekstUtenNavn = intl.formatMessage({ id: spørsmål.tekstid });
+
   return (
     <SkjemaGruppe legend={spørsmålTekst}>
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
@@ -71,7 +85,16 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
                 label={svar.svar_tekst}
                 value={svar.svar_tekst}
                 checked={svarISøknad ? svarISøknad : false}
-                onChange={() => settSpørsmålOgSvar(spørsmål, svar)}
+                onChange={() => {
+                  logSpørsmålBesvart(
+                    skjemanavn,
+                    skjemaId,
+                    spørsmålstekstUtenNavn,
+                    svar.svar_tekst,
+                    skalLogges
+                  );
+                  settSpørsmålOgSvar(spørsmål, svar);
+                }}
               />
             );
           })}
