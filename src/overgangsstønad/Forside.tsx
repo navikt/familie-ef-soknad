@@ -24,7 +24,19 @@ import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 
-const FnrTilAlder = (fnr: string): number => {
+const FnrTilAlder = (fnrEllerDnr: string): number => {
+  const førsteSiffer = parseInt(fnrEllerDnr[0], 10);
+
+  let fnr = '';
+
+  if (førsteSiffer > 3) {
+    fnr =
+      (førsteSiffer - 4).toString() +
+      fnrEllerDnr.substring(1, fnrEllerDnr.length);
+  } else {
+    fnr = fnrEllerDnr;
+  }
+
   const nå = new Date();
 
   const årNå = nå.getFullYear();
