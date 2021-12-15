@@ -76,6 +76,7 @@ export default {
   'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
   'side.alert.plsnoIE':
     'Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi anbefaler deg å bruke en annen nettleser, for eksempel Google Chrome, Safari eller Firefox.',
+  'side.alert.ikkeGammelNok': 'Man må være minst 18 år gammel for å søke',
   'stegtittel.omDeg': 'Om deg',
   'personopplysninger.fnr': 'Fødselsnr',
   'personopplysninger.telefonnr': 'Telefonnummer',

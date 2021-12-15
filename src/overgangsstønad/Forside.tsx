@@ -24,6 +24,35 @@ import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 
+const FnrTilAlder = (fnr: string): number => {
+  const nå = new Date();
+
+  const årNå = nå.getFullYear();
+  const månedNå = nå.getMonth() + 1;
+  const dagNå = nå.getDate();
+
+  const dag = parseInt(fnr.substring(0, 2), 10);
+  const måned = parseInt(fnr.substring(2, 4), 10);
+  const stringÅr = fnr.substring(4, 6);
+
+  const år =
+    stringÅr[0] === '0'
+      ? parseInt('20' + stringÅr, 10)
+      : parseInt('19' + stringÅr, 10);
+
+  let alder = årNå - år;
+
+  if (månedNå < måned) {
+    alder = alder - 1;
+  }
+
+  if (måned === månedNå && dagNå < dag) {
+    alder = alder - 1;
+  }
+
+  return alder;
+};
+
 const Forside: React.FC = () => {
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad))
@@ -61,6 +90,8 @@ const Forside: React.FC = () => {
     mellomlagretOvergangsstønad.modellVersjon ===
       Environment().modellVersjon.overgangsstønad;
 
+  const alder = FnrTilAlder(person.søker.fnr);
+
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
@@ -73,6 +104,14 @@ const Forside: React.FC = () => {
               )}
             />
           </div>
+
+          {alder < 18 && (
+            <div className="ie-feil">
+              <AlertStripeFeil>
+                <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
+              </AlertStripeFeil>
+            </div>
+          )}
 
           {isIE && (
             <div className="ie-feil">
@@ -94,18 +133,22 @@ const Forside: React.FC = () => {
               skjemanavn={ESkjemanavn.Overgangsstønad}
             />
           ) : (
-            <Forsideinformasjon
-              seksjon={seksjon}
-              disclaimer={disclaimer}
-              person={person}
-              intl={intl}
-              harBekreftet={søknad.harBekreftet}
-              settBekreftelse={settBekreftelse}
-              nesteSide={
-                hentPath(RoutesOvergangsstonad, ERouteOvergangsstønad.OmDeg) ||
-                ''
-              }
-            />
+            alder > 17 && (
+              <Forsideinformasjon
+                seksjon={seksjon}
+                disclaimer={disclaimer}
+                person={person}
+                intl={intl}
+                harBekreftet={søknad.harBekreftet}
+                settBekreftelse={settBekreftelse}
+                nesteSide={
+                  hentPath(
+                    RoutesOvergangsstonad,
+                    ERouteOvergangsstønad.OmDeg
+                  ) || ''
+                }
+              />
+            )
           )}
         </Panel>
       </div>
