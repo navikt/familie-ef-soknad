@@ -40,11 +40,11 @@ export const FnrOgDnrTilAlder = (fnrEllerDnr: string): number => {
   let alder = årNå - år;
 
   if (månedNå < måned) {
-    alder = alder - 1;
+    alder--;
   }
 
   if (måned === månedNå && dagNå < dag) {
-    alder = alder - 1;
+    alder--;
   }
 
   return alder;
