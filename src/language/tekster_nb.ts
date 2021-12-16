@@ -76,7 +76,8 @@ export default {
   'side.fortsettSøknad.knapp.fortsett': 'Fortsett på søknaden',
   'side.alert.plsnoIE':
     'Søknaden er ikke tilpasset nettleseren Internet Explorer. Vi anbefaler deg å bruke en annen nettleser, for eksempel Google Chrome, Safari eller Firefox.',
-  'side.alert.ikkeGammelNok': 'Man må være minst 18 år gammel for å søke',
+  'side.alert.ikkeGammelNok':
+    'Du er under 18 år og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'stegtittel.omDeg': 'Om deg',
   'personopplysninger.fnr': 'Fødselsnr',
   'personopplysninger.telefonnr': 'Telefonnummer',
