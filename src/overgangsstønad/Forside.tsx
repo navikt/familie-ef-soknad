@@ -23,47 +23,7 @@ import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
-
-const FnrTilAlder = (fnrEllerDnr: string): number => {
-  const førsteSiffer = parseInt(fnrEllerDnr[0], 10);
-
-  let fnr = '';
-
-  if (førsteSiffer > 3) {
-    fnr =
-      (førsteSiffer - 4).toString() +
-      fnrEllerDnr.substring(1, fnrEllerDnr.length);
-  } else {
-    fnr = fnrEllerDnr;
-  }
-
-  const nå = new Date();
-
-  const årNå = nå.getFullYear();
-  const månedNå = nå.getMonth() + 1;
-  const dagNå = nå.getDate();
-
-  const dag = parseInt(fnr.substring(0, 2), 10);
-  const måned = parseInt(fnr.substring(2, 4), 10);
-  const stringÅr = fnr.substring(4, 6);
-
-  const år =
-    stringÅr[0] === '0'
-      ? parseInt('20' + stringÅr, 10)
-      : parseInt('19' + stringÅr, 10);
-
-  let alder = årNå - år;
-
-  if (månedNå < måned) {
-    alder = alder - 1;
-  }
-
-  if (måned === månedNå && dagNå < dag) {
-    alder = alder - 1;
-  }
-
-  return alder;
-};
+import { FnrOgDnrTilAlder } from './utils';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -102,7 +62,7 @@ const Forside: React.FC = () => {
     mellomlagretOvergangsstønad.modellVersjon ===
       Environment().modellVersjon.overgangsstønad;
 
-  const alder = FnrTilAlder(person.søker.fnr);
+  const alder = FnrOgDnrTilAlder(person.søker.fnr);
 
   return (
     <div className={'forside'}>

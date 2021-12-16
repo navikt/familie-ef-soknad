@@ -21,6 +21,8 @@ import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
+import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
+import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 
 const Forside: React.FC<any> = ({ intl }) => {
   useMount(() => {
@@ -47,6 +49,8 @@ const Forside: React.FC<any> = ({ intl }) => {
     });
   };
 
+  const alder = FnrOgDnrTilAlder(person.søker.fnr);
+
   const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
 
   const kanBrukeMellomlagretSøknad =
@@ -71,6 +75,14 @@ const Forside: React.FC<any> = ({ intl }) => {
             />
           </div>
 
+          {alder < 18 && (
+            <div className="ie-feil">
+              <AlertStripeFeil>
+                <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
+              </AlertStripeFeil>
+            </div>
+          )}
+
           <Sidetittel>
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Sidetittel>
@@ -83,17 +95,19 @@ const Forside: React.FC<any> = ({ intl }) => {
               skjemanavn={ESkjemanavn.Barnetilsyn}
             />
           ) : (
-            <Forsideinformasjon
-              seksjon={seksjon}
-              disclaimer={disclaimer}
-              person={person}
-              intl={intl}
-              harBekreftet={søknad.harBekreftet}
-              settBekreftelse={settBekreftelse}
-              nesteSide={
-                hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.OmDeg) || ''
-              }
-            />
+            alder > 17 && (
+              <Forsideinformasjon
+                seksjon={seksjon}
+                disclaimer={disclaimer}
+                person={person}
+                intl={intl}
+                harBekreftet={søknad.harBekreftet}
+                settBekreftelse={settBekreftelse}
+                nesteSide={
+                  hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.OmDeg) || ''
+                }
+              />
+            )
           )}
         </Panel>
       </div>
