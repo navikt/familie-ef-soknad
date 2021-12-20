@@ -424,6 +424,8 @@ export default {
   'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
   'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
   'filopplaster.feilmelding.generisk': 'Could not upload file',
+  'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':
+    'The image you treid to upload is too small. Images must be larger than 400x400 pixels.',
   'dokumentasjon.tittel': 'Upload documentation',
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse': 'It doesn’t look like you need to submit any documentation.  We will contact you if it turns out we do need documentation from you.',
   'dokumentasjon.beskrivelse': 'You must upload documentation confirming the information you have provided in the application. You will get a quicker response to your application if we have all the documentation we need when we start processing it. You can upload documentation in the following file formats: PDF, jpg and png. <br/><br/>How to upload images as attachments to your application:<br/><ol><li> Take a picture of the document with a smartphone or tablet</li><li>Check that the document can be read</li><li>Upload the images here </li></ol> If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/><br />If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',

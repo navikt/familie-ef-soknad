@@ -602,6 +602,8 @@ export default {
   'filopplaster.feilmelding.maks':
     '[0] er for stor (maksimal filstørrelse er [1]).',
   'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+  'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':
+    'Bilde du har forsøkt å laste opp er for lite. Bilde må være større enn 400x400 piksler',
   'dokumentasjon.tittel': 'Last opp dokumentasjon',
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
     'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',

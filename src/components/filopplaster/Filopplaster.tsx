@@ -22,6 +22,7 @@ import {
   HEADER_NAV_CONSUMER_ID_VALUE,
 } from '../../utils/apiutil';
 import { logFeilFilopplasting } from '../../utils/amplitude';
+import { getFeilmelding } from '../../utils/feil';
 
 interface Props {
   intl: IntlShape;
@@ -143,9 +144,12 @@ const Filopplaster: React.FC<Props> = ({
             );
           })
           .catch((error) => {
-            const feilmelding = intl.formatMessage({
-              id: 'filopplaster.feilmelding.generisk',
-            });
+            const feilmelding = getFeilmelding(
+              intl,
+              'filopplaster.feilmelding',
+              'generisk',
+              error?.response?.data?.melding
+            );
             feilmeldingsliste.push(feilmelding);
 
             logFeilFilopplasting(skjemanavn, skjemaId, {
