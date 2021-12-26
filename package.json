@@ -23,7 +23,7 @@
     "@types/express": "^4.17.13",
     "@types/jest": "^27.0.3",
     "@types/lodash": "^4.14.178",
-    "@types/node": "^16.11.12",
+    "@types/node": "^17.0.4",
     "@types/react": "^17.0.37",
     "@types/react-aria-menubutton": "^6.2.8",
     "@types/react-collapse": "^5.0.1",
