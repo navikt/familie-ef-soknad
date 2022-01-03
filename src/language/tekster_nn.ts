@@ -418,8 +418,7 @@ export default {
   'barnasbosted.forelder.annen': 'The other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne':
-    'Les meir om delt fast bustad',
+  'barnasbosted.hjelpetekst.bosted.apne': 'Les meir om delt fast bustad',
   'barnasbosted.hjelpetekst.halvåpen':
     'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
   'barnasbosted.hjelpetekst.bosted.innhold':

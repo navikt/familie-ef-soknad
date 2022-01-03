@@ -31,8 +31,9 @@ I appen har vi tekstinnhold på norsk bokmål, engelsk og nynorsk.
 Ønsker du å legge til eller redigere på en tekst, skal dette gjøres i exceldokumentet "EF Tekstinnhold App Søknadsdialog" som du finner på Teams under Team Familie > Enslig forsørger > Filer > Søknadsdialog > "EF Tekstinnhold App Søknadsdialog". 
 1. Åpne "EF Tekstinnhold App Søknadsdialog" i nettleseren
 2. Trykk på "Automate" i fanen, og velg "EF Script - Konverter tabell til json format".
+3. Trykk på "Vis/Show" fulgt av "Kjør/Run".
 
-Det skrives ut 3 ulike tekst bolker. Denne skal kopieres og limes inn i tilhørende "tekster_xx.json" fil. Husk å kjøre reformat (optn + cmd + l")
+Det skrives ut 3 ulike tekstbolker i "Utdata"-fanen under kodesnutten. Denne skal kopieres og limes inn i tilhørende "tekster_xx.json" fil. Husk å kjøre reformat (optn + cmd + l")
 
 
 
