@@ -23,7 +23,6 @@ import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
 import { oppdaterBarneliste } from '../utils/barn';
 import { IPerson } from '../models/søknad/person';
-import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from './SpråkContext';
@@ -48,10 +47,7 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: oversettSvarsalternativer(
-          hvaErDinArbeidssituasjonSpm(intl).svaralternativer,
-          intl
-        ),
+        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
       },
     },
     merOmDinSituasjon: {
@@ -60,10 +56,7 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: oversettSvarsalternativer(
-          gjelderNoeAvDetteDeg(intl).svaralternativer,
-          intl
-        ),
+        alternativer: gjelderNoeAvDetteDeg(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
       },
     },
     dokumentasjonsbehov: [],

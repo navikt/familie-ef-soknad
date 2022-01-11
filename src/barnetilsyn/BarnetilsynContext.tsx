@@ -21,7 +21,6 @@ import {
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
-import { oversettSvarsalternativer } from '../utils/spørsmålogsvar';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
 
@@ -45,10 +44,8 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: oversettSvarsalternativer(
-          hvaErDinArbeidssituasjonSpm(intl).svaralternativer,
-          intl
-        ),
+        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
+
       },
     },
     dokumentasjonsbehov: [],
