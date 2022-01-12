@@ -59,6 +59,18 @@ const UnderUtdanning: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [utdanning]);
 
+  useEffect(() => {
+    if (
+      utdanning.periode &&
+      !erPeriodeGyldigOgInnaforBegrensninger(
+        utdanning?.periode,
+        DatoBegrensning.AlleDatoer
+      )
+    ) {
+      delete utdanning.heltidEllerDeltid;
+    }
+  }, [utdanning]);
+
   const oppdaterUtdanning = (
     nøkkel: EUtdanning,
     label: string,
