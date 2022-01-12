@@ -126,7 +126,9 @@ const Utenlandsopphold: FC<Props> = ({
             placeholder={'...'}
             value={begrunnelse.verdi}
             maxLength={1000}
-            onChange={(e) => settBegrunnelse(e)}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              settBegrunnelse(e)
+            }
           />
         )}
     </div>

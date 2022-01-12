@@ -1,4 +1,4 @@
-// sist redigert 31.08.2021 14:11
+// sist redigert 20.12.2021 12:29
 // eslint-disable-next-line
 export default {
   'språk.bokmål': 'Bokmål',
@@ -19,9 +19,13 @@ export default {
   'feil.ingentekst.app': 'Ingen statisk tekst funnet.',
   'feil.udefinerttekst': 'Udefinert tekst - tom streng (BM)',
   'feil.alert': 'Noe gikk galt!',
+  'feil.alert.oppsummering':
+    'For å kunne sende inn søknaden, er du nødt til å rette opp i følgende: ',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
   'datovelger.ugyldigDato':
     'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
+  'datovelger.ugyldigDato.optional':
+    'Startsdato og/eller sluttdato er i feil format. Vennligst skriv dato på DD.MM.yyy format eller la feltet stå tomt',
   'datovelger.ugyldigDato.kunTidligereDatoer':
     'Ugyldig dato. Velg en dato som er bakover i tid.',
   'datovelger.ugyldigDato.kunFremtidigeDatoer':
@@ -114,7 +118,6 @@ export default {
   'sivilstatus.kode.PARTNER': 'Partner',
   'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
   'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
-  'sivilstatus.kode.REGISTRERT_PARTNER': 'Registrert partner',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
   'sivilstatus.kode.ANNET':
     'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
@@ -602,6 +605,8 @@ export default {
   'filopplaster.feilmelding.maks':
     '[0] er for stor (maksimal filstørrelse er [1]).',
   'filopplaster.feilmelding.generisk': 'Kunne ikke laste opp filen.',
+  'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':
+    'Bilde du har forsøkt å laste opp er for lite. Bilde må være større enn 400x400 piksler',
   'dokumentasjon.tittel': 'Last opp dokumentasjon',
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
     'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
@@ -756,6 +761,8 @@ export default {
     'Søk stønad til barnetilsyn',
   'overgangsstønad.feilsituasjon':
     'Vi har dessverre tekniske problemer, så du får ikke sendt inn søknaden akkurat nå. Vennligst prøv igjen litt senere. Vi beklager ulempen.',
+  'side.alert.ikkeGammelNok':
+    'Du er under 18 år og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'banner.tittel.barnetilsyn': 'Søknad om barnetilsyn',
   'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
   'barnetilsyn.tekst.hvilke': 'Hvilke barn skal være med i søknaden?',

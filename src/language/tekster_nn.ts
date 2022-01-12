@@ -418,8 +418,7 @@ export default {
   'barnasbosted.forelder.annen': 'The other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne':
-    'Les meir om delt fast bustad',
+  'barnasbosted.hjelpetekst.bosted.apne': 'Les meir om delt fast bustad',
   'barnasbosted.hjelpetekst.halvåpen':
     'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
   'barnasbosted.hjelpetekst.bosted.innhold':
@@ -948,6 +947,8 @@ export default {
   'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
   'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
   'filopplaster.feilmelding.generisk': 'Could not upload file',
+  'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':
+    'The image you treid to upload is too small. Images must be larger than 400x400 pixels.',
 
   // --- OPPSUMMERING (steg 7)
   'oppsummering.sidetittel': 'Summary',

@@ -13,7 +13,7 @@ const SpråkProvider: React.FC = ({ children }) => {
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>
-      <IntlProvider locale={locale} messages={tekster}>
+      <IntlProvider locale={locale} messages={tekster} onError={(e) => {console.warn(e)}}>
         {children}
       </IntlProvider>
     </SpråkContext.Provider>

@@ -23,6 +23,7 @@ import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
+import { FnrOgDnrTilAlder } from './utils';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -61,6 +62,8 @@ const Forside: React.FC = () => {
     mellomlagretOvergangsstønad.modellVersjon ===
       Environment().modellVersjon.overgangsstønad;
 
+  const alder = FnrOgDnrTilAlder(person.søker.fnr);
+
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
@@ -73,6 +76,14 @@ const Forside: React.FC = () => {
               )}
             />
           </div>
+
+          {alder < 18 && (
+            <div className="ie-feil">
+              <AlertStripeFeil>
+                <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
+              </AlertStripeFeil>
+            </div>
+          )}
 
           {isIE && (
             <div className="ie-feil">
@@ -94,18 +105,22 @@ const Forside: React.FC = () => {
               skjemanavn={ESkjemanavn.Overgangsstønad}
             />
           ) : (
-            <Forsideinformasjon
-              seksjon={seksjon}
-              disclaimer={disclaimer}
-              person={person}
-              intl={intl}
-              harBekreftet={søknad.harBekreftet}
-              settBekreftelse={settBekreftelse}
-              nesteSide={
-                hentPath(RoutesOvergangsstonad, ERouteOvergangsstønad.OmDeg) ||
-                ''
-              }
-            />
+            alder > 17 && (
+              <Forsideinformasjon
+                seksjon={seksjon}
+                disclaimer={disclaimer}
+                person={person}
+                intl={intl}
+                harBekreftet={søknad.harBekreftet}
+                settBekreftelse={settBekreftelse}
+                nesteSide={
+                  hentPath(
+                    RoutesOvergangsstonad,
+                    ERouteOvergangsstønad.OmDeg
+                  ) || ''
+                }
+              />
+            )
           )}
         </Panel>
       </div>

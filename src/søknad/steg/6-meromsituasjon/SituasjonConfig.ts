@@ -32,7 +32,7 @@ export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon =
 export const gjelderNoeAvDetteDeg = (intl: IntlShape): ISpørsmål => {
   return {
     søknadid: ESituasjon.gjelderDetteDeg,
-    tekstid: intl.formatMessage({ id: 'dinSituasjon.spm' }),
+    tekstid: 'dinSituasjon.spm' ,
     flersvar: true,
     svaralternativer: [
       {
