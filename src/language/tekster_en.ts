@@ -369,7 +369,7 @@ export default {
   'barnasbosted.kanGåVidere':
     'We have all the information we need. Please proceed with the next step.',
   'barnasbosted.feilmelding.adressebeskyttelse':
-    'One or several of your children are registered with address protection and applying electronically is therefore not available. You have to use this <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a> to apply.',
+    'One or several of your children, or other parent, are registered with address protection and applying electronically is therefore not available. You have to use this <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a> to apply.',
   'barnasbosted.oppsummering.navn.label': 'Name of the other parent',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
