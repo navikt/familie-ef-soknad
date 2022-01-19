@@ -87,12 +87,15 @@ const Sivilstatus: React.FC<Props> = ({
     });
   };
 
-  const harFyltUtSeparasjonSomGift =
-    harSøktSeparasjon !== undefined
-      ? harSøktSeparasjon.verdi
-        ? datoSøktSeparasjon?.verdi
-        : true
-      : false;
+  const harFyltUtSeparasjonSomGift = () => {
+    if (harSøktSeparasjon === undefined) return false;
+
+    if (harSøktSeparasjon.verdi === true) {
+      return !!datoSøktSeparasjon?.verdi;
+    } else {
+      return true;
+    }
+  };
 
   return (
     <SeksjonGruppe aria-live="polite">
@@ -113,7 +116,7 @@ const Sivilstatus: React.FC<Props> = ({
 
       {(erSøkerUgift(sivilstand) &&
         erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
-      (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift) ||
+      (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
       erSøkerSeparert(sivilstand) ||
       erSøkerSkilt(sivilstand) ||
       erSøkerEnke(sivilstand) ? (
