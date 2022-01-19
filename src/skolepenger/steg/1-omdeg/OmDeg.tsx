@@ -37,11 +37,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     settDokumentasjonsbehov,
   } = useSkolepengerSøknad();
 
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = søknad.sivilstatus;
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    søknad.sivilstatus;
 
   useMount(() => logSidevisningSkolepenger('OmDeg'));
 

@@ -43,6 +43,7 @@ const Sivilstatus: React.FC<Props> = ({
   const sivilstand = person.søker.sivilstand;
 
   const {
+    harSøktSeparasjon,
     erUformeltSeparertEllerSkilt,
     erUformeltGift,
     datoFlyttetFraHverandre,
@@ -86,6 +87,13 @@ const Sivilstatus: React.FC<Props> = ({
     });
   };
 
+  const harFyltUtSeparasjonSomGift =
+    harSøktSeparasjon !== undefined
+      ? harSøktSeparasjon.verdi
+        ? datoSøktSeparasjon?.verdi
+        : true
+      : false;
+
   return (
     <SeksjonGruppe aria-live="polite">
       {erSøkerGift(sivilstand) && (
@@ -105,6 +113,7 @@ const Sivilstatus: React.FC<Props> = ({
 
       {(erSøkerUgift(sivilstand) &&
         erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
+      (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift) ||
       erSøkerSeparert(sivilstand) ||
       erSøkerSkilt(sivilstand) ||
       erSøkerEnke(sivilstand) ? (
