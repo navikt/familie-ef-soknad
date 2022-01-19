@@ -40,11 +40,8 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
 
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = søknad.sivilstatus;
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    søknad.sivilstatus;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
@@ -101,7 +98,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     søknad.søkerBorPåRegistrertAdresse.verdi === true &&
     harSøkerTlfnr(søknad.person);
 
-  const harFylltUtSeparasjonSpørsmålet =
+  const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
       ? harSøktSeparasjon.verdi
         ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
@@ -137,7 +134,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
         <Show
           if={
-            harFylltUtSeparasjonSpørsmålet ||
+            harFyltUtSeparasjonSpørsmålet ||
             erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
           }
         >

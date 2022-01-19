@@ -19,7 +19,7 @@ import {
 import {
   harSøkerMindreEnnHalvStilling,
   harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål,
-  hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst,
+  hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst,
 } from '../../../søknad/steg/6-meromsituasjon/SituasjonUtil';
 import { useLocation } from 'react-router-dom';
 import { returnerAvhukedeSvar } from '../../../utils/spørsmålogsvar';
@@ -168,9 +168,9 @@ const MerOmDinSituasjon: React.FC = () => {
   const visNårSøkerDuStønadFra = søkerJobberMindreEnnFemtiProsent
     ? harValgtMinstEttAlternativ &&
       harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål(dinSituasjon) &&
-      hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad)
+      hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst(søknad)
     : harValgtMinstEttAlternativ &&
-      hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad);
+      hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst(søknad);
 
   const erAlleSpørsmålBesvart =
     søknadsdato?.verdi !== undefined ||
@@ -208,7 +208,7 @@ const MerOmDinSituasjon: React.FC = () => {
       </SeksjonGruppe>
       {søkerJobberMindreEnnFemtiProsent &&
         harValgtMinstEttAlternativ &&
-        hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst(søknad) && (
+        hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst(søknad) && (
           <SeksjonGruppe>
             <HarSøkerSagtOppEllerRedusertStilling
               dinSituasjon={dinSituasjon}

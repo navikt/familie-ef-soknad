@@ -97,7 +97,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
     søknad.søkerBorPåRegistrertAdresse.verdi === true &&
     harSøkerTlfnr(søknad.person);
 
-  const harFylltUtSeparasjonSpørsmålet =
+  const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
       ? harSøktSeparasjon.verdi
         ? datoSøktSeparasjon && datoFlyttetFraHverandre
@@ -132,7 +132,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
 
         <Show
           if={
-            harFylltUtSeparasjonSpørsmålet ||
+            harFyltUtSeparasjonSpørsmålet ||
             erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
           }
         >

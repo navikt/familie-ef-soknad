@@ -89,14 +89,15 @@ export const harValgtSvarPåSagtOppEllerRedusertArbeidstidSpørsmål = (
   );
 };
 
-export const hvisHarBarnMedSærligeTilsynMåHaFylltUtFritekst = (
+export const hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst = (
   søknad: ISøknad
 ): boolean => {
   const { merOmDinSituasjon, person } = søknad;
 
-  const harSvartJaPåHarBarnMedSærligeTilsyn = merOmDinSituasjon.gjelderDetteDeg.svarid.find(
-    (v) => v === DinSituasjonType.harBarnMedSærligeBehov
-  );
+  const harSvartJaPåHarBarnMedSærligeTilsyn =
+    merOmDinSituasjon.gjelderDetteDeg.svarid.find(
+      (v) => v === DinSituasjonType.harBarnMedSærligeBehov
+    );
   const barnMedSærligeTilsyn = person.barn
     .filter((b) => b.særligeTilsynsbehov)
     .map((b) => b.særligeTilsynsbehov);
