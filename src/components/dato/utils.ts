@@ -64,6 +64,10 @@ export const erPeriodeGyldigOgInnaforBegrensninger = (
 ): boolean => {
   const { fra, til } = periode;
 
+  if (!(erGyldigDato(fra.verdi) && erGyldigDato(til.verdi))) {
+    return false;
+  }
+
   const fom: Date | undefined =
     periode.fra.verdi !== '' ? strengTilDato(fra.verdi) : undefined;
   const tom: Date | undefined =
