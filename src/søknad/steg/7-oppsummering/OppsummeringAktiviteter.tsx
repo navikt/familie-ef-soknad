@@ -5,7 +5,6 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { Ingress, Undertittel } from 'nav-frontend-typografi';
-import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import {
   VisLabelOgSvar,
@@ -18,6 +17,7 @@ import {
   SeksjonSpacingTop,
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   aktivitet: IAktivitet;
@@ -30,7 +30,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
   endreInformasjonPath,
   tittel,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const intl = useIntl();
 
   return (
@@ -110,10 +110,10 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
         )}
         <LenkeMedIkon
           onClick={() =>
-            history.replace({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
+            navigate(
+              { pathname: endreInformasjonPath },
+              { state: { kommerFraOppsummering: true }, replace: true }
+            )
           }
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}

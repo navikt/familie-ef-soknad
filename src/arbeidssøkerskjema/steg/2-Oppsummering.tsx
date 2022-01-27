@@ -8,7 +8,7 @@ import {
 } from '../routes/routesArbeidssokerskjema';
 import { mapDataTilLabelOgVerdiTyper } from '../utils/innsending';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { hentTekst } from '../../utils/søknad';
 import { useSkjema } from '../SkjemaContext';
 import { VisLabelOgSvar } from '../../utils/visning';
@@ -28,7 +28,6 @@ import {
   hentNesteRoute,
   hentPath,
 } from '../../utils/routing';
-import { LocationStateSøknad } from '../../models/søknad/søknad';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 
@@ -39,8 +38,8 @@ interface Innsending {
 }
 
 const Oppsummering: React.FC = () => {
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
@@ -76,7 +75,7 @@ const Oppsummering: React.FC = () => {
           ...skjema,
           innsendingsdato: parseISO(kvittering.mottattDato),
         });
-        history.push(nesteRoute.path);
+        navigate(nesteRoute.path);
       })
       .catch((e) =>
         settinnsendingState({
@@ -105,13 +104,15 @@ const Oppsummering: React.FC = () => {
         </div>
         <LenkeMedIkon
           onClick={() =>
-            history.push({
-              pathname: hentPath(
-                RoutesArbeidssokerskjema,
-                ERouteArbeidssøkerskjema.Spørsmål
-              ),
-              state: { kommerFraOppsummering: true },
-            })
+            navigate(
+              {
+                pathname: hentPath(
+                  RoutesArbeidssokerskjema,
+                  ERouteArbeidssøkerskjema.Spørsmål
+                ),
+              },
+              { state: { kommerFraOppsummering: true } }
+            )
           }
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
@@ -130,7 +131,7 @@ const Oppsummering: React.FC = () => {
           <KnappBase
             className={'tilbake'}
             type={'standard'}
-            onClick={() => history.push(forrigeRoute.path)}
+            onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
@@ -149,7 +150,7 @@ const Oppsummering: React.FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(RoutesArbeidssokerskjema[0].path)}
+            onClick={() => navigate(RoutesArbeidssokerskjema[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

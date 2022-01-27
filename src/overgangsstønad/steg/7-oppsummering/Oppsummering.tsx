@@ -24,17 +24,14 @@ import {
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
-import { RouteComponentProps } from 'react-router-dom';
+import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 
-interface Props {
-  history: RouteComponentProps['history'];
-}
-
-const Oppsummering: React.FC<Props> = ({ history }) => {
+const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
+  const action = useNavigationType();
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
@@ -43,8 +40,6 @@ const Oppsummering: React.FC<Props> = ({ history }) => {
     .map((barn: IBarn) => barn.særligeTilsynsbehov);
 
   useEffect(() => {
-    const { action } = history;
-
     if (action === 'POP') {
       logBrowserBackOppsummering(ESkjemanavn.Overgangsstønad, skjemaId);
     }

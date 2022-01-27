@@ -5,7 +5,6 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './overgangsstønad/Søknadsdialog';
 import { hentPersonData, oppdaterBarnMedLabel } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
-import { Switch, Route } from 'react-router-dom';
 import { ToggleName } from './models/søknad/toggles';
 import {
   autentiseringsInterceptor,
@@ -31,10 +30,8 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const [
-    alvorlighetsgrad,
-    settAlvorlighetsgrad,
-  ] = useState<EAlvorlighetsgrad>();
+  const [alvorlighetsgrad, settAlvorlighetsgrad] =
+    useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
@@ -123,11 +120,7 @@ const App = () => {
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
             </AlertStripeFeil>
           )}
-          <Switch>
-            <Route path={'/'}>
-              <Søknadsdialog />
-            </Route>
-          </Switch>
+          <Søknadsdialog />
         </>
       );
     } else if (error) {

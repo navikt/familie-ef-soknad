@@ -1,5 +1,5 @@
 import './utils/polyfills';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.less';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
@@ -27,13 +27,16 @@ ReactDOM.render(
     <ContextProviders>
       <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop />
-        <Switch>
-          <Route path={'/arbeidssoker'} component={ArbeidssøkerApp} />
-          <Route path={'/barnetilsyn'} component={BarnetilsynApp} />
-          <Route path={'/skolepenger'} component={SkolepengerApp} />
-          <Route path={'/innsendtsoknad'} component={DokumentasjonsbehovApp} />
-          <Route path={'/'} component={App} />
-        </Switch>
+        <Routes>
+          <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
+          <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
+          <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
+          <Route
+            path={'/innsendtsoknad/*'}
+            element={<DokumentasjonsbehovApp />}
+          />
+          <Route path={'*'} element={<App />} />
+        </Routes>
       </Router>
     </ContextProviders>
   </SpråkProvider>,

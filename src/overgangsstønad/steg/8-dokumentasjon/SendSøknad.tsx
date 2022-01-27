@@ -2,15 +2,15 @@ import React, { FC } from 'react';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { parseISO } from 'date-fns';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { hentPath } from '../../../utils/routing';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   RoutesOvergangsstonad,
   ERouteOvergangsstønad,
@@ -46,9 +46,9 @@ const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const [locale] = useSpråkContext();
-  const history = useHistory();
+  const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
   const intl = useIntl();
   const forrigeRoute = hentForrigeRoute(
@@ -124,7 +124,7 @@ const SendSøknadKnapper: FC = () => {
           ...søknad,
           innsendingsdato: parseISO(kvittering.mottattDato),
         });
-        history.push(nesteRoute.path);
+        navigate(nesteRoute.path);
       })
       .catch((e) => {
         settinnsendingState({
@@ -157,8 +157,8 @@ const SendSøknadKnapper: FC = () => {
                   RoutesOvergangsstonad,
                   ERouteOvergangsstønad.OmDeg
                 ),
-                state: { kommerFraOppsummering: true },
               }}
+              state={{ kommerFraOppsummering: true }}
             >
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
             </Link>
@@ -171,7 +171,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'tilbake'}
             type={'standard'}
-            onClick={() => history.push(forrigeRoute.path)}
+            onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
@@ -189,7 +189,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(RoutesOvergangsstonad[0].path)}
+            onClick={() => navigate(RoutesOvergangsstonad[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

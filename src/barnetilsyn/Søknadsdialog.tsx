@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router';
 import Forside from './Forside';
 import OmDeg from './steg/1-omdeg/OmDeg';
 import Bosituasjon from './steg/2-bosituasjon/Bosituasjon';
@@ -14,33 +14,81 @@ import RedirectTilStart from './RedirectTilStart';
 
 const SøknadsdialogBarnetilsyn: FC = () => {
   return (
-    <Switch>
-      <RedirectTilStart
-        path={'/barnetilsyn/kvittering'}
-        component={Kvittering}
+    <Routes>
+      <Route
+        path={'/kvittering'}
+        element={
+          <RedirectTilStart>
+            <Kvittering />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/barnetilsyn/dokumentasjon'}
-        component={Dokumentasjon}
+      <Route
+        path={'/dokumentasjon'}
+        element={
+          <RedirectTilStart>
+            <Dokumentasjon />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/barnetilsyn/oppsummering'}
-        component={Oppsummering}
+      <Route
+        path={'/oppsummering'}
+        element={
+          <RedirectTilStart>
+            <Oppsummering />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart path={'/barnetilsyn/barnepass'} component={Barnepass} />
-      <RedirectTilStart path={'/barnetilsyn/aktivitet'} component={Aktivitet} />
-      <RedirectTilStart
-        path={'/barnetilsyn/barnas-bosted'}
-        component={BarnasBosted}
+      <Route
+        path={'/barnepass'}
+        element={
+          <RedirectTilStart>
+            <Barnepass />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart path={'/barnetilsyn/barn'} component={BarnaDine} />
-      <RedirectTilStart
-        path={'/barnetilsyn/bosituasjon'}
-        component={Bosituasjon}
+      <Route
+        path={'/aktivitet'}
+        element={
+          <RedirectTilStart>
+            <Aktivitet />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart path={'/barnetilsyn/om-deg'} component={OmDeg} />
-      <Route path={'/barnetilsyn'} component={Forside} />
-    </Switch>
+      <Route
+        path={'/barnas-bosted'}
+        element={
+          <RedirectTilStart>
+            <BarnasBosted />
+          </RedirectTilStart>
+        }
+      />
+      <Route
+        path={'/barn'}
+        element={
+          <RedirectTilStart>
+            <BarnaDine />
+          </RedirectTilStart>
+        }
+      />
+      <Route
+        path={'/bosituasjon'}
+        element={
+          <RedirectTilStart>
+            <Bosituasjon />
+          </RedirectTilStart>
+        }
+      />
+      <Route
+        path={'/om-deg'}
+        element={
+          <RedirectTilStart>
+            <OmDeg />
+          </RedirectTilStart>
+        }
+      />
+      <Route path={'*'} element={<Forside />} />
+    </Routes>
   );
 };
 

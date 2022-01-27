@@ -1,35 +1,19 @@
 import React from 'react';
-import {
-  Route,
-  Redirect,
-  RouteProps,
-  RouteComponentProps,
-} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useSkjema } from '../SkjemaContext';
 import { RoutesArbeidssokerskjema } from './routesArbeidssokerskjema';
 
-interface RedirectProps extends RouteProps {
-  component:
-    | React.ComponentType<RouteComponentProps<any>>
-    | React.ComponentType<any>;
+interface Props {
+  children: React.ReactElement;
 }
-const RedirectArbeidssoker: React.FC<RedirectProps> = ({
-  component: Component,
-  ...rest
-}) => {
+
+const RedirectArbeidssoker: React.FC<Props> = ({ children }) => {
   const { skjema } = useSkjema();
 
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !skjema.harBekreftet ? (
-          <Redirect to={RoutesArbeidssokerskjema[0].path} />
-        ) : (
-          <Component {...props} {...rest} />
-        )
-      }
-    />
+  return !skjema.harBekreftet ? (
+    <Navigate to={RoutesArbeidssokerskjema[0].path} />
+  ) : (
+    children
   );
 };
 

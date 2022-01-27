@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Forside from './Forside';
 import RedirectTilStart from './RedirectTilStart';
 import OmDeg from './steg/1-omdeg/OmDeg';
@@ -13,35 +13,73 @@ import Dokumentasjon from './steg/7-dokumentasjon/Dokumentasjon';
 
 const SøknadsdialogSkolepenger: FC = () => {
   return (
-    <Switch>
-      <RedirectTilStart
-        path={'/skolepenger/kvittering'}
-        component={Kvittering}
+    <Routes>
+      <Route
+        path={'/kvittering'}
+        element={
+          <RedirectTilStart>
+            <Kvittering />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/skolepenger/dokumentasjon'}
-        component={Dokumentasjon}
+      <Route
+        path={'/dokumentasjon'}
+        element={
+          <RedirectTilStart>
+            <Dokumentasjon />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/skolepenger/oppsummering'}
-        component={Oppsummering}
+      <Route
+        path={'/oppsummering'}
+        element={
+          <RedirectTilStart>
+            <Oppsummering />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/skolepenger/utdanning'}
-        component={UtdanningSituasjon}
+      <Route
+        path={'/utdanning'}
+        element={
+          <RedirectTilStart>
+            <UtdanningSituasjon />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart
-        path={'/skolepenger/barnas-bosted'}
-        component={BarnasBosted}
+      <Route
+        path={'/barnas-bosted'}
+        element={
+          <RedirectTilStart>
+            <BarnasBosted />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart path={'/skolepenger/barn'} component={BarnaDine} />
-      <RedirectTilStart
-        path={'/skolepenger/bosituasjon'}
-        component={Bosituasjon}
+      <Route
+        path={'/barn'}
+        element={
+          <RedirectTilStart>
+            <BarnaDine />
+          </RedirectTilStart>
+        }
       />
-      <RedirectTilStart path={'/skolepenger/om-deg'} component={OmDeg} />
-      <Route path={'/skolepenger'} component={Forside} />
-    </Switch>
+      <Route
+        path={'/bosituasjon'}
+        element={
+          <RedirectTilStart>
+            <Bosituasjon />
+          </RedirectTilStart>
+        }
+      />
+      <Route
+        path={'/om-deg'}
+        element={
+          <RedirectTilStart>
+            <OmDeg />
+          </RedirectTilStart>
+        }
+      />
+      <Route path={'*'} element={<Forside />} />
+    </Routes>
   );
 };
 

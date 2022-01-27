@@ -1,7 +1,6 @@
 import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
-import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -12,6 +11,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   barn: IBarn[];
@@ -27,7 +27,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   tittel,
 }) => {
   const intl = useIntl();
-  const history = useHistory();
+  const navigate = useNavigate();
   const barnaDine: IBarn[] = barn;
 
   const hentEndretBarn = (barn: IBarn): IBarn => {
@@ -64,10 +64,10 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
       <KomponentGruppe>{oppsummeringBarnaDine}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
+          navigate(
+            { pathname: endreInformasjonPath },
+            { state: { kommerFraOppsummering: true } }
+          )
         }
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}

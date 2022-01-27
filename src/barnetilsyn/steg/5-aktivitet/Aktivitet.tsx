@@ -29,9 +29,10 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const Aktivitet: React.FC = () => {
   const intl = useIntl();
@@ -41,12 +42,12 @@ const Aktivitet: React.FC = () => {
     settDokumentasjonsbehov,
     mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const [arbeidssituasjon, settArbeidssituasjon] = useState<IAktivitet>(
     søknad?.aktivitet
   );
   const { hvaErDinArbeidssituasjon, erIArbeid } = arbeidssituasjon;
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

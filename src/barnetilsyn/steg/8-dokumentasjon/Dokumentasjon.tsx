@@ -12,7 +12,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
@@ -24,7 +24,7 @@ import { Severity } from '@sentry/browser';
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);

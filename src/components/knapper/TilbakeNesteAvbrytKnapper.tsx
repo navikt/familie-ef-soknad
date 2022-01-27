@@ -3,9 +3,9 @@ import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import styled from 'styled-components/macro';
-import { LocationStateSøknad } from '../../models/søknad/søknad';
+import { useNavigate } from 'react-router-dom';
 
 const StyledNavigeringsKnapper = styled.div`
   padding: 2rem;
@@ -74,8 +74,8 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
   erSpørsmålBesvart,
   mellomlagreStønad,
 }) => {
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(routesStønad, location.pathname);
   const forrigeRoute = hentForrigeRoute(routesStønad, location.pathname);
 
@@ -89,7 +89,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       <KnappBase
         className={'tilbake'}
         type={'standard'}
-        onClick={() => history.push(forrigeRoute.path)}
+        onClick={() => navigate(forrigeRoute.path)}
       >
         <LocaleTekst tekst={'knapp.tilbake'} />
       </KnappBase>
@@ -100,7 +100,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
             if (mellomlagreStønad) {
               mellomlagreStønad(location.pathname);
             }
-            history.push(nesteRoute.path);
+            navigate(nesteRoute.path);
           }}
           className={'neste'}
         >
@@ -110,7 +110,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       <KnappBase
         className={'avbryt'}
         type={'flat'}
-        onClick={() => history.push(routesStønad[0].path)}
+        onClick={() => navigate(routesStønad[0].path)}
       >
         <LocaleTekst tekst={'knapp.avbryt'} />
       </KnappBase>

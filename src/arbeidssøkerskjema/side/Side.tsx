@@ -8,9 +8,8 @@ import Stegindikator from 'nav-frontend-stegindikator';
 import Panel from 'nav-frontend-paneler';
 import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
-import { LocationStateSøknad } from '../../models/søknad/søknad';
 import { useIntl } from 'react-intl';
 
 interface ISide {
@@ -25,8 +24,8 @@ const Side: React.FC<ISide> = ({
   skalViseKnapper,
   erSpørsmålBesvart,
 }) => {
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const intl = useIntl();
 
   const routes = Object.values(RoutesArbeidssokerskjema);
@@ -82,14 +81,14 @@ const Side: React.FC<ISide> = ({
               <KnappBase
                 className={'tilbake'}
                 type={'standard'}
-                onClick={() => history.push(forrigeRoute.path)}
+                onClick={() => navigate(forrigeRoute.path)}
               >
                 <LocaleTekst tekst={'knapp.tilbake'} />
               </KnappBase>
               {erSpørsmålBesvart && (
                 <KnappBase
                   type={'hoved'}
-                  onClick={() => history.push(nesteRoute.path)}
+                  onClick={() => navigate(nesteRoute.path)}
                   className={nesteKnappStyling}
                 >
                   <LocaleTekst tekst={'knapp.neste'} />
@@ -99,7 +98,7 @@ const Side: React.FC<ISide> = ({
               <KnappBase
                 className={'avbryt'}
                 type={'flat'}
-                onClick={() => history.push(RoutesArbeidssokerskjema[0].path)}
+                onClick={() => navigate(RoutesArbeidssokerskjema[0].path)}
               >
                 <LocaleTekst tekst={'knapp.avbryt'} />
               </KnappBase>

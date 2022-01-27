@@ -7,7 +7,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
 import { hentTekst } from '../utils/søknad';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
@@ -31,7 +31,7 @@ const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
   const [locale] = useSpråkContext();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { toggles } = useToggles();
 
   const { skjema, settSkjema } = useSkjema();
@@ -142,7 +142,7 @@ const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
                 onClick={() =>
-                  history.push({
+                  navigate({
                     pathname: hentPath(
                       RoutesArbeidssokerskjema,
                       ERouteArbeidssøkerskjema.Spørsmål

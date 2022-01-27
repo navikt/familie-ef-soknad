@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonDataArbeidssoker } from '../utils/søknad';
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -60,24 +60,36 @@ const App = () => {
       return (
         <>
           <SkjemaProvider>
-            <Switch>
-              <Route exact path={'/arbeidssoker'}>
-                <Forside visningsnavn={visningsnavn} />
-              </Route>
-              <RedirectArbeidssoker
-                path={'/arbeidssoker/sporsmal'}
-                component={Spørsmål}
-                {...personProps}
+            <Routes>
+              <Route
+                path={'/sporsmal'}
+                element={
+                  <RedirectArbeidssoker>
+                    <Spørsmål ident={personProps.ident} />
+                  </RedirectArbeidssoker>
+                }
               />
-              <RedirectArbeidssoker
-                path={'/arbeidssoker/oppsummering'}
-                component={Oppsummering}
+              <Route
+                path={'/oppsummering'}
+                element={
+                  <RedirectArbeidssoker>
+                    <Oppsummering />
+                  </RedirectArbeidssoker>
+                }
               />
-              <RedirectArbeidssoker
-                path={'/arbeidssoker/kvittering'}
-                component={Kvittering}
+              <Route
+                path={'/kvittering'}
+                element={
+                  <RedirectArbeidssoker>
+                    <Kvittering />
+                  </RedirectArbeidssoker>
+                }
               />
-            </Switch>
+              <Route
+                path={'*'}
+                element={<Forside visningsnavn={visningsnavn} />}
+              />
+            </Routes>
           </SkjemaProvider>
         </>
       );

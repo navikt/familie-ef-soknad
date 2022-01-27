@@ -6,7 +6,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
-import { useHistory } from 'react-router';
 import { useIntl } from 'react-intl';
 import {
   IDatoFelt,
@@ -23,6 +22,7 @@ import {
 import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
@@ -37,7 +37,7 @@ const OppsummeringBarnepass: FC<Props> = ({
   søkerFraBestemtDato,
   endreInformasjonPath,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const intl = useIntl();
 
   return (
@@ -94,10 +94,10 @@ const OppsummeringBarnepass: FC<Props> = ({
       <KomponentGruppe>
         <LenkeMedIkon
           onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
+            navigate(
+              { pathname: endreInformasjonPath },
+              { state: { kommerFraOppsummering: true } }
+            )
           }
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}
