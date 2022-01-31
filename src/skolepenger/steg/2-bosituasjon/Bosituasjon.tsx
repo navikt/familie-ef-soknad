@@ -9,10 +9,11 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const Bosituasjon: FC = () => {
   const intl = useIntl();
@@ -23,8 +24,8 @@ const Bosituasjon: FC = () => {
     mellomlagreSkolepenger,
   } = useSkolepengerSøknad();
   const bosituasjon = søknad.bosituasjon;
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

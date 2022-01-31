@@ -14,9 +14,10 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const BarnaDine: React.FC = () => {
   const intl = useIntl();
@@ -26,8 +27,9 @@ const BarnaDine: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehovForBarn,
   } = useSøknad();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+  const location = useLocation();
+  const kommerFraOppsummering =
+    kommerFraOppsummeringen(location.state) && false;
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

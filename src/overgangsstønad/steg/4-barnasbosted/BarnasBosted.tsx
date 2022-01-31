@@ -11,7 +11,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -21,6 +21,7 @@ import {
   antallBarnMedForeldreUtfylt,
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -29,7 +30,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const {
     søknad,
     mellomlagreOvergangsstønad,
@@ -45,7 +46,7 @@ const BarnasBosted: React.FC = () => {
     return barn.medforelder?.verdi?.død === true;
   });
 
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

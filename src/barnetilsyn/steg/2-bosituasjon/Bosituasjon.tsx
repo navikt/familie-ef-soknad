@@ -9,10 +9,11 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const Bosituasjon: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('Bosituasjon'));
@@ -25,8 +26,8 @@ const Bosituasjon: FC = () => {
     mellomlagreBarnetilsyn,
   } = useBarnetilsynSøknad();
   const bosituasjon = søknad.bosituasjon;
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

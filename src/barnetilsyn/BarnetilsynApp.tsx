@@ -4,7 +4,6 @@ import hentToggles from '../toggles/api';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
-import { Switch, Route } from 'react-router-dom';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -28,16 +27,11 @@ const BarnetilsynApp = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const [
-    alvorlighetsgrad,
-    settAlvorlighetsgrad,
-  ] = useState<EAlvorlighetsgrad>();
+  const [alvorlighetsgrad, settAlvorlighetsgrad] =
+    useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
-  const {
-    søknad,
-    settSøknad,
-    hentMellomlagretBarnetilsyn,
-  } = useBarnetilsynSøknad();
+  const { søknad, settSøknad, hentMellomlagretBarnetilsyn } =
+    useBarnetilsynSøknad();
   const { settToggles } = useToggles();
 
   const intl = useIntl();
@@ -117,11 +111,7 @@ const BarnetilsynApp = () => {
             <title>Søknad om barnetilsyn</title>
           </Helmet>
 
-          <Switch>
-            <Route path={'/'}>
-              <SøknadsdialogBarnetilsyn />
-            </Route>
-          </Switch>
+          <SøknadsdialogBarnetilsyn />
         </>
       );
     } else if (error) {

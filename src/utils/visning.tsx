@@ -11,7 +11,6 @@ import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
-import { LocationStateSøknad } from '../models/søknad/søknad';
 import { harValgtSvar } from './spørsmålogsvar';
 
 export const visListeAvLabelOgSvar = (
@@ -171,7 +170,7 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
 };
 
 export const ScrollToTop = () => {
-  const { pathname } = useLocation<LocationStateSøknad>();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);

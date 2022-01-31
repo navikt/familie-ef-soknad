@@ -4,7 +4,7 @@ import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
@@ -15,11 +15,12 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -31,9 +32,9 @@ const BarnaDine: React.FC = () => {
     mellomlagreBarnetilsyn,
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
-  const history = useHistory();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering && false;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
@@ -148,7 +149,7 @@ const BarnaDine: React.FC = () => {
             <Hovedknapp
               className="tilbake-til-oppsummering"
               onClick={() =>
-                history.push({
+                navigate({
                   pathname: '/oppsummering',
                 })
               }

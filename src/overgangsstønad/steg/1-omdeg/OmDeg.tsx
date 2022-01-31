@@ -19,14 +19,15 @@ import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { useIntl } from 'react-intl';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
 import { useMount } from '../../../utils/hooks';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const OmDeg: FC = () => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

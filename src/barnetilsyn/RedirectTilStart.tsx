@@ -1,34 +1,14 @@
 import React from 'react';
-import {
-  Route,
-  Redirect,
-  RouteProps,
-  RouteComponentProps,
-} from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 
-interface RedirectTilStartProps extends RouteProps {
-  component:
-    | React.ComponentType<RouteComponentProps<any>>
-    | React.ComponentType<any>;
+interface Props {
+  children: React.ReactElement;
 }
-const RedirectTilStart: React.FC<RedirectTilStartProps> = ({
-  component: Component,
-  ...rest
-}) => {
+
+const RedirectTilStart: React.FC<Props> = ({ children }) => {
   const { søknad } = useBarnetilsynSøknad();
-  return (
-    <Route
-      {...rest}
-      render={(props) =>
-        !søknad.harBekreftet ? (
-          <Redirect to={'/barnetilsyn'} />
-        ) : (
-          <Component {...props} />
-        )
-      }
-    />
-  );
+  return !søknad.harBekreftet ? <Navigate to={'/barnetilsyn'} /> : children;
 };
 
 export default RedirectTilStart;

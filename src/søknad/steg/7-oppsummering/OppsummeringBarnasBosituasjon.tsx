@@ -4,13 +4,13 @@ import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IBarn } from '../../../models/steg/barn';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useHistory } from 'react-router-dom';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import BarneHeader from '../../../components/BarneHeader';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { useIntl } from 'react-intl';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   barn: IBarn[];
@@ -22,7 +22,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   endreInformasjonPath,
   tittel,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const intl = useIntl();
 
   const felterAlleForeldrene = barn
@@ -61,10 +61,10 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
       <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
+          navigate(
+            { pathname: endreInformasjonPath },
+            { state: { kommerFraOppsummering: true } }
+          )
         }
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}

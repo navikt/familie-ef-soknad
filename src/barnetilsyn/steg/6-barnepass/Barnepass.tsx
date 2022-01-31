@@ -24,18 +24,19 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { useLocation } from 'react-router';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { ISøknad } from '../../models/søknad';
 import { datoTilStreng } from '../../../utils/dato';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
