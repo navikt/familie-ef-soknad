@@ -12,8 +12,6 @@ import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
-import { useToggles } from '../../context/TogglesContext';
-import { ToggleName } from '../../models/søknad/toggles';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -40,7 +38,6 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 }) => {
   const navigate = useNavigate();
   const [locale] = useSpråkContext();
-  const { toggles } = useToggles();
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -78,11 +75,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 
   return (
     <>
-      {toggles[ToggleName.vis_språkvelger] && (
-        <FeltGruppe>
-          <Språkvelger />
-        </FeltGruppe>
-      )}
+      <FeltGruppe>
+        <Språkvelger/>
+      </FeltGruppe>
       {locale === 'en' && (
         <AlertStripeAdvarsel>
           We are in the process of translating this application. The few missing
