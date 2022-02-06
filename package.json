@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
-    "@navikt/fnrvalidator": "^1.1.4",
+    "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^2.23.2",
     "@sentry/browser": "^6.17.1",
