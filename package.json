@@ -87,7 +87,7 @@
     "nav-frontend-veileder-style": "^3.0.1",
     "nav-frontend-veilederpanel": "^2.0.2",
     "nav-frontend-veilederpanel-style": "^2.0.1",
-    "npm": "^8.4.1",
+    "npm": "^8.5.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^3.0.0",
