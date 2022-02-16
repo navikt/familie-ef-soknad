@@ -25,8 +25,10 @@ import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../../../models/søknad/person';
+import { useToggles } from '../../../../../context/TogglesContext';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
+import { ToggleName } from '../../../../../models/søknad/toggles';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -47,6 +49,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
+  const { toggles } = useToggles();
 
   const {
     årsakEnslig,
@@ -116,7 +119,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         },
       });
 
-    if (!erGyldig) {
+    if (toggles[ToggleName.slettFnrState] && !erGyldig) {
       delete samboerInfo.ident;
     }
   };

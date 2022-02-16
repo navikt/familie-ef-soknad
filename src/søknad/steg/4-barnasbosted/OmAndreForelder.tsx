@@ -13,6 +13,8 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useIntl } from 'react-intl';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Feilmelding } from 'nav-frontend-typografi';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/søknad/toggles';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -44,6 +46,7 @@ const OmAndreForelder: React.FC<Props> = ({
   const [identFelt, settIdentFelt] = useState<string>(
     ident?.verdi ? ident.verdi : ''
   );
+  const { toggles } = useToggles();
 
   useEffect(() => {
     erGyldigIdent &&
@@ -52,7 +55,7 @@ const OmAndreForelder: React.FC<Props> = ({
         ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
       });
 
-    if (!erGyldigIdent) {
+    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
       const nyForelder = { ...forelder };
 
       delete nyForelder.ident;

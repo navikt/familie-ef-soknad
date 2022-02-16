@@ -12,6 +12,8 @@ import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../models/søknad/person';
+import { ToggleName } from '../../../models/søknad/toggles';
+import { useToggles } from '../../../context/TogglesContext';
 
 interface Props {
   tittel: string;
@@ -32,6 +34,7 @@ const OmSamboerenDin: FC<Props> = ({
 }) => {
   const intl = useIntl();
   const samboerDetaljer = bosituasjon[samboerDetaljerType];
+  const { toggles } = useToggles();
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(
     samboerDetaljer ? samboerDetaljer : { kjennerIkkeIdent: false }
   );
@@ -52,7 +55,7 @@ const OmSamboerenDin: FC<Props> = ({
         },
       });
 
-    if (!erGyldigIdent) {
+    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
       let nySamboerInfo = { ...samboerInfo };
       delete nySamboerInfo.ident;
 
