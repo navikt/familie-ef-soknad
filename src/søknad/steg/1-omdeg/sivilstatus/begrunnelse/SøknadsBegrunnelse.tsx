@@ -115,6 +115,10 @@ const Søknadsbegrunnelse: FC<Props> = ({
           verdi: ident,
         },
       });
+
+    if (!erGyldig) {
+      delete samboerInfo.ident;
+    }
   };
 
   const settChecked = (checked: boolean) => {

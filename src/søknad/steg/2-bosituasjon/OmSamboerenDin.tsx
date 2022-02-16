@@ -51,6 +51,14 @@ const OmSamboerenDin: FC<Props> = ({
           verdi: ident,
         },
       });
+
+    if (!erGyldigIdent) {
+      let nySamboerInfo = { ...samboerInfo };
+      delete nySamboerInfo.ident;
+
+      settSamboerInfo(nySamboerInfo);
+    }
+
     // eslint-disable-next-line
   }, [erGyldigIdent, ident]);
 

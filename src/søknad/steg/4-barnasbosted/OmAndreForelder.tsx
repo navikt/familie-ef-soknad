@@ -51,6 +51,15 @@ const OmAndreForelder: React.FC<Props> = ({
         ...forelder,
         ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
       });
+
+    if (!erGyldigIdent) {
+      const nyForelder = { ...forelder };
+
+      delete nyForelder.ident;
+
+      settForelder(nyForelder);
+    }
+
     // eslint-disable-next-line
   }, [erGyldigIdent, identFelt]);
 
