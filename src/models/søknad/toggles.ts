@@ -4,4 +4,5 @@ export interface Toggles {
 
 export enum ToggleName {
   feilsituasjon = 'familie.ef.soknad.feilsituasjon',
+  slettFnrState = 'familie.ef.soknad.slett-ugyldig-fnr-fra-state',
 }
