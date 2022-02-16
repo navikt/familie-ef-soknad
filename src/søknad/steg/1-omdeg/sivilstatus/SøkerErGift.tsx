@@ -8,12 +8,17 @@ import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import { useIntl } from 'react-intl';
+import styled from 'styled-components';
 
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
   settDato: (date: string, objektnøkkel: string, tekst: string) => void;
   sivilstatus: ISivilstatus;
 }
+
+const SøktSeparasjonAlert = styled(AlertStripe)`
+  margin-bottom: 3rem;
+`;
 
 const SøkerErGift: React.FC<Props> = ({
   settJaNeiFelt,
@@ -36,9 +41,9 @@ const SøkerErGift: React.FC<Props> = ({
         <SøkerHarSøktSeparasjon sivilstatus={sivilstatus} settDato={settDato} />
       ) : (
         harSøktSeparasjon?.verdi === false && (
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <SøktSeparasjonAlert type={'advarsel'} form={'inline'}>
             <LocaleTekst tekst={'sivilstatus.alert-advarsel.søktSeparasjon'} />
-          </AlertStripe>
+          </SøktSeparasjonAlert>
         )
       )}
     </>
