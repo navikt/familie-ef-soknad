@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Route, Switch } from 'react-router';
+import { Route, Routes } from 'react-router-dom';
 import Aktivitet from './steg/5-aktivitet/Aktivitet';
 import BarnaDine from './steg/3-barnadine/BarnaDine';
 import BarnasBosted from './steg/4-barnasbosted/BarnasBosted';
@@ -15,21 +15,81 @@ import RedirectTilStart from './RedirectTilStart';
 const Søknadsdialog: FC = () => {
   return (
     <>
-      <Switch>
-        <RedirectTilStart path={'/kvittering'} component={Kvittering} />
-        <RedirectTilStart path={'/dokumentasjon'} component={Dokumentasjon} />
-        <RedirectTilStart path={'/oppsummering'} component={Oppsummering} />
-        <RedirectTilStart
-          path={'/din-situasjon'}
-          component={MerOmDinSituasjon}
+      <Routes>
+        <Route
+          path={'/kvittering'}
+          element={
+            <RedirectTilStart>
+              <Kvittering />
+            </RedirectTilStart>
+          }
         />
-        <RedirectTilStart path={'/aktivitet'} component={Aktivitet} />
-        <RedirectTilStart path={'/barnas-bosted'} component={BarnasBosted} />
-        <RedirectTilStart path={'/barn'} component={BarnaDine} />
-        <RedirectTilStart path={'/bosituasjon'} component={Bosituasjon} />
-        <RedirectTilStart path={'/om-deg'} component={OmDeg} />
-        <Route path={'/'} component={Forside} />
-      </Switch>
+        <Route
+          path={'/dokumentasjon'}
+          element={
+            <RedirectTilStart>
+              <Dokumentasjon />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/oppsummering'}
+          element={
+            <RedirectTilStart>
+              <Oppsummering />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/din-situasjon'}
+          element={
+            <RedirectTilStart>
+              <MerOmDinSituasjon />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/aktivitet'}
+          element={
+            <RedirectTilStart>
+              <Aktivitet />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/barnas-bosted'}
+          element={
+            <RedirectTilStart>
+              <BarnasBosted />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/barn'}
+          element={
+            <RedirectTilStart>
+              <BarnaDine />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/bosituasjon'}
+          element={
+            <RedirectTilStart>
+              <Bosituasjon />
+            </RedirectTilStart>
+          }
+        />
+        <Route
+          path={'/om-deg'}
+          element={
+            <RedirectTilStart>
+              <OmDeg />
+            </RedirectTilStart>
+          }
+        />
+        <Route path={'*'} element={<Forside />} />
+      </Routes>
     </>
   );
 };

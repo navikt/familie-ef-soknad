@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import Side from '../side/Side';
 import { useIntl } from 'react-intl';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../utils/søknad';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
@@ -27,20 +27,20 @@ import {
   RoutesArbeidssokerskjema,
 } from '../routes/routesArbeidssokerskjema';
 import { hentPath } from '../../utils/routing';
-import { LocationStateSøknad } from '../../models/søknad/søknad';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
+import { kommerFraOppsummeringen } from '../../utils/locationState';
 
 const Spørsmål: FC<any> = ({ ident }) => {
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const intl = useIntl();
   const { skjema, settSkjema } = useSkjema();
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 
   useMount(() => logSidevisningArbeidssokerskjema('OmArbeidssoker'));
 
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
 
   React.useEffect(() => {
     settSkjema({ ...skjema, arbeidssøker: arbeidssøker });
@@ -149,7 +149,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
         <Hovedknapp
           className="tilbake-til-oppsummering"
           onClick={() =>
-            history.push({
+            navigate({
               pathname: hentPath(
                 RoutesArbeidssokerskjema,
                 ERouteArbeidssøkerskjema.Oppsummering

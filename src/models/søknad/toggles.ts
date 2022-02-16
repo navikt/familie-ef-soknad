@@ -4,6 +4,5 @@ export interface Toggles {
 
 export enum ToggleName {
   feilsituasjon = 'familie.ef.soknad.feilsituasjon',
-  vis_språkvelger = 'familie.ef.soknad.sprakvelger',
-  visSkalBehandlesINySaksbehandling = "familie.ef.soknad.visSkalBehandlesINySaksbehandling"
+  slettFnrState = 'familie.ef.soknad.slett-ugyldig-fnr-fra-state',
 }

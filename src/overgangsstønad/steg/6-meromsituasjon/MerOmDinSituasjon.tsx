@@ -34,13 +34,14 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import { useMount } from '../../../utils/hooks';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const StyledHjelpetekst = styled.div`
   .typo-normal {
@@ -56,8 +57,8 @@ const MerOmDinSituasjon: React.FC = () => {
     mellomlagreOvergangsstønad,
     oppdaterBarnISoknaden,
   } = useSøknad();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

@@ -10,7 +10,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -21,6 +21,7 @@ import {
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
 import { ISøknad } from '../../models/søknad';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -29,7 +30,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const {
     søknad,
     mellomlagreBarnetilsyn,
@@ -58,7 +59,7 @@ const BarnasBosted: React.FC = () => {
     return barn.skalHaBarnepass?.verdi && barn.medforelder?.verdi?.død === true;
   });
 
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

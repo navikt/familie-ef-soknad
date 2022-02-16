@@ -12,7 +12,6 @@ import {
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import { ISøker } from '../../../models/søknad/person';
 import { Undertittel, Ingress } from 'nav-frontend-typografi';
-import { useHistory } from 'react-router-dom';
 import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import {
@@ -21,6 +20,7 @@ import {
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   søker: ISøker;
@@ -38,7 +38,7 @@ const OppsummeringOmDeg: FC<Props> = ({
 }) => {
   const intl = useIntl();
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const omDeg = søker;
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
@@ -101,10 +101,10 @@ const OppsummeringOmDeg: FC<Props> = ({
       </KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>
-          history.push({
-            pathname: endreInformasjonPath,
-            state: { kommerFraOppsummering: true },
-          })
+          navigate(
+            { pathname: endreInformasjonPath },
+            { state: { kommerFraOppsummering: true } }
+          )
         }
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}

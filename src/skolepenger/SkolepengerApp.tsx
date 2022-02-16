@@ -8,7 +8,6 @@ import {
   oppdaterBarnMedLabel,
 } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
-import { Switch, Route } from 'react-router-dom';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -32,16 +31,11 @@ const SkolepengerApp = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const [
-    alvorlighetsgrad,
-    settAlvorlighetsgrad,
-  ] = useState<EAlvorlighetsgrad>();
+  const [alvorlighetsgrad, settAlvorlighetsgrad] =
+    useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
-  const {
-    søknad,
-    settSøknad,
-    hentMellomlagretSkolepenger,
-  } = useSkolepengerSøknad();
+  const { søknad, settSøknad, hentMellomlagretSkolepenger } =
+    useSkolepengerSøknad();
   const { settToggles } = useToggles();
   const intl = useIntl();
 
@@ -121,11 +115,7 @@ const SkolepengerApp = () => {
             <title>{hentTekst('skolepenger.sidetittel', intl)}</title>
           </Helmet>
 
-          <Switch>
-            <Route path={'/'}>
-              <SøknadsdialogSkolepenger />
-            </Route>
-          </Switch>
+          <SøknadsdialogSkolepenger />
         </>
       );
     } else if (error) {

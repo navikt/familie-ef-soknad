@@ -9,11 +9,12 @@ import {
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useHistory } from 'react-router-dom';
+
 import { useIntl } from 'react-intl';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -26,7 +27,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   endreInformasjonPath,
   tittel,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const intl = useIntl();
 
   const samboerDetaljer =
@@ -74,10 +75,10 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
 
         <LenkeMedIkon
           onClick={() =>
-            history.push({
-              pathname: endreInformasjonPath,
-              state: { kommerFraOppsummering: true },
-            })
+            navigate(
+              { pathname: endreInformasjonPath },
+              { state: { kommerFraOppsummering: true } }
+            )
           }
           tekst_id="barnasbosted.knapp.endre"
           ikon={endre}

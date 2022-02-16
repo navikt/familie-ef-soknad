@@ -15,7 +15,7 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad, LocationStateSøknad } from '../../../models/søknad/søknad';
+import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
@@ -23,7 +23,7 @@ import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
   const { søknad, settSøknad, mellomlagreOvergangsstønad } = useSøknad();
-  const location = useLocation<LocationStateSøknad>();
+  const location = useLocation();
   const { dokumentasjonsbehov } = søknad;
   const sidetittel: string = hentTekst('dokumentasjon.tittel', intl);
   const forrigeDokumentasjonsbehov = usePrevious(søknad.dokumentasjonsbehov);

@@ -12,7 +12,7 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import {
@@ -22,6 +22,7 @@ import {
 import { ISøknad } from '../../models/søknad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -30,8 +31,8 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 const BarnasBosted: React.FC = () => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

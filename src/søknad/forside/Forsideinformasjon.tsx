@@ -10,12 +10,10 @@ import { IntlShape } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
-import { useHistory } from 'react-router-dom';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
-import { useToggles } from '../../context/TogglesContext';
-import { ToggleName } from '../../models/søknad/toggles';
 import { useSpråkContext } from '../../context/SpråkContext';
+import { useNavigate } from 'react-router-dom';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -38,9 +36,8 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   settBekreftelse,
   nesteSide,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [locale] = useSpråkContext();
-  const { toggles } = useToggles();
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -78,11 +75,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 
   return (
     <>
-      {toggles[ToggleName.vis_språkvelger] && (
-        <FeltGruppe>
-          <Språkvelger />
-        </FeltGruppe>
-      )}
+      <FeltGruppe>
+        <Språkvelger/>
+      </FeltGruppe>
       {locale === 'en' && (
         <AlertStripeAdvarsel>
           We are in the process of translating this application. The few missing
@@ -140,7 +135,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 
       {harBekreftet ? (
         <FeltGruppe classname={'sentrert'} aria-live="polite">
-          <KnappBase onClick={() => history.push(nesteSide)} type={'hoved'}>
+          <KnappBase onClick={() => navigate(nesteSide)} type={'hoved'}>
             <LocaleTekst tekst={'knapp.start'} />
           </KnappBase>
         </FeltGruppe>

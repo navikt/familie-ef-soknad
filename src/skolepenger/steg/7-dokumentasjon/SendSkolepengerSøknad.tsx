@@ -3,7 +3,7 @@ import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { parseISO } from 'date-fns';
-import { useHistory, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
@@ -23,13 +23,13 @@ import {
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
+
 import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface Innsending {
   status: string;
@@ -43,8 +43,8 @@ const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSkolepengerSøknad();
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesSkolepenger, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesSkolepenger, location.pathname);
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
@@ -84,7 +84,7 @@ const SendSøknadKnapper: FC = () => {
           ...søknad,
           innsendingsdato: parseISO(kvittering.mottattDato),
         });
-        history.push(nesteRoute.path);
+        navigate(nesteRoute.path);
       })
       .catch((e) => {
         settinnsendingState({
@@ -114,8 +114,8 @@ const SendSøknadKnapper: FC = () => {
             <Link
               to={{
                 pathname: hentPath(RoutesSkolepenger, ERouteSkolepenger.OmDeg),
-                state: { kommerFraOppsummering: true },
               }}
+              state={{ kommerFraOppsummering: true }}
             >
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
             </Link>
@@ -128,7 +128,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'tilbake'}
             type={'standard'}
-            onClick={() => history.push(forrigeRoute.path)}
+            onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
           </KnappBase>
@@ -146,7 +146,7 @@ const SendSøknadKnapper: FC = () => {
           <KnappBase
             className={'avbryt'}
             type={'flat'}
-            onClick={() => history.push(RoutesSkolepenger[0].path)}
+            onClick={() => navigate(RoutesSkolepenger[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
           </KnappBase>

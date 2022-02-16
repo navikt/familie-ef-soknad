@@ -18,18 +18,18 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { LocationStateSøknad } from '../../../models/søknad/søknad';
 import Show from '../../../utils/showIf';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { erGyldigDato } from '../../../utils/dato';
+import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
 
-  const location = useLocation<LocationStateSøknad>();
-  const kommerFraOppsummering = location.state?.kommerFraOppsummering;
+  const location = useLocation();
+  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;

@@ -2,7 +2,7 @@ import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import Banner from '../../components/Banner';
 import Panel from 'nav-frontend-paneler';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
@@ -12,7 +12,6 @@ import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbr
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
-import { LocationStateSøknad } from '../../models/søknad/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
 
@@ -45,8 +44,8 @@ const Side: React.FC<ISide> = ({
   informasjonstekstId,
 }) => {
   const intl = useIntl();
-  const location = useLocation<LocationStateSøknad>();
-  const history = useHistory();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const routes = Object.values(routesStønad);
   routes.shift();
@@ -113,7 +112,7 @@ const Side: React.FC<ISide> = ({
                   if (mellomlagreStønad) {
                     mellomlagreStønad(location.pathname);
                   }
-                  history.push({
+                  navigate({
                     pathname: tilbakeTilOppsummeringPath,
                   });
                 }}

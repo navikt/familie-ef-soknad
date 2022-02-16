@@ -7,7 +7,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { injectIntl } from 'react-intl';
 import { hentTekst } from '../utils/søknad';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import KnappBase from 'nav-frontend-knapper';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
@@ -22,8 +22,6 @@ import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
-import { ToggleName } from '../models/søknad/toggles';
-import { useToggles } from '../context/TogglesContext';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
 
@@ -31,8 +29,7 @@ const BlockContent = require('@sanity/block-content-to-react');
 
 const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
   const [locale] = useSpråkContext();
-  const history = useHistory();
-  const { toggles } = useToggles();
+  const navigate = useNavigate();
 
   const { skjema, settSkjema } = useSkjema();
 
@@ -58,7 +55,7 @@ const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
       return React.createElement(
         style,
         { className: `heading-${level}` },
-        props.children
+        props.children,
       );
     }
 
@@ -81,41 +78,39 @@ const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
             <VeilederSnakkeboble
               tekst={hentBeskjedMedNavn(
                 visningsnavn,
-                intl.formatMessage({ id: 'skjema.hei' })
+                intl.formatMessage({ id: 'skjema.hei' }),
               )}
             />
           </div>
-          {toggles[ToggleName.vis_språkvelger] && (
-            <FeltGruppe>
-              <Språkvelger />
-            </FeltGruppe>
-          )}
+          <FeltGruppe>
+            <Språkvelger/>
+          </FeltGruppe>
           <Sidetittel>
-            <LocaleTekst tekst={'skjema.sidetittel'} />
+            <LocaleTekst tekst={'skjema.sidetittel'}/>
           </Sidetittel>
           {seksjon &&
-            seksjon.map((blokk: any, index: number) => {
-              return blokk._type === 'dokumentasjonskrav' ? (
-                <div className="seksjon" key={index}>
-                  <Ekspanderbartpanel tittel={blokk.tittel}>
-                    <BlockContent
-                      className="typo-normal"
-                      blocks={blokk.innhold}
-                      serializers={{ types: { block: BlockRenderer } }}
-                    />
-                  </Ekspanderbartpanel>
-                </div>
-              ) : (
-                <div className="seksjon" key={index}>
-                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
+          seksjon.map((blokk: any, index: number) => {
+            return blokk._type === 'dokumentasjonskrav' ? (
+              <div className="seksjon" key={index}>
+                <Ekspanderbartpanel tittel={blokk.tittel}>
                   <BlockContent
                     className="typo-normal"
                     blocks={blokk.innhold}
                     serializers={{ types: { block: BlockRenderer } }}
                   />
-                </div>
-              );
-            })}
+                </Ekspanderbartpanel>
+              </div>
+            ) : (
+              <div className="seksjon" key={index}>
+                {blokk.tittel && <Element>{blokk.tittel}</Element>}
+                <BlockContent
+                  className="typo-normal"
+                  blocks={blokk.innhold}
+                  serializers={{ types: { block: BlockRenderer } }}
+                />
+              </div>
+            );
+          })}
 
           {disclaimer && (
             <div className="seksjon">
@@ -131,7 +126,7 @@ const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
                   checked={skjema.harBekreftet}
                   label={hentBeskjedMedNavn(
                     visningsnavn,
-                    intl.formatMessage({ id: 'side.bekreftelse' })
+                    intl.formatMessage({ id: 'side.bekreftelse' }),
                   )}
                 />
               </AlertStripeAdvarsel>
@@ -142,16 +137,16 @@ const Forside: React.FC<any> = ({ visningsnavn, intl }) => {
             <FeltGruppe classname={'sentrert'}>
               <KnappBase
                 onClick={() =>
-                  history.push({
+                  navigate({
                     pathname: hentPath(
                       RoutesArbeidssokerskjema,
-                      ERouteArbeidssøkerskjema.Spørsmål
+                      ERouteArbeidssøkerskjema.Spørsmål,
                     ),
                   })
                 }
                 type={'hoved'}
               >
-                <LocaleTekst tekst={'skjema.knapp.start'} />
+                <LocaleTekst tekst={'skjema.knapp.start'}/>
               </KnappBase>
             </FeltGruppe>
           ) : null}
