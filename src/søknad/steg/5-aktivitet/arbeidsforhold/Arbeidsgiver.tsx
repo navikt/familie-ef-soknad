@@ -102,6 +102,10 @@ const Arbeidsgiver: React.FC<Props> = ({
     nøkkel: EArbeidsgiver,
     label: string
   ) => {
+    if (!e.currentTarget.value) {
+      delete arbeidsgiver.ansettelsesforhold;
+    }
+
     arbeidsgiver &&
       settArbeidsgiver({
         ...arbeidsgiver,
