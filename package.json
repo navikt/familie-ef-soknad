@@ -16,7 +16,7 @@
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.1.0",
     "@sentry/browser": "^6.17.9",
-    "@types/amplitude-js": "^8.9.6",
+    "@types/amplitude-js": "^8.16.0",
     "@types/body-parser": "^1.19.2",
     "@types/classnames": "^2.3.1",
     "@types/dotenv": "^8.2.0",
