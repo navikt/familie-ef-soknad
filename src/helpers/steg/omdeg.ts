@@ -40,11 +40,6 @@ export const hentSivilstatus = (statuskode?: string) => {
   }
 };
 
-export const hentSøkersTlfnr = (søker: IPerson): string => {
-  const { kontakttelefon } = søker.søker;
-  return kontakttelefon && kontakttelefon.trim() !== '' ? kontakttelefon : '';
-};
-
 export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
   const {
     datoForSamlivsbrudd,
@@ -115,7 +110,6 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
 };
 
 export const erStegFerdigUtfylt = (
-  person: IPerson,
   sivilstatus: ISivilstatus,
   medlemskap: IMedlemskap
 ): boolean => {
