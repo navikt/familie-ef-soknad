@@ -1,4 +1,3 @@
-import { IPerson } from '../../models/søknad/person';
 import {
   EBegrunnelse,
   ESivilstand,
@@ -38,16 +37,6 @@ export const hentSivilstatus = (statuskode?: string) => {
     default:
       return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
   }
-};
-
-export const hentSøkersTlfnr = (søker: IPerson): string => {
-  const { kontakttelefon } = søker.søker;
-  return kontakttelefon && kontakttelefon.trim() !== '' ? kontakttelefon : '';
-};
-
-export const harSøkerTlfnr = (søker: IPerson): boolean => {
-  const telefonnr = hentSøkersTlfnr(søker).trim();
-  return telefonnr !== '';
 };
 
 export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
@@ -104,10 +93,12 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
-  const manglerNoenBegrunnelserForUtenlandsopphold = perioderBoddIUtlandet?.some(
-    (utenlandsopphold) =>
-      utenlandsopphold.begrunnelse.verdi === '' || !utenlandsopphold.begrunnelse
-  );
+  const manglerNoenBegrunnelserForUtenlandsopphold =
+    perioderBoddIUtlandet?.some(
+      (utenlandsopphold) =>
+        utenlandsopphold.begrunnelse.verdi === '' ||
+        !utenlandsopphold.begrunnelse
+    );
   return søkerBosattINorgeSisteTreÅr?.verdi === false
     ? manglerNoenBegrunnelserForUtenlandsopphold
       ? false
@@ -118,15 +109,11 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
 };
 
 export const erStegFerdigUtfylt = (
-  person: IPerson,
   sivilstatus: ISivilstatus,
   medlemskap: IMedlemskap
 ): boolean => {
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = sivilstatus;
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    sivilstatus;
 
   const datoFlyttetfraHverandreErUtfyltOgGyldig =
     datoFlyttetFraHverandre?.verdi &&
@@ -142,8 +129,7 @@ export const erStegFerdigUtfylt = (
       DatoBegrensning.TidligereDatoer
     );
 
-  return ((harSøkerTlfnr(person) &&
-    harSøktSeparasjon?.verdi &&
+  return ((harSøktSeparasjon?.verdi &&
     datoSøktSeparasjonerUtfyltOgGyldig &&
     datoFlyttetfraHverandreErUtfyltOgGyldig) ||
     harSøktSeparasjon?.verdi === false ||
