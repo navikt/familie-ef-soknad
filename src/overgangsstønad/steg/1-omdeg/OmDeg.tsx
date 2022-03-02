@@ -86,7 +86,6 @@ const OmDeg: FC = () => {
     });
   };
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.person,
     søknad.sivilstatus,
     søknad.medlemskap
   );

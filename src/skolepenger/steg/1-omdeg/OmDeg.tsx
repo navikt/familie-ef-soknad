@@ -87,7 +87,6 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   };
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.person,
     søknad.sivilstatus,
     søknad.medlemskap
   );

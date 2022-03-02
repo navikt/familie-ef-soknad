@@ -1,4 +1,3 @@
-import { IPerson } from '../../models/søknad/person';
 import {
   EBegrunnelse,
   ESivilstand,
