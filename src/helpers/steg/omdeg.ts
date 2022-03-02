@@ -45,11 +45,6 @@ export const hentSøkersTlfnr = (søker: IPerson): string => {
   return kontakttelefon && kontakttelefon.trim() !== '' ? kontakttelefon : '';
 };
 
-export const harSøkerTlfnr = (søker: IPerson): boolean => {
-  const telefonnr = hentSøkersTlfnr(søker).trim();
-  return telefonnr !== '';
-};
-
 export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
   const {
     datoForSamlivsbrudd,
@@ -104,10 +99,12 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
-  const manglerNoenBegrunnelserForUtenlandsopphold = perioderBoddIUtlandet?.some(
-    (utenlandsopphold) =>
-      utenlandsopphold.begrunnelse.verdi === '' || !utenlandsopphold.begrunnelse
-  );
+  const manglerNoenBegrunnelserForUtenlandsopphold =
+    perioderBoddIUtlandet?.some(
+      (utenlandsopphold) =>
+        utenlandsopphold.begrunnelse.verdi === '' ||
+        !utenlandsopphold.begrunnelse
+    );
   return søkerBosattINorgeSisteTreÅr?.verdi === false
     ? manglerNoenBegrunnelserForUtenlandsopphold
       ? false
@@ -122,11 +119,8 @@ export const erStegFerdigUtfylt = (
   sivilstatus: ISivilstatus,
   medlemskap: IMedlemskap
 ): boolean => {
-  const {
-    harSøktSeparasjon,
-    datoSøktSeparasjon,
-    datoFlyttetFraHverandre,
-  } = sivilstatus;
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    sivilstatus;
 
   const datoFlyttetfraHverandreErUtfyltOgGyldig =
     datoFlyttetFraHverandre?.verdi &&
@@ -142,8 +136,7 @@ export const erStegFerdigUtfylt = (
       DatoBegrensning.TidligereDatoer
     );
 
-  return ((harSøkerTlfnr(person) &&
-    harSøktSeparasjon?.verdi &&
+  return ((harSøktSeparasjon?.verdi &&
     datoSøktSeparasjonerUtfyltOgGyldig &&
     datoFlyttetfraHverandreErUtfyltOgGyldig) ||
     harSøktSeparasjon?.verdi === false ||

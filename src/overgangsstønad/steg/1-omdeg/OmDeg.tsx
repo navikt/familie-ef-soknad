@@ -8,7 +8,6 @@ import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
-  harSøkerTlfnr,
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
@@ -92,10 +91,9 @@ const OmDeg: FC = () => {
     søknad.medlemskap
   );
 
-  const søkerBorPåRegistrertAdresseOgHarTlfNr =
+  const søkerBorPåRegistrertAdresse =
     søknad.søkerBorPåRegistrertAdresse &&
-    søknad.søkerBorPåRegistrertAdresse.verdi === true &&
-    harSøkerTlfnr(søknad.person);
+    søknad.søkerBorPåRegistrertAdresse.verdi === true;
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -125,7 +123,7 @@ const OmDeg: FC = () => {
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
         stønadstype={Stønadstype.overgangsstønad}
       />
-      <Show if={søkerBorPåRegistrertAdresseOgHarTlfNr}>
+      <Show if={søkerBorPåRegistrertAdresse}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}
