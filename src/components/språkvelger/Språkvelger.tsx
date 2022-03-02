@@ -8,7 +8,13 @@ import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Wrapper, Button } from 'react-aria-menubutton';
 import { useSpråkContext } from '../../context/SpråkContext';
 import navFarger from 'nav-frontend-core';
-import { hentListeMedSpråk, hentValgtSpråk } from '../../language/utils';
+import {
+  hentListeMedSpråk,
+  hentListeMedSpråkUtenNynorsk,
+  hentValgtSpråk,
+} from '../../language/utils';
+import { useToggles } from '../../context/TogglesContext';
+import { ToggleName } from '../../models/søknad/toggles';
 
 const StyledSpråkvelger = styled.div`
   width: 100%;
@@ -54,7 +60,10 @@ const StyledChevronNed = styled(NedChevron)`
 
 const Språkvelger: React.FC<any> = () => {
   const [locale, setLocale] = useSpråkContext();
-  const språkObjekter = hentListeMedSpråk();
+  const { toggles } = useToggles();
+  const språkObjekter = toggles[ToggleName.leggTilNynorsk]
+    ? hentListeMedSpråk()
+    : hentListeMedSpråkUtenNynorsk();
 
   const handleSelection = (value: JSX.Element[]) => {
     const språk = value[1].props.children;
