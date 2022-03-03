@@ -19,10 +19,6 @@ const TestSteg1 = async (t) => {
 
   await t.click(BorDuPåDenneAdressenJa);
 
-  const Telefonnummer = await Input(hentNorskTekst('person.telefonnr'));
-
-  await t.typeText(Telefonnummer, '12345678');
-
   const HvorforAlene = await RadioPanel(
     hentNorskTekst('sivilstatus.spm.begrunnelse'),
     hentNorskTekst('sivilstatus.svar.aleneFraFødsel')

@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 import {
   erStegFerdigUtfylt,
   erSøknadsBegrunnelseBesvart,
-  harSøkerTlfnr,
 } from '../../../helpers/steg/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
@@ -88,15 +87,13 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   };
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.person,
     søknad.sivilstatus,
     søknad.medlemskap
   );
 
-  const søkerBorPåRegistrertAdresseOgHarTlfNr =
+  const søkerBorPåRegistrertAdresse =
     søknad.søkerBorPåRegistrertAdresse &&
-    søknad.søkerBorPåRegistrertAdresse.verdi === true &&
-    harSøkerTlfnr(søknad.person);
+    søknad.søkerBorPåRegistrertAdresse.verdi === true;
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -124,7 +121,7 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
         stønadstype={Stønadstype.barnetilsyn}
       />
 
-      <Show if={søkerBorPåRegistrertAdresseOgHarTlfNr}>
+      <Show if={søkerBorPåRegistrertAdresse}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}
