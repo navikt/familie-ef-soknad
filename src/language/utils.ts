@@ -27,6 +27,12 @@ export const hentTittelMedNr = (
 export const hentListeMedSpråk = (): Språk[] => [
   { tittel: 'Bokmål', locale: 'nb' },
   { tittel: 'English', locale: 'en' },
+  { tittel: 'Nynorsk', locale: 'nn' },
+];
+
+export const hentListeMedSpråkUtenNynorsk = (): Språk[] => [
+  { tittel: 'Bokmål', locale: 'nb' },
+  { tittel: 'English', locale: 'en' },
 ];
 
 export const hentValgtSpråk = (locale: LocaleType) => {
