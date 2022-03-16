@@ -20,6 +20,7 @@ import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { useDebouncedCallback } from 'use-debounce';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -52,9 +53,13 @@ const Dokumentasjon: React.FC = () => {
     });
   };
 
+  const debounceMellomlagreSkolepenger = useDebouncedCallback((pathName) => {
+    mellomlagreSkolepenger(pathName);
+  }, 500);
+
   useEffect(() => {
     if (forrigeDokumentasjonsbehov !== undefined) {
-      mellomlagreSkolepenger(location.pathname);
+      debounceMellomlagreSkolepenger(location.pathname);
     }
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);

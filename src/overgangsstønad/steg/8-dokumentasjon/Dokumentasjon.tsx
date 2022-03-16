@@ -19,6 +19,7 @@ import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
+import { useDebouncedCallback } from 'use-debounce';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -51,9 +52,16 @@ const Dokumentasjon: React.FC = () => {
     });
   };
 
+  const debounceMellomlagreOvergangsstønad = useDebouncedCallback(
+    (pathName) => {
+      mellomlagreOvergangsstønad(pathName);
+    },
+    500
+  );
+
   useEffect(() => {
     if (forrigeDokumentasjonsbehov !== undefined) {
-      mellomlagreOvergangsstønad(location.pathname);
+      debounceMellomlagreOvergangsstønad(location.pathname);
     }
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);

@@ -20,6 +20,7 @@ import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
+import { useDebouncedCallback } from 'use-debounce';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useIntl();
@@ -75,9 +76,13 @@ const Dokumentasjon: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  const debounceMellomlagreBarnetilsyn = useDebouncedCallback((pathName) => {
+    mellomlagreBarnetilsyn(pathName);
+  }, 500);
+
   useEffect(() => {
     if (forrigeDokumentasjonsbehov !== undefined) {
-      mellomlagreBarnetilsyn(location.pathname);
+      debounceMellomlagreBarnetilsyn(location.pathname);
     }
     // eslint-disable-next-line
   }, [søknad.dokumentasjonsbehov]);
