@@ -26,6 +26,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import { object, string, number, date, InferType } from 'yup';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
@@ -45,6 +46,23 @@ const Oppsummering: React.FC = () => {
     }
     // eslint-disable-next-line
   }, []);
+
+  let bosituasjonSchema = object({
+    datoSkalGifteSegEllerBliSamboer: object({
+      label: string().required(),
+      verdi: string()
+        .required()
+        .matches(
+          /^\d{4}\.(0[1-9]|1[012])\.(0[1-9]|[12][0-9]|3[01])$/,
+          'Ikke en gyldig dato'
+        ),
+    }).optional(),
+  });
+
+  bosituasjonSchema
+    .validate(søknad.bosituasjon)
+    .then(console.log)
+    .catch((err) => console.log(err));
 
   return (
     <>
