@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -27,12 +27,16 @@ import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { object, string, number, date, InferType } from 'yup';
+import { datoRegex } from '../../../utils/validering';
+import { Alert } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const action = useNavigationType();
+
+  const [bosituasjonFeil, settBosituasjonFeil] = useState(false);
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
@@ -50,19 +54,18 @@ const Oppsummering: React.FC = () => {
   let bosituasjonSchema = object({
     datoSkalGifteSegEllerBliSamboer: object({
       label: string().required(),
-      verdi: string()
-        .required()
-        .matches(
-          /^\d{4}\.(0[1-9]|1[012])\.(0[1-9]|[12][0-9]|3[01])$/,
-          'Ikke en gyldig dato'
-        ),
+      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
     }).optional(),
   });
 
-  bosituasjonSchema
-    .validate(søknad.bosituasjon)
-    .then(console.log)
-    .catch((err) => console.log(err));
+  useEffect(() => {
+    bosituasjonSchema
+      .validate(søknad.bosituasjon)
+      .then(console.log)
+      .catch((e) => settBosituasjonFeil(true));
+  }, [søknad]);
+
+  console.log('bo', bosituasjonFeil);
 
   return (
     <>
@@ -133,6 +136,12 @@ const Oppsummering: React.FC = () => {
               )}
             />
           </KomponentGruppe>
+          {bosituasjonFeil && (
+            <Alert variant="warning">
+              Du mangler felter på steget om Bosituasjonen din. Vennligst gå
+              tilbake og endre informasjonen på den siden.
+            </Alert>
+          )}
         </div>
       </Side>
     </>
