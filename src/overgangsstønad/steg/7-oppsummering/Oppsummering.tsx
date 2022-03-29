@@ -27,7 +27,11 @@ import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { object, string, number, date, InferType } from 'yup';
-import { datoRegex } from '../../../utils/validering';
+import {
+  datoRegex,
+  manglendeFelterTilTekst,
+  ManglendeFelter,
+} from '../../../utils/validering';
 import { Alert } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
@@ -36,7 +40,7 @@ const Oppsummering: React.FC = () => {
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const action = useNavigationType();
 
-  const [bosituasjonFeil, settBosituasjonFeil] = useState(false);
+  const [manglendeFelter, settManglendeFelter] = useState<string[]>([]);
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
@@ -51,8 +55,30 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  console.log('søknad', søknad);
+
   let bosituasjonSchema = object({
     datoSkalGifteSegEllerBliSamboer: object({
+      label: string().required(),
+      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+    }).optional(),
+    vordendeSamboerEktefelle: object({
+      fødselsdato: object({
+        label: string().required(),
+        verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+      }),
+    }).optional(),
+  });
+
+  let sivilstatusSchema = object({
+    datoForSamlivsbrudd: object({
+      label: string().required(),
+      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+    }).optional(),
+  });
+
+  let merOmDinSituasjonSchema = object({
+    datoSagtOppEllerRedusertStilling: object({
       label: string().required(),
       verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
     }).optional(),
@@ -61,9 +87,54 @@ const Oppsummering: React.FC = () => {
   useEffect(() => {
     bosituasjonSchema
       .validate(søknad.bosituasjon)
-      .then(console.log)
-      .catch((e) => settBosituasjonFeil(true));
+      .then()
+      .catch(() => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
+          ]);
+        }
+      });
+
+    sivilstatusSchema
+      .validate(søknad.sivilstatus)
+      .then()
+      .catch(() => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
+          ]);
+        }
+      });
+
+    merOmDinSituasjonSchema
+      .validate(søknad.merOmDinSituasjon)
+      .then()
+      .catch(() => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
+          ]);
+        }
+      });
   }, [søknad]);
+
+  const harManglendeFelter = manglendeFelter.length > 0;
 
   return (
     <>
@@ -74,7 +145,7 @@ const Oppsummering: React.FC = () => {
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreOvergangsstønad}
         routesStønad={RoutesOvergangsstonad}
-        disableNesteKnapp={!!bosituasjonFeil}
+        disableNesteKnapp={harManglendeFelter}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
@@ -135,9 +206,10 @@ const Oppsummering: React.FC = () => {
               )}
             />
           </KomponentGruppe>
-          {bosituasjonFeil && (
+          {harManglendeFelter && (
             <Alert variant="warning">
-              Mangler felter på steget om Bosituasjonen din.
+              Mangler felter på følgende steg:{' '}
+              {manglendeFelter.map((felt) => felt).join(', ')}.
             </Alert>
           )}
         </div>
