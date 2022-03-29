@@ -65,8 +65,6 @@ const Oppsummering: React.FC = () => {
       .catch((e) => settBosituasjonFeil(true));
   }, [søknad]);
 
-  console.log('bo', bosituasjonFeil);
-
   return (
     <>
       <Side
@@ -76,6 +74,7 @@ const Oppsummering: React.FC = () => {
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreOvergangsstønad}
         routesStønad={RoutesOvergangsstonad}
+        disableNesteKnapp={!!bosituasjonFeil}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
@@ -138,8 +137,7 @@ const Oppsummering: React.FC = () => {
           </KomponentGruppe>
           {bosituasjonFeil && (
             <Alert variant="warning">
-              Du mangler felter på steget om Bosituasjonen din. Vennligst gå
-              tilbake og endre informasjonen på den siden.
+              Mangler felter på steget om Bosituasjonen din.
             </Alert>
           )}
         </div>

@@ -30,6 +30,7 @@ interface ISide {
   mellomlagreStønad?: (steg: string) => void;
   tilbakeTilOppsummeringPath?: string;
   informasjonstekstId?: string;
+  disableNesteKnapp?: boolean;
 }
 
 const Side: React.FC<ISide> = ({
@@ -42,6 +43,7 @@ const Side: React.FC<ISide> = ({
   mellomlagreStønad,
   tilbakeTilOppsummeringPath,
   informasjonstekstId,
+  disableNesteKnapp,
 }) => {
   const intl = useIntl();
   const location = useLocation();
@@ -98,6 +100,7 @@ const Side: React.FC<ISide> = ({
               routesStønad={routesStønad}
               erSpørsmålBesvart={erSpørsmålBesvart}
               mellomlagreStønad={mellomlagreStønad}
+              disableNesteKnapp={disableNesteKnapp}
             />
           </>
         ) : skalViseKnapper === ESide.visTilbakeTilOppsummeringKnapp ? (
