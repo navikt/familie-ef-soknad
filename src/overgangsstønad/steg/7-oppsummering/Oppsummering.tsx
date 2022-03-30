@@ -26,11 +26,13 @@ import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
-import { object, string, number, date, InferType } from 'yup';
 import {
-  datoRegex,
   manglendeFelterTilTekst,
   ManglendeFelter,
+  merOmDinSituasjonSchema,
+  sivilstatusSchema,
+  bosituasjonSchema,
+  medlemskapSchema,
 } from '../../../utils/validering';
 import { Alert } from '@navikt/ds-react';
 
@@ -54,35 +56,6 @@ const Oppsummering: React.FC = () => {
     }
     // eslint-disable-next-line
   }, []);
-
-  console.log('søknad', søknad);
-
-  let bosituasjonSchema = object({
-    datoSkalGifteSegEllerBliSamboer: object({
-      label: string().required(),
-      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-    }).optional(),
-    vordendeSamboerEktefelle: object({
-      fødselsdato: object({
-        label: string().required(),
-        verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-      }),
-    }).optional(),
-  });
-
-  let sivilstatusSchema = object({
-    datoForSamlivsbrudd: object({
-      label: string().required(),
-      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-    }).optional(),
-  });
-
-  let merOmDinSituasjonSchema = object({
-    datoSagtOppEllerRedusertStilling: object({
-      label: string().required(),
-      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-    }).optional(),
-  });
 
   useEffect(() => {
     bosituasjonSchema
@@ -129,6 +102,22 @@ const Oppsummering: React.FC = () => {
           settManglendeFelter((prev: string[]): string[] => [
             ...prev,
             manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
+          ]);
+        }
+      });
+
+    medlemskapSchema
+      .validate(søknad.medlemskap)
+      .then()
+      .catch(() => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
           ]);
         }
       });
