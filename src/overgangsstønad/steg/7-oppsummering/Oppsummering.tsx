@@ -121,7 +121,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
       });
-  }, [søknad]);
+  }, [søknad, manglendeFelter]);
 
   const harManglendeFelter = manglendeFelter.length > 0;
 
