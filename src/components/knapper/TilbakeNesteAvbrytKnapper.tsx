@@ -98,7 +98,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       {erSpørsmålBesvart && (
         <KnappBase
           type={'hoved'}
-          disabled={!!disableNesteKnapp}
+          disabled={disableNesteKnapp}
           onClick={() => {
             if (mellomlagreStønad) {
               mellomlagreStønad(location.pathname);
