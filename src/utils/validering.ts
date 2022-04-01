@@ -15,6 +15,24 @@ export const manglendeFelterTilTekst: Record<ManglendeFelter, string> = {
   MER_OM_DIN_SITUASJON: 'Mer om din situasjon',
 };
 
+export const listManglendeFelter = (manglendeFelter: string[]) => {
+  const unikeManglendeFelter = [...new Set(manglendeFelter)];
+
+  if (unikeManglendeFelter.length === 1) {
+    return 'steg ' + unikeManglendeFelter[0];
+  }
+
+  return unikeManglendeFelter.map((item, index) => {
+    if (index === 0) {
+      return 'stegene ' + item;
+    } else if (index === unikeManglendeFelter.length - 1) {
+      return ' og ' + item;
+    } else {
+      return item + ', ';
+    }
+  });
+};
+
 export const medlemskapSchema = object({
   perioderBoddIUtlandet: array().of(
     object({

@@ -28,6 +28,7 @@ import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import {
   manglendeFelterTilTekst,
+  listManglendeFelter,
   ManglendeFelter,
   merOmDinSituasjonSchema,
   sivilstatusSchema,
@@ -197,8 +198,9 @@ const Oppsummering: React.FC = () => {
           </KomponentGruppe>
           {harManglendeFelter && (
             <Alert variant="warning">
-              Mangler felter på følgende steg:{' '}
-              {manglendeFelter.map((felt) => felt).join(', ')}.
+              Det er felter i søknaden som ikke er fylt ut eller har ugyldig
+              verdi. Gå til {listManglendeFelter(manglendeFelter)} for å legge
+              inn gyldige verdier før du sender inn søknaden.
             </Alert>
           )}
         </div>
