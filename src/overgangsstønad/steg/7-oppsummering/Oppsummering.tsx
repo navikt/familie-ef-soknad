@@ -20,6 +20,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import {
   logSidevisningOvergangsstonad,
   logBrowserBackOppsummering,
+  logManglendeFelter,
 } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
@@ -65,7 +66,7 @@ const Oppsummering: React.FC = () => {
     bosituasjonSchema
       .validate(søknad.bosituasjon)
       .then()
-      .catch(() => {
+      .catch((e) => {
         if (
           !manglendeFelter.includes(
             manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
@@ -76,12 +77,16 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
           ]);
         }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
       });
 
     sivilstatusSchema
       .validate(søknad.sivilstatus)
       .then()
-      .catch(() => {
+      .catch((e) => {
         if (
           !manglendeFelter.includes(
             manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
@@ -92,12 +97,16 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
           ]);
         }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
       });
 
     merOmDinSituasjonSchema
       .validate(søknad.merOmDinSituasjon)
       .then()
-      .catch(() => {
+      .catch((e) => {
         if (
           !manglendeFelter.includes(
             manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON]
@@ -108,12 +117,16 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
           ]);
         }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
       });
 
     medlemskapSchema
       .validate(søknad.medlemskap)
       .then()
-      .catch(() => {
+      .catch((e) => {
         if (
           !manglendeFelter.includes(
             manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
@@ -124,8 +137,12 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
           ]);
         }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: 'test',
+        });
       });
-  }, [søknad, manglendeFelter]);
+  }, [søknad, manglendeFelter, skjemaId]);
 
   const harManglendeFelter =
     manglendeFelter.length > 0 && toggles[ToggleName.validering];

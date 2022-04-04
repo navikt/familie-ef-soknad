@@ -171,3 +171,15 @@ export const logFeilFilopplasting = (
     ...props,
   });
 };
+
+export const logManglendeFelter = (
+  skjemanavn: string,
+  skjemaId: number,
+  ...props: any
+) => {
+  logEvent('manglende_felter', {
+    skjemanavn,
+    skjemaId,
+    ...props,
+  });
+};
