@@ -34,45 +34,51 @@ export const listManglendeFelter = (manglendeFelter: string[]) => {
 };
 
 export const medlemskapSchema = object({
-  perioderBoddIUtlandet: array().of(
-    object({
-      periode: object({
-        fra: object({
-          label: string().required(),
-          verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+  perioderBoddIUtlandet: array()
+    .of(
+      object({
+        periode: object({
+          fra: object({
+            label: string().required(),
+            verdi: string()
+              .required()
+              .matches(datoRegex, 'Ikke en gyldig dato'),
+          }),
+          til: object({
+            label: string().required(),
+            verdi: string()
+              .required()
+              .matches(datoRegex, 'Ikke en gyldig dato'),
+          }),
         }),
-        til: object({
-          label: string().required(),
-          verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-        }),
-      }),
-    })
-  ),
+      })
+    )
+    .default(undefined),
 });
 
 export const merOmDinSituasjonSchema = object({
   datoSagtOppEllerRedusertStilling: object({
     label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).optional(),
+  }).default(undefined),
 });
 
 export const sivilstatusSchema = object({
   datoForSamlivsbrudd: object({
     label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).optional(),
+  }).default(undefined),
 });
 
 export const bosituasjonSchema = object({
   datoSkalGifteSegEllerBliSamboer: object({
     label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).optional(),
+  }).default(undefined),
   vordendeSamboerEktefelle: object({
     fødselsdato: object({
       label: string().required(),
       verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
     }),
-  }).optional(),
+  }).default(undefined),
 });
