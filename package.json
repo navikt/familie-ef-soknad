@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@navikt/ds-css": "^0.16.9",
+    "@navikt/ds-react": "^0.17.14",
     "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.2.0",
@@ -106,7 +108,8 @@
     "react-scripts": "^4.0.3",
     "styled-components": "^5.3.3",
     "use-debounce": "^7.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
   },
   "eslintConfig": {
     "extends": "react-app"

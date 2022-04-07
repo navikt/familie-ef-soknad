@@ -67,12 +67,14 @@ interface Props {
   routesStønad: IRoute[];
   erSpørsmålBesvart?: boolean;
   mellomlagreStønad?: (steg: string) => void;
+  disableNesteKnapp?: boolean;
 }
 
 const TilbakeNesteAvbrytKnapper: FC<Props> = ({
   routesStønad,
   erSpørsmålBesvart,
   mellomlagreStønad,
+  disableNesteKnapp,
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -96,6 +98,7 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       {erSpørsmålBesvart && (
         <KnappBase
           type={'hoved'}
+          disabled={disableNesteKnapp}
           onClick={() => {
             if (mellomlagreStønad) {
               mellomlagreStønad(location.pathname);

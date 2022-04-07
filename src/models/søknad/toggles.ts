@@ -6,4 +6,5 @@ export enum ToggleName {
   feilsituasjon = 'familie.ef.soknad.feilsituasjon',
   slettFnrState = 'familie.ef.soknad.slett-ugyldig-fnr-fra-state',
   leggTilNynorsk = 'familie.ef.soknad.nynorsk',
+  validering = 'familie.ef.soknad.validering',
 }

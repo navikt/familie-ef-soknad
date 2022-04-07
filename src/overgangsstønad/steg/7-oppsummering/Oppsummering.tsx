@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useIntl } from 'react-intl';
@@ -20,18 +20,34 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import {
   logSidevisningOvergangsstonad,
   logBrowserBackOppsummering,
+  logManglendeFelter,
 } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import {
+  manglendeFelterTilTekst,
+  listManglendeFelter,
+  ManglendeFelter,
+  merOmDinSituasjonSchema,
+  sivilstatusSchema,
+  bosituasjonSchema,
+  medlemskapSchema,
+} from '../../../utils/validering';
+import { Alert } from '@navikt/ds-react';
+import { ToggleName } from '../../../models/søknad/toggles';
+import { useToggles } from '../../../context/TogglesContext';
 
 const Oppsummering: React.FC = () => {
   const intl = useIntl();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const action = useNavigationType();
+  const { toggles } = useToggles();
+
+  const [manglendeFelter, settManglendeFelter] = useState<string[]>([]);
 
   useMount(() => logSidevisningOvergangsstonad('Oppsummering'));
 
@@ -46,6 +62,91 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    bosituasjonSchema
+      .validate(søknad.bosituasjon)
+      .then()
+      .catch((e) => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
+          ]);
+        }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
+      });
+
+    sivilstatusSchema
+      .validate(søknad.sivilstatus)
+      .then()
+      .catch((e) => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
+          ]);
+        }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
+      });
+
+    merOmDinSituasjonSchema
+      .validate(søknad.merOmDinSituasjon)
+      .then()
+      .catch((e) => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
+          ]);
+        }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
+      });
+
+    medlemskapSchema
+      .validate(søknad.medlemskap)
+      .then()
+      .catch((e) => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
+          ]);
+        }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: 'test',
+        });
+      });
+  }, [søknad, manglendeFelter, skjemaId]);
+
+  const harManglendeFelter =
+    manglendeFelter.length > 0 && toggles[ToggleName.validering];
+
   return (
     <>
       <Side
@@ -55,6 +156,7 @@ const Oppsummering: React.FC = () => {
         erSpørsmålBesvart={true}
         mellomlagreStønad={mellomlagreOvergangsstønad}
         routesStønad={RoutesOvergangsstonad}
+        disableNesteKnapp={harManglendeFelter}
       >
         <div className="oppsummering">
           <Normaltekst className="disclaimer">
@@ -115,6 +217,13 @@ const Oppsummering: React.FC = () => {
               )}
             />
           </KomponentGruppe>
+          {harManglendeFelter && (
+            <Alert variant="warning">
+              Det er felter i søknaden som ikke er fylt ut eller har ugyldig
+              verdi. Gå til {listManglendeFelter(manglendeFelter)} for å legge
+              inn gyldige verdier før du sender inn søknaden.
+            </Alert>
+          )}
         </div>
       </Side>
     </>
