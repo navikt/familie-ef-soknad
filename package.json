@@ -16,7 +16,7 @@
     "@navikt/ds-react": "^0.17.14",
     "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
-    "@sanity/client": "^3.2.0",
+    "@sanity/client": "^3.2.2",
     "@sentry/browser": "^6.18.2",
     "@types/amplitude-js": "^8.16.0",
     "@types/body-parser": "^1.19.2",
