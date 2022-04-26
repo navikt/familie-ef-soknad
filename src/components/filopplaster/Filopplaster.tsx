@@ -23,6 +23,7 @@ import {
 } from '../../utils/apiutil';
 import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
+import FormData from 'form-data';
 
 interface Props {
   intl: IntlShape;
@@ -121,7 +122,8 @@ const Filopplaster: React.FC<Props> = ({
             {
               withCredentials: true,
               headers: {
-                'content-type': 'multipart/form-data',
+                'Content-Type': 'multipart/form-data',
+                'Content-Transfer-Encoding': 'base64',
                 accept: 'application/json',
                 [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
               },
