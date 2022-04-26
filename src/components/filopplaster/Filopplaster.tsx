@@ -23,6 +23,7 @@ import {
 } from '../../utils/apiutil';
 import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
+import FormData from 'form-data';
 
 interface Props {
   intl: IntlShape;
