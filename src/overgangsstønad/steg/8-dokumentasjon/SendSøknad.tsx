@@ -26,8 +26,7 @@ import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { useIntl } from 'react-intl';
-import { barnetsNavnEllerBarnet } from '../../../utils/barn';
-import { IBarn } from '../../../models/steg/barn';
+import { oppdaterBarnLabels } from '../../../utils/barn';
 import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
@@ -62,42 +61,15 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const oppdaterBarnLabels = (barn: IBarn[]) => {
-    const oppdaterteBarn = barn.map((barnet: any) => {
-      const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
-
-      const oppdatertBarn = { ...barnet };
-
-      if (oppdatertBarn?.forelder) {
-        Object.keys(oppdatertBarn.forelder).forEach((key) => {
-          if (!oppdatertBarn.forelder[key]?.label) {
-            return;
-          }
-
-          let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
-
-          labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace(
-            '[0]',
-            navnEllerBarn
-          );
-
-          oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
-        });
-      }
-
-      return oppdatertBarn;
-    });
-
-    return oppdaterteBarn;
-  };
-
   const sendSøknad = (søknad: ISøknad) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
     const barnMedOppdaterteLabels = oppdaterBarnLabels(
-      barnMedEntenIdentEllerFødselsdato
+      barnMedEntenIdentEllerFødselsdato,
+      intl
     );
+
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );

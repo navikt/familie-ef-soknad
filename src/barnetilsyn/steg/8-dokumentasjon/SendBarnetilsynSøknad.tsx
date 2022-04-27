@@ -34,6 +34,8 @@ import {
   ERouteSkolepenger,
   RoutesSkolepenger,
 } from '../../../skolepenger/routing/routes';
+import { useIntl } from 'react-intl';
+import { oppdaterBarnLabels } from '../../../utils/barn';
 
 interface Innsending {
   status: string;
@@ -51,6 +53,7 @@ const SendSøknadKnapper: FC = () => {
   const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
+  const intl = useIntl();
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -68,6 +71,11 @@ const SendSøknadKnapper: FC = () => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const barnMedOppdaterteLabels = oppdaterBarnLabels(
+      barnMedEntenIdentEllerFødselsdato,
+      intl
+    );
+
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
@@ -75,7 +83,7 @@ const SendSøknadKnapper: FC = () => {
 
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
-      person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      person: { ...søknad.person, barn: barnMedOppdaterteLabels },
       dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
