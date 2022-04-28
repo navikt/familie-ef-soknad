@@ -118,3 +118,32 @@ export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
     (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
   ).length;
 };
+
+export const oppdaterBarnLabels = (barn: IBarn[], intl: IntlShape) => {
+  const oppdaterteBarn = barn.map((barnet: any) => {
+    const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
+
+    const oppdatertBarn = { ...barnet };
+
+    if (oppdatertBarn?.forelder) {
+      Object.keys(oppdatertBarn.forelder).forEach((key) => {
+        if (!oppdatertBarn.forelder[key]?.label) {
+          return;
+        }
+
+        let labelMedNavnEllerBarnet = oppdatertBarn.forelder[key].label;
+
+        labelMedNavnEllerBarnet = labelMedNavnEllerBarnet?.replace(
+          '[0]',
+          navnEllerBarn
+        );
+
+        oppdatertBarn.forelder[key].label = labelMedNavnEllerBarnet;
+      });
+    }
+
+    return oppdatertBarn;
+  });
+
+  return oppdaterteBarn;
+};

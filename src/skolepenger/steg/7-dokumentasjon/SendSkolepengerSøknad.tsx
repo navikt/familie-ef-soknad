@@ -20,6 +20,7 @@ import {
   hentNesteRoute,
   hentPath,
 } from '../../../utils/routing';
+import { oppdaterBarnLabels } from '../../../utils/barn';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
@@ -28,6 +29,7 @@ import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
+import { useIntl } from 'react-intl';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -48,6 +50,7 @@ const SendSøknadKnapper: FC = () => {
   const nesteRoute = hentNesteRoute(RoutesSkolepenger, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesSkolepenger, location.pathname);
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
+  const intl = useIntl();
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,
@@ -59,6 +62,10 @@ const SendSøknadKnapper: FC = () => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
+    const barnMedOppdaterteLabels = oppdaterBarnLabels(
+      barnMedEntenIdentEllerFødselsdato,
+      intl
+    );
     const dokumentasjonsbehov = søknad.dokumentasjonsbehov.filter(
       unikeDokumentasjonsbehov
     );
@@ -67,7 +74,7 @@ const SendSøknadKnapper: FC = () => {
 
     const søknadMedFiltrerteBarn: ISøknad = {
       ...søknad,
-      person: { ...søknad.person, barn: barnMedEntenIdentEllerFødselsdato },
+      person: { ...søknad.person, barn: barnMedOppdaterteLabels },
       dokumentasjonsbehov: dokumentasjonsbehov,
     };
 
