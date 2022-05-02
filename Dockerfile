@@ -8,6 +8,7 @@ COPY ./server server
 
 WORKDIR /app/server
 
+ARG NODE_AUTH_TOKEN
 RUN npm ci
 
 EXPOSE 8080
