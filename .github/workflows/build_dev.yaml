@@ -15,7 +15,7 @@ jobs:
           registry-url: "https://npm.pkg.github.com"
       - name: Build and test
         env:
-          GITHUB_TOKEN: ${{ secrets.READER_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
         run: |
           npm install
           npm run test-ci
