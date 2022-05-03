@@ -1,4 +1,4 @@
-FROM navikt/node-express:14-alpine
+FROM navikt/node-express:16
 
 USER root
 
@@ -8,6 +8,7 @@ COPY ./server server
 
 WORKDIR /app/server
 
+ARG NPM_TOKEN
 RUN npm ci
 
 EXPOSE 8080

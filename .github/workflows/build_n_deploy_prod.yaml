@@ -13,17 +13,25 @@ jobs:
     name: Build and push Docker container
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: npm
+          registry-url: "https://npm.pkg.github.com"
       - name: Npm install and build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
         run: |
-          npm install
+          npm ci
           npm run test-ci
           npm run build
       - name: Build and publish Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READER_TOKEN }}
         run: |
-          docker build . -t ${IMAGE}
+          docker build . -t ${IMAGE} --build-arg NPM_TOKEN=${NPM_TOKEN}
           echo ${GITHUB_TOKEN} | docker login ghcr.io --username ${GITHUB_REPOSITORY} --password-stdin
           docker push ${IMAGE}
   deploy:
