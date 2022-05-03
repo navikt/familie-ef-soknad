@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.READER_TOKEN }}
         run: |
-          docker build . -t ${IMAGE}
+          docker build . -t ${IMAGE} --build-arg NPM_TOKEN=${NPM_TOKEN}
           echo ${GITHUB_TOKEN} | docker login ghcr.io --username ${GITHUB_REPOSITORY} --password-stdin
           docker push ${IMAGE}
   deploy:
