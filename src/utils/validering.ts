@@ -21,16 +21,16 @@ export const listManglendeFelter = (manglendeFelter: string[]) => {
   const unikeManglendeFelter = [...new Set(manglendeFelter)];
 
   if (unikeManglendeFelter.length === 1) {
-    return 'steg "' + unikeManglendeFelter[0] + '"';
+    return `steg "${unikeManglendeFelter[0]}"`;
   }
 
   return unikeManglendeFelter.map((item, index) => {
     if (index === 0) {
-      return 'stegene ' + '"' + item + '"';
+      return `stegene "${item}"`;
     } else if (index === unikeManglendeFelter.length - 1) {
-      return ' og ' + '"' + item + '"';
+      return ` og "${item}"`;
     } else {
-      return '"' + item + '", ';
+      return `"${item}", `;
     }
   });
 };
