@@ -7,31 +7,57 @@ export enum ManglendeFelter {
   BOSITUASJONEN_DIN = 'BOSITUASJONEN_DIN',
   OM_DEG = 'OM_DEG',
   MER_OM_DIN_SITUASJON = 'MER_OM_DIN_SITUASJON',
+  AKTIVITET = 'AKTIVITET',
 }
 
 export const manglendeFelterTilTekst: Record<ManglendeFelter, string> = {
   BOSITUASJONEN_DIN: 'Bosituasjonen din',
   OM_DEG: 'Om deg',
   MER_OM_DIN_SITUASJON: 'Mer om din situasjon',
+  AKTIVITET: 'Arbeid, utdanning og andre aktiviteter',
 };
 
 export const listManglendeFelter = (manglendeFelter: string[]) => {
   const unikeManglendeFelter = [...new Set(manglendeFelter)];
 
   if (unikeManglendeFelter.length === 1) {
-    return 'steg ' + unikeManglendeFelter[0];
+    return `steg "${unikeManglendeFelter[0]}"`;
   }
 
   return unikeManglendeFelter.map((item, index) => {
     if (index === 0) {
-      return 'stegene ' + item;
+      return `stegene "${item}"`;
     } else if (index === unikeManglendeFelter.length - 1) {
-      return ' og ' + item;
+      return ` og "${item}"`;
     } else {
-      return item + ', ';
+      return `"${item}", `;
     }
   });
 };
+
+export const aktivitetSchema = object({
+  firmaer: array()
+    .of(
+      object({
+        arbeidsmengde: object({
+          verdi: string().required(),
+        }),
+        arbeidsuke: object({
+          verdi: string().required(),
+        }),
+        etableringsdato: object({
+          verdi: string().required(),
+        }),
+        navn: object({
+          verdi: string().required(),
+        }),
+        organisasjonsnummer: object({
+          verdi: string().required(),
+        }),
+      })
+    )
+    .default(undefined),
+});
 
 export const medlemskapSchema = object({
   perioderBoddIUtlandet: array()
@@ -39,13 +65,11 @@ export const medlemskapSchema = object({
       object({
         periode: object({
           fra: object({
-            label: string().required(),
             verdi: string()
               .required()
               .matches(datoRegex, 'Ikke en gyldig dato'),
           }),
           til: object({
-            label: string().required(),
             verdi: string()
               .required()
               .matches(datoRegex, 'Ikke en gyldig dato'),
@@ -58,26 +82,22 @@ export const medlemskapSchema = object({
 
 export const merOmDinSituasjonSchema = object({
   datoSagtOppEllerRedusertStilling: object({
-    label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
   }).default(undefined),
 });
 
 export const sivilstatusSchema = object({
   datoForSamlivsbrudd: object({
-    label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
   }).default(undefined),
 });
 
 export const bosituasjonSchema = object({
   datoSkalGifteSegEllerBliSamboer: object({
-    label: string().required(),
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
   }).default(undefined),
   vordendeSamboerEktefelle: object({
     fødselsdato: object({
-      label: string().required(),
       verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
     }),
   }).default(undefined),
