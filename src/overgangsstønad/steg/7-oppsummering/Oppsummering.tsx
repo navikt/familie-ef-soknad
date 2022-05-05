@@ -35,6 +35,7 @@ import {
   sivilstatusSchema,
   bosituasjonSchema,
   medlemskapSchema,
+  aktivitetSchema,
 } from '../../../utils/validering';
 import { Alert } from '@navikt/ds-react';
 import { ToggleName } from '../../../models/søknad/toggles';
@@ -75,6 +76,26 @@ const Oppsummering: React.FC = () => {
           settManglendeFelter((prev: string[]): string[] => [
             ...prev,
             manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
+          ]);
+        }
+
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
+          feilmelding: e,
+        });
+      });
+
+    aktivitetSchema
+      .validate(søknad.aktivitet)
+      .then()
+      .catch((e) => {
+        if (
+          !manglendeFelter.includes(
+            manglendeFelterTilTekst[ManglendeFelter.AKTIVITET]
+          )
+        ) {
+          settManglendeFelter((prev: string[]): string[] => [
+            ...prev,
+            manglendeFelterTilTekst[ManglendeFelter.AKTIVITET],
           ]);
         }
 
