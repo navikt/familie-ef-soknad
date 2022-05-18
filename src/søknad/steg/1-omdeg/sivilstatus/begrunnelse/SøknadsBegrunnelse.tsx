@@ -29,9 +29,11 @@ import { useToggles } from '../../../../../context/TogglesContext';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 import { ToggleName } from '../../../../../models/søknad/toggles';
+import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
 
 interface Props {
   sivilstatus: ISivilstatus;
+  settMedlemskap: (medlemskap: IMedlemskap) => void;
   settSivilstatus: (sivilstatus: ISivilstatus) => void;
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   settDokumentasjonsbehov: (
@@ -46,6 +48,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   settSivilstatus,
   settDato,
   settDokumentasjonsbehov,
+  settMedlemskap,
 }) => {
   const intl = useIntl();
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
@@ -92,10 +95,15 @@ const Søknadsbegrunnelse: FC<Props> = ({
       });
 
     if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
-      let nySamboerInfo = { ...samboerInfo };
+      const nySamboerInfo = { ...samboerInfo };
+      const nySivilstatus = { ...sivilstatus };
       delete nySamboerInfo.ident;
+      delete nySivilstatus.datoFlyttetFraHverandre;
+
+      settMedlemskap({});
 
       settSamboerInfo(nySamboerInfo);
+      settSivilstatus(nySivilstatus);
     }
 
     // eslint-disable-next-line
@@ -240,7 +248,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             />
           </FeltGruppe>
 
-          {harFyltUtSamboerDetaljer(samboerInfo, true) && (
+          {harFyltUtSamboerDetaljer(samboerInfo, false) && (
             <NårFlyttetDereFraHverandre
               settDato={settDato}
               datoFlyttetFraHverandre={datoFlyttetFraHverandre}
