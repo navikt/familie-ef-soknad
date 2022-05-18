@@ -82,8 +82,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   }, [samboerInfo]);
 
   useEffect(() => {
-    samlivsbruddAndre &&
-      erGyldigIdent &&
+    erGyldigIdent &&
       settSamboerInfo({
         ...samboerInfo,
         [EPersonDetaljer.ident]: {
@@ -91,6 +90,14 @@ const Søknadsbegrunnelse: FC<Props> = ({
           verdi: ident,
         },
       });
+
+    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
+      let nySamboerInfo = { ...samboerInfo };
+      delete nySamboerInfo.ident;
+
+      settSamboerInfo(nySamboerInfo);
+    }
+
     // eslint-disable-next-line
   }, [erGyldigIdent, ident]);
 
@@ -110,18 +117,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
 
   const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig &&
-      settSamboerInfo({
-        ...samboerInfo,
-        [EPersonDetaljer.ident]: {
-          label: hentTekst('person.ident', intl),
-          verdi: ident,
-        },
-      });
-
-    if (toggles[ToggleName.slettFnrState] && !erGyldig) {
-      delete samboerInfo.ident;
-    }
   };
 
   const settChecked = (checked: boolean) => {
