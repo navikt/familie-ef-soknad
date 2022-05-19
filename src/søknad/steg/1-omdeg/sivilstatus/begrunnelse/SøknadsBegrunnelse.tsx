@@ -29,9 +29,11 @@ import { useToggles } from '../../../../../context/TogglesContext';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 import { ToggleName } from '../../../../../models/søknad/toggles';
+import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
 
 interface Props {
   sivilstatus: ISivilstatus;
+  settMedlemskap: (medlemskap: IMedlemskap) => void;
   settSivilstatus: (sivilstatus: ISivilstatus) => void;
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
   settDokumentasjonsbehov: (
@@ -46,6 +48,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   settSivilstatus,
   settDato,
   settDokumentasjonsbehov,
+  settMedlemskap,
 }) => {
   const intl = useIntl();
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
@@ -82,8 +85,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   }, [samboerInfo]);
 
   useEffect(() => {
-    samlivsbruddAndre &&
-      erGyldigIdent &&
+    erGyldigIdent &&
       settSamboerInfo({
         ...samboerInfo,
         [EPersonDetaljer.ident]: {
@@ -91,6 +93,19 @@ const Søknadsbegrunnelse: FC<Props> = ({
           verdi: ident,
         },
       });
+
+    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
+      const nySamboerInfo = { ...samboerInfo };
+      const nySivilstatus = { ...sivilstatus };
+      delete nySamboerInfo.ident;
+      delete nySivilstatus.datoFlyttetFraHverandre;
+
+      settMedlemskap({});
+
+      settSamboerInfo(nySamboerInfo);
+      settSivilstatus(nySivilstatus);
+    }
+
     // eslint-disable-next-line
   }, [erGyldigIdent, ident]);
 
@@ -110,18 +125,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
 
   const hvisGyldigIdentSettIdentISamboerDetaljer = (erGyldig: boolean) => {
     settGyldigIdent(erGyldig);
-    erGyldig &&
-      settSamboerInfo({
-        ...samboerInfo,
-        [EPersonDetaljer.ident]: {
-          label: hentTekst('person.ident', intl),
-          verdi: ident,
-        },
-      });
-
-    if (toggles[ToggleName.slettFnrState] && !erGyldig) {
-      delete samboerInfo.ident;
-    }
   };
 
   const settChecked = (checked: boolean) => {
@@ -245,7 +248,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             />
           </FeltGruppe>
 
-          {harFyltUtSamboerDetaljer(samboerInfo, true) && (
+          {harFyltUtSamboerDetaljer(samboerInfo, false) && (
             <NårFlyttetDereFraHverandre
               settDato={settDato}
               datoFlyttetFraHverandre={datoFlyttetFraHverandre}
