@@ -125,6 +125,7 @@ const Sivilstatus: React.FC<Props> = ({
           settSivilstatus={settSivilstatus}
           settDato={settDato}
           settDokumentasjonsbehov={settDokumentasjonsbehov}
+          settMedlemskap={settMedlemskap}
         />
       ) : null}
     </SeksjonGruppe>
