@@ -123,9 +123,11 @@ const Filopplaster: React.FC<Props> = ({
               withCredentials: true,
               headers: {
                 'Content-Type': 'multipart/form-data',
-                'Content-Transfer-Encoding': 'base64',
                 accept: 'application/json',
                 [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
+              },
+              transformRequest: (data, headers) => {
+                return requestData;
               },
             }
           )
