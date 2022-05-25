@@ -8,6 +8,7 @@ import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,18 +33,11 @@ const FåttJobbTilbud: React.FC<Props> = ({
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
         <Element>
-          Du må legge ved arbeidskontrakt som viser at du har fått tilbud om
-          jobb.
+          <LocaleTekst tekst={'dokumentasjon.arbeidskontrakt.tittel'} />
         </Element>
         <br />
         <Normaltekst>
-          Dokumentasjonen må vise:
-          <ul>
-            <li>navn på arbeidsgiver</li>
-            <li>stillingsprosent</li>
-            <li>datoen du begynner i jobben</li>
-            <li>datoen du fikk tilbudet</li>
-          </ul>
+          <LocaleTekst tekst={'dokumentasjon.arbeidskontrakt.beskrivelse'} />
         </Normaltekst>
       </AlertStripeDokumentasjon>
       <Datovelger
