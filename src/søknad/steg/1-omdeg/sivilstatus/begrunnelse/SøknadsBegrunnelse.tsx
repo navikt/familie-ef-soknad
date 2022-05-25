@@ -94,7 +94,11 @@ const Søknadsbegrunnelse: FC<Props> = ({
         },
       });
 
-    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
+    if (
+      toggles[ToggleName.slettFnrState] &&
+      !erGyldigIdent &&
+      samlivsbruddAndre
+    ) {
       const nySamboerInfo = { ...samboerInfo };
       const nySivilstatus = { ...sivilstatus };
       delete nySamboerInfo.ident;
