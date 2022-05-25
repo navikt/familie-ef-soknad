@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import NårSøkerDuStønadFra from '../../../components/stegKomponenter/NårSøkerDuStønadFraGruppe';
@@ -34,7 +34,7 @@ import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 interface Props {}
 const Barnepass: FC<Props> = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering

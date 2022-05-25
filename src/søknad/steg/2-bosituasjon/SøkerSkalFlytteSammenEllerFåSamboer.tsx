@@ -12,7 +12,7 @@ import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import {
   harValgtSvar,
   hentBooleanFraValgtSvar,
@@ -35,7 +35,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
   bosituasjon,
   settDokumentasjonsbehov,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const {
     delerBoligMedAndreVoksne,

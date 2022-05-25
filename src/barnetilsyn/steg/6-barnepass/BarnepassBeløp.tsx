@@ -10,7 +10,7 @@ import {
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { erStrengGyldigTall } from '../../../utils/autentiseringogvalidering/feltvalidering';
 import { Feilmelding } from 'nav-frontend-typografi';
 
@@ -23,7 +23,7 @@ interface Props {
   ) => void;
 }
 const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const beløp = barnepassOrdning.belop ? barnepassOrdning.belop.verdi : '';
   const beløpLabel = hentTekst('barnepass.label.beløp', intl);
   const alertstripeTekst =

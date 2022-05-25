@@ -1,7 +1,7 @@
 import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Undertittel } from 'nav-frontend-typografi';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
@@ -26,7 +26,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   endreInformasjonPath,
   tittel,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const navigate = useNavigate();
   const barnaDine: IBarn[] = barn;
 

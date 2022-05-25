@@ -14,12 +14,12 @@ import { Element, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
-import { useIntl } from 'react-intl';
 import { tidligereUtdanningHjelpetekst } from './UtdanningConfig';
 import { lagTomUtdanning } from '../../../../helpers/steg/utdanning';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { erTidligereUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -29,7 +29,7 @@ const TidligereUtdanning: React.FC<Props> = ({
   underUtdanning,
   settUnderUtdanning,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const tidligereUtdanning: IUtdanning[] = underUtdanning.tidligereUtdanning
     ? underUtdanning.tidligereUtdanning
     : [];

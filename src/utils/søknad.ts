@@ -1,6 +1,5 @@
 import Environment from '../Environment';
 import axios from 'axios';
-import { IntlShape } from 'react-intl';
 import { hentUid } from './autentiseringogvalidering/uuid';
 import { ISpørsmål } from '../models/felles/spørsmålogsvar';
 import * as Sentry from '@sentry/browser';
@@ -16,6 +15,7 @@ import {
   HEADER_NAV_CONSUMER_ID,
   HEADER_NAV_CONSUMER_ID_VALUE,
 } from './apiutil';
+import { LokalIntlShape } from '../language/typer';
 
 export const hentPersonData = () => {
   return axios
@@ -100,7 +100,7 @@ export const nullstillMellomlagretSøknadTilDokument = (
   });
 };
 
-export const hentTekst = (id: string, intl: IntlShape) => {
+export const hentTekst = (id: string, intl: LokalIntlShape) => {
   return intl.formatMessage({ id: id });
 };
 
@@ -160,7 +160,7 @@ export const hentSvarFraSpørsmål = (svarid: string, spørsmål: ISpørsmål) =
 export const hentFeltObjekt = (
   tekstid: string,
   verdi: any,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   return { label: hentTekst(tekstid, intl), verdi: verdi };
 };
@@ -173,7 +173,7 @@ export const unikeDokumentasjonsbehov = (
   return alle.findIndex((item) => item.id === behov.id) === index;
 };
 
-const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
+const medforelderMedLabel = (medforelder: any, intl: LokalIntlShape) => {
   return {
     navn: {
       label: hentTekst('barnasbosted.medforelder.navn', intl),
@@ -194,7 +194,10 @@ const medforelderMedLabel = (medforelder: any, intl: IntlShape) => {
   };
 };
 
-export const oppdaterBarnMedLabel = (barneliste: IBarn[], intl: IntlShape) =>
+export const oppdaterBarnMedLabel = (
+  barneliste: IBarn[],
+  intl: LokalIntlShape
+) =>
   barneliste.map((barn: any) => {
     const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];

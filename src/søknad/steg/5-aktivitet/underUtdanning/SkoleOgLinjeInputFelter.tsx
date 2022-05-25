@@ -7,8 +7,8 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
 import { hentTekst } from '../../../../utils/søknad';
-import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settInputFelt = (
     nøkkel: EUtdanning,

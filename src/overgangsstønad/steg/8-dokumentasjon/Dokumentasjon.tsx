@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import LastOppVedlegg from '../../../søknad/steg/8-dokumentasjon/LastOppVedlegg';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -20,9 +19,11 @@ import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useDebouncedCallback } from 'use-debounce';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 
 const Dokumentasjon: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { søknad, settSøknad, mellomlagreOvergangsstønad } = useSøknad();
   const location = useLocation();
   const { dokumentasjonsbehov } = søknad;
@@ -101,7 +102,7 @@ const Dokumentasjon: React.FC = () => {
     >
       <SeksjonGruppe>
         <Normaltekst>
-          <FormattedHTMLMessage
+          <FormattedHtmlMessage
             id={
               harDokumentasjonsbehov
                 ? 'dokumentasjon.beskrivelse'

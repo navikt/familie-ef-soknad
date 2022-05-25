@@ -6,7 +6,6 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
@@ -30,6 +29,8 @@ import LocaleTekst from '../../../../../language/LocaleTekst';
 import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 import { ToggleName } from '../../../../../models/søknad/toggles';
 import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
+import { useLokalIntlContext } from '../../../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../../../language/FormattedHtmlMessage';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -50,7 +51,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   settDokumentasjonsbehov,
   settMedlemskap,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
   const { toggles } = useToggles();
 
@@ -267,7 +268,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
       {årsakEnslig?.svarid === EBegrunnelse.dødsfall && (
         <KomponentGruppe>
           <AlertStripeInfo className={'fjernBakgrunn'}>
-            <FormattedHTMLMessage id={alertTekstForDødsfall} />
+            <FormattedHtmlMessage id={alertTekstForDødsfall} />
           </AlertStripeInfo>
         </KomponentGruppe>
       )}

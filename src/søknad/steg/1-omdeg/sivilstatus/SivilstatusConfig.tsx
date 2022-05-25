@@ -6,7 +6,7 @@ import {
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
 // DOKUMENTASJON CONFIG
 
@@ -24,7 +24,7 @@ export const BekreftelseSeparasjonSøknad: IDokumentasjon =
 
 // SPØRSMÅL CONFIG
 
-export const SeparasjonSpørsmål = (intl: IntlShape): ISpørsmål => ({
+export const SeparasjonSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.harSøktSeparasjon,
   tekstid: 'sivilstatus.spm.søktSeparasjon',
   flersvar: false,
@@ -34,7 +34,7 @@ export const SeparasjonSpørsmål = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const erUformeltGiftSpørsmål = (intl: IntlShape): ISpørsmål => ({
+export const erUformeltGiftSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.erUformeltGift,
   tekstid: 'sivilstatus.spm.erUformeltGift',
   lesmer: {
@@ -54,7 +54,7 @@ export const erUformeltGiftSpørsmål = (intl: IntlShape): ISpørsmål => ({
 });
 
 export const erUformeltSeparertEllerSkiltSpørsmål = (
-  intl: IntlShape
+  intl: LokalIntlShape
 ): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.erUformeltSeparertEllerSkilt,
   tekstid: 'sivilstatus.spm.erUformeltSeparertEllerSkilt',
@@ -69,7 +69,7 @@ export const erUformeltSeparertEllerSkiltSpørsmål = (
   ],
 });
 
-export const BegrunnelseSpørsmål = (intl: IntlShape): ISpørsmål => ({
+export const BegrunnelseSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,

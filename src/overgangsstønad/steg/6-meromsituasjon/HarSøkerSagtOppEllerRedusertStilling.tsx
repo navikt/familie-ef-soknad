@@ -9,7 +9,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
 import subMonths from 'date-fns/subMonths';
@@ -32,7 +32,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
   dinSituasjon,
   settDinSituasjon,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { settDokumentasjonsbehov } = useSøknad();
   const {
     datoSagtOppEllerRedusertStilling,
@@ -142,10 +142,11 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
     'sagtOppEllerRedusertStilling.datovelger.redusertStilling'
   );
 
-  const valgtDatoMindreEnn6mndSidenAlert = hentLabelForSagtOppEllerRedusertStilling(
-    'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp',
-    'dinSituasjon.datovelger-alert.redusertStilling'
-  );
+  const valgtDatoMindreEnn6mndSidenAlert =
+    hentLabelForSagtOppEllerRedusertStilling(
+      'sagtOppEllerRedusertStilling.datovelger-alert.sagtOpp',
+      'dinSituasjon.datovelger-alert.redusertStilling'
+    );
 
   return (
     <>

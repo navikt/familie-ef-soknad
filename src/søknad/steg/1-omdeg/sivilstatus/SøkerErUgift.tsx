@@ -11,7 +11,7 @@ import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
 import React from 'react';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import Show from '../../../../utils/showIf';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   sivilstatus: any;
@@ -24,7 +24,7 @@ const SøkerErUgift: React.FC<Props> = ({
   settSivilstatusFelt,
   erUformeltGift,
 }: Props) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
     for (const [key, value] of Object.entries(sivilstatus)) {
       if (key === spørsmål.søknadid && value !== undefined) {
@@ -39,9 +39,8 @@ const SøkerErUgift: React.FC<Props> = ({
   const harSvartJaUformeltSeparertEllerSkilt =
     sivilstatus.erUformeltSeparertEllerSkilt?.svarid === ESvar.JA;
 
-  const harSvartPåUformeltGiftSpørsmålet = erUformeltGift?.hasOwnProperty(
-    'verdi'
-  );
+  const harSvartPåUformeltGiftSpørsmålet =
+    erUformeltGift?.hasOwnProperty('verdi');
   return (
     <>
       <KomponentGruppe>

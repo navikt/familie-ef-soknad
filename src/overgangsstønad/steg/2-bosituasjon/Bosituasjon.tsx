@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
 import { IBosituasjon } from '../../../models/steg/bosituasjon';
 import { useLocation } from 'react-router-dom';
@@ -15,7 +15,7 @@ import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const Bosituasjon: FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     settSøknad,

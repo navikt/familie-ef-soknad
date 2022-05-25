@@ -11,9 +11,9 @@ import { avtaleOmDeltBosted } from '../ForeldreConfig';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { IBarn } from '../../../../models/steg/barn';
-import { useIntl } from 'react-intl';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   settBostedOgSamværFelt: (spørsmål: ISpørsmål, svar: ISvar) => void;
@@ -26,7 +26,7 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
   barn,
   settBostedOgSamværFelt,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const født = !!barn.født?.verdi;
   return (
     <KomponentGruppe>
@@ -42,7 +42,6 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
       />
       {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
         <>
-
           <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'} />
           </AlertStripeDokumentasjon>

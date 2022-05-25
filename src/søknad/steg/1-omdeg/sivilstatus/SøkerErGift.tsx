@@ -7,8 +7,8 @@ import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { SeparasjonSpørsmål } from './SivilstatusConfig';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
-import { useIntl } from 'react-intl';
 import styled from 'styled-components';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   settJaNeiFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
@@ -25,7 +25,9 @@ const SøkerErGift: React.FC<Props> = ({
   settDato,
   sivilstatus,
 }) => {
-  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål(useIntl());
+  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål(
+    useLokalIntlContext()
+  );
   const { harSøktSeparasjon } = sivilstatus;
 
   return (

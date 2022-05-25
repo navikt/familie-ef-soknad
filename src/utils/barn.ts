@@ -1,4 +1,3 @@
-import { IntlShape } from 'react-intl';
 import { hentTekst } from './søknad';
 import { førsteBokstavStor, hentBeskjedMedNavn } from './språk';
 import { IBarn } from '../models/steg/barn';
@@ -6,18 +5,19 @@ import { ESvar } from '../models/felles/spørsmålogsvar';
 import { formatDate, strengTilDato } from './dato';
 import { storeForbokstaver } from './tekst';
 import { erForelderUtfylt } from '../helpers/steg/forelder';
+import { LokalIntlShape } from '../language/typer';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
   navnEllerBarn: string,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   return hentBeskjedMedNavn(navnEllerBarn, hentTekst(spørsmålTekstid, intl));
 };
 
 export const hentBarnetsNavnEllerBeskrivelseMedGenetiv = (
   barn: IBarn,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   const barnetsNavn = hentBarnetsNavnEllerBeskrivelse(barn, intl);
   return barn.navn.verdi ? `${barnetsNavn}s` : `${barnetsNavn} sitt`;
@@ -25,7 +25,7 @@ export const hentBarnetsNavnEllerBeskrivelseMedGenetiv = (
 
 export const hentBarnetsNavnEllerBeskrivelse = (
   barn: IBarn,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   if (barn.harAdressesperre) {
     return hentTekst('barnekort.normaltekst.barn', intl);
@@ -48,7 +48,7 @@ export const hentBarnetsNavnEllerBeskrivelse = (
   );
 };
 
-export const barnetsNavnEllerBarnet = (barn: IBarn, intl: IntlShape) => {
+export const barnetsNavnEllerBarnet = (barn: IBarn, intl: LokalIntlShape) => {
   return !barn.født || barn.navn.verdi === ''
     ? hentTekst('barnet.litenForBokstav', intl)
     : barn.navn.verdi;
@@ -56,7 +56,7 @@ export const barnetsNavnEllerBarnet = (barn: IBarn, intl: IntlShape) => {
 
 export const flereBarnsNavn = (
   barneliste: IBarn[],
-  intl: IntlShape
+  intl: LokalIntlShape
 ): string => {
   if (barneliste.length === 0) {
     return '';
@@ -79,7 +79,7 @@ export const flereBarnsNavn = (
 export const hentBarnNavnEllerBarnet = (
   barn: IBarn,
   tekstid: string,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   return hentBeskjedMedNavn(
     barnetsNavnEllerBarnet(barn, intl),
@@ -119,7 +119,7 @@ export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
   ).length;
 };
 
-export const oppdaterBarnLabels = (barn: IBarn[], intl: IntlShape) => {
+export const oppdaterBarnLabels = (barn: IBarn[], intl: LokalIntlShape) => {
   const oppdaterteBarn = barn.map((barnet: any) => {
     const navnEllerBarn = barnetsNavnEllerBarnet(barnet, intl);
 

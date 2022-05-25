@@ -4,7 +4,6 @@ import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
-import { injectIntl } from 'react-intl';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
@@ -20,10 +19,12 @@ import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
-const Forside: React.FC<any> = ({ intl }) => {
+const Forside: React.FC<any> = () => {
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
+  const intl = useLokalIntlContext();
   const {
     mellomlagretSkolepenger,
     brukMellomlagretSkolepenger,
@@ -113,4 +114,4 @@ const Forside: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Forside);
+export default Forside;

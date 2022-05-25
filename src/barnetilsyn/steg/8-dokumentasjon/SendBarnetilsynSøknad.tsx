@@ -34,7 +34,7 @@ import {
   ERouteSkolepenger,
   RoutesSkolepenger,
 } from '../../../skolepenger/routing/routes';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { oppdaterBarnLabels } from '../../../utils/barn';
 
 interface Innsending {
@@ -53,7 +53,7 @@ const SendSøknadKnapper: FC = () => {
   const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,

@@ -3,7 +3,6 @@ import {
   ESagtOppEllerRedusertStilling,
   IDinSituasjon,
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
-import { IntlShape } from 'react-intl';
 import { ISøknad } from '../../../models/søknad/søknad';
 import { IArbeidsgiver } from '../../../models/steg/aktivitet/arbeidsgiver';
 import { fraStringTilTall } from '../../../utils/søknad';
@@ -13,11 +12,12 @@ import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { storeForbokstaver } from '../../../utils/tekst';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
+import { LokalIntlShape } from '../../../language/typer';
 
 export const erSituasjonIAvhukedeSvar = (
   situasjon: DinSituasjonType,
   avhukedeSvar: string[],
-  intl: IntlShape
+  intl: LokalIntlShape
 ): boolean => {
   const tekstid: string = 'dinSituasjon.svar.' + situasjon;
   const svarTekst: string = intl.formatMessage({ id: tekstid });
@@ -110,7 +110,7 @@ export const hvisHarBarnMedSærligeTilsynMåHaFyltUtFritekst = (
 
 export const leggTilSærligeBehov = (
   barnMedSærligeBehov: IBarn,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
     barnMedSærligeBehov,

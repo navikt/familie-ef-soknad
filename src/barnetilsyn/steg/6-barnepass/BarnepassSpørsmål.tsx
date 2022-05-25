@@ -14,7 +14,7 @@ import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
 import { erÅrsakBarnepassSpmBesvart } from './hjelper';
@@ -48,7 +48,7 @@ const BarnepassSpørsmål: FC<Props> = ({
   barnepassOrdning,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { hvaSlagsBarnepassOrdning, periode } = barnepassOrdning;
 
   const navnLabel =

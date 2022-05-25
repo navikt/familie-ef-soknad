@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import CheckboxSpørsmål from '../../../components/spørsmål/CheckboxSpørsmål';
 import { hvaErDinArbeidssituasjonSpm } from '../../../søknad/steg/5-aktivitet/AktivitetConfig';
 import {
@@ -28,7 +28,7 @@ import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const Aktivitet: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     settSøknad,

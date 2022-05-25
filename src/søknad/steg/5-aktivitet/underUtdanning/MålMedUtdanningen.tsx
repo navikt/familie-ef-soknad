@@ -7,11 +7,11 @@ import {
 import { Textarea } from 'nav-frontend-skjema';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
-import { useIntl } from 'react-intl';
 
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -22,7 +22,7 @@ const MålMedUtdanningen: React.FC<Props> = ({
   utdanning,
   oppdaterUtdanning,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settMålMedUtdanning = (
     e: React.ChangeEvent<HTMLTextAreaElement>

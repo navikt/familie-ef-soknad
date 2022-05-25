@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
 import { hentTekst } from '../../../utils/søknad';
 import { Element } from 'nav-frontend-typografi';
@@ -32,7 +32,7 @@ const OmSamboerenDin: FC<Props> = ({
   bosituasjon,
   samboerDetaljerType,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const samboerDetaljer = bosituasjon[samboerDetaljerType];
   const { toggles } = useToggles();
   const [samboerInfo, settSamboerInfo] = useState<IPersonDetaljer>(

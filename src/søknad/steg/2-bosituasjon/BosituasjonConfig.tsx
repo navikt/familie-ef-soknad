@@ -6,7 +6,7 @@ import {
 import { JaNeiSvar } from '../../../helpers/svar';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // --- Dokumentasjon
 
@@ -15,7 +15,9 @@ const DokumentasjonBorPåUlikeAdresser: IDokumentasjon =
 
 // --- Spørsmål
 
-export const delerSøkerBoligMedAndreVoksne = (intl: IntlShape): ISpørsmål => ({
+export const delerSøkerBoligMedAndreVoksne = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EBosituasjon.delerBoligMedAndreVoksne,
   tekstid: 'bosituasjon.spm.delerSøkerBoligMedAndreVoksne',
   flersvar: false,
@@ -65,7 +67,9 @@ export const delerSøkerBoligMedAndreVoksne = (intl: IntlShape): ISpørsmål => 
   ],
 });
 
-export const skalSøkerGifteSegMedSamboer = (intl: IntlShape): ISpørsmål => ({
+export const skalSøkerGifteSegMedSamboer = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EBosituasjon.skalGifteSegEllerBliSamboer,
   tekstid: 'bosituasjon.spm.skalSøkerGifteSegMedSamboer',
   flersvar: false,

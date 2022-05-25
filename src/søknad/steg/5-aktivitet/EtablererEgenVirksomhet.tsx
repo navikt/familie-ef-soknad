@@ -8,7 +8,7 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -23,7 +23,7 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
   settArbeidssituasjon,
 }) => {
   const { etablererEgenVirksomhet } = arbeidssituasjon;
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settTekstfelt = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
     settArbeidssituasjon({

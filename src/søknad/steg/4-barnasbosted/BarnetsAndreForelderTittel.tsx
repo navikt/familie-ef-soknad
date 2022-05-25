@@ -6,10 +6,10 @@ import { hentTekst } from '../../../utils/søknad';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { IBarn } from '../../../models/steg/barn';
 import { FC } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 const BarnetsAndreForelderTittel: FC<{ barn: IBarn }> = ({ barn }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   return (
     <FeltGruppe>
       <Undertittel tag="h4">

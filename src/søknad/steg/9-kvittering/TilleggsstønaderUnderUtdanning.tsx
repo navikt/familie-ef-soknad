@@ -7,7 +7,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Lenke from 'nav-frontend-lenker';
 import styled from 'styled-components/macro';
 import { hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 const StyledBeskrivelse = styled.div`
@@ -21,7 +21,7 @@ const StyledBeskrivelse = styled.div`
 const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
   stønadstype,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   return (
     <SeksjonGruppe>
       {stønadstype === Stønadstype.overgangsstønad && (

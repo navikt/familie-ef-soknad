@@ -5,7 +5,7 @@ import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import { barnetFødt } from './BarneConfig';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
@@ -33,7 +33,7 @@ const LeggTilBarn: React.FC<Props> = ({
   settBarneListe,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const [barnDato, settBarnDato] = useState<string>('');
   const [født, settBarnFødt] = useState<boolean>();

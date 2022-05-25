@@ -3,7 +3,7 @@ import { EBarn } from '../../../models/steg/barn';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // --- Dokumentasjon
 const Terminbekreftelse: IDokumentasjon =
@@ -11,7 +11,7 @@ const Terminbekreftelse: IDokumentasjon =
 
 // --- Spørsmål
 
-export const barnetFødt = (intl: IntlShape): ISpørsmål => ({
+export const barnetFødt = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EBarn.født,
   tekstid: 'barnekort.spm.født',
   flersvar: false,
@@ -21,7 +21,7 @@ export const barnetFødt = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const skalBarnetBoHosSøker = (intl: IntlShape): ISpørsmål => ({
+export const skalBarnetBoHosSøker = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EBarn.skalBarnetBoHosSøker,
   tekstid: 'barnekort.spm.skalBarnetBoHosSøker',
   flersvar: false,

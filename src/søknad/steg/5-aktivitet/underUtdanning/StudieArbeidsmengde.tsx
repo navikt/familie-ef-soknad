@@ -6,7 +6,7 @@ import {
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
 import { hentTekst } from '../../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -17,7 +17,7 @@ const StudieArbeidsmengde: React.FC<Props> = ({
   utdanning,
   oppdaterUtdanning,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settInputFelt = (
     nøkkel: EUtdanning,

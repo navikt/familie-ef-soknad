@@ -4,12 +4,11 @@ import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
-import { injectIntl } from 'react-intl';
 import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
-import { useForsideInnhold } from '../utils/hooks';
+import { useForsideInnhold, useMount } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import {
   ERouteBarnetilsyn,
@@ -19,12 +18,13 @@ import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentPath } from '../utils/routing';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
-import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
-const Forside: React.FC<any> = ({ intl }) => {
+const Forside: React.FC<any> = () => {
+  const intl = useLokalIntlContext();
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn))
       logSidevisningBarnetilsyn('Forside');
@@ -115,4 +115,4 @@ const Forside: React.FC<any> = ({ intl }) => {
   );
 };
 
-export default injectIntl(Forside);
+export default Forside;

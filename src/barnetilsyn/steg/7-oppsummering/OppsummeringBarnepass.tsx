@@ -6,7 +6,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import {
   IDatoFelt,
   ISpørsmålBooleanFelt,
@@ -38,7 +38,7 @@ const OppsummeringBarnepass: FC<Props> = ({
   endreInformasjonPath,
 }) => {
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <Ekspanderbartpanel

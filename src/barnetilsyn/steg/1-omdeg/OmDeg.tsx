@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { injectIntl, IntlShape } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import {
   erStegFerdigUtfylt,
@@ -23,10 +22,11 @@ import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
-const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
+const OmDeg: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
-
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
@@ -145,4 +145,4 @@ const OmDeg: FC<{ intl: IntlShape }> = ({ intl }) => {
   );
 };
 
-export default injectIntl(OmDeg);
+export default OmDeg;

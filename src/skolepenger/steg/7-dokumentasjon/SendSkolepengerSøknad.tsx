@@ -29,7 +29,7 @@ import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const SendSøknadKnapper: FC = () => {
   const nesteRoute = hentNesteRoute(RoutesSkolepenger, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesSkolepenger, location.pathname);
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Skolepenger];
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,

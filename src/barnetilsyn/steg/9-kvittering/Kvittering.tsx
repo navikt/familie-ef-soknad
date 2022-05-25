@@ -5,7 +5,7 @@ import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import SykSøker from '../../../søknad/steg/9-kvittering/SykSøker';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
 import { ErIArbeid } from '../../../models/steg/aktivitet/aktivitet';
@@ -25,7 +25,7 @@ import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 
 const Kvittering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { locale } = useSpråkContext();
   const {
     søknad,
@@ -81,12 +81,9 @@ const Kvittering: React.FC = () => {
       {sykSøker && (
         <SykSøker
           filPath={hentFilePath(locale, {
-            nb:
-              '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_BT.pdf',
-            en:
-              '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_BT_EN.pdf',
-            nn:
-              '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_BT_NN.pdf',
+            nb: '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_BT.pdf',
+            en: '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_BT_EN.pdf',
+            nn: '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_BT_NN.pdf',
           })}
         />
       )}

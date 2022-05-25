@@ -7,12 +7,12 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTittelMedNr } from '../../../../language/utils';
-import { useIntl } from 'react-intl';
 import { hentTekst } from '../../../../utils/søknad';
 import {
   EAksjeselskap,
   IAksjeselskap,
 } from '../../../../models/steg/aktivitet/aktivitet';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   egetAS: IAksjeselskap[];
@@ -27,7 +27,7 @@ const Aksjeselskap: FC<Props> = ({
   aksjeselskapnummer,
   inkludertArbeidsmengde,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const aksjeselskapFraSøknad = egetAS?.find(
     (aksjeselskap, index) => index === aksjeselskapnummer && aksjeselskap
   );

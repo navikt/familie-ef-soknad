@@ -3,7 +3,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { EUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import { hentTekst } from '../../../../utils/søknad';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
@@ -11,6 +10,8 @@ import styled from 'styled-components/macro';
 import { Undertittel } from 'nav-frontend-typografi';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../../language/FormattedHtmlMessage';
 
 interface Props {
   utdanning: IDetaljertUtdanning;
@@ -22,7 +23,7 @@ const StyledUndertittel = styled(Undertittel)`
 `;
 
 const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settInputFelt = (
     nøkkel: EUtdanning,
@@ -106,7 +107,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
       </FeltGruppe>
       <FeltGruppe>
         <AlertStripeInfo className={'fjernBakgrunn'}>
-          <FormattedHTMLMessage id={'utdanning.andreUtgifter.tekst'} />
+          <FormattedHtmlMessage id={'utdanning.andreUtgifter.tekst'} />
         </AlertStripeInfo>
       </FeltGruppe>
     </KomponentGruppe>

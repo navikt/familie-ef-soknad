@@ -1,6 +1,5 @@
 import { IForelder } from '../../../../models/steg/forelder';
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { hvorMyeSammen } from '../ForeldreConfig';
 import { hentTekst } from '../../../../utils/søknad';
@@ -11,6 +10,7 @@ import { EHvorMyeSammen } from '../../../../models/steg/barnasbosted';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   forelder: IForelder;
@@ -18,7 +18,7 @@ interface Props {
   settForelder: (verdi: IForelder) => void;
 }
 const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const hvorMyeSammenConfig = hvorMyeSammen(intl, barn);
   const settHvorMyeSammen = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {

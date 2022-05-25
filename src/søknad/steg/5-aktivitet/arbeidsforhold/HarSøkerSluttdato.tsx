@@ -7,7 +7,6 @@ import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
-import { useIntl } from 'react-intl';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import {
   EArbeidsgiver,
@@ -15,6 +14,7 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   arbeidsgiver: IArbeidsgiver;
@@ -25,7 +25,7 @@ const HarSøkerSluttdato: React.FC<Props> = ({
   arbeidsgiver,
   settArbeidsgiver,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settDato = (dato: string) => {
     dato !== null &&

@@ -4,9 +4,9 @@ import barn1 from '../assets/barn1.svg';
 import ufødtIkon from '../assets/ufodt.svg';
 import styled from 'styled-components/macro';
 import { IBarn } from '../models/steg/barn';
-import { useIntl } from 'react-intl';
 import { førsteBokstavStor } from '../utils/språk';
 import { hentBarnetsNavnEllerBeskrivelse } from '../utils/barn';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 const StyledBarnasBostedHeader = styled.div`
   .barnas-bosted-header {
@@ -65,7 +65,7 @@ interface Props {
 
 const BarneHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
   const ikon = barn.født?.verdi ? barn1 : ufødtIkon;
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <StyledBarnasBostedHeader>

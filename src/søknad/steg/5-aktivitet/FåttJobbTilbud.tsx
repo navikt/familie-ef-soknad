@@ -4,7 +4,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
@@ -17,7 +17,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settDato = (dato: string) => {
     settArbeidssituasjon({

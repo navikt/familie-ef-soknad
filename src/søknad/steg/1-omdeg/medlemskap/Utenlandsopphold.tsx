@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
 import { Textarea } from 'nav-frontend-skjema';
 import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
@@ -14,6 +13,7 @@ import styled from 'styled-components/macro';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
@@ -33,7 +33,7 @@ const Utenlandsopphold: FC<Props> = ({
   utenlandsopphold,
 }) => {
   const { periode, begrunnelse } = utenlandsopphold;
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const begrunnelseTekst = intl.formatMessage({
     id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
   });
