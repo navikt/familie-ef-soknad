@@ -1,4 +1,5 @@
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import React from 'react';
 
 interface Props {
   id: string;
@@ -7,7 +8,8 @@ interface Props {
 const FormattedHtmlMessage: React.FC<Props> = ({ id }) => {
   const intl = useLokalIntlContext();
   const text = intl.formatMessage({ id: id });
+  console.table('Rendrerer med id', [id]);
   return <span dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
-export default FormattedHtmlMessage;
+export default React.memo(FormattedHtmlMessage);
