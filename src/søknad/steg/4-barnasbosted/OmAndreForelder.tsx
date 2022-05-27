@@ -10,7 +10,7 @@ import { hvorforIkkeOppgi } from './ForeldreConfig';
 import { IForelder } from '../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Feilmelding } from 'nav-frontend-typografi';
 import { useToggles } from '../../../context/TogglesContext';
@@ -31,7 +31,7 @@ const OmAndreForelder: React.FC<Props> = ({
   settKjennerIkkeIdent,
   settSisteBarnUtfylt,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { fødselsdato, ident } = forelder;
   const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);

@@ -1,7 +1,6 @@
 import { Textarea } from 'nav-frontend-skjema';
 import React, { ChangeEvent } from 'react';
 import { IBarn } from '../../../models/steg/barn';
-import { IntlShape, useIntl } from 'react-intl';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -10,11 +9,13 @@ import './BarnMedSærligeBehovBegrunnelse.less';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { LokalIntlShape } from '../../../language/typer';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
 const BarnMedSærligeBehovBegrunnelse = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
   const barnMedSærligeBehov = søknad.person.barn.filter(
     (barn: IBarn) => barn.særligeTilsynsbehov
@@ -61,13 +62,13 @@ const BarnMedSærligeBehovBegrunnelse = () => {
 
 const BarnMedSærligeBehovLabelTekst: React.FC<{
   barn: IBarn;
-  intl: IntlShape;
-}> = (props: { barn: IBarn; intl: IntlShape }) => {
+  intl: LokalIntlShape;
+}> = (props: { barn: IBarn; intl: LokalIntlShape }) => {
   const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
     props.barn,
     props.intl
   );
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const navn = props.barn.navn.verdi
     ? storeForbokstaver(barnetsNavn)
     : barnetsNavn;

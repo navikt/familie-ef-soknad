@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import { ISpørsmål } from '../../models/felles/spørsmålogsvar';
 import Hjelpetekst from '../Hjelpetekst';
 import { ISvar } from '../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
 import classNames from 'classnames';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -47,7 +47,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
   settSpørsmålOgSvar,
   valgtSvar,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const skalLogges = true;
 

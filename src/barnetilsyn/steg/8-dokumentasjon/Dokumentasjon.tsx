@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useLocation } from 'react-router-dom';
@@ -21,9 +20,11 @@ import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
 import { Severity } from '@sentry/browser';
 import { useDebouncedCallback } from 'use-debounce';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 
 const Dokumentasjon: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   const location = useLocation();
   const { dokumentasjonsbehov } = søknad;
@@ -98,7 +99,7 @@ const Dokumentasjon: React.FC = () => {
     >
       <SeksjonGruppe>
         <Normaltekst>
-          <FormattedHTMLMessage
+          <FormattedHtmlMessage
             id={
               harDokumentasjonsbehov
                 ? 'dokumentasjon.beskrivelse'

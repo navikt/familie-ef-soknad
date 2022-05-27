@@ -11,7 +11,6 @@ import {
 } from '../helpers/steg/dokumentasjon';
 import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
-import { IntlShape, useIntl } from 'react-intl';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentMellomlagretSøknadFraDokument,
@@ -23,9 +22,11 @@ import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
+import { LokalIntlShape } from '../language/typer';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 // -----------  CONTEXT  -----------
-const initialState = (intl: IntlShape): ISøknad => {
+const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
     person: tomPerson,
     sivilstatus: {},
@@ -44,8 +45,9 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
-
+        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(
+          (svaralternativ) => svaralternativ.svar_tekst
+        ),
       },
     },
     dokumentasjonsbehov: [],
@@ -55,13 +57,12 @@ const initialState = (intl: IntlShape): ISøknad => {
 
 const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
   () => {
-    const intl = useIntl();
+    const intl = useLokalIntlContext();
     BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
-    const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] = useState<
-      IMellomlagretBarnetilsynSøknad
-    >();
+    const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
+      useState<IMellomlagretBarnetilsynSøknad>();
 
     useEffect(() => {
       if (
@@ -129,14 +130,15 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       if (spørsmål.flersvar) {
         console.error('Ikke implementert');
       } else {
-        endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
-          søknad.dokumentasjonsbehov,
-          spørsmål,
-          valgtSvar,
-          intl,
-          barneid,
-          barnepassid
-        );
+        endretDokumentasjonsbehov =
+          oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
+            søknad.dokumentasjonsbehov,
+            spørsmål,
+            valgtSvar,
+            intl,
+            barneid,
+            barnepassid
+          );
       }
 
       settSøknad((prevSoknad) => {

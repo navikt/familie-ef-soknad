@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { injectIntl, IntlShape } from 'react-intl';
 import {
   hentBeskjedMedNavn,
   hentBeskjedMedToParametre,
@@ -24,9 +23,9 @@ import {
 import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
 import FormData from 'form-data';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 interface Props {
-  intl: IntlShape;
   oppdaterDokumentasjon: (
     dokumentasjonsid: string,
     opplastedeVedlegg: IVedlegg[] | undefined,
@@ -48,7 +47,6 @@ interface OpplastetVedlegg {
 }
 
 const Filopplaster: React.FC<Props> = ({
-  intl,
   oppdaterDokumentasjon,
   dokumentasjon,
   beskrivelsesListe,
@@ -57,6 +55,7 @@ const Filopplaster: React.FC<Props> = ({
 }) => {
   const [feilmeldinger, settFeilmeldinger] = useState<string[]>([]);
   const [åpenModal, settÅpenModal] = useState<boolean>(false);
+  const intl = useLokalIntlContext();
 
   const lukkModal = () => {
     settÅpenModal(false);
@@ -253,4 +252,4 @@ const Filopplaster: React.FC<Props> = ({
   );
 };
 
-export default injectIntl(Filopplaster);
+export default Filopplaster;

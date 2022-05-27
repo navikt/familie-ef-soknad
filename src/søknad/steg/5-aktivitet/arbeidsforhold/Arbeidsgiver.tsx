@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import { useIntl } from 'react-intl';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import styled from 'styled-components/macro';
@@ -21,6 +20,7 @@ import {
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { ISvar } from '../../../../models/felles/spørsmålogsvar';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -46,7 +46,7 @@ const Arbeidsgiver: React.FC<Props> = ({
   settDokumentasjonsbehov,
   inkludertArbeidsmengde,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const arbeidsgiverFraSøknad = arbeidsforhold?.find(
     (arbeidsgiver, index) => index === arbeidsgivernummer && arbeidsgiver
   );

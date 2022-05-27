@@ -3,9 +3,9 @@ import FeltGruppe from './FeltGruppe';
 import { Checkbox, FnrInput } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
-import { useIntl } from 'react-intl';
 import classNames from 'classnames';
 import KomponentGruppe from './KomponentGruppe';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 interface Props {
   identLabel: string;
@@ -36,7 +36,7 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   settFødselsdato,
   fetSkrift,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const feilmelding: string = hentTekst('person.feilmelding.ident', intl);
 

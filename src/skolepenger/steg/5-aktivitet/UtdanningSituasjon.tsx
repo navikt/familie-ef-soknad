@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation } from 'react-router-dom';
 import { erAllUtdanningFerdigUtfyltForSkolepenger } from '../../../helpers/steg/aktivitetvalidering';
 import Side, { ESide } from '../../../components/side/Side';
@@ -16,7 +16,7 @@ import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const UtdanningSituasjon: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { søknad, settSøknad, mellomlagreSkolepenger } = useSkolepengerSøknad();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);

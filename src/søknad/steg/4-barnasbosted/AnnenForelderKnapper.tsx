@@ -1,5 +1,5 @@
 import React, { useState, SyntheticEvent } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
@@ -24,7 +24,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   forelder,
   settBarnHarSammeForelder,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] =
     useState<string>('');

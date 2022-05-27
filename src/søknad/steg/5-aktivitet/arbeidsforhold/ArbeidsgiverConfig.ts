@@ -6,14 +6,14 @@ import {
 import { JaNeiSvar } from '../../../../helpers/svar';
 import { IDokumentasjon } from '../../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
 // DOKUMENTASJON
 const DokumentasjonLærling: IDokumentasjon =
   DokumentasjonsConfig.DokumentasjonLærling;
 
 // SPØRSMÅL
-export const hvaSlagsStilling = (intl: IntlShape): ISpørsmål => ({
+export const hvaSlagsStilling = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidsgiver.ansettelsesforhold,
   tekstid: 'arbeidsforhold.label.ansettelsesforhold',
   flersvar: false,
@@ -40,7 +40,7 @@ export const hvaSlagsStilling = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const harDuSluttdato = (intl: IntlShape): ISpørsmål => ({
+export const harDuSluttdato = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidsgiver.harSluttDato,
   tekstid: 'arbeidsforhold.label.sluttdato',
   flersvar: false,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Textarea } from 'nav-frontend-skjema';
 import { IForelder } from '../../../models/steg/forelder';
 
@@ -15,7 +15,7 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
   forelder,
   settForelder,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <KomponentGruppe className="hvordan-praktiseres-samværet">

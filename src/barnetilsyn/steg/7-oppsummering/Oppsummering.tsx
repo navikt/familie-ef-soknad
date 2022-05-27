@@ -13,7 +13,7 @@ import {
 import { IBarn } from '../../../models/steg/barn';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentPath } from '../../../utils/routing';
 import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
@@ -22,7 +22,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { mellomlagreBarnetilsyn, søknad } = useBarnetilsynSøknad();
   const barnSomSkalHaBarnepass: IBarn[] = søknad.person.barn.filter(
     (barn: IBarn) => barn.skalHaBarnepass?.verdi

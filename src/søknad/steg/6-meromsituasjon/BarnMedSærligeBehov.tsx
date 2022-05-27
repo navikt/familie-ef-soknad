@@ -5,10 +5,10 @@ import BarnMedSærligeBehovBegrunnelse from './BarnMedSærligeBehovBegrunnelse';
 import HvilkeBarnHarSærligeBehov from './HvilkeBarnHarSærligeBehov';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 const BarnMedSærligeBehov: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   return (
     <>
       <KomponentGruppe>

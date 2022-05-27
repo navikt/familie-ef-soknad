@@ -6,7 +6,6 @@ import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import React from 'react';
 import { IPerson } from '../../models/søknad/person';
-import { IntlShape } from 'react-intl';
 import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
@@ -14,6 +13,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { useNavigate } from 'react-router-dom';
+import { LokalIntlShape } from '../../language/typer';
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -21,7 +21,7 @@ interface InnholdProps {
   seksjon?: any;
   disclaimer?: any;
   person: IPerson;
-  intl: IntlShape;
+  intl: LokalIntlShape;
   harBekreftet: boolean;
   settBekreftelse: (bekreftet: boolean) => void;
   nesteSide: string;
@@ -76,7 +76,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
   return (
     <>
       <FeltGruppe>
-        <Språkvelger/>
+        <Språkvelger />
       </FeltGruppe>
       {locale === 'en' && (
         <AlertStripeAdvarsel>

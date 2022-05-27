@@ -4,8 +4,8 @@ import { ForsideType } from '../models/søknad/stønadstyper';
 import { DinSituasjonType } from '../models/steg/dinsituasjon/meromsituasjon';
 import { leggTilSærligeBehov } from '../søknad/steg/6-meromsituasjon/SituasjonUtil';
 import { ISøknad } from '../models/søknad/søknad';
-import { IntlShape } from 'react-intl';
 import { IBarn } from '../models/steg/barn';
+import { LokalIntlShape } from '../language/typer';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -30,7 +30,7 @@ export const useForsideInnhold = (stønadstype: ForsideType): any => {
 
 export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
   søknad: ISøknad,
-  intl: IntlShape,
+  intl: LokalIntlShape,
   oppdaterBarnISoknaden: (barn: IBarn) => void
 ): void => {
   useEffect(() => {

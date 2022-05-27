@@ -21,10 +21,10 @@ import { IPerson } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from '../utils/miljø';
 import SøknadsdialogSkolepenger from './Søknadsdialog';
-import { useIntl } from 'react-intl';
 import { logAdressesperre } from '../utils/amplitude';
 import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { ESkjemanavn } from '../utils/skjemanavn';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const SkolepengerApp = () => {
   const { søknad, settSøknad, hentMellomlagretSkolepenger } =
     useSkolepengerSøknad();
   const { settToggles } = useToggles();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
 

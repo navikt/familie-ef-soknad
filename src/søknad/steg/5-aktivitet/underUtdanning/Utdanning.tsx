@@ -11,12 +11,12 @@ import { IUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
 import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { formatIsoDate } from '../../../../utils/dato';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -29,7 +29,7 @@ const Utdanning: React.FC<Props> = ({
   settTidligereUtdanninger,
   utdanningsnummer,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const utdanningFraSøknad = tidligereUtdanninger?.find(
     (utdanning, index) => index === utdanningsnummer && utdanning
   );

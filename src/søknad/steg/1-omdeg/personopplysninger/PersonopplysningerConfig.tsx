@@ -1,9 +1,9 @@
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
 import { ESøknad } from '../../../../models/søknad/søknad';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
-export const borDuPåDenneAdressen = (intl: IntlShape): ISpørsmål => ({
+export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESøknad.søkerBorPåRegistrertAdresse,
   tekstid: 'personopplysninger.spm.riktigAdresse',
   lesmer: {

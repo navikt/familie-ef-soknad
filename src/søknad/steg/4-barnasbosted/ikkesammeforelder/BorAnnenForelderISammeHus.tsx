@@ -7,10 +7,10 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IForelder } from '../../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { Textarea } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   forelder: IForelder;
@@ -22,7 +22,7 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
   settForelder,
   barn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const borAnnenForelderISammeHusConfig = borAnnenForelderISammeHus(intl);
 

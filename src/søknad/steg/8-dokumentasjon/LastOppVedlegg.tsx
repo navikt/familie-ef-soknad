@@ -4,7 +4,6 @@ import Filopplaster from '../../../components/filopplaster/Filopplaster';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Checkbox } from 'nav-frontend-skjema';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { hentTekst } from '../../../utils/søknad';
 import {
   BarnetilsynDokumentasjon,
@@ -13,6 +12,8 @@ import {
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { EFiltyper } from '../../../helpers/filtyper';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 
 interface Props {
   dokumentasjon: IDokumentasjon;
@@ -27,7 +28,7 @@ const LastOppVedlegg: React.FC<Props> = ({
   dokumentasjon,
   oppdaterDokumentasjon,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settHarSendtInnTidligere = (e: any) => {
     const huketAv = e.target.checked;
@@ -48,7 +49,7 @@ const LastOppVedlegg: React.FC<Props> = ({
       {dokumentasjon.beskrivelse && (
         <FeltGruppe>
           <Normaltekst>
-            <FormattedHTMLMessage id={dokumentasjon.beskrivelse} />
+            <FormattedHtmlMessage id={dokumentasjon.beskrivelse} />
           </Normaltekst>
         </FeltGruppe>
       )}

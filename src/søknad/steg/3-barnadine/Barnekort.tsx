@@ -4,7 +4,7 @@ import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import LeggTilBarn from './LeggTilBarn';
 import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
@@ -34,7 +34,7 @@ const Barnekort: React.FC<Props> = ({
   barneListe,
   settBarneListe,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
   useEffect(() => {
     Modal.setAppElement('#root');

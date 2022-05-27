@@ -9,7 +9,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { borINorge } from '../ForeldreConfig';
 import { Input } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../../utils/søknad';
-import { useIntl } from 'react-intl';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { IBarn } from '../../../../models/steg/barn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
@@ -17,6 +16,7 @@ import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   barn: IBarn;
@@ -36,7 +36,7 @@ const BorForelderINorge: FC<Props> = ({
   forelder,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
     const nyForelder = {

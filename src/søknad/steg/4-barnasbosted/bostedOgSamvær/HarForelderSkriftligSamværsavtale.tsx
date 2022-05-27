@@ -9,8 +9,8 @@ import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
-import { useIntl } from 'react-intl';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   forelder: IForelder;
@@ -22,7 +22,7 @@ const HarForelderSkriftligSamværsavtale: FC<Props> = ({
   settBostedOgSamværFelt,
   barn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const harDereSkriftligSamværsavtaleSpm = harDereSkriftligSamværsavtale(intl);
   return (
     <>

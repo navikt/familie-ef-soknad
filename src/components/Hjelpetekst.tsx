@@ -2,11 +2,11 @@ import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import styled from 'styled-components/macro';
-import { useIntl } from 'react-intl';
 import LocaleTekst from '../language/LocaleTekst';
 import { hentTekst } from '../utils/søknad';
-import { FormattedHTMLMessage } from 'react-intl';
 import hiddenIf from '../utils/hiddenIf';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
+import FormattedHtmlMessage from '../language/FormattedHtmlMessage';
 
 const StyledHjelpetekst = styled.div`
   .lesMerPanel {
@@ -83,7 +83,7 @@ const Hjelpetekst: React.FC<Props> = ({
   innholdTekst,
   html,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   if (åpneTekstid === '') {
     return (
@@ -118,7 +118,7 @@ const Hjelpetekst: React.FC<Props> = ({
             <Normaltekst>
               {innholdTekst && innholdTekst}
               {!innholdTekst && innholdTekstid && html && (
-                <FormattedHTMLMessage id={innholdTekstid} />
+                <FormattedHtmlMessage id={innholdTekstid} />
               )}
               {!innholdTekst && innholdTekstid && !html && (
                 <LocaleTekst tekst={innholdTekstid} />

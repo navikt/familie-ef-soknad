@@ -7,7 +7,7 @@ import {
 } from '../../models/barnepass';
 import { ESøkerFraBestemtMåned } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { DokumentasjonsConfig } from '../../../søknad/DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // ----- DOKUMENTASJON
 
@@ -25,7 +25,7 @@ export const DokumentasjonMyeBortePgaJobb: IDokumentasjon =
 
 // --- SPØRSMÅL
 
-export const årsakBarnepass = (intl: IntlShape): ISpørsmål => ({
+export const årsakBarnepass = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EBarnepass.årsakBarnepass,
   tekstid: 'barnepass.spm.årsak',
   flersvar: false,
@@ -55,7 +55,9 @@ export const årsakBarnepass = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const HvaSlagsBarnepassOrdningSpm = (intl: IntlShape): ISpørsmål => ({
+export const HvaSlagsBarnepassOrdningSpm = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EBarnepass.hvaSlagsBarnepassOrdning,
   tekstid: 'barnepass.spm.hvaSlagsOrdning',
   flersvar: false,
@@ -75,7 +77,9 @@ export const HvaSlagsBarnepassOrdningSpm = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const SøkerDuStønadFraBestemtMndSpm = (intl: IntlShape): ISpørsmål => ({
+export const SøkerDuStønadFraBestemtMndSpm = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EBarnepass.søkerFraBestemtMåned,
   tekstid: 'søkerFraBestemtMåned.spm.barnepass',
   flersvar: false,

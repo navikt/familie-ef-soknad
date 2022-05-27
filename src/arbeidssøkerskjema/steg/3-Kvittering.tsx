@@ -1,6 +1,5 @@
 import React from 'react';
 import Side from '../side/Side';
-import { useIntl } from 'react-intl';
 import AlertStripe from 'nav-frontend-alertstriper';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { dagensDato, formatDateHour } from '../../utils/dato';
@@ -14,6 +13,7 @@ import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -24,7 +24,7 @@ const StyledBeskrivelse = styled.div`
 `;
 
 const Kvittering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { skjema } = useSkjema();
 
   useMount(() => logSidevisningArbeidssokerskjema('Kvittering'));

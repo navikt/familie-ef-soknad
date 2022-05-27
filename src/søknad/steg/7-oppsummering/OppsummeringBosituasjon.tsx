@@ -10,7 +10,7 @@ import {
 } from '../../../models/steg/bosituasjon';
 import { Undertittel } from 'nav-frontend-typografi';
 
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
@@ -28,7 +28,7 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   tittel,
 }) => {
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const samboerDetaljer =
     bosituasjon.samboerDetaljer && VisLabelOgSvar(bosituasjon.samboerDetaljer);

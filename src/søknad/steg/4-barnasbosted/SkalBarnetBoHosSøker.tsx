@@ -5,7 +5,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { skalBarnetBoHosSøker } from './ForeldreConfig';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { IForelder } from '../../../models/steg/forelder';
 import { IBarn } from '../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -13,9 +13,9 @@ import {
   hentBarnNavnEllerBarnet,
   hentSpørsmålTekstMedNavnEllerBarn,
 } from '../../../utils/barn';
-import { FormattedHTMLMessage } from 'react-intl';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 
 interface Props {
   barn: IBarn;
@@ -35,7 +35,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   settForelder,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const skalBarnetBoHosSøkerConfig = skalBarnetBoHosSøker(intl);
   const settSkalBarnetBoHosSøkerFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
@@ -82,7 +82,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
         ESkalBarnetBoHosSøker.jaMenSamarbeiderIkke && (
         <FeltGruppe>
           <AlertStripeDokumentasjon>
-            <FormattedHTMLMessage
+            <FormattedHtmlMessage
               id={hentBarnNavnEllerBarnet(
                 barn,
                 'barnasbosted.alert.hvisFaktiskBor',

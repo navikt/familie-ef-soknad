@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import Side from '../side/Side';
-import { useIntl } from 'react-intl';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../utils/søknad';
@@ -30,11 +29,12 @@ import { hentPath } from '../../utils/routing';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../utils/locationState';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const Spørsmål: FC<any> = ({ ident }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { skjema, settSkjema } = useSkjema();
   const [arbeidssøker, settArbeidssøker] = React.useState(skjema.arbeidssøker);
 

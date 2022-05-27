@@ -5,7 +5,7 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import { Ingress, Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import {
   VisLabelOgSvar,
   visLabelOgVerdiForSpørsmålFelt,
@@ -31,7 +31,7 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
   tittel,
 }) => {
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <Ekspanderbartpanel

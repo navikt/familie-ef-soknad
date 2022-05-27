@@ -12,7 +12,7 @@ import {
   IBarnepassOrdning,
 } from '../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { årsakBarnepass } from './BarnepassConfig';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
@@ -33,7 +33,7 @@ const ÅrsakBarnepass: FC<Props> = ({
   settBarnepass,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { barnepass } = barn;
 
   const årsakBarnepassConfig = årsakBarnepass(intl);
@@ -43,16 +43,16 @@ const ÅrsakBarnepass: FC<Props> = ({
     årsakBarnepassConfig.tekstid,
     intl
   );
-  const barnepassordningerListe: IBarnepassOrdning[] = barnepass?.barnepassordninger
-    ? barnepass.barnepassordninger
-    : [{ id: hentUid() }];
+  const barnepassordningerListe: IBarnepassOrdning[] =
+    barnepass?.barnepassordninger
+      ? barnepass.barnepassordninger
+      : [{ id: hentUid() }];
 
   const valgtÅrsak = barnepass?.årsakBarnepass?.svarid;
-  const dokumentasjonsbehovTekst:
-    | string
-    | undefined = årsakBarnepassConfig.svaralternativer.find(
-    (svarsalternativ) => svarsalternativ.id === valgtÅrsak
-  )?.alert_tekstid;
+  const dokumentasjonsbehovTekst: string | undefined =
+    årsakBarnepassConfig.svaralternativer.find(
+      (svarsalternativ) => svarsalternativ.id === valgtÅrsak
+    )?.alert_tekstid;
 
   const settÅrsakBarnepass = (spørsmål: ISpørsmål, svar: ISvar) => {
     settBarnepass(

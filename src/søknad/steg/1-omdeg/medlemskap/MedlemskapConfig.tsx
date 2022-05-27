@@ -1,9 +1,9 @@
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
 import { EMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
-export const oppholderSegINorge = (intl: IntlShape): ISpørsmål => ({
+export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerOppholderSegINorge,
   tekstid: 'medlemskap.spm.opphold',
   flersvar: false,
@@ -11,7 +11,7 @@ export const oppholderSegINorge = (intl: IntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const bosattINorgeDeSisteTreÅr = (intl: IntlShape): ISpørsmål => ({
+export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerBosattINorgeSisteTreÅr,
   tekstid: 'medlemskap.spm.bosatt',
   flersvar: false,

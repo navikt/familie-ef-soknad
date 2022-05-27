@@ -6,7 +6,7 @@ import {
 } from '../../../../models/steg/aktivitet/utdanning';
 import { IHjelpetekst } from '../../../../models/felles/hjelpetekst';
 import { JaNeiSvar } from '../../../../helpers/svar';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
 // ----- TEKSTER
 export const utdanningDuKanFåStønadTil: IHjelpetekst = {
@@ -39,7 +39,7 @@ export const linjeKursGrad: ITekst = {
 
 // --- Spørsmål
 
-export const privatEllerOffentligSpm = (intl: IntlShape): ISpørsmål => ({
+export const privatEllerOffentligSpm = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EUtdanning.offentligEllerPrivat,
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   flersvar: false,
@@ -59,7 +59,7 @@ export const privatEllerOffentligSpm = (intl: IntlShape): ISpørsmål => ({
     },
   ],
 });
-export const heltidEllerDeltidSpm = (intl: IntlShape): ISpørsmål => ({
+export const heltidEllerDeltidSpm = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EUtdanning.heltidEllerDeltid,
   tekstid: 'utdanning.spm.studieandel',
   flersvar: false,
@@ -75,7 +75,9 @@ export const heltidEllerDeltidSpm = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const utdanningEtterGrunnskolenSpm = (intl: IntlShape): ISpørsmål => ({
+export const utdanningEtterGrunnskolenSpm = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EUtdanning.harTattUtdanningEtterGrunnskolen,
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,

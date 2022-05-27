@@ -3,7 +3,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { verdiTilTekstsvar } from '../../../utils/visning';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import LocaleTekst from '../../../language/LocaleTekst';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     alder,
     ident,

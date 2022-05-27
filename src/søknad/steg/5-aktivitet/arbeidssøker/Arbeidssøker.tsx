@@ -15,7 +15,6 @@ import {
   ISpørsmål,
   ISvar,
 } from '../../../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
@@ -24,6 +23,7 @@ import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -40,7 +40,7 @@ const Arbeidssøker: React.FC<Props> = ({
   settArbeidssituasjon,
   settDokumentasjonsbehov,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const [arbeidssøker, settArbeidssøker] = useState<IArbeidssøker>(
     arbeidssituasjon.arbeidssøker ? arbeidssituasjon.arbeidssøker : {}
   );

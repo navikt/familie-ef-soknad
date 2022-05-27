@@ -1,11 +1,11 @@
 import React, { SyntheticEvent } from 'react';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
-import { useIntl } from 'react-intl';
 import Hjelpetekst from '../Hjelpetekst';
 import styled from 'styled-components/macro';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {
@@ -38,7 +38,7 @@ interface Props {
 }
 
 const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const skalLogges = true;
 

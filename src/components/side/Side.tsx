@@ -7,13 +7,13 @@ import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
-import { useIntl } from 'react-intl';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import LocaleTekst from '../../language/LocaleTekst';
 import AlertStripe from 'nav-frontend-alertstriper';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -45,7 +45,7 @@ const Side: React.FC<ISide> = ({
   informasjonstekstId,
   disableNesteKnapp,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const navigate = useNavigate();
 

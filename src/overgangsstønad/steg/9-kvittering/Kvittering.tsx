@@ -11,7 +11,7 @@ import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import SyktBarn from '../../../søknad/steg/9-kvittering/SyktBarn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { DinSituasjonType } from '../../../models/steg/dinsituasjon/meromsituasjon';
@@ -30,7 +30,7 @@ import { hentFilePath } from '../../../utils/språk';
 import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     nullstillMellomlagretOvergangsstønad,
@@ -102,12 +102,9 @@ const Kvittering: React.FC = () => {
       {sykSøker && (
         <SykSøker
           filPath={hentFilePath(locale, {
-            nb:
-              '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf',
-            en:
-              '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_OS_EN.pdf',
-            nn:
-              '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_OS_NN.pdf',
+            nb: '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_syk_OS.pdf',
+            en: '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_OS_EN.pdf',
+            nn: '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukdom_OS_NN.pdf',
           })}
         />
       )}

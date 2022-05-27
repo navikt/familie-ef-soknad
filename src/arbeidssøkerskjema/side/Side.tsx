@@ -10,7 +10,7 @@ import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 interface ISide {
   tittel: string;
@@ -26,7 +26,7 @@ const Side: React.FC<ISide> = ({
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const routes = Object.values(RoutesArbeidssokerskjema);
   routes.shift();

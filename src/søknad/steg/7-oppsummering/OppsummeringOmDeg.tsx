@@ -12,7 +12,7 @@ import {
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import { ISøker } from '../../../models/søknad/person';
 import { Undertittel, Ingress } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import {
   SeksjonSpacingTop,
@@ -36,7 +36,7 @@ const OppsummeringOmDeg: FC<Props> = ({
   endreInformasjonPath,
   tittel,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const navigate = useNavigate();
   const omDeg = søker;

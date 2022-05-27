@@ -21,9 +21,9 @@ import { erLokaltMedMock } from './utils/miljø';
 import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { EAlvorlighetsgrad } from './models/felles/feilmelding';
 import LocaleTekst from './language/LocaleTekst';
-import { useIntl } from 'react-intl';
 import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
+import { useLokalIntlContext } from './context/LokalIntlContext';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -36,7 +36,7 @@ const App = () => {
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
 
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
 

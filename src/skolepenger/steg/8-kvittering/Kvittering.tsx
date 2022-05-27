@@ -7,7 +7,7 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import TilleggsstønaderUnderUtdanning from '../../../søknad/steg/9-kvittering/TilleggsstønaderUnderUtdanning';
 import { formatDateHour } from '../../../utils/dato';
 import { hentTekst, oppdaterBarnMedLabel } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import ErklæringSamlivsbrudd from '../../../søknad/steg/9-kvittering/ErklæringSamlivsbrudd';
 import { EBegrunnelse } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
@@ -21,7 +21,7 @@ import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 
 const Kvittering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     nullstillMellomlagretSkolepenger,

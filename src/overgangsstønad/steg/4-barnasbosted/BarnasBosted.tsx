@@ -3,7 +3,7 @@ import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBost
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
 import { RefObject } from 'react';
 import { IBarn } from '../../../models/steg/barn';
@@ -29,7 +29,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 };
 
 const BarnasBosted: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const {
     søknad,

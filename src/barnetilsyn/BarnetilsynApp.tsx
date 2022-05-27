@@ -19,8 +19,8 @@ import { erLokaltMedMock } from '../utils/miljø';
 import SøknadsdialogBarnetilsyn from './Søknadsdialog';
 import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { logAdressesperre } from '../utils/amplitude';
-import { useIntl } from 'react-intl';
 import { ESkjemanavn } from '../utils/skjemanavn';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const BarnetilsynApp = () => {
     useBarnetilsynSøknad();
   const { settToggles } = useToggles();
 
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
 

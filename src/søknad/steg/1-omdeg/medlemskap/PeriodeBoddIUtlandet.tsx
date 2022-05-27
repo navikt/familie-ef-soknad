@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { Element } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Utenlandsopphold from './Utenlandsopphold';
@@ -14,12 +13,13 @@ import {
 } from '../../../../models/steg/omDeg/medlemskap';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
 }> = ({ medlemskap, settMedlemskap }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
     periode: tomPeriode,

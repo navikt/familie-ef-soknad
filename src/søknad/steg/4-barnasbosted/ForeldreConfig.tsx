@@ -12,7 +12,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { EForelder } from '../../../models/steg/forelder';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // --- Dokumentasjon
 
@@ -29,7 +29,7 @@ const SamværsavtaleUtenKonkreteTidspunkter: IDokumentasjon =
   DokumentasjonsConfig.SamværsavtaleUtenKonkreteTidspunkter;
 // --- Spørsmål
 
-export const borINorge = (intl: IntlShape): ISpørsmål => ({
+export const borINorge = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EForelder.borINorge,
   tekstid: 'barnasbosted.borinorge',
   flersvar: false,
@@ -37,7 +37,7 @@ export const borINorge = (intl: IntlShape): ISpørsmål => ({
 });
 
 export const avtaleOmDeltBosted = (
-  intl: IntlShape,
+  intl: LokalIntlShape,
   født: Boolean
 ): ISpørsmål => ({
   søknadid: EForelder.avtaleOmDeltBosted,
@@ -58,14 +58,14 @@ export const avtaleOmDeltBosted = (
   ],
 });
 
-export const boddSammenFør = (intl: IntlShape): ISpørsmål => ({
+export const boddSammenFør = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: 'boddSammenFør',
   tekstid: 'barnasbosted.spm.boddsammenfør',
   flersvar: false,
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const hvorforIkkeOppgi = (intl: IntlShape): ISpørsmål => ({
+export const hvorforIkkeOppgi = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EForelder.hvorforIkkeOppgi,
   tekstid: 'barnasbosted.spm.hvorforikkeoppgi',
   flersvar: false,
@@ -82,7 +82,7 @@ export const hvorforIkkeOppgi = (intl: IntlShape): ISpørsmål => ({
 });
 
 export const harAnnenForelderSamværMedBarn = (
-  intl: IntlShape,
+  intl: LokalIntlShape,
   barn: IBarn
 ): ISpørsmål => ({
   søknadid: EForelder.harAnnenForelderSamværMedBarn,
@@ -117,7 +117,9 @@ export const harAnnenForelderSamværMedBarn = (
   ],
 });
 
-export const harDereSkriftligSamværsavtale = (intl: IntlShape): ISpørsmål => ({
+export const harDereSkriftligSamværsavtale = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EForelder.harDereSkriftligSamværsavtale,
   tekstid: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
   flersvar: false,
@@ -149,7 +151,7 @@ export const harDereSkriftligSamværsavtale = (intl: IntlShape): ISpørsmål => 
   ],
 });
 
-export const borAnnenForelderISammeHus = (intl: IntlShape): ISpørsmål => ({
+export const borAnnenForelderISammeHus = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: 'borAnnenForelderISammeHus',
   tekstid: 'barnasbosted.spm.borAnnenForelderISammeHus',
   lesmer: {
@@ -175,7 +177,10 @@ export const borAnnenForelderISammeHus = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const hvorMyeSammen = (intl: IntlShape, barn: IBarn): ISpørsmål => ({
+export const hvorMyeSammen = (
+  intl: LokalIntlShape,
+  barn: IBarn
+): ISpørsmål => ({
   søknadid: 'hvorMyeSammen',
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   flersvar: false,
@@ -204,7 +209,7 @@ export const hvorMyeSammen = (intl: IntlShape, barn: IBarn): ISpørsmål => ({
   ],
 });
 
-export const skalBarnetBoHosSøker = (intl: IntlShape): ISpørsmål => ({
+export const skalBarnetBoHosSøker = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EForelder.skalBarnetBoHosSøker,
   tekstid: 'barnasbosted.spm.skalBarnetBoHosSøker',
   flersvar: false,

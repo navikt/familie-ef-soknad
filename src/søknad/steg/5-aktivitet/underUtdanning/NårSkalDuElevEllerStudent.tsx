@@ -4,9 +4,9 @@ import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { hentTekst } from '../../../../utils/søknad';
-import { useIntl } from 'react-intl';
 import { EPeriode } from '../../../../models/felles/periode';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -17,7 +17,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
   utdanning,
   settUtdanning,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   useEffect(() => {
     if (!utdanning.periode) {
       settUtdanning({ ...utdanning, periode: tomPeriode });
