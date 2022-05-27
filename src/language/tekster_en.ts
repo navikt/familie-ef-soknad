@@ -291,7 +291,7 @@ export default {
     'If the child does not live with you, you are not entitled to benefit for single parents',
   'barnasbosted.element.barnet': 'The child',
   'barnasbosted.element.andreforelder': 's other parent',
-  'barnasbosted.forelder.annen': 'The other parent',
+  'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
   'barnasbosted.hjelpetekst.bosted.apne':
@@ -386,7 +386,7 @@ export default {
   'arbeidssituasjon.spm': 'What is your work situation?',
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
-    'I am at home with children under the age of 1 year (only shown if the applicant has a child under the age of 1 year)',
+    'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
     'I am employed (and/or paid a salary as a freelancer)',
   'arbeidssituasjon.svar.erSelvstendigNæringsdriveneEllerFrilanser':
