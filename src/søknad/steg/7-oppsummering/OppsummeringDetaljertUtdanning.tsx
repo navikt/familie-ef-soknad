@@ -3,7 +3,7 @@ import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { Ingress, Undertittel } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import { IDetaljertUtdanning } from '../../../skolepenger/models/detaljertUtdanning';
@@ -25,7 +25,7 @@ const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
   tittel,
 }) => {
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const tidligereUtdanning = utdanning?.tidligereUtdanning
     ? visListeAvLabelOgSvar(

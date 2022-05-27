@@ -1,6 +1,5 @@
 import React from 'react';
 import Side from '../side/Side';
-import { useIntl } from 'react-intl';
 import endre from '../../assets/endre.svg';
 import {
   ERouteArbeidssøkerskjema,
@@ -30,6 +29,7 @@ import {
 } from '../../utils/routing';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 interface Innsending {
   status: IStatus;
@@ -40,7 +40,7 @@ interface Innsending {
 const Oppsummering: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { skjema, settSkjema } = useSkjema();
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
     status: IStatus.KLAR_TIL_INNSENDING,

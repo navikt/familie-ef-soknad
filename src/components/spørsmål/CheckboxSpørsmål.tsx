@@ -4,9 +4,9 @@ import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';
 import Hjelpetekst from '../Hjelpetekst';
-import { useIntl } from 'react-intl';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledCheckboxSpørsmål = styled.div`
   .radioknapp {
@@ -40,7 +40,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   valgteSvar,
   skalLogges,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const url = window.location.href;
 

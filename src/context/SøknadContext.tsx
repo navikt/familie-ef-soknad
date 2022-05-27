@@ -18,7 +18,6 @@ import {
 } from '../utils/søknad';
 import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSøknad';
 import Environment from '../Environment';
-import { IntlShape, useIntl } from 'react-intl';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
 import { oppdaterBarneliste } from '../utils/barn';
@@ -26,9 +25,11 @@ import { IPerson } from '../models/søknad/person';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from './SpråkContext';
+import { LokalIntlShape } from '../language/typer';
+import { useLokalIntlContext } from './LokalIntlContext';
 
 // -----------  CONTEXT  -----------
-const initialState = (intl: IntlShape): ISøknad => {
+const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
     person: tomPerson,
     sivilstatus: {},
@@ -47,7 +48,9 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
+        alternativer: hvaErDinArbeidssituasjonSpm(intl).svaralternativer.map(
+          (svaralternativ) => svaralternativ.svar_tekst
+        ),
       },
     },
     merOmDinSituasjon: {
@@ -56,7 +59,9 @@ const initialState = (intl: IntlShape): ISøknad => {
         svarid: [],
         label: '',
         verdi: [],
-        alternativer: gjelderNoeAvDetteDeg(intl).svaralternativer.map(svaralternativ => svaralternativ.svar_tekst),
+        alternativer: gjelderNoeAvDetteDeg(intl).svaralternativer.map(
+          (svaralternativ) => svaralternativ.svar_tekst
+        ),
       },
     },
     dokumentasjonsbehov: [],
@@ -66,14 +71,12 @@ const initialState = (intl: IntlShape): ISøknad => {
 
 const [SøknadProvider, useSøknad] = createUseContext(() => {
   SøknadProvider.displayName = 'OVERGANGSSTØNAD_PROVIDER';
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const [locale, setLocale] = useSpråkContext();
   const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
-  const [
-    mellomlagretOvergangsstønad,
-    settMellomlagretOvergangsstønad,
-  ] = useState<IMellomlagretOvergangsstønad>();
+  const [mellomlagretOvergangsstønad, settMellomlagretOvergangsstønad] =
+    useState<IMellomlagretOvergangsstønad>();
 
   useEffect(() => {
     if (

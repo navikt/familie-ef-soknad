@@ -1,4 +1,4 @@
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../language/typer';
 
 const REGEX_FEIL = /^CODE=(.*)$/;
 
@@ -12,7 +12,7 @@ const createId = (prefixId: string, id: string) => `${prefixId}.${id}`;
  * @param feilmelding eks `CODE=FOO` blir satt sammen med prefixId => `filopplaster.feilmelding.FOO`
  */
 export const getFeilmelding = (
-  intl: IntlShape,
+  intl: LokalIntlShape,
   prefixId: string,
   defaultSuffixId: string,
   feilmelding?: string

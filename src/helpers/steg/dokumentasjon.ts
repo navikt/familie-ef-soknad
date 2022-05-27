@@ -1,13 +1,13 @@
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { hentTekst } from '../../utils/søknad';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../language/typer';
 
 export const hentDokumentasjonTilFlersvarSpørsmål = (
   erHuketAv: boolean | undefined,
   dokumentasjonsbehov: IDokumentasjon[],
   valgtSvar: ISvar,
-  intl: IntlShape
+  intl: LokalIntlShape
 ) => {
   let endretDokumentasjonsbehov = dokumentasjonsbehov;
   if (erHuketAv === true) {
@@ -25,7 +25,7 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmål = (
   dokumentasjonsbehov: IDokumentasjon[],
   spørsmål: ISpørsmål,
   valgtSvar: ISvar,
-  intl: IntlShape
+  intl: LokalIntlShape
 ): IDokumentasjon[] => {
   let endretDokumentasjon = dokumentasjonsbehov.filter(
     (behov) => behov.spørsmålid !== spørsmål.søknadid
@@ -54,7 +54,7 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmålForBarn = (
   dokumentasjonsbehov: IDokumentasjon[],
   spørsmål: ISpørsmål,
   valgtSvar: ISvar,
-  intl: IntlShape,
+  intl: LokalIntlShape,
   barneid: string,
   barnepassid?: string
 ): IDokumentasjon[] => {
@@ -72,7 +72,7 @@ export const oppdaterDokumentasjonTilEtSvarSpørsmålForBarn = (
 
 function leggTilDokumentasjonLabel(
   dokumentasjon: IDokumentasjon[],
-  intl: IntlShape
+  intl: LokalIntlShape
 ) {
   return dokumentasjon.map((dokumentasjonsbehov) => {
     return {

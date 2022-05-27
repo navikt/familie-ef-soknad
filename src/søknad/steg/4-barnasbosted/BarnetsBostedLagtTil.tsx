@@ -1,6 +1,6 @@
 import React from 'react';
 import { Normaltekst, Element } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarneHeader from '../../../components/BarneHeader';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import endre from '../../../assets/endre.svg';
@@ -27,7 +27,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
   settSisteBarnUtfylt,
 }) => {
   const forelder = barn.forelder;
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const barnetsNavn =
     barn.navn && barn.navn.verdi !== ''
       ? barn.navn.verdi

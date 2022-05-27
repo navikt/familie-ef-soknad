@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
@@ -17,7 +17,7 @@ import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 
 const Oppsummering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { mellomlagreSkolepenger, søknad } = useSkolepengerSøknad();
 
   useMount(() => logSidevisningSkolepenger('Oppsummering'));

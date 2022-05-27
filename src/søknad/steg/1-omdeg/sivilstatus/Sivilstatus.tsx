@@ -5,7 +5,6 @@ import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   ESivilstatusSøknadid,
@@ -20,6 +19,7 @@ import {
   erSøkerUgift,
 } from '../../../../utils/sivilstatus';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -38,7 +38,7 @@ const Sivilstatus: React.FC<Props> = ({
   settDokumentasjonsbehov,
   settMedlemskap,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 

@@ -10,7 +10,6 @@ import {
 } from '../helpers/steg/dokumentasjon';
 import { IMellomlagretSkolepengerSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
-import { IntlShape, useIntl } from 'react-intl';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
 import { nyttTekstFelt } from '../helpers/tommeSøknadsfelter';
 import { ISøknad } from './models/søknad';
@@ -28,9 +27,11 @@ import {
 import { IPerson } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { useSpråkContext } from '../context/SpråkContext';
+import { LokalIntlShape } from '../language/typer';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 // -----------  CONTEXT  -----------
-const initialState = (intl: IntlShape): ISøknad => {
+const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
     person: tomPerson,
     sivilstatus: {},
@@ -63,14 +64,13 @@ const initialState = (intl: IntlShape): ISøknad => {
 
 const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
   () => {
-    const intl = useIntl();
+    const intl = useLokalIntlContext();
     SkolepengerSøknadProvider.displayName = 'SKOLEPENGER_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
 
-    const [mellomlagretSkolepenger, settMellomlagretSkolepenger] = useState<
-      IMellomlagretSkolepengerSøknad
-    >();
+    const [mellomlagretSkolepenger, settMellomlagretSkolepenger] =
+      useState<IMellomlagretSkolepengerSøknad>();
 
     useEffect(() => {
       if (
@@ -138,14 +138,15 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       if (spørsmål.flersvar) {
         console.error('Ikke implementert');
       } else {
-        endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
-          søknad.dokumentasjonsbehov,
-          spørsmål,
-          valgtSvar,
-          intl,
-          barneid,
-          barnepassid
-        );
+        endretDokumentasjonsbehov =
+          oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(
+            søknad.dokumentasjonsbehov,
+            spørsmål,
+            valgtSvar,
+            intl,
+            barneid,
+            barnepassid
+          );
       }
 
       settSøknad((prevSoknad) => {

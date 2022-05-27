@@ -7,7 +7,7 @@ import {
 } from '../../../models/steg/dinsituasjon/meromsituasjon';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // DOKUMENTASJON
 export const DokumentasjonSykdom: IDokumentasjon =
@@ -29,10 +29,10 @@ export const ArbeidsforholdOgRedusertArbeidstid: IDokumentasjon =
   DokumentasjonsConfig.ArbeidsforholdOgRedusertArbeidstid;
 
 // SPØRSMÅL
-export const gjelderNoeAvDetteDeg = (intl: IntlShape): ISpørsmål => {
+export const gjelderNoeAvDetteDeg = (intl: LokalIntlShape): ISpørsmål => {
   return {
     søknadid: ESituasjon.gjelderDetteDeg,
-    tekstid: 'dinSituasjon.spm' ,
+    tekstid: 'dinSituasjon.spm',
     flersvar: true,
     svaralternativer: [
       {
@@ -68,7 +68,7 @@ export const gjelderNoeAvDetteDeg = (intl: IntlShape): ISpørsmål => {
 };
 
 export const SagtOppEllerRedusertStillingSpm = (
-  intl: IntlShape
+  intl: LokalIntlShape
 ): ISpørsmål => ({
   søknadid: ESituasjon.sagtOppEllerRedusertStilling,
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
@@ -100,7 +100,7 @@ export const SagtOppEllerRedusertStillingSpm = (
   ],
 });
 
-export const SøkerFraBestemtMånedSpm = (intl: IntlShape): ISpørsmål => ({
+export const SøkerFraBestemtMånedSpm = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESituasjon.søkerFraBestemtMåned,
   tekstid: 'søkerFraBestemtMåned.spm.overgangsstønad',
   flersvar: false,

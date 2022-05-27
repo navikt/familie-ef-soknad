@@ -1,9 +1,10 @@
 import React from 'react';
 import { LocaleString } from '../models/felles/språk';
-import { FormattedHTMLMessage, FormattedMessage } from 'react-intl';
 import { useSpråkContext } from '../context/SpråkContext';
 import styled from 'styled-components/macro';
 import navFarger from 'nav-frontend-core';
+import FormattedHtmlMessage from './FormattedHtmlMessage';
+import FormattedMessage from './FormattedMessage';
 
 interface Props {
   tekst: LocaleString | string;
@@ -24,11 +25,11 @@ const LocaleTekst = ({ tekst }: Props) => {
           tekst[locale] ||
           tekst.nb || (
             <span style={{ color: 'red' }}>
-              <FormattedHTMLMessage id={'feil.ingentekst.sanity'} />
+              <FormattedHtmlMessage id={'feil.ingentekst.sanity'} />
             </span>
           )
         ) : (
-          <FormattedHTMLMessage id={tekst} />
+          <FormattedHtmlMessage id={tekst} />
         )
       ) : (
         <FormattedMessage id={'feil.udefinerttekst'} />

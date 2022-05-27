@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Feilmelding, Undertittel } from 'nav-frontend-typografi';
 
-import { useIntl } from 'react-intl';
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
@@ -18,6 +17,7 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -37,7 +37,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
   settFirmaer,
   inkludertArbeidsmengde = true,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
 
   const [firma, settFirma] = useState<IFirma>(firmaFraSøknad!);

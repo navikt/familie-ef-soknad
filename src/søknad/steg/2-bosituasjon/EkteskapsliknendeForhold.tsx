@@ -7,7 +7,7 @@ import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import { hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { harFyltUtSamboerDetaljer } from '../../../utils/person';
 
 interface Props {
@@ -18,7 +18,7 @@ const EkteskapsliknendeForhold: FC<Props> = ({
   settBosituasjon,
   bosituasjon,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { samboerDetaljer } = bosituasjon;
 
   const settDatoFlyttetSammen = (dato: string, label: string) => {

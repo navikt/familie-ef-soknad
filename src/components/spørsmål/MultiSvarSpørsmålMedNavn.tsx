@@ -6,9 +6,9 @@ import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import classNames from 'classnames';
 import Show from '../../utils/showIf';
-import { useIntl } from 'react-intl';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -49,7 +49,7 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
   settSpørsmålOgSvar,
   valgtSvar,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const url = window.location.href;
 

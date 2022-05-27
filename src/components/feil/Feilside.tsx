@@ -4,8 +4,9 @@ import {
   AlertStripeAdvarsel,
   AlertStripeInfo,
 } from 'nav-frontend-alertstriper';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import { EAlvorlighetsgrad } from '../../models/felles/feilmelding';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../language/FormattedHtmlMessage';
 
 const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   tekstId,
@@ -23,12 +24,12 @@ const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
     default:
   }
 
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   return (
     <div className="feilside">
       <AlertStripeMedAlvorlighetsgrad>
         {tekstId ? (
-          <FormattedHTMLMessage id={tekstId} />
+          <FormattedHtmlMessage id={tekstId} />
         ) : (
           intl.formatMessage({ id: 'feil.alert' })
         )}

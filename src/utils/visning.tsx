@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
 import { hentTekst } from '../utils/søknad';
 import { formatDate, strengTilDato } from '../utils/dato';
-import { IntlShape, useIntl } from 'react-intl';
 import { useLocation } from 'react-router-dom';
 import { isValidISODateString } from 'iso-datestring-validator';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -12,6 +11,8 @@ import {
   ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
 import { harValgtSvar } from './spørsmålogsvar';
+import { LokalIntlShape } from '../language/typer';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -38,7 +39,7 @@ export const visListeAvLabelOgSvar = (
 
 export const verdiTilTekstsvar = (
   verdi: string | Date | boolean | number | string[],
-  intl?: IntlShape
+  intl?: LokalIntlShape
 ) => {
   if (Array.isArray(verdi)) {
     return (
@@ -84,7 +85,7 @@ export const verdiTilTekstsvar = (
 };
 
 const VisPeriode = (objekt: any, tittel?: string) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   if (!(objekt && objekt.fra && objekt.til)) return null;
 
@@ -108,7 +109,7 @@ const VisPeriode = (objekt: any, tittel?: string) => {
 };
 
 export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   if (!objekt) return null;
   return Object.values(objekt).map((spørsmål, index) => {
@@ -138,7 +139,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
 
 export const visLabelOgVerdiForSpørsmålFelt = (
   feltObjekt: ISpørsmålFelt | ISpørsmålBooleanFelt,
-  intl: IntlShape,
+  intl: LokalIntlShape,
   overskrift?: string
 ) => {
   return (

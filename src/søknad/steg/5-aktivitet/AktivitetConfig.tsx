@@ -5,7 +5,7 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../language/typer';
 
 // --- DOKUMENTASJON
 
@@ -26,7 +26,9 @@ export const DokumentasjonOmVirksomhetenDuEtablerer: IDokumentasjon =
 
 // --- SPØRSMÅL
 
-export const hvaErDinArbeidssituasjonSpm = (intl: IntlShape): ISpørsmål => ({
+export const hvaErDinArbeidssituasjonSpm = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
   flersvar: true,

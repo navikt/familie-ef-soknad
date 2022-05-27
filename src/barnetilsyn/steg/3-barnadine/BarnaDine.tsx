@@ -3,7 +3,7 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
@@ -25,7 +25,7 @@ import { kommerFraOppsummeringen } from '../../../utils/locationState';
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
 
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     settSøknad,

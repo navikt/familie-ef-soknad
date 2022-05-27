@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import {
   formatterBarnetsNavn,
@@ -14,7 +14,7 @@ import { IBarn } from '../../../models/steg/barn';
 
 const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const { søknad, oppdaterBarnISoknaden } = useSøknad();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   //Hvis det kun er ett barn i søknaden, ska vi ikke å spørre hvilket barn det gjelder
   if (søknad.person.barn.length === 1) {

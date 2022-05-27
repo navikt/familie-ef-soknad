@@ -9,7 +9,7 @@ import BarneHeader from '../../../components/BarneHeader';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useNavigate } from 'react-router-dom';
 
 interface Props {
@@ -23,7 +23,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
   tittel,
 }) => {
   const navigate = useNavigate();
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const felterAlleForeldrene = barn
     .filter((barn) => barn.forelder)

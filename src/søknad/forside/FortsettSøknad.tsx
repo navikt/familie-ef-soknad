@@ -1,15 +1,15 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { IntlShape } from 'react-intl';
 import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
 import { logEvent } from '../../utils/amplitude';
 import { useNavigate } from 'react-router-dom';
+import { LokalIntlShape } from '../../language/typer';
 
 interface FortsettSøknadProps {
-  intl: IntlShape;
+  intl: LokalIntlShape;
   gjeldendeSteg: string;
   brukMellomlagretSøknad: () => void;
   nullstillMellomlagretSøknad: () => Promise<any>;

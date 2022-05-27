@@ -25,7 +25,7 @@ import {
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { oppdaterBarnLabels } from '../../../utils/barn';
 import {
   logDokumetasjonsbehov,
@@ -49,7 +49,7 @@ const SendSøknadKnapper: FC = () => {
   const [locale] = useSpråkContext();
   const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const forrigeRoute = hentForrigeRoute(
     RoutesOvergangsstonad,
     location.pathname

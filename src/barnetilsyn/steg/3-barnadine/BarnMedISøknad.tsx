@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Checkbox } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import styled from 'styled-components/macro';
@@ -31,7 +31,7 @@ const BarnMedISøknad: FC<Props> = ({
   toggleSkalHaBarnepass,
   id,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <StyledCheckbox>

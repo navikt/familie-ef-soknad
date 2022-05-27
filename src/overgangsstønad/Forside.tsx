@@ -18,12 +18,12 @@ import {
 import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
-import { useIntl } from 'react-intl';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -34,7 +34,7 @@ const Forside: React.FC = () => {
     }
   });
 
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { person } = usePersonContext();
   const {
     mellomlagretOvergangsstønad,

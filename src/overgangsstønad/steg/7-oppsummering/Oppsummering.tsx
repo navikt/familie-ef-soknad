@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
@@ -42,7 +42,7 @@ import { ToggleName } from '../../../models/søknad/toggles';
 import { useToggles } from '../../../context/TogglesContext';
 
 const Oppsummering: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const action = useNavigationType();

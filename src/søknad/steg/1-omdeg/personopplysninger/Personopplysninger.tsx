@@ -10,11 +10,11 @@ import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
 import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
 import { ISøker } from '../../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   søker: ISøker;
@@ -32,7 +32,7 @@ const Personopplysninger: React.FC<Props> = ({
   settSøkerBorPåRegistrertAdresse,
   stønadstype,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const settPersonopplysningerFelt = (
     spørsmål: ISpørsmål,

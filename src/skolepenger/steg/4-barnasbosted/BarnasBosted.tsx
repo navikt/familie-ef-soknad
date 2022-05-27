@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { RefObject } from 'react';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
@@ -30,7 +30,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 };
 
 const BarnasBosted: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering

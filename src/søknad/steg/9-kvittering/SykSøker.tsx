@@ -7,7 +7,7 @@ import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -23,7 +23,7 @@ const StyledLenke = styled.div`
 `;
 
 const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   return (
     <SeksjonGruppe>
       <StyledUndertittel>

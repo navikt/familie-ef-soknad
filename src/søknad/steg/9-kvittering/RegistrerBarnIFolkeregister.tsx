@@ -3,7 +3,7 @@ import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/steg/barn';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { Normaltekst } from 'nav-frontend-typografi';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import { flereBarnsNavn } from '../../../utils/barn';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const barnSomSkalRegistreresIFolkeregister = barna.filter((barn) => {
     return (

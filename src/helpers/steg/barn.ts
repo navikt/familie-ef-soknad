@@ -1,4 +1,3 @@
-import { IntlShape } from 'react-intl';
 import { hentFeltObjekt, hentTekst } from '../../utils/søknad';
 import { differenceInYears } from 'date-fns';
 import { dagensDato, datoTilStreng, strengTilDato } from '../../utils/dato';
@@ -6,6 +5,7 @@ import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { EBarn, IBarn } from '../../models/steg/barn';
 import { ESvar } from '../../models/felles/spørsmålogsvar';
 import navfaker from 'nav-faker';
+import { LokalIntlShape } from '../../language/typer';
 
 export const hentNyttBarn = (
   id: string | undefined,
@@ -14,7 +14,7 @@ export const hentNyttBarn = (
   navn: string,
   boHosDeg: string,
   født: boolean,
-  intl: IntlShape,
+  intl: LokalIntlShape,
   skalHaBarnepass?: boolean
 ): IBarn => {
   if (!barnDato && ident) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledLenkeMedIkon = styled.div`
   .lenke-knapp {
@@ -31,7 +31,7 @@ interface Props {
 }
 
 const LenkeMedIkon: React.FC<Props> = ({ onClick, tekst_id, ikon }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <StyledLenkeMedIkon>

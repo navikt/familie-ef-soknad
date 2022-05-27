@@ -1,6 +1,5 @@
 import { IForelder } from '../../../../models/steg/forelder';
 import React, { FC } from 'react';
-import { useIntl } from 'react-intl';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { boddSammenFør } from '../ForeldreConfig';
 import Datovelger, {
@@ -16,6 +15,7 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { IBarn } from '../../../../models/steg/barn';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   forelder: IForelder;
@@ -23,7 +23,7 @@ interface Props {
   barn: IBarn;
 }
 const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const boddSammenFørSpm = boddSammenFør(intl);
 
   const settHarBoddsammenFør = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {

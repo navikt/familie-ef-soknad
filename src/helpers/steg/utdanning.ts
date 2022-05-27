@@ -1,10 +1,10 @@
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { hentTekst } from '../../utils/søknad';
 import { linjeKursGrad } from '../../søknad/steg/5-aktivitet/underUtdanning/UtdanningConfig';
-import { IntlShape } from 'react-intl';
 import { nyttTekstFelt, tomPeriode } from '../tommeSøknadsfelter';
+import { LokalIntlShape } from '../../language/typer';
 
-export const lagTomUtdanning = (intl: IntlShape) => ({
+export const lagTomUtdanning = (intl: LokalIntlShape) => ({
   id: hentUid(),
   linjeKursGrad: {
     label: hentTekst(linjeKursGrad.label_tekstid, intl),

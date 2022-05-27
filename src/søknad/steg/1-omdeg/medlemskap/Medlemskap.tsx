@@ -12,7 +12,6 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import PeriodeBoddIUtlandet from './PeriodeBoddIUtlandet';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { useIntl } from 'react-intl';
 import {
   EMedlemskap,
   IMedlemskap,
@@ -20,13 +19,14 @@ import {
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
 }
 const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const { søkerOppholderSegINorge, søkerBosattINorgeSisteTreÅr } = medlemskap;
 
   const oppholderSegINorgeConfig = oppholderSegINorge(intl);

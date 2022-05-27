@@ -1,7 +1,7 @@
 import React, { RefObject, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
@@ -29,7 +29,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 };
 
 const BarnasBosted: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const location = useLocation();
   const {
     søknad,

@@ -7,7 +7,6 @@ import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { FormattedHTMLMessage, useIntl } from 'react-intl';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SøkerSkalFlytteSammenEllerFåSamboer from './SøkerSkalFlytteSammenEllerFåSamboer';
 import EkteskapsliknendeForhold from './EkteskapsliknendeForhold';
@@ -22,6 +21,8 @@ import {
 import AlertStripe from 'nav-frontend-alertstriper';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -38,13 +39,10 @@ const BosituasjonSpørsmål: FC<Props> = ({
   settBosituasjon,
   settDokumentasjonsbehov,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
-  const {
-    delerBoligMedAndreVoksne,
-    samboerDetaljer,
-    datoFlyttetFraHverandre,
-  } = bosituasjon;
+  const { delerBoligMedAndreVoksne, samboerDetaljer, datoFlyttetFraHverandre } =
+    bosituasjon;
 
   const hovedSpørsmål: ISpørsmål = delerSøkerBoligMedAndreVoksne(intl);
 
@@ -65,10 +63,9 @@ const BosituasjonSpørsmål: FC<Props> = ({
     settDokumentasjonsbehov(spørsmål, svar);
   };
 
-  const valgtSvar:
-    | ISvar
-    | undefined = hovedSpørsmål.svaralternativer.find((svar) =>
-    erValgtSvarLiktSomSvar(delerBoligMedAndreVoksne.verdi, svar.svar_tekst)
+  const valgtSvar: ISvar | undefined = hovedSpørsmål.svaralternativer.find(
+    (svar) =>
+      erValgtSvarLiktSomSvar(delerBoligMedAndreVoksne.verdi, svar.svar_tekst)
   );
 
   const harSøkerEkteskapsliknendeForhold =
@@ -110,7 +107,7 @@ const BosituasjonSpørsmål: FC<Props> = ({
             {delerBoligMedAndreVoksne.svarid ===
             ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse ? (
               <AlertStripeDokumentasjon>
-                <FormattedHTMLMessage id={valgtSvar.alert_tekstid} />
+                <FormattedHtmlMessage id={valgtSvar.alert_tekstid} />
               </AlertStripeDokumentasjon>
             ) : (
               <AlertStripe type={'advarsel'} form={'inline'}>

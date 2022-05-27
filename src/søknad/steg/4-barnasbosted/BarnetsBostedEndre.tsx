@@ -7,7 +7,7 @@ import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import { Knapp } from 'nav-frontend-knapper';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
@@ -87,7 +87,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settBarneListe,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder

@@ -11,7 +11,7 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { IBarn } from '../../../models/steg/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 interface Props {
   barn: IBarn;
@@ -29,7 +29,7 @@ const BarnepassOrdninger: FC<Props> = ({
   settBarnepass,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const barnepass: IBarnepass = barn.barnepass
     ? barn.barnepass
     : { barnepassordninger: [{ id: hentUid() }] };

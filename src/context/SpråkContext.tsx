@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from 'react';
-import { IntlProvider } from 'react-intl';
 import { getMessages } from '../language/utils';
 import { LocaleType } from '../language/typer';
+import { LokalIntlProvider } from './LokalIntlContext';
 
 const SpråkContext = createContext<any>(['', () => {}]);
 const useSpråkContext = () => useContext(SpråkContext);
@@ -13,9 +13,7 @@ const SpråkProvider: React.FC = ({ children }) => {
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>
-      <IntlProvider locale={locale} messages={tekster} onError={(e) => {console.warn(e)}}>
-        {children}
-      </IntlProvider>
+      <LokalIntlProvider tekster={tekster}>{children}</LokalIntlProvider>
     </SpråkContext.Provider>
   );
 };

@@ -4,13 +4,14 @@ import Datovelger, {
 } from '../../../components/dato/Datovelger';
 import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import FormattedMessage from '../../../language/FormattedMessage';
 
 interface Props {
   settBo: Function;
@@ -25,7 +26,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
   settDato,
   barnDato,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   return (
     <>

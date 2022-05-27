@@ -4,7 +4,7 @@ import Modal from 'nav-frontend-modal';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
-import { useIntl } from 'react-intl';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation } from 'react-router-dom';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
@@ -21,7 +21,7 @@ import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 
 const BarnaDine: React.FC = () => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
   const {
     søknad,
     settSøknad,

@@ -5,9 +5,9 @@ import {
 } from '../../../../models/steg/aktivitet/arbeidssøker';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonIkkeVilligTilArbeid } from '../AktivitetConfig';
-import { IntlShape } from 'react-intl';
+import { LokalIntlShape } from '../../../../language/typer';
 
-export const erSøkerArbeidssøker = (intl: IntlShape): ISpørsmål => ({
+export const erSøkerArbeidssøker = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.registrertSomArbeidssøkerNav,
   tekstid: 'arbeidssøker.label.registrert',
   flersvar: false,
@@ -22,7 +22,7 @@ export const erSøkerArbeidssøker = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const erVilligTilÅTaImotTilbud = (intl: IntlShape): ISpørsmål => ({
+export const erVilligTilÅTaImotTilbud = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.villigTilÅTaImotTilbudOmArbeid,
   tekstid: 'arbeidssøker.label.villig',
   flersvar: false,
@@ -36,7 +36,7 @@ export const erVilligTilÅTaImotTilbud = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const kanBegynneInnenEnUke = (intl: IntlShape): ISpørsmål => ({
+export const kanBegynneInnenEnUke = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.kanBegynneInnenEnUke,
   tekstid: 'arbeidssøker.label.senestEnUke',
   flersvar: false,
@@ -49,14 +49,16 @@ export const kanBegynneInnenEnUke = (intl: IntlShape): ISpørsmål => ({
 });
 
 //TODO HVOR BRUKES DENNE?
-export const kanSkaffeBarnepassInnenEnUke = (intl: IntlShape): ISpørsmål => ({
+export const kanSkaffeBarnepassInnenEnUke = (
+  intl: LokalIntlShape
+): ISpørsmål => ({
   søknadid: EArbeidssøker.kanSkaffeBarnepassInnenEnUke,
   tekstid: 'arbeidssøker.label.barnepass',
   flersvar: false,
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const ønsketArbeidssted = (intl: IntlShape): ISpørsmål => ({
+export const ønsketArbeidssted = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.hvorØnskerSøkerArbeid,
   tekstid: 'arbeidssøker.label.ønsketArbeidssted',
   flersvar: false,
@@ -77,7 +79,7 @@ export const ønsketArbeidssted = (intl: IntlShape): ISpørsmål => ({
   ],
 });
 
-export const ønskerHalvStilling = (intl: IntlShape): ISpørsmål => ({
+export const ønskerHalvStilling = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EArbeidssøker.ønskerSøker50ProsentStilling,
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,

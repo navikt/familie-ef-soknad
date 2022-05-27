@@ -1,6 +1,5 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import { useIntl } from 'react-intl';
 import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
 
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
@@ -27,6 +26,7 @@ import {
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -46,7 +46,7 @@ const BostedOgSamvær: React.FC<Props> = ({
   barn,
   settDokumentasjonsbehovForBarn,
 }) => {
-  const intl = useIntl();
+  const intl = useLokalIntlContext();
 
   const harAnnenForelderSamværMedBarnConfig = harAnnenForelderSamværMedBarn(
     intl,
