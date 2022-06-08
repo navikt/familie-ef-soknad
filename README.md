@@ -12,8 +12,7 @@ sett .env variabel:
 REACT_APP_BRUK_API_I_DEV=false
 
 Med api må du sette cookie første gang:
-`http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad/`
-
+`http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad&issuerId=selvbetjening&audience=aud-localhost`
 ## Kjør lokalt med mellomlagring
 1. Last ned [familie-dokument](https://github.com/navikt/familie-dokument) og [familie-ef-soknad-api](https://github.com/navikt/familie-ef-soknad-api)
 2. Kjør `mvn clean install` i begge prosjektene
