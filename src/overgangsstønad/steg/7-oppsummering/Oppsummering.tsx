@@ -165,8 +165,7 @@ const Oppsummering: React.FC = () => {
       });
   }, [søknad, manglendeFelter, skjemaId]);
 
-  const harManglendeFelter =
-    manglendeFelter.length > 0 && toggles[ToggleName.validering];
+  const harManglendeFelter = manglendeFelter.length > 0;
 
   return (
     <>
