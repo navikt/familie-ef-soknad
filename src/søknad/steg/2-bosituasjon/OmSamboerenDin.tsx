@@ -55,7 +55,7 @@ const OmSamboerenDin: FC<Props> = ({
         },
       });
 
-    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
+    if (!erGyldigIdent) {
       let nySamboerInfo = { ...samboerInfo };
       delete nySamboerInfo.ident;
 

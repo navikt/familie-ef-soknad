@@ -55,7 +55,7 @@ const OmAndreForelder: React.FC<Props> = ({
         ident: { label: hentTekst('person.ident', intl), verdi: identFelt },
       });
 
-    if (toggles[ToggleName.slettFnrState] && !erGyldigIdent) {
+    if (!erGyldigIdent) {
       const nyForelder = { ...forelder };
 
       delete nyForelder.ident;
