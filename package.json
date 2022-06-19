@@ -23,7 +23,7 @@
     "@types/classnames": "^2.3.1",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
-    "@types/jest": "^27.5.1",
+    "@types/jest": "^28.1.2",
     "@types/lodash": "^4.14.182",
     "@types/node": "^17.0.31",
     "@types/react": "^17.0.44",
