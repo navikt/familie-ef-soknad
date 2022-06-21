@@ -18,7 +18,6 @@ import { ISøknad } from '../../models/søknad';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
-import { Severity } from '@sentry/browser';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
@@ -64,7 +63,7 @@ const Dokumentasjon: React.FC = () => {
         if (gyldigeVedlegg.length !== dokBehov.opplastedeVedlegg.length) {
           Sentry.captureEvent({
             message: `Fjernet ugyldig vedlegg fra søknaden.`,
-            level: Severity.Warning,
+            level: 'warning',
           });
           oppdaterDokumentasjon(
             dokBehov.id,
