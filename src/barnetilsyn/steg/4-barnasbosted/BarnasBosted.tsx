@@ -128,7 +128,7 @@ const BarnasBosted: React.FC = () => {
         })}
       {sisteBarnUtfylt &&
         barnMedDødMedforelder.map((barn: IBarn) => (
-          <SeksjonGruppe>
+          <SeksjonGruppe key={barn.id}>
             <BarneHeader barn={barn} />
             <Normaltekst style={{ textAlign: 'center', marginTop: '2rem' }}>
               {hentTekst('barnasbosted.kanGåVidere', intl)}
