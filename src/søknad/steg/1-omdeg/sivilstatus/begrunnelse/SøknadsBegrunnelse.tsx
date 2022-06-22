@@ -24,10 +24,8 @@ import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../../../models/søknad/person';
-import { useToggles } from '../../../../../context/TogglesContext';
 import LocaleTekst from '../../../../../language/LocaleTekst';
 import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
-import { ToggleName } from '../../../../../models/søknad/toggles';
 import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../../language/FormattedHtmlMessage';
@@ -53,7 +51,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
   const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
-  const { toggles } = useToggles();
 
   const {
     årsakEnslig,
@@ -95,11 +92,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         },
       });
 
-    if (
-      toggles[ToggleName.slettFnrState] &&
-      !erGyldigIdent &&
-      samlivsbruddAndre
-    ) {
+    if (!erGyldigIdent && samlivsbruddAndre) {
       const nySamboerInfo = { ...samboerInfo };
       const nySivilstatus = { ...sivilstatus };
       delete nySamboerInfo.ident;
