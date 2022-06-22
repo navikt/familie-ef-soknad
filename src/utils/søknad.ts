@@ -3,7 +3,6 @@ import axios from 'axios';
 import { hentUid } from './autentiseringogvalidering/uuid';
 import { ISpørsmål } from '../models/felles/spørsmålogsvar';
 import * as Sentry from '@sentry/browser';
-import { Severity } from '@sentry/browser';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
 import {
@@ -134,7 +133,7 @@ export const settBarnMedLabelOgVerdi = (barn: IBarn) => {
     } else {
       Sentry.captureEvent({
         message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
-        level: Severity.Warning,
+        level: 'warning',
       });
     }
   }
