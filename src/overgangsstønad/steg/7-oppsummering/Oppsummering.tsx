@@ -38,15 +38,12 @@ import {
   aktivitetSchema,
 } from '../../../utils/validering';
 import { Alert } from '@navikt/ds-react';
-import { ToggleName } from '../../../models/søknad/toggles';
-import { useToggles } from '../../../context/TogglesContext';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const action = useNavigationType();
-  const { toggles } = useToggles();
 
   const [manglendeFelter, settManglendeFelter] = useState<string[]>([]);
 
@@ -165,8 +162,7 @@ const Oppsummering: React.FC = () => {
       });
   }, [søknad, manglendeFelter, skjemaId]);
 
-  const harManglendeFelter =
-    manglendeFelter.length > 0 && toggles[ToggleName.validering];
+  const harManglendeFelter = manglendeFelter.length > 0;
 
   return (
     <>

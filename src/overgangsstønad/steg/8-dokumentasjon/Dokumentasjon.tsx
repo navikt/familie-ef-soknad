@@ -9,7 +9,6 @@ import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
 import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
-import { Severity } from '@sentry/browser';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { IVedlegg } from '../../../models/steg/vedlegg';
@@ -77,7 +76,7 @@ const Dokumentasjon: React.FC = () => {
         if (gyldigeVedlegg.length !== dokBehov.opplastedeVedlegg.length) {
           Sentry.captureEvent({
             message: `Fjernet ugyldig vedlegg fra søknaden.`,
-            level: Severity.Warning,
+            level: 'warning',
           });
           oppdaterDokumentasjon(
             dokBehov.id,

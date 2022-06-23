@@ -27,6 +27,7 @@ const LokalIntlProvider: React.FC<{ tekster: Record<string, string> }> = ({
     const tekst = tekster[props.id];
     if (tekst === undefined || tekst === null) {
       console.warn(`Finner ikke oversettelse for ${props.id}`);
+      return props.id as string;
     }
     if (parametre) {
       return Object.entries(parametre).reduce<string>((acc, cur) => {
