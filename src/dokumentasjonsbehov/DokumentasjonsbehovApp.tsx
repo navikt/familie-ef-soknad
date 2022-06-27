@@ -24,6 +24,8 @@ import ManglendeVedlegg from './components/ManglendeVedlegg';
 import InnsendteVedlegg from './components/InnsendteVedlegg';
 import AlleredeInnsendtVedlegg from './components/AlleredeInnsendtVedlegg';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { logSidevisningDokumentasjonsbehov } from "../utils/amplitude";
+import { useMount } from "../utils/hooks";
 
 const useQuery = () => new URLSearchParams(useLocation().search);
 
@@ -37,6 +39,10 @@ const DokumentasjonsbehovApp = () => {
   ] = useState<DokumentasjonsbehovResponse>();
   let query = useQuery().get('soknad');
   const søknadId = query !== null ? query.toString() : '';
+
+  useMount(() => {
+    logSidevisningDokumentasjonsbehov();
+  });
 
   autentiseringsInterceptor();
 
