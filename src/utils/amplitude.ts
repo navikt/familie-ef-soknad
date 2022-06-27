@@ -76,7 +76,7 @@ export const logSpørsmålBesvartSkolepenger = (
 };
 
 export const logSidevisningOvergangsstonad = (side: string) => {
-  logEvent('sidevisning', {
+  logEvent('besøk', {
     side,
     team_id: 'familie',
     applikasjon: 'OS-soknadsdialog',
@@ -85,7 +85,7 @@ export const logSidevisningOvergangsstonad = (side: string) => {
 };
 
 export const logSidevisningArbeidssokerskjema = (side: string) => {
-  logEvent('sidevisning', {
+  logEvent('besøk', {
     side,
     team_id: 'familie',
     applikasjon: 'Arbeidssokerskjema',
@@ -94,7 +94,7 @@ export const logSidevisningArbeidssokerskjema = (side: string) => {
 };
 
 export const logSidevisningBarnetilsyn = (side: string) => {
-  logEvent('sidevisning', {
+  logEvent('besøk', {
     side,
     team_id: 'familie',
     applikasjon: 'BT-soknadsdialog',
@@ -103,7 +103,7 @@ export const logSidevisningBarnetilsyn = (side: string) => {
 };
 
 export const logSidevisningSkolepenger = (side: string) => {
-  logEvent('sidevisning', {
+  logEvent('besøk', {
     side,
     team_id: 'familie',
     applikasjon: 'SP-soknadsdialog',
@@ -112,7 +112,7 @@ export const logSidevisningSkolepenger = (side: string) => {
 };
 
 export const logSidevisningDokumentasjonsbehov = () => {
-  logEvent('sidevisning', {
+  logEvent('besøk', {
     team_id: 'familie',
     applikasjon: 'Dokumentasjonsbehov',
   });
