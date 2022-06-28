@@ -111,13 +111,6 @@ export const logSidevisningSkolepenger = (side: string) => {
   });
 };
 
-export const logSidevisningDokumentasjonsbehov = () => {
-  logEvent('besøk', {
-    team_id: 'familie',
-    applikasjon: 'Dokumentasjonsbehov',
-  });
-};
-
 export const logDokumetasjonsbehov = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn

@@ -14,7 +14,6 @@ import {
   erUrlSkolepenger,
   skolepengerForsideUrl,
 } from '../../skolepenger/routing/routes';
-import { erUrlDokumentasjonsbehov } from '../../dokumentasjonsbehov/routesDokumentasjonsbehov';
 
 const er401Feil = (error: AxiosError) =>
   error && error.response && error.response.status === 401;
@@ -32,8 +31,6 @@ const getRedirectUrl = () => {
     return barnetilsynForsideUrl();
   } else if (erUrlSkolepenger()) {
     return skolepengerForsideUrl();
-  } else if (erUrlDokumentasjonsbehov()) {
-    return window.location.href;
   }
   return overgangsstønadForsideUrl();
 };

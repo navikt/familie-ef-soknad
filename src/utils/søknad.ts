@@ -42,19 +42,6 @@ export const hentPersonDataArbeidssoker = () => {
     });
 };
 
-export const hentMeldingMottatt = (søknadId: string) => {
-  return axios
-    .get(`${Environment().apiUrl}/api/dokumentasjonsbehov/${søknadId}`, {
-      headers: {
-        'content-type': 'application/json;charset=utf-8',
-      },
-      withCredentials: true,
-    })
-    .then((response: { data: any }) => {
-      return response && response.data;
-    });
-};
-
 export const hentMellomlagretSøknadFraDokument = <T>(
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T | undefined> => {
