@@ -15,7 +15,7 @@ const routes = () => {
         res.sendStatus(200)
     );
 
-    expressRouter.get(`${BASE_PATH}/innsendtsoknad/*`, (req, res, next) => {
+    expressRouter.get(`${BASE_PATH}/innsendtsoknad*`, (req, res, next) => {
         res.redirect(ETTERSENDING_PATH)
     });
 
