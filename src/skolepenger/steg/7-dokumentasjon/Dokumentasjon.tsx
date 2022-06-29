@@ -21,7 +21,6 @@ import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
-import { Severity } from '@sentry/browser';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -75,7 +74,7 @@ const Dokumentasjon: React.FC = () => {
         if (gyldigeVedlegg.length !== dokBehov.opplastedeVedlegg.length) {
           Sentry.captureEvent({
             message: `Fjernet ugyldig vedlegg fra søknaden.`,
-            level: Severity.Warning,
+            level: 'warning',
           });
           oppdaterDokumentasjon(
             dokBehov.id,

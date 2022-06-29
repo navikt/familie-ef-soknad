@@ -15,7 +15,6 @@ import {
   HEADER_NAV_CONSUMER_ID_VALUE,
 } from './apiutil';
 import { LokalIntlShape } from '../language/typer';
-import { Severity } from '@sentry/browser';
 
 export const hentPersonData = () => {
   return axios
@@ -121,7 +120,7 @@ export const settBarnMedLabelOgVerdi = (barn: IBarn) => {
     } else {
       Sentry.captureEvent({
         message: `Oppdatering av barnefelt feilet med key=${key} og verdi=${verdi} uten tilhørende label.`,
-        level: Severity.Warning,
+        level: 'warning',
       });
     }
   }
