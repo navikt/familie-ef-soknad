@@ -68,6 +68,18 @@ export const aktivitetSchema = object({
     .default(undefined),
 });
 
+export const aktivitetSchemaBT = object({
+  arbeidsforhold: array()
+    .of(
+      object({
+        sluttdato: object({
+          verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+        }).default(undefined),
+      })
+    )
+    .default(undefined),
+});
+
 export const medlemskapSchema = object({
   perioderBoddIUtlandet: array()
     .of(
