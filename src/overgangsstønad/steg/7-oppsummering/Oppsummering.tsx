@@ -36,7 +36,7 @@ import {
   bosituasjonSchema,
   medlemskapSchema,
   aktivitetSchema,
-} from '../../../utils/validering';
+} from '../../../utils/validering/validering';
 import { Alert } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
