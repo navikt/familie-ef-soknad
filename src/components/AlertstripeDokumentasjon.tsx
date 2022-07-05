@@ -25,7 +25,9 @@ const StyledAlertstripe = styled.div`
   }
 `;
 
-const AlertStripeDokumentasjon: FC = ({ children }) => {
+const AlertStripeDokumentasjon: FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   return (
     <StyledAlertstripe>
       <FilIkon className={'ikon'} />

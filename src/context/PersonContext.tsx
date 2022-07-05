@@ -38,7 +38,9 @@ const PersonContext = createContext<{
 });
 
 const usePersonContext = () => useContext(PersonContext);
-const PersonProvider: React.FC = ({ children }) => {
+const PersonProvider: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   PersonProvider.displayName = 'PERSON_PROVIDER';
   const [person, settPerson] = useReducer(reducer, initialState);
   const value = { person, settPerson };

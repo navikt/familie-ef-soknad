@@ -6,13 +6,13 @@ import App from './App';
 import ArbeidssøkerApp from './arbeidssøkerskjema/SkjemaApp';
 import BarnetilsynApp from './barnetilsyn/BarnetilsynApp';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { SpråkProvider } from './context/SpråkContext';
 import ContextProviders from './context/ContextProviders';
 import { ScrollToTop } from './utils/visning';
 import * as Sentry from '@sentry/browser';
 import Environment from './Environment';
 import SkolepengerApp from './skolepenger/SkolepengerApp';
+import { createRoot } from 'react-dom/client';
 
 if (Environment().sentryUrl) {
   Sentry.init({
@@ -20,22 +20,25 @@ if (Environment().sentryUrl) {
     environment: Environment().miljø,
   });
 }
+const container = document.getElementById('root');
+const root = createRoot(container!);
 
-ReactDOM.render(
-  <SpråkProvider>
-    <ContextProviders>
-      <Router basename={process.env.PUBLIC_URL}>
-        <ScrollToTop />
-        <Routes>
-          <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
-          <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
-          <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
-          <Route path={'*'} element={<App />} />
-        </Routes>
-      </Router>
-    </ContextProviders>
-  </SpråkProvider>,
-  document.getElementById('root')
+root.render(
+  <div>
+    <SpråkProvider>
+      <ContextProviders>
+        <Router basename={process.env.PUBLIC_URL}>
+          <ScrollToTop />
+          <Routes>
+            <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
+            <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
+            <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
+            <Route path={'*'} element={<App />} />
+          </Routes>
+        </Router>
+      </ContextProviders>
+    </SpråkProvider>
+  </div>
 );
 
 // If you want your app to work offline and load faster, you can change

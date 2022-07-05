@@ -53,10 +53,10 @@ const StyledFeltGruppe = styled.div`
   }
 `;
 
-const FeltGruppe: React.FC<{ classname?: string }> = ({
-  classname,
-  children,
-}) => {
+const FeltGruppe: React.FC<{
+  classname?: string;
+  children?: React.ReactNode;
+}> = ({ classname, children }) => {
   return <StyledFeltGruppe className={classname}>{children}</StyledFeltGruppe>;
 };
 

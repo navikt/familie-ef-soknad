@@ -31,6 +31,7 @@ interface ISide {
   tilbakeTilOppsummeringPath?: string;
   informasjonstekstId?: string;
   disableNesteKnapp?: boolean;
+  children?: React.ReactNode;
 }
 
 const Side: React.FC<ISide> = ({

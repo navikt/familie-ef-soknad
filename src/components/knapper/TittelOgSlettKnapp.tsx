@@ -29,7 +29,9 @@ const StyledTittelOgSlettKnapp = styled.div`
   }
 `;
 
-const TittelOgSlettKnapp: React.FC = ({ children }) => {
+const TittelOgSlettKnapp: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   return <StyledTittelOgSlettKnapp>{children}</StyledTittelOgSlettKnapp>;
 };
 
