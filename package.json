@@ -137,6 +137,26 @@
     "testcafe": "^1.19.0",
     "typescript": "^4.7.4"
   },
+  "overrides": {
+    "nav-datovelger": { "react": "$react" },
+    "nav-frontend-alertstriper": { "react": "$react" },
+    "nav-frontend-ekspanderbartpanel": { "react": "$react" },
+    "nav-frontend-js-utils": { "react": "$react" },
+    "nav-frontend-knapper": { "react": "$react" },
+    "nav-frontend-chevron": { "react": "$react" },
+    "nav-frontend-lenker": { "react": "$react" },
+    "nav-frontend-lesmerpanel": { "react": "$react" },
+    "nav-frontend-modal": { "react": "$react" },
+    "nav-frontend-paneler": { "react": "$react" },
+    "nav-frontend-skjema": { "react": "$react" },
+    "nav-frontend-stegindikator": { "react": "$react" },
+    "nav-frontend-tekstomrade": { "react": "$react" },
+    "nav-frontend-veileder": { "react": "$react" },
+    "nav-frontend-veilederpanel": { "react": "$react" },
+    "nav-frontend-spinner": { "react": "$react" },
+    "nav-frontend-lukknapp": { "react": "$react" },
+    "react-aria-menubutton": { "react": "$react" }
+  },
   "husky": {
     "hooks": {
       "pre-commit": "pretty-quick --staged"
