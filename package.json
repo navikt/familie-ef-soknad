@@ -17,7 +17,7 @@
     "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.3.2",
-    "@sentry/browser": "^7.3.1",
+    "@sentry/browser": "^7.5.0",
     "@types/amplitude-js": "^8.16.1",
     "@types/body-parser": "^1.19.2",
     "@types/classnames": "^2.3.1",
