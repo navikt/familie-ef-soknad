@@ -66,7 +66,7 @@ const Filopplaster: React.FC<Props> = ({
   const skjemaId = skjemanavnTilId(skjemanavn);
 
   const onDrop = useCallback(
-    (filer) => {
+    (filer: File[]) => {
       const feilmeldingsliste: string[] = [];
       const nyeVedlegg: IVedlegg[] = [];
 

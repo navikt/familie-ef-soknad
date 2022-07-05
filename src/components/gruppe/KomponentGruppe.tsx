@@ -23,10 +23,10 @@ const StyledKomponentGruppe = styled.div`
   }
 `;
 
-const KomponentGruppe: React.FC<{ className?: string }> = ({
-  className,
-  children,
-}) => {
+const KomponentGruppe: React.FC<{
+  className?: string;
+  children?: React.ReactNode;
+}> = ({ className, children }) => {
   return (
     <StyledKomponentGruppe className={className} aria-live="polite">
       {children}

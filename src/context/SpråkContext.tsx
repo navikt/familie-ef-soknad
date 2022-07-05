@@ -6,7 +6,9 @@ import { LokalIntlProvider } from './LokalIntlContext';
 const SpråkContext = createContext<any>(['', () => {}]);
 const useSpråkContext = () => useContext(SpråkContext);
 
-const SpråkProvider: React.FC = ({ children }) => {
+const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
+  children,
+}) => {
   const [locale, setLocale] = useState<LocaleType>(LocaleType.nb);
   const tekster = getMessages(locale);
   SpråkContext.displayName = 'SPRÅK_CONTEXT';

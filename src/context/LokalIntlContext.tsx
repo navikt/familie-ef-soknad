@@ -15,10 +15,10 @@ const LokalIntlContext = createContext<{
 });
 
 const useLokalIntlContext = () => useContext(LokalIntlContext);
-const LokalIntlProvider: React.FC<{ tekster: Record<string, string> }> = ({
-  children,
-  tekster,
-}) => {
+const LokalIntlProvider: React.FC<{
+  tekster: Record<string, string>;
+  children?: React.ReactNode;
+}> = ({ children, tekster }) => {
   LokalIntlProvider.displayName = 'LOKAL_INTL_PROVIDER';
   const formatMessage = (
     props: OversettProps,

@@ -15,10 +15,10 @@ const StyledFeltGruppe = styled.section`
   }
 `;
 
-const SeksjonGruppe: React.FC<{ className?: string }> = ({
-  children,
-  className,
-}) => {
+const SeksjonGruppe: React.FC<{
+  className?: string;
+  children?: React.ReactNode;
+}> = ({ children, className }) => {
   return <StyledFeltGruppe className={className}>{children}</StyledFeltGruppe>;
 };
 

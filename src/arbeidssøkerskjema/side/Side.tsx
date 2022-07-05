@@ -16,6 +16,7 @@ interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
+  children?: React.ReactNode;
 }
 
 const Side: React.FC<ISide> = ({

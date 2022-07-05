@@ -6,9 +6,9 @@ import './LeggTilKnapp.less';
 
 interface Props {
   onClick: () => void;
+  children?: React.ReactNode;
 }
 
-//TODO FIKS STYLING
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
   return (
     <Flatknapp className="lenke-knapp" onClick={onClick}>
