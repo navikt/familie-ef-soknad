@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
-    "@navikt/ds-css": "^0.18.15",
-    "@navikt/ds-react": "^0.19.14",
+    "@navikt/ds-css": "^0.18.27",
+    "@navikt/ds-react": "^0.19.23",
     "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.3.2",
@@ -138,24 +138,60 @@
     "typescript": "^4.7.4"
   },
   "overrides": {
-    "nav-datovelger": { "react": "$react" },
-    "nav-frontend-alertstriper": { "react": "$react" },
-    "nav-frontend-ekspanderbartpanel": { "react": "$react" },
-    "nav-frontend-js-utils": { "react": "$react" },
-    "nav-frontend-knapper": { "react": "$react" },
-    "nav-frontend-chevron": { "react": "$react" },
-    "nav-frontend-lenker": { "react": "$react" },
-    "nav-frontend-lesmerpanel": { "react": "$react" },
-    "nav-frontend-modal": { "react": "$react" },
-    "nav-frontend-paneler": { "react": "$react" },
-    "nav-frontend-skjema": { "react": "$react" },
-    "nav-frontend-stegindikator": { "react": "$react" },
-    "nav-frontend-tekstomrade": { "react": "$react" },
-    "nav-frontend-veileder": { "react": "$react" },
-    "nav-frontend-veilederpanel": { "react": "$react" },
-    "nav-frontend-spinner": { "react": "$react" },
-    "nav-frontend-lukknapp": { "react": "$react" },
-    "react-aria-menubutton": { "react": "$react" }
+    "nav-datovelger": {
+      "react": "$react"
+    },
+    "nav-frontend-alertstriper": {
+      "react": "$react"
+    },
+    "nav-frontend-ekspanderbartpanel": {
+      "react": "$react"
+    },
+    "nav-frontend-js-utils": {
+      "react": "$react"
+    },
+    "nav-frontend-knapper": {
+      "react": "$react"
+    },
+    "nav-frontend-chevron": {
+      "react": "$react"
+    },
+    "nav-frontend-lenker": {
+      "react": "$react"
+    },
+    "nav-frontend-lesmerpanel": {
+      "react": "$react"
+    },
+    "nav-frontend-modal": {
+      "react": "$react"
+    },
+    "nav-frontend-paneler": {
+      "react": "$react"
+    },
+    "nav-frontend-skjema": {
+      "react": "$react"
+    },
+    "nav-frontend-stegindikator": {
+      "react": "$react"
+    },
+    "nav-frontend-tekstomrade": {
+      "react": "$react"
+    },
+    "nav-frontend-veileder": {
+      "react": "$react"
+    },
+    "nav-frontend-veilederpanel": {
+      "react": "$react"
+    },
+    "nav-frontend-spinner": {
+      "react": "$react"
+    },
+    "nav-frontend-lukknapp": {
+      "react": "$react"
+    },
+    "react-aria-menubutton": {
+      "react": "$react"
+    }
   },
   "husky": {
     "hooks": {

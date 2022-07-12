@@ -1,6 +1,4 @@
 import React from 'react';
-import Panel from 'nav-frontend-paneler';
-import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { useSøknad } from '../context/SøknadContext';
@@ -9,7 +7,6 @@ import { hentBeskjedMedNavn } from '../utils/språk';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import Environment from '../Environment';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { isIE } from 'react-device-detect';
 import {
   ERouteOvergangsstønad,
@@ -24,6 +21,7 @@ import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { Alert, Panel, Heading } from '@navikt/ds-react';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -79,23 +77,23 @@ const Forside: React.FC = () => {
 
           {alder < 18 && (
             <div className="ie-feil">
-              <AlertStripeFeil>
+              <Alert variant="error">
                 <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
-              </AlertStripeFeil>
+              </Alert>
             </div>
           )}
 
           {isIE && (
             <div className="ie-feil">
-              <AlertStripeFeil>
+              <Alert variant="error">
                 <LocaleTekst tekst={'side.alert.plsnoIE'} />
-              </AlertStripeFeil>
+              </Alert>
             </div>
           )}
 
-          <Sidetittel>
+          <Heading level="1" size="xlarge">
             <LocaleTekst tekst="banner.tittel.overgangsstønad" />
-          </Sidetittel>
+          </Heading>
           {kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad ? (
             <FortsettSøknad
               intl={intl}
