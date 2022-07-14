@@ -1,10 +1,7 @@
 import React from 'react';
 import Stegindikator from 'nav-frontend-stegindikator';
 import Banner from '../../components/Banner';
-import Panel from 'nav-frontend-paneler';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
 import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
@@ -12,8 +9,8 @@ import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import LocaleTekst from '../../language/LocaleTekst';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Panel, Alert, Button, BodyShort, Heading } from '@navikt/ds-react';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -79,23 +76,23 @@ const Side: React.FC<ISide> = ({
 
         <Panel className={'side__innhold'}>
           <div className={'innholdscontainer'}>
-            <Systemtittel>{stegtittel}</Systemtittel>
+            <Heading size="medium">{stegtittel}</Heading>
             {children}
           </div>
         </Panel>
 
         {informasjonstekstId && (
-          <AlertStripe type="info" className="side__informasjon" form="inline">
+          <Alert variant="info" className="side__informasjon" inline>
             <LocaleTekst tekst={informasjonstekstId} />
-          </AlertStripe>
+          </Alert>
         )}
 
         {skalViseKnapper === ESide.visTilbakeNesteAvbrytKnapp ? (
           <>
             {!erSpørsmålBesvart && (
-              <Normaltekst className={'side__uu-tekst'}>
+              <BodyShort className={'side__uu-tekst'}>
                 {intl.formatMessage({ id: 'knapp.uu-tekst' })}
-              </Normaltekst>
+              </BodyShort>
             )}
             <TilbakeNesteAvbrytKnapper
               routesStønad={routesStønad}
@@ -107,10 +104,11 @@ const Side: React.FC<ISide> = ({
         ) : skalViseKnapper === ESide.visTilbakeTilOppsummeringKnapp ? (
           erSpørsmålBesvart && (
             <>
-              <Normaltekst>
+              <BodyShort>
                 {intl.formatMessage({ id: 'knapp.uu-tekst' })}
-              </Normaltekst>
-              <Hovedknapp
+              </BodyShort>
+              <Button
+                variant="primary"
                 className="tilbake-til-oppsummering"
                 onClick={() => {
                   if (mellomlagreStønad) {
@@ -122,7 +120,7 @@ const Side: React.FC<ISide> = ({
                 }}
               >
                 {hentTekst('oppsummering.tilbake', intl)}
-              </Hovedknapp>
+              </Button>
             </>
           )
         ) : null}
