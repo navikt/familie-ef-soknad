@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { Checkbox } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import styled from 'styled-components/macro';
+import { Checkbox } from '@navikt/ds-react';
 
 const StyledCheckbox = styled.div`
   .skjemaelement {
@@ -36,11 +36,12 @@ const BarnMedISøknad: FC<Props> = ({
   return (
     <StyledCheckbox>
       <Checkbox
-        label={hentTekst('barnadine.knapp.søkBarnetilsyn', intl)}
         className={'skalHaBarnepass'}
         checked={skalHaBarnepass}
         onChange={() => toggleSkalHaBarnepass(id)}
-      />
+      >
+        {hentTekst('barnadine.knapp.søkBarnetilsyn', intl)}
+      </Checkbox>
     </StyledCheckbox>
   );
 };

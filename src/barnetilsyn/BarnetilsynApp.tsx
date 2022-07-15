@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
@@ -21,6 +20,7 @@ import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { logAdressesperre } from '../utils/amplitude';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { Loader } from '@navikt/ds-react';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -119,10 +119,10 @@ const BarnetilsynApp = () => {
         <Feilside tekstId={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
       );
     } else {
-      return <NavFrontendSpinner className="spinner" />;
+      return <Loader variant="neutral" size="xlarge" title="venter..." />;
     }
   } else {
-    return <NavFrontendSpinner className="spinner" />;
+    return <Loader variant="neutral" size="xlarge" title="venter..." />;
   }
 };
 

@@ -12,7 +12,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { erStrengGyldigTall } from '../../../utils/autentiseringogvalidering/feltvalidering';
-import { Feilmelding } from 'nav-frontend-typografi';
+import { Detail } from '@navikt/ds-react';
 
 interface Props {
   barnepassOrdning: IBarnepassOrdning;
@@ -52,9 +52,9 @@ const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
       </FeltGruppe>
       {!erStrengGyldigTall(beløp) && barnepassOrdning.belop && (
         <FeltGruppe>
-          <Feilmelding>
+          <Detail>
             <LocaleTekst tekst={'feil.ugyldigTall.beløp'} />
-          </Feilmelding>
+          </Detail>
         </FeltGruppe>
       )}
       <FeltGruppe>

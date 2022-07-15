@@ -12,7 +12,6 @@ import {
 } from '../../routing/routesBarnetilsyn';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { IBarn } from '../../../models/steg/barn';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentPath } from '../../../utils/routing';
@@ -30,7 +29,7 @@ import {
   ManglendeFelter,
   manglendeFelterTilTekst,
 } from '../../../utils/validering/validering';
-import { Alert } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -78,9 +77,9 @@ const Oppsummering: React.FC = () => {
         skalViseKnapper={ESide.visTilbakeNesteAvbrytKnapp}
       >
         <div className="oppsummering">
-          <Normaltekst className="disclaimer">
+          <BodyShort className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
-          </Normaltekst>
+          </BodyShort>
 
           <KomponentGruppe>
             <OppsummeringOmDeg

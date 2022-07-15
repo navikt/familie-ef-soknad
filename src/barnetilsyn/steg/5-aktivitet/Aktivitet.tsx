@@ -21,10 +21,8 @@ import {
 } from '../../../models/steg/aktivitet/aktivitet';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
-import { Element } from 'nav-frontend-typografi';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
@@ -33,6 +31,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { Alert, Label } from '@navikt/ds-react';
 
 const Aktivitet: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -168,11 +167,11 @@ const Aktivitet: React.FC = () => {
         </KomponentGruppe>
         {arbeidssituasjon.erIArbeid?.svarid === ErIArbeid.NeiFordiJegErSyk && (
           <>
-            <AlertStripe type={'info'} form={'inline'}>
-              <Element>
+            <Alert variant={'info'} inline>
+              <Label>
                 <LocaleTekst tekst={'erDuIArbeid.alertsstripe-info'} />
-              </Element>
-            </AlertStripe>
+              </Label>
+            </Alert>
             <AlertStripeDokumentasjon>
               <LocaleTekst tekst={'erDuIArbeid.alertsstripe-dokumentasjon'} />
             </AlertStripeDokumentasjon>
