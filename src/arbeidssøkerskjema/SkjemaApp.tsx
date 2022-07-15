@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import { hentPersonDataArbeidssoker } from '../utils/søknad';
 import { Routes, Route } from 'react-router-dom';
 import {
@@ -13,6 +12,7 @@ import Oppsummering from './steg/2-Oppsummering';
 import Kvittering from './steg/3-Kvittering';
 import { SkjemaProvider } from './SkjemaContext';
 import RedirectArbeidssoker from './routes/RedirectArbeidssoker';
+import { Loader } from '@navikt/ds-react';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -96,10 +96,10 @@ const App = () => {
     } else if (error) {
       return <Feilside tekstId={feilmelding} />;
     } else {
-      return <NavFrontendSpinner className="spinner" />;
+      return <Loader variant="neutral" size="xlarge" title="venter..." />;
     }
   } else {
-    return <NavFrontendSpinner className="spinner" />;
+    return <Loader variant="neutral" size="xlarge" title="venter..." />;
   }
 };
 

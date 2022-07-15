@@ -1,16 +1,13 @@
 import React from 'react';
 import Banner from '../../components/Banner';
 import classNames from 'classnames';
-import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import Stegindikator from 'nav-frontend-stegindikator';
-
-import Panel from 'nav-frontend-paneler';
 import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
-import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Button, Panel, Heading, BodyShort } from '@navikt/ds-react';
 
 interface ISide {
   tittel: string;
@@ -63,46 +60,46 @@ const Side: React.FC<ISide> = ({
         />
         <Panel className={'side__innhold'}>
           <div className={'innholdscontainer'}>
-            <Systemtittel>{tittel}</Systemtittel>
+            <Heading size="medium">{tittel}</Heading>
             {children}
           </div>
         </Panel>
         {skalViseKnapper && (
           <>
             {!erSpørsmålBesvart && (
-              <Normaltekst className={'side__uu-tekst'}>
+              <BodyShort className={'side__uu-tekst'}>
                 {intl.formatMessage({ id: 'knapp.uu-tekst' })}
-              </Normaltekst>
+              </BodyShort>
             )}
             <div
               className={
                 erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper'
               }
             >
-              <KnappBase
+              <Button
                 className={'tilbake'}
-                type={'standard'}
+                variant="primary"
                 onClick={() => navigate(forrigeRoute.path)}
               >
                 <LocaleTekst tekst={'knapp.tilbake'} />
-              </KnappBase>
+              </Button>
               {erSpørsmålBesvart && (
-                <KnappBase
-                  type={'hoved'}
+                <Button
+                  variant="secondary"
                   onClick={() => navigate(nesteRoute.path)}
                   className={nesteKnappStyling}
                 >
                   <LocaleTekst tekst={'knapp.neste'} />
-                </KnappBase>
+                </Button>
               )}
 
-              <KnappBase
+              <Button
                 className={'avbryt'}
-                type={'flat'}
+                variant="tertiary"
                 onClick={() => navigate(RoutesArbeidssokerskjema[0].path)}
               >
                 <LocaleTekst tekst={'knapp.avbryt'} />
-              </KnappBase>
+              </Button>
             </div>
           </>
         )}
