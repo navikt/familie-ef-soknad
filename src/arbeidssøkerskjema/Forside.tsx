@@ -1,21 +1,15 @@
 import React from 'react';
-import Panel from 'nav-frontend-paneler';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
-import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
-import { Element, Normaltekst, Sidetittel } from 'nav-frontend-typografi';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import { hentTekst } from '../utils/søknad';
 import { useNavigate } from 'react-router-dom';
-import KnappBase from 'nav-frontend-knapper';
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 import LocaleTekst from '../language/LocaleTekst';
 import {
   ERouteArbeidssøkerskjema,
   RoutesArbeidssokerskjema,
 } from './routes/routesArbeidssokerskjema';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { useSkjema } from './SkjemaContext';
 import { useForsideInnhold } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
@@ -24,8 +18,24 @@ import Språkvelger from '../components/språkvelger/Språkvelger';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import {
+  Panel,
+  Heading,
+  ConfirmationPanel,
+  Button,
+  Accordion,
+} from '@navikt/ds-react';
+import styled from 'styled-components';
 
 const BlockContent = require('@sanity/block-content-to-react');
+
+const DisclaimerTittel = styled(Heading)`
+  margin-bottom: 1rem;
+`;
+
+const StyledConfirmationPanel = styled(ConfirmationPanel)`
+  margin-bottom: 2rem;
+`;
 
 const Forside: React.FC<any> = ({ visningsnavn }) => {
   const [locale] = useSpråkContext();
@@ -43,10 +53,6 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
     });
   };
   const forside = useForsideInnhold(ForsideType.arbeidssøker);
-
-  const onChange = () => {
-    settBekreftelse(!skjema.harBekreftet);
-  };
 
   const BlockRenderer = (props: any) => {
     const { style = 'normal' } = props.node;
@@ -86,24 +92,33 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
           <FeltGruppe>
             <Språkvelger />
           </FeltGruppe>
-          <Sidetittel>
+          <Heading size="xlarge">
             <LocaleTekst tekst={'skjema.sidetittel'} />
-          </Sidetittel>
+          </Heading>
           {seksjon &&
             seksjon.map((blokk: any, index: number) => {
               return blokk._type === 'dokumentasjonskrav' ? (
                 <div className="seksjon" key={index}>
-                  <Ekspanderbartpanel tittel={blokk.tittel}>
-                    <BlockContent
-                      className="typo-normal"
-                      blocks={blokk.innhold}
-                      serializers={{ types: { block: BlockRenderer } }}
-                    />
-                  </Ekspanderbartpanel>
+                  <Accordion>
+                    <Accordion.Item>
+                      <Accordion.Header>{blokk.tittel}</Accordion.Header>
+                      <Accordion.Content>
+                        <BlockContent
+                          className="typo-normal"
+                          blocks={blokk.innhold}
+                          serializers={{ types: { block: BlockRenderer } }}
+                        />
+                      </Accordion.Content>
+                    </Accordion.Item>
+                  </Accordion>
                 </div>
               ) : (
                 <div className="seksjon" key={index}>
-                  {blokk.tittel && <Element>{blokk.tittel}</Element>}
+                  {blokk.tittel && (
+                    <Heading level="2" size="small">
+                      {blokk.tittel}
+                    </Heading>
+                  )}
                   <BlockContent
                     className="typo-normal"
                     blocks={blokk.innhold}
@@ -114,29 +129,29 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
             })}
 
           {disclaimer && (
-            <div className="seksjon">
-              <Element className="disclaimer-tittel">
+            <>
+              <DisclaimerTittel level="2" size="small">
                 {hentTekst('skjema.forside.disclaimer.tittel', intl)}
-              </Element>
-              <AlertStripeAdvarsel>
-                <Normaltekst className="disclaimer-innhold">
-                  {hentTekst('skjema.forside.disclaimer', intl)}
-                </Normaltekst>
-                <BekreftCheckboksPanel
-                  onChange={(e) => onChange()}
-                  checked={skjema.harBekreftet}
-                  label={hentBeskjedMedNavn(
-                    visningsnavn,
-                    intl.formatMessage({ id: 'side.bekreftelse' })
-                  )}
+              </DisclaimerTittel>
+              <StyledConfirmationPanel
+                checked={!!skjema.harBekreftet}
+                label={hentBeskjedMedNavn(
+                  visningsnavn,
+                  intl.formatMessage({ id: 'side.bekreftelse' })
+                )}
+                onChange={() => settBekreftelse(!skjema.harBekreftet)}
+              >
+                <BlockContent
+                  blocks={disclaimer}
+                  serializers={{ types: { block: BlockRenderer } }}
                 />
-              </AlertStripeAdvarsel>
-            </div>
+              </StyledConfirmationPanel>
+            </>
           )}
 
           {skjema.harBekreftet ? (
-            <FeltGruppe classname={'sentrert'}>
-              <KnappBase
+            <FeltGruppe classname={'sentrert'} aria-live="polite">
+              <Button
                 onClick={() =>
                   navigate({
                     pathname: hentPath(
@@ -145,10 +160,10 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                     ),
                   })
                 }
-                type={'hoved'}
+                variant="primary"
               >
                 <LocaleTekst tekst={'skjema.knapp.start'} />
-              </KnappBase>
+              </Button>
             </FeltGruppe>
           ) : null}
         </Panel>
