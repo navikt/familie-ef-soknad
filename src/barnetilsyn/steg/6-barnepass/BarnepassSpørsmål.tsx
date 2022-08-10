@@ -13,7 +13,6 @@ import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
 import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
-import { Undertittel } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import BarnepassBeløp from './BarnepassBeløp';
@@ -27,6 +26,7 @@ import {
 import { EPeriode } from '../../../models/felles/periode';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -143,9 +143,9 @@ const BarnepassSpørsmål: FC<Props> = ({
     <SeksjonGruppe>
       {flereEnnEnOrdninger && (
         <TittelOgSlettKnapp>
-          <Undertittel className={'tittel'}>
+          <Heading size="small" className="tittel">
             {barnepassordningTittel}
-          </Undertittel>
+          </Heading>
           <SlettKnapp
             className={classnames('slettknapp', {
               kunEn: barn.barnepass?.barnepassordninger?.length === 1,

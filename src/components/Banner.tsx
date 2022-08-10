@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../language/LocaleTekst';
+import { Heading } from '@navikt/ds-react';
 
 const StyledBanner = styled.header`
   width: 100%;
@@ -17,9 +17,9 @@ const StyledBanner = styled.header`
 const Banner: React.FC<{ tekstid: string }> = ({ tekstid }) => {
   return (
     <StyledBanner>
-      <Innholdstittel>
+      <Heading size="large">
         <LocaleTekst tekst={tekstid} />
-      </Innholdstittel>
+      </Heading>
     </StyledBanner>
   );
 };

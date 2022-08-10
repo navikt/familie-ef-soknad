@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/macro';
 import { ReactComponent as FilIkon } from '../assets/fil.svg';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledAlertstripe = styled.div`
   padding-top: 2rem;
@@ -32,7 +32,7 @@ const AlertStripeDokumentasjon: FC<{ children?: React.ReactNode }> = ({
     <StyledAlertstripe>
       <FilIkon className={'ikon'} />
       <div className={'tekst'}>
-        <Normaltekst>{children}</Normaltekst>
+        <BodyShort>{children}</BodyShort>
       </div>
     </StyledAlertstripe>
   );
