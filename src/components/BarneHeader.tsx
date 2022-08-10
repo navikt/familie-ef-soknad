@@ -80,7 +80,7 @@ const BarneHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         />
       </div>
       <div className="navn">
-        <Heading level="h3" size="small">
+        <Heading level="3" size="small">
           {førsteBokstavStor(hentBarnetsNavnEllerBeskrivelse(barn, intl))}
         </Heading>
       </div>
