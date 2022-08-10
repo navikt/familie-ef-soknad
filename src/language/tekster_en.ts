@@ -598,21 +598,21 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-åpne':
     'About applying from a specific date',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
-    'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',
+    'You can receive transitional benefit from the month after you qualify for the benefit.You may be entitled to benefit for up to three months before you applied.In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2':
-    'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
+    'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3':
-    'Child care benefit is paid from the month you meet the criteria for the benefit. <br/><br/>You can receive retroactive payment of benefit for up to three months from when you apply if you were entitled to benefit during this period.<br/><br/>We will determine from what point you are entitled to benefit even if you apply from a specific month.',
+    'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
-    'No, NAV can determine from which month I am entitled to benefit',
+    'Child care benefit is paid from the month you meet the criteria for the benefit. <br/><br/>You can receive retroactive payment of benefit for up to three months from when you apply if you were entitled to benefit during this period.<br/><br/>We will determine from what point you are entitled to benefit even if you apply from a specific month.',
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'I am applying for transitional benefit starting from',
+    'No, NAV can determine from which month I am entitled to benefit',
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
-    'I am applying for child care benefit starting from',
+    'I am applying for transitional benefit starting from',
   'søkerStønadFraBestemtMnd.datovelger.barnepass':
-    'Remember to submit old invoices if you are applying for retroactive benefit',
+    'I am applying for child care benefit starting from',
   'barnepass.dokumentasjon.søkerStønadFraBestemtMnd':
-    'About the child minding arrangements',
+    'Remember to submit old invoices if you are applying for retroactive benefit',
   'oppsummering.sidetittel': 'Summary',
   'oppsummering.normaltekst.lesgjennom':
     'Please review the summary before submitting your application.If you need to make changes you can go back.',
