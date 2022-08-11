@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
@@ -38,6 +37,7 @@ import {
   aktivitetSchema,
 } from '../../../utils/validering/validering';
 import { Alert } from '@navikt/ds-react';
+import { BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -176,9 +176,9 @@ const Oppsummering: React.FC = () => {
         disableNesteKnapp={harManglendeFelter}
       >
         <div className="oppsummering">
-          <Normaltekst className="disclaimer">
+          <BodyShort className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
-          </Normaltekst>
+          </BodyShort>
 
           <KomponentGruppe>
             <OppsummeringOmDeg

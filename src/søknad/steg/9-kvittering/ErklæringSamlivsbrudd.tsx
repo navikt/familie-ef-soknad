@@ -30,7 +30,7 @@ const ErklæringSamlivsbrudd: FC = () => {
 
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>
+      <StyledUndertittel size="small">
         <LocaleTekst tekst={'kvittering.tittel.samlivsbrudd'} />
       </StyledUndertittel>
       <Normaltekst>

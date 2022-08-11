@@ -14,7 +14,6 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
 import {
@@ -22,6 +21,7 @@ import {
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { BodyShort } from '@navikt/ds-react';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -125,9 +125,9 @@ const BarnasBosted: React.FC = () => {
         barnMedDødMedforelder.map((barn: IBarn) => (
           <SeksjonGruppe>
             <BarneHeader barn={barn} />
-            <Normaltekst style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <BodyShort style={{ textAlign: 'center', marginTop: '2rem' }}>
               {hentTekst('barnasbosted.kanGåVidere', intl)}
-            </Normaltekst>
+            </BodyShort>
           </SeksjonGruppe>
         ))}
     </Side>

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
@@ -15,6 +14,7 @@ import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
+import { BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -33,9 +33,9 @@ const Oppsummering: React.FC = () => {
         routesStønad={RoutesSkolepenger}
       >
         <div className="oppsummering">
-          <Normaltekst className="disclaimer">
+          <BodyShort className="disclaimer">
             {intl.formatMessage({ id: 'oppsummering.normaltekst.lesgjennom' })}
-          </Normaltekst>
+          </BodyShort>
 
           <KomponentGruppe>
             <OppsummeringOmDeg

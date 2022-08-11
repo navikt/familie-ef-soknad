@@ -38,10 +38,10 @@ import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov } from '../../../utils/hooks';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
-import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledHjelpetekst = styled.div`
   .typo-normal {
@@ -93,9 +93,9 @@ const MerOmDinSituasjon: React.FC = () => {
   );
   const hjelpetekst: JSX.Element = (
     <StyledHjelpetekst>
-      <Normaltekst>{hjelpetekstFørsteAvsnitt}</Normaltekst>
-      <Normaltekst>{hjelpetekstAndreAvsnitt}</Normaltekst>
-      <Normaltekst>{hjelpetekstTredjeAvsnitt}</Normaltekst>
+      <BodyShort>{hjelpetekstFørsteAvsnitt}</BodyShort>
+      <BodyShort>{hjelpetekstAndreAvsnitt}</BodyShort>
+      <BodyShort>{hjelpetekstTredjeAvsnitt}</BodyShort>
     </StyledHjelpetekst>
   );
 

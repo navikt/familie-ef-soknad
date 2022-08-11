@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
-import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { parseISO } from 'date-fns';
 import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
 import { ERouteSkolepenger, RoutesSkolepenger } from '../../routing/routes';
@@ -32,6 +29,7 @@ import {
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link, useNavigate } from 'react-router-dom';
+import { Alert, BodyShort, Button } from '@navikt/ds-react';
 
 interface Innsending {
   status: string;
@@ -109,14 +107,14 @@ const SendSøknadKnapper: FC = () => {
     <>
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <Normaltekst>{innsendingState.melding}</Normaltekst>
-          </AlertStripe>
+          <Alert variant="warning" inline>
+            <BodyShort>{innsendingState.melding}</BodyShort>
+          </Alert>
         </KomponentGruppe>
       )}
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
         <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <Alert variant="warning" inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
             <Link
               to={{
@@ -127,36 +125,36 @@ const SendSøknadKnapper: FC = () => {
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
             </Link>
             <LocaleTekst tekst="dokumentasjon.alert.manglende" />
-          </AlertStripe>
+          </Alert>
         </KomponentGruppe>
       )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
-          <KnappBase
+          <Button
             className={'tilbake'}
-            type={'standard'}
+            variant="secondary"
             onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
-          </KnappBase>
+          </Button>
 
           {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
-            <KnappBase
-              type={'hoved'}
+            <Button
+              variant="primary"
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}
               className={'neste'}
-              spinner={innsendingState.venter}
+              loading={innsendingState.venter}
             >
               <LocaleTekst tekst={'knapp.sendSøknad'} />
-            </KnappBase>
+            </Button>
           )}
-          <KnappBase
+          <Button
             className={'avbryt'}
-            type={'flat'}
+            variant="tertiary"
             onClick={() => navigate(RoutesSkolepenger[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
-          </KnappBase>
+          </Button>
         </StyledKnapper>
       </SeksjonGruppe>
     </>

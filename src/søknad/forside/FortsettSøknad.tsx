@@ -1,12 +1,11 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
-import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
 import { logEvent } from '../../utils/amplitude';
 import { useNavigate } from 'react-router-dom';
 import { LokalIntlShape } from '../../language/typer';
+import { BodyShort, Button } from '@navikt/ds-react';
 
 interface FortsettSøknadProps {
   intl: LokalIntlShape;
@@ -28,13 +27,13 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
   return (
     <>
       <div className="seksjon">
-        <Normaltekst>
+        <BodyShort>
           {intl.formatMessage({ id: 'side.fortsettSøknad.påbegyntSøknad' })}
-        </Normaltekst>
+        </BodyShort>
       </div>
       <SeksjonGruppe className={'sentrert'}>
         <FortsettSøknadKnappWrapper>
-          <KnappBase
+          <Button
             onClick={() => {
               logEvent('klikk_mellomlagret', {
                 type: 'fortsett',
@@ -44,12 +43,12 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
               brukMellomlagretSøknad();
               navigate(gjeldendeSteg);
             }}
-            type={'hoved'}
+            variant="primary"
             className={'fortsett'}
           >
             <LocaleTekst tekst={'side.fortsettSøknad.knapp.fortsett'} />
-          </KnappBase>
-          <KnappBase
+          </Button>
+          <Button
             onClick={() => {
               logEvent('klikk_mellomlagret', {
                 type: 'nullstill',
@@ -60,11 +59,11 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
                 window.location.reload();
               });
             }}
-            type={'standard'}
+            variant="secondary"
             className={'start-ny'}
           >
             <LocaleTekst tekst={'side.fortsettSøknad.knapp.startPåNytt'} />
-          </KnappBase>
+          </Button>
         </FortsettSøknadKnappWrapper>
       </SeksjonGruppe>
     </>

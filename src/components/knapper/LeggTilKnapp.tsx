@@ -1,8 +1,7 @@
 import React from 'react';
 import add from '../../assets/add.svg';
-import { Flatknapp } from 'nav-frontend-knapper';
-import { Element } from 'nav-frontend-typografi';
 import './LeggTilKnapp.less';
+import { Button, Label } from '@navikt/ds-react';
 
 interface Props {
   onClick: () => void;
@@ -11,10 +10,10 @@ interface Props {
 
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
   return (
-    <Flatknapp className="lenke-knapp" onClick={onClick}>
+    <Button variant="tertiary" className="lenke-knapp" onClick={onClick}>
       <img alt="Legg til" src={add} />
-      <Element>{children}</Element>
-    </Flatknapp>
+      <Label>{children}</Label>
+    </Button>
   );
 };
 

@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { Textarea } from 'nav-frontend-skjema';
-import { Undertittel } from 'nav-frontend-typografi';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
@@ -14,6 +13,7 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
@@ -97,9 +97,9 @@ const Utenlandsopphold: FC<Props> = ({
   return (
     <div aria-live="polite">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'} tag="h3">
+        <Heading size="small" level="3" className={'tittel'}>
           {periodeTittel}
-        </Undertittel>
+        </Heading>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: perioderBoddIUtlandet?.length === 1,

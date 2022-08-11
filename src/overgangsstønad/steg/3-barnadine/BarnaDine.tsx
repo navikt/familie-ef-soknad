@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -18,6 +15,7 @@ import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -74,9 +72,9 @@ const BarnaDine: React.FC = () => {
         informasjonstekstId="barnadine.info.brukpdf"
       >
         <div className="barna-dine">
-          <AlertStripeInfo className="informasjonstekst">
+          <Alert variant="info" className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
-          </AlertStripeInfo>
+          </Alert>
           <div className="barnekort-wrapper">
             {barna?.map((barn: IBarn) => (
               <Barnekort
@@ -90,10 +88,10 @@ const BarnaDine: React.FC = () => {
             ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Element>{hentTekst('barnadine.leggtil.info', intl)}</Element>
-                <Knapp onClick={() => settÅpenModal(true)}>
+                <Label>{hentTekst('barnadine.leggtil.info', intl)}</Label>
+                <Button onClick={() => settÅpenModal(true)}>
                   {hentTekst('barnadine.leggtil', intl)}
-                </Knapp>
+                </Button>
               </div>
             </div>
           </div>

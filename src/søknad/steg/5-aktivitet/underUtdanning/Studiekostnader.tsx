@@ -7,18 +7,18 @@ import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtd
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import styled from 'styled-components/macro';
-import { Undertittel } from 'nav-frontend-typografi';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../language/FormattedHtmlMessage';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   utdanning: IDetaljertUtdanning;
   oppdaterUtdanning: (nøkkel: EUtdanning, label: string, verdi: string) => void;
 }
 
-const StyledUndertittel = styled(Undertittel)`
+const StyledUndertittel = styled(Heading)`
   padding-bottom: 2rem;
 `;
 
@@ -48,7 +48,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
 
   return (
     <KomponentGruppe>
-      <StyledUndertittel>
+      <StyledUndertittel size="small">
         <LocaleTekst tekst={'utdanning.label.utgifter'} />
       </StyledUndertittel>
       <FeltGruppe>

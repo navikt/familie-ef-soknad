@@ -1,7 +1,7 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import styled from 'styled-components/macro';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledLenkeMedIkon = styled.div`
   .lenke-knapp {
@@ -37,7 +37,7 @@ const LenkeMedIkon: React.FC<Props> = ({ onClick, tekst_id, ikon }) => {
     <StyledLenkeMedIkon>
       <button className="lenke-knapp" onClick={onClick}>
         <img alt="Endre informasjon" src={ikon} />
-        <Normaltekst>{intl.formatMessage({ id: tekst_id })}</Normaltekst>
+        <BodyShort>{intl.formatMessage({ id: tekst_id })}</BodyShort>
       </button>
     </StyledLenkeMedIkon>
   );

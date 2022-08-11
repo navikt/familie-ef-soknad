@@ -7,7 +7,6 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
 import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
@@ -15,6 +14,7 @@ import { ISøker } from '../../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
   søker: ISøker;
@@ -57,36 +57,36 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
 
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'person.ident.visning'} />
-          </Element>
-          <Normaltekst>{søker.fnr}</Normaltekst>
+          </Label>
+          <BodyShort>{søker.fnr}</BodyShort>
         </FeltGruppe>
 
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'person.statsborgerskap'} />
-          </Element>
-          <Normaltekst>{søker.statsborgerskap}</Normaltekst>
+          </Label>
+          <BodyShort>{søker.statsborgerskap}</BodyShort>
         </FeltGruppe>
 
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'sivilstatus.tittel'} />
-          </Element>
-          <Normaltekst>
+          </Label>
+          <BodyShort>
             <LocaleTekst tekst={hentSivilstatus(søker.sivilstand)} />
-          </Normaltekst>
+          </BodyShort>
         </FeltGruppe>
 
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'person.adresse'} />
-          </Element>
-          <Normaltekst>{søker.adresse.adresse}</Normaltekst>
-          <Normaltekst>
+          </Label>
+          <BodyShort>{søker.adresse.adresse}</BodyShort>
+          <BodyShort>
             {søker.adresse.postnummer} {søker.adresse.poststed}
-          </Normaltekst>
+          </BodyShort>
         </FeltGruppe>
       </KomponentGruppe>
 

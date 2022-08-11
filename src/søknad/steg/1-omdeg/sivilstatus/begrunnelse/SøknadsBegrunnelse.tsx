@@ -6,7 +6,6 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
-import { Undertittel } from 'nav-frontend-typografi';
 import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
 import { Input } from 'nav-frontend-skjema';
 import IdentEllerFødselsdatoGruppe from '../../../../../components/gruppe/IdentEllerFødselsdatoGruppe';
@@ -19,7 +18,6 @@ import {
   ISivilstatus,
 } from '../../../../../models/steg/omDeg/sivilstatus';
 import { ISpørsmål, ISvar } from '../../../../../models/felles/spørsmålogsvar';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import {
   EPersonDetaljer,
   IPersonDetaljer,
@@ -29,6 +27,7 @@ import { harFyltUtSamboerDetaljer } from '../../../../../utils/person';
 import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../../language/FormattedHtmlMessage';
+import { Alert, Heading } from '@navikt/ds-react';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -216,9 +215,9 @@ const Søknadsbegrunnelse: FC<Props> = ({
       {årsakEnslig?.svarid === EBegrunnelse.samlivsbruddAndre && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Undertittel tag={'h3'}>
+            <Heading size="small" level="3">
               <LocaleTekst tekst={'sivilstatus.tittel.samlivsbruddAndre'} />
-            </Undertittel>
+            </Heading>
           </FeltGruppe>
           <FeltGruppe>
             <Input
@@ -264,9 +263,9 @@ const Søknadsbegrunnelse: FC<Props> = ({
 
       {årsakEnslig?.svarid === EBegrunnelse.dødsfall && (
         <KomponentGruppe>
-          <AlertStripeInfo className={'fjernBakgrunn'}>
+          <Alert variant="info" className={'fjernBakgrunn'}>
             <FormattedHtmlMessage id={alertTekstForDødsfall} />
-          </AlertStripeInfo>
+          </Alert>
         </KomponentGruppe>
       )}
     </div>

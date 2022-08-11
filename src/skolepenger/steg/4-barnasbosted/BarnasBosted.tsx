@@ -7,12 +7,10 @@ import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import {
@@ -23,6 +21,7 @@ import { ISøknad } from '../../models/søknad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { BodyShort } from '@navikt/ds-react';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -126,9 +125,9 @@ const BarnasBosted: React.FC = () => {
         barnMedDødMedforelder.map((barn: IBarn) => (
           <SeksjonGruppe>
             <BarneHeader barn={barn} />
-            <Normaltekst style={{ textAlign: 'center', marginTop: '2rem' }}>
+            <BodyShort style={{ textAlign: 'center', marginTop: '2rem' }}>
               {hentTekst('barnasbosted.kanGåVidere', intl)}
-            </Normaltekst>
+            </BodyShort>
           </SeksjonGruppe>
         ))}
     </Side>

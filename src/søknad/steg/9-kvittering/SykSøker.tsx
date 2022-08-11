@@ -26,7 +26,7 @@ const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
   const intl = useLokalIntlContext();
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>
+      <StyledUndertittel size="small">
         <LocaleTekst tekst={'kvittering.tittel.huskeliste.erSyk'} />
       </StyledUndertittel>
 

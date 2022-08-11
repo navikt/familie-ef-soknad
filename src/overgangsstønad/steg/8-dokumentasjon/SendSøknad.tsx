@@ -8,7 +8,6 @@ import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripe from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { hentPath } from '../../../utils/routing';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -32,6 +31,7 @@ import {
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import { BodyShort, Button } from '@navikt/ds-react';
 
 interface Innsending {
   status: string;
@@ -115,7 +115,7 @@ const SendSøknadKnapper: FC = () => {
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
           <AlertStripe type={'advarsel'} form={'inline'}>
-            <Normaltekst>{innsendingState.melding}</Normaltekst>
+            <BodyShort>{innsendingState.melding}</BodyShort>
           </AlertStripe>
         </KomponentGruppe>
       )}
@@ -140,31 +140,31 @@ const SendSøknadKnapper: FC = () => {
       )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
-          <KnappBase
+          <Button
             className={'tilbake'}
-            type={'standard'}
+            variant="secondary"
             onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
-          </KnappBase>
+          </Button>
 
           {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
-            <KnappBase
-              type={'hoved'}
+            <Button
+              variant="primary"
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}
               className={'neste'}
-              spinner={innsendingState.venter}
+              loading={innsendingState.venter}
             >
               <LocaleTekst tekst={'knapp.sendSøknad'} />
-            </KnappBase>
+            </Button>
           )}
-          <KnappBase
+          <Button
             className={'avbryt'}
-            type={'flat'}
+            variant="tertiary"
             onClick={() => navigate(RoutesOvergangsstonad[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
-          </KnappBase>
+          </Button>
         </StyledKnapper>
       </SeksjonGruppe>
     </>

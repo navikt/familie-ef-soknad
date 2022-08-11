@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import LastOppVedlegg from '../../../søknad/steg/8-dokumentasjon/LastOppVedlegg';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { hentTekst, unikeDokumentasjonsbehov } from '../../../utils/søknad';
-import { Normaltekst } from 'nav-frontend-typografi';
 import SendSøknadKnapper from './SendSkolepengerSøknad';
 import { useLocation } from 'react-router-dom';
 import { usePrevious } from '../../../utils/hooks';
@@ -21,6 +20,7 @@ import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
+import { BodyShort } from '@navikt/ds-react';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -98,7 +98,7 @@ const Dokumentasjon: React.FC = () => {
       routesStønad={RoutesSkolepenger}
     >
       <SeksjonGruppe>
-        <Normaltekst>
+        <BodyShort>
           <FormattedHtmlMessage
             id={
               harDokumentasjonsbehov
@@ -106,7 +106,7 @@ const Dokumentasjon: React.FC = () => {
                 : 'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'
             }
           />
-        </Normaltekst>
+        </BodyShort>
       </SeksjonGruppe>
       <SeksjonGruppe>
         {dokumentasjonsbehov

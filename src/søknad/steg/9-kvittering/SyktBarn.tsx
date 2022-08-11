@@ -29,7 +29,7 @@ const SyktBarn: FC = () => {
   const { locale } = useSpråkContext();
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>
+      <StyledUndertittel size="small">
         <LocaleTekst tekst={'kvittering.tittel.huskeliste.syktBarn'} />
       </StyledUndertittel>
       <Normaltekst>
