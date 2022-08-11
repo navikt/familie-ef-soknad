@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { FC, useEffect, useState } from 'react';
 import { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
 import { erGyldigDato, strengTilDato } from '../../utils/dato';
@@ -15,6 +14,7 @@ import {
   erFraDatoSenereEnnTilDato,
   hentStartOgSluttDato,
 } from './utils';
+import { Label } from '@navikt/ds-react';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -119,7 +119,7 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Element>{tekst}</Element>
+        <Label>{tekst}</Label>
         {hjelpetekst && (
           <Hjelpetekst
             åpneTekstid={hjelpetekst.åpneTekstid}

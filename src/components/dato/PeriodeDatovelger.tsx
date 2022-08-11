@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { FC, useEffect, useState } from 'react';
 import Datovelger, { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
@@ -15,6 +14,7 @@ import {
   hentStartOgSluttDato,
 } from './utils';
 import { erGyldigDato } from '../../utils/dato';
+import { Label } from '@navikt/ds-react';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -121,7 +121,7 @@ const PeriodeDatovelgere: FC<Props> = ({
   return (
     <KomponentGruppe className={className}>
       <FeltGruppe>
-        <Element>{tekst}</Element>
+        <Label>{tekst}</Label>
         {hjelpetekst && (
           <Hjelpetekst
             åpneTekstid={hjelpetekst.åpneTekstid}

@@ -2,8 +2,8 @@ import React from 'react';
 import slett from '../../assets/slett.svg';
 import vedlegg from '../../assets/vedlegg.svg';
 import { formaterFilstørrelse } from './utils';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { IVedlegg } from '../../models/steg/vedlegg';
+import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
   filliste: IVedlegg[];
@@ -23,10 +23,10 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                   src={vedlegg}
                   alt="Vedleggsikon"
                 />
-                <Normaltekst className="filnavn">{fil.navn}</Normaltekst>
-                <Normaltekst className="filstørrelse">
+                <BodyShort className="filnavn">{fil.navn}</BodyShort>
+                <BodyShort className="filstørrelse">
                   ({formaterFilstørrelse(fil.størrelse)})
-                </Normaltekst>
+                </BodyShort>
               </div>
               <div
                 className="slett"
@@ -34,7 +34,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                   slettVedlegg(fil);
                 }}
               >
-                <Normaltekst>slett</Normaltekst>
+                <BodyShort>slett</BodyShort>
                 <img className="slettikon" src={slett} alt="Rødt kryss" />
               </div>
             </div>

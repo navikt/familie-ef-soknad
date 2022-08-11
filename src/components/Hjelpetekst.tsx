@@ -1,5 +1,4 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../language/LocaleTekst';
@@ -7,6 +6,7 @@ import { hentTekst } from '../utils/søknad';
 import hiddenIf from '../utils/hiddenIf';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import FormattedHtmlMessage from '../language/FormattedHtmlMessage';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledHjelpetekst = styled.div`
   .lesMerPanel {
@@ -34,7 +34,7 @@ const StyledHjelpetekst = styled.div`
     &__toggleTekst {
       font-size: 16px !important;
     }
-    .typo-normal {
+    .navds-body-short {
       font-size: 16px !important;
     }
   }
@@ -50,7 +50,7 @@ const StyledHjelpetekst = styled.div`
 `;
 
 const StyledÅpenHjelpetekst = styled.div`
-  .typo-normal {
+  .navds-body-short {
     margin-top: 1rem;
     margin-bottom: 1rem;
     font-size: 1rem !important;
@@ -58,7 +58,7 @@ const StyledÅpenHjelpetekst = styled.div`
 `;
 
 const StyledHalvåpenHjelpetekst = styled.div`
-  .typo-normal {
+  .navds-body-short {
     margin-top: 1rem;
     font-size: 1rem !important;
   }
@@ -88,12 +88,12 @@ const Hjelpetekst: React.FC<Props> = ({
   if (åpneTekstid === '') {
     return (
       <StyledÅpenHjelpetekst>
-        <Normaltekst>
+        <BodyShort>
           {innholdTekst && innholdTekst}
           {!innholdTekst && innholdTekstid && (
             <LocaleTekst tekst={innholdTekstid} />
           )}
-        </Normaltekst>
+        </BodyShort>
       </StyledÅpenHjelpetekst>
     );
   } else {
@@ -101,9 +101,9 @@ const Hjelpetekst: React.FC<Props> = ({
       <>
         {halvåpenTekstid && (
           <StyledHalvåpenHjelpetekst>
-            <Normaltekst>
+            <BodyShort>
               <LocaleTekst tekst={halvåpenTekstid} />
-            </Normaltekst>
+            </BodyShort>
           </StyledHalvåpenHjelpetekst>
         )}
         <StyledHjelpetekst className={className}>
@@ -115,7 +115,7 @@ const Hjelpetekst: React.FC<Props> = ({
                 : hentTekst('knapp.lukk', intl)
             }
           >
-            <Normaltekst>
+            <BodyShort>
               {innholdTekst && innholdTekst}
               {!innholdTekst && innholdTekstid && html && (
                 <FormattedHtmlMessage id={innholdTekstid} />
@@ -123,7 +123,7 @@ const Hjelpetekst: React.FC<Props> = ({
               {!innholdTekst && innholdTekstid && !html && (
                 <LocaleTekst tekst={innholdTekstid} />
               )}
-            </Normaltekst>
+            </BodyShort>
           </Lesmerpanel>
         </StyledHjelpetekst>
       </>

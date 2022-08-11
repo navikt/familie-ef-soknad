@@ -4,11 +4,9 @@ import {
   hentBeskjedMedNavn,
   hentBeskjedMedToParametre,
 } from '../../utils/språk';
-import { Normaltekst } from 'nav-frontend-typografi';
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
@@ -24,6 +22,7 @@ import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
 import FormData from 'form-data';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Alert, BodyShort, BodyShort, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   oppdaterDokumentasjon: (
@@ -192,7 +191,7 @@ const Filopplaster: React.FC<Props> = ({
           <ul className="opplasting-liste">
             {beskrivelsesListe.map((el) => (
               <li>
-                <Normaltekst>{el}</Normaltekst>
+                <BodyShort>{el}</BodyShort>
               </li>
             ))}
           </ul>
@@ -215,9 +214,13 @@ const Filopplaster: React.FC<Props> = ({
         >
           <div className="feilmelding">
             {feilmeldinger.map((feilmelding) => (
-              <AlertStripeFeil key={feilmelding} className="feilmelding-alert">
+              <Alert
+                key={feilmelding}
+                variant="error"
+                className="feilmelding-alert"
+              >
                 {feilmelding}
-              </AlertStripeFeil>
+              </Alert>
             ))}
           </div>
         </Modal>
@@ -230,9 +233,9 @@ const Filopplaster: React.FC<Props> = ({
                 className="opplastingsikon"
                 alt="Opplastingsikon"
               />
-              <Normaltekst className="tekst">
+              <BodyShort className="tekst">
                 {intl.formatMessage({ id: 'filopplaster.slipp' })}
-              </Normaltekst>
+              </BodyShort>
             </>
           ) : (
             <>
@@ -241,9 +244,9 @@ const Filopplaster: React.FC<Props> = ({
                 className="opplastingsikon"
                 alt="Opplastingsikon"
               />
-              <Normaltekst className="tekst">
+              <BodyShort className="tekst">
                 {intl.formatMessage({ id: 'filopplaster.dra' })}
-              </Normaltekst>
+              </BodyShort>
             </>
           )}
         </div>
