@@ -1,7 +1,6 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Lenke from 'nav-frontend-lenker';
@@ -9,6 +8,7 @@ import styled from 'styled-components/macro';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -27,23 +27,23 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
       {stønadstype === Stønadstype.overgangsstønad && (
         <>
           <FeltGruppe>
-            <Undertittel>
+            <Heading size="small">
               <LocaleTekst tekst={'kvittering.tittel.skolepenger'} />
-            </Undertittel>
+            </Heading>
           </FeltGruppe>
           <FeltGruppe>
-            <Normaltekst>
+            <BodyShort>
               {hentTekst('kvittering.tekst.skolepenger', intl)}
-            </Normaltekst>
+            </BodyShort>
           </FeltGruppe>
           <KomponentGruppe>
-            <Normaltekst>
+            <BodyShort>
               <Lenke
                 href={'https://www.nav.no/familie/alene-med-barn/skolepenger'}
               >
                 {hentTekst('kvittering.lenke.skolepenger', intl)}
               </Lenke>
-            </Normaltekst>
+            </BodyShort>
           </KomponentGruppe>
           <KomponentGruppe>
             <a
@@ -58,16 +58,16 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
         </>
       )}
       <FeltGruppe>
-        <Undertittel>
+        <Heading size="small">
           <LocaleTekst tekst={'kvittering.tittel.tilleggsstønader'} />
-        </Undertittel>
+        </Heading>
       </FeltGruppe>
 
       <FeltGruppe>
         <StyledBeskrivelse>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst tekst={'kvittering.beskrivelse.tilleggsstønader'} />
-          </Normaltekst>
+          </BodyShort>
         </StyledBeskrivelse>
       </FeltGruppe>
 
@@ -75,9 +75,9 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
         <Lenke
           href={'https://www.nav.no/familie/alene-med-barn/tilleggsstonader'}
         >
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst tekst={'kvittering.lenke.tilleggsstønader'} />
-          </Normaltekst>
+          </BodyShort>
         </Lenke>
       </KomponentGruppe>
 

@@ -1,8 +1,6 @@
-import React, { FC } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Lenke from 'nav-frontend-lenker';
-import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components/macro';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
@@ -10,6 +8,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -33,9 +32,9 @@ const ErklæringSamlivsbrudd: FC = () => {
       <StyledUndertittel size="small">
         <LocaleTekst tekst={'kvittering.tittel.samlivsbrudd'} />
       </StyledUndertittel>
-      <Normaltekst>
+      <BodyShort>
         <LocaleTekst tekst={'kvittering.beskrivelse.samlivsbrudd'} />
-      </Normaltekst>
+      </BodyShort>
 
       <StyledLenke>
         <Lenke
@@ -47,9 +46,9 @@ const ErklæringSamlivsbrudd: FC = () => {
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Element>
+          <Label>
             {intl.formatMessage({ id: 'kvittering.knapp.samlivsbrudd' })}
-          </Element>
+          </Label>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

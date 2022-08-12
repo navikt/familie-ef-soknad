@@ -4,7 +4,6 @@ import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
-import { Ingress, Undertittel } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import {
   VisLabelOgSvar,
@@ -18,6 +17,7 @@ import {
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
+import { Heading, Ingress } from '@navikt/ds-react';
 
 interface Props {
   aktivitet: IAktivitet;
@@ -36,7 +36,11 @@ const OppsummeringAktiviteter: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
-      tittel={<Undertittel tag="h3">{tittel}</Undertittel>}
+      tittel={
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+      }
     >
       <StyledOppsummeringMedUndertitler>
         {aktivitet.erIArbeid &&

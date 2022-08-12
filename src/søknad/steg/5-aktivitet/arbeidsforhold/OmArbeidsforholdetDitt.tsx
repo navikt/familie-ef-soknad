@@ -4,7 +4,6 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { IArbeidsgiver } from '../../../../models/steg/aktivitet/arbeidsgiver';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
@@ -12,6 +11,7 @@ import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
 import { erSisteArbeidsgiverFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
+import { Heading, Label } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -72,9 +72,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel tag="h3">
+        <Heading size="small" level="3">
           <LocaleTekst tekst={'arbeidsforhold.tittel'} />
-        </Undertittel>
+        </Heading>
       </KomponentGruppe>
       {arbeidssituasjon.arbeidsforhold?.map((arbeidsgiver, index) => {
         return (
@@ -93,9 +93,9 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
       {erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Element>
+            <Label>
               <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
-            </Element>
+            </Label>
             <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>
               <LocaleTekst tekst={'arbeidsforhold.knapp.leggTilArbeidsgiver'} />
             </LeggTilKnapp>

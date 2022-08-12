@@ -3,7 +3,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
 import { Checkbox, Input, Textarea } from 'nav-frontend-skjema';
-
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
@@ -12,7 +11,7 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
-import { Feilmelding } from 'nav-frontend-typografi';
+import { ErrorMessage } from '@navikt/ds-react';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -187,9 +186,9 @@ const OmAndreForelder: React.FC<Props> = ({
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
           {feilmeldingNavn && (
-            <Feilmelding className={'skjemaelement__feilmelding'}>
+            <ErrorMessage className={'skjemaelement__feilmelding'}>
               {intl.formatMessage({ id: 'person.feilmelding.navn' })}
-            </Feilmelding>
+            </ErrorMessage>
           )}
         </FeltGruppe>
         <FeltGruppe>

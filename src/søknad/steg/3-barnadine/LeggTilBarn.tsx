@@ -3,15 +3,13 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LeggTilBarnUfødt from './LeggTilBarnUfødt';
 import Seksjonsgruppe from '../../../components/gruppe/SeksjonGruppe';
 import { barnetFødt } from './BarneConfig';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Undertittel } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { oppdaterBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { Button, Heading } from '@navikt/ds-react';
 
 interface Props {
   settÅpenModal: Function;
@@ -98,9 +96,9 @@ const LeggTilBarn: React.FC<Props> = ({
 
   return (
     <Seksjonsgruppe className="legg-til-barn" aria-live="polite">
-      <Undertittel>
+      <Heading size="small" level="3">
         {intl.formatMessage({ id: 'barnadine.leggtil' })}
-      </Undertittel>
+      </Heading>
 
       <KomponentGruppe>
         <LeggTilBarnUfødt
@@ -111,12 +109,13 @@ const LeggTilBarn: React.FC<Props> = ({
         />
       </KomponentGruppe>
       {boHosDeg && (
-        <Hovedknapp
+        <Button
+          variant="primary"
           aria-live="polite"
           onClick={() => leggTilEllerEndreBarn(id)}
         >
           <LocaleTekst tekst={'barnadine.leggtil'} />
-        </Hovedknapp>
+        </Button>
       )}
     </Seksjonsgruppe>
   );

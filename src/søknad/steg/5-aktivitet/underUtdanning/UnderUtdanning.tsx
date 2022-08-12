@@ -14,7 +14,6 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SkoleOgLinje from './SkoleOgLinjeInputFelter';
 import StudieArbeidsmengde from './StudieArbeidsmengde';
 import TidligereUtdanning from './TidligereUtdanning';
-import { Undertittel } from 'nav-frontend-typografi';
 import {
   utdanningDuKanFåStønadTil,
   utdanningDuKanFåStønadTilSkolepenger,
@@ -32,6 +31,7 @@ import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import styled from 'styled-components/macro';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
+import { Heading } from '@navikt/ds-react';
 
 const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
   margin-top: -2rem;
@@ -98,9 +98,9 @@ const UnderUtdanning: React.FC<Props> = ({
         <KomponentGruppe>
           {stønadstype === Stønadstype.overgangsstønad && (
             <>
-              <Undertittel className={'sentrert'} tag="h3">
+              <Heading size="small" level="3" className={'sentrert'}>
                 <LocaleTekst tekst={'utdanning.tittel'} />
-              </Undertittel>
+              </Heading>
               <Hjelpetekst
                 className={'sentrert'}
                 åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}

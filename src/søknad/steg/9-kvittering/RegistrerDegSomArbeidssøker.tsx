@@ -1,16 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Normaltekst } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
+import { BodyShort } from '@navikt/ds-react';
 
 const RegistrerDegSomArbeidssøker: FC = () => {
   return (
     <SeksjonGruppe>
       <FeltGruppe>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'kvittering.tekst.arbeidssøker'} />
-        </Normaltekst>
+        </BodyShort>
       </FeltGruppe>
       <a
         className={'knapp knapp--standard kvittering'}

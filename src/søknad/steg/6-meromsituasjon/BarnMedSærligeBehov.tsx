@@ -4,8 +4,8 @@ import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasj
 import BarnMedSærligeBehovBegrunnelse from './BarnMedSærligeBehovBegrunnelse';
 import HvilkeBarnHarSærligeBehov from './HvilkeBarnHarSærligeBehov';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import { BodyShort } from '@navikt/ds-react';
 
 const BarnMedSærligeBehov: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -13,11 +13,11 @@ const BarnMedSærligeBehov: React.FC = () => {
     <>
       <KomponentGruppe>
         <AlertStripeDokumentasjon>
-          <Normaltekst className="blokk-xs" style={{ fontWeight: 600 }}>
+          <BodyShort className="blokk-xs" style={{ fontWeight: 600 }}>
             {intl.formatMessage({
               id: 'dinSituasjon.dok.harBarnMedSærligeBehov.tittel',
             })}
-          </Normaltekst>
+          </BodyShort>
           <LocaleTekst tekst="dinSituasjon.dok.harBarnMedSærligeBehov.beskrivelse" />
         </AlertStripeDokumentasjon>
       </KomponentGruppe>

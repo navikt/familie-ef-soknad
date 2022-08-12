@@ -1,16 +1,16 @@
 import React from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { BodyShort } from '@navikt/ds-react';
 
 const SøkerErSyk: React.FC = () => {
   return (
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'dinSituasjon.alert.erSyk'} />
-        </Normaltekst>
+        </BodyShort>
       </AlertStripeDokumentasjon>
     </KomponentGruppe>
   );

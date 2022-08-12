@@ -1,10 +1,10 @@
-import React, { FC } from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { FC } from 'react';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
+import { Heading, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -18,14 +18,14 @@ const EttersendDokumentasjon: FC<Props> = ({
   return dokumentasjonsbehov.length > 0 ? (
     <KomponentGruppe>
       <FeltGruppe>
-        <Undertittel>
+        <Heading size="small" level="3">
           <LocaleTekst tekst={'dokumentasjon.ettersend.tittel'} />
-        </Undertittel>
+        </Heading>
       </FeltGruppe>
       <FeltGruppe>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={`dokumentasjon.ettersend.tekst.${stønadstype}`} />
-        </Normaltekst>
+        </BodyShort>
       </FeltGruppe>
     </KomponentGruppe>
   ) : null;

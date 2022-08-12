@@ -2,19 +2,17 @@ import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import { Ingress } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import {
   ESøkerDelerBolig,
   IBosituasjon,
 } from '../../../models/steg/bosituasjon';
-import { Undertittel } from 'nav-frontend-typografi';
-
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
+import { Heading, Ingress } from '@navikt/ds-react';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -51,7 +49,13 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   };
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+      }
+    >
       <StyledOppsummering>
         <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
         {samboerDetaljer && (

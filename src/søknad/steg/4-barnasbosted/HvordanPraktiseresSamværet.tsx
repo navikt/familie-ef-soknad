@@ -1,10 +1,10 @@
 import React from 'react';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Textarea } from 'nav-frontend-skjema';
 import { IForelder } from '../../../models/steg/forelder';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
   forelder: any;
@@ -20,26 +20,26 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
   return (
     <KomponentGruppe className="hvordan-praktiseres-samværet">
       <FeltGruppe>
-        <Element>
+        <Label>
           {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
-        </Element>
-        <Normaltekst>
-          {intl.formatMessage({ id: 'barnasbosted.normaltekst.opplysninger' })}
-        </Normaltekst>
+        </Label>
+        <BodyShort>
+          {intl.formatMessage({ id: 'barnasbosted.BodyShort.opplysninger' })}
+        </BodyShort>
         <ul>
           <li>
-            <Normaltekst>
+            <BodyShort>
               {intl.formatMessage({
-                id: 'barnasbosted.normaltekst.hvormangedager',
+                id: 'barnasbosted.BodyShort.hvormangedager',
               })}
-            </Normaltekst>
+            </BodyShort>
           </li>
           <li>
-            <Normaltekst>
+            <BodyShort>
               {intl.formatMessage({
-                id: 'barnasbosted.normaltekst.nårreiserbarnet',
+                id: 'barnasbosted.BodyShort.nårreiserbarnet',
               })}
-            </Normaltekst>
+            </BodyShort>
           </li>
         </ul>
       </FeltGruppe>

@@ -5,13 +5,13 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
 import { hentTekst } from '../../../utils/søknad';
-import { Element } from 'nav-frontend-typografi';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Input } from 'nav-frontend-skjema';
 import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../models/søknad/person';
+import { Label } from '@navikt/ds-react';
 
 interface Props {
   tittel: string;
@@ -112,7 +112,7 @@ const OmSamboerenDin: FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Element tag="h3">{hentTekst(tittel, intl)}</Element>
+        <Label>{hentTekst(tittel, intl)}</Label>
       </FeltGruppe>
 
       <KomponentGruppe>

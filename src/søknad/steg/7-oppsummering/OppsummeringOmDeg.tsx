@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
+import { FC } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -11,7 +10,6 @@ import {
 } from '../../../models/steg/omDeg/medlemskap';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import { ISøker } from '../../../models/søknad/person';
-import { Undertittel, Ingress } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import {
@@ -21,6 +19,7 @@ import {
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useNavigate } from 'react-router-dom';
+import { BodyShort, Heading, Ingress, Label } from '@navikt/ds-react';
 
 interface Props {
   søker: ISøker;
@@ -53,35 +52,41 @@ const OppsummeringOmDeg: FC<Props> = ({
   );
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+      }
+    >
       <KomponentGruppe>
         <StyledOppsummering>
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               <LocaleTekst tekst="person.ident" />
-            </Element>
-            <Normaltekst>{omDeg.fnr}</Normaltekst>
+            </Label>
+            <BodyShort>{omDeg.fnr}</BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               <LocaleTekst tekst="person.statsborgerskap" />
-            </Element>
-            <Normaltekst>{omDeg.statsborgerskap}</Normaltekst>
+            </Label>
+            <BodyShort>{omDeg.statsborgerskap}</BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               <LocaleTekst tekst="person.adresse" />
-            </Element>
-            <Normaltekst>{omDeg.adresse.adresse}</Normaltekst>
-            <Normaltekst>
+            </Label>
+            <BodyShort>{omDeg.adresse.adresse}</BodyShort>
+            <BodyShort>
               {omDeg.adresse.postnummer} {omDeg.adresse.poststed}
-            </Normaltekst>
+            </BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               <LocaleTekst tekst="person.telefonnr" />
-            </Element>
-            <Normaltekst>{omDeg.kontakttelefon}</Normaltekst>
+            </Label>
+            <BodyShort>{omDeg.kontakttelefon}</BodyShort>
           </div>
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">

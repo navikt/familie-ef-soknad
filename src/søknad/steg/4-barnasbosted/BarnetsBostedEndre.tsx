@@ -6,7 +6,6 @@ import OmAndreForelder from './OmAndreForelder';
 import SkalBarnetBoHosSøker from './SkalBarnetBoHosSøker';
 import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
-import { Knapp } from 'nav-frontend-knapper';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
@@ -26,8 +25,8 @@ import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
+import { BodyShort, Button, Label } from '@navikt/ds-react';
 
 const lagOppdatertBarneliste = (
   barneliste: IBarn[],
@@ -239,15 +238,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
               {barn.medforelder?.verdi && (
                 <>
-                  <Element>Navn</Element>
-                  <Normaltekst>
+                  <Label>Navn</Label>
+                  <BodyShort>
                     {barn.medforelder.verdi.navn
                       ? barn.medforelder.verdi.navn
                       : `${hentTekst(
                           'barnekort.medforelder.hemmelig',
                           intl
                         )}, ${barn.medforelder.verdi.alder}`}
-                  </Normaltekst>
+                  </BodyShort>
                 </>
               )}
             </SeksjonGruppe>
@@ -307,7 +306,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               ) ||
               utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
               harForelderFraPdl) && (
-              <Knapp onClick={leggTilForelder}>
+              <Button variant="secondary" onClick={leggTilForelder}>
                 <LocaleTekst
                   tekst={
                     !sisteBarnUtfylt && !erPåSisteBarn
@@ -315,7 +314,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                       : 'knapp.neste'
                   }
                 />
-              </Knapp>
+              </Button>
             )}
         </div>
       </div>

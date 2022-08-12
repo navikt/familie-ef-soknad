@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { Element, Ingress, Normaltekst } from 'nav-frontend-typografi';
+import { useEffect } from 'react';
 import { hentTekst } from '../utils/søknad';
 import { formatDate, strengTilDato } from '../utils/dato';
 import { useLocation } from 'react-router-dom';
@@ -10,9 +9,11 @@ import {
   ISpørsmålFelt,
   ISpørsmålListeFelt,
 } from '../models/søknad/søknadsfelter';
+
 import { harValgtSvar } from './spørsmålogsvar';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { BodyShort, Ingress, Label } from '@navikt/ds-react';
 
 export const visListeAvLabelOgSvar = (
   liste: any[] | undefined,
@@ -46,23 +47,23 @@ export const verdiTilTekstsvar = (
       <ul>
         {verdi.map((v, index) => (
           <li key={index}>
-            <Normaltekst>{v}</Normaltekst>
+            <BodyShort>{v}</BodyShort>
           </li>
         ))}
       </ul>
     );
   } else if (typeof verdi === 'number') {
-    return <Normaltekst>{verdi.toString()}</Normaltekst>;
+    return <BodyShort>{verdi.toString()}</BodyShort>;
   } else if (typeof verdi === 'string') {
     try {
       if (isValidISODateString(verdi)) {
         const formattertDato = formatDate(strengTilDato(verdi));
-        return <Normaltekst>{formattertDato}</Normaltekst>;
+        return <BodyShort>{formattertDato}</BodyShort>;
       }
     } catch (e) {
-      return <Normaltekst>{verdi}</Normaltekst>;
+      return <BodyShort>{verdi}</BodyShort>;
     }
-    return <Normaltekst>{verdi}</Normaltekst>;
+    return <BodyShort>{verdi}</BodyShort>;
   } else if (typeof verdi === 'boolean') {
     let jaTekst = 'Ja';
     let neiTekst = 'Nei';
@@ -73,12 +74,12 @@ export const verdiTilTekstsvar = (
     }
 
     if (verdi === true) {
-      return <Normaltekst>{jaTekst}</Normaltekst>;
+      return <BodyShort>{jaTekst}</BodyShort>;
     } else {
-      return <Normaltekst>{neiTekst}</Normaltekst>;
+      return <BodyShort>{neiTekst}</BodyShort>;
     }
   } else if (verdi instanceof Date) {
-    return <Normaltekst>{formatDate(verdi)}</Normaltekst>;
+    return <BodyShort>{formatDate(verdi)}</BodyShort>;
   } else {
     return null;
   }
@@ -93,15 +94,15 @@ const VisPeriode = (objekt: any, tittel?: string) => {
     <>
       {tittel ? (
         <div className="spørsmål-og-svar">
-          <Element>{tittel}</Element>
+          <Label>{tittel}</Label>
         </div>
       ) : null}
       <div className="spørsmål-og-svar">
-        <Element>{objekt.fra.label}</Element>
+        <Label>{objekt.fra.label}</Label>
         {verdiTilTekstsvar(objekt.fra.verdi, intl)}
       </div>
       <div className="spørsmål-og-svar">
-        <Element>{objekt.til.label}</Element>
+        <Label>{objekt.til.label}</Label>
         {verdiTilTekstsvar(objekt.til.verdi, intl)}
       </div>
     </>
@@ -129,7 +130,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       harValgtSvar(spørsmål.verdi) &&
       label && (
         <div className="spørsmål-og-svar" key={index}>
-          <Element>{label}</Element>
+          <Label>{label}</Label>
           {verdiTilTekstsvar(spørsmål.verdi, intl)}
         </div>
       )
@@ -146,7 +147,7 @@ export const visLabelOgVerdiForSpørsmålFelt = (
     <>
       {overskrift && <Ingress>{overskrift}</Ingress>}
       <div className="spørsmål-og-svar">
-        <Element>{feltObjekt.label}</Element>
+        <Label>{feltObjekt.label}</Label>
         {verdiTilTekstsvar(feltObjekt.verdi, intl)}
       </div>
     </>
@@ -158,11 +159,11 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
 ) => {
   return (
     <div className="spørsmål-og-svar">
-      <Element>{feltListeObjekt.label}</Element>
+      <Label>{feltListeObjekt.label}</Label>
       <ul>
         {feltListeObjekt.verdi.map((svar) => (
           <li>
-            <Normaltekst>{svar}</Normaltekst>
+            <BodyShort>{svar}</BodyShort>
           </li>
         ))}
       </ul>

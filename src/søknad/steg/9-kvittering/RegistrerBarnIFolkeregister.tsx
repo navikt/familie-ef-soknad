@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import { IBarn } from '../../../models/steg/barn';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import { flereBarnsNavn } from '../../../utils/barn';
@@ -10,6 +9,7 @@ import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
+import { BodyShort } from '@navikt/ds-react';
 
 interface Props {
   barna: IBarn[];
@@ -41,7 +41,7 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
   return (
     <SeksjonGruppe>
       <StyledUndertittel>{undertittelMedNavn}</StyledUndertittel>
-      <Normaltekst>{tekst}</Normaltekst>
+      <BodyShort>{tekst}</BodyShort>
       <KomponentGruppe>
         <a
           target={'_blank'}

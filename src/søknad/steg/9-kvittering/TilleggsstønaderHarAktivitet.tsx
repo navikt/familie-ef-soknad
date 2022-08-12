@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Lenke from 'nav-frontend-lenker';
 import styled from 'styled-components/macro';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`
   .typo-normal {
@@ -19,28 +19,28 @@ const TilleggsstønaderHarAktivitet: FC = () => {
   return (
     <SeksjonGruppe>
       <FeltGruppe>
-        <Undertittel>
+        <Heading size="small">
           <LocaleTekst
             tekst={'kvittering.tittel.tilleggsstønader.aktivitetskrav'}
           />
-        </Undertittel>
+        </Heading>
       </FeltGruppe>
       <FeltGruppe>
         <StyledBeskrivelse>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst
               tekst={'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav'}
             />
-          </Normaltekst>
+          </BodyShort>
         </StyledBeskrivelse>
       </FeltGruppe>
       <KomponentGruppe>
         <Lenke href={'https://www.nav.no/familie/alene-med-barn/barnetilsyn'}>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst
               tekst={'kvittering.lenke.tilleggsstønader.aktivitetskrav'}
             />
-          </Normaltekst>
+          </BodyShort>
         </Lenke>
       </KomponentGruppe>
       <KomponentGruppe>

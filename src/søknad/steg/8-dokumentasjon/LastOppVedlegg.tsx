@@ -9,11 +9,11 @@ import {
   BarnetilsynDokumentasjon,
   IDokumentasjon,
 } from '../../../models/steg/dokumentasjon';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { EFiltyper } from '../../../helpers/filtyper';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 interface Props {
   dokumentasjon: IDokumentasjon;
@@ -42,15 +42,15 @@ const LastOppVedlegg: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <FeltGruppe>
-        <Undertittel tag="h3">
+        <Heading size="small" level="3">
           <LocaleTekst tekst={dokumentasjon.tittel} />
-        </Undertittel>
+        </Heading>
       </FeltGruppe>
       {dokumentasjon.beskrivelse && (
         <FeltGruppe>
-          <Normaltekst>
+          <BodyShort>
             <FormattedHtmlMessage id={dokumentasjon.beskrivelse} />
-          </Normaltekst>
+          </BodyShort>
         </FeltGruppe>
       )}
       {hvisIkkeFakturaForBarnepass && (

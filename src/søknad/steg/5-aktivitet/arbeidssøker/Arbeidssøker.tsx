@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { Undertittel } from 'nav-frontend-typografi';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   erSøkerArbeidssøker,
@@ -24,6 +23,7 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import AlertStripe from 'nav-frontend-alertstriper';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -84,9 +84,9 @@ const Arbeidssøker: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Undertittel className={'sentrert'} tag="h3">
+        <Heading size="small" level="3" className={'sentrert'}>
           <LocaleTekst tekst={'arbeidssøker.tittel'} />
-        </Undertittel>
+        </Heading>
       </KomponentGruppe>
 
       <KomponentGruppe>

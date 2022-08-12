@@ -3,7 +3,6 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { Element, Undertittel } from 'nav-frontend-typografi';
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { nyttTekstFelt } from '../../../../helpers/tommeSøknadsfelter';
 import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
@@ -11,6 +10,7 @@ import { erSisteFirmaUtfylt } from '../../../../helpers/steg/aktivitetvalidering
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 import { IFirma } from '../../../../models/steg/aktivitet/firma';
 import OmFirmaetDitt from './OmFirmaetDitt';
+import { Heading, Label } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -59,9 +59,9 @@ const OmFirmaeneDine: React.FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel tag="h3">
+        <Heading size="small" level="3">
           <LocaleTekst tekst={'firmaer.tittel'} />
-        </Undertittel>
+        </Heading>
       </KomponentGruppe>
       {firmaer?.map((firma, index) => {
         return (
@@ -79,9 +79,9 @@ const OmFirmaeneDine: React.FC<Props> = ({
       {erSisteFirmaUtfylt(firmaer) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Element>
+            <Label>
               <LocaleTekst tekst={'firmaer.label.flereFirmaer'} />
-            </Element>
+            </Label>
             <LeggTilKnapp onClick={() => leggTilFirma()}>
               <LocaleTekst tekst={'firmaer.knapp.leggTilFirma'} />
             </LeggTilKnapp>

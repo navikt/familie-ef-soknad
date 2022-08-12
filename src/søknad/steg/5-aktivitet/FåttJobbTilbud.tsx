@@ -1,5 +1,4 @@
 import React from 'react';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import Datovelger, {
   DatoBegrensning,
@@ -9,6 +8,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { IAktivitet } from '../../../models/steg/aktivitet/aktivitet';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../language/LocaleTekst';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -32,13 +32,13 @@ const FåttJobbTilbud: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
-        <Element>
+        <Label>
           <LocaleTekst tekst={'dokumentasjon.arbeidskontrakt.tittel'} />
-        </Element>
+        </Label>
         <br />
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'dokumentasjon.arbeidskontrakt.beskrivelse'} />
-        </Normaltekst>
+        </BodyShort>
       </AlertStripeDokumentasjon>
       <Datovelger
         valgtDato={arbeidssituasjon.datoOppstartJobb?.verdi}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
@@ -21,6 +20,7 @@ import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { ISvar } from '../../../../models/felles/spørsmålogsvar';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -127,9 +127,9 @@ const Arbeidsgiver: React.FC<Props> = ({
   return (
     <StyledArbeidsgiver aria-live="polite">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'} tag="h4">
+        <Heading size="small" level="4" className={'tittel'}>
           {arbeidsgiverTittel}
-        </Undertittel>
+        </Heading>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: arbeidsforhold?.length === 1,

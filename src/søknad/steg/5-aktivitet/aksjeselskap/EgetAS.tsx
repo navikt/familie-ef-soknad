@@ -4,7 +4,6 @@ import {
   IAktivitet,
 } from '../../../../models/steg/aktivitet/aktivitet';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import { Element, Undertittel } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
@@ -13,6 +12,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Aksjeselskap from './Aksjeselskap';
 import { erAksjeselskapFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
+import { Heading, Label } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -60,9 +60,9 @@ const EgetAS: FC<Props> = ({
   return (
     <>
       <KomponentGruppe className={'sentrert'}>
-        <Undertittel tag="h3">
+        <Heading size="small" level="3">
           <LocaleTekst tekst={'egetAS.tittel'} />
-        </Undertittel>
+        </Heading>
       </KomponentGruppe>
 
       {arbeidssituasjon.egetAS?.map((aksjeselskap, index) => {
@@ -80,9 +80,9 @@ const EgetAS: FC<Props> = ({
       {erAksjeselskapFerdigUtfylt(egetAS, inkludertArbeidsmengde) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Element>
+            <Label>
               <LocaleTekst tekst={'egetAS.label.flere'} />
-            </Element>
+            </Label>
             <LeggTilKnapp onClick={() => leggTilAksjeselskap()}>
               <LocaleTekst tekst={'egetAS.knapp.leggtil'} />
             </LeggTilKnapp>
