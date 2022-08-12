@@ -15,7 +15,7 @@ import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
-import { Label } from '@navikt/ds-react';
+import { Alert, Button, Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();

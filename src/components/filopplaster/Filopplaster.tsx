@@ -22,7 +22,7 @@ import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
 import FormData from 'form-data';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Alert, BodyShort, BodyShort, BodyShort } from '@navikt/ds-react';
+import { Alert, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   oppdaterDokumentasjon: (

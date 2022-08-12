@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { IStatus } from '../../../arbeidssøkerskjema/innsending/typer';
 import { ISøknad } from '../../../models/søknad/søknad';
