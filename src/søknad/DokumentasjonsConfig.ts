@@ -188,7 +188,7 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     spørsmålid: EBarnepass.årsakBarnepass,
     label: '',
     svarid: EÅrsakBarnepass.utenomVanligArbeidstid,
-    tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
+    tittel: 'dokumentasjon.barnepassRoterendeArbeidstid.tittel',
     harSendtInn: false,
   },
 
@@ -197,7 +197,7 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     spørsmålid: EBarnepass.årsakBarnepass,
     label: '',
     svarid: EÅrsakBarnepass.myeBortePgaJobb,
-    tittel: 'dokumentasjon.barnepassRoterendeArbeidstid.tittel',
+    tittel: 'dokumentasjon.barnepassArbeidstid.tittel',
     harSendtInn: false,
   },
 
