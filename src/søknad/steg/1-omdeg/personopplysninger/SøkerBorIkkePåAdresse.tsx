@@ -1,11 +1,10 @@
 import { FC } from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import Lenke from 'nav-frontend-lenker';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
-import { Label, BodyShort } from '@navikt/ds-react';
+import { Label, BodyShort, Alert } from '@navikt/ds-react';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -24,13 +23,9 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
   return (
     <>
       <KomponentGruppe>
-        <AlertStripe
-          type={'advarsel'}
-          form={'inline'}
-          className={'avstand-øverst'}
-        >
+        <Alert variant="warning" inline>
           <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-        </AlertStripe>
+        </Alert>
       </KomponentGruppe>
       <KomponentGruppe>
         <FeltGruppe>

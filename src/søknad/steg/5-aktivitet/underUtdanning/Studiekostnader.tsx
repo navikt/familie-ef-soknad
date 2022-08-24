@@ -8,10 +8,9 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import styled from 'styled-components/macro';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../language/FormattedHtmlMessage';
-import { Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 
 interface Props {
   utdanning: IDetaljertUtdanning;
@@ -106,9 +105,9 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
         </AlertStripeDokumentasjon>
       </FeltGruppe>
       <FeltGruppe>
-        <AlertStripeInfo className={'fjernBakgrunn'}>
+        <Alert variant="info" inline>
           <FormattedHtmlMessage id={'utdanning.andreUtgifter.tekst'} />
-        </AlertStripeInfo>
+        </Alert>
       </FeltGruppe>
     </KomponentGruppe>
   );

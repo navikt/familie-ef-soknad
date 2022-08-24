@@ -20,10 +20,9 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import AlertStripe from 'nav-frontend-alertstriper';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Heading } from '@navikt/ds-react';
+import { Alert, Heading } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -96,9 +95,9 @@ const Arbeidssøker: React.FC<Props> = ({
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
         {arbeidssøker.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
-          <AlertStripe type={'info'} form={'inline'}>
+          <Alert variant="info" inline>
             <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
-          </AlertStripe>
+          </Alert>
         )}
       </KomponentGruppe>
 

@@ -263,7 +263,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
 
       {årsakEnslig?.svarid === EBegrunnelse.dødsfall && (
         <KomponentGruppe>
-          <Alert variant="info" className={'fjernBakgrunn'}>
+          <Alert variant="info" inline>
             <FormattedHtmlMessage id={alertTekstForDødsfall} />
           </Alert>
         </KomponentGruppe>

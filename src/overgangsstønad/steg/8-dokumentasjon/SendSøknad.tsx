@@ -6,7 +6,6 @@ import { parseISO } from 'date-fns';
 import { useSøknad } from '../../../context/SøknadContext';
 import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { hentPath } from '../../../utils/routing';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -30,7 +29,7 @@ import {
   logInnsendingFeilet,
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
-import { BodyShort, Button } from '@navikt/ds-react';
+import { Alert, BodyShort, Button } from '@navikt/ds-react';
 
 interface Innsending {
   status: string;
@@ -113,14 +112,14 @@ const SendSøknadKnapper: FC = () => {
     <>
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <Alert variant="warning" inline>
             <BodyShort>{innsendingState.melding}</BodyShort>
-          </AlertStripe>
+          </Alert>
         </KomponentGruppe>
       )}
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
         <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <Alert variant="warning" inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
             <Link
               to={{
@@ -134,7 +133,7 @@ const SendSøknadKnapper: FC = () => {
               <LocaleTekst tekst="dokumentasjon.alert.link.fylleInn" />
             </Link>
             <LocaleTekst tekst="dokumentasjon.alert.manglende" />
-          </AlertStripe>
+          </Alert>
         </KomponentGruppe>
       )}
       <SeksjonGruppe className={'sentrert'}>

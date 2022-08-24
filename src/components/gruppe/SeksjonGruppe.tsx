@@ -4,11 +4,6 @@ import styled from 'styled-components/macro';
 const StyledFeltGruppe = styled.section`
   padding-bottom: 80px;
 
-  .alertstripe.fjernBakgrunn {
-    background: transparent;
-    border: none;
-    padding-left: 0;
-  }
   .typo-normal,
   .typo-element {
     font-size: 18px;

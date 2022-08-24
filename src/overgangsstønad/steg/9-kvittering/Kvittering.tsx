@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-
-import AlertStripe from 'nav-frontend-alertstriper';
+import { useEffect } from 'react';
 import DineSaker from '../../../søknad/steg/9-kvittering/DineSaker';
 import Feilside from '../../../components/feil/Feilside';
 import RegistrerDegSomArbeidssøker from '../../../søknad/steg/9-kvittering/RegistrerDegSomArbeidssøker';
@@ -28,6 +26,7 @@ import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useMount } from '../../../utils/hooks';
+import { Alert } from '@navikt/ds-react';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -87,7 +86,7 @@ const Kvittering: React.FC = () => {
       routesStønad={RoutesOvergangsstonad}
     >
       <SeksjonGruppe>
-        <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
+        <Alert variant="success">{mottattAlert}</Alert>
       </SeksjonGruppe>
       <DineSaker />
       <EttersendDokumentasjon

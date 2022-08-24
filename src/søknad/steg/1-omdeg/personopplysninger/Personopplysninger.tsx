@@ -1,5 +1,4 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
@@ -14,7 +13,7 @@ import { ISøker } from '../../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { Alert, BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
   søker: ISøker;
@@ -51,9 +50,9 @@ const Personopplysninger: React.FC<Props> = ({
     <SeksjonGruppe aria-live={'polite'}>
       <KomponentGruppe>
         <FeltGruppe>
-          <AlertStripe type={'info'} form={'inline'}>
+          <Alert variant="info" inline>
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
-          </AlertStripe>
+          </Alert>
         </FeltGruppe>
 
         <FeltGruppe>

@@ -18,10 +18,10 @@ import isBefore from 'date-fns/isBefore';
 import { dagensDato, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
-import AlertStripe from 'nav-frontend-alertstriper';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
   dinSituasjon: IDinSituasjon;
@@ -184,9 +184,9 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
                 fetSkrift={true}
               />
               {erValgtDatoMindreEnn6mndSiden && (
-                <AlertStripe type={'info'} form={'inline'}>
+                <Alert variant="info" inline>
                   <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
-                </AlertStripe>
+                </Alert>
               )}
             </KomponentGruppe>
           )}

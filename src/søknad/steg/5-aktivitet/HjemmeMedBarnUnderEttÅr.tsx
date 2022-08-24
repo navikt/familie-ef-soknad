@@ -1,17 +1,17 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { Alert } from '@navikt/ds-react';
 
 const HjemmeMedBarnUnderEttÅr: React.FC = () => {
   return (
     <>
       <KomponentGruppe>
-        <AlertStripe type={'info'} form={'inline'}>
+        <Alert variant="info" inline>
           <LocaleTekst
             tekst={'arbeidssituasjon.alert.aktivitetspliktFraEttÅr'}
           />
-        </AlertStripe>
+        </Alert>
       </KomponentGruppe>
     </>
   );

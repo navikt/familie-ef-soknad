@@ -1,5 +1,4 @@
-import React, { FC } from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
+import { FC } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
@@ -16,6 +15,7 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { årsakBarnepass } from './BarnepassConfig';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -73,9 +73,9 @@ const ÅrsakBarnepass: FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <AlertStripe type={'advarsel'} form={'inline'}>
+        <Alert variant="warning" inline>
           <LocaleTekst tekst={'barnepass.alert-advarsel.årsak'} />
-        </AlertStripe>
+        </Alert>
       </KomponentGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
@@ -87,9 +87,9 @@ const ÅrsakBarnepass: FC<Props> = ({
       </KomponentGruppe>
       <KomponentGruppe>
         {valgtÅrsak === EÅrsakBarnepass.myeBortePgaJobb && (
-          <AlertStripe type={'info'} form={'inline'}>
+          <Alert variant="info" inline>
             <LocaleTekst tekst={'barnepass.alert-info.myeBortePgaJobb'} />
-          </AlertStripe>
+          </Alert>
         )}
 
         {dokumentasjonsbehovTekst && (
