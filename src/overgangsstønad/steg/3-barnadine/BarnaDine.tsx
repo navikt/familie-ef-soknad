@@ -16,6 +16,12 @@ import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Button, Label } from '@navikt/ds-react';
+import styled from 'styled-components';
+
+const VenterDuBarnLabel = styled(Label)`
+  display: block;
+  padding-bottom: 2rem;
+`;
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -88,8 +94,10 @@ const BarnaDine: React.FC = () => {
             ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Label>{hentTekst('barnadine.leggtil.info', intl)}</Label>
-                <Button onClick={() => settÅpenModal(true)}>
+                <VenterDuBarnLabel>
+                  {hentTekst('barnadine.leggtil.info', intl)}
+                </VenterDuBarnLabel>
+                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
                   {hentTekst('barnadine.leggtil', intl)}
                 </Button>
               </div>
