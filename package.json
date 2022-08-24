@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.5",
-    "@navikt/ds-css": "^0.18.29",
-    "@navikt/ds-react": "^0.19.17",
+    "@navikt/ds-css": "^1.0.2",
+    "@navikt/ds-react": "^1.0.2",
     "@navikt/fnrvalidator": "^1.2.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/client": "^3.3.3",
