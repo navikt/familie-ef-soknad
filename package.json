@@ -77,13 +77,9 @@
     "nav-frontend-paneler-style": "^2.0.2",
     "nav-frontend-skjema": "^4.0.6",
     "nav-frontend-skjema-style": "^3.0.3",
-    "nav-frontend-spinner": "^3.0.1",
-    "nav-frontend-spinner-style": "^1.0.2",
     "nav-frontend-stegindikator": "^2.0.3",
     "nav-frontend-stegindikator-style": "^2.0.2",
     "nav-frontend-tekstomrade": "^3.0.2",
-    "nav-frontend-typografi": "^4.0.2",
-    "nav-frontend-typografi-style": "^2.0.2",
     "nav-frontend-veileder": "^3.0.3",
     "nav-frontend-veileder-style": "^3.0.2",
     "nav-frontend-veilederpanel": "^2.0.3",
@@ -176,9 +172,6 @@
       "react": "$react"
     },
     "nav-frontend-veilederpanel": {
-      "react": "$react"
-    },
-    "nav-frontend-spinner": {
       "react": "$react"
     },
     "nav-frontend-lukknapp": {

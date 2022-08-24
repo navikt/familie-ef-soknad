@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import {
   hentPersonData,
   hentTekst,
@@ -25,6 +24,7 @@ import { logAdressesperre } from '../utils/amplitude';
 import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { Loader } from '@navikt/ds-react';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -123,10 +123,10 @@ const SkolepengerApp = () => {
         <Feilside tekstId={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
       );
     } else {
-      return <NavFrontendSpinner className="spinner" />;
+      return <Loader variant="neutral" size="xlarge" title="venter..." />;
     }
   } else {
-    return <NavFrontendSpinner className="spinner" />;
+    return <Loader variant="neutral" size="xlarge" title="venter..." />;
   }
 };
 
