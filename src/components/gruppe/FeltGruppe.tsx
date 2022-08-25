@@ -17,7 +17,7 @@ const StyledFeltGruppe = styled.div`
     padding-bottom: 0;
   }
 
-  .alertstripe {
+  .navds-alert {
     padding-top: 1rem;
   }
 

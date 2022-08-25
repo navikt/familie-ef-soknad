@@ -11,7 +11,7 @@ const StyledKomponentGruppe = styled.div`
     margin-bottom: 0;
   }
 
-  .alertstripe {
+  .navds-alert {
     padding-top: 1rem;
   }
 
