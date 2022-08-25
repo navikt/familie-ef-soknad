@@ -67,7 +67,7 @@ const Side: React.FC<ISide> = ({
         {skalViseKnapper && (
           <>
             {!erSpørsmålBesvart && (
-              <BodyShort className={'side__uu-tekst'}>
+              <BodyShort size="small" className={'side__uu-tekst'}>
                 {intl.formatMessage({ id: 'knapp.uu-tekst' })}
               </BodyShort>
             )}
