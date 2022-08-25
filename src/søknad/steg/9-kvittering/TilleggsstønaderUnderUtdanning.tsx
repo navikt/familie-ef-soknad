@@ -11,7 +11,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { BodyShort, Heading } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`
-  .typo-normal {
+  .navds-body-short {
     li {
       padding-bottom: 0.5rem;
     }

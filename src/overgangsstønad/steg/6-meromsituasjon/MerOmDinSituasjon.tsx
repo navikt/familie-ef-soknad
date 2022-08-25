@@ -44,7 +44,7 @@ import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { BodyShort } from '@navikt/ds-react';
 
 const StyledHjelpetekst = styled.div`
-  .typo-normal {
+  .navds-body-short {
     padding-bottom: 1rem;
   }
 `;

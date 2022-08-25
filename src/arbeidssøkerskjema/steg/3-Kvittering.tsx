@@ -14,7 +14,7 @@ import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, BodyShort, Link } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`
-  .typo-normal {
+  .navds-body-short {
     li {
       padding-bottom: 0.5rem;
     }

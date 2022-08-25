@@ -7,7 +7,7 @@ const StyledAlertstripe = styled.div`
   padding-top: 2rem;
   display: flex;
   align-content: center;
-  .typo-normal {
+  .navds-body-short {
     font-size: 1rem;
   }
 

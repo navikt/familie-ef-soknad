@@ -13,7 +13,7 @@ import { erDatoInnaforBegrensinger } from './utils';
 import { BodyShort } from '@navikt/ds-react';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
-  .typo-normal {
+  .navds-body-short {
     font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
   }
 `;

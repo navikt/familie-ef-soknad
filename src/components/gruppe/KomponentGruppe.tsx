@@ -15,8 +15,9 @@ const StyledKomponentGruppe = styled.div`
     padding-top: 1rem;
   }
 
-  .typo-normal,
-  .typo-element,
+  .navds-body-short,
+  .navds-body-long,
+  .navds-label,
   .inputPanel__label,
   .skjemaelement__label {
     font-size: 18px;

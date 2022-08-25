@@ -13,7 +13,7 @@ const StyledLenkeMedIkon = styled.div`
     text-align: left;
     background: none;
 
-    .typo-normal {
+    .navds-body-short {
       margin-left: 1rem;
     }
 

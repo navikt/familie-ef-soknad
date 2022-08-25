@@ -25,7 +25,7 @@ const StyledComponent = styled.div`
   .skjemaelement {
     grid-area: input;
   }
-  .typo-normal {
+  .navds-body-short {
     padding-left: 0.5rem;
     grid-area: tegn;
     align-self: center;
