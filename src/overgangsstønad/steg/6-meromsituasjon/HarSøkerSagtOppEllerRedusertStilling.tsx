@@ -184,7 +184,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
                 fetSkrift={true}
               />
               {erValgtDatoMindreEnn6mndSiden && (
-                <Alert variant="info" inline>
+                <Alert size="small" variant="info" inline>
                   <LocaleTekst tekst={valgtDatoMindreEnn6mndSidenAlert} />
                 </Alert>
               )}

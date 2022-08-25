@@ -74,7 +74,7 @@ const BarnaDine: React.FC = () => {
         informasjonstekstId="barnadine.skolepenger.info.brukpdf"
       >
         <div className="barna-dine">
-          <Alert variant="info" className="informasjonstekst">
+          <Alert size="small" variant="info" className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
           </Alert>
           <div className="barnekort-wrapper">

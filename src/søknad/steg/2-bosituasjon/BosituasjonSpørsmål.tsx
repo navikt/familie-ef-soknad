@@ -110,7 +110,7 @@ const BosituasjonSpørsmål: FC<Props> = ({
                 <FormattedHtmlMessage id={valgtSvar.alert_tekstid} />
               </AlertStripeDokumentasjon>
             ) : (
-              <Alert variant="warning" inline>
+              <Alert size="small" variant="warning" inline>
                 <LocaleTekst tekst={valgtSvar.alert_tekstid} />
               </Alert>
             )}

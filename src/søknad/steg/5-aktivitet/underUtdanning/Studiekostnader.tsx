@@ -105,7 +105,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
         </AlertStripeDokumentasjon>
       </FeltGruppe>
       <FeltGruppe>
-        <Alert variant="info" inline>
+        <Alert size="small" variant="info" inline>
           <FormattedHtmlMessage id={'utdanning.andreUtgifter.tekst'} />
         </Alert>
       </FeltGruppe>

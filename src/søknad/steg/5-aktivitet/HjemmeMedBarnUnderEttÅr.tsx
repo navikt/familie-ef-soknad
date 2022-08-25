@@ -7,7 +7,7 @@ const HjemmeMedBarnUnderEttÅr: React.FC = () => {
   return (
     <>
       <KomponentGruppe>
-        <Alert variant="info" inline>
+        <Alert size="small" variant="info" inline>
           <LocaleTekst
             tekst={'arbeidssituasjon.alert.aktivitetspliktFraEttÅr'}
           />

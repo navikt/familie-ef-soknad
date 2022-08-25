@@ -50,7 +50,7 @@ const Personopplysninger: React.FC<Props> = ({
     <SeksjonGruppe aria-live={'polite'}>
       <KomponentGruppe>
         <FeltGruppe>
-          <Alert variant="info" inline>
+          <Alert size="small" variant="info" inline>
             <LocaleTekst tekst={'personopplysninger.alert.infohentet'} />
           </Alert>
         </FeltGruppe>

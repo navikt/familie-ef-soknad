@@ -95,7 +95,7 @@ const Arbeidssøker: React.FC<Props> = ({
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
         {arbeidssøker.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
-          <Alert variant="info" inline>
+          <Alert size="small" variant="info" inline>
             <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
           </Alert>
         )}

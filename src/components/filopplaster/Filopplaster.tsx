@@ -215,6 +215,7 @@ const Filopplaster: React.FC<Props> = ({
           <div className="feilmelding">
             {feilmeldinger.map((feilmelding) => (
               <Alert
+                size="small"
                 key={feilmelding}
                 variant="error"
                 className="feilmelding-alert"

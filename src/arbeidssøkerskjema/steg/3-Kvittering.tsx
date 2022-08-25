@@ -39,7 +39,9 @@ const Kvittering: React.FC = () => {
       skalViseKnapper={false}
     >
       <KomponentGruppe>
-        <Alert variant="success">{mottattAlert}</Alert>
+        <Alert size="small" variant="success">
+          {mottattAlert}
+        </Alert>
       </KomponentGruppe>
       <KomponentGruppe>
         <StyledBeskrivelse>

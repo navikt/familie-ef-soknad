@@ -115,7 +115,7 @@ const BarnaDine: React.FC = () => {
               />
             </FeltGruppe>
           </div>
-          <Alert variant="info" className="informasjonstekst">
+          <Alert size="small" variant="info" className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
           </Alert>
           <div className="barnekort-wrapper">

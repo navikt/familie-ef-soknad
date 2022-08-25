@@ -86,7 +86,9 @@ const Kvittering: React.FC = () => {
       routesStønad={RoutesOvergangsstonad}
     >
       <SeksjonGruppe>
-        <Alert variant="success">{mottattAlert}</Alert>
+        <Alert size="small" variant="success">
+          {mottattAlert}
+        </Alert>
       </SeksjonGruppe>
       <DineSaker />
       <EttersendDokumentasjon

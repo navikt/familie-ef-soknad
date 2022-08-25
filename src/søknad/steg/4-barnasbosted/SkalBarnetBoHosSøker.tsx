@@ -61,7 +61,7 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Alert variant="warning" inline>
+        <Alert size="small" variant="warning" inline>
           {hentSpørsmålTekst('barnasbosted.alert.måBoHosDeg')}
         </Alert>
       </FeltGruppe>
@@ -94,14 +94,14 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
       )}
       {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja && (
         <FeltGruppe>
-          <Alert variant="info" inline>
+          <Alert size="small" variant="info" inline>
             {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.ja', intl)}
           </Alert>
         </FeltGruppe>
       )}
       {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.nei && (
         <FeltGruppe>
-          <Alert variant="warning" inline>
+          <Alert size="small" variant="warning" inline>
             {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.nei', intl)}
           </Alert>
         </FeltGruppe>

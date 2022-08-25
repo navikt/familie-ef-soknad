@@ -82,7 +82,12 @@ const Side: React.FC<ISide> = ({
         </Panel>
 
         {informasjonstekstId && (
-          <Alert variant="info" className="side__informasjon" inline>
+          <Alert
+            size="small"
+            variant="info"
+            className="side__informasjon"
+            inline
+          >
             <LocaleTekst tekst={informasjonstekstId} />
           </Alert>
         )}

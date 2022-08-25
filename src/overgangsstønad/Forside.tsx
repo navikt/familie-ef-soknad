@@ -77,7 +77,7 @@ const Forside: React.FC = () => {
 
           {alder < 18 && (
             <div className="ie-feil">
-              <Alert variant="error">
+              <Alert size="small" variant="error">
                 <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
               </Alert>
             </div>
@@ -85,7 +85,7 @@ const Forside: React.FC = () => {
 
           {isIE && (
             <div className="ie-feil">
-              <Alert variant="error">
+              <Alert size="small" variant="error">
                 <LocaleTekst tekst={'side.alert.plsnoIE'} />
               </Alert>
             </div>

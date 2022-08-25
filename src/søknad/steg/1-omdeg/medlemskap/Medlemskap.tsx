@@ -74,7 +74,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
           onChange={settMedlemskapBooleanFelt}
         />
         {valgtSvarOppholderSegINorge === false && (
-          <Alert variant="warning" inline>
+          <Alert size="small" variant="warning" inline>
             <LocaleTekst tekst={'medlemskap.alert-advarsel.opphold'} />
           </Alert>
         )}

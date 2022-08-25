@@ -90,7 +90,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         <Språkvelger />
       </FeltGruppe>
       {locale === 'en' && (
-        <Alert variant="warning">
+        <Alert size="small" variant="warning">
           We are in the process of translating this application. The few missing
           translations will appear in Norwegian until we've translated them.
         </Alert>

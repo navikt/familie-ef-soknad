@@ -93,7 +93,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
             valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
           />
           {arbeidssøker.registrertSomArbeidssøkerNav?.verdi === false && (
-            <Alert variant={'info'} inline>
+            <Alert size="small" variant={'info'} inline>
               <LocaleTekst tekst={'skjema.alert.registrert'} />
             </Alert>
           )}
@@ -108,7 +108,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
             />
             {arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.svarid ===
               ESvar.NEI && (
-              <Alert variant={'warning'} inline>
+              <Alert size="small" variant={'warning'} inline>
                 <LocaleTekst tekst={'arbeidssøker.alert.villig'} />
               </Alert>
             )}

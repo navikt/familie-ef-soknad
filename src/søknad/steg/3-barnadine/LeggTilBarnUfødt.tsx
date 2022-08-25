@@ -69,7 +69,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
               />
             </div>
             {boHosDeg === ESvar.NEI && (
-              <Alert variant="warning" className="bor-ikke" inline>
+              <Alert size="small" variant="warning" className="bor-ikke" inline>
                 <FormattedMessage id="barnadine.advarsel.skalikkebo" />
               </Alert>
             )}

@@ -119,7 +119,7 @@ const Oppsummering: React.FC = () => {
 
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
-          <Alert variant={'warning'} inline>
+          <Alert size="small" variant={'warning'} inline>
             <BodyShort>{innsendingState.melding}</BodyShort>
           </Alert>
         </KomponentGruppe>

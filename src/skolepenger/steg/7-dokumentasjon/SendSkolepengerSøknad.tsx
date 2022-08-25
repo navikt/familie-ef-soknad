@@ -107,14 +107,14 @@ const SendSøknadKnapper: FC = () => {
     <>
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
-          <Alert variant="warning" inline>
+          <Alert size="small" variant="warning" inline>
             <BodyShort>{innsendingState.melding}</BodyShort>
           </Alert>
         </KomponentGruppe>
       )}
       {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
         <KomponentGruppe>
-          <Alert variant="warning" inline>
+          <Alert size="small" variant="warning" inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
             <Link
               to={{

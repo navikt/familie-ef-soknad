@@ -115,7 +115,7 @@ const App = () => {
           </Helmet>
 
           {toggles[ToggleName.feilsituasjon] && (
-            <Alert variant="error">
+            <Alert size="small" variant="error">
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
             </Alert>
           )}

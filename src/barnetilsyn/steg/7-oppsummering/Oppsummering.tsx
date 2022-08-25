@@ -139,7 +139,7 @@ const Oppsummering: React.FC = () => {
             />
           </KomponentGruppe>
           {harManglendeFelter && (
-            <Alert variant="warning">
+            <Alert size="small" variant="warning">
               Det er felter i søknaden som ikke er fylt ut eller har ugyldig
               verdi. Gå til {listManglendeFelter(manglendeFelter)} for å legge
               inn gyldige verdier før du sender inn søknaden.

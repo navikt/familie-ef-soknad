@@ -73,7 +73,7 @@ const ÅrsakBarnepass: FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Alert variant="warning" inline>
+        <Alert size="small" variant="warning" inline>
           <LocaleTekst tekst={'barnepass.alert-advarsel.årsak'} />
         </Alert>
       </KomponentGruppe>
@@ -87,7 +87,7 @@ const ÅrsakBarnepass: FC<Props> = ({
       </KomponentGruppe>
       <KomponentGruppe>
         {valgtÅrsak === EÅrsakBarnepass.myeBortePgaJobb && (
-          <Alert variant="info" inline>
+          <Alert size="small" variant="info" inline>
             <LocaleTekst tekst={'barnepass.alert-info.myeBortePgaJobb'} />
           </Alert>
         )}

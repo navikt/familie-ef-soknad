@@ -23,7 +23,7 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
   return (
     <>
       <KomponentGruppe>
-        <Alert variant="warning" inline>
+        <Alert size="small" variant="warning" inline>
           <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
         </Alert>
       </KomponentGruppe>
