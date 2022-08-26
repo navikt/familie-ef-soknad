@@ -76,7 +76,9 @@ const Side: React.FC<ISide> = ({
 
         <Panel className={'side__innhold'}>
           <div className={'innholdscontainer'}>
-            <Heading size="medium">{stegtittel}</Heading>
+            <Heading size="medium" className="hoved">
+              {stegtittel}
+            </Heading>
             {children}
           </div>
         </Panel>
