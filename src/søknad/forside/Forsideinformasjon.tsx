@@ -104,7 +104,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                   <Accordion.Header>{blokk.tittel}</Accordion.Header>
                   <Accordion.Content>
                     <BlockContent
-                      className="typo-normal"
+                      className="navds-body-short navds-body-long"
                       blocks={blokk.innhold}
                       serializers={{ types: { block: BlockRenderer } }}
                     />
@@ -119,9 +119,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                   {blokk.tittel}
                 </Heading>
               )}
-              <div className={'typo-normal'}>
+              <div className={'navds-body-short navds-body-long'}>
                 <BlockContent
-                  className="typo-normal"
+                  className="navds-body-short navds-body-long"
                   blocks={blokk.innhold}
                   serializers={{ types: { block: BlockRenderer } }}
                 />

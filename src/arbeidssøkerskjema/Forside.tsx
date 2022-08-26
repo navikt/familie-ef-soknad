@@ -104,7 +104,7 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                       <Accordion.Header>{blokk.tittel}</Accordion.Header>
                       <Accordion.Content>
                         <BlockContent
-                          className="typo-normal"
+                          className="navds-body-short navds-body-long"
                           blocks={blokk.innhold}
                           serializers={{ types: { block: BlockRenderer } }}
                         />
@@ -120,7 +120,7 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                     </Heading>
                   )}
                   <BlockContent
-                    className="typo-normal"
+                    className="navds-body-short navds-body-long"
                     blocks={blokk.innhold}
                     serializers={{ types: { block: BlockRenderer } }}
                   />

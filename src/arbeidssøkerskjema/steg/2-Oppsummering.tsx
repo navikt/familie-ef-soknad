@@ -92,7 +92,7 @@ const Oppsummering: React.FC = () => {
     >
       <SeksjonGruppe>
         <div className="oppsummering-arbeidssøker">
-          <p className="typo-normal disclaimer">
+          <p className="navds-body-short navds-body-long disclaimer">
             {hentTekst('skjema.oppsummering.disclaimer', intl)}
           </p>
           <Heading size="small">
