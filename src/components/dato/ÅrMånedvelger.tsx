@@ -109,7 +109,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
             disabled={disabled}
           />
           {datobegrensning === DatoBegrensning.AlleDatoer &&
-          begrensninger === {} ? (
+          Object.entries(begrensninger).length === 0 ? (
             <DatePicker
               name="dateInput"
               ariaLabelledBy={'Datepicker - format (MM.yyyy)'}
