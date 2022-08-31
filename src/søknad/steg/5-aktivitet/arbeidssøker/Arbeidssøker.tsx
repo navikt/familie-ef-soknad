@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
-import { Undertittel } from 'nav-frontend-typografi';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import {
   erSøkerArbeidssøker,
@@ -21,9 +20,9 @@ import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpø
 import { IAktivitet } from '../../../../models/steg/aktivitet/aktivitet';
 import { hentSvarAlertFraSpørsmål, hentTekst } from '../../../../utils/søknad';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import AlertStripe from 'nav-frontend-alertstriper';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Alert, Heading } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;
@@ -84,9 +83,9 @@ const Arbeidssøker: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Undertittel className={'sentrert'} tag="h3">
+        <Heading size="small" level="3" className={'sentrert'}>
           <LocaleTekst tekst={'arbeidssøker.tittel'} />
-        </Undertittel>
+        </Heading>
       </KomponentGruppe>
 
       <KomponentGruppe>
@@ -96,9 +95,9 @@ const Arbeidssøker: React.FC<Props> = ({
           valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
         />
         {arbeidssøker.registrertSomArbeidssøkerNav?.svarid === ESvar.NEI && (
-          <AlertStripe type={'info'} form={'inline'}>
+          <Alert size="small" variant="info" inline>
             <LocaleTekst tekst={registrertSomArbeidssøkerAlert} />
-          </AlertStripe>
+          </Alert>
         )}
       </KomponentGruppe>
 

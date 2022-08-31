@@ -56,8 +56,6 @@
     "mustache-express": "^1.3.2",
     "nav-datovelger": "^12.6.0",
     "nav-faker": "^3.2.4",
-    "nav-frontend-alertstriper": "^4.0.2",
-    "nav-frontend-alertstriper-style": "^3.0.2",
     "nav-frontend-chevron": "^1.0.30",
     "nav-frontend-chevron-style": "^1.0.4",
     "nav-frontend-core": "^6.0.1",
@@ -79,8 +77,6 @@
     "nav-frontend-paneler-style": "^2.0.2",
     "nav-frontend-skjema": "^4.0.6",
     "nav-frontend-skjema-style": "^3.0.3",
-    "nav-frontend-spinner": "^3.0.1",
-    "nav-frontend-spinner-style": "^1.0.2",
     "nav-frontend-stegindikator": "^2.0.3",
     "nav-frontend-stegindikator-style": "^2.0.2",
     "nav-frontend-tekstomrade": "^3.0.2",
@@ -141,9 +137,6 @@
     "nav-datovelger": {
       "react": "$react"
     },
-    "nav-frontend-alertstriper": {
-      "react": "$react"
-    },
     "nav-frontend-ekspanderbartpanel": {
       "react": "$react"
     },
@@ -181,9 +174,6 @@
       "react": "$react"
     },
     "nav-frontend-veilederpanel": {
-      "react": "$react"
-    },
-    "nav-frontend-spinner": {
       "react": "$react"
     },
     "nav-frontend-lukknapp": {

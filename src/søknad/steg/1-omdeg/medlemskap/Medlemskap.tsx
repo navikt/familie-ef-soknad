@@ -17,9 +17,9 @@ import {
   IMedlemskap,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
   medlemskap: IMedlemskap;
@@ -74,9 +74,9 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
           onChange={settMedlemskapBooleanFelt}
         />
         {valgtSvarOppholderSegINorge === false && (
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <Alert size="small" variant="warning" inline>
             <LocaleTekst tekst={'medlemskap.alert-advarsel.opphold'} />
-          </AlertStripe>
+          </Alert>
         )}
       </KomponentGruppe>
 

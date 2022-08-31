@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Feilmelding, Undertittel } from 'nav-frontend-typografi';
-
 import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
@@ -18,6 +16,7 @@ import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseri
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { ErrorMessage, Heading } from '@navikt/ds-react';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -114,9 +113,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
   return (
     <StyledFirma aria-live="polite">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'} tag="h4">
+        <Heading size="small" level="4" className={'tittel'}>
           {firmaTittel}
-        </Undertittel>
+        </Heading>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: firmaer?.length === 1,
@@ -156,9 +155,9 @@ const OmFirmaetDitt: React.FC<Props> = ({
           </FeltGruppe>
           {harValgtUgyldigOrganisasjonsnummer && (
             <FeltGruppe>
-              <Feilmelding>
+              <ErrorMessage>
                 <LocaleTekst tekst={'firma.feilmelding.organisasjonnr'} />
-              </Feilmelding>
+              </ErrorMessage>
             </FeltGruppe>
           )}
         </>

@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Feilside from './components/feil/Feilside';
 import hentToggles from './toggles/api';
-import NavFrontendSpinner from 'nav-frontend-spinner';
 import Søknadsdialog from './overgangsstønad/Søknadsdialog';
 import { hentPersonData, oppdaterBarnMedLabel } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
@@ -18,12 +17,12 @@ import { useToggles } from './context/TogglesContext';
 import { IPerson } from './models/søknad/person';
 import { Helmet } from 'react-helmet';
 import { erLokaltMedMock } from './utils/miljø';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { EAlvorlighetsgrad } from './models/felles/feilmelding';
 import LocaleTekst from './language/LocaleTekst';
 import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
 import { useLokalIntlContext } from './context/LokalIntlContext';
+import { Alert, Loader } from '@navikt/ds-react';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -116,9 +115,9 @@ const App = () => {
           </Helmet>
 
           {toggles[ToggleName.feilsituasjon] && (
-            <AlertStripeFeil className={'varsel-feilsituasjon'}>
+            <Alert size="small" variant="error">
               <LocaleTekst tekst={'overgangsstønad.feilsituasjon'} />
-            </AlertStripeFeil>
+            </Alert>
           )}
           <Søknadsdialog />
         </>
@@ -128,10 +127,10 @@ const App = () => {
         <Feilside tekstId={feilmelding} alvorlighetsgrad={alvorlighetsgrad} />
       );
     } else {
-      return <NavFrontendSpinner className="spinner" />;
+      return <Loader variant="neutral" size="xlarge" title="venter..." />;
     }
   } else {
-    return <NavFrontendSpinner className="spinner" />;
+    return <Loader variant="neutral" size="xlarge" title="venter..." />;
   }
 };
 

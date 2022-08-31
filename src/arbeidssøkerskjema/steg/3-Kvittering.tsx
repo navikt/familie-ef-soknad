@@ -1,22 +1,20 @@
 import React from 'react';
 import Side from '../side/Side';
-import AlertStripe from 'nav-frontend-alertstriper';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { dagensDato, formatDateHour } from '../../utils/dato';
 import { hentTekst } from '../../utils/søknad';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { useSkjema } from '../SkjemaContext';
 import Feilside from '../../components/feil/Feilside';
-import Lenke from 'nav-frontend-lenker';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
 import styled from 'styled-components/macro';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Alert, BodyShort, Link } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`
-  .typo-normal {
+  .navds-body-short {
     li {
       padding-bottom: 0.5rem;
     }
@@ -41,32 +39,34 @@ const Kvittering: React.FC = () => {
       skalViseKnapper={false}
     >
       <KomponentGruppe>
-        <AlertStripe type={'suksess'}>{mottattAlert}</AlertStripe>
+        <Alert size="small" variant="success">
+          {mottattAlert}
+        </Alert>
       </KomponentGruppe>
       <KomponentGruppe>
         <StyledBeskrivelse>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst tekst={'skjema.beskrivelse'} />
-          </Normaltekst>
+          </BodyShort>
         </StyledBeskrivelse>
       </KomponentGruppe>
 
       <KomponentGruppe>
         <FeltGruppe>
           <StyledBeskrivelse>
-            <Normaltekst>
+            <BodyShort>
               <LocaleTekst tekst={'arbeidssøker.tekst.tillegstønad'} />
-            </Normaltekst>
+            </BodyShort>
           </StyledBeskrivelse>
         </FeltGruppe>
         <FeltGruppe>
-          <Lenke
+          <Link
             href={'https://www.nav.no/familie/alene-med-barn/tilleggsstonader'}
           >
-            <Normaltekst>
+            <BodyShort>
               <LocaleTekst tekst={'arbeidssøker.lenke.tilleggstønad'} />
-            </Normaltekst>
-          </Lenke>
+            </BodyShort>
+          </Link>
         </FeltGruppe>
         <a
           className={'knapp knapp--standard kvittering'}

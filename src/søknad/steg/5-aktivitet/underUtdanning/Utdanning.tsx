@@ -10,13 +10,13 @@ import { Input } from 'nav-frontend-skjema';
 import { IUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
-import { Undertittel } from 'nav-frontend-typografi';
 import { harValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { EPeriode } from '../../../../models/felles/periode';
 import PeriodeÅrMånedvelgere from '../../../../components/dato/PeriodeÅrMånedvelgere';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { formatIsoDate } from '../../../../utils/dato';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -93,9 +93,9 @@ const Utdanning: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'} tag="h4">
+        <Heading size="small" level="4" className={'tittel'}>
           {utdanningTittel}
-        </Undertittel>
+        </Heading>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: tidligereUtdanninger?.length === 1,

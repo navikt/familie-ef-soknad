@@ -2,16 +2,15 @@ import React from 'react';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import AlertStripe from 'nav-frontend-alertstriper';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedMessage from '../../../language/FormattedMessage';
+import { Alert, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   settBo: Function;
@@ -48,9 +47,9 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           DatoBegrensning.FremtidigeDatoer
         ) && (
           <KomponentGruppe>
-            <Normaltekst className="label-normaltekst">
+            <BodyShort className="label-normaltekst">
               {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
-            </Normaltekst>
+            </BodyShort>
             <div className="radiogruppe-2-svar">
               <RadioPanel
                 key={ESvar.JA}
@@ -70,9 +69,9 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
               />
             </div>
             {boHosDeg === ESvar.NEI && (
-              <AlertStripe type="advarsel" form="inline" className="bor-ikke">
+              <Alert size="small" variant="warning" className="bor-ikke" inline>
                 <FormattedMessage id="barnadine.advarsel.skalikkebo" />
-              </AlertStripe>
+              </Alert>
             )}
           </KomponentGruppe>
         )}

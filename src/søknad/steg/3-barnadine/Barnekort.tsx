@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
@@ -11,6 +10,7 @@ import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
+import { BodyShort, Heading } from '@navikt/ds-react';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -85,58 +85,58 @@ const Barnekort: React.FC<Props> = ({
       </div>
       <div className="barnekort__informasjonsboks">
         <div className="informasjonsboks-innhold">
-          <Undertittel tag="h3">
+          <Heading size="small" level="3">
             {navn.verdi
               ? navn.verdi
               : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
-          </Undertittel>
+          </Heading>
           {!harAdressesperre && (
             <div className="informasjonselement">
               {ident.verdi ? (
                 <>
-                  <Normaltekst>
+                  <BodyShort>
                     {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
-                  </Normaltekst>
-                  <Normaltekst>{formatFnr(ident.verdi)}</Normaltekst>
+                  </BodyShort>
+                  <BodyShort>{formatFnr(ident.verdi)}</BodyShort>
                 </>
               ) : (
                 <>
-                  <Normaltekst>
+                  <BodyShort>
                     {født?.verdi
                       ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
                       : intl.formatMessage({ id: 'barnekort.termindato' })}
-                  </Normaltekst>
-                  <Normaltekst>
+                  </BodyShort>
+                  <BodyShort>
                     {formatDate(strengTilDato(fødselsdato.verdi))}
-                  </Normaltekst>
+                  </BodyShort>
                 </>
               )}
             </div>
           )}
           <div className="informasjonselement">
-            <Normaltekst>
+            <BodyShort>
               {intl.formatMessage({ id: 'barnekort.alder' })}
-            </Normaltekst>
-            <Normaltekst>
+            </BodyShort>
+            <BodyShort>
               {født?.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
               {født?.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
-            </Normaltekst>
+            </BodyShort>
           </div>
           {!harAdressesperre && (
             <div className="informasjonselement">
-              <Normaltekst>
+              <BodyShort>
                 {intl.formatMessage({ id: 'barnekort.bosted' })}
-              </Normaltekst>
-              <Normaltekst>{bosted}</Normaltekst>
+              </BodyShort>
+              <BodyShort>{bosted}</BodyShort>
             </div>
           )}
           {medforelder &&
             (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
               <div className="informasjonselement">
-                <Normaltekst>
+                <BodyShort>
                   {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
-                </Normaltekst>
-                <Normaltekst>
+                </BodyShort>
+                <BodyShort>
                   {medforelder?.verdi && medforelder?.verdi.navn
                     ? medforelder?.verdi?.navn
                     : medforelder?.verdi?.alder
@@ -144,7 +144,7 @@ const Barnekort: React.FC<Props> = ({
                         medforelder.verdi.alder
                       }`
                     : null}
-                </Normaltekst>
+                </BodyShort>
               </div>
             )}
           {velgBarnForDenneSøknaden}
@@ -153,9 +153,9 @@ const Barnekort: React.FC<Props> = ({
               className="barnekort__endre-barnekort lenke"
               onClick={() => settÅpenEndreModal(true)}
             >
-              <Normaltekst>
+              <BodyShort>
                 {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-              </Normaltekst>
+              </BodyShort>
             </button>
           ) : null}
           {lagtTil ? (
@@ -163,9 +163,9 @@ const Barnekort: React.FC<Props> = ({
               className="barnekort__endre-barnekort lenke"
               onClick={() => slettBarn(id)}
             >
-              <Normaltekst>
+              <BodyShort>
                 {intl.formatMessage({ id: 'barnekort.fjern' })}
-              </Normaltekst>
+              </BodyShort>
             </button>
           ) : null}
         </div>

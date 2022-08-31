@@ -1,6 +1,4 @@
 import React from 'react';
-import Panel from 'nav-frontend-paneler';
-import { Sidetittel } from 'nav-frontend-typografi';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -18,8 +16,9 @@ import { logSidevisningSkolepenger } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
-import { AlertStripeFeil } from 'nav-frontend-alertstriper';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { Alert, Panel, Heading } from '@navikt/ds-react';
+import { isIE } from 'react-device-detect';
 
 const Forside: React.FC<any> = () => {
   const { person } = usePersonContext();
@@ -76,15 +75,23 @@ const Forside: React.FC<any> = () => {
 
           {alder < 18 && (
             <div className="ie-feil">
-              <AlertStripeFeil>
+              <Alert size="small" variant="error">
                 <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
-              </AlertStripeFeil>
+              </Alert>
             </div>
           )}
 
-          <Sidetittel>
+          {isIE && (
+            <div className="ie-feil">
+              <Alert size="small" variant="error">
+                <LocaleTekst tekst={'side.alert.plsnoIE'} />
+              </Alert>
+            </div>
+          )}
+
+          <Heading level="1" size="xlarge">
             <LocaleTekst tekst={'skolepenger.overskrift'} />
-          </Sidetittel>
+          </Heading>
           {kanBrukeMellomlagretSøknad && mellomlagretSkolepenger ? (
             <FortsettSøknad
               intl={intl}

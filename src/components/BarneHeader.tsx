@@ -1,5 +1,4 @@
 import React from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
 import barn1 from '../assets/barn1.svg';
 import ufødtIkon from '../assets/ufodt.svg';
 import styled from 'styled-components/macro';
@@ -7,6 +6,7 @@ import { IBarn } from '../models/steg/barn';
 import { førsteBokstavStor } from '../utils/språk';
 import { hentBarnetsNavnEllerBeskrivelse } from '../utils/barn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 const StyledBarnasBostedHeader = styled.div`
   .barnas-bosted-header {
@@ -80,9 +80,9 @@ const BarneHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
         />
       </div>
       <div className="navn">
-        <Undertittel tag="h3">
+        <Heading level="3" size="small">
           {førsteBokstavStor(hentBarnetsNavnEllerBeskrivelse(barn, intl))}
-        </Undertittel>
+        </Heading>
       </div>
     </StyledBarnasBostedHeader>
   );

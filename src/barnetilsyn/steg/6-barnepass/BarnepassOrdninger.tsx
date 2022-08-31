@@ -4,7 +4,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LeggTilKnapp from '../../../components/knapper/LeggTilKnapp';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { Element } from 'nav-frontend-typografi';
 import { erBarnepassOrdningerUtfylt } from './hjelper';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
@@ -12,6 +11,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import { Label } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -93,7 +93,7 @@ const BarnepassOrdninger: FC<Props> = ({
       {erBarnepassOrdningerUtfylt(barnepass.barnepassordninger) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Element>{leggTilLabel}</Element>
+            <Label>{leggTilLabel}</Label>
             <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
               {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
             </LeggTilKnapp>

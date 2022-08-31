@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
 import ReactDatePicker from 'react-datepicker';
 import DatePicker, { registerLocale, setDefaultLocale } from 'react-datepicker';
 import { useSpråkContext } from '../../context/SpråkContext';
@@ -15,6 +14,7 @@ import { DatoBegrensning, StyledDatovelger } from './Datovelger';
 import styled from 'styled-components/macro';
 import KalenderKnapp from './KalenderKnapp';
 import { addYears, subYears, addMonths } from 'date-fns';
+import { BodyShort } from '@navikt/ds-react';
 
 const InputContainer = styled.div`
   display: inline-block;
@@ -96,9 +96,9 @@ const ÅrMånedVelger: React.FC<Props> = ({
     <StyledDatovelger fetSkrift={fetSkrift}>
       <FeltGruppe>
         <label htmlFor={datolabelid}>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst tekst={tekstid} />
-          </Normaltekst>
+          </BodyShort>
         </label>
       </FeltGruppe>
       <FeltGruppe classname="nav-datovelger">

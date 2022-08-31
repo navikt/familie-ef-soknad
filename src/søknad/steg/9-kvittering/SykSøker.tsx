@@ -1,13 +1,12 @@
-import React, { FC } from 'react';
-import { Normaltekst } from 'nav-frontend-typografi';
+import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import Lenke from 'nav-frontend-lenker';
-import { Element } from 'nav-frontend-typografi';
 import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -26,19 +25,19 @@ const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
   const intl = useLokalIntlContext();
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>
+      <StyledUndertittel size="small">
         <LocaleTekst tekst={'kvittering.tittel.huskeliste.erSyk'} />
       </StyledUndertittel>
 
-      <Normaltekst>
+      <BodyShort>
         <LocaleTekst tekst={'kvittering.beskrivelse.huskeliste.erSyk'} />
-      </Normaltekst>
+      </BodyShort>
       <StyledLenke>
         <Lenke href={filPath} download>
           <img alt="Nedlastingsikon" src={download} />
-          <Element>
+          <Label>
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.erSyk' })}
-          </Element>
+          </Label>
         </Lenke>
       </StyledLenke>
     </SeksjonGruppe>

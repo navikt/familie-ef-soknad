@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IBarn } from '../../../models/steg/barn';
-import { Undertittel } from 'nav-frontend-typografi';
 import { VisLabelOgSvar } from '../../../utils/visning';
 import BarneHeader from '../../../components/BarneHeader';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
@@ -11,6 +10,7 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useNavigate } from 'react-router-dom';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn[];
@@ -57,7 +57,13 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     });
 
   return (
-    <Ekspanderbartpanel tittel={<Undertittel tag="h3">{tittel}</Undertittel>}>
+    <Ekspanderbartpanel
+      tittel={
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+      }
+    >
       <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>

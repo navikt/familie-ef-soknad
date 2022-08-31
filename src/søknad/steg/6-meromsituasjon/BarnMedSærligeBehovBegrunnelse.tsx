@@ -1,7 +1,6 @@
 import { Textarea } from 'nav-frontend-skjema';
 import React, { ChangeEvent } from 'react';
 import { IBarn } from '../../../models/steg/barn';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
@@ -11,6 +10,7 @@ import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { LokalIntlShape } from '../../../language/typer';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 
@@ -81,12 +81,12 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
 
   return (
     <section className="om-barnets-tilsynsbehov" aria-live="polite">
-      <Element className="blokk-xs">{omBarnetsTilsynsbehovLabel}</Element>
-      <Normaltekst>
+      <Label className="blokk-xs">{omBarnetsTilsynsbehovLabel}</Label>
+      <BodyShort>
         <LocaleTekst
           tekst={'dinSituasjon.alert.harBarnMedSærligeBehov.beskrivelse'}
         />
-      </Normaltekst>
+      </BodyShort>
     </section>
   );
 };

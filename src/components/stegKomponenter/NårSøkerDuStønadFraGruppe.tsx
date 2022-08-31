@@ -1,5 +1,4 @@
 import React from 'react';
-import { Element } from 'nav-frontend-typografi';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
 import { DatoBegrensning } from '../dato/Datovelger';
 import Hjelpetekst from '../Hjelpetekst';
@@ -15,6 +14,7 @@ import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
 import ÅrMånedVelger from '../dato/ÅrMånedvelger';
 import { strengTilDato } from '../../utils/dato';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Label } from '@navikt/ds-react';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -96,9 +96,9 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
 
       {søkerFraBestemtMåned?.verdi === true && (
         <KomponentGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'søkerFraBestemtMåned.datovelger'} />
-          </Element>
+          </Label>
           <StyledDatovelger>
             <ÅrMånedVelger
               valgtDato={

@@ -1,25 +1,23 @@
-import React, { FC } from 'react';
-import {
-  AlertStripeFeil,
-  AlertStripeAdvarsel,
-  AlertStripeInfo,
-} from 'nav-frontend-alertstriper';
+import { FC } from 'react';
 import { EAlvorlighetsgrad } from '../../models/felles/feilmelding';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../language/FormattedHtmlMessage';
+import { Alert } from '@navikt/ds-react';
+
+type AlertVariant = 'info' | 'success' | 'error' | 'warning';
 
 const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   tekstId,
   alvorlighetsgrad,
 }) => {
-  let AlertStripeMedAlvorlighetsgrad = AlertStripeFeil;
+  let variant: AlertVariant = 'error';
 
   switch (alvorlighetsgrad) {
     case EAlvorlighetsgrad.INFO:
-      AlertStripeMedAlvorlighetsgrad = AlertStripeInfo;
+      variant = 'info';
       break;
     case EAlvorlighetsgrad.WARNING:
-      AlertStripeMedAlvorlighetsgrad = AlertStripeAdvarsel;
+      variant = 'warning';
       break;
     default:
   }
@@ -27,13 +25,13 @@ const Feilside: FC<{ tekstId?: string; alvorlighetsgrad?: string }> = ({
   const intl = useLokalIntlContext();
   return (
     <div className="feilside">
-      <AlertStripeMedAlvorlighetsgrad>
+      <Alert variant={variant}>
         {tekstId ? (
           <FormattedHtmlMessage id={tekstId} />
         ) : (
           intl.formatMessage({ id: 'feil.alert' })
         )}
-      </AlertStripeMedAlvorlighetsgrad>
+      </Alert>
     </div>
   );
 };

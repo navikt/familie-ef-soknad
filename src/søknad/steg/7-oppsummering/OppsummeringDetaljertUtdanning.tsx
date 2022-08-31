@@ -2,7 +2,6 @@ import React from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
-import { Ingress, Undertittel } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
@@ -13,6 +12,7 @@ import {
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
+import { Heading, Ingress } from '@navikt/ds-react';
 interface Props {
   utdanning: IDetaljertUtdanning;
   endreInformasjonPath?: string;
@@ -39,7 +39,11 @@ const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
   return (
     <Ekspanderbartpanel
       className="aktiviteter"
-      tittel={<Undertittel>{tittel}</Undertittel>}
+      tittel={
+        <Heading size="small" level="3">
+          {tittel}
+        </Heading>
+      }
     >
       <StyledOppsummeringMedUndertitler>
         <KomponentGruppe>

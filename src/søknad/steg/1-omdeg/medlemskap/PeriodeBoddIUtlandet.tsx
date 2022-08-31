@@ -1,5 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
-import { Element } from 'nav-frontend-typografi';
+import { FC, useEffect, useState } from 'react';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
@@ -14,6 +13,7 @@ import {
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Label } from '@navikt/ds-react';
 
 const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
@@ -76,11 +76,11 @@ const PeriodeBoddIUtlandet: FC<{
       {erForrigePeriodeFyltUt && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Element>
+            <Label>
               <LocaleTekst
                 tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
               />
-            </Element>
+            </Label>
             <LeggTilKnapp onClick={() => leggTilUtenlandsperiode()}>
               <LocaleTekst tekst={'medlemskap.periodeBoddIUtlandet.knapp'} />
             </LeggTilKnapp>

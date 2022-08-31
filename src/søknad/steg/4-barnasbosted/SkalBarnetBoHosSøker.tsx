@@ -1,5 +1,4 @@
 import React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
@@ -16,6 +15,7 @@ import {
 import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -61,9 +61,9 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <AlertStripe type={'advarsel'} form={'inline'}>
+        <Alert size="small" variant="warning" inline>
           {hentSpørsmålTekst('barnasbosted.alert.måBoHosDeg')}
-        </AlertStripe>
+        </Alert>
       </FeltGruppe>
       <KomponentGruppe>
         <MultiSvarSpørsmålMedNavn
@@ -94,16 +94,16 @@ const SkalBarnetBoHosSøker: React.FC<Props> = ({
       )}
       {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.ja && (
         <FeltGruppe>
-          <AlertStripe type={'info'} form={'inline'}>
+          <Alert size="small" variant="info" inline>
             {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.ja', intl)}
-          </AlertStripe>
+          </Alert>
         </FeltGruppe>
       )}
       {forelder.skalBarnetBoHosSøker?.svarid === ESkalBarnetBoHosSøker.nei && (
         <FeltGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
+          <Alert size="small" variant="warning" inline>
             {hentTekst('barnasbosted.alert.skalBarnetBoHosSøker.nei', intl)}
-          </AlertStripe>
+          </Alert>
         </FeltGruppe>
       )}
     </>

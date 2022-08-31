@@ -3,9 +3,8 @@ import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
 import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 import styled from 'styled-components/macro';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
-import { Wrapper, Button } from 'react-aria-menubutton';
+import { Wrapper, Button as AriaButton } from 'react-aria-menubutton';
 import { useSpråkContext } from '../../context/SpråkContext';
 import navFarger from 'nav-frontend-core';
 import {
@@ -15,6 +14,7 @@ import {
 } from '../../language/utils';
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledSpråkvelger = styled.div`
   width: 100%;
@@ -30,7 +30,7 @@ const StyledWrapper = styled(Wrapper)`
   outline: none;
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(AriaButton)`
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, max-content);
@@ -49,7 +49,7 @@ export const SVGFlagg = styled.div`
   width: 65%;
 `;
 
-export const StyledTekst = styled(Normaltekst)`
+export const StyledTekst = styled(BodyShort)`
   text-align: left;
   width: 65%;
 `;

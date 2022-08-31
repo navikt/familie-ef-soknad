@@ -1,21 +1,21 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { Normaltekst } from 'nav-frontend-typografi';
 import LocaleTekst from '../../../language/LocaleTekst';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
+import { BodyShort } from '@navikt/ds-react';
 
 const DineSaker: FC = () => {
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'kvittering.tekst.altViTrenger'} />
-        </Normaltekst>
+        </BodyShort>
       </KomponentGruppe>
       <KomponentGruppe>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'kvittering.tekst.dineSaker'} />
-        </Normaltekst>
+        </BodyShort>
       </KomponentGruppe>
       {false && (
         <KomponentGruppe>

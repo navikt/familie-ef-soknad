@@ -1,5 +1,4 @@
 import React from 'react';
-import { Normaltekst, Element } from 'nav-frontend-typografi';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarneHeader from '../../../components/BarneHeader';
 import { formatDate, strengTilDato } from '../../../utils/dato';
@@ -10,6 +9,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
+import { Label, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -50,74 +50,70 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
       <div className="barnas-bosted-lagt-til__svar">
         {(forelder.navn || forelder.kanIkkeOppgiAnnenForelderFar) && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {barnetsNavn}
               {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.navn?.verdi
                 ? forelder.navn.verdi
                 : hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
-            </Normaltekst>
+            </BodyShort>
           </div>
         )}
         {forelder.hvorforIkkeOppgi && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.spm.hvorforikkeoppgi' })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.ikkeOppgittAnnenForelderBegrunnelse
                 ? forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi
                 : hentTekst('barnasbosted.spm.donorbarn', intl)}
-            </Normaltekst>
+            </BodyShort>
           </div>
         )}
         {harValgtSvar(forelder.fødselsdato?.verdi) && forelder.fødselsdato && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {formatDate(strengTilDato(forelder.fødselsdato.verdi))}
-            </Normaltekst>
+            </BodyShort>
           </div>
         )}
         {forelder.ident && (
           <div className="spørsmål-og-svar">
-            <Element>
-              {intl.formatMessage({ id: 'person.ident.visning' })}
-            </Element>
-            <Normaltekst>{forelder.ident.verdi}</Normaltekst>
+            <Label>{intl.formatMessage({ id: 'person.ident.visning' })}</Label>
+            <BodyShort>{forelder.ident.verdi}</BodyShort>
           </div>
         )}
         {forelder.borINorge && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.borinorge' })
               )}
-            </Element>
-            <Normaltekst>
-              {forelder.borINorge?.verdi ? 'Ja' : 'Nei'}
-            </Normaltekst>
+            </Label>
+            <BodyShort>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</BodyShort>
           </div>
         )}
         {forelder.land && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {intl.formatMessage({ id: 'barnasbosted.hvilketLand' })}
-            </Element>
-            <Normaltekst>{forelder.land?.verdi}</Normaltekst>
+            </Label>
+            <BodyShort>{forelder.land?.verdi}</BodyShort>
           </div>
         )}
         {forelder.avtaleOmDeltBosted && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -126,125 +122,121 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                     : 'barnasbosted.avtale.ufødt',
                 })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.avtaleOmDeltBosted?.verdi
                 ? hentTekst(ESvarTekstid.JA, intl)
                 : hentTekst(ESvarTekstid.NEI, intl)}
-            </Normaltekst>
+            </BodyShort>
           </div>
         )}
         {forelder.harAnnenForelderSamværMedBarn?.verdi && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.harAnnenForelderSamværMedBarn',
                 })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.harAnnenForelderSamværMedBarn?.verdi || ''}
-            </Normaltekst>
+            </BodyShort>
           </div>
         )}
         {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.harDereSkriftligSamværsavtale',
                 })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.harDereSkriftligSamværsavtale.verdi}
-            </Normaltekst>
+            </BodyShort>
           </div>
         ) : null}
         {forelder.hvordanPraktiseresSamværet?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
-            </Element>
-            <Normaltekst>
-              {forelder.hvordanPraktiseresSamværet.verdi}
-            </Normaltekst>
+            </Label>
+            <BodyShort>{forelder.hvordanPraktiseresSamværet.verdi}</BodyShort>
           </div>
         ) : null}
         {forelder.borAnnenForelderISammeHus ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.borAnnenForelderISammeHus',
                 })
               )}
-            </Element>
-            <Normaltekst>
-              {forelder.borAnnenForelderISammeHus.verdi}
-            </Normaltekst>
+            </Label>
+            <BodyShort>{forelder.borAnnenForelderISammeHus.verdi}</BodyShort>
           </div>
         ) : null}
         {forelder?.boddSammenFør?.svarid ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.boddsammenfør',
                 })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {forelder.boddSammenFør.svarid === ESvar.JA
                 ? hentTekst(ESvarTekstid.JA, intl)
                 : hentTekst(ESvarTekstid.NEI, intl)}
-            </Normaltekst>
+            </BodyShort>
           </div>
         ) : null}
         {forelder?.flyttetFra?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.normaltekst.nårflyttetfra',
                 })
               )}
-            </Element>
-            <Normaltekst>
+            </Label>
+            <BodyShort>
               {formatDate(strengTilDato(forelder.flyttetFra.verdi))}
-            </Normaltekst>
+            </BodyShort>
           </div>
         ) : null}
         {forelder?.hvorMyeSammen?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.hvorMyeSammen',
                 })
               )}
-            </Element>
-            <Normaltekst>{forelder.hvorMyeSammen.verdi}</Normaltekst>
+            </Label>
+            <BodyShort>{forelder.hvorMyeSammen.verdi}</BodyShort>
           </div>
         ) : null}
         {forelder.beskrivSamværUtenBarn && (
           <div className="spørsmål-og-svar">
-            <Element>
+            <Label>
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
                   id: 'barnasbosted.spm.beskrivSamværUtenBarn',
                 })
               )}
-            </Element>
-            <Normaltekst>{forelder.beskrivSamværUtenBarn.verdi}</Normaltekst>
+            </Label>
+            <BodyShort>{forelder.beskrivSamværUtenBarn.verdi}</BodyShort>
           </div>
         )}
         <LenkeMedIkon

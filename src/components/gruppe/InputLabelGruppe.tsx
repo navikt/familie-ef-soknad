@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Input, Label } from 'nav-frontend-skjema';
-import { Normaltekst } from 'nav-frontend-typografi';
 import Hjelpetekst from '../Hjelpetekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
+import { BodyShort } from '@navikt/ds-react';
 
 const StyledComponent = styled.div`
   display: grid;
@@ -25,7 +25,7 @@ const StyledComponent = styled.div`
   .skjemaelement {
     grid-area: input;
   }
-  .typo-normal {
+  .navds-body-short {
     padding-left: 0.5rem;
     grid-area: tegn;
     align-self: center;
@@ -81,7 +81,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         feil={feil}
         placeholder={placeholder}
       />
-      <Normaltekst>{beskrivendeTekst}</Normaltekst>
+      <BodyShort>{beskrivendeTekst}</BodyShort>
     </StyledComponent>
   );
 };

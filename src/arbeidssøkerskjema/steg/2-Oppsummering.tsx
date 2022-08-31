@@ -6,7 +6,6 @@ import {
   RoutesArbeidssokerskjema,
 } from '../routes/routesArbeidssokerskjema';
 import { mapDataTilLabelOgVerdiTyper } from '../utils/innsending';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { hentTekst } from '../../utils/søknad';
 import { useSkjema } from '../SkjemaContext';
@@ -15,9 +14,7 @@ import { IArbeidssøker } from '../../models/steg/aktivitet/arbeidssøker';
 import LenkeMedIkon from '../../components/knapper/LenkeMedIkon';
 import { sendInnSkjema } from '../innsending/api';
 import { IStatus } from '../innsending/typer';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
-import KnappBase from 'nav-frontend-knapper';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { StyledKnapper } from '../komponenter/StyledKnapper';
@@ -30,6 +27,7 @@ import {
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Alert, BodyShort, Button, Heading } from '@navikt/ds-react';
 
 interface Innsending {
   status: IStatus;
@@ -94,12 +92,12 @@ const Oppsummering: React.FC = () => {
     >
       <SeksjonGruppe>
         <div className="oppsummering-arbeidssøker">
-          <p className="typo-normal disclaimer">
+          <p className="navds-body-short navds-body-long disclaimer">
             {hentTekst('skjema.oppsummering.disclaimer', intl)}
           </p>
-          <Undertittel>
+          <Heading size="small">
             {hentTekst('skjema.oppsummering.omdeg', intl)}
-          </Undertittel>
+          </Heading>
           {spørsmålOgSvar}
         </div>
         <LenkeMedIkon
@@ -121,39 +119,39 @@ const Oppsummering: React.FC = () => {
 
       {innsendingState.status === IStatus.FEILET && (
         <KomponentGruppe>
-          <AlertStripe type={'advarsel'} form={'inline'}>
-            <Normaltekst>{innsendingState.melding}</Normaltekst>
-          </AlertStripe>
+          <Alert size="small" variant={'warning'} inline>
+            <BodyShort>{innsendingState.melding}</BodyShort>
+          </Alert>
         </KomponentGruppe>
       )}
       <SeksjonGruppe className={'sentrert'}>
         <StyledKnapper>
-          <KnappBase
+          <Button
             className={'tilbake'}
-            type={'standard'}
+            variant={'secondary'}
             onClick={() => navigate(forrigeRoute.path)}
           >
             <LocaleTekst tekst={'knapp.tilbake'} />
-          </KnappBase>
+          </Button>
 
-          <KnappBase
-            type={'hoved'}
+          <Button
+            variant={'primary'}
             onClick={() =>
               !innsendingState.venter && sendSkjema(skjema.arbeidssøker)
             }
             className={'neste'}
-            spinner={innsendingState.venter}
+            loading={innsendingState.venter}
           >
             <LocaleTekst tekst={'skjema.send'} />
-          </KnappBase>
+          </Button>
 
-          <KnappBase
+          <Button
             className={'avbryt'}
-            type={'flat'}
+            variant={'tertiary'}
             onClick={() => navigate(RoutesArbeidssokerskjema[0].path)}
           >
             <LocaleTekst tekst={'knapp.avbryt'} />
-          </KnappBase>
+          </Button>
         </StyledKnapper>
       </SeksjonGruppe>
     </Side>

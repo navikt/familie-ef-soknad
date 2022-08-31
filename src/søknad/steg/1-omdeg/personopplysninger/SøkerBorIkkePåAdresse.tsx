@@ -1,11 +1,10 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import Lenke from 'nav-frontend-lenker';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
+import { Label, BodyShort, Alert } from '@navikt/ds-react';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -24,30 +23,26 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
   return (
     <>
       <KomponentGruppe>
-        <AlertStripe
-          type={'advarsel'}
-          form={'inline'}
-          className={'avstand-øverst'}
-        >
+        <Alert size="small" variant="warning" inline>
           <LocaleTekst tekst={'personopplysninger.alert.riktigAdresse'} />
-        </AlertStripe>
+        </Alert>
       </KomponentGruppe>
       <KomponentGruppe>
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'personopplysninger.info.endreAdresse'} />
-          </Element>
+          </Label>
         </FeltGruppe>
         <FeltGruppe>
-          <Normaltekst>
+          <BodyShort>
             <Lenke href={lenkerPDFSøknad[stønadstype]}>
               <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
             </Lenke>
-          </Normaltekst>
+          </BodyShort>
         </FeltGruppe>
-        <Normaltekst>
+        <BodyShort>
           <LocaleTekst tekst={'personopplysninger.info.pdfskjema'} />
-        </Normaltekst>
+        </BodyShort>
       </KomponentGruppe>
     </>
   );

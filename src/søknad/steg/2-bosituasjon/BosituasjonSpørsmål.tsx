@@ -18,11 +18,11 @@ import {
   erValgtSvarLiktSomSvar,
   harValgtSvar,
 } from '../../../utils/spørsmålogsvar';
-import AlertStripe from 'nav-frontend-alertstriper';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
+import { Alert } from '@navikt/ds-react';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -110,9 +110,9 @@ const BosituasjonSpørsmål: FC<Props> = ({
                 <FormattedHtmlMessage id={valgtSvar.alert_tekstid} />
               </AlertStripeDokumentasjon>
             ) : (
-              <AlertStripe type={'advarsel'} form={'inline'}>
+              <Alert size="small" variant="warning" inline>
                 <LocaleTekst tekst={valgtSvar.alert_tekstid} />
-              </AlertStripe>
+              </Alert>
             )}
           </FeltGruppe>
         )}

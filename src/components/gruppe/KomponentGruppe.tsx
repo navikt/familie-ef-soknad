@@ -11,12 +11,13 @@ const StyledKomponentGruppe = styled.div`
     margin-bottom: 0;
   }
 
-  .alertstripe {
+  .navds-alert {
     padding-top: 1rem;
   }
 
-  .typo-normal,
-  .typo-element,
+  .navds-body-short,
+  .navds-body-long,
+  .navds-label,
   .inputPanel__label,
   .skjemaelement__label {
     font-size: 18px;

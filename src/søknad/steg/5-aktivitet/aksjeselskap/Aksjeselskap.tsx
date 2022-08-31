@@ -1,6 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
-import { Undertittel } from 'nav-frontend-typografi';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
@@ -13,6 +12,7 @@ import {
   IAksjeselskap,
 } from '../../../../models/steg/aktivitet/aktivitet';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading } from '@navikt/ds-react';
 
 interface Props {
   egetAS: IAksjeselskap[];
@@ -79,9 +79,9 @@ const Aksjeselskap: FC<Props> = ({
   return (
     <div aria-live="polite" role="region">
       <TittelOgSlettKnapp>
-        <Undertittel className={'tittel'} tag="h4">
+        <Heading size="small" level="4" className={'tittel'}>
           {aksjeselskapTittel}
-        </Undertittel>
+        </Heading>
         <SlettKnapp
           className={classnames('slettknapp', {
             kunEn: egetAS?.length === 1,

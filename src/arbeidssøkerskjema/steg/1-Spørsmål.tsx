@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import Side from '../side/Side';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Hovedknapp } from 'nav-frontend-knapper';
 import { hentTekst } from '../../utils/søknad';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import JaNeiSpørsmål from '../../components/spørsmål/JaNeiSpørsmål';
@@ -12,10 +11,8 @@ import {
   ønskerHalvStilling,
   ønsketArbeidssted,
 } from '../../søknad/steg/5-aktivitet/arbeidssøker/ArbeidssøkerConfig';
-import AlertStripe from 'nav-frontend-alertstriper';
 import LocaleTekst from '../../language/LocaleTekst';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import { Element, Normaltekst } from 'nav-frontend-typografi';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { hentBooleanFraValgtSvar } from '../../utils/spørsmålogsvar';
@@ -30,6 +27,7 @@ import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../utils/locationState';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 
 const Spørsmål: FC<any> = ({ ident }) => {
   const location = useLocation();
@@ -83,10 +81,10 @@ const Spørsmål: FC<any> = ({ ident }) => {
     >
       <SeksjonGruppe>
         <FeltGruppe>
-          <Element>
+          <Label>
             <LocaleTekst tekst={'person.ident.visning'} />
-          </Element>
-          <Normaltekst>{ident}</Normaltekst>
+          </Label>
+          <BodyShort>{ident}</BodyShort>
         </FeltGruppe>
         <KomponentGruppe>
           <JaNeiSpørsmål
@@ -95,9 +93,9 @@ const Spørsmål: FC<any> = ({ ident }) => {
             valgtSvar={arbeidssøker.registrertSomArbeidssøkerNav?.verdi}
           />
           {arbeidssøker.registrertSomArbeidssøkerNav?.verdi === false && (
-            <AlertStripe type={'info'} form={'inline'}>
+            <Alert size="small" variant={'info'} inline>
               <LocaleTekst tekst={'skjema.alert.registrert'} />
-            </AlertStripe>
+            </Alert>
           )}
         </KomponentGruppe>
 
@@ -110,9 +108,9 @@ const Spørsmål: FC<any> = ({ ident }) => {
             />
             {arbeidssøker.villigTilÅTaImotTilbudOmArbeid?.svarid ===
               ESvar.NEI && (
-              <AlertStripe type={'advarsel'} form={'inline'}>
+              <Alert size="small" variant={'warning'} inline>
                 <LocaleTekst tekst={'arbeidssøker.alert.villig'} />
-              </AlertStripe>
+              </Alert>
             )}
           </KomponentGruppe>
         )}
@@ -146,7 +144,8 @@ const Spørsmål: FC<any> = ({ ident }) => {
         )}
       </SeksjonGruppe>
       {kommerFraOppsummering ? (
-        <Hovedknapp
+        <Button
+          variant="primary"
           className="tilbake-til-oppsummering"
           onClick={() =>
             navigate({
@@ -158,7 +157,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
           }
         >
           {hentTekst('oppsummering.tilbake', intl)}
-        </Hovedknapp>
+        </Button>
       ) : null}
     </Side>
   );

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { addMonths, addYears, subYears } from 'date-fns';
-import { Normaltekst } from 'nav-frontend-typografi';
 import { Datepicker } from 'nav-datovelger';
 import { useSpråkContext } from '../../context/SpråkContext';
 import FeltGruppe from '../gruppe/FeltGruppe';
@@ -11,9 +10,10 @@ import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
 import { erDatoInnaforBegrensinger } from './utils';
+import { BodyShort } from '@navikt/ds-react';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
-  .typo-normal {
+  .navds-body-short {
     font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
   }
 `;
@@ -26,7 +26,7 @@ export enum DatoBegrensning {
 }
 
 const hentDatobegrensninger = (
-  datobegrensning: DatoBegrensning,
+  datobegrensning: DatoBegrensning
 ): DatepickerLimitations => {
   switch (datobegrensning) {
     case DatoBegrensning.AlleDatoer:
@@ -60,26 +60,25 @@ interface Props {
 }
 
 const Datovelger: React.FC<Props> = ({
-                                       tekstid,
-                                       datobegrensning,
-                                       valgtDato,
-                                       settDato,
-                                       disabled,
-                                       fetSkrift,
-                                       gjemFeilmelding,
-                                     }) => {
+  tekstid,
+  datobegrensning,
+  valgtDato,
+  settDato,
+  disabled,
+  fetSkrift,
+  gjemFeilmelding,
+}) => {
   const [locale] = useSpråkContext();
   const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato ? valgtDato : '');
   const [feilmelding, settFeilmelding] = useState<string>('');
 
-  const limitations: DatepickerLimitations = hentDatobegrensninger(
-    datobegrensning,
-  );
+  const limitations: DatepickerLimitations =
+    hentDatobegrensninger(datobegrensning);
 
   const hentFeilmelding = (
     dato: string,
-    datobegrensning: DatoBegrensning,
+    datobegrensning: DatoBegrensning
   ): string => {
     if (!erGyldigDato(dato)) {
       return 'datovelger.ugyldigDato';
@@ -100,7 +99,7 @@ const Datovelger: React.FC<Props> = ({
 
   useEffect(() => {
     settDato(_dato);
-    (_dato !== '') && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
+    _dato !== '' && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
 
     // eslint-disable-next-line
   }, [_dato]);
@@ -109,9 +108,9 @@ const Datovelger: React.FC<Props> = ({
     <StyledDatovelger fetSkrift={fetSkrift}>
       <FeltGruppe>
         <label htmlFor={datolabelid}>
-          <Normaltekst>
+          <BodyShort>
             <LocaleTekst tekst={tekstid} />
-          </Normaltekst>
+          </BodyShort>
         </label>
       </FeltGruppe>
       <FeltGruppe>

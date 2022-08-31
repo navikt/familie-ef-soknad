@@ -1,19 +1,30 @@
-import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { BekreftCheckboksPanel } from 'nav-frontend-skjema';
 import { hentBeskjedMedNavn } from '../../utils/språk';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import KnappBase from 'nav-frontend-knapper';
 import LocaleTekst from '../../language/LocaleTekst';
 import React from 'react';
 import { IPerson } from '../../models/søknad/person';
-import { Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../utils/søknad';
 import { isIE } from 'react-device-detect';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import Språkvelger from '../../components/språkvelger/Språkvelger';
 import { useSpråkContext } from '../../context/SpråkContext';
 import { useNavigate } from 'react-router-dom';
 import { LokalIntlShape } from '../../language/typer';
+import {
+  Alert,
+  Heading,
+  Button,
+  ConfirmationPanel,
+  Accordion,
+} from '@navikt/ds-react';
+import styled from 'styled-components';
+
+const StyledConfirmationPanel = styled(ConfirmationPanel)`
+  margin-bottom: 2rem;
+`;
+
+const DisclaimerTittel = styled(Heading)`
+  margin-bottom: 1rem;
+`;
 
 const BlockContent = require('@sanity/block-content-to-react');
 
@@ -79,29 +90,38 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         <Språkvelger />
       </FeltGruppe>
       {locale === 'en' && (
-        <AlertStripeAdvarsel>
+        <Alert size="small" variant="warning">
           We are in the process of translating this application. The few missing
           translations will appear in Norwegian until we've translated them.
-        </AlertStripeAdvarsel>
+        </Alert>
       )}
       {seksjon &&
         seksjon.map((blokk: any, index: number) => {
           return blokk._type === 'dokumentasjonskrav' ? (
             <div className="seksjon" key={index}>
-              <Ekspanderbartpanel tittel={blokk.tittel}>
-                <BlockContent
-                  className="typo-normal"
-                  blocks={blokk.innhold}
-                  serializers={{ types: { block: BlockRenderer } }}
-                />
-              </Ekspanderbartpanel>
+              <Accordion>
+                <Accordion.Item>
+                  <Accordion.Header>{blokk.tittel}</Accordion.Header>
+                  <Accordion.Content>
+                    <BlockContent
+                      className="navds-body-short navds-body-long"
+                      blocks={blokk.innhold}
+                      serializers={{ types: { block: BlockRenderer } }}
+                    />
+                  </Accordion.Content>
+                </Accordion.Item>
+              </Accordion>
             </div>
           ) : (
             <div className="seksjon" key={index}>
-              {blokk.tittel && <Undertittel>{blokk.tittel}</Undertittel>}
-              <div className={'typo-normal'}>
+              {blokk.tittel && (
+                <Heading level="2" size="small">
+                  {blokk.tittel}
+                </Heading>
+              )}
+              <div className={'navds-body-short navds-body-long'}>
                 <BlockContent
-                  className="typo-normal"
+                  className="navds-body-short navds-body-long"
                   blocks={blokk.innhold}
                   serializers={{ types: { block: BlockRenderer } }}
                 />
@@ -111,33 +131,31 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         })}
 
       {disclaimer && !isIE && (
-        <div className="seksjon">
-          <Undertittel className="disclaimer-tittel">
+        <>
+          <DisclaimerTittel level="2" size="small">
             {hentTekst('skjema.forside.disclaimer.tittel', intl)}
-          </Undertittel>
-          <AlertStripeAdvarsel>
+          </DisclaimerTittel>
+          <StyledConfirmationPanel
+            checked={!!harBekreftet}
+            label={hentBeskjedMedNavn(
+              person.søker.forkortetNavn,
+              intl.formatMessage({ id: 'side.bekreftelse' })
+            )}
+            onChange={() => settBekreftelse(!harBekreftet)}
+          >
             <BlockContent
-              className="typo-normal"
               blocks={disclaimer}
               serializers={{ types: { block: BlockRenderer } }}
             />
-            <BekreftCheckboksPanel
-              onChange={(e) => settBekreftelse(!harBekreftet)}
-              checked={!!harBekreftet}
-              label={hentBeskjedMedNavn(
-                person.søker.forkortetNavn,
-                intl.formatMessage({ id: 'side.bekreftelse' })
-              )}
-            />
-          </AlertStripeAdvarsel>
-        </div>
+          </StyledConfirmationPanel>
+        </>
       )}
 
       {harBekreftet ? (
         <FeltGruppe classname={'sentrert'} aria-live="polite">
-          <KnappBase onClick={() => navigate(nesteSide)} type={'hoved'}>
+          <Button onClick={() => navigate(nesteSide)} variant="primary">
             <LocaleTekst tekst={'knapp.start'} />
-          </KnappBase>
+          </Button>
         </FeltGruppe>
       ) : null}
     </>

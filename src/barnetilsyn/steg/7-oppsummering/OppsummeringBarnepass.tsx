@@ -1,9 +1,8 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Element, Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -23,6 +22,7 @@ import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
+import { BodyShort, Heading, Label } from '@navikt/ds-react';
 
 interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
@@ -43,9 +43,9 @@ const OppsummeringBarnepass: FC<Props> = ({
   return (
     <Ekspanderbartpanel
       tittel={
-        <Undertittel>
+        <Heading size="small">
           <LocaleTekst tekst={'barnepass.sidetittel'} />
-        </Undertittel>
+        </Heading>
       }
     >
       {barnSomSkalHaBarnepass.map((barn: IBarn) => {
@@ -72,21 +72,21 @@ const OppsummeringBarnepass: FC<Props> = ({
           <hr />
           <br />
           <div className={'spørsmål-og-svar'}>
-            <Element>{søkerFraBestemtDato.label}</Element>
-            <Normaltekst>
+            <Label>{søkerFraBestemtDato.label}</Label>
+            <BodyShort>
               {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja
                 ? hentTekst('svar.ja', intl)
                 : hentTekst('søkerFraBestemtMåned.svar.neiNavKanVurdere', intl)}
-            </Normaltekst>
+            </BodyShort>
           </div>
 
           {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja &&
             søknadsdato?.verdi && (
               <div className={'spørsmål-og-svar'}>
-                <Element>{søknadsdato.label}</Element>
-                <Normaltekst>
+                <Label>{søknadsdato.label}</Label>
+                <BodyShort>
                   {formatDate(strengTilDato(søknadsdato?.verdi))}
-                </Normaltekst>
+                </BodyShort>
               </div>
             )}
         </KomponentGruppe>

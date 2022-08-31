@@ -1,6 +1,6 @@
-import { Undertittel } from 'nav-frontend-typografi';
+import { Heading } from '@navikt/ds-react';
 import styled from 'styled-components';
 
-export const StyledUndertittel = styled(Undertittel)`
+export const StyledUndertittel = styled(Heading)`
   padding-bottom: 1rem;
 `;

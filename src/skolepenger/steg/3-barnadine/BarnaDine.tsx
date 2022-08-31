@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import { Knapp } from 'nav-frontend-knapper';
 import Modal from 'nav-frontend-modal';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Element } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation } from 'react-router-dom';
@@ -19,6 +16,7 @@ import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { Alert, Button, Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -76,9 +74,9 @@ const BarnaDine: React.FC = () => {
         informasjonstekstId="barnadine.skolepenger.info.brukpdf"
       >
         <div className="barna-dine">
-          <AlertStripeInfo className="informasjonstekst">
+          <Alert size="small" variant="info" className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
-          </AlertStripeInfo>
+          </Alert>
           <div className="barnekort-wrapper">
             {søknad.person.barn
               ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
@@ -96,10 +94,10 @@ const BarnaDine: React.FC = () => {
               ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Element>{hentTekst('barnadine.leggtil.info', intl)}</Element>
-                <Knapp onClick={() => settÅpenModal(true)}>
+                <Label>{hentTekst('barnadine.leggtil.info', intl)}</Label>
+                <Button onClick={() => settÅpenModal(true)}>
                   {hentTekst('barnadine.leggtil', intl)}
-                </Knapp>
+                </Button>
               </div>
             </div>
           </div>

@@ -1,7 +1,4 @@
 import React from 'react';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { AlertStripeInfo } from 'nav-frontend-alertstriper';
-import { Element } from 'nav-frontend-typografi';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -21,6 +18,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { Button, Alert, Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -107,9 +105,9 @@ const BarnaDine: React.FC = () => {
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">
-            <Element>
+            <Label>
               <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
-            </Element>
+            </Label>
             <FeltGruppe>
               <Hjelpetekst
                 åpneTekstid={'barnetilsyn.hjelpetekst-åpne.hvilke'}
@@ -117,9 +115,9 @@ const BarnaDine: React.FC = () => {
               />
             </FeltGruppe>
           </div>
-          <AlertStripeInfo className="informasjonstekst">
+          <Alert size="small" variant="info" className="informasjonstekst">
             {hentTekst('barnadine.infohentet', intl)}
-          </AlertStripeInfo>
+          </Alert>
           <div className="barnekort-wrapper">
             {søknad.person.barn
               ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
@@ -146,7 +144,8 @@ const BarnaDine: React.FC = () => {
         </div>
         {kommerFraOppsummering ? (
           <div className={'side'}>
-            <Hovedknapp
+            <Button
+              variant="primary"
               className="tilbake-til-oppsummering"
               onClick={() =>
                 navigate({
@@ -155,7 +154,7 @@ const BarnaDine: React.FC = () => {
               }
             >
               {hentTekst('oppsummering.tilbake', intl)}
-            </Hovedknapp>
+            </Button>
           </div>
         ) : null}
       </Side>

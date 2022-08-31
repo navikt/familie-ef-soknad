@@ -10,7 +10,6 @@ import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import Hjelpetekst from '../../../../components/Hjelpetekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import Utdanning from './Utdanning';
-import { Element, Undertittel } from 'nav-frontend-typografi';
 import { hentTekst } from '../../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utdanningEtterGrunnskolenSpm } from './UtdanningConfig';
@@ -20,6 +19,7 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { erTidligereUtdanningFerdigUtfylt } from '../../../../helpers/steg/aktivitetvalidering';
 import LeggTilKnapp from '../../../../components/knapper/LeggTilKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading, Label } from '@navikt/ds-react';
 
 interface Props {
   underUtdanning: IUnderUtdanning;
@@ -79,9 +79,9 @@ const TidligereUtdanning: React.FC<Props> = ({
   return (
     <SeksjonGruppe>
       <KomponentGruppe>
-        <Undertittel className={'sentrert'} tag="h3">
+        <Heading size="small" level="3" className={'sentrert'}>
           <LocaleTekst tekst={'utdanning.tittel.tidligere'} />
-        </Undertittel>
+        </Heading>
         <Hjelpetekst
           className={'sentrert'}
           åpneTekstid={tidligereUtdanningHjelpetekst.åpneTekstid}
@@ -114,9 +114,9 @@ const TidligereUtdanning: React.FC<Props> = ({
           ) && (
             <KomponentGruppe>
               <FeltGruppe>
-                <Element>
+                <Label>
                   <LocaleTekst tekst={'utdanning.label.leggtil'} />
-                </Element>
+                </Label>
                 <LeggTilKnapp onClick={() => leggTilUtdanning()}>
                   <LocaleTekst tekst={'utdanning.knapp.leggtil'} />
                 </LeggTilKnapp>
