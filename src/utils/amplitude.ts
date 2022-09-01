@@ -25,7 +25,7 @@ export const logSpørsmålBesvart = (
   props?: any
 ) => {
   if (skalLogges) {
-    logEvent('skjema_spørsmål_besvart', {
+    logEvent('skjema spørsmål besvart', {
       skjemanavn,
       skjemaId,
       spørsmål,
@@ -140,7 +140,7 @@ export const logInnsendingFeilet = (
   feilmelding: string,
   props?: any
 ) => {
-  logEvent('skjema_innsending_feilet', {
+  logEvent('skjema innsending feilet', {
     skjemanavn,
     skjemaId,
     feilmelding,
