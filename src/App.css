@@ -1,0 +1,21 @@
+body {
+  margin: 0;
+  box-sizing: content-box;
+}
+.sentrert {
+  display: flex;
+  justify-content: center;
+}
+.seksjon {
+  padding-bottom: 3rem;
+}
+/* Fjern steppers fra input number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

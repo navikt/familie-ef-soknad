@@ -1,1 +1,9 @@
-{"version":3,"sources":["BarnMedSærligeBehovBegrunnelse.less"],"names":[],"mappings":"AAAA,wBACE;AADF,wBAEE;AAFF,wBAGE;EACE,eAAA;;AAJJ,wBAME;AANF,wBAOE;EACE,gBAAA","file":"BarnMedSærligeBehovBegrunnelse.css"}
+{
+  "version": 3,
+  "sources": [
+    "BarnMedSærligeBehovBegrunnelse.less"
+  ],
+  "names": [],
+  "mappings": "AAAA,wBACE;AADF,wBAEE;AAFF,wBAGE;EACE,eAAA;;AAJJ,wBAME;AANF,wBAOE;EACE,gBAAA",
+  "file": "BarnMedSærligeBehovBegrunnelse.css"
+}

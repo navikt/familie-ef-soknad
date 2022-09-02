@@ -1,6 +1,6 @@
 import React from 'react';
 import add from '../../assets/add.svg';
-import './LeggTilKnapp.less';
+import './LeggTilKnapp.css';
 import { Button, Label } from '@navikt/ds-react';
 
 interface Props {

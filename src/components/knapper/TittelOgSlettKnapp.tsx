@@ -10,7 +10,7 @@ const StyledTittelOgSlettKnapp = styled.div`
     'felter felter';
   padding-bottom: 2rem;
 
-  @media @mobile {
+  @media all and (max-width: 420px) {
     display: flex;
     flex-direction: column;
   }

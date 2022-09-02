@@ -1,0 +1,59 @@
+.legg-til-barn {
+  min-width: 450px;
+}
+.legg-til-barn__knapp {
+  display: block;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+.legg-til-barn .fødselsnummer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.legg-til-barn .personnummer {
+  margin-left: 2rem;
+}
+.legg-til-barn h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.legg-til-barn .input-navn {
+  max-width: 400px;
+  margin-top: 4rem;
+}
+.legg-til-barn .modal {
+  width: 600px;
+  height: 600px;
+}
+.legg-til-barn .navds-label {
+  font-size: 18px;
+}
+.legg-til-barn .radiogruppe-2-svar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.legg-til-barn .radiogruppe-2-svar .radioPanel {
+  width: 277px;
+}
+.legg-til-barn .radiogruppe-2-svar .radioPanel:first-child {
+  margin-right: 12px;
+}
+.legg-til-barn .radiogruppe-2-svar .radioPanel:last-child {
+  margin-left: 12px;
+}
+.legg-til-barn .radiogruppe-2-svar .inputPanel__label {
+  font-size: 18px;
+}
+.legg-til-barn .label-normaltekst {
+  font-size: 18px;
+  font-weight: bold;
+  padding-bottom: 8px;
+}
+.legg-til-barn .bor-ikke {
+  margin-top: 0.5rem;
+}
+.legg-til-barn .datovelger .navds-body-short {
+  font-size: 18px;
+}

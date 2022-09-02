@@ -1,11 +1,11 @@
-import React, { FC } from 'react';
-import KnappBase from 'nav-frontend-knapper';
+import { FC } from 'react';
 import LocaleTekst from '../../language/LocaleTekst';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useLocation } from 'react-router';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
+import { Button } from '@navikt/ds-react';
 
 const StyledNavigeringsKnapper = styled.div`
   padding: 2rem;
@@ -88,16 +88,16 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
       }
       aria-live="polite"
     >
-      <KnappBase
+      <Button
         className={'tilbake'}
-        type={'standard'}
+        variant="secondary"
         onClick={() => navigate(forrigeRoute.path)}
       >
         <LocaleTekst tekst={'knapp.tilbake'} />
-      </KnappBase>
+      </Button>
       {erSpørsmålBesvart && (
-        <KnappBase
-          type={'hoved'}
+        <Button
+          variant="primary"
           disabled={disableNesteKnapp}
           onClick={() => {
             if (mellomlagreStønad) {
@@ -108,15 +108,15 @@ const TilbakeNesteAvbrytKnapper: FC<Props> = ({
           className={'neste'}
         >
           <LocaleTekst tekst={'knapp.neste'} />
-        </KnappBase>
+        </Button>
       )}
-      <KnappBase
+      <Button
         className={'avbryt'}
-        type={'flat'}
+        variant="tertiary"
         onClick={() => navigate(routesStønad[0].path)}
       >
         <LocaleTekst tekst={'knapp.avbryt'} />
-      </KnappBase>
+      </Button>
     </StyledNavigeringsKnapper>
   );
 };

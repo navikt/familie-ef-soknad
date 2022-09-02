@@ -15,7 +15,7 @@ const StyledHjelpetekst = styled.div`
     &__toggle {
       justify-content: flex-start;
 
-      @media @mobile {
+      @media all and (max-width: 420px) {
         padding-left: 0;
       }
     }
