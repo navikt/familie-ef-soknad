@@ -1,7 +1,7 @@
 import React from 'react';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Hjelpetekst from '../../../components/Hjelpetekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
@@ -18,7 +18,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
-import { Button, Alert, Label } from '@navikt/ds-react';
+import { Alert, Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -30,7 +30,6 @@ const BarnaDine: React.FC = () => {
     mellomlagreBarnetilsyn,
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
-  const navigate = useNavigate();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
@@ -142,21 +141,6 @@ const BarnaDine: React.FC = () => {
               ))}
           </div>
         </div>
-        {kommerFraOppsummering ? (
-          <div className={'side'}>
-            <Button
-              variant="primary"
-              className="tilbake-til-oppsummering"
-              onClick={() =>
-                navigate({
-                  pathname: '/oppsummering',
-                })
-              }
-            >
-              {hentTekst('oppsummering.tilbake', intl)}
-            </Button>
-          </div>
-        ) : null}
       </Side>
     </>
   );
