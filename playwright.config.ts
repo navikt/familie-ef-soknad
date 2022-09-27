@@ -35,12 +35,12 @@ const config: PlaywrightTestConfig = {
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 0,
+    actionTimeout: 5000,
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: 'on',
   },
 
   /* Configure projects for major browsers */
@@ -101,10 +101,16 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   port: 3000,
-  // },
+   webServer: {
+     command: 'npm start',
+     url: "http://localhost:3000/familie/alene-med-barn/soknad",
+     timeout: 120 * 1000,
+     env: {
+       REACT_APP_BRUK_API_I_DEV: 'false',
+       DISABLE_ESLINT_PLUGIN: 'true',
+     },
+     reuseExistingServer: !process.env.CI
+   },
 };
 
 export default config;

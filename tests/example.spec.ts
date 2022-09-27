@@ -11,7 +11,8 @@ import TestSteg8 from "./steg/steg8_dokumentasjon";
 test('Send inn minimal søknad', async ({ page }) => {
   await page.goto('http://localhost:3000/familie/alene-med-barn/soknad');
 
-  await page.route('**/*', route => {
+  await page.route('**/soknad', route => {
+      console.log(route.request().url());
     // Runs last.
       route.fulfill({
           body: "",
@@ -20,6 +21,8 @@ test('Send inn minimal søknad', async ({ page }) => {
           }
       });
   });
+
+  await page.locator(".navds-checkbox__input").waitFor();
 
   await TestSteg1(page);
   await TestSteg2(page);
