@@ -24,20 +24,20 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
           {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
         </Label>
         <BodyShort>
-          {intl.formatMessage({ id: 'barnasbosted.BodyShort.opplysninger' })}
+          {intl.formatMessage({ id: 'barnasbosted.normaltekst.opplysninger' })}
         </BodyShort>
         <ul>
           <li>
             <BodyShort>
               {intl.formatMessage({
-                id: 'barnasbosted.BodyShort.hvormangedager',
+                id: 'barnasbosted.normaltekst.hvormangedager',
               })}
             </BodyShort>
           </li>
           <li>
             <BodyShort>
               {intl.formatMessage({
-                id: 'barnasbosted.BodyShort.nårreiserbarnet',
+                id: 'barnasbosted.normaltekst.nårreiserbarnet',
               })}
             </BodyShort>
           </li>
