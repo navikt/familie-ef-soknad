@@ -124,6 +124,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.26.0",
     "@types/history": "^5.0.0",
     "@types/react-helmet": "^6.1.5",
     "husky": "^8.0.1",
