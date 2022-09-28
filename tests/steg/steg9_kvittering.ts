@@ -1,10 +1,8 @@
 import {Page, TestInfo} from "@playwright/test";
-import {Steg, testSideMedScreenshot} from "../sideTest";
-import {clickSendSøknadKnapp} from "../utils/utils";
+import {screenshot, Steg} from "../sideTest";
 
-const TestSteg9 = async (page: Page, testInfo: TestInfo) =>
-    testSideMedScreenshot(page, testInfo, Steg.KVITTERING, async page => {
-        await expect(page.locator(".abc")).toContain("asd")
-    })
+const TestSteg9 = async (page: Page, testInfo: TestInfo) => {
+    await screenshot(page, testInfo, Steg.KVITTERING)
+}
 
 export default TestSteg9;

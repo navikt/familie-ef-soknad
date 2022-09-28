@@ -29,12 +29,19 @@ export const stegNummber: Record<Steg, string> = {
 
 const stegUtenNesteKnapp = [Steg.START_SØKNAD, Steg.DOKUMENTASJON, Steg.KVITTERING];
 
+const lagPrefix = (testInfo: TestInfo, steg: Steg) => [...testInfo.titlePath.slice(1)].join('-') + `-${stegNummber[steg]}-${steg}`;
+
 export const testSideMedScreenshot = async (page: Page, testInfo: TestInfo, steg: Steg, testSide?: (page: Page) => Promise<void>) => {
-    const prefix = [...testInfo.titlePath.slice(1)].join('-') + `-${stegNummber[steg]}-${steg}`
+    const prefix = lagPrefix(testInfo, steg)
     await expect(page).toHaveScreenshot(`${prefix}-før.png`, {fullPage: true});
     testSide && await testSide(page);
     await expect(page).toHaveScreenshot(`${prefix}-etter.png`, {fullPage: true});
     if (stegUtenNesteKnapp.indexOf(steg) === -1) {
         await clickNesteKnapp(page)
     }
+}
+
+export const screenshot = async (page: Page, testInfo: TestInfo, steg: Steg) => {
+    const prefix = lagPrefix(testInfo, steg);
+    await expect(page).toHaveScreenshot(`${prefix}.png`, {fullPage: true});
 }

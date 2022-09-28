@@ -15,7 +15,6 @@ const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreensho
     await locateRadioPanel(page, norskTekst('medlemskap.spm.opphold'), JaSvar).click();
 
     await locateRadioPanel(page, norskTekst('medlemskap.spm.bosatt'), JaSvar).click();
-
 });
 
 export default TestSteg1;

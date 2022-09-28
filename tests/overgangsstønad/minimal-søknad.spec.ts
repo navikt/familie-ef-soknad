@@ -1,4 +1,3 @@
-import {test} from "@playwright/test";
 import TestSteg1 from "../steg/steg1_omdeg";
 import TestSteg2 from "../steg/steg2_bosituasjon";
 import TestSteg3 from "../steg/steg3_barnadine";
@@ -10,24 +9,13 @@ import TestSteg8 from "../steg/steg8_dokumentasjon";
 import StartSøknad from "../felles/StartSøknad";
 import TestSteg9 from "../steg/steg9_kvittering";
 import {testMedApiMocks} from "../testContext";
+import {gåTilOvergangsstønad} from "../utils/gåTilStønad";
 
-test('Send inn minimal søknad', async ({ page,  }, testInfo) => {
-
-  await page.goto('http://localhost:3000/familie/alene-med-barn/soknad');
+testMedApiMocks('Send inn minimal søknad', async ({ page,  }, testInfo) => {
+  await gåTilOvergangsstønad(page);
 
   // TODO trengs denne? Var det til for å få teste uten at appen kjører?
   await page.locator(".navds-checkbox__input").waitFor();
-
-  await page.route('**/api/soknad', route => {
-    console.log(route.request().url());
-    // Runs last.
-    route.fulfill({
-      body: "",
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
-  });
 
   await StartSøknad(page, testInfo, true)
   await TestSteg1(page, testInfo);

@@ -5,11 +5,13 @@ export const mockRoutes = async (page: Page) => {
 }
 
 export const mockSendInnSoknad = async (page: Page) => {
-    await page.route('**/soknad', route => {
-        console.log(route.request().url());
+    await page.route('**/api/soknad', route => {
         // Runs last.
         route.fulfill({
-            body: "",
+            body: JSON.stringify({
+                text: "Ok",
+                mottattDato: "2022-01-01T01:01:01"
+            }),
             headers: {
                 'content-type': 'application/json'
             }
