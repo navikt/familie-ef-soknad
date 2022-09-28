@@ -1,12 +1,9 @@
-import {norskTekst, JaSvar, locateNesteKnapp, locateRadioPanel} from '../utils';
-import {Page} from "@playwright/test";
+import {locateRadioPanel} from '../utils/utils';
+import {Page, TestInfo} from "@playwright/test";
+import {JaSvar, norskTekst} from "../utils/tekster";
+import {Steg, testSideMedScreenshot} from "../sideTest";
 
-const TestSteg1 = async (page: Page) => {
-    await page.click('.navds-checkbox__input')
-    await page.locator("button", {hasText: "Start søknad"}).click()
-
-    await locateRadioPanel(page, norskTekst('personopplysninger.spm.riktigAdresse'), JaSvar).click();
-
+const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreenshot(page, testInfo, Steg.OM_DEG, async page => {
     await locateRadioPanel(page, norskTekst('personopplysninger.spm.riktigAdresse'), JaSvar).click();
 
     await locateRadioPanel(
@@ -17,9 +14,8 @@ const TestSteg1 = async (page: Page) => {
 
     await locateRadioPanel(page, norskTekst('medlemskap.spm.opphold'), JaSvar).click();
 
-    await locateRadioPanel(page,norskTekst('medlemskap.spm.bosatt'), JaSvar).click();
+    await locateRadioPanel(page, norskTekst('medlemskap.spm.bosatt'), JaSvar).click();
 
-    await locateNesteKnapp(page).click()
-};
+});
 
 export default TestSteg1;

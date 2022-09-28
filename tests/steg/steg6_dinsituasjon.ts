@@ -1,7 +1,9 @@
-import {locateNesteKnapp, locateRadioPanel, NeiSvar, norskTekst} from '../utils';
-import {Page} from "@playwright/test";
+import {locateNesteKnapp, locateRadioPanel} from '../utils/utils';
+import {Page, TestInfo} from "@playwright/test";
+import {NeiSvar, norskTekst} from "../utils/tekster";
+import {Steg, testSideMedScreenshot} from "../sideTest";
 
-const TestSteg6 = async (page: Page) => {
+const TestSteg6 = async (page: Page, testInfo: TestInfo) => testSideMedScreenshot(page, testInfo, Steg.DIN_SITUASJON, async page => {
     await locateRadioPanel(
         page,
         norskTekst('dinSituasjon.spm'),
@@ -20,7 +22,6 @@ const TestSteg6 = async (page: Page) => {
         norskTekst('søkerFraBestemtMåned.svar.neiNavKanVurdere')
     ).click();
 
-    await locateNesteKnapp(page).click()
-};
+});
 
 export default TestSteg6;
