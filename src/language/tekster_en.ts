@@ -137,7 +137,7 @@ export default {
   'sivilstatus.datovelger.endring':
     'Når skjedde endringen / når skal endringen skje?',
   'sivilstatus.spm.erUformeltGift':
-    'You are registered as unmarried in the National Registry. Are you married without this having been registered in the Norwegian National Registry?',
+    'Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
     'You must provide documentation of your marriage',
   'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Why are we asking this?',
