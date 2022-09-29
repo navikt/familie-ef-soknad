@@ -41,6 +41,15 @@ const config: PlaywrightTestConfig = {
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: process.env.CI ? 'on-first-retry' : 'on',
+    video: {
+      mode: 'off',
+    },
+    /*launchOptions: {
+      slowMo: 500
+    },*/
+    // det virker ikke som at viewport virker her? 
+    //viewport: { width: 1024, height: 1400 },
+    //screenshot: 'off'
   },
 
   /* Configure projects for major browsers */

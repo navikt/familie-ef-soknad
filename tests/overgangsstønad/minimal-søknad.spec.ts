@@ -11,6 +11,16 @@ import TestSteg9 from "../steg/steg9_kvittering";
 import {testMedApiMocks} from "../testContext";
 import {gåTilOvergangsstønad} from "../utils/gåTilStønad";
 
+/*
+viewport fra playwright config virker ikke?
+testMedApiMocks.use({
+  viewport: {
+    width: 1024,
+    height: 1800
+  }
+})
+*/
+
 testMedApiMocks('Send inn minimal søknad', async ({ page,  }, testInfo) => {
   await gåTilOvergangsstønad(page);
 
