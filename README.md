@@ -6,6 +6,7 @@ Frontend - søknad for enslig forsørger.
 
 1. `npm install`
 2. `npm start`
+3. `node mock/mock-server.js` 
 
 Kjør uten redirect til autentisering lokalt: 
 sett .env variabel: 
