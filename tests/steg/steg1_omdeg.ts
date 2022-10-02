@@ -1,6 +1,6 @@
 import {locateRadioPanel} from '../utils/utils';
 import {expect, Page, TestInfo} from "@playwright/test";
-import {JaSvar, norskTekst} from "../utils/tekster";
+import {JaSvar, NeiSvar, norskTekst} from "../utils/tekster";
 import {screenshotPrefix, Steg, testSideMedScreenshot} from "../sideTest";
 import {BegrunnelseSpørsmål} from "../../src/søknad/steg/1-omdeg/sivilstatus/SivilstatusConfig";
 import {LokalIntlShape} from "../../src/language/typer";
@@ -30,6 +30,7 @@ const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreensho
     await locateRadioPanel(page, norskTekst('personopplysninger.spm.riktigAdresse'), JaSvar).click();
 
     await TestSteg1MedAlleSvarsalternativ(page, testInfo)
+    await OppholdNorgeNeiSvar(page, testInfo)
 
     await locateRadioPanel(
         page,
@@ -38,9 +39,16 @@ const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreensho
     ).click();
 
     await locateRadioPanel(page, oppholderSegINorge(intl), JaSvar).click();
-
     await locateRadioPanel(page, bosattINorgeDeSisteTreÅr(intl), JaSvar).click();
 });
+
+const OppholdNorgeNeiSvar = async (page: Page, testInfo: TestInfo) => {
+    let oppholdNorge = page.locator("fieldset", {hasText: norskTekst(oppholderSegINorge(intl).tekstid)});
+    const oppholdINorgeSection = page.locator("section", {has: oppholdNorge})
+    await locateRadioPanel(oppholdINorgeSection, oppholderSegINorge(intl), NeiSvar).click();
+    await locateRadioPanel(oppholdINorgeSection, bosattINorgeDeSisteTreÅr(intl), NeiSvar).click();
+    await expect(oppholdINorgeSection).toHaveScreenshot(`${screenshotPrefix(testInfo, steg)}-opphold-section-nejsvar.png`)
+}
 
 const SamlivsbruddMedKalender = async (page: Page, testInfo: TestInfo) => {
     await locateRadioPanel(
