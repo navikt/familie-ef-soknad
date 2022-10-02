@@ -1,10 +1,10 @@
-import {locateRadioPanel} from '../utils/utils';
+import {locateRadioPanel} from '../../utils/utils';
 import {expect, Page, TestInfo} from "@playwright/test";
-import {JaSvar, NeiSvar, norskTekst} from "../utils/tekster";
-import {screenshotPrefix, Steg, testSideMedScreenshot} from "../sideTest";
-import {BegrunnelseSpørsmål} from "../../src/søknad/steg/1-omdeg/sivilstatus/SivilstatusConfig";
-import {LokalIntlShape} from "../../src/language/typer";
-import {bosattINorgeDeSisteTreÅr, oppholderSegINorge} from "../../src/søknad/steg/1-omdeg/medlemskap/MedlemskapConfig";
+import {JaSvar, NeiSvar, norskTekst, testIntl} from "../../utils/tekster";
+import {screenshotPrefix, Steg, testSideMedScreenshot} from "../../sideTest";
+import {BegrunnelseSpørsmål} from "../../../src/søknad/steg/1-omdeg/sivilstatus/SivilstatusConfig";
+import {bosattINorgeDeSisteTreÅr, oppholderSegINorge} from "../../../src/søknad/steg/1-omdeg/medlemskap/MedlemskapConfig";
+import {borDuPåDenneAdressen} from "../../../src/søknad/steg/1-omdeg/personopplysninger/PersonopplysningerConfig";
 
 /*import {tekster_nb} from "../../src/language/tekster_nb";
 
@@ -20,17 +20,14 @@ const config = [
     BegrunnelseSpørsmål
 ]
 */
-const intl: LokalIntlShape = {formatMessage: (props => props.id as string), messages: {}};
 
 const steg = Steg.OM_DEG;
 
-let begrunnelse = BegrunnelseSpørsmål(intl);
+const begrunnelse = BegrunnelseSpørsmål(testIntl);
+const borDuPåDenneAdressenConfig = borDuPåDenneAdressen(testIntl);
 
-const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreenshot(page, testInfo, steg, async page => {
-    await locateRadioPanel(page, norskTekst('personopplysninger.spm.riktigAdresse'), JaSvar).click();
-
-    await TestSteg1MedAlleSvarsalternativ(page, testInfo)
-    await OppholdNorgeNeiSvar(page, testInfo)
+const TestSteg1Minimal = async (page: Page, testInfo: TestInfo) => testSideMedScreenshot(page, testInfo, steg, async page => {
+    await locateRadioPanel(page, borDuPåDenneAdressenConfig, JaSvar).click();
 
     await locateRadioPanel(
         page,
@@ -38,15 +35,15 @@ const TestSteg1 = async (page: Page, testInfo: TestInfo) => testSideMedScreensho
         norskTekst('sivilstatus.svar.aleneFraFødsel')
     ).click();
 
-    await locateRadioPanel(page, oppholderSegINorge(intl), JaSvar).click();
-    await locateRadioPanel(page, bosattINorgeDeSisteTreÅr(intl), JaSvar).click();
+    await locateRadioPanel(page, oppholderSegINorge(testIntl), JaSvar).click();
+    await locateRadioPanel(page, bosattINorgeDeSisteTreÅr(testIntl), JaSvar).click();
 });
 
 const OppholdNorgeNeiSvar = async (page: Page, testInfo: TestInfo) => {
-    let oppholdNorge = page.locator("fieldset", {hasText: norskTekst(oppholderSegINorge(intl).tekstid)});
+    let oppholdNorge = page.locator("fieldset", {hasText: norskTekst(oppholderSegINorge(testIntl).tekstid)});
     const oppholdINorgeSection = page.locator("section", {has: oppholdNorge})
-    await locateRadioPanel(oppholdINorgeSection, oppholderSegINorge(intl), NeiSvar).click();
-    await locateRadioPanel(oppholdINorgeSection, bosattINorgeDeSisteTreÅr(intl), NeiSvar).click();
+    await locateRadioPanel(oppholdINorgeSection, oppholderSegINorge(testIntl), NeiSvar).click();
+    await locateRadioPanel(oppholdINorgeSection, bosattINorgeDeSisteTreÅr(testIntl), NeiSvar).click();
     await expect(oppholdINorgeSection).toHaveScreenshot(`${screenshotPrefix(testInfo, steg)}-opphold-section-nejsvar.png`)
 }
 
@@ -76,10 +73,10 @@ const TestSteg1MedAlleSvarsalternativ = async (page: Page, testInfo: TestInfo) =
         const svarLocator = section.locator("label", {hasText: norskTekst(svar.svar_tekst)});
         await svarLocator.click()
         await expect(section).toHaveScreenshot(`${screenshotPrefix(testInfo, steg)}-begrunnelse-${svar.id}.png`);
-        if(svar.svar_tekst === 'sivilstatus.svar.samlivsbruddForeldre') {
+        if (svar.svar_tekst === 'sivilstatus.svar.samlivsbruddForeldre') {
             await SamlivsbruddMedKalender(page, testInfo)
         }
     }
 }
 
-export default TestSteg1;
+export default TestSteg1Minimal;

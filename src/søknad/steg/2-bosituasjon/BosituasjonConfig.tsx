@@ -15,6 +15,16 @@ const DokumentasjonBorPåUlikeAdresser: IDokumentasjon =
 
 // --- Spørsmål
 
+export enum bosituasjonSvar {
+  borAleneMedBarnEllerGravid = 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+  borMidlertidigFraHverandre = 'bosituasjon.svar.borMidlertidigFraHverandre',
+  borSammenOgVenterBarn = 'bosituasjon.svar.borSammenOgVenterBarn',
+  harEkteskapsliknendeForhold = 'bosituasjon.svar.harEkteskapsliknendeForhold',
+  delerBoligMedAndreVoksne = 'bosituasjon.svar.delerBoligMedAndreVoksne',
+  tidligereSamboerFortsattRegistrertPåAdresse = 'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
+}
+
+
 export const delerSøkerBoligMedAndreVoksne = (
   intl: LokalIntlShape
 ): ISpørsmål => ({
@@ -25,7 +35,7 @@ export const delerSøkerBoligMedAndreVoksne = (
     {
       id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+        id: bosituasjonSvar.borAleneMedBarnEllerGravid,
       }),
     },
     {
@@ -33,32 +43,32 @@ export const delerSøkerBoligMedAndreVoksne = (
       svar_tekst: intl.formatMessage({
         id: 'bosituasjon.svar.borMidlertidigFraHverandre',
       }),
-      alert_tekstid: 'bosituasjon.alert.borMidlertidigFraHverandre',
+      alert_tekstid: bosituasjonSvar.borMidlertidigFraHverandre,
     },
     {
       id: ESøkerDelerBolig.borSammenOgVenterBarn,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.borSammenOgVenterBarn',
+        id: bosituasjonSvar.borSammenOgVenterBarn,
       }),
       alert_tekstid: 'bosituasjon.alert.borSammenOgVenterBarn',
     },
     {
       id: ESøkerDelerBolig.harEkteskapsliknendeForhold,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.harEkteskapsliknendeForhold',
+        id: bosituasjonSvar.harEkteskapsliknendeForhold,
       }),
       alert_tekstid: 'bosituasjon.alert.harEkteskapsliknendeForhold',
     },
     {
       id: ESøkerDelerBolig.delerBoligMedAndreVoksne,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.delerBoligMedAndreVoksne',
+        id: bosituasjonSvar.delerBoligMedAndreVoksne,
       }),
     },
     {
       id: ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
+        id: bosituasjonSvar.tidligereSamboerFortsattRegistrertPåAdresse,
       }),
       alert_tekstid:
         'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',

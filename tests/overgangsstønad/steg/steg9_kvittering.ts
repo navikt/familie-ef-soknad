@@ -1,5 +1,5 @@
 import {Page, TestInfo} from "@playwright/test";
-import {screenshot, Steg} from "../sideTest";
+import {screenshot, Steg} from "../../sideTest";
 
 const TestSteg9 = async (page: Page, testInfo: TestInfo) => {
     await screenshot(page, testInfo, Steg.KVITTERING)

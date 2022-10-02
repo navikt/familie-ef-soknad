@@ -1,7 +1,7 @@
-import {locateCheckBox, locateNesteKnapp, locateRadioPanel, } from '../utils/utils';
+import {locateCheckBox, locateNesteKnapp, locateRadioPanel, } from '../../utils/utils';
 import {Page, TestInfo} from "@playwright/test";
-import {norskTekst} from "../utils/tekster";
-import {Steg, testSideMedScreenshot} from "../sideTest";
+import {norskTekst} from "../../utils/tekster";
+import {Steg, testSideMedScreenshot} from "../../sideTest";
 
 const TestSteg4 = async (page: Page, testInfo: TestInfo) => {
     await testSideMedScreenshot(page, testInfo, Steg.BARNAS_BOSTED, async page => {

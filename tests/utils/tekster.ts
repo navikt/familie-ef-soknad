@@ -1,4 +1,7 @@
 import tekster_nb from "../../src/language/tekster_nb";
+import {LokalIntlShape} from "../../src/language/typer";
+
+export const testIntl: LokalIntlShape = {formatMessage: (props => props.id as string), messages: {}};
 
 export const norskTekst = (tekstid: string, navn?: string): string => {
     // @ts-ignore
