@@ -1,4 +1,6 @@
-import { OversettProps } from '../context/LokalIntlContext';
+export interface OversettProps {
+  id: string | number;
+}
 
 export enum LocaleType {
   en = 'en',

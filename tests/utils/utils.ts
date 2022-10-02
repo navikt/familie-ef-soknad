@@ -1,5 +1,6 @@
-import tekster_nb from '../../src/language/tekster_nb';
 import {Locator, Page} from "@playwright/test";
+import {ISpørsmål} from "../../src/models/felles/spørsmålogsvar";
+import {norskTekst} from "./tekster";
 
 export const clickCheckBox = (page: Page, spørsmålstekst?: string): Promise<void> =>
     locateCheckBox(page, spørsmålstekst).click()
@@ -10,9 +11,11 @@ export const locateCheckBox = (page: Page, spørsmålstekst?: string): Locator =
 export const clickRadioPanel = (page: Page, spørsmålstekst: string, svartekst: string): Promise<void> =>
     locateRadioPanel(page, spørsmålstekst, svartekst).click()
 
-export const locateRadioPanel = (page: Page, spørsmålstekst: string, svartekst: string): Locator =>
-    page.locator("fieldset", {hasText: spørsmålstekst})
-        .locator("label", {hasText: svartekst})
+export const locateRadioPanel = (page: Page | Locator, spørsmålstekst: ISpørsmål | string, svartekst: string): Locator => {
+        const spmtekst = (typeof spørsmålstekst === 'string') ? spørsmålstekst : norskTekst(spørsmålstekst.tekstid);
+        return page.locator("fieldset", {hasText: spmtekst})
+            .locator("label", {hasText: svartekst});
+}
 
 export const clickInput = (page: Page, spørsmålstekst: string): Promise<void> =>
     locateInput(page, spørsmålstekst).click()

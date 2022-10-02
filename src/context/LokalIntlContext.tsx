@@ -1,8 +1,6 @@
 import React, { createContext, useContext } from 'react';
+import {OversettProps} from "../language/typer";
 
-export interface OversettProps {
-  id: string | number;
-}
 const LokalIntlContext = createContext<{
   formatMessage: (
     props: OversettProps,
