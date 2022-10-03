@@ -11,7 +11,11 @@ import {
   Steg2AndreValg,
   Steg2MedScreenshot,
 } from './steg/steg2_bosituasjon';
-import { Steg3, Steg3MedScreenshot } from './steg/steg3_barnadine';
+import {
+  Steg3,
+  Steg3FlereValg,
+  Steg3MedScreenshot,
+} from './steg/steg3_barnadine';
 import { Steg9MedScreenshot } from './steg/steg9_kvittering';
 import { Steg4MedScreenshot } from './steg/steg4_barnasbosted';
 import { Steg5MedScreenshot } from './steg/steg5_aktivitet';
@@ -28,5 +32,5 @@ testMedApiMocks('Steg 3', async ({ page }, testInfo) => {
   await StartSøknad(page, testInfo);
   await Steg1(page);
   await Steg2(page);
-  // TODO steg3
+  await Steg3FlereValg(page, testInfo);
 });

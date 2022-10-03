@@ -33,6 +33,9 @@ export const locateRadioPanel = (
 export const clickInput = (page: Page, spørsmålstekst: string): Promise<void> =>
   locateInput(page, spørsmålstekst).click();
 
+export const locateLabel = (page: Page | Locator, tekstId: string) =>
+  page.locator('label', { hasText: norskTekst(tekstId) });
+
 export const locateInput = (page: Page, spørsmålstekst: string): Locator =>
   page.locator('.skjemaelement', { hasText: spørsmålstekst }); //TODO .withExactText(spørsmålstekst).find('input');
 
@@ -47,3 +50,6 @@ export const clickSendSøknadKnapp = (page: Page): Promise<void> =>
 
 export const locateSendSøknadKnapp = (page: Page): Locator =>
   page.locator('button', { hasText: 'SEND SØKNAD' });
+
+export const clickKnapp = async (page: Page | Locator, tekstId: string) =>
+  await page.locator('button', { hasText: norskTekst(tekstId) }).click();
