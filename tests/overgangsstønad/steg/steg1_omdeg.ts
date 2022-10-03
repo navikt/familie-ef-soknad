@@ -55,6 +55,27 @@ export const Steg1MedScreenshot = async (page: Page, testInfo: TestInfo) =>
     await Steg1(page, false);
   });
 
+export const Steg1MedAndreValg = async (page: Page, testInfo: TestInfo) => {
+  await BorDuPåDenneAdressenNei(page, testInfo);
+  await locateRadioPanel(page, borDuPåDenneAdressenConfig, JaSvar).click();
+
+  await TestSteg1MedAlleSvarsalternativ(page, testInfo);
+  await OppholdNorgeNeiSvar(page, testInfo);
+};
+
+const BorDuPåDenneAdressenNei = async (page: Page, testInfo: TestInfo) => {
+  await locateRadioPanel(page, borDuPåDenneAdressenConfig, NeiSvar).click();
+  await expect(
+    page
+      .locator('fieldset', {
+        hasText: norskTekst(borDuPåDenneAdressenConfig.tekstid),
+      })
+      .locator('..')
+  ).toHaveScreenshot(
+    `${screenshotPrefix(testInfo, steg)}-borDuPåDenneAdressen-nei.png`
+  );
+};
+
 const OppholdNorgeNeiSvar = async (page: Page, testInfo: TestInfo) => {
   let oppholdNorge = page.locator('fieldset', {
     hasText: norskTekst(oppholderSegINorge(testIntl).tekstid),
@@ -70,6 +91,20 @@ const OppholdNorgeNeiSvar = async (page: Page, testInfo: TestInfo) => {
     bosattINorgeDeSisteTreÅr(testIntl),
     NeiSvar
   ).click();
+
+  await oppholdINorgeSection
+    .locator('input.nav-datovelger__input >> nth=0')
+    .fill('01.01.2022');
+  await oppholdINorgeSection
+    .locator('input.nav-datovelger__input >> nth=1')
+    .fill('02.01.2022');
+  await oppholdINorgeSection.click();
+  await oppholdINorgeSection
+    .locator('label', {
+      hasText: norskTekst('medlemskap.periodeBoddIUtlandet.begrunnelse'),
+    })
+    .fill('Av en grunn');
+
   await expect(oppholdINorgeSection).toHaveScreenshot(
     `${screenshotPrefix(testInfo, steg)}-opphold-section-nejsvar.png`
   );
