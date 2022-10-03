@@ -1,4 +1,4 @@
-import { locateRadioPanel } from '../../utils/utils';
+import { clickNesteKnapp, locateRadioPanel } from '../../utils/utils';
 import { Page, TestInfo } from '@playwright/test';
 import { Steg, testSideMedScreenshot } from '../../sideTest';
 import { NeiSvar, norskTekst, testIntl } from '../../utils/tekster';
@@ -12,14 +12,21 @@ const delerSøkerBoligMedAndreVoksneConfig =
   delerSøkerBoligMedAndreVoksne(testIntl);
 const skalSøkerGifteSegMedSamboerConfig = skalSøkerGifteSegMedSamboer(testIntl);
 
-const TestSteg2Minimal = async (page: Page, testInfo: TestInfo) =>
+export const TestSteg2 = async (page: Page, trykkNesteSteg: boolean = true) => {
+  await borAleneMedBarnEllerGravid(page);
+  await locateRadioPanel(
+    page,
+    skalSøkerGifteSegMedSamboerConfig,
+    NeiSvar
+  ).click();
+  if (trykkNesteSteg) {
+    await clickNesteKnapp(page);
+  }
+};
+
+export const Steg2MedScreenshot = async (page: Page, testInfo: TestInfo) =>
   testSideMedScreenshot(page, testInfo, Steg.BOSITUASJON, async (page) => {
-    await borAleneMedBarnEllerGravid(page);
-    await locateRadioPanel(
-      page,
-      skalSøkerGifteSegMedSamboerConfig,
-      NeiSvar
-    ).click();
+    await TestSteg2(page, false);
   });
 
 /*
@@ -38,5 +45,3 @@ async function borAleneMedBarnEllerGravid(page: Page) {
     norskTekst(bosituasjonSvar.borAleneMedBarnEllerGravid)
   ).click();
 }
-
-export default TestSteg2Minimal;

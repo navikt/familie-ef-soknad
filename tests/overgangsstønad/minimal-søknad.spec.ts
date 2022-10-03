@@ -1,15 +1,15 @@
-import TestSteg1Minimal from './steg/steg1_omdeg';
-import TestSteg2Minimal from './steg/steg2_bosituasjon';
-import TestSteg3Minimal from './steg/steg3_barnadine';
-import TestSteg4Minimal from './steg/steg4_barnasbosted';
-import TestSteg5Minimal from './steg/steg5_aktivitet';
-import TestSteg6Minimal from './steg/steg6_dinsituasjon';
-import TestSteg7Minimal from './steg/steg7_oppsummering';
-import TestSteg8Minimal from './steg/steg8_dokumentasjon';
 import StartSøknad from '../felles/StartSøknad';
-import TestSteg9Minimal from './steg/steg9_kvittering';
 import { testMedApiMocks } from '../testContext';
 import { gåTilOvergangsstønad } from '../utils/gåTilStønad';
+import { Steg1, Steg1MedScreenshot } from './steg/steg1_omdeg';
+import { Steg2MedScreenshot } from './steg/steg2_bosituasjon';
+import { Steg3, Steg3MedScreenshot } from './steg/steg3_barnadine';
+import { Steg9MedScreenshot } from './steg/steg9_kvittering';
+import { Steg4MedScreenshot } from './steg/steg4_barnasbosted';
+import { Steg5MedScreenshot } from './steg/steg5_aktivitet';
+import { Steg6MedScreenshot } from './steg/steg6_dinsituasjon';
+import { Steg7MedScreenshot } from './steg/steg7_oppsummering';
+import { Steg8MedScreenshot } from './steg/steg8_dokumentasjon';
 
 /*
 viewport fra playwright config virker ikke?
@@ -21,20 +21,23 @@ testMedApiMocks.use({
 })
 */
 
-testMedApiMocks('Send inn minimal søknad', async ({ page }, testInfo) => {
-  await gåTilOvergangsstønad(page);
+testMedApiMocks(
+  'Send inn minimal søknad med screenshots',
+  async ({ page }, testInfo) => {
+    await gåTilOvergangsstønad(page);
 
-  // TODO trengs denne? Var det til for å få teste uten at appen kjører?
-  await page.locator('.navds-checkbox__input').waitFor();
+    // TODO trengs denne? Var det til for å få teste uten at appen kjører?
+    await page.locator('.navds-checkbox__input').waitFor();
 
-  await StartSøknad(page, testInfo, true);
-  await TestSteg1Minimal(page, testInfo);
-  await TestSteg2Minimal(page, testInfo);
-  await TestSteg3Minimal(page, testInfo);
-  await TestSteg4Minimal(page, testInfo);
-  await TestSteg5Minimal(page, testInfo);
-  await TestSteg6Minimal(page, testInfo);
-  await TestSteg7Minimal(page, testInfo);
-  await TestSteg8Minimal(page, testInfo);
-  await TestSteg9Minimal(page, testInfo);
-});
+    await StartSøknad(page, testInfo, true);
+    await Steg1MedScreenshot(page, testInfo);
+    await Steg2MedScreenshot(page, testInfo);
+    await Steg3MedScreenshot(page, testInfo);
+    await Steg4MedScreenshot(page, testInfo);
+    await Steg5MedScreenshot(page, testInfo);
+    await Steg6MedScreenshot(page, testInfo);
+    await Steg7MedScreenshot(page, testInfo);
+    await Steg8MedScreenshot(page, testInfo);
+    await Steg9MedScreenshot(page, testInfo);
+  }
+);

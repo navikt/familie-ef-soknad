@@ -1,8 +1,9 @@
 import { Page, TestInfo } from '@playwright/test';
 import { screenshot, Steg } from '../../sideTest';
 
-const TestSteg9Minimal = async (page: Page, testInfo: TestInfo) => {
+export const Steg9 = async (page: Page) =>
+  await page.locator('div', { hasText: 'Kvittering' });
+
+export const Steg9MedScreenshot = async (page: Page, testInfo: TestInfo) => {
   await screenshot(page, testInfo, Steg.KVITTERING);
 };
-
-export default TestSteg9Minimal;

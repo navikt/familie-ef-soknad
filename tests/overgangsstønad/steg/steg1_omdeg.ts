@@ -1,4 +1,4 @@
-import { locateRadioPanel } from '../../utils/utils';
+import { clickNesteKnapp, locateRadioPanel } from '../../utils/utils';
 import { expect, Page, TestInfo } from '@playwright/test';
 import { JaSvar, NeiSvar, norskTekst, testIntl } from '../../utils/tekster';
 import { screenshotPrefix, Steg, testSideMedScreenshot } from '../../sideTest';
@@ -29,22 +29,30 @@ const steg = Steg.OM_DEG;
 const begrunnelse = BegrunnelseSpørsmål(testIntl);
 const borDuPåDenneAdressenConfig = borDuPåDenneAdressen(testIntl);
 
-const TestSteg1Minimal = async (page: Page, testInfo: TestInfo) =>
+export const Steg1 = async (page: Page, trykkNesteSteg: boolean = true) => {
+  await locateRadioPanel(page, borDuPåDenneAdressenConfig, JaSvar).click();
+
+  await locateRadioPanel(
+    page,
+    begrunnelse,
+    norskTekst('sivilstatus.svar.aleneFraFødsel')
+  ).click();
+
+  await locateRadioPanel(page, oppholderSegINorge(testIntl), JaSvar).click();
+  await locateRadioPanel(
+    page,
+    bosattINorgeDeSisteTreÅr(testIntl),
+    JaSvar
+  ).click();
+
+  if (trykkNesteSteg) {
+    await clickNesteKnapp(page);
+  }
+};
+
+export const Steg1MedScreenshot = async (page: Page, testInfo: TestInfo) =>
   testSideMedScreenshot(page, testInfo, steg, async (page) => {
-    await locateRadioPanel(page, borDuPåDenneAdressenConfig, JaSvar).click();
-
-    await locateRadioPanel(
-      page,
-      begrunnelse,
-      norskTekst('sivilstatus.svar.aleneFraFødsel')
-    ).click();
-
-    await locateRadioPanel(page, oppholderSegINorge(testIntl), JaSvar).click();
-    await locateRadioPanel(
-      page,
-      bosattINorgeDeSisteTreÅr(testIntl),
-      JaSvar
-    ).click();
+    await Steg1(page, false);
   });
 
 const OppholdNorgeNeiSvar = async (page: Page, testInfo: TestInfo) => {
@@ -111,5 +119,3 @@ const TestSteg1MedAlleSvarsalternativ = async (
     }
   }
 };
-
-export default TestSteg1Minimal;

@@ -1,32 +1,40 @@
 import {
+  clickNesteKnapp,
   locateCheckBox,
-  locateNesteKnapp,
   locateRadioPanel,
 } from '../../utils/utils';
 import { Page, TestInfo } from '@playwright/test';
 import { norskTekst } from '../../utils/tekster';
 import { Steg, testSideMedScreenshot } from '../../sideTest';
 
-const TestSteg4Minimal = async (page: Page, testInfo: TestInfo) => {
+const Steg4 = async (page: Page, trykkNesteSteg: boolean = true) => {
+  await locateCheckBox(
+    page,
+    norskTekst('barnasbosted.kanikkeoppgiforelder')
+  ).click();
+
+  await locateRadioPanel(
+    page,
+    norskTekst('barnasbosted.spm.hvorforikkeoppgi'),
+    norskTekst('barnasbosted.spm.donorbarn')
+  ).click();
+  if (trykkNesteSteg) {
+    await clickNesteKnapp(page);
+    await clickNesteKnapp(page);
+  }
+};
+
+export const Steg4MedScreenshot = async (page: Page, testInfo: TestInfo) => {
   await testSideMedScreenshot(
     page,
     testInfo,
     Steg.BARNAS_BOSTED,
     async (page) => {
-      await locateCheckBox(
-        page,
-        norskTekst('barnasbosted.kanikkeoppgiforelder')
-      ).click();
-
-      await locateRadioPanel(
-        page,
-        norskTekst('barnasbosted.spm.hvorforikkeoppgi'),
-        norskTekst('barnasbosted.spm.donorbarn')
-      ).click();
+      await Steg4(page, false);
     }
   );
   // Må klikke en eksta gang fordi den fortsatt er på barnsiden
-  await locateNesteKnapp(page).click();
+  await clickNesteKnapp(page);
 };
 
 /*
@@ -66,5 +74,3 @@ await locateRadioPanel(
   norskTekst('barnasbosted.spm.møtesIkke')
 ).click()
 */
-
-export default TestSteg4Minimal;

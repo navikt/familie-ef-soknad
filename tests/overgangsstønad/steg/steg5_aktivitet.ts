@@ -1,18 +1,23 @@
-import { locateRadioPanel } from '../../utils/utils';
+import { clickNesteKnapp, locateRadioPanel } from '../../utils/utils';
 import { Page, TestInfo } from '@playwright/test';
 import { norskTekst } from '../../utils/tekster';
 import { Steg, testSideMedScreenshot } from '../../sideTest';
 
-const TestSteg5Minimal = async (page: Page, testInfo: TestInfo) =>
-  testSideMedScreenshot(page, testInfo, Steg.AKTIVITET, async (page) => {
-    // Radiopanel er helt greit nå når vi kun velger et alternativ. Må lage en testkomponent som tillater flere svarsalternativer
-    await locateRadioPanel(
-      page,
-      norskTekst('arbeidssituasjon.spm'),
-      norskTekst(
-        'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker'
-      )
-    ).click();
-  });
+const Steg5 = async (page: Page, trykkNesteSteg: boolean = true) => {
+  // Radiopanel er helt greit nå når vi kun velger et alternativ. Må lage en testkomponent som tillater flere svarsalternativer
+  await locateRadioPanel(
+    page,
+    norskTekst('arbeidssituasjon.spm'),
+    norskTekst(
+      'arbeidssituasjon.svar.erHverkenIArbeidUtdanningEllerArbeidssøker'
+    )
+  ).click();
+  if (trykkNesteSteg) {
+    await clickNesteKnapp(page);
+  }
+};
 
-export default TestSteg5Minimal;
+export const Steg5MedScreenshot = async (page: Page, testInfo: TestInfo) =>
+  testSideMedScreenshot(page, testInfo, Steg.AKTIVITET, async (page) => {
+    await Steg5(page, false);
+  });
