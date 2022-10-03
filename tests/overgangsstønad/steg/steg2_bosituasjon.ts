@@ -1,24 +1,26 @@
-import {locateRadioPanel} from '../../utils/utils';
-import {Page, TestInfo} from "@playwright/test";
-import {Steg, testSideMedScreenshot} from "../../sideTest";
-import {NeiSvar, norskTekst, testIntl} from "../../utils/tekster";
+import { locateRadioPanel } from '../../utils/utils';
+import { Page, TestInfo } from '@playwright/test';
+import { Steg, testSideMedScreenshot } from '../../sideTest';
+import { NeiSvar, norskTekst, testIntl } from '../../utils/tekster';
 import {
-    bosituasjonSvar,
-    delerSøkerBoligMedAndreVoksne,
-    skalSøkerGifteSegMedSamboer
-} from "../../../src/søknad/steg/2-bosituasjon/BosituasjonConfig";
+  bosituasjonSvar,
+  delerSøkerBoligMedAndreVoksne,
+  skalSøkerGifteSegMedSamboer,
+} from '../../../src/søknad/steg/2-bosituasjon/BosituasjonConfig';
 
-const delerSøkerBoligMedAndreVoksneConfig = delerSøkerBoligMedAndreVoksne(testIntl)
-const skalSøkerGifteSegMedSamboerConfig = skalSøkerGifteSegMedSamboer(testIntl)
+const delerSøkerBoligMedAndreVoksneConfig =
+  delerSøkerBoligMedAndreVoksne(testIntl);
+const skalSøkerGifteSegMedSamboerConfig = skalSøkerGifteSegMedSamboer(testIntl);
 
-const TestSteg2Minimal = async (page: Page, testInfo: TestInfo) => testSideMedScreenshot(page, testInfo, Steg.BOSITUASJON, async page => {
+const TestSteg2Minimal = async (page: Page, testInfo: TestInfo) =>
+  testSideMedScreenshot(page, testInfo, Steg.BOSITUASJON, async (page) => {
     await borAleneMedBarnEllerGravid(page);
     await locateRadioPanel(
-        page,
-        skalSøkerGifteSegMedSamboerConfig,
-        NeiSvar
+      page,
+      skalSøkerGifteSegMedSamboerConfig,
+      NeiSvar
     ).click();
-});
+  });
 
 /*
        bosituasjonSvar.borAleneMedBarnEllerGravid,
@@ -30,11 +32,11 @@ const TestSteg2Minimal = async (page: Page, testInfo: TestInfo) => testSideMedSc
     */
 
 async function borAleneMedBarnEllerGravid(page: Page) {
-    await locateRadioPanel(
-        page,
-        delerSøkerBoligMedAndreVoksneConfig,
-        norskTekst(bosituasjonSvar.borAleneMedBarnEllerGravid)
-    ).click();
+  await locateRadioPanel(
+    page,
+    delerSøkerBoligMedAndreVoksneConfig,
+    norskTekst(bosituasjonSvar.borAleneMedBarnEllerGravid)
+  ).click();
 }
 
 export default TestSteg2Minimal;

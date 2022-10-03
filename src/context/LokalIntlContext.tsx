@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import {OversettProps} from "../language/typer";
+import { OversettProps } from '../language/typer';
 
 const LokalIntlContext = createContext<{
   formatMessage: (

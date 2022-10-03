@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
      * Maximum time expect() should wait for the condition to be met.
      * For example in `await expect(locator).toHaveText();`
      */
-    timeout: 5000
+    timeout: 5000,
   },
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -47,7 +47,7 @@ const config: PlaywrightTestConfig = {
     /*launchOptions: {
       slowMo: 500
     },*/
-    // det virker ikke som at viewport virker her? 
+    // det virker ikke som at viewport virker her?
     //viewport: { width: 1024, height: 1400 },
     //screenshot: 'off'
   },
@@ -60,7 +60,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Chrome'],
       },
     },
-/*
+    /*
     {
       name: 'firefox',
       use: {
@@ -110,16 +110,16 @@ const config: PlaywrightTestConfig = {
   // outputDir: 'test-results/',
 
   /* Run your local dev server before starting the tests */
-   webServer: {
-     command: 'npm start',
-     url: "http://localhost:3000/familie/alene-med-barn/soknad",
-     timeout: 120 * 1000,
-     env: {
-       REACT_APP_BRUK_API_I_DEV: 'false',
-       DISABLE_ESLINT_PLUGIN: 'true',
-     },
-     reuseExistingServer: !process.env.CI
-   },
+  webServer: {
+    command: 'npm start',
+    url: 'http://localhost:3000/familie/alene-med-barn/soknad',
+    timeout: 120 * 1000,
+    env: {
+      REACT_APP_BRUK_API_I_DEV: 'false',
+      DISABLE_ESLINT_PLUGIN: 'true',
+    },
+    reuseExistingServer: !process.env.CI,
+  },
 };
 
 export default config;

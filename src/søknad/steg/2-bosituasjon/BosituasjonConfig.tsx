@@ -24,7 +24,6 @@ export enum bosituasjonSvar {
   tidligereSamboerFortsattRegistrertPåAdresse = 'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse',
 }
 
-
 export const delerSøkerBoligMedAndreVoksne = (
   intl: LokalIntlShape
 ): ISpørsmål => ({

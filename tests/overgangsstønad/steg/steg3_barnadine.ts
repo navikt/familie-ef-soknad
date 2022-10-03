@@ -1,7 +1,10 @@
-import {Page, TestInfo} from "@playwright/test";
-import {Steg, testSideMedScreenshot} from "../../sideTest";
+import { Page, TestInfo } from '@playwright/test';
+import { screenshot, Steg } from '../../sideTest';
+import { clickNesteKnapp } from '../../utils/utils';
 
-const TestSteg3 = async (page: Page, testInfo: TestInfo) =>
-    testSideMedScreenshot(page, testInfo, Steg.BARNA_DINE);
+const TestSteg3Minimal = async (page: Page, testInfo: TestInfo) => {
+  await screenshot(page, testInfo, Steg.BARNA_DINE);
+  await clickNesteKnapp(page);
+};
 
-export default TestSteg3;
+export default TestSteg3Minimal;
