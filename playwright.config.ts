@@ -51,6 +51,7 @@ const config: PlaywrightTestConfig = {
     //viewport: { width: 1024, height: 1400 },
     //screenshot: 'off'
   },
+  //ignoreSnapshots: true,
 
   /* Configure projects for major browsers */
   projects: [

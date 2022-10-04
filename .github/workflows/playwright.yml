@@ -4,7 +4,7 @@ on:
     update_snapshots:
       description: 'Oppdater snapshots?'
       required: false
-      default: true
+      default: false
       type: boolean
   #push:
   #  branches: [ main, master ]
@@ -42,9 +42,12 @@ jobs:
       if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      if: ${{ inputs.update_snapshots == false }}
       run: npx playwright test --update-snapshots
     - name: Oppdater snapshots
+      if: ${{ inputs.update_snapshots == true }}
       run: |
+        run: npx playwright test --update-snapshots
         git config --global user.email "oppdater-snapshots@example.com"
         git config --global user.name "Playwright bot"
         git checkout -b playwright-$(date +"%Y-%m-%dT%H%M%S")
