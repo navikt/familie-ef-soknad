@@ -8,11 +8,11 @@ export const clickCheckBox = (
 ): Promise<void> => locateCheckBox(page, spørsmålstekst).click();
 
 export const locateCheckBox = (page: Page, spørsmålstekst?: string): Locator =>
-  page.locator('.skjemaelement__label', { hasText: spørsmålstekst });
+  page.locator('label', { hasText: spørsmålstekst });
 
 export const clickRadioPanel = (
   page: Page,
-  spørsmålstekst: string,
+  spørsmålstekst: ISpørsmål | string,
   svartekst: string
 ): Promise<void> => locateRadioPanel(page, spørsmålstekst, svartekst).click();
 
@@ -33,8 +33,11 @@ export const locateRadioPanel = (
 export const clickInput = (page: Page, spørsmålstekst: string): Promise<void> =>
   locateInput(page, spørsmålstekst).click();
 
-export const locateLabel = (page: Page | Locator, tekstId: string) =>
-  page.locator('label', { hasText: norskTekst(tekstId) });
+export const locateLabel = (
+  page: Page | Locator,
+  tekstId: string,
+  navn?: string
+) => page.locator('label', { hasText: norskTekst(tekstId, navn) });
 
 export const locateInput = (page: Page, spørsmålstekst: string): Locator =>
   page.locator('.skjemaelement', { hasText: spørsmålstekst }); //TODO .withExactText(spørsmålstekst).find('input');

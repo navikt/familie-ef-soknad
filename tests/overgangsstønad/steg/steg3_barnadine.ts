@@ -26,11 +26,11 @@ const leggTilBarnModal = async (page: Page, testInfo: TestInfo) => {
   const date = datoImorgen();
   await locateLabel(page, 'barnekort.termindato').fill(formatDate(date));
   await modal.click();
-  await modal.locator('label', { hasText: 'Ja' });
+  await modal.locator('label', { hasText: 'Ja' }).click();
   await expect(modal).toHaveScreenshot(
     `${screenshotPrefix(testInfo, steg)}-leggTilBarnModal.png`
   );
-  await clickKnapp(page, 'barnadine.leggtil');
+  await clickKnapp(modal, 'barnadine.leggtil');
 };
 
 const datoImorgen = () => {

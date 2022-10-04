@@ -17,13 +17,16 @@ import {
   Steg3MedScreenshot,
 } from './steg/steg3_barnadine';
 import { Steg9MedScreenshot } from './steg/steg9_kvittering';
-import { Steg4MedScreenshot } from './steg/steg4_barnasbosted';
+import {
+  Steg4MedFlereValg,
+  Steg4MedScreenshot,
+} from './steg/steg4_barnasbosted';
 import { Steg5MedScreenshot } from './steg/steg5_aktivitet';
 import { Steg6MedScreenshot } from './steg/steg6_dinsituasjon';
 import { Steg7MedScreenshot } from './steg/steg7_oppsummering';
 import { Steg8MedScreenshot } from './steg/steg8_dokumentasjon';
 
-testMedApiMocks('Steg 3', async ({ page }, testInfo) => {
+testMedApiMocks('Steg 3 og 4', async ({ page }, testInfo) => {
   await gåTilOvergangsstønad(page);
 
   // TODO trengs denne? Var det til for å få teste uten at appen kjører?
@@ -33,4 +36,5 @@ testMedApiMocks('Steg 3', async ({ page }, testInfo) => {
   await Steg1(page);
   await Steg2(page);
   await Steg3FlereValg(page, testInfo);
+  await Steg4MedFlereValg(page, testInfo);
 });

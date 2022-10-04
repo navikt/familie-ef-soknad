@@ -12,7 +12,7 @@ export const norskTekst = (tekstid: string, navn?: string): string => {
   return navn ? tekst.replace('[0]', navn) : tekst;
 };
 
-export const barnetsNavn = 'Hei På Deg';
+export const barnetsNavn = 'barnet';
 
 export const JaSvar = tekster_nb['svar.ja'];
 

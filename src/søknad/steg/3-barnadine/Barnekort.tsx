@@ -11,6 +11,7 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import { BodyShort, Heading } from '@navikt/ds-react';
+import { erLokaltMedMock } from "../../../utils/miljø";
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -57,7 +58,7 @@ const Barnekort: React.FC<Props> = ({
     return fødselsnummer.substring(0, 6) + ' ' + fødselsnummer.substring(6, 11);
   };
 
-  const ikoner = [barn1, barn2, barn3];
+  const ikoner = erLokaltMedMock() ? [barn1] : [barn1, barn2, barn3];
   const ikon = født?.verdi
     ? ikoner[Math.floor(Math.random() * ikoner.length)]
     : ufødtIkon;
