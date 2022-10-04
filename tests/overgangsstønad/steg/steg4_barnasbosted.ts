@@ -19,7 +19,7 @@ const steg = Steg.BARNAS_BOSTED;
 
 const hvorforIkkeOppgiConfig = hvorforIkkeOppgi(testIntl);
 
-const Steg4 = async (page: Page, trykkNesteSteg: boolean = true) => {
+export const Steg4 = async (page: Page, trykkNesteSteg: boolean = true) => {
   await markerBarnSomDonorBarn(page);
   if (trykkNesteSteg) {
     await clickNesteKnapp(page);

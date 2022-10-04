@@ -1,9 +1,9 @@
 import StartSøknad from '../felles/StartSøknad';
 import { testMedApiMocks } from '../testContext';
 import { gåTilOvergangsstønad } from '../utils/gåTilStønad';
-import { Steg1, Steg1MedScreenshot } from './steg/steg1_omdeg';
+import { Steg1MedScreenshot } from './steg/steg1_omdeg';
 import { Steg2MedScreenshot } from './steg/steg2_bosituasjon';
-import { Steg3, Steg3MedScreenshot } from './steg/steg3_barnadine';
+import { Steg3MedScreenshot } from './steg/steg3_barnadine';
 import { Steg9MedScreenshot } from './steg/steg9_kvittering';
 import { Steg4MedScreenshot } from './steg/steg4_barnasbosted';
 import { Steg5MedScreenshot } from './steg/steg5_aktivitet';
