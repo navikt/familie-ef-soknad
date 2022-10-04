@@ -1,28 +1,59 @@
 name: Playwright Tests
 on:
   workflow_dispatch:
+    update_snapshots:
+      description: 'Oppdater snapshots?'
+      required: false
+      default: true
+      type: boolean
   #push:
   #  branches: [ main, master ]
   #pull_request:
   #  branches: [ main, master ]
 jobs:
   test:
-    timeout-minutes: 60
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
+    - uses: actions/checkout@v3
+    - name: Get installed Playwright version
+      id: playwright-version
+      run: echo -n "::set-output name=version::$(npm ls @playwright/test --json | jq --raw-output '.dependencies["@playwright/test"].version')"
+    - uses: actions/setup-node@v3
       with:
-        node-version: '14.x'
+        node-version: '16'
+        cache: npm
+        registry-url: "https://npm.pkg.github.com"
+    #https://github.com/microsoft/playwright/issues/7249#issuecomment-1154603556
+    - name: Cache playwright binaries
+      uses: actions/cache@v2
+      id: playwright-cache
+      with:
+        path: |
+          ~/.cache/ms-playwright
+        key: '${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}'
+        restore-keys: |
+          ${{ runner.os }}-playwright-
     - name: Install dependencies
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
       run: npm ci
     - name: Install Playwright Browsers
+      if: steps.playwright-cache.outputs.cache-hit != 'true'
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v2
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+      run: npx playwright test --update-snapshots
+    - name: Oppdater snapshots
+      run: |
+        git config --global user.email "oppdater-snapshots@example.com"
+        git config --global user.name "Playwright bot"
+        git checkout -b playwright-$(date +"%Y-%m-%dT%H%M%S")
+        git add -A
+        git commit -m '[auto] oppdater snapshots'
+        git push origin HEAD
+    # - uses: actions/upload-artifact@v2
+   #   if: always()
+   #   with:
+   #     name: playwright-report
+   #     path: playwright-report/
+   #     retention-days: 30
