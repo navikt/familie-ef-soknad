@@ -6,7 +6,10 @@ Frontend - søknad for enslig forsørger.
 
 1. `npm install`
 2. `npm start`
-3. `node mock/mock-server.js` 
+
+* Hvis man ønsker å kjøre med mock-api
+1. Endre `REACT_APP_BRUK_API_I_DEV=false` i `.env`
+2.`node mock/mock-server.js` 
 
 Kjør uten redirect til autentisering lokalt: 
 sett .env variabel: 

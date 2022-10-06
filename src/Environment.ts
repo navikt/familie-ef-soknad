@@ -1,3 +1,5 @@
+import { erLokaltMedMock } from './utils/miljø';
+
 interface EnvironmentProps {
   veiviserUrl: string;
   apiUrl: string;
@@ -41,13 +43,23 @@ const Environment = (): EnvironmentProps => {
       miljø: 'production',
       modellVersjon: modellVersjon,
     };
-  } else {
+  } else if (erLokaltMedMock()) {
     return {
       veiviserUrl: '',
       apiUrl: '',
       loginService: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=selvbetjening&audience=aud-localhost`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `/api/dokument`,
       mellomlagerUrl: `/api/mellomlager/`,
+      miljø: 'local',
+      modellVersjon: modellVersjon,
+    };
+  } else {
+    return {
+      veiviserUrl: '',
+      apiUrl: 'http://localhost:8091',
+      loginService: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=selvbetjening&audience=aud-localhost`, // forventet i api ved innsending (local) - syntetisk fnr
+      dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
+      mellomlagerUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
     };
