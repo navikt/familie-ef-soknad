@@ -1,4 +1,4 @@
-CSS Pretty Print .forside {
+.forside {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +79,6 @@ CSS Pretty Print .forside {
   font-size: 18px;
 }
 .forside .forside__innhold .seksjon .lenke-tekst :hover {
-  color: white;
   text-decoration: none;
 }
 .forside .forside__innhold .seksjon .lenke-tekst a {
