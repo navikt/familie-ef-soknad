@@ -1,0 +1,19 @@
+.oppsummering .disclaimer {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.oppsummering .ekspanderbartPanel {
+  border: none;
+  border-bottom: 1px solid #3e3832;
+  border-radius: 0px;
+}
+.oppsummering .ekspanderbartPanel__innhold {
+  padding: 0 1rem 1rem 1rem;
+}
+.oppsummering .seksjon {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.oppsummering .oppsummering-bosituasjon .seksjon-samboer {
+  margin-top: 2rem;
+}

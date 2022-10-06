@@ -48,7 +48,7 @@ const StyledFeltGruppe = styled.div`
       }
     }
   }
-  .knapp {
+  .navds-button {
     font-size: 18px;
   }
 `;

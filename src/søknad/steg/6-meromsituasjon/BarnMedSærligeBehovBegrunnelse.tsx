@@ -4,7 +4,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
-import './BarnMedSærligeBehovBegrunnelse.less';
+import './BarnMedSærligeBehovBegrunnelse.css';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';

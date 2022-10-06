@@ -1,0 +1,16 @@
+.seksjon {
+  padding-bottom: 3rem;
+}
+.inputfelt-tekst-fetskrift .skjemaelement__label {
+  font-size: 18px;
+}
+.inputfelt-tekst-fetskrift .skjemaelement__input {
+  font-size: 18px;
+}
+.inputfelt-tekst .skjemaelement__label {
+  font-size: 18px;
+  font-weight: normal;
+}
+.inputfelt-tekst .skjemaelement__input {
+  font-size: 18px;
+}
