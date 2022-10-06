@@ -7,14 +7,10 @@ import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentiseringogvalidering/autentisering';
-import mockPersonMedBarn from '../mock/mockPerson.json';
-import mockPersonUtenBarn from '../mock/mockPersonUtenBarn.json';
-import mockToggles from '../mock/mockToggles.json';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
-import { erLokaltMedMock } from '../utils/miljø';
 import SøknadsdialogBarnetilsyn from './Søknadsdialog';
 import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { logAdressesperre } from '../utils/amplitude';
@@ -83,16 +79,6 @@ const BarnetilsynApp = () => {
   };
 
   useEffect(() => {
-    if (erLokaltMedMock()) {
-      settPerson({
-        type: PersonActionTypes.HENT_PERSON,
-        payload: mockPersonUtenBarn,
-      });
-      oppdaterSøknadMedBarn(mockPersonUtenBarn, mockPersonMedBarn.barn);
-      settToggles(mockToggles);
-      settFetching(false);
-      return;
-    }
     Promise.all([
       fetchToggles(),
       fetchPersonData(),

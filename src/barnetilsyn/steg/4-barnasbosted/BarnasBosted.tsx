@@ -40,6 +40,7 @@ const BarnasBosted: React.FC = () => {
 
   useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
 
+  // TODO: Ikke fjern barna som ikke er valgt!!! Kun oppdater det barnet som skal oppdateres :D
   const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
