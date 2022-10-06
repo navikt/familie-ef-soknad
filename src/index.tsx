@@ -1,6 +1,23 @@
 import './utils/polyfills';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './index.less';
+import './App.css';
+
+import '@navikt/ds-css';
+import './overgangsstønad/Forside.css';
+import './overgangsstønad/Søknadsdialog.css';
+import './components/feil/Feilside.css';
+import './components/spørsmål/Spørsmål.css';
+import './components/side/Side.css';
+
+import './overgangsstønad/steg/3-barnadine/BarnaDine.css';
+import './søknad/steg/3-barnadine/LeggTilBarn.css';
+import './overgangsstønad/steg/4-barnasbosted/BarnasBosted.css';
+import './components/filopplaster/Filopplaster.css';
+import './søknad/steg/7-oppsummering/Oppsummering.css';
+
+import './arbeidssøkerskjema/side/Side.css';
+import './arbeidssøkerskjema/Oppsummering.css';
+import './arbeidssøkerskjema/Forside.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import ArbeidssøkerApp from './arbeidssøkerskjema/SkjemaApp';

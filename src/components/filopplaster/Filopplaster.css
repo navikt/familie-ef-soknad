@@ -1,0 +1,91 @@
+.filopplaster-wrapper {
+  max-width: 775px;
+  min-height: 68px;
+  border-radius: 4px;
+}
+.filopplaster-wrapper ul.opplasting-liste {
+  padding-inline-start: 1.3em;
+  line-height: 40px;
+}
+.filopplaster-wrapper li {
+  font-size: 25px;
+}
+.filopplaster-wrapper .tittel-wrapper {
+  max-width: 575px;
+  margin: 0 auto;
+  margin-bottom: 0rem;
+}
+.filopplaster-wrapper .tittel-wrapper .tittel {
+  font-size: 16px;
+  text-align: left;
+}
+.filopplaster-wrapper .opplastede-filer .fil {
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.filopplaster-wrapper .opplastede-filer .fil .navds-body-short {
+  display: inline-block;
+}
+.filopplaster-wrapper .opplastede-filer .fil .filstørrelse {
+  margin-left: 10px;
+}
+.filopplaster-wrapper .opplastede-filer .fil .filnavn {
+  margin-left: 1rem;
+}
+.filopplaster-wrapper .opplastede-filer .fil .vedleggsikon {
+  position: relative;
+  top: 5px;
+}
+.filopplaster-wrapper .opplastede-filer .fil .slett {
+  position: relative;
+  top: 5px;
+  color: #0067c5;
+  cursor: pointer;
+}
+.filopplaster-wrapper .opplastede-filer .fil .slett p {
+  text-decoration: underline;
+}
+.filopplaster-wrapper .opplastede-filer .fil .slett .slettikon {
+  margin-left: 10px;
+}
+.filopplaster-wrapper .opplastede-filer hr {
+  border: 1px solid #b7b1a9;
+}
+.filopplaster-wrapper .filopplaster {
+  text-align: center;
+  font-weight: bold;
+  border: 2px dashed #59514b;
+  border-radius: 4px;
+  background-color: rgba(204, 222, 230, 0.5);
+  height: 64px;
+  max-width: 575px;
+  color: #0067c5;
+  margin: 0 auto;
+}
+.filopplaster-wrapper .filopplaster .tekst {
+  line-height: 64px;
+  display: inline-block;
+  margin-left: 10px;
+}
+.filopplaster-wrapper .filopplaster .feilmelding {
+  margin: 1rem 0 0 0;
+  text-align: left;
+}
+.filopplaster-wrapper .opplastingsikon {
+  display: inline-block;
+}
+.feilmelding-alert {
+  background: none !important;
+  border: none !important;
+  padding: 0;
+  font-weight: bold;
+}
+.feilmelding-alert div {
+  font-weight: bold;
+}
+.feilmelding {
+  margin-top: 3rem;
+}

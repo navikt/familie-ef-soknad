@@ -1,0 +1,14 @@
+.forside .veileder {
+  margin-bottom: 4rem;
+  display: inline-block;
+}
+.forside .disclaimer-innhold {
+  padding: 1rem;
+}
+.forside__panel {
+  max-width: 588px;
+  margin: 0 auto;
+}
+.forside .seksjon .ekspanderbartPanel {
+  margin-top: -2rem;
+}
