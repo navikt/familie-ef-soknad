@@ -86,7 +86,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             </BodyShort>
           </div>
         )}
-        {forelder.ident && (
+        {!forelder.fraFolkeregister && forelder.ident && (
           <div className="spørsmål-og-svar">
             <Label>{intl.formatMessage({ id: 'person.ident.visning' })}</Label>
             <BodyShort>{forelder.ident.verdi}</BodyShort>
