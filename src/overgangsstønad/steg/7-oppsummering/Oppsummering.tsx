@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
@@ -17,27 +17,25 @@ import Side, { ESide } from '../../../components/side/Side';
 import { hentTekst } from '../../../utils/søknad';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import {
-  logSidevisningOvergangsstonad,
   logBrowserBackOppsummering,
   logManglendeFelter,
+  logSidevisningOvergangsstonad,
 } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
-import { useEffect } from 'react';
 import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import {
-  manglendeFelterTilTekst,
+  aktivitetSchema,
+  bosituasjonSchema,
   listManglendeFelter,
   ManglendeFelter,
+  manglendeFelterTilTekst,
+  medlemskapSchema,
   merOmDinSituasjonSchema,
   sivilstatusSchema,
-  bosituasjonSchema,
-  medlemskapSchema,
-  aktivitetSchema,
 } from '../../../utils/validering/validering';
-import { Alert } from '@navikt/ds-react';
-import { BodyShort } from '@navikt/ds-react';
+import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -181,58 +179,97 @@ const Oppsummering: React.FC = () => {
           </BodyShort>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg
-              tittel={hentTekst('stegtittel.omDeg', intl)}
-              søker={søknad.person.søker}
-              sivilstatus={søknad.sivilstatus}
-              medlemskap={søknad.medlemskap}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.OmDeg
-              )}
-            />
-            <OppsummeringBosituasjonenDin
-              tittel={hentTekst('stegtittel.bosituasjon', intl)}
-              bosituasjon={søknad.bosituasjon}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.BosituasjonenDin
-              )}
-            />
-            <OppsummeringBarnaDine
-              tittel={hentTekst('barnadine.sidetittel', intl)}
-              barn={søknad.person.barn}
-              stønadstype={Stønadstype.overgangsstønad}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.Barn
-              )}
-            />
-            <OppsummeringBarnasBosituasjon
-              tittel={hentTekst('barnasbosted.sidetittel', intl)}
-              barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.BarnasBosted
-              )}
-            />
-            <OppsummeringAktiviteter
-              tittel={hentTekst('stegtittel.arbeidssituasjon', intl)}
-              aktivitet={søknad.aktivitet}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.Aktivitet
-              )}
-            />
-            <OppsummeringDinSituasjon
-              tittel={hentTekst('stegtittel.dinSituasjon', intl)}
-              dinSituasjon={søknad.merOmDinSituasjon}
-              barnMedsærligeTilsynsbehov={barnMedsærligeTilsynsbehov}
-              endreInformasjonPath={hentPath(
-                RoutesOvergangsstonad,
-                ERouteOvergangsstønad.DinSituasjon
-              )}
-            />
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.omDeg', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringOmDeg
+                    søker={søknad.person.søker}
+                    sivilstatus={søknad.sivilstatus}
+                    medlemskap={søknad.medlemskap}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.OmDeg
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.bosituasjon', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBosituasjonenDin
+                    bosituasjon={søknad.bosituasjon}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.BosituasjonenDin
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnadine.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnaDine
+                    barn={søknad.person.barn}
+                    stønadstype={Stønadstype.overgangsstønad}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.Barn
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnasbosted.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnasBosituasjon
+                    barn={søknad.person.barn}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.BarnasBosted
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.arbeidssituasjon', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringAktiviteter
+                    aktivitet={søknad.aktivitet}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.Aktivitet
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.dinSituasjon', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringDinSituasjon
+                    tittel={hentTekst('stegtittel.dinSituasjon', intl)}
+                    dinSituasjon={søknad.merOmDinSituasjon}
+                    barnMedsærligeTilsynsbehov={barnMedsærligeTilsynsbehov}
+                    endreInformasjonPath={hentPath(
+                      RoutesOvergangsstonad,
+                      ERouteOvergangsstønad.DinSituasjon
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
           </KomponentGruppe>
           {harManglendeFelter && (
             <Alert size="small" variant="warning">

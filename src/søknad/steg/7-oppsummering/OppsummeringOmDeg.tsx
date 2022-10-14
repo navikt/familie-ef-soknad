@@ -25,7 +25,6 @@ interface Props {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringOmDeg: FC<Props> = ({

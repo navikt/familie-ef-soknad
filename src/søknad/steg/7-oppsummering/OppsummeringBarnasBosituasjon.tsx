@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 interface Props {
   barn: IBarn[];
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringBarnasBosituasjon: FC<Props> = ({

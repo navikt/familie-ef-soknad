@@ -21,7 +21,6 @@ import { Ingress } from '@navikt/ds-react';
 interface Props {
   aktivitet: IAktivitet;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringAktiviteter: React.FC<Props> = ({

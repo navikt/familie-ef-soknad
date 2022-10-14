@@ -15,7 +15,6 @@ interface Props {
   barn: IBarn[];
   stønadstype: Stønadstype;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringBarnaDine: React.FC<Props> = ({

@@ -16,13 +16,11 @@ import { Ingress } from '@navikt/ds-react';
 interface Props {
   bosituasjon: IBosituasjon;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringBosituasionenDin: React.FC<Props> = ({
   bosituasjon,
   endreInformasjonPath,
-  tittel,
 }) => {
   const navigate = useNavigate();
   const intl = useLokalIntlContext();

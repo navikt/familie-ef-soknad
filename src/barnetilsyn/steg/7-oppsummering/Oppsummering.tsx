@@ -89,7 +89,6 @@ const Oppsummering: React.FC = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <OppsummeringOmDeg
-                    tittel={hentTekst('stegtittel.omDeg', intl)}
                     søker={søknad.person.søker}
                     sivilstatus={søknad.sivilstatus}
                     medlemskap={søknad.medlemskap}
@@ -106,7 +105,6 @@ const Oppsummering: React.FC = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <OppsummeringBosituasionenDin
-                    tittel={hentTekst('stegtittel.bosituasjon', intl)}
                     bosituasjon={søknad.bosituasjon}
                     endreInformasjonPath={hentPath(
                       RoutesBarnetilsyn,
@@ -121,7 +119,6 @@ const Oppsummering: React.FC = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <OppsummeringBarnaDine
-                    tittel={hentTekst('barnadine.sidetittel', intl)}
                     barn={søknad.person.barn}
                     stønadstype={Stønadstype.barnetilsyn}
                     endreInformasjonPath={hentPath(
@@ -137,7 +134,6 @@ const Oppsummering: React.FC = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <OppsummeringBarnasBosituasjon
-                    tittel={hentTekst('barnasbosted.sidetittel', intl)}
                     barn={søknad.person.barn}
                     endreInformasjonPath={hentPath(
                       RoutesBarnetilsyn,
@@ -152,10 +148,6 @@ const Oppsummering: React.FC = () => {
                 </Accordion.Header>
                 <Accordion.Content>
                   <OppsummeringAktiviteter
-                    tittel={hentTekst(
-                      'stegtittel.arbeidssituasjon.barnetilsyn',
-                      intl
-                    )}
                     aktivitet={søknad.aktivitet}
                     endreInformasjonPath={hentPath(
                       RoutesBarnetilsyn,
