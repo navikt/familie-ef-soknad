@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -19,7 +18,7 @@ import {
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useNavigate } from 'react-router-dom';
-import { BodyShort, Heading, Ingress, Label } from '@navikt/ds-react';
+import { BodyShort, Ingress, Label } from '@navikt/ds-react';
 
 interface Props {
   søker: ISøker;
@@ -28,12 +27,12 @@ interface Props {
   endreInformasjonPath?: string;
   tittel: string;
 }
+
 const OppsummeringOmDeg: FC<Props> = ({
   søker,
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
-  tittel,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -52,13 +51,7 @@ const OppsummeringOmDeg: FC<Props> = ({
   );
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Heading size="small" level="3">
-          {tittel}
-        </Heading>
-      }
-    >
+    <>
       <KomponentGruppe>
         <StyledOppsummering>
           <div className="spørsmål-og-svar">
@@ -114,7 +107,7 @@ const OppsummeringOmDeg: FC<Props> = ({
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}
       />
-    </Ekspanderbartpanel>
+    </>
   );
 };
 

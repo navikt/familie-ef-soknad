@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { IBarn } from '../../../models/steg/barn';
@@ -10,17 +9,16 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useNavigate } from 'react-router-dom';
-import { Heading } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn[];
   endreInformasjonPath?: string;
   tittel: string;
 }
+
 const OppsummeringBarnasBosituasjon: FC<Props> = ({
   barn,
   endreInformasjonPath,
-  tittel,
 }) => {
   const navigate = useNavigate();
   const intl = useLokalIntlContext();
@@ -57,13 +55,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     });
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Heading size="small" level="3">
-          {tittel}
-        </Heading>
-      }
-    >
+    <>
       <KomponentGruppe>{felterAlleForeldrene}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>
@@ -75,7 +67,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}
       />
-    </Ekspanderbartpanel>
+    </>
   );
 };
 

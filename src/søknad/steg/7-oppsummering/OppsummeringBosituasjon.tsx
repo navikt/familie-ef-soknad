@@ -1,5 +1,4 @@
 import React from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
@@ -12,7 +11,7 @@ import { VisLabelOgSvar } from '../../../utils/visning';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummering } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { Ingress } from '@navikt/ds-react';
 
 interface Props {
   bosituasjon: IBosituasjon;
@@ -49,46 +48,38 @@ const OppsummeringBosituasionenDin: React.FC<Props> = ({
   };
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Heading size="small" level="3">
-          {tittel}
-        </Heading>
-      }
-    >
-      <StyledOppsummering>
-        <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
-        {samboerDetaljer && (
-          <KomponentGruppe>
-            <Ingress>{lagSamboerOverskrift()}</Ingress>
-            {samboerDetaljer}
-          </KomponentGruppe>
-        )}
+    <StyledOppsummering>
+      <KomponentGruppe>{VisLabelOgSvar(bosituasjon)}</KomponentGruppe>
+      {samboerDetaljer && (
+        <KomponentGruppe>
+          <Ingress>{lagSamboerOverskrift()}</Ingress>
+          {samboerDetaljer}
+        </KomponentGruppe>
+      )}
 
-        {vordendeSamboerEktefelle && (
-          <KomponentGruppe>
-            <Ingress>
-              {hentTekst(
-                'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
-                intl
-              )}
-            </Ingress>
-            {vordendeSamboerEktefelle}
-          </KomponentGruppe>
-        )}
+      {vordendeSamboerEktefelle && (
+        <KomponentGruppe>
+          <Ingress>
+            {hentTekst(
+              'bosituasjon.tittel.hvemSkalSøkerGifteEllerBliSamboerMed',
+              intl
+            )}
+          </Ingress>
+          {vordendeSamboerEktefelle}
+        </KomponentGruppe>
+      )}
 
-        <LenkeMedIkon
-          onClick={() =>
-            navigate(
-              { pathname: endreInformasjonPath },
-              { state: { kommerFraOppsummering: true } }
-            )
-          }
-          tekst_id="barnasbosted.knapp.endre"
-          ikon={endre}
-        />
-      </StyledOppsummering>
-    </Ekspanderbartpanel>
+      <LenkeMedIkon
+        onClick={() =>
+          navigate(
+            { pathname: endreInformasjonPath },
+            { state: { kommerFraOppsummering: true } }
+          )
+        }
+        tekst_id="barnasbosted.knapp.endre"
+        ikon={endre}
+      />
+    </StyledOppsummering>
   );
 };
 
