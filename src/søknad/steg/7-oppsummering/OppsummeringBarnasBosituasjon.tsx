@@ -27,23 +27,26 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     .map((barn) => {
       if (!barn.forelder) return null;
 
-      let nyForelder = {
+      const visningsIdent = barn.forelder.fraFolkeregister ? undefined : barn.forelder.ident
+
+      let visningForelder = {
         ...barn.forelder,
         navn: {
           label: hentTekst('barnasbosted.oppsummering.navn.label', intl),
           verdi: barn.forelder?.navn?.verdi,
         },
+        ident: visningsIdent
       };
 
-      delete nyForelder.hvorforIkkeOppgi;
-      delete nyForelder.kanIkkeOppgiAnnenForelderFar;
+      delete visningForelder.hvorforIkkeOppgi;
+      delete visningForelder.kanIkkeOppgiAnnenForelderFar;
 
       const barnetsNavn =
         barn.født?.verdi && barn.navn.verdi
           ? barn.navn.verdi
           : hentTekst('barnet.litenForBokstav', intl);
 
-      const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
+      const forelderFelter = VisLabelOgSvar(visningForelder, barnetsNavn);
 
       return (
         <StyledOppsummeringForBarn key={barn.id}>

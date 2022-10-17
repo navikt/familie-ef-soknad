@@ -5,7 +5,7 @@ import { IBarn } from '../models/steg/barn';
 export const sendInnSøknad = (søknad: object) => {
   return axios
     .post(`${Environment().apiUrl}/api/soknad`, søknad, {
-      headers: { 'content-type': 'application/json;charset=utf-8' },
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
     .then((response: { data: any }) => {
@@ -16,7 +16,7 @@ export const sendInnSøknad = (søknad: object) => {
 export const sendInnBarnetilsynSøknad = (søknad: object) => {
   return axios
     .post(`${Environment().apiUrl}/api/soknadbarnetilsyn`, søknad, {
-      headers: { 'content-type': 'application/json;charset=utf-8' },
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
     .then((response: { data: any }) => {
@@ -27,7 +27,7 @@ export const sendInnBarnetilsynSøknad = (søknad: object) => {
 export const sendInnSkolepengerSøknad = (søknad: object) => {
   return axios
     .post(`${Environment().apiUrl}/api/soknad/skolepenger`, søknad, {
-      headers: { 'content-type': 'application/json;charset=utf-8' },
+      headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
     .then((response: { data: any }) => {
