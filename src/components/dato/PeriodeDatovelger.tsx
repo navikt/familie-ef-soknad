@@ -3,7 +3,7 @@ import Datovelger, { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
@@ -123,10 +123,9 @@ const PeriodeDatovelgere: FC<Props> = ({
       <FeltGruppe>
         <Label>{tekst}</Label>
         {hjelpetekst && (
-          <Hjelpetekst
+          <LesMerTekst
             åpneTekstid={hjelpetekst.åpneTekstid}
             innholdTekstid={hjelpetekst.innholdTekstid}
-            lukkeTekstid={hjelpetekst.lukkeTekstid}
           />
         )}
       </FeltGruppe>

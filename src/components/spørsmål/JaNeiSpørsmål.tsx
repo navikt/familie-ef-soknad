@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components/macro';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
@@ -68,7 +68,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
     <SkjemaGruppe key={spørsmål.tekstid} legend={spørsmålTekst}>
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
-          <Hjelpetekst
+          <LesMerTekst
             åpneTekstid={spørsmål.lesmer.åpneTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />

@@ -1,7 +1,7 @@
 import React, { SyntheticEvent } from 'react';
-import { ISpørsmål, ISvar, ESvar } from '../../models/felles/spørsmålogsvar';
+import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components/macro';
 
 const StyledJaNeiSpørsmål = styled.div`
@@ -30,6 +30,7 @@ interface Props {
   onChange: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: boolean | undefined;
 }
+
 const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
   spørsmål,
   spørsmålTekst,
@@ -55,7 +56,7 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
     <SkjemaGruppe legend={spørsmålTekst}>
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
-          <Hjelpetekst
+          <LesMerTekst
             halvåpenTekstid={spørsmål.lesmer.halvåpenTekstid}
             åpneTekstid={spørsmål.lesmer.åpneTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}

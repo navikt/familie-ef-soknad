@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
@@ -61,7 +61,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
     <SkjemaGruppe legend={legend}>
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
-          <Hjelpetekst
+          <LesMerTekst
             åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.åpneTekstid : ''}
             innholdTekstid={
               spørsmål.lesmer ? spørsmål!.lesmer!.innholdTekstid : ''

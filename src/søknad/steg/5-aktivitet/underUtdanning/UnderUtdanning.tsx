@@ -6,7 +6,7 @@ import {
 } from '../../../../models/steg/aktivitet/utdanning';
 import ErUtdanningenOffentligEllerPrivat from './ErUtdanningenOffentligEllerPrivat';
 import ErUtdanningenPåHeltidEllerDeltid from './ErUtdanningenPåHeltidEllerDeltid';
-import Hjelpetekst from '../../../../components/Hjelpetekst';
+import LesMerTekst from '../../../../components/LesMerTekst';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import NårSkalDuVæreElevEllerStudent from './NårSkalDuElevEllerStudent';
@@ -33,9 +33,10 @@ import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/da
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { Heading } from '@navikt/ds-react';
 
-const HjelpetekstUnderSidetittel = styled(Hjelpetekst)`
+const LesMerTekstUnderSidetittel = styled(LesMerTekst)`
   margin-top: -2rem;
 `;
+
 interface Props {
   underUtdanning?: IUnderUtdanning | IDetaljertUtdanning;
   oppdaterUnderUtdanning: (
@@ -101,16 +102,14 @@ const UnderUtdanning: React.FC<Props> = ({
               <Heading size="small" level="3" className={'sentrert'}>
                 <LocaleTekst tekst={'utdanning.tittel'} />
               </Heading>
-              <Hjelpetekst
-                className={'sentrert'}
+              <LesMerTekst
                 åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
                 innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
               />
             </>
           )}
           {stønadstype === Stønadstype.skolepenger && (
-            <HjelpetekstUnderSidetittel
-              className={'sentrert'}
+            <LesMerTekstUnderSidetittel
               åpneTekstid={utdanningDuKanFåStønadTilSkolepenger.åpneTekstid}
               innholdTekstid={
                 utdanningDuKanFåStønadTilSkolepenger.innholdTekstid

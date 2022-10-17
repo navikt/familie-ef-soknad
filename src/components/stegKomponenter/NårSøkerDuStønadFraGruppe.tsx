@@ -1,7 +1,7 @@
 import React from 'react';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
 import { DatoBegrensning } from '../dato/Datovelger';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
@@ -54,6 +54,7 @@ interface Props {
   hjelpetekstInnholdTekst: string | React.ReactNode;
   alertTekst?: string;
 }
+
 const NårSøkerDuStønadFra: React.FC<Props> = ({
   spørsmål,
   settSøkerFraBestemtMåned,
@@ -71,7 +72,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
       <KomponentGruppe>
         <StyledMultisvarSpørsmål>
           <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
-            <Hjelpetekst
+            <LesMerTekst
               åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
               innholdTekst={hjelpetekstInnholdTekst}
             />

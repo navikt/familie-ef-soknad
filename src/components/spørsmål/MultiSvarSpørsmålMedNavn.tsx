@@ -1,13 +1,12 @@
 import React, { FC } from 'react';
-import { ISpørsmål } from '../../models/felles/spørsmålogsvar';
-import Hjelpetekst from '../Hjelpetekst';
-import { ISvar } from '../../models/felles/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
+import LesMerTekst from '../LesMerTekst';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import classNames from 'classnames';
 import Show from '../../utils/showIf';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
-import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledMultisvarSpørsmål = styled.div`
@@ -64,7 +63,7 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
     <SkjemaGruppe legend={spørsmålTekst}>
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
-          <Hjelpetekst
+          <LesMerTekst
             åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.åpneTekstid : ''}
             innholdTekstid={
               spørsmål.lesmer ? spørsmål.lesmer.innholdTekstid : ''
