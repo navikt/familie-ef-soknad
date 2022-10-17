@@ -10,21 +10,18 @@ import { LokalIntlShape } from '../../../../language/typer';
 
 // ----- TEKSTER
 export const utdanningDuKanFåStønadTil: IHjelpetekst = {
-  åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
+  headerTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad',
-  lukkeTekstid: '',
 };
 
 export const utdanningDuKanFåStønadTilSkolepenger: IHjelpetekst = {
-  åpneTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
+  headerTekstid: 'utdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'utdanning.lesmer-innhold.kanFåStønad.skolepenger',
-  lukkeTekstid: '',
 };
 
 export const tidligereUtdanningHjelpetekst: IHjelpetekst = {
-  åpneTekstid: 'tidligereUtdanning.lesmer-åpne.kanFåStønad',
+  headerTekstid: 'tidligereUtdanning.lesmer-åpne.kanFåStønad',
   innholdTekstid: 'tidligereUtdanning.lesmer-innhold.kanFåStønad',
-  lukkeTekstid: '',
 };
 
 export const skoleUtdanningssted: ITekst = {
@@ -44,8 +41,7 @@ export const privatEllerOffentligSpm = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'utdanning.spm.privatEllerOffentlig',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'utdanning.lesmer-åpne.privatEllerOffentlig',
-    lukkeTekstid: '',
+    headerTekstid: 'utdanning.lesmer-åpne.privatEllerOffentlig',
     innholdTekstid: 'utdanning.lesmer-innhold.privatEllerOffentlig',
   },
   svaralternativer: [
@@ -82,9 +78,8 @@ export const utdanningEtterGrunnskolenSpm = (
   tekstid: 'utdanning.spm.grunnskole',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'utdanning.lesmer-åpne.grunnskolen',
+    headerTekstid: 'utdanning.lesmer-åpne.grunnskolen',
     innholdTekstid: 'utdanning.lesmer-innholde.grunnskolen',
-    lukkeTekstid: '',
   },
   svaralternativer: JaNeiSvar(intl),
 });

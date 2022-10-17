@@ -14,11 +14,6 @@ const StyledComponent = styled.div`
     'hjelpetekst hjelpetekst'
     'input tegn';
 
-  .hjelpetekst {
-    grid-area: hjelpetekst;
-    margin-bottom: 1rem;
-  }
-
   .skjemaelement__label {
     grid-area: label;
     font-size: 18px;
@@ -33,6 +28,11 @@ const StyledComponent = styled.div`
     grid-area: tegn;
     align-self: center;
   }
+`;
+
+const LesMerContainer = styled.div`
+  grid-area: hjelpetekst;
+  margin-bottom: 0.5rem;
 `;
 
 interface Props {
@@ -68,10 +68,12 @@ const InputLabelGruppe: React.FC<Props> = ({
     <StyledComponent aria-live="polite">
       <Label htmlFor={label}> {label}</Label>
       {hjelpetekst && (
-        <LesMerTekst
-          åpneTekstid={hjelpetekst.åpneTekstid}
-          innholdTekstid={hjelpetekst.innholdTekstid}
-        />
+        <LesMerContainer>
+          <LesMerTekst
+            åpneTekstid={hjelpetekst.headerTekstid}
+            innholdTekstid={hjelpetekst.innholdTekstid}
+          />
+        </LesMerContainer>
       )}
       <Input
         id={label}

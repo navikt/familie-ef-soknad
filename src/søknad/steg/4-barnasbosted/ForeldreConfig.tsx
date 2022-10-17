@@ -45,8 +45,7 @@ export const avtaleOmDeltBosted = (
   flersvar: false,
   lesmer: {
     halvåpenTekstid: 'barnasbosted.hjelpetekst.halvåpen',
-    åpneTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
-    lukkeTekstid: '',
+    headerTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
     innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
   },
   svaralternativer: [
@@ -91,8 +90,7 @@ export const harAnnenForelderSamværMedBarn = (
     : 'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
-    lukkeTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'barnasbosted.hjelpetekst.samvær.innhold',
   },
   svaralternativer: [
@@ -126,8 +124,8 @@ export const harDereSkriftligSamværsavtale = (
   lesmer: {
     innholdTekstid:
       'barnasbosted.hjelpetekst-innhold.harDereSkriftligSamværsavtale',
-    åpneTekstid: 'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale',
-    lukkeTekstid: '',
+    headerTekstid:
+      'barnasbosted.hjelpetekst-åpne.harDereSkriftligSamværsavtale',
   },
   svaralternativer: [
     {
@@ -155,8 +153,7 @@ export const borAnnenForelderISammeHus = (intl: LokalIntlShape): ISpørsmål => 
   søknadid: 'borAnnenForelderISammeHus',
   tekstid: 'barnasbosted.spm.borAnnenForelderISammeHus',
   lesmer: {
-    åpneTekstid: 'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne',
-    lukkeTekstid: '',
+    headerTekstid: 'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.apne',
     innholdTekstid:
       'barnasbosted.hjelpetekst.borAnnenForelderISammeHus.innhold',
   },
@@ -185,8 +182,7 @@ export const hvorMyeSammen = (
   tekstid: 'barnasbosted.spm.hvorMyeSammen',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'barnasbosted.lesmer-åpne.hvorMyeSammen',
-    lukkeTekstid: '',
+    headerTekstid: 'barnasbosted.lesmer-åpne.hvorMyeSammen',
     innholdTekstid: 'barnasbosted.lesmer-innhold.hvorMyeSammen',
   },
   svaralternativer: [

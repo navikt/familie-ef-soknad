@@ -182,9 +182,8 @@ const BarnepassSpørsmål: FC<Props> = ({
           <PeriodeDatovelgere
             tekst={periodeTekst}
             hjelpetekst={{
-              åpneTekstid: '',
+              headerTekstid: '',
               innholdTekstid: 'barnepass.hjelpetekst.periodePåBarnepass',
-              lukkeTekstid: '',
             }}
             fomTekstid={'periode.startdato'}
             tomTekstid={'periode.sluttdato'}

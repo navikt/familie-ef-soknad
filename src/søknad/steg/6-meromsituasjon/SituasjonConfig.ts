@@ -74,9 +74,8 @@ export const SagtOppEllerRedusertStillingSpm = (
   tekstid: 'dinSituasjon.spm.sagtOppEllerRedusertStilling',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'dinSituasjon.lesmer-åpne',
+    headerTekstid: 'dinSituasjon.lesmer-åpne',
     innholdTekstid: 'dinSituasjon.lesmer-innhold',
-    lukkeTekstid: '',
   },
   svaralternativer: [
     {
@@ -105,10 +104,9 @@ export const SøkerFraBestemtMånedSpm = (intl: LokalIntlShape): ISpørsmål => 
   tekstid: 'søkerFraBestemtMåned.spm.overgangsstønad',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'søkerFraBestemtMåned.hjelpetekst-åpne',
+    headerTekstid: 'søkerFraBestemtMåned.hjelpetekst-åpne',
     innholdTekstid:
       'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1',
-    lukkeTekstid: '',
   },
   svaralternativer: [
     {

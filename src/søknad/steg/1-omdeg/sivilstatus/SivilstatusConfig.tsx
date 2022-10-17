@@ -38,8 +38,7 @@ export const erUformeltGiftSpørsmål = (intl: LokalIntlShape): ISpørsmål => (
   søknadid: ESivilstatusSøknadid.erUformeltGift,
   tekstid: 'sivilstatus.spm.erUformeltGift',
   lesmer: {
-    åpneTekstid: 'sivilstatus.lesmer-åpne.erUformeltGift',
-    lukkeTekstid: '',
+    headerTekstid: 'sivilstatus.lesmer-åpne.erUformeltGift',
     innholdTekstid: 'sivilstatus.lesmer-innhold.erUformeltGift',
   },
   flersvar: false,
@@ -75,8 +74,7 @@ export const BegrunnelseSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   flersvar: false,
   lesmer: {
     innholdTekstid: 'sivilstatus.hjelpetekst-innhold.begrunnelse',
-    åpneTekstid: 'sivilstatus.hjelpetekst-åpne.begrunnelse',
-    lukkeTekstid: '',
+    headerTekstid: 'sivilstatus.hjelpetekst-åpne.begrunnelse',
   },
   svaralternativer: [
     {

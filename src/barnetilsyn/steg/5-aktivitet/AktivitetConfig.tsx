@@ -23,8 +23,7 @@ export const ErDuIArbeidSpm = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'erDuIArbeid.spm',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
-    lukkeTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'erDuIArbeid.hjelpetekst',
   },
   svaralternativer: [
@@ -43,8 +42,7 @@ export const hvaErDinArbeidssituasjonSpm = (
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
   lesmer: {
-    åpneTekstid: '',
-    lukkeTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'arbeidssituasjon.spm.hjelpetekst',
   },
   flersvar: true,

@@ -41,8 +41,7 @@ const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
           type={'text'}
           hjelpetekst={{
             innholdTekstid: 'barnepass.hjelpetekst-innhold.beløp',
-            åpneTekstid: 'barnepass.hjelpetekst-åpne.beløp',
-            lukkeTekstid: '',
+            headerTekstid: 'barnepass.hjelpetekst-åpne.beløp',
           }}
           bredde={'S'}
           settInputFelt={(e) => settInputFelt(e, EBarnepass.belop, beløpLabel)}

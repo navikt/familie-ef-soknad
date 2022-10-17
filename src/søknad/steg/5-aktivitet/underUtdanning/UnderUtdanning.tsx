@@ -103,14 +103,14 @@ const UnderUtdanning: React.FC<Props> = ({
                 <LocaleTekst tekst={'utdanning.tittel'} />
               </Heading>
               <LesMerTekst
-                åpneTekstid={utdanningDuKanFåStønadTil.åpneTekstid}
+                åpneTekstid={utdanningDuKanFåStønadTil.headerTekstid}
                 innholdTekstid={utdanningDuKanFåStønadTil.innholdTekstid}
               />
             </>
           )}
           {stønadstype === Stønadstype.skolepenger && (
             <LesMerTekstUnderSidetittel
-              åpneTekstid={utdanningDuKanFåStønadTilSkolepenger.åpneTekstid}
+              åpneTekstid={utdanningDuKanFåStønadTilSkolepenger.headerTekstid}
               innholdTekstid={
                 utdanningDuKanFåStønadTilSkolepenger.innholdTekstid
               }

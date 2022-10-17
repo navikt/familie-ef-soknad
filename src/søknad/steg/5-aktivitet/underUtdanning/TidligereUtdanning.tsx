@@ -86,7 +86,7 @@ const TidligereUtdanning: React.FC<Props> = ({
           <LocaleTekst tekst={'utdanning.tittel.tidligere'} />
         </Heading>
         <LesMerTekst
-          åpneTekstid={tidligereUtdanningHjelpetekst.åpneTekstid}
+          åpneTekstid={tidligereUtdanningHjelpetekst.headerTekstid}
           innholdTekstid={tidligereUtdanningHjelpetekst.innholdTekstid}
           html={true}
         />

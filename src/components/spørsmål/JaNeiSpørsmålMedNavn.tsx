@@ -58,7 +58,7 @@ const JaNeiSpørsmålMedNavn: React.FC<Props> = ({
         {spørsmål.lesmer && (
           <LesMerTekst
             halvåpenTekstid={spørsmål.lesmer.halvåpenTekstid}
-            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+            åpneTekstid={spørsmål.lesmer.headerTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />
         )}

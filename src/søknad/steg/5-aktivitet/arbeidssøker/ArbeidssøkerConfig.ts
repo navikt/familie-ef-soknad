@@ -12,9 +12,8 @@ export const erSøkerArbeidssøker = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'arbeidssøker.label.registrert',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'arbeidssøker.hjelpetekst-åpne.registrert',
+    headerTekstid: 'arbeidssøker.hjelpetekst-åpne.registrert',
     innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.registrert',
-    lukkeTekstid: '',
   },
   svaralternativer: [
     JaSvar(intl),
@@ -41,9 +40,8 @@ export const kanBegynneInnenEnUke = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'arbeidssøker.label.senestEnUke',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke',
-    lukkeTekstid: '',
   },
   svaralternativer: JaNeiSvar(intl),
 });
@@ -63,9 +61,8 @@ export const ønsketArbeidssted = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'arbeidssøker.label.ønsketArbeidssted',
   flersvar: false,
   lesmer: {
-    åpneTekstid: 'arbeidssøker.lesmer-åpne.ønsketArbeidssted',
+    headerTekstid: 'arbeidssøker.lesmer-åpne.ønsketArbeidssted',
     innholdTekstid: 'arbeidssøker.lesmer-innhold.ønsketArbeidssted',
-    lukkeTekstid: '',
   },
   svaralternativer: [
     {
@@ -84,9 +81,8 @@ export const ønskerHalvStilling = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'arbeidssøker.label.halvstilling',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'arbeidssøker.alert.halvstilling',
-    lukkeTekstid: '',
   },
   svaralternativer: JaNeiSvar(intl),
 });

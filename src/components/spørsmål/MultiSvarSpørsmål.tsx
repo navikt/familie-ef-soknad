@@ -62,7 +62,7 @@ const MultiSvarSpørsmål: FC<Props> = ({
       <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
         <Show if={spørsmål.lesmer}>
           <LesMerTekst
-            åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.åpneTekstid : ''}
+            åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''}
             innholdTekstid={
               spørsmål.lesmer ? spørsmål!.lesmer!.innholdTekstid : ''
             }

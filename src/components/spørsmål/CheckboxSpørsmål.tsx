@@ -58,7 +58,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
       <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <LesMerTekst
-            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+            åpneTekstid={spørsmål.lesmer.headerTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />
         )}

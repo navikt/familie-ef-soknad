@@ -69,7 +69,7 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
       <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
           <LesMerTekst
-            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+            åpneTekstid={spørsmål.lesmer.headerTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />
         )}

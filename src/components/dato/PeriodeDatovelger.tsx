@@ -124,7 +124,7 @@ const PeriodeDatovelgere: FC<Props> = ({
         <Label>{tekst}</Label>
         {hjelpetekst && (
           <LesMerTekst
-            åpneTekstid={hjelpetekst.åpneTekstid}
+            åpneTekstid={hjelpetekst.headerTekstid}
             innholdTekstid={hjelpetekst.innholdTekstid}
           />
         )}
