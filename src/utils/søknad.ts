@@ -20,7 +20,7 @@ export const hentPersonData = () => {
   return axios
     .get(`${Environment().apiUrl}/api/oppslag/sokerinfo`, {
       headers: {
-        'content-type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json;charset=utf-8',
       },
       withCredentials: true,
     })
@@ -33,7 +33,7 @@ export const hentPersonDataArbeidssoker = () => {
   return axios
     .get(`${Environment().apiUrl}/api/oppslag/sokerminimum`, {
       headers: {
-        'content-type': 'application/json;charset=utf-8',
+        'Content-Type': 'application/json;charset=utf-8',
       },
       withCredentials: true,
     })
@@ -49,7 +49,7 @@ export const hentMellomlagretSøknadFraDokument = <T>(
     .get(`${Environment().mellomlagerUrl + stønadstype}`, {
       withCredentials: true,
       headers: {
-        'content-type': 'application/json',
+        'Content-Type': 'application/json',
         accept: 'application/json',
         [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
       },
@@ -66,7 +66,7 @@ export const mellomlagreSøknadTilDokument = <T>(
   return axios.post(`${Environment().mellomlagerUrl + stønadstype}`, søknad, {
     withCredentials: true,
     headers: {
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
       accept: 'application/json',
       [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
     },
@@ -79,7 +79,7 @@ export const nullstillMellomlagretSøknadTilDokument = (
   return axios.delete(`${Environment().mellomlagerUrl + stønadstype}`, {
     withCredentials: true,
     headers: {
-      'content-type': 'application/json',
+      'Content-Type': 'application/json',
       accept: 'application/json',
       [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
     },

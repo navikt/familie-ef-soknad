@@ -14,7 +14,7 @@ import OppsummeringDetaljertUtdanning from '../../../søknad/steg/7-oppsummering
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { BodyShort } from '@navikt/ds-react';
+import { Accordion, BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -38,49 +38,81 @@ const Oppsummering: React.FC = () => {
           </BodyShort>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg
-              tittel={hentTekst('stegtittel.omDeg', intl)}
-              søker={søknad.person.søker}
-              sivilstatus={søknad.sivilstatus}
-              medlemskap={søknad.medlemskap}
-              endreInformasjonPath={hentPath(
-                RoutesSkolepenger,
-                ERouteSkolepenger.OmDeg
-              )}
-            />
-            <OppsummeringBosituasjonenDin
-              tittel={hentTekst('stegtittel.bosituasjon', intl)}
-              bosituasjon={søknad.bosituasjon}
-              endreInformasjonPath={hentPath(
-                RoutesSkolepenger,
-                ERouteSkolepenger.BosituasjonenDin
-              )}
-            />
-            <OppsummeringBarnaDine
-              tittel={hentTekst('barnadine.sidetittel', intl)}
-              stønadstype={Stønadstype.skolepenger}
-              barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(
-                RoutesSkolepenger,
-                ERouteSkolepenger.BarnaDine
-              )}
-            />
-            <OppsummeringBarnasBosituasjon
-              tittel={hentTekst('barnasbosted.sidetittel', intl)}
-              barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(
-                RoutesSkolepenger,
-                ERouteSkolepenger.BostedOgSamvær
-              )}
-            />
-            <OppsummeringDetaljertUtdanning
-              tittel={hentTekst('stegtittel.utdanning', intl)}
-              utdanning={søknad.utdanning}
-              endreInformasjonPath={hentPath(
-                RoutesSkolepenger,
-                ERouteSkolepenger.Utdanning
-              )}
-            />
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.omDeg', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringOmDeg
+                    søker={søknad.person.søker}
+                    sivilstatus={søknad.sivilstatus}
+                    medlemskap={søknad.medlemskap}
+                    endreInformasjonPath={hentPath(
+                      RoutesSkolepenger,
+                      ERouteSkolepenger.OmDeg
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.bosituasjon', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBosituasjonenDin
+                    bosituasjon={søknad.bosituasjon}
+                    endreInformasjonPath={hentPath(
+                      RoutesSkolepenger,
+                      ERouteSkolepenger.BosituasjonenDin
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnadine.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnaDine
+                    stønadstype={Stønadstype.skolepenger}
+                    barn={søknad.person.barn}
+                    endreInformasjonPath={hentPath(
+                      RoutesSkolepenger,
+                      ERouteSkolepenger.BarnaDine
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnasbosted.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnasBosituasjon
+                    barn={søknad.person.barn}
+                    endreInformasjonPath={hentPath(
+                      RoutesSkolepenger,
+                      ERouteSkolepenger.BostedOgSamvær
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.utdanning', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringDetaljertUtdanning
+                    utdanning={søknad.utdanning}
+                    endreInformasjonPath={hentPath(
+                      RoutesSkolepenger,
+                      ERouteSkolepenger.Utdanning
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
           </KomponentGruppe>
         </div>
       </Side>

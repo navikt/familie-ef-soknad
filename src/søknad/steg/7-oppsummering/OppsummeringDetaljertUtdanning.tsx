@@ -1,5 +1,4 @@
 import React from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -12,17 +11,16 @@ import {
   StyledOppsummeringMedUndertitler,
 } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
-import { Heading, Ingress } from '@navikt/ds-react';
+import { Ingress } from '@navikt/ds-react';
+
 interface Props {
   utdanning: IDetaljertUtdanning;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
   utdanning,
   endreInformasjonPath,
-  tittel,
 }) => {
   const navigate = useNavigate();
   const intl = useLokalIntlContext();
@@ -37,14 +35,7 @@ const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
   const underUtdanning = VisLabelOgSvar(utdanning);
 
   return (
-    <Ekspanderbartpanel
-      className="aktiviteter"
-      tittel={
-        <Heading size="small" level="3">
-          {tittel}
-        </Heading>
-      }
-    >
+    <>
       <StyledOppsummeringMedUndertitler>
         <KomponentGruppe>
           <SeksjonSpacingTop>
@@ -66,7 +57,7 @@ const OppsummeringDetaljertUtdanning: React.FC<Props> = ({
           ikon={endre}
         />
       </StyledOppsummeringMedUndertitler>
-    </Ekspanderbartpanel>
+    </>
   );
 };
 

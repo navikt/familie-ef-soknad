@@ -1,8 +1,6 @@
 import { FC } from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
-import LocaleTekst from '../../../language/LocaleTekst';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -22,7 +20,7 @@ import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
-import { BodyShort, Heading, Label } from '@navikt/ds-react';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 interface Props {
   søkerFraBestemtDato?: ISpørsmålBooleanFelt;
@@ -41,13 +39,7 @@ const OppsummeringBarnepass: FC<Props> = ({
   const intl = useLokalIntlContext();
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Heading size="small">
-          <LocaleTekst tekst={'barnepass.sidetittel'} />
-        </Heading>
-      }
-    >
+    <>
       {barnSomSkalHaBarnepass.map((barn: IBarn) => {
         const { barnepass } = barn;
 
@@ -103,7 +95,7 @@ const OppsummeringBarnepass: FC<Props> = ({
           ikon={endre}
         />
       </KomponentGruppe>
-    </Ekspanderbartpanel>
+    </>
   );
 };
 
