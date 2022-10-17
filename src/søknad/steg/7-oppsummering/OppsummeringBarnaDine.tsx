@@ -1,5 +1,4 @@
 import React from 'react';
-import Ekspanderbartpanel from 'nav-frontend-ekspanderbartpanel';
 import endre from '../../../assets/endre.svg';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
@@ -11,20 +10,17 @@ import BarneHeader from '../../../components/BarneHeader';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { StyledOppsummeringForBarn } from '../../../components/stegKomponenter/StyledOppsummering';
 import { useNavigate } from 'react-router-dom';
-import { Heading } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn[];
   stønadstype: Stønadstype;
   endreInformasjonPath?: string;
-  tittel: string;
 }
 
 const OppsummeringBarnaDine: React.FC<Props> = ({
   barn,
   stønadstype,
   endreInformasjonPath,
-  tittel,
 }) => {
   const intl = useLokalIntlContext();
   const navigate = useNavigate();
@@ -60,13 +56,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   });
 
   return (
-    <Ekspanderbartpanel
-      tittel={
-        <Heading level="3" size="small">
-          {tittel}
-        </Heading>
-      }
-    >
+    <>
       <KomponentGruppe>{oppsummeringBarnaDine}</KomponentGruppe>
       <LenkeMedIkon
         onClick={() =>
@@ -78,7 +68,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
         tekst_id="barnasbosted.knapp.endre"
         ikon={endre}
       />
-    </Ekspanderbartpanel>
+    </>
   );
 };
 

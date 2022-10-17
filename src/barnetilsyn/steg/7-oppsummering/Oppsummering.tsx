@@ -29,7 +29,7 @@ import {
   ManglendeFelter,
   manglendeFelterTilTekst,
 } from '../../../utils/validering/validering';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -82,61 +82,97 @@ const Oppsummering: React.FC = () => {
           </BodyShort>
 
           <KomponentGruppe>
-            <OppsummeringOmDeg
-              tittel={hentTekst('stegtittel.omDeg', intl)}
-              søker={søknad.person.søker}
-              sivilstatus={søknad.sivilstatus}
-              medlemskap={søknad.medlemskap}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.OmDeg
-              )}
-            />
-            <OppsummeringBosituasionenDin
-              tittel={hentTekst('stegtittel.bosituasjon', intl)}
-              bosituasjon={søknad.bosituasjon}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.BosituasjonenDin
-              )}
-            />
-            <OppsummeringBarnaDine
-              tittel={hentTekst('barnadine.sidetittel', intl)}
-              barn={søknad.person.barn}
-              stønadstype={Stønadstype.barnetilsyn}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.BarnaDine
-              )}
-            />
-            <OppsummeringBarnasBosituasjon
-              tittel={hentTekst('barnasbosted.sidetittel', intl)}
-              barn={søknad.person.barn}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.BostedOgSamvær
-              )}
-            />
-            <OppsummeringAktiviteter
-              tittel={hentTekst(
-                'stegtittel.arbeidssituasjon.barnetilsyn',
-                intl
-              )}
-              aktivitet={søknad.aktivitet}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.Aktivitet
-              )}
-            />
-            <OppsummeringBarnepass
-              søkerFraBestemtDato={søknad.søkerFraBestemtMåned}
-              søknadsdato={søknad.søknadsdato}
-              barnSomSkalHaBarnepass={barnSomSkalHaBarnepass}
-              endreInformasjonPath={hentPath(
-                RoutesBarnetilsyn,
-                ERouteBarnetilsyn.Barnepass
-              )}
-            />
+            <Accordion>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.omDeg', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringOmDeg
+                    søker={søknad.person.søker}
+                    sivilstatus={søknad.sivilstatus}
+                    medlemskap={søknad.medlemskap}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.OmDeg
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.bosituasjon', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBosituasionenDin
+                    bosituasjon={søknad.bosituasjon}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.BosituasjonenDin
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnadine.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnaDine
+                    barn={søknad.person.barn}
+                    stønadstype={Stønadstype.barnetilsyn}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.BarnaDine
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnasbosted.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnasBosituasjon
+                    barn={søknad.person.barn}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.BostedOgSamvær
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('stegtittel.arbeidssituasjon.barnetilsyn', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringAktiviteter
+                    aktivitet={søknad.aktivitet}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.Aktivitet
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+              <Accordion.Item>
+                <Accordion.Header>
+                  {hentTekst('barnepass.sidetittel', intl)}
+                </Accordion.Header>
+                <Accordion.Content>
+                  <OppsummeringBarnepass
+                    søkerFraBestemtDato={søknad.søkerFraBestemtMåned}
+                    søknadsdato={søknad.søknadsdato}
+                    barnSomSkalHaBarnepass={barnSomSkalHaBarnepass}
+                    endreInformasjonPath={hentPath(
+                      RoutesBarnetilsyn,
+                      ERouteBarnetilsyn.Barnepass
+                    )}
+                  />
+                </Accordion.Content>
+              </Accordion.Item>
+            </Accordion>
           </KomponentGruppe>
           {harManglendeFelter && (
             <Alert size="small" variant="warning">
