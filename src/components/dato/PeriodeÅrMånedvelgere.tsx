@@ -4,7 +4,7 @@ import Feilmelding from '../feil/Feilmelding';
 import { erGyldigDato, strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components/macro';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import ÅrMånedVelger from './ÅrMånedvelger';
@@ -121,10 +121,9 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
       <FeltGruppe>
         <Label>{tekst}</Label>
         {hjelpetekst && (
-          <Hjelpetekst
-            åpneTekstid={hjelpetekst.åpneTekstid}
+          <LesMerTekst
+            åpneTekstid={hjelpetekst.headerTekstid}
             innholdTekstid={hjelpetekst.innholdTekstid}
-            lukkeTekstid={hjelpetekst.lukkeTekstid}
           />
         )}
       </FeltGruppe>

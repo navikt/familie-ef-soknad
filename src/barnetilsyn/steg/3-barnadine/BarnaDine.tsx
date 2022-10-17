@@ -2,7 +2,7 @@ import React from 'react';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation } from 'react-router-dom';
-import Hjelpetekst from '../../../components/Hjelpetekst';
+import LesMerTekst from '../../../components/LesMerTekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import BarnMedISøknad from './BarnMedISøknad';
@@ -108,7 +108,7 @@ const BarnaDine: React.FC = () => {
               <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
             </Label>
             <FeltGruppe>
-              <Hjelpetekst
+              <LesMerTekst
                 åpneTekstid={'barnetilsyn.hjelpetekst-åpne.hvilke'}
                 innholdTekstid={'barnetilsyn.hjelpetekst-innhold.hvilke'}
               />

@@ -7,8 +7,7 @@ export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESøknad.søkerBorPåRegistrertAdresse,
   tekstid: 'personopplysninger.spm.riktigAdresse',
   lesmer: {
-    åpneTekstid: '',
-    lukkeTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'personopplysninger.lesmer-innhold.riktigAdresse',
   },
   flersvar: false,

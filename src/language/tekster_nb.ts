@@ -291,7 +291,7 @@ export default {
   'barnasbosted.hjelpetekst.halvåpen':
     'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/><br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
   'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/><br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/><br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
+    'Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/><br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/><br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':

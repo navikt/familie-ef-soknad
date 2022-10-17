@@ -84,9 +84,8 @@ export const SøkerDuStønadFraBestemtMndSpm = (
   tekstid: 'søkerFraBestemtMåned.spm.barnepass',
   flersvar: false,
   lesmer: {
-    åpneTekstid: '',
+    headerTekstid: '',
     innholdTekstid: 'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass',
-    lukkeTekstid: '',
   },
   svaralternativer: [
     {

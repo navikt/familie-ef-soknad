@@ -12,24 +12,24 @@
   grid-gap: 1rem;
   padding-top: 1rem;
 }
-.spørsmålgruppe .hjelpetekst .lesMerPanel__toggle {
+.spørsmålgruppe .hjelpetekst .readMore__toggle {
   justify-content: flex-start;
 }
 @media all and (max-width: 420px) {
-  .spørsmålgruppe .hjelpetekst .lesMerPanel__toggle {
+  .spørsmålgruppe .hjelpetekst .readMore__toggle {
     padding-left: 0;
   }
 }
-.spørsmålgruppe .hjelpetekst .lesMerPanel__togglelink {
+.spørsmålgruppe .hjelpetekst .readMore__togglelink {
   flex-direction: row-reverse;
 }
-.spørsmålgruppe .hjelpetekst .lesMerPanel__togglelink .chevron--ned {
+.spørsmålgruppe .hjelpetekst .readMore__togglelink .chevron--ned {
   margin-top: 0.2rem;
 }
-.spørsmålgruppe .hjelpetekst .lesMerPanel__togglelink .chevron--opp {
+.spørsmålgruppe .hjelpetekst .readMore__togglelink .chevron--opp {
   margin-top: 0.3rem;
 }
-.spørsmålgruppe .hjelpetekst .lesMerPanel__toggleTekst {
+.spørsmålgruppe .hjelpetekst .readMore__toggleTekst {
   font-size: 16px;
 }
 .søknadsdialog .skjemagruppe__legend {

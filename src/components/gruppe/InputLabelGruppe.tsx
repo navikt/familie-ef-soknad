@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Input, Label } from 'nav-frontend-skjema';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import { BodyShort } from '@navikt/ds-react';
 
@@ -14,22 +14,25 @@ const StyledComponent = styled.div`
     'hjelpetekst hjelpetekst'
     'input tegn';
 
-  .hjelpetekst {
-    grid-area: hjelpetekst;
-    margin-bottom: 1rem;
-  }
   .skjemaelement__label {
     grid-area: label;
     font-size: 18px;
   }
+
   .skjemaelement {
     grid-area: input;
   }
+
   .navds-body-short {
     padding-left: 0.5rem;
     grid-area: tegn;
     align-self: center;
   }
+`;
+
+const LesMerContainer = styled.div`
+  grid-area: hjelpetekst;
+  margin-bottom: 0.5rem;
 `;
 
 interface Props {
@@ -65,11 +68,12 @@ const InputLabelGruppe: React.FC<Props> = ({
     <StyledComponent aria-live="polite">
       <Label htmlFor={label}> {label}</Label>
       {hjelpetekst && (
-        <Hjelpetekst
-          className={'hjelpetekst'}
-          åpneTekstid={hjelpetekst.åpneTekstid}
-          innholdTekstid={hjelpetekst.innholdTekstid}
-        />
+        <LesMerContainer>
+          <LesMerTekst
+            åpneTekstid={hjelpetekst.headerTekstid}
+            innholdTekstid={hjelpetekst.innholdTekstid}
+          />
+        </LesMerContainer>
       )}
       <Input
         id={label}

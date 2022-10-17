@@ -3,9 +3,9 @@ import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components/macro';
-import Hjelpetekst from '../Hjelpetekst';
+import LesMerTekst from '../LesMerTekst';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
-import { urlTilSkjemanavn, skjemanavnTilId } from '../../utils/skjemanavn';
+import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledCheckboxSpørsmål = styled.div`
@@ -34,6 +34,7 @@ interface Props {
   valgteSvar: string[];
   skalLogges: boolean;
 }
+
 const CheckboxSpørsmål: React.FC<Props> = ({
   spørsmål,
   settValgteSvar,
@@ -56,8 +57,8 @@ const CheckboxSpørsmål: React.FC<Props> = ({
     >
       <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
         {spørsmål.lesmer && (
-          <Hjelpetekst
-            åpneTekstid={spørsmål.lesmer.åpneTekstid}
+          <LesMerTekst
+            åpneTekstid={spørsmål.lesmer.headerTekstid}
             innholdTekstid={spørsmål.lesmer.innholdTekstid}
           />
         )}
