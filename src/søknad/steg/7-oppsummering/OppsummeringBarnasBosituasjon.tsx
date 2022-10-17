@@ -32,7 +32,7 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
 
       const visningsIdent = barn.forelder.fraFolkeregister ? undefined : barn.forelder.ident
 
-      let nyForelder = {
+      let visningForelder = {
         ...barn.forelder,
         navn: {
           label: hentTekst('barnasbosted.oppsummering.navn.label', intl),
@@ -41,15 +41,15 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
         ident: visningsIdent
       };
 
-      delete nyForelder.hvorforIkkeOppgi;
-      delete nyForelder.kanIkkeOppgiAnnenForelderFar;
+      delete visningForelder.hvorforIkkeOppgi;
+      delete visningForelder.kanIkkeOppgiAnnenForelderFar;
 
       const barnetsNavn =
         barn.født?.verdi && barn.navn.verdi
           ? barn.navn.verdi
           : hentTekst('barnet.litenForBokstav', intl);
 
-      const forelderFelter = VisLabelOgSvar(nyForelder, barnetsNavn);
+      const forelderFelter = VisLabelOgSvar(visningForelder, barnetsNavn);
 
       return (
         <StyledOppsummeringForBarn key={barn.id}>
