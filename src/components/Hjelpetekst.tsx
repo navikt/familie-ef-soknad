@@ -1,15 +1,14 @@
 import React from 'react';
-import Lesmerpanel from 'nav-frontend-lesmerpanel';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../language/LocaleTekst';
 import { hentTekst } from '../utils/søknad';
 import hiddenIf from '../utils/hiddenIf';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import FormattedHtmlMessage from '../language/FormattedHtmlMessage';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, ReadMore } from '@navikt/ds-react';
 
-const StyledHjelpetekst = styled.div`
-  .lesMerPanel {
+const StyledReadMore = styled.div`
+  .readMore {
     padding: 0;
 
     &__toggle {
@@ -39,7 +38,7 @@ const StyledHjelpetekst = styled.div`
     }
   }
   &.sentrert {
-    .lesMerPanel {
+    .readMore {
       &__togglelink {
         &--erApen {
           margin: auto;
@@ -106,15 +105,8 @@ const Hjelpetekst: React.FC<Props> = ({
             </BodyShort>
           </StyledHalvåpenHjelpetekst>
         )}
-        <StyledHjelpetekst className={className}>
-          <Lesmerpanel
-            apneTekst={hentTekst(åpneTekstid, intl)}
-            lukkTekst={
-              lukkeTekstid
-                ? hentTekst(lukkeTekstid, intl)
-                : hentTekst('knapp.lukk', intl)
-            }
-          >
+        <StyledReadMore className={className}>
+          <ReadMore size={'small'} header={hentTekst(åpneTekstid, intl)}>
             <BodyShort>
               {innholdTekst && innholdTekst}
               {!innholdTekst && innholdTekstid && html && (
@@ -124,8 +116,8 @@ const Hjelpetekst: React.FC<Props> = ({
                 <LocaleTekst tekst={innholdTekstid} />
               )}
             </BodyShort>
-          </Lesmerpanel>
-        </StyledHjelpetekst>
+          </ReadMore>
+        </StyledReadMore>
       </>
     );
   }
