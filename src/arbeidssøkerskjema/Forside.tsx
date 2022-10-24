@@ -26,8 +26,7 @@ import {
   Accordion,
 } from '@navikt/ds-react';
 import styled from 'styled-components';
-
-const BlockContent = require('@sanity/block-content-to-react');
+import { PortableText } from '@portabletext/react';
 
 const DisclaimerTittel = styled(Heading)`
   margin-bottom: 1rem;
@@ -53,26 +52,6 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
     });
   };
   const forside = useForsideInnhold(ForsideType.arbeidssøker);
-
-  const BlockRenderer = (props: any) => {
-    const { style = 'normal' } = props.node;
-
-    if (/^h\d/.test(style)) {
-      const level = style.replace(/[^\d]/g, '');
-      return React.createElement(
-        style,
-        { className: `heading-${level}` },
-        props.children
-      );
-    }
-
-    if (style === 'blockquote') {
-      return <blockquote>- {props.children}</blockquote>;
-    }
-
-    // Fall back to default handling
-    return BlockContent.defaultSerializers.types.block(props);
-  };
 
   const disclaimer = forside['disclaimer_' + locale];
   const seksjon = forside['seksjon_' + locale];
@@ -103,11 +82,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                     <Accordion.Item>
                       <Accordion.Header>{blokk.tittel}</Accordion.Header>
                       <Accordion.Content>
-                        <BlockContent
-                          className="navds-body-short navds-body-long"
-                          blocks={blokk.innhold}
-                          serializers={{ types: { block: BlockRenderer } }}
-                        />
+                        <div className={'navds-body-short navds-body-long'}>
+                          <PortableText value={blokk.innhold} />
+                        </div>
                       </Accordion.Content>
                     </Accordion.Item>
                   </Accordion>
@@ -119,11 +96,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                       {blokk.tittel}
                     </Heading>
                   )}
-                  <BlockContent
-                    className="navds-body-short navds-body-long"
-                    blocks={blokk.innhold}
-                    serializers={{ types: { block: BlockRenderer } }}
-                  />
+                  <div className={'navds-body-short navds-body-long'}>
+                    <PortableText value={blokk.innhold} />
+                  </div>
                 </div>
               );
             })}
@@ -141,10 +116,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                 )}
                 onChange={() => settBekreftelse(!skjema.harBekreftet)}
               >
-                <BlockContent
-                  blocks={disclaimer}
-                  serializers={{ types: { block: BlockRenderer } }}
-                />
+                <div className={'navds-body-short navds-body-long'}>
+                  <PortableText value={disclaimer} />
+                </div>
               </StyledConfirmationPanel>
             </>
           )}

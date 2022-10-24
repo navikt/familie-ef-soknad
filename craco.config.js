@@ -63,7 +63,19 @@ module.exports = {
       },
     ],
   },
-  webpack: {},
+  webpack: {
+    configure: {
+      module: {
+        rules: [
+          {
+            type: 'javascript/auto',
+            test: /\.mjs$/,
+            use: [],
+          },
+        ],
+      },
+    },
+  },
   eslint: {
     enable: true,
     mode: 'extends',
