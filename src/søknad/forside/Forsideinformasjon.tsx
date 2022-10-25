@@ -12,7 +12,6 @@ import { LokalIntlShape } from '../../language/typer';
 import {
   Accordion,
   Alert,
-  BodyLong,
   BodyShort,
   Button,
   ConfirmationPanel,
