@@ -45,7 +45,7 @@ const components: Partial<PortableTextReactComponents> = {
     link: ({ children, value }) => {
       return (
         <span className="lenke-tekst">
-          <a href={value}>{children}</a>
+          <a href={value.href}>{children}</a>
         </span>
       );
     },
