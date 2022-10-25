@@ -11,19 +11,19 @@ import {
 } from './routes/routesArbeidssokerskjema';
 import VeilederSnakkeboble from './VeilederSnakkeboble';
 import { useSkjema } from './SkjemaContext';
-import { useForsideInnhold } from '../utils/hooks';
+import { useForsideInnhold, useMount } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
-import { useMount } from '../utils/hooks';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import {
-  Panel,
-  Heading,
-  ConfirmationPanel,
-  Button,
   Accordion,
+  BodyShort,
+  Button,
+  ConfirmationPanel,
+  Heading,
+  Panel,
 } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { PortableText } from '@portabletext/react';
@@ -82,9 +82,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                     <Accordion.Item>
                       <Accordion.Header>{blokk.tittel}</Accordion.Header>
                       <Accordion.Content>
-                        <div className={'navds-body-short navds-body-long'}>
+                        <BodyShort>
                           <PortableText value={blokk.innhold} />
-                        </div>
+                        </BodyShort>
                       </Accordion.Content>
                     </Accordion.Item>
                   </Accordion>
@@ -96,9 +96,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                       {blokk.tittel}
                     </Heading>
                   )}
-                  <div className={'navds-body-short navds-body-long'}>
+                  <BodyShort>
                     <PortableText value={blokk.innhold} />
-                  </div>
+                  </BodyShort>
                 </div>
               );
             })}
@@ -116,9 +116,9 @@ const Forside: React.FC<any> = ({ visningsnavn }) => {
                 )}
                 onChange={() => settBekreftelse(!skjema.harBekreftet)}
               >
-                <div className={'navds-body-short navds-body-long'}>
+                <BodyShort>
                   <PortableText value={disclaimer} />
-                </div>
+                </BodyShort>
               </StyledConfirmationPanel>
             </>
           )}

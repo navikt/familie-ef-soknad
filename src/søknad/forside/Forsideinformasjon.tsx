@@ -10,11 +10,13 @@ import { useSpråkContext } from '../../context/SpråkContext';
 import { useNavigate } from 'react-router-dom';
 import { LokalIntlShape } from '../../language/typer';
 import {
+  Accordion,
   Alert,
-  Heading,
+  BodyLong,
+  BodyShort,
   Button,
   ConfirmationPanel,
-  Accordion,
+  Heading,
 } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { PortableText } from '@portabletext/react';
@@ -81,12 +83,12 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                 <Accordion.Item>
                   <Accordion.Header>{blokk.tittel}</Accordion.Header>
                   <Accordion.Content>
-                    <div className={'navds-body-short navds-body-long'}>
+                    <BodyShort>
                       <PortableText
                         value={blokk.innhold}
                         components={components}
                       />
-                    </div>
+                    </BodyShort>
                   </Accordion.Content>
                 </Accordion.Item>
               </Accordion>
@@ -98,9 +100,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                   {blokk.tittel}
                 </Heading>
               )}
-              <div className={'navds-body-short navds-body-long'}>
+              <BodyShort>
                 <PortableText value={blokk.innhold} components={components} />
-              </div>
+              </BodyShort>
             </div>
           );
         })}
@@ -117,9 +119,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
             )}
             onChange={() => settBekreftelse(!harBekreftet)}
           >
-            <div className={'navds-body-short navds-body-long'}>
+            <BodyShort>
               <PortableText value={disclaimer} components={components} />
-            </div>
+            </BodyShort>
           </StyledConfirmationPanel>
         </>
       )}
