@@ -10,13 +10,16 @@ import { useSpråkContext } from '../../context/SpråkContext';
 import { useNavigate } from 'react-router-dom';
 import { LokalIntlShape } from '../../language/typer';
 import {
+  Accordion,
   Alert,
-  Heading,
+  BodyShort,
   Button,
   ConfirmationPanel,
-  Accordion,
+  Heading,
 } from '@navikt/ds-react';
 import styled from 'styled-components';
+import { PortableText } from '@portabletext/react';
+import { PortableTextReactComponents } from '@portabletext/react/src/types';
 
 const StyledConfirmationPanel = styled(ConfirmationPanel)`
   margin-bottom: 2rem;
@@ -25,8 +28,6 @@ const StyledConfirmationPanel = styled(ConfirmationPanel)`
 const DisclaimerTittel = styled(Heading)`
   margin-bottom: 1rem;
 `;
-
-const BlockContent = require('@sanity/block-content-to-react');
 
 interface InnholdProps {
   seksjon?: any;
@@ -37,6 +38,18 @@ interface InnholdProps {
   settBekreftelse: (bekreftet: boolean) => void;
   nesteSide: string;
 }
+
+const components: Partial<PortableTextReactComponents> = {
+  marks: {
+    link: ({ children, value }) => {
+      return (
+        <span className="lenke-tekst">
+          <a href={value.href}>{children}</a>
+        </span>
+      );
+    },
+  },
+};
 
 const Forsideinformasjon: React.FC<InnholdProps> = ({
   seksjon,
@@ -49,40 +62,6 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
 }) => {
   const navigate = useNavigate();
   const [locale] = useSpråkContext();
-
-  const BlockRenderer = (props: any) => {
-    const { style = 'normal' } = props.node;
-
-    if (/^h\d/.test(style)) {
-      const level = style.replace(/[^\d]/g, '');
-      return React.createElement(
-        style,
-        { className: `heading-${level}` },
-        props.children
-      );
-    }
-
-    if (props.node.markDefs.length > 0) {
-      return props.node.markDefs.map((mark: any, index: number) => {
-        let { _type = '' } = mark;
-        if (_type === 'link') {
-          return (
-            <span className="lenke-tekst" key={index}>
-              {props.children}
-            </span>
-          );
-        }
-        return props.children;
-      });
-    }
-
-    if (style === 'blockquote') {
-      return <blockquote>- {props.children}</blockquote>;
-    }
-
-    // Fall back to default handling
-    return BlockContent.defaultSerializers.types.block(props);
-  };
 
   return (
     <>
@@ -103,11 +82,12 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                 <Accordion.Item>
                   <Accordion.Header>{blokk.tittel}</Accordion.Header>
                   <Accordion.Content>
-                    <BlockContent
-                      className="navds-body-short navds-body-long"
-                      blocks={blokk.innhold}
-                      serializers={{ types: { block: BlockRenderer } }}
-                    />
+                    <BodyShort>
+                      <PortableText
+                        value={blokk.innhold}
+                        components={components}
+                      />
+                    </BodyShort>
                   </Accordion.Content>
                 </Accordion.Item>
               </Accordion>
@@ -119,17 +99,12 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
                   {blokk.tittel}
                 </Heading>
               )}
-              <div className={'navds-body-short navds-body-long'}>
-                <BlockContent
-                  className="navds-body-short navds-body-long"
-                  blocks={blokk.innhold}
-                  serializers={{ types: { block: BlockRenderer } }}
-                />
-              </div>
+              <BodyShort>
+                <PortableText value={blokk.innhold} components={components} />
+              </BodyShort>
             </div>
           );
         })}
-
       {disclaimer && !isIE && (
         <>
           <DisclaimerTittel level="2" size="small">
@@ -143,10 +118,9 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
             )}
             onChange={() => settBekreftelse(!harBekreftet)}
           >
-            <BlockContent
-              blocks={disclaimer}
-              serializers={{ types: { block: BlockRenderer } }}
-            />
+            <BodyShort>
+              <PortableText value={disclaimer} components={components} />
+            </BodyShort>
           </StyledConfirmationPanel>
         </>
       )}
