@@ -30,7 +30,7 @@
     "@types/react": "^18.0.21",
     "@types/react-aria-menubutton": "^6.2.9",
     "@types/react-collapse": "^5.0.1",
-    "@types/react-datepicker": "^4.4.2",
+    "@types/react-datepicker": "^4.8.0",
     "@types/react-dom": "^18.0.6",
     "@types/react-modal": "^3.13.1",
     "@types/react-router-dom": "^5.3.3",
