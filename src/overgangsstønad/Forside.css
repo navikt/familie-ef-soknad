@@ -60,7 +60,7 @@
 }
 .forside .forside__innhold .veileder {
   margin-bottom: 4rem;
-  display: inline-block;
+  display: block;
 }
 .forside .forside__innhold .nav-veileder __snakkeboblePil {
   height: 0;
