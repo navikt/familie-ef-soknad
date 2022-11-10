@@ -2,7 +2,7 @@ import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Link } from '@navikt/ds-react';
 
 const RegistrerDegSomArbeidssøker: FC = () => {
   return (
@@ -12,12 +12,9 @@ const RegistrerDegSomArbeidssøker: FC = () => {
           <LocaleTekst tekst={'kvittering.tekst.arbeidssøker'} />
         </BodyShort>
       </FeltGruppe>
-      <a
-        className={'knapp knapp--standard kvittering'}
-        href={'https://arbeidssokerregistrering.nav.no/'}
-      >
+      <Link href={'https://arbeidssokerregistrering.nav.no/'}>
         <LocaleTekst tekst={'kvittering.knapp.arbeidssøker'} />
-      </a>
+      </Link>
     </SeksjonGruppe>
   );
 };
