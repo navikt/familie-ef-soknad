@@ -2,9 +2,8 @@ import { FC } from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import Lenke from 'nav-frontend-lenker';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
-import { Label, BodyShort, Alert } from '@navikt/ds-react';
+import { Label, BodyShort, Alert, Link } from '@navikt/ds-react';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -35,9 +34,9 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
         </FeltGruppe>
         <FeltGruppe>
           <BodyShort>
-            <Lenke href={lenkerPDFSøknad[stønadstype]}>
+            <Link href={lenkerPDFSøknad[stønadstype]}>
               <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
-            </Lenke>
+            </Link>
           </BodyShort>
         </FeltGruppe>
         <BodyShort>
