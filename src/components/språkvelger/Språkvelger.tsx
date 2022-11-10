@@ -1,10 +1,9 @@
 import * as React from 'react';
 import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
-import NedChevron from 'nav-frontend-chevron/lib/ned-chevron';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 import styled from 'styled-components/macro';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
-import { Wrapper, Button as AriaButton } from 'react-aria-menubutton';
+import { Button as AriaButton, Wrapper } from 'react-aria-menubutton';
 import { useSpråkContext } from '../../context/SpråkContext';
 import navFarger from 'nav-frontend-core';
 import {
@@ -15,6 +14,7 @@ import {
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
 import { BodyShort } from '@navikt/ds-react';
+import { Expand } from '@navikt/ds-icons';
 
 const StyledSpråkvelger = styled.div`
   width: 100%;
@@ -54,8 +54,10 @@ export const StyledTekst = styled(BodyShort)`
   width: 65%;
 `;
 
-const StyledChevronNed = styled(NedChevron)`
+const StyledChevronNed = styled(Expand)`
   align-self: center;
+  height: 1.2em;
+  width: 1.2em;
 `;
 
 const Språkvelger: React.FC<any> = () => {

@@ -87,9 +87,6 @@
   font-size: 18px;
   line-height: 26px;
 }
-.forside .forside__innhold .seksjon .ekspanderbartPanel {
-  margin-top: -2rem;
-}
 .forside .forside__innhold .bekreftCheckboksPanel {
   background-color: #ffe9cc;
 }
