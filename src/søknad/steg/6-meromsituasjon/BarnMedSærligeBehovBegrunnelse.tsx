@@ -48,6 +48,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
         return (
           <KomponentGruppe>
             <Textarea
+              autoComplete={'off'}
               onChange={onChange}
               label={<BarnMedSærligeBehovLabelTekst barn={barn} intl={intl} />}
               value={barn.særligeTilsynsbehov!.verdi}

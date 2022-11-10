@@ -116,7 +116,7 @@ const TidligereUtdanning: React.FC<Props> = ({
           ) && (
             <KomponentGruppe>
               <FeltGruppe>
-                <Label>
+                <Label as="p">
                   <LocaleTekst tekst={'utdanning.label.leggtil'} />
                 </Label>
                 <LeggTilKnapp onClick={() => leggTilUtdanning()}>

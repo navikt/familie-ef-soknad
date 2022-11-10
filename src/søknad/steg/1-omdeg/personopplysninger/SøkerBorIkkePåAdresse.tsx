@@ -29,7 +29,7 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
       </KomponentGruppe>
       <KomponentGruppe>
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'personopplysninger.info.endreAdresse'} />
           </Label>
         </FeltGruppe>

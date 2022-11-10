@@ -94,7 +94,7 @@ const BarnaDine: React.FC = () => {
             ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <VenterDuBarnLabel>
+                <VenterDuBarnLabel as="p">
                   {hentTekst('barnadine.leggtil.info', intl)}
                 </VenterDuBarnLabel>
                 <Button variant="secondary" onClick={() => settÅpenModal(true)}>

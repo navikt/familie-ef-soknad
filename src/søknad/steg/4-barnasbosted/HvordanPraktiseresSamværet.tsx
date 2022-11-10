@@ -20,7 +20,7 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
   return (
     <KomponentGruppe className="hvordan-praktiseres-samværet">
       <FeltGruppe>
-        <Label>
+        <Label as="p">
           {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
         </Label>
         <BodyShort>
@@ -45,6 +45,7 @@ const HvordanPraktiseresSamværet: React.FC<Props> = ({
       </FeltGruppe>
       <FeltGruppe>
         <Textarea
+          autoComplete={'off'}
           value={
             forelder.hvordanPraktiseresSamværet &&
             forelder.hvordanPraktiseresSamværet.verdi

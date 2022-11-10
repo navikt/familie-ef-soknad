@@ -56,21 +56,21 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
 
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'person.ident.visning'} />
           </Label>
           <BodyShort>{søker.fnr}</BodyShort>
         </FeltGruppe>
 
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'person.statsborgerskap'} />
           </Label>
           <BodyShort>{søker.statsborgerskap}</BodyShort>
         </FeltGruppe>
 
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'sivilstatus.tittel'} />
           </Label>
           <BodyShort>
@@ -79,7 +79,7 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
 
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'person.adresse'} />
           </Label>
           <BodyShort>{søker.adresse.adresse}</BodyShort>

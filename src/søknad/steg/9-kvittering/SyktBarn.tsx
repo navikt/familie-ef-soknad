@@ -44,7 +44,7 @@ const SyktBarn: FC = () => {
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Label>
+          <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.syktBarn' })}
           </Label>
         </Lenke>

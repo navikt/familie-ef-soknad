@@ -39,6 +39,7 @@ const MålMedUtdanningen: React.FC<Props> = ({
     <KomponentGruppe>
       <FeltGruppe>
         <Textarea
+          autoComplete={'off'}
           label={målMedUtdanningLabel}
           value={
             utdanning.målMedUtdanning?.verdi
@@ -52,7 +53,7 @@ const MålMedUtdanningen: React.FC<Props> = ({
 
       <FeltGruppe>
         <AlertStripeDokumentasjon>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst="utdanning.alert-tittel.mål" />
           </Label>
           <BodyShort>

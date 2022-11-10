@@ -93,7 +93,7 @@ const OmArbeidsforholdetDitt: React.FC<Props> = ({
       {erSisteArbeidsgiverFerdigUtfylt(arbeidsforhold) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst={'arbeidsforhold.label.flereArbeidsgivere'} />
             </Label>
             <LeggTilKnapp onClick={() => leggTilArbeidsgiver()}>

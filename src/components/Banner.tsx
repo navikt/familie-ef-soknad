@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import LocaleTekst from '../language/LocaleTekst';
 import { Heading } from '@navikt/ds-react';
 
-const StyledBanner = styled.header`
+const StyledBanner = styled.div`
   width: 100%;
   height: max-content;
   padding: 0.5rem 1rem 0.5rem 1rem;

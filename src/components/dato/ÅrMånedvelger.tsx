@@ -112,7 +112,6 @@ const ÅrMånedVelger: React.FC<Props> = ({
           Object.entries(begrensninger).length === 0 ? (
             <DatePicker
               name="dateInput"
-              ariaLabelledBy={'Datepicker - format (MM.yyyy)'}
               id={datolabelid}
               disabled={disabled}
               className={'nav-datovelger__input'}
@@ -130,7 +129,6 @@ const ÅrMånedVelger: React.FC<Props> = ({
           ) : (
             <DatePicker
               name="dateInput"
-              ariaLabelledBy={'Datepicker - MM.yyyy (format)'}
               id={datolabelid}
               disabled={disabled}
               className={'nav-datovelger__input'}

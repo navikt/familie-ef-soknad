@@ -64,7 +64,7 @@ const OppsummeringBarnepass: FC<Props> = ({
           <hr />
           <br />
           <div className={'spørsmål-og-svar'}>
-            <Label>{søkerFraBestemtDato.label}</Label>
+            <Label as="p">{søkerFraBestemtDato.label}</Label>
             <BodyShort>
               {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja
                 ? hentTekst('svar.ja', intl)
@@ -75,7 +75,7 @@ const OppsummeringBarnepass: FC<Props> = ({
           {søkerFraBestemtDato.svarid === ESøkerFraBestemtMåned.ja &&
             søknadsdato?.verdi && (
               <div className={'spørsmål-og-svar'}>
-                <Label>{søknadsdato.label}</Label>
+                <Label as="p">{søknadsdato.label}</Label>
                 <BodyShort>
                   {formatDate(strengTilDato(søknadsdato?.verdi))}
                 </BodyShort>

@@ -2,7 +2,6 @@ import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
-import VeilederSnakkeboble from '../arbeidssøkerskjema/VeilederSnakkeboble';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
@@ -19,6 +18,7 @@ import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
 import { isIE } from 'react-device-detect';
+import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 
 const Forside: React.FC<any> = () => {
   const { person } = usePersonContext();

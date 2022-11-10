@@ -238,7 +238,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               )}
               {barn.medforelder?.verdi && (
                 <>
-                  <Label>Navn</Label>
+                  <Label as="p">Navn</Label>
                   <BodyShort>
                     {barn.medforelder.verdi.navn
                       ? barn.medforelder.verdi.navn

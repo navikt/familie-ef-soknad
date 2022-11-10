@@ -168,7 +168,7 @@ const Aktivitet: React.FC = () => {
         {arbeidssituasjon.erIArbeid?.svarid === ErIArbeid.NeiFordiJegErSyk && (
           <>
             <Alert variant={'info'} inline>
-              <Label>
+              <Label as="p">
                 <LocaleTekst tekst={'erDuIArbeid.alertsstripe-info'} />
               </Label>
             </Alert>

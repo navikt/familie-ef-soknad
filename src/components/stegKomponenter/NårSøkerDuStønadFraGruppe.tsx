@@ -97,7 +97,7 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
 
       {søkerFraBestemtMåned?.verdi === true && (
         <KomponentGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'søkerFraBestemtMåned.datovelger'} />
           </Label>
           <StyledDatovelger>

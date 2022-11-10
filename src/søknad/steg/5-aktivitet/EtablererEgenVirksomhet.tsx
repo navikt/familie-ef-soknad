@@ -51,6 +51,7 @@ const EtablererEgenVirksomhet: React.FC<Props> = ({
       </FeltGruppe>
       <KomponentGruppe>
         <Textarea
+          autoComplete={'off'}
           label={intl.formatMessage({
             id: 'arbeidssituasjon.label.etablererEgenVirksomhet',
           })}
