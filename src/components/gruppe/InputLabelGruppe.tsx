@@ -76,6 +76,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         </LesMerContainer>
       )}
       <Input
+        aria-label={label}
         id={label}
         key={label}
         type={type}

@@ -17,7 +17,7 @@ const TilleggsstønaderArbeidssøker: FC = () => {
   return (
     <SeksjonGruppe>
       <FeltGruppe>
-        <Heading size="small">
+        <Heading size="small" level="4">
           <LocaleTekst
             tekst={'kvittering.tittel.tilleggsstønader.arbeidssøker'}
           />

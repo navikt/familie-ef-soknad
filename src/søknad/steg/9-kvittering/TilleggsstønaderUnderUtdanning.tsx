@@ -26,7 +26,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
       {stønadstype === Stønadstype.overgangsstønad && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Heading size="small">
+            <Heading size="small" level="4">
               <LocaleTekst tekst={'kvittering.tittel.skolepenger'} />
             </Heading>
           </FeltGruppe>
@@ -56,7 +56,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
         </KomponentGruppe>
       )}
       <FeltGruppe>
-        <Heading size="small">
+        <Heading size="small" level="4">
           <LocaleTekst tekst={'kvittering.tittel.tilleggsstønader'} />
         </Heading>
       </FeltGruppe>

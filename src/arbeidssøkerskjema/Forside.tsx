@@ -9,7 +9,6 @@ import {
   ERouteArbeidssøkerskjema,
   RoutesArbeidssokerskjema,
 } from './routes/routesArbeidssokerskjema';
-import VeilederSnakkeboble from './VeilederSnakkeboble';
 import { useSkjema } from './SkjemaContext';
 import { useForsideInnhold, useMount } from '../utils/hooks';
 import { ForsideType } from '../models/søknad/stønadstyper';
@@ -27,6 +26,7 @@ import {
 } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { PortableText } from '@portabletext/react';
+import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 
 const DisclaimerTittel = styled(Heading)`
   margin-bottom: 1rem;

@@ -87,6 +87,7 @@ const BorAnnenForelderISammeHus: FC<Props> = ({
         <>
           <FeltGruppe>
             <Textarea
+              autoComplete={'off'}
               value={
                 forelder.borAnnenForelderISammeHusBeskrivelse &&
                 forelder.borAnnenForelderISammeHusBeskrivelse.verdi

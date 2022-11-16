@@ -81,7 +81,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
     >
       <SeksjonGruppe>
         <FeltGruppe>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst={'person.ident.visning'} />
           </Label>
           <BodyShort>{ident}</BodyShort>

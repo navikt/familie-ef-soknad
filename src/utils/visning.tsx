@@ -94,15 +94,15 @@ const VisPeriode = (objekt: any, tittel?: string) => {
     <>
       {tittel ? (
         <div className="spørsmål-og-svar">
-          <Label>{tittel}</Label>
+          <Label as="p">{tittel}</Label>
         </div>
       ) : null}
       <div className="spørsmål-og-svar">
-        <Label>{objekt.fra.label}</Label>
+        <Label as="p">{objekt.fra.label}</Label>
         {verdiTilTekstsvar(objekt.fra.verdi, intl)}
       </div>
       <div className="spørsmål-og-svar">
-        <Label>{objekt.til.label}</Label>
+        <Label as="p">{objekt.til.label}</Label>
         {verdiTilTekstsvar(objekt.til.verdi, intl)}
       </div>
     </>
@@ -130,7 +130,7 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
       harValgtSvar(spørsmål.verdi) &&
       label && (
         <div className="spørsmål-og-svar" key={index}>
-          <Label>{label}</Label>
+          <Label as="p">{label}</Label>
           {verdiTilTekstsvar(spørsmål.verdi, intl)}
         </div>
       )
@@ -147,7 +147,7 @@ export const visLabelOgVerdiForSpørsmålFelt = (
     <>
       {overskrift && <Ingress>{overskrift}</Ingress>}
       <div className="spørsmål-og-svar">
-        <Label>{feltObjekt.label}</Label>
+        <Label as="p">{feltObjekt.label}</Label>
         {verdiTilTekstsvar(feltObjekt.verdi, intl)}
       </div>
     </>
@@ -159,7 +159,7 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
 ) => {
   return (
     <div className="spørsmål-og-svar">
-      <Label>{feltListeObjekt.label}</Label>
+      <Label as="p">{feltListeObjekt.label}</Label>
       <ul>
         {feltListeObjekt.verdi.map((svar) => (
           <li>

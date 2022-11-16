@@ -73,6 +73,7 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
         <>
           <FeltGruppe>
             <Textarea
+              autoComplete={'off'}
               value={
                 forelder.beskrivSamværUtenBarn &&
                 forelder.beskrivSamværUtenBarn.verdi

@@ -45,7 +45,7 @@ const ErklæringSamlivsbrudd: FC = () => {
           download
         >
           <img alt="Nedlastingsikon" src={download} />
-          <Label>
+          <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.samlivsbrudd' })}
           </Label>
         </Link>

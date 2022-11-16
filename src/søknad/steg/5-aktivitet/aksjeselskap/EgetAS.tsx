@@ -80,7 +80,7 @@ const EgetAS: FC<Props> = ({
       {erAksjeselskapFerdigUtfylt(egetAS, inkludertArbeidsmengde) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst={'egetAS.label.flere'} />
             </Label>
             <LeggTilKnapp onClick={() => leggTilAksjeselskap()}>

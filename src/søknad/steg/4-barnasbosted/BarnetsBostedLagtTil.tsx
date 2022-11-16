@@ -50,7 +50,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
       <div className="barnas-bosted-lagt-til__svar">
         {(forelder.navn || forelder.kanIkkeOppgiAnnenForelderFar) && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {barnetsNavn}
               {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
             </Label>
@@ -63,7 +63,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {forelder.hvorforIkkeOppgi && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.spm.hvorforikkeoppgi' })
@@ -78,7 +78,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {harValgtSvar(forelder.fødselsdato?.verdi) && forelder.fødselsdato && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {intl.formatMessage({ id: 'datovelger.fødselsdato' })}
             </Label>
             <BodyShort>
@@ -88,13 +88,15 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {!forelder.fraFolkeregister && forelder.ident && (
           <div className="spørsmål-og-svar">
-            <Label>{intl.formatMessage({ id: 'person.ident.visning' })}</Label>
+            <Label as="p">
+              {intl.formatMessage({ id: 'person.ident.visning' })}
+            </Label>
             <BodyShort>{forelder.ident.verdi}</BodyShort>
           </div>
         )}
         {forelder.borINorge && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({ id: 'barnasbosted.borinorge' })
@@ -105,7 +107,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {forelder.land && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {intl.formatMessage({ id: 'barnasbosted.hvilketLand' })}
             </Label>
             <BodyShort>{forelder.land?.verdi}</BodyShort>
@@ -113,7 +115,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {forelder.avtaleOmDeltBosted && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -132,7 +134,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {forelder.harAnnenForelderSamværMedBarn?.verdi && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -147,7 +149,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         )}
         {forelder.harDereSkriftligSamværsavtale?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -162,7 +164,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder.hvordanPraktiseresSamværet?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {intl.formatMessage({ id: 'barnasbosted.element.samvær' })}
             </Label>
             <BodyShort>{forelder.hvordanPraktiseresSamværet.verdi}</BodyShort>
@@ -170,7 +172,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder.borAnnenForelderISammeHus ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -183,7 +185,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder?.boddSammenFør?.svarid ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -200,7 +202,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder?.flyttetFra?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -215,7 +217,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder?.hvorMyeSammen?.verdi ? (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({
@@ -228,7 +230,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
         ) : null}
         {forelder.beskrivSamværUtenBarn && (
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               {hentBeskjedMedNavn(
                 barnetsNavn,
                 intl.formatMessage({

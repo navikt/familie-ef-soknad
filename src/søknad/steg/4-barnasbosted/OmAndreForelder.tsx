@@ -234,6 +234,7 @@ const OmAndreForelder: React.FC<Props> = ({
         <>
           <FeltGruppe aria-live="polite">
             <Textarea
+              autoComplete={'off'}
               value={
                 forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
                 begyntÅSkrive

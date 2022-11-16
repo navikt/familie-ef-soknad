@@ -28,7 +28,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
     <>
       {!harAdressesperre && navn && (
         <div className={'spørsmål-og-svar'}>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst="person.navn" />
           </Label>
           <BodyShort>{navn.verdi}</BodyShort>
@@ -37,7 +37,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {!harAdressesperre && ident && ident.verdi !== '' && (
         <div className={'spørsmål-og-svar'}>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst="person.fnr" />
           </Label>
           <BodyShort>{ident.verdi}</BodyShort>
@@ -46,7 +46,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {alder && (
         <div className={'spørsmål-og-svar'}>
-          <Label>
+          <Label as="p">
             <LocaleTekst tekst="person.alder" />
           </Label>
           <BodyShort>{alder.verdi}</BodyShort>
@@ -55,14 +55,14 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {født?.verdi && lagtTil && (
         <div className={'spørsmål-og-svar'}>
-          <Label>{født?.label}</Label>
+          <Label as="p">{født?.label}</Label>
           <BodyShort>{verdiTilTekstsvar(født.verdi)}</BodyShort>
         </div>
       )}
 
       {stønadstype === Stønadstype.barnetilsyn && skalHaBarnepass && (
         <div className={'spørsmål-og-svar'}>
-          <Label>{skalHaBarnepass?.label}</Label>
+          <Label as="p">{skalHaBarnepass?.label}</Label>
           <BodyShort>
             {verdiTilTekstsvar(skalHaBarnepass?.verdi, intl)}
           </BodyShort>
@@ -71,7 +71,7 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {!harAdressesperre && harSammeAdresse && (
         <div className={'spørsmål-og-svar'}>
-          <Label>{harSammeAdresse.label}</Label>
+          <Label as="p">{harSammeAdresse.label}</Label>
           <BodyShort>{verdiTilTekstsvar(harSammeAdresse.verdi)}</BodyShort>
         </div>
       )}
