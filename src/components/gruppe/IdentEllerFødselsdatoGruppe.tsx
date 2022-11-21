@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import FeltGruppe from './FeltGruppe';
-import { Checkbox, FnrInput } from 'nav-frontend-skjema';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
 import classNames from 'classnames';
 import KomponentGruppe from './KomponentGruppe';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { Checkbox, TextField } from '@navikt/ds-react';
+import { dnr as dnrValidator, fnr as fnrValidator } from '@navikt/fnrvalidator';
 
 interface Props {
   identLabel: string;
@@ -40,33 +41,38 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
 
   const feilmelding: string = hentTekst('person.feilmelding.ident', intl);
 
+  const identErGyldig = (ident: string): boolean =>
+    fnrValidator(ident).status === 'valid' ||
+    dnrValidator(ident).status === 'valid';
+
   return (
     <>
       <KomponentGruppe>
         <FeltGruppe>
-          <FnrInput
+          <TextField
             className={classNames('inputfelt-tekst', {
               fetSkrift: fetSkrift,
             })}
             key={'ident'}
             label={identLabel}
             disabled={checked}
-            bredde={'L'}
+            pattern="[0-9]*"
             value={ident}
-            feil={erGyldigIdent || !ident ? undefined : feilmelding}
-            onChange={(e) => settIdent(e)}
-            onValidate={(valid) => {
-              settGyldigIdent(valid);
+            error={erGyldigIdent || !ident ? undefined : feilmelding}
+            onChange={(e) => {
+              settIdent(e);
+              settGyldigIdent(identErGyldig(e.target.value));
             }}
           />
         </FeltGruppe>
         <FeltGruppe>
           <Checkbox
             className={'checkbox'}
-            label={checkboxLabel}
             checked={checked}
             onChange={() => settChecked(!checked)}
-          />
+          >
+            {checkboxLabel}
+          </Checkbox>
         </FeltGruppe>
       </KomponentGruppe>
       {checked && (

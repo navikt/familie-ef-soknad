@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Checkbox, Input, Textarea } from 'nav-frontend-skjema';
+import { Checkbox } from 'nav-frontend-skjema';
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
@@ -11,7 +11,7 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
-import { ErrorMessage } from '@navikt/ds-react';
+import { ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -164,7 +164,7 @@ const OmAndreForelder: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <FeltGruppe>
-          <Input
+          <TextField
             className="foreldre-navn-input"
             onChange={(e) => {
               settForelder({

@@ -3,7 +3,6 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import styled from 'styled-components/macro';
-import { Input } from 'nav-frontend-skjema';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
@@ -16,11 +15,11 @@ import {
   EStilling,
   IArbeidsgiver,
 } from '../../../../models/steg/aktivitet/arbeidsgiver';
-import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
-import { ISvar } from '../../../../models/felles/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Heading } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -139,7 +138,7 @@ const Arbeidsgiver: React.FC<Props> = ({
         />
       </TittelOgSlettKnapp>
       <FeltGruppe>
-        <Input
+        <TextFieldMedBredde
           key={navnLabel}
           label={navnLabel}
           type="text"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Textarea } from 'nav-frontend-skjema';
 import Datovelger, {
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
@@ -16,7 +15,8 @@ import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseri
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { ErrorMessage, Heading } from '@navikt/ds-react';
+import { ErrorMessage, Heading, Textarea } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -125,7 +125,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
         />
       </TittelOgSlettKnapp>
       <FeltGruppe>
-        <Input
+        <TextFieldMedBredde
           label={labelNavn}
           bredde={'L'}
           type={'text'}
@@ -137,7 +137,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
       {firma.navn?.verdi && (
         <>
           <FeltGruppe>
-            <Input
+            <TextFieldMedBredde
               label={labelOrganisasjonsnr}
               bredde={'L'}
               type={'text'}
@@ -150,7 +150,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
                 )
               }
               value={organisasjonsnummer ? organisasjonsnummer : ''}
-              feil={harValgtUgyldigOrganisasjonsnummer}
+              error={harValgtUgyldigOrganisasjonsnummer}
             />
           </FeltGruppe>
           {harValgtUgyldigOrganisasjonsnummer && (

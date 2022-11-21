@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { Textarea } from 'nav-frontend-skjema';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
@@ -13,7 +12,7 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Textarea } from '@navikt/ds-react';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;

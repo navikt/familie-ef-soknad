@@ -4,13 +4,13 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { hvorMyeSammen } from '../ForeldreConfig';
 import { hentTekst } from '../../../../utils/søknad';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { Textarea } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { EHvorMyeSammen } from '../../../../models/steg/barnasbosted';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Textarea } from '@navikt/ds-react';
 
 interface Props {
   forelder: IForelder;

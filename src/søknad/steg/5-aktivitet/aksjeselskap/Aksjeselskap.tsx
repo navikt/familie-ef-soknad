@@ -3,7 +3,6 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import classnames from 'classnames';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { Input } from 'nav-frontend-skjema';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { hentTekst } from '../../../../utils/søknad';
@@ -13,6 +12,7 @@ import {
 } from '../../../../models/steg/aktivitet/aktivitet';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Heading } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 
 interface Props {
   egetAS: IAksjeselskap[];
@@ -91,7 +91,7 @@ const Aksjeselskap: FC<Props> = ({
         />
       </TittelOgSlettKnapp>
       <FeltGruppe>
-        <Input
+        <TextFieldMedBredde
           key={navnLabel}
           label={navnLabel}
           type="text"

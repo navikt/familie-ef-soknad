@@ -7,7 +7,6 @@ import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarS
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
 import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
 import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
-import { Input } from 'nav-frontend-skjema';
 import IdentEllerFødselsdatoGruppe from '../../../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import {
   hentSvarAlertFraSpørsmål,
@@ -28,6 +27,7 @@ import { IMedlemskap } from '../../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../../language/FormattedHtmlMessage';
 import { Alert, Heading } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../../../components/TextFieldMedBredde';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -220,7 +220,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
             </Heading>
           </FeltGruppe>
           <FeltGruppe>
-            <Input
+            <TextFieldMedBredde
               key={'navn'}
               label={hentTekst('person.navn', intl)}
               type="text"

@@ -6,11 +6,11 @@ import { EBorAnnenForelderISammeHus } from '../../../../models/steg/barnasbosted
 import { hentTekst } from '../../../../utils/søknad';
 import { IForelder } from '../../../../models/steg/forelder';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-import { Textarea } from 'nav-frontend-skjema';
 import { IBarn } from '../../../../models/steg/barn';
 import MultiSvarSpørsmålMedNavn from '../../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Textarea } from '@navikt/ds-react';
 
 interface Props {
   forelder: IForelder;

@@ -4,13 +4,12 @@ import {
   EUtdanning,
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
-import { Textarea } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort, Label, Textarea } from '@navikt/ds-react';
 
 interface Props {
   utdanning: IUnderUtdanning;
