@@ -110,7 +110,7 @@ const Utdanning: React.FC<Props> = ({
           label={linjeKursGradLabel}
           type="text"
           value={utdanning.linjeKursGrad?.verdi}
-          bredde={'L'}
+          bredde={'XL'}
           onChange={(e) => settInputFelt(linjeKursGradLabel, e)}
         />
       </FeltGruppe>

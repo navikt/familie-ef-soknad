@@ -25,8 +25,7 @@ import {
 import { EPeriode } from '../../../models/felles/periode';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
-import { Heading } from '@navikt/ds-react';
-import { TextFieldMedBredde } from '../../../components/TextFieldMedBredde';
+import { Heading, TextField } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -167,10 +166,9 @@ const BarnepassSpørsmål: FC<Props> = ({
       )}
       {hvaSlagsBarnepassOrdning?.verdi && (
         <KomponentGruppe>
-          <TextFieldMedBredde
+          <TextField
             key={EBarnepass.navn}
             label={navnLabel}
-            bredde={'L'}
             type={'text'}
             onChange={(e) => settInputFelt(e, EBarnepass.navn, navnLabel)}
             value={barnepassOrdning?.navn ? barnepassOrdning?.navn.verdi : ''}

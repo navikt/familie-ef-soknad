@@ -16,28 +16,28 @@ export const TextFieldMedBredde = styled(TextField)<Props>(
 const breddeTilStyle: Record<bredde, CSSObject> = {
   L: {
     width: '100%',
-    maxWidth: '280px',
+    maxWidth: '315px',
   },
   M: {
     width: '100%',
-    maxWidth: '210px',
+    maxWidth: '235px',
   },
   S: {
-    width: '140px',
+    width: '160px',
   },
   XL: {
     width: '100%',
-    maxWidth: '350px',
+    maxWidth: '400px',
   },
   XS: {
-    width: '70px',
+    width: '80px',
   },
   XXL: {
     width: '100%',
-    maxWidth: '420px',
+    maxWidth: '470px',
   },
   XXS: {
-    width: '70px',
+    width: '75px',
   },
   fullbredde: {
     width: '100%',

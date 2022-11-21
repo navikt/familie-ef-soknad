@@ -39,7 +39,7 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           key={skoleUtdanningssted.id}
           label={skoleUtdanningstedLabel}
           type="text"
-          bredde={'L'}
+          bredde={'XL'}
           value={
             utdanning?.skoleUtdanningssted?.verdi
               ? utdanning?.skoleUtdanningssted?.verdi
@@ -60,7 +60,7 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
             key={linjeKursGrad.id}
             label={linjeKursGradLabel}
             type="text"
-            bredde={'L'}
+            bredde={'XL'}
             onChange={(e) =>
               settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
             }
