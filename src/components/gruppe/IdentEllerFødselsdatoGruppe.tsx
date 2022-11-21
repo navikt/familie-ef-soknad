@@ -5,8 +5,9 @@ import { hentTekst } from '../../utils/søknad';
 import classNames from 'classnames';
 import KomponentGruppe from './KomponentGruppe';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Checkbox, TextField } from '@navikt/ds-react';
+import { Checkbox } from '@navikt/ds-react';
 import { dnr as dnrValidator, fnr as fnrValidator } from '@navikt/fnrvalidator';
+import { TextFieldMedBredde } from '../TextFieldMedBredde';
 
 interface Props {
   identLabel: string;
@@ -49,13 +50,14 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
     <>
       <KomponentGruppe>
         <FeltGruppe>
-          <TextField
+          <TextFieldMedBredde
             className={classNames('inputfelt-tekst', {
               fetSkrift: fetSkrift,
             })}
             key={'ident'}
             label={identLabel}
             disabled={checked}
+            bredde={'L'}
             pattern="[0-9]*"
             value={ident}
             error={erGyldigIdent || !ident ? undefined : feilmelding}
