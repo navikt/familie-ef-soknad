@@ -72,12 +72,7 @@ const BarneHeader: React.FC<Props> = ({ barn, visBakgrunn = false }) => {
       <div
         className={visBakgrunn ? 'barnas-bosted-header' : 'barnas-bosted-tom'}
       >
-        <img
-          alt="barn"
-          className="barneikon"
-          src={ikon}
-          aria-labelledby="img"
-        />
+        <img alt="barn" className="barneikon" src={ikon} />
       </div>
       <div className="navn">
         <Heading level="3" size="small">

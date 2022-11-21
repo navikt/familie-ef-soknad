@@ -202,6 +202,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
         (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (
         <FeltGruppe>
           <Textarea
+            autoComplete={'off'}
             key={labelArbeidsuke}
             label={labelArbeidsuke}
             value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}

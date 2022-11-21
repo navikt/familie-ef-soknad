@@ -119,7 +119,7 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
   return (
     <>
       <FeltGruppe>
-        <Label>{tekst}</Label>
+        <Label as="p">{tekst}</Label>
         {hjelpetekst && (
           <LesMerTekst
             åpneTekstid={hjelpetekst.headerTekstid}

@@ -60,7 +60,7 @@
 }
 .forside .forside__innhold .veileder {
   margin-bottom: 4rem;
-  display: inline-block;
+  display: block;
 }
 .forside .forside__innhold .nav-veileder __snakkeboblePil {
   height: 0;
@@ -86,9 +86,6 @@
   text-decoration: underline;
   font-size: 18px;
   line-height: 26px;
-}
-.forside .forside__innhold .seksjon .ekspanderbartPanel {
-  margin-top: -2rem;
 }
 .forside .forside__innhold .bekreftCheckboksPanel {
   background-color: #ffe9cc;

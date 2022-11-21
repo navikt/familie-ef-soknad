@@ -79,6 +79,7 @@ const InputLabelGruppe: React.FC<Props> = ({
       <TextFieldMedBredde
         label={label}
         hideLabel
+        aria-label={label}
         id={label}
         key={label}
         type={type}

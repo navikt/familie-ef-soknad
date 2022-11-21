@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 const NorskFlaggSVG = () => (
-  <svg width={25} height={18}>
+  <svg width={25} height={18} role={'img'}>
     <title>{'Flag_of_Norway'}</title>
     <g fill="none" fillRule="evenodd">
       <path fill="#EF2B2D" d="M0 0h25v18H0z" />

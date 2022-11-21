@@ -32,7 +32,7 @@ const FåttJobbTilbud: React.FC<Props> = ({
   return (
     <KomponentGruppe>
       <AlertStripeDokumentasjon>
-        <Label>
+        <Label as="p">
           <LocaleTekst tekst={'dokumentasjon.arbeidskontrakt.tittel'} />
         </Label>
         <br />

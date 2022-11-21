@@ -93,7 +93,7 @@ const BarnepassOrdninger: FC<Props> = ({
       {erBarnepassOrdningerUtfylt(barnepass.barnepassordninger) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Label>{leggTilLabel}</Label>
+            <Label as="p">{leggTilLabel}</Label>
             <LeggTilKnapp onClick={() => leggTilBarnepassordning()}>
               {intl.formatMessage({ id: 'barnepass.knapp.leggTilOrdning' })}
             </LeggTilKnapp>

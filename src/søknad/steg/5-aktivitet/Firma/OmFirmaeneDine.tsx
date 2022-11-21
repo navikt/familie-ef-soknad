@@ -79,7 +79,7 @@ const OmFirmaeneDine: React.FC<Props> = ({
       {erSisteFirmaUtfylt(firmaer) && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst={'firmaer.label.flereFirmaer'} />
             </Label>
             <LeggTilKnapp onClick={() => leggTilFirma()}>

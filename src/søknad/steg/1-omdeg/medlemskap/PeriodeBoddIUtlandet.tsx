@@ -76,7 +76,7 @@ const PeriodeBoddIUtlandet: FC<{
       {erForrigePeriodeFyltUt && (
         <KomponentGruppe>
           <FeltGruppe>
-            <Label>
+            <Label as="p">
               <LocaleTekst
                 tekst={'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold'}
               />

@@ -54,19 +54,19 @@ const OppsummeringOmDeg: FC<Props> = ({
       <KomponentGruppe>
         <StyledOppsummering>
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst="person.ident" />
             </Label>
             <BodyShort>{omDeg.fnr}</BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst="person.statsborgerskap" />
             </Label>
             <BodyShort>{omDeg.statsborgerskap}</BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst="person.adresse" />
             </Label>
             <BodyShort>{omDeg.adresse.adresse}</BodyShort>
@@ -75,7 +75,7 @@ const OppsummeringOmDeg: FC<Props> = ({
             </BodyShort>
           </div>
           <div className="spørsmål-og-svar">
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst="person.telefonnr" />
             </Label>
             <BodyShort>{omDeg.kontakttelefon}</BodyShort>

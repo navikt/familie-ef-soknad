@@ -163,6 +163,7 @@ const HarSøkerSagtOppEllerRedusertStilling: React.FC<Props> = ({
           </KomponentGruppe>
           <KomponentGruppe>
             <Textarea
+              autoComplete={'off'}
               label={begrunnelseLabel}
               value={
                 begrunnelseSagtOppEllerRedusertStilling

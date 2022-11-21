@@ -95,7 +95,7 @@ const Oppsummering: React.FC = () => {
           <p className="navds-body-short navds-body-long disclaimer">
             {hentTekst('skjema.oppsummering.disclaimer', intl)}
           </p>
-          <Heading size="small">
+          <Heading size="small" level="4">
             {hentTekst('skjema.oppsummering.omdeg', intl)}
           </Heading>
           {spørsmålOgSvar}

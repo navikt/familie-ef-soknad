@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import Lenke from 'nav-frontend-lenker';
 import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import styled from 'styled-components/macro';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort, Label, Link } from '@navikt/ds-react';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -33,12 +32,12 @@ const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
         <LocaleTekst tekst={'kvittering.beskrivelse.huskeliste.erSyk'} />
       </BodyShort>
       <StyledLenke>
-        <Lenke href={filPath} download>
+        <Link href={filPath} download>
           <img alt="Nedlastingsikon" src={download} />
-          <Label>
+          <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.erSyk' })}
           </Label>
-        </Lenke>
+        </Link>
       </StyledLenke>
     </SeksjonGruppe>
   );

@@ -104,7 +104,7 @@ const BarnaDine: React.FC = () => {
       >
         <div className="barna-dine">
           <div className="barnetilsyn__hvilke-barn">
-            <Label>
+            <Label as="p">
               <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
             </Label>
             <FeltGruppe>
