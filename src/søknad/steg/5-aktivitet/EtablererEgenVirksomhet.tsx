@@ -6,12 +6,11 @@ import {
   EArbeidssituasjon,
   IAktivitet,
 } from '../../../models/steg/aktivitet/aktivitet';
-import { Textarea } from 'nav-frontend-skjema';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { Heading } from '@navikt/ds-react';
+import { Heading, Textarea } from '@navikt/ds-react';
 
 interface Props {
   arbeidssituasjon: IAktivitet;

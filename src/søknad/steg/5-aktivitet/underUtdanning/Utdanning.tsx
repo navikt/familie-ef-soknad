@@ -6,7 +6,6 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
-import { Input } from 'nav-frontend-skjema';
 import { IUtdanning } from '../../../../models/steg/aktivitet/utdanning';
 import { linjeKursGrad } from './UtdanningConfig';
 import { tomPeriode } from '../../../../helpers/tommeSøknadsfelter';
@@ -17,6 +16,7 @@ import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { formatIsoDate } from '../../../../utils/dato';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Heading } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 
 interface Props {
   tidligereUtdanninger: IUtdanning[];
@@ -105,12 +105,12 @@ const Utdanning: React.FC<Props> = ({
         />
       </TittelOgSlettKnapp>
       <FeltGruppe aria-live="polite">
-        <Input
+        <TextFieldMedBredde
           key={linjeKursGrad.id}
           label={linjeKursGradLabel}
           type="text"
           value={utdanning.linjeKursGrad?.verdi}
-          bredde={'L'}
+          bredde={'XL'}
           onChange={(e) => settInputFelt(linjeKursGradLabel, e)}
         />
       </FeltGruppe>

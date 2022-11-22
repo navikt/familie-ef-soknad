@@ -10,7 +10,6 @@ import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
-import { Input } from 'nav-frontend-skjema';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { tomPeriode } from '../../../helpers/tommeSøknadsfelter';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -26,7 +25,7 @@ import {
 import { EPeriode } from '../../../models/felles/periode';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
-import { Heading } from '@navikt/ds-react';
+import { Heading, TextField } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -167,10 +166,9 @@ const BarnepassSpørsmål: FC<Props> = ({
       )}
       {hvaSlagsBarnepassOrdning?.verdi && (
         <KomponentGruppe>
-          <Input
+          <TextField
             key={EBarnepass.navn}
             label={navnLabel}
-            bredde={'L'}
             type={'text'}
             onChange={(e) => settInputFelt(e, EBarnepass.navn, navnLabel)}
             value={barnepassOrdning?.navn ? barnepassOrdning?.navn.verdi : ''}

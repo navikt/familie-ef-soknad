@@ -2,9 +2,8 @@ import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { Textarea } from 'nav-frontend-skjema';
 import { IForelder } from '../../../models/steg/forelder';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort, Label, Textarea } from '@navikt/ds-react';
 
 interface Props {
   forelder: any;

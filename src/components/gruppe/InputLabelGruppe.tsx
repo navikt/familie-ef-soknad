@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Input, Label } from 'nav-frontend-skjema';
+import { Label } from 'nav-frontend-skjema';
 import LesMerTekst from '../LesMerTekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import { BodyShort } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../TextFieldMedBredde';
 
 const StyledComponent = styled.div`
   display: grid;
@@ -19,7 +20,7 @@ const StyledComponent = styled.div`
     font-size: 18px;
   }
 
-  .skjemaelement {
+  .navds-form-field {
     grid-area: input;
   }
 
@@ -39,7 +40,7 @@ interface Props {
   label: string;
   hjelpetekst?: IHjelpetekst;
   nøkkel: string;
-  type: string;
+  type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'url';
   bredde?: 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
   settInputFelt: (
     e: React.FormEvent<HTMLInputElement>,
@@ -75,7 +76,9 @@ const InputLabelGruppe: React.FC<Props> = ({
           />
         </LesMerContainer>
       )}
-      <Input
+      <TextFieldMedBredde
+        label={label}
+        hideLabel
         aria-label={label}
         id={label}
         key={label}
@@ -83,7 +86,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         bredde={bredde}
         onChange={(e) => settInputFelt(e, nøkkel, label)}
         value={value}
-        feil={feil}
+        error={feil}
         placeholder={placeholder}
       />
       <BodyShort>{beskrivendeTekst}</BodyShort>

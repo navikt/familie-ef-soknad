@@ -6,12 +6,12 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { EBosituasjon, IBosituasjon } from '../../../models/steg/bosituasjon';
 import { hentTekst } from '../../../utils/søknad';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
-import { Input } from 'nav-frontend-skjema';
 import {
   EPersonDetaljer,
   IPersonDetaljer,
 } from '../../../models/søknad/person';
 import { Label } from '@navikt/ds-react';
+import { TextFieldMedBredde } from '../../../components/TextFieldMedBredde';
 
 interface Props {
   tittel: string;
@@ -116,7 +116,7 @@ const OmSamboerenDin: FC<Props> = ({
       </FeltGruppe>
 
       <KomponentGruppe>
-        <Input
+        <TextFieldMedBredde
           className={'inputfelt-tekst'}
           key={'navn'}
           label={hentTekst('person.navn', intl)}

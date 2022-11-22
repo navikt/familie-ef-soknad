@@ -1,4 +1,3 @@
-import { Textarea } from 'nav-frontend-skjema';
 import React, { ChangeEvent } from 'react';
 import { IBarn } from '../../../models/steg/barn';
 import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
@@ -10,7 +9,7 @@ import { hentBeskjedMedNavn } from '../../../utils/språk';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { LokalIntlShape } from '../../../language/typer';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { BodyShort, Label, Textarea } from '@navikt/ds-react';
 
 const MAX_LENGDE_BEGRUNDELSE = 1500;
 

@@ -8,7 +8,6 @@ import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsm
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
-import { Textarea } from 'nav-frontend-skjema';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 
@@ -21,7 +20,7 @@ import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasj
 import Datovelger, {
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { Alert } from '@navikt/ds-react';
+import { Alert, Textarea } from '@navikt/ds-react';
 
 interface Props {
   dinSituasjon: IDinSituasjon;

@@ -4,11 +4,11 @@ import {
   IUnderUtdanning,
 } from '../../../../models/steg/aktivitet/utdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
-import { Input } from 'nav-frontend-skjema';
 import { linjeKursGrad, skoleUtdanningssted } from './UtdanningConfig';
 import { hentTekst } from '../../../../utils/søknad';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -35,11 +35,11 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
   return (
     <KomponentGruppe aria-live="polite">
       <FeltGruppe>
-        <Input
+        <TextFieldMedBredde
           key={skoleUtdanningssted.id}
           label={skoleUtdanningstedLabel}
           type="text"
-          bredde={'L'}
+          bredde={'XL'}
           value={
             utdanning?.skoleUtdanningssted?.verdi
               ? utdanning?.skoleUtdanningssted?.verdi
@@ -56,11 +56,11 @@ const SkoleOgLinje: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
       </FeltGruppe>
       {utdanning?.skoleUtdanningssted?.verdi && (
         <FeltGruppe>
-          <Input
+          <TextFieldMedBredde
             key={linjeKursGrad.id}
             label={linjeKursGradLabel}
             type="text"
-            bredde={'L'}
+            bredde={'XL'}
             onChange={(e) =>
               settInputFelt(EUtdanning.linjeKursGrad, linjeKursGradLabel, e)
             }

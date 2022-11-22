@@ -7,7 +7,6 @@ import {
 } from '../../../../models/felles/spørsmålogsvar';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { borINorge } from '../ForeldreConfig';
-import { Input } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../../utils/søknad';
 import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpørsmålMedNavn';
 import { IBarn } from '../../../../models/steg/barn';
@@ -17,6 +16,7 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { TextField } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
@@ -78,7 +78,7 @@ const BorForelderINorge: FC<Props> = ({
       </KomponentGruppe>
       {forelder.borINorge?.verdi === false && (
         <KomponentGruppe>
-          <Input
+          <TextField
             onChange={(e) =>
               settForelder({
                 ...forelder,
