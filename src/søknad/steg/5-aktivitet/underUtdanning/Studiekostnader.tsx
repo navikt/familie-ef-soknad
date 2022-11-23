@@ -55,6 +55,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={semesteravgiftLabel}
           nøkkel={EUtdanning.semesteravgift}
           type={'number'}
+          bredde={'XS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.semesteravgift, semesteravgiftLabel, e)
           }
@@ -71,6 +72,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={studieavgiftLabel}
           nøkkel={EUtdanning.studieavgift}
           type={'number'}
+          bredde={'XS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.studieavgift, studieavgiftLabel, e)
           }
@@ -85,6 +87,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={eksamensgebyrLabel}
           nøkkel={EUtdanning.eksamensgebyr}
           type={'number'}
+          bredde={'XS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.eksamensgebyr, eksamensgebyrLabel, e)
           }
