@@ -73,10 +73,6 @@ const OmDeg: FC = () => {
         søkerBorPåRegistrertAdresse,
         sivilstatus: {},
         medlemskap: {},
-        person: {
-          ...prevSoknad.person,
-          søker: { ...prevSoknad.person.søker, kontakttelefon: '' },
-        },
       };
     });
   };

@@ -23,8 +23,6 @@ import {
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useNavigate } from 'react-router-dom';
 import { BodyShort, Ingress, Label } from '@navikt/ds-react';
-import { IBosituasjon } from '../../../models/steg/bosituasjon';
-import { ISøknad } from '../../../models/søknad/søknad';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 
 interface Props {
@@ -93,12 +91,6 @@ const OppsummeringOmDeg: FC<Props> = ({
             <BodyShort>
               {omDeg.adresse.postnummer} {omDeg.adresse.poststed}
             </BodyShort>
-          </div>
-          <div className="spørsmål-og-svar">
-            <Label as="p">
-              <LocaleTekst tekst="person.telefonnr" />
-            </Label>
-            <BodyShort>{omDeg.kontakttelefon}</BodyShort>
           </div>
           {borDuPåDenneAdressen}
           {harDuMeldtFlytteendring}
