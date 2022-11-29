@@ -105,6 +105,7 @@ const OmDeg: FC = () => {
   );
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring =
+    søknad.person.søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.opplysningerOmAdresse?.harMeldtFlytteendring?.verdi === true;
 

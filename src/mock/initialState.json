@@ -18,7 +18,8 @@
     "privattelefon": "",
     "mobiltelefon": "",
     "jobbtelefon": "",
-    "bankkontonummer": ""
+    "bankkontonummer": "",
+    "erStrengtFortrolig": false
   },
   "barn": []
 }

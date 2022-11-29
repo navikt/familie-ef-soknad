@@ -117,32 +117,36 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
 
-      <KomponentGruppe aria-live="polite">
-        <JaNeiSpørsmål
-          spørsmål={borDuPåDenneAdressen(intl)}
-          valgtSvar={søkerBorPåRegistrertAdresse?.verdi}
-          onChange={settPersonopplysningerFelt}
-        />
-      </KomponentGruppe>
+      {!søker.erStrengtFortrolig && (
+        <>
+          <KomponentGruppe aria-live="polite">
+            <JaNeiSpørsmål
+              spørsmål={borDuPåDenneAdressen(intl)}
+              valgtSvar={søkerBorPåRegistrertAdresse?.verdi}
+              onChange={settPersonopplysningerFelt}
+            />
+          </KomponentGruppe>
 
-      {søkerBorPåRegistrertAdresse?.verdi === false && (
-        <KomponentGruppe>
-          <JaNeiSpørsmål
-            spørsmål={harMeldtFlytteendringSpørsmål(intl)}
-            valgtSvar={harMeldtFlytteendring?.verdi}
-            onChange={settMeldtFlytteendring}
-          />
-          {harMeldtFlytteendring?.verdi === true && (
-            <AlertStripeDokumentasjon>
-              <LocaleTekst
-                tekst={'personopplysninger.alert.meldtFlytteendring'}
+          {søkerBorPåRegistrertAdresse?.verdi === false && (
+            <KomponentGruppe>
+              <JaNeiSpørsmål
+                spørsmål={harMeldtFlytteendringSpørsmål(intl)}
+                valgtSvar={harMeldtFlytteendring?.verdi}
+                onChange={settMeldtFlytteendring}
               />
-            </AlertStripeDokumentasjon>
+              {harMeldtFlytteendring?.verdi === true && (
+                <AlertStripeDokumentasjon>
+                  <LocaleTekst
+                    tekst={'personopplysninger.alert.meldtFlytteendring'}
+                  />
+                </AlertStripeDokumentasjon>
+              )}
+              {harMeldtFlytteendring?.verdi === false && (
+                <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
+              )}
+            </KomponentGruppe>
           )}
-          {harMeldtFlytteendring?.verdi === false && (
-            <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
-          )}
-        </KomponentGruppe>
+        </>
       )}
     </SeksjonGruppe>
   );

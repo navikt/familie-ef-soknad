@@ -20,6 +20,7 @@ export interface ISøker {
   statsborgerskap: string;
   kontakttelefon?: string;
   bankkontonummer?: string;
+  erStrengtFortrolig: boolean;
 }
 
 export interface IAdresse {

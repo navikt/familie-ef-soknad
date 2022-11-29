@@ -18,7 +18,8 @@
     "privattelefon": "",
     "mobiltelefon": "983289398",
     "jobbtelefon": "",
-    "bankkontonummer": ""
+    "bankkontonummer": "",
+    "erStrengtFortrolig": false
   },
   "barn": []
 }
