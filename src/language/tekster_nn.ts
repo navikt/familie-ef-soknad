@@ -170,6 +170,9 @@ export default {
   'personopplysninger.lenke.pdfskjema': 'Use the PDF form',
   'personopplysninger.info.pdfskjema':
     'This form can be submitted electronically or on paper',
+  'personopplysninger.spm.meldtFlytteendring':
+    'Have you reported change of address to the National Registry?',
+  'personopplysninger.alert.meldtFlytteendring': 'Dokumentasjon',
 
   // --- SIVILSTATUS
   'sivilstatus.tittel': 'Marital status',
@@ -983,6 +986,7 @@ export default {
     'Documentation of your separation or divorce ',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Confirmation from the County Governor or court of your application for a separation, application for a divorce or that a divorce case has been brought before the courts',
+  'dokumentasjon.meldtFlytteendring.tittel': '',
   'dokumentasjon.begrunnelse.tittel':
     'Confirmation of end of relationship with the other parent',
   'dokumentasjon.begrunnelse.beskrivelse':

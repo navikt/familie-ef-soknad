@@ -90,6 +90,12 @@ const Oppsummering: React.FC = () => {
                 <Accordion.Content>
                   <OppsummeringOmDeg
                     søker={søknad.person.søker}
+                    søkerBorPåRegistrertAdresse={
+                      søknad.søkerBorPåRegistrertAdresse
+                    }
+                    harMeldtFlytteendring={
+                      søknad.opplysningerOmAdresse?.harMeldtFlytteendring
+                    }
                     sivilstatus={søknad.sivilstatus}
                     medlemskap={søknad.medlemskap}
                     endreInformasjonPath={hentPath(

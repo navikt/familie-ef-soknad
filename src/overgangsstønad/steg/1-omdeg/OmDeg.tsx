@@ -11,7 +11,10 @@ import {
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
-import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
+import {
+  ISpørsmålBooleanFelt,
+  ISpørsmålFelt,
+} from '../../../models/søknad/søknadsfelter';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
@@ -66,6 +69,7 @@ const OmDeg: FC = () => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
+        opplysningerOmAdresse: undefined,
         søkerBorPåRegistrertAdresse,
         sivilstatus: {},
         medlemskap: {},
@@ -75,6 +79,18 @@ const OmDeg: FC = () => {
         },
       };
     });
+  };
+
+  const settHarMeldtFlytteendring = (
+    harMeldtFlytteendring: ISpørsmålBooleanFelt
+  ) => {
+    settSøknad((prevSøknad: ISøknad) => ({
+      ...prevSøknad,
+      opplysningerOmAdresse: {
+        ...prevSøknad.opplysningerOmAdresse,
+        harMeldtFlytteendring,
+      },
+    }));
   };
 
   const settSivilstatus = (sivilstatus: ISivilstatus) => {
@@ -90,9 +106,9 @@ const OmDeg: FC = () => {
     søknad.medlemskap
   );
 
-  const søkerBorPåRegistrertAdresse =
-    søknad.søkerBorPåRegistrertAdresse &&
-    søknad.søkerBorPåRegistrertAdresse.verdi === true;
+  const søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring =
+    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+    søknad.opplysningerOmAdresse?.harMeldtFlytteendring?.verdi === true;
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -118,11 +134,16 @@ const OmDeg: FC = () => {
       <Personopplysninger
         søker={søknad.person.søker}
         settSøker={settSøker}
+        settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
+        harMeldtFlytteendring={
+          søknad.opplysningerOmAdresse?.harMeldtFlytteendring
+        }
+        settHarMeldtFlytteendring={settHarMeldtFlytteendring}
         stønadstype={Stønadstype.overgangsstønad}
       />
-      <Show if={søkerBorPåRegistrertAdresse}>
+      <Show if={søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}

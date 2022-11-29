@@ -6,6 +6,7 @@ import {
   BosituasjonDokumentasjon,
   IDokumentasjon,
   OmDegDokumentasjon,
+  OpplysningerOmAdresseDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
 import { EArbeidssøker } from '../models/steg/aktivitet/arbeidssøker';
@@ -40,6 +41,7 @@ import {
   EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../models/steg/omDeg/sivilstatus';
+import { EOpplysningerOmAdresse } from '../models/steg/opplysningerOmAdresse';
 
 type IDokumentasjonsConfig = {
   [key in DokumentasjonsConfigKey]: IDokumentasjon;
@@ -73,6 +75,7 @@ type DokumentasjonsConfigKey =
   | 'ErklæringSamlivsbrudd'
   | 'DokumentasjonInngåttEkteskap'
   | 'DokumentasjonUformeltSeparertEllerSkilt'
+  | 'MeldtFlytteendring'
   | 'BekreftelseSeparasjonSøknad';
 
 export const DokumentasjonsConfig: IDokumentasjonsConfig = {
@@ -334,6 +337,14 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     label: '',
     tittel: 'dokumentasjon.søktSeparasjon.tittel',
     beskrivelse: 'dokumentasjon.søktSeparasjon.beskrivelse',
+    harSendtInn: false,
+  },
+  MeldtFlytteendring: {
+    id: OpplysningerOmAdresseDokumentasjon.MELDT_FLYTTEENDRING,
+    spørsmålid: EOpplysningerOmAdresse.harMeldtFlytteendring,
+    svarid: ESvar.JA,
+    label: '',
+    tittel: 'dokumentasjon.meldtFlytteendring.tittel',
     harSendtInn: false,
   },
 };

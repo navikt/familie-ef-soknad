@@ -139,10 +139,13 @@ export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
 };
 
 export const visLabelOgVerdiForSpørsmålFelt = (
-  feltObjekt: ISpørsmålFelt | ISpørsmålBooleanFelt,
+  feltObjekt: ISpørsmålFelt | ISpørsmålBooleanFelt | undefined,
   intl: LokalIntlShape,
   overskrift?: string
 ) => {
+  if (!feltObjekt) {
+    return null;
+  }
   return (
     <>
       {overskrift && <Ingress>{overskrift}</Ingress>}

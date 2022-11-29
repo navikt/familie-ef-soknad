@@ -6,11 +6,13 @@ import { IDinSituasjon } from '../steg/dinsituasjon/meromsituasjon';
 import { ISivilstatus } from '../steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../steg/dokumentasjon';
+import { IOpplysningerOmAdresse } from '../steg/opplysningerOmAdresse';
 
 export interface ISøknad {
   innsendingsdato?: Date;
   person: IPerson;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
+  opplysningerOmAdresse?: IOpplysningerOmAdresse;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;
@@ -24,6 +26,7 @@ export interface ISøknad {
 
 export enum ESøknad {
   søkerBorPåRegistrertAdresse = 'søkerBorPåRegistrertAdresse',
+  årsakSøkerBorIkkePåRegistrertAdresse = 'årsakSøkerBorIkkePåRegistrertAdresse',
 }
 
 export interface LocationStateSøknad {

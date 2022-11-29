@@ -1,5 +1,9 @@
 import { FC } from 'react';
-import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
+import {
+  VisLabelOgSvar,
+  visLabelOgVerdiForSpørsmålFelt,
+  visListeAvLabelOgSvar,
+} from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
@@ -19,9 +23,14 @@ import {
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useNavigate } from 'react-router-dom';
 import { BodyShort, Ingress, Label } from '@navikt/ds-react';
+import { IBosituasjon } from '../../../models/steg/bosituasjon';
+import { ISøknad } from '../../../models/søknad/søknad';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 
 interface Props {
   søker: ISøker;
+  søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
+  harMeldtFlytteendring?: ISpørsmålBooleanFelt;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   endreInformasjonPath?: string;
@@ -29,6 +38,8 @@ interface Props {
 
 const OppsummeringOmDeg: FC<Props> = ({
   søker,
+  søkerBorPåRegistrertAdresse,
+  harMeldtFlytteendring,
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
@@ -40,6 +51,15 @@ const OppsummeringOmDeg: FC<Props> = ({
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
 
+  const borDuPåDenneAdressen = visLabelOgVerdiForSpørsmålFelt(
+    søkerBorPåRegistrertAdresse,
+    intl
+  );
+
+  const harDuMeldtFlytteendring = visLabelOgVerdiForSpørsmålFelt(
+    harMeldtFlytteendring,
+    intl
+  );
   const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
   const tidligereSamboer = VisLabelOgSvar(sivilstatus.tidligereSamboerDetaljer);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
@@ -80,6 +100,8 @@ const OppsummeringOmDeg: FC<Props> = ({
             </Label>
             <BodyShort>{omDeg.kontakttelefon}</BodyShort>
           </div>
+          {borDuPåDenneAdressen}
+          {harDuMeldtFlytteendring}
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">
               <Ingress>
