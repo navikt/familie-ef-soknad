@@ -9,10 +9,6 @@ import { EOpplysningerOmAdresse } from '../../../../models/steg/opplysningerOmAd
 export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESøknad.søkerBorPåRegistrertAdresse,
   tekstid: 'personopplysninger.spm.riktigAdresse',
-  lesmer: {
-    headerTekstid: '',
-    innholdTekstid: 'personopplysninger.lesmer-innhold.riktigAdresse',
-  },
   flersvar: false,
   svaralternativer: JaNeiSvar(intl),
 });

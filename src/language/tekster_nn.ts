@@ -161,8 +161,6 @@ export default {
   'personopplysninger.spm.riktigAdresse': 'Do you live at this address?',
   'personopplysninger.lesmer-åpne.riktigAdresse':
     'If you have a strictly confidential address',
-  'personopplysninger.lesmer-innhold.riktigAdresse':
-    'If you have a strictly confidential address, your address will not appear here. Answer Yes to this question and continue with the digital application.',
   'personopplysninger.alert.riktigAdresse':
     'You must provide your true address to the National Registry in order to use this application.',
   'personopplysninger.info.endreAdresse':
