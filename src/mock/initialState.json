@@ -8,17 +8,8 @@
       "postnummer": "",
       "poststed": ""
     },
-    "egenansatt": false,
-    "innvandretDato": "",
-    "utvandretDato": "",
-    "oppholdstillatelse": "",
     "sivilstand": "",
-    "språk": "",
-    "statsborgerskap": "",
-    "privattelefon": "",
-    "mobiltelefon": "",
-    "jobbtelefon": "",
-    "bankkontonummer": ""
+    "statsborgerskap": ""
   },
   "barn": []
 }

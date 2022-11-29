@@ -74,12 +74,6 @@ const OppsummeringOmDeg: FC<Props> = ({
               {omDeg.adresse.postnummer} {omDeg.adresse.poststed}
             </BodyShort>
           </div>
-          <div className="spørsmål-og-svar">
-            <Label as="p">
-              <LocaleTekst tekst="person.telefonnr" />
-            </Label>
-            <BodyShort>{omDeg.kontakttelefon}</BodyShort>
-          </div>
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">
               <Ingress>
