@@ -11,15 +11,8 @@ export interface ISøker {
   fnr: string;
   forkortetNavn: string;
   adresse: IAdresse;
-  egenansatt: boolean;
-  innvandretDato?: string;
-  utvandretDato?: string;
-  oppholdstillatelse?: string;
-  sivilstand?: string;
-  språk: string;
+  sivilstand: string;
   statsborgerskap: string;
-  kontakttelefon?: string;
-  bankkontonummer?: string;
 }
 
 export interface IAdresse {
