@@ -101,7 +101,7 @@ export default {
   'personopplysninger.spm.meldtAdresseendring':
     'Har du meldt adresseendring til Folkeregisteret?',
   'personopplysninger.alert.meldtAdresseendring':
-    'Har du meldt adresseendring til Folkeregisteret må du legge ved dokumentasjon på dette sammen med denne søknaden. ',
+    'Du må legge ved dokumentasjon på at du har meldt flytting til Folkeregisteret. Dokumentasjonen må vise at det er du som har endret adresse, hvilken adresse du har meldt flytting til og hvilken dato du flyttet.',
 
   'sivilstatus.tittel': 'Sivilstatus',
   'sivilstatus.kode.REPA': 'Registrert partner',
@@ -626,7 +626,9 @@ export default {
     'Dokumentasjon på separasjon eller skilsmisse',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
-  'dokumentasjon.meldtAdresseendring.tittel': 'En tekst',
+  'dokumentasjon.meldtAdresseendring.tittel': 'Dokumentasjon om adresseendring',
+  'dokumentasjon.meldtAdresseendring.beskrivelse':
+    'Du må legge ved dokumentasjon på at du har meldt flytting til Folkeregisteret. Dokumentasjonen må vise at det er du som har endret adresse, hvilken adresse du har meldt flytting til og hvilken dato du flyttet.',
   'dokumentasjon.begrunnelse.tittel':
     'Bekreftelse på samlivsbrudd med den andre forelderen',
   'dokumentasjon.begrunnelse.beskrivelse':

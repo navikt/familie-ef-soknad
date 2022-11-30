@@ -101,7 +101,8 @@ export default {
     'This form can be submitted electronically or on paper',
   'personopplysninger.spm.meldtAdresseendring':
     'Have you reported change of address to the National Registry?',
-  'personopplysninger.alert.meldtAdresseendring': 'Dokumentasjon',
+  'personopplysninger.alert.meldtAdresseendring':
+    'Documentation of your change of address to the National Registry. The documentation must show that it is you who has changed your address, which address you have reported moving to and which date you moved.',
 
   'sivilstatus.tittel': 'Marital status',
   'sivilstatus.kode.REPA': 'Registered partner',
@@ -642,7 +643,10 @@ export default {
     'Documentation of your separation or divorce ',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Confirmation from the County Governor or court of your application for a separation, application for a divorce or that a divorce case has been brought before the courts',
-  'dokumentasjon.meldtAdresseendring.tittel': 'En tekst',
+  'dokumentasjon.meldtAdresseendring.tittel':
+    'Documentation of your change of address',
+  'dokumentasjon.meldtAdresseendring.beskrivelse':
+    'Documentation of your change of address to the National Registry. The documentation must show that it is you who has changed your address, which address you have reported moving to and which date you moved.',
   'dokumentasjon.begrunnelse.tittel':
     'Confirmation of end of relationship with the other parent',
   'dokumentasjon.begrunnelse.beskrivelse':

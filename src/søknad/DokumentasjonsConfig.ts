@@ -345,6 +345,7 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     svarid: ESvar.JA,
     label: '',
     tittel: 'dokumentasjon.meldtAdresseendring.tittel',
+    beskrivelse: 'dokumentasjon.meldtAdresseendring.beskrivelse',
     harSendtInn: false,
   },
 };
