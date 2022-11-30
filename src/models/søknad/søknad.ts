@@ -6,13 +6,13 @@ import { IDinSituasjon } from '../steg/dinsituasjon/meromsituasjon';
 import { ISivilstatus } from '../steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../steg/dokumentasjon';
-import { IOpplysningerOmAdresse } from '../steg/opplysningerOmAdresse';
+import { IAdresseopplysninger } from '../steg/adresseopplysninger';
 
 export interface ISøknad {
   innsendingsdato?: Date;
   person: IPerson;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
-  opplysningerOmAdresse?: IOpplysningerOmAdresse;
+  adresseopplysninger?: IAdresseopplysninger;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;

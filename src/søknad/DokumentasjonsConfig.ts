@@ -6,7 +6,7 @@ import {
   BosituasjonDokumentasjon,
   IDokumentasjon,
   OmDegDokumentasjon,
-  OpplysningerOmAdresseDokumentasjon,
+  AdresseopplysningerDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
 import { EArbeidssøker } from '../models/steg/aktivitet/arbeidssøker';
@@ -41,7 +41,7 @@ import {
   EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../models/steg/omDeg/sivilstatus';
-import { EOpplysningerOmAdresse } from '../models/steg/opplysningerOmAdresse';
+import { EAdresseopplysninger } from '../models/steg/adresseopplysninger';
 
 type IDokumentasjonsConfig = {
   [key in DokumentasjonsConfigKey]: IDokumentasjon;
@@ -340,8 +340,8 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     harSendtInn: false,
   },
   MeldtFlytteendring: {
-    id: OpplysningerOmAdresseDokumentasjon.MELDT_FLYTTEENDRING,
-    spørsmålid: EOpplysningerOmAdresse.harMeldtFlytteendring,
+    id: AdresseopplysningerDokumentasjon.MELDT_FLYTTEENDRING,
+    spørsmålid: EAdresseopplysninger.harMeldtFlytteendring,
     svarid: ESvar.JA,
     label: '',
     tittel: 'dokumentasjon.meldtFlytteendring.tittel',

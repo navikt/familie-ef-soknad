@@ -20,7 +20,7 @@ export enum OmDegDokumentasjon {
   UFORMELL_SEPARASJON_ELLER_SKILSMISSE = 'UFORMELL_SEPARASJON_ELLER_SKILSMISSE',
 }
 
-export enum OpplysningerOmAdresseDokumentasjon {
+export enum AdresseopplysningerDokumentasjon {
   MELDT_FLYTTEENDRING = 'MELDT_FLYTTEENDRING',
 }
 

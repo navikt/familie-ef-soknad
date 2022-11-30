@@ -8,7 +8,7 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { IAktivitet } from '../../models/steg/aktivitet/aktivitet';
 import { IPerson } from '../../models/søknad/person';
-import { IOpplysningerOmAdresse } from '../../models/steg/opplysningerOmAdresse';
+import { IAdresseopplysninger } from '../../models/steg/adresseopplysninger';
 
 export interface ISøknad {
   innsendingsdato?: Date;
@@ -19,7 +19,7 @@ export interface ISøknad {
   bosituasjon: IBosituasjon;
   aktivitet: IAktivitet;
   søkerFraBestemtMåned?: ISpørsmålBooleanFelt;
-  opplysningerOmAdresse?: IOpplysningerOmAdresse;
+  adresseopplysninger?: IAdresseopplysninger;
   søknadsdato?: IDatoFelt;
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;

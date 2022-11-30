@@ -4,7 +4,7 @@ import { ESøknad } from '../../../../models/søknad/søknad';
 import { LokalIntlShape } from '../../../../language/typer';
 import { EBosituasjon } from '../../../../models/steg/bosituasjon';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
-import { EOpplysningerOmAdresse } from '../../../../models/steg/opplysningerOmAdresse';
+import { EAdresseopplysninger } from '../../../../models/steg/adresseopplysninger';
 
 export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESøknad.søkerBorPåRegistrertAdresse,
@@ -16,7 +16,7 @@ export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
 export const harMeldtFlytteendringSpørsmål = (
   intl: LokalIntlShape
 ): ISpørsmål => ({
-  søknadid: EOpplysningerOmAdresse.harMeldtFlytteendring,
+  søknadid: EAdresseopplysninger.harMeldtFlytteendring,
   tekstid: 'personopplysninger.spm.meldtFlytteendring',
   lesmer: undefined,
   flersvar: false,

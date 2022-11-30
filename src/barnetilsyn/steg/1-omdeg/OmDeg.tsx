@@ -66,7 +66,7 @@ const OmDeg: FC = () => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
-        opplysningerOmAdresse: undefined,
+        adresseopplysninger: undefined,
         søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
         sivilstatus: {},
         medlemskap: {},
@@ -78,8 +78,8 @@ const OmDeg: FC = () => {
   ) => {
     settSøknad((prevSøknad: ISøknad) => ({
       ...prevSøknad,
-      opplysningerOmAdresse: {
-        ...prevSøknad.opplysningerOmAdresse,
+      adresseopplysninger: {
+        ...prevSøknad.adresseopplysninger,
         harMeldtFlytteendring,
       },
     }));
@@ -102,7 +102,7 @@ const OmDeg: FC = () => {
   const søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring =
     søknad.person.søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.opplysningerOmAdresse?.harMeldtFlytteendring?.verdi === true;
+    søknad.adresseopplysninger?.harMeldtFlytteendring?.verdi === true;
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -129,7 +129,7 @@ const OmDeg: FC = () => {
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
         harMeldtFlytteendring={
-          søknad.opplysningerOmAdresse?.harMeldtFlytteendring
+          søknad.adresseopplysninger?.harMeldtFlytteendring
         }
         settHarMeldtFlytteendring={settHarMeldtFlytteendring}
         stønadstype={Stønadstype.barnetilsyn}

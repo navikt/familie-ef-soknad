@@ -5,13 +5,13 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { IPerson } from '../../models/søknad/person';
 import { IDetaljertUtdanning } from './detaljertUtdanning';
-import { IOpplysningerOmAdresse } from '../../models/steg/opplysningerOmAdresse';
+import { IAdresseopplysninger } from '../../models/steg/adresseopplysninger';
 
 export interface ISøknad {
   innsendingsdato?: Date;
   person: IPerson;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
-  opplysningerOmAdresse?: IOpplysningerOmAdresse;
+  adresseopplysninger?: IAdresseopplysninger;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bosituasjon: IBosituasjon;

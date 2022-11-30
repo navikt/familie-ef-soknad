@@ -50,7 +50,7 @@ const Oppsummering: React.FC = () => {
                       søknad.søkerBorPåRegistrertAdresse
                     }
                     harMeldtFlytteendring={
-                      søknad.opplysningerOmAdresse?.harMeldtFlytteendring
+                      søknad.adresseopplysninger?.harMeldtFlytteendring
                     }
                     sivilstatus={søknad.sivilstatus}
                     medlemskap={søknad.medlemskap}
