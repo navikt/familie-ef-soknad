@@ -4,7 +4,6 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import { Alert, BodyShort, Label } from '@navikt/ds-react';
-import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -20,7 +19,6 @@ const lenkerPDFSøknad = {
 };
 
 const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
-  const intl = useLokalIntlContext();
   return (
     <>
       <KomponentGruppe>
