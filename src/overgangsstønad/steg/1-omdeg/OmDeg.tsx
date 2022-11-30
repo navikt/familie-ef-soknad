@@ -11,10 +11,7 @@ import {
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
-import {
-  ISpørsmålBooleanFelt,
-  ISpørsmålFelt,
-} from '../../../models/søknad/søknadsfelter';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';

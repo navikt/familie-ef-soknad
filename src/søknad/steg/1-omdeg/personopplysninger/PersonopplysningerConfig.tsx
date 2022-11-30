@@ -2,7 +2,6 @@ import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar, JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { ESøknad } from '../../../../models/søknad/søknad';
 import { LokalIntlShape } from '../../../../language/typer';
-import { EBosituasjon } from '../../../../models/steg/bosituasjon';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
 import { EAdresseopplysninger } from '../../../../models/steg/adresseopplysninger';
 
