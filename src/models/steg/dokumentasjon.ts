@@ -21,7 +21,7 @@ export enum OmDegDokumentasjon {
 }
 
 export enum AdresseopplysningerDokumentasjon {
-  MELDT_FLYTTEENDRING = 'MELDT_FLYTTEENDRING',
+  MELDT_ADRESSEENDRING = 'MELDT_ADRESSEENDRING',
 }
 
 export enum BosituasjonDokumentasjon {

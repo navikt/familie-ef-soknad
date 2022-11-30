@@ -74,14 +74,14 @@ const OmDeg: FC = () => {
       };
     });
   };
-  const settHarMeldtFlytteendring = (
-    harMeldtFlytteendring: ISpørsmålBooleanFelt
+  const settHarMeldtAdresseendring = (
+    harMeldtAdresseendring: ISpørsmålBooleanFelt
   ) => {
     settSøknad((prevSøknad: ISøknad) => ({
       ...prevSøknad,
       adresseopplysninger: {
         ...prevSøknad.adresseopplysninger,
-        harMeldtFlytteendring,
+        harMeldtAdresseendring: harMeldtAdresseendring,
       },
     }));
   };
@@ -100,10 +100,10 @@ const OmDeg: FC = () => {
     søknad.medlemskap
   );
 
-  const søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring =
+  const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
     søknad.person.søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.adresseopplysninger?.harMeldtFlytteendring?.verdi === true;
+    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -128,14 +128,14 @@ const OmDeg: FC = () => {
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
-        harMeldtFlytteendring={
-          søknad.adresseopplysninger?.harMeldtFlytteendring
+        harMeldtAdresseendring={
+          søknad.adresseopplysninger?.harMeldtAdresseendring
         }
-        settHarMeldtFlytteendring={settHarMeldtFlytteendring}
+        settHarMeldtAdresseendring={settHarMeldtAdresseendring}
         stønadstype={Stønadstype.skolepenger}
       />
 
-      <Show if={søkerBorPåRegistrertAdresseEllerHarMeldtFlytteendring}>
+      <Show if={søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}

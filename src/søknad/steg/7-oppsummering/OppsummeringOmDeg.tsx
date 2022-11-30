@@ -28,7 +28,7 @@ import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 interface Props {
   søker: ISøker;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
-  harMeldtFlytteendring?: ISpørsmålBooleanFelt;
+  harMeldtAdresseendring?: ISpørsmålBooleanFelt;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   endreInformasjonPath?: string;
@@ -37,7 +37,7 @@ interface Props {
 const OppsummeringOmDeg: FC<Props> = ({
   søker,
   søkerBorPåRegistrertAdresse,
-  harMeldtFlytteendring,
+  harMeldtAdresseendring,
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
@@ -54,8 +54,8 @@ const OppsummeringOmDeg: FC<Props> = ({
     intl
   );
 
-  const harDuMeldtFlytteendring = visLabelOgVerdiForSpørsmålFelt(
-    harMeldtFlytteendring,
+  const harDuMeldtAdresseendring = visLabelOgVerdiForSpørsmålFelt(
+    harMeldtAdresseendring,
     intl
   );
   const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
@@ -93,7 +93,7 @@ const OppsummeringOmDeg: FC<Props> = ({
             </BodyShort>
           </div>
           {borDuPåDenneAdressen}
-          {harDuMeldtFlytteendring}
+          {harDuMeldtAdresseendring}
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">
               <Ingress>

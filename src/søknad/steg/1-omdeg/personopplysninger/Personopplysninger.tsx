@@ -7,7 +7,7 @@ import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
 import {
   borDuPåDenneAdressen,
-  harMeldtFlytteendringSpørsmål,
+  harMeldtAdresseendringSpørsmål,
 } from './PersonopplysningerConfig';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
@@ -32,9 +32,9 @@ interface Props {
   settSøkerBorPåRegistrertAdresse: (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
   ) => void;
-  harMeldtFlytteendring?: ISpørsmålBooleanFelt;
-  settHarMeldtFlytteendring: (
-    harMeldtFlytteendring: ISpørsmålBooleanFelt
+  harMeldtAdresseendring?: ISpørsmålBooleanFelt;
+  settHarMeldtAdresseendring: (
+    harMeldtAdresseendring: ISpørsmålBooleanFelt
   ) => void;
   stønadstype: Stønadstype;
 }
@@ -44,8 +44,8 @@ const Personopplysninger: React.FC<Props> = ({
   settDokumentasjonsbehov,
   søkerBorPåRegistrertAdresse,
   settSøkerBorPåRegistrertAdresse,
-  harMeldtFlytteendring,
-  settHarMeldtFlytteendring,
+  harMeldtAdresseendring,
+  settHarMeldtAdresseendring,
   stønadstype,
 }) => {
   const intl = useLokalIntlContext();
@@ -63,9 +63,9 @@ const Personopplysninger: React.FC<Props> = ({
     });
   };
 
-  const settMeldtFlytteendring = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+  const settMeldtAdresseendring = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-    settHarMeldtFlytteendring({
+    settHarMeldtAdresseendring({
       spørsmålid: spørsmål.søknadid,
       svarid: valgtSvar.id,
       label: hentTekst(spørsmål.tekstid, intl),
@@ -130,18 +130,18 @@ const Personopplysninger: React.FC<Props> = ({
           {søkerBorPåRegistrertAdresse?.verdi === false && (
             <KomponentGruppe>
               <JaNeiSpørsmål
-                spørsmål={harMeldtFlytteendringSpørsmål(intl)}
-                valgtSvar={harMeldtFlytteendring?.verdi}
-                onChange={settMeldtFlytteendring}
+                spørsmål={harMeldtAdresseendringSpørsmål(intl)}
+                valgtSvar={harMeldtAdresseendring?.verdi}
+                onChange={settMeldtAdresseendring}
               />
-              {harMeldtFlytteendring?.verdi === true && (
+              {harMeldtAdresseendring?.verdi === true && (
                 <AlertStripeDokumentasjon>
                   <LocaleTekst
-                    tekst={'personopplysninger.alert.meldtFlytteendring'}
+                    tekst={'personopplysninger.alert.meldtAdresseendring'}
                   />
                 </AlertStripeDokumentasjon>
               )}
-              {harMeldtFlytteendring?.verdi === false && (
+              {harMeldtAdresseendring?.verdi === false && (
                 <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
               )}
             </KomponentGruppe>

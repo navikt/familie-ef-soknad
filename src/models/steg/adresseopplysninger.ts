@@ -1,9 +1,9 @@
 import { ISpørsmålBooleanFelt } from '../søknad/søknadsfelter';
 
 export interface IAdresseopplysninger {
-  harMeldtFlytteendring?: ISpørsmålBooleanFelt;
+  harMeldtAdresseendring?: ISpørsmålBooleanFelt;
 }
 
 export enum EAdresseopplysninger {
-  harMeldtFlytteendring = 'harMeldtFlytteendring',
+  harMeldtAdresseendring = 'harMeldtAdresseendring',
 }

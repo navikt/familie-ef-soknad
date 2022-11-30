@@ -13,18 +13,18 @@ export const borDuPåDenneAdressen = (intl: LokalIntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const harMeldtFlytteendringSpørsmål = (
+export const harMeldtAdresseendringSpørsmål = (
   intl: LokalIntlShape
 ): ISpørsmål => ({
-  søknadid: EAdresseopplysninger.harMeldtFlytteendring,
-  tekstid: 'personopplysninger.spm.meldtFlytteendring',
+  søknadid: EAdresseopplysninger.harMeldtAdresseendring,
+  tekstid: 'personopplysninger.spm.meldtAdresseendring',
   lesmer: undefined,
   flersvar: false,
   svaralternativer: [
     {
       ...JaSvar(intl),
       alert_tekstid: '',
-      dokumentasjonsbehov: DokumentasjonsConfig.MeldtFlytteendring,
+      dokumentasjonsbehov: DokumentasjonsConfig.MeldtAdresseendring,
     },
     NeiSvar(intl),
   ],

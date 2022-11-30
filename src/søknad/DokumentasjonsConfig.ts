@@ -75,7 +75,7 @@ type DokumentasjonsConfigKey =
   | 'ErklæringSamlivsbrudd'
   | 'DokumentasjonInngåttEkteskap'
   | 'DokumentasjonUformeltSeparertEllerSkilt'
-  | 'MeldtFlytteendring'
+  | 'MeldtAdresseendring'
   | 'BekreftelseSeparasjonSøknad';
 
 export const DokumentasjonsConfig: IDokumentasjonsConfig = {
@@ -339,12 +339,12 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     beskrivelse: 'dokumentasjon.søktSeparasjon.beskrivelse',
     harSendtInn: false,
   },
-  MeldtFlytteendring: {
-    id: AdresseopplysningerDokumentasjon.MELDT_FLYTTEENDRING,
-    spørsmålid: EAdresseopplysninger.harMeldtFlytteendring,
+  MeldtAdresseendring: {
+    id: AdresseopplysningerDokumentasjon.MELDT_ADRESSEENDRING,
+    spørsmålid: EAdresseopplysninger.harMeldtAdresseendring,
     svarid: ESvar.JA,
     label: '',
-    tittel: 'dokumentasjon.meldtFlytteendring.tittel',
+    tittel: 'dokumentasjon.meldtAdresseendring.tittel',
     harSendtInn: false,
   },
 };

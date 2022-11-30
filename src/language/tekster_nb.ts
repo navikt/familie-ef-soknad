@@ -98,9 +98,9 @@ export default {
   'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
   'personopplysninger.info.pdfskjema':
     'Skjemaet kan sendes inn elektronisk eller på papir',
-  'personopplysninger.spm.meldtFlytteendring':
+  'personopplysninger.spm.meldtAdresseendring':
     'Har du meldt adresseendring til Folkeregisteret?',
-  'personopplysninger.alert.meldtFlytteendring':
+  'personopplysninger.alert.meldtAdresseendring':
     'Har du meldt adresseendring til Folkeregisteret må du legge ved dokumentasjon på dette sammen med denne søknaden. ',
 
   'sivilstatus.tittel': 'Sivilstatus',
@@ -626,7 +626,7 @@ export default {
     'Dokumentasjon på separasjon eller skilsmisse',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
-  'dokumentasjon.meldtFlytteendring.tittel': 'En tekst',
+  'dokumentasjon.meldtAdresseendring.tittel': 'En tekst',
   'dokumentasjon.begrunnelse.tittel':
     'Bekreftelse på samlivsbrudd med den andre forelderen',
   'dokumentasjon.begrunnelse.beskrivelse':
