@@ -8,6 +8,7 @@ import FormattedMessage from './FormattedMessage';
 
 interface Props {
   tekst: LocaleString | string;
+  replaceArgument0?: string;
 }
 
 const StyledLocaleTekst = styled.div`
@@ -16,7 +17,7 @@ const StyledLocaleTekst = styled.div`
   }
 `;
 
-const LocaleTekst = ({ tekst }: Props) => {
+const LocaleTekst = ({ tekst, replaceArgument0 }: Props) => {
   const [locale] = useSpråkContext();
   return (
     <StyledLocaleTekst>
@@ -29,7 +30,10 @@ const LocaleTekst = ({ tekst }: Props) => {
             </span>
           )
         ) : (
-          <FormattedHtmlMessage id={tekst} />
+          <FormattedHtmlMessage
+            id={tekst}
+            replaceArgument0={replaceArgument0}
+          />
         )
       ) : (
         <FormattedMessage id={'feil.udefinerttekst'} />

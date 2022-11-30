@@ -4,6 +4,8 @@ import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import { Label, BodyShort, Alert, Link } from '@navikt/ds-react';
+import { hentBeskjedMedNavn } from '../../../../utils/språk';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
   stønadstype: Stønadstype;
@@ -19,6 +21,7 @@ const lenkerPDFSøknad = {
 };
 
 const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
+  const intl = useLokalIntlContext();
   return (
     <>
       <KomponentGruppe>
@@ -34,14 +37,12 @@ const SøkerBorIkkePåAdresse: FC<Props> = ({ stønadstype }) => {
         </FeltGruppe>
         <FeltGruppe>
           <BodyShort>
-            <Link href={lenkerPDFSøknad[stønadstype]}>
-              <LocaleTekst tekst={'personopplysninger.lenke.pdfskjema'} />
-            </Link>
+            <LocaleTekst
+              tekst={'personopplysninger.lenke.pdfskjema'}
+              replaceArgument0={lenkerPDFSøknad[stønadstype]}
+            />
           </BodyShort>
         </FeltGruppe>
-        <BodyShort>
-          <LocaleTekst tekst={'personopplysninger.info.pdfskjema'} />
-        </BodyShort>
       </KomponentGruppe>
     </>
   );
