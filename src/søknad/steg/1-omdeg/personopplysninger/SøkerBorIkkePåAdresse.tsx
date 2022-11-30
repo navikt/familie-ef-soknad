@@ -3,8 +3,7 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
-import { Label, BodyShort, Alert, Link } from '@navikt/ds-react';
-import { hentBeskjedMedNavn } from '../../../../utils/språk';
+import { Alert, BodyShort, Label } from '@navikt/ds-react';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 
 interface Props {
