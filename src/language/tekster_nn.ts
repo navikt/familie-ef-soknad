@@ -162,11 +162,11 @@ export default {
   'personopplysninger.lesmer-åpne.riktigAdresse':
     'If you have a strictly confidential address',
   'personopplysninger.alert.riktigAdresse':
-    'You must have reported a change of address to the National Registry in order to use this application. You do this at skatteetaten.no.',
+    'You must have reported a change of address to the National Registry in order to use this application. You do this at <a href="https://www.skatteetaten.no/en/person/national-registry/moving/" target="_blank">skatteetaten</a>.',
   'personopplysninger.info.endreAdresse':
     'Are you not going to change your address in the National Registry?',
   'personopplysninger.lenke.pdfskjema':
-    'You have to apply by <a href="[0]" target="_blank" >paper application</a> which you send to us by post.',
+    'You have to apply by <a href="[0]" target="_blank">paper application</a> which you send to us by post.',
   'personopplysninger.spm.meldtAdresseendring':
     'Have you reported change of address to the National Registry?',
   'personopplysninger.alert.meldtAdresseendring':
