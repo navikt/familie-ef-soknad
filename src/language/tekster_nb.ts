@@ -92,7 +92,7 @@ export default {
   'personopplysninger.lesmer-åpne.riktigAdresse':
     'Hvis du har strengt fortrolig adresse',
   'personopplysninger.alert.riktigAdresse':
-    'Du må ha meldt adresseendring til Folkeregisteret for å bruke denne søknaden. Det gjør du på <a href="https://www.skatteetaten.no/person/folkeregister/flytte/" target="_blank">Skatteetaten</a>.',
+    'Du må ha meldt adresseendring til Folkeregisteret for å bruke denne søknaden. Det gjør du hos <a href="https://www.skatteetaten.no/person/folkeregister/flytte/" target="_blank">Skatteetaten</a>.',
   'personopplysninger.info.endreAdresse':
     'Skal du ikke endre adresse i Folkeregisteret?',
   'personopplysninger.lenke.pdfskjema':
