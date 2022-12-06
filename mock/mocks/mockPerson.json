@@ -9,7 +9,8 @@
       "poststed": ""
     },
     "sivilstand": "SKIL",
-    "statsborgerskap": "NOR"
+    "statsborgerskap": "NOR",
+    "erStrengtFortrolig": false
   },
   "barn": [
     {

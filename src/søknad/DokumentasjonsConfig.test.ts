@@ -1,5 +1,6 @@
 import { DokumentasjonsConfig } from './DokumentasjonsConfig';
 import {
+  AdresseopplysningerDokumentasjon,
   AktivitetDokumentasjon,
   BarnasBostedDokumentasjon,
   BarnDokumentasjon,
@@ -11,8 +12,8 @@ import {
 } from '../models/steg/dokumentasjon';
 
 it('Skal ha like mange keys i dokumentasjonsconfig som vi har i enums', () => {
-  const antallKeysIDokumentasjonsconfig = Object.keys(DokumentasjonsConfig)
-    .length;
+  const antallKeysIDokumentasjonsconfig =
+    Object.keys(DokumentasjonsConfig).length;
 
   const alleEnums: number = [
     Object.keys(SituasjonDokumentasjon).length,
@@ -22,6 +23,7 @@ it('Skal ha like mange keys i dokumentasjonsconfig som vi har i enums', () => {
     Object.keys(BarnasBostedDokumentasjon).length,
     Object.keys(BarnDokumentasjon).length,
     Object.keys(OmDegDokumentasjon).length,
+    Object.keys(AdresseopplysningerDokumentasjon).length,
   ].reduce((last: number, current: number) => {
     return last + current;
   }, 0);

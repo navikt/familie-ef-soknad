@@ -9,7 +9,8 @@
       "poststed": ""
     },
     "sivilstand": "GIFT",
-    "statsborgerskap": "NOR"
+    "statsborgerskap": "NOR",
+    "erStrengtFortrolig": false
   },
   "barn": []
 }

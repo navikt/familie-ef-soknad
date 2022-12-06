@@ -5,7 +5,10 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerBorIkkePåAdresse from './SøkerBorIkkePåAdresse';
-import { borDuPåDenneAdressen } from './PersonopplysningerConfig';
+import {
+  borDuPåDenneAdressen,
+  harMeldtAdresseendringSpørsmål,
+} from './PersonopplysningerConfig';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { hentSivilstatus } from '../../../../helpers/steg/omdeg';
@@ -14,21 +17,35 @@ import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelte
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Alert, BodyShort, Label } from '@navikt/ds-react';
+import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import { hentTekst } from '../../../../utils/søknad';
 
 interface Props {
   søker: ISøker;
   settSøker: (søker: ISøker) => void;
+  settDokumentasjonsbehov: (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar,
+    erHuketAv?: boolean
+  ) => void;
   søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
   settSøkerBorPåRegistrertAdresse: (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
+  ) => void;
+  harMeldtAdresseendring?: ISpørsmålBooleanFelt;
+  settHarMeldtAdresseendring: (
+    harMeldtAdresseendring: ISpørsmålBooleanFelt
   ) => void;
   stønadstype: Stønadstype;
 }
 
 const Personopplysninger: React.FC<Props> = ({
   søker,
+  settDokumentasjonsbehov,
   søkerBorPåRegistrertAdresse,
   settSøkerBorPåRegistrertAdresse,
+  harMeldtAdresseendring,
+  settHarMeldtAdresseendring,
   stønadstype,
 }) => {
   const intl = useLokalIntlContext();
@@ -41,9 +58,20 @@ const Personopplysninger: React.FC<Props> = ({
     settSøkerBorPåRegistrertAdresse({
       spørsmålid: spørsmål.søknadid,
       svarid: valgtSvar.id,
-      label: spørsmål.søknadid,
+      label: hentTekst(spørsmål.tekstid, intl),
       verdi: svar,
     });
+  };
+
+  const settMeldtAdresseendring = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
+    settHarMeldtAdresseendring({
+      spørsmålid: spørsmål.søknadid,
+      svarid: valgtSvar.id,
+      label: hentTekst(spørsmål.tekstid, intl),
+      verdi: svar,
+    });
+    settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
 
   return (
@@ -89,21 +117,37 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
 
-      <KomponentGruppe aria-live="polite">
-        <JaNeiSpørsmål
-          spørsmål={borDuPåDenneAdressen(intl)}
-          valgtSvar={
-            søkerBorPåRegistrertAdresse
-              ? søkerBorPåRegistrertAdresse.verdi
-              : undefined
-          }
-          onChange={settPersonopplysningerFelt}
-        />
+      {!søker.erStrengtFortrolig && (
+        <>
+          <KomponentGruppe aria-live="polite">
+            <JaNeiSpørsmål
+              spørsmål={borDuPåDenneAdressen(intl)}
+              valgtSvar={søkerBorPåRegistrertAdresse?.verdi}
+              onChange={settPersonopplysningerFelt}
+            />
+          </KomponentGruppe>
 
-        {søkerBorPåRegistrertAdresse?.verdi === false && (
-          <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
-        )}
-      </KomponentGruppe>
+          {søkerBorPåRegistrertAdresse?.verdi === false && (
+            <KomponentGruppe>
+              <JaNeiSpørsmål
+                spørsmål={harMeldtAdresseendringSpørsmål(intl)}
+                valgtSvar={harMeldtAdresseendring?.verdi}
+                onChange={settMeldtAdresseendring}
+              />
+              {harMeldtAdresseendring?.verdi === true && (
+                <AlertStripeDokumentasjon>
+                  <LocaleTekst
+                    tekst={'personopplysninger.alert.meldtAdresseendring'}
+                  />
+                </AlertStripeDokumentasjon>
+              )}
+              {harMeldtAdresseendring?.verdi === false && (
+                <SøkerBorIkkePåAdresse stønadstype={stønadstype} />
+              )}
+            </KomponentGruppe>
+          )}
+        </>
+      )}
     </SeksjonGruppe>
   );
 };

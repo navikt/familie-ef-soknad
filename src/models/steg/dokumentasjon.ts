@@ -20,6 +20,10 @@ export enum OmDegDokumentasjon {
   UFORMELL_SEPARASJON_ELLER_SKILSMISSE = 'UFORMELL_SEPARASJON_ELLER_SKILSMISSE',
 }
 
+export enum AdresseopplysningerDokumentasjon {
+  MELDT_ADRESSEENDRING = 'MELDT_ADRESSEENDRING',
+}
+
 export enum BosituasjonDokumentasjon {
   BOR_PÅ_ULIKE_ADRESSER = 'BOR_PÅ_ULIKE_ADRESSER',
 }

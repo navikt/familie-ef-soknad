@@ -91,15 +91,17 @@ export default {
   'personopplysninger.spm.riktigAdresse': 'Bor du på denne adressen?',
   'personopplysninger.lesmer-åpne.riktigAdresse':
     'Hvis du har strengt fortrolig adresse',
-  'personopplysninger.lesmer-innhold.riktigAdresse':
-    'Hvis du har strengt fortrolig adresse, vises ikke adressen din her. Du kan svare Ja på dette spørsmålet og fortsette med den digitale søknaden.',
   'personopplysninger.alert.riktigAdresse':
-    'Du må oppgi riktig adresse til Folkeregisteret for å bruke denne søknaden',
+    'Du må ha meldt adresseendring til Folkeregisteret for å bruke denne søknaden. Det gjør du hos <a href="https://www.skatteetaten.no/person/folkeregister/flytte/" target="_blank">Skatteetaten</a>.',
   'personopplysninger.info.endreAdresse':
     'Skal du ikke endre adresse i Folkeregisteret?',
-  'personopplysninger.lenke.pdfskjema': 'Bruk PDF-skjema',
-  'personopplysninger.info.pdfskjema':
-    'Skjemaet kan sendes inn elektronisk eller på papir',
+  'personopplysninger.lenke.pdfskjema':
+    'Du må bruke <a href="[0]" target="_blank" >papirsøknad</a> som du sender til oss i posten.',
+  'personopplysninger.spm.meldtAdresseendring':
+    'Har du meldt adresseendring til Folkeregisteret?',
+  'personopplysninger.alert.meldtAdresseendring':
+    'Du må legge ved dokumentasjon på at du har meldt flytting til Folkeregisteret. Dokumentasjonen må vise at det er du som har endret adresse, hvilken adresse du har meldt flytting til og hvilken dato du flyttet.',
+
   'sivilstatus.tittel': 'Sivilstatus',
   'sivilstatus.kode.REPA': 'Registrert partner',
   'sivilstatus.kode.UGIF': 'Ugift',
@@ -623,6 +625,9 @@ export default {
     'Dokumentasjon på separasjon eller skilsmisse',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Bekreftelse fra Fylkesmannen eller domstolen på søknad om separasjon, søknad om skilsmisse eller at det er reist sak for domstolen',
+  'dokumentasjon.meldtAdresseendring.tittel': 'Dokumentasjon på adresseendring',
+  'dokumentasjon.meldtAdresseendring.beskrivelse':
+    'Du må legge ved dokumentasjon på at du har meldt flytting til Folkeregisteret. Dokumentasjonen må vise at det er du som har endret adresse, hvilken adresse du har meldt flytting til og hvilken dato du flyttet.',
   'dokumentasjon.begrunnelse.tittel':
     'Bekreftelse på samlivsbrudd med den andre forelderen',
   'dokumentasjon.begrunnelse.beskrivelse':

@@ -13,6 +13,7 @@ export interface ISøker {
   adresse: IAdresse;
   sivilstand: string;
   statsborgerskap: string;
+  erStrengtFortrolig: boolean;
 }
 
 export interface IAdresse {

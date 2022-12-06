@@ -1,5 +1,9 @@
 import { FC } from 'react';
-import { VisLabelOgSvar, visListeAvLabelOgSvar } from '../../../utils/visning';
+import {
+  VisLabelOgSvar,
+  visLabelOgVerdiForSpørsmålFelt,
+  visListeAvLabelOgSvar,
+} from '../../../utils/visning';
 import endre from '../../../assets/endre.svg';
 import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentTekst } from '../../../utils/søknad';
@@ -19,9 +23,12 @@ import {
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useNavigate } from 'react-router-dom';
 import { BodyShort, Ingress, Label } from '@navikt/ds-react';
+import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 
 interface Props {
   søker: ISøker;
+  søkerBorPåRegistrertAdresse?: ISpørsmålBooleanFelt;
+  harMeldtAdresseendring?: ISpørsmålBooleanFelt;
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   endreInformasjonPath?: string;
@@ -29,6 +36,8 @@ interface Props {
 
 const OppsummeringOmDeg: FC<Props> = ({
   søker,
+  søkerBorPåRegistrertAdresse,
+  harMeldtAdresseendring,
   sivilstatus,
   medlemskap,
   endreInformasjonPath,
@@ -40,6 +49,15 @@ const OppsummeringOmDeg: FC<Props> = ({
   const utenlandsopphold: IUtenlandsopphold[] | undefined =
     medlemskap.perioderBoddIUtlandet;
 
+  const borDuPåDenneAdressen = visLabelOgVerdiForSpørsmålFelt(
+    søkerBorPåRegistrertAdresse,
+    intl
+  );
+
+  const harDuMeldtAdresseendring = visLabelOgVerdiForSpørsmålFelt(
+    harMeldtAdresseendring,
+    intl
+  );
   const datoFlyttetFraHverandre = VisLabelOgSvar(sivilstatus);
   const tidligereSamboer = VisLabelOgSvar(sivilstatus.tidligereSamboerDetaljer);
   const medlemskapSpørsmål = VisLabelOgSvar(medlemskap);
@@ -74,6 +92,8 @@ const OppsummeringOmDeg: FC<Props> = ({
               {omDeg.adresse.postnummer} {omDeg.adresse.poststed}
             </BodyShort>
           </div>
+          {borDuPåDenneAdressen}
+          {harDuMeldtAdresseendring}
           {tidligereSamboer && (
             <div className="spørsmål-og-svar">
               <Ingress>

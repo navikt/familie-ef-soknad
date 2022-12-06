@@ -9,7 +9,8 @@
       "poststed": ""
     },
     "sivilstand": "",
-    "statsborgerskap": ""
+    "statsborgerskap": "",
+    "erStrengtFortrolig": false
   },
   "barn": []
 }

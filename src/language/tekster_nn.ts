@@ -161,15 +161,16 @@ export default {
   'personopplysninger.spm.riktigAdresse': 'Do you live at this address?',
   'personopplysninger.lesmer-åpne.riktigAdresse':
     'If you have a strictly confidential address',
-  'personopplysninger.lesmer-innhold.riktigAdresse':
-    'If you have a strictly confidential address, your address will not appear here. Answer Yes to this question and continue with the digital application.',
   'personopplysninger.alert.riktigAdresse':
-    'You must provide your true address to the National Registry in order to use this application.',
+    'You must have reported a change of address to the National Registry in order to use this application. You may do that at <a href="https://www.skatteetaten.no/en/person/national-registry/moving/" target="_blank">Skatteetaten</a>.',
   'personopplysninger.info.endreAdresse':
     'Are you not going to change your address in the National Registry?',
-  'personopplysninger.lenke.pdfskjema': 'Use the PDF form',
-  'personopplysninger.info.pdfskjema':
-    'This form can be submitted electronically or on paper',
+  'personopplysninger.lenke.pdfskjema':
+    'You have to apply by <a href="[0]" target="_blank">paper application</a> which you send to us by post.',
+  'personopplysninger.spm.meldtAdresseendring':
+    'Have you reported change of address to the National Registry?',
+  'personopplysninger.alert.meldtAdresseendring':
+    'Documentation of your change of address to the National Registry. The documentation must show that it is you who has changed your address, which address you have reported moving to and which date you moved.',
 
   // --- SIVILSTATUS
   'sivilstatus.tittel': 'Marital status',
@@ -983,6 +984,10 @@ export default {
     'Documentation of your separation or divorce ',
   'dokumentasjon.søktSeparasjon.beskrivelse':
     'Confirmation from the County Governor or court of your application for a separation, application for a divorce or that a divorce case has been brought before the courts',
+  'dokumentasjon.meldtAdresseendring.tittel':
+    'Documentation of your change of address',
+  'dokumentasjon.meldtAdresseendring.beskrivelse':
+    'Documentation of your change of address to the National Registry. The documentation must show that it is you who has changed your address, which address you have reported moving to and which date you moved.',
   'dokumentasjon.begrunnelse.tittel':
     'Confirmation of end of relationship with the other parent',
   'dokumentasjon.begrunnelse.beskrivelse':

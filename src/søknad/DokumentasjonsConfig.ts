@@ -6,6 +6,7 @@ import {
   BosituasjonDokumentasjon,
   IDokumentasjon,
   OmDegDokumentasjon,
+  AdresseopplysningerDokumentasjon,
   SituasjonDokumentasjon,
 } from '../models/steg/dokumentasjon';
 import { EArbeidssøker } from '../models/steg/aktivitet/arbeidssøker';
@@ -40,6 +41,7 @@ import {
   EBegrunnelse,
   ESivilstatusSøknadid,
 } from '../models/steg/omDeg/sivilstatus';
+import { EAdresseopplysninger } from '../models/steg/adresseopplysninger';
 
 type IDokumentasjonsConfig = {
   [key in DokumentasjonsConfigKey]: IDokumentasjon;
@@ -73,6 +75,7 @@ type DokumentasjonsConfigKey =
   | 'ErklæringSamlivsbrudd'
   | 'DokumentasjonInngåttEkteskap'
   | 'DokumentasjonUformeltSeparertEllerSkilt'
+  | 'MeldtAdresseendring'
   | 'BekreftelseSeparasjonSøknad';
 
 export const DokumentasjonsConfig: IDokumentasjonsConfig = {
@@ -334,6 +337,15 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     label: '',
     tittel: 'dokumentasjon.søktSeparasjon.tittel',
     beskrivelse: 'dokumentasjon.søktSeparasjon.beskrivelse',
+    harSendtInn: false,
+  },
+  MeldtAdresseendring: {
+    id: AdresseopplysningerDokumentasjon.MELDT_ADRESSEENDRING,
+    spørsmålid: EAdresseopplysninger.harMeldtAdresseendring,
+    svarid: ESvar.JA,
+    label: '',
+    tittel: 'dokumentasjon.meldtAdresseendring.tittel',
+    beskrivelse: 'dokumentasjon.meldtAdresseendring.beskrivelse',
     harSendtInn: false,
   },
 };
