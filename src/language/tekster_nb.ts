@@ -216,7 +216,7 @@ export default {
     'Hvem skal du gifte deg med eller bli samboer med?',
   'barnadine.sidetittel': 'Barna dine',
   'barnadine.infohentet':
-    'Informasjonen er hentet fra Folkeregisteret. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
+    'Informasjonen er hentet fra Folkeregisteret og viser barna dine under 19 år. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
   'barnekort.termindato': 'Termindato',
   'barnekort.fødselsdato': 'Fødselsdato',
   'barnekort.fødselsnummer': 'Fødselsnummer',

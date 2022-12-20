@@ -220,7 +220,7 @@ export default {
     'Whom are you going to marry or start living with in a marriage-like relationship (cohabitation)?',
   'barnadine.sidetittel': 'Your children',
   'barnadine.infohentet':
-    'This information has been obtained from the National Registry and only shows children under the age of 18. If any of this information is incorrect, you can change the information by contacting the National Registry. ',
+    'This information has been obtained from the National Registry and only shows children under the age of 19. If any of this information is incorrect, you can change the information by contacting the National Registry. ',
   'barnekort.termindato': 'Expected date of delivery',
   'barnekort.fødselsdato': 'Date of birth',
   'barnekort.fødselsnummer': 'NATIONAL IDENTITY NUMBER OR D NUMBER',
