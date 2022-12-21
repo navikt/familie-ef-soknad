@@ -21,7 +21,8 @@ const er401Feil = (error: AxiosError) =>
 const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
-  return Environment().loginService + '&redirect=' + getRedirectUrl();
+  console.log(getRedirectUrl())
+  return Environment().wonderwallUrl + '&redirect=' + getRedirectUrl();
 };
 
 const getRedirectUrl = () => {
@@ -39,13 +40,6 @@ export const autentiseringsInterceptor = () => {
   axios.interceptors.response.use(
     (response) => {
       return response;
-    },
-    (error: AxiosError) => {
-      if (er401Feil(error) && loggInn()) {
-        window.location.href = getLoginUrl();
-      } else {
-        throw error;
-      }
     }
   );
 };

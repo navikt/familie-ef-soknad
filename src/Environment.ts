@@ -3,7 +3,7 @@ import { erLokaltMedMock } from './utils/miljø';
 interface EnvironmentProps {
   veiviserUrl: string;
   apiUrl: string;
-  loginService: string;
+  wonderwallUrl: string;
   dokumentUrl: string;
   mellomlagerUrl: string;
   sentryUrl?: string;
@@ -24,7 +24,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice.dev.nav.no/login?',
+      wonderwallUrl: 'https://familie.dev.nav.no/oauth2/login?',
       dokumentUrl:
         'https://familie.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl: 'https://familie.dev.nav.no/familie/dokument/api/soknad/',
@@ -36,8 +36,8 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
-      loginService: 'https://loginservice.nav.no/login?',
-      dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
+      wonderwallUrl: 'https://familie.nav.no/oauth2/login?',
+      dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl: `https://www.nav.no/familie/dokument/api/soknad/`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
@@ -47,7 +47,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: '',
-      loginService: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=selvbetjening&audience=aud-localhost`, // forventet i api ved innsending (local) - syntetisk fnr
+      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=idporten&audience=aud-idporten`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `/api/dokument`,
       mellomlagerUrl: `/api/mellomlager/`,
       miljø: 'local',
@@ -57,8 +57,8 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: 'http://localhost:8091',
-      loginService: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=selvbetjening&audience=aud-localhost`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentUrl: `http://localhost:8082/api/mapper/ANYTTHING`,
+      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=idporten&audience=aud-idporten`, // forventet i api ved innsending (local) - syntetisk fnr
+      dokumentUrl: `http://localhost:8082/api/mapper/ANYTHING`,
       mellomlagerUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
