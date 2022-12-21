@@ -38,9 +38,16 @@ const getRedirectUrl = () => {
 
 export const autentiseringsInterceptor = () => {
   axios.interceptors.response.use(
-    (response) => {
-      return response;
-    }
+      (response) => {
+        return response;
+      },
+      (error: AxiosError) => {
+        if (er401Feil(error) && loggInn()) {
+          window.location.href = getLoginUrl();
+        } else {
+          throw error;
+        }
+      }
   );
 };
 
