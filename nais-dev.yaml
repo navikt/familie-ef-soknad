@@ -26,7 +26,7 @@ spec:
     enabled: true
     sidecar:
       enabled: true
-      autoLogin: true
+      autoLogin: false
       level: Level4
   ingresses:
     - https://familie.dev.nav.no/familie/alene-med-barn/soknad
