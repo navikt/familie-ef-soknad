@@ -92,7 +92,7 @@
     "react-router-dom": "^6.4.3",
     "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
-    "use-debounce": "^8.0.4",
+    "use-debounce": "^9.0.2",
     "uuid": "^9.0.0",
     "yup": "^0.32.11"
   },
