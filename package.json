@@ -11,7 +11,7 @@
     "serve": "NODE_ENV=production node server/server.js"
   },
   "dependencies": {
-    "@craco/craco": "^6.4.5",
+    "@craco/craco": "^7.0.0",
     "@navikt/ds-css": "^1.5.5",
     "@navikt/ds-icons": "^1.5.5",
     "@navikt/ds-react": "^1.5.5",
@@ -42,7 +42,7 @@
     "classnames": "^2.3.2",
     "constate": "^3.3.2",
     "core-js": "^3.26.0",
-    "craco-less": "^1.20.0",
+    "craco-less": "^2.1.0-alpha.0",
     "date-fns": "^2.29.3",
     "dayjs": "^1.11.6",
     "eslint-plugin-flowtype": "^5.10.0",
@@ -76,7 +76,7 @@
     "nav-frontend-typografi-style": "^2.0.2",
     "nav-frontend-veileder": "^3.0.3",
     "nav-frontend-veileder-style": "^3.0.2",
-    "npm": "^8.19.3",
+    "npm": "^9.2.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -90,14 +90,11 @@
     "react-helmet": "^6.1.0",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "use-debounce": "^8.0.4",
     "uuid": "^9.0.0",
     "yup": "^0.32.11"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
