@@ -22,7 +22,7 @@ const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
   console.log(getRedirectUrl())
-  return Environment().wonderwallUrl;
+  return Environment().wonderwallUrl + "?redirect=/familie/alene-med-barn/soknad";
 };
 
 const getRedirectUrl = () => {
