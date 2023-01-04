@@ -6,7 +6,6 @@ import { hentPersonData, oppdaterBarnMedLabel } from './utils/søknad';
 import { PersonActionTypes, usePersonContext } from './context/PersonContext';
 import { ToggleName } from './models/søknad/toggles';
 import {
-  autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from './utils/autentiseringogvalidering/autentisering';
 import { useSøknad } from './context/SøknadContext';
@@ -32,8 +31,6 @@ const App = () => {
   const { settToggles, toggles } = useToggles();
 
   const intl = useLokalIntlContext();
-
-  autentiseringsInterceptor();
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);

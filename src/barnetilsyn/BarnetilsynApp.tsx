@@ -4,7 +4,6 @@ import hentToggles from '../toggles/api';
 import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
-  autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
@@ -31,8 +30,6 @@ const BarnetilsynApp = () => {
   const { settToggles } = useToggles();
 
   const intl = useLokalIntlContext();
-
-  autentiseringsInterceptor();
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
