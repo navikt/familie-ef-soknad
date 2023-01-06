@@ -1,3 +1,5 @@
+const proxy = require("./tokenProxy")
+
 const express = require('express');
 const path = require('path');
 const getHtmlWithDecorator = require("./decorator");
@@ -31,6 +33,8 @@ const routes = () => {
                 res.status(500).send(e);
             })
     })
+
+    expressRouter.use(`${BASE_PATH}/api`, proxy.proxy("https://familie.dev.nav.no/familie/alene-med-barn/soknad-api"))
 
     return expressRouter
 }
