@@ -23,7 +23,7 @@ const Environment = (): EnvironmentProps => {
   if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
       wonderwallUrl: 'https://familie.dev.nav.no/oauth2/login',
       dokumentUrl:
         'https://familie.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
@@ -35,7 +35,7 @@ const Environment = (): EnvironmentProps => {
   } else if (window.location.hostname.indexOf('www') > -1) {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
+      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad/api',
       wonderwallUrl: 'https://familie.nav.no/oauth2/login',
       dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl: `https://www.nav.no/familie/dokument/api/soknad/`,
