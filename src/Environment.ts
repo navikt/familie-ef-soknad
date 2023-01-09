@@ -24,7 +24,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: 'https://familie.dev.nav.no/oauth2/login',
+      wonderwallUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login',
       dokumentUrl:
         'https://familie.dev.nav.no/familie/dokument/api/mapper/ANYTTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
       mellomlagerUrl: 'https://familie.dev.nav.no/familie/dokument/api/soknad/',
@@ -36,7 +36,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: 'https://familie.nav.no/oauth2/login',
+      wonderwallUrl: 'https://familie.nav.no/familie/alene-med-barn/soknad/oauth2/login',
       dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
       mellomlagerUrl: `https://www.nav.no/familie/dokument/api/soknad/`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
