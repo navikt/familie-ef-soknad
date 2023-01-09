@@ -23,7 +23,7 @@ const routes = () => {
 
     expressRouter.use(BASE_PATH, express.static(buildPath, {index: false}));
 
-    expressRouter.use(/^(?!.*\/(internal|static)\/).*$/, (req, res) => {
+    expressRouter.use(/^(?!.*\/(internal|static|api)\/).*$/, (req, res) => {
         getHtmlWithDecorator((path.join(buildPath, 'index.html')))
             .then((html) => {
                 res.send(html);
