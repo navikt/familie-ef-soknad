@@ -131,7 +131,7 @@ var TokenXClient = /** @class */ (function () {
                         try {
                             client = new tokenx.Client({
                                 client_id: tokenxConfig.clientId,
-                                redirect_uris: [tokenxConfig.redirectUri, 'https://familie.dev.nav.no/oauth2/callback'],
+                                redirect_uris: [tokenxConfig.redirectUri, 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback'],
                                 token_endpoint_auth_method: 'none',
                             });
                             logger.info('Opprettet TokenX client');
@@ -158,6 +158,6 @@ var tokenxConfig = {
     discoveryUrl: process.env.TOKEN_X_WELL_KNOWN_URL,
     clientId: process.env.TOKEN_X_CLIENT_ID,
     privateJwk: process.env.TOKEN_X_PRIVATE_JWK,
-    redirectUri: 'https://familie.dev.nav.no/oauth2/callback'
+    redirectUri: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback'
 };
 exports.default = TokenXClient;
