@@ -54,6 +54,7 @@ exports.proxy = void 0;
 var lodash_1 = require("lodash");
 var tokenx_1 = __importDefault(require("./tokenx"));
 var logger = require("./logger");
+var fetch = require("node-fetch");
 var isOK = function (status) { return [200, 404, 409].includes(status); };
 var exchangeToken = new tokenx_1.default().exchangeToken;
 function proxy(url) {
