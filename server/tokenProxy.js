@@ -100,7 +100,7 @@ var prepareSecuredRequest = function (req) { return __awaiter(void 0, void 0, vo
                 return [4 /*yield*/, exchangeToken(token).then(function (accessToken) { return accessToken; })];
             case 1:
                 accessToken = _b.sent();
-                headers = __assign(__assign({}, req.headers), { authorization: "Bearer ".concat(accessToken), x_correlation_id: logger.defaultMeta.x_correlation_id });
+                headers = __assign(__assign({}, req.headers), { authorization: "Bearer ".concat(accessToken) });
                 body = undefined;
                 if (!(0, lodash_1.isEmpty)(req.body) && req.method === 'POST') {
                     imageTag_1 = (_a = process.env.NAIS_APP_IMAGE) === null || _a === void 0 ? void 0 : _a.replace(/^.*:(.*)/, '$1');
