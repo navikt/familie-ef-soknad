@@ -7,10 +7,15 @@ import logger from './logger';
 const isOK = (status: any) => [200, 404, 409].includes(status);
 const { exchangeToken } = new TokenXClient();
 
-const proxy = (url: string): RequestHandler => {
+export type ApplicationName = 'familie-ef-soknad-api' | 'familie-dokument';
+
+const proxy = (
+  url: string,
+  applicationName: ApplicationName
+): RequestHandler => {
   return async (req: Request, res: Response) => {
     try {
-      const request = await prepareSecuredRequest(req);
+      const request = await prepareSecuredRequest(req, applicationName);
       const response = await fetch(`${url}${req.path}`, request);
       if (isOK(response.status)) {
         logger.info(
@@ -28,12 +33,15 @@ const proxy = (url: string): RequestHandler => {
     }
   };
 };
-const prepareSecuredRequest = async (req: Request) => {
+const prepareSecuredRequest = async (
+  req: Request,
+  applicationName: ApplicationName
+) => {
   logger.info('PrepareSecuredRequest');
   const { authorization } = req.headers;
   const token = authorization!!.split(' ')[1];
   logger.info('IdPorten-token found: ' + (token.length > 1));
-  const accessToken = await exchangeToken(token).then(
+  const accessToken = await exchangeToken(token, applicationName).then(
     (accessToken) => accessToken
   );
   const headers: any = {

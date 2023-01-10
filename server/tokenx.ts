@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { v4 as uuid } from 'uuid';
 import nodeJose from 'node-jose';
 import logger from './logger';
+import { ApplicationName } from './tokenProxy';
 
 class TokenXClient {
   private tokenxClient: any = null;
@@ -18,7 +19,10 @@ class TokenXClient {
       .catch(() => process.exit(1));
   }
 
-  exchangeToken = async (idportenToken: any) => {
+  exchangeToken = async (
+    idportenToken: any,
+    applicationName: ApplicationName
+  ) => {
     const clientAssertion = await this.createClientAssertion();
     //
     return this.tokenxClient
@@ -30,7 +34,7 @@ class TokenXClient {
         client_assertion: clientAssertion,
         subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
         subject_token: idportenToken,
-        audience: 'dev-gcp:teamfamilie:familie-ef-soknad-api',
+        audience: `dev-gcp:teamfamilie:${applicationName}`,
       })
       .then((tokenSet: any) => {
         return Promise.resolve(tokenSet.access_token);

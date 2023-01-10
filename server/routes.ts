@@ -39,12 +39,15 @@ const routes = () => {
 
   expressRouter.use(
     `${BASE_PATH}/api`,
-    proxy('https://familie.dev.nav.no/familie/alene-med-barn/soknad-api')
+    proxy(
+      'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
+      'familie-ef-soknad-api'
+    )
   );
 
   expressRouter.use(
-      `${BASE_PATH}/dokument`,
-      proxy('https://familie.dev.nav.no/familie/dokument')
+    `${BASE_PATH}/dokument`,
+    proxy('https://familie.dev.nav.no/familie/dokument', 'familie-dokument')
   );
 
   return expressRouter;
