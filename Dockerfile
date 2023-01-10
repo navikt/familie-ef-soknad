@@ -16,4 +16,4 @@ EXPOSE 8080
 
 USER apprunner
 
-CMD ["npm", "run", "start:server"]
+CMD ["node","--experimental-modules", "--es-module-specifier-resolution=node", "build/server.js"]
