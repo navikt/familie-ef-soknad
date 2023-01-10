@@ -27,7 +27,7 @@ const Environment = (): EnvironmentProps => {
       wonderwallUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login',
       dokumentUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl: 'https://familie.dev.nav.no/familie/dokument/api/soknad/',
+      mellomlagerUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
