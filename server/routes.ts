@@ -43,8 +43,8 @@ const routes = () => {
   );
 
   expressRouter.use(
-      `/api/dokument`,
-      proxy('https://familie.dev.nav.no/familie/dokument/api')
+      `${BASE_PATH}/dokument`,
+      proxy('https://familie.dev.nav.no/familie/dokument')
   );
 
   return expressRouter;
