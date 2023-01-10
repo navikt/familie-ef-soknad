@@ -49,22 +49,10 @@ const prepareSecuredRequest = async (
     authorization: `Bearer ${accessToken}`,
     // x_correlation_id: logger.defaultMeta.x_correlation_id,
   };
-  let body = undefined;
-  if (!lodash.isEmpty(req.body) && req.method === 'POST') {
-    const imageTag = process.env.NAIS_APP_IMAGE?.replace(/^.*:(.*)/, '$1');
-    if (req.path === '/api/soeknad') {
-      const soeknader: any[] = req.body.soeknader.map((soeknad: any) => ({
-        ...soeknad,
-        imageTag,
-      }));
-      body = JSON.stringify({ soeknader });
-    } else {
-      body = JSON.stringify(req.body);
-    }
-  }
+
   return {
     method: req.method,
-    body,
+    body: req.body,
     headers,
   };
 };
