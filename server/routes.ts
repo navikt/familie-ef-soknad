@@ -8,7 +8,7 @@ import getHtmlWithDecorator from './decorator';
 
 import logger from './logger';
 
-const buildPath = path.resolve(__dirname, '../build');
+const buildPath = path.resolve(process.cwd(), '../build');
 const EF_BASE_PATH = '/familie/alene-med-barn';
 const BASE_PATH = `${EF_BASE_PATH}/soknad`;
 const ETTERSENDING_PATH = `${EF_BASE_PATH}/ettersending`;
