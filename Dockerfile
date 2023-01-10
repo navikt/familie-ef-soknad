@@ -9,8 +9,6 @@ COPY ./server server
 WORKDIR /app/server
 
 ARG NPM_TOKEN
-RUN npm ci
-RUN npm run build
 
 EXPOSE 8080
 
