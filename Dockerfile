@@ -10,10 +10,10 @@ WORKDIR /app/server
 
 ARG NPM_TOKEN
 RUN npm ci
-RUN npm build
+RUN npm run build
 
 EXPOSE 8080
 
 USER apprunner
 
-CMD ["npm", "start:server"]
+CMD ["npm", "run", "start:server"]
