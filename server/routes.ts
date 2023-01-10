@@ -42,6 +42,11 @@ const routes = () => {
     proxy('https://familie.dev.nav.no/familie/alene-med-barn/soknad-api')
   );
 
+  expressRouter.use(
+      `/api/dokument`,
+      proxy('https://familie.dev.nav.no/familie/dokument/api')
+  );
+
   return expressRouter;
 };
 
