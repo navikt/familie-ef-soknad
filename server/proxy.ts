@@ -3,6 +3,7 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { ClientRequest, IncomingMessage } from 'http';
 import * as querystring from 'querystring';
 import { v4 as uuid } from 'uuid';
+import logger from './logger';
 
 const restream = (proxyReq: ClientRequest, req: IncomingMessage) => {
   const requestBody = (req as Request).body;
@@ -26,11 +27,20 @@ const restream = (proxyReq: ClientRequest, req: IncomingMessage) => {
   }
 };
 
-export const doProxy = (targetUrl: string): RequestHandler => {
-  return createProxyMiddleware({
+export const doProxy = (targetUrl: string, context: string): RequestHandler => {
+  return createProxyMiddleware(context, {
     changeOrigin: true,
     logLevel: 'info',
+    logProvider: () => {
+      return logger;
+    },
     onProxyReq: restream,
+    pathRewrite: (path: string) => {
+      logger.info(path);
+      const newPath = path.replace(context, '');
+      logger.info(newPath);
+      return newPath;
+    },
     secure: true,
     target: `${targetUrl}`,
   });

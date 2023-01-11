@@ -38,14 +38,20 @@ const routes = () => {
     `${BASE_PATH}/api`,
     addCallId(),
     attachToken('familie-ef-soknad-api'),
-    doProxy('https://familie.dev.nav.no/familie/alene-med-barn/soknad-api')
+    doProxy(
+      'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
+      `${BASE_PATH}/api`
+    )
   );
 
   expressRouter.use(
     `${BASE_PATH}/dokument`,
     addCallId(),
     attachToken('familie-dokument'),
-    doProxy('https://familie.dev.nav.no/familie/dokument')
+    doProxy(
+      'https://familie.dev.nav.no/familie/dokument',
+      `${BASE_PATH}/dokument`
+    )
   );
 
   return expressRouter;
