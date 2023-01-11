@@ -1,12 +1,9 @@
-import proxy from './tokenProxy';
-
 import express from 'express';
-
 import path from 'path';
-
 import getHtmlWithDecorator from './decorator';
-
 import logger from './logger';
+import { addCallId, doProxy } from './proxy';
+import attachToken from './tokenProxy';
 
 const buildPath = path.resolve(process.cwd(), '../build');
 const EF_BASE_PATH = '/familie/alene-med-barn';
@@ -39,15 +36,16 @@ const routes = () => {
 
   expressRouter.use(
     `${BASE_PATH}/api`,
-    proxy(
-      'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
-      'familie-ef-soknad-api'
-    )
+    addCallId(),
+    attachToken('familie-ef-soknad-api'),
+    doProxy('https://familie.dev.nav.no/familie/alene-med-barn/soknad-api')
   );
 
   expressRouter.use(
     `${BASE_PATH}/dokument`,
-    proxy('https://familie.dev.nav.no/familie/dokument', 'familie-dokument')
+    addCallId(),
+    attachToken('familie-dokument'),
+    doProxy('https://familie.dev.nav.no/familie/dokument')
   );
 
   return expressRouter;
