@@ -6,6 +6,9 @@ const { exchangeToken } = new TokenXClient();
 
 export type ApplicationName = 'familie-ef-soknad-api' | 'familie-dokument';
 
+const AUTHORIZATION_HEADER = 'authorization';
+const WONDERWALL_ID_TOKEN_HEADER = 'x-wonderwall-id-token';
+
 const attachToken = (applicationName: ApplicationName): RequestHandler => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -13,8 +16,10 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
         req,
         applicationName
       );
-      req.headers.Authorization = authenticationHeader.authorization;
-      return next();
+      req.headers[AUTHORIZATION_HEADER] = authenticationHeader.authorization;
+      req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
+      logger.info(`Headers: ${req.headers}`); // TODO: Slett denne før prodsetting!!!
+      next();
     } catch (error) {
       logger.error(
         `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
