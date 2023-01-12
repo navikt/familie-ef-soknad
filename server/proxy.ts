@@ -48,7 +48,7 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
 
 export const addCallId = (): RequestHandler => {
   return (req: Request, _res: Response, next: NextFunction) => {
-    req.headers['nav-call-id'] = uuid();
+    req.headers['nav-call-id'] = req.headers['x-correlation-id'] ?? uuid();
     next();
   };
 };

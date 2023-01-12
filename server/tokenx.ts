@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import nodeJose from 'node-jose';
 import logger from './logger';
 import { ApplicationName } from './tokenProxy';
+import { miljø } from './miljø';
 
 class TokenXClient {
   private tokenxClient: any = null;
@@ -98,10 +99,7 @@ class TokenXClient {
     try {
       const client = new tokenx.Client({
         client_id: tokenxConfig.clientId as string,
-        redirect_uris: [
-          tokenxConfig.redirectUri,
-          'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
-        ],
+        redirect_uris: [tokenxConfig.redirectUri],
         token_endpoint_auth_method: 'none',
       });
 
@@ -122,8 +120,7 @@ const tokenxConfig = {
   discoveryUrl: process.env.TOKEN_X_WELL_KNOWN_URL,
   clientId: process.env.TOKEN_X_CLIENT_ID,
   privateJwk: process.env.TOKEN_X_PRIVATE_JWK,
-  redirectUri:
-    'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
+  redirectUri: miljø.tokenxRedirectUri,
 };
 
 export default TokenXClient;

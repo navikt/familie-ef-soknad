@@ -18,7 +18,6 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
       );
       req.headers[AUTHORIZATION_HEADER] = authenticationHeader.authorization;
       req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
-      logger.info(`Headers: ${req.headers}`); // TODO: Slett denne før prodsetting!!!
       next();
     } catch (error) {
       logger.error(
