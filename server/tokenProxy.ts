@@ -32,6 +32,10 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
   };
 };
 
+const erLokalt = () => {
+  return process.env.ENV === 'localhost';
+};
+
 const utledToken = (req: Request, authorization: string | undefined) => {
   return erLokalt()
     ? req.cookies['localhost-idtoken']

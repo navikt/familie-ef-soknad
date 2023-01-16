@@ -5,7 +5,7 @@ import {
   erUrlArbeidssøkerSkjema,
 } from '../../arbeidssøkerskjema/routes/routesArbeidssokerskjema';
 import { overgangsstønadForsideUrl } from '../../overgangsstønad/routing/routesOvergangsstonad';
-import { erLokalt, erLokaltMedMock } from '../miljø';
+import { erLokaltMedMock } from '../miljø';
 import {
   barnetilsynForsideUrl,
   erUrlBarnetilsyn,
@@ -21,11 +21,9 @@ const er401Feil = (error: AxiosError) =>
 const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
-  if (erLokalt()) {
-    return Environment().wonderwallUrl;
-  } else {
-    return Environment().wonderwallUrl + '&redirect=' + getRedirectUrl();
-  }
+  return Environment().redirectVedPålogging
+    ? Environment().wonderwallUrl + '&redirect=' + getRedirectUrl()
+    : Environment().wonderwallUrl;
 };
 
 const getRedirectUrl = () => {

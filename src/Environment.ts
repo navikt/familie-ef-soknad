@@ -9,6 +9,7 @@ interface EnvironmentProps {
   sentryUrl?: string;
   miljø: string;
   modellVersjon: IModellversjon;
+  redirectVedPålogging: boolean;
 }
 
 interface IModellversjon {
@@ -33,6 +34,7 @@ const Environment = (): EnvironmentProps => {
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
+      redirectVedPålogging: true,
     };
   } else if (window.location.hostname.indexOf('www') > -1) {
     return {
@@ -45,6 +47,7 @@ const Environment = (): EnvironmentProps => {
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
+      redirectVedPålogging: true,
     };
   } else if (erLokaltMedMock()) {
     return {
@@ -55,6 +58,7 @@ const Environment = (): EnvironmentProps => {
       mellomlagerUrl: `/api/mellomlager/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
+      redirectVedPålogging: false,
     };
   } else {
     return {
@@ -65,6 +69,7 @@ const Environment = (): EnvironmentProps => {
       mellomlagerUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
+      redirectVedPålogging: false,
     };
   }
 };
