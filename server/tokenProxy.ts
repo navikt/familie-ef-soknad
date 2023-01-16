@@ -1,6 +1,7 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import TokenXClient from './tokenx';
 import logger from './logger';
+import { erLokalt } from '../src/utils/miljø';
 
 const { exchangeToken } = new TokenXClient();
 
@@ -29,10 +30,6 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
         .send('En uventet feil oppstod. Ingen gyldig token');
     }
   };
-};
-
-const erLokalt = () => {
-  return process.env.ENV === 'localhost';
 };
 
 const utledToken = (req: Request, authorization: string | undefined) => {

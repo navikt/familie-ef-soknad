@@ -5,7 +5,7 @@ import {
   erUrlArbeidssøkerSkjema,
 } from '../../arbeidssøkerskjema/routes/routesArbeidssokerskjema';
 import { overgangsstønadForsideUrl } from '../../overgangsstønad/routing/routesOvergangsstonad';
-import { erLokaltMedMock } from '../miljø';
+import { erLokalt, erLokaltMedMock } from '../miljø';
 import {
   barnetilsynForsideUrl,
   erUrlBarnetilsyn,
@@ -21,11 +21,13 @@ const er401Feil = (error: AxiosError) =>
 const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
-  return Environment().wonderwallUrl;
+  if (erLokalt()) {
+    return Environment().wonderwallUrl;
+  } else {
+    return Environment().wonderwallUrl + '&redirect=' + getRedirectUrl();
+  }
 };
 
-// TODO: Slett hvis ikke trengs?
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getRedirectUrl = () => {
   if (erUrlArbeidssøkerSkjema()) {
     return arbeidssøkerSkjemaForsideUrl();
