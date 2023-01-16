@@ -25,6 +25,7 @@ const getLoginUrl = () => {
 };
 
 // TODO: Slett hvis ikke trengs?
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const getRedirectUrl = () => {
   if (erUrlArbeidssøkerSkjema()) {
     return arbeidssøkerSkjemaForsideUrl();
