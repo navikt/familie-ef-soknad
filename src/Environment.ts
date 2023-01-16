@@ -53,7 +53,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: '',
-      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=idporten&audience=familie-app`, // forventet i api ved innsending (local) - syntetisk fnr
+      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `/api/dokument`,
       mellomlagerUrl: `/api/mellomlager/`,
       miljø: 'local',
@@ -64,7 +64,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: 'http://localhost:8091',
-      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=idporten&audience=familie-app`, // forventet i api ved innsending (local) - syntetisk fnr
+      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `http://localhost:8082/api/mapper/ANYTHING`,
       mellomlagerUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
