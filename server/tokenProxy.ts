@@ -24,7 +24,9 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
         `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
         error
       );
-      return res.status(500).send('En uventet feil oppstod.');
+      return res
+        .status(401)
+        .send('En uventet feil oppstod. Ingen gyldig token');
     }
   };
 };
