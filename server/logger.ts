@@ -31,11 +31,11 @@ export const logInfo = (message: string, req: Request) => {
   logger.info(melding, meta);
 };
 
-export const logError = (message: string, req: Request, error?: any) => {
+export const logWarn = (message: string, req: Request, error?: any) => {
   const melding = `${prefix(req)}: ${message}`;
   const meta = utledMetadata(req, error);
 
-  logger.error(melding, meta);
+  logger.warn(melding, meta);
 };
 
 export default logger;

@@ -1,6 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import TokenXClient from './tokenx';
-import { logError, logInfo } from './logger';
+import { logWarn, logInfo } from './logger';
 
 const { exchangeToken } = new TokenXClient();
 
@@ -20,7 +20,7 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
       req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
       next();
     } catch (error) {
-      logError(
+      logWarn(
         `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
         req,
         error
@@ -36,10 +36,18 @@ const erLokalt = () => {
   return process.env.ENV === 'localhost';
 };
 
+const harBearerToken = (authorization: string) => {
+  return authorization.includes('Bearer ');
+};
+
 const utledToken = (req: Request, authorization: string | undefined) => {
-  return erLokalt()
-    ? req.cookies['localhost-idtoken']
-    : authorization!!.split(' ')[1];
+  if (erLokalt()) {
+    return req.cookies['localhost-idtoken'];
+  } else if (authorization && harBearerToken(authorization)) {
+    return authorization.split(' ')[1];
+  } else {
+    throw Error('Mangler authorization i header');
+  }
 };
 
 const prepareSecuredRequest = async (
