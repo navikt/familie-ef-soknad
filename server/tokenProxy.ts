@@ -1,6 +1,6 @@
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import TokenXClient from './tokenx';
-import logger from './logger';
+import { logError, logInfo } from './logger';
 
 const { exchangeToken } = new TokenXClient();
 
@@ -20,8 +20,9 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
       req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
       next();
     } catch (error) {
-      logger.error(
+      logError(
         `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
+        req,
         error
       );
       return res
@@ -45,10 +46,10 @@ const prepareSecuredRequest = async (
   req: Request,
   applicationName: ApplicationName
 ) => {
-  logger.info('PrepareSecuredRequest');
+  logInfo('PrepareSecuredRequest', req);
   const { authorization } = req.headers;
   const token = utledToken(req, authorization);
-  logger.info('IdPorten-token found: ' + (token.length > 1));
+  logInfo('IdPorten-token found: ' + (token.length > 1), req);
   const accessToken = await exchangeToken(token, applicationName).then(
     (accessToken) => accessToken
   );

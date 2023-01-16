@@ -22,7 +22,7 @@ const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
   return Environment().redirectVedPålogging
-    ? Environment().wonderwallUrl + '&redirect=' + getRedirectUrl()
+    ? Environment().wonderwallUrl + '?redirect=' + getRedirectUrl()
     : Environment().wonderwallUrl;
 };
 
