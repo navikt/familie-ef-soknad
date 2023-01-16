@@ -24,17 +24,28 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
         `Noe gikk galt ved setting av token (${req.method} - ${req.path}): `,
         error
       );
-      return res.status(500).send('Error');
+      return res.status(500).send('En uventet feil oppstod.');
     }
   };
 };
+
+const erLokalt = () => {
+  return process.env.ENV === 'localhost';
+};
+
+const utledToken = (req: Request, authorization: string | undefined) => {
+  return erLokalt()
+    ? req.cookies['localhost-idtoken']
+    : authorization!!.split(' ')[1];
+};
+
 const prepareSecuredRequest = async (
   req: Request,
   applicationName: ApplicationName
 ) => {
   logger.info('PrepareSecuredRequest');
   const { authorization } = req.headers;
-  const token = authorization!!.split(' ')[1];
+  const token = utledToken(req, authorization);
   logger.info('IdPorten-token found: ' + (token.length > 1));
   const accessToken = await exchangeToken(token, applicationName).then(
     (accessToken) => accessToken

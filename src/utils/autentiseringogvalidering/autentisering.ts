@@ -21,10 +21,10 @@ const er401Feil = (error: AxiosError) =>
 const loggInn = () => !erLokaltMedMock();
 
 const getLoginUrl = () => {
-  console.log(getRedirectUrl())
-  return Environment().wonderwallUrl + "?redirect=/familie/alene-med-barn/soknad";
+  return Environment().wonderwallUrl;
 };
 
+// TODO: Slett hvis ikke trengs?
 const getRedirectUrl = () => {
   if (erUrlArbeidssøkerSkjema()) {
     return arbeidssøkerSkjemaForsideUrl();
@@ -38,16 +38,16 @@ const getRedirectUrl = () => {
 
 export const autentiseringsInterceptor = () => {
   axios.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      (error: AxiosError) => {
-        if (er401Feil(error) && loggInn()) {
-          window.location.href = getLoginUrl();
-        } else {
-          throw error;
-        }
+    (response) => {
+      return response;
+    },
+    (error: AxiosError) => {
+      if (er401Feil(error) && loggInn()) {
+        window.location.href = getLoginUrl();
+      } else {
+        throw error;
       }
+    }
   );
 };
 

@@ -8,7 +8,8 @@ const getHtmlWithDecorator = (filePath: string) => {
     logger.error('Mangler miljø for dekoratøren');
     throw Error('Miljø kan ikke være undefined');
   }
-  return injectDecoratorServerSide({
+
+  const dekoratørConfig = {
     env: env,
     simple: true,
     port: 8080,
@@ -16,7 +17,15 @@ const getHtmlWithDecorator = (filePath: string) => {
     redirectToApp: true,
     level: 'Level4',
     filePath: filePath,
-  });
+  };
+  if (env === 'localhost') {
+    return injectDecoratorServerSide({
+      ...dekoratørConfig,
+      env: 'dev',
+    });
+  }
+
+  return injectDecoratorServerSide(dekoratørConfig);
 };
 
 export default getHtmlWithDecorator;

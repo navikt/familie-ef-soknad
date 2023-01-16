@@ -23,11 +23,11 @@ const prodMiljø = {
 
 const initierMiljøvariabler = () => {
   switch (process.env.ENV) {
-    case 'local':
+    case 'localhost':
       return lokaltMiljø;
-    case 'preprod':
+    case 'dev':
       return devMiljø;
-    case 'production':
+    case 'prod':
       return prodMiljø;
     default:
       logger.warn('Mangler miljøvariabler - setter lokale variabler');

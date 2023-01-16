@@ -24,10 +24,12 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login',
+      wonderwallUrl:
+        'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login',
       dokumentUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad/',
+      mellomlagerUrl:
+        'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
       modellVersjon: modellVersjon,
@@ -36,9 +38,10 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
       apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: 'https://familie.nav.no/familie/alene-med-barn/soknad/oauth2/login',
-      dokumentUrl: `https://www.nav.no/familie/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
-      mellomlagerUrl: `https://www.nav.no/familie/dokument/api/soknad/`,
+      wonderwallUrl:
+        'https://familie.nav.no/familie/alene-med-barn/soknad/oauth2/login',
+      dokumentUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
+      mellomlagerUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
@@ -47,7 +50,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiUrl: '',
-      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=idporten&audience=someaudience`, // forventet i api ved innsending (local) - syntetisk fnr
+      wonderwallUrl: `https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login`, // forventet i api ved innsending (local) - syntetisk fnr
       dokumentUrl: `/api/dokument`,
       mellomlagerUrl: `/api/mellomlager/`,
       miljø: 'local',

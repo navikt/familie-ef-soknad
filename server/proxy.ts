@@ -36,10 +36,7 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
     },
     onProxyReq: restream,
     pathRewrite: (path: string) => {
-      logger.info(path);
-      const newPath = path.replace(context, '');
-      logger.info(newPath);
-      return newPath;
+      return path.replace(context, '');
     },
     secure: true,
     target: `${targetUrl}`,
