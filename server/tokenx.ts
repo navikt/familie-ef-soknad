@@ -25,7 +25,7 @@ class TokenXClient {
     applicationName: ApplicationName
   ) => {
     const clientAssertion = await this.createClientAssertion();
-    //
+
     return this.tokenxClient
       .grant({
         grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
@@ -35,7 +35,7 @@ class TokenXClient {
         client_assertion: clientAssertion,
         subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
         subject_token: idportenToken,
-        audience: `dev-gcp:teamfamilie:${applicationName}`,
+        audience: `${tokenxConfig.clusterName}:teamfamilie:${applicationName}`,
       })
       .then((tokenSet: any) => {
         return Promise.resolve(tokenSet.access_token);
@@ -120,7 +120,8 @@ const tokenxConfig = {
   discoveryUrl: process.env.TOKEN_X_WELL_KNOWN_URL,
   clientId: process.env.TOKEN_X_CLIENT_ID,
   privateJwk: process.env.TOKEN_X_PRIVATE_JWK,
-  redirectUri: miljø.tokenxRedirectUri,
+  redirectUri: miljø.oauthCallbackUri,
+  clusterName: process.env.NAIS_CLUSTER_NAME,
 };
 
 export default TokenXClient;

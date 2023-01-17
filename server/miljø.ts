@@ -3,21 +3,21 @@ import logger from './logger';
 const lokaltMiljø = {
   dokumentUrl: 'http://localhost:8082',
   apiUrl: 'http://localhost:8091',
-  tokenxRedirectUri:
+  oauthCallbackUri:
     'https://localhost:8080/familie/alene-med-barn/soknad/oauth2/callback',
 };
 
 const devMiljø = {
-  dokumentUrl: 'https://familie.dev.nav.no/familie/dokument',
-  apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad-api',
-  tokenxRedirectUri:
+  dokumentUrl: 'http://familie-dokument',
+  apiUrl: 'http://familie-ef-soknad-api',
+  oauthCallbackUri:
     'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
 };
 
 const prodMiljø = {
   dokumentUrl: 'https://www.nav.no/familie/dokument',
   apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
-  tokenxRedirectUri:
+  oauthCallbackUri:
     'https://www.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
 };
 

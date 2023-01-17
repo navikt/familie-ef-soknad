@@ -32,6 +32,11 @@ spec:
     enabled: true
   ingresses:
     - https://familie.dev.nav.no/familie/alene-med-barn/soknad
+  accessPolicy:
+    outbound:
+      rules:
+        - application: familie-ef-soknad-api
+        - application: familie-ef-dokument
   env:
     - name: APP_VERSION
       value: '{{version}}'
