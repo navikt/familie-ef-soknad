@@ -5,6 +5,7 @@ import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
   verifiserAtBrukerErAutentisert,
+  autentiseringsInterceptor,
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
@@ -30,6 +31,8 @@ const BarnetilsynApp = () => {
   const { settToggles } = useToggles();
 
   const intl = useLokalIntlContext();
+
+  autentiseringsInterceptor();
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
