@@ -8,8 +8,8 @@ const lokaltMiljø = {
 };
 
 const devMiljø = {
-  dokumentUrl: 'http://familie-dokument',
-  apiUrl: 'http://familie-ef-soknad-api',
+  dokumentUrl: 'http://familie-dokument/familie/dokument',
+  apiUrl: 'http://familie-ef-soknad-api/familie/alene-med-barn/soknad-api',
   oauthCallbackUri:
     'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
 };
