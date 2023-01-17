@@ -4,8 +4,8 @@ import hentToggles from '../toggles/api';
 import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
-  autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
+  autentiseringsInterceptor,
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
