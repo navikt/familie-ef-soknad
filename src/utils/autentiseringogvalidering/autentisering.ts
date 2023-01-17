@@ -20,11 +20,7 @@ const er401Feil = (error: AxiosError) =>
 
 const loggInn = () => !erLokaltMedMock();
 
-const getLoginUrl = () => {
-  return Environment().redirectVedPålogging
-    ? Environment().wonderwallUrl + '?redirect=' + getRedirectUrl()
-    : Environment().wonderwallUrl;
-};
+const getLoginUrl = () => Environment().wonderwallUrl + getRedirectUrl();
 
 const getRedirectUrl = () => {
   if (erUrlArbeidssøkerSkjema()) {
