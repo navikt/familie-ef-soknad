@@ -3,7 +3,7 @@ import Environment from '../../Environment';
 
 export const sendInnSkjema = (skjema: object) => {
   return axios
-    .post(`${Environment().apiUrl}/api/registrerarbeid`, skjema, {
+    .post(`${Environment().apiProxyUrl}/api/registrerarbeid`, skjema, {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })

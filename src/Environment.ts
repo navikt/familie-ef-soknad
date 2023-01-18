@@ -2,10 +2,10 @@ import { erLokaltMedMock } from './utils/miljø';
 
 interface EnvironmentProps {
   veiviserUrl: string;
-  apiUrl: string;
+  apiProxyUrl: string;
   wonderwallUrl: string;
-  dokumentUrl: string;
-  mellomlagerUrl: string;
+  dokumentProxyUrl: string;
+  mellomlagerProxyUrl: string;
   sentryUrl?: string;
   miljø: string;
   modellVersjon: IModellversjon;
@@ -23,12 +23,12 @@ const Environment = (): EnvironmentProps => {
   if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
+      apiProxyUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
       wonderwallUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login?redirect=',
-      dokumentUrl:
+      dokumentProxyUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING', //Vil uansett gå til bucket "familievedlegg" enn så lenge
-      mellomlagerUrl:
+      mellomlagerProxyUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad/',
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'preprod',
@@ -37,11 +37,11 @@ const Environment = (): EnvironmentProps => {
   } else if (window.location.hostname.indexOf('www') > -1) {
     return {
       veiviserUrl: 'https://www.nav.no/familie/alene-med-barn/veiviser',
-      apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad/api',
+      apiProxyUrl: 'https://www.nav.no/familie/alene-med-barn/soknad/api',
       wonderwallUrl:
         'https://www.nav.no/familie/alene-med-barn/soknad/oauth2/login?redirect=',
-      dokumentUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
-      mellomlagerUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad`,
+      dokumentProxyUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
+      mellomlagerProxyUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
@@ -49,20 +49,20 @@ const Environment = (): EnvironmentProps => {
   } else if (erLokaltMedMock()) {
     return {
       veiviserUrl: '',
-      apiUrl: '',
+      apiProxyUrl: '',
       wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentUrl: `/api/dokument`,
-      mellomlagerUrl: `/api/mellomlager/`,
+      dokumentProxyUrl: `/api/dokument`,
+      mellomlagerProxyUrl: `/api/mellomlager/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
     };
   } else {
     return {
       veiviserUrl: '',
-      apiUrl: 'http://localhost:8091',
+      apiProxyUrl: 'http://localhost:8091',
       wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentUrl: `http://localhost:8082/api/mapper/ANYTHING`,
-      mellomlagerUrl: `http://localhost:8082/api/soknad/`,
+      dokumentProxyUrl: `http://localhost:8082/api/mapper/ANYTHING`,
+      mellomlagerProxyUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
     };

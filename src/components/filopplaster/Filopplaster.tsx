@@ -115,7 +115,7 @@ const Filopplaster: React.FC<Props> = ({
 
         axios
           .post<FormData, OpplastetVedleggResponse>(
-            `${Environment().dokumentUrl}`,
+            `${Environment().dokumentProxyUrl}`,
             requestData,
             {
               withCredentials: true,
