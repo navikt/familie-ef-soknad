@@ -18,7 +18,7 @@ import { LokalIntlShape } from '../language/typer';
 
 export const hentPersonData = () => {
   return axios
-    .get(`${Environment().apiUrl}/api/oppslag/sokerinfo`, {
+    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerinfo`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
@@ -31,7 +31,7 @@ export const hentPersonData = () => {
 
 export const hentPersonDataArbeidssoker = () => {
   return axios
-    .get(`${Environment().apiUrl}/api/oppslag/sokerminimum`, {
+    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerminimum`, {
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
@@ -46,7 +46,7 @@ export const hentMellomlagretSøknadFraDokument = <T>(
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T | undefined> => {
   return axios
-    .get(`${Environment().mellomlagerUrl + stønadstype}`, {
+    .get(`${Environment().mellomlagerProxyUrl + stønadstype}`, {
       withCredentials: true,
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export const mellomlagreSøknadTilDokument = <T>(
   søknad: T,
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T> => {
-  return axios.post(`${Environment().mellomlagerUrl + stønadstype}`, søknad, {
+  return axios.post(`${Environment().mellomlagerProxyUrl + stønadstype}`, søknad, {
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ export const mellomlagreSøknadTilDokument = <T>(
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
 ): Promise<any> => {
-  return axios.delete(`${Environment().mellomlagerUrl + stønadstype}`, {
+  return axios.delete(`${Environment().mellomlagerProxyUrl + stønadstype}`, {
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json',

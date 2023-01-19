@@ -22,12 +22,21 @@ spec:
   prometheus:
     enabled: true
     path: /metrics
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
+      level: Level4
+  tokenx:
+    enabled: true
   ingresses:
     - https://www.nav.no/familie/alene-med-barn/soknad
   accessPolicy:
     outbound:
-      external:
-        - host: loginservice.nav.no
+      rules:
+        - application: familie-ef-soknad-api
+        - application: familie-dokument
   env:
     - name: APP_VERSION
       value: '{{version}}'

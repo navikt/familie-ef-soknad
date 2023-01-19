@@ -4,7 +4,7 @@ import { Toggles } from '../models/søknad/toggles';
 
 const hentToggles = (settToggles: (toggles: Toggles) => void) => {
   return axios
-    .get(`${Environment().apiUrl}/api/featuretoggle`, {
+    .get(`${Environment().apiProxyUrl}/api/featuretoggle`, {
       withCredentials: true,
     })
     .then((response: { data: any }) => {
