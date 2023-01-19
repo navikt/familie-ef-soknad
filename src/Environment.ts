@@ -23,7 +23,8 @@ const Environment = (): EnvironmentProps => {
   if (window.location.hostname.indexOf('dev.nav.no') > -1) {
     return {
       veiviserUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/veiviser',
-      apiProxyUrl: 'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
+      apiProxyUrl:
+        'https://familie.dev.nav.no/familie/alene-med-barn/soknad/api',
       wonderwallUrl:
         'https://familie.dev.nav.no/familie/alene-med-barn/soknad/oauth2/login?redirect=',
       dokumentProxyUrl:
@@ -41,7 +42,7 @@ const Environment = (): EnvironmentProps => {
       wonderwallUrl:
         'https://www.nav.no/familie/alene-med-barn/soknad/oauth2/login?redirect=',
       dokumentProxyUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`, //Vil uansett gå til bucket "familievedlegg" enn så lenge,
-      mellomlagerProxyUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad`,
+      mellomlagerProxyUrl: `https://www.nav.no/familie/alene-med-barn/soknad/dokument/api/soknad/`,
       sentryUrl: 'https://88f5ed8ed0fc42139eaf7061abfedb19@sentry.gc.nav.no/36',
       miljø: 'production',
       modellVersjon: modellVersjon,
