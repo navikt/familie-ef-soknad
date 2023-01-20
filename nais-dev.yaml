@@ -31,6 +31,9 @@ spec:
     sidecar:
       enabled: true
       autoLogin: true
+      autoLoginIgnorePaths:
+        - /internal/*
+        - /static/css/*
       level: Level4
   tokenx:
     enabled: true
