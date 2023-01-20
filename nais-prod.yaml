@@ -31,6 +31,9 @@ spec:
     sidecar:
       enabled: true
       autoLogin: true
+      autoLoginIgnorePaths:
+        - /familie/alene-med-barn/soknad/internal/*
+        - /familie/alene-med-barn/soknad/static/css/*
       level: Level4
   tokenx:
     enabled: true

@@ -32,8 +32,8 @@ spec:
       enabled: true
       autoLogin: true
       autoLoginIgnorePaths:
-        - /internal/*
-        - /static/css/*
+        - /familie/alene-med-barn/soknad/internal/*
+        - /familie/alene-med-barn/soknad/static/css/*
       level: Level4
   tokenx:
     enabled: true
