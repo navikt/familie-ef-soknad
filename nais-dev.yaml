@@ -33,7 +33,6 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /familie/alene-med-barn/soknad/static/**/*.css
-        - /familie/alene-med-barn/soknad/static/css/**/*.css
       level: Level4
   tokenx:
     enabled: true
