@@ -7,7 +7,6 @@ import {
 import opplasting from '../../assets/opplasting.svg';
 import OpplastedeFiler from './OpplastedeFiler';
 import { formaterFilstørrelse } from './utils';
-import Modal from 'nav-frontend-modal';
 import { IVedlegg } from '../../models/steg/vedlegg';
 import Environment from '../../Environment';
 import axios from 'axios';
@@ -23,6 +22,7 @@ import { getFeilmelding } from '../../utils/feil';
 import FormData from 'form-data';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, BodyShort } from '@navikt/ds-react';
+import { ModalWrapper } from '../Modal/ModalWrapper';
 
 interface Props {
   oppdaterDokumentasjon: (
@@ -206,13 +206,12 @@ const Filopplaster: React.FC<Props> = ({
       </div>
 
       <div className="filopplaster">
-        <Modal
-          isOpen={åpenModal}
-          onRequestClose={() => lukkModal()}
-          closeButton={true}
-          contentLabel="Modal"
+        <ModalWrapper
+          tittel="Noe har gått galt"
+          visModal={åpenModal}
+          onClose={() => lukkModal()}
         >
-          <div className="feilmelding">
+          <div className="feilmelding-modal">
             {feilmeldinger.map((feilmelding) => (
               <Alert
                 size="small"
@@ -224,7 +223,7 @@ const Filopplaster: React.FC<Props> = ({
               </Alert>
             ))}
           </div>
-        </Modal>
+        </ModalWrapper>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {isDragActive ? (

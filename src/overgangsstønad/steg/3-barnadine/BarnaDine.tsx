@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
-import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -17,6 +16,7 @@ import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Button, Label } from '@navikt/ds-react';
 import styled from 'styled-components';
+import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 const VenterDuBarnLabel = styled(Label)`
   display: block;
@@ -103,11 +103,10 @@ const BarnaDine: React.FC = () => {
               </div>
             </div>
           </div>
-          <Modal
-            isOpen={åpenModal}
-            onRequestClose={() => settÅpenModal(false)}
-            closeButton={true}
-            contentLabel="Legg til barn"
+          <ModalWrapper
+            tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
+            visModal={åpenModal}
+            onClose={() => settÅpenModal(false)}
           >
             <div className="legg-til-barn-modal">
               <LeggTilBarn
@@ -117,7 +116,7 @@ const BarnaDine: React.FC = () => {
                 settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               />
             </div>
-          </Modal>
+          </ModalWrapper>
         </div>
       </Side>
     </>

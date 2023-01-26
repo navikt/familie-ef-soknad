@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useLocation } from 'react-router-dom';
@@ -11,12 +10,12 @@ import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Button, Label } from '@navikt/ds-react';
+import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -103,21 +102,20 @@ const BarnaDine: React.FC = () => {
               </div>
             </div>
           </div>
-          <Modal
-            isOpen={åpenModal}
-            onRequestClose={() => settÅpenModal(false)}
-            closeButton={true}
-            contentLabel="Legg til barn"
+          <ModalWrapper
+            tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
+            visModal={åpenModal}
+            onClose={() => settÅpenModal(false)}
           >
             <div className="legg-til-barn-modal">
               <LeggTilBarn
                 settÅpenModal={settÅpenModal}
                 barneListe={søknad.person.barn}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
                 settBarneListe={settBarneliste}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               />
             </div>
-          </Modal>
+          </ModalWrapper>
         </div>
       </Side>
     </>

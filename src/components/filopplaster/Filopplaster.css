@@ -2,6 +2,7 @@
   max-width: 775px;
   min-height: 68px;
   border-radius: 4px;
+  cursor: pointer;
 }
 .filopplaster-wrapper ul.opplasting-liste {
   padding-inline-start: 1.3em;
@@ -86,6 +87,7 @@
 .feilmelding-alert div {
   font-weight: bold;
 }
-.feilmelding {
-  margin-top: 3rem;
+.feilmelding-modal {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }

@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import LeggTilBarn from './LeggTilBarn';
-import Modal from 'nav-frontend-modal';
 import { hentTekst } from '../../../utils/søknad';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import { BodyShort, Heading } from '@navikt/ds-react';
+import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -36,9 +36,6 @@ const Barnekort: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
   const [åpenEndreModal, settÅpenEndreModal] = useState(false);
-  useEffect(() => {
-    Modal.setAppElement('#root');
-  }, []);
 
   const {
     id,
@@ -169,11 +166,10 @@ const Barnekort: React.FC<Props> = ({
             </button>
           ) : null}
         </div>
-        <Modal
-          isOpen={åpenEndreModal}
-          onRequestClose={() => settÅpenEndreModal(false)}
-          closeButton={true}
-          contentLabel="legg til barn modal"
+        <ModalWrapper
+          tittel="Endre informasjon om barnet"
+          visModal={åpenEndreModal}
+          onClose={() => settÅpenEndreModal(false)}
         >
           <div style={{ padding: '2rem 2.5rem' }}>
             <LeggTilBarn
@@ -184,7 +180,7 @@ const Barnekort: React.FC<Props> = ({
               settBarneListe={settBarneListe}
             />
           </div>
-        </Modal>
+        </ModalWrapper>
       </div>
     </div>
   );
