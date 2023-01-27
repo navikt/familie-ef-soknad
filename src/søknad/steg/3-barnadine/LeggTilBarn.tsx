@@ -96,10 +96,6 @@ const LeggTilBarn: React.FC<Props> = ({
 
   return (
     <Seksjonsgruppe className="legg-til-barn" aria-live="polite">
-      <Heading size="small" level="3">
-        {intl.formatMessage({ id: 'barnadine.leggtil' })}
-      </Heading>
-
       <KomponentGruppe>
         <LeggTilBarnUfødt
           settBo={settBo}
