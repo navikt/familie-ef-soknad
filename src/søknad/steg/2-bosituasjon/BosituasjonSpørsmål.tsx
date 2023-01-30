@@ -76,7 +76,7 @@ const BosituasjonSpørsmål: FC<Props> = ({
     datoFlyttetFraHverandre?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
-      DatoBegrensning.TidligereDatoer
+      DatoBegrensning.AlleDatoer
     )
   );
   const tidligereSamboerFortsattRegistrertPåAdresse =
