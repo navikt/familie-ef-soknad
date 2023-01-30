@@ -52,7 +52,7 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
     datoFlyttetFraHverandre?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
-      DatoBegrensning.TidligereDatoer
+      DatoBegrensning.AlleDatoer
     )
       ? true
       : false;
