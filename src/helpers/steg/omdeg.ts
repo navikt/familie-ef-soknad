@@ -66,7 +66,7 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
         datoFlyttetFraHverandre?.verdi !== undefined &&
         erDatoGyldigOgInnaforBegrensninger(
           datoFlyttetFraHverandre.verdi,
-          DatoBegrensning.TidligereDatoer
+          DatoBegrensning.AlleDatoer
         )
       );
     case EBegrunnelse.endringISamværsordning:
@@ -114,12 +114,11 @@ export const erStegFerdigUtfylt = (
 ): boolean => {
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
     sivilstatus;
-
   const datoFlyttetfraHverandreErUtfyltOgGyldig =
     datoFlyttetFraHverandre?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
-      DatoBegrensning.TidligereDatoer
+      DatoBegrensning.AlleDatoer
     );
 
   const datoSøktSeparasjonerUtfyltOgGyldig =

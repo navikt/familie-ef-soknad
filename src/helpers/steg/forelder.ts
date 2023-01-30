@@ -87,7 +87,7 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
     forelder?.flyttetFra?.verdi &&
     erDatoGyldigOgInnaforBegrensninger(
       forelder.flyttetFra?.verdi,
-      DatoBegrensning.TidligereDatoer
+      DatoBegrensning.AlleDatoer
     )
       ? true
       : false;
