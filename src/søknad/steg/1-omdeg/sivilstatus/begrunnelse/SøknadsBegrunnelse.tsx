@@ -96,7 +96,6 @@ const Søknadsbegrunnelse: FC<Props> = ({
       (samboerInfo.kjennerIkkeIdent && samboerInfo.fødselsdato);
 
     if (!harGyldigSamboerInfo && samlivsbruddAndre) {
-      console.log('sletter tidligere samboerdetaljer2');
       const nySamboerInfo = { ...samboerInfo };
       const nySivilstatus = { ...sivilstatus };
       delete nySamboerInfo.ident;
