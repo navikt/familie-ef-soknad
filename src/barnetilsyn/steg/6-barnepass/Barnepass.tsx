@@ -66,7 +66,7 @@ const Barnepass: FC<Props> = () => {
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
 
-  const hjelpetekstInnholdSøkerFraMndTekst = hentBeskjedMedNavn(
+  const hjelpetekstInnholdSøkerFraMndTekstDel1 = hentBeskjedMedNavn(
     formatMånederTilbake(dagensDato, 3),
     hentTekst('søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1', intl)
   );
@@ -194,7 +194,7 @@ const Barnepass: FC<Props> = () => {
             datovelgerLabel={datovelgerLabel}
             hjelpetekstInnholdTekst={
               <StyledHjelpetekst>
-                <BodyShort>{hjelpetekstInnholdSøkerFraMndTekst}</BodyShort>
+                <BodyShort>{hjelpetekstInnholdSøkerFraMndTekstDel1}</BodyShort>
                 <BodyShort>{hjelpetekstInnholdSøkerFraMndTekstDel2}</BodyShort>
               </StyledHjelpetekst>
             }
