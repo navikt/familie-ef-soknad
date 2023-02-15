@@ -23,10 +23,11 @@ export const delerSøkerBoligMedAndreVoksne = (
   flersvar: false,
   svaralternativer: [
     {
-      id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
+      id: ESøkerDelerBolig.borSammenOgVenterBarn,
       svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+        id: 'bosituasjon.svar.borSammenOgVenterBarn',
       }),
+      alert_tekstid: 'bosituasjon.alert.borSammenOgVenterBarn',
     },
     {
       id: ESøkerDelerBolig.borMidlertidigFraHverandre,
@@ -34,13 +35,6 @@ export const delerSøkerBoligMedAndreVoksne = (
         id: 'bosituasjon.svar.borMidlertidigFraHverandre',
       }),
       alert_tekstid: 'bosituasjon.alert.borMidlertidigFraHverandre',
-    },
-    {
-      id: ESøkerDelerBolig.borSammenOgVenterBarn,
-      svar_tekst: intl.formatMessage({
-        id: 'bosituasjon.svar.borSammenOgVenterBarn',
-      }),
-      alert_tekstid: 'bosituasjon.alert.borSammenOgVenterBarn',
     },
     {
       id: ESøkerDelerBolig.harEkteskapsliknendeForhold,
@@ -63,6 +57,12 @@ export const delerSøkerBoligMedAndreVoksne = (
       alert_tekstid:
         'bosituasjon.alert.tidligereSamboerFortsattRegistrertPåAdresse',
       dokumentasjonsbehov: DokumentasjonBorPåUlikeAdresser,
+    },
+    {
+      id: ESøkerDelerBolig.borAleneMedBarnEllerGravid,
+      svar_tekst: intl.formatMessage({
+        id: 'bosituasjon.svar.borAleneMedBarnEllerGravid',
+      }),
     },
   ],
 });
