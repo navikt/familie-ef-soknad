@@ -871,7 +871,7 @@ export default {
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1':
-    'Child care benefit is paid from the month you meet the criteria for the benefit. You may be entitled to benefit for up to three months before you applied. In your case, starting from [0].',
+    'Child care benefit is paid from the month you meet the criteria for the benefit. You may be entitled to benefit for up to 3 months before you apply. In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
