@@ -503,7 +503,7 @@ export default {
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
     'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. ' +
-    'In either of these cases, you can apply for <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">supplemental benefit for supervision of children</a>.',
+    'In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
     'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>' +
