@@ -36,9 +36,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
             </BodyShort>
           </FeltGruppe>
           <div>
-            <Link
-              href={'https://www.nav.no/familie/alene-med-barn/skolepenger'}
-            >
+            <Link href={'https://www.nav.no/skolepenger-enslig'}>
               <BodyShort>
                 {hentTekst('kvittering.lenke.skolepenger', intl)}
               </BodyShort>
@@ -47,7 +45,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
           <KomponentGruppe>
             <Link
               href={
-                'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/dokumentinnsending'
+                'https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far#NAV150004'
               }
             >
               <LocaleTekst tekst={'kvittering.knapp.skolepenger'} />
@@ -70,9 +68,7 @@ const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
       </FeltGruppe>
 
       <BodyShort>
-        <Link
-          href={'https://www.nav.no/familie/alene-med-barn/tilleggsstonader'}
-        >
+        <Link href={'https://www.nav.no/tilleggsstonader-enslig'}>
           <LocaleTekst tekst={'kvittering.lenke.tilleggsstønader'} />
         </Link>
       </BodyShort>
