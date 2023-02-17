@@ -379,7 +379,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">supplemental benefit for supervision of children</a>.',
+    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
     'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>In this context, “disorder that is not chronic” means a health disorder that has not lasted more than two years or is not expected to last more than two years.  <br/><br/>It is a prerequisite that the child minding arrangements were made because you were working or going to start working and that the arrangements continue during the period you are ill.',
