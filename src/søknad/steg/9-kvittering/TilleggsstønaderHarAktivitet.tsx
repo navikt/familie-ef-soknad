@@ -33,7 +33,7 @@ const TilleggsstønaderHarAktivitet: FC = () => {
         </StyledBeskrivelse>
       </FeltGruppe>
       <BodyShort>
-        <Link href={'https://www.nav.no/familie/alene-med-barn/barnetilsyn'}>
+        <Link href={'https://www.nav.no/barnetilsyn-enslig'}>
           <LocaleTekst
             tekst={'kvittering.lenke.tilleggsstønader.aktivitetskrav'}
           />

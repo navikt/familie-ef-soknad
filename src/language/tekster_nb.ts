@@ -368,7 +368,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',
   'erDuIArbeid.hjelpetekst':
-    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">stønad til pass av barn</a>.',
+    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn</a>.',
   'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
   'erDuIArbeid.alertsstripe-info':
     'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
@@ -587,8 +587,10 @@ export default {
     'Hvis du er gravid, kan du ha rett til overgangsstønad fra måneden før fødsel. Hvis du har fått barn i løpet av de siste 3 månedene, kan du få stønad i inntil 5 måneder før du søker. Det vil si fra og med [0]. ',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3':
     'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
-  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
-    'Stønad til barnetilsyn utbetales fra og med den måneden du fyller vilkårene for stønad. Du kan få etterbetalt stønad for inntil 3 måneder fra du søker dersom du har rett til stønad tilbake i tid. Vi vil vurdere fra hvilket tidspunkt du har rett til stønad selv om du søker fra en bestemt måned.',
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1':
+    'Du kan få stønad til barnetilsyn fra og med den måneden du har rett til stønaden. Du kan ha rett til stønad i inntil 3 måneder før du søker. Det vil si fra og med [0].',
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
+    'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
     'Nei, NAV kan vurdere fra hvilken måned jeg har rett til stønad',
   'søkerFraBestemtMåned.datovelger.overgangsstønad':

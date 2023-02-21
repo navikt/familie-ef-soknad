@@ -502,7 +502,7 @@ export default {
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
     'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. ' +
-    'In either of these cases, you can apply for <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">supplemental benefit for supervision of children</a>.',
+    'In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
     'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>' +
@@ -869,9 +869,9 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3':
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
-  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
-    'Child care benefit is paid from the month you meet the criteria for the benefit. <br/><br/>' +
-    'You can receive retroactive payment of benefit for up to three months from when you apply if you were entitled to benefit during this period.<br/><br/>' +
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1':
+    'Child care benefit is paid from the month you meet the criteria for the benefit. You may be entitled to benefit for up to 3 months before you apply. In your case, starting from [0].',
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':

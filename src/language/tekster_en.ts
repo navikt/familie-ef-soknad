@@ -378,7 +378,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/familie/alene-med-barn/tilleggsstonader#pass-av-barn">supplemental benefit for supervision of children</a>.',
+    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
     'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>In this context, “disorder that is not chronic” means a health disorder that has not lasted more than two years or is not expected to last more than two years.  <br/><br/>It is a prerequisite that the child minding arrangements were made because you were working or going to start working and that the arrangements continue during the period you are ill.',
@@ -599,13 +599,15 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-åpne':
     'About applying from a specific date',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del1':
-    'You can receive transitional benefit from the month after you qualify for the benefit.You may be entitled to benefit for up to three months before you applied.In your case, starting from [0].',
+    'You can receive transitional benefit from the month after you qualify for the benefit. You may be entitled to benefit for up to 3 months before you apply. In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del2':
     'If you are pregnant, you may be entitled to transitional benefit from the month before the baby is born.If you have had a child within the past three months, you can receive benefit for up to five months before you applied. In your case, starting from [0].',
   'søkerFraBestemtMåned.hjelpetekst-innhold.overgangsstønad-del3':
-    'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
-  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass':
-    'Child care benefit is paid from the month you meet the criteria for the benefit. <br/><br/>You can receive retroactive payment of benefit for up to three months from when you apply if you were entitled to benefit during this period.<br/><br/>We will determine from what point you are entitled to benefit even if you apply from a specific month.',
+    'Even if you apply from a specific month, we will determine whether you are entitled to benefit from this month or later.',
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1':
+    'Child care benefit is paid from the month you meet the criteria for the benefit. You may be entitled to benefit for up to 3 months before you apply. In your case, starting from [0].',
+  'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
+    'Even if you apply from a specific month, we will determine whether you are entitled to benefit from this month or later.',
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
     'No, NAV can determine from which month I am entitled to benefit',
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
