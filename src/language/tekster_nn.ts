@@ -284,8 +284,7 @@ export default {
     'Yes, but the other parent and I are living apart temporarily',
   'bosituasjon.svar.borSammenOgVenterBarn':
     'Yes, I live with someone I have or am expecting a child with',
-  'bosituasjon.svar.harEkteskapsliknendeForhold':
-    'Yes, I live with my partner in a marriage-like relationship',
+  'bosituasjon.svar.harEkteskapsliknendeForhold': 'Yes, I live with my partner',
   'bosituasjon.svar.delerBoligMedAndreVoksne':
     'Yes, I share housing with other adults, such as my landlord, friends, siblings or my own parents',
   'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':

@@ -192,7 +192,7 @@ export default {
   'bosituasjon.svar.borSammenOgVenterBarn':
     'Ja, jeg bor sammen med en jeg har eller venter barn med',
   'bosituasjon.svar.harEkteskapsliknendeForhold':
-    'Ja, jeg har samboer og lever i et ekteskapslignende forhold',
+    'Ja, jeg bor med kjæresten min',
   'bosituasjon.svar.delerBoligMedAndreVoksne':
     'Ja, jeg deler bolig med andre voksne, for eksempel utleier, venn, søsken eller egne foreldre',
   'bosituasjon.svar.tidligereSamboerFortsattRegistrertPåAdresse':
