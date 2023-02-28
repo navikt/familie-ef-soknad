@@ -10,12 +10,16 @@ import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
 import { erDatoInnaforBegrensinger } from './utils';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Label } from '@navikt/ds-react';
 
 export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
   .navds-body-short {
     font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
   }
+`;
+
+const LabelWrapper = styled.div`
+  margin-bottom: 0.5rem;
 `;
 
 export enum DatoBegrensning {
@@ -107,13 +111,11 @@ const Datovelger: React.FC<Props> = ({
   return (
     <StyledDatovelger fetSkrift={fetSkrift}>
       <FeltGruppe>
-        <label htmlFor={datolabelid}>
-          <BodyShort>
+        <LabelWrapper>
+          <Label htmlFor={datolabelid}>
             <LocaleTekst tekst={tekstid} />
-          </BodyShort>
-        </label>
-      </FeltGruppe>
-      <FeltGruppe>
+          </Label>
+        </LabelWrapper>
         <Datepicker
           inputId={datolabelid}
           locale={locale}

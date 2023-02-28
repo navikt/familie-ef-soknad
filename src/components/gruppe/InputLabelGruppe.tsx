@@ -1,9 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Label } from 'nav-frontend-skjema';
 import LesMerTekst from '../LesMerTekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Label } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../TextFieldMedBredde';
 
 const StyledComponent = styled.div`
@@ -15,9 +14,8 @@ const StyledComponent = styled.div`
     'hjelpetekst hjelpetekst'
     'input tegn';
 
-  .skjemaelement__label {
+  .navds-label {
     grid-area: label;
-    font-size: 18px;
   }
 
   .navds-form-field {
@@ -67,7 +65,9 @@ const InputLabelGruppe: React.FC<Props> = ({
 }) => {
   return (
     <StyledComponent aria-live="polite">
-      <Label htmlFor={label}> {label}</Label>
+      <Label as={'label'} htmlFor={label}>
+        {label}
+      </Label>
       {hjelpetekst && (
         <LesMerContainer>
           <LesMerTekst
