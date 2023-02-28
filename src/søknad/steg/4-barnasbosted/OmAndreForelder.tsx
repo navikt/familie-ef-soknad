@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../components/spørsmål/MultiSvarSpørsmål';
-import { Checkbox } from 'nav-frontend-skjema';
 import { EHvorforIkkeOppgi } from '../../../models/steg/barnasbosted';
 import { hentTekst } from '../../../utils/søknad';
 import { hvorforIkkeOppgi } from './ForeldreConfig';
@@ -11,7 +10,7 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
-import { ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
+import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -193,15 +192,15 @@ const OmAndreForelder: React.FC<Props> = ({
         </FeltGruppe>
         <FeltGruppe>
           <Checkbox
-            className={'checkbox'}
-            label={hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
             checked={
               forelder.kanIkkeOppgiAnnenForelderFar?.verdi
                 ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi
                 : false
             }
             onChange={hukAvKanIkkeOppgiAnnenForelder}
-          />
+          >
+            {hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
+          </Checkbox>
         </FeltGruppe>
       </KomponentGruppe>
       {forelder.navn && !forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (

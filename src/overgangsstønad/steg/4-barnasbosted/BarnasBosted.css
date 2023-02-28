@@ -4,10 +4,6 @@
   margin-bottom: 5rem;
   border-radius: 5px;
 }
-.barnas-bosted .navds-label,
-.barnas-bosted .navds-body-short {
-  font-size: 18px;
-}
 .barnas-bosted__innhold {
   margin-left: 2rem;
   margin-right: 2rem;
@@ -56,10 +52,6 @@
 .barnas-bosted-lagt-til__svar {
   padding-left: 3rem;
   padding-right: 2rem;
-}
-.barnas-bosted-lagt-til .navds-label,
-.barnas-bosted-lagt-til .navds-body-short {
-  font-size: 18px;
 }
 .spørsmål-og-svar {
   margin-top: 2rem;
