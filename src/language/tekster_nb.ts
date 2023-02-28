@@ -374,7 +374,7 @@ export default {
     'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
   'erDuIArbeid.alertsstripe-dokumentasjon':
     '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
-  'arbeidssituasjon.spm': 'Hvordan er arbeidsituasjonen din?',
+  'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
