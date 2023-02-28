@@ -498,8 +498,10 @@ export default {
   'utdanning.spm.mål': 'Hva er målet med utdanningen?',
   'utdanning.alert-tittel.mål':
     'Du må legge ved dokumentasjon på utdanningen du tar eller skal ta',
-  'utdanning.alert-beskrivelse.mål':
-    'Dokumentasjonen må vise: <ul><li>navn på studiested</li><li>navn på studie</li><li>hvor mye du skal studere</li><li>perioden du skal studere</li></ul><br/><br/>Dokumentasjonen må vise tydelig hvem det gjelder. <br/>Får du allerede overgangsstønad og søker om å forlenge stønadsperioden fordi du har fått tilbud om studieplass? Da må dokumentasjonen også vise datoen du takket ja til tilbudet.',
+  'utdanning.alert-beskrivelse.mål.skolepenger':
+    'Dokumentasjonen må vise: <ul><li>navn på studiested</li><li>navn på studie</li><li>hvor mye du skal studere</li><li>perioden du skal studere</li></ul><br/>Dokumentasjonen må vise tydelig hvem det gjelder.',
+  'utdanning.alert-beskrivelse.mål.overgangsstønad':
+    'Dokumentasjonen må vise: <ul><li>navn på studiested</li><li>navn på studie</li><li>hvor mye du skal studere</li><li>perioden du skal studere</li></ul><br/>Dokumentasjonen må vise tydelig hvem det gjelder. <br/>Får du allerede overgangsstønad og søker om å forlenge stønadsperioden fordi du har fått tilbud om studieplass? Da må dokumentasjonen også vise datoen du takket ja til tilbudet.',
   'utdanning.label.utgifter': 'Utgifter til skolepenger',
   'utdanning.label.utgifter.dokumentasjon':
     'Dokumentasjon på utgiftene dine til studieavgift, semesteravgift og/eller eksamensgebyr. <br />Det dokumenterer du med faktura i ditt navn.',
@@ -666,13 +668,15 @@ export default {
   'dokumentasjon.barnetilsynsbehov.beskrivelse':
     '<ul><li>Dokumentasjon fra legen din som bekrefter at barnet har medisinske, psykiske eller store sosiale problemer og trenger tilsyn.<li/><li>Dokumentasjon som beskriver behovet barnet ditt har for tilsyn og hvordan dette påvirker muligheten din til å være i arbeid eller yrkesrettet aktivitet.</li></ul>',
   'dokumentasjon.arbeidskontrakt.tittel':
-    'Arbeidskontrakt som viser at du har fått tilbud om arbeid.',
+    'Du må legge ved arbeidskontrakt som viser at du har fått tilbud om jobb.',
   'dokumentasjon.arbeidskontrakt.beskrivelse':
-    'Dokumentasjonen må tydelig vise: <ul><li>navn på arbeidssted</li><li>stillingsprosent</li><li>dato for oppstart</li><li>dato du fikk tilbudet</li></ul>',
+    'Dokumentasjonen må tydelig vise: <ul><li>navn på arbeidssted</li><li>stillingsprosent</li><li>datoen du begynner i jobben</li><li>datoen du fikk tilbudet</li></ul>',
   'dokumentasjon.utdanning.tittel':
     'Dokumentasjon på utdanningen du tar eller skal ta',
   'dokumentasjon.utdanning.beskrivelse':
     'Dokumentasjonen må vise:<ul><li>navn på studiested</li><li>navn på studie</li><li>hvor mye du skal studere</li><li>perioden du skal studere</li></ul>Dokumentasjonen må vise tydelig hvem det gjelder. <br/><br/>Får du allerede overgangsstønad og søker om å forlenge stønadsperioden fordi du har fått tilbud om studieplass? Da må dokumentasjonen også vise datoen du takket ja til tilbudet.',
+  'dokumentasjon.utdanning.beskrivelse.skolepenger':
+    'Dokumentasjonen må vise:<ul><li>navn på studiested</li><li>navn på studie</li><li>hvor mye du skal studere</li><li>perioden du skal studere</li></ul>Dokumentasjonen må vise tydelig hvem det gjelder.',
   'dokumentasjon.lærling.tittel': 'Lærlingkontrakt',
   'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
     'Dokumentasjon på arbeidsforholdet og årsaken til at du sluttet',
@@ -761,7 +765,7 @@ export default {
   'kvittering.tittel.tilleggsstønader.aktivitetskrav':
     'Som enslig mor eller far i arbeid, kan du ha rett til stønad til barnetilsyn',
   'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
-    'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>Du kan som hovedregel motta stønaden frem til barnet fullfører fjerde skoleår.',
+    'Stønaden dekker 64 prosent av utgiftene til barnepass, som for eksempel barnehage, skolefritidsordning (SFO) eller dagmamma. <br/><br/> Dersom du tjener mer enn 608 106 kroner i året, har du ikke rett til stønaden.<br/><br/>Du kan som hovedregel motta stønaden frem til barnet fullfører 4. skoleår.',
   'kvittering.lenke.tilleggsstønader.aktivitetskrav':
     'Les mer om stønad til barnetilsyn',
   'kvittering.knapp.tilleggsstønader.aktivitetskrav':
@@ -776,7 +780,7 @@ export default {
   'barnetilsyn.hjelpetekst-åpne.hvilke':
     'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
   'barnetilsyn.hjelpetekst-innhold.hvilke':
-    'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår.\n<br/><br/>På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n<br/><br/>I noen tilfeller kan du få stønad til barnetilsyn etter at barnet ditt er ferdig med fjerde skoleår:\n<ul><li>Hvis du har barn som trenger vesentlig mer pass enn jevnaldrende. Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.</li><li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li><li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li></ul>',
+    'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår.\n<br/><br/>På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n<br/><br/>I noen tilfeller kan du få stønad til barnetilsyn etter at barnet ditt er ferdig med 4. skoleår:\n<ul><li>Hvis du har barn som trenger vesentlig mer pass enn jevnaldrende. Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.</li><li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li><li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li></ul>',
   'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] sitt tilsynsbehov',
   'barnadine.barnetilsyn.info.brukpdf':
     'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
