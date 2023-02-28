@@ -14,7 +14,7 @@ import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
 import ÅrMånedVelger from '../dato/ÅrMånedvelger';
 import { strengTilDato } from '../../utils/dato';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Fieldset, Label } from '@navikt/ds-react';
+import { Label } from '@navikt/ds-react';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {
@@ -71,29 +71,27 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <StyledMultisvarSpørsmål>
-          <Fieldset legend={intl.formatMessage({ id: spørsmål.tekstid })}>
-            <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
-              <LesMerTekst
-                åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-                innholdTekst={hjelpetekstInnholdTekst}
-              />
-              <div className="radioknapp__multiSvar">
-                {spørsmål.svaralternativer.map((svar: ISvar) => {
-                  const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
-                  return (
-                    <RadioPanel
-                      key={svar.svar_tekst}
-                      name={spørsmål.søknadid}
-                      label={svar.svar_tekst}
-                      value={svar.svar_tekst}
-                      checked={svarISøknad ? svarISøknad : false}
-                      onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
-                    />
-                  );
-                })}
-              </div>
-            </SkjemaGruppe>
-          </Fieldset>
+          <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
+            <LesMerTekst
+              åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
+              innholdTekst={hjelpetekstInnholdTekst}
+            />
+            <div className="radioknapp__multiSvar">
+              {spørsmål.svaralternativer.map((svar: ISvar) => {
+                const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
+                return (
+                  <RadioPanel
+                    key={svar.svar_tekst}
+                    name={spørsmål.søknadid}
+                    label={svar.svar_tekst}
+                    value={svar.svar_tekst}
+                    checked={svarISøknad ? svarISøknad : false}
+                    onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
+                  />
+                );
+              })}
+            </div>
+          </SkjemaGruppe>
         </StyledMultisvarSpørsmål>
       </KomponentGruppe>
 
