@@ -3,12 +3,6 @@ import styled from 'styled-components/macro';
 
 const StyledFeltGruppe = styled.section`
   padding-bottom: 80px;
-
-  .navds-body-short,
-  .navds-body-long,
-  .navds-label {
-    font-size: 18px;
-  }
 `;
 
 const SeksjonGruppe: React.FC<{
