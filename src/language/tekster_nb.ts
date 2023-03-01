@@ -399,6 +399,9 @@ export default {
   'arbeidsforhold.knapp.slettArbeidsgiver': 'Fjern arbeidssted',
   'arbeidsforhold.label.navn': 'Navn på arbeidssted',
   'arbeidsforhold.label.arbeidsmengde': 'Hvor mye jobber du?',
+  'arbeidsforhold.label.arbeidsmengde.beskrivelse':
+    'Hvis arbeidskontrakten din sier noe annet enn hvor mye du faktisk jobber, oppgir du hvor mye du faktisk jobber. <br /><br />' +
+    'Hvis det varierer fra måned til måned hvor mye du jobber, anslår du omtrent hvor mye du regner med å jobbe fremover',
   'arbeidsforhold.label.ansettelsesforhold':
     'Hva slags ansettelsesforhold har du?',
   'arbeidsforhold.svar.fast': 'Fast stilling',

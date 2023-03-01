@@ -107,6 +107,9 @@ const Aksjeselskap: FC<Props> = ({
             nøkkel={EAksjeselskap.arbeidsmengde}
             type={'number'}
             bredde={'XS'}
+            utvidetTekstNøkkel={
+              'arbeidsforhold.label.arbeidsmengde.beskrivelse'
+            }
             value={
               aksjeselskap?.arbeidsmengde?.verdi
                 ? aksjeselskap?.arbeidsmengde?.verdi

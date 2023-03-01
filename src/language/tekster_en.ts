@@ -410,6 +410,9 @@ export default {
   'arbeidsforhold.knapp.slettArbeidsgiver': 'Remove employer',
   'arbeidsforhold.label.navn': 'Your place of work',
   'arbeidsforhold.label.arbeidsmengde': 'How much do you work?',
+  'arbeidsforhold.label.arbeidsmengde.beskrivelse':
+    'If your work contract differs from what you actually work, you state how much you actually work. <br /><br />' +
+    'If it varies from month to month how much you work, estimate approximately how much you expect to work in the future',
   'arbeidsforhold.label.ansettelsesforhold': 'What is your employment status?',
   'arbeidsforhold.svar.fast': 'Permanent position',
   'arbeidsforhold.svar.midlertidig': 'Temporary position',

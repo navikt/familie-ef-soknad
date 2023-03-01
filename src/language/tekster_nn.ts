@@ -557,6 +557,10 @@ export default {
 
   'arbeidsforhold.label.navn': 'Your place of work',
   'arbeidsforhold.label.arbeidsmengde': 'How much do you work?',
+  'arbeidsforhold.label.arbeidsmengde.beskrivelse':
+    'Hvis arbeidskontrakten din sier noe annet enn hvor mye du faktisk jobber, oppgir du hvor mye du faktisk jobber. <br /><br />' +
+    'Hvis det varierer fra måned til måned hvor mye du jobber, anslår du omtrent hvor mye du regner med å jobbe fremover',
+
   'arbeidsforhold.label.ansettelsesforhold': 'What is your employment status?',
   'arbeidsforhold.svar.fast': 'Permanent position',
   'arbeidsforhold.svar.midlertidig': 'Temporary position',

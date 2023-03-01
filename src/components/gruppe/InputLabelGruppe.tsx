@@ -4,6 +4,7 @@ import LesMerTekst from '../LesMerTekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import { BodyShort, Label } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../TextFieldMedBredde';
+import LocaleTekst from '../../language/LocaleTekst';
 
 const StyledComponent = styled.div`
   display: grid;
@@ -22,20 +23,21 @@ const StyledComponent = styled.div`
     grid-area: input;
   }
 
-  .navds-body-short {
+  .beskrivendeTekst {
     padding-left: 0.5rem;
     grid-area: tegn;
     align-self: center;
   }
 `;
 
-const LesMerContainer = styled.div`
+const HjelpetekstContainer = styled.div`
   grid-area: hjelpetekst;
   margin-bottom: 0.5rem;
 `;
 
 interface Props {
   label: string;
+  utvidetTekstNøkkel?: string;
   hjelpetekst?: IHjelpetekst;
   nøkkel: string;
   type?: 'email' | 'number' | 'password' | 'tel' | 'text' | 'url';
@@ -62,6 +64,7 @@ const InputLabelGruppe: React.FC<Props> = ({
   beskrivendeTekst,
   feil,
   placeholder,
+  utvidetTekstNøkkel,
 }) => {
   return (
     <StyledComponent aria-live="polite">
@@ -69,12 +72,19 @@ const InputLabelGruppe: React.FC<Props> = ({
         {label}
       </Label>
       {hjelpetekst && (
-        <LesMerContainer>
+        <HjelpetekstContainer>
           <LesMerTekst
             åpneTekstid={hjelpetekst.headerTekstid}
             innholdTekstid={hjelpetekst.innholdTekstid}
           />
-        </LesMerContainer>
+        </HjelpetekstContainer>
+      )}
+      {utvidetTekstNøkkel && (
+        <HjelpetekstContainer>
+          <BodyShort as={'span'} size={'small'}>
+            <LocaleTekst tekst={utvidetTekstNøkkel} />
+          </BodyShort>
+        </HjelpetekstContainer>
       )}
       <TextFieldMedBredde
         label={label}
@@ -89,7 +99,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         error={feil}
         placeholder={placeholder}
       />
-      <BodyShort>{beskrivendeTekst}</BodyShort>
+      <BodyShort className={'beskrivendeTekst'}>{beskrivendeTekst}</BodyShort>
     </StyledComponent>
   );
 };

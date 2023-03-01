@@ -152,6 +152,9 @@ const Arbeidsgiver: React.FC<Props> = ({
           <InputLabelGruppe
             label={arbeidsmengdeLabel}
             nøkkel={EArbeidsgiver.arbeidsmengde}
+            utvidetTekstNøkkel={
+              'arbeidsforhold.label.arbeidsmengde.beskrivelse'
+            }
             type={'number'}
             bredde={'XS'}
             settInputFelt={(e) =>
