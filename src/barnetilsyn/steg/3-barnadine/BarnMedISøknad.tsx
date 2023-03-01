@@ -5,19 +5,10 @@ import styled from 'styled-components/macro';
 import { Checkbox } from '@navikt/ds-react';
 
 const StyledCheckbox = styled.div`
-  .skjemaelement {
-    &__label {
-      font-size: 18px !important;
-      text-align: left;
-
-      &:before {
-        box-sizing: border-box;
-      }
-    }
-    &.skalHaBarnepass {
-      margin: 1rem 0;
-    }
+  label {
+    text-align: left;
   }
+  margin: 1rem 0;
 `;
 
 interface Props {
@@ -36,7 +27,6 @@ const BarnMedISøknad: FC<Props> = ({
   return (
     <StyledCheckbox>
       <Checkbox
-        className={'skalHaBarnepass'}
         checked={skalHaBarnepass}
         onChange={() => toggleSkalHaBarnepass(id)}
       >

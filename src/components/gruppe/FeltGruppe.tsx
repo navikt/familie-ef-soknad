@@ -8,7 +8,6 @@ const StyledFeltGruppe = styled.div`
     margin-bottom: 0;
 
     &__label {
-      font-size: 18px !important;
       margin-bottom: 1rem;
     }
   }
@@ -44,12 +43,8 @@ const StyledFeltGruppe = styled.div`
 
       .skjemaelement__label {
         margin-bottom: 1rem;
-        font-size: 18px;
       }
     }
-  }
-  .navds-button {
-    font-size: 18px;
   }
 `;
 

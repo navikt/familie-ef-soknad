@@ -33,8 +33,4 @@ export const StyledKnapper = styled.div`
   .avbryt {
     grid-area: avbryt;
   }
-
-  .navds-button {
-    font-size: 18px;
-  }
 `;
