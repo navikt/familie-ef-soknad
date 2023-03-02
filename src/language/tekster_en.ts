@@ -515,9 +515,9 @@ export default {
   'utdanning.alert-tittel.mål':
     'You must provide documentation of the education you are taking or are going to take',
   'utdanning.alert-beskrivelse.mål.skolepenger':
-    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul><br/>The documentation must show clearly to whom it pertains.',
+    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul><br/>The documentation must clearly show who it concerns.',
   'utdanning.alert-beskrivelse.mål.overgangsstønad':
-    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul><br/>The documentation must show clearly to whom it pertains. If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
+    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul><br/>The documentation must clearly show who it concerns. If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
   'utdanning.label.utgifter': 'Expenses for school fees',
   'utdanning.label.utgifter.dokumentasjon':
     'Documentation of your expenses for tuition fees, semester fees and/or examination fees <br/>Documentation in this context is an invoice made out to you',
@@ -692,15 +692,15 @@ export default {
   'dokumentasjon.barnetilsynsbehov.beskrivelse':
     '<ul><li>Documentation from your doctor confirming that the child has medical, mental or major social problems and needs supervision. <li/><li>Documentation describing how much supervision your child needs, what kind of supervision, and how this affects your ability to be in occupational activity</li></ul>',
   'dokumentasjon.arbeidskontrakt.tittel':
-    'You must submit a work contract proving that you have been offered a job.',
+    'You must submit an employment contract proving that you have been offered a job.',
   'dokumentasjon.arbeidskontrakt.beskrivelse':
     'The documentation must indicate: <ul><li>the name of the employer</li><li>your employment percentage</li><li>the date you will start in the job </li><li>the date you received the offer</li></ul>',
   'dokumentasjon.utdanning.tittel':
     'Documentation of the education you are taking or are going to take',
   'dokumentasjon.utdanning.beskrivelse.skolepenger':
-    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul>The documentation must show clearly to whom it pertains.',
+    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul>The documentation must clearly show who it concerns.',
   'dokumentasjon.utdanning.beskrivelse':
-    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul>The documentation must show clearly to whom it pertains. <br/><br/>If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
+    'The documentation must indicate:<ul><li>the name of the place of study</li><li>the name of the course or education</li><li>how much you are going to study</li><li>the period in which you are going to study</li></ul>The documentation must clearly show who it concerns. <br/><br/>If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
   'dokumentasjon.lærling.tittel': 'Apprenticeship contract',
   'dokumentasjon.arbeidsforhold-oppsigelse.tittel':
     'Documentation of your employment and the reason you resigned',

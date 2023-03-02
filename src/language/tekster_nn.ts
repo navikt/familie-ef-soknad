@@ -693,7 +693,7 @@ export default {
     '<li>how much you are going to study</li>' +
     '<li>the period in which you are going to study</li>' +
     '</ul><br/><br/>' +
-    'The documentation must show clearly to whom it pertains. ',
+    'The documentation must clearly show who it concerns. ',
   'utdanning.alert-beskrivelse.mål.overgangsstønad':
     'The documentation must indicate:<ul>' +
     '<li>the name of the place of study</li>' +
@@ -701,7 +701,7 @@ export default {
     '<li>how much you are going to study</li>' +
     '<li>the period in which you are going to study</li>' +
     '</ul><br/><br/>' +
-    'The documentation must show clearly to whom it pertains. ' +
+    'The documentation must clearly show who it concerns. ' +
     'If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
 
   'utdanning.label.utgifter': 'Expenses for school fees',
@@ -1083,14 +1083,14 @@ export default {
     '<li>the name of the course or education</li>' +
     '<li>how much you are going to study</li>' +
     '<li>the period in which you are going to study</li></ul>' +
-    'The documentation must show clearly to whom it pertains.',
+    'The documentation must clearly show who it concerns.',
   'dokumentasjon.utdanning.beskrivelse':
     'The documentation must indicate:<ul>' +
     '<li>the name of the place of study</li>' +
     '<li>the name of the course or education</li>' +
     '<li>how much you are going to study</li>' +
     '<li>the period in which you are going to study</li></ul>' +
-    'The documentation must show clearly to whom it pertains. <br/><br/>' +
+    'The documentation must clearly show who it concerns. <br/><br/>' +
     'If you are already receiving transitional benefit and are applying for an extension of the benefit period because you have been offered a place on a course of education, the documentation must also show the date on which you accepted the offer.',
 
   'dokumentasjon.lærling.tittel': 'Apprenticeship contract',
