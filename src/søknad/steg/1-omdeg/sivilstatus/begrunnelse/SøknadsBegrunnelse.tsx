@@ -236,7 +236,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
           <FeltGruppe>
             <IdentEllerFødselsdatoGruppe
               identLabel={hentTekst('person.ident', intl)}
-              datoLabel={hentTekst('person.fødselsdato', intl)}
+              datoLabel={hentTekst('datovelger.fødselsdato', intl)}
               checkboxLabel={hentTekst('person.checkbox.ident', intl)}
               ident={ident && !samboerInfo.kjennerIkkeIdent ? ident : ''}
               fødselsdato={samboerInfo.fødselsdato?.verdi || ''}
