@@ -56,6 +56,7 @@ const initialState = (intl: LokalIntlShape): ISøknad => {
       {
         ...DokumentasjonUtdanning,
         label: hentTekst(DokumentasjonUtdanning.tittel, intl),
+        beskrivelse: 'dokumentasjon.utdanning.beskrivelse.skolepenger',
       },
     ],
     harBekreftet: false,

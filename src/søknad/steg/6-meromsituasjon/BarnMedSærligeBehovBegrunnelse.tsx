@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { IBarn } from '../../../models/steg/barn';
-import { hentBarnetsNavnEllerBeskrivelseMedGenetiv } from '../../../utils/barn';
+import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
 import { useSøknad } from '../../../context/SøknadContext';
 import { storeForbokstaver } from '../../../utils/tekst';
 import './BarnMedSærligeBehovBegrunnelse.css';
@@ -64,10 +64,7 @@ const BarnMedSærligeBehovLabelTekst: React.FC<{
   barn: IBarn;
   intl: LokalIntlShape;
 }> = (props: { barn: IBarn; intl: LokalIntlShape }) => {
-  const barnetsNavn = hentBarnetsNavnEllerBeskrivelseMedGenetiv(
-    props.barn,
-    props.intl
-  );
+  const barnetsNavn = hentBarnetsNavnEllerBeskrivelse(props.barn, props.intl);
   const intl = useLokalIntlContext();
   const navn = props.barn.navn.verdi
     ? storeForbokstaver(barnetsNavn)
