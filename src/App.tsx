@@ -19,12 +19,9 @@ import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
 import { useLokalIntlContext } from './context/LokalIntlContext';
 import { Alert, Loader, Modal } from '@navikt/ds-react';
-import axios from 'axios';
 
 // @ts-ignore
 Modal.setAppElement(document.getElementById('modal-a11y-wrapper'));
-
-axios.defaults.headers.common['Nav-Consumer-Id'] = 'familie-ef-soknad';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);

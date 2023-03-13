@@ -43,8 +43,9 @@ export const doProxy = (targetUrl: string, context: string): RequestHandler => {
   });
 };
 
-export const addCallId = (): RequestHandler => {
+export const addRequestInfo = (): RequestHandler => {
   return (req: Request, _res: Response, next: NextFunction) => {
+    req.headers['Nav-Consumer-Id'] = 'familie-ef-soknad';
     req.headers['nav-call-id'] = req.headers['x-correlation-id'] ?? uuid();
     next();
   };

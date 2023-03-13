@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import getHtmlWithDecorator from './decorator';
 import logger from './logger';
-import { addCallId, doProxy } from './proxy';
+import { addRequestInfo, doProxy } from './proxy';
 import attachToken from './tokenProxy';
 import { miljø } from './miljø';
 
@@ -37,14 +37,14 @@ const routes = () => {
 
   expressRouter.use(
     `${BASE_PATH}/api`,
-    addCallId(),
+    addRequestInfo(),
     attachToken('familie-ef-soknad-api'),
     doProxy(miljø.apiUrl, `${BASE_PATH}/api`)
   );
 
   expressRouter.use(
     `${BASE_PATH}/dokument`,
-    addCallId(),
+    addRequestInfo(),
     attachToken('familie-dokument'),
     doProxy(miljø.dokumentUrl, `${BASE_PATH}/dokument`)
   );
