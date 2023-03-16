@@ -2,12 +2,12 @@ import React from 'react';
 import Banner from '../../components/Banner';
 import classNames from 'classnames';
 import LocaleTekst from '../../language/LocaleTekst';
-import Stegindikator from 'nav-frontend-stegindikator';
 import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Button, Panel, Heading, BodyShort } from '@navikt/ds-react';
+import { Stegindikator } from '../../components/stegindikator/Stegindikator';
 
 interface ISide {
   tittel: string;
@@ -53,11 +53,7 @@ const Side: React.FC<ISide> = ({
     <div className={'skjema'}>
       <Banner tekstid={'banner.tittel.arbeidssøker'} />
       <div className={'side'}>
-        <Stegindikator
-          autoResponsiv={true}
-          aktivtSteg={aktivtSteg}
-          steg={stegobjekter}
-        />
+        <Stegindikator aktivtSteg={aktivtSteg} stegListe={stegobjekter} />
         <Panel className={'side__innhold'}>
           <div className={'innholdscontainer'}>
             <Heading size="medium" className="hoved">
