@@ -1,5 +1,5 @@
 import React from 'react';
-import Stegindikator from 'nav-frontend-stegindikator';
+import { Stegindikator } from '../../components/stegindikator/Stegindikator';
 import Banner from '../../components/Banner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
@@ -63,11 +63,7 @@ const Side: React.FC<ISide> = ({
     <div className={'søknadsdialog'}>
       <Banner tekstid={hentBannertittel(stønadstype)} />
       <div className={'side'}>
-        <Stegindikator
-          autoResponsiv={true}
-          aktivtSteg={aktivtSteg}
-          steg={stegobjekter}
-        />
+        <Stegindikator stegListe={stegobjekter} aktivtSteg={aktivtSteg} />
         {!skalViseKnapper && (
           <div className={'brev_ikon'}>
             <SendBrevSVG />
