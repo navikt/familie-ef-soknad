@@ -6,8 +6,10 @@ const StegListe = styled.ol`
   display: flex;
   justify-content: center;
 
-  margin: 0;
+  margin: 1rem 0;
   padding: 0;
+
+  grid-area: stegindikator;
 `;
 
 const Steg = styled.li`
@@ -89,7 +91,7 @@ export const Stegindikator: React.FC<IStegIndikatorProps> = ({
   aktivtSteg,
 }) => {
   return (
-    <StegListe aria-hidden={true} className={'stegindikator'}>
+    <StegListe aria-hidden={true}>
       {stegListe.map((steg) => {
         const aktivt = steg.index === aktivtSteg;
         const ferdig = steg.index < aktivtSteg;
