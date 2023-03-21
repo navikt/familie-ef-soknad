@@ -26,9 +26,6 @@
   width: 600px;
   height: 600px;
 }
-.legg-til-barn .navds-label {
-  font-size: 18px;
-}
 .legg-til-barn .radiogruppe-2-svar {
   display: flex;
   flex-direction: row;
@@ -53,7 +50,4 @@
 }
 .legg-til-barn .bor-ikke {
   margin-top: 0.5rem;
-}
-.legg-til-barn .datovelger .navds-body-short {
-  font-size: 18px;
 }

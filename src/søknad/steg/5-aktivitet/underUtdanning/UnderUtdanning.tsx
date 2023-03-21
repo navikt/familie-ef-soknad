@@ -150,6 +150,7 @@ const UnderUtdanning: React.FC<Props> = ({
           <MålMedUtdanningen
             utdanning={utdanning}
             oppdaterUtdanning={oppdaterUtdanning}
+            stønadstype={stønadstype}
           />
         )}
         {søkerSkalJobbeDeltid && (
@@ -162,6 +163,7 @@ const UnderUtdanning: React.FC<Props> = ({
               <MålMedUtdanningen
                 utdanning={utdanning}
                 oppdaterUtdanning={oppdaterUtdanning}
+                stønadstype={stønadstype}
               />
             )}
           </>

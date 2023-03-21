@@ -29,10 +29,23 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { ISøknad } from '../../models/søknad';
-import { datoTilStreng } from '../../../utils/dato';
+import {
+  dagensDato,
+  datoTilStreng,
+  formatMånederTilbake,
+} from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { hentBeskjedMedNavn } from '../../../utils/språk';
+import { BodyShort } from '@navikt/ds-react';
+import styled from 'styled-components';
 
 interface Props {}
+
+const StyledHjelpetekst = styled.div`
+  .navds-body-short {
+    padding-bottom: 1rem;
+  }
+`;
 const Barnepass: FC<Props> = () => {
   const intl = useLokalIntlContext();
   const location = useLocation();
@@ -53,8 +66,13 @@ const Barnepass: FC<Props> = () => {
 
   const datovelgerLabel = 'søkerStønadFraBestemtMnd.datovelger.barnepass';
 
-  const hjelpetekstInnholdSøkerFraMndTekst = hentTekst(
-    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass',
+  const hjelpetekstInnholdSøkerFraMndTekstDel1 = hentBeskjedMedNavn(
+    formatMånederTilbake(dagensDato, 3),
+    hentTekst('søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del1', intl)
+  );
+
+  const hjelpetekstInnholdSøkerFraMndTekstDel2 = hentTekst(
+    'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2',
     intl
   );
 
@@ -174,7 +192,12 @@ const Barnepass: FC<Props> = () => {
             søkerFraBestemtMåned={søkerFraBestemtMåned}
             valgtDato={søknadsdato}
             datovelgerLabel={datovelgerLabel}
-            hjelpetekstInnholdTekst={hjelpetekstInnholdSøkerFraMndTekst}
+            hjelpetekstInnholdTekst={
+              <StyledHjelpetekst>
+                <BodyShort>{hjelpetekstInnholdSøkerFraMndTekstDel1}</BodyShort>
+                <BodyShort>{hjelpetekstInnholdSøkerFraMndTekstDel2}</BodyShort>
+              </StyledHjelpetekst>
+            }
             alertTekst={alertTekst}
           />
         </SeksjonGruppe>

@@ -3,7 +3,6 @@ import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import Filopplaster from '../../../components/filopplaster/Filopplaster';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { Checkbox } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import {
   BarnetilsynDokumentasjon,
@@ -13,7 +12,7 @@ import { IVedlegg } from '../../../models/steg/vedlegg';
 import { EFiltyper } from '../../../helpers/filtyper';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { BodyShort, Checkbox, Heading } from '@navikt/ds-react';
 
 interface Props {
   dokumentasjon: IDokumentasjon;
@@ -56,10 +55,11 @@ const LastOppVedlegg: React.FC<Props> = ({
       {hvisIkkeFakturaForBarnepass && (
         <FeltGruppe>
           <Checkbox
-            label={hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
             checked={dokumentasjon.harSendtInn}
             onChange={settHarSendtInnTidligere}
-          />
+          >
+            {hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
+          </Checkbox>
         </FeltGruppe>
       )}
       {!dokumentasjon.harSendtInn && (

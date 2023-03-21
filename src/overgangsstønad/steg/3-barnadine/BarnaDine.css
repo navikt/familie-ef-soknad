@@ -26,10 +26,7 @@
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-.barna-dine .barnekort-wrapper .barnekort .navds-body-short,
-.barna-dine .barnekort-wrapper .barnekort .navds-label {
-  font-size: 18px;
-}
+
 .barna-dine .barnekort-wrapper .barnekort.legg-til {
   height: 230px;
   text-align: center;
@@ -70,9 +67,6 @@
 }
 .barna-dine .barnetilsyn__hvilke-barn {
   margin-bottom: 4rem;
-}
-.barna-dine .barnetilsyn__hvilke-barn .navds-label {
-  font-size: 18px;
 }
 .barna-dine .barnetilsyn__hvilke-barn .readMore__mer ul {
   padding-inline-start: 1rem;

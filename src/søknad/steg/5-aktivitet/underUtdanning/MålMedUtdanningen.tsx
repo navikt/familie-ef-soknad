@@ -10,15 +10,18 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { BodyShort, Label, Textarea } from '@navikt/ds-react';
+import { Stønadstype } from '../../../../models/søknad/stønadstyper';
 
 interface Props {
   utdanning: IUnderUtdanning;
   oppdaterUtdanning: (nøkkel: EUtdanning, label: string, verdi: string) => void;
+  stønadstype: Stønadstype;
 }
 
 const MålMedUtdanningen: React.FC<Props> = ({
   utdanning,
   oppdaterUtdanning,
+  stønadstype,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -56,7 +59,9 @@ const MålMedUtdanningen: React.FC<Props> = ({
             <LocaleTekst tekst="utdanning.alert-tittel.mål" />
           </Label>
           <BodyShort>
-            <LocaleTekst tekst="utdanning.alert-beskrivelse.mål" />
+            <LocaleTekst
+              tekst={`utdanning.alert-beskrivelse.mål.${stønadstype}`}
+            />
           </BodyShort>
         </AlertStripeDokumentasjon>
       </FeltGruppe>
