@@ -62,7 +62,7 @@ export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
     case EBegrunnelse.samlivsbruddAndre:
       return (
         tidligereSamboerDetaljer &&
-        harFyltUtSamboerDetaljer(tidligereSamboerDetaljer, true) &&
+        harFyltUtSamboerDetaljer(tidligereSamboerDetaljer, false) &&
         datoFlyttetFraHverandre?.verdi !== undefined &&
         erDatoGyldigOgInnaforBegrensninger(
           datoFlyttetFraHverandre.verdi,
