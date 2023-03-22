@@ -13,10 +13,6 @@ import axios from 'axios';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { dagensDatoMedTidspunktStreng } from '../../utils/dato';
-import {
-  HEADER_NAV_CONSUMER_ID,
-  HEADER_NAV_CONSUMER_ID_VALUE,
-} from '../../utils/apiutil';
 import { logFeilFilopplasting } from '../../utils/amplitude';
 import { getFeilmelding } from '../../utils/feil';
 import FormData from 'form-data';
@@ -122,7 +118,6 @@ const Filopplaster: React.FC<Props> = ({
               headers: {
                 'Content-Type': 'multipart/form-data',
                 accept: 'application/json',
-                [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
               },
               transformRequest: (data, headers) => {
                 return requestData;

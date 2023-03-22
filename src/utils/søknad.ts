@@ -10,10 +10,6 @@ import {
   standardLabelsBarn,
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
-import {
-  HEADER_NAV_CONSUMER_ID,
-  HEADER_NAV_CONSUMER_ID_VALUE,
-} from './apiutil';
 import { LokalIntlShape } from '../language/typer';
 
 export const hentPersonData = () => {
@@ -51,7 +47,6 @@ export const hentMellomlagretSøknadFraDokument = <T>(
       headers: {
         'Content-Type': 'application/json',
         accept: 'application/json',
-        [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
       },
     })
     .then((response: { data?: T }) => {
@@ -63,14 +58,17 @@ export const mellomlagreSøknadTilDokument = <T>(
   søknad: T,
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T> => {
-  return axios.post(`${Environment().mellomlagerProxyUrl + stønadstype}`, søknad, {
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-      [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
-    },
-  });
+  return axios.post(
+    `${Environment().mellomlagerProxyUrl + stønadstype}`,
+    søknad,
+    {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      },
+    }
+  );
 };
 
 export const nullstillMellomlagretSøknadTilDokument = (
@@ -81,7 +79,6 @@ export const nullstillMellomlagretSøknadTilDokument = (
     headers: {
       'Content-Type': 'application/json',
       accept: 'application/json',
-      [HEADER_NAV_CONSUMER_ID]: HEADER_NAV_CONSUMER_ID_VALUE,
     },
   });
 };
