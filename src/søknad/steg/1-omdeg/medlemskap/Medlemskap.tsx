@@ -73,11 +73,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
           valgtSvar={valgtSvarOppholderSegINorge}
           onChange={settMedlemskapBooleanFelt}
         />
-        {valgtSvarOppholderSegINorge === false && (
-          <Alert size="small" variant="warning" inline>
-            <LocaleTekst tekst={'medlemskap.alert-advarsel.opphold'} />
-          </Alert>
-        )}
       </KomponentGruppe>
 
       {søkerOppholderSegINorge?.hasOwnProperty('verdi') && (

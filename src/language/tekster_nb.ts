@@ -171,8 +171,6 @@ export default {
   'sivilstatus.hjelpetekst-innhold.begrunnelse':
     'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
   'medlemskap.spm.opphold': 'Oppholder du og barnet/barna dere i Norge?',
-  'medlemskap.alert-advarsel.opphold':
-    'Når du ikke oppholder deg i Norge, har du som hovedregel ikke rett på stønad til enslig mor eller far. Du kan likevel få stønad dersom du oppholder deg i utlandet fordi du arbeider for en norsk arbeidsgiver. Du kan også være i utlandet i inntil 6 uker i løpet av en 12 måneders periode.',
   'medlemskap.spm.bosatt': 'Har du oppholdt deg i Norge de siste 5 årene?',
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
