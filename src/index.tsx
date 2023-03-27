@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import '@navikt/ds-css';
+import 'nav-frontend-core';
 import './overgangsstønad/Forside.css';
 import './overgangsstønad/Søknadsdialog.css';
 import './components/feil/Feilside.css';
