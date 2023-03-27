@@ -1,5 +1,5 @@
 import * as React from 'react';
-import navFarger from 'nav-frontend-core';
+import { ABlue500 } from '@navikt/ds-tokens/dist/tokens';
 interface Props {
   height?: number;
   width?: number;
@@ -10,7 +10,7 @@ const KalenderIkonSVG: React.FC<Props> = ({ height, width }) => (
     height={height || 24}
     version="1.1"
     aria-labelledby="Kalender"
-    color={navFarger.navBla}
+    color={ABlue500}
     viewBox="0 0 18 18"
     role="presentation"
     focusable={false}

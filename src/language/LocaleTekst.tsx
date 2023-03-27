@@ -2,7 +2,7 @@ import React from 'react';
 import { LocaleString } from '../models/felles/språk';
 import { useSpråkContext } from '../context/SpråkContext';
 import styled from 'styled-components/macro';
-import navFarger from 'nav-frontend-core';
+import { ABlue500 } from '@navikt/ds-tokens/dist/tokens';
 import FormattedHtmlMessage from './FormattedHtmlMessage';
 import FormattedMessage from './FormattedMessage';
 
@@ -13,7 +13,7 @@ interface Props {
 
 const StyledLocaleTekst = styled.div`
   a {
-    color: ${navFarger.navBla};
+    color: ${ABlue500};
   }
 `;
 

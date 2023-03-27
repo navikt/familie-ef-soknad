@@ -5,7 +5,7 @@ import styled from 'styled-components/macro';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Button as AriaButton, Wrapper } from 'react-aria-menubutton';
 import { useSpråkContext } from '../../context/SpråkContext';
-import navFarger from 'nav-frontend-core';
+import { AGray400, AOrange300 } from '@navikt/ds-tokens/dist/tokens';
 import {
   hentListeMedSpråk,
   hentListeMedSpråkUtenNynorsk,
@@ -24,7 +24,7 @@ const StyledSpråkvelger = styled.div`
 
 const StyledWrapper = styled(Wrapper)`
   width: 170px;
-  border: 3px solid ${navFarger.navGra40};
+  border: 3px solid ${AGray400};
   border-radius: 0.25rem;
   position: relative;
   outline: none;
@@ -39,7 +39,7 @@ const StyledButton = styled(AriaButton)`
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px ${navFarger.navOransjeLighten40};
+    box-shadow: 0 0 0 3px ${AOrange300};
     border-color: transparent;
   }
 `;
