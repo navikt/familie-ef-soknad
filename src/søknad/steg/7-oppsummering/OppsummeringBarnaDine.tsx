@@ -44,7 +44,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     }
     return nyttBarn;
   };
-  const oppsummeringBarnaDine = barnaDine.map((barn) => {
+  const oppsummeringBarnaDine = barnaDine.filter((barn) => barn.skalHaBarnepass?.verdi).map((barn) => {
     const endretBarn = hentEndretBarn(barn);
 
     return (

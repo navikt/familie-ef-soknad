@@ -79,7 +79,7 @@ const Barnepass: FC<Props> = () => {
   useMount(() => logSidevisningBarnetilsyn('Barnepass'));
 
   const settBarnepass = (barnepass: IBarnepass, barnid: string) => {
-    const endretBarn = barnSomSkalHaBarnepass.map((barn: IBarn) => {
+    const endretBarn = søknad.person.barn.map((barn: IBarn) => {
       if (barn.id === barnid) {
         return {
           ...barn,
