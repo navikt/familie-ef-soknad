@@ -15,8 +15,8 @@ const devMiljø = {
 };
 
 const prodMiljø = {
-  dokumentUrl: 'https://www.nav.no/familie/dokument',
-  apiUrl: 'https://www.nav.no/familie/alene-med-barn/soknad-api',
+  dokumentUrl: 'http://familie-dokument/familie/dokument',
+  apiUrl: 'http://familie-ef-soknad-api/familie/alene-med-barn/soknad-api',
   oauthCallbackUri:
     'https://www.nav.no/familie/alene-med-barn/soknad/oauth2/callback',
 };
