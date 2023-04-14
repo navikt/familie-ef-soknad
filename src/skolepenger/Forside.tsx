@@ -19,7 +19,11 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
 import { isIE } from 'react-device-detect';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
+import styled from "styled-components";
 
+const StyledAlert = styled(Alert)`
+  margin-bottom: 2rem;
+`;
 const Forside: React.FC<any> = () => {
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
@@ -92,6 +96,11 @@ const Forside: React.FC<any> = () => {
           <Heading level="1" size="xlarge">
             <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Heading>
+
+          <StyledAlert  variant="info">
+            For å få stønad for nytt skoleår må du kunne dokumentere utgiftene til skolepenger med faktura. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.
+          </StyledAlert>
+
           {kanBrukeMellomlagretSøknad && mellomlagretSkolepenger ? (
             <FortsettSøknad
               intl={intl}
