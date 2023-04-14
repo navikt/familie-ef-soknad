@@ -21,6 +21,12 @@ import { isIE } from 'react-device-detect';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
+import styled from "styled-components";
+
+
+const StyledAlert = styled(Alert)`
+  margin-bottom: 2rem;
+`;
 
 const Forside: React.FC<any> = () => {
   const intl = useLokalIntlContext();
@@ -93,6 +99,11 @@ const Forside: React.FC<any> = () => {
           <Heading level="1" size="xlarge">
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Heading>
+
+          <StyledAlert  variant="info">
+            For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.
+          </StyledAlert>
+
           {kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn ? (
             <FortsettSøknad
               intl={intl}
