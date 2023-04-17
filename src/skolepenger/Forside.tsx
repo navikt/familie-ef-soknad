@@ -98,6 +98,9 @@ const Forside: React.FC<any> = () => {
           </Heading>
 
           <StyledAlert  variant="info">
+            <Heading spacing size="small" level="3">
+              Søker du om stønad til skolepenger fra august 2023?
+            </Heading>
             For å få stønad for nytt skoleår må du kunne dokumentere utgiftene til skolepenger med faktura. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.
           </StyledAlert>
 
