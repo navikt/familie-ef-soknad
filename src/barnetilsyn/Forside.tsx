@@ -101,6 +101,9 @@ const Forside: React.FC<any> = () => {
           </Heading>
 
           <StyledAlert  variant="info">
+            <Heading spacing size="small" level="3">
+              Søker du om stønad til barnetilsyn fra august 2023?
+            </Heading>
             For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.
           </StyledAlert>
 
