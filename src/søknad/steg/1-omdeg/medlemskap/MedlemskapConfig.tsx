@@ -11,6 +11,17 @@ export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
+export const søkersOppholdsland = (hierarki: string[]): ISpørsmål => ({
+  søknadid: EMedlemskap.oppholdsland,
+  tekstid: 'medlemskap.spm.oppholdsland',
+  flersvar: false,
+
+  svaralternativer: hierarki.map((land) => ({
+    id: land,
+    svar_tekst: land,
+  })),
+});
+
 export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerBosattINorgeSisteTreÅr,
   tekstid: 'medlemskap.spm.bosatt',

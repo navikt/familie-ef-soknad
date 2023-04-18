@@ -171,6 +171,7 @@ export default {
   'sivilstatus.hjelpetekst-innhold.begrunnelse':
     'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
   'medlemskap.spm.opphold': 'Oppholder du og barnet/barna dere i Norge?',
+  'medlemskap.spm.oppholdsland': 'Hvor oppholder du og barnet/barna dere?',
   'medlemskap.spm.bosatt': 'Har du oppholdt deg i Norge de siste 5 årene?',
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',

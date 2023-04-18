@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   ESvar,
   ISpørsmål,
@@ -7,6 +7,7 @@ import {
 import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
+  søkersOppholdsland,
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -20,6 +21,7 @@ import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Alert } from '@navikt/ds-react';
+import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
 
 interface Props {
   medlemskap: IMedlemskap;
@@ -27,13 +29,34 @@ interface Props {
 }
 const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const intl = useLokalIntlContext();
-  const { søkerOppholderSegINorge, søkerBosattINorgeSisteTreÅr } = medlemskap;
+  const {
+    søkerOppholderSegINorge,
+    oppholdsland: oppholdsland,
+    søkerBosattINorgeSisteTreÅr,
+  } = medlemskap;
 
   const oppholderSegINorgeConfig = oppholderSegINorge(intl);
+  const oppholdslandConfig = søkersOppholdsland([
+    'Norge',
+    'Sverige',
+    'Danmark',
+    'Tyskland',
+    'Spania',
+    'USA',
+  ]);
   const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteTreÅr(intl);
+
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
     const endretMedlemskap = medlemskap;
+
+    if (
+      spørsmål.søknadid === EMedlemskap.søkerOppholderSegINorge &&
+      valgtSvar.id === ESvar.JA &&
+      endretMedlemskap.oppholdsland
+    ) {
+      delete endretMedlemskap.oppholdsland;
+    }
 
     if (
       spørsmål.søknadid === EMedlemskap.søkerBosattINorgeSisteTreÅr &&
@@ -42,6 +65,21 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
     ) {
       delete endretMedlemskap.perioderBoddIUtlandet;
     }
+
+    settMedlemskap({
+      ...endretMedlemskap,
+      [spørsmål.søknadid]: {
+        label: intl.formatMessage({ id: spørsmål.tekstid }),
+        verdi: svar,
+      },
+    });
+  };
+
+  const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
+    console.log('Valgt oppholdsland: ', valgtSvar);
+
+    const svar = valgtSvar.id;
+    const endretMedlemskap = medlemskap;
 
     settMedlemskap({
       ...endretMedlemskap,
@@ -65,6 +103,16 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
     medlemskap
   );
 
+  const valgtSvarOppholdsland = hentValgtSvar(oppholdslandConfig, medlemskap);
+
+  useEffect(() => {
+    console.log('Oppholdsland: ', oppholdsland);
+  }, [oppholdsland]);
+
+  useEffect(() => {
+    console.log('Medlemskap: ', medlemskap);
+  }, [medlemskap]);
+
   return (
     <SeksjonGruppe aria-live="polite">
       <KomponentGruppe key={oppholderSegINorgeConfig.søknadid}>
@@ -75,7 +123,18 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
         />
       </KomponentGruppe>
 
-      {søkerOppholderSegINorge?.hasOwnProperty('verdi') && (
+      {søkerOppholderSegINorge?.verdi === false && (
+        <KomponentGruppe>
+          <SelectSpørsmål
+            spørsmål={oppholdslandConfig}
+            valgtSvar={valgtSvarOppholdsland}
+            settSpørsmålOgSvar={settOppholdsland}
+          />
+        </KomponentGruppe>
+      )}
+
+      {(søkerOppholderSegINorge?.verdi === true ||
+        oppholdsland?.hasOwnProperty('verdi')) && (
         <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
           <JaNeiSpørsmål
             spørsmål={bosattINorgeDeSisteTreÅrConfig}
