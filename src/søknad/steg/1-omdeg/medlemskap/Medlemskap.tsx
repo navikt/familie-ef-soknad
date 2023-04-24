@@ -73,8 +73,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   };
 
   const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    console.log('Valgt oppholdsland: ', valgtSvar);
-
     const svar = valgtSvar.svar_tekst;
     const endretMedlemskap = medlemskap;
 

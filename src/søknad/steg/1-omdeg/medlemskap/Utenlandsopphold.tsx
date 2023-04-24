@@ -134,10 +134,6 @@ const Utenlandsopphold: FC<Props> = ({
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
   };
 
-  useEffect(() => {
-    console.log(perioderBoddIUtlandet);
-  }, [perioderBoddIUtlandet]);
-
   return (
     <Container aria-live="polite">
       <TittelOgSlettKnapp>
