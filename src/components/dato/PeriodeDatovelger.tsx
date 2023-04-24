@@ -19,7 +19,6 @@ import { Label } from '@navikt/ds-react';
 const PeriodeGruppe = styled.div`
   display: grid;
   grid-template-columns: repeat(2, min-content);
-  grid-template-rows: repeat(2, min-content);
   grid-gap: 2rem;
 
   .feilmelding {
@@ -136,6 +135,7 @@ const PeriodeDatovelgere: FC<Props> = ({
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={datobegrensning}
           gjemFeilmelding={true}
+          fetSkrift={false}
         />
 
         <Datovelger
