@@ -47,9 +47,9 @@ export const utenlandsoppholdLand = (land: ILandMedKode[]): ISpørsmål => ({
 
 export const hentLand = (språk: LocaleType): ILandMedKode[] => {
   const land = CountryData.getCountryInstance(språk).countries;
-  return land.map((land: { value: string; label: string }) => {
+  return land.map((land: { alpha3: string; label: string }) => {
     return {
-      landkode: land.value,
+      landkode: land.alpha3,
       label: land.label,
     };
   });
