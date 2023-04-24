@@ -179,6 +179,7 @@ export default {
     'Where are you and the child/children currently present?',
   'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
+  'medlemskap.periodeBoddIUtlandet.land': 'In what country where you staying?',
   'medlemskap.periodeBoddIUtlandet.slett': 'Remove period spent abroad',
   'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Why did you live overseas?',

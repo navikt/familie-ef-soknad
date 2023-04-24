@@ -17,16 +17,16 @@ interface Props {
   spørsmål: ISpørsmål;
   settSpørsmålOgSvar: (spørsmål: ISpørsmål, svar: ISvar) => void;
   valgtSvar: string | undefined;
+  skalLogges?: boolean;
 }
 
 const SelectSpørsmål: FC<Props> = ({
   spørsmål,
   settSpørsmålOgSvar,
   valgtSvar,
+  skalLogges = true,
 }) => {
   const intl = useLokalIntlContext();
-
-  const skalLogges = true;
 
   const url = window.location.href;
 
@@ -41,13 +41,15 @@ const SelectSpørsmål: FC<Props> = ({
     );
 
     if (svar !== undefined) {
-      logSpørsmålBesvart(
-        skjemanavn,
-        skjemaId,
-        legend,
-        svar.svar_tekst,
-        skalLogges
-      );
+      if (skalLogges) {
+        logSpørsmålBesvart(
+          skjemanavn,
+          skjemaId,
+          legend,
+          svar.svar_tekst,
+          skalLogges
+        );
+      }
 
       settSpørsmålOgSvar(spørsmål, svar);
     }

@@ -264,6 +264,7 @@ export default {
 
   'medlemskap.periodeBoddIUtlandet.slett': 'Remove period spent abroad',
   'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
+  'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Why did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Have you spent more periods abroad during the last five years?',

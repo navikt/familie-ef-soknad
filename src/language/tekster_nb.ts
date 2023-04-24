@@ -176,6 +176,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet': 'Når oppholdt du deg i utlandet?',
+  'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse':
     'Hvorfor oppholdt du deg i utlandet?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':

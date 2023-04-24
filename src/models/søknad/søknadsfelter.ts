@@ -18,6 +18,11 @@ export interface ITekstListeFelt {
   verdi: string[];
 }
 
+export interface ISelectFelt {
+  label: string;
+  verdi: string;
+}
+
 export interface ISpørsmålFelt extends ITekstFelt {
   spørsmålid: string;
   svarid: string;

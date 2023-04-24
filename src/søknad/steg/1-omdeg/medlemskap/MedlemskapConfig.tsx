@@ -29,3 +29,14 @@ export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => 
 
   svaralternativer: JaNeiSvar(intl),
 });
+
+export const utenlandsoppholdLand = (hierarki: string[]): ISpørsmål => ({
+  søknadid: EMedlemskap.utenlandsoppholdLand,
+  tekstid: 'medlemskap.periodeBoddIUtlandet.land',
+  flersvar: false,
+
+  svaralternativer: hierarki.map((land) => ({
+    id: land,
+    svar_tekst: land,
+  })),
+});

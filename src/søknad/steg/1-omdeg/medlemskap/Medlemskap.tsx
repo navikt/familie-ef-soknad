@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   ESvar,
   ISpørsmål,
@@ -18,9 +18,7 @@ import {
   IMedlemskap,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
-import LocaleTekst from '../../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Alert } from '@navikt/ds-react';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
 
 interface Props {
@@ -36,14 +34,9 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   } = medlemskap;
 
   const oppholderSegINorgeConfig = oppholderSegINorge(intl);
-  const oppholdslandConfig = søkersOppholdsland([
-    'Norge',
-    'Sverige',
-    'Danmark',
-    'Tyskland',
-    'Spania',
-    'USA',
-  ]);
+
+  const land = ['Norge', 'Sverige', 'Danmark', 'Tyskland', 'Spania', 'USA'];
+  const oppholdslandConfig = søkersOppholdsland(land);
   const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteTreÅr(intl);
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
@@ -78,7 +71,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     console.log('Valgt oppholdsland: ', valgtSvar);
 
-    const svar = valgtSvar.id;
+    const svar = valgtSvar.svar_tekst;
     const endretMedlemskap = medlemskap;
 
     settMedlemskap({
@@ -104,14 +97,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   );
 
   const valgtSvarOppholdsland = hentValgtSvar(oppholdslandConfig, medlemskap);
-
-  useEffect(() => {
-    console.log('Oppholdsland: ', oppholdsland);
-  }, [oppholdsland]);
-
-  useEffect(() => {
-    console.log('Medlemskap: ', medlemskap);
-  }, [medlemskap]);
 
   return (
     <SeksjonGruppe aria-live="polite">
@@ -151,6 +136,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
         <PeriodeBoddIUtlandet
           medlemskap={medlemskap}
           settMedlemskap={settMedlemskap}
+          land={land}
         />
       )}
     </SeksjonGruppe>

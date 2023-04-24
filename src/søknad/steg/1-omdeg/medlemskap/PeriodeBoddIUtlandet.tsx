@@ -18,7 +18,8 @@ import { Label } from '@navikt/ds-react';
 const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
-}> = ({ medlemskap, settMedlemskap }) => {
+  land: string[];
+}> = ({ medlemskap, settMedlemskap, land }) => {
   const intl = useLokalIntlContext();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
@@ -68,6 +69,7 @@ const PeriodeBoddIUtlandet: FC<{
               perioderBoddIUtlandet={perioderBoddIUtlandet}
               utenlandsopphold={periode}
               oppholdsnr={index}
+              land={land}
             />
           </KomponentGruppe>
         );
