@@ -8,6 +8,7 @@ import {
   oppholderSegINorge,
   bosattINorgeDeSisteTreÅr,
   søkersOppholdsland,
+  hentLand,
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -20,6 +21,7 @@ import {
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
+import { useSpråkContext } from '../../../../context/SpråkContext';
 
 interface Props {
   medlemskap: IMedlemskap;
@@ -35,8 +37,10 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
   const oppholderSegINorgeConfig = oppholderSegINorge(intl);
 
-  const land = ['Norge', 'Sverige', 'Danmark', 'Tyskland', 'Spania', 'USA'];
+  const [locale] = useSpråkContext();
+  const land = hentLand(locale);
   const oppholdslandConfig = søkersOppholdsland(land);
+
   const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteTreÅr(intl);
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {

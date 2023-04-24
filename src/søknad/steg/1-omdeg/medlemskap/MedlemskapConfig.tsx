@@ -1,7 +1,11 @@
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
-import { EMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
-import { LokalIntlShape } from '../../../../language/typer';
+import {
+  EMedlemskap,
+  ILandMedKode,
+} from '../../../../models/steg/omDeg/medlemskap';
+import { LocaleType, LokalIntlShape } from '../../../../language/typer';
+import CountryData from '@navikt/land-verktoy';
 
 export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerOppholderSegINorge,
@@ -11,14 +15,14 @@ export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const søkersOppholdsland = (hierarki: string[]): ISpørsmål => ({
+export const søkersOppholdsland = (land: ILandMedKode[]): ISpørsmål => ({
   søknadid: EMedlemskap.oppholdsland,
   tekstid: 'medlemskap.spm.oppholdsland',
   flersvar: false,
 
-  svaralternativer: hierarki.map((land) => ({
-    id: land,
-    svar_tekst: land,
+  svaralternativer: land.map((land) => ({
+    id: land.landkode,
+    svar_tekst: land.label,
   })),
 });
 
@@ -30,13 +34,23 @@ export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => 
   svaralternativer: JaNeiSvar(intl),
 });
 
-export const utenlandsoppholdLand = (hierarki: string[]): ISpørsmål => ({
+export const utenlandsoppholdLand = (land: ILandMedKode[]): ISpørsmål => ({
   søknadid: EMedlemskap.utenlandsoppholdLand,
   tekstid: 'medlemskap.periodeBoddIUtlandet.land',
   flersvar: false,
 
-  svaralternativer: hierarki.map((land) => ({
-    id: land,
-    svar_tekst: land,
+  svaralternativer: land.map((land) => ({
+    id: land.landkode,
+    svar_tekst: land.label,
   })),
 });
+
+export const hentLand = (språk: LocaleType): ILandMedKode[] => {
+  const land = CountryData.getCountryInstance(språk).countries;
+  return land.map((land: { value: string; label: string }) => {
+    return {
+      landkode: land.value,
+      label: land.label,
+    };
+  });
+};

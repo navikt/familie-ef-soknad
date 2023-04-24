@@ -4,7 +4,10 @@ import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
-import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
+import {
+  ILandMedKode,
+  IUtenlandsopphold,
+} from '../../../../models/steg/omDeg/medlemskap';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components/macro';
@@ -36,7 +39,7 @@ interface Props {
   settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
-  land: string[];
+  land: ILandMedKode[];
 }
 
 const Utenlandsopphold: FC<Props> = ({

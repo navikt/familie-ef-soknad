@@ -26,3 +26,8 @@ export enum EMedlemskap {
   perioderBoddIUtlandet = 'perioderBoddIUtlandet',
   utenlandsoppholdLand = 'utenlandsoppholdLand',
 }
+
+export interface ILandMedKode {
+  landkode: string;
+  label: string;
+}
