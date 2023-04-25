@@ -28,6 +28,6 @@ export enum EMedlemskap {
 }
 
 export interface ILandMedKode {
-  landkode: string;
-  label: string;
+  id: string; // Bruker Alpha3 landkode som id
+  svar_tekst: string;
 }

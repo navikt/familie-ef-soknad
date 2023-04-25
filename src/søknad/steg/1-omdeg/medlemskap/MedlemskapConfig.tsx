@@ -19,11 +19,7 @@ export const søkersOppholdsland = (land: ILandMedKode[]): ISpørsmål => ({
   søknadid: EMedlemskap.oppholdsland,
   tekstid: 'medlemskap.spm.oppholdsland',
   flersvar: false,
-
-  svaralternativer: land.map((land) => ({
-    id: land.landkode,
-    svar_tekst: land.label,
-  })),
+  svaralternativer: land,
 });
 
 export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => ({
@@ -38,19 +34,15 @@ export const utenlandsoppholdLand = (land: ILandMedKode[]): ISpørsmål => ({
   søknadid: EMedlemskap.utenlandsoppholdLand,
   tekstid: 'medlemskap.periodeBoddIUtlandet.land',
   flersvar: false,
-
-  svaralternativer: land.map((land) => ({
-    id: land.landkode,
-    svar_tekst: land.label,
-  })),
+  svaralternativer: land,
 });
 
 export const hentLand = (språk: LocaleType): ILandMedKode[] => {
   const land = CountryData.getCountryInstance(språk).countries;
   return land.map((land: { alpha3: string; label: string }) => {
     return {
-      landkode: land.alpha3,
-      label: land.label,
+      id: land.alpha3,
+      svar_tekst: land.label,
     };
   });
 };
