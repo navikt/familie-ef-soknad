@@ -122,6 +122,8 @@ const Utenlandsopphold: FC<Props> = ({
           return {
             ...utenlandsopphold,
             land: {
+              spørsmålid: spørsmål.søknadid,
+              svarid: svar.id,
               label: intl.formatMessage({ id: spørsmål.tekstid }),
               verdi: svar.svar_tekst,
             },

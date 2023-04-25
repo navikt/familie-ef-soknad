@@ -1,13 +1,13 @@
 import {
   IBooleanFelt,
-  ISelectFelt,
+  ISpørsmålFelt,
   ITekstFelt,
 } from '../../søknad/søknadsfelter';
 import { IPeriode } from '../../felles/periode';
 
 export interface IMedlemskap {
   søkerOppholderSegINorge?: IBooleanFelt;
-  oppholdsland?: ISelectFelt;
+  oppholdsland?: ISpørsmålFelt;
   søkerBosattINorgeSisteTreÅr?: IBooleanFelt;
   perioderBoddIUtlandet?: IUtenlandsopphold[];
 }
@@ -15,7 +15,7 @@ export interface IMedlemskap {
 export interface IUtenlandsopphold {
   id: string;
   periode: IPeriode;
-  land?: ISelectFelt;
+  land?: ISpørsmålFelt;
   begrunnelse: ITekstFelt;
 }
 

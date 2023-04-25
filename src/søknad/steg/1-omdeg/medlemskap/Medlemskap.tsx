@@ -73,14 +73,15 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   };
 
   const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const svar = valgtSvar.svar_tekst;
     const endretMedlemskap = medlemskap;
 
     settMedlemskap({
       ...endretMedlemskap,
-      [spørsmål.søknadid]: {
+      oppholdsland: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: valgtSvar.id,
         label: intl.formatMessage({ id: spørsmål.tekstid }),
-        verdi: svar,
+        verdi: valgtSvar.svar_tekst,
       },
     });
   };
