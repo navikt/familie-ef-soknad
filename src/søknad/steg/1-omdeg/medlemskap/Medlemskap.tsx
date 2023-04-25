@@ -123,24 +123,26 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
       {(søkerOppholderSegINorge?.verdi === true ||
         oppholdsland?.hasOwnProperty('verdi')) && (
-        <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
-          <JaNeiSpørsmål
-            spørsmål={bosattINorgeDeSisteTreÅrConfig}
-            valgtSvar={hentValgtSvar(
-              bosattINorgeDeSisteTreÅrConfig,
-              medlemskap
-            )}
-            onChange={settMedlemskapBooleanFelt}
-          />
-        </KomponentGruppe>
-      )}
+        <>
+          <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
+            <JaNeiSpørsmål
+              spørsmål={bosattINorgeDeSisteTreÅrConfig}
+              valgtSvar={hentValgtSvar(
+                bosattINorgeDeSisteTreÅrConfig,
+                medlemskap
+              )}
+              onChange={settMedlemskapBooleanFelt}
+            />
+          </KomponentGruppe>
 
-      {søkerBosattINorgeSisteTreÅr?.verdi === false && (
-        <PeriodeBoddIUtlandet
-          medlemskap={medlemskap}
-          settMedlemskap={settMedlemskap}
-          land={land}
-        />
+          {søkerBosattINorgeSisteTreÅr?.verdi === false && (
+            <PeriodeBoddIUtlandet
+              medlemskap={medlemskap}
+              settMedlemskap={settMedlemskap}
+              land={land}
+            />
+          )}
+        </>
       )}
     </SeksjonGruppe>
   );
