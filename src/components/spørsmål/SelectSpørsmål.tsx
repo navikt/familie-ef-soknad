@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import LesMerTekst from '../LesMerTekst';
-import { SkjemaGruppe } from 'nav-frontend-skjema';
+import { Checkbox, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
@@ -16,14 +16,14 @@ const StyledSelect = styled.div`
 interface Props {
   spørsmål: ISpørsmål;
   settSpørsmålOgSvar: (spørsmål: ISpørsmål, svar: ISvar) => void;
-  valgtSvar: string | undefined;
+  valgtSvarId: string | undefined;
   skalLogges?: boolean;
 }
 
 const SelectSpørsmål: FC<Props> = ({
   spørsmål,
   settSpørsmålOgSvar,
-  valgtSvar,
+  valgtSvarId,
   skalLogges = true,
 }) => {
   const intl = useLokalIntlContext();
@@ -55,6 +55,10 @@ const SelectSpørsmål: FC<Props> = ({
     }
   };
 
+  useEffect(() => {
+    console.log(valgtSvarId);
+  }, [valgtSvarId]);
+
   return (
     <SkjemaGruppe legend={legend}>
       <StyledSelect key={spørsmål.søknadid}>
@@ -70,7 +74,7 @@ const SelectSpørsmål: FC<Props> = ({
           label={legend}
           hideLabel
           onChange={(e) => håndterSelectChange(e.target.value)} // Logg spørsmål
-          value={valgtSvar}
+          value={valgtSvarId}
         >
           <option value="" disabled selected>
             Velg et alternativ

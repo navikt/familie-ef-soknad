@@ -99,8 +99,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
     medlemskap
   );
 
-  const valgtSvarOppholdsland = hentValgtSvar(oppholdslandConfig, medlemskap);
-
   return (
     <SeksjonGruppe aria-live="polite">
       <KomponentGruppe key={oppholderSegINorgeConfig.søknadid}>
@@ -115,7 +113,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
         <KomponentGruppe>
           <SelectSpørsmål
             spørsmål={oppholdslandConfig}
-            valgtSvar={valgtSvarOppholdsland}
+            valgtSvarId={medlemskap.oppholdsland?.svarid}
             settSpørsmålOgSvar={settOppholdsland}
           />
         </KomponentGruppe>

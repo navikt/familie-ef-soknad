@@ -161,7 +161,7 @@ const Utenlandsopphold: FC<Props> = ({
       <SelectSpørsmål
         spørsmål={landConfig}
         settSpørsmålOgSvar={settLand}
-        valgtSvar={perioderBoddIUtlandet[oppholdsnr].land?.verdi}
+        valgtSvarId={perioderBoddIUtlandet[oppholdsnr].land?.svarid}
         skalLogges={false}
       />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
