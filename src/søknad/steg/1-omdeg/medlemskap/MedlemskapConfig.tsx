@@ -5,7 +5,7 @@ import {
   ILandMedKode,
 } from '../../../../models/steg/omDeg/medlemskap';
 import { LocaleType, LokalIntlShape } from '../../../../language/typer';
-import CountryData from '@navikt/land-verktoy';
+import CountryData, { Countries, CountryFilter } from '@navikt/land-verktoy';
 
 export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerOppholderSegINorge,
@@ -38,11 +38,16 @@ export const utenlandsoppholdLand = (land: ILandMedKode[]): ISpørsmål => ({
 });
 
 export const hentLand = (språk: LocaleType): ILandMedKode[] => {
-  const land = CountryData.getCountryInstance(språk).countries;
-  return land.map((land: { alpha3: string; label: string }) => {
-    return {
-      id: land.alpha3,
-      svar_tekst: land.label,
-    };
-  });
+  const landFilter = CountryFilter.STANDARD({});
+  const filtrertLandliste: Countries =
+    CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
+
+  return filtrertLandliste
+    .map((land: { alpha3: string; label: string }) => {
+      return {
+        id: land.alpha3,
+        svar_tekst: land.label,
+      };
+    })
+    .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
 };
