@@ -55,10 +55,6 @@ const SelectSpørsmål: FC<Props> = ({
     }
   };
 
-  useEffect(() => {
-    console.log(valgtSvarId);
-  }, [valgtSvarId]);
-
   return (
     <SkjemaGruppe legend={legend}>
       <StyledSelect key={spørsmål.søknadid}>
