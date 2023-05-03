@@ -176,7 +176,7 @@ export default {
   'medlemskap.spm.opphold':
     'Are you and the child/children currently present in Norway?',
   'medlemskap.spm.oppholdsland':
-    'Where are you and the child/children currently present?',
+    'Where are you and your child/children currently present?',
   'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
   'medlemskap.periodeBoddIUtlandet.land': 'In what country where you staying?',
