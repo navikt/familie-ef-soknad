@@ -135,7 +135,6 @@ const PeriodeDatovelgere: FC<Props> = ({
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={datobegrensning}
           gjemFeilmelding={true}
-          fetSkrift={false}
         />
 
         <Datovelger
