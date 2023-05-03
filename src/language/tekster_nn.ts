@@ -257,7 +257,7 @@ export default {
 
   // --- MEDLEMSKAP
   'medlemskap.spm.opphold': 'Oppheld du deg i Noreg?',
-  'medlemskap.spm.oppholdsland': 'Kvar oppheld du og barnet/barna de?',
+  'medlemskap.spm.oppholdsland': 'Kvar oppheld du og barnet/barna dokker?',
   'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
 
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
