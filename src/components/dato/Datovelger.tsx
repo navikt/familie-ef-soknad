@@ -10,12 +10,10 @@ import styled from 'styled-components/macro';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
 import { erDatoInnaforBegrensinger } from './utils';
-import { BodyShort, Label } from '@navikt/ds-react';
+import { Label } from '@navikt/ds-react';
 
-export const StyledDatovelger = styled.div<{ fetSkrift?: boolean }>`
-  .navds-label {
-    font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
-  }
+export const StyledLabel = styled(Label)<{ fetSkrift?: boolean }>`
+  font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
 `;
 
 const LabelWrapper = styled.div`
@@ -109,12 +107,12 @@ const Datovelger: React.FC<Props> = ({
   }, [_dato]);
 
   return (
-    <StyledDatovelger fetSkrift={fetSkrift}>
+    <div>
       <FeltGruppe>
         <LabelWrapper>
-          <Label htmlFor={datolabelid}>
+          <StyledLabel fetSkrift={fetSkrift} htmlFor={datolabelid}>
             <LocaleTekst tekst={tekstid} />
-          </Label>
+          </StyledLabel>
         </LabelWrapper>
         <Datepicker
           inputId={datolabelid}
@@ -136,7 +134,7 @@ const Datovelger: React.FC<Props> = ({
       {!gjemFeilmelding && _dato !== '' && feilmelding !== '' && (
         <Feilmelding tekstid={feilmelding} />
       )}
-    </StyledDatovelger>
+    </div>
   );
 };
 
