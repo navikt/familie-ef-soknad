@@ -32,7 +32,7 @@
     "@types/react": "^18.0.34",
     "@types/react-aria-menubutton": "^6.2.9",
     "@types/react-datepicker": "^4.10.0",
-    "@types/react-dom": "^18.0.11",
+    "@types/react-dom": "^18.2.3",
     "@types/react-modal": "^3.13.1",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.26",
