@@ -257,12 +257,14 @@ export default {
 
   // --- MEDLEMSKAP
   'medlemskap.spm.opphold': 'Oppheld du deg i Noreg?',
+  'medlemskap.spm.oppholdsland': 'Kvar oppheld du og barnet/barna dokker?',
   'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
 
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
 
   'medlemskap.periodeBoddIUtlandet.slett': 'Remove period spent abroad',
   'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
+  'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Why did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Have you spent more periods abroad during the last five years?',

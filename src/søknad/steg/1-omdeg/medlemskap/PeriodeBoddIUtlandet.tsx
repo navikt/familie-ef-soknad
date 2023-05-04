@@ -7,6 +7,7 @@ import Utenlandsopphold from './Utenlandsopphold';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentUid } from '../../../../utils/autentiseringogvalidering/uuid';
 import {
+  ILandMedKode,
   IMedlemskap,
   IUtenlandsopphold,
 } from '../../../../models/steg/omDeg/medlemskap';
@@ -18,7 +19,8 @@ import { Label } from '@navikt/ds-react';
 const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
-}> = ({ medlemskap, settMedlemskap }) => {
+  land: ILandMedKode[];
+}> = ({ medlemskap, settMedlemskap, land }) => {
   const intl = useLokalIntlContext();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
@@ -68,6 +70,7 @@ const PeriodeBoddIUtlandet: FC<{
               perioderBoddIUtlandet={perioderBoddIUtlandet}
               utenlandsopphold={periode}
               oppholdsnr={index}
+              land={land}
             />
           </KomponentGruppe>
         );

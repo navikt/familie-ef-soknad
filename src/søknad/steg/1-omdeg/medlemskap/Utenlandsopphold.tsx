@@ -1,10 +1,13 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
-import { IUtenlandsopphold } from '../../../../models/steg/omDeg/medlemskap';
+import {
+  ILandMedKode,
+  IUtenlandsopphold,
+} from '../../../../models/steg/omDeg/medlemskap';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components/macro';
@@ -12,10 +15,23 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Heading, Textarea } from '@navikt/ds-react';
+import { Heading, Select, Textarea } from '@navikt/ds-react';
+import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
+import { utenlandsoppholdLand } from './MedlemskapConfig';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
+`;
+
+const StyledPeriodeDatovelgere = styled(PeriodeDatovelgere)`
+  padding-bottom: 0;
+`;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 interface Props {
@@ -23,6 +39,7 @@ interface Props {
   settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
   utenlandsopphold: IUtenlandsopphold;
   oppholdsnr: number;
+  land: ILandMedKode[];
 }
 
 const Utenlandsopphold: FC<Props> = ({
@@ -30,6 +47,7 @@ const Utenlandsopphold: FC<Props> = ({
   settPeriodeBoddIUtlandet,
   oppholdsnr,
   utenlandsopphold,
+  land,
 }) => {
   const { periode, begrunnelse } = utenlandsopphold;
   const intl = useLokalIntlContext();
@@ -45,6 +63,8 @@ const Utenlandsopphold: FC<Props> = ({
     })
   );
 
+  const landConfig = utenlandsoppholdLand(land);
+
   const fjernUtenlandsperiode = () => {
     if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
       const utenlandsopphold = perioderBoddIUtlandet?.filter(
@@ -53,8 +73,9 @@ const Utenlandsopphold: FC<Props> = ({
       settPeriodeBoddIUtlandet(utenlandsopphold);
     }
   };
+
   const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-    const perioderMedNyBegrunnelse = perioderBoddIUtlandet?.map(
+    const perioderMedNyBegrunnelse = perioderBoddIUtlandet.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
           return {
@@ -68,8 +89,9 @@ const Utenlandsopphold: FC<Props> = ({
     );
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
+
   const settPeriode = (date: string, objektnøkkel: EPeriode): void => {
-    const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet?.map(
+    const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
           return {
@@ -93,8 +115,29 @@ const Utenlandsopphold: FC<Props> = ({
       settPeriodeBoddIUtlandet(endretPeriodeIUtenlandsopphold);
   };
 
+  const settLand = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const periodeMedNyttLand = perioderBoddIUtlandet.map(
+      (utenlandsopphold, index) => {
+        if (index === oppholdsnr) {
+          return {
+            ...utenlandsopphold,
+            land: {
+              spørsmålid: spørsmål.søknadid,
+              svarid: svar.id,
+              label: intl.formatMessage({ id: spørsmål.tekstid }),
+              verdi: svar.svar_tekst,
+            },
+          };
+        } else {
+          return utenlandsopphold;
+        }
+      }
+    );
+    perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
+  };
+
   return (
-    <div aria-live="polite">
+    <Container aria-live="polite">
       <TittelOgSlettKnapp>
         <Heading size="small" level="3" className={'tittel'}>
           {periodeTittel}
@@ -108,18 +151,25 @@ const Utenlandsopphold: FC<Props> = ({
         />
       </TittelOgSlettKnapp>
 
-      <PeriodeDatovelgere
+      <StyledPeriodeDatovelgere
         className={'periodegruppe'}
         settDato={settPeriode}
         periode={utenlandsopphold.periode}
         tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
         datobegrensning={DatoBegrensning.TidligereDatoer}
       />
+      <SelectSpørsmål
+        spørsmål={landConfig}
+        settSpørsmålOgSvar={settLand}
+        valgtSvarId={perioderBoddIUtlandet[oppholdsnr].land?.svarid}
+        skalLogges={false}
+      />
       {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
         erPeriodeGyldigOgInnaforBegrensninger(
           utenlandsopphold.periode,
           DatoBegrensning.TidligereDatoer
-        ) && (
+        ) &&
+        utenlandsopphold.land?.hasOwnProperty('verdi') && (
           <StyledTextarea
             label={begrunnelseTekst}
             placeholder={'...'}
@@ -131,7 +181,7 @@ const Utenlandsopphold: FC<Props> = ({
             }
           />
         )}
-    </div>
+    </Container>
   );
 };
 

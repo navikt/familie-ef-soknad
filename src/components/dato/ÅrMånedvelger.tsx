@@ -10,11 +10,10 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import { DatoBegrensning, StyledDatovelger } from './Datovelger';
+import { DatoBegrensning, StyledLabel } from './Datovelger';
 import styled from 'styled-components/macro';
 import KalenderKnapp from './KalenderKnapp';
 import { addYears, subYears, addMonths } from 'date-fns';
-import { BodyShort } from '@navikt/ds-react';
 
 const InputContainer = styled.div`
   display: inline-block;
@@ -93,13 +92,11 @@ const ÅrMånedVelger: React.FC<Props> = ({
   settLocaleForDatePicker();
 
   return (
-    <StyledDatovelger fetSkrift={fetSkrift}>
+    <div>
       <FeltGruppe>
-        <label htmlFor={datolabelid}>
-          <BodyShort>
-            <LocaleTekst tekst={tekstid} />
-          </BodyShort>
-        </label>
+        <StyledLabel fetSkrift={fetSkrift} htmlFor={datolabelid}>
+          <LocaleTekst tekst={tekstid} />
+        </StyledLabel>
       </FeltGruppe>
       <FeltGruppe classname="nav-datovelger">
         <InputContainer className="nav-datovelger__inputContainer">
@@ -148,7 +145,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
           )}
         </InputContainer>
       </FeltGruppe>
-    </StyledDatovelger>
+    </div>
   );
 };
 

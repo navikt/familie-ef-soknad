@@ -1,7 +1,11 @@
 import { ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
 import { JaNeiSvar } from '../../../../helpers/svar';
-import { EMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
-import { LokalIntlShape } from '../../../../language/typer';
+import {
+  EMedlemskap,
+  ILandMedKode,
+} from '../../../../models/steg/omDeg/medlemskap';
+import { LocaleType, LokalIntlShape } from '../../../../language/typer';
+import CountryData, { Countries, CountryFilter } from '@navikt/land-verktoy';
 
 export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerOppholderSegINorge,
@@ -11,6 +15,13 @@ export const oppholderSegINorge = (intl: LokalIntlShape): ISpørsmål => ({
   svaralternativer: JaNeiSvar(intl),
 });
 
+export const søkersOppholdsland = (land: ILandMedKode[]): ISpørsmål => ({
+  søknadid: EMedlemskap.oppholdsland,
+  tekstid: 'medlemskap.spm.oppholdsland',
+  flersvar: false,
+  svaralternativer: land,
+});
+
 export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerBosattINorgeSisteTreÅr,
   tekstid: 'medlemskap.spm.bosatt',
@@ -18,3 +29,25 @@ export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => 
 
   svaralternativer: JaNeiSvar(intl),
 });
+
+export const utenlandsoppholdLand = (land: ILandMedKode[]): ISpørsmål => ({
+  søknadid: EMedlemskap.utenlandsoppholdLand,
+  tekstid: 'medlemskap.periodeBoddIUtlandet.land',
+  flersvar: false,
+  svaralternativer: land,
+});
+
+export const hentLand = (språk: LocaleType): ILandMedKode[] => {
+  const landFilter = CountryFilter.STANDARD({});
+  const filtrertLandliste: Countries =
+    CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
+
+  return filtrertLandliste
+    .map((land: { alpha3: string; label: string }) => {
+      return {
+        id: land.alpha3,
+        svar_tekst: land.label,
+      };
+    })
+    .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
+};
