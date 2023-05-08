@@ -44,7 +44,7 @@ spec:
         - application: familie-ef-soknad-api
         - application: familie-dokument
       external:
-        - host: www.nav.no
+        - host: nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
