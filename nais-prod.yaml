@@ -43,6 +43,8 @@ spec:
       rules:
         - application: familie-ef-soknad-api
         - application: familie-dokument
+      external:
+        - host: www.nav.no
   env:
     - name: APP_VERSION
       value: '{{version}}'
