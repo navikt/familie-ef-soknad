@@ -8,4 +8,4 @@ WORKDIR /app/server
 
 EXPOSE 8080
 
-CMD ["node","--experimental-modules", "--es-module-specifier-resolution=node", "build/server.js"]
+CMD ["/usr/bin/npm", "run", "start"]
