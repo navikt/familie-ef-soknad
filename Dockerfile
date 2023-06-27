@@ -1,4 +1,4 @@
-FROM navikt/node-express:18
+FROM ghcr.io/navikt/baseimages/node-express:18
 
 USER root
 
