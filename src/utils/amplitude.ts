@@ -115,7 +115,7 @@ export const logDokumetasjonsbehovOppsummering = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn
 ) => {
-  const antallOppfylte = dokBehov.filter(
+  const antallOpplastede = dokBehov.filter(
     (dok) =>
       dok.harSendtInn === false &&
       dok.opplastedeVedlegg !== undefined &&
@@ -138,8 +138,9 @@ export const logDokumetasjonsbehovOppsummering = (
   logEvent('dokumentasjonsbehovOppsummering', {
     skjemanavn: skjemanavn,
     antallDokBehov: dokBehov.length,
-    antallOppfylte: antallOppfylte,
+    antallOpplastede: antallOpplastede,
     antallTidligereInnsendte: antallTidligereInnsendte,
+    antallOppfylte: antallOpplastede + antallTidligereInnsendte,
     antallIkkeOppfylte: antallIkkeOppfylte,
     harOppfyltAlle: harOppfyltAlle,
   });
