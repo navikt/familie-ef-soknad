@@ -111,7 +111,7 @@ export const logSidevisningSkolepenger = (side: string) => {
   });
 };
 
-export const logDokumetasjonsbehovOppsummering = (
+const logDokumetasjonsbehovOppsummering = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn
 ) => {
@@ -146,7 +146,7 @@ export const logDokumetasjonsbehovOppsummering = (
   });
 };
 
-export const logDokumetasjonsbehov = (
+const logDokumetasjonsbehovDetaljer = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn
 ) => {
@@ -160,6 +160,14 @@ export const logDokumetasjonsbehov = (
       skjemanavn: skjemanavn,
     })
   );
+};
+
+export const logDokumetasjonsbehov = (
+  dokBehov: IDokumentasjon[],
+  skjemanavn: ESkjemanavn
+) => {
+  logDokumetasjonsbehovDetaljer(dokBehov, skjemanavn);
+  logDokumetasjonsbehovOppsummering(dokBehov, skjemanavn);
 };
 
 export const logAdressesperre = (skjemanavn: string) => {
