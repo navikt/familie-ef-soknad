@@ -111,6 +111,40 @@ export const logSidevisningSkolepenger = (side: string) => {
   });
 };
 
+export const logDokumetasjonsbehovOppsummering = (
+  dokBehov: IDokumentasjon[],
+  skjemanavn: ESkjemanavn
+) => {
+  const antallOppfylte = dokBehov.filter(
+    (dok) =>
+      dok.harSendtInn === false &&
+      dok.opplastedeVedlegg !== undefined &&
+      dok.opplastedeVedlegg.length > 0
+  ).length;
+
+  const antallTidligereInnsendte = dokBehov.filter(
+    (dok) => dok.harSendtInn === true
+  ).length;
+
+  const antallIkkeOppfylte = dokBehov.filter(
+    (dok) =>
+      dok.harSendtInn === false &&
+      (dok.opplastedeVedlegg === undefined ||
+        dok.opplastedeVedlegg.length === 0)
+  ).length;
+
+  const harOppfyltAlle = antallIkkeOppfylte === 0;
+
+  logEvent('dokumentasjonsbehovOppsummering', {
+    skjemanavn: skjemanavn,
+    antallDokBehov: dokBehov.length,
+    antallOppfylte: antallOppfylte,
+    antallTidligereInnsendte: antallTidligereInnsendte,
+    antallIkkeOppfylte: antallIkkeOppfylte,
+    harOppfyltAlle: harOppfyltAlle,
+  });
+};
+
 export const logDokumetasjonsbehov = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn
