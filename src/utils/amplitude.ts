@@ -136,13 +136,13 @@ const logDokumetasjonsbehovOppsummering = (
   const harOppfyltAlle = antallIkkeOppfylte === 0;
 
   logEvent('dokumentasjonsbehovOppsummering', {
-    skjemanavn: skjemanavn,
+    skjemanavn,
     antallDokBehov: dokBehov.length,
-    antallOpplastede: antallOpplastede,
-    antallTidligereInnsendte: antallTidligereInnsendte,
+    antallOpplastede,
+    antallTidligereInnsendte,
     antallOppfylte: antallOpplastede + antallTidligereInnsendte,
-    antallIkkeOppfylte: antallIkkeOppfylte,
-    harOppfyltAlle: harOppfyltAlle,
+    antallIkkeOppfylte,
+    harOppfyltAlle,
   });
 };
 
