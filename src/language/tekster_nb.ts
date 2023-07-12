@@ -465,8 +465,10 @@ export default {
     '1 times reisevei vil si at reisetiden med transportmiddel mellom hjem og arbeidssted ikke er over 1 time hver vei. Det inkuderer ikke gangtid mellom bolig og transportmiddel, og transportmiddel og arbeidssted.',
   'arbeidssøker.label.halvstilling':
     'Ønsker du å stå som arbeidssøker til minst 50 prosent stilling?',
-  'arbeidssøker.alert.halvstilling':
+  'arbeidssøker.hjelpetekst-innhold.halvstilling':
     'Du kan søke heltidsjobb, men som enslig mor eller far holder det at du jobber minst 50 prosent. Det er heller ikke krav om at du må jobbe kvelds-, natt-, helg- og skiftarbeid.',
+  'arbeidssøker.alert.halvstilling':
+    'Når du er arbeidssøker til mindre enn 50 prosent stilling, har du ikke rett til overgangsstønad.',
   'arbeidssøker.tekst.tillegstønad':
     'Som enslig mor eller far som søker arbeid, kan du ha rett til tilleggsstønader <br/> Stønadene kan dekke utgifter til <ul><li>barnepass</li><li>flytting</li></ul>NB! Du kan kun få tilleggsstønader hvis du kvalifiserer til overgangsstønad',
   'arbeidssøker.lenke.tilleggstønad': 'Les mer om tilleggstønader',

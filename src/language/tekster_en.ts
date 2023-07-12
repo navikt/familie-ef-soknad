@@ -481,8 +481,10 @@ export default {
     '“One hour’s travel time” means that the time it takes you to travel using a means of transport between your home and your place of work is not more than one hour. It does not include the time it takes you to walk from your home to the means of transport, and from the means of transport to your place of work.',
   'arbeidssøker.label.halvstilling':
     'Do you want to be registered as a job seeker looking for at least a 50 per cent position?',
-  'arbeidssøker.alert.halvstilling':
+  'arbeidssøker.hjelpetekst-innhold.halvstilling':
     'As a single parent, there is no requirement for you to apply for full-time work. or evening, night, weekend and shift work. ',
+  'arbeidssøker.alert.halvstilling':
+    'If you are are registered as a job seeker looking for a position less than 50 percent, you are not entitled to receive transitional benefits for single partents.',
   'arbeidssøker.tekst.tillegstønad':
     'As a single parent looking for work, you may be entitled to some form of supplemental benefit<br/> Supplemental benefit can be granted to cover expenses related to <ul><li>child minding</li><li>relocation</li></ul>NB! You can only receive supplemental benefit if you qualify for transitional benefit',
   'arbeidssøker.lenke.tilleggstønad': 'Read more about supplemental benefit',
