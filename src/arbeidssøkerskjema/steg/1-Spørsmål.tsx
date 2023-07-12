@@ -128,7 +128,7 @@ const Spørsmål: FC<any> = ({ ident }) => {
             )}
           </KomponentGruppe>
         )}
-        {arbeidssøker.kanBegynneInnenEnUke?.svarid === ESvar.NEI && (
+        {arbeidssøker.kanBegynneInnenEnUke && (
           <KomponentGruppe>
             <MultiSvarSpørsmål
               spørsmål={ønsketArbeidssted(intl)}
