@@ -452,6 +452,8 @@ export default {
     'Kan du begynne i arbeid senest én uke etter at du har fått tilbud om jobb?',
   'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke':
     'Du må være tilgjengelig og raskt kunne ta stilling til tilbud om arbeid eller arbeidsmarkedstiltak. Du må derfor kunne skaffe barnepass på kort varsel.',
+  'arbeidssøker.alert.senestEnUke':
+    'Når du ikke kan begynne i jobb innen èn uke etter at du har fått tilbud, har du ikke rett til overgangsstønad.',
   'arbeidssøker.label.barnepass':
     'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak?',
   'arbeidssøker.label.ønsketArbeidssted': 'Hvor ønsker du å søke arbeid?',

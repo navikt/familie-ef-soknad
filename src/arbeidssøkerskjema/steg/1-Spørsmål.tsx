@@ -121,10 +121,14 @@ const Spørsmål: FC<any> = ({ ident }) => {
               onChange={settJaNeiSpørsmål}
               valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
             />
+            {arbeidssøker.kanBegynneInnenEnUke?.svarid === ESvar.NEI && (
+              <Alert size="small" variant={'warning'} inline>
+                <LocaleTekst tekst={'arbeidssøker.alert.senestEnUke'} />
+              </Alert>
+            )}
           </KomponentGruppe>
         )}
-
-        {arbeidssøker.kanBegynneInnenEnUke && (
+        {arbeidssøker.kanBegynneInnenEnUke?.svarid === ESvar.NEI && (
           <KomponentGruppe>
             <MultiSvarSpørsmål
               spørsmål={ønsketArbeidssted(intl)}

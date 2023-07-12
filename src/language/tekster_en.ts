@@ -467,6 +467,8 @@ export default {
     'Can you start working no later than one week after you are offered a job?',
   'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke':
     'You must be available and able to respond quickly to offers of work or labour market schemes. You must therefore be able to arrange child minding at short notice.',
+  'arbeidssøker.alert.senestEnUke':
+    'If you are unable to start working within one week of receving a job offer, you are not entitled to receive transitional benefits for single partents.',
   'arbeidssøker.label.barnepass':
     'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak? SKAL FJERNES I FØLGE INNHOLDSDOK (egen oppg)',
   'arbeidssøker.label.ønsketArbeidssted': 'Where do you want to seek work?',
