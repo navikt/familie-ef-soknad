@@ -619,6 +619,8 @@ export default {
     'Can you start working no later than one week after you are offered a job?',
   'arbeidssøker.hjelpetekst-innhold.kanBegynneInnenEnUke':
     'You must be available and able to respond quickly to offers of work or labour market schemes. You must therefore be able to arrange child minding at short notice.',
+  'arbeidssøker.alert.senestEnUke':
+    'Når du ikke kan begynne i jobb innen èn uke etter at du har fått tilbud, har du ikke rett til overgangsstønad.',
   'arbeidssøker.label.barnepass':
     'Har du eller kan du skaffe barnepass senest innen en uke etter at du har fått tilbud om jobb eller arbeidsmarkedtiltak? SKAL FJERNES I FØLGE INNHOLDSDOK (egen oppg)',
   'arbeidssøker.label.ønsketArbeidssted': 'Where do you want to seek work?',
@@ -631,8 +633,10 @@ export default {
     '“One hour’s travel time” means that the time it takes you to travel using a means of transport between your home and your place of work is not more than one hour. It does not include the time it takes you to walk from your home to the means of transport, and from the means of transport to your place of work.',
   'arbeidssøker.label.halvstilling':
     'Do you want to be registered as a job seeker looking for at least a 50 per cent position?',
-  'arbeidssøker.alert.halvstilling':
+  'arbeidssøker.hjelpetekst-innhold.halvstilling':
     'As a single parent, there is no requirement for you to apply for full-time work. or evening, night, weekend and shift work. ',
+  'arbeidssøker.alert.halvstilling':
+    'If you are registered as a job seeker looking for a position less than 50 percent, you are not entitled to receive transitional benefits for single partents.',
   'arbeidssøker.tekst.tillegstønad':
     'As a single parent looking for work, you may be entitled to some form of supplemental benefit<br/> ' +
     'Supplemental benefit can be granted to cover expenses related to <ul>' +

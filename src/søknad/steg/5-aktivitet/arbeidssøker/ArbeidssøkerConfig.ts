@@ -82,7 +82,7 @@ export const ønskerHalvStilling = (intl: LokalIntlShape): ISpørsmål => ({
   flersvar: false,
   lesmer: {
     headerTekstid: '',
-    innholdTekstid: 'arbeidssøker.alert.halvstilling',
+    innholdTekstid: 'arbeidssøker.hjelpetekst-innhold.halvstilling',
   },
   svaralternativer: JaNeiSvar(intl),
 });
