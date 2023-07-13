@@ -484,7 +484,7 @@ export default {
   'arbeidssøker.hjelpetekst-innhold.halvstilling':
     'As a single parent, there is no requirement for you to apply for full-time work. or evening, night, weekend and shift work. ',
   'arbeidssøker.alert.halvstilling':
-    'If you are are registered as a job seeker looking for a position less than 50 percent, you are not entitled to receive transitional benefits for single partents.',
+    'If you are registered as a job seeker looking for a position less than 50 percent, you are not entitled to receive transitional benefits for single partents.',
   'arbeidssøker.tekst.tillegstønad':
     'As a single parent looking for work, you may be entitled to some form of supplemental benefit<br/> Supplemental benefit can be granted to cover expenses related to <ul><li>child minding</li><li>relocation</li></ul>NB! You can only receive supplemental benefit if you qualify for transitional benefit',
   'arbeidssøker.lenke.tilleggstønad': 'Read more about supplemental benefit',
