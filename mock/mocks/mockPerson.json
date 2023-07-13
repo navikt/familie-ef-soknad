@@ -21,6 +21,15 @@
       "fødselsdato": "2010-02-28",
       "harSammeAdresse": true,
       "født": true
+    },
+    {
+      "id": "123456",
+      "fnr": "25901997848",
+      "navn": "LILLE BROR",
+      "alder": 2,
+      "fødselsdato": "2021-02-28",
+      "harSammeAdresse": true,
+      "født": true
     }
   ]
 }

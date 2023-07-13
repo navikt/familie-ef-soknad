@@ -1,7 +1,6 @@
 import React from 'react';
 import { hentFeltObjekt, hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { useLocation } from 'react-router-dom';
 import LesMerTekst from '../../../components/LesMerTekst';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
@@ -17,7 +16,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
-import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Label } from '@navikt/ds-react';
 
 const BarnaDine: React.FC = () => {
@@ -30,11 +28,7 @@ const BarnaDine: React.FC = () => {
     mellomlagreBarnetilsyn,
     settDokumentasjonsbehovForBarn,
   } = useBarnetilsynSøknad();
-  const location = useLocation();
-  const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
-  const skalViseKnapper = !kommerFraOppsummering
-    ? ESide.visTilbakeNesteAvbrytKnapp
-    : ESide.visTilbakeTilOppsummeringKnapp;
+  const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   const toggleSkalHaBarnepass = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
