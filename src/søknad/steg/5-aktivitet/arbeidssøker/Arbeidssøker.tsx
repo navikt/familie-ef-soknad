@@ -123,6 +123,11 @@ const Arbeidssøker: React.FC<Props> = ({
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.kanBegynneInnenEnUke?.verdi}
           />
+          {arbeidssøker.kanBegynneInnenEnUke?.svarid === ESvar.NEI && (
+            <Alert size="small" variant={'warning'} inline>
+              <LocaleTekst tekst={'arbeidssøker.alert.senestEnUke'} />
+            </Alert>
+          )}
         </KomponentGruppe>
       )}
 
@@ -142,6 +147,11 @@ const Arbeidssøker: React.FC<Props> = ({
             onChange={settJaNeiSpørsmål}
             valgtSvar={arbeidssøker.ønskerSøker50ProsentStilling?.verdi}
           />
+          {arbeidssøker.ønskerSøker50ProsentStilling?.svarid === ESvar.NEI && (
+            <Alert size="small" variant={'warning'} inline>
+              <LocaleTekst tekst={'arbeidssøker.alert.halvstilling'} />
+            </Alert>
+          )}
         </KomponentGruppe>
       )}
     </SeksjonGruppe>

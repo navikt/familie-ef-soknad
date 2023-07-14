@@ -4,7 +4,6 @@ import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
-import { useLocation } from 'react-router-dom';
 import { IBarn } from '../../../models/steg/barn';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
@@ -13,7 +12,6 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Button, Label } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
@@ -31,12 +29,7 @@ const BarnaDine: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehovForBarn,
   } = useSøknad();
-  const location = useLocation();
-  const kommerFraOppsummering =
-    kommerFraOppsummeringen(location.state) && false;
-  const skalViseKnapper = !kommerFraOppsummering
-    ? ESide.visTilbakeNesteAvbrytKnapp
-    : ESide.visTilbakeTilOppsummeringKnapp;
+  const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   const [åpenModal, settÅpenModal] = useState(false);
 
