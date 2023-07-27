@@ -31,6 +31,10 @@ export const hvaErDinArbeidssituasjonSpm = (
 ): ISpørsmål => ({
   søknadid: EArbeidssituasjon.hvaErDinArbeidssituasjon,
   tekstid: 'arbeidssituasjon.spm',
+  lesmer: {
+    headerTekstid: 'arbeidssituasjon.spm.hjelpetekst-åpne',
+    innholdTekstid: 'arbeidssituasjon.spm.hjelpetekst-innhold'
+  },
   flersvar: true,
   svaralternativer: [
     {

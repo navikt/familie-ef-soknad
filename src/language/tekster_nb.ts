@@ -376,6 +376,9 @@ export default {
     '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
   'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
+  'arbeidssituasjon.spm.hjelpetekst-åpne': 'Grunnen til at vi spør om dette',
+  'arbeidssituasjon.spm.hjelpetekst-innhold':
+    `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
