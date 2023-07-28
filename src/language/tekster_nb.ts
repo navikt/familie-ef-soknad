@@ -624,7 +624,16 @@ export default {
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
     'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
   'dokumentasjon.beskrivelse':
-    'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Du kan bruke filformatene PDF, jpg og png. <br/><br/>Slik bruker du bilder som vedlegg til søknaden:<br/><ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li><li>Sjekk at dokumentet er lett å lese\n</li><li>Last opp bildene her</li></ol> Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/><br />Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
+    'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Du kan bruke filformatene PDF, jpg og png.',
+  'dokumentasjon.beskrivelseBilderHeader':
+    'Slik bruker du bilder som vedlegg til søknaden',
+  'dokumentasjon.beskrivelseBilderInnhold':
+    '<ol><li> Ta bilde av dokumentet med smarttelefon eller nettbrett</li>' +
+    '<li>Sjekk at dokumentet er lett å lese\n</li>' +
+    '<li>Last opp bildene her</li></ol>',
+  'dokumentasjon.beskrivelseSlutt':
+    'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/><br />' +
+    'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
   'dokumentasjon.checkbox.sendtTidligere':
     'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
   'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
