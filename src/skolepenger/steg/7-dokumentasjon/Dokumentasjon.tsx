@@ -19,8 +19,7 @@ import { ISøknad } from '../../models/søknad';
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
-import { BodyShort } from '@navikt/ds-react';
+import { DokumentasjonBeskrivelse } from '../../../components/DokumentasjonBeskrivelse';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -97,17 +96,9 @@ const Dokumentasjon: React.FC = () => {
       mellomlagreStønad={mellomlagreSkolepenger}
       routesStønad={RoutesSkolepenger}
     >
-      <SeksjonGruppe>
-        <BodyShort>
-          <FormattedHtmlMessage
-            id={
-              harDokumentasjonsbehov
-                ? 'dokumentasjon.beskrivelse'
-                : 'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'
-            }
-          />
-        </BodyShort>
-      </SeksjonGruppe>
+      <DokumentasjonBeskrivelse
+        harDokumentasjonsbehov={harDokumentasjonsbehov}
+      />
       <SeksjonGruppe>
         {dokumentasjonsbehov
           .filter(unikeDokumentasjonsbehov)
