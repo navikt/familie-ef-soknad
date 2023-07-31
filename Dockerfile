@@ -1,6 +1,4 @@
-FROM navikt/node-express:18
-
-USER root
+FROM cgr.dev/chainguard/node:18
 
 WORKDIR /app
 COPY ./build build
@@ -8,12 +6,6 @@ COPY ./server server
 
 WORKDIR /app/server
 
-ARG NPM_TOKEN
-RUN npm ci
-RUN npm run build
-
 EXPOSE 8080
 
-USER apprunner
-
-CMD ["node","--experimental-modules", "--es-module-specifier-resolution=node", "build/server.js"]
+CMD ["/usr/bin/npm", "run", "start"]
