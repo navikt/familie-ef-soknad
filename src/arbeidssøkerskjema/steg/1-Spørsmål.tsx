@@ -123,7 +123,6 @@ const Spørsmål: FC<any> = ({ ident }) => {
             />
           </KomponentGruppe>
         )}
-
         {arbeidssøker.kanBegynneInnenEnUke && (
           <KomponentGruppe>
             <MultiSvarSpørsmål

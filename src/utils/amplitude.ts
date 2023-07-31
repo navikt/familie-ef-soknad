@@ -111,7 +111,42 @@ export const logSidevisningSkolepenger = (side: string) => {
   });
 };
 
-export const logDokumetasjonsbehov = (
+const logDokumetasjonsbehovOppsummering = (
+  dokBehov: IDokumentasjon[],
+  skjemanavn: ESkjemanavn
+) => {
+  const antallOpplastede = dokBehov.filter(
+    (dok) =>
+      dok.harSendtInn === false &&
+      dok.opplastedeVedlegg !== undefined &&
+      dok.opplastedeVedlegg.length > 0
+  ).length;
+
+  const antallTidligereInnsendte = dokBehov.filter(
+    (dok) => dok.harSendtInn === true
+  ).length;
+
+  const antallIkkeOppfylte = dokBehov.filter(
+    (dok) =>
+      dok.harSendtInn === false &&
+      (dok.opplastedeVedlegg === undefined ||
+        dok.opplastedeVedlegg.length === 0)
+  ).length;
+
+  const harOppfyltAlle = antallIkkeOppfylte === 0;
+
+  logEvent('dokumentasjonsbehovOppsummering', {
+    skjemanavn,
+    antallDokBehov: dokBehov.length,
+    antallOpplastede,
+    antallTidligereInnsendte,
+    antallOppfylte: antallOpplastede + antallTidligereInnsendte,
+    antallIkkeOppfylte,
+    harOppfyltAlle,
+  });
+};
+
+const logDokumetasjonsbehovDetaljer = (
   dokBehov: IDokumentasjon[],
   skjemanavn: ESkjemanavn
 ) => {
@@ -125,6 +160,14 @@ export const logDokumetasjonsbehov = (
       skjemanavn: skjemanavn,
     })
   );
+};
+
+export const logDokumetasjonsbehov = (
+  dokBehov: IDokumentasjon[],
+  skjemanavn: ESkjemanavn
+) => {
+  logDokumetasjonsbehovDetaljer(dokBehov, skjemanavn);
+  logDokumetasjonsbehovOppsummering(dokBehov, skjemanavn);
 };
 
 export const logAdressesperre = (skjemanavn: string) => {
