@@ -14,6 +14,12 @@ import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { Alert, Button, Label } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
+import styled from 'styled-components';
+
+const VenterDuBarnLabel = styled(Label)`
+  display: block;
+  padding-bottom: 2rem;
+`;
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -86,10 +92,10 @@ const BarnaDine: React.FC = () => {
               ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Label as="p">
+                <VenterDuBarnLabel as="p">
                   {hentTekst('barnadine.leggtil.info', intl)}
-                </Label>
-                <Button onClick={() => settÅpenModal(true)}>
+                </VenterDuBarnLabel>
+                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
                   {hentTekst('barnadine.leggtil', intl)}
                 </Button>
               </div>
