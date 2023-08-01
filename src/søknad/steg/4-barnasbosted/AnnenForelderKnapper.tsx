@@ -11,31 +11,27 @@ import { cloneDeep } from 'lodash';
 
 interface Props {
   barn: IBarn;
+  forelder: IForelder;
+  oppdaterAnnenForelder: (annenForelderId: string) => void;
   førsteBarnTilHverForelder?: IBarn[];
   settForelder: (verdi: IForelder) => void;
-  forelder: IForelder;
-  settBarnHarSammeForelder: Function;
 }
 
 const AnnenForelderKnapper: React.FC<Props> = ({
   barn,
+  forelder,
+  oppdaterAnnenForelder,
   førsteBarnTilHverForelder,
   settForelder,
-  forelder,
-  settBarnHarSammeForelder,
 }) => {
   const intl = useLokalIntlContext();
-
-  const [andreForelderRadioVerdi, settAndreForelderRadioVerdi] =
-    useState<string>('');
 
   const leggTilSammeForelder = (
     e: SyntheticEvent<EventTarget, Event>,
     detAndreBarnet: IBarn
   ) => {
-    settBarnHarSammeForelder(true);
     const denAndreForelderen = cloneDeep(detAndreBarnet.forelder);
-    settAndreForelderRadioVerdi(detAndreBarnet.id);
+    oppdaterAnnenForelder(detAndreBarnet.id);
 
     settForelder({
       ...forelder,
@@ -59,8 +55,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelder = () => {
-    settBarnHarSammeForelder(false);
-    settAndreForelderRadioVerdi('annen-forelder');
+    oppdaterAnnenForelder('annen-forelder');
     const id = hentUid();
 
     !barn.harSammeAdresse.verdi &&
@@ -95,7 +90,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
                 id: 'barnasbosted.forelder.sammesom',
               })} ${hentBarnetsNavnEllerBeskrivelse(b, intl)}`}
               value={`${andreForelder}${b.id}`}
-              checked={andreForelderRadioVerdi === b.id}
+              checked={barn.annenForelderId === b.id}
               onChange={(e) => leggTilSammeForelder(e, b)}
             />
           );
@@ -105,7 +100,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
           name={`${andreForelder}${barn.navn}`}
           label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
           value={andreForelderAnnen}
-          checked={andreForelderRadioVerdi === 'annen-forelder'}
+          checked={barn.annenForelderId === 'annen-forelder'}
           onChange={() => leggTilAnnenForelder()}
         />
       </div>
