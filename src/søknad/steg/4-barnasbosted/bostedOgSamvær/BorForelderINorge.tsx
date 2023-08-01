@@ -16,7 +16,17 @@ import {
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { TextField } from '@navikt/ds-react';
+import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
+import { useSpråkContext } from '../../../../context/SpråkContext';
+import { hentLand } from '../../1-omdeg/medlemskap/MedlemskapConfig';
+import { ILandMedKode } from '../../../../models/steg/omDeg/medlemskap';
+
+const utledOppholdslandConfig = (land: ILandMedKode[]): ISpørsmål => ({
+  søknadid: 'denAndreForelderensOppholdsland',
+  tekstid: 'barnasbosted.hvilketLand',
+  flersvar: false,
+  svaralternativer: land,
+});
 
 interface Props {
   barn: IBarn;
@@ -36,6 +46,9 @@ const BorForelderINorge: FC<Props> = ({
   forelder,
   settDokumentasjonsbehovForBarn,
 }) => {
+  const [locale] = useSpråkContext();
+  const land = hentLand(locale);
+  const oppholdslandConfig = utledOppholdslandConfig(land);
   const intl = useLokalIntlContext();
 
   const settFelt = (spørsmål: ISpørsmål, svar: ISvar) => {
@@ -62,6 +75,21 @@ const BorForelderINorge: FC<Props> = ({
     settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
+  const oppdaterMedforeldersOppholdsland = (
+    spørsmål: ISpørsmål,
+    valgtSvar: ISvar
+  ) => {
+    settForelder({
+      ...forelder,
+      land: {
+        label: hentTekst('barnasbosted.land', intl),
+        verdi: valgtSvar.svar_tekst,
+        svarid: valgtSvar.id,
+        spørsmålid: spørsmål.søknadid,
+      },
+    });
+  };
+
   return (
     <>
       <KomponentGruppe>
@@ -78,18 +106,10 @@ const BorForelderINorge: FC<Props> = ({
       </KomponentGruppe>
       {forelder.borINorge?.verdi === false && (
         <KomponentGruppe>
-          <TextField
-            onChange={(e) =>
-              settForelder({
-                ...forelder,
-                land: {
-                  label: hentTekst('barnasbosted.land', intl),
-                  verdi: e.target.value,
-                },
-              })
-            }
-            value={forelder.land ? forelder.land?.verdi : ''}
-            label={hentTekst('barnasbosted.hvilketLand', intl)}
+          <SelectSpørsmål
+            spørsmål={oppholdslandConfig}
+            valgtSvarId={forelder.land?.svarid}
+            settSpørsmålOgSvar={oppdaterMedforeldersOppholdsland}
           />
         </KomponentGruppe>
       )}
