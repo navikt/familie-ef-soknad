@@ -107,11 +107,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         }
   );
 
-  const barnHarSammeForelder =
-    barn.annenForelderId !== null &&
-    barn.annenForelderId !== undefined &&
-    barn.annenForelderId !== '' &&
-    barn.annenForelderId !== 'annen-forelder';
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(undefined);
 
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
     forelder.fødselsdato?.verdi ? true : false
@@ -245,6 +243,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                     forelder={forelder}
                     oppdaterAnnenForelder={leggTilAnnenForelderId}
                     førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                    settBarnHarSammeForelder={settBarnHarSammeForelder}
                     settForelder={settForelder}
                   />
                 )}

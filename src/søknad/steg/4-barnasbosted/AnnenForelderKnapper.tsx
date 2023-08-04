@@ -14,6 +14,7 @@ interface Props {
   forelder: IForelder;
   oppdaterAnnenForelder: (annenForelderId: string) => void;
   førsteBarnTilHverForelder?: IBarn[];
+  settBarnHarSammeForelder: Function;
   settForelder: (verdi: IForelder) => void;
 }
 
@@ -22,6 +23,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   forelder,
   oppdaterAnnenForelder,
   førsteBarnTilHverForelder,
+  settBarnHarSammeForelder,
   settForelder,
 }) => {
   const intl = useLokalIntlContext();
@@ -30,6 +32,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     e: SyntheticEvent<EventTarget, Event>,
     detAndreBarnet: IBarn
   ) => {
+    settBarnHarSammeForelder(true);
     const denAndreForelderen = cloneDeep(detAndreBarnet.forelder);
     oppdaterAnnenForelder(detAndreBarnet.id);
 
@@ -55,6 +58,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelder = () => {
+    settBarnHarSammeForelder(false);
     oppdaterAnnenForelder('annen-forelder');
     const id = hentUid();
 
