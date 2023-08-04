@@ -72,7 +72,7 @@ export const ModalWrapper: React.FC<ModalProps> = ({
       aria-label={ariaLabel ? ariaLabel : tittel}
     >
       <Modal.Content>
-        <Tittel spacing={true} size={'medium'} level={3}>
+        <Tittel spacing={true} size={'medium'} level={'3'}>
           {tittel}
         </Tittel>
         <Innhold>{children}</Innhold>
