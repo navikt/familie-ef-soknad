@@ -9,7 +9,7 @@ import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { oppdaterBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Button, Heading } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 
 interface Props {
   settÅpenModal: Function;

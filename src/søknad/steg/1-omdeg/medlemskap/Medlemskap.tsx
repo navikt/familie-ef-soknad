@@ -29,11 +29,8 @@ interface Props {
 }
 const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const intl = useLokalIntlContext();
-  const {
-    søkerOppholderSegINorge,
-    oppholdsland: oppholdsland,
-    søkerBosattINorgeSisteTreÅr,
-  } = medlemskap;
+  const { søkerOppholderSegINorge, oppholdsland, søkerBosattINorgeSisteTreÅr } =
+    medlemskap;
 
   const oppholderSegINorgeConfig = oppholderSegINorge(intl);
 

@@ -46,7 +46,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   };
   const oppsummeringBarnaDine = barnaDine
     .filter((barn) =>
-      stønadstype == Stønadstype.barnetilsyn
+      stønadstype === Stønadstype.barnetilsyn
         ? barn.skalHaBarnepass?.verdi
         : true
     )
