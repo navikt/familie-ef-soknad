@@ -5,7 +5,7 @@ Frontend - søknad for enslig forsørger.
 ## Kjør lokalt
 
 1. `npm install`
-2. `npm start`
+2. `npm start:dev`
 
 * Hvis man ønsker å kjøre med mock-api
 1. Endre `REACT_APP_BRUK_API_I_DEV=false` i `.env`
@@ -24,7 +24,7 @@ Med api må du sette cookie første gang:
 
 ## Kjør testcafe lokalt
 1. Kjør `familie-ef-soknad-api` lokalt
-2. Kjør søknaden lokalt med `npm start`
+2. Kjør søknaden lokalt med `npm start:dev`
 3. Åpne en ny terminal og kjør `testcafe chrome test/test.js --skip-js-errors --live`
 
 Hvis testcafe ikke er installert, kjør en `npm install` ev. installer testcafe globalt hos deg `npm install -g testcafe`
