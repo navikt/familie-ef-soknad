@@ -9,6 +9,10 @@ const ReadMoreMedPadding = styled(ReadMore)`
   padding: 1rem 0;
 `;
 
+const SeksjonsGruppeMindrePadding = styled(SeksjonGruppe)`
+  padding-bottom: 50px;
+`;
+
 interface Props {
   harDokumentasjonsbehov: boolean;
 }
@@ -18,7 +22,7 @@ export const DokumentasjonBeskrivelse: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
   return (
-    <SeksjonGruppe>
+    <SeksjonsGruppeMindrePadding>
       {harDokumentasjonsbehov ? (
         <>
           <LocaleTekst tekst={'dokumentasjon.beskrivelse'} />
@@ -34,6 +38,6 @@ export const DokumentasjonBeskrivelse: React.FC<Props> = ({
           tekst={'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'}
         />
       )}
-    </SeksjonGruppe>
+    </SeksjonsGruppeMindrePadding>
   );
 };

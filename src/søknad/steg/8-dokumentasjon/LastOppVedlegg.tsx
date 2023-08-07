@@ -19,6 +19,16 @@ const StyledSeksjonGruppe = styled(SeksjonGruppe)`
   padding-bottom: 40px;
 `;
 
+const StyledGuidePanel = styled(GuidePanel)`
+  .navds-guide {
+    border: none;
+  }
+
+  .navds-guide-panel__content {
+    border-width: 3px;
+  }
+`;
+
 interface Props {
   dokumentasjon: IDokumentasjon;
   oppdaterDokumentasjon: (
@@ -45,7 +55,7 @@ const LastOppVedlegg: React.FC<Props> = ({
 
   return (
     <StyledSeksjonGruppe>
-      <GuidePanel illustration={<GrøntDokumentIkon />} poster>
+      <StyledGuidePanel illustration={<GrøntDokumentIkon />} poster>
         <FeltGruppe>
           <Heading size="small" level="3" style={{ justifyContent: 'left' }}>
             <LocaleTekst tekst={dokumentasjon.tittel} />
@@ -79,7 +89,7 @@ const LastOppVedlegg: React.FC<Props> = ({
             ]}
           />
         )}
-      </GuidePanel>
+      </StyledGuidePanel>
     </StyledSeksjonGruppe>
   );
 };
