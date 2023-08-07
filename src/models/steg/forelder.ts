@@ -16,7 +16,7 @@ export interface IForelder {
   hvorforIkkeOppgi?: ISpørsmålFelt;
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: ISpørsmålBooleanFelt;
-  land?: ITekstFelt;
+  land?: ISpørsmålFelt;
   avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
   harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;

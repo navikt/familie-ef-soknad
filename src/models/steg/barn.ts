@@ -22,6 +22,7 @@ export interface IBarn {
   barnepass?: IBarnepass; // Gjelder kun barnetilsyn
   harAdressesperre?: boolean;
   medforelder?: IMedforelderFelt;
+  annenForelderId?: string; // Gjelder kun for visning av avhuking i frontend
 }
 
 export enum EBarn {

@@ -40,7 +40,7 @@ const RegistrerBarnIFolkeregister: FC<Props> = ({ barna }) => {
 
   return (
     <SeksjonGruppe>
-      <StyledUndertittel>{undertittelMedNavn}</StyledUndertittel>
+      <StyledUndertittel size={'small'}>{undertittelMedNavn}</StyledUndertittel>
       <BodyShort>{tekst}</BodyShort>
       <KomponentGruppe>
         <a

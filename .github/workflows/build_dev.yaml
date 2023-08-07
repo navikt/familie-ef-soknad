@@ -20,3 +20,10 @@ jobs:
           npm ci
           npm run test-ci
           npm run build
+      - name: Npm build server
+        working-directory: ./server
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: |
+          npm ci
+          npm run build

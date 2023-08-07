@@ -35,10 +35,21 @@ const lagOppdatertBarneliste = (
 ) => {
   return barneliste.map((b) => {
     if (b === nåværendeBarn) {
-      let nyttBarn = nåværendeBarn;
+      return { ...nåværendeBarn, forelder: forelder };
+    } else {
+      return b;
+    }
+  });
+};
 
-      nyttBarn.forelder = forelder;
-      return nyttBarn;
+const oppdaterBarnetsAndreForelder = (
+  barneliste: IBarn[],
+  nåværendeBarn: IBarn,
+  andreForelderId: string
+): IBarn[] => {
+  return barneliste.map((b) => {
+    if (b === nåværendeBarn) {
+      return { ...nåværendeBarn, annenForelderId: andreForelderId };
     } else {
       return b;
     }
@@ -176,6 +187,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     scrollTilLagtTilBarn();
   };
 
+  const leggTilAnnenForelderId = (annenForelderId: string) => {
+    const nyBarneListe = oppdaterBarnetsAndreForelder(
+      barneListe,
+      barn,
+      annenForelderId
+    );
+    settBarneListe(nyBarneListe);
+  };
+
   const visOmAndreForelder =
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
@@ -211,7 +231,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             />
           )}
-
           {(barn.harSammeAdresse?.verdi ||
             harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
             <SeksjonGruppe>
@@ -221,10 +240,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 !barn.medforelder?.verdi && (
                   <AnnenForelderKnapper
                     barn={barn}
-                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                    settForelder={settForelder}
                     forelder={forelder}
+                    oppdaterAnnenForelder={leggTilAnnenForelderId}
+                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
                     settBarnHarSammeForelder={settBarnHarSammeForelder}
+                    settForelder={settForelder}
                   />
                 )}
               {visOmAndreForelder && (
@@ -271,33 +291,34 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             />
           )}
 
-          {!barnHarSammeForelder && visSpørsmålHvisIkkeSammeForelder(forelder) && (
-            <>
-              {forelder.borINorge?.verdi && (
-                <BorAnnenForelderISammeHus
-                  forelder={forelder}
-                  settForelder={settForelder}
-                  barn={barn}
-                />
-              )}
+          {!barnHarSammeForelder &&
+            visSpørsmålHvisIkkeSammeForelder(forelder) && (
+              <>
+                {forelder.borINorge?.verdi && (
+                  <BorAnnenForelderISammeHus
+                    forelder={forelder}
+                    settForelder={settForelder}
+                    barn={barn}
+                  />
+                )}
 
-              {skalFylleUtHarBoddSammenFør && (
-                <BoddSammenFør
-                  forelder={forelder}
-                  barn={barn}
-                  settForelder={settForelder}
-                />
-              )}
-              {(boddSammenFør?.svarid === ESvar.NEI ||
-                erGyldigDato(flyttetFra?.verdi)) && (
-                <HvorMyeSammen
-                  forelder={forelder}
-                  barn={barn}
-                  settForelder={settForelder}
-                />
-              )}
-            </>
-          )}
+                {skalFylleUtHarBoddSammenFør && (
+                  <BoddSammenFør
+                    forelder={forelder}
+                    barn={barn}
+                    settForelder={settForelder}
+                  />
+                )}
+                {(boddSammenFør?.svarid === ESvar.NEI ||
+                  erGyldigDato(flyttetFra?.verdi)) && (
+                  <HvorMyeSammen
+                    forelder={forelder}
+                    barn={barn}
+                    settForelder={settForelder}
+                  />
+                )}
+              </>
+            )}
 
           {erForelderUtfylt(forelder) &&
             (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||

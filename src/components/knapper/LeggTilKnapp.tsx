@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddCircleFilled } from '@navikt/ds-icons';
+import { PlusCircleFillIcon } from '@navikt/aksel-icons';
 import { Button } from '@navikt/ds-react';
 
 interface Props {
@@ -9,7 +9,7 @@ interface Props {
 
 const LeggTilKnapp: React.FC<Props> = ({ onClick, children }) => {
   return (
-    <Button variant="tertiary" onClick={onClick} icon={<AddCircleFilled />}>
+    <Button variant="tertiary" onClick={onClick} icon={<PlusCircleFillIcon />}>
       {children}
     </Button>
   );
