@@ -4,6 +4,7 @@ import FormattedHtmlMessage from '../language/FormattedHtmlMessage';
 import styled from 'styled-components';
 import { hentTekst } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import LocaleTekst from '../language/LocaleTekst';
 
 const ReadMoreMedPadding = styled(ReadMore)`
   padding: 1rem 0;
@@ -19,21 +20,21 @@ export const DokumentasjonBeskrivelse: React.FC<Props> = ({
   const intl = useLokalIntlContext();
   return (
     <SeksjonGruppe>
-      <BodyShort>
-        {intl.formatMessage({
-          id: harDokumentasjonsbehov
-            ? 'dokumentasjon.beskrivelse'
-            : 'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse',
-        })}
-      </BodyShort>
-      <ReadMoreMedPadding
-        header={hentTekst('dokumentasjon.beskrivelseBilderHeader', intl)}
-      >
-        <FormattedHtmlMessage id={'dokumentasjon.beskrivelseBilderInnhold'} />
-      </ReadMoreMedPadding>
-      <BodyShort>
-        <FormattedHtmlMessage id={'dokumentasjon.beskrivelseSlutt'} />
-      </BodyShort>
+      {harDokumentasjonsbehov ? (
+        <>
+          <LocaleTekst tekst={'dokumentasjon.beskrivelse'} />
+          <ReadMoreMedPadding
+            header={hentTekst('dokumentasjon.beskrivelseBilderHeader', intl)}
+          >
+            <LocaleTekst tekst={'dokumentasjon.beskrivelseBilderInnhold'} />
+          </ReadMoreMedPadding>
+          <LocaleTekst tekst={'dokumentasjon.beskrivelseSlutt'} />
+        </>
+      ) : (
+        <LocaleTekst
+          tekst={'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse'}
+        />
+      )}
     </SeksjonGruppe>
   );
 };
