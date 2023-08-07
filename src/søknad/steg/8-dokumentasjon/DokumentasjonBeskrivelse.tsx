@@ -1,9 +1,9 @@
 import { ReadMore } from '@navikt/ds-react';
-import SeksjonGruppe from './gruppe/SeksjonGruppe';
+import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import styled from 'styled-components';
-import { hentTekst } from '../utils/søknad';
-import { useLokalIntlContext } from '../context/LokalIntlContext';
-import LocaleTekst from '../language/LocaleTekst';
+import { hentTekst } from '../../../utils/søknad';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import LocaleTekst from '../../../language/LocaleTekst';
 
 const ReadMoreMedPadding = styled(ReadMore)`
   padding: 1rem 0;

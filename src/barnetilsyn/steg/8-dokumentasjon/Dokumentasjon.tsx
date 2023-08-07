@@ -19,7 +19,7 @@ import { erVedleggstidspunktGyldig } from '../../../utils/dato';
 import * as Sentry from '@sentry/browser';
 import { useDebouncedCallback } from 'use-debounce';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { DokumentasjonBeskrivelse } from '../../../components/DokumentasjonBeskrivelse';
+import { DokumentasjonBeskrivelse } from '../../../søknad/steg/8-dokumentasjon/DokumentasjonBeskrivelse';
 
 const Dokumentasjon: React.FC = () => {
   const intl = useLokalIntlContext();
