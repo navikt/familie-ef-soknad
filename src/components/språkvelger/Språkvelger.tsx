@@ -14,7 +14,7 @@ import {
 import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
 import { BodyShort } from '@navikt/ds-react';
-import { Expand } from '@navikt/ds-icons';
+import { ChevronDownIcon } from '@navikt/aksel-icons';
 
 const StyledSpråkvelger = styled.div`
   width: 100%;
@@ -54,7 +54,7 @@ export const StyledTekst = styled(BodyShort)`
   width: 65%;
 `;
 
-const StyledChevronNed = styled(Expand)`
+const StyledChevronNed = styled(ChevronDownIcon)`
   align-self: center;
   height: 1.2em;
   width: 1.2em;
