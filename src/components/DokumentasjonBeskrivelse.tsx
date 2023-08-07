@@ -1,6 +1,5 @@
-import { BodyShort, ReadMore } from '@navikt/ds-react';
+import { ReadMore } from '@navikt/ds-react';
 import SeksjonGruppe from './gruppe/SeksjonGruppe';
-import FormattedHtmlMessage from '../language/FormattedHtmlMessage';
 import styled from 'styled-components';
 import { hentTekst } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';

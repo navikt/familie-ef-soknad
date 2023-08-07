@@ -11,8 +11,7 @@ import {
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { EFiltyper } from '../../../helpers/filtyper';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
-import { BodyShort, Checkbox, GuidePanel, Heading } from '@navikt/ds-react';
+import { Checkbox, GuidePanel, Heading } from '@navikt/ds-react';
 import styled from 'styled-components';
 
 const StyledSeksjonGruppe = styled(SeksjonGruppe)`
@@ -53,9 +52,7 @@ const LastOppVedlegg: React.FC<Props> = ({
         </FeltGruppe>
         {dokumentasjon.beskrivelse && (
           <FeltGruppe>
-            <BodyShort>
-              <FormattedHtmlMessage id={dokumentasjon.beskrivelse} />
-            </BodyShort>
+            <LocaleTekst tekst={dokumentasjon.beskrivelse} />
           </FeltGruppe>
         )}
         {hvisIkkeFakturaForBarnepass && (
