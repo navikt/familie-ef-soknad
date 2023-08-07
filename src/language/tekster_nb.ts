@@ -624,7 +624,7 @@ export default {
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
     'Det ser ikke ut til at du må sende inn noe dokumentasjon.  Hvis vi likevel trenger dokumentasjon fra deg, tar vi kontakt.',
   'dokumentasjon.beskrivelse':
-    'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du får raskere svar på søknaden din hvis vi har all dokumentasjonen når vi starter behandlingen. Du kan bruke filformatene PDF, jpg og png.',
+    'Du må laste opp dokumentasjon som bekrefter opplysningene i søknaden. Du får raskere svar på søknaden din hvis vi har all dokumentasjon når vi starter behandlingen. Du kan bruke filformatene PDF, jpg og png.',
   'dokumentasjon.beskrivelseBilderHeader':
     'Slik bruker du bilder som vedlegg til søknaden',
   'dokumentasjon.beskrivelseBilderInnhold':
