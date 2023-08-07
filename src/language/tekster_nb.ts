@@ -632,7 +632,7 @@ export default {
     '<li>Sjekk at dokumentet er lett å lese\n</li>' +
     '<li>Last opp bildene her</li></ol>',
   'dokumentasjon.beskrivelseSlutt':
-    'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten.\n <br/><br />' +
+    'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten. <br/><br />' +
     'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
   'dokumentasjon.checkbox.sendtTidligere':
     'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
