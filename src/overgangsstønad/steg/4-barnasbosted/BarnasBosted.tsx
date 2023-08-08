@@ -15,7 +15,6 @@ import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
 
-
 const BarnasBosted: React.FC = () => {
   const intl = useLokalIntlContext();
   const location = useLocation();
@@ -30,7 +29,6 @@ const BarnasBosted: React.FC = () => {
     return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
   });
 
-
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
@@ -38,7 +36,7 @@ const BarnasBosted: React.FC = () => {
 
   const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
 
-  const [sisteBarnUtfylt,] = useState<boolean>(
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === barna.length
   );
 
@@ -55,7 +53,6 @@ const BarnasBosted: React.FC = () => {
 
   const lagtTilBarn = useRef(null);
 
-
   return (
     <Side
       stønadstype={Stønadstype.overgangsstønad}
@@ -66,7 +63,14 @@ const BarnasBosted: React.FC = () => {
       mellomlagreStønad={mellomlagreOvergangsstønad}
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
-      <BarnasBostedInnhold barn={barna} barneliste={søknad.person.barn} settBarneliste={settBarneliste} settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}/>
+      <BarnasBostedInnhold
+        barn={barna}
+        barneliste={søknad.person.barn}
+        settBarneliste={settBarneliste}
+        settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+        sisteBarnUtfylt={sisteBarnUtfylt}
+        settSisteBarnUtfylt={settSisteBarnUtfylt}
+      />
     </Side>
   );
 };

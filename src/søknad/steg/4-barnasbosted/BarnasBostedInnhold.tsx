@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
@@ -29,6 +29,8 @@ interface Props {
     barneid: string,
     barnapassid?: string
   ) => void;
+  sisteBarnUtfylt: boolean;
+  settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BarnasBostedInnhold: React.FC<Props> = ({
@@ -36,6 +38,8 @@ const BarnasBostedInnhold: React.FC<Props> = ({
   settBarneliste,
   barneliste,
   settDokumentasjonsbehovForBarn,
+  sisteBarnUtfylt,
+  settSisteBarnUtfylt,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -64,6 +68,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     <>
       {barna.map((barn: IBarn, index: number) => {
         const key = barn.fødselsdato.verdi + index;
+        console.log('index: ', index);
         if (index === aktivIndex) {
           return (
             <BarnetsBostedEndre

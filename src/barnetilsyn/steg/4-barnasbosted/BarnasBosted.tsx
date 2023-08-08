@@ -48,7 +48,7 @@ const BarnasBosted: React.FC = () => {
     : ESide.visTilbakeTilOppsummeringKnapp;
 
   const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(aktuelleBarn);
-  const [sisteBarnUtfylt, settSisteBarnUt] = useState<boolean>(
+  const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === aktuelleBarn.length
   );
 
@@ -67,6 +67,8 @@ const BarnasBosted: React.FC = () => {
         barneliste={søknad.person.barn}
         settBarneliste={settBarneliste}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+        sisteBarnUtfylt={sisteBarnUtfylt}
+        settSisteBarnUtfylt={settSisteBarnUtfylt}
       />
     </Side>
   );
