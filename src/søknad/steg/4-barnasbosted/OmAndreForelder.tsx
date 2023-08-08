@@ -83,7 +83,7 @@ const OmAndreForelder: React.FC<Props> = ({
     settKjennerIkkeIdent(checked);
   };
 
-  const settDato = (dato: string) => {
+  const settFødselsdato = (dato: string) => {
     dato !== null &&
       settForelder({
         ...forelder,
@@ -214,7 +214,7 @@ const OmAndreForelder: React.FC<Props> = ({
             checked={kjennerIkkeIdent}
             erGyldigIdent={erGyldigIdent}
             settGyldigIdent={hvisGyldigIdentSettIdent}
-            settFødselsdato={settDato}
+            settFødselsdato={settFødselsdato}
             settChecked={settChecked}
             settIdent={oppdaterIdent}
           />
