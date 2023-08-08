@@ -12,7 +12,6 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
-import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
 
@@ -22,21 +21,11 @@ const BarnasBosted: React.FC = () => {
   const {
     søknad,
     mellomlagreBarnetilsyn,
-    settSøknad,
     settDokumentasjonsbehovForBarn,
+    oppdaterBarnISoknaden,
   } = useBarnetilsynSøknad();
 
   useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
-
-  // TODO: Ikke fjern barna som ikke er valgt!!! Kun oppdater det barnet som skal oppdateres :D
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
 
   const aktuelleBarn = søknad.person.barn.filter(
     (barn: IBarn) => barn.skalHaBarnepass?.verdi
@@ -71,7 +60,7 @@ const BarnasBosted: React.FC = () => {
       <BarnasBostedInnhold
         barn={aktuelleBarn}
         barneliste={søknad.person.barn}
-        settBarneliste={settBarneliste}
+        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}

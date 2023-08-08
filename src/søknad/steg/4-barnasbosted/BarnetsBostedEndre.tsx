@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarneHeader from '../../../components/BarneHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
@@ -28,34 +28,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { BodyShort, Button, Label } from '@navikt/ds-react';
 
-const lagOppdatertBarneliste = (
-  barneliste: IBarn[],
-  nåværendeBarn: IBarn,
-  forelder: IForelder
-) => {
-  return barneliste.map((b) => {
-    if (b === nåværendeBarn) {
-      return { ...nåværendeBarn, forelder: forelder };
-    } else {
-      return b;
-    }
-  });
-};
-
-const oppdaterBarnetsAndreForelder = (
-  barneliste: IBarn[],
-  nåværendeBarn: IBarn,
-  andreForelderId: string
-): IBarn[] => {
-  return barneliste.map((b) => {
-    if (b === nåværendeBarn) {
-      return { ...nåværendeBarn, annenForelderId: andreForelderId };
-    } else {
-      return b;
-    }
-  });
-};
-
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
   visesBorINorgeSpørsmål: boolean
@@ -82,7 +54,7 @@ interface Props {
     barnapassid?: string
   ) => void;
   barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  oppdaterBarnISoknaden: (barneliste: IBarn) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -92,7 +64,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settSisteBarnUtfylt,
   scrollTilLagtTilBarn,
   barneListe,
-  settBarneListe,
+  oppdaterBarnISoknaden,
   settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useLokalIntlContext();
@@ -149,21 +121,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     .filter(Boolean) as IBarn[];
 
   const leggTilForelder = () => {
-    const nyIndex = aktivIndex + 1;
-    const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
+    oppdaterBarnISoknaden({ ...barn, forelder: forelder });
 
-    settBarneListe(nyBarneListe);
+    const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
     scrollTilLagtTilBarn();
   };
 
   const leggTilAnnenForelderId = (annenForelderId: string) => {
-    const nyBarneListe = oppdaterBarnetsAndreForelder(
-      barneListe,
-      barn,
-      annenForelderId
-    );
-    settBarneListe(nyBarneListe);
+    oppdaterBarnISoknaden({ ...barn, annenForelderId: annenForelderId });
   };
 
   const visOmAndreForelder =

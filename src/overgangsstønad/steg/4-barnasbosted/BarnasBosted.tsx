@@ -8,7 +8,6 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
@@ -22,7 +21,7 @@ const BarnasBosted: React.FC = () => {
     søknad,
     mellomlagreOvergangsstønad,
     settDokumentasjonsbehovForBarn,
-    settSøknad,
+    oppdaterBarnISoknaden,
   } = useSøknad();
 
   const barna = søknad.person.barn.filter((barn: IBarn) => {
@@ -42,15 +41,6 @@ const BarnasBosted: React.FC = () => {
 
   useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
 
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
-
   useEffect(() => {
     settSisteBarnUtfylt(antallBarnMedForeldreUtfylt(barna) === barna.length);
   }, [søknad]);
@@ -68,7 +58,7 @@ const BarnasBosted: React.FC = () => {
       <BarnasBostedInnhold
         barn={barna}
         barneliste={søknad.person.barn}
-        settBarneliste={settBarneliste}
+        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}

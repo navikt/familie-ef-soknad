@@ -1,4 +1,4 @@
-import React, { RefObject, useEffect, useRef, useState } from 'react';
+import React, { RefObject, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
@@ -22,7 +22,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 interface Props {
   barn: IBarn[];
   barneliste: IBarn[];
-  settBarneliste: (barneliste: IBarn[]) => void;
+  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
   settDokumentasjonsbehovForBarn: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -35,7 +35,7 @@ interface Props {
 
 const BarnasBostedInnhold: React.FC<Props> = ({
   barn,
-  settBarneliste,
+  oppdaterBarnISoknaden,
   barneliste,
   settDokumentasjonsbehovForBarn,
   sisteBarnUtfylt,
@@ -78,7 +78,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              settBarneListe={settBarneliste}
+              oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               barneListe={barneliste}
             />
           );

@@ -11,7 +11,6 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
-import { ISøknad } from '../../models/søknad';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
 
@@ -25,7 +24,7 @@ const BarnasBosted: React.FC = () => {
   const {
     søknad,
     mellomlagreSkolepenger,
-    settSøknad,
+    oppdaterBarnISoknaden,
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
 
@@ -39,15 +38,6 @@ const BarnasBosted: React.FC = () => {
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === aktuelleBarn.length
   );
-
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
 
   useEffect(() => {
     settSisteBarnUtfylt(
@@ -68,7 +58,7 @@ const BarnasBosted: React.FC = () => {
       <BarnasBostedInnhold
         barn={aktuelleBarn}
         barneliste={søknad.person.barn}
-        settBarneliste={settBarneliste}
+        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}
