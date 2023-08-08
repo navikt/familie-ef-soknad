@@ -68,7 +68,6 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     <>
       {barna.map((barn: IBarn, index: number) => {
         const key = barn.fødselsdato.verdi + index;
-        console.log('index: ', index);
         if (index === aktivIndex) {
           return (
             <BarnetsBostedEndre
