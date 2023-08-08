@@ -101,7 +101,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
-      ? barn.forelder
+      ? {
+          ...barn.forelder,
+          kanIkkeOppgiAnnenForelderFar: {
+            label: hentTekst('barnasbosted.kanikkeoppgiforelder', intl),
+            verdi: barn.forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
+          },
+        }
       : {
           id: hentUid(),
         }
@@ -122,27 +128,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     fødselsdato,
     ident,
   } = forelder;
-  const jegKanIkkeOppgiLabel = hentTekst(
-    'barnasbosted.kanikkeoppgiforelder',
-    intl
-  );
 
   const erIdentUtfyltOgGylding = (ident?: string): boolean =>
     !!ident && erGyldigFødselsnummer(ident);
   const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
     erGyldigDato(fødselsdato) || fødselsdato === '';
   const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
-
-  useEffect(() => {
-    settForelder({
-      ...forelder,
-      kanIkkeOppgiAnnenForelderFar: {
-        label: jegKanIkkeOppgiLabel,
-        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
-      },
-    });
-    //eslint-disable-next-line
-  }, []);
 
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
