@@ -204,21 +204,19 @@ const OmAndreForelder: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
       {forelder.navn && !forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
-        <>
-          <IdentEllerFødselsdatoGruppe
-            identLabel={hentTekst('person.ident', intl)}
-            datoLabel={hentTekst('person.fødselsdato', intl)}
-            checkboxLabel={hentTekst('person.checkbox.ident', intl)}
-            ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
-            fødselsdato={forelder?.fødselsdato?.verdi || ''}
-            checked={kjennerIkkeIdent}
-            erGyldigIdent={erGyldigIdent}
-            settGyldigIdent={hvisGyldigIdentSettIdent}
-            settFødselsdato={settFødselsdato}
-            settChecked={settChecked}
-            settIdent={oppdaterIdent}
-          />
-        </>
+        <IdentEllerFødselsdatoGruppe
+          identLabel={hentTekst('person.ident', intl)}
+          datoLabel={hentTekst('person.fødselsdato', intl)}
+          checkboxLabel={hentTekst('person.checkbox.ident', intl)}
+          ident={identFelt && !kjennerIkkeIdent ? identFelt : ''}
+          fødselsdato={forelder?.fødselsdato?.verdi || ''}
+          checked={kjennerIkkeIdent}
+          erGyldigIdent={erGyldigIdent}
+          settGyldigIdent={hvisGyldigIdentSettIdent}
+          settFødselsdato={settFødselsdato}
+          settChecked={settChecked}
+          settIdent={oppdaterIdent}
+        />
       )}
       {forelder.kanIkkeOppgiAnnenForelderFar?.verdi && (
         <KomponentGruppe>
@@ -230,21 +228,19 @@ const OmAndreForelder: React.FC<Props> = ({
         </KomponentGruppe>
       )}
       {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
-        <>
-          <FeltGruppe aria-live="polite">
-            <Textarea
-              autoComplete={'off'}
-              value={
-                forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
-                begyntÅSkrive
-                  ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
-                  : ''
-              }
-              onChange={settIkkeOppgittAnnenForelderBegrunnelse}
-              label={hvorforIkkeOppgiLabel}
-            />
-          </FeltGruppe>
-        </>
+        <FeltGruppe aria-live="polite">
+          <Textarea
+            autoComplete={'off'}
+            value={
+              forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
+              begyntÅSkrive
+                ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
+                : ''
+            }
+            onChange={settIkkeOppgittAnnenForelderBegrunnelse}
+            label={hvorforIkkeOppgiLabel}
+          />
+        </FeltGruppe>
       )}
     </>
   );
