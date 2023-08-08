@@ -41,7 +41,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
 
   const endreInformasjon = () => {
     settAktivIndex(index);
-    sisteBarnUtfylt === true && settSisteBarnUtfylt(false);
+    settSisteBarnUtfylt(false);
   };
 
   return (
