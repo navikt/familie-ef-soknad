@@ -144,21 +144,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     //eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    if (sisteBarnUtfylt === true && !erForelderUtfylt(forelder)) {
-      const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
-      settBarneListe(nyBarneListe);
-      settSisteBarnUtfylt(false);
-    }
-  }, [
-    sisteBarnUtfylt,
-    settSisteBarnUtfylt,
-    forelder,
-    barneListe,
-    barn,
-    settBarneListe,
-  ]);
-
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
   });
@@ -178,7 +163,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barneListe.length - 1 === andreBarnMedForelder.length;
 
   const leggTilForelder = () => {
-    if (erForelderUtfylt(forelder)) settSisteBarnUtfylt(true);
     const nyIndex = aktivIndex + 1;
     const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
 

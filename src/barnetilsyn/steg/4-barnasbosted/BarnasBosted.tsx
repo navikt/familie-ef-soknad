@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -51,6 +51,12 @@ const BarnasBosted: React.FC = () => {
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
     antallBarnMedForeldre === aktuelleBarn.length
   );
+
+  useEffect(() => {
+    settSisteBarnUtfylt(
+      antallBarnMedForeldreUtfylt(aktuelleBarn) === aktuelleBarn.length
+    );
+  }, [søknad]);
 
   return (
     <Side
