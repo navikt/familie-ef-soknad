@@ -72,7 +72,6 @@ const BarnasBostedInnhold: React.FC<Props> = ({
           return (
             <BarnetsBostedEndre
               barn={barn}
-              sisteBarnUtfylt={sisteBarnUtfylt}
               settSisteBarnUtfylt={settSisteBarnUtfylt}
               settAktivIndex={settAktivIndex}
               aktivIndex={aktivIndex}
@@ -94,7 +93,6 @@ const BarnasBostedInnhold: React.FC<Props> = ({
                 settAktivIndex={settAktivIndex}
                 index={index}
                 key={barn.id}
-                sisteBarnUtfylt={sisteBarnUtfylt}
                 settSisteBarnUtfylt={settSisteBarnUtfylt}
               />
             </React.Fragment>

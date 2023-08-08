@@ -73,7 +73,6 @@ interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   aktivIndex: number;
-  sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
   settDokumentasjonsbehovForBarn: (
@@ -91,7 +90,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settAktivIndex,
   aktivIndex,
   settSisteBarnUtfylt,
-  sisteBarnUtfylt,
   scrollTilLagtTilBarn,
   barneListe,
   settBarneListe,
