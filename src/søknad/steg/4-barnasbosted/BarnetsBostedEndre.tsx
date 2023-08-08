@@ -150,9 +150,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     })
     .filter(Boolean) as IBarn[];
 
-  const erPåSisteBarn: boolean =
-    barneListe.length - 1 === andreBarnMedForelder.length;
-
   const leggTilForelder = () => {
     const nyIndex = aktivIndex + 1;
     const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
@@ -303,13 +300,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
               harForelderFraPdl) && (
               <Button variant="secondary" onClick={leggTilForelder}>
-                <LocaleTekst
-                  tekst={
-                    !sisteBarnUtfylt && !erPåSisteBarn
-                      ? 'knapp.neste.barn'
-                      : 'knapp.neste'
-                  }
-                />
+              <LocaleTekst tekst={'knapp.neste'} />
               </Button>
             )}
         </div>

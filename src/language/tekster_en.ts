@@ -10,7 +10,6 @@ export default {
     'You must answer all the questions before you can go to the next page',
   'knapp.tilbake': 'Back',
   'knapp.neste': 'Next',
-  'knapp.neste.barn': 'Next child',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
