@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { useLocation } from 'react-router-dom';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
 import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
@@ -13,9 +12,14 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
-import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { Alert, Button, Label } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
+import styled from 'styled-components';
+
+const VenterDuBarnLabel = styled(Label)`
+  display: block;
+  padding-bottom: 2rem;
+`;
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -25,12 +29,7 @@ const BarnaDine: React.FC = () => {
     mellomlagreSkolepenger,
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
-  const location = useLocation();
-  const kommerFraOppsummering =
-    kommerFraOppsummeringen(location.state) && false;
-  const skalViseKnapper = !kommerFraOppsummering
-    ? ESide.visTilbakeNesteAvbrytKnapp
-    : ESide.visTilbakeTilOppsummeringKnapp;
+  const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   useMount(() => logSidevisningSkolepenger('BarnaDine'));
 
@@ -93,10 +92,10 @@ const BarnaDine: React.FC = () => {
               ))}
             <div className="barnekort legg-til">
               <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <Label as="p">
+                <VenterDuBarnLabel as="p">
                   {hentTekst('barnadine.leggtil.info', intl)}
-                </Label>
-                <Button onClick={() => settÅpenModal(true)}>
+                </VenterDuBarnLabel>
+                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
                   {hentTekst('barnadine.leggtil', intl)}
                 </Button>
               </div>

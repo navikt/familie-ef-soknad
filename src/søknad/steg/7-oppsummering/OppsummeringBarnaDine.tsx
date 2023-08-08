@@ -44,16 +44,22 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
     }
     return nyttBarn;
   };
-  const oppsummeringBarnaDine = barnaDine.filter((barn) => barn.skalHaBarnepass?.verdi).map((barn) => {
-    const endretBarn = hentEndretBarn(barn);
+  const oppsummeringBarnaDine = barnaDine
+    .filter((barn) =>
+      stønadstype == Stønadstype.barnetilsyn
+        ? barn.skalHaBarnepass?.verdi
+        : true
+    )
+    .map((barn) => {
+      const endretBarn = hentEndretBarn(barn);
 
-    return (
-      <StyledOppsummeringForBarn key={barn.id}>
-        <BarneHeader barn={barn} />
-        <OppsummeringBarn stønadstype={stønadstype} barn={endretBarn} />
-      </StyledOppsummeringForBarn>
-    );
-  });
+      return (
+        <StyledOppsummeringForBarn key={barn.id}>
+          <BarneHeader barn={barn} />
+          <OppsummeringBarn stønadstype={stønadstype} barn={endretBarn} />
+        </StyledOppsummeringForBarn>
+      );
+    });
 
   return (
     <>

@@ -42,6 +42,8 @@ spec:
       rules:
         - application: familie-ef-soknad-api
         - application: familie-dokument
+        - application: nav-dekoratoren
+          namespace: personbruker
       external:
         - host: nav.no
   env:
