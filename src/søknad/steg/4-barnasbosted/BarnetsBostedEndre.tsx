@@ -189,123 +189,120 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     !forelder.borINorge?.verdi;
 
   return (
-    <>
-      <div className="barnas-bosted">
-        <SeksjonGruppe>
-          <BarneHeader barn={barn} />
-        </SeksjonGruppe>
-        <div className="barnas-bosted__innhold">
-          {!barn.harSammeAdresse.verdi && (
-            <SkalBarnetBoHosSøker
-              barn={barn}
-              forelder={forelder}
-              settForelder={settForelder}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-          {(barn.harSammeAdresse?.verdi ||
-            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
-            <SeksjonGruppe>
-              <BarnetsAndreForelderTittel barn={barn} />
+    <div className="barnas-bosted">
+      <SeksjonGruppe>
+        <BarneHeader barn={barn} />
+      </SeksjonGruppe>
+      <div className="barnas-bosted__innhold">
+        {!barn.harSammeAdresse.verdi && (
+          <SkalBarnetBoHosSøker
+            barn={barn}
+            forelder={forelder}
+            settForelder={settForelder}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+        {(barn.harSammeAdresse?.verdi ||
+          harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
+          <SeksjonGruppe>
+            <BarnetsAndreForelderTittel barn={barn} />
 
-              {førsteBarnTilHverForelder.length > 0 &&
-                !barn.medforelder?.verdi && (
-                  <AnnenForelderKnapper
-                    barn={barn}
-                    forelder={forelder}
-                    oppdaterAnnenForelder={leggTilAnnenForelderId}
-                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                    settBarnHarSammeForelder={settBarnHarSammeForelder}
-                    settForelder={settForelder}
-                  />
-                )}
-              {visOmAndreForelder && (
-                <OmAndreForelder
-                  settForelder={settForelder}
+            {førsteBarnTilHverForelder.length > 0 &&
+              !barn.medforelder?.verdi && (
+                <AnnenForelderKnapper
+                  barn={barn}
                   forelder={forelder}
-                  kjennerIkkeIdent={kjennerIkkeIdent}
-                  settKjennerIkkeIdent={settKjennerIkkeIdent}
-                  settSisteBarnUtfylt={settSisteBarnUtfylt}
+                  oppdaterAnnenForelder={leggTilAnnenForelderId}
+                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                  settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  settForelder={settForelder}
                 />
               )}
-              {barn.medforelder?.verdi && (
-                <>
-                  <Label as="p">Navn</Label>
-                  <BodyShort>
-                    {barn.medforelder.verdi.navn
-                      ? barn.medforelder.verdi.navn
-                      : `${hentTekst(
-                          'barnekort.medforelder.hemmelig',
-                          intl
-                        )}, ${barn.medforelder.verdi.alder}`}
-                  </BodyShort>
-                </>
-              )}
-            </SeksjonGruppe>
-          )}
-
-          {visBorAnnenForelderINorge && (
-            <BorForelderINorge
-              barn={barn}
-              forelder={forelder}
-              settForelder={settForelder}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-
-          {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
-            barnHarSammeForelder) && (
-            <BostedOgSamvær
-              settForelder={settForelder}
-              forelder={forelder}
-              barn={barn}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-
-          {!barnHarSammeForelder &&
-            visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            {visOmAndreForelder && (
+              <OmAndreForelder
+                settForelder={settForelder}
+                forelder={forelder}
+                kjennerIkkeIdent={kjennerIkkeIdent}
+                settKjennerIkkeIdent={settKjennerIkkeIdent}
+                settSisteBarnUtfylt={settSisteBarnUtfylt}
+              />
+            )}
+            {barn.medforelder?.verdi && (
               <>
-                {forelder.borINorge?.verdi && (
-                  <BorAnnenForelderISammeHus
-                    forelder={forelder}
-                    settForelder={settForelder}
-                    barn={barn}
-                  />
-                )}
-
-                {skalFylleUtHarBoddSammenFør && (
-                  <BoddSammenFør
-                    forelder={forelder}
-                    barn={barn}
-                    settForelder={settForelder}
-                  />
-                )}
-                {(boddSammenFør?.svarid === ESvar.NEI ||
-                  erGyldigDato(flyttetFra?.verdi)) && (
-                  <HvorMyeSammen
-                    forelder={forelder}
-                    barn={barn}
-                    settForelder={settForelder}
-                  />
-                )}
+                <Label as="p">Navn</Label>
+                <BodyShort>
+                  {barn.medforelder.verdi.navn
+                    ? barn.medforelder.verdi.navn
+                    : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                        barn.medforelder.verdi.alder
+                      }`}
+                </BodyShort>
               </>
             )}
+          </SeksjonGruppe>
+        )}
 
-          {erForelderUtfylt(forelder) &&
-            (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
-              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-                forelder?.fødselsdato?.verdi
-              ) ||
-              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
-              harForelderFraPdl) && (
-              <Button variant="secondary" onClick={leggTilForelder}>
+        {visBorAnnenForelderINorge && (
+          <BorForelderINorge
+            barn={barn}
+            forelder={forelder}
+            settForelder={settForelder}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+
+        {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
+          barnHarSammeForelder) && (
+          <BostedOgSamvær
+            settForelder={settForelder}
+            forelder={forelder}
+            barn={barn}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+
+        {!barnHarSammeForelder &&
+          visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            <>
+              {forelder.borINorge?.verdi && (
+                <BorAnnenForelderISammeHus
+                  forelder={forelder}
+                  settForelder={settForelder}
+                  barn={barn}
+                />
+              )}
+
+              {skalFylleUtHarBoddSammenFør && (
+                <BoddSammenFør
+                  forelder={forelder}
+                  barn={barn}
+                  settForelder={settForelder}
+                />
+              )}
+              {(boddSammenFør?.svarid === ESvar.NEI ||
+                erGyldigDato(flyttetFra?.verdi)) && (
+                <HvorMyeSammen
+                  forelder={forelder}
+                  barn={barn}
+                  settForelder={settForelder}
+                />
+              )}
+            </>
+          )}
+
+        {erForelderUtfylt(forelder) &&
+          (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
+            erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+              forelder?.fødselsdato?.verdi
+            ) ||
+            utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
+            harForelderFraPdl) && (
+            <Button variant="secondary" onClick={leggTilForelder}>
               <LocaleTekst tekst={'knapp.neste'} />
-              </Button>
-            )}
-        </div>
+            </Button>
+          )}
       </div>
-    </>
+    </div>
   );
 };
 
