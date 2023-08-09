@@ -23,10 +23,6 @@ const StyledGuidePanel = styled(GuidePanel)`
   .navds-guide {
     border: none;
   }
-
-  .navds-guide-panel__content {
-    border-width: 3px;
-  }
 `;
 
 interface Props {
