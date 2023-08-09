@@ -20,41 +20,6 @@
   font-size: 16px;
   text-align: left;
 }
-.filopplaster-wrapper .opplastede-filer .fil {
-  position: relative;
-  margin-top: 1rem;
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-}
-.filopplaster-wrapper .opplastede-filer .fil .navds-body-short {
-  display: inline-block;
-}
-.filopplaster-wrapper .opplastede-filer .fil .filstørrelse {
-  margin-left: 10px;
-}
-.filopplaster-wrapper .opplastede-filer .fil .filnavn {
-  margin-left: 1rem;
-}
-.filopplaster-wrapper .opplastede-filer .fil .vedleggsikon {
-  position: relative;
-  top: 5px;
-}
-.filopplaster-wrapper .opplastede-filer .fil .slett {
-  position: relative;
-  top: 5px;
-  color: #0067c5;
-  cursor: pointer;
-}
-.filopplaster-wrapper .opplastede-filer .fil .slett p {
-  text-decoration: underline;
-}
-.filopplaster-wrapper .opplastede-filer .fil .slett .slettikon {
-  margin-left: 10px;
-}
-.filopplaster-wrapper .opplastede-filer hr {
-  border: 1px solid #b7b1a9;
-}
 .filopplaster-wrapper .filopplaster {
   text-align: center;
   font-weight: bold;

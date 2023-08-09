@@ -192,12 +192,10 @@ const Filopplaster: React.FC<Props> = ({
           </ul>
         ) : null}
 
-        <div className="opplastede-filer">
-          <OpplastedeFiler
-            filliste={dokumentasjon.opplastedeVedlegg || []}
-            slettVedlegg={slettVedlegg}
-          />
-        </div>
+        <OpplastedeFiler
+          filliste={dokumentasjon.opplastedeVedlegg || []}
+          slettVedlegg={slettVedlegg}
+        />
       </div>
 
       <div className="filopplaster">
