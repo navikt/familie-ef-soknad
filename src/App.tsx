@@ -28,8 +28,9 @@ const App = () => {
   const [fetching, settFetching] = useState<boolean>(true);
   const [error, settError] = useState<boolean>(false);
   const [feilmelding, settFeilmelding] = useState<string>('');
-  const [alvorlighetsgrad, settAlvorlighetsgrad] =
-    useState<EAlvorlighetsgrad>();
+  const [alvorlighetsgrad, settAlvorlighetsgrad] = useState<
+    EAlvorlighetsgrad | undefined
+  >(undefined);
   const { settPerson } = usePersonContext();
   const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();

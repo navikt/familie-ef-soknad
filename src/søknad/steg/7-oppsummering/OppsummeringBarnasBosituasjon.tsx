@@ -27,15 +27,17 @@ const OppsummeringBarnasBosituasjon: FC<Props> = ({
     .map((barn) => {
       if (!barn.forelder) return null;
 
-      const visningsIdent = barn.forelder.fraFolkeregister ? undefined : barn.forelder.ident
+      const visningsIdent = barn.forelder.fraFolkeregister
+        ? undefined
+        : barn.forelder.ident;
 
-      let visningForelder = {
+      const visningForelder = {
         ...barn.forelder,
         navn: {
           label: hentTekst('barnasbosted.oppsummering.navn.label', intl),
           verdi: barn.forelder?.navn?.verdi,
         },
-        ident: visningsIdent
+        ident: visningsIdent,
       };
 
       delete visningForelder.hvorforIkkeOppgi;

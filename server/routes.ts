@@ -10,9 +10,9 @@ const buildPath = path.resolve(process.cwd(), '../build');
 const EF_BASE_PATH = '/familie/alene-med-barn';
 const BASE_PATH = `${EF_BASE_PATH}/soknad`;
 const ETTERSENDING_PATH = `${EF_BASE_PATH}/ettersending`;
-
 const routes = () => {
   const expressRouter = express.Router();
+  console.log('Setter opp routes');
 
   expressRouter.get(`${BASE_PATH}/internal/isAlive|isReady`, (req, res) =>
     res.sendStatus(200)
