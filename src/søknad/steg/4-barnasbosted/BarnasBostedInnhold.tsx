@@ -68,7 +68,8 @@ const BarnasBostedInnhold: React.FC<Props> = ({
 
   useEffect(() => {
     settSisteBarnUtfylt(
-      antallBarnMedForeldreUtfylt(aktuelleBarn) === aktuelleBarn.length
+      antallBarnMedForeldreUtfylt(barnMedLevendeMedforelder) ===
+        barnMedLevendeMedforelder.length
     );
   }, [søknad]);
 
