@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import AnnenForelderKnapper from './AnnenForelderKnapper';
 import BarneHeader from '../../../components/BarneHeader';
 import BostedOgSamvær from './bostedOgSamvær/BostedOgSamvær';
@@ -27,34 +27,7 @@ import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { BodyShort, Button, Label } from '@navikt/ds-react';
-
-const lagOppdatertBarneliste = (
-  barneliste: IBarn[],
-  nåværendeBarn: IBarn,
-  forelder: IForelder
-) => {
-  return barneliste.map((b) => {
-    if (b === nåværendeBarn) {
-      return { ...nåværendeBarn, forelder: forelder };
-    } else {
-      return b;
-    }
-  });
-};
-
-const oppdaterBarnetsAndreForelder = (
-  barneliste: IBarn[],
-  nåværendeBarn: IBarn,
-  andreForelderId: string
-): IBarn[] => {
-  return barneliste.map((b) => {
-    if (b === nåværendeBarn) {
-      return { ...nåværendeBarn, annenForelderId: andreForelderId };
-    } else {
-      return b;
-    }
-  });
-};
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -73,17 +46,11 @@ interface Props {
   barn: IBarn;
   settAktivIndex: Function;
   aktivIndex: number;
-  sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnapassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  oppdaterBarnISoknaden: (barneliste: IBarn) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -91,17 +58,22 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settAktivIndex,
   aktivIndex,
   settSisteBarnUtfylt,
-  sisteBarnUtfylt,
   scrollTilLagtTilBarn,
   barneListe,
-  settBarneListe,
+  oppdaterBarnISoknaden,
   settDokumentasjonsbehovForBarn,
 }) => {
   const intl = useLokalIntlContext();
 
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
-      ? barn.forelder
+      ? {
+          ...barn.forelder,
+          kanIkkeOppgiAnnenForelderFar: {
+            label: hentTekst('barnasbosted.kanikkeoppgiforelder', intl),
+            verdi: barn.forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
+          },
+        }
       : {
           id: hentUid(),
         }
@@ -122,42 +94,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     fødselsdato,
     ident,
   } = forelder;
-  const jegKanIkkeOppgiLabel = hentTekst(
-    'barnasbosted.kanikkeoppgiforelder',
-    intl
-  );
 
-  const erIdentUtfyltOgGylding = (ident?: string): boolean =>
+  const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
     !!ident && erGyldigFødselsnummer(ident);
   const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
     erGyldigDato(fødselsdato) || fødselsdato === '';
   const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
-
-  useEffect(() => {
-    settForelder({
-      ...forelder,
-      kanIkkeOppgiAnnenForelderFar: {
-        label: jegKanIkkeOppgiLabel,
-        verdi: forelder.kanIkkeOppgiAnnenForelderFar?.verdi || false,
-      },
-    });
-    //eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    if (sisteBarnUtfylt === true && !erForelderUtfylt(forelder)) {
-      const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
-      settBarneListe(nyBarneListe);
-      settSisteBarnUtfylt(false);
-    }
-  }, [
-    sisteBarnUtfylt,
-    settSisteBarnUtfylt,
-    forelder,
-    barneListe,
-    barn,
-    settBarneListe,
-  ]);
 
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
@@ -174,26 +116,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     })
     .filter(Boolean) as IBarn[];
 
-  const erPåSisteBarn: boolean =
-    barneListe.length - 1 === andreBarnMedForelder.length;
-
   const leggTilForelder = () => {
-    if (erForelderUtfylt(forelder)) settSisteBarnUtfylt(true);
-    const nyIndex = aktivIndex + 1;
-    const nyBarneListe = lagOppdatertBarneliste(barneListe, barn, forelder);
+    oppdaterBarnISoknaden({ ...barn, forelder: forelder });
 
-    settBarneListe(nyBarneListe);
+    const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
     scrollTilLagtTilBarn();
   };
 
   const leggTilAnnenForelderId = (annenForelderId: string) => {
-    const nyBarneListe = oppdaterBarnetsAndreForelder(
-      barneListe,
-      barn,
-      annenForelderId
-    );
-    settBarneListe(nyBarneListe);
+    oppdaterBarnISoknaden({ ...barn, annenForelderId: annenForelderId });
   };
 
   const visOmAndreForelder =
@@ -217,129 +149,120 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     !forelder.borINorge?.verdi;
 
   return (
-    <>
-      <div className="barnas-bosted">
-        <SeksjonGruppe>
-          <BarneHeader barn={barn} />
-        </SeksjonGruppe>
-        <div className="barnas-bosted__innhold">
-          {!barn.harSammeAdresse.verdi && (
-            <SkalBarnetBoHosSøker
-              barn={barn}
-              forelder={forelder}
-              settForelder={settForelder}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-          {(barn.harSammeAdresse?.verdi ||
-            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
-            <SeksjonGruppe>
-              <BarnetsAndreForelderTittel barn={barn} />
+    <div className="barnas-bosted">
+      <SeksjonGruppe>
+        <BarneHeader barn={barn} />
+      </SeksjonGruppe>
+      <div className="barnas-bosted__innhold">
+        {!barn.harSammeAdresse.verdi && (
+          <SkalBarnetBoHosSøker
+            barn={barn}
+            forelder={forelder}
+            settForelder={settForelder}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+        {(barn.harSammeAdresse?.verdi ||
+          harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
+          <SeksjonGruppe>
+            <BarnetsAndreForelderTittel barn={barn} />
 
-              {førsteBarnTilHverForelder.length > 0 &&
-                !barn.medforelder?.verdi && (
-                  <AnnenForelderKnapper
-                    barn={barn}
-                    forelder={forelder}
-                    oppdaterAnnenForelder={leggTilAnnenForelderId}
-                    førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                    settBarnHarSammeForelder={settBarnHarSammeForelder}
-                    settForelder={settForelder}
-                  />
-                )}
-              {visOmAndreForelder && (
-                <OmAndreForelder
-                  settForelder={settForelder}
+            {førsteBarnTilHverForelder.length > 0 &&
+              !barn.medforelder?.verdi && (
+                <AnnenForelderKnapper
+                  barn={barn}
                   forelder={forelder}
-                  kjennerIkkeIdent={kjennerIkkeIdent}
-                  settKjennerIkkeIdent={settKjennerIkkeIdent}
-                  settSisteBarnUtfylt={settSisteBarnUtfylt}
+                  oppdaterAnnenForelder={leggTilAnnenForelderId}
+                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                  settBarnHarSammeForelder={settBarnHarSammeForelder}
+                  settForelder={settForelder}
                 />
               )}
-              {barn.medforelder?.verdi && (
-                <>
-                  <Label as="p">Navn</Label>
-                  <BodyShort>
-                    {barn.medforelder.verdi.navn
-                      ? barn.medforelder.verdi.navn
-                      : `${hentTekst(
-                          'barnekort.medforelder.hemmelig',
-                          intl
-                        )}, ${barn.medforelder.verdi.alder}`}
-                  </BodyShort>
-                </>
-              )}
-            </SeksjonGruppe>
-          )}
-
-          {visBorAnnenForelderINorge && (
-            <BorForelderINorge
-              barn={barn}
-              forelder={forelder}
-              settForelder={settForelder}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-
-          {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
-            barnHarSammeForelder) && (
-            <BostedOgSamvær
-              settForelder={settForelder}
-              forelder={forelder}
-              barn={barn}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          )}
-
-          {!barnHarSammeForelder &&
-            visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            {visOmAndreForelder && (
+              <OmAndreForelder
+                settForelder={settForelder}
+                forelder={forelder}
+                kjennerIkkeIdent={kjennerIkkeIdent}
+                settKjennerIkkeIdent={settKjennerIkkeIdent}
+                settSisteBarnUtfylt={settSisteBarnUtfylt}
+              />
+            )}
+            {barn.medforelder?.verdi && (
               <>
-                {forelder.borINorge?.verdi && (
-                  <BorAnnenForelderISammeHus
-                    forelder={forelder}
-                    settForelder={settForelder}
-                    barn={barn}
-                  />
-                )}
-
-                {skalFylleUtHarBoddSammenFør && (
-                  <BoddSammenFør
-                    forelder={forelder}
-                    barn={barn}
-                    settForelder={settForelder}
-                  />
-                )}
-                {(boddSammenFør?.svarid === ESvar.NEI ||
-                  erGyldigDato(flyttetFra?.verdi)) && (
-                  <HvorMyeSammen
-                    forelder={forelder}
-                    barn={barn}
-                    settForelder={settForelder}
-                  />
-                )}
+                <Label as="p">Navn</Label>
+                <BodyShort>
+                  {barn.medforelder.verdi.navn
+                    ? barn.medforelder.verdi.navn
+                    : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                        barn.medforelder.verdi.alder
+                      }`}
+                </BodyShort>
               </>
             )}
+          </SeksjonGruppe>
+        )}
 
-          {erForelderUtfylt(forelder) &&
-            (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
-              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-                forelder?.fødselsdato?.verdi
-              ) ||
-              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
-              harForelderFraPdl) && (
-              <Button variant="secondary" onClick={leggTilForelder}>
-                <LocaleTekst
-                  tekst={
-                    !sisteBarnUtfylt && !erPåSisteBarn
-                      ? 'knapp.neste.barn'
-                      : 'knapp.neste'
-                  }
+        {visBorAnnenForelderINorge && (
+          <BorForelderINorge
+            barn={barn}
+            forelder={forelder}
+            settForelder={settForelder}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+
+        {(visBostedOgSamværSeksjon(forelder, visBorAnnenForelderINorge) ||
+          barnHarSammeForelder) && (
+          <BostedOgSamvær
+            settForelder={settForelder}
+            forelder={forelder}
+            barn={barn}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
+
+        {!barnHarSammeForelder &&
+          visSpørsmålHvisIkkeSammeForelder(forelder) && (
+            <>
+              {forelder.borINorge?.verdi && (
+                <BorAnnenForelderISammeHus
+                  forelder={forelder}
+                  settForelder={settForelder}
+                  barn={barn}
                 />
-              </Button>
-            )}
-        </div>
+              )}
+
+              {skalFylleUtHarBoddSammenFør && (
+                <BoddSammenFør
+                  forelder={forelder}
+                  barn={barn}
+                  settForelder={settForelder}
+                />
+              )}
+              {(boddSammenFør?.svarid === ESvar.NEI ||
+                erGyldigDato(flyttetFra?.verdi)) && (
+                <HvorMyeSammen
+                  forelder={forelder}
+                  barn={barn}
+                  settForelder={settForelder}
+                />
+              )}
+            </>
+          )}
+
+        {erForelderUtfylt(forelder) &&
+          (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
+            erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+              forelder?.fødselsdato?.verdi
+            ) ||
+            utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
+            harForelderFraPdl) && (
+            <Button variant="secondary" onClick={leggTilForelder}>
+              <LocaleTekst tekst={'knapp.neste'} />
+            </Button>
+          )}
       </div>
-    </>
+    </div>
   );
 };
 

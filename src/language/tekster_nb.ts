@@ -10,7 +10,6 @@ export default {
     'Du må svare på alle spørsmålene før du kan gå videre til neste steg',
   'knapp.tilbake': 'Tilbake',
   'knapp.neste': 'Neste',
-  'knapp.neste.barn': 'Neste barn',
   'knapp.avbryt': 'Avbryt',
   'knapp.start': 'Start søknad',
   'knapp.sendSøknad': 'Send søknad',

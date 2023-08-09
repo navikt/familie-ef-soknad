@@ -75,7 +75,6 @@ export default {
     'Du må svare på alle spørsmålene før du kan gå videre til neste steg',
   'knapp.tilbake': 'Back',
   'knapp.neste': 'Next',
-  'knapp.neste.barn': 'Next child',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
