@@ -635,6 +635,7 @@ export default {
     'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
   'dokumentasjon.checkbox.sendtTidligere':
     'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
+  'dokumentasjon.knapp.slett': 'slett',
   'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
     'Dokumentasjon på separasjon eller skilsmisse',

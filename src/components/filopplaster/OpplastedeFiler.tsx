@@ -5,6 +5,8 @@ import { IVedlegg } from '../../models/steg/vedlegg';
 import { BodyShort, Button } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { TrashFillIcon } from '@navikt/aksel-icons';
+import { hentTekst } from '../../utils/søknad';
+import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
   filliste: IVedlegg[];
@@ -39,7 +41,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                 icon={<TrashFillIcon />}
                 iconPosition="right"
               >
-                slett
+                <LocaleTekst tekst="dokumentasjon.knapp.slett" />
               </Button>
             </Filrad>
             {index === filliste.length - 1 ? '' : <hr />}
