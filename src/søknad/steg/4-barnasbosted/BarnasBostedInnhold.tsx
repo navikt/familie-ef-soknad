@@ -12,7 +12,6 @@ import {
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
 import { BodyShort } from '@navikt/ds-react';
-import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
