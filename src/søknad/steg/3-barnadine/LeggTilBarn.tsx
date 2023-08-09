@@ -10,16 +10,12 @@ import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsv
 import { oppdaterBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Button, Heading } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   settÅpenModal: Function;
   id?: string;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneidid: string,
-    barnepassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }

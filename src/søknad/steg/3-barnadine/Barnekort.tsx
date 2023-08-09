@@ -11,17 +11,13 @@ import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import { BodyShort, Heading } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   gjeldendeBarn: IBarn;
   velgBarnForDenneSøknaden?: React.ReactNode;
   slettBarn: Function;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnepassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }

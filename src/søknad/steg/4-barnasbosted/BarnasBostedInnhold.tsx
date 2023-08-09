@@ -13,6 +13,7 @@ import {
 } from '../../../utils/barn';
 import { BodyShort } from '@navikt/ds-react';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -23,12 +24,7 @@ interface Props {
   aktuelleBarn: IBarn[];
   barneliste: IBarn[];
   oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnapassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
 }

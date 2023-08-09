@@ -27,6 +27,7 @@ import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { BodyShort, Button, Label } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -47,12 +48,7 @@ interface Props {
   aktivIndex: number;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnapassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
   oppdaterBarnISoknaden: (barneliste: IBarn) => void;
 }
