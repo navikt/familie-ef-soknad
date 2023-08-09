@@ -12,7 +12,7 @@ const publicPath = process.env.PUBLIC_URL || '/';
 const config = {
   mode: 'production',
   entry: {
-    'familie-ef-soknad': ['babel-polyfill', './src/index.tsx'],
+    'familie-ef-soknad': ['./src/index.tsx'],
   },
   output: {
     path: path.join(process.cwd(), 'build'),
@@ -32,19 +32,6 @@ const config = {
         exclude: /node_modules/,
         loader: 'babel-loader',
         include: path.join(process.cwd(), 'src'),
-        options: {
-          presets: [
-            '@babel/preset-env',
-            '@babel/preset-react',
-            '@babel/preset-typescript',
-          ],
-        },
-      },
-      {
-        test: /\.(tsx|ts)?$/,
-        exclude: /node_modules/,
-        include: path.join(process.cwd(), 'src'),
-        loader: 'ts-loader',
       },
       {
         test: /\.(css|less)$/,
@@ -82,10 +69,6 @@ const config = {
           fullySpecified: false,
         },
       },
-      // {
-      //   test: /\.svg$/,
-      //   loader: 'svg-inline-loader',
-      // },
       {
         test: /\.svg$/i,
         issuer: /\.[jt]sx?$/,

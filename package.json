@@ -6,9 +6,27 @@
   "scripts": {
     "build": "tsc & NODE_ENV=production & PUBLIC_URL=/familie/alene-med-barn/soknad/ webpack --config ./config/webpack.build.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "dependencies": {
-    "@navikt/ds-css": "^4.7.3",
     "@navikt/aksel-icons": "^4.7.3",
+    "@navikt/ds-css": "^4.7.3",
     "@navikt/ds-react": "^4.7.3",
     "@navikt/ds-tokens": "^4.7.3",
     "@navikt/fnrvalidator": "^1.3.3",
@@ -74,69 +92,53 @@
     "uuid": "^9.0.0",
     "yup": "^1.2.0"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
-    "@types/dotenv": "^8.2.0",
-    "@types/express": "^4.17.17",
-    "@types/jest": "^29.5.3",
-    "@types/node": "^18.16.13",
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
     "@babel/preset-typescript": "^7.22.5",
-    "babel-plugin-styled-components": "^2.1.4",
-    "mustache-express": "^1.3.2",
-    "http-proxy-middleware": "^2.0.6",
-    "install": "^0.13.0",
-
-    "ts-loader": "^9.4.4",
-    "file-loader": "^6.2.0",
-    "postcss-loader": "^7.3.3",
-    "css-loader": "^6.8.1",
-    "util": "^0.12.5",
-    "autoprefixer": "^10.4.14",
-    "babel-plugin-macros": "^3.1.0",
-    "less-loader": "^11.1.3",
-    "@types/history": "^5.0.0",
-    "@types/react-helmet": "^6.1.6",
-    "@typescript-eslint/parser": "^6.3.0",
-    "@typescript-eslint/eslint-plugin": "^6.3.0",
-    "eslint": "^8.46.0",
-    "babel-loader": "^9.1.3",
-    "fork-ts-checker-webpack-plugin": "^8.0.0",
-    "svg-inline-loader": "^0.8.2",
     "@svgr/webpack": "^8.0.1",
-    "webpack": "^5.88.2",
-    "eslint-webpack-plugin": "^4.0.1",
-    "mini-css-extract-plugin": "^2.7.6",
-    "html-webpack-plugin": "^5.5.3",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.17",
+    "@types/history": "^5.0.0",
+    "@types/jest": "^29.5.3",
+    "@types/node": "^18.16.13",
+    "@types/react-helmet": "^6.1.6",
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.3",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-styled-components": "^2.1.4",
     "babel-polyfill": "^6.26.0",
-    "terser-webpack-plugin": "^5.3.9",
-    "copy-webpack-plugin": "^11.0.0",
     "compression-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^11.0.0",
     "core-js": "^3.32.0",
+    "css-loader": "^6.8.1",
+    "eslint": "^8.46.0",
+    "eslint-webpack-plugin": "^4.0.1",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^8.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "http-proxy-middleware": "^2.0.6",
     "husky": "^8.0.3",
+    "install": "^0.13.0",
+    "less-loader": "^11.1.3",
+    "mini-css-extract-plugin": "^2.7.6",
+    "mustache-express": "^1.3.2",
     "npm": "^9.8.1",
     "npm-run-all": "^4.1.5",
+    "postcss-loader": "^7.3.3",
     "prettier": "^3.0.1",
     "pretty-quick": "^3.1.3",
-    "webpack-cli": "^5.1.4",
+    "svg-inline-loader": "^0.8.2",
+    "terser-webpack-plugin": "^5.3.9",
     "testcafe": "^3.1.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "util": "^0.12.5",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
   },
   "overrides": {
-
     "react-day-picker": {
       "react": "$react"
     },
@@ -178,11 +180,6 @@
     },
     "react-aria-menubutton": {
       "react": "$react"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged"
     }
   }
 }

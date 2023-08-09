@@ -9,6 +9,7 @@
       "es2017.intl",
       "es2018.intl"
     ],
+    "outDir": "build",
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
