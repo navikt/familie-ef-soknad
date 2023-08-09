@@ -20,7 +20,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 };
 
 interface Props {
-  barn: IBarn[];
+  aktuelleBarn: IBarn[];
   barneliste: IBarn[];
   oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
   settDokumentasjonsbehovForBarn: (
@@ -34,7 +34,7 @@ interface Props {
 }
 
 const BarnasBostedInnhold: React.FC<Props> = ({
-  barn,
+  aktuelleBarn,
   oppdaterBarnISoknaden,
   barneliste,
   settDokumentasjonsbehovForBarn,
@@ -43,19 +43,21 @@ const BarnasBostedInnhold: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const barna = barn.filter(
+  const barnMedLevendeMedforelder = aktuelleBarn.filter(
     (barn: IBarn) =>
       !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false
   );
 
-  const barnMedDødMedforelder = barn.filter((barn: IBarn) => {
+  const barnMedDødMedforelder = aktuelleBarn.filter((barn: IBarn) => {
     return barn.medforelder?.verdi?.død === true;
   });
 
-  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
+  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(
+    barnMedLevendeMedforelder
+  );
 
   const [aktivIndex, settAktivIndex] = useState<number>(
-    hentIndexFørsteBarnSomIkkeErUtfylt(barna)
+    hentIndexFørsteBarnSomIkkeErUtfylt(barnMedLevendeMedforelder)
   );
 
   const lagtTilBarn = useRef(null);
@@ -66,7 +68,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
 
   return (
     <>
-      {barna.map((barn: IBarn, index: number) => {
+      {barnMedLevendeMedforelder.map((barn: IBarn, index: number) => {
         const key = barn.fødselsdato.verdi + index;
         if (index === aktivIndex) {
           return (

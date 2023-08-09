@@ -56,7 +56,7 @@ const BarnasBosted: React.FC = () => {
       tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
     >
       <BarnasBostedInnhold
-        barn={aktuelleBarn}
+        aktuelleBarn={aktuelleBarn}
         barneliste={søknad.person.barn}
         oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
