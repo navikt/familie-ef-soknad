@@ -95,7 +95,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     ident,
   } = forelder;
 
-  const erIdentUtfyltOgGylding = (ident?: string): boolean =>
+  const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
     !!ident && erGyldigFødselsnummer(ident);
   const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
     erGyldigDato(fødselsdato) || fødselsdato === '';
@@ -251,7 +251,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
 
         {erForelderUtfylt(forelder) &&
-          (erIdentUtfyltOgGylding(forelder.ident?.verdi) ||
+          (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
             erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
               forelder?.fødselsdato?.verdi
             ) ||
