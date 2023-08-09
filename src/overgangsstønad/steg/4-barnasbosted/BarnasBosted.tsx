@@ -24,7 +24,7 @@ const BarnasBosted: React.FC = () => {
     oppdaterBarnISoknaden,
   } = useSøknad();
 
-  const aktuelleBarn = søknad.person.barn.filter((barn: IBarn) => {
+  const barnMedLevendeForeldre = søknad.person.barn.filter((barn: IBarn) => {
     return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
   });
 
@@ -33,19 +33,12 @@ const BarnasBosted: React.FC = () => {
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(aktuelleBarn);
-
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
-    antallBarnMedForeldre === aktuelleBarn.length
+    antallBarnMedForeldreUtfylt(barnMedLevendeForeldre) ===
+      barnMedLevendeForeldre.length
   );
 
   useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
-
-  useEffect(() => {
-    settSisteBarnUtfylt(
-      antallBarnMedForeldreUtfylt(aktuelleBarn) === aktuelleBarn.length
-    );
-  }, [søknad]);
 
   return (
     <Side
@@ -58,12 +51,12 @@ const BarnasBosted: React.FC = () => {
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
       <BarnasBostedInnhold
-        aktuelleBarn={aktuelleBarn}
-        barneliste={søknad.person.barn}
+        aktuelleBarn={søknad.person.barn}
         oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}
+        søknad={søknad}
       />
     </Side>
   );

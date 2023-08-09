@@ -1,4 +1,4 @@
-import React, { RefObject, useRef, useState } from 'react';
+import React, { RefObject, useEffect, useRef, useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
@@ -12,7 +12,12 @@ import {
   hentIndexFørsteBarnSomIkkeErUtfylt,
 } from '../../../utils/barn';
 import { BodyShort } from '@navikt/ds-react';
-import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import {
+  ISøknad as SøknadOvergangsstønad,
+  SettDokumentasjonsbehovBarn,
+} from '../../../models/søknad/søknad';
+import { ISøknad as SøknadBarnetilsyn } from '../../../barnetilsyn/models/søknad';
+import { ISøknad as SøknadSkolepenger } from '../../../skolepenger/models/søknad';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;
@@ -21,20 +26,20 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 interface Props {
   aktuelleBarn: IBarn[];
-  barneliste: IBarn[];
   oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
+  søknad: SøknadOvergangsstønad | SøknadBarnetilsyn | SøknadSkolepenger;
 }
 
 const BarnasBostedInnhold: React.FC<Props> = ({
   aktuelleBarn,
   oppdaterBarnISoknaden,
-  barneliste,
   settDokumentasjonsbehovForBarn,
   sisteBarnUtfylt,
   settSisteBarnUtfylt,
+  søknad,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -61,6 +66,12 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     setTimeout(() => scrollTilRef(lagtTilBarn), 120);
   };
 
+  useEffect(() => {
+    settSisteBarnUtfylt(
+      antallBarnMedForeldreUtfylt(aktuelleBarn) === aktuelleBarn.length
+    );
+  }, [søknad]);
+
   return (
     <>
       {barnMedLevendeMedforelder.map((barn: IBarn, index: number) => {
@@ -76,7 +87,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               oppdaterBarnISoknaden={oppdaterBarnISoknaden}
-              barneListe={barneliste}
+              barneListe={søknad.person.barn}
             />
           );
         } else {

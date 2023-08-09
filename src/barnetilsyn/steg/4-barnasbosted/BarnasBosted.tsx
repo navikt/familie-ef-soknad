@@ -31,21 +31,19 @@ const BarnasBosted: React.FC = () => {
     (barn: IBarn) => barn.skalHaBarnepass?.verdi
   );
 
+  const barnMedLevendeForeldre = aktuelleBarn.filter((barn: IBarn) => {
+    return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
+  });
+
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
   const skalViseKnapper = !kommerFraOppsummering
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(aktuelleBarn);
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
-    antallBarnMedForeldre === aktuelleBarn.length
+    antallBarnMedForeldreUtfylt(barnMedLevendeForeldre) ===
+      barnMedLevendeForeldre.length
   );
-
-  useEffect(() => {
-    settSisteBarnUtfylt(
-      antallBarnMedForeldreUtfylt(aktuelleBarn) === aktuelleBarn.length
-    );
-  }, [søknad]);
 
   return (
     <Side
@@ -59,11 +57,11 @@ const BarnasBosted: React.FC = () => {
     >
       <BarnasBostedInnhold
         aktuelleBarn={aktuelleBarn}
-        barneliste={søknad.person.barn}
         oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}
+        søknad={søknad}
       />
     </Side>
   );
