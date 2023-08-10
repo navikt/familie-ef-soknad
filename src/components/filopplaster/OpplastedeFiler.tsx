@@ -40,6 +40,9 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
                 variant="tertiary"
                 icon={<TrashFillIcon />}
                 iconPosition="right"
+                onClick={() => {
+                  slettVedlegg(fil);
+                }}
               >
                 <LocaleTekst tekst="dokumentasjon.knapp.slett" />
               </Button>
