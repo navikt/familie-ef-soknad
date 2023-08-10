@@ -5,17 +5,12 @@ import { IVedlegg } from '../../models/steg/vedlegg';
 import { BodyShort, Button } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { TrashFillIcon } from '@navikt/aksel-icons';
-import { hentTekst } from '../../utils/søknad';
 import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
   filliste: IVedlegg[];
   slettVedlegg: (vedlegg: IVedlegg) => void;
 }
-
-const Container = styled.div`
-  margin-bottom: 5rem;
-`;
 
 const Filrad = styled.div`
   display: grid;
@@ -26,32 +21,30 @@ const Filrad = styled.div`
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
   return (
-    <Container>
-      {filliste.map((fil: IVedlegg, index: number) => {
-        return (
-          <div key={fil.dokumentId}>
-            <Filrad>
-              <img src={vedlegg} alt="Vedleggsikon" />
-              <BodyShort>
-                {fil.navn} ({formaterFilstørrelse(fil.størrelse)})
-              </BodyShort>
-              <Button
-                size="small"
-                variant="tertiary"
-                icon={<TrashFillIcon />}
-                iconPosition="right"
-                onClick={() => {
-                  slettVedlegg(fil);
-                }}
-              >
-                <LocaleTekst tekst="dokumentasjon.knapp.slett" />
-              </Button>
-            </Filrad>
-            {index === filliste.length - 1 ? '' : <hr />}
-          </div>
-        );
-      })}
-    </Container>
+    <>
+      {filliste.map((fil: IVedlegg, index: number) => (
+        <div key={fil.dokumentId}>
+          <Filrad>
+            <img src={vedlegg} alt="Vedleggsikon" />
+            <BodyShort>
+              {fil.navn} ({formaterFilstørrelse(fil.størrelse)})
+            </BodyShort>
+            <Button
+              size="small"
+              variant="tertiary"
+              icon={<TrashFillIcon />}
+              iconPosition="right"
+              onClick={() => {
+                slettVedlegg(fil);
+              }}
+            >
+              <LocaleTekst tekst="dokumentasjon.knapp.slett" />
+            </Button>
+          </Filrad>
+          {index === filliste.length - 1 ? <br /> : <hr />}
+        </div>
+      ))}
+    </>
   );
 };
 

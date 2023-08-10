@@ -19,6 +19,8 @@ import FormData from 'form-data';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, BodyShort } from '@navikt/ds-react';
 import { ModalWrapper } from '../Modal/ModalWrapper';
+import styled from 'styled-components';
+import { ABlue500, ADeepblue50, AGray700 } from '@navikt/ds-tokens/dist/tokens';
 
 interface Props {
   oppdaterDokumentasjon: (
@@ -27,7 +29,6 @@ interface Props {
     harSendtInnTidligere: boolean
   ) => void;
   dokumentasjon: IDokumentasjon;
-  beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
   maxFilstørrelse?: number;
 }
@@ -41,10 +42,36 @@ interface OpplastetVedlegg {
   filnavn: string;
 }
 
+const FilopplastingFelt = styled.div`
+  font-weight: bold;
+  border: 2px dashed ${AGray700};
+  border-radius: 4px;
+  background-color: ${ADeepblue50};
+  color: ${ABlue500};
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const IkonOgTekstWrapper = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+const FeilmeldingModalInnhold = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+
+  div {
+    font-weight: bold;
+  }
+`;
+
 const Filopplaster: React.FC<Props> = ({
   oppdaterDokumentasjon,
   dokumentasjon,
-  beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
@@ -180,71 +207,39 @@ const Filopplaster: React.FC<Props> = ({
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
-    <div className="filopplaster-wrapper">
-      <div className="tittel-wrapper">
-        {beskrivelsesListe ? (
-          <ul className="opplasting-liste">
-            {beskrivelsesListe.map((el) => (
-              <li>
-                <BodyShort>{el}</BodyShort>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+    <>
+      <OpplastedeFiler
+        filliste={dokumentasjon.opplastedeVedlegg || []}
+        slettVedlegg={slettVedlegg}
+      />
 
-        <OpplastedeFiler
-          filliste={dokumentasjon.opplastedeVedlegg || []}
-          slettVedlegg={slettVedlegg}
-        />
-      </div>
-
-      <div className="filopplaster">
+      <FilopplastingFelt>
         <ModalWrapper
           tittel="Noe har gått galt"
           visModal={åpenModal}
           onClose={() => lukkModal()}
         >
-          <div className="feilmelding-modal">
+          <FeilmeldingModalInnhold>
             {feilmeldinger.map((feilmelding) => (
-              <Alert
-                size="small"
-                key={feilmelding}
-                variant="error"
-                className="feilmelding-alert"
-              >
+              <Alert size="small" key={feilmelding} variant="error" inline>
                 {feilmelding}
               </Alert>
             ))}
-          </div>
+          </FeilmeldingModalInnhold>
         </ModalWrapper>
         <div {...getRootProps()}>
           <input {...getInputProps()} />
-          {isDragActive ? (
-            <>
-              <img
-                src={opplasting}
-                className="opplastingsikon"
-                alt="Opplastingsikon"
-              />
-              <BodyShort className="tekst">
-                {intl.formatMessage({ id: 'filopplaster.slipp' })}
-              </BodyShort>
-            </>
-          ) : (
-            <>
-              <img
-                src={opplasting}
-                className="opplastingsikon"
-                alt="Opplastingsikon"
-              />
-              <BodyShort className="tekst">
-                {intl.formatMessage({ id: 'filopplaster.dra' })}
-              </BodyShort>
-            </>
-          )}
+          <IkonOgTekstWrapper>
+            <img src={opplasting} alt="Opplastingsikon" />
+            <BodyShort>
+              {intl.formatMessage({
+                id: isDragActive ? 'filopplaster.slipp' : 'filopplaster.dra',
+              })}
+            </BodyShort>
+          </IkonOgTekstWrapper>
         </div>
-      </div>
-    </div>
+      </FilopplastingFelt>
+    </>
   );
 };
 
