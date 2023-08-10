@@ -17,6 +17,7 @@ const Filrad = styled.div`
   grid-template-columns: 1.5rem 1fr auto;
   gap: 1rem;
   align-items: center;
+  word-break: break-all;
 `;
 
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
@@ -26,7 +27,7 @@ const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
         <div key={fil.dokumentId}>
           <Filrad>
             <img src={vedlegg} alt="Vedleggsikon" />
-            <BodyShort>
+            <BodyShort size="small">
               {fil.navn} ({formaterFilstørrelse(fil.størrelse)})
             </BodyShort>
             <Button
