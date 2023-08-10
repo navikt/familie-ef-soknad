@@ -1,28 +1,46 @@
 import path from 'path';
 import webpack from 'webpack';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import TerserPlugin from 'terser-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
-import CompressionPlugin from 'compression-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 const publicPath = process.env.PUBLIC_URL || '/';
+const brukMockLokalt = process.env.BRUK_MOCK_LOKALT || false;
 const kopieresOver = ['filer', 'favicon.ico', 'manifest.json', 'robots.txt'];
 
 const config = {
-  mode: 'production',
+  mode: 'development',
+  cache: true,
+  devServer: {
+    port: 3000,
+    hot: true,
+    client: {
+      overlay: false,
+    },
+    open: publicPath,
+    proxy: {
+      '/api':
+        brukMockLokalt === 'true'
+          ? 'http://localhost:8092'
+          : 'http://localhost:8091',
+    },
+    devMiddleware: { publicPath: publicPath },
+    historyApiFallback: {
+      index: publicPath,
+    },
+  },
   entry: {
     'familie-ef-soknad': ['./src/index.tsx'],
   },
   output: {
-    path: path.join(process.cwd(), 'build'),
+    path: path.join(process.cwd(), 'dev-build'),
     filename: '[name].[contenthash].js',
     publicPath: publicPath,
     clean: true,
   },
-  devtool: 'source-map',
+  devtool: 'eval-cheap-module-source-map',
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.less', '.mjs'],
     fallback: { crypto: false, fs: false, path: false, os: false },
@@ -32,13 +50,22 @@ const config = {
       {
         test: /\.(jsx|js|tsx|ts)?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
         include: path.join(process.cwd(), 'src'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              plugins: ['react-refresh/babel'],
+            },
+          },
+        ],
       },
       {
         test: /\.(css|less)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: 'style-loader',
+          },
           {
             loader: 'css-loader',
             options: {
@@ -46,14 +73,6 @@ const config = {
                 mode: 'icss',
               },
               importLoaders: 2,
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                plugins: [['autoprefixer']],
-              },
             },
           },
           {
@@ -79,10 +98,13 @@ const config = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
+      'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.PUBLIC_URL': JSON.stringify(publicPath),
+      'process.env.BRUK_MOCK_LOKALT': JSON.stringify(brukMockLokalt),
     }),
-    new MiniCssExtractPlugin(),
+    new ReactRefreshWebpackPlugin({
+      overlay: false,
+    }),
     new ESLintPlugin({
       extensions: [`ts`, `tsx`],
     }),
@@ -90,15 +112,9 @@ const config = {
       patterns: kopieresOver.map((navn) => {
         return {
           from: path.join(process.cwd(), `public/${navn}`),
-          to: path.join(process.cwd(), `build/${navn}`),
+          to: path.join(process.cwd(), `dev-build/${navn}`),
         };
       }),
-    }),
-    new CompressionPlugin({
-      algorithm: 'gzip',
-      test: /\.js$|\.css$|\.html$/,
-      threshold: 10240,
-      minRatio: 0.8,
     }),
 
     new HtmlWebpackPlugin({
@@ -118,7 +134,6 @@ const config = {
     }),
   ],
   optimization: {
-    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         defaultVendors: {
