@@ -27,7 +27,6 @@ interface Props {
     harSendtInnTidligere: boolean
   ) => void;
   dokumentasjon: IDokumentasjon;
-  beskrivelsesListe?: string[];
   tillatteFiltyper?: string[];
   maxFilstørrelse?: number;
 }
@@ -44,7 +43,6 @@ interface OpplastetVedlegg {
 const Filopplaster: React.FC<Props> = ({
   oppdaterDokumentasjon,
   dokumentasjon,
-  beskrivelsesListe,
   tillatteFiltyper,
   maxFilstørrelse,
 }) => {
@@ -182,16 +180,6 @@ const Filopplaster: React.FC<Props> = ({
   return (
     <div className="filopplaster-wrapper">
       <div className="tittel-wrapper">
-        {beskrivelsesListe ? (
-          <ul className="opplasting-liste">
-            {beskrivelsesListe.map((el) => (
-              <li>
-                <BodyShort>{el}</BodyShort>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-
         <OpplastedeFiler
           filliste={dokumentasjon.opplastedeVedlegg || []}
           slettVedlegg={slettVedlegg}
