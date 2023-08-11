@@ -29,7 +29,6 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components/macro';
-import { forelderidentMedBarn } from '../../../utils/barn';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -57,6 +56,7 @@ interface Props {
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
   oppdaterBarnISoknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
+  forelderidenterMedBarn: Map<string, IBarn[]>;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -68,6 +68,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   barneListe,
   oppdaterBarnISoknaden,
   settDokumentasjonsbehovForBarn,
+  forelderidenterMedBarn,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -118,9 +119,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     })
     .filter(Boolean) as IBarn[];
 
-  const barnMedBarnetsForeldre =
-    barn.forelder?.ident?.verdi &&
-    forelderidentMedBarn(barneListe).get(barn.forelder?.ident?.verdi);
+  const barnMedBarnetsForeldre = barn.forelder?.ident?.verdi
+    ? forelderidenterMedBarn.get(barn.forelder?.ident?.verdi)
+    : [];
 
   const erFørsteAvFlereBarnMedSammeForelder = barnMedBarnetsForeldre
     ? barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0 &&
