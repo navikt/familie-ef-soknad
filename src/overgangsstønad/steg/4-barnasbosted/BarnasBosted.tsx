@@ -22,6 +22,7 @@ const BarnasBosted: React.FC = () => {
     mellomlagreOvergangsstønad,
     settDokumentasjonsbehovForBarn,
     oppdaterBarnISoknaden,
+    oppdaterFlereBarnISoknaden,
   } = useSøknad();
 
   const barnMedLevendeForeldre = søknad.person.barn.filter((barn: IBarn) => {
@@ -53,6 +54,7 @@ const BarnasBosted: React.FC = () => {
       <BarnasBostedInnhold
         aktuelleBarn={søknad.person.barn}
         oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+        oppdaterFlereBarnISoknaden={oppdaterFlereBarnISoknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}

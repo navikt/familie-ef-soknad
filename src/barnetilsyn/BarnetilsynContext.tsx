@@ -24,7 +24,7 @@ import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig'
 import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { oppdaterBarneliste } from '../utils/barn';
+import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -186,7 +186,17 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         ...prevSøknad,
         person: {
           ...prevSøknad.person,
-          barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
+          barn: oppdaterBarnIBarneliste(prevSøknad.person.barn, oppdatertBarn),
+        },
+      }));
+    };
+
+    const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+      settSøknad((prevSøknad) => ({
+        ...prevSøknad,
+        person: {
+          ...prevSøknad.person,
+          barn: oppdaterBarneliste(prevSøknad.person.barn, oppdaterteBarn),
         },
       }));
     };
@@ -203,6 +213,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISoknaden,
+      oppdaterFlereBarnISoknaden,
     };
   }
 );

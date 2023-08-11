@@ -9,7 +9,9 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
 import {
   antallBarnMedForeldreUtfylt,
+  forelderidentMedBarn,
   hentIndexFørsteBarnSomIkkeErUtfylt,
+  kopierFellesForeldreInformasjon,
 } from '../../../utils/barn';
 import { BodyShort } from '@navikt/ds-react';
 import {
@@ -27,6 +29,7 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 interface Props {
   aktuelleBarn: IBarn[];
   oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterFlereBarnISoknaden: (oppdaterteBarn: IBarn[]) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
@@ -36,6 +39,7 @@ interface Props {
 const BarnasBostedInnhold: React.FC<Props> = ({
   aktuelleBarn,
   oppdaterBarnISoknaden,
+  oppdaterFlereBarnISoknaden,
   settDokumentasjonsbehovForBarn,
   sisteBarnUtfylt,
   settSisteBarnUtfylt,
@@ -73,6 +77,33 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     );
   }, [søknad]);
 
+  const oppdaterBarn = (
+    oppdatertBarn: IBarn,
+    erFørsteAvFlereBarnMedSammeForelder: boolean
+  ) => {
+    const barnMedSammeForelder =
+      oppdatertBarn.forelder?.ident?.verdi &&
+      forelderidentMedBarn(barnMedLevendeMedforelder).get(
+        oppdatertBarn.forelder?.ident?.verdi
+      );
+
+    if (barnMedSammeForelder && erFørsteAvFlereBarnMedSammeForelder) {
+      oppdaterFlereBarnISoknaden(
+        barnMedSammeForelder.map((b) => {
+          if (b.id === oppdatertBarn.id) {
+            return oppdatertBarn;
+          }
+
+          return oppdatertBarn.forelder
+            ? kopierFellesForeldreInformasjon(b, oppdatertBarn.forelder)
+            : b;
+        })
+      );
+    } else {
+      oppdaterBarnISoknaden(oppdatertBarn);
+    }
+  };
+
   return (
     <>
       {barnMedLevendeMedforelder.map((barn: IBarn, index: number) => {
@@ -87,7 +118,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+              oppdaterBarnISoknaden={oppdaterBarn}
               barneListe={søknad.person.barn}
             />
           );

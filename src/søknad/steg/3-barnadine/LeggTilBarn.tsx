@@ -6,8 +6,8 @@ import { barnetFødt } from './BarneConfig';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
-import { oppdaterBarneliste } from '../../../utils/barn';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
+import { oppdaterBarnIBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Button, Heading } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
@@ -74,7 +74,7 @@ const LeggTilBarn: React.FC<Props> = ({
       skalHaBarnepass
     );
 
-    const nyBarneListe = oppdaterBarneliste(barneListe, nyttBarn);
+    const nyBarneListe = oppdaterBarnIBarneliste(barneListe, nyttBarn);
     const erBarnFødtSvar = barnetFødtSpm.svaralternativer.find(
       (svar) => svar.id === ESvar.NEI
     );

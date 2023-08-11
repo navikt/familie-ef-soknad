@@ -15,7 +15,7 @@ import {
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
@@ -26,8 +26,14 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
-import { BodyShort, Button, Label } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import styled from 'styled-components/macro';
+import { forelderidentMedBarn } from '../../../utils/barn';
+
+const AlertMedTopMargin = styled(Alert)`
+  margin-top: 1rem;
+`;
 
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -50,7 +56,7 @@ interface Props {
   scrollTilLagtTilBarn: () => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  oppdaterBarnISoknaden: (barneliste: IBarn) => void;
+  oppdaterBarnISoknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -78,10 +84,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           id: hentUid(),
         }
   );
-
-  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
-    boolean | undefined
-  >(undefined);
 
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
     forelder.fødselsdato?.verdi ? true : false
@@ -116,8 +118,29 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     })
     .filter(Boolean) as IBarn[];
 
+  const barnMedBarnetsForeldre =
+    barn.forelder?.ident?.verdi &&
+    forelderidentMedBarn(barneListe).get(barn.forelder?.ident?.verdi);
+
+  const erFørsteAvFlereBarnMedSammeForelder = barnMedBarnetsForeldre
+    ? barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0 &&
+      barnMedBarnetsForeldre.length > 1
+    : false;
+
+  const erBarnMedKopiertForelder = barnMedBarnetsForeldre
+    ? barnMedBarnetsForeldre.length > 1 &&
+      barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) !== 0
+    : false;
+
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(erBarnMedKopiertForelder ? true : undefined);
+
   const leggTilForelder = () => {
-    oppdaterBarnISoknaden({ ...barn, forelder: forelder });
+    oppdaterBarnISoknaden(
+      { ...barn, forelder: forelder },
+      erFørsteAvFlereBarnMedSammeForelder
+    );
 
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
@@ -125,22 +148,29 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelderId = (annenForelderId: string) => {
-    oppdaterBarnISoknaden({ ...barn, annenForelderId: annenForelderId });
+    oppdaterBarnISoknaden(
+      { ...barn, annenForelderId: annenForelderId },
+      erFørsteAvFlereBarnMedSammeForelder
+    );
   };
 
   const visOmAndreForelder =
-    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
-    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
-    (barnHarSammeForelder === false &&
-      (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
+    erBarnMedKopiertForelder || erFørsteAvFlereBarnMedSammeForelder
+      ? false
+      : (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
+        (førsteBarnTilHverForelder.length > 0 &&
+          barnHarSammeForelder === false) ||
+        (barnHarSammeForelder === false &&
+          (barn.harSammeAdresse.verdi ||
+            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
-  const visBorAnnenForelderINorge =
-    !!barn.medforelder?.verdi ||
-    (!barnHarSammeForelder &&
-      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-      harValgtSvar(forelder?.navn?.verdi) &&
-      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
+  const visBorAnnenForelderINorge = erBarnMedKopiertForelder
+    ? false
+    : !!barn.medforelder?.verdi ||
+      (!barnHarSammeForelder &&
+        !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+        harValgtSvar(forelder?.navn?.verdi) &&
+        (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
 
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
@@ -176,6 +206,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   førsteBarnTilHverForelder={førsteBarnTilHverForelder}
                   settBarnHarSammeForelder={settBarnHarSammeForelder}
                   settForelder={settForelder}
+                  oppdaterBarn={oppdaterBarnISoknaden}
                 />
               )}
             {visOmAndreForelder && (
@@ -198,6 +229,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                       }`}
                 </BodyShort>
               </>
+            )}
+
+            {barnHarSammeForelder && (
+              <AlertMedTopMargin variant={'info'} inline>
+                {hentTekst('barnasbosted.medforelder.gjenbrukt', intl)}
+              </AlertMedTopMargin>
             )}
           </SeksjonGruppe>
         )}

@@ -29,7 +29,7 @@ import { IBarn } from '../models/steg/barn';
 import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { oppdaterBarneliste } from '../utils/barn';
+import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -195,7 +195,17 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         ...prevSøknad,
         person: {
           ...prevSøknad.person,
-          barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
+          barn: oppdaterBarnIBarneliste(prevSøknad.person.barn, oppdatertBarn),
+        },
+      }));
+    };
+
+    const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+      settSøknad((prevSøknad) => ({
+        ...prevSøknad,
+        person: {
+          ...prevSøknad.person,
+          barn: oppdaterBarneliste(prevSøknad.person.barn, oppdaterteBarn),
         },
       }));
     };
@@ -212,6 +222,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       nullstillMellomlagretSkolepenger,
       nullstillSøknadSkolepenger,
       oppdaterBarnISoknaden,
+      oppdaterFlereBarnISoknaden,
     };
   }
 );

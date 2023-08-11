@@ -20,7 +20,7 @@ import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSø
 import Environment from '../Environment';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
-import { oppdaterBarneliste } from '../utils/barn';
+import { oppdaterBarnIBarneliste, oppdaterBarneliste } from '../utils/barn';
 import { IPerson } from '../models/søknad/person';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
@@ -195,7 +195,17 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       ...prevSøknad,
       person: {
         ...prevSøknad.person,
-        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
+        barn: oppdaterBarnIBarneliste(prevSøknad.person.barn, oppdatertBarn),
+      },
+    }));
+  };
+
+  const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
+      person: {
+        ...prevSøknad.person,
+        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdaterteBarn),
       },
     }));
   };
@@ -211,6 +221,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
     oppdaterBarnISoknaden,
+    oppdaterFlereBarnISoknaden,
     nullstillSøknadOvergangsstønad,
   };
 });

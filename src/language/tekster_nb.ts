@@ -363,6 +363,8 @@ export default {
   'barnasbosted.oppsummering.navn.label': 'Navn på annen forelder',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Vi har gjenbrukt svarene dine om den andre forelderen',
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',

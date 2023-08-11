@@ -491,6 +491,8 @@ export default {
     'Register address at the National Registry',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Your answers about the other parent have been reused',
 
   // --- AKTIVITET (Steg 5)
 
