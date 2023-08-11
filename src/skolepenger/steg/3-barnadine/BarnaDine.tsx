@@ -90,17 +90,7 @@ const BarnaDine: React.FC = () => {
                   slettBarn={slettBarn}
                 />
               ))}
-            <div className="barnekort legg-til">
-              <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <VenterDuBarnLabel as="p">
-                  {hentTekst('barnadine.leggtil.info', intl)}
-                </VenterDuBarnLabel>
-                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
-                  {hentTekst('barnadine.leggtil', intl)}
-                </Button>
-              </div>
-            </div>
-          </div>
+            <LeggTilBarnKort settÅpenModal={settÅpenModal} />
           <ModalWrapper
             tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
             visModal={åpenModal}
