@@ -26,18 +26,14 @@ import { EPeriode } from '../../../models/felles/periode';
 import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { Heading, TextField } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   barn: IBarn;
   barnepassOrdning: IBarnepassOrdning;
   settBarnepassOrdning: (barnepassOrdning: IBarnepassOrdning) => void;
   fjernBarnepassOrdning: (barnepassordning: IBarnepassOrdning) => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnepassid: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
 }
 
 const BarnepassSpørsmål: FC<Props> = ({

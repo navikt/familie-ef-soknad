@@ -1,47 +1,50 @@
 import React from 'react';
-import slett from '../../assets/slett.svg';
 import vedlegg from '../../assets/vedlegg.svg';
 import { formaterFilstørrelse } from './utils';
 import { IVedlegg } from '../../models/steg/vedlegg';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Button } from '@navikt/ds-react';
+import styled from 'styled-components';
+import { TrashFillIcon } from '@navikt/aksel-icons';
+import LocaleTekst from '../../language/LocaleTekst';
 
 interface Props {
   filliste: IVedlegg[];
   slettVedlegg: (vedlegg: IVedlegg) => void;
 }
 
+const Filrad = styled.div`
+  display: grid;
+  grid-template-columns: 1.5rem 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  word-break: break-all;
+`;
+
 const OpplastedeFiler: React.FC<Props> = ({ filliste, slettVedlegg }) => {
   return (
     <>
-      {filliste.map((fil: IVedlegg, index: number) => {
-        return (
-          <div key={fil.dokumentId}>
-            <div className="fil">
-              <div>
-                <img
-                  className="vedleggsikon"
-                  src={vedlegg}
-                  alt="Vedleggsikon"
-                />
-                <BodyShort className="filnavn">{fil.navn}</BodyShort>
-                <BodyShort className="filstørrelse">
-                  ({formaterFilstørrelse(fil.størrelse)})
-                </BodyShort>
-              </div>
-              <div
-                className="slett"
-                onClick={() => {
-                  slettVedlegg(fil);
-                }}
-              >
-                <BodyShort>slett</BodyShort>
-                <img className="slettikon" src={slett} alt="Rødt kryss" />
-              </div>
-            </div>
-            {index === filliste.length - 1 ? '' : <hr />}
-          </div>
-        );
-      })}
+      {filliste.map((fil: IVedlegg, index: number) => (
+        <div key={fil.dokumentId}>
+          <Filrad>
+            <img src={vedlegg} alt="Vedleggsikon" />
+            <BodyShort size="small">
+              {fil.navn} ({formaterFilstørrelse(fil.størrelse)})
+            </BodyShort>
+            <Button
+              size="small"
+              variant="tertiary"
+              icon={<TrashFillIcon />}
+              iconPosition="right"
+              onClick={() => {
+                slettVedlegg(fil);
+              }}
+            >
+              <LocaleTekst tekst="dokumentasjon.knapp.slett" />
+            </Button>
+          </Filrad>
+          {index === filliste.length - 1 ? <br /> : <hr />}
+        </div>
+      ))}
     </>
   );
 };

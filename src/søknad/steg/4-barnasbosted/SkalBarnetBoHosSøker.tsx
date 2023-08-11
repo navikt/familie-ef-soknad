@@ -16,17 +16,13 @@ import { ESkalBarnetBoHosSøker } from '../../../models/steg/barnasbosted';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
 import { Alert } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   barn: IBarn;
   forelder: IForelder;
   settForelder: (forelder: IForelder) => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnepassid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
 }
 
 const SkalBarnetBoHosSøker: React.FC<Props> = ({

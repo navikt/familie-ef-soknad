@@ -80,9 +80,9 @@ export const hentBarnNavnEllerBarnet = (
 };
 
 export const oppdaterBarneliste = (barneListe: IBarn[], nyttBarn: IBarn) => {
-  const erEndringAvBarn =
+  const erEndringAvEksisterendeBarn =
     barneListe.findIndex((barn) => barn.id === nyttBarn.id) >= 0;
-  if (erEndringAvBarn) {
+  if (erEndringAvEksisterendeBarn) {
     return barneListe.map((barn) =>
       barn.id === nyttBarn.id ? nyttBarn : barn
     );

@@ -1,32 +1,18 @@
-import React, { useState, useRef } from 'react';
-import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
-import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
+import React, { useState } from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLocation } from 'react-router-dom';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
-import { RefObject } from 'react';
 import { IBarn } from '../../../models/steg/barn';
 import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import BarneHeader from '../../../components/BarneHeader';
-import {
-  antallBarnMedForeldreUtfylt,
-  hentIndexFørsteBarnSomIkkeErUtfylt,
-} from '../../../utils/barn';
+import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
-import { BodyShort } from '@navikt/ds-react';
-
-const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
-  if (!ref || !ref.current) return;
-  window.scrollTo({ top: ref.current!.offsetTop, left: 0, behavior: 'smooth' });
-};
+import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
 
 const BarnasBosted: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -35,15 +21,11 @@ const BarnasBosted: React.FC = () => {
     søknad,
     mellomlagreOvergangsstønad,
     settDokumentasjonsbehovForBarn,
-    settSøknad,
+    oppdaterBarnISoknaden,
   } = useSøknad();
 
-  const barna = søknad.person.barn.filter((barn: IBarn) => {
+  const barnMedLevendeForeldre = søknad.person.barn.filter((barn: IBarn) => {
     return !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false;
-  });
-
-  const barnMedDødMedforelder = søknad.person.barn.filter((barn: IBarn) => {
-    return barn.medforelder?.verdi?.død === true;
   });
 
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
@@ -51,32 +33,12 @@ const BarnasBosted: React.FC = () => {
     ? ESide.visTilbakeNesteAvbrytKnapp
     : ESide.visTilbakeTilOppsummeringKnapp;
 
-  const antallBarnMedForeldre = antallBarnMedForeldreUtfylt(barna);
-
   const [sisteBarnUtfylt, settSisteBarnUtfylt] = useState<boolean>(
-    antallBarnMedForeldre === barna.length
+    antallBarnMedForeldreUtfylt(barnMedLevendeForeldre) ===
+      barnMedLevendeForeldre.length
   );
 
   useMount(() => logSidevisningOvergangsstonad('BarnasBosted'));
-
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
-
-  const [aktivIndex, settAktivIndex] = useState<number>(
-    hentIndexFørsteBarnSomIkkeErUtfylt(barna)
-  );
-
-  const lagtTilBarn = useRef(null);
-
-  const scrollTilLagtTilBarn = () => {
-    setTimeout(() => scrollTilRef(lagtTilBarn), 120);
-  };
 
   return (
     <Side
@@ -88,48 +50,14 @@ const BarnasBosted: React.FC = () => {
       mellomlagreStønad={mellomlagreOvergangsstønad}
       tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
     >
-      {barna.map((barn: IBarn, index: number) => {
-        const key = barn.fødselsdato.verdi + index;
-        if (index === aktivIndex) {
-          return (
-            <BarnetsBostedEndre
-              barn={barn}
-              sisteBarnUtfylt={sisteBarnUtfylt}
-              settSisteBarnUtfylt={settSisteBarnUtfylt}
-              settAktivIndex={settAktivIndex}
-              aktivIndex={aktivIndex}
-              key={key}
-              scrollTilLagtTilBarn={scrollTilLagtTilBarn}
-              barneListe={søknad.person.barn}
-              settBarneListe={settBarneliste}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          );
-        } else {
-          return (
-            <>
-              {index + 1 === antallBarnMedForeldre && <div ref={lagtTilBarn} />}
-              <BarnetsBostedLagtTil
-                barn={barn}
-                settAktivIndex={settAktivIndex}
-                index={index}
-                key={key}
-                sisteBarnUtfylt={sisteBarnUtfylt}
-                settSisteBarnUtfylt={settSisteBarnUtfylt}
-              />
-            </>
-          );
-        }
-      })}
-      {sisteBarnUtfylt &&
-        barnMedDødMedforelder.map((barn: IBarn) => (
-          <SeksjonGruppe>
-            <BarneHeader barn={barn} />
-            <BodyShort style={{ textAlign: 'center', marginTop: '2rem' }}>
-              {hentTekst('barnasbosted.kanGåVidere', intl)}
-            </BodyShort>
-          </SeksjonGruppe>
-        ))}
+      <BarnasBostedInnhold
+        aktuelleBarn={søknad.person.barn}
+        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+        settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+        sisteBarnUtfylt={sisteBarnUtfylt}
+        settSisteBarnUtfylt={settSisteBarnUtfylt}
+        søknad={søknad}
+      />
     </Side>
   );
 };
