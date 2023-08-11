@@ -47,6 +47,12 @@ const visBostedOgSamværSeksjon = (
     : erGyldigDato(forelder.fødselsdato?.verdi);
 };
 
+enum TypeBarn {
+  FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER = 'FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER',
+  BARN_MED_KOPIERT_FORELDER = 'BARN_MED_KOPIERT_FORELDER',
+  TERMIN_ELLER_ENESTE_BARN = 'TERMIN_ELLER_ENESTE_BARN',
+}
+
 interface Props {
   barn: IBarn;
   settAktivIndex: Function;
@@ -123,24 +129,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     ? forelderidenterMedBarn.get(barn.forelder?.ident?.verdi)
     : [];
 
-  const erFørsteAvFlereBarnMedSammeForelder = barnMedBarnetsForeldre
-    ? barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0 &&
-      barnMedBarnetsForeldre.length > 1
-    : false;
-
-  const erBarnMedKopiertForelder = barnMedBarnetsForeldre
-    ? barnMedBarnetsForeldre.length > 1 &&
-      barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) !== 0
-    : false;
+  const typeBarn =
+    barnMedBarnetsForeldre && barnMedBarnetsForeldre.length > 1
+      ? barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
+        ? TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
+        : TypeBarn.BARN_MED_KOPIERT_FORELDER
+      : TypeBarn.TERMIN_ELLER_ENESTE_BARN;
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
-  >(erBarnMedKopiertForelder ? true : undefined);
+  >(typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDER ? true : undefined);
 
   const leggTilForelder = () => {
     oppdaterBarnISoknaden(
       { ...barn, forelder: forelder },
-      erFørsteAvFlereBarnMedSammeForelder
+      typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
     );
 
     const nyIndex = aktivIndex + 1;
@@ -151,27 +154,32 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const leggTilAnnenForelderId = (annenForelderId: string) => {
     oppdaterBarnISoknaden(
       { ...barn, annenForelderId: annenForelderId },
-      erFørsteAvFlereBarnMedSammeForelder
+      typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
     );
   };
 
-  const visOmAndreForelder =
-    erBarnMedKopiertForelder || erFørsteAvFlereBarnMedSammeForelder
-      ? false
-      : (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
-        (førsteBarnTilHverForelder.length > 0 &&
-          barnHarSammeForelder === false) ||
-        (barnHarSammeForelder === false &&
-          (barn.harSammeAdresse.verdi ||
-            harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
-
-  const visBorAnnenForelderINorge = erBarnMedKopiertForelder
+  const visOmAndreForelder = [
+    TypeBarn.BARN_MED_KOPIERT_FORELDER,
+    TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER,
+  ].includes(typeBarn)
     ? false
-    : !!barn.medforelder?.verdi ||
-      (!barnHarSammeForelder &&
-        !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-        harValgtSvar(forelder?.navn?.verdi) &&
-        (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
+    : (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
+      (førsteBarnTilHverForelder.length > 0 &&
+        barnHarSammeForelder === false) ||
+      (barnHarSammeForelder === false &&
+        (barn.harSammeAdresse.verdi ||
+          harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
+
+  const visBorAnnenForelderINorge =
+    ([
+      TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER,
+      TypeBarn.TERMIN_ELLER_ENESTE_BARN,
+    ].includes(typeBarn) &&
+      !!barn.medforelder?.verdi) ||
+    (!barnHarSammeForelder &&
+      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+      harValgtSvar(forelder?.navn?.verdi) &&
+      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
 
   const skalFylleUtHarBoddSammenFør =
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
