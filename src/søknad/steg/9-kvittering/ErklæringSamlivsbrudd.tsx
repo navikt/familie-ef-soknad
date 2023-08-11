@@ -9,6 +9,7 @@ import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';
 import { byteTilKilobyte, filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
+import { useHentMalInformasjon } from '../../../utils/hooks';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -26,8 +27,6 @@ const StyledLenke = styled.div`
 const ErklæringSamlivsbrudd: FC = () => {
   const intl = useLokalIntlContext();
   const { locale } = useSpråkContext();
-  const [filstorrelse, settFilstorrelse] = useState(0)
-  const [filtype, settFiltype] = useState('')
 
   const hentSoknadBasertPaBrukerSprak = (): string => {
     return hentFilePath(locale, {
@@ -37,20 +36,7 @@ const ErklæringSamlivsbrudd: FC = () => {
     })
   }
 
-  useEffect(() => {
-    const hentFilInformasjon = (url: string) => {
-      let filBlob;
-      fetch(url).then((res) => {
-          filBlob = res.blob();
-          return filBlob;
-      }).then((filBlob) => {
-          settFilstorrelse(byteTilKilobyte(filBlob.size))
-          settFiltype(filBlob.type)
-          console.log([filBlob.size, filBlob.type]);
-      });
-  }
-    hentFilInformasjon(hentSoknadBasertPaBrukerSprak())
-  }, []);
+  const {filstorrelse, filtype} = useHentMalInformasjon(hentSoknadBasertPaBrukerSprak())
 
   return (
     <SeksjonGruppe>
