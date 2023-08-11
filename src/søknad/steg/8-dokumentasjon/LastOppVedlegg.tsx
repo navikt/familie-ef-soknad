@@ -11,8 +11,19 @@ import {
 import { IVedlegg } from '../../../models/steg/vedlegg';
 import { EFiltyper } from '../../../helpers/filtyper';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import FormattedHtmlMessage from '../../../language/FormattedHtmlMessage';
-import { BodyShort, Checkbox, Heading } from '@navikt/ds-react';
+import { Checkbox, GuidePanel, Heading } from '@navikt/ds-react';
+import styled from 'styled-components';
+import { GrøntDokumentIkon } from './GrøntDokumentIkon';
+
+const StyledSeksjonGruppe = styled(SeksjonGruppe)`
+  padding-bottom: 40px;
+`;
+
+const StyledGuidePanel = styled(GuidePanel)`
+  .navds-guide {
+    border: none;
+  }
+`;
 
 interface Props {
   dokumentasjon: IDokumentasjon;
@@ -39,43 +50,43 @@ const LastOppVedlegg: React.FC<Props> = ({
     dokumentasjon.id !== BarnetilsynDokumentasjon.FAKTURA_BARNEPASSORDNING;
 
   return (
-    <SeksjonGruppe>
-      <FeltGruppe>
-        <Heading size="small" level="3">
-          <LocaleTekst tekst={dokumentasjon.tittel} />
-        </Heading>
-      </FeltGruppe>
-      {dokumentasjon.beskrivelse && (
+    <StyledSeksjonGruppe>
+      <StyledGuidePanel illustration={<GrøntDokumentIkon />} poster>
         <FeltGruppe>
-          <BodyShort>
-            <FormattedHtmlMessage id={dokumentasjon.beskrivelse} />
-          </BodyShort>
+          <Heading size="small" level="3" style={{ justifyContent: 'left' }}>
+            <LocaleTekst tekst={dokumentasjon.tittel} />
+          </Heading>
         </FeltGruppe>
-      )}
-      {hvisIkkeFakturaForBarnepass && (
-        <FeltGruppe>
-          <Checkbox
-            checked={dokumentasjon.harSendtInn}
-            onChange={settHarSendtInnTidligere}
-          >
-            {hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
-          </Checkbox>
-        </FeltGruppe>
-      )}
-      {!dokumentasjon.harSendtInn && (
-        <Filopplaster
-          oppdaterDokumentasjon={oppdaterDokumentasjon}
-          dokumentasjon={dokumentasjon}
-          maxFilstørrelse={1024 * 1024 * 10}
-          tillatteFiltyper={[
-            EFiltyper.PNG,
-            EFiltyper.PDF,
-            EFiltyper.JPG,
-            EFiltyper.JPEG,
-          ]}
-        />
-      )}
-    </SeksjonGruppe>
+        {dokumentasjon.beskrivelse && (
+          <FeltGruppe>
+            <LocaleTekst tekst={dokumentasjon.beskrivelse} />
+          </FeltGruppe>
+        )}
+        {hvisIkkeFakturaForBarnepass && (
+          <FeltGruppe>
+            <Checkbox
+              checked={dokumentasjon.harSendtInn}
+              onChange={settHarSendtInnTidligere}
+            >
+              {hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
+            </Checkbox>
+          </FeltGruppe>
+        )}
+        {!dokumentasjon.harSendtInn && (
+          <Filopplaster
+            oppdaterDokumentasjon={oppdaterDokumentasjon}
+            dokumentasjon={dokumentasjon}
+            maxFilstørrelse={1024 * 1024 * 10}
+            tillatteFiltyper={[
+              EFiltyper.PNG,
+              EFiltyper.PDF,
+              EFiltyper.JPG,
+              EFiltyper.JPEG,
+            ]}
+          />
+        )}
+      </StyledGuidePanel>
+    </StyledSeksjonGruppe>
   );
 };
 

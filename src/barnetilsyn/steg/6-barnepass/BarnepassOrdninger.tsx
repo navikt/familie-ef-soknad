@@ -12,16 +12,12 @@ import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Label } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   barn: IBarn;
   settBarnepass: (barnepass: IBarnepass, barnid: string) => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnepassid: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
 }
 
 const BarnepassOrdninger: FC<Props> = ({
