@@ -17,6 +17,10 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { Alert, Label } from '@navikt/ds-react';
+import {
+  BarnaDineContainer,
+  BarneKortWrapper,
+} from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -85,58 +89,52 @@ const BarnaDine: React.FC = () => {
   );
 
   return (
-    <>
-      <Side
-        stønadstype={Stønadstype.barnetilsyn}
-        stegtittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={skalViseKnapper}
-        erSpørsmålBesvart={harValgtMinstEttBarn}
-        routesStønad={RoutesBarnetilsyn}
-        mellomlagreStønad={mellomlagreBarnetilsyn}
-        tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
-        informasjonstekstId={'barnadine.barnetilsyn.info.brukpdf'}
-      >
-        <div className="barna-dine">
-          <div className="barnetilsyn__hvilke-barn">
-            <Label as="p">
-              <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
-            </Label>
-            <FeltGruppe>
-              <LesMerTekst
-                åpneTekstid={'barnetilsyn.hjelpetekst-åpne.hvilke'}
-                innholdTekstid={'barnetilsyn.hjelpetekst-innhold.hvilke'}
+    <Side
+      stønadstype={Stønadstype.barnetilsyn}
+      stegtittel={hentTekst('barnadine.sidetittel', intl)}
+      skalViseKnapper={skalViseKnapper}
+      erSpørsmålBesvart={harValgtMinstEttBarn}
+      routesStønad={RoutesBarnetilsyn}
+      mellomlagreStønad={mellomlagreBarnetilsyn}
+      tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
+      informasjonstekstId={'barnadine.barnetilsyn.info.brukpdf'}
+    >
+      <BarnaDineContainer>
+        <FeltGruppe>
+          <Label as="p">
+            <LocaleTekst tekst="barnetilsyn.tekst.hvilke" />
+          </Label>
+          <LesMerTekst
+            åpneTekstid={'barnetilsyn.hjelpetekst-åpne.hvilke'}
+            innholdTekstid={'barnetilsyn.hjelpetekst-innhold.hvilke'}
+          />
+        </FeltGruppe>
+        <Alert size="small" variant="info" inline>
+          {hentTekst('barnadine.infohentet', intl)}
+        </Alert>
+        <BarneKortWrapper>
+          {søknad.person.barn
+            ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
+            .map((barn: IBarn) => (
+              <Barnekort
+                key={barn.id}
+                gjeldendeBarn={barn}
+                barneListe={søknad.person.barn}
+                settBarneListe={settBarneliste}
+                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+                velgBarnForDenneSøknaden={
+                  <BarnMedISøknad
+                    id={barn.id ? barn.id : ''}
+                    toggleSkalHaBarnepass={toggleSkalHaBarnepass}
+                    skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
+                  />
+                }
+                slettBarn={slettBarn}
               />
-            </FeltGruppe>
-          </div>
-          <Alert size="small" variant="info" className="informasjonstekst">
-            {hentTekst('barnadine.infohentet', intl)}
-          </Alert>
-          <div className="barnekort-wrapper">
-            {søknad.person.barn
-              ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
-              .map((barn: IBarn) => (
-                <Barnekort
-                  key={barn.id}
-                  gjeldendeBarn={barn}
-                  barneListe={søknad.person.barn}
-                  settBarneListe={settBarneliste}
-                  settDokumentasjonsbehovForBarn={
-                    settDokumentasjonsbehovForBarn
-                  }
-                  velgBarnForDenneSøknaden={
-                    <BarnMedISøknad
-                      id={barn.id ? barn.id : ''}
-                      toggleSkalHaBarnepass={toggleSkalHaBarnepass}
-                      skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
-                    />
-                  }
-                  slettBarn={slettBarn}
-                />
-              ))}
-          </div>
-        </div>
-      </Side>
-    </>
+            ))}
+        </BarneKortWrapper>
+      </BarnaDineContainer>
+    </Side>
   );
 };
 
