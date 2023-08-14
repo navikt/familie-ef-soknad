@@ -171,10 +171,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    ([
-      TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER,
-      TypeBarn.ENESTE_BARN,
-    ].includes(typeBarn) &&
+    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDER &&
       !!barn.medforelder?.verdi) ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
