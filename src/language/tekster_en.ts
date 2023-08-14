@@ -654,6 +654,7 @@ export default {
     'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
     'I have already submitted this documentation to NAV in the past',
+  'dokumentasjon.knapp.slett': 'Delete',
   'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
     'Documentation of your separation or divorce',
