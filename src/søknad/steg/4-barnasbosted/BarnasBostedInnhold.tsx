@@ -76,7 +76,9 @@ const BarnasBostedInnhold: React.FC<Props> = ({
         barnMedLevendeMedforelder.length
     );
   }, [søknad]);
-  const forelderMedBarn = forelderidentMedBarn(barnMedLevendeMedforelder);
+  const forelderIdenterMedBarn = forelderidentMedBarn(
+    barnMedLevendeMedforelder
+  );
 
   const oppdaterBarn = (
     oppdatertBarn: IBarn,
@@ -84,7 +86,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
   ) => {
     const barnMedSammeForelder =
       oppdatertBarn.forelder?.ident?.verdi &&
-      forelderMedBarn.get(oppdatertBarn.forelder?.ident?.verdi);
+      forelderIdenterMedBarn.get(oppdatertBarn.forelder?.ident?.verdi);
 
     if (barnMedSammeForelder && erFørsteAvFlereBarnMedSammeForelder) {
       oppdaterFlereBarnISoknaden(
@@ -119,7 +121,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
               oppdaterBarnISoknaden={oppdaterBarn}
               barneListe={søknad.person.barn}
-              forelderidenterMedBarn={forelderMedBarn}
+              forelderidenterMedBarn={forelderIdenterMedBarn}
             />
           );
         } else {
