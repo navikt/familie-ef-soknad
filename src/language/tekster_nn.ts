@@ -492,7 +492,7 @@ export default {
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
   'barnasbosted.medforelder.gjenbrukt':
-    'Your answers about the other parent have been reused',
+    'Questions regarding your relationship with the other parent is already answered for another child. Go to the child where the questions were answered in order to change your answers',
 
   // --- AKTIVITET (Steg 5)
 

@@ -364,7 +364,7 @@ export default {
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
   'barnasbosted.medforelder.gjenbrukt':
-    'Vi har gjenbrukt svarene dine om den andre forelderen',
+    'Spørsmål om din relasjon til den andre forelderen er besvart på et annet barn. Gå til barnet hvor spørsmålene ble besvart om du ønsker å endre',
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',
