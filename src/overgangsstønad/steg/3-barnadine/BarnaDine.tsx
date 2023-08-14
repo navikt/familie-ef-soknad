@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
-import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSøknad } from '../../../context/SøknadContext';
@@ -19,6 +18,7 @@ import {
   BarneKortWrapper,
 } from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
 import { LeggTilBarnKort } from '../../../søknad/steg/3-barnadine/LeggTilBarnKort';
+import LeggTilBarnModal from '../../../søknad/steg/3-barnadine/LeggTilBarnModal';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -85,18 +85,14 @@ const BarnaDine: React.FC = () => {
           ))}
           <LeggTilBarnKort settÅpenModal={settÅpenModal} />
         </BarneKortWrapper>
-        <ModalWrapper
+        <LeggTilBarnModal
           tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
-          visModal={åpenModal}
-          onClose={() => settÅpenModal(false)}
-        >
-          <LeggTilBarn
-            settÅpenModal={settÅpenModal}
-            barneListe={søknad.person.barn}
-            settBarneListe={settBarneliste}
-            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-          />
-        </ModalWrapper>
+          åpenModal={åpenModal}
+          lukkModal={() => settÅpenModal(false)}
+          barneListe={søknad.person.barn}
+          settBarneListe={settBarneliste}
+          settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+        />
       </BarnaDineContainer>
     </Side>
   );

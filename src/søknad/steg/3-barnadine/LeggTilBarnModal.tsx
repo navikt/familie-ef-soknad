@@ -12,9 +12,12 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { Button } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import { styled } from 'styled-components';
+import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 interface Props {
-  settÅpenModal: Function;
+  tittel: string;
+  åpenModal: boolean;
+  lukkModal: () => void;
   id?: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
@@ -24,14 +27,18 @@ interface Props {
 const StyledSeksjonsgruppe = styled(Seksjonsgruppe)`
   min-height: 500px;
   width: 450px;
+  padding: 2rem 2.5rem;
 
   @media (max-width: 767px) {
     width: auto;
+    padding: 2rem 0;
   }
 `;
 
-const LeggTilBarn: React.FC<Props> = ({
-  settÅpenModal,
+const LeggTilBarnModal: React.FC<Props> = ({
+  tittel,
+  åpenModal,
+  lukkModal,
   id,
   barneListe,
   settBarneListe,
@@ -97,30 +104,32 @@ const LeggTilBarn: React.FC<Props> = ({
 
     settBarneListe(nyBarneListe);
 
-    settÅpenModal(false);
+    lukkModal();
   };
 
   return (
-    <StyledSeksjonsgruppe aria-live="polite">
-      <KomponentGruppe>
-        <LeggTilBarnUfødt
-          settBo={settBo}
-          boHosDeg={boHosDeg}
-          settDato={settDato}
-          barnDato={barnDato}
-        />
-      </KomponentGruppe>
-      {boHosDeg && (
-        <Button
-          variant="primary"
-          aria-live="polite"
-          onClick={() => leggTilEllerEndreBarn(id)}
-        >
-          <LocaleTekst tekst={'barnadine.leggtil'} />
-        </Button>
-      )}
-    </StyledSeksjonsgruppe>
+    <ModalWrapper tittel={tittel} visModal={åpenModal} onClose={lukkModal}>
+      <StyledSeksjonsgruppe aria-live="polite">
+        <KomponentGruppe>
+          <LeggTilBarnUfødt
+            settBo={settBo}
+            boHosDeg={boHosDeg}
+            settDato={settDato}
+            barnDato={barnDato}
+          />
+        </KomponentGruppe>
+        {boHosDeg && (
+          <Button
+            variant="primary"
+            aria-live="polite"
+            onClick={() => leggTilEllerEndreBarn(id)}
+          >
+            <LocaleTekst tekst={'barnadine.leggtil'} />
+          </Button>
+        )}
+      </StyledSeksjonsgruppe>
+    </ModalWrapper>
   );
 };
 
-export default LeggTilBarn;
+export default LeggTilBarnModal;

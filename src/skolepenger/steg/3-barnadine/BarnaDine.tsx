@@ -3,7 +3,6 @@ import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import Barnekort from '../../../søknad/steg/3-barnadine/Barnekort';
-import LeggTilBarn from '../../../søknad/steg/3-barnadine/LeggTilBarn';
 import { IBarn } from '../../../models/steg/barn';
 import { RoutesSkolepenger } from '../../routing/routes';
 import { hentPathSkolepengerOppsummering } from '../../utils';
@@ -13,12 +12,12 @@ import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
 import { Alert } from '@navikt/ds-react';
-import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 import {
   BarnaDineContainer,
   BarneKortWrapper,
 } from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
 import { LeggTilBarnKort } from '../../../søknad/steg/3-barnadine/LeggTilBarnKort';
+import LeggTilBarnModal from '../../../søknad/steg/3-barnadine/LeggTilBarnModal';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -91,18 +90,14 @@ const BarnaDine: React.FC = () => {
               ))}
             <LeggTilBarnKort settÅpenModal={settÅpenModal} />
           </BarneKortWrapper>
-          <ModalWrapper
+          <LeggTilBarnModal
             tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
-            visModal={åpenModal}
-            onClose={() => settÅpenModal(false)}
-          >
-            <LeggTilBarn
-              settÅpenModal={settÅpenModal}
-              barneListe={søknad.person.barn}
-              settBarneListe={settBarneliste}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            />
-          </ModalWrapper>
+            åpenModal={åpenModal}
+            lukkModal={() => settÅpenModal(false)}
+            barneListe={søknad.person.barn}
+            settBarneListe={settBarneliste}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
         </BarnaDineContainer>
       </Side>
     </>
