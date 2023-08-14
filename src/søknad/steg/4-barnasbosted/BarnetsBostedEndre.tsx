@@ -50,7 +50,7 @@ const visBostedOgSamværSeksjon = (
 enum TypeBarn {
   FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER = 'FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER',
   BARN_MED_KOPIERT_FORELDER = 'BARN_MED_KOPIERT_FORELDER',
-  TERMIN_ELLER_ENESTE_BARN = 'TERMIN_ELLER_ENESTE_BARN',
+  ENESTE_BARN = 'ENESTE_BARN',
 }
 
 interface Props {
@@ -134,7 +134,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       ? barnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
         ? TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
         : TypeBarn.BARN_MED_KOPIERT_FORELDER
-      : TypeBarn.TERMIN_ELLER_ENESTE_BARN;
+      : TypeBarn.ENESTE_BARN;
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
@@ -173,7 +173,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const visBorAnnenForelderINorge =
     ([
       TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER,
-      TypeBarn.TERMIN_ELLER_ENESTE_BARN,
+      TypeBarn.ENESTE_BARN,
     ].includes(typeBarn) &&
       !!barn.medforelder?.verdi) ||
     (!barnHarSammeForelder &&
