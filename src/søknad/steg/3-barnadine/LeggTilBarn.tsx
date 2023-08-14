@@ -9,8 +9,9 @@ import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { oppdaterBarnIBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { Button, Heading } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import { styled } from 'styled-components';
 
 interface Props {
   settÅpenModal: Function;
@@ -19,6 +20,15 @@ interface Props {
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }
+
+const StyledSeksjonsgruppe = styled(Seksjonsgruppe)`
+  min-height: 500px;
+  width: 450px;
+
+  @media (max-width: 767px) {
+    width: auto;
+  }
+`;
 
 const LeggTilBarn: React.FC<Props> = ({
   settÅpenModal,
@@ -91,7 +101,7 @@ const LeggTilBarn: React.FC<Props> = ({
   };
 
   return (
-    <Seksjonsgruppe className="legg-til-barn" aria-live="polite">
+    <StyledSeksjonsgruppe aria-live="polite">
       <KomponentGruppe>
         <LeggTilBarnUfødt
           settBo={settBo}
@@ -109,7 +119,7 @@ const LeggTilBarn: React.FC<Props> = ({
           <LocaleTekst tekst={'barnadine.leggtil'} />
         </Button>
       )}
-    </Seksjonsgruppe>
+    </StyledSeksjonsgruppe>
   );
 };
 
