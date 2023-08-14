@@ -10,8 +10,6 @@ import './components/feil/Feilside.css';
 import './components/spørsmål/Spørsmål.css';
 import './components/side/Side.css';
 
-import './overgangsstønad/steg/3-barnadine/BarnaDine.css';
-import './søknad/steg/3-barnadine/LeggTilBarn.css';
 import './overgangsstønad/steg/4-barnasbosted/BarnasBosted.css';
 import './søknad/steg/7-oppsummering/Oppsummering.css';
 

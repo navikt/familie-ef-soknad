@@ -12,14 +12,13 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { Alert, Button, Label } from '@navikt/ds-react';
-import styled from 'styled-components';
+import { Alert } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
-
-const VenterDuBarnLabel = styled(Label)`
-  display: block;
-  padding-bottom: 2rem;
-`;
+import {
+  BarnaDineContainer,
+  BarneKortWrapper,
+} from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
+import { LeggTilBarnKort } from '../../../søknad/steg/3-barnadine/LeggTilBarnKort';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -59,60 +58,47 @@ const BarnaDine: React.FC = () => {
   const harMinstEttBarn = søknad.person.barn.length > 0;
 
   return (
-    <>
-      <Side
-        stønadstype={Stønadstype.overgangsstønad}
-        stegtittel={hentTekst('barnadine.sidetittel', intl)}
-        skalViseKnapper={skalViseKnapper}
-        erSpørsmålBesvart={harMinstEttBarn}
-        routesStønad={RoutesOvergangsstonad}
-        mellomlagreStønad={mellomlagreOvergangsstønad}
-        tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
-        informasjonstekstId="barnadine.info.brukpdf"
-      >
-        <div className="barna-dine">
-          <Alert variant="info" className="informasjonstekst">
-            {hentTekst('barnadine.infohentet', intl)}
-          </Alert>
-          <div className="barnekort-wrapper">
-            {barna?.map((barn: IBarn) => (
-              <Barnekort
-                key={barn.id}
-                gjeldendeBarn={barn}
-                slettBarn={slettBarn}
-                barneListe={søknad.person.barn}
-                settBarneListe={settBarneliste}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              />
-            ))}
-            <div className="barnekort legg-til">
-              <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <VenterDuBarnLabel as="p">
-                  {hentTekst('barnadine.leggtil.info', intl)}
-                </VenterDuBarnLabel>
-                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
-                  {hentTekst('barnadine.leggtil', intl)}
-                </Button>
-              </div>
-            </div>
-          </div>
-          <ModalWrapper
-            tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
-            visModal={åpenModal}
-            onClose={() => settÅpenModal(false)}
-          >
-            <div className="legg-til-barn-modal">
-              <LeggTilBarn
-                settÅpenModal={settÅpenModal}
-                barneListe={søknad.person.barn}
-                settBarneListe={settBarneliste}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              />
-            </div>
-          </ModalWrapper>
-        </div>
-      </Side>
-    </>
+    <Side
+      stønadstype={Stønadstype.overgangsstønad}
+      stegtittel={hentTekst('barnadine.sidetittel', intl)}
+      skalViseKnapper={skalViseKnapper}
+      erSpørsmålBesvart={harMinstEttBarn}
+      routesStønad={RoutesOvergangsstonad}
+      mellomlagreStønad={mellomlagreOvergangsstønad}
+      tilbakeTilOppsummeringPath={hentPathOvergangsstønadOppsummering}
+      informasjonstekstId="barnadine.info.brukpdf"
+    >
+      <BarnaDineContainer>
+        <Alert variant="info" inline>
+          {hentTekst('barnadine.infohentet', intl)}
+        </Alert>
+        <BarneKortWrapper>
+          {barna?.map((barn: IBarn) => (
+            <Barnekort
+              key={barn.id}
+              gjeldendeBarn={barn}
+              slettBarn={slettBarn}
+              barneListe={søknad.person.barn}
+              settBarneListe={settBarneliste}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+            />
+          ))}
+          <LeggTilBarnKort settÅpenModal={settÅpenModal} />
+        </BarneKortWrapper>
+        <ModalWrapper
+          tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
+          visModal={åpenModal}
+          onClose={() => settÅpenModal(false)}
+        >
+          <LeggTilBarn
+            settÅpenModal={settÅpenModal}
+            barneListe={søknad.person.barn}
+            settBarneListe={settBarneliste}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        </ModalWrapper>
+      </BarnaDineContainer>
+    </Side>
   );
 };
 

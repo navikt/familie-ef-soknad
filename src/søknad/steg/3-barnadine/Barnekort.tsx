@@ -6,12 +6,13 @@ import ufødtIkon from '../../../assets/ufodt.svg';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import LeggTilBarn from './LeggTilBarn';
 import { hentTekst } from '../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
-import { BodyShort, Heading } from '@navikt/ds-react';
+import { Heading, Link } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import styled from 'styled-components';
+import { InformasjonsElement } from './BarnekortInformasjonsElement';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -21,6 +22,41 @@ interface Props {
   barneListe: IBarn[];
   settBarneListe: (barneListe: IBarn[]) => void;
 }
+
+const Container = styled.div`
+  width: 276px;
+  background-color: #e7e9e9;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: flex-end;
+  height: 128px;
+  justify-content: center;
+  background-color: #4d3e55;
+  border-bottom: 4px solid #826ba1;
+`;
+
+const Innhold = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 2rem;
+  text-align: center;
+`;
+
+const LenkeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+`;
+
+const LinkMedPointer = styled(Link)`
+  cursor: pointer;
+`;
 
 const Barnekort: React.FC<Props> = ({
   gjeldendeBarn,
@@ -72,113 +108,87 @@ const Barnekort: React.FC<Props> = ({
   }
 
   return (
-    <div className="barnekort">
-      <div className="barnekort__header">
-        <img alt="barn" className="barneikon" src={ikon} />
-      </div>
-      <div className="barnekort__informasjonsboks">
-        <div className="informasjonsboks-innhold">
-          <Heading size="small" level="3">
-            {navn.verdi
-              ? navn.verdi
-              : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
-          </Heading>
-          {!harAdressesperre && (
-            <div className="informasjonselement">
-              {ident.verdi ? (
-                <>
-                  <BodyShort>
-                    {intl.formatMessage({ id: 'barnekort.fødselsnummer' })}
-                  </BodyShort>
-                  <BodyShort>{formatFnr(ident.verdi)}</BodyShort>
-                </>
-              ) : (
-                <>
-                  <BodyShort>
-                    {født?.verdi
-                      ? intl.formatMessage({ id: 'barnekort.fødselsdato' })
-                      : intl.formatMessage({ id: 'barnekort.termindato' })}
-                  </BodyShort>
-                  <BodyShort>
-                    {formatDate(strengTilDato(fødselsdato.verdi))}
-                  </BodyShort>
-                </>
-              )}
-            </div>
-          )}
-          <div className="informasjonselement">
-            <BodyShort>
-              {intl.formatMessage({ id: 'barnekort.alder' })}
-            </BodyShort>
-            <BodyShort>
-              {født?.verdi ? alder.verdi : hentTekst('barnekort.erUfødt', intl)}
-              {født?.verdi && ' ' + intl.formatMessage({ id: 'barnekort.år' })}
-            </BodyShort>
-          </div>
-          {!harAdressesperre && (
-            <div className="informasjonselement">
-              <BodyShort>
-                {intl.formatMessage({ id: 'barnekort.bosted' })}
-              </BodyShort>
-              <BodyShort>{bosted}</BodyShort>
-            </div>
-          )}
-          {medforelder &&
-            (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
-              <div className="informasjonselement">
-                <BodyShort>
-                  {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
-                </BodyShort>
-                <BodyShort>
-                  {medforelder?.verdi && medforelder?.verdi.navn
-                    ? medforelder?.verdi?.navn
-                    : medforelder?.verdi?.alder
-                    ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
-                        medforelder.verdi.alder
-                      }`
-                    : null}
-                </BodyShort>
-              </div>
-            )}
-          {velgBarnForDenneSøknaden}
-          {lagtTil ? (
-            <button
-              className="barnekort__endre-barnekort lenke"
-              onClick={() => settÅpenEndreModal(true)}
-            >
-              <BodyShort>
-                {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-              </BodyShort>
-            </button>
-          ) : null}
-          {lagtTil ? (
-            <button
-              className="barnekort__endre-barnekort lenke"
-              onClick={() => slettBarn(id)}
-            >
-              <BodyShort>
-                {intl.formatMessage({ id: 'barnekort.fjern' })}
-              </BodyShort>
-            </button>
-          ) : null}
-        </div>
-        <ModalWrapper
-          tittel="Endre informasjon om barnet"
-          visModal={åpenEndreModal}
-          onClose={() => settÅpenEndreModal(false)}
-        >
-          <div style={{ padding: '2rem 2.5rem' }}>
-            <LeggTilBarn
-              settÅpenModal={settÅpenEndreModal}
-              id={id}
-              barneListe={barneListe}
-              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              settBarneListe={settBarneListe}
+    <Container>
+      <Header>
+        <img alt="barn" src={ikon} />
+      </Header>
+      <Innhold>
+        <Heading size="small" level="3">
+          {navn.verdi
+            ? navn.verdi
+            : intl.formatMessage({ id: 'barnekort.normaltekst.barn' })}
+        </Heading>
+        {!harAdressesperre &&
+          (ident.verdi ? (
+            <InformasjonsElement
+              forklaringId={'barnekort.fødselsnummer'}
+              verdi={formatFnr(ident.verdi)}
             />
-          </div>
-        </ModalWrapper>
-      </div>
-    </div>
+          ) : (
+            <InformasjonsElement
+              forklaringId={
+                født?.verdi ? 'barnekort.fødselsdato' : 'barnekort.termindato'
+              }
+              verdi={formatDate(strengTilDato(fødselsdato.verdi))}
+            />
+          ))}
+        <InformasjonsElement
+          forklaringId={'barnekort.alder'}
+          verdi={
+            født?.verdi
+              ? alder.verdi + ' ' + intl.formatMessage({ id: 'barnekort.år' })
+              : hentTekst('barnekort.erUfødt', intl)
+          }
+        />
+        {!harAdressesperre && (
+          <InformasjonsElement
+            forklaringId={'barnekort.bosted'}
+            verdi={bosted}
+          />
+        )}
+        {medforelder &&
+          (medforelder.verdi?.navn || medforelder.verdi?.alder) && (
+            <InformasjonsElement
+              forklaringId={'barnasbosted.forelder.annen'}
+              verdi={
+                medforelder?.verdi && medforelder?.verdi.navn
+                  ? medforelder?.verdi?.navn
+                  : medforelder?.verdi?.alder
+                  ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                      medforelder.verdi.alder
+                    }`
+                  : null
+              }
+            />
+          )}
+        {velgBarnForDenneSøknaden}
+        {lagtTil && (
+          <LenkeContainer>
+            <LinkMedPointer onClick={() => settÅpenEndreModal(true)}>
+              {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
+            </LinkMedPointer>
+            <LinkMedPointer onClick={() => slettBarn(id)}>
+              {intl.formatMessage({ id: 'barnekort.fjern' })}
+            </LinkMedPointer>
+          </LenkeContainer>
+        )}
+      </Innhold>
+      <ModalWrapper
+        tittel="Endre informasjon om barnet"
+        visModal={åpenEndreModal}
+        onClose={() => settÅpenEndreModal(false)}
+      >
+        <div style={{ padding: '2rem 2.5rem' }}>
+          <LeggTilBarn
+            settÅpenModal={settÅpenEndreModal}
+            id={id}
+            barneListe={barneListe}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+            settBarneListe={settBarneListe}
+          />
+        </div>
+      </ModalWrapper>
+    </Container>
   );
 };
 
