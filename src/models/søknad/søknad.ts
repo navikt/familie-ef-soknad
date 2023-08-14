@@ -7,6 +7,7 @@ import { ISivilstatus } from '../steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../steg/dokumentasjon';
 import { IAdresseopplysninger } from '../steg/adresseopplysninger';
+import { ISpørsmål, ISvar } from '../felles/spørsmålogsvar';
 
 export interface ISøknad {
   innsendingsdato?: Date;
@@ -32,3 +33,10 @@ export enum ESøknad {
 export interface LocationStateSøknad {
   kommerFraOppsummering?: boolean;
 }
+
+export type SettDokumentasjonsbehovBarn = (
+  spørsmål: ISpørsmål,
+  valgtSvar: ISvar,
+  barneid: string,
+  barnapassid?: string
+) => void;

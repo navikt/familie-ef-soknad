@@ -16,16 +16,12 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { årsakBarnepass } from './BarnepassConfig';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { Alert } from '@navikt/ds-react';
+import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 
 interface Props {
   barn: IBarn;
   settBarnepass: (barnepass: IBarnepass, barneid: string) => void;
-  settDokumentasjonsbehovForBarn: (
-    spørsmål: ISpørsmål,
-    valgtSvar: ISvar,
-    barneid: string,
-    barnepassordningid?: string
-  ) => void;
+  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
 }
 
 const ÅrsakBarnepass: FC<Props> = ({

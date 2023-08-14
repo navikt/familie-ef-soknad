@@ -13,7 +13,6 @@ import './components/side/Side.css';
 import './overgangsstønad/steg/3-barnadine/BarnaDine.css';
 import './søknad/steg/3-barnadine/LeggTilBarn.css';
 import './overgangsstønad/steg/4-barnasbosted/BarnasBosted.css';
-import './components/filopplaster/Filopplaster.css';
 import './søknad/steg/7-oppsummering/Oppsummering.css';
 
 import './arbeidssøkerskjema/side/Side.css';

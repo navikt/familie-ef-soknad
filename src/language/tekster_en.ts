@@ -10,7 +10,6 @@ export default {
     'You must answer all the questions before you can go to the next page',
   'knapp.tilbake': 'Back',
   'knapp.neste': 'Next',
-  'knapp.neste.barn': 'Next child',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
   'knapp.sendSøknad': 'Submit application',
@@ -644,9 +643,19 @@ export default {
   'dokumentasjon.ingenDokumentasjonsbehov.beskrivelse':
     'It doesn’t look like you need to submit any documentation.  We will contact you if it turns out we do need documentation from you.',
   'dokumentasjon.beskrivelse':
-    'You must upload documentation confirming the information you have provided in the application. You will get a quicker response to your application if we have all the documentation we need when we start processing it. You can upload documentation in the following file formats: PDF, jpg and png. <br/><br/>How to upload images as attachments to your application:<br/><ol><li> Take a picture of the document with a smartphone or tablet</li><li>Check that the document can be read</li><li>Upload the images here </li></ol> If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/><br />If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
+    'You must upload documentation confirming the information you have provided in the application. You will get a quicker response to your application if we have all the documentation we need when we start processing it. You can upload documentation in the following file formats: PDF, jpg and png.',
+  'dokumentasjon.beskrivelseBilderHeader':
+    'How to upload images as attachments to your application',
+  'dokumentasjon.beskrivelseBilderInnhold':
+    '<ol><li> Take a picture of the document with a smartphone or tablet</li>' +
+    '<li>Check that the document can be read</li>' +
+    '<li>Upload the images here </li></ol>',
+  'dokumentasjon.beskrivelseSlutt':
+    'If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/><br />' +
+    'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
     'I have already submitted this documentation to NAV in the past',
+  'dokumentasjon.knapp.slett': 'Delete',
   'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
     'Documentation of your separation or divorce',
