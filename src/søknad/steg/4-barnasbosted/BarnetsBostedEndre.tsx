@@ -158,17 +158,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
-  const visOmAndreForelder = [
-    TypeBarn.BARN_MED_KOPIERT_FORELDER,
-    TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER,
-  ].includes(typeBarn)
-    ? false
-    : (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
-      (førsteBarnTilHverForelder.length > 0 &&
-        barnHarSammeForelder === false) ||
-      (barnHarSammeForelder === false &&
-        (barn.harSammeAdresse.verdi ||
-          harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
+  const visOmAndreForelder =
+    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
+    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
+    (barnHarSammeForelder === false &&
+      (barn.harSammeAdresse.verdi ||
+        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
     (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDER &&
