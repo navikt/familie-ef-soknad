@@ -138,13 +138,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
-  >(
-    typeBarn === TypeBarn.ENESTE_BARN
-      ? barn.lagtTil && barn.annenForelderId === 'annen-forelder'
-        ? false
-        : undefined
-      : typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDER
-  );
+  >(typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDER ? true : undefined);
 
   const leggTilForelder = () => {
     oppdaterBarnISoknaden(
@@ -165,7 +159,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const visOmAndreForelder =
-    (barn.lagtTil && barnHarSammeForelder === false) ||
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
