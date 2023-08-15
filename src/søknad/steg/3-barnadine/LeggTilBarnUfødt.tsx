@@ -10,7 +10,8 @@ import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasj
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedMessage from '../../../language/FormattedMessage';
-import { Alert, BodyShort } from '@navikt/ds-react';
+import { Alert, Label } from '@navikt/ds-react';
+import styled from 'styled-components';
 
 interface Props {
   settBo: Function;
@@ -18,6 +19,17 @@ interface Props {
   settDato: Function;
   barnDato: string;
 }
+
+const RadiopanelWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 const LeggTilBarnUfødt: React.FC<Props> = ({
   settBo,
@@ -47,10 +59,10 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           DatoBegrensning.FremtidigeDatoer
         ) && (
           <KomponentGruppe>
-            <BodyShort className="label-normaltekst">
+            <Label>
               {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
-            </BodyShort>
-            <div className="radiogruppe-2-svar">
+            </Label>
+            <RadiopanelWrapper>
               <RadioPanel
                 key={ESvar.JA}
                 name={'radio-bosted'}
@@ -67,9 +79,9 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
                 checked={boHosDeg === ESvar.NEI}
                 onChange={(e) => settBo(e)}
               />
-            </div>
+            </RadiopanelWrapper>
             {boHosDeg === ESvar.NEI && (
-              <Alert size="small" variant="warning" className="bor-ikke" inline>
+              <Alert size="small" variant="warning" inline>
                 <FormattedMessage id="barnadine.advarsel.skalikkebo" />
               </Alert>
             )}

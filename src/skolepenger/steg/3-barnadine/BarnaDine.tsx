@@ -12,14 +12,13 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
-import { Alert, Button, Label } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
-import styled from 'styled-components';
-
-const VenterDuBarnLabel = styled(Label)`
-  display: block;
-  padding-bottom: 2rem;
-`;
+import {
+  BarnaDineContainer,
+  BarneKortWrapper,
+} from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
+import { LeggTilBarnKort } from '../../../søknad/steg/3-barnadine/LeggTilBarnKort';
 
 const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -71,11 +70,11 @@ const BarnaDine: React.FC = () => {
         tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
         informasjonstekstId="barnadine.skolepenger.info.brukpdf"
       >
-        <div className="barna-dine">
-          <Alert size="small" variant="info" className="informasjonstekst">
+        <BarnaDineContainer>
+          <Alert size="small" variant="info" inline>
             {hentTekst('barnadine.infohentet', intl)}
           </Alert>
-          <div className="barnekort-wrapper">
+          <BarneKortWrapper>
             {søknad.person.barn
               ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
               .map((barn: IBarn) => (
@@ -90,32 +89,21 @@ const BarnaDine: React.FC = () => {
                   slettBarn={slettBarn}
                 />
               ))}
-            <div className="barnekort legg-til">
-              <div className="barnekort__informasjonsboks legg-til-barn-kort">
-                <VenterDuBarnLabel as="p">
-                  {hentTekst('barnadine.leggtil.info', intl)}
-                </VenterDuBarnLabel>
-                <Button variant="secondary" onClick={() => settÅpenModal(true)}>
-                  {hentTekst('barnadine.leggtil', intl)}
-                </Button>
-              </div>
-            </div>
-          </div>
+            <LeggTilBarnKort settÅpenModal={settÅpenModal} />
+          </BarneKortWrapper>
           <ModalWrapper
             tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
             visModal={åpenModal}
             onClose={() => settÅpenModal(false)}
           >
-            <div className="legg-til-barn-modal">
-              <LeggTilBarn
-                settÅpenModal={settÅpenModal}
-                barneListe={søknad.person.barn}
-                settBarneListe={settBarneliste}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              />
-            </div>
+            <LeggTilBarn
+              settÅpenModal={settÅpenModal}
+              barneListe={søknad.person.barn}
+              settBarneListe={settBarneliste}
+              settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+            />
           </ModalWrapper>
-        </div>
+        </BarnaDineContainer>
       </Side>
     </>
   );
