@@ -959,7 +959,7 @@ export default {
 
   'filopplaster.dra': 'Upload a document',
   'filopplaster.slipp': 'Drag and drop the file here...',
-  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
+  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
   'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
   'filopplaster.feilmelding.generisk': 'Could not upload file',
   'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':

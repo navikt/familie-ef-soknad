@@ -1,8 +1,8 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const mockToggles = require('./mocks/mockToggles.json');
-const mockPerson = require('./mocks/mockPerson.json');
-const bodyParser = require('body-parser');
+import express from 'express';
+import dotenv from 'dotenv';
+import mockPerson from './mocks/mockPerson.json' assert { type: 'json' };
+import mockToggles from './mocks/mockToggles.json' assert { type: 'json' };
+import bodyParser from 'body-parser';
 
 dotenv.config();
 

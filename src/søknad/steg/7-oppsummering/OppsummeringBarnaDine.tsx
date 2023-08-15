@@ -27,7 +27,7 @@ const OppsummeringBarnaDine: React.FC<Props> = ({
   const barnaDine: IBarn[] = barn;
 
   const hentEndretBarn = (barn: IBarn): IBarn => {
-    let nyttBarn = { ...barn };
+    const nyttBarn = { ...barn };
 
     if (barn && !barn?.født?.verdi) {
       // @ts-ignore
