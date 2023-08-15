@@ -38,7 +38,7 @@ export const borINorge = (intl: LokalIntlShape): ISpørsmål => ({
 
 export const avtaleOmDeltBosted = (
   intl: LokalIntlShape,
-  født: Boolean
+  født: boolean
 ): ISpørsmål => ({
   søknadid: EForelder.avtaleOmDeltBosted,
   tekstid: født ? 'barnasbosted.avtale' : 'barnasbosted.avtale.ufødt',

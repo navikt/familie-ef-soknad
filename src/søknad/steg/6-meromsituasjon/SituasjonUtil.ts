@@ -49,7 +49,7 @@ export const harSøkerMindreEnnHalvStilling = (søknad: ISøknad): boolean => {
         ? fraStringTilTall(arbeidsgiver.arbeidsmengde.verdi)
         : 0;
     });
-    let arbeidsmengdeForArbeidsforhold = arbeidsmengder.reduce(
+    const arbeidsmengdeForArbeidsforhold = arbeidsmengder.reduce(
       (total: number, arbeidsmengde: number) => total + arbeidsmengde
     );
     totalArbeidsmengde += arbeidsmengdeForArbeidsforhold;

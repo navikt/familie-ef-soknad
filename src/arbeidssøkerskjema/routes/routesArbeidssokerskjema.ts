@@ -1,6 +1,8 @@
 import { IRoute } from '../../models/routes';
 import { hentPath } from '../../utils/routing';
 
+const PUBLIC_URL = process.env.PUBLIC_URL || '/';
+
 export enum ERouteArbeidssøkerskjema {
   Forside = 'Forside',
   Spørsmål = 'Spørsmål',
@@ -33,12 +35,12 @@ export const RoutesArbeidssokerskjema: IRoute[] = [
 
 export const erUrlArbeidssøkerSkjema = (): boolean => {
   return window.location.href.includes(
-    process.env.PUBLIC_URL +
+    PUBLIC_URL +
       hentPath(RoutesArbeidssokerskjema, ERouteArbeidssøkerskjema.Forside)
   );
 };
 
 export const arbeidssøkerSkjemaForsideUrl = (): string =>
   window.location.origin +
-  process.env.PUBLIC_URL +
+  PUBLIC_URL +
   hentPath(RoutesArbeidssokerskjema, ERouteArbeidssøkerskjema.Forside);
