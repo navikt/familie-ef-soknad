@@ -16,7 +16,6 @@ import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 interface Props {
   tittel: string;
-  åpenModal: boolean;
   lukkModal: () => void;
   id?: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
@@ -37,7 +36,6 @@ const StyledSeksjonsgruppe = styled(Seksjonsgruppe)`
 
 const LeggTilBarnModal: React.FC<Props> = ({
   tittel,
-  åpenModal,
   lukkModal,
   id,
   barneListe,
@@ -108,7 +106,7 @@ const LeggTilBarnModal: React.FC<Props> = ({
   };
 
   return (
-    <ModalWrapper tittel={tittel} visModal={åpenModal} onClose={lukkModal}>
+    <ModalWrapper tittel={tittel} visModal={true} onClose={lukkModal}>
       <StyledSeksjonsgruppe aria-live="polite">
         <KomponentGruppe>
           <LeggTilBarnUfødt

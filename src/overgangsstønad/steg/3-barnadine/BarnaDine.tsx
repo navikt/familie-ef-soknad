@@ -85,14 +85,15 @@ const BarnaDine: React.FC = () => {
           ))}
           <LeggTilBarnKort settÅpenModal={settÅpenModal} />
         </BarneKortWrapper>
-        <LeggTilBarnModal
-          tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
-          åpenModal={åpenModal}
-          lukkModal={() => settÅpenModal(false)}
-          barneListe={søknad.person.barn}
-          settBarneListe={settBarneliste}
-          settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-        />
+        {åpenModal && (
+          <LeggTilBarnModal
+            tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
+            lukkModal={() => settÅpenModal(false)}
+            barneListe={søknad.person.barn}
+            settBarneListe={settBarneliste}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+          />
+        )}
       </BarnaDineContainer>
     </Side>
   );
