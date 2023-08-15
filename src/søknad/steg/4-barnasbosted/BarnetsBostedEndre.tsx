@@ -129,12 +129,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     ? forelderidenterMedBarn.get(barn.forelder?.ident?.verdi)
     : [];
 
-  const typeBarn =
-    alleBarnMedBarnetsForeldre && alleBarnMedBarnetsForeldre.length > 1
-      ? alleBarnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
-        ? TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
-        : TypeBarn.BARN_MED_KOPIERT_FORELDER
-      : TypeBarn.ENESTE_BARN;
+  const harBarnetsMedforelderFlereBarn =
+    !!alleBarnMedBarnetsForeldre && alleBarnMedBarnetsForeldre.length > 1;
+
+  const typeBarn = harBarnetsMedforelderFlereBarn
+    ? alleBarnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
+      ? TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
+      : TypeBarn.BARN_MED_KOPIERT_FORELDER
+    : TypeBarn.ENESTE_BARN;
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
