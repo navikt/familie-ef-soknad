@@ -19,7 +19,7 @@ import { Alert, Label } from '@navikt/ds-react';
 import {
   BarnaDineContainer,
   BarneKortWrapper,
-} from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
+} from '../../../søknad/steg/3-barnadine/BarnaDineInnhold';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
