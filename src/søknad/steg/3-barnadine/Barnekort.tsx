@@ -16,7 +16,7 @@ import { EndreEllerSlettBarn } from './EndreEllerSlettBarn';
 interface Props {
   gjeldendeBarn: IBarn;
   velgBarnForDenneSøknaden?: React.ReactNode;
-  slettBarn: Function;
+  fjernBarnFraSøknad: (id: string) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
   oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
@@ -49,7 +49,7 @@ const Innhold = styled.div`
 const Barnekort: React.FC<Props> = ({
   gjeldendeBarn,
   velgBarnForDenneSøknaden,
-  slettBarn,
+  fjernBarnFraSøknad,
   settDokumentasjonsbehovForBarn,
   barneListe,
   oppdaterBarnISoknaden,
@@ -151,7 +151,7 @@ const Barnekort: React.FC<Props> = ({
         {velgBarnForDenneSøknaden}
         {lagtTil && (
           <EndreEllerSlettBarn
-            slettBarn={slettBarn}
+            slettBarn={fjernBarnFraSøknad}
             id={id}
             settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             barneListe={barneListe}

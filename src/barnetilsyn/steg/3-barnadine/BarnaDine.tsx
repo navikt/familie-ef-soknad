@@ -120,7 +120,7 @@ const BarnaDine: React.FC = () => {
                     skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
                   />
                 }
-                slettBarn={slettBarn}
+                fjernBarnFraSøknad={slettBarn}
                 oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               />
             ))}

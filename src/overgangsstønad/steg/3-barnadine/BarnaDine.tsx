@@ -8,11 +8,9 @@ import Side, { ESide } from '../../../components/side/Side';
 import { RoutesOvergangsstonad } from '../../routing/routesOvergangsstonad';
 import { hentPathOvergangsstønadOppsummering } from '../../utils';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import { ISøknad } from '../../../models/søknad/søknad';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { Alert } from '@navikt/ds-react';
-import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 import {
   BarnaDineContainer,
   BarneKortWrapper,
@@ -25,10 +23,11 @@ const BarnaDine: React.FC = () => {
   const {
     søknad,
     mellomlagreOvergangsstønad,
-    settSøknad,
     settDokumentasjonsbehovForBarn,
     oppdaterBarnISoknaden,
+    fjernBarnFraSøknad,
   } = useSøknad();
+
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   const [åpenModal, settÅpenModal] = useState(false);
@@ -36,16 +35,6 @@ const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningOvergangsstonad('BarnaDine'));
 
   const barna = søknad.person.barn;
-  const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b: IBarn) => b.id !== id);
-
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
 
   const harMinstEttBarn = søknad.person.barn.length > 0;
 
@@ -69,7 +58,7 @@ const BarnaDine: React.FC = () => {
             <Barnekort
               key={barn.id}
               gjeldendeBarn={barn}
-              slettBarn={slettBarn}
+              fjernBarnFraSøknad={fjernBarnFraSøknad}
               barneListe={søknad.person.barn}
               oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}

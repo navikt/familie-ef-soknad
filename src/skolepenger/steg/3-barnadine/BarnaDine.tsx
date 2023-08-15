@@ -10,7 +10,6 @@ import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningSkolepenger } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { ISøknad } from '../../models/søknad';
 import { Alert } from '@navikt/ds-react';
 import {
   BarnaDineContainer,
@@ -23,29 +22,16 @@ const BarnaDine: React.FC = () => {
   const intl = useLokalIntlContext();
   const {
     søknad,
-    settSøknad,
     mellomlagreSkolepenger,
     settDokumentasjonsbehovForBarn,
     oppdaterBarnISoknaden,
+    fjernBarnFraSøknad,
   } = useSkolepengerSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   useMount(() => logSidevisningSkolepenger('BarnaDine'));
 
   const [åpenModal, settÅpenModal] = useState(false);
-
-  const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter(
-      (barn: IBarn) => barn.id !== id
-    );
-
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
 
   const harMinstEttBarn = søknad.person.barn.length > 0;
 
@@ -77,7 +63,7 @@ const BarnaDine: React.FC = () => {
                   settDokumentasjonsbehovForBarn={
                     settDokumentasjonsbehovForBarn
                   }
-                  slettBarn={slettBarn}
+                  fjernBarnFraSøknad={fjernBarnFraSøknad}
                 />
               ))}
             <LeggTilBarnKort settÅpenModal={settÅpenModal} />
