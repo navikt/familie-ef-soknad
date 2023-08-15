@@ -8,6 +8,8 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';
+import { filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
+import { useHentMalInformasjon } from '../../../utils/hooks';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -25,6 +27,17 @@ const StyledLenke = styled.div`
 const SyktBarn: FC = () => {
   const intl = useLokalIntlContext();
   const { locale } = useSpråkContext();
+
+  const hentSoknadBasertPaBrukerSprak = (): string => {
+    return hentFilePath(locale, {
+      nb: '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf',
+      en: '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf',
+      nn: '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukt_barn_OS_NN.pdf',
+    })
+  }
+
+  const {filstorrelse, filtype} = useHentMalInformasjon(hentSoknadBasertPaBrukerSprak())
+
   return (
     <SeksjonGruppe>
       <StyledUndertittel size="small">
@@ -35,16 +48,13 @@ const SyktBarn: FC = () => {
       </BodyShort>
       <StyledLenke>
         <Link
-          href={hentFilePath(locale, {
-            nb: '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf',
-            en: '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf',
-            nn: '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukt_barn_OS_NN.pdf',
-          })}
+          href={hentSoknadBasertPaBrukerSprak()}
           download
         >
           <img alt="Nedlastingsikon" src={download} />
           <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.syktBarn' })}
+            {filStorresleOgTypeStreng(filtype, filstorrelse)}
           </Label>
         </Link>
       </StyledLenke>

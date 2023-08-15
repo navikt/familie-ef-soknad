@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components/macro';
@@ -8,7 +8,7 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';
-import { byteTilKilobyte, filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
+import { filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
 import { useHentMalInformasjon } from '../../../utils/hooks';
 
 const StyledLenke = styled.div`

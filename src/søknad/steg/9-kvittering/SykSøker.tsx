@@ -6,6 +6,8 @@ import styled from 'styled-components/macro';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';
+import { useHentMalInformasjon } from '../../../utils/hooks';
+import { filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -22,6 +24,7 @@ const StyledLenke = styled.div`
 
 const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
   const intl = useLokalIntlContext();
+  const {filstorrelse, filtype} = useHentMalInformasjon(filPath)
   return (
     <SeksjonGruppe>
       <StyledUndertittel size="small">
@@ -36,6 +39,7 @@ const SykSøker: FC<{ filPath: string }> = ({ filPath }) => {
           <img alt="Nedlastingsikon" src={download} />
           <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.erSyk' })}
+            {filStorresleOgTypeStreng(filtype, filstorrelse)}
           </Label>
         </Link>
       </StyledLenke>
