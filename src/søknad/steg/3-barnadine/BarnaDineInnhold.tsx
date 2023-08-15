@@ -11,6 +11,7 @@ import {
 import { LeggTilBarnKort } from '../../../søknad/steg/3-barnadine/LeggTilBarnKort';
 import LeggTilBarnModal from '../../../søknad/steg/3-barnadine/LeggTilBarnModal';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import { EndreEllerSlettBarn } from './EndreEllerSlettBarn';
 
 interface Props {
   barneliste: IBarn[];
@@ -39,10 +40,19 @@ export const BarnaDineInnhold: React.FC<Props> = ({
           <Barnekort
             key={barn.id}
             gjeldendeBarn={barn}
-            barneListe={barneliste}
-            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            oppdaterBarnISoknaden={oppdaterBarnISoknaden}
-            fjernBarnFraSøknad={fjernBarnFraSøknad}
+            aksjonFooter={
+              barn.lagtTil && (
+                <EndreEllerSlettBarn
+                  slettBarn={fjernBarnFraSøknad}
+                  id={barn.id}
+                  settDokumentasjonsbehovForBarn={
+                    settDokumentasjonsbehovForBarn
+                  }
+                  barneListe={barneliste}
+                  oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+                />
+              )
+            }
           />
         ))}
         <LeggTilBarnKort settÅpenModal={settÅpenModal} />

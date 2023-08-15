@@ -15,7 +15,6 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { ISøknad } from '../../models/søknad';
 import { Alert, Label } from '@navikt/ds-react';
 import {
   BarnaDineContainer,
@@ -26,13 +25,7 @@ const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
 
   const intl = useLokalIntlContext();
-  const {
-    søknad,
-    settSøknad,
-    mellomlagreBarnetilsyn,
-    settDokumentasjonsbehovForBarn,
-    oppdaterBarnISoknaden,
-  } = useBarnetilsynSøknad();
+  const { søknad, settSøknad, mellomlagreBarnetilsyn } = useBarnetilsynSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   const toggleSkalHaBarnepass = (id: string) => {
@@ -60,19 +53,6 @@ const BarnaDine: React.FC = () => {
     settSøknad({
       ...søknad,
       person: { ...søknad.person, barn: nyBarneListe },
-    });
-  };
-
-  const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter(
-      (barn: IBarn) => barn.id !== id
-    );
-
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
     });
   };
 
@@ -111,17 +91,13 @@ const BarnaDine: React.FC = () => {
               <Barnekort
                 key={barn.id}
                 gjeldendeBarn={barn}
-                barneListe={søknad.person.barn}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-                velgBarnForDenneSøknaden={
+                aksjonFooter={
                   <BarnMedISøknad
                     id={barn.id ? barn.id : ''}
                     toggleSkalHaBarnepass={toggleSkalHaBarnepass}
                     skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
                   />
                 }
-                fjernBarnFraSøknad={slettBarn}
-                oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               />
             ))}
         </BarneKortWrapper>

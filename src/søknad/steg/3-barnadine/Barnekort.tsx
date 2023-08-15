@@ -8,18 +8,12 @@ import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
 import { Heading } from '@navikt/ds-react';
-import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { InformasjonsElement } from './BarnekortInformasjonsElement';
-import { EndreEllerSlettBarn } from './EndreEllerSlettBarn';
 
 interface Props {
   gjeldendeBarn: IBarn;
-  velgBarnForDenneSøknaden?: React.ReactNode;
-  fjernBarnFraSøknad: (id: string) => void;
-  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
-  barneListe: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  aksjonFooter: React.ReactNode;
 }
 
 const Container = styled.div`
@@ -46,18 +40,10 @@ const Innhold = styled.div`
   text-align: center;
 `;
 
-const Barnekort: React.FC<Props> = ({
-  gjeldendeBarn,
-  velgBarnForDenneSøknaden,
-  fjernBarnFraSøknad,
-  settDokumentasjonsbehovForBarn,
-  barneListe,
-  oppdaterBarnISoknaden,
-}) => {
+const Barnekort: React.FC<Props> = ({ gjeldendeBarn, aksjonFooter }) => {
   const intl = useLokalIntlContext();
 
   const {
-    id,
     navn,
     fødselsdato,
     født,
@@ -148,16 +134,7 @@ const Barnekort: React.FC<Props> = ({
               }
             />
           )}
-        {velgBarnForDenneSøknaden}
-        {lagtTil && (
-          <EndreEllerSlettBarn
-            slettBarn={fjernBarnFraSøknad}
-            id={id}
-            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            barneListe={barneListe}
-            oppdaterBarnISoknaden={oppdaterBarnISoknaden}
-          />
-        )}
+        {aksjonFooter}
       </Innhold>
     </Container>
   );
