@@ -4,11 +4,9 @@ import { hentTekst } from '../../../utils/søknad';
 import styled from 'styled-components/macro';
 import { Checkbox } from '@navikt/ds-react';
 
-const StyledCheckbox = styled.div`
-  label {
-    text-align: left;
-  }
+const StyledCheckbox = styled(Checkbox)`
   margin: 1rem 0;
+  text-align: left;
 `;
 
 interface Props {
@@ -25,13 +23,11 @@ const BarnMedISøknad: FC<Props> = ({
   const intl = useLokalIntlContext();
 
   return (
-    <StyledCheckbox>
-      <Checkbox
-        checked={skalHaBarnepass}
-        onChange={() => toggleSkalHaBarnepass(id)}
-      >
-        {hentTekst('barnadine.knapp.søkBarnetilsyn', intl)}
-      </Checkbox>
+    <StyledCheckbox
+      checked={skalHaBarnepass}
+      onChange={() => toggleSkalHaBarnepass(id)}
+    >
+      {hentTekst('barnadine.knapp.søkBarnetilsyn', intl)}
     </StyledCheckbox>
   );
 };
