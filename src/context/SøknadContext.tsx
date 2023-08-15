@@ -190,7 +190,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     });
   };
 
-  const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
+  const oppdaterBarnISøknaden = (oppdatertBarn: IBarn) => {
     settSøknad((prevSøknad) => ({
       ...prevSøknad,
       person: {
@@ -200,7 +200,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     }));
   };
 
-  const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+  const oppdaterFlereBarnISøknaden = (oppdaterteBarn: IBarn[]) => {
     settSøknad((prevSøknad) => ({
       ...prevSøknad,
       person: {
@@ -220,8 +220,8 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     mellomlagreOvergangsstønad,
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
-    oppdaterBarnISoknaden,
-    oppdaterFlereBarnISoknaden,
+    oppdaterBarnISøknaden,
+    oppdaterFlereBarnISøknaden,
     nullstillSøknadOvergangsstønad,
   };
 });

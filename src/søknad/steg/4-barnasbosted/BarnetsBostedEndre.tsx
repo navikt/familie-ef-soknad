@@ -61,7 +61,7 @@ interface Props {
   scrollTilLagtTilBarn: () => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  oppdaterBarnISoknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
+  oppdaterBarnISøknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
   forelderidenterMedBarn: Map<string, IBarn[]>;
 }
 
@@ -72,7 +72,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settSisteBarnUtfylt,
   scrollTilLagtTilBarn,
   barneListe,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
   settDokumentasjonsbehovForBarn,
   forelderidenterMedBarn,
 }) => {
@@ -143,7 +143,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   >(typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDER ? true : undefined);
 
   const leggTilForelder = () => {
-    oppdaterBarnISoknaden(
+    oppdaterBarnISøknaden(
       { ...barn, forelder: forelder },
       typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
     );
@@ -154,7 +154,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelderId = (annenForelderId: string) => {
-    oppdaterBarnISoknaden(
+    oppdaterBarnISøknaden(
       { ...barn, annenForelderId: annenForelderId },
       typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
     );
@@ -209,7 +209,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   førsteBarnTilHverForelder={førsteBarnTilHverForelder}
                   settBarnHarSammeForelder={settBarnHarSammeForelder}
                   settForelder={settForelder}
-                  oppdaterBarn={oppdaterBarnISoknaden}
+                  oppdaterBarn={oppdaterBarnISøknaden}
                 />
               )}
             {visOmAndreForelder && (

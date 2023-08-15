@@ -190,7 +190,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       });
     };
 
-    const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
+    const oppdaterBarnISøknaden = (oppdatertBarn: IBarn) => {
       settSøknad((prevSøknad) => ({
         ...prevSøknad,
         person: {
@@ -200,7 +200,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       }));
     };
 
-    const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+    const oppdaterFlereBarnISøknaden = (oppdaterteBarn: IBarn[]) => {
       settSøknad((prevSøknad) => ({
         ...prevSøknad,
         person: {
@@ -221,8 +221,8 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       brukMellomlagretSkolepenger,
       nullstillMellomlagretSkolepenger,
       nullstillSøknadSkolepenger,
-      oppdaterBarnISoknaden,
-      oppdaterFlereBarnISoknaden,
+      oppdaterBarnISøknaden,
+      oppdaterFlereBarnISøknaden,
     };
   }
 );

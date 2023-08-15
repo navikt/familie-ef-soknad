@@ -28,8 +28,8 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 interface Props {
   aktuelleBarn: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
-  oppdaterFlereBarnISoknaden: (oppdaterteBarn: IBarn[]) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterFlereBarnISøknaden: (oppdaterteBarn: IBarn[]) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
@@ -38,8 +38,8 @@ interface Props {
 
 const BarnasBostedInnhold: React.FC<Props> = ({
   aktuelleBarn,
-  oppdaterBarnISoknaden,
-  oppdaterFlereBarnISoknaden,
+  oppdaterBarnISøknaden,
+  oppdaterFlereBarnISøknaden,
   settDokumentasjonsbehovForBarn,
   sisteBarnUtfylt,
   settSisteBarnUtfylt,
@@ -89,7 +89,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
       forelderIdenterMedBarn.get(oppdatertBarn.forelder?.ident?.verdi);
 
     if (barnMedSammeForelder && erFørsteAvFlereBarnMedSammeForelder) {
-      oppdaterFlereBarnISoknaden(
+      oppdaterFlereBarnISøknaden(
         barnMedSammeForelder.map((b) => {
           if (b.id === oppdatertBarn.id) {
             return oppdatertBarn;
@@ -101,7 +101,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
         })
       );
     } else {
-      oppdaterBarnISoknaden(oppdatertBarn);
+      oppdaterBarnISøknaden(oppdatertBarn);
     }
   };
 
@@ -119,7 +119,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              oppdaterBarnISoknaden={oppdaterBarn}
+              oppdaterBarnISøknaden={oppdaterBarn}
               barneListe={søknad.person.barn}
               forelderidenterMedBarn={forelderIdenterMedBarn}
             />

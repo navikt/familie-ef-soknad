@@ -181,7 +181,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       });
     };
 
-    const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
+    const oppdaterBarnISøknaden = (oppdatertBarn: IBarn) => {
       settSøknad((prevSøknad) => ({
         ...prevSøknad,
         person: {
@@ -191,7 +191,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }));
     };
 
-    const oppdaterFlereBarnISoknaden = (oppdaterteBarn: IBarn[]) => {
+    const oppdaterFlereBarnISøknaden = (oppdaterteBarn: IBarn[]) => {
       settSøknad((prevSøknad) => ({
         ...prevSøknad,
         person: {
@@ -212,8 +212,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       brukMellomlagretBarnetilsyn,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
-      oppdaterBarnISoknaden,
-      oppdaterFlereBarnISoknaden,
+      oppdaterBarnISøknaden,
+      oppdaterFlereBarnISøknaden,
     };
   }
 );

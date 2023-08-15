@@ -13,7 +13,7 @@ import { leggTilSærligeBehov } from './SituasjonUtil';
 import { IBarn } from '../../../models/steg/barn';
 
 const HvilkeBarnHarSærligeBehov: React.FC = () => {
-  const { søknad, oppdaterBarnISoknaden } = useSøknad();
+  const { søknad, oppdaterBarnISøknaden } = useSøknad();
   const intl = useLokalIntlContext();
 
   //Hvis det kun er ett barn i søknaden, ska vi ikke å spørre hvilket barn det gjelder
@@ -35,10 +35,10 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
     const barnMedSærligeBehov = søknad.person.barn[indeksBarnSomErHuket];
     if (!erBarnetHuketAv) {
       const oppdatertBarn = leggTilSærligeBehov(barnMedSærligeBehov, intl);
-      oppdaterBarnISoknaden(oppdatertBarn);
+      oppdaterBarnISøknaden(oppdatertBarn);
     } else {
       const { særligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
-      oppdaterBarnISoknaden(barn);
+      oppdaterBarnISøknaden(barn);
     }
   };
 
