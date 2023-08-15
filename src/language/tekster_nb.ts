@@ -238,6 +238,7 @@ export default {
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
   'barnekort.medforelder.hemmelig': 'Person',
   'barnadine.leggtil': 'Legg til barn',
+  'barnadine.endre': 'Endre informasjon om barnet',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',

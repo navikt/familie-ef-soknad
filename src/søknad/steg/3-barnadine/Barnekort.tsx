@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
@@ -7,11 +7,11 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
-import { Heading, Link } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { InformasjonsElement } from './BarnekortInformasjonsElement';
-import LeggTilBarnModal from './LeggTilBarnModal';
+import { EndreEllerSlettBarn } from './EndreEllerSlettBarn';
 
 interface Props {
   gjeldendeBarn: IBarn;
@@ -46,17 +46,6 @@ const Innhold = styled.div`
   text-align: center;
 `;
 
-const LenkeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-`;
-
-const LinkMedPointer = styled(Link)`
-  cursor: pointer;
-`;
-
 const Barnekort: React.FC<Props> = ({
   gjeldendeBarn,
   velgBarnForDenneSøknaden,
@@ -66,7 +55,6 @@ const Barnekort: React.FC<Props> = ({
   settBarneListe,
 }) => {
   const intl = useLokalIntlContext();
-  const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const {
     id,
@@ -162,26 +150,15 @@ const Barnekort: React.FC<Props> = ({
           )}
         {velgBarnForDenneSøknaden}
         {lagtTil && (
-          <LenkeContainer>
-            <LinkMedPointer onClick={() => settÅpenEndreModal(true)}>
-              {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-            </LinkMedPointer>
-            <LinkMedPointer onClick={() => slettBarn(id)}>
-              {intl.formatMessage({ id: 'barnekort.fjern' })}
-            </LinkMedPointer>
-          </LenkeContainer>
+          <EndreEllerSlettBarn
+            slettBarn={slettBarn}
+            id={id}
+            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
+            barneListe={barneListe}
+            settBarneListe={settBarneListe}
+          />
         )}
       </Innhold>
-
-      <LeggTilBarnModal
-        tittel="Endre informasjon om barnet"
-        åpenModal={åpenEndreModal}
-        lukkModal={() => settÅpenEndreModal(false)}
-        id={id}
-        barneListe={barneListe}
-        settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-        settBarneListe={settBarneListe}
-      />
     </Container>
   );
 };
