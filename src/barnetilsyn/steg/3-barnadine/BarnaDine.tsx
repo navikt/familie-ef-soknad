@@ -31,6 +31,7 @@ const BarnaDine: React.FC = () => {
     settSøknad,
     mellomlagreBarnetilsyn,
     settDokumentasjonsbehovForBarn,
+    oppdaterBarnISoknaden,
   } = useBarnetilsynSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
@@ -75,15 +76,6 @@ const BarnaDine: React.FC = () => {
     });
   };
 
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
-
   const harValgtMinstEttBarn = søknad.person.barn.some(
     (b: IBarn) => b.skalHaBarnepass?.verdi
   );
@@ -120,7 +112,6 @@ const BarnaDine: React.FC = () => {
                 key={barn.id}
                 gjeldendeBarn={barn}
                 barneListe={søknad.person.barn}
-                settBarneListe={settBarneliste}
                 settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
                 velgBarnForDenneSøknaden={
                   <BarnMedISøknad
@@ -130,6 +121,7 @@ const BarnaDine: React.FC = () => {
                   />
                 }
                 slettBarn={slettBarn}
+                oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               />
             ))}
         </BarneKortWrapper>

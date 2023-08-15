@@ -11,7 +11,7 @@ interface Props {
   id: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
 }
 
 const LenkeContainer = styled.div`
@@ -30,7 +30,7 @@ export const EndreEllerSlettBarn: React.FC<Props> = ({
   id,
   settDokumentasjonsbehovForBarn,
   barneListe,
-  settBarneListe,
+  oppdaterBarnISoknaden,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -54,7 +54,7 @@ export const EndreEllerSlettBarn: React.FC<Props> = ({
           id={id}
           barneListe={barneListe}
           settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-          settBarneListe={settBarneListe}
+          oppdaterBarnISoknaden={oppdaterBarnISoknaden}
         />
       )}
     </>

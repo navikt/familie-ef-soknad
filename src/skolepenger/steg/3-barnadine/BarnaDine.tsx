@@ -26,6 +26,7 @@ const BarnaDine: React.FC = () => {
     settSøknad,
     mellomlagreSkolepenger,
     settDokumentasjonsbehovForBarn,
+    oppdaterBarnISoknaden,
   } = useSkolepengerSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
@@ -38,15 +39,6 @@ const BarnaDine: React.FC = () => {
       (barn: IBarn) => barn.id !== id
     );
 
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
-
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
@@ -81,7 +73,7 @@ const BarnaDine: React.FC = () => {
                   key={barn.id}
                   gjeldendeBarn={barn}
                   barneListe={søknad.person.barn}
-                  settBarneListe={settBarneliste}
+                  oppdaterBarnISoknaden={oppdaterBarnISoknaden}
                   settDokumentasjonsbehovForBarn={
                     settDokumentasjonsbehovForBarn
                   }
@@ -95,7 +87,7 @@ const BarnaDine: React.FC = () => {
               tittel={intl.formatMessage({ id: 'barnadine.leggtil' })}
               lukkModal={() => settÅpenModal(false)}
               barneListe={søknad.person.barn}
-              settBarneListe={settBarneliste}
+              oppdaterBarnISoknaden={oppdaterBarnISoknaden}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             />
           )}

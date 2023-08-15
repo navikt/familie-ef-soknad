@@ -19,7 +19,7 @@ interface Props {
   slettBarn: Function;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
 }
 
 const Container = styled.div`
@@ -52,7 +52,7 @@ const Barnekort: React.FC<Props> = ({
   slettBarn,
   settDokumentasjonsbehovForBarn,
   barneListe,
-  settBarneListe,
+  oppdaterBarnISoknaden,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -155,7 +155,7 @@ const Barnekort: React.FC<Props> = ({
             id={id}
             settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
             barneListe={barneListe}
-            settBarneListe={settBarneListe}
+            oppdaterBarnISoknaden={oppdaterBarnISoknaden}
           />
         )}
       </Innhold>
