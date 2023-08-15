@@ -88,7 +88,7 @@ export const leggTilDokumentasjonsbehov = (
   barneid?: string,
   barnepassid?: string
 ) => {
-  let endretDokBehov = dokumentasjonsbehov;
+  const endretDokBehov = dokumentasjonsbehov;
   if (valgtSvar.dokumentasjonsbehov) {
     const nyttDokumentasjonsbehov = {
       ...valgtSvar.dokumentasjonsbehov,

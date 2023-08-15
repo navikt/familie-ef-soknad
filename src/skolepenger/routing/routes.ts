@@ -1,6 +1,6 @@
 import { IRoute } from '../../models/routes';
 import { hentPath } from '../../utils/routing';
-
+const PUBLIC_URL = process.env.PUBLIC_URL || '/';
 export enum ERouteSkolepenger {
   Forside = 'Forside',
   OmDeg = 'OmDeg',
@@ -59,12 +59,11 @@ export const RoutesSkolepenger: IRoute[] = [
 
 export const erUrlSkolepenger = (): boolean => {
   return window.location.href.includes(
-    process.env.PUBLIC_URL +
-      hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside)
+    PUBLIC_URL + hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside)
   );
 };
 
 export const skolepengerForsideUrl = (): string =>
   window.location.origin +
-  process.env.PUBLIC_URL +
+  PUBLIC_URL +
   hentPath(RoutesSkolepenger, ERouteSkolepenger.Forside);
