@@ -375,7 +375,7 @@ export default {
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
   'barnasbosted.medforelder.gjenbrukt':
-    'Questions regarding your relationship with the other parent is already answered. Go to the child where the questions were answered in order to change your answers',
+    'You have answered the questions regarding your relationship with the other parent for another child. Because you have multiple children with the same parent, you only need to answer the questions once. Go to the child where the questions were answered in order to change your answers.',
   'stegtittel.arbeidssituasjon': 'Work, education and other activities',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',

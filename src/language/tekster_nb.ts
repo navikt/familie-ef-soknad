@@ -364,7 +364,7 @@ export default {
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
   'barnasbosted.medforelder.gjenbrukt':
-    'Spørsmål om din relasjon til den andre forelderen er besvart på et annet barn. Gå til barnet hvor spørsmålene ble besvart om du ønsker å endre',
+    'Du har besvart spørsmålene om relasjonen din til den andre forelderen på et annet barn. Siden du har flere barn med samme forelder, trenger du bare å svare på spørsmålene én gang. Hvis du vil endre svarene dine, må du gå tilbake til barnet hvor du svarte på spørsmålene.',
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',
