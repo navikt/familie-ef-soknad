@@ -13,7 +13,7 @@ import { InformasjonsElement } from './BarnekortInformasjonsElement';
 
 interface Props {
   gjeldendeBarn: IBarn;
-  aksjonFooter: React.ReactNode;
+  footer: React.ReactNode;
 }
 
 const Container = styled.div`
@@ -40,7 +40,7 @@ const Innhold = styled.div`
   text-align: center;
 `;
 
-const Barnekort: React.FC<Props> = ({ gjeldendeBarn, aksjonFooter }) => {
+const Barnekort: React.FC<Props> = ({ gjeldendeBarn, footer }) => {
   const intl = useLokalIntlContext();
 
   const {
@@ -134,7 +134,7 @@ const Barnekort: React.FC<Props> = ({ gjeldendeBarn, aksjonFooter }) => {
               }
             />
           )}
-        {aksjonFooter}
+        {footer}
       </Innhold>
     </Container>
   );

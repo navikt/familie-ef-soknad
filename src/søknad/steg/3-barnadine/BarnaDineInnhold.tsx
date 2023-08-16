@@ -55,7 +55,7 @@ export const BarnaDineInnhold: React.FC<Props> = ({
           <Barnekort
             key={barn.id}
             gjeldendeBarn={barn}
-            aksjonFooter={
+            footer={
               barn.lagtTil && (
                 <EndreEllerSlettBarn
                   slettBarn={fjernBarnFraSøknad}

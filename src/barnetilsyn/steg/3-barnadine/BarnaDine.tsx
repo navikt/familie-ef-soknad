@@ -86,7 +86,7 @@ const BarnaDine: React.FC = () => {
               <Barnekort
                 key={barn.id}
                 gjeldendeBarn={barn}
-                aksjonFooter={
+                footer={
                   <BarnMedISøknad
                     id={barn.id ? barn.id : ''}
                     toggleSkalHaBarnepass={toggleSkalHaBarnepass}
