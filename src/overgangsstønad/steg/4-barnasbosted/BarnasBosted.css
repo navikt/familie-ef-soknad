@@ -42,6 +42,13 @@
   grid-auto-rows: min-content;
   grid-gap: 1rem;
 }
+
+@media (max-width: 767px) {
+  .barnas-bosted .andre-forelder-valg {
+    grid-template-columns: 1fr;
+  }
+}
+
 .barnas-bosted-lagt-til {
   padding-bottom: 3rem;
   width: 90%;
