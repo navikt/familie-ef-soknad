@@ -201,9 +201,8 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   };
 
   const fjernBarnFraSøknad = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter((b: IBarn) => b.id !== id);
-
     settSøknad((prevSoknad: ISøknad) => {
+      const nyBarneListe = prevSoknad.person.barn.filter((b: IBarn) => b.id !== id);
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },
