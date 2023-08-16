@@ -80,15 +80,15 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     barnMedLevendeMedforelder
   );
 
-  const oppdaterBarn = (
+  const oppdaterBarnMedNyForelderInformasjon = (
     oppdatertBarn: IBarn,
-    erFørsteAvFlereBarnMedSammeForelder: boolean
+    skalKopiereForeldreinformasjonTilAndreBarn: boolean
   ) => {
     const barnMedSammeForelder =
       oppdatertBarn.forelder?.ident?.verdi &&
       forelderIdenterMedBarn.get(oppdatertBarn.forelder?.ident?.verdi);
 
-    if (barnMedSammeForelder && erFørsteAvFlereBarnMedSammeForelder) {
+    if (skalKopiereForeldreinformasjonTilAndreBarn && barnMedSammeForelder) {
       oppdaterFlereBarnISøknaden(
         barnMedSammeForelder.map((b) => {
           if (b.id === oppdatertBarn.id) {
@@ -119,7 +119,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              oppdaterBarnISøknaden={oppdaterBarn}
+              oppdaterBarnISøknaden={oppdaterBarnMedNyForelderInformasjon}
               barneListe={søknad.person.barn}
               forelderidenterMedBarn={forelderIdenterMedBarn}
             />
