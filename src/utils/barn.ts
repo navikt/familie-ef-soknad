@@ -7,6 +7,7 @@ import { storeForbokstaver } from './tekst';
 import { erForelderUtfylt } from '../helpers/steg/forelder';
 import { LokalIntlShape } from '../language/typer';
 import { IForelder } from '../models/steg/forelder';
+import { harVerdi } from './typer';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
@@ -153,7 +154,7 @@ export const oppdaterBarnLabels = (barn: IBarn[], intl: LokalIntlShape) => {
 
 const unikeForelderidenter = (barn: IBarn[]) =>
   Array.from(new Set(barn.map((b) => b.forelder?.ident?.verdi))).filter(
-    (forelderIdent): forelderIdent is string => forelderIdent !== undefined
+    harVerdi
   );
 
 export const forelderidentMedBarn = (barn: IBarn[]) =>
