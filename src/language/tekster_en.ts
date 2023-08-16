@@ -243,7 +243,7 @@ export default {
     'Should the child be included in the application?',
   'barnekort.medforelder.hemmelig': 'Person',
   'barnadine.leggtil': 'Add child',
-  'barnadine.endre': 'Change information about child',
+  'barnadine.endre': 'Change information about the child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.knapp.fjern': 'Remove from application form',
   'barnadine.knapp.søkBarnetilsyn': 'Apply for child care benefit',
