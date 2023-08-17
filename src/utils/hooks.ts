@@ -6,7 +6,7 @@ import { leggTilSærligeBehov } from '../søknad/steg/6-meromsituasjon/Situasjon
 import { ISøknad } from '../models/søknad/søknad';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
-import { byteTilKilobyte } from './nedlastningFilformater';
+import { byteTilKilobyte, filTypeOgFilStørrelseStreng } from './nedlastningFilformater';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -65,24 +65,19 @@ export const useMount = (fn: () => void) => {
   }, []);
 };
 
-export const useHentMalInformasjon = (path: string) => {
-  const [filstorrelse, settFilstorrelse] = useState(0)
-  const [filtype, settFiltype] = useState('')
+export const useHentFilInformasjon = (path: string) => {
+  const [filInformasjon, settFilInformasjon] = useState("")
 
   useEffect(() => {
     const hentFilInformasjon = (url: string) => {
-      let filBlob;
-      fetch(url).then((res) => {
-          filBlob = res.blob();
-          return filBlob;
-      }).then((filBlob) => {
-          settFilstorrelse(byteTilKilobyte(filBlob.size))
-          settFiltype(filBlob.type)
-          console.log([filBlob.size, filBlob.type]);
-      });
+      fetch(url, { method: 'HEAD' }).then((res) => {
+        const filStørrelse = byteTilKilobyte(((res).headers.get("Content-Length") ?? 0))
+        const filType = ((res).headers.get("Content-Type") ?? "")
+      settFilInformasjon(filTypeOgFilStørrelseStreng(filType, Number(filStørrelse)))
+      })
   }
     hentFilInformasjon(path)
   }, []);
 
-  return { filstorrelse, filtype };
+  return { filInformasjon };
 };

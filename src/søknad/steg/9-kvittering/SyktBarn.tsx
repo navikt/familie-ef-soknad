@@ -8,8 +8,7 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentFilePath } from '../../../utils/språk';
 import { useSpråkContext } from '../../../context/SpråkContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';
-import { filStorresleOgTypeStreng } from '../../../utils/nedlastningFilformater';
-import { useHentMalInformasjon } from '../../../utils/hooks';
+import { useHentFilInformasjon } from '../../../utils/hooks';
 
 const StyledLenke = styled.div`
   margin-top: 1rem;
@@ -28,15 +27,17 @@ const SyktBarn: FC = () => {
   const intl = useLokalIntlContext();
   const { locale } = useSpråkContext();
 
-  const hentSoknadBasertPaBrukerSprak = (): string => {
+  const hentSøknadBasertPåBrukerSpråk = (): string => {
     return hentFilePath(locale, {
       nb: '/familie/alene-med-barn/soknad/filer/Huskeliste_lege_sykt_barn_OS.pdf',
       en: '/familie/alene-med-barn/soknad/filer/Checklist_for_your_doctors_appointment_child_OS_EN.pdf',
       nn: '/familie/alene-med-barn/soknad/filer/Hugseliste_lege_sjukt_barn_OS_NN.pdf',
-    })
-  }
+    });
+  };
 
-  const {filstorrelse, filtype} = useHentMalInformasjon(hentSoknadBasertPaBrukerSprak())
+  const { filInformasjon } = useHentFilInformasjon(
+    hentSøknadBasertPåBrukerSpråk()
+  );
 
   return (
     <SeksjonGruppe>
@@ -47,14 +48,11 @@ const SyktBarn: FC = () => {
         <LocaleTekst tekst={'kvittering.beskrivelse.huskeliste.syktBarn'} />
       </BodyShort>
       <StyledLenke>
-        <Link
-          href={hentSoknadBasertPaBrukerSprak()}
-          download
-        >
+        <Link href={hentSøknadBasertPåBrukerSpråk()} download>
           <img alt="Nedlastingsikon" src={download} />
           <Label as="p">
             {intl.formatMessage({ id: 'kvittering.knapp.huskeliste.syktBarn' })}
-            {filStorresleOgTypeStreng(filtype, filstorrelse)}
+            {filInformasjon}
           </Label>
         </Link>
       </StyledLenke>
