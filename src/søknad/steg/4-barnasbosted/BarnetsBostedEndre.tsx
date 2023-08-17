@@ -48,9 +48,9 @@ const visBostedOgSamværSeksjon = (
 };
 
 enum TypeBarn {
-  FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER = 'FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER',
-  BARN_MED_KOPIERT_FORELDER = 'BARN_MED_KOPIERT_FORELDER',
-  ENESTE_BARN = 'ENESTE_BARN',
+  BARN_MED_OPPRINNELIG_FORELDERINFORMASJON = 'BARN_MED_OPPRINNELIG_FORELDERINFORMASJON',
+  BARN_MED_KOPIERT_FORELDERINFORMASJON = 'BARN_MED_KOPIERT_FORELDERINFORMASJON',
+  BARN_UTEN_FELLES_FORELDERINFORMASJON = 'BARN_UTEN_FELLES_FORELDERINFORMASJON',
 }
 
 interface Props {
@@ -134,18 +134,22 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const typeBarn = harBarnetsMedforelderFlereBarn
     ? alleBarnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
-      ? TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
-      : TypeBarn.BARN_MED_KOPIERT_FORELDER
-    : TypeBarn.ENESTE_BARN;
+      ? TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
+      : TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON
+    : TypeBarn.BARN_UTEN_FELLES_FORELDERINFORMASJON;
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
-  >(typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDER ? true : undefined);
+  >(
+    typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON
+      ? true
+      : undefined
+  );
 
   const leggTilForelder = () => {
     oppdaterBarnISøknaden(
       { ...barn, forelder: forelder },
-      typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
+      typeBarn === TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
     );
 
     const nyIndex = aktivIndex + 1;
@@ -156,7 +160,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const leggTilAnnenForelderId = (annenForelderId: string) => {
     oppdaterBarnISøknaden(
       { ...barn, annenForelderId: annenForelderId },
-      typeBarn === TypeBarn.FØRSTE_AV_FLERE_BARN_MED_SAMME_FORELDER
+      typeBarn === TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
     );
   };
 
@@ -168,7 +172,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDER &&
+    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
       !!barn.medforelder?.verdi) ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
