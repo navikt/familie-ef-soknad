@@ -15,7 +15,7 @@ import {
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
-import { ESvar, ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
@@ -26,8 +26,13 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
-import { BodyShort, Button, Label } from '@navikt/ds-react';
+import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import styled from 'styled-components/macro';
+
+const AlertMedTopMargin = styled(Alert)`
+  margin-top: 1rem;
+`;
 
 const visBostedOgSamværSeksjon = (
   forelder: IForelder,
@@ -42,6 +47,12 @@ const visBostedOgSamværSeksjon = (
     : erGyldigDato(forelder.fødselsdato?.verdi);
 };
 
+enum TypeBarn {
+  BARN_MED_OPPRINNELIG_FORELDERINFORMASJON = 'BARN_MED_OPPRINNELIG_FORELDERINFORMASJON',
+  BARN_MED_KOPIERT_FORELDERINFORMASJON = 'BARN_MED_KOPIERT_FORELDERINFORMASJON',
+  BARN_UTEN_FELLES_FORELDERINFORMASJON = 'BARN_UTEN_FELLES_FORELDERINFORMASJON',
+}
+
 interface Props {
   barn: IBarn;
   settAktivIndex: Function;
@@ -50,7 +61,8 @@ interface Props {
   scrollTilLagtTilBarn: () => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  oppdaterBarnISoknaden: (barneliste: IBarn) => void;
+  oppdaterBarnISøknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
+  forelderidenterMedBarn: Map<string, IBarn[]>;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -60,8 +72,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   settSisteBarnUtfylt,
   scrollTilLagtTilBarn,
   barneListe,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
   settDokumentasjonsbehovForBarn,
+  forelderidenterMedBarn,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -78,10 +91,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           id: hentUid(),
         }
   );
-
-  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
-    boolean | undefined
-  >(undefined);
 
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
     forelder.fødselsdato?.verdi ? true : false
@@ -116,8 +125,32 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     })
     .filter(Boolean) as IBarn[];
 
+  const alleBarnMedBarnetsForeldre = barn.forelder?.ident?.verdi
+    ? forelderidenterMedBarn.get(barn.forelder?.ident?.verdi)
+    : [];
+
+  const harBarnetsMedforelderFlereBarn =
+    !!alleBarnMedBarnetsForeldre && alleBarnMedBarnetsForeldre.length > 1;
+
+  const typeBarn = harBarnetsMedforelderFlereBarn
+    ? alleBarnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
+      ? TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
+      : TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON
+    : TypeBarn.BARN_UTEN_FELLES_FORELDERINFORMASJON;
+
+  const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
+    boolean | undefined
+  >(
+    typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON
+      ? true
+      : undefined
+  );
+
   const leggTilForelder = () => {
-    oppdaterBarnISoknaden({ ...barn, forelder: forelder });
+    oppdaterBarnISøknaden(
+      { ...barn, forelder: forelder },
+      typeBarn === TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
+    );
 
     const nyIndex = aktivIndex + 1;
     settAktivIndex(nyIndex);
@@ -125,7 +158,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const leggTilAnnenForelderId = (annenForelderId: string) => {
-    oppdaterBarnISoknaden({ ...barn, annenForelderId: annenForelderId });
+    oppdaterBarnISøknaden(
+      { ...barn, annenForelderId: annenForelderId },
+      typeBarn === TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
+    );
   };
 
   const visOmAndreForelder =
@@ -136,7 +172,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
 
   const visBorAnnenForelderINorge =
-    !!barn.medforelder?.verdi ||
+    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
+      !!barn.medforelder?.verdi) ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&
@@ -176,6 +213,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   førsteBarnTilHverForelder={førsteBarnTilHverForelder}
                   settBarnHarSammeForelder={settBarnHarSammeForelder}
                   settForelder={settForelder}
+                  oppdaterBarn={oppdaterBarnISøknaden}
                 />
               )}
             {visOmAndreForelder && (
@@ -198,6 +236,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                       }`}
                 </BodyShort>
               </>
+            )}
+
+            {barnHarSammeForelder && (
+              <AlertMedTopMargin variant={'info'} inline>
+                {hentTekst('barnasbosted.medforelder.gjenbrukt', intl)}
+              </AlertMedTopMargin>
             )}
           </SeksjonGruppe>
         )}

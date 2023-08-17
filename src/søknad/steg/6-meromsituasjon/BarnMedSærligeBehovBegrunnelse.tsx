@@ -15,7 +15,7 @@ const MAX_LENGDE_BEGRUNDELSE = 1500;
 
 const BarnMedSærligeBehovBegrunnelse = () => {
   const intl = useLokalIntlContext();
-  const { søknad, oppdaterBarnISoknaden } = useSøknad();
+  const { søknad, oppdaterBarnISøknaden } = useSøknad();
   const barnMedSærligeBehov = søknad.person.barn.filter(
     (barn: IBarn) => barn.særligeTilsynsbehov
   );
@@ -36,7 +36,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
           verdi: event.target.value,
         },
       };
-      oppdaterBarnISoknaden(oppdatertBarn);
+      oppdaterBarnISøknaden(oppdatertBarn);
     };
   };
 
