@@ -72,8 +72,8 @@ const LeggTilBarnModal: React.FC<Props> = ({
     date && settBarnDato(date);
   };
 
-  const settBo = (event: any) => {
-    settBoHosDeg(event.target.value);
+  const settBo = (nyttBo: string) => {
+    settBoHosDeg(nyttBo);
   };
 
   const leggTilEllerEndreBarn = (id: string | undefined) => {

@@ -78,7 +78,7 @@ export const BarnaDineInnhold: React.FC<Props> = ({
           lukkModal={() => settÅpenModal(false)}
           barneListe={barneliste}
           settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-          oppdaterBarnISoknaden={oppdaterBarnISøknaden}
+          oppdaterBarnISøknaden={oppdaterBarnISøknaden}
         />
       )}
     </BarnaDineContainer>

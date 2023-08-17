@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
@@ -16,14 +16,12 @@ const BarnaDine: React.FC = () => {
     søknad,
     mellomlagreSkolepenger,
     settDokumentasjonsbehovForBarn,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
     fjernBarnFraSøknad,
   } = useSkolepengerSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   useMount(() => logSidevisningSkolepenger('BarnaDine'));
-
-  const [åpenModal, settÅpenModal] = useState(false);
 
   const harMinstEttBarn = søknad.person.barn.length > 0;
 
