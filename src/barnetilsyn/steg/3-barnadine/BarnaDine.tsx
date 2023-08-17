@@ -25,7 +25,7 @@ const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
 
   const intl = useLokalIntlContext();
-  const { søknad, mellomlagreBarnetilsyn, oppdaterBarnISoknaden } =
+  const { søknad, mellomlagreBarnetilsyn, oppdaterBarnISøknaden } =
     useBarnetilsynSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
@@ -48,7 +48,7 @@ const BarnaDine: React.FC = () => {
       delete nyttBarn.barnepass;
     }
 
-    oppdaterBarnISoknaden(nyttBarn);
+    oppdaterBarnISøknaden(nyttBarn);
   };
 
   const harValgtMinstEttBarn = søknad.person.barn.some(
