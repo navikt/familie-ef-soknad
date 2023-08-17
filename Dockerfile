@@ -1,4 +1,4 @@
-FROM cgr.dev/chainguard/node:18
+FROM gcr.io/distroless/nodejs:18
 
 WORKDIR /app
 COPY ./build build

@@ -7,7 +7,6 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
-import { oppdaterBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Button } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
