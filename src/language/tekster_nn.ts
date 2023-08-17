@@ -351,6 +351,7 @@ export default {
   'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
+  'barnadine.endre': 'Change information about child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
   'barnadine.knapp.fjern': 'Remove from application form',

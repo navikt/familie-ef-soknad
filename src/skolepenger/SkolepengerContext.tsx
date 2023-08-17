@@ -210,6 +210,19 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       }));
     };
 
+    const fjernBarnFraSøknad = (id: string) => {
+      const nyBarneListe = søknad.person.barn.filter(
+        (barn: IBarn) => barn.id !== id
+      );
+
+      settSøknad((prevSoknad: ISøknad) => {
+        return {
+          ...prevSoknad,
+          person: { ...søknad.person, barn: nyBarneListe },
+        };
+      });
+    };
+
     return {
       søknad,
       settSøknad,
@@ -221,6 +234,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       brukMellomlagretSkolepenger,
       nullstillMellomlagretSkolepenger,
       nullstillSøknadSkolepenger,
+      fjernBarnFraSøknad,
       oppdaterBarnISøknaden,
       oppdaterFlereBarnISøknaden,
     };

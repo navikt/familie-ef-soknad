@@ -15,23 +15,18 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
-import { ISøknad } from '../../models/søknad';
 import { Alert, Label } from '@navikt/ds-react';
 import {
   BarnaDineContainer,
   BarneKortWrapper,
-} from '../../../søknad/steg/3-barnadine/BarnaDineFellesStyles';
+} from '../../../søknad/steg/3-barnadine/BarnaDineInnhold';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
 
   const intl = useLokalIntlContext();
-  const {
-    søknad,
-    settSøknad,
-    mellomlagreBarnetilsyn,
-    settDokumentasjonsbehovForBarn,
-  } = useBarnetilsynSøknad();
+  const { søknad, mellomlagreBarnetilsyn, oppdaterBarnISøknaden } =
+    useBarnetilsynSøknad();
   const skalViseKnapper = ESide.visTilbakeNesteAvbrytKnapp;
 
   const toggleSkalHaBarnepass = (id: string) => {
@@ -53,35 +48,7 @@ const BarnaDine: React.FC = () => {
       delete nyttBarn.barnepass;
     }
 
-    const nyBarneListe = søknad.person.barn.map((barn: IBarn) => {
-      return barn.id === id ? nyttBarn : barn;
-    });
-    settSøknad({
-      ...søknad,
-      person: { ...søknad.person, barn: nyBarneListe },
-    });
-  };
-
-  const slettBarn = (id: string) => {
-    const nyBarneListe = søknad.person.barn.filter(
-      (barn: IBarn) => barn.id !== id
-    );
-
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
-  };
-
-  const settBarneliste = (nyBarneListe: IBarn[]) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, barn: nyBarneListe },
-      };
-    });
+    oppdaterBarnISøknaden(nyttBarn);
   };
 
   const harValgtMinstEttBarn = søknad.person.barn.some(
@@ -119,17 +86,13 @@ const BarnaDine: React.FC = () => {
               <Barnekort
                 key={barn.id}
                 gjeldendeBarn={barn}
-                barneListe={søknad.person.barn}
-                settBarneListe={settBarneliste}
-                settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-                velgBarnForDenneSøknaden={
+                footer={
                   <BarnMedISøknad
                     id={barn.id ? barn.id : ''}
                     toggleSkalHaBarnepass={toggleSkalHaBarnepass}
                     skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
                   />
                 }
-                slettBarn={slettBarn}
               />
             ))}
         </BarneKortWrapper>

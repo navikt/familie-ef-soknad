@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import barn1 from '../../../assets/barn1.svg';
 import barn2 from '../../../assets/barn2.svg';
 import barn3 from '../../../assets/barn3.svg';
 import ufødtIkon from '../../../assets/ufodt.svg';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import LeggTilBarn from './LeggTilBarn';
 import { hentTekst } from '../../../utils/søknad';
 import { IBarn } from '../../../models/steg/barn';
 import { formatDate, strengTilDato } from '../../../utils/dato';
-import { Heading, Link } from '@navikt/ds-react';
-import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
-import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import { Heading } from '@navikt/ds-react';
 import styled from 'styled-components';
 import { InformasjonsElement } from './BarnekortInformasjonsElement';
 
 interface Props {
   gjeldendeBarn: IBarn;
-  velgBarnForDenneSøknaden?: React.ReactNode;
-  slettBarn: Function;
-  settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
-  barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  footer: React.ReactNode;
 }
 
 const Container = styled.div`
@@ -47,30 +40,10 @@ const Innhold = styled.div`
   text-align: center;
 `;
 
-const LenkeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-`;
-
-const LinkMedPointer = styled(Link)`
-  cursor: pointer;
-`;
-
-const Barnekort: React.FC<Props> = ({
-  gjeldendeBarn,
-  velgBarnForDenneSøknaden,
-  slettBarn,
-  settDokumentasjonsbehovForBarn,
-  barneListe,
-  settBarneListe,
-}) => {
+const Barnekort: React.FC<Props> = ({ gjeldendeBarn, footer }) => {
   const intl = useLokalIntlContext();
-  const [åpenEndreModal, settÅpenEndreModal] = useState(false);
 
   const {
-    id,
     navn,
     fødselsdato,
     født,
@@ -161,33 +134,8 @@ const Barnekort: React.FC<Props> = ({
               }
             />
           )}
-        {velgBarnForDenneSøknaden}
-        {lagtTil && (
-          <LenkeContainer>
-            <LinkMedPointer onClick={() => settÅpenEndreModal(true)}>
-              {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-            </LinkMedPointer>
-            <LinkMedPointer onClick={() => slettBarn(id)}>
-              {intl.formatMessage({ id: 'barnekort.fjern' })}
-            </LinkMedPointer>
-          </LenkeContainer>
-        )}
+        {footer}
       </Innhold>
-      <ModalWrapper
-        tittel="Endre informasjon om barnet"
-        visModal={åpenEndreModal}
-        onClose={() => settÅpenEndreModal(false)}
-      >
-        <div style={{ padding: '2rem 2.5rem' }}>
-          <LeggTilBarn
-            settÅpenModal={settÅpenEndreModal}
-            id={id}
-            barneListe={barneListe}
-            settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-            settBarneListe={settBarneListe}
-          />
-        </div>
-      </ModalWrapper>
     </Container>
   );
 };

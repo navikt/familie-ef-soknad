@@ -210,6 +210,16 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     }));
   };
 
+  const fjernBarnFraSøknad = (id: string) => {
+    settSøknad((prevSoknad: ISøknad) => {
+      const nyBarneListe = prevSoknad.person.barn.filter((b: IBarn) => b.id !== id);
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
+  };
+
   return {
     søknad,
     settSøknad,
@@ -223,6 +233,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     oppdaterBarnISøknaden,
     oppdaterFlereBarnISøknaden,
     nullstillSøknadOvergangsstønad,
+    fjernBarnFraSøknad,
   };
 });
 
