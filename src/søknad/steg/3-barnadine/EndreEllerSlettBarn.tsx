@@ -7,11 +7,11 @@ import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import LeggTilBarnModal from './LeggTilBarnModal';
 
 interface Props {
-  slettBarn: Function;
+  fjernBarnFraSøknad: (id: string) => void;
   id: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
 }
 
 const LenkeContainer = styled.div`
@@ -26,11 +26,11 @@ const LinkMedPointer = styled(Link)`
 `;
 
 export const EndreEllerSlettBarn: React.FC<Props> = ({
-  slettBarn,
+  fjernBarnFraSøknad,
   id,
   settDokumentasjonsbehovForBarn,
   barneListe,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -42,7 +42,7 @@ export const EndreEllerSlettBarn: React.FC<Props> = ({
         <LinkMedPointer onClick={() => settÅpenEndreModal(true)}>
           {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
         </LinkMedPointer>
-        <LinkMedPointer onClick={() => slettBarn(id)}>
+        <LinkMedPointer onClick={() => fjernBarnFraSøknad(id)}>
           {intl.formatMessage({ id: 'barnekort.fjern' })}
         </LinkMedPointer>
       </LenkeContainer>
@@ -54,7 +54,7 @@ export const EndreEllerSlettBarn: React.FC<Props> = ({
           id={id}
           barneListe={barneListe}
           settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-          oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+          oppdaterBarnISøknaden={oppdaterBarnISøknaden}
         />
       )}
     </>

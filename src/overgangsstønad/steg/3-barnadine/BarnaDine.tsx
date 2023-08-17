@@ -16,7 +16,7 @@ const BarnaDine: React.FC = () => {
     søknad,
     mellomlagreOvergangsstønad,
     settDokumentasjonsbehovForBarn,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
     fjernBarnFraSøknad,
   } = useSøknad();
 
@@ -39,7 +39,7 @@ const BarnaDine: React.FC = () => {
     >
       <BarnaDineInnhold
         barneliste={søknad.person.barn}
-        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+        oppdaterBarnISøknaden={oppdaterBarnISøknaden}
         fjernBarnFraSøknad={fjernBarnFraSøknad}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
       />

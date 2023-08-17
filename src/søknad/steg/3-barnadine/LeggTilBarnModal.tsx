@@ -19,7 +19,7 @@ interface Props {
   id?: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
 }
 
 const StyledSeksjonsgruppe = styled(Seksjonsgruppe)`
@@ -39,7 +39,7 @@ const LeggTilBarnModal: React.FC<Props> = ({
   id,
   barneListe,
   settDokumentasjonsbehovForBarn,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -98,7 +98,7 @@ const LeggTilBarnModal: React.FC<Props> = ({
         nyttBarn.id
       );
 
-    oppdaterBarnISoknaden(nyttBarn);
+    oppdaterBarnISøknaden(nyttBarn);
 
     lukkModal();
   };

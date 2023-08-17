@@ -12,7 +12,7 @@ import styled from 'styled-components';
 
 interface Props {
   barneliste: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
   fjernBarnFraSøknad: (id: string) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
 }
@@ -37,7 +37,7 @@ export const BarnaDineContainer = styled.div`
 
 export const BarnaDineInnhold: React.FC<Props> = ({
   barneliste,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
   fjernBarnFraSøknad,
   settDokumentasjonsbehovForBarn,
 }) => {
@@ -58,13 +58,13 @@ export const BarnaDineInnhold: React.FC<Props> = ({
             footer={
               barn.lagtTil && (
                 <EndreEllerSlettBarn
-                  slettBarn={fjernBarnFraSøknad}
+                  fjernBarnFraSøknad={fjernBarnFraSøknad}
                   id={barn.id}
                   settDokumentasjonsbehovForBarn={
                     settDokumentasjonsbehovForBarn
                   }
                   barneListe={barneliste}
-                  oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+                  oppdaterBarnISøknaden={oppdaterBarnISøknaden}
                 />
               )
             }
@@ -78,7 +78,7 @@ export const BarnaDineInnhold: React.FC<Props> = ({
           lukkModal={() => settÅpenModal(false)}
           barneListe={barneliste}
           settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-          oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+          oppdaterBarnISoknaden={oppdaterBarnISøknaden}
         />
       )}
     </BarnaDineContainer>
