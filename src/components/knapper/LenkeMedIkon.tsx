@@ -25,7 +25,7 @@ const StyledLenkeMedIkon = styled.div`
 `;
 
 interface Props {
-  onClick: any;
+  onClick: () => void;
   tekst_id: string;
   ikon: string;
 }

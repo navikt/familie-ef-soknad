@@ -24,7 +24,7 @@ import styled from "styled-components";
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
 `;
-const Forside: React.FC<any> = () => {
+const Forside: React.FC = () => {
   const { person } = usePersonContext();
   const [locale] = useSpråkContext();
   const intl = useLokalIntlContext();
