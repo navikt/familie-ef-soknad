@@ -17,6 +17,7 @@ import { logAdressesperre } from '../utils/amplitude';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
+import { IBarn } from '../models/steg/barn';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -66,7 +67,7 @@ const BarnetilsynApp = () => {
       });
   };
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
+  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
     settSøknad &&
       settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });

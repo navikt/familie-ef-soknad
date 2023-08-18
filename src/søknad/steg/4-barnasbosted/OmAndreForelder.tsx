@@ -94,18 +94,16 @@ const OmAndreForelder: React.FC<Props> = ({
       });
   };
 
-  const hukAvKanIkkeOppgiAnnenForelder = (e: any) => {
+  const hukAvKanIkkeOppgiAnnenForelder = (avhuket: boolean) => {
     const nyForelder = { ...forelder };
 
-    if (e.target.checked) {
+    if (avhuket) {
       delete nyForelder.navn;
       delete nyForelder.fødselsdato;
       delete nyForelder.ident;
       delete nyForelder.id;
       settFeilmeldingNavn(false);
-    }
-
-    if (!e.target.checked) {
+    } else {
       settBegyntÅSkrive(false);
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
@@ -147,14 +145,14 @@ const OmAndreForelder: React.FC<Props> = ({
     settForelder(nyForelder);
   };
 
-  const settIkkeOppgittAnnenForelderBegrunnelse = (e: any) => {
+  const settIkkeOppgittAnnenForelderBegrunnelse = (begrunnelse: string) => {
     settBegyntÅSkrive(true);
 
     settForelder({
       ...forelder,
       ikkeOppgittAnnenForelderBegrunnelse: {
         label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
-        verdi: e.target.value,
+        verdi: begrunnelse,
       },
     });
   };
@@ -197,7 +195,7 @@ const OmAndreForelder: React.FC<Props> = ({
                 ? forelder.kanIkkeOppgiAnnenForelderFar?.verdi
                 : false
             }
-            onChange={hukAvKanIkkeOppgiAnnenForelder}
+            onChange={(e) => hukAvKanIkkeOppgiAnnenForelder(e.target.checked)}
           >
             {hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
           </Checkbox>
@@ -237,7 +235,9 @@ const OmAndreForelder: React.FC<Props> = ({
                 ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
                 : ''
             }
-            onChange={settIkkeOppgittAnnenForelderBegrunnelse}
+            onChange={(e) =>
+              settIkkeOppgittAnnenForelderBegrunnelse(e.target.value)
+            }
             label={hvorforIkkeOppgiLabel}
           />
         </FeltGruppe>
