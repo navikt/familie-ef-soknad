@@ -12,6 +12,7 @@ amplitudeInstance.init('default', '', {
   platform: window.location.toString(),
 });
 
+// eslint-disable-next-line
 export function logEvent(eventName: string, eventProperties: any) {
   amplitudeInstance.logEvent(eventName, eventProperties);
 }
@@ -21,8 +22,7 @@ export const logSpørsmålBesvart = (
   skjemaId: number,
   spørsmål: string,
   svar: string,
-  skalLogges: boolean,
-  props?: any
+  skalLogges: boolean
 ) => {
   if (skalLogges) {
     logEvent('skjema spørsmål besvart', {
@@ -30,7 +30,6 @@ export const logSpørsmålBesvart = (
       skjemaId,
       spørsmål,
       svar,
-      ...props,
     });
   }
 };
@@ -180,49 +179,52 @@ export const logAdressesperre = (skjemanavn: string) => {
 export const logInnsendingFeilet = (
   skjemanavn: string,
   skjemaId: number,
-  feilmelding: string,
-  props?: any
+  feilmelding: string
 ) => {
   logEvent('skjema innsending feilet', {
     skjemanavn,
     skjemaId,
     feilmelding,
-    ...props,
   });
 };
 
 export const logBrowserBackOppsummering = (
   skjemanavn: string,
-  skjemaId: number,
-  ...props: any
+  skjemaId: number
 ) => {
   logEvent('browser_back_oppsummering', {
     skjemanavn,
     skjemaId,
-    ...props,
   });
 };
+
+interface FeilFilopplasting {
+  type_feil: string;
+  feilmelding: string;
+  filstørrelse?: number;
+  filtype?: string;
+}
 
 export const logFeilFilopplasting = (
   skjemanavn: string,
   skjemaId: number,
-  ...props: any
+  feilInformasjon: FeilFilopplasting
 ) => {
   logEvent('filopplasting_feilet', {
     skjemanavn,
     skjemaId,
-    ...props,
+    ...feilInformasjon,
   });
 };
 
 export const logManglendeFelter = (
   skjemanavn: string,
   skjemaId: number,
-  ...props: any
+  feilmelding: string
 ) => {
   logEvent('manglende_felter', {
     skjemanavn,
     skjemaId,
-    ...props,
+    feilmelding,
   });
 };
