@@ -40,8 +40,7 @@ const LastOppVedlegg: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const settHarSendtInnTidligere = (e: any) => {
-    const huketAv = e.target.checked;
+  const settHarSendtInnTidligere = (huketAv: boolean) => {
     const vedlegg = huketAv ? [] : dokumentasjon.opplastedeVedlegg;
     oppdaterDokumentasjon(dokumentasjon.id, vedlegg, huketAv);
   };
@@ -66,7 +65,7 @@ const LastOppVedlegg: React.FC<Props> = ({
           <FeltGruppe>
             <Checkbox
               checked={dokumentasjon.harSendtInn}
-              onChange={settHarSendtInnTidligere}
+              onChange={(e) => settHarSendtInnTidligere(e.target.checked)}
             >
               {hentTekst('dokumentasjon.checkbox.sendtTidligere', intl)}
             </Checkbox>
