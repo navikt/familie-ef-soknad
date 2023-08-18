@@ -9,7 +9,6 @@ import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { IBarn } from '../../../models/steg/barn';
 import { IBarnepass, IBarnepassOrdning } from '../../models/barnepass';
-import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';

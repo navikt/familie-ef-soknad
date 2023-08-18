@@ -1,4 +1,4 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/steg/barn';
