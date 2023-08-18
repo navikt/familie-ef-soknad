@@ -1,7 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import LesMerTekst from '../LesMerTekst';
-import { Checkbox, SkjemaGruppe } from 'nav-frontend-skjema';
+import { SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components/macro';
 import Show from '../../utils/showIf';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
