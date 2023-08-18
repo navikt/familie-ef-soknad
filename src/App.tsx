@@ -19,6 +19,7 @@ import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
 import { useLokalIntlContext } from './context/LokalIntlContext';
 import { Alert, Loader, Modal } from '@navikt/ds-react';
+import { IBarn } from './models/steg/barn';
 
 // @ts-ignore
 Modal.setAppElement(document.getElementById('modal-a11y-wrapper'));
@@ -71,7 +72,7 @@ const App = () => {
       });
   };
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
+  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
     settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
