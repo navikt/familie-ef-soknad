@@ -36,7 +36,7 @@ const StyledConfirmationPanel = styled(ConfirmationPanel)`
   margin-bottom: 2rem;
 `;
 
-const Forside: React.FC<any> = ({ visningsnavn }) => {
+const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
   const [locale] = useSpråkContext();
   const navigate = useNavigate();
   const intl = useLokalIntlContext();

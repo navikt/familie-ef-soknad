@@ -74,9 +74,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
-          feilmelding: e,
-        });
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
     aktivitetSchema
@@ -94,9 +92,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
-          feilmelding: e,
-        });
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
     sivilstatusSchema
@@ -114,9 +110,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
-          feilmelding: e,
-        });
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
     merOmDinSituasjonSchema
@@ -134,9 +128,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
-          feilmelding: e,
-        });
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
     medlemskapSchema
@@ -154,9 +146,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, {
-          feilmelding: 'test',
-        });
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
   }, [søknad, manglendeFelter, skjemaId]);
 

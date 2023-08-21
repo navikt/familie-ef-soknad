@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
@@ -15,7 +15,7 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Heading, Select, Textarea } from '@navikt/ds-react';
+import { Heading, Textarea } from '@navikt/ds-react';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utenlandsoppholdLand } from './MedlemskapConfig';
