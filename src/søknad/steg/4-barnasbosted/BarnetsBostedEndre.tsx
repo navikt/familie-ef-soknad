@@ -56,7 +56,7 @@ enum TypeBarn {
 
 interface Props {
   barn: IBarn;
-  settAktivIndex: Function;
+  settAktivIndex: React.Dispatch<React.SetStateAction<number>>;
   aktivIndex: number;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;

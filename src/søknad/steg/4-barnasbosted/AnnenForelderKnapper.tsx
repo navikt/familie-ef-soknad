@@ -17,7 +17,9 @@ interface Props {
   forelder: IForelder;
   oppdaterAnnenForelder: (annenForelderId: string) => void;
   førsteBarnTilHverForelder?: IBarn[];
-  settBarnHarSammeForelder: Function;
+  settBarnHarSammeForelder: React.Dispatch<
+    React.SetStateAction<boolean | undefined>
+  >;
   settForelder: (verdi: IForelder) => void;
   oppdaterBarn: (barn: IBarn, erFørsteAvflereBarn: boolean) => void;
 }

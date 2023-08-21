@@ -13,7 +13,7 @@ import { Label, BodyShort } from '@navikt/ds-react';
 
 interface Props {
   barn: IBarn;
-  settAktivIndex: Function;
+  settAktivIndex: React.Dispatch<React.SetStateAction<number>>;
   index: number;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
 }

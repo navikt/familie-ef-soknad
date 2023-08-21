@@ -32,7 +32,7 @@ const BarnaDine: React.FC = () => {
   const toggleSkalHaBarnepass = (id: string) => {
     const detteBarnet = søknad.person.barn.find((b: IBarn) => b.id === id);
 
-    if (!detteBarnet) return null;
+    if (!detteBarnet) return;
 
     const skalHaBarnepassVerdi = !detteBarnet.skalHaBarnepass?.verdi;
     const nyttBarn: IBarn = {
