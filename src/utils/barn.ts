@@ -190,3 +190,5 @@ export const kopierFellesForeldreInformasjon = (
     },
   };
 };
+
+export const lagtTilAnnenForelderId = 'annen-forelder';
