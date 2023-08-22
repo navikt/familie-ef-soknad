@@ -58,9 +58,7 @@ const Oppsummering: React.FC = () => {
           ]);
         }
 
-        logManglendeFelter(ESkjemanavn.Barnetilsyn, skjemaId, {
-          feilmelding: e,
-        });
+        logManglendeFelter(ESkjemanavn.Barnetilsyn, skjemaId, e);
       });
   }, [søknad, manglendeFelter, skjemaId]);
 

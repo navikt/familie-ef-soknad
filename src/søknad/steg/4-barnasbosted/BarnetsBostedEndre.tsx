@@ -29,6 +29,7 @@ import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpe
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components/macro';
+import { lagtTilAnnenForelderId } from '../../../utils/barn';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -55,7 +56,7 @@ enum TypeBarn {
 
 interface Props {
   barn: IBarn;
-  settAktivIndex: Function;
+  settAktivIndex: React.Dispatch<React.SetStateAction<number>>;
   aktivIndex: number;
   settSisteBarnUtfylt: (sisteBarnUtfylt: boolean) => void;
   scrollTilLagtTilBarn: () => void;
@@ -166,6 +167,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const visOmAndreForelder =
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
+    barn.annenForelderId === lagtTilAnnenForelderId ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||

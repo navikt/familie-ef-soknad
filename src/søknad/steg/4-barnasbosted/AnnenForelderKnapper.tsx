@@ -5,7 +5,10 @@ import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import {
+  lagtTilAnnenForelderId,
+  hentBarnetsNavnEllerBeskrivelse,
+} from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { cloneDeep } from 'lodash';
 
@@ -14,7 +17,9 @@ interface Props {
   forelder: IForelder;
   oppdaterAnnenForelder: (annenForelderId: string) => void;
   førsteBarnTilHverForelder?: IBarn[];
-  settBarnHarSammeForelder: Function;
+  settBarnHarSammeForelder: React.Dispatch<
+    React.SetStateAction<boolean | undefined>
+  >;
   settForelder: (verdi: IForelder) => void;
   oppdaterBarn: (barn: IBarn, erFørsteAvflereBarn: boolean) => void;
 }
@@ -71,7 +76,11 @@ const AnnenForelderKnapper: React.FC<Props> = ({
         : { id };
 
     oppdaterBarn(
-      { ...barn, annenForelderId: 'annen-forelder', forelder: annenForelder },
+      {
+        ...barn,
+        annenForelderId: lagtTilAnnenForelderId,
+        forelder: annenForelder,
+      },
       false
     );
     settForelder(annenForelder);
@@ -110,7 +119,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
           name={`${andreForelder}${barn.navn}`}
           label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
           value={andreForelderAnnen}
-          checked={barn.annenForelderId === 'annen-forelder'}
+          checked={barn.annenForelderId === lagtTilAnnenForelderId}
           onChange={() => leggTilAnnenForelder()}
         />
       </div>

@@ -4,7 +4,11 @@ import {
   erUformeltGiftSpørsmål,
   erUformeltSeparertEllerSkiltSpørsmål,
 } from './SivilstatusConfig';
-import { ESvar, ISpørsmål } from '../../../../models/felles/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import AlertstripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { hentSvarAlertFraSpørsmål } from '../../../../utils/søknad';
@@ -12,11 +16,12 @@ import React from 'react';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import Show from '../../../../utils/showIf';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
 
 interface Props {
-  sivilstatus: any;
-  settSivilstatusFelt: any;
-  erUformeltGift: any;
+  sivilstatus: ISivilstatus;
+  settSivilstatusFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
+  erUformeltGift: ISpørsmålBooleanFelt | undefined;
 }
 
 const SøkerErUgift: React.FC<Props> = ({

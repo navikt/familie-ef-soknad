@@ -60,7 +60,7 @@ const StyledChevronNed = styled(ChevronDownIcon)`
   width: 1.2em;
 `;
 
-const Språkvelger: React.FC<any> = () => {
+const Språkvelger: React.FC = () => {
   const [locale, setLocale] = useSpråkContext();
   const { toggles } = useToggles();
   const språkObjekter = toggles[ToggleName.leggTilNynorsk]
