@@ -351,6 +351,7 @@ export default {
   'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
+  'barnadine.endre': 'Change information about child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
   'barnadine.knapp.fjern': 'Remove from application form',
@@ -491,6 +492,8 @@ export default {
     'Register address at the National Registry',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Questions regarding your relationship with the other parent is already answered. Go to the child where the questions were answered in order to change your answers',
 
   // --- AKTIVITET (Steg 5)
 
@@ -960,7 +963,7 @@ export default {
 
   'filopplaster.dra': 'Upload a document',
   'filopplaster.slipp': 'Drag and drop the file here...',
-  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
+  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
   'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
   'filopplaster.feilmelding.generisk': 'Could not upload file',
   'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':

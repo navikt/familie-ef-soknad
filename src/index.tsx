@@ -10,8 +10,6 @@ import './components/feil/Feilside.css';
 import './components/spørsmål/Spørsmål.css';
 import './components/side/Side.css';
 
-import './overgangsstønad/steg/3-barnadine/BarnaDine.css';
-import './søknad/steg/3-barnadine/LeggTilBarn.css';
 import './overgangsstønad/steg/4-barnasbosted/BarnasBosted.css';
 import './søknad/steg/7-oppsummering/Oppsummering.css';
 
@@ -38,23 +36,26 @@ if (Environment().sentryUrl) {
   });
 }
 const container = document.getElementById('root');
-const root = createRoot(container!);
-
-root.render(
-  <SpråkProvider>
-    <ContextProviders>
-      <Router basename={process.env.PUBLIC_URL}>
-        <ScrollToTop />
-        <Routes>
-          <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
-          <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
-          <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
-          <Route path={'*'} element={<App />} />
-        </Routes>
-      </Router>
-    </ContextProviders>
-  </SpråkProvider>
-);
+if (container == null) {
+  throw new Error('Mangler container for appen');
+} else {
+  const root = createRoot(container);
+  root.render(
+    <SpråkProvider>
+      <ContextProviders>
+        <Router basename={process.env.PUBLIC_URL}>
+          <ScrollToTop />
+          <Routes>
+            <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
+            <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
+            <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
+            <Route path={'*'} element={<App />} />
+          </Routes>
+        </Router>
+      </ContextProviders>
+    </SpråkProvider>
+  );
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

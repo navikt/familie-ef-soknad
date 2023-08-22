@@ -43,12 +43,12 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
     settForelder(nyForelder);
   };
 
-  const settBeskrivSamværUtenBarn = (e: any) => {
+  const settBeskrivSamværUtenBarn = (beskrivelse: string) => {
     settForelder({
       ...forelder,
       beskrivSamværUtenBarn: {
         label: hentTekst('barnasbosted.spm.beskrivSamværUtenBarn', intl),
-        verdi: e.target.value,
+        verdi: beskrivelse,
       },
     });
   };
@@ -80,7 +80,7 @@ const HvorMyeSammen: FC<Props> = ({ forelder, barn, settForelder }) => {
                   ? forelder.beskrivSamværUtenBarn.verdi
                   : ''
               }
-              onChange={settBeskrivSamværUtenBarn}
+              onChange={(e) => settBeskrivSamværUtenBarn(e.target.value)}
               label={hentBarnNavnEllerBarnet(
                 barn,
                 'barnasbosted.spm.beskrivSamværUtenBarn',

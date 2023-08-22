@@ -238,6 +238,7 @@ export default {
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
   'barnekort.medforelder.hemmelig': 'Person',
   'barnadine.leggtil': 'Legg til barn',
+  'barnadine.endre': 'Endre informasjon om barnet',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
@@ -363,6 +364,8 @@ export default {
   'barnasbosted.oppsummering.navn.label': 'Navn på annen forelder',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Du har besvart spørsmålene om relasjonen din til den andre forelderen på et annet barn. Siden du har flere barn med samme forelder, trenger du bare å svare på spørsmålene én gang. Hvis du vil endre svarene dine, må du gå tilbake til barnet hvor du svarte på spørsmålene.',
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',

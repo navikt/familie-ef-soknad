@@ -1,6 +1,6 @@
 export const erLokaltMedMock = () => {
   return (
     process.env.NODE_ENV === 'development' &&
-    process.env.REACT_APP_BRUK_API_I_DEV === 'false'
+    process.env.BRUK_MOCK_LOKALT === 'true'
   );
 };

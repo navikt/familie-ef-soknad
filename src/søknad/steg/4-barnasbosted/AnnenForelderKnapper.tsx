@@ -1,11 +1,14 @@
-import React, { useState, SyntheticEvent } from 'react';
+import React, { SyntheticEvent } from 'react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { hentBarnetsNavnEllerBeskrivelse } from '../../../utils/barn';
+import {
+  lagtTilAnnenForelderId,
+  hentBarnetsNavnEllerBeskrivelse,
+} from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { cloneDeep } from 'lodash';
 
@@ -14,8 +17,11 @@ interface Props {
   forelder: IForelder;
   oppdaterAnnenForelder: (annenForelderId: string) => void;
   førsteBarnTilHverForelder?: IBarn[];
-  settBarnHarSammeForelder: Function;
+  settBarnHarSammeForelder: React.Dispatch<
+    React.SetStateAction<boolean | undefined>
+  >;
   settForelder: (verdi: IForelder) => void;
+  oppdaterBarn: (barn: IBarn, erFørsteAvflereBarn: boolean) => void;
 }
 
 const AnnenForelderKnapper: React.FC<Props> = ({
@@ -25,6 +31,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   førsteBarnTilHverForelder,
   settBarnHarSammeForelder,
   settForelder,
+  oppdaterBarn,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -33,42 +40,50 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     detAndreBarnet: IBarn
   ) => {
     settBarnHarSammeForelder(true);
-    const denAndreForelderen = cloneDeep(detAndreBarnet.forelder);
+    const oppdatertForelder = cloneDeep(detAndreBarnet.forelder);
     oppdaterAnnenForelder(detAndreBarnet.id);
 
     settForelder({
-      ...forelder,
-      id: denAndreForelderen?.id,
-      navn: denAndreForelderen?.navn,
-      fødselsdato: denAndreForelderen?.fødselsdato,
-      ident: denAndreForelderen?.ident,
-      borINorge: denAndreForelderen?.borINorge,
-      hvordanPraktiseresSamværet:
-        denAndreForelderen?.hvordanPraktiseresSamværet,
-      borAnnenForelderISammeHus: denAndreForelderen?.borAnnenForelderISammeHus,
+      ...barn.forelder,
+      id: oppdatertForelder?.id,
+      navn: oppdatertForelder?.navn,
+      fødselsdato: oppdatertForelder?.fødselsdato,
+      ident: oppdatertForelder?.ident,
+      borINorge: oppdatertForelder?.borINorge,
+      borAnnenForelderISammeHus: oppdatertForelder?.borAnnenForelderISammeHus,
       borAnnenForelderISammeHusBeskrivelse:
-        denAndreForelderen?.borAnnenForelderISammeHusBeskrivelse,
-      boddSammenFør: denAndreForelderen?.boddSammenFør,
-      flyttetFra: denAndreForelderen?.flyttetFra,
-      hvorMyeSammen: denAndreForelderen?.hvorMyeSammen,
-      beskrivSamværUtenBarn: denAndreForelderen?.beskrivSamværUtenBarn,
-      land: denAndreForelderen?.land,
-      fraFolkeregister: denAndreForelderen?.fraFolkeregister,
+        oppdatertForelder?.borAnnenForelderISammeHusBeskrivelse,
+      boddSammenFør: oppdatertForelder?.boddSammenFør,
+      flyttetFra: oppdatertForelder?.flyttetFra,
+      hvorMyeSammen: oppdatertForelder?.hvorMyeSammen,
+      beskrivSamværUtenBarn: oppdatertForelder?.beskrivSamværUtenBarn,
+      land: oppdatertForelder?.land,
+      fraFolkeregister: oppdatertForelder?.fraFolkeregister,
     });
   };
 
   const leggTilAnnenForelder = () => {
     settBarnHarSammeForelder(false);
-    oppdaterAnnenForelder('annen-forelder');
     const id = hentUid();
 
-    !barn.harSammeAdresse.verdi &&
-    harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
-      ? settForelder({
-          skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker,
-          id,
-        })
-      : settForelder({ id });
+    const annenForelder =
+      !barn.harSammeAdresse.verdi &&
+      harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
+        ? {
+            skalBarnetBoHosSøker: forelder.skalBarnetBoHosSøker,
+            id,
+          }
+        : { id };
+
+    oppdaterBarn(
+      {
+        ...barn,
+        annenForelderId: lagtTilAnnenForelderId,
+        forelder: annenForelder,
+      },
+      false
+    );
+    settForelder(annenForelder);
   };
 
   const andreForelder = 'andre-forelder-';
@@ -104,7 +119,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
           name={`${andreForelder}${barn.navn}`}
           label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
           value={andreForelderAnnen}
-          checked={barn.annenForelderId === 'annen-forelder'}
+          checked={barn.annenForelderId === lagtTilAnnenForelderId}
           onChange={() => leggTilAnnenForelder()}
         />
       </div>

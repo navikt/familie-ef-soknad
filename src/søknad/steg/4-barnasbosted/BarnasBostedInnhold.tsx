@@ -9,7 +9,9 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
 import {
   antallBarnMedForeldreUtfylt,
+  forelderidentMedBarn,
   hentIndexFørsteBarnSomIkkeErUtfylt,
+  kopierFellesForeldreInformasjon,
 } from '../../../utils/barn';
 import { BodyShort } from '@navikt/ds-react';
 import {
@@ -26,7 +28,8 @@ const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
 
 interface Props {
   aktuelleBarn: IBarn[];
-  oppdaterBarnISoknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
+  oppdaterFlereBarnISøknaden: (oppdaterteBarn: IBarn[]) => void;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   sisteBarnUtfylt: boolean;
   settSisteBarnUtfylt: React.Dispatch<React.SetStateAction<boolean>>;
@@ -35,7 +38,8 @@ interface Props {
 
 const BarnasBostedInnhold: React.FC<Props> = ({
   aktuelleBarn,
-  oppdaterBarnISoknaden,
+  oppdaterBarnISøknaden,
+  oppdaterFlereBarnISøknaden,
   settDokumentasjonsbehovForBarn,
   sisteBarnUtfylt,
   settSisteBarnUtfylt,
@@ -72,6 +76,34 @@ const BarnasBostedInnhold: React.FC<Props> = ({
         barnMedLevendeMedforelder.length
     );
   }, [søknad]);
+  const forelderIdenterMedBarn = forelderidentMedBarn(
+    barnMedLevendeMedforelder
+  );
+
+  const oppdaterBarnMedNyForelderInformasjon = (
+    oppdatertBarn: IBarn,
+    skalKopiereForeldreinformasjonTilAndreBarn: boolean
+  ) => {
+    const barnMedSammeForelder =
+      oppdatertBarn.forelder?.ident?.verdi &&
+      forelderIdenterMedBarn.get(oppdatertBarn.forelder?.ident?.verdi);
+
+    if (skalKopiereForeldreinformasjonTilAndreBarn && barnMedSammeForelder) {
+      oppdaterFlereBarnISøknaden(
+        barnMedSammeForelder.map((b) => {
+          if (b.id === oppdatertBarn.id) {
+            return oppdatertBarn;
+          }
+
+          return oppdatertBarn.forelder
+            ? kopierFellesForeldreInformasjon(b, oppdatertBarn.forelder)
+            : b;
+        })
+      );
+    } else {
+      oppdaterBarnISøknaden(oppdatertBarn);
+    }
+  };
 
   return (
     <>
@@ -87,8 +119,9 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               key={key}
               scrollTilLagtTilBarn={scrollTilLagtTilBarn}
               settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
-              oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+              oppdaterBarnISøknaden={oppdaterBarnMedNyForelderInformasjon}
               barneListe={søknad.person.barn}
+              forelderidenterMedBarn={forelderIdenterMedBarn}
             />
           );
         } else {

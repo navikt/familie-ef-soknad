@@ -1,5 +1,6 @@
 import { IRoute } from '../../models/routes';
 import { hentPath } from '../../utils/routing';
+const PUBLIC_URL = process.env.PUBLIC_URL || '/';
 
 export enum ERouteBarnetilsyn {
   Forside = 'Forside',
@@ -65,12 +66,11 @@ export const RoutesBarnetilsyn: IRoute[] = [
 
 export const erUrlBarnetilsyn = (): boolean => {
   return window.location.href.includes(
-    process.env.PUBLIC_URL +
-      hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.Forside)
+    PUBLIC_URL + hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.Forside)
   );
 };
 
 export const barnetilsynForsideUrl = (): string =>
   window.location.origin +
-  process.env.PUBLIC_URL +
+  PUBLIC_URL +
   hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.Forside);

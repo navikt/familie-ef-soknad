@@ -21,6 +21,7 @@ import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
+import { IBarn } from '../models/steg/barn';
 
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -69,7 +70,7 @@ const SkolepengerApp = () => {
       });
   };
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: any[]) => {
+  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
     settSøknad &&
