@@ -6,6 +6,8 @@ import { formatDate, strengTilDato } from './dato';
 import { storeForbokstaver } from './tekst';
 import { erForelderUtfylt } from '../helpers/steg/forelder';
 import { LokalIntlShape } from '../language/typer';
+import { IForelder } from '../models/steg/forelder';
+import { harVerdi } from './typer';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
@@ -79,7 +81,10 @@ export const hentBarnNavnEllerBarnet = (
   );
 };
 
-export const oppdaterBarneliste = (barneListe: IBarn[], nyttBarn: IBarn) => {
+export const oppdaterBarnIBarneliste = (
+  barneListe: IBarn[],
+  nyttBarn: IBarn
+) => {
   const erEndringAvEksisterendeBarn =
     barneListe.findIndex((barn) => barn.id === nyttBarn.id) >= 0;
   if (erEndringAvEksisterendeBarn) {
@@ -88,6 +93,13 @@ export const oppdaterBarneliste = (barneListe: IBarn[], nyttBarn: IBarn) => {
     );
   }
   return [...barneListe, nyttBarn];
+};
+
+export const oppdaterBarneliste = (barneListe: IBarn[], nyeBarn: IBarn[]) => {
+  return barneListe.map(
+    (barn) =>
+      nyeBarn.find((oppdatertBarn) => oppdatertBarn.id === barn.id) || barn
+  );
 };
 
 export const formatterBarnetsNavn = (barn: IBarn) => {
@@ -139,3 +151,44 @@ export const oppdaterBarnLabels = (barn: IBarn[], intl: LokalIntlShape) => {
 
   return oppdaterteBarn;
 };
+
+const unikeForelderidenter = (barn: IBarn[]) =>
+  Array.from(new Set(barn.map((b) => b.forelder?.ident?.verdi))).filter(
+    harVerdi
+  );
+
+export const forelderidentMedBarn = (barn: IBarn[]) =>
+  new Map(
+    unikeForelderidenter(barn).map((forelderIdent) => [
+      forelderIdent,
+      barn.filter((barn) => barn.forelder?.ident?.verdi === forelderIdent),
+    ])
+  );
+
+export const kopierFellesForeldreInformasjon = (
+  barn: IBarn,
+  oppdatertForelder: IForelder
+): IBarn => {
+  return {
+    ...barn,
+    forelder: {
+      ...barn.forelder,
+      id: oppdatertForelder?.id,
+      navn: oppdatertForelder?.navn,
+      fødselsdato: oppdatertForelder?.fødselsdato,
+      ident: oppdatertForelder?.ident,
+      borINorge: oppdatertForelder?.borINorge,
+      borAnnenForelderISammeHus: oppdatertForelder?.borAnnenForelderISammeHus,
+      borAnnenForelderISammeHusBeskrivelse:
+        oppdatertForelder?.borAnnenForelderISammeHusBeskrivelse,
+      boddSammenFør: oppdatertForelder?.boddSammenFør,
+      flyttetFra: oppdatertForelder?.flyttetFra,
+      hvorMyeSammen: oppdatertForelder?.hvorMyeSammen,
+      beskrivSamværUtenBarn: oppdatertForelder?.beskrivSamværUtenBarn,
+      land: oppdatertForelder?.land,
+      fraFolkeregister: oppdatertForelder?.fraFolkeregister,
+    },
+  };
+};
+
+export const lagtTilAnnenForelderId = 'annen-forelder';

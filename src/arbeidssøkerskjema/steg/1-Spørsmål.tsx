@@ -29,7 +29,7 @@ import { kommerFraOppsummeringen } from '../../utils/locationState';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 
-const Spørsmål: FC<any> = ({ ident }) => {
+const Spørsmål: FC<{ ident: string }> = ({ ident }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const intl = useLokalIntlContext();

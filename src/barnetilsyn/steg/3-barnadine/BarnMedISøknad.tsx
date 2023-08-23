@@ -11,7 +11,7 @@ const StyledCheckbox = styled(Checkbox)`
 
 interface Props {
   skalHaBarnepass?: boolean;
-  toggleSkalHaBarnepass: Function;
+  toggleSkalHaBarnepass: (id: string) => void;
   id: string;
 }
 

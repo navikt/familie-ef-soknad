@@ -22,7 +22,8 @@ const BarnasBosted: React.FC = () => {
     søknad,
     mellomlagreBarnetilsyn,
     settDokumentasjonsbehovForBarn,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
+    oppdaterFlereBarnISøknaden,
   } = useBarnetilsynSøknad();
 
   useMount(() => logSidevisningBarnetilsyn('BarnasBosted'));
@@ -57,7 +58,8 @@ const BarnasBosted: React.FC = () => {
     >
       <BarnasBostedInnhold
         aktuelleBarn={aktuelleBarn}
-        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+        oppdaterBarnISøknaden={oppdaterBarnISøknaden}
+        oppdaterFlereBarnISøknaden={oppdaterFlereBarnISøknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}

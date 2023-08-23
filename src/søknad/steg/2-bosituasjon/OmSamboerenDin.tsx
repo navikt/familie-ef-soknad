@@ -53,7 +53,7 @@ const OmSamboerenDin: FC<Props> = ({
       });
 
     if (!erGyldigIdent) {
-      let nySamboerInfo = { ...samboerInfo };
+      const nySamboerInfo = { ...samboerInfo };
       delete nySamboerInfo.ident;
 
       settSamboerInfo(nySamboerInfo);

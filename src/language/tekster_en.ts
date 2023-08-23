@@ -243,6 +243,7 @@ export default {
     'Should the child be included in the application?',
   'barnekort.medforelder.hemmelig': 'Person',
   'barnadine.leggtil': 'Add child',
+  'barnadine.endre': 'Change information about the child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.knapp.fjern': 'Remove from application form',
   'barnadine.knapp.søkBarnetilsyn': 'Apply for child care benefit',
@@ -374,6 +375,8 @@ export default {
   'barnasbosted.oppsummering.navn.label': 'Name of the other parent',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'You have answered the questions regarding your relationship with the other parent for another child. Because you have multiple children with the same parent, you only need to answer the questions once. Go to the child where the questions were answered in order to change your answers.',
   'stegtittel.arbeidssituasjon': 'Work, education and other activities',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
@@ -386,6 +389,9 @@ export default {
     '<b>We need documentation from your doctor stating:\n</b> <ul><li>the reason why you cannot be in occupational activity</li><li>when your illness started</li><li>when your doctor expects you to have recovered</li></ul>When you submit your application, you will be given the option to download or print a checklist that you can take with you when you go to your doctor to document this.',
   'arbeidssituasjon.spm': 'What is your work situation?',
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
+  'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
+  'arbeidssituasjon.spm.hjelpetekst-innhold':
+  'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity to qualify. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -489,7 +495,7 @@ export default {
   'arbeidssøker.lenke.tilleggstønad': 'Read more about supplemental benefit',
   'arbeidssøker.knapp.tilleggstønad': 'Apply for supplemental benefit',
   'stegtittel.utdanning': 'Education',
-  'tidligereUtdanning.lesmer-åpne.kanFåStønad': 'The reason we askabout this',
+  'tidligereUtdanning.lesmer-åpne.kanFåStønad': 'The reason we ask about this',
   'tidligereUtdanning.lesmer-innhold.kanFåStønad':
     'We ask about previous education in order to assess whether the education you are taking is necessary in order for you to be able to get a job and support yourself.<br/><br/>If you already have an education that means you are qualified for an occupation or that can be used in multiple occupations, you will not generally be granted support to take more education. <br/><br/>However, we may make exceptions if you have an education or occupational experience that is no longer relevant in today’s labour market. Education from a university college or university does not become outdated. <br/><br/>We may also make exceptions to this rule if your education or occupation is not compatible with looking after children. This does not apply to normal shift work.',
   'utdanning.tittel': 'The education you are taking or are going to take',

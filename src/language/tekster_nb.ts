@@ -238,6 +238,7 @@ export default {
   'barnekort.skalHaBarnepass': 'Søk om stønad til barnetilsyn for barnet',
   'barnekort.medforelder.hemmelig': 'Person',
   'barnadine.leggtil': 'Legg til barn',
+  'barnadine.endre': 'Endre informasjon om barnet',
   'barnadine.navn': 'Barnets fulle navn, om dette er bestemt',
   'barnadine.knapp.fjern': 'Fjern fra søknad',
   'barnadine.knapp.søkBarnetilsyn': 'Søk om stønad til barnetilsyn for barnet',
@@ -363,6 +364,8 @@ export default {
   'barnasbosted.oppsummering.navn.label': 'Navn på annen forelder',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Du har besvart spørsmålene om relasjonen din til den andre forelderen på et annet barn. Siden du har flere barn med samme forelder, trenger du bare å svare på spørsmålene én gang. Hvis du vil endre svarene dine, må du gå tilbake til barnet hvor du svarte på spørsmålene.',
   'stegtittel.arbeidssituasjon': 'Arbeid, utdanning og andre aktiviteter',
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',
@@ -375,6 +378,9 @@ export default {
     '<b>Vi trenger dokumentasjon fra legen din som viser:</b> <ul><li>grunnen til at du ikke kan være i yrkesrettet aktivitet</li><li>når du ble syk</li><li>når legen din regner med at du vil bli frisk</li></ul>Du får muligheten til å laste ned eller skrive ut en huskeliste du kan ta med til legen din for å dokumentere dette når du sender inn søknaden.',
   'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
+  'arbeidssituasjon.spm.hjelpetekst-åpne': 'Grunnen til at vi spør om dette',
+  'arbeidssituasjon.spm.hjelpetekst-innhold':
+    `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':

@@ -20,7 +20,7 @@ export const hentPersonData = () => {
       },
       withCredentials: true,
     })
-    .then((response: { data: any }) => {
+    .then((response) => {
       return response && response.data;
     });
 };

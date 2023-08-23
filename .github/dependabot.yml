@@ -5,7 +5,15 @@ registries:
     type: npm-registry
     url: https://npm.pkg.github.com
     token: ${{ secrets.READER_TOKEN }}
+
 updates:
+- package-ecosystem: github-actions
+  directory: "/"
+  schedule:
+    interval: weekly
+    day: "sunday"
+    time: "04:00"
+
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -13,6 +21,18 @@ updates:
     day: "sunday"
     time: "04:00"
   open-pull-requests-limit: 30
+  registries: "*"
+  versioning-strategy: increase
+  ignore:
+    - dependency-name: "*"
+      update-types: [ "version-update:semver-patch" ]
+- package-ecosystem: npm
+  directory: "/server"
+  schedule:
+    interval: weekly
+    day: "sunday"
+    time: "04:00"
+  open-pull-requests-limit: 10
   registries: "*"
   versioning-strategy: increase
   ignore:

@@ -14,9 +14,9 @@ import { Alert, Label } from '@navikt/ds-react';
 import styled from 'styled-components';
 
 interface Props {
-  settBo: Function;
+  settBo: (nyttBo: string) => void;
   boHosDeg: string;
-  settDato: Function;
+  settDato: (date: string) => void;
   barnDato: string;
 }
 
@@ -69,7 +69,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
                 label={hentTekst(ESvarTekstid.JA, intl)}
                 value={ESvar.JA}
                 checked={boHosDeg === ESvar.JA}
-                onChange={(e) => settBo(e)}
+                onChange={(e) => settBo(e.target.value)}
               />
               <RadioPanel
                 key={ESvar.NEI}
@@ -77,7 +77,7 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
                 label={hentTekst(ESvarTekstid.NEI, intl)}
                 value={ESvar.NEI}
                 checked={boHosDeg === ESvar.NEI}
-                onChange={(e) => settBo(e)}
+                onChange={(e) => settBo(e.target.value)}
               />
             </RadiopanelWrapper>
             {boHosDeg === ESvar.NEI && (

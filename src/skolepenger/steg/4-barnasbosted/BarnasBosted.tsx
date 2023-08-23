@@ -24,7 +24,8 @@ const BarnasBosted: React.FC = () => {
   const {
     søknad,
     mellomlagreSkolepenger,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
+    oppdaterFlereBarnISøknaden,
     settDokumentasjonsbehovForBarn,
   } = useSkolepengerSøknad();
 
@@ -53,7 +54,8 @@ const BarnasBosted: React.FC = () => {
     >
       <BarnasBostedInnhold
         aktuelleBarn={søknad.person.barn}
-        oppdaterBarnISoknaden={oppdaterBarnISoknaden}
+        oppdaterBarnISøknaden={oppdaterBarnISøknaden}
+        oppdaterFlereBarnISøknaden={oppdaterFlereBarnISøknaden}
         settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
         sisteBarnUtfylt={sisteBarnUtfylt}
         settSisteBarnUtfylt={settSisteBarnUtfylt}

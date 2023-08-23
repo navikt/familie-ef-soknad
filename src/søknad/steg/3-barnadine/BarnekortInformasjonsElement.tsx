@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyShort } from '@navikt/ds-react';
+import { BodyShort, Label } from '@navikt/ds-react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
 export const InformasjonsElement: React.FC<{
@@ -10,7 +10,7 @@ export const InformasjonsElement: React.FC<{
 
   return (
     <div>
-      <BodyShort>{intl.formatMessage({ id: forklaringId })}</BodyShort>
+      <Label size="small">{intl.formatMessage({ id: forklaringId })}</Label>
       <BodyShort>{verdi}</BodyShort>
     </div>
   );

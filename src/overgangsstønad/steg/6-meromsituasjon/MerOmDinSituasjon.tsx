@@ -55,7 +55,7 @@ const MerOmDinSituasjon: React.FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
     mellomlagreOvergangsstønad,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
   } = useSøknad();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);
@@ -109,7 +109,7 @@ const MerOmDinSituasjon: React.FC = () => {
   useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov(
     søknad,
     intl,
-    oppdaterBarnISoknaden
+    oppdaterBarnISøknaden
   );
 
   const settDinSituasjonFelt = (

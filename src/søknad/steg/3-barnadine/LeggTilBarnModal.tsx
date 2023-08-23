@@ -7,35 +7,39 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { IBarn } from '../../../models/steg/barn';
 import { hentNyttBarn } from '../../../helpers/steg/barn';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
-import { oppdaterBarneliste } from '../../../utils/barn';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Button } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import { styled } from 'styled-components';
+import { ModalWrapper } from '../../../components/Modal/ModalWrapper';
 
 interface Props {
-  settÅpenModal: Function;
+  tittel: string;
+  lukkModal: () => void;
   id?: string;
   settDokumentasjonsbehovForBarn: SettDokumentasjonsbehovBarn;
   barneListe: IBarn[];
-  settBarneListe: (barneListe: IBarn[]) => void;
+  oppdaterBarnISøknaden: (oppdatertBarn: IBarn) => void;
 }
 
 const StyledSeksjonsgruppe = styled(Seksjonsgruppe)`
   min-height: 500px;
   width: 450px;
+  padding: 2rem 2.5rem;
 
   @media (max-width: 767px) {
     width: auto;
+    padding: 2rem 0;
   }
 `;
 
-const LeggTilBarn: React.FC<Props> = ({
-  settÅpenModal,
+const LeggTilBarnModal: React.FC<Props> = ({
+  tittel,
+  lukkModal,
   id,
   barneListe,
-  settBarneListe,
   settDokumentasjonsbehovForBarn,
+  oppdaterBarnISøknaden,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -68,8 +72,8 @@ const LeggTilBarn: React.FC<Props> = ({
     date && settBarnDato(date);
   };
 
-  const settBo = (event: any) => {
-    settBoHosDeg(event.target.value);
+  const settBo = (nyttBo: string) => {
+    settBoHosDeg(nyttBo);
   };
 
   const leggTilEllerEndreBarn = (id: string | undefined) => {
@@ -84,7 +88,6 @@ const LeggTilBarn: React.FC<Props> = ({
       skalHaBarnepass
     );
 
-    const nyBarneListe = oppdaterBarneliste(barneListe, nyttBarn);
     const erBarnFødtSvar = barnetFødtSpm.svaralternativer.find(
       (svar) => svar.id === ESvar.NEI
     );
@@ -95,32 +98,34 @@ const LeggTilBarn: React.FC<Props> = ({
         nyttBarn.id
       );
 
-    settBarneListe(nyBarneListe);
+    oppdaterBarnISøknaden(nyttBarn);
 
-    settÅpenModal(false);
+    lukkModal();
   };
 
   return (
-    <StyledSeksjonsgruppe aria-live="polite">
-      <KomponentGruppe>
-        <LeggTilBarnUfødt
-          settBo={settBo}
-          boHosDeg={boHosDeg}
-          settDato={settDato}
-          barnDato={barnDato}
-        />
-      </KomponentGruppe>
-      {boHosDeg && (
-        <Button
-          variant="primary"
-          aria-live="polite"
-          onClick={() => leggTilEllerEndreBarn(id)}
-        >
-          <LocaleTekst tekst={'barnadine.leggtil'} />
-        </Button>
-      )}
-    </StyledSeksjonsgruppe>
+    <ModalWrapper tittel={tittel} visModal={true} onClose={lukkModal}>
+      <StyledSeksjonsgruppe aria-live="polite">
+        <KomponentGruppe>
+          <LeggTilBarnUfødt
+            settBo={settBo}
+            boHosDeg={boHosDeg}
+            settDato={settDato}
+            barnDato={barnDato}
+          />
+        </KomponentGruppe>
+        {boHosDeg && (
+          <Button
+            variant="primary"
+            aria-live="polite"
+            onClick={() => leggTilEllerEndreBarn(id)}
+          >
+            <LocaleTekst tekst={'barnadine.leggtil'} />
+          </Button>
+        )}
+      </StyledSeksjonsgruppe>
+    </ModalWrapper>
   );
 };
 
-export default LeggTilBarn;
+export default LeggTilBarnModal;

@@ -20,7 +20,7 @@ import { IMellomlagretOvergangsstønad } from '../models/søknad/mellomlagretSø
 import Environment from '../Environment';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
 import { IBarn } from '../models/steg/barn';
-import { oppdaterBarneliste } from '../utils/barn';
+import { oppdaterBarnIBarneliste, oppdaterBarneliste } from '../utils/barn';
 import { IPerson } from '../models/søknad/person';
 import { gjelderNoeAvDetteDeg } from '../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/AktivitetConfig';
@@ -190,14 +190,34 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     });
   };
 
-  const oppdaterBarnISoknaden = (oppdatertBarn: IBarn) => {
+  const oppdaterBarnISøknaden = (oppdatertBarn: IBarn) => {
     settSøknad((prevSøknad) => ({
       ...prevSøknad,
       person: {
         ...prevSøknad.person,
-        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdatertBarn),
+        barn: oppdaterBarnIBarneliste(prevSøknad.person.barn, oppdatertBarn),
       },
     }));
+  };
+
+  const oppdaterFlereBarnISøknaden = (oppdaterteBarn: IBarn[]) => {
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
+      person: {
+        ...prevSøknad.person,
+        barn: oppdaterBarneliste(prevSøknad.person.barn, oppdaterteBarn),
+      },
+    }));
+  };
+
+  const fjernBarnFraSøknad = (id: string) => {
+    settSøknad((prevSoknad: ISøknad) => {
+      const nyBarneListe = prevSoknad.person.barn.filter((b: IBarn) => b.id !== id);
+      return {
+        ...prevSoknad,
+        person: { ...søknad.person, barn: nyBarneListe },
+      };
+    });
   };
 
   return {
@@ -210,8 +230,10 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     mellomlagreOvergangsstønad,
     brukMellomlagretOvergangsstønad,
     nullstillMellomlagretOvergangsstønad,
-    oppdaterBarnISoknaden,
+    oppdaterBarnISøknaden,
+    oppdaterFlereBarnISøknaden,
     nullstillSøknadOvergangsstønad,
+    fjernBarnFraSøknad,
   };
 });
 

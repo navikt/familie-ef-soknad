@@ -351,6 +351,7 @@ export default {
   'barnekort.medforelder.hemmelig': 'Person',
 
   'barnadine.leggtil': 'Add child',
+  'barnadine.endre': 'Change information about child',
   'barnadine.navn': 'The child’s full name, if decided',
   'barnadine.label.skalHaBarnepass': 'Skal barnet ha barnepass?',
   'barnadine.knapp.fjern': 'Remove from application form',
@@ -491,6 +492,8 @@ export default {
     'Register address at the National Registry',
   'barnasbosted.medforelder.navn': 'Navn',
   'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.gjenbrukt':
+    'Questions regarding your relationship with the other parent is already answered. Go to the child where the questions were answered in order to change your answers',
 
   // --- AKTIVITET (Steg 5)
 
@@ -515,6 +518,9 @@ export default {
 
   'arbeidssituasjon.spm': 'What is your work situation?',
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
+  'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
+  'arbeidssituasjon.spm.hjelpetekst-innhold':
+    'We need information about your work situation in order to assess whether you are entitled to receive transitional benefits for single parents. As a general rule you are requried to be at least 50 per cent engaged in some form of occupational activity. In some cases we make exceptions to this rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -957,7 +963,7 @@ export default {
 
   'filopplaster.dra': 'Upload a document',
   'filopplaster.slipp': 'Drag and drop the file here...',
-  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
+  'filopplaster.feilmelding.filtype': '[0] – Invalid filetype.',
   'filopplaster.feilmelding.maks': '[0] is too big (max file size is [1]).',
   'filopplaster.feilmelding.generisk': 'Could not upload file',
   'filopplaster.feilmelding.IMAGE_DIMENSIONS_TOO_SMALL':

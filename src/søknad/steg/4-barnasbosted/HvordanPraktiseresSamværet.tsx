@@ -6,7 +6,7 @@ import { IForelder } from '../../../models/steg/forelder';
 import { BodyShort, Label, Textarea } from '@navikt/ds-react';
 
 interface Props {
-  forelder: any;
+  forelder: IForelder;
   settForelder: (verdi: IForelder) => void;
 }
 
