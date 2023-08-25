@@ -6,6 +6,7 @@ import { leggTilSærligeBehov } from '../søknad/steg/6-meromsituasjon/Situasjon
 import { ISøknad } from '../models/søknad/søknad';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
+import { byteTilKilobyte, filTypeOgFilStørrelseStreng } from './nedlastningFilformater';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -62,4 +63,21 @@ export const useMount = (fn: () => void) => {
     fn();
     //eslint-disable-next-line
   }, []);
+};
+
+export const useHentFilInformasjon = (path: string) => {
+  const [filInformasjon, settFilInformasjon] = useState("")
+
+  useEffect(() => {
+    const hentFilInformasjon = (url: string) => {
+      fetch(url, { method: 'HEAD' }).then((res) => {
+        const filStørrelse = byteTilKilobyte(((res).headers.get("Content-Length") ?? 0))
+        const filType = ((res).headers.get("Content-Type") ?? "")
+      settFilInformasjon(filTypeOgFilStørrelseStreng(filType, Number(filStørrelse)))
+      })
+  }
+    hentFilInformasjon(path)
+  }, []);
+
+  return { filInformasjon };
 };
