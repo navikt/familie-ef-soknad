@@ -96,7 +96,8 @@ export const erDeltidUtdanningOgSkalStudereUnderHundreProsent = (
 ): boolean => {
   return (
     detaljertUtdanning.heltidEllerDeltid?.verdi === 'Deltid' &&
-    Number(detaljertUtdanning.arbeidsmengde?.verdi) < 100
+    Number(detaljertUtdanning.arbeidsmengde?.verdi) < 100 &&
+    harValgtSvar(detaljertUtdanning?.målMedUtdanning?.verdi)
   );
 };
 
