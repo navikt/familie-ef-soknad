@@ -7,6 +7,12 @@ import {
 } from '../../../../models/steg/aktivitet/utdanning';
 import { hentTekst } from '../../../../utils/søknad';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Alert } from '@navikt/ds-react';
+import styled from 'styled-components';
+
+const StudereProsentVarsel = styled(Alert)`
+  margin-top: 0.5rem;
+`;
 
 interface Props {
   utdanning: IUnderUtdanning;
@@ -29,6 +35,10 @@ const StudieArbeidsmengde: React.FC<Props> = ({
 
   const arbeidsmengdeLabel = hentTekst('utdanning.label.arbeidsmengde', intl);
 
+  const erIkkeUndefinedOgMerEnnNittiNiProsent =
+    utdanning?.arbeidsmengde?.verdi !== undefined &&
+    Number(utdanning?.arbeidsmengde?.verdi) > 99;
+
   return (
     <KomponentGruppe>
       <InputLabelGruppe
@@ -44,6 +54,11 @@ const StudieArbeidsmengde: React.FC<Props> = ({
           utdanning?.arbeidsmengde?.verdi ? utdanning?.arbeidsmengde?.verdi : ''
         }
       />
+      {!erIkkeUndefinedOgMerEnnNittiNiProsent ? null : (
+        <StudereProsentVarsel size="small" variant="error">
+          Prosent må være mindre enn 100 hvis det er deltid.
+        </StudereProsentVarsel>
+      )}
     </KomponentGruppe>
   );
 };
