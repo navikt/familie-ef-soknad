@@ -21,8 +21,11 @@ import { isIE } from 'react-device-detect';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
-import styled from "styled-components";
-
+import styled from 'styled-components';
+import {
+  nåværendeÅr,
+  useErMellomStartenAvMaiOgSluttenAvAugust,
+} from '../utils/dato';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -30,6 +33,9 @@ const StyledAlert = styled(Alert)`
 
 const Forside: React.FC<any> = () => {
   const intl = useLokalIntlContext();
+  const erMellomStartenAvMaiOgSluttenAvAugust =
+    useErMellomStartenAvMaiOgSluttenAvAugust();
+
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn))
       logSidevisningBarnetilsyn('Forside');
@@ -100,12 +106,16 @@ const Forside: React.FC<any> = () => {
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Heading>
 
-          <StyledAlert  variant="info">
-            <Heading spacing size="small" level="3">
-              Søker du om stønad til barnetilsyn fra august 2023?
-            </Heading>
-            For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.
-          </StyledAlert>
+          {erMellomStartenAvMaiOgSluttenAvAugust ? (
+            <StyledAlert variant="info">
+              <Heading spacing size="small" level="3">
+                Søker du om stønad til barnetilsyn fra august {nåværendeÅr}?
+              </Heading>
+              For å få stønad fra august må du kunne dokumentere utgiftene til
+              barnepass med faktura for denne måneden. Vi anbefaler derfor at du
+              venter med å søke frem til du får fakturaen.
+            </StyledAlert>
+          ) : null}
 
           {kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn ? (
             <FortsettSøknad
