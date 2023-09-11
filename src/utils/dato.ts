@@ -14,6 +14,7 @@ import {
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
+import { useState, useEffect } from 'react';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
@@ -96,4 +97,24 @@ export const erPeriodeGyldig = (periode: IPeriode | undefined): boolean => {
 
 export const erEnMånedTilbakeITid = (dato: string): boolean => {
   return !isAfter(strengTilDato(dato), addMonths(dagensDato, -1));
+};
+
+export const nåværendeÅr = new Date().getFullYear();
+
+export const useErMellomStartenAvMaiOgSluttenAvAugust = () => {
+  const [
+    erMellomStartenAvMaiOgSLuttenAvAugust,
+    setErMellomStartenAvMaiOgSLuttenAvAugust,
+  ] = useState(false);
+
+  useEffect(() => {
+    const nåværendeDato = new Date();
+
+    const erMellomMaiOgAugust =
+      nåværendeDato.getMonth() >= 4 && nåværendeDato.getMonth() <= 7;
+
+    setErMellomStartenAvMaiOgSLuttenAvAugust(erMellomMaiOgAugust);
+  }, []);
+
+  return erMellomStartenAvMaiOgSLuttenAvAugust;
 };
