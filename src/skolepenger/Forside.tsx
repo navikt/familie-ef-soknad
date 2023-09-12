@@ -21,8 +21,8 @@ import { isIE } from 'react-device-detect';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import {
+  erMellomStartenAvMaiOgSluttenAvAugust,
   nåværendeÅr,
-  useErMellomStartenAvMaiOgSluttenAvAugust,
 } from '../utils/dato';
 
 const StyledAlert = styled(Alert)`
@@ -39,8 +39,7 @@ const Forside: React.FC = () => {
     søknad,
     settSøknad,
   } = useSkolepengerSøknad();
-  const erMellomStartenAvMaiOgSluttenAvAugust =
-    useErMellomStartenAvMaiOgSluttenAvAugust();
+  const erMellomMaiOgAugust = erMellomStartenAvMaiOgSluttenAvAugust();
 
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretSkolepenger))
@@ -103,7 +102,7 @@ const Forside: React.FC = () => {
             <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Heading>
 
-          {erMellomStartenAvMaiOgSluttenAvAugust ? (
+          {erMellomMaiOgAugust ? (
             <StyledAlert variant="info">
               <Heading spacing size="small" level="3">
                 Søker du om stønad til skolepenger fra august {nåværendeÅr}?

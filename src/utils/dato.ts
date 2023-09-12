@@ -101,20 +101,7 @@ export const erEnMånedTilbakeITid = (dato: string): boolean => {
 
 export const nåværendeÅr = new Date().getFullYear();
 
-export const useErMellomStartenAvMaiOgSluttenAvAugust = () => {
-  const [
-    erMellomStartenAvMaiOgSLuttenAvAugust,
-    setErMellomStartenAvMaiOgSLuttenAvAugust,
-  ] = useState(false);
-
-  useEffect(() => {
-    const nåværendeDato = new Date();
-
-    const erMellomMaiOgAugust =
-      nåværendeDato.getMonth() >= 4 && nåværendeDato.getMonth() <= 7;
-
-    setErMellomStartenAvMaiOgSLuttenAvAugust(erMellomMaiOgAugust);
-  }, []);
-
-  return erMellomStartenAvMaiOgSLuttenAvAugust;
+export const erMellomStartenAvMaiOgSluttenAvAugust = () => {
+  const nåværendeDato = new Date();
+  return nåværendeDato.getMonth() >= 4 && nåværendeDato.getMonth() <= 7;
 };

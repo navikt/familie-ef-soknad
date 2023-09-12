@@ -23,8 +23,8 @@ import { Alert, Panel, Heading } from '@navikt/ds-react';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import {
+  erMellomStartenAvMaiOgSluttenAvAugust,
   nåværendeÅr,
-  useErMellomStartenAvMaiOgSluttenAvAugust,
 } from '../utils/dato';
 
 const StyledAlert = styled(Alert)`
@@ -33,8 +33,7 @@ const StyledAlert = styled(Alert)`
 
 const Forside: React.FC<any> = () => {
   const intl = useLokalIntlContext();
-  const erMellomStartenAvMaiOgSluttenAvAugust =
-    useErMellomStartenAvMaiOgSluttenAvAugust();
+  const erMellomMaiOgAugust = erMellomStartenAvMaiOgSluttenAvAugust();
 
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn))
@@ -106,7 +105,7 @@ const Forside: React.FC<any> = () => {
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Heading>
 
-          {erMellomStartenAvMaiOgSluttenAvAugust ? (
+          {erMellomMaiOgAugust ? (
             <StyledAlert variant="info">
               <Heading spacing size="small" level="3">
                 Søker du om stønad til barnetilsyn fra august {nåværendeÅr}?
