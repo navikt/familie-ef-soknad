@@ -84,9 +84,9 @@ const UnderUtdanning: React.FC<Props> = ({
       });
   };
 
-  const søkerSkalJobbeDeltid =
+  const søkerSkalStudereDeltid =
     utdanning.heltidEllerDeltid?.svarid === EStudieandel.deltid;
-  const søkerSkalJobbeHeltid =
+  const søkerSkalStudereHeltid =
     utdanning.heltidEllerDeltid?.svarid === EStudieandel.heltid;
 
   const visTidligereUtdanning = skalHaDetaljertUtdanning
@@ -146,14 +146,14 @@ const UnderUtdanning: React.FC<Props> = ({
               settUtdanning={settUtdanning}
             />
           )}
-        {søkerSkalJobbeHeltid && (
+        {søkerSkalStudereHeltid && (
           <MålMedUtdanningen
             utdanning={utdanning}
             oppdaterUtdanning={oppdaterUtdanning}
             stønadstype={stønadstype}
           />
         )}
-        {søkerSkalJobbeDeltid && (
+        {søkerSkalStudereDeltid && (
           <>
             <StudieArbeidsmengde
               utdanning={utdanning}
