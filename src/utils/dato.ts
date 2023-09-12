@@ -14,7 +14,6 @@ import {
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
-import { useState, useEffect } from 'react';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
