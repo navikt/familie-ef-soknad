@@ -20,6 +20,7 @@ import {
 } from '../../../../utils/sivilstatus';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import SøkerErSkilt from './SøkerErSkilt';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -107,21 +108,19 @@ const Sivilstatus: React.FC<Props> = ({
         />
       )}
 
+      {erSøkerUgift(sivilstand) && (
+        <SøkerErUgift
+          erUformeltGift={erUformeltGift}
+          settSivilstatusFelt={settSivilstatusFelt}
+          sivilstatus={sivilstatus}
+        />
+      )}
+
       {erSøkerSkilt(sivilstand) && (
-        <>
-          <SøkerErUgift
-            erUformeltGift={erUformeltGift}
-            settSivilstatusFelt={settSivilstatusFelt}
-            sivilstatus={sivilstatus}
-          />
-          <Søknadsbegrunnelse
-            sivilstatus={sivilstatus}
-            settSivilstatus={settSivilstatus}
-            settDato={settDato}
-            settDokumentasjonsbehov={settDokumentasjonsbehov}
-            settMedlemskap={settMedlemskap}
-          />
-        </>
+        <SøkerErSkilt
+          settSivilstatusFelt={settSivilstatusFelt}
+          sivilstatus={sivilstatus}
+        />
       )}
 
       {(erSøkerUgift(sivilstand) &&
