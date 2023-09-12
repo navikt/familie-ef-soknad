@@ -100,7 +100,19 @@ export const erEnMånedTilbakeITid = (dato: string): boolean => {
 
 export const nåværendeÅr = new Date().getFullYear();
 
-export const erMellomStartenAvMaiOgSluttenAvAugust = () => {
+export const erNåværendeMånedMellomMåneder = (
+  startMåned: number,
+  sluttMåned: number
+): boolean => {
   const nåværendeDato = new Date();
-  return nåværendeDato.getMonth() >= 4 && nåværendeDato.getMonth() <= 7;
+  const nåværendeMåned = nåværendeDato.getMonth() + 1;
+
+  if (sluttMåned < startMåned) {
+    return (
+      (nåværendeMåned >= startMåned && nåværendeMåned <= 12) ||
+      (nåværendeMåned >= 1 && nåværendeMåned <= sluttMåned)
+    );
+  } else {
+    return nåværendeMåned >= startMåned && nåværendeMåned <= sluttMåned;
+  }
 };
