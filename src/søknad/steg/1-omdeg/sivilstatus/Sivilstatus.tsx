@@ -106,12 +106,22 @@ const Sivilstatus: React.FC<Props> = ({
           sivilstatus={sivilstatus}
         />
       )}
-      {erSøkerUgift(sivilstand) && (
-        <SøkerErUgift
-          erUformeltGift={erUformeltGift}
-          settSivilstatusFelt={settSivilstatusFelt}
-          sivilstatus={sivilstatus}
-        />
+
+      {erSøkerSkilt(sivilstand) && (
+        <>
+          <SøkerErUgift
+            erUformeltGift={erUformeltGift}
+            settSivilstatusFelt={settSivilstatusFelt}
+            sivilstatus={sivilstatus}
+          />
+          <Søknadsbegrunnelse
+            sivilstatus={sivilstatus}
+            settSivilstatus={settSivilstatus}
+            settDato={settDato}
+            settDokumentasjonsbehov={settDokumentasjonsbehov}
+            settMedlemskap={settMedlemskap}
+          />
+        </>
       )}
 
       {(erSøkerUgift(sivilstand) &&
