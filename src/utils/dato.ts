@@ -97,3 +97,22 @@ export const erPeriodeGyldig = (periode: IPeriode | undefined): boolean => {
 export const erEnMånedTilbakeITid = (dato: string): boolean => {
   return !isAfter(strengTilDato(dato), addMonths(dagensDato, -1));
 };
+
+export const nåværendeÅr = new Date().getFullYear();
+
+export const erNåværendeMånedMellomMåneder = (
+  startMåned: number,
+  sluttMåned: number
+): boolean => {
+  const nåværendeDato = new Date();
+  const nåværendeMåned = nåværendeDato.getMonth() + 1;
+
+  if (sluttMåned < startMåned) {
+    return (
+      (nåværendeMåned >= startMåned && nåværendeMåned <= 12) ||
+      (nåværendeMåned >= 1 && nåværendeMåned <= sluttMåned)
+    );
+  } else {
+    return nåværendeMåned >= startMåned && nåværendeMåned <= sluttMåned;
+  }
+};
