@@ -17,11 +17,15 @@ import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 interface Props {
   sivilstatus: ISivilstatus;
   settSivilstatusFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
+  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
 }
 
 const SøkerErSkilt: React.FC<Props> = ({
   sivilstatus,
   settSivilstatusFelt,
+  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet,
 }: Props) => {
   const intl = useLokalIntlContext();
 
@@ -35,6 +39,12 @@ const SøkerErSkilt: React.FC<Props> = ({
 
   const harSvartJaPåUformeltGift =
     sivilstatus.erUformeltGift?.svarid === ESvar.JA;
+
+  const harSvartPåSpørsmål =
+    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
+    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
+
+  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet(harSvartPåSpørsmål);
 
   return (
     <>
