@@ -143,7 +143,7 @@
     "testcafe": "^3.1.0",
     "ts-node": "^10.9.1",
     "ts-jest": "^29.1.1",
-    "typescript": "^4.9.5",
+    "typescript": "^5.2.2",
     "util": "^0.12.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.88.2",
