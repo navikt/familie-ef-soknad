@@ -20,6 +20,7 @@ import { Alert, Panel, Heading } from '@navikt/ds-react';
 import { isIE } from 'react-device-detect';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
+import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -35,6 +36,7 @@ const Forside: React.FC = () => {
     søknad,
     settSøknad,
   } = useSkolepengerSøknad();
+  const erDagensDatoMellomMaiOgAugust = erNåværendeMånedMellomMåneder(5, 8);
 
   useMount(() => {
     if (!(kanBrukeMellomlagretSøknad && mellomlagretSkolepenger))
@@ -97,14 +99,16 @@ const Forside: React.FC = () => {
             <LocaleTekst tekst={'skolepenger.overskrift'} />
           </Heading>
 
-          <StyledAlert variant="info">
-            <Heading spacing size="small" level="3">
-              Søker du om stønad til skolepenger fra august 2023?
-            </Heading>
-            For å få stønad for nytt skoleår må du kunne dokumentere utgiftene
-            til skolepenger med faktura. Vi anbefaler derfor at du venter med å
-            søke frem til du får fakturaen.
-          </StyledAlert>
+          {erDagensDatoMellomMaiOgAugust ? (
+            <StyledAlert variant="info">
+              <Heading spacing size="small" level="3">
+                Søker du om stønad til skolepenger fra august {nåværendeÅr}?
+              </Heading>
+              For å få stønad for nytt skoleår må du kunne dokumentere utgiftene
+              til skolepenger med faktura. Vi anbefaler derfor at du venter med
+              å søke frem til du får fakturaen.
+            </StyledAlert>
+          ) : null}
 
           {kanBrukeMellomlagretSøknad && mellomlagretSkolepenger ? (
             <FortsettSøknad
