@@ -1,4 +1,5 @@
-import { ESivilstand } from '../models/steg/omDeg/sivilstatus';
+import { ESivilstand, ISivilstatus } from '../models/steg/omDeg/sivilstatus';
+import { ISpørsmål } from '../models/felles/spørsmålogsvar';
 
 export const erSøkerGift = (sivilstand?: string) =>
   sivilstand === ESivilstand.GIFT ||
@@ -29,3 +30,14 @@ export const erSøkerSkilt = (sivilstand?: string) =>
   sivilstand === ESivilstand.SKPA ||
   sivilstand === ESivilstand.SKILT ||
   sivilstand === ESivilstand.SKILT_PARTNER;
+
+export const hentValgtSvar = (
+  spørsmål: ISpørsmål,
+  sivilstatus: ISivilstatus
+) => {
+  for (const [key, value] of Object.entries(sivilstatus)) {
+    if (key === spørsmål.søknadid && value !== undefined) {
+      return value.verdi;
+    }
+  }
+};

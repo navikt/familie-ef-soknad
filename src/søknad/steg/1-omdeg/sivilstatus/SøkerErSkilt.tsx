@@ -13,59 +13,40 @@ import React from 'react';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import Show from '../../../../utils/showIf';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { hentValgtSvar } from '../../../../utils/sivilstatus';
 
 interface Props {
   sivilstatus: ISivilstatus;
   settSivilstatusFelt: (spørsmål: ISpørsmål, valgtSvar: ISvar) => void;
-  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet: React.Dispatch<
-    React.SetStateAction<boolean>
-  >;
 }
 
 const SøkerErSkilt: React.FC<Props> = ({
   sivilstatus,
   settSivilstatusFelt,
-  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet,
 }: Props) => {
   const intl = useLokalIntlContext();
-
-  const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
-    for (const [key, value] of Object.entries(sivilstatus)) {
-      if (key === spørsmål.søknadid && value !== undefined) {
-        return value.verdi;
-      }
-    }
-  };
 
   const harSvartJaPåUformeltGift =
     sivilstatus.erUformeltGift?.svarid === ESvar.JA;
 
-  const harSvartPåSpørsmål =
-    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
-    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
-
-  settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet(harSvartPåSpørsmål);
-
   return (
-    <>
-      <KomponentGruppe>
-        <JaNeiSpørsmål
-          spørsmål={erUformeltGiftSpørsmål(intl)}
-          onChange={settSivilstatusFelt}
-          valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål(intl), sivilstatus)}
-        />
-        <Show if={harSvartJaPåUformeltGift}>
-          <AlertstripeDokumentasjon>
-            <LocaleTekst
-              tekst={hentSvarAlertFraSpørsmål(
-                ESvar.JA,
-                erUformeltGiftSpørsmål(intl)
-              )}
-            />
-          </AlertstripeDokumentasjon>
-        </Show>
-      </KomponentGruppe>
-    </>
+    <KomponentGruppe>
+      <JaNeiSpørsmål
+        spørsmål={erUformeltGiftSpørsmål(intl)}
+        onChange={settSivilstatusFelt}
+        valgtSvar={hentValgtSvar(erUformeltGiftSpørsmål(intl), sivilstatus)}
+      />
+      <Show if={harSvartJaPåUformeltGift}>
+        <AlertstripeDokumentasjon>
+          <LocaleTekst
+            tekst={hentSvarAlertFraSpørsmål(
+              ESvar.JA,
+              erUformeltGiftSpørsmål(intl)
+            )}
+          />
+        </AlertstripeDokumentasjon>
+      </Show>
+    </KomponentGruppe>
   );
 };
 

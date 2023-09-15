@@ -4,7 +4,11 @@ import SøkerErGift from './SøkerErGift';
 import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   ESivilstatusSøknadid,
@@ -51,10 +55,9 @@ const Sivilstatus: React.FC<Props> = ({
     datoSøktSeparasjon,
   } = sivilstatus;
 
-  const [
-    harValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet,
-    settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet,
-  ] = useState(false);
+  const harSvartPåGiftUtenRegistrertSpørsmål =
+    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
+    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -125,9 +128,6 @@ const Sivilstatus: React.FC<Props> = ({
         <SøkerErSkilt
           settSivilstatusFelt={settSivilstatusFelt}
           sivilstatus={sivilstatus}
-          settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet={
-            settHarValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet
-          }
         />
       )}
 
@@ -135,8 +135,7 @@ const Sivilstatus: React.FC<Props> = ({
         erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
       (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
       erSøkerSeparert(sivilstand) ||
-      (erSøkerSkilt(sivilstand) &&
-        harValgtSvartPåGiftUtenAtDetErRegistrertSpørsmålet) ||
+      (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
       erSøkerEnke(sivilstand) ? (
         <Søknadsbegrunnelse
           sivilstatus={sivilstatus}
