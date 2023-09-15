@@ -74,7 +74,11 @@ export const erTidligereUtdanningFerdigUtfylt = (
 export const erUnderUtdanningFerdigUtfylt = (
   underUtdanning: IUnderUtdanning
 ): boolean => {
-  return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
+  if (underUtdanning.heltidEllerDeltid?.verdi === 'Deltid') {
+    return erDeltidUtdanningOgSkalStudereUnderHundreProsent(underUtdanning);
+  } else {
+    return harValgtSvar(underUtdanning?.målMedUtdanning?.verdi);
+  }
 };
 
 export const erDetaljertUtdanningFerdigUtfylt = (
@@ -84,6 +88,16 @@ export const erDetaljertUtdanningFerdigUtfylt = (
     harValgtSvar(detaljertUtdanning.semesteravgift?.verdi) ||
     harValgtSvar(detaljertUtdanning.studieavgift?.verdi) ||
     harValgtSvar(detaljertUtdanning.eksamensgebyr?.verdi)
+  );
+};
+
+export const erDeltidUtdanningOgSkalStudereUnderHundreProsent = (
+  detaljertUtdanning: IDetaljertUtdanning
+): boolean => {
+  return (
+    detaljertUtdanning.heltidEllerDeltid?.verdi === 'Deltid' &&
+    Number(detaljertUtdanning.arbeidsmengde?.verdi) < 100 &&
+    harValgtSvar(detaljertUtdanning?.målMedUtdanning?.verdi)
   );
 };
 
