@@ -37,7 +37,7 @@
     "@navikt/land-verktoy": "3.2.11",
     "@portabletext/react": "^3.0.4",
     "@sanity/client": "^6.2.0",
-    "@sentry/browser": "^7.61.0",
+    "@sentry/browser": "^7.69.0",
     "@types/amplitude-js": "^8.16.2",
     "@types/body-parser": "^1.19.2",
     "@types/classnames": "^2.3.1",
