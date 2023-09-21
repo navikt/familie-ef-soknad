@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
 import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
-import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
+import {
+  ESvar,
+  ISpørsmål,
+  ISvar,
+} from '../../../../models/felles/spørsmålogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   ESivilstatusSøknadid,
@@ -20,6 +24,7 @@ import {
 } from '../../../../utils/sivilstatus';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import SøkerErSkilt from './SøkerErSkilt';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -49,6 +54,10 @@ const Sivilstatus: React.FC<Props> = ({
     datoFlyttetFraHverandre,
     datoSøktSeparasjon,
   } = sivilstatus;
+
+  const harSvartPåGiftUtenRegistrertSpørsmål =
+    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
+    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -106,9 +115,17 @@ const Sivilstatus: React.FC<Props> = ({
           sivilstatus={sivilstatus}
         />
       )}
+
       {erSøkerUgift(sivilstand) && (
         <SøkerErUgift
           erUformeltGift={erUformeltGift}
+          settSivilstatusFelt={settSivilstatusFelt}
+          sivilstatus={sivilstatus}
+        />
+      )}
+
+      {erSøkerSkilt(sivilstand) && (
+        <SøkerErSkilt
           settSivilstatusFelt={settSivilstatusFelt}
           sivilstatus={sivilstatus}
         />
@@ -118,7 +135,7 @@ const Sivilstatus: React.FC<Props> = ({
         erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
       (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
       erSøkerSeparert(sivilstand) ||
-      erSøkerSkilt(sivilstand) ||
+      (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
       erSøkerEnke(sivilstand) ? (
         <Søknadsbegrunnelse
           sivilstatus={sivilstatus}
