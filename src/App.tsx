@@ -18,11 +18,8 @@ import LocaleTekst from './language/LocaleTekst';
 import { logAdressesperre } from './utils/amplitude';
 import { ESkjemanavn } from './utils/skjemanavn';
 import { useLokalIntlContext } from './context/LokalIntlContext';
-import { Alert, Loader, Modal } from '@navikt/ds-react';
+import { Alert, Loader } from '@navikt/ds-react';
 import { IBarn } from './models/steg/barn';
-
-// @ts-ignore
-Modal.setAppElement(document.getElementById('modal-a11y-wrapper'));
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);

@@ -6,13 +6,6 @@ const ModalContainer = styled(Modal)<{ maxWidth?: number }>`
   max-width: ${(props) => (props.maxWidth ? `${props.maxWidth}rem` : '40rem')};
 `;
 
-const Tittel = styled(Heading)`
-  margin-top: 0.5rem;
-  margin-right: 3.5rem;
-  margin-left: 2rem;
-  text-align: center;
-`;
-
 const Innhold = styled.div`
   margin-right: 2rem;
   margin-left: 2rem;
@@ -65,15 +58,12 @@ export const ModalWrapper: React.FC<ModalProps> = ({
   return (
     <ModalContainer
       open={visModal}
-      closeButton={!!onClose}
       onClose={onClose ? () => onClose() : () => null}
       maxWidth={maxWidth}
       aria-label={ariaLabel ? ariaLabel : tittel}
+      header={{ heading: tittel, closeButton: !!onClose }}
     >
-      <Modal.Content>
-        <Tittel spacing={true} size={'medium'} level={'3'}>
-          {tittel}
-        </Tittel>
+      <Modal.Body>
         <Innhold>{children}</Innhold>
         {aksjonsknapper && (
           <ButtonContainer marginTop={aksjonsknapper.marginTop}>
@@ -93,7 +83,7 @@ export const ModalWrapper: React.FC<ModalProps> = ({
             </ModalKnapp>
           </ButtonContainer>
         )}
-      </Modal.Content>
+      </Modal.Body>
     </ModalContainer>
   );
 };
