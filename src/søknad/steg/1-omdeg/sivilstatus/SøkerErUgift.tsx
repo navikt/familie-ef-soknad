@@ -17,6 +17,7 @@ import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import Show from '../../../../utils/showIf';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { ISpørsmålBooleanFelt } from '../../../../models/søknad/søknadsfelter';
+import { hentValgtSvar } from '../../../../utils/sivilstatus';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -30,13 +31,6 @@ const SøkerErUgift: React.FC<Props> = ({
   erUformeltGift,
 }: Props) => {
   const intl = useLokalIntlContext();
-  const hentValgtSvar = (spørsmål: ISpørsmål, sivilstatus: ISivilstatus) => {
-    for (const [key, value] of Object.entries(sivilstatus)) {
-      if (key === spørsmål.søknadid && value !== undefined) {
-        return value.verdi;
-      }
-    }
-  };
 
   const harSvartJaPåUformeltGift =
     sivilstatus.erUformeltGift?.svarid === ESvar.JA;

@@ -215,19 +215,21 @@ const Filopplaster: React.FC<Props> = ({
       />
 
       <FilopplastingFelt>
-        <ModalWrapper
-          tittel="Noe har gått galt"
-          visModal={åpenModal}
-          onClose={() => lukkModal()}
-        >
-          <FeilmeldingModalInnhold>
-            {feilmeldinger.map((feilmelding) => (
-              <Alert size="small" key={feilmelding} variant="error" inline>
-                {feilmelding}
-              </Alert>
-            ))}
-          </FeilmeldingModalInnhold>
-        </ModalWrapper>
+        {åpenModal && (
+          <ModalWrapper
+            tittel="Noe har gått galt"
+            visModal={åpenModal}
+            onClose={() => lukkModal()}
+          >
+            <FeilmeldingModalInnhold>
+              {feilmeldinger.map((feilmelding) => (
+                <Alert size="small" key={feilmelding} variant="error" inline>
+                  {feilmelding}
+                </Alert>
+              ))}
+            </FeilmeldingModalInnhold>
+          </ModalWrapper>
+        )}
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           <IkonOgTekstWrapper>
