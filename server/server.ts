@@ -2,7 +2,7 @@ import express from 'express';
 
 import routes from './routes';
 import cookieParser from 'cookie-parser';
-import {cspString} from '../src/csp';
+import {cspString} from './csp';
 const app = express();
 
 app.use((_req, res, next) => {
