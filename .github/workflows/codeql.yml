@@ -1,5 +1,6 @@
 name: CodeQL
 on:
+  push:
   workflow_dispatch:
   schedule:
     - cron: '0 0 * * 3'
@@ -22,18 +23,26 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: yarn
+          cache: npm
           registry-url: "https://npm.pkg.github.com"
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v2
         with:
           languages: ${{ matrix.language }}
-      - name: Yarn install
-        run: yarn --prefer-offline --frozen-lockfile
+      - name: Npm install and build
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-      - name: Yarn build
-        run: yarn build
+        run: |
+          npm ci
+          npm run test-ci
+          npm run build
+      - name: Npm build server
+        working-directory: ./server
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: |
+          npm ci
+          npm run build
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v2
         with:
