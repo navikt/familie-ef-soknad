@@ -13,7 +13,6 @@ app.use((_req, res, next) => {
   );
   res.header('X-Content-Type-Options', 'nosniff');
   res.header('X-Frame-Options', 'DENY');
-  console.log(res.getHeaders());
   next();
 });
 
