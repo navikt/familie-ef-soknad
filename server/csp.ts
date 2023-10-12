@@ -8,7 +8,6 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
             "'unsafe-inline'", // Må fjernes når de har gått bort fra å bruke GTM i nav-dekoratøren. https://nav-it.slack.com/archives/CAFRFDJMN/p1662980327936219?thread_ts=1662547757.895479&cid=CAFRFDJMN. Litt av poenget med CSP header faller bort når vi er nødt til å bruke 'unsafe-inline' så denne burde fjernes så fort det er mulig.
             "'unsafe-eval'", // vergic
             '*.nav.no',
-            dekoratorenUrl + '/client.js',
             '*.psplugin.com',
             '*.taskanalytics.com',
             '*.hotjar.com',
@@ -17,7 +16,6 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         'style-src': [
             "'self'",
             "'unsafe-inline'",
-            dekoratorenUrl + '/css/client.css',
             '*.nav.no',
             '*.psplugin.com',
         ],
