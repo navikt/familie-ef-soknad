@@ -25,10 +25,9 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         'connect-src': [
             "'self'",
             '*.nav.no',
-            'by26nl8j.apicdn.sanity.io',
+            'm3pb011r.apicdn.sanity.io',
             'amplitude.nav.no',
             '*.psplugin.com',
-            'familie-dokument.dev.nav.no',
             '*.hotjar.com',
             '*.hotjar.io',
             '*.boost.ai',
