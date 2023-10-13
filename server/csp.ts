@@ -5,6 +5,7 @@ export const cspMap = (): Record<string, string[]> => {
         // Hvor vi kan hente .js filer fra.
         'script-src': [
             "'self'",
+            "'unsafe-inline'",
             "'unsafe-eval'", // vergic
             '*.nav.no',
             '*.psplugin.com',
