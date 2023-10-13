@@ -1,5 +1,5 @@
 // CSP eller Content-Security-Policy er en HTTP-Header som lar oss spesifisere hvor appen kan kjøre REST-kall mot og hvor den kan hente diverse innhold fra (fonter, bilder, javascript, stylesheets mm).
-export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
+export const cspMap = (): Record<string, string[]> => {
     return {
         'default-src': ["'self'", '*.nav.no'],
         // Hvor vi kan hente .js filer fra.
@@ -13,6 +13,7 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
         ],
         // Hvor vi kan hente .css filer fra.
         'style-src': [
+            "'self'",
             "'self'",
             "'unsafe-inline'",
             '*.nav.no',
@@ -53,8 +54,8 @@ export const cspMap = (dekoratorenUrl: string): Record<string, string[]> => {
     };
 };
 
-export const cspString = (dekoratorenUrl: string) => {
-    return Object.entries(cspMap(dekoratorenUrl))
+export const cspString = () => {
+    return Object.entries(cspMap())
         .map((entry) => `${entry[0]} ${entry[1].join(' ')}`)
         .join('; ');
 };

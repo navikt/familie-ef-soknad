@@ -9,7 +9,7 @@ app.use((_req, res, next) => {
 
   res.header(
       'Content-Security-Policy',
-      cspString(process.env.DEKORATOREN_URL ?? 'https://www.nav.no/dekoratoren')
+      cspString()
   );
   res.header('X-Content-Type-Options', 'nosniff');
   res.header('X-Frame-Options', 'DENY');
