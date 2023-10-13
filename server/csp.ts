@@ -14,7 +14,6 @@ export const cspMap = (): Record<string, string[]> => {
         // Hvor vi kan hente .css filer fra.
         'style-src': [
             "'self'",
-            "'self'",
             "'unsafe-inline'",
             '*.nav.no',
             '*.psplugin.com',
