@@ -5,7 +5,7 @@ import { erGyldigDato, strengTilDato } from '../../utils/dato';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import LesMerTekst from '../LesMerTekst';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import ÅrMånedVelger from './ÅrMånedvelger';
 import {

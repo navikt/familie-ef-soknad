@@ -1,4 +1,4 @@
-import styled, { CSSProp } from 'styled-components/macro';
+import styled, { CSSProp } from 'styled-components';
 import { TextField } from '@navikt/ds-react';
 
 type bredde = 'fullbredde' | 'XXL' | 'XL' | 'L' | 'M' | 'S' | 'XS' | 'XXS';
@@ -7,11 +7,11 @@ interface Props {
   bredde?: bredde;
 }
 
-export const TextFieldMedBredde = styled(TextField)<Props>(
-  (props: Props): CSSProp => {
-    return props.bredde ? breddeTilStyle[props.bredde] : {};
-  }
-);
+export const TextFieldMedBredde = styled(TextField)<Props>((
+  props: Props
+): CSSProp => {
+  return props.bredde ? breddeTilStyle[props.bredde] : {};
+});
 
 const breddeTilStyle: Record<bredde, CSSProp> = {
   L: {

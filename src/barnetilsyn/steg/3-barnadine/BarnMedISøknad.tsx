@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { Checkbox } from '@navikt/ds-react';
 
 const StyledCheckbox = styled(Checkbox)`

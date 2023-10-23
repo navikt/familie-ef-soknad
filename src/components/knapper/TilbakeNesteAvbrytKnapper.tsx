@@ -3,7 +3,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { IRoute } from '../../models/routes';
 import { useLocation } from 'react-router';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@navikt/ds-react';
 

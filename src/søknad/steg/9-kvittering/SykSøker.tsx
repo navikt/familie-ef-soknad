@@ -2,7 +2,7 @@ import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, Label, Link } from '@navikt/ds-react';

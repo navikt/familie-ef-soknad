@@ -7,7 +7,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { useSkjema } from '../SkjemaContext';
 import Feilside from '../../components/feil/Feilside';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';

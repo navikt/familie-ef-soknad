@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import LesMerTekst from '../LesMerTekst';
 import { SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import Show from '../../utils/showIf';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
