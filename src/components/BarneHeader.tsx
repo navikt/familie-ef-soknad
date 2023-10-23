@@ -1,7 +1,7 @@
 import React from 'react';
 import barn1 from '../assets/barn1.svg';
 import ufødtIkon from '../assets/ufodt.svg';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { IBarn } from '../models/steg/barn';
 import { førsteBokstavStor } from '../utils/språk';
 import { hentBarnetsNavnEllerBeskrivelse } from '../utils/barn';

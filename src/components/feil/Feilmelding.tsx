@@ -1,6 +1,6 @@
 import LocaleTekst from '../../language/LocaleTekst';
 import React, { FC } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const StyledFeilmelding = styled.span`
   color: #ba3a26;

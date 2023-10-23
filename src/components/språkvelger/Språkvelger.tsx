@@ -1,7 +1,7 @@
 import * as React from 'react';
 import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { SpråkSelectMenu } from './SpråkSelectMenu';
 import { Button as AriaButton, Wrapper } from 'react-aria-menubutton';
 import { useSpråkContext } from '../../context/SpråkContext';
