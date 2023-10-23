@@ -27,6 +27,7 @@ import { hvaErDinArbeidssituasjonSpm } from '../søknad/steg/5-aktivitet/Aktivit
 import { useSpråkContext } from './SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from './LokalIntlContext';
+import { LocaleType } from '../language/typer';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -83,7 +84,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
       mellomlagretOvergangsstønad?.locale &&
       mellomlagretOvergangsstønad?.locale !== locale
     ) {
-      setLocale(mellomlagretOvergangsstønad.locale);
+      setLocale(mellomlagretOvergangsstønad.locale as LocaleType);
     }
   }, [mellomlagretOvergangsstønad, locale, setLocale]);
 
@@ -212,7 +213,9 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
 
   const fjernBarnFraSøknad = (id: string) => {
     settSøknad((prevSoknad: ISøknad) => {
-      const nyBarneListe = prevSoknad.person.barn.filter((b: IBarn) => b.id !== id);
+      const nyBarneListe = prevSoknad.person.barn.filter(
+        (b: IBarn) => b.id !== id
+      );
       return {
         ...prevSoknad,
         person: { ...søknad.person, barn: nyBarneListe },

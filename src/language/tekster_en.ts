@@ -391,7 +391,7 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
   'arbeidssituasjon.spm.hjelpetekst-innhold':
-  'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity to qualify. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
+    'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity to qualify. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -908,4 +908,43 @@ export default {
   'skjema.takk': 'Thank you',
   'skjema.alert.mottatt':
     'Information about you as a job seeker has been received',
+
+  'forside.overgangsstønad.erDuEnsligMorEllerFar':
+    'If you are a single parent and have children under the age of 8 years, transitional benefit will ensure you have income for up to three years. In some cases, this period can be extended.\n\nYour income determines how much benefit you are entitled to.',
+  'forside.overgangsstønad.sammeSøknad':
+    'You use the same application whether you are applying for the first time or seeking an extension or an increase in your benefit period.',
+  'forside.overgangsstønad.merOmOvergangsstønad':
+    '<a className="lenkte-tekst" href="https://www.nav.no/overgangsstonad-enslig/en">Transitional Benefit in more detail</a>',
+  'forside.overgangsstønad.overskrift.riktigeOpplysninger':
+    'It is important that the information you give us is correct',
+  'forside.overgangsstønad.riktigeOpplysninger':
+    'In order for us to be able to process your application, you must provide us with the correct information.',
+  'forside.overgangsstønad.meldeEndringer':
+    'If you receive transitional benefit, you must inform us of any major changes in your life, such as changes in your living and family situation, or changes in your work or education. The same applies if there are any changes in your income.',
+  'forside.overgangsstønad.overskrift.sendeDokumentasjon':
+    'You may need to submit documentation',
+  'forside.overgangsstønad.beskjedDokumentere':
+    'You will be notified as you fill in the application if you need to provide documentation of any of the information you have provided. In some cases, we may also need more information. We will let you know if we do.',
+  'forside.overgangsstønad.merInformasjon': '',
+  'forside.overgangsstønad.oversiktDokumentasjon':
+    '<a href="https://www.nav.no/overgangsstonad-enslig/en#apply">Overview of what must be documented</a>',
+  'forside.overgangsstønad.overskrift.henteInformasjon':
+    'We will collect information about you',
+  'forside.overgangsstønad.henteInformasjon':
+    'In addition to the information you provide in the application, we collect information about you in order to determine whether you are entitled to benefit.',
+  'forside.overgangsstønad.viHenter': 'We collect:',
+  'forside.overgangsstønad.henterPunktliste':
+    '<ul><li><strong>personal information</strong> about you, your child(ren) and the other parent of your children from the National Registry</li><li><strong>ininformation about your income</strong> from the Norwegian Tax Administration</li><li><strong>information about your work situation</strong> from the State Register of Employers and Employees</li></ul>',
+  'forside.overgangsstønad.tidligereOpplysninger':
+    'We may also use information you have given us in the past, or information you have given us in other contexts, if this is relevant and necessary.',
+  'forside.overgangsstønad.personopplysningeneDine':
+    '<span><a href="https://www.nav.no/personvernerklaering/en">About how we process your personal data</a></span>',
+  'forside.overgangsstønad.overskrift.slikSøkerDu': 'How to apply',
+  'forside.overgangsstønad.slikSøkerDu':
+    'We will save your application until the end of tomorrow. This means you can take breaks while filling it in. You can also delete information during this period.',
+  'forside.overgangsstønad.viLagrerSøknadenDin': '',
+  'forside.overgangsstønad.manglerDuDokumentasjon':
+    'If you do not have all the documentation you need, you can submit it later.',
+  'forside.overgangsstønad.disclaimerTekst':
+    'I am aware that I may lose my right to transitional benefit if I have not provided the correct information. I am also aware that I will have to pay back any money I receive that I am not entitled to and that I have received because I have failed to provide information or have provided incorrect information.',
 };

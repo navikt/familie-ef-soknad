@@ -379,8 +379,7 @@ export default {
   'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'Grunnen til at vi spør om dette',
-  'arbeidssituasjon.spm.hjelpetekst-innhold':
-    `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
+  'arbeidssituasjon.spm.hjelpetekst-innhold': `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -869,4 +868,45 @@ export default {
   'skjema.oppsummering.omdeg': 'Om deg som arbeidssøker',
   'skjema.takk': 'Takk',
   'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
+
+  'forside.overgangsstønad.erDuEnsligMorEllerFar':
+    'Er du enslig mor eller far og har barn under 8 år, vil overgangsstønaden sikre deg inntekt i inntil 3 år. I noen tilfeller kan vi forlenge denne perioden. Inntekten din avgjør hvor mye du harrett til i stønad.',
+  'forside.overgangsstønad.sammeSøknad':
+    'Du bruker samme søknad både hvis du søker for første gang og hvis du søker forlengelse eller utvidelse av stønadstiden din.',
+  'forside.overgangsstønad.merOmOvergangsstønad':
+    '<a className="lenkte-tekst" href="https://www.nav.no/overgangsstonad-enslig">Mer om overgangsstønad</a>',
+  'forside.overgangsstønad.overskrift.riktigeOpplysninger':
+    'Det er viktig at du gir oss riktige opplysninger',
+  'forside.overgangsstønad.riktigeOpplysninger':
+    'For at vi skal kunne behandle søknaden din, må du gi oss riktige opplysninger.',
+  'forside.overgangsstønad.meldeEndringer':
+    'Hvis du får overgangsstønad, må du melde fra når det skjer viktige endringer i livet ditt, for eksempel bo- og familiesituasjonen eller arbeid og utdanning. Det samme gjelder dersom inntekten din endrer seg.',
+  'forside.overgangsstønad.overskrift.sendeDokumentasjon':
+    'Det kan hende du må sende inn dokumentasjon',
+  'forside.overgangsstønad.beskjedDokumentere':
+    'Du får beskjed underveis i søknaden hvis du må dokumentere noen av opplysningene dine. Dokumentasjon du har sendt inn tidligere trenger du ikke sende på nytt.',
+  'forside.overgangsstønad.merInformasjon':
+    'Noen ganger kan vi også trenge mer informasjon. Da gir vi deg beskjed om dette.',
+  'forside.overgangsstønad.oversiktDokumentasjon':
+    '<a href="https://www.nav.no/overgangsstonad-enslig#soke"> Oversikt over hva som krever dokumentasjon </a>',
+  'forside.overgangsstønad.overskrift.henteInformasjon':
+    'Vi vil hente informasjon om deg',
+  'forside.overgangsstønad.henteInformasjon':
+    'I tillegg til den informasjonen du oppgir i søknaden, henter vi inn informasjon om deg for å avgjøre om du har rett til stønad.',
+  'forside.overgangsstønad.viHenter': 'Vi henter:',
+  'forside.overgangsstønad.henterPunktliste':
+    '<ul><li><strong>personinformasjon</strong> om deg, barnet/barna dine og den andre forelderen til barna dine fra Folkeregisteret</li><li><strong>inntektsinformasjon</strong> fra Skatteetaten</li><li><strong>opplysninger om arbeidsforholdet ditt</strong> fra arbeidsgiver- og arbeidstakerregisteret</li></ul>',
+  'forside.overgangsstønad.tidligereOpplysninger':
+    'Vi kan også bruke tidligere opplysninger du har gitt oss, eller opplysninger du gir oss i andre sammenhenger, hvis det er relevant og nødvendig.',
+  'forside.overgangsstønad.personopplysningeneDine':
+    '<span><a href="https://www.nav.no/personvernerklaering">Slik behandler vi personopplysningene dine</a></span>',
+  'forside.overgangsstønad.overskrift.slikSøkerDu': 'Slik søker du',
+  'forside.overgangsstønad.slikSøkerDu':
+    'I søknaden stiller vi kun spørsmål som er relevante i din situasjon. Antall spørsmål og tiden det tar å søke vil derfor kunne variere. De fleste bruker 10 minutter.',
+  'forside.overgangsstønad.viLagrerSøknadenDin':
+    'Vi lagrer søknaden din ut morgendagen. Derfor kan du ta pauser når du fyller ut. Du kan også slette i denne perioden.',
+  'forside.overgangsstønad.manglerDuDokumentasjon':
+    'Mangler du dokumentasjon, kan du ettersende dette.',
+  'forside.overgangsstønad.disclaimerTekst':
+    'Jeg er klar over at jeg kan miste retten til overgangsstønad dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
 };

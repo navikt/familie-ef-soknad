@@ -20,6 +20,7 @@ import {
 import styled from 'styled-components';
 import { PortableText } from '@portabletext/react';
 import { PortableTextReactComponents } from '@portabletext/react/src/types';
+import { Blokk, Seksjon } from '../../utils/typer';
 
 const StyledConfirmationPanel = styled(ConfirmationPanel)`
   margin-bottom: 2rem;
@@ -30,7 +31,7 @@ const DisclaimerTittel = styled(Heading)`
 `;
 
 interface InnholdProps {
-  seksjon?: any;
+  seksjon?: Seksjon;
   disclaimer?: any;
   person: IPerson;
   intl: LokalIntlShape;
@@ -75,7 +76,7 @@ const Forsideinformasjon: React.FC<InnholdProps> = ({
         </Alert>
       )}
       {seksjon &&
-        seksjon.map((blokk: any, index: number) => {
+        seksjon.map((blokk: Blokk, index: number) => {
           return blokk._type === 'dokumentasjonskrav' ? (
             <div className="seksjon" key={index}>
               <Accordion>

@@ -1,8 +1,6 @@
 import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
-import { useSpråkContext } from '../context/SpråkContext';
 import { useSøknad } from '../context/SøknadContext';
-import Forsideinformasjon from '../søknad/forside/Forsideinformasjon';
 import { hentBeskjedMedNavn } from '../utils/språk';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
@@ -12,8 +10,6 @@ import {
   ERouteOvergangsstønad,
   RoutesOvergangsstonad,
 } from './routing/routesOvergangsstonad';
-import { useForsideInnhold } from '../utils/hooks';
-import { ForsideType } from '../models/søknad/stønadstyper';
 import { hentPath } from '../utils/routing';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
@@ -22,6 +18,7 @@ import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
+import { OvergangsstønadInformasjon } from './OvergangsstønadInformasjon';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -41,8 +38,6 @@ const Forside: React.FC = () => {
     søknad,
     settSøknad,
   } = useSøknad();
-  const [locale] = useSpråkContext();
-  const forside = useForsideInnhold(ForsideType.overgangsstønad);
 
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({
@@ -50,9 +45,6 @@ const Forside: React.FC = () => {
       harBekreftet: bekreftelse,
     });
   };
-
-  const disclaimer = forside['disclaimer_' + locale];
-  const seksjon = forside['seksjon_' + locale];
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretOvergangsstønad !== undefined &&
@@ -104,9 +96,7 @@ const Forside: React.FC = () => {
             />
           ) : (
             alder > 17 && (
-              <Forsideinformasjon
-                seksjon={seksjon}
-                disclaimer={disclaimer}
+              <OvergangsstønadInformasjon
                 person={person}
                 intl={intl}
                 harBekreftet={søknad.harBekreftet}
