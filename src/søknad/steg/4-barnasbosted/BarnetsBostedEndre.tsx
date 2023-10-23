@@ -28,7 +28,7 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
 
 const AlertMedTopMargin = styled(Alert)`

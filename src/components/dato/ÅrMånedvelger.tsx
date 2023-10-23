@@ -11,7 +11,7 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
 import { DatoBegrensning, StyledLabel } from './Datovelger';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import KalenderKnapp from './KalenderKnapp';
 import { addYears, subYears, addMonths } from 'date-fns';
 

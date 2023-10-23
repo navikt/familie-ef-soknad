@@ -6,7 +6,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../language/FormattedHtmlMessage';

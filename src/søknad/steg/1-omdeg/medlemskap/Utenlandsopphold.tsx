@@ -10,7 +10,7 @@ import {
 } from '../../../../models/steg/omDeg/medlemskap';
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';

@@ -2,7 +2,7 @@ import React, { SyntheticEvent } from 'react';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LesMerTekst from '../LesMerTekst';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const StyledJaNeiSpørsmål = styled.div`
   .radioknapp {

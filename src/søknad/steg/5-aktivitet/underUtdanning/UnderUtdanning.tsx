@@ -28,7 +28,7 @@ import { lagTomUnderUtdanning } from '../../../../helpers/steg/utdanning';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import Studiekostnader from './Studiekostnader';
 import { Stønadstype } from '../../../../models/søknad/stønadstyper';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { Heading } from '@navikt/ds-react';

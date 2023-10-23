@@ -2,7 +2,7 @@ import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 
 const StyledBeskrivelse = styled.div`

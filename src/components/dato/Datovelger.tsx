@@ -6,7 +6,7 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { dagensDato, erGyldigDato, formatIsoDate } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { DatepickerLimitations } from 'nav-datovelger/lib/types';
 import Feilmelding from '../feil/Feilmelding';
 import { erDatoInnaforBegrensinger } from './utils';

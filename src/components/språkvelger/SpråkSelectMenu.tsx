@@ -4,7 +4,7 @@ import { Menu, MenuItem } from 'react-aria-menubutton';
 import EngelskFlaggSVG from '../../assets/EngelskFlaggSVG';
 import NorskFlaggSVG from '../../assets/NorskFlaggSVG';
 import { FC } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { StyledTekst, SVGFlagg } from './Språkvelger';
 import { AGray400, AOrange300 } from '@navikt/ds-tokens/dist/tokens';
 
