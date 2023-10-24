@@ -6,11 +6,6 @@ import FortsettSøknad from '../søknad/forside/FortsettSøknad';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import Environment from '../Environment';
 import { isIE } from 'react-device-detect';
-import {
-  ERouteOvergangsstønad,
-  RoutesOvergangsstonad,
-} from './routing/routesOvergangsstonad';
-import { hentPath } from '../utils/routing';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount } from '../utils/hooks';
@@ -98,15 +93,8 @@ const Forside: React.FC = () => {
             alder > 17 && (
               <OvergangsstønadInformasjon
                 person={person}
-                intl={intl}
                 harBekreftet={søknad.harBekreftet}
                 settBekreftelse={settBekreftelse}
-                nesteSide={
-                  hentPath(
-                    RoutesOvergangsstonad,
-                    ERouteOvergangsstønad.OmDeg
-                  ) || ''
-                }
               />
             )
           )}

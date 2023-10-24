@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { hentBeskjedMedNavn } from '../../utils/språk';
 import { hentTekst } from '../../utils/søknad';
 import React from 'react';
-import { LokalIntlShape } from '../../language/typer';
 import { IPerson } from '../../models/søknad/person';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledConfirmationPanel = styled(ConfirmationPanel)`
   margin-bottom: 2rem;
@@ -19,8 +19,8 @@ export const DisclaimerBoks: React.FC<{
   tekst: string;
   harBekreftet: boolean;
   settBekreftelse: (bekreftet: boolean) => void;
-  intl: LokalIntlShape;
-}> = ({ person, tekst, harBekreftet, settBekreftelse, intl }) => {
+}> = ({ person, tekst, harBekreftet, settBekreftelse }) => {
+  const intl = useLokalIntlContext();
   return (
     <>
       <DisclaimerTittel level="2" size="small">

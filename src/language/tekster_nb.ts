@@ -909,4 +909,49 @@ export default {
     'Mangler du dokumentasjon, kan du ettersende dette.',
   'forside.overgangsstønad.disclaimerTekst':
     'Jeg er klar over at jeg kan miste retten til overgangsstønad dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+
+  'forside.barnetilsyn.info':
+    'Stønaden dekker deler av utgiftene til barnepass, når du er enslig mor eller far som er alene om omsorgen for barnet ditt og er i arbeid.',
+  'forside.barnetilsyn.fåStønadSkoleår':
+    'Du kan få stønaden til barnet er ferdig med 4. skoleår. I noen tilfeller kan du få stønad etter at barnet er ferdig med 4. skoleår.',
+  'forside.barnetilsyn.merOmStønad':
+    '<a className="lenkte-tekst" href="https://www.nav.no/barnetilsyn-enslig">Mer om stønad til barnetilsyn</a>',
+  'forside.barnetilsyn.arbeidssøkerUtdanning':
+    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn.</a>',
+  'forside.barnetilsyn.overskrift.riktigeOpplysninger':
+    'Det er viktig at du gir oss riktige opplysninger',
+  'forside.barnetilsyn.riktigeOpplysninger':
+    'For at vi skal kunne behandle søknaden din, må du gi oss riktige opplysninger.',
+  'forside.barnetilsyn.meldeEndringer':
+    'Hvis du får stønad til barnetilsyn, må du melde fra når det skjer viktige endringer i livet ditt, for eksempel bo-og familiesituasjonen eller arbeidssituasjonen din. Det samme gjelder dersom utgiftene dine til barnepass endrer seg eller inntekten din endrer seg.',
+  'forside.barnetilsyn.overskrift.sendeDokumentasjon':
+    'Det kan hende du må sende inn dokumentasjon',
+  'forside.barnetilsyn.beskjedDokumentere':
+    'Du får beskjed underveis i søknaden hvis du må dokumentere noen av opplysningene dine. Dokumentasjon du har sendt inn tidligere trenger du ikke sende på nytt.',
+  'forside.barnetilsyn.merInformasjon':
+    'Noen ganger kan vi også trenge mer informasjon. Da gir vi deg beskjed om dette.',
+  'forside.barnetilsyn.oversiktDokumentasjon':
+    '<a href="https://www.nav.no/barnetilsyn-enslig"> Oversikt over hva som krever dokumentasjon </a>',
+  'forside.barnetilsyn.overskrift.henteInformasjon':
+    'Vi vil hente informasjon om deg',
+  'forside.barnetilsyn.henteInformasjon':
+    'I tillegg til den informasjonen du oppgir i søknaden, henter vi inn informasjon om deg for å avgjøre om du har rett til stønad.',
+  'forside.barnetilsyn.viHenter': 'Vi henter:',
+  'forside.barnetilsyn.henterPunktliste':
+    '<ul><li><strong>personinformasjon</strong> om deg, barnet/barna dine og den andre forelderen til barna dine fra Folkeregisteret</li><li><strong>inntektsinformasjon</strong> fra Skatteetaten</li><li><strong>opplysninger om arbeidsforholdet ditt</strong> fra arbeidsgiver- og arbeidstakerregisteret</li></ul>',
+  'forside.barnetilsyn.tidligereOpplysninger':
+    'Vi kan også bruke tidligere opplysninger du har gitt oss, eller opplysninger du gir oss i andre sammenhenger, hvis det er relevant og nødvendig.',
+  'forside.barnetilsyn.personopplysningeneDine':
+    '<span><a href="https://www.nav.no/personvernerklaering">Slik behandler vi personopplysningene dine</a></span>',
+  'forside.barnetilsyn.overskrift.slikSøkerDu': 'Slik søker du',
+  'forside.barnetilsyn.slikSøkerDu':
+    'Du kan søke så snart du har fått faktura fra barnepassordningen. Søker du for et nytt barnehage- eller SFO-år, kan du søke så snart du har fått faktura for den første måneden i det nye året.',
+  'forside.barnetilsyn.slikSøkerDu2':
+    'I søknaden stiller vi kun spørsmål som er relevante i din situasjon. Antall spørsmål og tiden det tar å søke vil derfor kunne variere. De fleste bruker 10 minutter.',
+  'forside.barnetilsyn.slikSøkerDu3':
+    'Vi lagrer søknaden din ut morgendagen. Derfor kan du ta pauser når du fyller ut. Du kan også slette i denne perioden.',
+  'forside.barnetilsyn.slikSøkerDu4':
+    'Mangler du dokumentasjon, kan du ettersende dette.',
+  'forside.barnetilsyn.disclaimerTekst':
+    'Jeg er klar over at jeg kan miste retten til stønad til barnetilsyn dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
 };

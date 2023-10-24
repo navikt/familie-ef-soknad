@@ -1,39 +1,28 @@
-import { BodyShort, Heading } from '@navikt/ds-react';
-import styled from 'styled-components';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
-import { LokalIntlShape } from '../language/typer';
-import { IPerson } from '../models/søknad/person';
-import { hentTekst } from '../utils/søknad';
 import { isIE } from 'react-device-detect';
 import { OversettelseAlert } from '../components/forside/OversettelseAlert';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { StartSøknadKnapp } from '../components/forside/StartSøknadKnapp';
+import { Tekst } from '../components/forside/Tekst';
+import { Seksjon } from '../components/forside/Seksjon';
+import { Overskrift } from '../components/forside/Overskrift';
+import { InformasjonProps } from '../components/forside/typer';
+import { hentPath } from '../utils/routing';
+import {
+  RoutesOvergangsstonad,
+  ERouteOvergangsstønad,
+} from './routing/routesOvergangsstonad';
 
-const Seksjon = styled.div`
-  margin-bottom: 3rem;
-
-  & > *:nth-child(n + 1) {
-    margin-top: 1.3rem;
-  }
-`;
-
-interface InnholdProps {
-  person: IPerson;
-  intl: LokalIntlShape;
-  harBekreftet: boolean;
-  settBekreftelse: (bekreftet: boolean) => void;
-  nesteSide: string;
-}
-
-export const OvergangsstønadInformasjon: React.FC<InnholdProps> = ({
+export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
   person,
-  intl,
   harBekreftet,
   settBekreftelse,
-  nesteSide,
 }) => {
+  const nesteSide =
+    hentPath(RoutesOvergangsstonad, ERouteOvergangsstønad.OmDeg) || '';
+
   return (
     <>
       <FeltGruppe>
@@ -43,81 +32,38 @@ export const OvergangsstønadInformasjon: React.FC<InnholdProps> = ({
       <OversettelseAlert />
 
       <Seksjon>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.erDuEnsligMorEllerFar', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.sammeSøknad', intl)}
-        </BodyShort>
-        <LocaleTekst tekst={'forside.overgangsstønad.merOmOvergangsstønad'} />
+        <Tekst tekst="forside.overgangsstønad.erDuEnsligMorEllerFar" />
+        <Tekst tekst="forside.overgangsstønad.sammeSøknad" />
+        <LocaleTekst tekst="forside.overgangsstønad.merOmOvergangsstønad" />
       </Seksjon>
 
       <Seksjon>
-        <Heading level="2" size="small">
-          {hentTekst(
-            'forside.overgangsstønad.overskrift.riktigeOpplysninger',
-            intl
-          )}
-        </Heading>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.riktigeOpplysninger', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.meldeEndringer', intl)}
-        </BodyShort>
+        <Overskrift tekst="forside.overgangsstønad.overskrift.riktigeOpplysninger" />
+        <Tekst tekst="forside.overgangsstønad.riktigeOpplysninger" />
+        <Tekst tekst="forside.overgangsstønad.meldeEndringer" />
       </Seksjon>
 
       <Seksjon>
-        <Heading level="2" size="small">
-          {hentTekst(
-            'forside.overgangsstønad.overskrift.sendeDokumentasjon',
-            intl
-          )}
-        </Heading>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.beskjedDokumentere', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.merInformasjon', intl)}
-        </BodyShort>
-        <LocaleTekst tekst={'forside.overgangsstønad.oversiktDokumentasjon'} />
+        <Overskrift tekst="forside.overgangsstønad.overskrift.sendeDokumentasjon" />
+        <Tekst tekst="forside.overgangsstønad.beskjedDokumentere" />
+        <Tekst tekst="forside.overgangsstønad.merInformasjon" />
+        <LocaleTekst tekst="forside.overgangsstønad.oversiktDokumentasjon" />
       </Seksjon>
 
       <Seksjon>
-        <Heading level="2" size="small">
-          {hentTekst(
-            'forside.overgangsstønad.overskrift.henteInformasjon',
-            intl
-          )}
-        </Heading>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.henteInformasjon', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.viHenter', intl)}
-        </BodyShort>
-        <LocaleTekst tekst={'forside.overgangsstønad.henterPunktliste'} />
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.tidligereOpplysninger', intl)}
-        </BodyShort>
-        <LocaleTekst
-          tekst={'forside.overgangsstønad.personopplysningeneDine'}
-        />
+        <Overskrift tekst="forside.overgangsstønad.overskrift.henteInformasjon" />
+        <Tekst tekst="forside.overgangsstønad.henteInformasjon" />
+        <Tekst tekst="forside.overgangsstønad.viHenter" />
+        <LocaleTekst tekst="forside.overgangsstønad.henterPunktliste" />
+        <Tekst tekst="forside.overgangsstønad.tidligereOpplysninger" />
+        <LocaleTekst tekst="forside.overgangsstønad.personopplysningeneDine" />
       </Seksjon>
 
       <Seksjon>
-        <Heading level="2" size="small">
-          {hentTekst('forside.overgangsstønad.overskrift.slikSøkerDu', intl)}
-        </Heading>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.slikSøkerDu', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.viLagrerSøknadenDin', intl)}
-        </BodyShort>
-        <BodyShort>
-          {hentTekst('forside.overgangsstønad.manglerDuDokumentasjon', intl)}
-        </BodyShort>
+        <Overskrift tekst="forside.overgangsstønad.overskrift.slikSøkerDu" />
+        <Tekst tekst="forside.overgangsstønad.slikSøkerDu" />
+        <Tekst tekst="forside.overgangsstønad.viLagrerSøknadenDin" />
+        <Tekst tekst="forside.overgangsstønad.manglerDuDokumentasjon" />
       </Seksjon>
 
       {!isIE && (
@@ -126,7 +72,6 @@ export const OvergangsstønadInformasjon: React.FC<InnholdProps> = ({
           tekst={'forside.overgangsstønad.disclaimerTekst'}
           harBekreftet={harBekreftet}
           settBekreftelse={settBekreftelse}
-          intl={intl}
         />
       )}
 
