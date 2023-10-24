@@ -1,4 +1,5 @@
 import { object, string, array } from 'yup';
+import {dnr as dnrValidator, fnr as fnrValidator} from "@navikt/fnrvalidator";
 
 // eslint-disable-next-line
 const datoRegex = /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/;
@@ -113,13 +114,33 @@ export const sivilstatusSchema = object({
   }).default(undefined),
 });
 
-export const bosituasjonSchema = object({
-  datoSkalGifteSegEllerBliSamboer: object({
+
+// const yup = require('yup')
+// const {
+//     setLocale
+// } = yup
+//
+// setLocale({
+//     mixed: {
+//         notType: 'the ${path} is obligatory',
+//         required: 'the field ${path} is obligatory',
+//         oneOf: 'the field ${path} must have one of the following values: ${values}'
+//     }
+// })
+
+const identErGyldig = (ident: string): boolean =>
+    fnrValidator(ident).status === 'valid' ||
+    dnrValidator(ident).status === 'valid';
+
+
+export const datoSkalGifteSegEllerBliSamboerScema = object({
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).default(undefined),
-  vordendeSamboerEktefelle: object({
-    fødselsdato: object({
-      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-    }),
-  }).default(undefined),
-});
+  })
+
+export const identSchema = object({
+    verdi: string().required().test( "ident", "Ikke gyldig ident",  (ident: string ) => (  identErGyldig(ident)  )),
+})
+
+export const fødselsdatoSchema = object({
+    verdi: string().required("Fødselsdato mangler").matches(datoRegex, 'Ikke en gyldig dato'),
+})

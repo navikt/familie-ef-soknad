@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import {useLokalIntlContext} from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
-import { useSøknad } from '../../../context/SøknadContext';
-import {
-  ERouteOvergangsstønad,
-  RoutesOvergangsstonad,
-} from '../../routing/routesOvergangsstonad';
-import { hentPath } from '../../../utils/routing';
-import Side, { ESide } from '../../../components/side/Side';
-import { hentTekst } from '../../../utils/søknad';
-import { Stønadstype } from '../../../models/søknad/stønadstyper';
-import {
-  logBrowserBackOppsummering,
-  logManglendeFelter,
-  logSidevisningOvergangsstonad,
-} from '../../../utils/amplitude';
-import { useMount } from '../../../utils/hooks';
-import { IBarn } from '../../../models/steg/barn';
-import { useNavigationType } from 'react-router-dom';
-import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
+import {useSøknad} from '../../../context/SøknadContext';
+import {ERouteOvergangsstønad, RoutesOvergangsstonad,} from '../../routing/routesOvergangsstonad';
+import {hentPath} from '../../../utils/routing';
+import Side, {ESide} from '../../../components/side/Side';
+import {hentTekst} from '../../../utils/søknad';
+import {Stønadstype} from '../../../models/søknad/stønadstyper';
+import {logBrowserBackOppsummering, logManglendeFelter, logSidevisningOvergangsstonad,} from '../../../utils/amplitude';
+import {useMount} from '../../../utils/hooks';
+import {IBarn} from '../../../models/steg/barn';
+import {useNavigationType} from 'react-router-dom';
+import {ESkjemanavn, skjemanavnIdMapping} from '../../../utils/skjemanavn';
 import {
   aktivitetSchema,
-  bosituasjonSchema,
+  datoSkalGifteSegEllerBliSamboerScema,
+  fødselsdatoSchema,
+  identSchema,
   listManglendeFelter,
   ManglendeFelter,
   manglendeFelterTilTekst,
@@ -35,8 +30,10 @@ import {
   merOmDinSituasjonSchema,
   sivilstatusSchema,
 } from '../../../utils/validering/validering';
-import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
-
+import {Accordion, Alert, BodyShort} from '@navikt/ds-react';
+import {ToggleName} from "../../../models/søknad/toggles";
+import {useToggles} from "../../../context/TogglesContext";
+const { toggles } = useToggles();
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
@@ -58,24 +55,37 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    bosituasjonSchema
-      .validate(søknad.bosituasjon)
-      .then()
-      .catch((e) => {
-        if (
-          !manglendeFelter.includes(
+  const validerHvisSøkerSkalGifteSeg = () =>{
+    if(søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi){
+      console.log("søknad.bosituasjon", søknad.bosituasjon)
+      const gyldigDatoForgiftemål =  datoSkalGifteSegEllerBliSamboerScema.isValidSync(søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer);
+      const gyldigIdent =  søknad.bosituasjon.vordendeSamboerEktefelle && identSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.ident);
+      const gyldigFødselsdato = søknad.bosituasjon.vordendeSamboerEktefelle && fødselsdatoSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato);
+      //const harIkkeGyldigIdentEllerDatoPåVordende = (!gyldigFødselsdato && !gyldigIdent);
+      const harGyldigIdentEllerDatoPåVordende = gyldigFødselsdato || gyldigIdent;
+
+      console.log(" gyldig dato for giftemål", gyldigFødselsdato)
+      console.log(" gyldig ident", gyldigIdent)
+      console.log(" gyldig gyldigFødselsdato", gyldigDatoForgiftemål)
+
+      if (!harGyldigIdentEllerDatoPåVordende || !gyldigDatoForgiftemål) {
+
+        if (!manglendeFelter.includes(
             manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
-          )
-        ) {
+        )) {
           settManglendeFelter((prev: string[]): string[] => [
             ...prev,
             manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
           ]);
         }
+        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, "ValidationError: vordendeSamboerEktefelle mangler gyldig ident eller fødselsdato");
+      }
+    }
+  }
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
-      });
+  useEffect(() => {
+
+    {toggles[ToggleName.validerBosituasjon] && validerHvisSøkerSkalGifteSeg()}
 
     aktivitetSchema
       .validate(søknad.aktivitet)
