@@ -33,8 +33,9 @@ import {
 import {Accordion, Alert, BodyShort} from '@navikt/ds-react';
 import {ToggleName} from "../../../models/søknad/toggles";
 import {useToggles} from "../../../context/TogglesContext";
-const { toggles } = useToggles();
+
 const Oppsummering: React.FC = () => {
+  const { toggles } = useToggles();
   const intl = useLokalIntlContext();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
@@ -83,9 +84,11 @@ const Oppsummering: React.FC = () => {
     }
   }
 
+
+
   useEffect(() => {
 
-    {toggles[ToggleName.validerBosituasjon] && validerHvisSøkerSkalGifteSeg()}
+    {(toggles[ToggleName.validerBosituasjon]) && validerHvisSøkerSkalGifteSeg()}
 
     aktivitetSchema
       .validate(søknad.aktivitet)
