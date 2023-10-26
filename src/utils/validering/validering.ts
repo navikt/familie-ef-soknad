@@ -114,20 +114,6 @@ export const sivilstatusSchema = object({
   }).default(undefined),
 });
 
-
-// const yup = require('yup')
-// const {
-//     setLocale
-// } = yup
-//
-// setLocale({
-//     mixed: {
-//         notType: 'the ${path} is obligatory',
-//         required: 'the field ${path} is obligatory',
-//         oneOf: 'the field ${path} must have one of the following values: ${values}'
-//     }
-// })
-
 const identErGyldig = (ident: string): boolean =>
     fnrValidator(ident).status === 'valid' ||
     dnrValidator(ident).status === 'valid';
