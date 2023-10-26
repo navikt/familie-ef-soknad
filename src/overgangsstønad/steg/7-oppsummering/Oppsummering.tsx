@@ -85,8 +85,6 @@ const Oppsummering: React.FC = () => {
     }
   }
 
-
-
   useEffect(() => {
 
     {(toggles[ToggleName.validerBosituasjon]) && validerHvisSøkerSkalGifteSeg()}
