@@ -56,28 +56,29 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
+  const feilIkkeRegistrertFor = (felt:ManglendeFelter) => {
+    return !manglendeFelter.includes(
+        manglendeFelterTilTekst[felt]
+    );
+  }
+
+  const oppdaterManglendeFelter = (manglendeFelt: ManglendeFelter) => {
+    settManglendeFelter((prev: string[]): string[] => [
+      ...prev,
+      manglendeFelterTilTekst[manglendeFelt],
+    ]);
+  }
+
   const validerHvisSøkerSkalGifteSeg = () =>{
     if(søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi){
-      console.log("søknad.bosituasjon", søknad.bosituasjon)
+      console.log("validerer gifte seg", søknad.bosituasjon)
       const gyldigDatoForgiftemål =  datoSkalGifteSegEllerBliSamboerScema.isValidSync(søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer);
       const gyldigIdent =  søknad.bosituasjon.vordendeSamboerEktefelle && identSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.ident);
       const gyldigFødselsdato = søknad.bosituasjon.vordendeSamboerEktefelle && fødselsdatoSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato);
-      //const harIkkeGyldigIdentEllerDatoPåVordende = (!gyldigFødselsdato && !gyldigIdent);
       const harGyldigIdentEllerDatoPåVordende = gyldigFødselsdato || gyldigIdent;
-
-      console.log(" gyldig dato for giftemål", gyldigFødselsdato)
-      console.log(" gyldig ident", gyldigIdent)
-      console.log(" gyldig gyldigFødselsdato", gyldigDatoForgiftemål)
-
       if (!harGyldigIdentEllerDatoPåVordende || !gyldigDatoForgiftemål) {
-
-        if (!manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
-        )) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.BOSITUASJONEN_DIN)) {
+          oppdaterManglendeFelter(ManglendeFelter.BOSITUASJONEN_DIN);
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, "ValidationError: vordendeSamboerEktefelle mangler gyldig ident eller fødselsdato");
       }
@@ -99,12 +100,8 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.AKTIVITET]
           )
         ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.AKTIVITET],
-          ]);
+          oppdaterManglendeFelter(ManglendeFelter.AKTIVITET)
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -112,17 +109,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.sivilstatus)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)){
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG)
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -130,17 +119,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.merOmDinSituasjon)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.MER_OM_DIN_SITUASJON)){
+          oppdaterManglendeFelter(ManglendeFelter.MER_OM_DIN_SITUASJON)
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -148,17 +129,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.medlemskap)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)){
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG)
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
   }, [søknad, manglendeFelter, skjemaId]);
