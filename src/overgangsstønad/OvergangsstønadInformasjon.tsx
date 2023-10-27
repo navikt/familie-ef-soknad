@@ -2,9 +2,9 @@ import FeltGruppe from '../components/gruppe/FeltGruppe';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
-import { OversettelseAlert } from '../components/forside/OversettelseAlert';
+import { OversettelseAlert } from '../components/forside/AlertOversettelse';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
-import { StartSøknadKnapp } from '../components/forside/StartSøknadKnapp';
+import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Tekst } from '../components/forside/Tekst';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Overskrift } from '../components/forside/Overskrift';
@@ -68,7 +68,7 @@ export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
 
       {!isIE && (
         <DisclaimerBoks
-          person={person}
+          navn={person.søker.forkortetNavn}
           tekst={'forside.overgangsstønad.disclaimerTekst'}
           harBekreftet={harBekreftet}
           settBekreftelse={settBekreftelse}

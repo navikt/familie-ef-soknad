@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { hentBeskjedMedNavn } from '../../utils/språk';
 import { hentTekst } from '../../utils/søknad';
 import React from 'react';
-import { IPerson } from '../../models/søknad/person';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 const StyledConfirmationPanel = styled(ConfirmationPanel)`
@@ -15,11 +14,11 @@ const DisclaimerTittel = styled(Heading)`
 `;
 
 export const DisclaimerBoks: React.FC<{
-  person: IPerson;
+  navn: string;
   tekst: string;
   harBekreftet: boolean;
   settBekreftelse: (bekreftet: boolean) => void;
-}> = ({ person, tekst, harBekreftet, settBekreftelse }) => {
+}> = ({ navn, tekst, harBekreftet, settBekreftelse }) => {
   const intl = useLokalIntlContext();
   return (
     <>
@@ -29,7 +28,7 @@ export const DisclaimerBoks: React.FC<{
       <StyledConfirmationPanel
         checked={!!harBekreftet}
         label={hentBeskjedMedNavn(
-          person.søker.forkortetNavn,
+          navn,
           intl.formatMessage({ id: 'side.bekreftelse' })
         )}
         onChange={() => settBekreftelse(!harBekreftet)}

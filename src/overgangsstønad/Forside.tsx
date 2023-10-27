@@ -1,9 +1,7 @@
 import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSøknad } from '../context/SøknadContext';
-import { hentBeskjedMedNavn } from '../utils/språk';
 import FortsettSøknad from '../søknad/forside/FortsettSøknad';
-import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import Environment from '../Environment';
 import { isIE } from 'react-device-detect';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
@@ -12,8 +10,11 @@ import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { Alert, Panel, Heading } from '@navikt/ds-react';
+import { Panel, Heading } from '@navikt/ds-react';
 import { OvergangsstønadInformasjon } from './OvergangsstønadInformasjon';
+import { AlertIE } from '../components/forside/AlertIE';
+import { AlertUnderAtten } from '../components/forside/AlertUnderAtten';
+import { VeilederBoks } from '../components/forside/VeilederBoks';
 
 const Forside: React.FC = () => {
   useMount(() => {
@@ -53,30 +54,11 @@ const Forside: React.FC = () => {
     <div className={'forside'}>
       <div className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
-          <div className="veileder">
-            <VeilederSnakkeboble
-              tekst={hentBeskjedMedNavn(
-                person.søker.forkortetNavn,
-                intl.formatMessage({ id: 'skjema.hei' })
-              )}
-            />
-          </div>
+          <VeilederBoks />
 
-          {alder < 18 && (
-            <div className="ie-feil">
-              <Alert size="small" variant="error">
-                <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
-              </Alert>
-            </div>
-          )}
+          {alder < 18 && <AlertUnderAtten />}
 
-          {isIE && (
-            <div className="ie-feil">
-              <Alert size="small" variant="error">
-                <LocaleTekst tekst={'side.alert.plsnoIE'} />
-              </Alert>
-            </div>
-          )}
+          {isIE && <AlertIE />}
 
           <Heading level="1" size="xlarge">
             <LocaleTekst tekst="banner.tittel.overgangsstønad" />

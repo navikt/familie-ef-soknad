@@ -16,6 +16,9 @@ import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
 import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';
+import { AlertIE } from '../components/forside/AlertIE';
+import { AlertUnderAtten } from '../components/forside/AlertUnderAtten';
+import { VeilederBoks } from '../components/forside/VeilederBoks';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -60,36 +63,17 @@ const Forside: React.FC = () => {
     <div className={'forside'}>
       <div className={'forside__innhold'}>
         <Panel className={'forside__panel'}>
-          <div className="veileder">
-            <VeilederSnakkeboble
-              tekst={hentBeskjedMedNavn(
-                person.søker.forkortetNavn,
-                intl.formatMessage({ id: 'skjema.hei' })
-              )}
-            />
-          </div>
+          <VeilederBoks />
 
-          {alder < 18 && (
-            <div className="ie-feil">
-              <Alert size="small" variant="error">
-                <LocaleTekst tekst={'side.alert.ikkeGammelNok'} />
-              </Alert>
-            </div>
-          )}
+          {alder < 18 && <AlertUnderAtten />}
 
-          {isIE && (
-            <div className="ie-feil">
-              <Alert size="small" variant="error">
-                <LocaleTekst tekst={'side.alert.plsnoIE'} />
-              </Alert>
-            </div>
-          )}
+          {isIE && <AlertIE />}
 
           <Heading level="1" size="xlarge">
             <LocaleTekst tekst={'barnetilsyn.sidetittel'} />
           </Heading>
 
-          {erDagensDatoMellomMaiOgAugust ? (
+          {erDagensDatoMellomMaiOgAugust && (
             <StyledAlert variant="info">
               <Heading spacing size="small" level="3">
                 Søker du om stønad til barnetilsyn fra august {nåværendeÅr}?
@@ -98,7 +82,7 @@ const Forside: React.FC = () => {
               barnepass med faktura for denne måneden. Vi anbefaler derfor at du
               venter med å søke frem til du får fakturaen.
             </StyledAlert>
-          ) : null}
+          )}
 
           {kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn ? (
             <FortsettSøknad

@@ -954,4 +954,58 @@ export default {
     'Mangler du dokumentasjon, kan du ettersende dette.',
   'forside.barnetilsyn.disclaimerTekst':
     'Jeg er klar over at jeg kan miste retten til stønad til barnetilsyn dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+
+  'forside.skolepenger.innledning':
+    'Stønaden dekker de faktiske utgiftene du har til studieavgift, semesteravgift og eksamensgebyr når du er enslig mor eller far som tar utdanning. Stønaden dekker utgiftene dine opp til en maksimumsats.',
+  'forside.skolepenger.merInfoLenke':
+    '<a className="lenkte-tekst" href="https://www.nav.no/skolepenger-enslig">Mer om stønad til skolepenger</a>',
+  'forside.skolepenger.overskrift.riktigeOpplysninger':
+    'Det er viktig at du gir oss riktige opplysninger',
+  'forside.skolepenger.riktigeOpplysninger':
+    'For at vi skal kunne behandle søknaden din, må du gi oss riktige opplysninger.',
+  'forside.skolepenger.meldeEndringer':
+    'Hvis du får stønad til skolepenger, må du melde fra når det skjer viktige endringer i livet ditt, for eksempel bo-og familiesituasjonen eller utdanningssituasjonen din.',
+  'forside.skolepenger.overskrift.sendeDokumentasjon':
+    'Det kan hende du må sende inn dokumentasjon',
+  'forside.skolepenger.beskjedDokumentere':
+    'Du får beskjed underveis i søknaden hvis du må dokumentere noen av opplysningene dine. Dokumentasjon du har sendt inn tidligere trenger du ikke sende på nytt.',
+  'forside.skolepenger.merInformasjon':
+    'Noen ganger kan vi også trenge mer informasjon. Da gir vi deg beskjed om dette.',
+  'forside.skolepenger.dokumentasjonsOversiktLenke':
+    '<a href="https://www.nav.no/skolepenger-enslig#soke">Oversikt over hva som krever dokumentasjon</a>',
+  'forside.skolepenger.overskrift.henteInformasjon':
+    'Vi vil hente informasjon om deg',
+  'forside.skolepenger.henteInformasjon':
+    'I tillegg til den informasjonen du oppgir i søknaden, henter vi inn informasjon om deg for å avgjøre om du har rett til stønad.',
+  'forside.skolepenger.viHenter': 'Vi henter:',
+  'forside.skolepenger.informasjonHentet':
+    '<ul><li><strong>personinformasjon</strong> om deg, barnet/barna dine og den andre forelderen til barna dine fra Folkeregisteret</li></ul>',
+  'forside.skolepenger.tidligereOpplysninger':
+    'Vi kan også bruke tidligere opplysninger du har gitt oss, eller opplysninger du gir oss i andre sammenhenger, hvis det er relevant og nødvendig.',
+  'forside.skolepenger.personopplysningeneDineLenke':
+    '<span><a href="https://www.nav.no/personvernerklaering">Slik behandler vi personopplysningene dine</a></span>',
+  'forside.skolepenger.overskrift.slikSøkerDu': 'Slik søker du',
+  'forside.skolepenger.slikSøkerDu':
+    'I søknaden stiller vi kun spørsmål som er relevante i din situasjon. Antall spørsmål og tiden det tar å søke vil derfor kunne variere. De fleste bruker 10 minutter.',
+  'forside.skolepenger.lagringSøknad':
+    'Vi lagrer søknaden din ut morgendagen. Derfor kan du ta pauser når du fyller ut. Du kan også slette i denne perioden.',
+  'forside.skolepenger.manglerDuDokumentasjon':
+    'Hvis du mangler dokumentasjon, kan du legge ved dette senere.',
+  'forside.skolepenger.disclaimerTekst':
+    'Jeg er klar over at jeg kan miste retten til stønad til skolepenger dersom jeg ikke har gitt riktige opplysninger. Jeg er også klar over at jeg må betale tilbake dersom jeg får penger jeg ikke har rett til og som skyldes at jeg har latt være å informere eller gitt feil opplysninger.',
+
+  'forside.arbeidssøker.info':
+    'Hvis du søker arbeid samtidig som du søker om eller får overgangsstønad, må du opplyse om mulighetene dine til å ta arbeid slik at vi kan vurdere deg som arbeidssøker.',
+  'forside.arbeidssøker.krav':
+    'Vi kan kreve at du enten er i arbeid, registrert som arbeidssøker hos NAV eller utdanner deg når du mottar overgangsstønad.',
+  'forside.arbeidssøker.lerMer':
+    '<span><a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">Les mer om å motta overgangsstønad når du er arbeidssøker</a></span>',
+  'forside.arbeidssøker.overskrift.riktigeOpplysninger':
+    'Det er viktig at du gir oss riktige opplysninger',
+  'forside.arbeidssøker.riktigeOpplysninger':
+    'For at vi skal kunne behandle saken din, må du gi oss riktige opplysninger.',
+  'forside.arbeidssøker.meldeEndringer':
+    'Hvis du får overgangsstønad, må du melde fra når det skjer viktige endringer i livet ditt, for eksempel bo- og familiesituasjonen eller arbeid og utdanning. Det samme gjelder dersom inntekten din endrer seg.',
+  'forside.arbeidssøker.personopplysningeneDineLenke':
+    '<span><a href="https://www.nav.no/personvernerklaering">Slik behandler vi personopplysningene dine</a></span>',
 };

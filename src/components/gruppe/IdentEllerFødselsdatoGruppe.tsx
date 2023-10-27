@@ -2,7 +2,6 @@ import React, { FC } from 'react';
 import FeltGruppe from './FeltGruppe';
 import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
-import classNames from 'classnames';
 import KomponentGruppe from './KomponentGruppe';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Checkbox } from '@navikt/ds-react';
