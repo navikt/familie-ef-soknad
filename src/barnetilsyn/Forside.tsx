@@ -1,9 +1,8 @@
 import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
-import { hentBeskjedMedNavn } from '../utils/språk';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
-import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import FortsettSøknad from '../components/forside/FortsettSøknad';
 import { useMount } from '../utils/hooks';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
@@ -12,7 +11,6 @@ import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { isIE } from 'react-device-detect';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Panel, Heading } from '@navikt/ds-react';
-import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
 import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';

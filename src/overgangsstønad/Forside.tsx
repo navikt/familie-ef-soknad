@@ -1,7 +1,7 @@
 import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSøknad } from '../context/SøknadContext';
-import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import FortsettSøknad from '../components/forside/FortsettSøknad';
 import Environment from '../Environment';
 import { isIE } from 'react-device-detect';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';

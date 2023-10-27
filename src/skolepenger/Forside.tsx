@@ -2,7 +2,7 @@ import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import Environment from '../Environment';
-import FortsettSøknad from '../søknad/forside/FortsettSøknad';
+import FortsettSøknad from '../components/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
 import { useMount } from '../utils/hooks';
