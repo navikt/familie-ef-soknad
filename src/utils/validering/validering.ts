@@ -118,7 +118,7 @@ const identErGyldig = (ident: string): boolean =>
   fnrValidator(ident).status === 'valid' ||
   dnrValidator(ident).status === 'valid';
 
-export const datoSkalGifteSegEllerBliSamboerScema = object({
+export const datoSkalGifteSegEllerBliSamboerSchema = object({
   verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
 });
 

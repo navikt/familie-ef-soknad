@@ -27,7 +27,7 @@ import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import {
   aktivitetSchema,
-  datoSkalGifteSegEllerBliSamboerScema,
+  datoSkalGifteSegEllerBliSamboerSchema,
   fødselsdatoSchema,
   identSchema,
   listManglendeFelter,
@@ -76,23 +76,23 @@ const Oppsummering: React.FC = () => {
 
   const validerHvisSøkerSkalGifteSeg = () => {
     if (søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
-      const gyldigDatoForgiftemål =
-        datoSkalGifteSegEllerBliSamboerScema.isValidSync(
+      const harGyldigDatoForGiftemål =
+        datoSkalGifteSegEllerBliSamboerSchema.isValidSync(
           søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer
         );
-      const gyldigIdent =
+      const harGyldigIdent =
         søknad.bosituasjon.vordendeSamboerEktefelle &&
         identSchema.isValidSync(
           søknad.bosituasjon.vordendeSamboerEktefelle.ident
         );
-      const gyldigFødselsdato =
+      const harGyldigFødselsdato =
         søknad.bosituasjon.vordendeSamboerEktefelle &&
         fødselsdatoSchema.isValidSync(
           søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato
         );
       const harGyldigIdentEllerDatoPåVordende =
-        gyldigFødselsdato || gyldigIdent;
-      if (!harGyldigIdentEllerDatoPåVordende || !gyldigDatoForgiftemål) {
+        harGyldigFødselsdato || harGyldigIdent;
+      if (!harGyldigIdentEllerDatoPåVordende || !harGyldigDatoForGiftemål) {
         if (feilIkkeRegistrertFor(ManglendeFelter.BOSITUASJONEN_DIN)) {
           oppdaterManglendeFelter(ManglendeFelter.BOSITUASJONEN_DIN);
         }
