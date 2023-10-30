@@ -1,23 +1,30 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import {useLokalIntlContext} from '../../../context/LokalIntlContext';
+import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import OppsummeringOmDeg from '../../../søknad/steg/7-oppsummering/OppsummeringOmDeg';
 import OppsummeringBarnasBosituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringBarnasBosituasjon';
 import OppsummeringBarnaDine from '../../../søknad/steg/7-oppsummering/OppsummeringBarnaDine';
 import OppsummeringAktiviteter from '../../../søknad/steg/7-oppsummering/OppsummeringAktiviteter';
 import OppsummeringDinSituasjon from '../../../søknad/steg/7-oppsummering/OppsummeringDinSituasjon';
 import OppsummeringBosituasjonenDin from '../../../søknad/steg/7-oppsummering/OppsummeringBosituasjon';
-import {useSøknad} from '../../../context/SøknadContext';
-import {ERouteOvergangsstønad, RoutesOvergangsstonad,} from '../../routing/routesOvergangsstonad';
-import {hentPath} from '../../../utils/routing';
-import Side, {ESide} from '../../../components/side/Side';
-import {hentTekst} from '../../../utils/søknad';
-import {Stønadstype} from '../../../models/søknad/stønadstyper';
-import {logBrowserBackOppsummering, logManglendeFelter, logSidevisningOvergangsstonad,} from '../../../utils/amplitude';
-import {useMount} from '../../../utils/hooks';
-import {IBarn} from '../../../models/steg/barn';
-import {useNavigationType} from 'react-router-dom';
-import {ESkjemanavn, skjemanavnIdMapping} from '../../../utils/skjemanavn';
+import { useSøknad } from '../../../context/SøknadContext';
+import {
+  ERouteOvergangsstønad,
+  RoutesOvergangsstonad,
+} from '../../routing/routesOvergangsstonad';
+import { hentPath } from '../../../utils/routing';
+import Side, { ESide } from '../../../components/side/Side';
+import { hentTekst } from '../../../utils/søknad';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
+import {
+  logBrowserBackOppsummering,
+  logManglendeFelter,
+  logSidevisningOvergangsstonad,
+} from '../../../utils/amplitude';
+import { useMount } from '../../../utils/hooks';
+import { IBarn } from '../../../models/steg/barn';
+import { useNavigationType } from 'react-router-dom';
+import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import {
   aktivitetSchema,
   datoSkalGifteSegEllerBliSamboerScema,
@@ -30,9 +37,9 @@ import {
   merOmDinSituasjonSchema,
   sivilstatusSchema,
 } from '../../../utils/validering/validering';
-import {Accordion, Alert, BodyShort} from '@navikt/ds-react';
-import {ToggleName} from "../../../models/søknad/toggles";
-import {useToggles} from "../../../context/TogglesContext";
+import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
+import { ToggleName } from '../../../models/søknad/toggles';
+import { useToggles } from '../../../context/TogglesContext';
 
 const Oppsummering: React.FC = () => {
   const { toggles } = useToggles();
@@ -56,38 +63,52 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
-  const feilIkkeRegistrertFor = (felt:ManglendeFelter) => {
-    return !manglendeFelter.includes(
-        manglendeFelterTilTekst[felt]
-    );
-  }
+  const feilIkkeRegistrertFor = (felt: ManglendeFelter) => {
+    return !manglendeFelter.includes(manglendeFelterTilTekst[felt]);
+  };
 
   const oppdaterManglendeFelter = (manglendeFelt: ManglendeFelter) => {
     settManglendeFelter((prev: string[]): string[] => [
       ...prev,
       manglendeFelterTilTekst[manglendeFelt],
     ]);
-  }
+  };
 
-  const validerHvisSøkerSkalGifteSeg = () =>{
-    if(søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi){
-      console.log("validerer gifte seg", søknad.bosituasjon)
-      const gyldigDatoForgiftemål =  datoSkalGifteSegEllerBliSamboerScema.isValidSync(søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer);
-      const gyldigIdent =  søknad.bosituasjon.vordendeSamboerEktefelle && identSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.ident);
-      const gyldigFødselsdato = søknad.bosituasjon.vordendeSamboerEktefelle && fødselsdatoSchema.isValidSync(søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato);
-      const harGyldigIdentEllerDatoPåVordende = gyldigFødselsdato || gyldigIdent;
+  const validerHvisSøkerSkalGifteSeg = () => {
+    if (søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
+      const gyldigDatoForgiftemål =
+        datoSkalGifteSegEllerBliSamboerScema.isValidSync(
+          søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer
+        );
+      const gyldigIdent =
+        søknad.bosituasjon.vordendeSamboerEktefelle &&
+        identSchema.isValidSync(
+          søknad.bosituasjon.vordendeSamboerEktefelle.ident
+        );
+      const gyldigFødselsdato =
+        søknad.bosituasjon.vordendeSamboerEktefelle &&
+        fødselsdatoSchema.isValidSync(
+          søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato
+        );
+      const harGyldigIdentEllerDatoPåVordende =
+        gyldigFødselsdato || gyldigIdent;
       if (!harGyldigIdentEllerDatoPåVordende || !gyldigDatoForgiftemål) {
         if (feilIkkeRegistrertFor(ManglendeFelter.BOSITUASJONEN_DIN)) {
           oppdaterManglendeFelter(ManglendeFelter.BOSITUASJONEN_DIN);
         }
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, "ValidationError: vordendeSamboerEktefelle mangler gyldig ident eller fødselsdato");
+        logManglendeFelter(
+          ESkjemanavn.Overgangsstønad,
+          skjemaId,
+          'ValidationError: vordendeSamboerEktefelle mangler gyldig ident eller fødselsdato'
+        );
       }
     }
-  }
+  };
 
   useEffect(() => {
-
-    {(toggles[ToggleName.validerBosituasjon]) && validerHvisSøkerSkalGifteSeg()}
+    {
+      toggles[ToggleName.validerBosituasjon] && validerHvisSøkerSkalGifteSeg();
+    }
 
     aktivitetSchema
       .validate(søknad.aktivitet)
@@ -98,7 +119,7 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.AKTIVITET]
           )
         ) {
-          oppdaterManglendeFelter(ManglendeFelter.AKTIVITET)
+          oppdaterManglendeFelter(ManglendeFelter.AKTIVITET);
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
@@ -107,8 +128,8 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.sivilstatus)
       .then()
       .catch((e) => {
-        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)){
-          oppdaterManglendeFelter(ManglendeFelter.OM_DEG)
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
@@ -117,8 +138,8 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.merOmDinSituasjon)
       .then()
       .catch((e) => {
-        if (feilIkkeRegistrertFor(ManglendeFelter.MER_OM_DIN_SITUASJON)){
-          oppdaterManglendeFelter(ManglendeFelter.MER_OM_DIN_SITUASJON)
+        if (feilIkkeRegistrertFor(ManglendeFelter.MER_OM_DIN_SITUASJON)) {
+          oppdaterManglendeFelter(ManglendeFelter.MER_OM_DIN_SITUASJON);
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
@@ -127,8 +148,8 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.medlemskap)
       .then()
       .catch((e) => {
-        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)){
-          oppdaterManglendeFelter(ManglendeFelter.OM_DEG)
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
