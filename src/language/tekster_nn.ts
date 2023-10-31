@@ -1258,49 +1258,4 @@ export default {
     'Apply for child care benefit',
   'overgangsstønad.feilsituasjon':
     'Sorry! We have technical issues, thus the form can not be submitted right now. Please try again later.',
-
-  'forside.overgangsstønad.erDuEnsligMorEllerFar':
-    'Er du einsleg mor eller far og har barn under 8 år, vil overgangsstønaden sikre deg inntekt i inntil 3 år. I noen tilfelle kan vi forlenge denne perioden. Inntekten din avgjer kor mykje du har rett til i stønad.',
-  'forside.overgangsstønad.sammeSøknad':
-    'Du brukar same søknad både om du søker for første gong og om du søker forlenging eller utviding av stønadstida di.',
-  'forside.overgangsstønad.merOmOvergangsstønad':
-    '<a className="lenkte-tekst" href="https://www.nav.no/overgangsstonad-enslig">Meir om overgangsstønad</a>',
-  'forside.overgangsstønad.overskrift.riktigeOpplysninger':
-    'Det er viktig at du gjev oss rette opplysningar',
-  'forside.overgangsstønad.riktigeOpplysninger':
-    'For at vi skal kunne handsame søknaden din, må du gje oss rette opplysningar.',
-  'forside.overgangsstønad.meldeEndringer':
-    'Om du får overgangsstønad, må du melde frå når det skjer viktige endringar i livet ditt, til dømes bu- og familiesituasjonen eller arbeid og utdanning. Det same gjeld om inntekta di endrar seg.',
-  'forside.overgangsstønad.overskrift.sendeDokumentasjon':
-    'Det kan hende du må sende inn dokumentasjon',
-  'forside.overgangsstønad.beskjedDokumentere':
-    'Du får beskjed undervegs i søknaden om du må dokumentere nokre av opplysningane dine. Dokumentasjon du har sendt inn tidlegare, treng du ikkje sende på nytt.',
-  'forside.overgangsstønad.merInformasjon':
-    'Av og til kan vi også trenge meir informasjon. Då gir vi deg beskjed om dette.',
-  'forside.overgangsstønad.oversiktDokumentasjon':
-    '<a href="https://www.nav.no/overgangsstonad-enslig#soke"> Oversikt over kva som krev dokumentasjon </a>',
-  'forside.overgangsstønad.overskrift.henteInformasjon':
-    'Vi vil hente informasjon om deg',
-  'forside.overgangsstønad.henteInformasjon':
-    'I tillegg til den informasjonen du oppgir i søknaden, hentar vi inn iformasjon om deg for å avgjere om du har rett til stønad.',
-  'forside.overgangsstønad.viHenter': 'Vi hentar:',
-  'forside.overgangsstønad.henterPunktliste':
-    '<ul><li><strong>personinformasjon</strong> om deg, barnet/den/dei dine og den andre forelderen til barnet/den/dei dine frå Folkeregisteret</li><li><strong>inntektsinformasjon</strong> frå Skatteetaten</li><li><strong>opplysningar om arbeidsforholdet ditt</strong> frå arbeidsgiver- og arbeidstakarregisteret</li></ul>',
-  'forside.overgangsstønad.tidligereOpplysninger':
-    'Vi kan også bruke tidlegare opplysningar du har gitt oss, eller opplysningar du gir oss i andre samanhengar, om det er relevant og nødvendig.',
-  'forside.overgangsstønad.personopplysningeneDine':
-    '<span><a href="https://www.nav.no/personvernerklaering">Slik handsamar vi personopplysningane dine</a></span>',
-  'forside.overgangsstønad.overskrift.slikSøkerDu': 'Slik søkjer du',
-  'forside.overgangsstønad.slikSøkerDu':
-    'I søknaden stiller vi berre spørsmål som er relevante i din situasjon. Talet på spørsmål og tida det tek å søkje, vil derfor variere. Dei fleste brukar 10 minutt.',
-  'forside.overgangsstønad.viLagrerSøknadenDin':
-    'Vi lagrar søknaden din ut morgondagen. Difor kan du ta pausar når du fyller ut. Du kan også slette i denne perioden.',
-  'forside.overgangsstønad.manglerDuDokumentasjon':
-    'Manglar du dokumentasjon, kan du ettersende dette.',
-  'forside.overgangsstønad.disclaimerTekst':
-    'Eg er klar over at eg kan miste retten til overgangsstønad dersom eg ikkje har gitt rette opplysningar. Eg er også klar over at eg må betale tilbake dersom eg får pengar eg ikkje har rett til og som kjem av at eg har latt vere å informere eller gitt feil opplysningar.',
-  'forside.overgangsstønad.merOmStønadTilBarnepass':
-    'Stønaden dekkjer delar av utgiftene til barnepass når du er einsleg mor eller far som er åleine om omsorga for barnet ditt og er i arbeid.\n\nDu kan få stønaden fram til barnet er ferdig med 4. skuleåret. I somme tilfelle kan du få stønad etter at barnet er ferdig med 4. skuleåret.\n\n[Meir om stønad til barnepass](https://www.nav.no/stonad-til-barnepass)',
-  'forside.overgangsstønad.arbeidssøkjarUtdanning':
-    'Dersom du ikkje er i arbeid, men er registrert som arbeidssøkjar hos NAV eller tek utdanning som NAV har godkjent, har du som hovudregel ikkje rett til denne stønaden. Då kan du i staden søkje om stønad til pass av barn.',
 };

@@ -908,6 +908,8 @@ export default {
   'skjema.takk': 'Thank you',
   'skjema.alert.mottatt':
     'Information about you as a job seeker has been received',
+  'alert.warning.oversettingUnderArbeid':
+    "We are in the process of translating this application. The few missingtranslations will appear in Norwegian until we've translated them.",
 
   'forside.overgangsstønad.erDuEnsligMorEllerFar':
     'If you are a single parent and have children under the age of 8 years, transitional benefit will ensure you have income for up to three years. In some cases, this period can be extended.\n\nYour income determines how much benefit you are entitled to.',
