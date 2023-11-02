@@ -134,7 +134,6 @@ const PeriodeDatovelgere: FC<Props> = ({
           valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
         />
 
         <Datovelger
@@ -142,7 +141,6 @@ const PeriodeDatovelgere: FC<Props> = ({
           valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
           datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
         />
         {feilmelding && feilmelding !== '' && (
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />

@@ -81,7 +81,6 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
             tekstid={datoLabel}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settFødselsdato(e)}
-            fetSkrift={fetSkrift}
           />
         </KomponentGruppe>
       )}

@@ -47,7 +47,6 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           valgtDato={barnDato}
           tekstid={'barnadine.termindato'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
-          fetSkrift={true}
         />
         <AlertStripeDokumentasjon>
           <FormattedMessage id="barnadine.info.terminbekreftelse" />

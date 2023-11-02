@@ -113,7 +113,6 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
               settDato={(e) => {
                 settDatoSøkerSkalGifteSegEllerBliSamboer(e, datovelgerTekst);
               }}
-              fetSkrift={true}
             />
           </KomponentGruppe>
           {datoSkalGifteSegEllerBliSamboer?.verdi &&

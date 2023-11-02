@@ -10,15 +10,20 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import { DatoBegrensning, StyledLabel } from './Datovelger';
+import { DatoBegrensning } from './Datovelger';
 import styled from 'styled-components';
 import KalenderKnapp from './KalenderKnapp';
 import { addYears, subYears, addMonths } from 'date-fns';
+import { Label } from '@navikt/ds-react';
 
 const InputContainer = styled.div`
   display: inline-block;
   width: 10rem;
   position: relative;
+`;
+
+const StyledLabel = styled(Label)<{ fetSkrift?: boolean }>`
+  font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
 `;
 
 const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {

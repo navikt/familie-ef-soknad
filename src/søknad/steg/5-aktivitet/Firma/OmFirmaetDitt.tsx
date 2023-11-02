@@ -170,7 +170,6 @@ const OmFirmaetDitt: React.FC<Props> = ({
             tekstid={'firma.datovelger.etablering'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settDatoFelt(e)}
-            fetSkrift={true}
           />
         </FeltGruppe>
       )}
