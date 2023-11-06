@@ -71,24 +71,22 @@ export const mellomlagreSøknadTilDokument = <T>(
   );
 };
 
-export const hentDataTilGjenbrukBarnetilsyn = (
-    personIdent: string
+export const hentDataTilGjenbrukBarnetilsyn = async (
+  personIdent: string
 ): Promise<string> => {
-  return axios.post(
-      `${Environment().apiProxyUrl + "/api/soknadbarnetilsyn/hent"}`,
-      personIdent,
-      {
-        withCredentials: true,
-        headers: {
-          'Content-Type': 'application/json',
-          accept: 'application/json',
-        },
-      }
-  ).then((response: { data: string }) => {
-    return response.data;
-  });
+  const response = await axios.post(
+    `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
+    personIdent,
+    {
+      withCredentials: true,
+      headers: {
+        'Content-Type': 'application/json',
+        accept: 'application/json',
+      },
+    }
+  );
+  return response.data.data;
 };
-
 
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
