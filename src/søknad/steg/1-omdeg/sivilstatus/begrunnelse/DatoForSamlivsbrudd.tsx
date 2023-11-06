@@ -6,6 +6,7 @@ import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
+import {hentDataTilGjenbrukBarnetilsyn} from "../../../../../utils/søknad";
 
 interface Props {
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
@@ -17,7 +18,8 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   datoForSamlivsbrudd,
 }) => {
   const datovelgerLabel = 'sivilstatus.datovelger.samlivsbrudd';
-
+  const dato = hentDataTilGjenbrukBarnetilsyn("28417736486")
+  console.log("dato: ", dato)
   return (
     <>
       <KomponentGruppe>

@@ -71,6 +71,23 @@ export const mellomlagreSøknadTilDokument = <T>(
   );
 };
 
+export const hentDataTilGjenbrukBarnetilsyn = <T>(
+    personIdent: string
+): Promise<T> => {
+  return axios.post(
+      `${Environment().apiProxyUrl + "/api/barnetilsyn/hent"}`,
+      personIdent,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        },
+      }
+  );
+};
+
+
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
 ): Promise<any> => {
