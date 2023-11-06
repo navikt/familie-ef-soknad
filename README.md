@@ -8,8 +8,8 @@ Frontend - søknad for enslig forsørger.
 2. `npm run start`
 
 * Hvis man ønsker å kjøre med mock-api
-1. `npm run start:mock`
-2. `node mock/mock-server.js` 
+1. `node mock/mock-server.js`
+2. `npm run start:mock`
 
 Med api må du sette cookie første gang:
 `http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad&issuerId=tokenx&audience=familie-app`
