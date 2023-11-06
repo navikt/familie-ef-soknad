@@ -6,10 +6,7 @@ import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
-import {
-  hentDataTilGjenbrukBarnetilsyn,
-  hentPersonData,
-} from '../../../../../utils/søknad';
+import { hentDataTilGjenbrukBarnetilsyn } from '../../../../../utils/søknad';
 import { usePersonContext } from '../../../../../context/PersonContext';
 import { formatISO } from 'date-fns';
 
@@ -30,21 +27,16 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   const tilLocaleDateString = (dato: Date) =>
     formatISO(dato, { representation: 'date' });
 
-  const dato = hentDataTilGjenbrukBarnetilsyn('28417736486');
-  console.log('dato: ', dato);
-
-  const datoMedFnr = hentDataTilGjenbrukBarnetilsyn(person.søker.fnr);
-  console.log('datoMedFnr: ', datoMedFnr);
-
   const [tidligereDato, settTidligereDato] = useState<string | undefined>(
     undefined
   );
 
   useEffect(() => {
     const hentDato = async () => {
-      const dato = await hentDataTilGjenbrukBarnetilsyn(person.søker.fnr);
-      console.log('useeffect dato: ', dato);
-      settTidligereDato(dato);
+      const data = await hentDataTilGjenbrukBarnetilsyn(person.søker.fnr);
+      const dato = data.data;
+
+      settTidligereDato(tilLocaleDateString(new Date(dato)));
     };
 
     hentDato();

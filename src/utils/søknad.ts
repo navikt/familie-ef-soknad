@@ -71,9 +71,17 @@ export const mellomlagreSøknadTilDokument = <T>(
   );
 };
 
+interface IDataTilGjenbrukBarnetilsyn {
+  data: string;
+  status: string;
+  melding: string;
+  frontendFeilmelding: string;
+  stacktrace: string;
+}
+
 export const hentDataTilGjenbrukBarnetilsyn = async (
   personIdent: string
-): Promise<string> => {
+): Promise<IDataTilGjenbrukBarnetilsyn> => {
   const response = await axios.post(
     `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
     personIdent,
@@ -85,7 +93,7 @@ export const hentDataTilGjenbrukBarnetilsyn = async (
       },
     }
   );
-  return response.data.data;
+  return response.data;
 };
 
 export const nullstillMellomlagretSøknadTilDokument = (
