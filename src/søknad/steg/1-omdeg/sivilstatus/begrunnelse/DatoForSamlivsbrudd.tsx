@@ -31,7 +31,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
     // eslint-disable-next-line
   }, [person]);
   const fetchDatoForSamlivsbrudd = () => {
-    return hentPersonData()
+    return hentDataTilGjenbrukBarnetilsyn(person.søker.fnr)
         .then((response) => {
           settDatoSamlivsbrudd(response)
         });
