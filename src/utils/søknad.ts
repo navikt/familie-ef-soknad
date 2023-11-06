@@ -79,10 +79,10 @@ interface IDataTilGjenbrukBarnetilsyn {
   stacktrace: string;
 }
 
-export const hentDataTilGjenbrukBarnetilsyn = async (
+export const hentDataTilGjenbrukBarnetilsyn = (
   personIdent: string
-): Promise<IDataTilGjenbrukBarnetilsyn> => {
-  const response = await axios.post(
+) => {
+  return axios.post(
     `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
     personIdent,
     {
@@ -92,8 +92,9 @@ export const hentDataTilGjenbrukBarnetilsyn = async (
         accept: 'application/json',
       },
     }
-  );
-  return response.data;
+  ).then((response) => {
+    return response && response.data
+  });
 };
 
 export const nullstillMellomlagretSøknadTilDokument = (
