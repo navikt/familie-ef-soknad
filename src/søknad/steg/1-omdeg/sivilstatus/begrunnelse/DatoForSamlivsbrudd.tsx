@@ -23,11 +23,11 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
 
   const { person } = usePersonContext();
   const [datoForSamlivsbruddState, settDatoSamlivsbrudd] = useState<string>();
-
+  const [fetching, settFetching] = useState<boolean>(true);
   useEffect(() => {
     Promise.all([
       fetchDatoForSamlivsbrudd(),
-    ])
+    ]).then(() => settFetching(false))
     // eslint-disable-next-line
   }, [person]);
   const fetchDatoForSamlivsbrudd = () => {
@@ -37,21 +37,23 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
         });
   };
   console.log("dato for samlivsbrudd state:" + datoForSamlivsbruddState)
-  return (
-    <>
-      <KomponentGruppe>
-        <Datovelger
-          settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
-          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd?.verdi : datoForSamlivsbruddState}
-          tekstid={datovelgerLabel}
-          datobegrensning={DatoBegrensning.TidligereDatoer}
-        />
-        <AlertStripeDokumentasjon>
-          <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
-        </AlertStripeDokumentasjon>
-      </KomponentGruppe>
-    </>
-  );
+  if (!fetching) {
+    return (
+        <>
+          <KomponentGruppe>
+            <Datovelger
+                settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
+                valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd?.verdi : datoForSamlivsbruddState}
+                tekstid={datovelgerLabel}
+                datobegrensning={DatoBegrensning.TidligereDatoer}
+            />
+            <AlertStripeDokumentasjon>
+              <LocaleTekst tekst={'sivilstatus.alert.samlivsbrudd'} />
+            </AlertStripeDokumentasjon>
+          </KomponentGruppe>
+        </>
+    );
+  }
 };
 
 export default DatoForSamlivsbrudd;
