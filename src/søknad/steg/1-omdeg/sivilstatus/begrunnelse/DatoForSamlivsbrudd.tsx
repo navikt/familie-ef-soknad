@@ -36,7 +36,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
           settDatoSamlivsbrudd(response)
         });
   };
-
+  console.log("dato for samlivsbrudd state:" + datoForSamlivsbruddState)
   return (
     <>
       <KomponentGruppe>
