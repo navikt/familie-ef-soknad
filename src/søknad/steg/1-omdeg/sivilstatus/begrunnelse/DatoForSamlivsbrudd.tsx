@@ -6,7 +6,11 @@ import LocaleTekst from '../../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
-import {hentDataTilGjenbrukBarnetilsyn} from "../../../../../utils/søknad";
+import {
+  hentDataTilGjenbrukBarnetilsyn,
+  hentPersonData,
+} from '../../../../../utils/søknad';
+import { usePersonContext } from '../../../../../context/PersonContext';
 
 interface Props {
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
@@ -18,8 +22,13 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   datoForSamlivsbrudd,
 }) => {
   const datovelgerLabel = 'sivilstatus.datovelger.samlivsbrudd';
-  const dato = hentDataTilGjenbrukBarnetilsyn("28417736486")
-  console.log("dato: ", dato)
+  const dato = hentDataTilGjenbrukBarnetilsyn('28417736486');
+  console.log('dato: ', dato);
+  const { person } = usePersonContext();
+  console.log('fnr: ', person.søker.fnr);
+
+  const datoMedFnr = hentDataTilGjenbrukBarnetilsyn(person.søker.fnr);
+  console.log('datoMedFnr: ', datoMedFnr);
   return (
     <>
       <KomponentGruppe>
