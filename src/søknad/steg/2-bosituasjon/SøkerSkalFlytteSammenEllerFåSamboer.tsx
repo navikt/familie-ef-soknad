@@ -2,9 +2,6 @@ import React, { FC } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../components/spørsmål/JaNeiSpørsmål';
 import { skalSøkerGifteSegMedSamboer } from './BosituasjonConfig';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
 import OmSamboerenDin from './OmSamboerenDin';
 import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import {
@@ -19,6 +16,10 @@ import {
 } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
+import {
+  DatoBegrensning,
+  Datovelger,
+} from '../../../components/dato/Datovelger';
 
 interface Props {
   settBosituasjon: (bosituasjon: IBosituasjon) => void;

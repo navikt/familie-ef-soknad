@@ -10,17 +10,17 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { SagtOppEllerRedusertStillingSpm } from '../../../søknad/steg/6-meromsituasjon/SituasjonConfig';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-
 import subMonths from 'date-fns/subMonths';
 import isAfter from 'date-fns/isAfter';
 import isBefore from 'date-fns/isBefore';
 import { dagensDato, strengTilDato } from '../../../utils/dato';
 import { useSøknad } from '../../../context/SøknadContext';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
-import Datovelger, {
+import { Alert, Textarea } from '@navikt/ds-react';
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
-import { Alert, Textarea } from '@navikt/ds-react';
 
 interface Props {
   dinSituasjon: IDinSituasjon;

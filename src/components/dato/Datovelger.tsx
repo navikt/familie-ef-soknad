@@ -3,7 +3,6 @@ import { addMonths, addYears, formatISO, subYears } from 'date-fns';
 import { useSpråkContext } from '../../context/SpråkContext';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { dagensDato, formatIsoDate } from '../../utils/dato';
-import { DateValidationT } from '@navikt/ds-react';
 import { DatePicker, useDatepicker } from '@navikt/ds-react';
 import { hentTekst } from '../../utils/søknad';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
@@ -37,8 +36,30 @@ const Datovelger: React.FC<Props> = ({
     settDato(_dato);
   }, [_dato]);
 
-  const tilLocaleDateString = (dato: Date) =>
-    formatISO(dato, { representation: 'date' });
+  const datoVisningsverdi = _dato ? new Date(_dato) : undefined;
+  const label = hentTekst(tekstid, intl);
+
+  const settFeilmeldingBasertPåValidering = (
+    datobegrensning: DatoBegrensning,
+    validate: { isBefore: boolean; isAfter: boolean; isValidDate: boolean },
+    settFeilmelding: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    if (
+      datobegrensning === DatoBegrensning.FremtidigeDatoer &&
+      validate.isBefore
+    ) {
+      settFeilmelding('datovelger.ugyldigDato.kunFremtidigeDatoer');
+    } else if (
+      datobegrensning === DatoBegrensning.TidligereDatoer &&
+      validate.isAfter
+    ) {
+      settFeilmelding('datovelger.ugyldigDato.kunTidligereDatoer');
+    } else if (!validate.isValidDate) {
+      settFeilmelding('datovelger.ugyldigDato');
+    } else {
+      settFeilmelding('');
+    }
+  };
 
   const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
     switch (datobegrensning) {
@@ -65,52 +86,35 @@ const Datovelger: React.FC<Props> = ({
     }
   };
 
-  const datoVisningsverdi = _dato ? new Date(_dato) : undefined;
-  const label = hentTekst(tekstid, intl);
-
-  const settFeilmeldingBasertPåValidering: (
-    validate: DateValidationT
-  ) => void = (validate: DateValidationT) => {
-    if (
-      datobegrensning === DatoBegrensning.FremtidigeDatoer &&
-      validate.isBefore
-    ) {
-      settFeilmelding('datovelger.ugyldigDato.kunFremtidigeDatoer');
-    } else if (
-      datobegrensning === DatoBegrensning.TidligereDatoer &&
-      validate.isAfter
-    ) {
-      settFeilmelding('datovelger.ugyldigDato.kunTidligereDatoer');
-    } else if (!validate.isValidDate) {
-      settFeilmelding('datovelger.ugyldigDato');
-    } else {
-      settFeilmelding('');
-    }
-  };
+  const tilLocaleDateString = (dato: Date) =>
+    formatISO(dato, { representation: 'date' });
 
   const { datepickerProps, inputProps } = useDatepicker({
     fromDate: new Date(hentDatobegrensninger(datobegrensning).minDato),
     toDate: new Date(hentDatobegrensninger(datobegrensning).maksDato),
     onDateChange: (dato) => _settDato(dato ? tilLocaleDateString(dato) : ''),
-    onValidate: (validate) => settFeilmeldingBasertPåValidering(validate),
+    onValidate: (validate) =>
+      settFeilmeldingBasertPåValidering(
+        datobegrensning,
+        validate,
+        settFeilmelding
+      ),
     locale: locale,
     defaultSelected: datoVisningsverdi,
   });
 
   return (
-    <div>
-      <FeltGruppe>
-        <DatePicker {...datepickerProps} dropdownCaption>
-          <DatePicker.Input
-            {...inputProps}
-            label={label}
-            error={hentTekst(feilmelding, intl)}
-            placeholder="DD.MM.YYYY"
-          />
-        </DatePicker>
-      </FeltGruppe>
-    </div>
+    <FeltGruppe>
+      <DatePicker {...datepickerProps} dropdownCaption>
+        <DatePicker.Input
+          {...inputProps}
+          label={label}
+          error={feilmelding && hentTekst(feilmelding, intl)}
+          placeholder="DD.MM.YYYY"
+        />
+      </DatePicker>
+    </FeltGruppe>
   );
 };
 
-export default Datovelger;
+export { Datovelger };

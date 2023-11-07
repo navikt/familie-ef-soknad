@@ -1,6 +1,5 @@
 import React from 'react';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
-import { DatoBegrensning } from '../dato/Datovelger';
 import LesMerTekst from '../LesMerTekst';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
@@ -15,6 +14,7 @@ import ÅrMånedVelger from '../dato/ÅrMånedvelger';
 import { strengTilDato } from '../../utils/dato';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Label } from '@navikt/ds-react';
+import { DatoBegrensning } from '../dato/Datovelger';
 
 const StyledMultisvarSpørsmål = styled.div`
   .radioknapp {

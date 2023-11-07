@@ -1,7 +1,4 @@
 import React from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { RadioPanel } from 'nav-frontend-skjema';
@@ -12,6 +9,10 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedMessage from '../../../language/FormattedMessage';
 import { Alert, Label } from '@navikt/ds-react';
 import styled from 'styled-components';
+import {
+  Datovelger,
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
 
 interface Props {
   settBo: (nyttBo: string) => void;

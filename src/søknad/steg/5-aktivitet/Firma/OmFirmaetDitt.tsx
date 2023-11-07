@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';

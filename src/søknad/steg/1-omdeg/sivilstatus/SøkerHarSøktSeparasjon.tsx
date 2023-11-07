@@ -1,12 +1,13 @@
 import React from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/dato/Datovelger';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
+import {
+  Datovelger,
+  DatoBegrensning,
+} from '../../../../components/dato/Datovelger';
 
 interface Props {
   sivilstatus: ISivilstatus;
