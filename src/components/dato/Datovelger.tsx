@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { addMonths, addYears, subYears } from 'date-fns';
-import { Datepicker } from 'nav-datovelger';
+import { addMonths, addYears, formatISO, subYears } from 'date-fns';
 import { useSpråkContext } from '../../context/SpråkContext';
 import FeltGruppe from '../gruppe/FeltGruppe';
-import LocaleTekst from '../../language/LocaleTekst';
-import { dagensDato, erGyldigDato, formatIsoDate } from '../../utils/dato';
-import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import styled from 'styled-components';
-import { DatepickerLimitations } from 'nav-datovelger/lib/types';
-import Feilmelding from '../feil/Feilmelding';
-import { erDatoInnaforBegrensinger } from './utils';
-import { Label } from '@navikt/ds-react';
-
-export const StyledLabel = styled(Label)<{ fetSkrift?: boolean }>`
-  font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
-`;
-
-const LabelWrapper = styled.div`
-  margin-bottom: 0.5rem;
-`;
+import { dagensDato, formatIsoDate } from '../../utils/dato';
+import { DatePicker, useDatepicker } from '@navikt/ds-react';
+import { hentTekst } from '../../utils/søknad';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
 
 export enum DatoBegrensning {
   AlleDatoer = 'AlleDatoer',
@@ -27,38 +14,11 @@ export enum DatoBegrensning {
   TidligereDatoerOgSeksMånederFrem = 'TidligereDatoerOgSeksMånederFrem',
 }
 
-const hentDatobegrensninger = (
-  datobegrensning: DatoBegrensning
-): DatepickerLimitations => {
-  switch (datobegrensning) {
-    case DatoBegrensning.AlleDatoer:
-      return {};
-    case DatoBegrensning.FremtidigeDatoer:
-      return {
-        minDate: formatIsoDate(dagensDato),
-        maxDate: formatIsoDate(addYears(dagensDato, 100)),
-      };
-    case DatoBegrensning.TidligereDatoer:
-      return {
-        minDate: formatIsoDate(subYears(dagensDato, 100)),
-        maxDate: formatIsoDate(dagensDato),
-      };
-    case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
-      return {
-        minDate: formatIsoDate(subYears(dagensDato, 100)),
-        maxDate: formatIsoDate(addMonths(dagensDato, 6)),
-      };
-  }
-};
-
 interface Props {
   valgtDato: string | undefined;
   tekstid: string;
   datobegrensning: DatoBegrensning;
-  settDato: (date: string) => void;
-  disabled?: boolean;
-  fetSkrift?: boolean;
-  gjemFeilmelding?: boolean;
+  settDato: (dato: string) => void;
 }
 
 const Datovelger: React.FC<Props> = ({
@@ -66,76 +26,95 @@ const Datovelger: React.FC<Props> = ({
   datobegrensning,
   valgtDato,
   settDato,
-  disabled,
-  fetSkrift,
-  gjemFeilmelding,
 }) => {
   const [locale] = useSpråkContext();
-  const datolabelid = hentUid();
   const [_dato, _settDato] = useState<string>(valgtDato ? valgtDato : '');
+  const intl = useLokalIntlContext();
   const [feilmelding, settFeilmelding] = useState<string>('');
-
-  const limitations: DatepickerLimitations =
-    hentDatobegrensninger(datobegrensning);
-
-  const hentFeilmelding = (
-    dato: string,
-    datobegrensning: DatoBegrensning
-  ): string => {
-    if (!erGyldigDato(dato)) {
-      return 'datovelger.ugyldigDato';
-    } else if (
-      datobegrensning === DatoBegrensning.FremtidigeDatoer &&
-      !erDatoInnaforBegrensinger(dato, datobegrensning)
-    ) {
-      return 'datovelger.ugyldigDato.kunFremtidigeDatoer';
-    } else if (
-      datobegrensning === DatoBegrensning.TidligereDatoer &&
-      !erDatoInnaforBegrensinger(dato, datobegrensning)
-    ) {
-      return 'datovelger.ugyldigDato.kunTidligereDatoer';
-    } else {
-      return '';
-    }
-  };
 
   useEffect(() => {
     settDato(_dato);
-    _dato !== '' && settFeilmelding(hentFeilmelding(_dato, datobegrensning));
-
-    // eslint-disable-next-line
   }, [_dato]);
 
-  return (
-    <div>
-      <FeltGruppe>
-        <LabelWrapper>
-          <StyledLabel fetSkrift={fetSkrift} htmlFor={datolabelid}>
-            <LocaleTekst tekst={tekstid} />
-          </StyledLabel>
-        </LabelWrapper>
-        <Datepicker
-          inputId={datolabelid}
-          locale={locale}
-          disabled={disabled}
-          onChange={_settDato}
-          value={_dato}
-          allowInvalidDateSelection={false}
-          showYearSelector={true}
-          limitations={limitations}
-          inputProps={{
-            placeholder: 'DD.MM.YYYY',
-            name: 'dateInput',
-            'aria-invalid': _dato !== '' && feilmelding !== '',
-          }}
-        />
-      </FeltGruppe>
+  const datoVisningsverdi = _dato ? new Date(_dato) : undefined;
+  const label = hentTekst(tekstid, intl);
 
-      {!gjemFeilmelding && _dato !== '' && feilmelding !== '' && (
-        <Feilmelding tekstid={feilmelding} />
-      )}
-    </div>
+  const settFeilmeldingBasertPåValidering = (
+    datobegrensning: DatoBegrensning,
+    validate: { isBefore: boolean; isAfter: boolean; isValidDate: boolean },
+    settFeilmelding: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    if (
+      datobegrensning === DatoBegrensning.FremtidigeDatoer &&
+      validate.isBefore
+    ) {
+      settFeilmelding('datovelger.ugyldigDato.kunFremtidigeDatoer');
+    } else if (
+      datobegrensning === DatoBegrensning.TidligereDatoer &&
+      validate.isAfter
+    ) {
+      settFeilmelding('datovelger.ugyldigDato.kunTidligereDatoer');
+    } else if (!validate.isValidDate) {
+      settFeilmelding('datovelger.ugyldigDato');
+    } else {
+      settFeilmelding('');
+    }
+  };
+
+  const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
+    switch (datobegrensning) {
+      case DatoBegrensning.AlleDatoer:
+        return {
+          minDato: formatIsoDate(subYears(dagensDato, 100)),
+          maksDato: formatIsoDate(addYears(dagensDato, 100)),
+        };
+      case DatoBegrensning.FremtidigeDatoer:
+        return {
+          minDato: formatIsoDate(dagensDato),
+          maksDato: formatIsoDate(addYears(dagensDato, 100)),
+        };
+      case DatoBegrensning.TidligereDatoer:
+        return {
+          minDato: formatIsoDate(subYears(dagensDato, 100)),
+          maksDato: formatIsoDate(dagensDato),
+        };
+      case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
+        return {
+          minDato: formatIsoDate(subYears(dagensDato, 100)),
+          maksDato: formatIsoDate(addMonths(dagensDato, 6)),
+        };
+    }
+  };
+
+  const tilLocaleDateString = (dato: Date) =>
+    formatISO(dato, { representation: 'date' });
+
+  const { datepickerProps, inputProps } = useDatepicker({
+    fromDate: new Date(hentDatobegrensninger(datobegrensning).minDato),
+    toDate: new Date(hentDatobegrensninger(datobegrensning).maksDato),
+    onDateChange: (dato) => _settDato(dato ? tilLocaleDateString(dato) : ''),
+    onValidate: (validate) =>
+      settFeilmeldingBasertPåValidering(
+        datobegrensning,
+        validate,
+        settFeilmelding
+      ),
+    locale: locale,
+    defaultSelected: datoVisningsverdi,
+  });
+
+  return (
+    <FeltGruppe>
+      <DatePicker {...datepickerProps} dropdownCaption>
+        <DatePicker.Input
+          {...inputProps}
+          label={label}
+          error={feilmelding && hentTekst(feilmelding, intl)}
+          placeholder="DD.MM.YYYY"
+        />
+      </DatePicker>
+    </FeltGruppe>
   );
 };
 
-export default Datovelger;
+export { Datovelger };

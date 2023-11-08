@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from 'react';
-import Datovelger, { DatoBegrensning } from './Datovelger';
 import Feilmelding from '../feil/Feilmelding';
 import { EPeriode, IPeriode } from '../../models/felles/periode';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
@@ -15,6 +14,7 @@ import {
 } from './utils';
 import { erGyldigDato } from '../../utils/dato';
 import { Label } from '@navikt/ds-react';
+import { DatoBegrensning, Datovelger } from './Datovelger';
 
 const PeriodeGruppe = styled.div`
   display: grid;
@@ -134,7 +134,6 @@ const PeriodeDatovelgere: FC<Props> = ({
           valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
         />
 
         <Datovelger
@@ -142,7 +141,6 @@ const PeriodeDatovelgere: FC<Props> = ({
           valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
           datobegrensning={datobegrensning}
-          gjemFeilmelding={true}
         />
         {feilmelding && feilmelding !== '' && (
           <Feilmelding className={'feilmelding'} tekstid={feilmelding} />

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import FeltGruppe from './FeltGruppe';
-import Datovelger, { DatoBegrensning } from '../dato/Datovelger';
 import { hentTekst } from '../../utils/søknad';
 import KomponentGruppe from './KomponentGruppe';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Checkbox } from '@navikt/ds-react';
 import { dnr as dnrValidator, fnr as fnrValidator } from '@navikt/fnrvalidator';
 import { TextFieldMedBredde } from '../TextFieldMedBredde';
+import { DatoBegrensning, Datovelger } from '../dato/Datovelger';
 
 interface Props {
   identLabel: string;
@@ -20,7 +20,6 @@ interface Props {
   settChecked: (checked: boolean) => void;
   settFødselsdato: (date: string) => void;
   settIdent: (ident: React.ChangeEvent<HTMLInputElement>) => void;
-  fetSkrift?: boolean;
 }
 
 const IdentEllerFødselsdatoGruppe: FC<Props> = ({
@@ -35,7 +34,6 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
   settChecked,
   settIdent,
   settFødselsdato,
-  fetSkrift,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -80,7 +78,6 @@ const IdentEllerFødselsdatoGruppe: FC<Props> = ({
             tekstid={datoLabel}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settFødselsdato(e)}
-            fetSkrift={fetSkrift}
           />
         </KomponentGruppe>
       )}
