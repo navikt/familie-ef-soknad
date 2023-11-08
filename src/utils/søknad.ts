@@ -82,18 +82,23 @@ interface IDataTilGjenbrukBarnetilsyn {
 export const hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn = async (
   personIdent: string
 ) => {
-  const response = await axios.post(
-    `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
-    personIdent,
-    {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      },
-    }
-  );
-  return response.data;
+  try {
+    const response = await axios.post(
+      `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
+      personIdent,
+      {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'application/json',
+          accept: 'application/json',
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
 };
 
 export const nullstillMellomlagretSøknadTilDokument = (
