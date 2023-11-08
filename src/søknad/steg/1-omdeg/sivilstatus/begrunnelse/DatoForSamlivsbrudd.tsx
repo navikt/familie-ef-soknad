@@ -8,7 +8,7 @@ import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
 import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 import { usePersonContext } from '../../../../../context/PersonContext';
-import { hentDataTilGjenbrukBarnetilsyn } from '../../../../../utils/søknad';
+import { hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn } from '../../../../../utils/søknad';
 
 interface Props {
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
@@ -28,7 +28,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   useEffect(() => {
     const fetchDatoForSamlivsbrudd = async (fnr: string) => {
       settIsFetching(true);
-      const response = await hentDataTilGjenbrukBarnetilsyn(fnr);
+      const response = await hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(fnr);
       settGjenbrukDatoForSamlivsbrudd(response);
       settIsFetching(false);
     };
@@ -39,6 +39,8 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   console.log(
     'dato gjenbrukDatoForSamlivsbrudd:' + gjenbrukDatoForSamlivsbrudd
   );
+
+  console.log('valgt dato:' + datoForSamlivsbrudd?.verdi);
 
   if (!isfetching) {
     return (
