@@ -22,7 +22,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
   const datovelgerLabel = 'sivilstatus.datovelger.samlivsbrudd';
   const { person } = usePersonContext();
   const [gjenbrukDatoForSamlivsbrudd, settGjenbrukDatoForSamlivsbrudd] =
-    useState<string>('');
+    useState<string>();
   const [isfetching, settIsFetching] = useState<boolean>(true);
 
   useEffect(() => {
