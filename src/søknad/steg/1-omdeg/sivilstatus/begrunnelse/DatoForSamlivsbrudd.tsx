@@ -1,5 +1,6 @@
 import React from 'react';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
 import LocaleTekst from '../../../../../language/LocaleTekst';
