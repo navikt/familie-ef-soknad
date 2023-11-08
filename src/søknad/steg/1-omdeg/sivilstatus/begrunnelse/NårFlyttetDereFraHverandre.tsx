@@ -1,9 +1,10 @@
 import React from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../../components/dato/Datovelger';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
+import {
+  DatoBegrensning,
+  Datovelger,
+} from '../../../../../components/dato/Datovelger';
 
 interface Props {
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
