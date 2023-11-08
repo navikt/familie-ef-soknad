@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
@@ -170,7 +171,6 @@ const OmFirmaetDitt: React.FC<Props> = ({
             tekstid={'firma.datovelger.etablering'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settDatoFelt(e)}
-            fetSkrift={true}
           />
         </FeltGruppe>
       )}

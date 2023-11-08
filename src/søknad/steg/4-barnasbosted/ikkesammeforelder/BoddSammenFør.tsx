@@ -2,9 +2,6 @@ import { IForelder } from '../../../../models/steg/forelder';
 import React, { FC } from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { boddSammenFør } from '../ForeldreConfig';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../../components/dato/Datovelger';
 import {
   ESvar,
   ISpørsmål,
@@ -16,6 +13,10 @@ import JaNeiSpørsmålMedNavn from '../../../../components/spørsmål/JaNeiSpør
 import { hentBarnNavnEllerBarnet } from '../../../../utils/barn';
 import { IBarn } from '../../../../models/steg/barn';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import {
+  DatoBegrensning,
+  Datovelger,
+} from '../../../../components/dato/Datovelger';
 
 interface Props {
   forelder: IForelder;
@@ -79,7 +80,6 @@ const BoddSammenFør: FC<Props> = ({ forelder, barn, settForelder }) => {
             }
             tekstid={'barnasbosted.normaltekst.nårflyttetfra'}
             datobegrensning={DatoBegrensning.AlleDatoer}
-            fetSkrift={true}
           />
         </KomponentGruppe>
       )}
