@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
+import {hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn, hentPersonData, oppdaterBarnMedLabel} from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
   verifiserAtBrukerErAutentisert,
@@ -31,7 +31,7 @@ const BarnetilsynApp = () => {
     søknad,
     settSøknad,
     hentMellomlagretBarnetilsyn,
-    hentTidligereBarnetilsyn,
+    hentForrigeSøknadBarnetilsyn,
   } = useBarnetilsynSøknad();
   const { settToggles } = useToggles();
 
@@ -88,7 +88,7 @@ const BarnetilsynApp = () => {
       fetchToggles(),
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
-      hentTidligereBarnetilsyn(),
+      hentForrigeSøknadBarnetilsyn(),
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));

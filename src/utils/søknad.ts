@@ -11,7 +11,7 @@ import {
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
-import { TidligereSøknad } from '../barnetilsyn/models/søknad';
+import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
 
 export const hentPersonData = () => {
   return axios
@@ -82,7 +82,7 @@ interface IDataTilGjenbrukBarnetilsyn {
 
 export const hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn = async (
   personIdent: string
-): Promise<TidligereSøknad> => {
+): Promise<ForrigeSøknad> => {
   try {
     const response = await axios.post(
       `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,

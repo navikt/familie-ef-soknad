@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad, TidligereSøknad } from './models/søknad';
+import { ISøknad, ForrigeSøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -64,13 +64,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
-    const [tidligereSøknad, settTidligereSøknad] = useState<TidligereSøknad>(
-      initialState(intl)
-    );
+    const [forrigeSøknad, settForrigeSøknad] = useState<ForrigeSøknad>();
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
       useState<IMellomlagretBarnetilsynSøknad>();
-    const [tidligereBarnetilsyn, settTidligereBarnetilsyn] =
-      useState<TidligereSøknad>();
 
     const { person } = usePersonContext();
 
@@ -99,54 +95,18 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
-    const hentTidligereBarnetilsyn = async (): Promise<void> => {
+    const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       return hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(
         person.søker.fnr
-      ).then((tidligereVersjon?: TidligereSøknad) => {
+      ).then((tidligereVersjon?: ForrigeSøknad) => {
         if (tidligereVersjon) {
-          settTidligereBarnetilsyn(tidligereVersjon);
+          settForrigeSøknad(tidligereVersjon);
           console.log('tidligereVersjon ', tidligereVersjon);
+          console.log('tidligereBarnetilsyn', forrigeSøknad)
         }
       });
     };
 
-    const brukTidligereBarnetilsyn = async () => {
-      console.log(
-        'brukTidligereBarnetilsyn og tidligereBarnetilsyn',
-        tidligereBarnetilsyn
-      );
-      if (tidligereBarnetilsyn) {
-        const tidligere: TidligereSøknad = {
-          sivilstatus: {
-            datoEndretSamvær: undefined,
-            datoFlyttetFraHverandre: undefined,
-            datoForSamlivsbrudd: {
-              label: 'Dato for samlivsbrudd',
-              verdi: '2023-11-01',
-            },
-            datoSøktSeparasjon: undefined,
-            erUformeltGift: undefined,
-            erUformeltSeparertEllerSkilt: undefined,
-            harSøktSeparasjon: {
-              label:
-                'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
-              verdi: false,
-            },
-            tidligereSamboerDetaljer: undefined,
-            årsakEnslig: {
-              spørsmålid: 'årsakEnslig',
-              label: 'Hvorfor er du alene med barn?',
-              verdi: 'Samlivsbrudd med den andre forelderen',
-              svarid: 'undefined',
-            },
-          },
-          medlemskap: tidligereBarnetilsyn?.medlemskap,
-          harBekreftet: true,
-        };
-        settTidligereSøknad(tidligere);
-        console.log('tidligereSøknad ', tidligereSøknad);
-      }
-    };
 
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
@@ -268,10 +228,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       hentMellomlagretBarnetilsyn,
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
-      hentTidligereBarnetilsyn,
-      brukTidligereBarnetilsyn,
-      tidligereSøknad,
-      settTidligereSøknad,
+      hentForrigeSøknadBarnetilsyn,
+      forrigeSøknad,
+      settForrigeSøknad,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,

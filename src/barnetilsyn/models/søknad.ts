@@ -25,8 +25,7 @@ export interface ISøknad {
   harBekreftet: boolean;
 }
 
-export interface TidligereSøknad {
+export interface ForrigeSøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
-  harBekreftet: boolean;
 }
