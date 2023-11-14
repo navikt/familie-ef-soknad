@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -23,7 +23,7 @@ import { Alert, Panel, Heading } from '@navikt/ds-react';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
-import {hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn} from "../utils/søknad";
+import { hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn } from '../utils/søknad';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -56,22 +56,21 @@ const Forside: React.FC<any> = () => {
       harBekreftet: bekreftelse,
     });
   };
-  const [gjenbrukSøknad, settGjenbrukSøknad] =
-      useState<string>();
+  const [gjenbrukSøknad, settGjenbrukSøknad] = useState<string>();
   const [isfetching, settIsFetching] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchForrigeBarnetilsynSøknad = async (fnr: string) => {
       settIsFetching(true);
       const response = await hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(fnr);
-      settGjenbrukSøknad(response);
+      settGjenbrukSøknad(JSON.parse(response));
       settIsFetching(false);
     };
 
     fetchForrigeBarnetilsynSøknad(person.søker.fnr);
-  }, [person])
+  }, [person]);
 
-  console.log("gjenbruk søknad: ", gjenbrukSøknad)
+  console.log('gjenbruk søknad: ', gjenbrukSøknad);
   const alder = FnrOgDnrTilAlder(person.søker.fnr);
 
   const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
