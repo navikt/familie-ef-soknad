@@ -24,6 +24,7 @@ import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
 import { hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn } from '../utils/søknad';
+import { ISøknad, TidligereSøknad } from './models/søknad';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -49,26 +50,36 @@ const Forside: React.FC<any> = () => {
     nullstillMellomlagretBarnetilsyn,
     søknad,
     settSøknad,
+
+    tidligereSøknad,
+    brukTidligereBarnetilsyn,
+    settTidligereSøknad,
   } = useBarnetilsynSøknad();
+
   const settBekreftelse = (bekreftelse: boolean) => {
     settSøknad({
       ...søknad,
       harBekreftet: bekreftelse,
     });
   };
-  const [gjenbrukSøknad, settGjenbrukSøknad] = useState<string>();
-  const [isfetching, settIsFetching] = useState<boolean>(true);
 
   useEffect(() => {
-    const fetchForrigeBarnetilsynSøknad = async (fnr: string) => {
-      settIsFetching(true);
-      const response = await hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(fnr);
-      settGjenbrukSøknad(JSON.parse(response));
-      settIsFetching(false);
+    const fetchData = async () => {
+      // await hentTidligereBarnetilsyn();
+      await brukTidligereBarnetilsyn();
+
+      settSøknad({
+        ...søknad,
+        sivilstatus: tidligereSøknad.sivilstatus,
+        medlemskap: tidligereSøknad.medlemskap,
+        harBekreftet: false,
+      });
     };
 
-    fetchForrigeBarnetilsynSøknad(person.søker.fnr);
-  }, [person]);
+    fetchData();
+  }, []);
+
+  const [gjenbrukSøknad, settGjenbrukSøknad] = useState<TidligereSøknad>();
 
   console.log('gjenbruk søknad: ', gjenbrukSøknad);
   const alder = FnrOgDnrTilAlder(person.søker.fnr);

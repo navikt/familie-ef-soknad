@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad } from './models/søknad';
+import { ISøknad, TidligereSøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -13,6 +13,7 @@ import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
+  hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn,
   hentMellomlagretSøknadFraDokument,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
@@ -25,6 +26,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
+import { usePersonContext } from '../context/PersonContext';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -62,8 +64,15 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
+    const [tidligereSøknad, settTidligereSøknad] = useState<TidligereSøknad>(
+      initialState(intl)
+    );
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
       useState<IMellomlagretBarnetilsynSøknad>();
+    const [tidligereBarnetilsyn, settTidligereBarnetilsyn] =
+      useState<TidligereSøknad>();
+
+    const { person } = usePersonContext();
 
     useEffect(() => {
       if (
@@ -87,6 +96,55 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const brukMellomlagretBarnetilsyn = () => {
       if (mellomlagretBarnetilsyn) {
         settSøknad(mellomlagretBarnetilsyn.søknad);
+      }
+    };
+
+    const hentTidligereBarnetilsyn = async (): Promise<void> => {
+      return hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(
+        person.søker.fnr
+      ).then((tidligereVersjon?: TidligereSøknad) => {
+        if (tidligereVersjon) {
+          settTidligereBarnetilsyn(tidligereVersjon);
+          console.log('tidligereVersjon ', tidligereVersjon);
+        }
+      });
+    };
+
+    const brukTidligereBarnetilsyn = async () => {
+      console.log(
+        'brukTidligereBarnetilsyn og tidligereBarnetilsyn',
+        tidligereBarnetilsyn
+      );
+      if (tidligereBarnetilsyn) {
+        const tidligere: TidligereSøknad = {
+          sivilstatus: {
+            datoEndretSamvær: undefined,
+            datoFlyttetFraHverandre: undefined,
+            datoForSamlivsbrudd: {
+              label: 'Dato for samlivsbrudd',
+              verdi: '2023-11-01',
+            },
+            datoSøktSeparasjon: undefined,
+            erUformeltGift: undefined,
+            erUformeltSeparertEllerSkilt: undefined,
+            harSøktSeparasjon: {
+              label:
+                'Har dere søkt om separasjon, søkt om skilsmisse eller reist sak for domstolen?',
+              verdi: false,
+            },
+            tidligereSamboerDetaljer: undefined,
+            årsakEnslig: {
+              spørsmålid: 'årsakEnslig',
+              label: 'Hvorfor er du alene med barn?',
+              verdi: 'Samlivsbrudd med den andre forelderen',
+              svarid: 'undefined',
+            },
+          },
+          medlemskap: tidligereBarnetilsyn?.medlemskap,
+          harBekreftet: true,
+        };
+        settTidligereSøknad(tidligere);
+        console.log('tidligereSøknad ', tidligereSøknad);
       }
     };
 
@@ -210,6 +268,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       hentMellomlagretBarnetilsyn,
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
+      hentTidligereBarnetilsyn,
+      brukTidligereBarnetilsyn,
+      tidligereSøknad,
+      settTidligereSøknad,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,

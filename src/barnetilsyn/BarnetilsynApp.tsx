@@ -27,8 +27,12 @@ const BarnetilsynApp = () => {
   const [alvorlighetsgrad, settAlvorlighetsgrad] =
     useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
-  const { søknad, settSøknad, hentMellomlagretBarnetilsyn } =
-    useBarnetilsynSøknad();
+  const {
+    søknad,
+    settSøknad,
+    hentMellomlagretBarnetilsyn,
+    hentTidligereBarnetilsyn,
+  } = useBarnetilsynSøknad();
   const { settToggles } = useToggles();
 
   const intl = useLokalIntlContext();
@@ -84,6 +88,7 @@ const BarnetilsynApp = () => {
       fetchToggles(),
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
+      hentTidligereBarnetilsyn(),
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
