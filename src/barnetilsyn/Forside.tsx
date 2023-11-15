@@ -57,6 +57,8 @@ const Forside: React.FC<any> = () => {
     });
   };
 
+  console.log('Søknad: ', søknad);
+
   const alder = FnrOgDnrTilAlder(person.søker.fnr);
 
   const forside: any = useForsideInnhold(ForsideType.barnetilsyn);
