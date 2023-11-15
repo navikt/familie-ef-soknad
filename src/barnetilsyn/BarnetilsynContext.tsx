@@ -95,6 +95,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
+      console.log('Henter');
       return hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(
         person.søker.fnr
       ).then((tidligereVersjon?: ForrigeSøknad) => {
@@ -103,6 +104,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...søknad,
             ...tidligereVersjon,
           });
+          console.log(
+            'tidligereVersjon i hentForrigeSøknadBarnetilsyn: ',
+            tidligereVersjon
+          );
         }
       });
     };

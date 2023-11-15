@@ -36,7 +36,7 @@ export const hentValgtSvar = (
   sivilstatus: ISivilstatus
 ) => {
   for (const [key, value] of Object.entries(sivilstatus)) {
-    if (key === spørsmål.søknadid && value !== undefined) {
+    if (key === spørsmål.søknadid && value !== undefined && value !== null) {
       return value.verdi;
     }
   }

@@ -45,10 +45,17 @@ const OmDeg: FC = () => {
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        medlemskap: medlemskap,
-      };
+      console.log('prevSøknad: ', prevSoknad, 'medlemskap: ', medlemskap);
+      if (Object.keys(medlemskap).length === 0) {
+        return {
+          ...prevSoknad,
+        };
+      } else {
+        return {
+          ...prevSoknad,
+          medlemskap: medlemskap,
+        };
+      }
     });
   };
 
@@ -69,8 +76,6 @@ const OmDeg: FC = () => {
         ...prevSoknad,
         adresseopplysninger: undefined,
         søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
-        sivilstatus: {},
-        medlemskap: {},
       };
     });
   };
@@ -100,6 +105,7 @@ const OmDeg: FC = () => {
     søknad.sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
     søknad.sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
+  console.log('harSvartPåUformeltGift: ', harSvartPåUformeltGift);
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,
     søknad.medlemskap
@@ -151,8 +157,9 @@ const OmDeg: FC = () => {
 
         <Show
           if={
-            harFyltUtSeparasjonSpørsmålet ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
+            (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
+            (erSøknadsBegrunnelseBesvart(søknad.sivilstatus) &&
+              harSvartPåUformeltGift)
           }
         >
           <Medlemskap
