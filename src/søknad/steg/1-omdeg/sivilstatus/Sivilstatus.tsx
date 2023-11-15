@@ -25,7 +25,6 @@ import {
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SøkerErSkilt from './SøkerErSkilt';
-import { useBarnetilsynSøknad } from '../../../../barnetilsyn/BarnetilsynContext';
 
 interface Props {
   sivilstatus: ISivilstatus;

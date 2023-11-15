@@ -38,7 +38,6 @@ const BarnetilsynApp = () => {
     hentForrigeSøknadBarnetilsyn,
   } = useBarnetilsynSøknad();
   const { settToggles } = useToggles();
-  const { person } = usePersonContext();
 
   const intl = useLokalIntlContext();
 

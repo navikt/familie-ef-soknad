@@ -100,10 +100,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         person.søker.fnr
       ).then((tidligereVersjon?: ForrigeSøknad) => {
         if (tidligereVersjon) {
-          settSøknad({
-            ...søknad,
+          settSøknad((prevSøknad) => ({
+            ...prevSøknad,
             ...tidligereVersjon,
-          });
+          }));
           console.log(
             'tidligereVersjon i hentForrigeSøknadBarnetilsyn: ',
             tidligereVersjon
