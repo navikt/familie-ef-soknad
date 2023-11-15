@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { hentBeskjedMedNavn } from '../utils/språk';
@@ -23,8 +23,6 @@ import { Alert, Panel, Heading } from '@navikt/ds-react';
 import VeilederSnakkeboble from '../assets/VeilederSnakkeboble';
 import styled from 'styled-components';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
-import { hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn } from '../utils/søknad';
-import { ISøknad, ForrigeSøknad } from './models/søknad';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -50,9 +48,6 @@ const Forside: React.FC<any> = () => {
     nullstillMellomlagretBarnetilsyn,
     søknad,
     settSøknad,
-    forrigeSøknad,
-    settForrigeSøknad,
-    hentForrigeSøknadBarnetilsyn
   } = useBarnetilsynSøknad();
 
   const settBekreftelse = (bekreftelse: boolean) => {
@@ -61,17 +56,6 @@ const Forside: React.FC<any> = () => {
       harBekreftet: bekreftelse,
     });
   };
-
-  useEffect(() => {
-    settSøknad({
-      ...søknad,
-      sivilstatus: forrigeSøknad?.sivilstatus ?? {},
-      medlemskap: forrigeSøknad?.medlemskap ?? {},
-      harBekreftet: false,
-    });
-    console.log("Forrige søknad sivilstatus: ", forrigeSøknad?.sivilstatus)
-    console.log("Fyller ut søknad med forrige state: ", søknad)
-  }, [forrigeSøknad]);
 
   const alder = FnrOgDnrTilAlder(person.søker.fnr);
 

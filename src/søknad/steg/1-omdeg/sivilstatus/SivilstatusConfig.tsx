@@ -34,6 +34,7 @@ export const SeparasjonSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   ],
 });
 
+// Etter at dette spørsmålet er svart kan vi bruke forrige søknad
 export const erUformeltGiftSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.erUformeltGift,
   tekstid: 'sivilstatus.spm.erUformeltGift',

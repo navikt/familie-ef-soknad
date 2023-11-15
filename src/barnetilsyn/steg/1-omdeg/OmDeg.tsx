@@ -23,6 +23,7 @@ import { ISøknad } from '../../models/søknad';
 import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
+import { ESvar } from '../../../models/felles/spørsmålogsvar';
 
 const OmDeg: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -73,6 +74,7 @@ const OmDeg: FC = () => {
       };
     });
   };
+
   const settHarMeldtAdresseendring = (
     harMeldtAdresseendring: ISpørsmålBooleanFelt
   ) => {
@@ -93,6 +95,10 @@ const OmDeg: FC = () => {
       };
     });
   };
+
+  const harSvartPåUformeltGift =
+    søknad.sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
+    søknad.sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,

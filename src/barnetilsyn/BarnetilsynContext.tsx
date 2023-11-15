@@ -64,7 +64,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
-    const [forrigeSøknad, settForrigeSøknad] = useState<ForrigeSøknad>();
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
       useState<IMellomlagretBarnetilsynSøknad>();
 
@@ -100,13 +99,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         person.søker.fnr
       ).then((tidligereVersjon?: ForrigeSøknad) => {
         if (tidligereVersjon) {
-          settForrigeSøknad(tidligereVersjon);
-          console.log('tidligereVersjon ', tidligereVersjon);
-          console.log('tidligereBarnetilsyn', forrigeSøknad)
+          settSøknad({
+            ...søknad,
+            ...tidligereVersjon,
+          });
         }
       });
     };
-
 
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
@@ -229,8 +228,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
       hentForrigeSøknadBarnetilsyn,
-      forrigeSøknad,
-      settForrigeSøknad,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,
