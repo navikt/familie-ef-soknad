@@ -13,7 +13,7 @@ import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
-  hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn,
+  hentDataFraForrigeBarnetilsynSøknad,
   hentMellomlagretSøknadFraDokument,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
@@ -95,21 +95,16 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
-      console.log('Henter');
-      return hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn(
-        person.søker.fnr
-      ).then((tidligereVersjon?: ForrigeSøknad) => {
-        if (tidligereVersjon) {
-          settSøknad((prevSøknad) => ({
-            ...prevSøknad,
-            ...tidligereVersjon,
-          }));
-          console.log(
-            'tidligereVersjon i hentForrigeSøknadBarnetilsyn: ',
-            tidligereVersjon
-          );
+      return hentDataFraForrigeBarnetilsynSøknad(person.søker.fnr).then(
+        (tidligereVersjon?: ForrigeSøknad) => {
+          if (tidligereVersjon) {
+            settSøknad((prevSøknad) => ({
+              ...prevSøknad,
+              ...tidligereVersjon,
+            }));
+          }
         }
-      });
+      );
     };
 
     const mellomlagreBarnetilsyn = (steg: string) => {

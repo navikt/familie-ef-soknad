@@ -1,11 +1,7 @@
 import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import {
-  hentDatoForSamlivsbruddTilGjenbrukBarnetilsyn,
-  hentPersonData,
-  oppdaterBarnMedLabel,
-} from '../utils/søknad';
+import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
 import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
 import {
   verifiserAtBrukerErAutentisert,

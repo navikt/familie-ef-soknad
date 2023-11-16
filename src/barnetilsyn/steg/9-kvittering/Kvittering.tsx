@@ -62,8 +62,6 @@ const Kvittering: React.FC = () => {
     søknad.sivilstatus.årsakEnslig?.svarid ===
     EBegrunnelse.samlivsbruddForeldre;
 
-  console.log('Søknad: ', søknad);
-
   return søknad.innsendingsdato ? (
     <Side
       stønadstype={Stønadstype.barnetilsyn}

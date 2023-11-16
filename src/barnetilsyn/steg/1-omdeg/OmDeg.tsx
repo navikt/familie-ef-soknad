@@ -45,17 +45,13 @@ const OmDeg: FC = () => {
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
-      console.log('prevSøknad: ', prevSoknad, 'medlemskap: ', medlemskap);
-      if (Object.keys(medlemskap).length === 0) {
-        return {
-          ...prevSoknad,
-        };
-      } else {
-        return {
-          ...prevSoknad,
-          medlemskap: medlemskap,
-        };
-      }
+      return {
+        ...prevSoknad,
+        medlemskap:
+          Object.keys(medlemskap).length !== 0
+            ? medlemskap
+            : prevSoknad.medlemskap,
+      };
     });
   };
 
@@ -105,7 +101,6 @@ const OmDeg: FC = () => {
     søknad.sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
     søknad.sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
-  console.log('harSvartPåUformeltGift: ', harSvartPåUformeltGift);
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,
     søknad.medlemskap
