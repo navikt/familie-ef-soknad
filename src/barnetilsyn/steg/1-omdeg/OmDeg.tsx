@@ -119,6 +119,8 @@ const OmDeg: FC = () => {
         : true
       : false;
 
+  console.log('OmDeg.tex søknad', søknad);
+
   return (
     <Side
       stønadstype={Stønadstype.barnetilsyn}
