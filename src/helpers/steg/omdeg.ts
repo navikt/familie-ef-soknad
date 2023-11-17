@@ -93,19 +93,21 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
-  const manglerNoenBegrunnelserForUtenlandsopphold =
-    perioderBoddIUtlandet?.some(
-      (utenlandsopphold) =>
-        utenlandsopphold.begrunnelse.verdi === '' ||
-        !utenlandsopphold.begrunnelse
-    );
-  return søkerBosattINorgeSisteTreÅr?.verdi === false
-    ? manglerNoenBegrunnelserForUtenlandsopphold
-      ? false
-      : true
-    : søkerBosattINorgeSisteTreÅr?.verdi
-    ? true
-    : false;
+  if (perioderBoddIUtlandet !== null) {
+    const manglerNoenBegrunnelserForUtenlandsopphold =
+      perioderBoddIUtlandet?.some(
+        (utenlandsopphold) =>
+          utenlandsopphold.begrunnelse.verdi === '' ||
+          !utenlandsopphold.begrunnelse
+      );
+    return søkerBosattINorgeSisteTreÅr?.verdi === false
+      ? manglerNoenBegrunnelserForUtenlandsopphold
+        ? false
+        : true
+      : søkerBosattINorgeSisteTreÅr?.verdi
+      ? true
+      : false;
+  } else return false;
 };
 
 export const erStegFerdigUtfylt = (
