@@ -97,7 +97,8 @@ const Sivilstatus: React.FC<Props> = ({
   };
 
   const harFyltUtSeparasjonSomGift = () => {
-    if (harSøktSeparasjon === undefined) return false;
+    if (harSøktSeparasjon === undefined || harSøktSeparasjon === null)
+      return false;
 
     if (harSøktSeparasjon.verdi === true) {
       return !!datoSøktSeparasjon?.verdi;

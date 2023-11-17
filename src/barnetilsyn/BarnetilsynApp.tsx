@@ -89,9 +89,9 @@ const BarnetilsynApp = () => {
   useEffect(() => {
     Promise.all([
       fetchToggles(),
+      hentForrigeSøknadBarnetilsyn(),
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
-      hentForrigeSøknadBarnetilsyn(),
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));

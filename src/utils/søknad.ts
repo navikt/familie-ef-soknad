@@ -58,6 +58,18 @@ export const mellomlagreSøknadTilDokument = <T>(
   );
 };
 
+const fjernNullProperties = (obj: any): any => {
+  return Object.entries(obj)
+    .filter(([_, v]) => v != null)
+    .reduce(
+      (acc, [k, v]) => ({
+        ...acc,
+        [k]: v instanceof Object ? fjernNullProperties(v) : v,
+      }),
+      {}
+    );
+};
+
 export const hentDataFraForrigeBarnetilsynSøknad =
   async (): Promise<ForrigeSøknad> => {
     try {
@@ -69,13 +81,15 @@ export const hentDataFraForrigeBarnetilsynSøknad =
         'hentDataFraForrigeBarnetilsynSøknad response.data: ',
         response.data
       );
-      return response.data;
+
+      const data = fjernNullProperties(response.data);
+
+      return data;
     } catch (error) {
       console.error('Feil med å hente data fra forrige søknad: ', error);
       throw error;
     }
   };
-
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
 ): Promise<any> => {

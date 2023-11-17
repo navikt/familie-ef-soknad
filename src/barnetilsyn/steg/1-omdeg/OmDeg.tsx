@@ -111,13 +111,12 @@ const OmDeg: FC = () => {
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
 
-  const harFyltUtSeparasjonSpørsmålet =
-    harSøktSeparasjon !== undefined
-      ? harSøktSeparasjon.verdi
-        ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
-          erGyldigDato(datoFlyttetFraHverandre?.verdi)
-        : true
-      : false;
+  const harFyltUtSeparasjonSpørsmålet = harSøktSeparasjon?.verdi
+    ? harSøktSeparasjon.verdi
+      ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
+        erGyldigDato(datoFlyttetFraHverandre?.verdi)
+      : true
+    : false;
 
   console.log('OmDeg.tex søknad', søknad);
 
