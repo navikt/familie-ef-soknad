@@ -88,10 +88,8 @@ const BarnetilsynApp = () => {
       fetchToggles(),
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
+      hentForrigeSøknadBarnetilsyn(),
     ])
-      .then(() => {
-        return hentForrigeSøknadBarnetilsyn();
-      })
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
     // eslint-disable-next-line

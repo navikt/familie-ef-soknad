@@ -58,22 +58,19 @@ export const mellomlagreSøknadTilDokument = <T>(
   );
 };
 
-export const hentDataFraForrigeBarnetilsynSøknad = async (
-  personIdent: string
-): Promise<ForrigeSøknad> => {
-  console.log('Personident: ' + personIdent);
-  try {
-    const response = await axios.post(
-      `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
-      personIdent,
-      axiosConfig
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Feil med å hente data fra forrige søknad:', error);
-    throw error;
-  }
-};
+export const hentDataFraForrigeBarnetilsynSøknad =
+  async (): Promise<ForrigeSøknad> => {
+    try {
+      const response = await axios.get(
+        `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
+        axiosConfig
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Feil med å hente data fra forrige søknad: ', error);
+      throw error;
+    }
+  };
 
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper

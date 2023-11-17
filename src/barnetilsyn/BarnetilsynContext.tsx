@@ -95,7 +95,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
-      return hentDataFraForrigeBarnetilsynSøknad(person.søker.fnr).then(
+      return hentDataFraForrigeBarnetilsynSøknad().then(
         (tidligereVersjon?: ForrigeSøknad) => {
           if (tidligereVersjon) {
             settSøknad((prevSøknad) => ({
