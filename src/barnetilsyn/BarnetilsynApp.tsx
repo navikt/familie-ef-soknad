@@ -28,7 +28,6 @@ const BarnetilsynApp = () => {
     useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
   const {
-    søknad,
     settSøknad,
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
@@ -73,8 +72,12 @@ const BarnetilsynApp = () => {
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+
     settSøknad &&
-      settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+      settSøknad((prevSøknad) => ({
+        ...prevSøknad,
+        person: { ...person, barn: barnMedLabels },
+      }));
   };
 
   const fetchToggles = () => {

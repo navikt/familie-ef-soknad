@@ -51,10 +51,10 @@ const Forside: React.FC<any> = () => {
   } = useBarnetilsynSøknad();
 
   const settBekreftelse = (bekreftelse: boolean) => {
-    settSøknad({
-      ...søknad,
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
       harBekreftet: bekreftelse,
-    });
+    }));
   };
 
   console.log('Søknad: ', søknad);
