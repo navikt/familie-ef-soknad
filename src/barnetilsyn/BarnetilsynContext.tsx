@@ -103,6 +103,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...tidligereVersjon,
             }));
           }
+          console.log("Søknad state etter hent forrige: ", søknad)
         }
       );
     };
