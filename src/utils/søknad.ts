@@ -61,10 +61,11 @@ export const mellomlagreSøknadTilDokument = <T>(
 export const hentDataFraForrigeBarnetilsynSøknad = async (
   personIdent: string
 ): Promise<ForrigeSøknad> => {
+  console.log('Personident: ' + personIdent);
   try {
     const response = await axios.post(
       `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
-      personIdent,
+      '11908498889',
       axiosConfig
     );
     return response.data;
