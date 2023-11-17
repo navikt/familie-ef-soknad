@@ -133,7 +133,8 @@ const Sivilstatus: React.FC<Props> = ({
       )}
 
       {(erSøkerUgift(sivilstand) &&
-        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
+        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi') &&
+        harSvartPåGiftUtenRegistrertSpørsmål) ||
       (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
       erSøkerSeparert(sivilstand) ||
       (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
