@@ -108,6 +108,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       );
     };
 
+      useEffect(() => {
+          console.log("Endret søknad state: ", søknad)
+      }, [søknad]);
+
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
         søknad: søknad,
