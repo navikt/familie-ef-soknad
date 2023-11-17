@@ -65,7 +65,7 @@ export const hentDataFraForrigeBarnetilsynSøknad = async (
   try {
     const response = await axios.post(
       `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
-      '11908498889',
+      personIdent,
       axiosConfig
     );
     return response.data;
