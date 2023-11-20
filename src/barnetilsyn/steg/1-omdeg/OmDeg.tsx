@@ -24,6 +24,7 @@ import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { ESvar } from '../../../models/felles/spørsmålogsvar';
+import { erSøkerGift } from '../../../utils/sivilstatus';
 
 const OmDeg: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -39,9 +40,9 @@ const OmDeg: FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
-
+  const { sivilstatus, medlemskap } = søknad;
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
-    søknad.sivilstatus;
+    sivilstatus;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
@@ -98,13 +99,10 @@ const OmDeg: FC = () => {
   };
 
   const harSvartPåUformeltGift =
-    søknad.sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
-    søknad.sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
+    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
+    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.sivilstatus,
-    søknad.medlemskap
-  );
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(sivilstatus, medlemskap);
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
     søknad.person.søker.erStrengtFortrolig ||
@@ -118,7 +116,19 @@ const OmDeg: FC = () => {
       : true
     : false;
 
-  console.log('OmDeg.tex søknad', søknad);
+  const erSeparasjonSpørsmålBesvart = (sivilstatus: ISivilstatus) => {
+    return (
+      (sivilstatus.harSøktSeparasjon?.verdi &&
+        erGyldigDato(sivilstatus.datoSøktSeparasjon?.verdi)) ||
+      sivilstatus.harSøktSeparasjon?.verdi === false
+    );
+  };
+
+  console.log(
+    'erGyldigDato(datoSøktSeparasjon?.verdi) && erGyldigDato(datoFlyttetFraHverandre?.verdi): ',
+    erGyldigDato(datoSøktSeparasjon?.verdi) &&
+      erGyldigDato(datoFlyttetFraHverandre?.verdi)
+  );
 
   return (
     <Side
@@ -154,14 +164,14 @@ const OmDeg: FC = () => {
         <Show
           if={
             (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
-            (erSøknadsBegrunnelseBesvart(søknad.sivilstatus) &&
-              harSvartPåUformeltGift)
+            (erSøknadsBegrunnelseBesvart(sivilstatus) &&
+              harSvartPåUformeltGift) ||
+            (erSøkerGift(søknad.person.søker.sivilstand) &&
+              erSeparasjonSpørsmålBesvart(sivilstatus) &&
+              erSøknadsBegrunnelseBesvart(sivilstatus))
           }
         >
-          <Medlemskap
-            medlemskap={søknad.medlemskap}
-            settMedlemskap={settMedlemskap}
-          />
+          <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
         </Show>
       </Show>
     </Side>
