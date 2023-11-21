@@ -94,15 +94,17 @@ const OmDeg: FC = () => {
       };
     });
   };
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.sivilstatus,
-    søknad.medlemskap
-  );
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søknad.person.søker.erStrengtFortrolig ||
-    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+      søknad.person.søker.erStrengtFortrolig ||
+      søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+      søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.sivilstatus,
+    søknad.medlemskap,
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+  );
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined

@@ -102,12 +102,12 @@ const OmDeg: FC = () => {
     sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
     sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
 
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(sivilstatus, medlemskap);
-
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søknad.person.søker.erStrengtFortrolig ||
-    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+      søknad.person.søker.erStrengtFortrolig ||
+      søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+      søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(sivilstatus, medlemskap, søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring);
 
   const harFyltUtSeparasjonSpørsmålet = harSøktSeparasjon?.verdi
     ? harSøktSeparasjon.verdi
