@@ -58,7 +58,7 @@ export default {
   'skjema.alert.mottatt':
     'Information about you as a job seeker has been received',
 
-  'banner.tittel.overgangsstønad': 'Application for transitional benefit',
+  'banner.tittel.overgangsstønad': 'Søknad om overgangsstønad',
   'banner.tittel.barnetilsyn':
     'Application for child care benefit for working single parents',
   'banner.tittel.skolepenger': 'Application for support for school fees',

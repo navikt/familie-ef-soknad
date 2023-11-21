@@ -15,6 +15,7 @@ import { useToggles } from '../../context/TogglesContext';
 import { ToggleName } from '../../models/søknad/toggles';
 import { BodyShort } from '@navikt/ds-react';
 import { ChevronDownIcon } from '@navikt/aksel-icons';
+import { LocaleType } from '../../language/typer';
 
 const StyledSpråkvelger = styled.div`
   width: 100%;
@@ -67,11 +68,11 @@ const Språkvelger: React.FC = () => {
     ? hentListeMedSpråk()
     : hentListeMedSpråkUtenNynorsk();
 
-  const handleSelection = (value: JSX.Element[]) => {
-    const språk = value[1].props.children;
+  const handleSelection = (value: React.ReactElement[]) => {
+    const språk = value[1].props.children as string;
     const loc = språkObjekter.find((språkobj) => språkobj.tittel === språk);
     if (loc) {
-      setLocale(loc.locale);
+      setLocale(loc.locale as LocaleType);
     }
   };
 

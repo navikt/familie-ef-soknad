@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { client } from './sanity';
-import { ForsideType } from '../models/søknad/stønadstyper';
 import { DinSituasjonType } from '../models/steg/dinsituasjon/meromsituasjon';
 import { leggTilSærligeBehov } from '../søknad/steg/6-meromsituasjon/SituasjonUtil';
 import { ISøknad } from '../models/søknad/søknad';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
-import { byteTilKilobyte, filTypeOgFilStørrelseStreng } from './nedlastningFilformater';
+import {
+  byteTilKilobyte,
+  filTypeOgFilStørrelseStreng,
+} from './nedlastningFilformater';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -14,19 +15,6 @@ export const usePrevious = (value: any) => {
     ref.current = value;
   });
   return ref.current;
-};
-
-export const useForsideInnhold = (stønadstype: ForsideType): any => {
-  const [innhold, settInnhold] = useState({});
-  useEffect(() => {
-    client
-      .fetch('*[_type == $type][0]', { type: stønadstype })
-      .then((res: any) => {
-        settInnhold(res);
-      });
-    // eslint-disable-next-line
-  }, []);
-  return innhold;
 };
 
 export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
@@ -66,17 +54,21 @@ export const useMount = (fn: () => void) => {
 };
 
 export const useHentFilInformasjon = (path: string) => {
-  const [filInformasjon, settFilInformasjon] = useState("")
+  const [filInformasjon, settFilInformasjon] = useState('');
 
   useEffect(() => {
     const hentFilInformasjon = (url: string) => {
       fetch(url, { method: 'HEAD' }).then((res) => {
-        const filStørrelse = byteTilKilobyte(((res).headers.get("Content-Length") ?? 0))
-        const filType = ((res).headers.get("Content-Type") ?? "")
-      settFilInformasjon(filTypeOgFilStørrelseStreng(filType, Number(filStørrelse)))
-      })
-  }
-    hentFilInformasjon(path)
+        const filStørrelse = byteTilKilobyte(
+          res.headers.get('Content-Length') ?? 0
+        );
+        const filType = res.headers.get('Content-Type') ?? '';
+        settFilInformasjon(
+          filTypeOgFilStørrelseStreng(filType, Number(filStørrelse))
+        );
+      });
+    };
+    hentFilInformasjon(path);
   }, []);
 
   return { filInformasjon };

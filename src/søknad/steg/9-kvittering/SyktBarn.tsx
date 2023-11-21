@@ -25,7 +25,7 @@ const StyledLenke = styled.div`
 
 const SyktBarn: FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
 
   const hentSøknadBasertPåBrukerSpråk = (): string => {
     return hentFilePath(locale, {
