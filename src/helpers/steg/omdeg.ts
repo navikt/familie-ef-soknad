@@ -145,7 +145,7 @@ export const erStegFerdigUtfylt = (
           datoSøktSeparasjonerUtfyltOgGyldig &&
           datoFlyttetfraHverandreErUtfyltOgGyldig) ||
       harSøktSeparasjon?.verdi === false
-  const erSpørsmålOmGrunnTilAleneMedBarnUtfylt = (erSpørsmålOmSøktSeparasjonUtfylt || erSøknadsBegrunnelseBesvart(sivilstatus))
+  const erSpørsmålOmGrunnTilAleneMedBarnUtfylt = (erSpørsmålOmSøktSeparasjonUtfylt && erSøknadsBegrunnelseBesvart(sivilstatus))
 
   return !!(erSpørsmålOmUformeltGiftEllerSkiltUtfylt &&
       (søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring) &&

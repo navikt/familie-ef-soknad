@@ -164,11 +164,8 @@ const OmDeg: FC = () => {
         <Show
           if={
             (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
-            (erSøknadsBegrunnelseBesvart(sivilstatus) &&
-              harSvartPåUformeltGift) ||
-            (erSøkerGift(søknad.person.søker.sivilstand) &&
-              erSeparasjonSpørsmålBesvart(sivilstatus) &&
-              erSøknadsBegrunnelseBesvart(sivilstatus))
+              (erSøknadsBegrunnelseBesvart(sivilstatus) && harSvartPåUformeltGift) ||
+            (erSøkerGift(søknad.person.søker.sivilstand) && erSeparasjonSpørsmålBesvart(sivilstatus) && erSøknadsBegrunnelseBesvart(sivilstatus))
           }
         >
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
