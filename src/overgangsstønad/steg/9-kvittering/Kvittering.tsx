@@ -39,7 +39,7 @@ const Kvittering: React.FC = () => {
   useMount(() => logSidevisningOvergangsstonad('Kvittering'));
 
   const { person } = usePersonContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
   const {
     arbeidssøker,
     underUtdanning,

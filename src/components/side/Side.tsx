@@ -1,10 +1,10 @@
 import React from 'react';
-import { Stegindikator } from '../../components/stegindikator/Stegindikator';
-import Banner from '../../components/Banner';
+import { Stegindikator } from '../stegindikator/Stegindikator';
+import Banner from '../Banner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
 import { hentTekst } from '../../utils/søknad';
-import TilbakeNesteAvbrytKnapper from '../../components/knapper/TilbakeNesteAvbrytKnapper';
+import TilbakeNesteAvbrytKnapper from '../knapper/TilbakeNesteAvbrytKnapper';
 import { IRoute } from '../../models/routes';
 import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';

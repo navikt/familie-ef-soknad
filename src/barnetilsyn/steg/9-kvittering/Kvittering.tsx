@@ -26,7 +26,7 @@ import { Alert } from '@navikt/ds-react';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
   const {
     søknad,
     nullstillMellomlagretBarnetilsyn,

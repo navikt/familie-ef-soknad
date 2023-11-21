@@ -1,6 +1,6 @@
 import React from 'react';
 import LocaleTekst from '../../language/LocaleTekst';
-import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
+import SeksjonGruppe from '../gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
 import { logEvent } from '../../utils/amplitude';
 import { useNavigate } from 'react-router-dom';
