@@ -25,7 +25,7 @@ const StyledLenke = styled.div`
 
 const ErklæringSamlivsbrudd: FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
 
   const hentÆrklæringBasertPåSpråk = (): string => {
     return hentFilePath(locale, {

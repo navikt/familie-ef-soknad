@@ -30,6 +30,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
+import { LocaleType } from '../language/typer';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -79,7 +80,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
         mellomlagretSkolepenger?.locale &&
         mellomlagretSkolepenger?.locale !== locale
       ) {
-        setLocale(mellomlagretSkolepenger.locale);
+        setLocale(mellomlagretSkolepenger.locale as LocaleType);
       }
     }, [mellomlagretSkolepenger, locale, setLocale]);
 

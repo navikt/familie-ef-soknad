@@ -26,6 +26,7 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
+import { LocaleType } from '../language/typer';
 import { usePersonContext } from '../context/PersonContext';
 
 // -----------  CONTEXT  -----------
@@ -74,7 +75,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         mellomlagretBarnetilsyn?.locale &&
         mellomlagretBarnetilsyn?.locale !== locale
       ) {
-        setLocale(mellomlagretBarnetilsyn.locale);
+        setLocale(mellomlagretBarnetilsyn.locale as LocaleType);
       }
     }, [mellomlagretBarnetilsyn, locale, setLocale]);
 

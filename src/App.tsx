@@ -79,7 +79,7 @@ const App = () => {
   };
 
   const fetchToggles = () => {
-    return hentToggles(settToggles).catch((err: Error) => {
+    return hentToggles(settToggles).catch(() => {
       settError(true);
     });
   };
