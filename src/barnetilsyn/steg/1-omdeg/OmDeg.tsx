@@ -124,12 +124,6 @@ const OmDeg: FC = () => {
     );
   };
 
-  console.log(
-    'erGyldigDato(datoSøktSeparasjon?.verdi) && erGyldigDato(datoFlyttetFraHverandre?.verdi): ',
-    erGyldigDato(datoSøktSeparasjon?.verdi) &&
-      erGyldigDato(datoFlyttetFraHverandre?.verdi)
-  );
-
   return (
     <Side
       stønadstype={Stønadstype.barnetilsyn}
