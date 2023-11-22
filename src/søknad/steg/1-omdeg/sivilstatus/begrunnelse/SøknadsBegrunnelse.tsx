@@ -81,6 +81,8 @@ const Søknadsbegrunnelse: FC<Props> = ({
     // eslint-disable-next-line
   }, [samboerInfo, datoFlyttetFraHverandre]);
 
+  console.log('sivilstatus: ', sivilstatus);
+
   useEffect(() => {
     erGyldigIdent &&
       settSamboerInfo({

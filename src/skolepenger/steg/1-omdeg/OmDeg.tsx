@@ -41,6 +41,8 @@ const OmDeg: FC = () => {
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
     søknad.sivilstatus;
 
+  const { søker } = søknad.person;
+
   useMount(() => logSidevisningSkolepenger('OmDeg'));
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
@@ -96,12 +98,13 @@ const OmDeg: FC = () => {
   };
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-      søknad.person.søker.erStrengtFortrolig ||
-      søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-      søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+    søker.erStrengtFortrolig ||
+    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,
+    søker.sivilstand,
     søknad.medlemskap,
     søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
   );
@@ -124,7 +127,7 @@ const OmDeg: FC = () => {
       tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
     >
       <Personopplysninger
-        søker={søknad.person.søker}
+        søker={søker}
         settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}

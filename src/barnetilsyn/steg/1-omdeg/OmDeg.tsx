@@ -23,7 +23,6 @@ import { ISøknad } from '../../models/søknad';
 import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import { erSøkerGift } from '../../../utils/sivilstatus';
 
 const OmDeg: FC = () => {
@@ -43,6 +42,7 @@ const OmDeg: FC = () => {
   const { sivilstatus, medlemskap } = søknad;
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
     sivilstatus;
+  const { søker } = søknad.person;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
@@ -99,15 +99,19 @@ const OmDeg: FC = () => {
   };
 
   const harSvartPåUformeltGift =
-    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
-    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
+    sivilstatus.erUformeltGift?.svarid !== undefined;
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-      søknad.person.søker.erStrengtFortrolig ||
-      søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-      søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+    søker.erStrengtFortrolig ||
+    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
 
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(sivilstatus, medlemskap, søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring);
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    sivilstatus,
+    søker.sivilstand,
+    medlemskap,
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+  );
 
   const harFyltUtSeparasjonSpørsmålet = harSøktSeparasjon?.verdi
     ? harSøktSeparasjon.verdi
@@ -135,7 +139,7 @@ const OmDeg: FC = () => {
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <Personopplysninger
-        søker={søknad.person.søker}
+        søker={søker}
         settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
@@ -158,8 +162,11 @@ const OmDeg: FC = () => {
         <Show
           if={
             (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
-              (erSøknadsBegrunnelseBesvart(sivilstatus) && harSvartPåUformeltGift) ||
-            (erSøkerGift(søknad.person.søker.sivilstand) && erSeparasjonSpørsmålBesvart(sivilstatus) && erSøknadsBegrunnelseBesvart(sivilstatus))
+            (erSøknadsBegrunnelseBesvart(sivilstatus) &&
+              harSvartPåUformeltGift) ||
+            (erSøkerGift(søker.sivilstand) &&
+              erSeparasjonSpørsmålBesvart(sivilstatus) &&
+              erSøknadsBegrunnelseBesvart(sivilstatus))
           }
         >
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />

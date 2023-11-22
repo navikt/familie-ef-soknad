@@ -8,7 +8,8 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
-import {IDatoFelt} from "../../models/søknad/søknadsfelter";
+import { IDatoFelt } from '../../models/søknad/søknadsfelter';
+import { erSøkerSkilt } from '../../utils/sivilstatus';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -110,45 +111,90 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
       : false;
   } else return false;
 };
+
 const erDatoFlyttetFraHverandreGyldig = (
-    datoFlyttetFraHverandre: IDatoFelt | undefined
+  datoFlyttetFraHverandre: IDatoFelt | undefined
 ): boolean => {
-  return (
-      !!(datoFlyttetFraHverandre && datoFlyttetFraHverandre?.verdi?.length > 0 &&
-          erDatoGyldigOgInnaforBegrensninger(
-              datoFlyttetFraHverandre?.verdi,
-              DatoBegrensning.AlleDatoer
-          ))
+  return !!(
+    datoFlyttetFraHverandre &&
+    datoFlyttetFraHverandre?.verdi?.length > 0 &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoFlyttetFraHverandre?.verdi,
+      DatoBegrensning.AlleDatoer
+    )
   );
 };
-const erDatoSøktSeparasjonGyldig = (datoSøktSeparasjon: IDatoFelt | undefined): boolean => {
-  return !!(datoSøktSeparasjon?.verdi &&
-      erDatoGyldigOgInnaforBegrensninger(
-          datoSøktSeparasjon?.verdi,
-          DatoBegrensning.TidligereDatoer
-      ));
+
+const erDatoSøktSeparasjonGyldig = (
+  datoSøktSeparasjon: IDatoFelt | undefined
+): boolean => {
+  return !!(
+    datoSøktSeparasjon?.verdi &&
+    erDatoGyldigOgInnaforBegrensninger(
+      datoSøktSeparasjon?.verdi,
+      DatoBegrensning.TidligereDatoer
+    )
+  );
 };
 
+const erSpørsmålOmUformeltGiftEllerSkiltUtfylt = (
+  sivilstatus: ISivilstatus
+): boolean => {
+  const { erUformeltSeparertEllerSkilt, erUformeltGift } = sivilstatus;
 
+  return (
+    erUformeltSeparertEllerSkilt?.verdi !== undefined ||
+    erUformeltGift?.verdi !== undefined
+  );
+};
+
+const erSpørsmålOmSøktSeparasjonUtfylt = (
+  sivilstatus: ISivilstatus
+): boolean => {
+  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
+    sivilstatus;
+
+  const datoFlyttetfraHverandreErUtfyltOgGyldig =
+    erDatoFlyttetFraHverandreGyldig(datoFlyttetFraHverandre);
+
+  const datoSøktSeparasjonerUtfyltOgGyldig =
+    erDatoSøktSeparasjonGyldig(datoSøktSeparasjon);
+
+  return (
+    (harSøktSeparasjon?.verdi &&
+      datoSøktSeparasjonerUtfyltOgGyldig &&
+      datoFlyttetfraHverandreErUtfyltOgGyldig) ||
+    harSøktSeparasjon?.verdi === false
+  );
+};
+
+const søkerSkiltogSvartPåUformeltGift = (
+  sivilstand: string,
+  sivilstatus: ISivilstatus
+) => {
+  return (
+    erSøkerSkilt(sivilstand) &&
+    sivilstatus.erUformeltGift?.svarid !== undefined &&
+    !!erSøknadsBegrunnelseBesvart(sivilstatus)
+  );
+};
 
 export const erStegFerdigUtfylt = (
   sivilstatus: ISivilstatus,
+  sivilstand: string,
   medlemskap: IMedlemskap,
   søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring: boolean
 ): boolean => {
-  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre, erUformeltSeparertEllerSkilt, erUformeltGift } =
-    sivilstatus;
-  const datoFlyttetfraHverandreErUtfyltOgGyldig = erDatoFlyttetFraHverandreGyldig(datoFlyttetFraHverandre)
-  const datoSøktSeparasjonerUtfyltOgGyldig = erDatoSøktSeparasjonGyldig(datoSøktSeparasjon)
-  const erSpørsmålOmUformeltGiftEllerSkiltUtfylt = erUformeltSeparertEllerSkilt?.verdi !== undefined || erUformeltGift?.verdi !== undefined
-  const erSpørsmålOmSøktSeparasjonUtfylt = (harSøktSeparasjon?.verdi &&
-          datoSøktSeparasjonerUtfyltOgGyldig &&
-          datoFlyttetfraHverandreErUtfyltOgGyldig) ||
-      harSøktSeparasjon?.verdi === false
-  const erSpørsmålOmGrunnTilAleneMedBarnUtfylt = (erSpørsmålOmSøktSeparasjonUtfylt && erSøknadsBegrunnelseBesvart(sivilstatus))
+  const erSpørsmålOmGrunnTilAleneMedBarnUtfylt =
+    erSpørsmålOmSøktSeparasjonUtfylt(sivilstatus) &&
+    erSøknadsBegrunnelseBesvart(sivilstatus);
 
-  return !!(erSpørsmålOmUformeltGiftEllerSkiltUtfylt &&
-      (søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring) &&
+  return !!(
+    (søkerSkiltogSvartPåUformeltGift(sivilstand, sivilstatus) &&
+      erMedlemskapSpørsmålBesvart(medlemskap)) ||
+    (erSpørsmålOmUformeltGiftEllerSkiltUtfylt(sivilstatus) &&
+      søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring &&
       erSpørsmålOmGrunnTilAleneMedBarnUtfylt &&
-      erMedlemskapSpørsmålBesvart(medlemskap));
+      erMedlemskapSpørsmålBesvart(medlemskap))
+  );
 };
