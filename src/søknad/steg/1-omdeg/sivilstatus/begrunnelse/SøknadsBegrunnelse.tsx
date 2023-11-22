@@ -79,7 +79,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         tidligereSamboerDetaljer: samboerInfo,
       });
     // eslint-disable-next-line
-  }, [samboerInfo, datoForSamlivsbrudd]);
+  }, [samboerInfo, datoFlyttetFraHverandre]);
 
   useEffect(() => {
     erGyldigIdent &&
