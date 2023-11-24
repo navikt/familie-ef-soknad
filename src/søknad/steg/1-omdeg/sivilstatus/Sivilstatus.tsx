@@ -1,7 +1,7 @@
 import React from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
-import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
+import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import {
@@ -138,15 +138,15 @@ const Sivilstatus: React.FC<Props> = ({
       (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
       erSøkerSeparert(sivilstand) ||
       (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
-      erSøkerEnke(sivilstand) ? (
-        <Søknadsbegrunnelse
+      erSøkerEnke(sivilstand) && (
+        <ÅrsakEnslig
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}
           settDato={settDato}
           settDokumentasjonsbehov={settDokumentasjonsbehov}
           settMedlemskap={settMedlemskap}
         />
-      ) : null}
+      )}
     </SeksjonGruppe>
   );
 };

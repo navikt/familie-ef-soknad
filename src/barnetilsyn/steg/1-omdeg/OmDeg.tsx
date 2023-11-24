@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
@@ -162,11 +162,11 @@ const OmDeg: FC = () => {
         <Show
           if={
             (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
-            (erSøknadsBegrunnelseBesvart(sivilstatus) &&
+            (erÅrsakEnsligBesvart(sivilstatus) &&
               harSvartPåUformeltGift) ||
             (erSøkerGift(søker.sivilstand) &&
               erSeparasjonSpørsmålBesvart(sivilstatus) &&
-              erSøknadsBegrunnelseBesvart(sivilstatus))
+              erÅrsakEnsligBesvart(sivilstatus))
           }
         >
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />

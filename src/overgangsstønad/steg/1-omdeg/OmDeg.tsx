@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
@@ -118,7 +118,7 @@ const OmDeg: FC = () => {
 
   const skalViseMedlemskapDialog =
     harFyltUtSeparasjonSpørsmålet ||
-    erSøknadsBegrunnelseBesvart(søknad.sivilstatus);
+    erÅrsakEnsligBesvart(søknad.sivilstatus);
 
   return (
     <Side

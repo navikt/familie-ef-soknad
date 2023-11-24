@@ -41,7 +41,7 @@ export const hentSivilstatus = (statuskode?: string) => {
   }
 };
 
-export const erSøknadsBegrunnelseBesvart = (sivilstatus: ISivilstatus) => {
+export const erÅrsakEnsligBesvart = (sivilstatus: ISivilstatus) => {
   const {
     datoForSamlivsbrudd,
     datoFlyttetFraHverandre,
@@ -175,7 +175,7 @@ const søkerSkiltogSvartPåUformeltGift = (
   return (
     erSøkerSkilt(sivilstand) &&
     sivilstatus.erUformeltGift?.svarid !== undefined &&
-    !!erSøknadsBegrunnelseBesvart(sivilstatus)
+    !!erÅrsakEnsligBesvart(sivilstatus)
   );
 };
 
@@ -187,7 +187,7 @@ export const erStegFerdigUtfylt = (
 ): boolean => {
   const erSpørsmålOmGrunnTilAleneMedBarnUtfylt =
     erSpørsmålOmSøktSeparasjonUtfylt(sivilstatus) &&
-    erSøknadsBegrunnelseBesvart(sivilstatus);
+    erÅrsakEnsligBesvart(sivilstatus);
 
   return !!(
     (søkerSkiltogSvartPåUformeltGift(sivilstand, sivilstatus) &&

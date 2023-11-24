@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
@@ -150,7 +150,7 @@ const OmDeg: FC = () => {
         <Show
           if={
             harFyltUtSeparasjonSpørsmålet ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
+            erÅrsakEnsligBesvart(søknad.sivilstatus)
           }
         >
           <Medlemskap

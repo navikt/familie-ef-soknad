@@ -41,7 +41,7 @@ interface Props {
   ) => void;
 }
 
-const Søknadsbegrunnelse: FC<Props> = ({
+const ÅrsakEnslig: FC<Props> = ({
   sivilstatus,
   settSivilstatus,
   settDato,
@@ -84,7 +84,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   console.log('sivilstatus: ', sivilstatus);
 
   useEffect(() => {
-    erGyldigIdent &&
+     erGyldigIdent &&
       settSamboerInfo({
         ...samboerInfo,
         [EPersonDetaljer.ident]: {
@@ -278,4 +278,4 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 };
 
-export default Søknadsbegrunnelse;
+export default ÅrsakEnslig;
