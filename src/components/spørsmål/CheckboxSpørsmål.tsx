@@ -1,25 +1,27 @@
 import React from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import { CheckboksPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LocaleTekst from '../../language/LocaleTekst';
 import styled from 'styled-components';
 import LesMerTekst from '../LesMerTekst';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import CheckboxPanelCustom from '../panel/CheckboxPanel';
+import { CheckboxGroup } from '@navikt/ds-react';
 
 const StyledCheckboxSpørsmål = styled.div`
-  .radioknapp {
-    &__multiSvar {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-rows: min-content;
-      grid-gap: 1rem;
-      padding-top: 1rem;
+  .navds-fieldset .navds-checkboxes {
+    margin-top: 0;
+  }
+  .navds-checkboxes {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+    padding-top: 1rem;
 
-      .inputPanel__label {
-        font-size: 18px;
-      }
+    @media all and (max-width: 420px) {
+      grid-template-columns: 1fr;
     }
   }
 `;
@@ -33,6 +35,7 @@ interface Props {
   ) => void;
   valgteSvar: string[];
   skalLogges: boolean;
+  brukSvarIdSomVerdi?: boolean;
 }
 
 const CheckboxSpørsmål: React.FC<Props> = ({
@@ -40,6 +43,7 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   settValgteSvar,
   valgteSvar,
   skalLogges,
+  brukSvarIdSomVerdi,
 }) => {
   const intl = useLokalIntlContext();
 
@@ -49,30 +53,31 @@ const CheckboxSpørsmål: React.FC<Props> = ({
   const skjemaId = skjemanavnTilId(skjemanavn);
 
   const legend = intl.formatMessage({ id: spørsmål.tekstid });
-
+  console.log(valgteSvar);
   return (
-    <SkjemaGruppe
-      key={spørsmål.tekstid}
-      legend={<LocaleTekst tekst={spørsmål.tekstid} />}
-    >
-      <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
-        {spørsmål.lesmer && (
-          <LesMerTekst
-            åpneTekstid={spørsmål.lesmer.headerTekstid}
-            innholdTekstid={spørsmål.lesmer.innholdTekstid}
-          />
-        )}
-        <div className={'radioknapp__multiSvar'}>
+    <StyledCheckboxSpørsmål key={spørsmål.søknadid}>
+      <div>
+        <CheckboxGroup
+          legend={<LocaleTekst tekst={spørsmål.tekstid} />}
+          value={valgteSvar}
+          description={
+            spørsmål.lesmer && (
+              <LesMerTekst
+                åpneTekstid={spørsmål.lesmer.headerTekstid}
+                innholdTekstid={spørsmål.lesmer.innholdTekstid}
+              />
+            )
+          }
+        >
           {spørsmål.svaralternativer.map((svar: ISvar) => {
             const alleredeHuketAvISøknad = valgteSvar.some((valgtSvar) => {
               return valgtSvar === svar.svar_tekst || valgtSvar === svar.id;
             });
 
             return (
-              <CheckboksPanel
-                className={`inputPanel__field radioknapp-${spørsmål.søknadid}-${svar.svar_tekst}`}
+              <CheckboxPanelCustom
                 key={svar.svar_tekst}
-                label={svar.svar_tekst}
+                value={brukSvarIdSomVerdi ? svar.id : svar.svar_tekst}
                 checked={alleredeHuketAvISøknad}
                 onChange={() => {
                   if (!alleredeHuketAvISøknad) {
@@ -87,12 +92,14 @@ const CheckboxSpørsmål: React.FC<Props> = ({
 
                   settValgteSvar(spørsmål, alleredeHuketAvISøknad, svar);
                 }}
-              />
+              >
+                {svar.svar_tekst}
+              </CheckboxPanelCustom>
             );
           })}
-        </div>
-      </StyledCheckboxSpørsmål>
-    </SkjemaGruppe>
+        </CheckboxGroup>
+      </div>
+    </StyledCheckboxSpørsmål>
   );
 };
 

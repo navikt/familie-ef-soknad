@@ -23,14 +23,6 @@ const StyledJaNeiSpørsmål = styled.div`
       grid-template-columns: 1fr;
     }
   }
-
-  .toKorteSvar .navds-radio-buttons {
-    grid-template-columns: 1fr 1fr;
-
-    @media all and (max-width: 420px) {
-      grid-template-columns: 1fr;
-    }
-  }
 `;
 
 interface Props {
