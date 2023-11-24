@@ -1,24 +1,34 @@
 import React, { SyntheticEvent } from 'react';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import RadioPanelCustom from '../panel/RadioPanel';
+import { RadioGroup } from '@navikt/ds-react';
 
 const StyledJaNeiSpørsmål = styled.div`
-  .radioknapp {
-    &__jaNeiSvar {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-auto-rows: min-content;
-      grid-gap: 1rem;
-      padding-top: 1rem;
+  .navds-fieldset .navds-radio-buttons {
+    margin-top: 0;
+  }
+  .navds-radio-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+    padding-top: 1rem;
 
-      @media all and (max-width: 420px) {
-        grid-template-columns: 1fr;
-      }
+    @media all and (max-width: 420px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .toKorteSvar .navds-radio-buttons {
+    grid-template-columns: 1fr 1fr;
+
+    @media all and (max-width: 420px) {
+      grid-template-columns: 1fr;
     }
   }
 `;
@@ -55,28 +65,41 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
       (svar.id === ESvar.NEI && valgtSvar === false)
     );
   };
+  const svar = (): ESvar | undefined => {
+    switch (valgtSvar) {
+      case true:
+        return ESvar.JA;
+      case false:
+        return ESvar.NEI;
+      default:
+        return undefined;
+    }
+  };
 
   return (
-    <SkjemaGruppe key={spørsmål.tekstid} legend={spørsmålTekst}>
-      <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
-        {spørsmål.lesmer && (
-          <LesMerTekst
-            åpneTekstid={spørsmål.lesmer.headerTekstid}
-            innholdTekstid={spørsmål.lesmer.innholdTekstid}
-          />
-        )}
-        <div className={'radioknapp__jaNeiSvar'}>
+    <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
+      <div>
+        <RadioGroup
+          legend={spørsmålTekst}
+          value={svar()}
+          description={
+            spørsmål.lesmer && (
+              <LesMerTekst
+                åpneTekstid={spørsmål.lesmer.headerTekstid}
+                innholdTekstid={spørsmål.lesmer.innholdTekstid}
+              />
+            )
+          }
+        >
           {spørsmål.svaralternativer.map((svar: ISvar) => {
             const svarISøknad =
               valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
 
             return (
-              <RadioPanel
-                className={`inputPanel__field ${spørsmål.søknadid}-${svar.svar_tekst}`}
+              <RadioPanelCustom
                 key={svar.svar_tekst}
                 name={spørsmål.søknadid}
-                label={svar.svar_tekst}
-                value={svar.svar_tekst}
+                value={svar.id}
                 checked={svarISøknad ? svarISøknad : false}
                 onChange={(e) => {
                   logSpørsmålBesvart(
@@ -88,12 +111,14 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
                   );
                   onClickHandle(e, spørsmål, svar);
                 }}
-              />
+              >
+                {svar.svar_tekst}
+              </RadioPanelCustom>
             );
           })}
-        </div>
-      </StyledJaNeiSpørsmål>
-    </SkjemaGruppe>
+        </RadioGroup>
+      </div>
+    </StyledJaNeiSpørsmål>
   );
 };
 

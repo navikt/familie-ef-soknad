@@ -2,7 +2,6 @@ import React from 'react';
 import KomponentGruppe from '../gruppe/KomponentGruppe';
 import LesMerTekst from '../LesMerTekst';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
-import { RadioPanel, SkjemaGruppe } from 'nav-frontend-skjema';
 import styled from 'styled-components';
 import {
   IDatoFelt,
@@ -13,26 +12,20 @@ import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
 import ÅrMånedVelger from '../dato/ÅrMånedvelger';
 import { strengTilDato } from '../../utils/dato';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Label } from '@navikt/ds-react';
+import { Label, RadioGroup } from '@navikt/ds-react';
 import { DatoBegrensning } from '../dato/Datovelger';
+import RadioPanelCustom from '../panel/RadioPanel';
 
 const StyledMultisvarSpørsmål = styled.div`
-  .radioknapp {
-    &__multiSvar {
-      display: grid;
-      grid-template-columns: 1fr;
-      grid-auto-rows: min-content;
-      grid-gap: 1rem;
-      padding-top: 1rem;
-
-      .inputPanel__label {
-        font-size: 18px;
-      }
-    }
+  .navds-fieldset .navds-radio-buttons {
+    margin-top: 0;
   }
-
-  .toKorteSvar {
-    grid-template-columns: 1fr 1fr;
+  .navds-radio-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+    padding-top: 1rem;
 
     @media all and (max-width: 420px) {
       grid-template-columns: 1fr;
@@ -71,27 +64,33 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <StyledMultisvarSpørsmål>
-          <SkjemaGruppe legend={intl.formatMessage({ id: spørsmål.tekstid })}>
-            <LesMerTekst
-              åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-              innholdTekst={hjelpetekstInnholdTekst}
-            />
-            <div className="radioknapp__multiSvar">
+          <div>
+            <RadioGroup
+              legend={intl.formatMessage({ id: spørsmål.tekstid })}
+              value={søkerFraBestemtMåned?.svarid}
+              description={
+                <LesMerTekst
+                  åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
+                  innholdTekst={hjelpetekstInnholdTekst}
+                />
+              }
+            >
               {spørsmål.svaralternativer.map((svar: ISvar) => {
                 const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
                 return (
-                  <RadioPanel
+                  <RadioPanelCustom
                     key={svar.svar_tekst}
                     name={spørsmål.søknadid}
-                    label={svar.svar_tekst}
-                    value={svar.svar_tekst}
+                    value={svar.id}
                     checked={svarISøknad ? svarISøknad : false}
                     onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
-                  />
+                  >
+                    {svar.svar_tekst}
+                  </RadioPanelCustom>
                 );
               })}
-            </div>
-          </SkjemaGruppe>
+            </RadioGroup>
+          </div>
         </StyledMultisvarSpørsmål>
       </KomponentGruppe>
 
