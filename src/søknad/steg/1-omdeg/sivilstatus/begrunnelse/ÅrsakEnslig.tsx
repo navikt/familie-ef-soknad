@@ -5,7 +5,7 @@ import EndringISamvær from './EndringISamvær';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
-import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
+import { begrunnelseSpørsmål } from '../SivilstatusConfig';
 import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
 import IdentEllerFødselsdatoGruppe from '../../../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import {
@@ -49,7 +49,7 @@ const ÅrsakEnslig: FC<Props> = ({
   settMedlemskap,
 }) => {
   const intl = useLokalIntlContext();
-  const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
+  const spørsmål: ISpørsmål = begrunnelseSpørsmål(intl);
 
   const {
     årsakEnslig,
@@ -84,7 +84,7 @@ const ÅrsakEnslig: FC<Props> = ({
   console.log('sivilstatus: ', sivilstatus);
 
   useEffect(() => {
-     erGyldigIdent &&
+    erGyldigIdent &&
       settSamboerInfo({
         ...samboerInfo,
         [EPersonDetaljer.ident]: {
