@@ -68,8 +68,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
       useState<IMellomlagretBarnetilsynSøknad>();
 
-    const { person } = usePersonContext();
-
     useEffect(() => {
       if (
         mellomlagretBarnetilsyn?.locale &&
@@ -109,9 +107,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       );
     };
 
-      useEffect(() => {
-          console.log("Endret søknad state: ", søknad)
-      }, [søknad]);
+    useEffect(() => {
+      console.log('Endret søknad state: ', søknad);
+    }, [søknad]);
 
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {

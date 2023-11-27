@@ -39,8 +39,6 @@ const OmDeg: FC = () => {
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
   const { sivilstatus, medlemskap } = søknad;
-  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
-    sivilstatus;
   const { søker } = søknad.person;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
@@ -97,9 +95,6 @@ const OmDeg: FC = () => {
     });
   };
 
-  const harSvartPåUformeltGift =
-    sivilstatus.erUformeltGift?.svarid !== undefined;
-
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
     søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
@@ -111,21 +106,6 @@ const OmDeg: FC = () => {
     medlemskap,
     søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
   );
-
-  const harFyltUtSeparasjonSpørsmålet = harSøktSeparasjon?.verdi
-    ? harSøktSeparasjon.verdi
-      ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
-        erGyldigDato(datoFlyttetFraHverandre?.verdi)
-      : true
-    : false;
-
-  const erSeparasjonSpørsmålBesvart = (sivilstatus: ISivilstatus) => {
-    return (
-      (sivilstatus.harSøktSeparasjon?.verdi &&
-        erGyldigDato(sivilstatus.datoSøktSeparasjon?.verdi)) ||
-      sivilstatus.harSøktSeparasjon?.verdi === false
-    );
-  };
 
   return (
     <Side
@@ -158,7 +138,7 @@ const OmDeg: FC = () => {
           settMedlemskap={settMedlemskap}
         />
 
-        <Show if={(erÅrsakEnsligBesvart(sivilstatus))}>
+        <Show if={erÅrsakEnsligBesvart(sivilstatus)}>
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
         </Show>
       </Show>

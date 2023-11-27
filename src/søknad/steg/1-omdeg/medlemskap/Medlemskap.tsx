@@ -120,7 +120,8 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
       )}
 
       {(søkerOppholderSegINorge?.verdi === true ||
-          (søkerOppholderSegINorge?.verdi === false && oppholdsland?.hasOwnProperty('verdi'))) && (
+        (søkerOppholderSegINorge?.verdi === false &&
+          oppholdsland?.hasOwnProperty('verdi'))) && (
         <>
           <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
             <JaNeiSpørsmål
