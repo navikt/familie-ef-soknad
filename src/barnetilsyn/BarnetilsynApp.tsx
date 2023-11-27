@@ -97,19 +97,12 @@ const BarnetilsynApp = () => {
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
     ])
-      .then(() => settFetching(false))
-      .catch(() => settFetching(false));
+      .then(() => toggleKanHenteForrigeBarnetilsynSøknad ? hentForrigeSøknadBarnetilsyn() : null)
+      .catch(() => settFetching(false))
+      .finally(() => settFetching(false));
     // eslint-disable-next-line
+    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggleKanHenteForrigeBarnetilsynSøknad)
   }, []);
-
-  useEffect(() => {
-    if (toggleKanHenteForrigeBarnetilsynSøknad) {
-      Promise.all([hentForrigeSøknadBarnetilsyn()])
-        .then(() => settFetching(false))
-        .catch(() => settFetching(false));
-      // eslint-disable-next-line
-    }
-  }, [toggleKanHenteForrigeBarnetilsynSøknad]);
 
   if (!fetching && autentisert) {
     if (!error) {
