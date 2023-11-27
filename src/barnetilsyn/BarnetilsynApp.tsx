@@ -33,15 +33,10 @@ const BarnetilsynApp = () => {
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const { settToggles } = useToggles();
-
+  const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
-
-  const { toggles } = useToggles();
-  const toggleKanHenteForrigeBarnetilsynSøknad =
-    toggles[ToggleName.hentBarnetilsynSøknad];
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -97,11 +92,11 @@ const BarnetilsynApp = () => {
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
     ])
-      .then(() => toggleKanHenteForrigeBarnetilsynSøknad ? hentForrigeSøknadBarnetilsyn() : null)
+      .then(() => toggles[ToggleName.hentBarnetilsynSøknad] ? hentForrigeSøknadBarnetilsyn() : null)
       .catch(() => settFetching(false))
       .finally(() => settFetching(false));
     // eslint-disable-next-line
-    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggleKanHenteForrigeBarnetilsynSøknad)
+    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggles[ToggleName.hentBarnetilsynSøknad])
   }, []);
 
   if (!fetching && autentisert) {
