@@ -28,6 +28,8 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { usePersonContext } from '../context/PersonContext';
+import { useToggles } from '../context/TogglesContext';
+import { ToggleName } from '../models/søknad/toggles';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {

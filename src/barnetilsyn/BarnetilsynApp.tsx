@@ -18,6 +18,7 @@ import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
+import { ToggleName } from '../models/søknad/toggles';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -37,6 +38,10 @@ const BarnetilsynApp = () => {
   const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
+
+  const { toggles } = useToggles();
+  const toggleKanHenteForrigeBarnetilesynSøknad =
+    toggles[ToggleName.hentBarnetilsynSøknad];
 
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
@@ -89,7 +94,6 @@ const BarnetilsynApp = () => {
   useEffect(() => {
     Promise.all([
       fetchToggles(),
-      hentForrigeSøknadBarnetilsyn(),
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
     ])
@@ -97,6 +101,15 @@ const BarnetilsynApp = () => {
       .catch(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (toggleKanHenteForrigeBarnetilesynSøknad) {
+      Promise.all([hentForrigeSøknadBarnetilsyn()])
+        .then(() => settFetching(false))
+        .catch(() => settFetching(false));
+      // eslint-disable-next-line
+    }
+  }, [toggleKanHenteForrigeBarnetilesynSøknad]);
 
   if (!fetching && autentisert) {
     if (!error) {
