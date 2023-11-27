@@ -99,7 +99,6 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
-    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggles[ToggleName.hentBarnetilsynSøknad])
     if (toggles[ToggleName.hentBarnetilsynSøknad]) {
       hentForrigeSøknadBarnetilsyn()
     }

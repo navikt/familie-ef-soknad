@@ -182,20 +182,6 @@ export const erStegFerdigUtfylt = (
   medlemskap: IMedlemskap,
   søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring: boolean
 ): boolean => {
-  console.log(
-    'søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring: ' +
-      søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
-  );
-  console.log(
-    'erSivilstandSpørsmålBesvart: ' +
-      erSivilstandSpørsmålBesvart(sivilstand, sivilstatus)
-  );
-  console.log(
-    'erMedlemskapSpørsmålBesvart: ' + erMedlemskapSpørsmålBesvart(medlemskap)
-  );
-  console.log(
-    'erÅrsakEnsligBesvart(sivilstatus) ' + erÅrsakEnsligBesvart(sivilstatus)
-  );
   return !!(
     søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring &&
     erSivilstandSpørsmålBesvart(sivilstand, sivilstatus) &&

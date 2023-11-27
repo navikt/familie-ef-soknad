@@ -50,8 +50,6 @@ const Forside: React.FC = () => {
     }));
   };
 
-  console.log('Søknad: ', søknad);
-
   const alder = FnrOgDnrTilAlder(person.søker.fnr);
 
   const kanBrukeMellomlagretSøknad =
