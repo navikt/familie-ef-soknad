@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
+  erSivilstandSpørsmålBesvart,
   erStegFerdigUtfylt,
   erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
@@ -138,7 +139,12 @@ const OmDeg: FC = () => {
           settMedlemskap={settMedlemskap}
         />
 
-        <Show if={erÅrsakEnsligBesvart(sivilstatus)}>
+        <Show
+          if={
+            erSivilstandSpørsmålBesvart(søker.sivilstand, sivilstatus) &&
+            erÅrsakEnsligBesvart(sivilstatus)
+          }
+        >
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
         </Show>
       </Show>

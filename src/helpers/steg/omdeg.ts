@@ -166,7 +166,7 @@ export const erSivilstandSpørsmålBesvart = (
       erSpørsmålOmUformeltSeparertEllerSkiltBesvart(sivilstatus)
     );
   } else if (erSøkerSkilt(sivilstand)) {
-    erSpørsmålOmUformeltGiftBesvart(sivilstatus);
+    return erSpørsmålOmUformeltGiftBesvart(sivilstatus);
   } else if (erSøkerGift(sivilstand)) {
     return erSpørsmålOmSøktSeparasjonUtfylt(sivilstatus);
   } else if (erSøkerEnke(sivilstand) || erSøkerSeparert(sivilstand)) {
