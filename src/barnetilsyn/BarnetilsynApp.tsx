@@ -40,7 +40,7 @@ const BarnetilsynApp = () => {
   autentiseringsInterceptor();
 
   const { toggles } = useToggles();
-  const toggleKanHenteForrigeBarnetilesynSøknad =
+  const toggleKanHenteForrigeBarnetilsynSøknad =
     toggles[ToggleName.hentBarnetilsynSøknad];
 
   useEffect(() => {
@@ -103,13 +103,13 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
-    if (toggleKanHenteForrigeBarnetilesynSøknad) {
+    if (toggleKanHenteForrigeBarnetilsynSøknad) {
       Promise.all([hentForrigeSøknadBarnetilsyn()])
         .then(() => settFetching(false))
         .catch(() => settFetching(false));
       // eslint-disable-next-line
     }
-  }, [toggleKanHenteForrigeBarnetilesynSøknad]);
+  }, [toggleKanHenteForrigeBarnetilsynSøknad]);
 
   if (!fetching && autentisert) {
     if (!error) {
