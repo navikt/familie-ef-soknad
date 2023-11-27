@@ -117,8 +117,7 @@ const OmDeg: FC = () => {
       : false;
 
   const skalViseMedlemskapDialog =
-    harFyltUtSeparasjonSpørsmålet ||
-    erÅrsakEnsligBesvart(søknad.sivilstatus);
+    harFyltUtSeparasjonSpørsmålet || erÅrsakEnsligBesvart(søknad.sivilstatus);
 
   return (
     <Side
