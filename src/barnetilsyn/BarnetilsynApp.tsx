@@ -92,12 +92,18 @@ const BarnetilsynApp = () => {
       fetchPersonData(),
       hentMellomlagretBarnetilsyn(),
     ])
-      .then(() => toggles[ToggleName.hentBarnetilsynSøknad] ? hentForrigeSøknadBarnetilsyn() : null)
+      .then(() => settFetching(false))
       .catch(() => settFetching(false))
       .finally(() => settFetching(false));
     // eslint-disable-next-line
-    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggles[ToggleName.hentBarnetilsynSøknad])
   }, []);
+
+  useEffect(() => {
+    console.log("toggleKanHenteForrigeBarnetilsynSøknad: " + toggles[ToggleName.hentBarnetilsynSøknad])
+    if (toggles[ToggleName.hentBarnetilsynSøknad]) {
+      hentForrigeSøknadBarnetilsyn()
+    }
+  }, [fetching]);
 
   if (!fetching && autentisert) {
     if (!error) {
