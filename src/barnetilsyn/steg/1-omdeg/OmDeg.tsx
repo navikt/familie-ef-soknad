@@ -23,7 +23,6 @@ import { ISøknad } from '../../models/søknad';
 import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { erSøkerGift } from '../../../utils/sivilstatus';
 
 const OmDeg: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -159,16 +158,7 @@ const OmDeg: FC = () => {
           settMedlemskap={settMedlemskap}
         />
 
-        <Show
-          if={
-            (harFyltUtSeparasjonSpørsmålet && harSvartPåUformeltGift) ||
-            (erÅrsakEnsligBesvart(sivilstatus) &&
-              harSvartPåUformeltGift) ||
-            (erSøkerGift(søker.sivilstand) &&
-              erSeparasjonSpørsmålBesvart(sivilstatus) &&
-              erÅrsakEnsligBesvart(sivilstatus))
-          }
-        >
+        <Show if={(erÅrsakEnsligBesvart(sivilstatus))}>
           <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
         </Show>
       </Show>

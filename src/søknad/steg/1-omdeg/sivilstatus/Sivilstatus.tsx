@@ -1,7 +1,6 @@
 import React from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
-import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
 import {
@@ -25,6 +24,8 @@ import {
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SøkerErSkilt from './SøkerErSkilt';
+import ÅrsakEnslig from "./begrunnelse/ÅrsakEnslig";
+import {erSivilstandSpørsmålBesvart} from "../../../../helpers/steg/omdeg";
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -132,13 +133,7 @@ const Sivilstatus: React.FC<Props> = ({
         />
       )}
 
-      {(erSøkerUgift(sivilstand) &&
-        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi') &&
-        harSvartPåGiftUtenRegistrertSpørsmål) ||
-      (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
-      erSøkerSeparert(sivilstand) ||
-      (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
-      erSøkerEnke(sivilstand) && (
+      {erSivilstandSpørsmålBesvart(sivilstand, sivilstatus) && (
         <ÅrsakEnslig
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}
