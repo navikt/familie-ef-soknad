@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-
 import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
 import EndringISamvær from './EndringISamvær';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
