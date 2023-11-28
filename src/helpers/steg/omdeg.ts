@@ -102,14 +102,15 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
   if (perioderBoddIUtlandet !== null) {
-    const manglerNoenBegrunnelserForUtenlandsopphold =
+    const finnesUtenlandsperiodeUtenBegrunnelse =
       perioderBoddIUtlandet?.some(
         (utenlandsopphold) =>
           utenlandsopphold.begrunnelse.verdi === '' ||
           !utenlandsopphold.begrunnelse
       );
+
     return søkerBosattINorgeSisteTreÅr?.verdi === false
-      ? manglerNoenBegrunnelserForUtenlandsopphold
+      ? finnesUtenlandsperiodeUtenBegrunnelse
         ? false
         : true
       : søkerBosattINorgeSisteTreÅr?.verdi

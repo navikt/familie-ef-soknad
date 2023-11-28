@@ -94,7 +94,6 @@ const BarnetilsynApp = () => {
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false))
-      .finally(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
 

@@ -65,10 +65,6 @@ export const hentDataFraForrigeBarnetilsynSøknad =
         `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
         axiosConfig
       );
-      console.log(
-        'hentDataFraForrigeBarnetilsynSøknad response.data: ',
-        response.data
-      );
       return response.data;
     } catch (error) {
       console.error('Feil med å hente data fra forrige søknad: ', error);
