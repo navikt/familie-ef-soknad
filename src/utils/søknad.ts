@@ -62,7 +62,7 @@ export const hentDataFraForrigeBarnetilsynSøknad =
   async (): Promise<ForrigeSøknad> => {
     try {
       const response = await axios.get(
-        `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/hent'}`,
+        `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/forrige'}`,
         axiosConfig
       );
       return response.data;
