@@ -60,16 +60,11 @@ export const mellomlagreSøknadTilDokument = <T>(
 
 export const hentDataFraForrigeBarnetilsynSøknad =
   async (): Promise<ForrigeSøknad> => {
-    try {
-      const response = await axios.get(
-        `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/forrige'}`,
-        axiosConfig
-      );
-      return response.data;
-    } catch (error) {
-      console.error('Feil med å hente data fra forrige søknad: ', error);
-      throw error;
-    }
+    const response = await axios.get(
+      `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/forrige'}`,
+      axiosConfig
+    );
+    return response.data;
   };
 
 export const nullstillMellomlagretSøknadTilDokument = (
