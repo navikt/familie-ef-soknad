@@ -11,15 +11,19 @@ import {
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
+import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
+
+const axiosConfig = {
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+    accept: 'application/json',
+  },
+};
 
 export const hentPersonData = () => {
   return axios
-    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerinfo`, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      withCredentials: true,
-    })
+    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerinfo`, axiosConfig)
     .then((response) => {
       return response && response.data;
     });
@@ -27,12 +31,7 @@ export const hentPersonData = () => {
 
 export const hentPersonDataArbeidssoker = () => {
   return axios
-    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerminimum`, {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-      },
-      withCredentials: true,
-    })
+    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerminimum`, axiosConfig)
     .then((response: { data: any }) => {
       return response && response.data;
     });
@@ -42,13 +41,7 @@ export const hentMellomlagretSøknadFraDokument = <T>(
   stønadstype: MellomlagredeStønadstyper
 ): Promise<T | undefined> => {
   return axios
-    .get(`${Environment().mellomlagerProxyUrl + stønadstype}`, {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      },
-    })
+    .get(`${Environment().mellomlagerProxyUrl + stønadstype}`, axiosConfig)
     .then((response: { data?: T }) => {
       return response.data;
     });
@@ -61,26 +54,26 @@ export const mellomlagreSøknadTilDokument = <T>(
   return axios.post(
     `${Environment().mellomlagerProxyUrl + stønadstype}`,
     søknad,
-    {
-      withCredentials: true,
-      headers: {
-        'Content-Type': 'application/json',
-        accept: 'application/json',
-      },
-    }
+    axiosConfig
   );
 };
+
+export const hentDataFraForrigeBarnetilsynSøknad =
+  async (): Promise<ForrigeSøknad> => {
+    const response = await axios.get(
+      `${Environment().apiProxyUrl + '/api/soknadbarnetilsyn/forrige'}`,
+      axiosConfig
+    );
+    return response.data;
+  };
 
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
 ): Promise<any> => {
-  return axios.delete(`${Environment().mellomlagerProxyUrl + stønadstype}`, {
-    withCredentials: true,
-    headers: {
-      'Content-Type': 'application/json',
-      accept: 'application/json',
-    },
-  });
+  return axios.delete(
+    `${Environment().mellomlagerProxyUrl + stønadstype}`,
+    axiosConfig
+  );
 };
 
 export const hentTekst = (id: string, intl: LokalIntlShape) => {

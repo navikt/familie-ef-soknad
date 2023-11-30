@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
-import Søknadsbegrunnelse from './begrunnelse/SøknadsBegrunnelse';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../../utils/søknad';
-import {
-  ESvar,
-  ISpørsmål,
-  ISvar,
-} from '../../../../models/felles/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { usePersonContext } from '../../../../context/PersonContext';
 import {
   ESivilstatusSøknadid,
@@ -16,15 +11,15 @@ import {
 } from '../../../../models/steg/omDeg/sivilstatus';
 import SøkerErUgift from './SøkerErUgift';
 import {
-  erSøkerEnke,
   erSøkerGift,
-  erSøkerSeparert,
   erSøkerSkilt,
   erSøkerUgift,
 } from '../../../../utils/sivilstatus';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SøkerErSkilt from './SøkerErSkilt';
+import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
+import { erSivilstandSpørsmålBesvart } from '../../../../helpers/steg/omdeg';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -47,17 +42,8 @@ const Sivilstatus: React.FC<Props> = ({
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
 
-  const {
-    harSøktSeparasjon,
-    erUformeltSeparertEllerSkilt,
-    erUformeltGift,
-    datoFlyttetFraHverandre,
-    datoSøktSeparasjon,
-  } = sivilstatus;
-
-  const harSvartPåGiftUtenRegistrertSpørsmål =
-    sivilstatus.erUformeltGift?.svarid === ESvar.JA ||
-    sivilstatus.erUformeltGift?.svarid === ESvar.NEI;
+  const { erUformeltGift, datoFlyttetFraHverandre, datoSøktSeparasjon } =
+    sivilstatus;
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -96,16 +82,6 @@ const Sivilstatus: React.FC<Props> = ({
     });
   };
 
-  const harFyltUtSeparasjonSomGift = () => {
-    if (harSøktSeparasjon === undefined) return false;
-
-    if (harSøktSeparasjon.verdi === true) {
-      return !!datoSøktSeparasjon?.verdi;
-    } else {
-      return true;
-    }
-  };
-
   return (
     <SeksjonGruppe aria-live="polite">
       {erSøkerGift(sivilstand) && (
@@ -131,20 +107,15 @@ const Sivilstatus: React.FC<Props> = ({
         />
       )}
 
-      {(erSøkerUgift(sivilstand) &&
-        erUformeltSeparertEllerSkilt?.hasOwnProperty('verdi')) ||
-      (erSøkerGift(sivilstand) && harFyltUtSeparasjonSomGift()) ||
-      erSøkerSeparert(sivilstand) ||
-      (erSøkerSkilt(sivilstand) && harSvartPåGiftUtenRegistrertSpørsmål) ||
-      erSøkerEnke(sivilstand) ? (
-        <Søknadsbegrunnelse
+      {erSivilstandSpørsmålBesvart(sivilstand, sivilstatus) && (
+        <ÅrsakEnslig
           sivilstatus={sivilstatus}
           settSivilstatus={settSivilstatus}
           settDato={settDato}
           settDokumentasjonsbehov={settDokumentasjonsbehov}
           settMedlemskap={settMedlemskap}
         />
-      ) : null}
+      )}
     </SeksjonGruppe>
   );
 };

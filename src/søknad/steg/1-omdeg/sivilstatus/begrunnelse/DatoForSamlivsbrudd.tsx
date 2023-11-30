@@ -1,12 +1,12 @@
 import React from 'react';
-import LocaleTekst from '../../../../../language/LocaleTekst';
-import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
-import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
-import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 import {
   Datovelger,
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
+import LocaleTekst from '../../../../../language/LocaleTekst';
+import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
+import { IDatoFelt } from '../../../../../models/søknad/søknadsfelter';
+import AlertStripeDokumentasjon from '../../../../../components/AlertstripeDokumentasjon';
 
 interface Props {
   settDato: (date: string, objektnøkkel: string, tekstid: string) => void;
@@ -23,10 +23,8 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <Datovelger
-          settDato={(e: string) =>
-            settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)
-          }
-          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : ''}
+          settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
+          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd?.verdi : ''}
           tekstid={datovelgerLabel}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />
