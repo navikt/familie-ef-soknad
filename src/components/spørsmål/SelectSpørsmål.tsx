@@ -50,32 +50,30 @@ const SelectSpørsmål: FC<Props> = ({
   };
 
   return (
-    <div key={spørsmål.søknadid}>
-      <Select
-        label={legend}
-        description={
-          <Show if={spørsmål.lesmer}>
-            <LesMerTekst
-              åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''}
-              innholdTekstid={
-                spørsmål.lesmer ? spørsmål!.lesmer!.innholdTekstid : ''
-              }
-            />
-          </Show>
-        }
-        onChange={(e) => håndterSelectChange(e.target.value)} // Logg spørsmål
-        value={valgtSvarId}
-      >
-        <option value="" disabled selected>
-          Velg et alternativ
+    <Select
+      label={legend}
+      description={
+        <Show if={spørsmål.lesmer}>
+          <LesMerTekst
+            åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''}
+            innholdTekstid={
+              spørsmål.lesmer ? spørsmål!.lesmer!.innholdTekstid : ''
+            }
+          />
+        </Show>
+      }
+      onChange={(e) => håndterSelectChange(e.target.value)} // Logg spørsmål
+      value={valgtSvarId}
+    >
+      <option value="" disabled selected>
+        Velg et alternativ
+      </option>
+      {spørsmål.svaralternativer.map((svar: ISvar) => (
+        <option key={svar.id} value={svar.id}>
+          {svar.svar_tekst}
         </option>
-        {spørsmål.svaralternativer.map((svar: ISvar) => (
-          <option key={svar.id} value={svar.id}>
-            {svar.svar_tekst}
-          </option>
-        ))}
-      </Select>
-    </div>
+      ))}
+    </Select>
   );
 };
 

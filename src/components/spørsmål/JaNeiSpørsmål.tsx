@@ -70,46 +70,44 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
 
   return (
     <StyledJaNeiSpørsmål key={spørsmål.søknadid}>
-      <div>
-        <RadioGroup
-          legend={spørsmålTekst}
-          value={svar()}
-          description={
-            spørsmål.lesmer && (
-              <LesMerTekst
-                åpneTekstid={spørsmål.lesmer.headerTekstid}
-                innholdTekstid={spørsmål.lesmer.innholdTekstid}
-              />
-            )
-          }
-        >
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad =
-              valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
+      <RadioGroup
+        legend={spørsmålTekst}
+        value={svar()}
+        description={
+          spørsmål.lesmer && (
+            <LesMerTekst
+              åpneTekstid={spørsmål.lesmer.headerTekstid}
+              innholdTekstid={spørsmål.lesmer.innholdTekstid}
+            />
+          )
+        }
+      >
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
+          const svarISøknad =
+            valgtSvar !== undefined && erValgtSvarRadioKnapp(svar, valgtSvar);
 
-            return (
-              <RadioPanelCustom
-                key={svar.svar_tekst}
-                name={spørsmål.søknadid}
-                value={svar.id}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={(e) => {
-                  logSpørsmålBesvart(
-                    skjemanavn,
-                    skjemaId,
-                    spørsmålTekst,
-                    svar.svar_tekst,
-                    skalLogges
-                  );
-                  onClickHandle(e, spørsmål, svar);
-                }}
-              >
-                {svar.svar_tekst}
-              </RadioPanelCustom>
-            );
-          })}
-        </RadioGroup>
-      </div>
+          return (
+            <RadioPanelCustom
+              key={svar.svar_tekst}
+              name={spørsmål.søknadid}
+              value={svar.id}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={(e) => {
+                logSpørsmålBesvart(
+                  skjemanavn,
+                  skjemaId,
+                  spørsmålTekst,
+                  svar.svar_tekst,
+                  skalLogges
+                );
+                onClickHandle(e, spørsmål, svar);
+              }}
+            >
+              {svar.svar_tekst}
+            </RadioPanelCustom>
+          );
+        })}
+      </RadioGroup>
     </StyledJaNeiSpørsmål>
   );
 };

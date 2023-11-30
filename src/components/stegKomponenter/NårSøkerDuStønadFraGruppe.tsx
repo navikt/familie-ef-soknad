@@ -64,33 +64,31 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <StyledMultisvarSpørsmål>
-          <div>
-            <RadioGroup
-              legend={intl.formatMessage({ id: spørsmål.tekstid })}
-              value={søkerFraBestemtMåned?.svarid}
-              description={
-                <LesMerTekst
-                  åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
-                  innholdTekst={hjelpetekstInnholdTekst}
-                />
-              }
-            >
-              {spørsmål.svaralternativer.map((svar: ISvar) => {
-                const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
-                return (
-                  <RadioPanelCustom
-                    key={svar.svar_tekst}
-                    name={spørsmål.søknadid}
-                    value={svar.id}
-                    checked={svarISøknad ? svarISøknad : false}
-                    onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
-                  >
-                    {svar.svar_tekst}
-                  </RadioPanelCustom>
-                );
-              })}
-            </RadioGroup>
-          </div>
+          <RadioGroup
+            legend={intl.formatMessage({ id: spørsmål.tekstid })}
+            value={søkerFraBestemtMåned?.svarid}
+            description={
+              <LesMerTekst
+                åpneTekstid={'søkerFraBestemtMåned.hjelpetekst-åpne'}
+                innholdTekst={hjelpetekstInnholdTekst}
+              />
+            }
+          >
+            {spørsmål.svaralternativer.map((svar: ISvar) => {
+              const svarISøknad = svar.id === søkerFraBestemtMåned?.svarid;
+              return (
+                <RadioPanelCustom
+                  key={svar.svar_tekst}
+                  name={spørsmål.søknadid}
+                  value={svar.id}
+                  checked={svarISøknad ? svarISøknad : false}
+                  onChange={() => settSøkerFraBestemtMåned(spørsmål, svar)}
+                >
+                  {svar.svar_tekst}
+                </RadioPanelCustom>
+              );
+            })}
+          </RadioGroup>
         </StyledMultisvarSpørsmål>
       </KomponentGruppe>
 

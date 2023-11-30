@@ -52,48 +52,44 @@ const MultiSvarSpørsmålMedNavn: FC<Props> = ({
 
   return (
     <StyledMultisvarSpørsmål key={spørsmål.søknadid}>
-      <div>
-        <RadioGroup
-          legend={spørsmålTekst}
-          value={valgtSvar}
-          description={
-            <Show if={spørsmål.lesmer}>
-              <LesMerTekst
-                åpneTekstid={
-                  spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''
-                }
-                innholdTekstid={
-                  spørsmål.lesmer ? spørsmål.lesmer.innholdTekstid : ''
-                }
-              />
-            </Show>
-          }
-        >
-          {spørsmål.svaralternativer.map((svar: ISvar) => {
-            const svarISøknad = svar.svar_tekst === valgtSvar;
-            return (
-              <RadioPanelCustom
-                key={svar.svar_tekst}
-                name={spørsmål.søknadid}
-                value={svar.svar_tekst}
-                checked={svarISøknad ? svarISøknad : false}
-                onChange={() => {
-                  logSpørsmålBesvart(
-                    skjemanavn,
-                    skjemaId,
-                    spørsmålstekstUtenNavn,
-                    svar.svar_tekst,
-                    skalLogges
-                  );
-                  settSpørsmålOgSvar(spørsmål, svar);
-                }}
-              >
-                {svar.svar_tekst}
-              </RadioPanelCustom>
-            );
-          })}
-        </RadioGroup>
-      </div>
+      <RadioGroup
+        legend={spørsmålTekst}
+        value={valgtSvar}
+        description={
+          <Show if={spørsmål.lesmer}>
+            <LesMerTekst
+              åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''}
+              innholdTekstid={
+                spørsmål.lesmer ? spørsmål.lesmer.innholdTekstid : ''
+              }
+            />
+          </Show>
+        }
+      >
+        {spørsmål.svaralternativer.map((svar: ISvar) => {
+          const svarISøknad = svar.svar_tekst === valgtSvar;
+          return (
+            <RadioPanelCustom
+              key={svar.svar_tekst}
+              name={spørsmål.søknadid}
+              value={svar.svar_tekst}
+              checked={svarISøknad ? svarISøknad : false}
+              onChange={() => {
+                logSpørsmålBesvart(
+                  skjemanavn,
+                  skjemaId,
+                  spørsmålstekstUtenNavn,
+                  svar.svar_tekst,
+                  skalLogges
+                );
+                settSpørsmålOgSvar(spørsmål, svar);
+              }}
+            >
+              {svar.svar_tekst}
+            </RadioPanelCustom>
+          );
+        })}
+      </RadioGroup>
     </StyledMultisvarSpørsmål>
   );
 };
