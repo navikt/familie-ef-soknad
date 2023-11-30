@@ -594,6 +594,10 @@ export default {
   'firma.datovelger.etablering': 'When did you set up the company?',
   'firma.label.arbeidsmengde': 'How much do you work?',
   'firma.label.arbeidsuke': 'What does your average work week look like?',
+  'firma.label.overskudd':
+    'What do you expect the pre-tax profit of your business to be in [0]?',
+  'firma.lesmer-innhold.overskudd':
+    'The profit is the sum of your income minus your expenses. If you do not expect a profit, enter NOK 0 in the input field.',
   'firma.knapp.slett': 'Remove company',
   'firmaer.label.flereFirmaer': 'Do you work elsewhere?',
   'firmaer.knapp.leggTilFirma': 'Add a company',

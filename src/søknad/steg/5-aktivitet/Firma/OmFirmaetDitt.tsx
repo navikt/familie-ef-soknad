@@ -18,6 +18,8 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { ErrorMessage, Heading, Textarea } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
+import { hentBeskjedMedNavn } from '../../../../utils/språk';
+import { nåværendeÅr } from '../../../../utils/dato';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -99,6 +101,10 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
+  const labelOverskudd = hentBeskjedMedNavn(
+    `${nåværendeÅr}`,
+    hentTekst('firma.label.overskudd', intl)
+  );
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
   const labelNavn = hentTekst('firma.label.navn', intl);
   const firmaTittel = hentTittelMedNr(
@@ -140,7 +146,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           <FeltGruppe>
             <TextFieldMedBredde
               label={labelOrganisasjonsnr}
-              bredde={'L'}
+              bredde={'XS'}
               type={'text'}
               onChange={(e) => settOrganisasjonsnr(e.target.value)}
               onBlur={(e) =>
@@ -186,7 +192,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
               label={labelArbeidsmengde}
               nøkkel={labelArbeidsmengde}
               type={'number'}
-              bredde={'XS'}
+              bredde={'XXS'}
               settInputFelt={(e) =>
                 settInputTekstFelt(e, EFirma.arbeidsmengde, labelArbeidsmengde)
               }
@@ -200,16 +206,35 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
       {(firma.arbeidsmengde?.verdi ||
         (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (
-        <FeltGruppe>
-          <Textarea
-            autoComplete={'off'}
-            key={labelArbeidsuke}
-            label={labelArbeidsuke}
-            value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
-            maxLength={1000}
-            onChange={(e) => settArbeidsukeTekst(e)}
-          />
-        </FeltGruppe>
+        <>
+          <FeltGruppe>
+            <Textarea
+              autoComplete={'off'}
+              key={labelArbeidsuke}
+              label={labelArbeidsuke}
+              value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
+              maxLength={1000}
+              onChange={(e) => settArbeidsukeTekst(e)}
+            />
+          </FeltGruppe>
+          <FeltGruppe>
+            <InputLabelGruppe
+              hjelpetekst={{
+                headerTekstid: '',
+                innholdTekstid: 'firma.lesmer-innhold.overskudd',
+              }}
+              label={labelOverskudd}
+              nøkkel={labelOverskudd}
+              type={'number'}
+              bredde={'XS'}
+              settInputFelt={(e) =>
+                settInputTekstFelt(e, EFirma.overskudd, labelOverskudd)
+              }
+              beskrivendeTekst={'kroner'}
+              value={firma?.overskudd?.verdi ? firma?.overskudd?.verdi : ''}
+            />
+          </FeltGruppe>
+        </>
       )}
     </StyledFirma>
   );

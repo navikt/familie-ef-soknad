@@ -431,6 +431,11 @@ export default {
   'firma.datovelger.etablering': 'Når etablerte du firmaet?',
   'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
   'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+  'firma.label.overskudd':
+    'Hva forventer du at overskuddet i virksomheten din blir før skatt i [0]?',
+  'firma.lesmer-åpne.overskudd': 'Blablabla',
+  'firma.lesmer-innhold.overskudd':
+    'Overskuddet er summen av inntektene dine, minus de utgiftene du har. Hvis du ikke forventer et overskudd, oppgir du 0 kroner i feltet.',
   'firma.knapp.slett': 'Fjern firma',
   'firmaer.label.flereFirmaer': 'Har du flere firmaer?',
   'firmaer.knapp.leggTilFirma': 'Legg til firma',
