@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad } from './models/søknad';
+import { ISøknad, ForrigeSøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -13,6 +13,7 @@ import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
+  hentDataFraForrigeBarnetilsynSøknad,
   hentMellomlagretSøknadFraDokument,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
@@ -89,6 +90,19 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       if (mellomlagretBarnetilsyn) {
         settSøknad(mellomlagretBarnetilsyn.søknad);
       }
+    };
+
+    const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
+      return hentDataFraForrigeBarnetilsynSøknad().then(
+        (tidligereVersjon?: ForrigeSøknad) => {
+          if (tidligereVersjon) {
+            settSøknad((prevSøknad) => ({
+              ...prevSøknad,
+              ...tidligereVersjon,
+            }));
+          }
+        }
+      );
     };
 
     const mellomlagreBarnetilsyn = (steg: string) => {
@@ -211,6 +225,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       hentMellomlagretBarnetilsyn,
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
+      hentForrigeSøknadBarnetilsyn,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,

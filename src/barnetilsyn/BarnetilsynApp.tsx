@@ -18,6 +18,7 @@ import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
+import { ToggleName } from '../models/søknad/toggles';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -27,10 +28,12 @@ const BarnetilsynApp = () => {
   const [alvorlighetsgrad, settAlvorlighetsgrad] =
     useState<EAlvorlighetsgrad>();
   const { settPerson } = usePersonContext();
-  const { søknad, settSøknad, hentMellomlagretBarnetilsyn } =
-    useBarnetilsynSøknad();
-  const { settToggles } = useToggles();
-
+  const {
+    settSøknad,
+    hentMellomlagretBarnetilsyn,
+    hentForrigeSøknadBarnetilsyn,
+  } = useBarnetilsynSøknad();
+  const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
 
   autentiseringsInterceptor();
@@ -69,8 +72,12 @@ const BarnetilsynApp = () => {
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+
     settSøknad &&
-      settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+      settSøknad((prevSøknad) => ({
+        ...prevSøknad,
+        person: { ...person, barn: barnMedLabels },
+      }));
   };
 
   const fetchToggles = () => {
@@ -86,9 +93,15 @@ const BarnetilsynApp = () => {
       hentMellomlagretBarnetilsyn(),
     ])
       .then(() => settFetching(false))
-      .catch(() => settFetching(false));
+      .catch(() => settFetching(false))
     // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (toggles[ToggleName.hentBarnetilsynSøknad]) {
+      hentForrigeSøknadBarnetilsyn()
+    }
+  }, [fetching]);
 
   if (!fetching && autentisert) {
     if (!error) {

@@ -8,8 +8,6 @@ import { JaSvar, NeiSvar } from '../../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../../DokumentasjonsConfig';
 import { LokalIntlShape } from '../../../../language/typer';
 
-// DOKUMENTASJON CONFIG
-
 const ErklæringSamlivsbrudd: IDokumentasjon =
   DokumentasjonsConfig.ErklæringSamlivsbrudd;
 
@@ -22,9 +20,7 @@ const DokumentasjonUformeltSeparertEllerSkilt: IDokumentasjon =
 export const BekreftelseSeparasjonSøknad: IDokumentasjon =
   DokumentasjonsConfig.BekreftelseSeparasjonSøknad;
 
-// SPØRSMÅL CONFIG
-
-export const SeparasjonSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
+export const harSøktSeparasjonSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.harSøktSeparasjon,
   tekstid: 'sivilstatus.spm.søktSeparasjon',
   flersvar: false,
@@ -68,7 +64,7 @@ export const erUformeltSeparertEllerSkiltSpørsmål = (
   ],
 });
 
-export const BegrunnelseSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
+export const begrunnelseSpørsmål = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: ESivilstatusSøknadid.årsakEnslig,
   tekstid: 'sivilstatus.spm.begrunnelse',
   flersvar: false,

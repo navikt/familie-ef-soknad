@@ -1,11 +1,10 @@
 import React, { FC, useEffect, useState } from 'react';
-
 import DatoForSamlivsbrudd from './DatoForSamlivsbrudd';
 import EndringISamvær from './EndringISamvær';
 import KomponentGruppe from '../../../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmål from '../../../../../components/spørsmål/MultiSvarSpørsmål';
 import NårFlyttetDereFraHverandre from './NårFlyttetDereFraHverandre';
-import { BegrunnelseSpørsmål } from '../SivilstatusConfig';
+import { begrunnelseSpørsmål } from '../SivilstatusConfig';
 import FeltGruppe from '../../../../../components/gruppe/FeltGruppe';
 import IdentEllerFødselsdatoGruppe from '../../../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import {
@@ -41,7 +40,7 @@ interface Props {
   ) => void;
 }
 
-const Søknadsbegrunnelse: FC<Props> = ({
+const ÅrsakEnslig: FC<Props> = ({
   sivilstatus,
   settSivilstatus,
   settDato,
@@ -49,7 +48,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
   settMedlemskap,
 }) => {
   const intl = useLokalIntlContext();
-  const spørsmål: ISpørsmål = BegrunnelseSpørsmål(intl);
+  const spørsmål: ISpørsmål = begrunnelseSpørsmål(intl);
 
   const {
     årsakEnslig,
@@ -79,7 +78,7 @@ const Søknadsbegrunnelse: FC<Props> = ({
         tidligereSamboerDetaljer: samboerInfo,
       });
     // eslint-disable-next-line
-  }, [samboerInfo]);
+  }, [samboerInfo, datoFlyttetFraHverandre]);
 
   useEffect(() => {
     erGyldigIdent &&
@@ -276,4 +275,4 @@ const Søknadsbegrunnelse: FC<Props> = ({
   );
 };
 
-export default Søknadsbegrunnelse;
+export default ÅrsakEnslig;
