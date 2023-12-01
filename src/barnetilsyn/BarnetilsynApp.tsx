@@ -93,13 +93,13 @@ const BarnetilsynApp = () => {
       hentMellomlagretBarnetilsyn(),
     ])
       .then(() => settFetching(false))
-      .catch(() => settFetching(false))
+      .catch(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (toggles[ToggleName.hentBarnetilsynSøknad]) {
-      hentForrigeSøknadBarnetilsyn()
+      hentForrigeSøknadBarnetilsyn();
     }
   }, [fetching]);
 
