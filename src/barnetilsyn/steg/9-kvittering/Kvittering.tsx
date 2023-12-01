@@ -62,9 +62,7 @@ const Kvittering: React.FC = () => {
     søknad.sivilstatus.årsakEnslig?.svarid ===
     EBegrunnelse.samlivsbruddForeldre;
 
-  if (window.location.hostname === 'localhost') {
-    console.log('søknad', søknad);
-  }
+  console.log('søknad', søknad);
 
   return søknad.innsendingsdato ? (
     <Side
