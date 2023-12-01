@@ -65,7 +65,6 @@ const Sivilstatus: React.FC<Props> = ({
 
     settSivilstatus(nySivilstatus);
     settDokumentasjonsbehov(spørsmål, valgtSvar);
-    settMedlemskap({});
   };
 
   const settDato = (
