@@ -63,6 +63,7 @@ const ÅrsakEnslig: FC<Props> = ({
       ? tidligereSamboerDetaljer
       : { kjennerIkkeIdent: false }
   );
+
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
     !!tidligereSamboerDetaljer?.ident?.verdi
   );
@@ -196,6 +197,9 @@ const ÅrsakEnslig: FC<Props> = ({
     EBegrunnelse.dødsfall,
     spørsmål
   );
+
+  console.log('sivilstatus', sivilstatus);
+  console.log('tidligereSamboerDetaljer', tidligereSamboerDetaljer);
 
   return (
     <div aria-live="polite">

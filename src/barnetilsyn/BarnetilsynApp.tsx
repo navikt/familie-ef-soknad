@@ -98,6 +98,10 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
+    if (window.location.hostname === 'localhost') {
+      hentForrigeSøknadBarnetilsyn();
+    }
+
     if (toggles[ToggleName.hentBarnetilsynSøknad]) {
       hentForrigeSøknadBarnetilsyn();
     }
