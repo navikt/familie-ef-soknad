@@ -33,7 +33,8 @@ const PeriodeBoddIUtlandet: FC<{
   const [perioderBoddIUtlandet, settPerioderBoddIUtlandet] = useState<
     IUtenlandsopphold[]
   >(
-    medlemskap?.perioderBoddIUtlandet
+      medlemskap?.perioderBoddIUtlandet &&
+      medlemskap.perioderBoddIUtlandet.length > 0
       ? medlemskap.perioderBoddIUtlandet
       : [tomtUtenlandsopphold]
   );
