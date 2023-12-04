@@ -198,9 +198,6 @@ const ÅrsakEnslig: FC<Props> = ({
     spørsmål
   );
 
-  console.log('sivilstatus', sivilstatus);
-  console.log('tidligereSamboerDetaljer', tidligereSamboerDetaljer);
-
   return (
     <div aria-live="polite">
       <KomponentGruppe>
