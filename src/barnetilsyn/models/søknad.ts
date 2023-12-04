@@ -29,4 +29,5 @@ export interface ForrigeSøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bositusjon: IBosituasjon;
+  person: IPerson;
 }
