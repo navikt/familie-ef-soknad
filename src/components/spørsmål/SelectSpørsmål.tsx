@@ -1,17 +1,11 @@
 import React, { FC } from 'react';
 import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import LesMerTekst from '../LesMerTekst';
-import { SkjemaGruppe } from 'nav-frontend-skjema';
-import styled from 'styled-components';
 import Show from '../../utils/showIf';
 import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Select } from '@navikt/ds-react';
-
-const StyledSelect = styled.div`
-  padding-top: 1rem;
-`;
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -56,8 +50,9 @@ const SelectSpørsmål: FC<Props> = ({
   };
 
   return (
-    <SkjemaGruppe legend={legend}>
-      <StyledSelect key={spørsmål.søknadid}>
+    <Select
+      label={legend}
+      description={
         <Show if={spørsmål.lesmer}>
           <LesMerTekst
             åpneTekstid={spørsmål.lesmer ? spørsmål.lesmer.headerTekstid : ''}
@@ -66,23 +61,19 @@ const SelectSpørsmål: FC<Props> = ({
             }
           />
         </Show>
-        <Select
-          label={legend}
-          hideLabel
-          onChange={(e) => håndterSelectChange(e.target.value)} // Logg spørsmål
-          value={valgtSvarId}
-        >
-          <option value="" disabled selected>
-            Velg et alternativ
-          </option>
-          {spørsmål.svaralternativer.map((svar: ISvar) => (
-            <option key={svar.id} value={svar.id}>
-              {svar.svar_tekst}
-            </option>
-          ))}
-        </Select>
-      </StyledSelect>
-    </SkjemaGruppe>
+      }
+      onChange={(e) => håndterSelectChange(e.target.value)} // Logg spørsmål
+      value={valgtSvarId}
+    >
+      <option value="" disabled selected>
+        Velg et alternativ
+      </option>
+      {spørsmål.svaralternativer.map((svar: ISvar) => (
+        <option key={svar.id} value={svar.id}>
+          {svar.svar_tekst}
+        </option>
+      ))}
+    </Select>
   );
 };
 
