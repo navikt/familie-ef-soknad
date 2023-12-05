@@ -9,22 +9,18 @@ import { DatoBegrensning } from '../../components/dato/Datovelger';
 const harPlanerOmÅBliSamboerEllerSkalGifteSeg = (bosituasjon: IBosituasjon) => {
   const { skalGifteSegEllerBliSamboer } = bosituasjon;
 
-  return !!(
-    skalGifteSegEllerBliSamboer &&
-    skalGifteSegEllerBliSamboer.svarid === ESvar.JA
-  );
+  return skalGifteSegEllerBliSamboer !== undefined && skalGifteSegEllerBliSamboer.svarid === ESvar.JA
+
 };
 
 const harSattFødselsdato = (fødselsdato?: string): boolean =>
-  fødselsdato &&
-  erDatoGyldigOgInnaforBegrensninger(
-    fødselsdato,
-    DatoBegrensning.TidligereDatoer
-  )
-    ? true
-    : false;
+  fødselsdato !== undefined &&
+    erDatoGyldigOgInnaforBegrensninger(
+        fødselsdato,
+        DatoBegrensning.TidligereDatoer
+    );
 
-const harSattIdent = (ident?: string): boolean => (ident ? true : false);
+const harSattIdent = (ident?: string): boolean => (ident !== undefined);
 
 const harFerdigUtfyltOmSamboer = (
   samboerDetaljer?: IPersonDetaljer,
@@ -60,13 +56,11 @@ const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift = (
 
 const harSattDatoFlyttetFraHverandre = (bosituasjon: IBosituasjon) => {
   const { datoFlyttetFraHverandre } = bosituasjon;
-  return datoFlyttetFraHverandre?.verdi &&
+  return datoFlyttetFraHverandre?.verdi !== undefined &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
       DatoBegrensning.AlleDatoer
-    )
-    ? true
-    : false;
+    );
 };
 
 export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
