@@ -98,7 +98,7 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
-    if (window.location.hostname === 'localhost') {
+    if (Environment().miljø === 'local') {
       hentForrigeSøknadBarnetilsyn();
     }
 
