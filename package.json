@@ -60,22 +60,6 @@
     "lodash": "^4.17.21",
     "lodash.throttle": "^4.1.1",
     "nav-faker": "^3.2.4",
-    "nav-frontend-core": "^6.0.1",
-    "nav-frontend-ikoner-assets": "^3.0.1",
-    "nav-frontend-js-utils": "^1.0.20",
-    "nav-frontend-knapper-style": "^2.1.2",
-    "nav-frontend-lenker": "^2.0.2",
-    "nav-frontend-lenker-style": "^2.0.2",
-    "nav-frontend-lukknapp": "^2.0.2",
-    "nav-frontend-lukknapp-style": "^2.0.2",
-    "nav-frontend-paneler": "^3.0.2",
-    "nav-frontend-paneler-style": "^2.0.2",
-    "nav-frontend-skjema": "^4.0.6",
-    "nav-frontend-skjema-style": "^3.0.3",
-    "nav-frontend-typografi": "^4.0.2",
-    "nav-frontend-typografi-style": "^2.0.2",
-    "nav-frontend-veileder": "^3.0.3",
-    "nav-frontend-veileder-style": "^3.0.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-app-polyfill": "^3.0.0",
@@ -150,42 +134,6 @@
   },
   "overrides": {
     "react-day-picker": {
-      "react": "$react"
-    },
-    "nav-datovelger": {
-      "react": "$react"
-    },
-    "nav-frontend-js-utils": {
-      "react": "$react"
-    },
-    "nav-frontend-knapper": {
-      "react": "$react"
-    },
-    "nav-frontend-lenker": {
-      "react": "$react"
-    },
-    "nav-frontend-modal": {
-      "react": "$react"
-    },
-    "nav-frontend-paneler": {
-      "react": "$react"
-    },
-    "nav-frontend-skjema": {
-      "react": "$react"
-    },
-    "nav-frontend-stegindikator": {
-      "react": "$react"
-    },
-    "nav-frontend-tekstomrade": {
-      "react": "$react"
-    },
-    "nav-frontend-veileder": {
-      "react": "$react"
-    },
-    "nav-frontend-veilederpanel": {
-      "react": "$react"
-    },
-    "nav-frontend-lukknapp": {
       "react": "$react"
     },
     "react-aria-menubutton": {
