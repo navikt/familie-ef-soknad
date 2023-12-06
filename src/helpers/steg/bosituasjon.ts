@@ -44,31 +44,6 @@ const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift = (
     datoSkalGifteSegEllerBliSamboer,
     vordendeSamboerEktefelle,
   } = bosituasjon;
-  console.log('skalGifteSegEllerBliSamboer:', skalGifteSegEllerBliSamboer);
-  console.log(
-    'skalGifteSegEllerBliSamboer.verdi: ',
-    skalGifteSegEllerBliSamboer?.verdi
-  );
-  console.log(
-    'harPlanerOmÅBliSamboerEllerSkalGifteSeg(bosituasjon): ',
-    harPlanerOmÅBliSamboerEllerSkalGifteSeg(bosituasjon)
-  );
-  console.log(
-    'datoSkalGifteSegEllerBliSamboer: ',
-    datoSkalGifteSegEllerBliSamboer
-  );
-  console.log(
-    'erDatoGyldigOgInnaforBegrensninger: ',
-    datoSkalGifteSegEllerBliSamboer &&
-      erDatoGyldigOgInnaforBegrensninger(
-        datoSkalGifteSegEllerBliSamboer.verdi,
-        DatoBegrensning.FremtidigeDatoer
-      )
-  );
-  console.log(
-    'harFerdigUtfyltOmSamboer: ',
-    harFerdigUtfyltOmSamboer(vordendeSamboerEktefelle, false)
-  );
 
   return !!(
     (skalGifteSegEllerBliSamboer &&
@@ -126,18 +101,6 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
       return harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon);
 
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
-      console.log(
-        'harFerdigUtfyltOmSamboer(samboerDetaljer, true): ',
-        harFerdigUtfyltOmSamboer(samboerDetaljer, true)
-      );
-      console.log(
-        'harSattDatoFlyttetFraHverandre(bosituasjon): ',
-        harSattDatoFlyttetFraHverandre(bosituasjon)
-      );
-      console.log(
-        'harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon): ',
-        harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon)
-      );
       return (
         harFerdigUtfyltOmSamboer(samboerDetaljer, true) &&
         harSattDatoFlyttetFraHverandre(bosituasjon) &&
