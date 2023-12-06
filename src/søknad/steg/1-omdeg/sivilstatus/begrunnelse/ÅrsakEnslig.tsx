@@ -63,6 +63,7 @@ const ÅrsakEnslig: FC<Props> = ({
       ? tidligereSamboerDetaljer
       : { kjennerIkkeIdent: false }
   );
+
   const [erGyldigIdent, settGyldigIdent] = useState<boolean>(
     !!tidligereSamboerDetaljer?.ident?.verdi
   );
