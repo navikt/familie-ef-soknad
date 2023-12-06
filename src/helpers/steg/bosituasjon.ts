@@ -12,7 +12,7 @@ const harPlanerOmÅBliSamboerEllerSkalGifteSeg = (bosituasjon: IBosituasjon) => 
 
   return (
     skalGifteSegEllerBliSamboer !== undefined &&
-    skalGifteSegEllerBliSamboer.svarid === ESvar.JA
+    skalGifteSegEllerBliSamboer.verdi
   );
 };
 
