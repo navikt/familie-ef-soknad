@@ -23,6 +23,7 @@ export interface ISøknad {
   søknadsdato?: IDatoFelt;
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
+  datoPåbegyntSøknad: Date;
 }
 
 export interface ForrigeSøknad {

@@ -24,12 +24,14 @@ interface Props {
     valgtSvar: ISvar,
     erHuketAv?: boolean
   ) => void;
+  overskuddsår: number;
 }
 const AktivitetOppfølgingSpørsmål: FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
   svarid,
   settDokumentasjonsbehov,
+  overskuddsår,
 }) => {
   switch (svarid) {
     case EAktivitet.erHjemmeMedBarnUnderEttÅr:
@@ -49,6 +51,7 @@ const AktivitetOppfølgingSpørsmål: FC<Props> = ({
         <OmFirmaeneDine
           arbeidssituasjon={arbeidssituasjon}
           settArbeidssituasjon={settArbeidssituasjon}
+          overskuddsår={overskuddsår}
         />
       );
 

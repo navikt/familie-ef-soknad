@@ -218,6 +218,7 @@ const Aktivitet: React.FC = () => {
                   arbeidssituasjon={arbeidssituasjon}
                   settArbeidssituasjon={settArbeidssituasjon}
                   settDokumentasjonsbehov={settDokumentasjonsbehov}
+                  overskuddsår={søknad.datoPåbegyntSøknad?.getFullYear()}
                 />
               )
             );

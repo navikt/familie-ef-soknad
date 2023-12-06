@@ -55,6 +55,7 @@ const initialState = (intl: LokalIntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
+    datoPåbegyntSøknad: new Date(),
   };
 };
 

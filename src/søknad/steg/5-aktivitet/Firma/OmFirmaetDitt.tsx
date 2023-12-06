@@ -19,7 +19,6 @@ import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { ErrorMessage, Heading, Textarea } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 import { hentBeskjedMedNavn } from '../../../../utils/språk';
-import { nåværendeÅr } from '../../../../utils/dato';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -31,6 +30,7 @@ interface Props {
   firmanr: number;
   settFirmaer: (firmaer: IFirma[]) => void;
   inkludertArbeidsmengde?: boolean;
+  overskuddsår: number;
 }
 
 const OmFirmaetDitt: React.FC<Props> = ({
@@ -38,6 +38,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
   firmanr,
   settFirmaer,
   inkludertArbeidsmengde = true,
+  overskuddsår,
 }) => {
   const intl = useLokalIntlContext();
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
@@ -102,7 +103,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
   const labelOverskudd = hentBeskjedMedNavn(
-    `${nåværendeÅr}`,
+    `${overskuddsår}`,
     hentTekst('firma.label.overskudd', intl)
   );
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);

@@ -16,6 +16,7 @@ interface Props {
   arbeidssituasjon: IAktivitet;
   settArbeidssituasjon: (nyArbeidssituasjon: IAktivitet) => void;
   inkludertArbeidsmengde?: boolean;
+  overskuddsår: number;
 }
 
 const tomtFirma = (inkludertArbeidsmengde: boolean): IFirma => {
@@ -35,6 +36,7 @@ const OmFirmaeneDine: React.FC<Props> = ({
   arbeidssituasjon,
   settArbeidssituasjon,
   inkludertArbeidsmengde = true,
+  overskuddsår,
 }) => {
   const [firmaer, settFirmaer] = useState<IFirma[]>(
     arbeidssituasjon.firmaer
@@ -71,6 +73,7 @@ const OmFirmaeneDine: React.FC<Props> = ({
               settFirmaer={settFirmaer}
               firmanr={index}
               inkludertArbeidsmengde={inkludertArbeidsmengde}
+              overskuddsår={overskuddsår}
             />
           </SeksjonGruppe>
         );
