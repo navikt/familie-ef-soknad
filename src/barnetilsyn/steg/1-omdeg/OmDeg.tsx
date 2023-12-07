@@ -54,6 +54,7 @@ const OmDeg: FC = () => {
   };
 
   const settSøker = (søker: ISøker) => {
+    console.log('settSøker: ', søker);
     settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,

@@ -73,7 +73,7 @@ const Personopplysninger: React.FC<Props> = ({
     });
     settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
-
+  console.log('Personopplysninger.tsx: ', søker);
   return (
     <SeksjonGruppe aria-live={'polite'}>
       <KomponentGruppe>
