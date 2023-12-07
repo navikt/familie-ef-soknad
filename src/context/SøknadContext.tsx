@@ -28,6 +28,7 @@ import { useSpråkContext } from './SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from './LokalIntlContext';
 import { LocaleType } from '../language/typer';
+import { dagensDato, formatIsoDate } from '../utils/dato';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -67,7 +68,7 @@ const initialState = (intl: LokalIntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
-    datoPåbegyntSøknad: new Date(),
+    datoPåbegyntSøknad: formatIsoDate(dagensDato),
   };
 };
 

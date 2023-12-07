@@ -63,6 +63,10 @@ export const strengTilDato = (datoStreng: string): Date => {
   return startOfDay(new Date(datoStreng));
 };
 
+export const nullableStrengTilDato = (dato?: string): Date | undefined => {
+  return dato ? strengTilDato(dato) : undefined;
+};
+
 export const tilDato = (dato: string | Date): Date => {
   return typeof dato === 'string' ? startOfDay(new Date(dato)) : dato;
 };

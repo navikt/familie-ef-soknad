@@ -23,7 +23,7 @@ export interface ISøknad {
   harBekreftet: boolean;
   locale?: any;
   skalBehandlesINySaksbehandling?: boolean;
-  datoPåbegyntSøknad: Date;
+  datoPåbegyntSøknad?: string;
 }
 
 export enum ESøknad {

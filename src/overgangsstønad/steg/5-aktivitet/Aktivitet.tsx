@@ -26,6 +26,7 @@ import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
+import { nullableStrengTilDato, nåværendeÅr } from '../../../utils/dato';
 
 const Aktivitet: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -149,7 +150,11 @@ const Aktivitet: React.FC = () => {
               arbeidssituasjon={arbeidssituasjon}
               settArbeidssituasjon={settArbeidssituasjon}
               settDokumentasjonsbehov={settDokumentasjonsbehov}
-              overskuddsår={søknad.datoPåbegyntSøknad?.getFullYear()}
+              overskuddsår={
+                nullableStrengTilDato(
+                  søknad.datoPåbegyntSøknad
+                )?.getFullYear() || nåværendeÅr
+              }
             />
           )
         );

@@ -430,7 +430,8 @@ export default {
   'firma.feilmelding.organisasjonnr': 'Organisasjonsnummeret må ha 9 siffer',
   'firma.datovelger.etablering': 'Når etablerte du firmaet?',
   'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
-  'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+  'firma.label.arbeidsuke':
+    'Beskriv arbeidsuken i virksomheten din med konkrete opplysninger om arbeidsoppgavene dine og hvor mange timer du jobber i snitt per uke',
   'firma.label.overskudd':
     'Hva forventer du at overskuddet i virksomheten din blir før skatt i [0]?',
   'firma.lesmer-åpne.overskudd': 'Blablabla',
