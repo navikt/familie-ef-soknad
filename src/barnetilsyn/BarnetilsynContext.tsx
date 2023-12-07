@@ -99,6 +99,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             settSøknad((prevSøknad) => ({
               ...prevSøknad,
               ...tidligereVersjon,
+              person: { ...prevSøknad.person, ...tidligereVersjon.person.barn },
             }));
           }
         }

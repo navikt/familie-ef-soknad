@@ -22,7 +22,6 @@ import { hentTekst } from '../../../../utils/søknad';
 
 interface Props {
   søker: ISøker;
-  settSøker: (søker: ISøker) => void;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,

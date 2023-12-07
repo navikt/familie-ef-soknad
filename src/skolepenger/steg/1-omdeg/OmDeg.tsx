@@ -128,7 +128,6 @@ const OmDeg: FC = () => {
     >
       <Personopplysninger
         søker={søker}
-        settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
