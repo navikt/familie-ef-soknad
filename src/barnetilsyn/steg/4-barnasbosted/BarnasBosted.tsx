@@ -46,6 +46,8 @@ const BarnasBosted: React.FC = () => {
       barnMedLevendeForeldre.length
   );
 
+  console.log('sisteBarnUtfylt', sisteBarnUtfylt);
+
   return (
     <Side
       stønadstype={Stønadstype.barnetilsyn}
