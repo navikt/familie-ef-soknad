@@ -16,9 +16,10 @@ import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseri
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { ErrorMessage, Heading, Textarea } from '@navikt/ds-react';
+import { ErrorMessage, Heading, Label, Textarea } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 import { hentBeskjedMedNavn } from '../../../../utils/språk';
+import LesMerTekst from '../../../../components/LesMerTekst';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -209,10 +210,18 @@ const OmFirmaetDitt: React.FC<Props> = ({
         (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (
         <>
           <FeltGruppe>
+            <Label as={'label'} htmlFor={labelArbeidsuke}>
+              {labelArbeidsuke}
+            </Label>
+            <LesMerTekst
+              åpneTekstid={''}
+              innholdTekstid={'firma.lesmer-innhold.arbeidsuke'}
+            />
             <Textarea
               autoComplete={'off'}
               key={labelArbeidsuke}
               label={labelArbeidsuke}
+              hideLabel={true}
               value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
               maxLength={1000}
               onChange={(e) => settArbeidsukeTekst(e)}

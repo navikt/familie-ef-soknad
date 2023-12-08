@@ -445,8 +445,9 @@ export default {
     'The organisation number must have 9 digits',
   'firma.datovelger.etablering': 'When did you set up the company?',
   'firma.label.arbeidsmengde': 'How much do you work?',
-  'firma.label.arbeidsuke':
-    'Describe the work week in your company with specific information about your tasks and how many hours you work on average per week',
+  'firma.label.arbeidsuke': 'Describe the work week in your company',
+  'firma.lesmer-innhold.arbeidsuke':
+    'We need specific information about your tasks and how many hours you work on average per week',
   'firma.label.overskudd':
     'What do you expect the pre-tax profit of your business to be in [0]?',
   'firma.lesmer-innhold.overskudd':
