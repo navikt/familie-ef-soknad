@@ -19,6 +19,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
+import Environment from '../Environment';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -93,13 +94,16 @@ const BarnetilsynApp = () => {
       hentMellomlagretBarnetilsyn(),
     ])
       .then(() => settFetching(false))
-      .catch(() => settFetching(false))
+      .catch(() => settFetching(false));
     // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
-    if (toggles[ToggleName.hentBarnetilsynSøknad]) {
-      hentForrigeSøknadBarnetilsyn()
+    if (
+      toggles[ToggleName.hentBarnetilsynSøknad] ||
+      Environment().miljø === 'local'
+    ) {
+      hentForrigeSøknadBarnetilsyn();
     }
   }, [fetching]);
 
