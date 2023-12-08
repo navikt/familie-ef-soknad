@@ -40,7 +40,7 @@ const OmDeg: FC = () => {
   } = useBarnetilsynSøknad();
   const { sivilstatus, medlemskap } = søknad;
   const { søker } = søknad.person;
-  console.log('søknad: ', søknad);
+
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
