@@ -1,29 +1,29 @@
 import { ESøkerDelerBolig, IBosituasjon } from '../../models/steg/bosituasjon';
-import { ESvar } from '../../models/felles/spørsmålogsvar';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { IPersonDetaljer } from '../../models/søknad/person';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 
 const harPlanerOmÅBliSamboerEllerSkalGifteSeg = (bosituasjon: IBosituasjon) => {
   const { skalGifteSegEllerBliSamboer } = bosituasjon;
 
-  return !!(
-    skalGifteSegEllerBliSamboer && skalGifteSegEllerBliSamboer.verdi === true
+  return (
+    skalGifteSegEllerBliSamboer !== undefined &&
+    skalGifteSegEllerBliSamboer.verdi
   );
 };
 
 const harSattFødselsdato = (fødselsdato?: string): boolean =>
-  fødselsdato &&
+  stringHarVerdiOgErIkkeTom(fødselsdato) &&
   erDatoGyldigOgInnaforBegrensninger(
     fødselsdato,
     DatoBegrensning.TidligereDatoer
-  )
-    ? true
-    : false;
+  );
 
-const harSattIdent = (ident?: string): boolean => (ident ? true : false);
+const harSattIdent = (ident?: string): boolean =>
+  stringHarVerdiOgErIkkeTom(ident);
 
 const harFerdigUtfyltOmSamboer = (
   samboerDetaljer?: IPersonDetaljer,
@@ -59,13 +59,13 @@ const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift = (
 
 const harSattDatoFlyttetFraHverandre = (bosituasjon: IBosituasjon) => {
   const { datoFlyttetFraHverandre } = bosituasjon;
-  return datoFlyttetFraHverandre?.verdi &&
+  return (
+    stringHarVerdiOgErIkkeTom(datoFlyttetFraHverandre) &&
     erDatoGyldigOgInnaforBegrensninger(
       datoFlyttetFraHverandre?.verdi,
       DatoBegrensning.AlleDatoer
     )
-    ? true
-    : false;
+  );
 };
 
 export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
