@@ -136,7 +136,7 @@ export default {
   'sivilstatus.datovelger.samlivsbrudd': 'Date of end of relationship',
   'sivilstatus.datovelger.flyttetFraHverandre': 'When did you move apart?',
   'sivilstatus.datovelger.endring':
-    'Når skjedde endringen / når skal endringen skje?',
+    'When did the change happen / when will the change happen?',
   'sivilstatus.spm.erUformeltGift':
     'Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
@@ -837,7 +837,7 @@ export default {
     'The main rule is that you can receive child care benefit until your child has completed their fourth year at school. <br/><br/>At this stage, children have normally become sufficiently self-reliant and mature that they can cope on their own outside school hours both at home and in their usual local environment while you are absent due to work.<br/><br/>In some cases, you may be entitled to receive child care benefit after your child has completed their fourth year of school:<ul><li>If you have children who need significantly more looking after than other children of the same age. You must provide documentation of this need in the form of a statement from a doctor, specialist or other health care professional.</li><li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li><li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li></ul>',
   'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0] need for special supervision',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">form</a> to apply.',
   'barnepass.sidetittel': 'About the child minding arrangements',
   'barnepass.spm.årsak': 'Why does [0] need looking after?',
   'barnepass.alert-advarsel.årsak':
