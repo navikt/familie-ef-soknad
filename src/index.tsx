@@ -1,6 +1,5 @@
 import './utils/polyfills';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
 import '@navikt/ds-css';
 import './App.css';
 import './overgangsstønad/Forside.css';
@@ -8,10 +7,8 @@ import './overgangsstønad/Søknadsdialog.css';
 import './components/feil/Feilside.css';
 import './components/spørsmål/Spørsmål.css';
 import './components/side/Side.css';
-
 import './overgangsstønad/steg/4-barnasbosted/BarnasBosted.css';
 import './søknad/steg/7-oppsummering/Oppsummering.css';
-
 import './arbeidssøkerskjema/side/Side.css';
 import './arbeidssøkerskjema/Oppsummering.css';
 import './arbeidssøkerskjema/Forside.css';
