@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { formatDateHour } from '../../../utils/dato';
@@ -23,6 +22,7 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { Alert } from '@navikt/ds-react';
+import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -62,7 +62,7 @@ const Kvittering: React.FC = () => {
     søknad.sivilstatus.årsakEnslig?.svarid ===
     EBegrunnelse.samlivsbruddForeldre;
 
-  console.log('kvittering søknad', søknad);
+  consoleLogLokaltOgDev(søknad, 'kvittering søknad');
 
   return søknad.innsendingsdato ? (
     <Side

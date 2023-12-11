@@ -100,12 +100,6 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
       return harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon);
 
     case ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse:
-      console.log('1', harFerdigUtfyltOmSamboer(samboerDetaljer, true));
-      console.log('2', harSattDatoFlyttetFraHverandre(bosituasjon));
-      console.log(
-        '3',
-        harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon)
-      );
       return (
         harFerdigUtfyltOmSamboer(samboerDetaljer, true) &&
         harSattDatoFlyttetFraHverandre(bosituasjon) &&

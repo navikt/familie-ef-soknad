@@ -39,10 +39,6 @@ const SøkerErUgift: React.FC<Props> = ({
     sivilstatus.erUformeltSeparertEllerSkilt?.svarid === ESvar.JA;
 
   const harSvartPåUformeltGiftSpørsmålet = erUformeltGift?.verdi !== undefined;
-  console.log(
-    'harSvartPåUformeltGiftSpørsmålet: ',
-    harSvartPåUformeltGiftSpørsmålet
-  );
 
   return (
     <>

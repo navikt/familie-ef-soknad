@@ -8,12 +8,12 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import { hentPathBarnetilsynOppsummering } from '../../utils';
 import Side, { ESide } from '../../../components/side/Side';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
-
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
+import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const BarnasBosted: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -46,7 +46,7 @@ const BarnasBosted: React.FC = () => {
       barnMedLevendeForeldre.length
   );
 
-  console.log('sisteBarnUtfylt', sisteBarnUtfylt);
+  consoleLogLokaltOgDev(sisteBarnUtfylt, 'sisteBarnUtfylt');
 
   return (
     <Side

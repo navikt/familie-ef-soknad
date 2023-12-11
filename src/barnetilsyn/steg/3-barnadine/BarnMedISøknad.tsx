@@ -3,6 +3,7 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentTekst } from '../../../utils/søknad';
 import styled from 'styled-components';
 import { Checkbox } from '@navikt/ds-react';
+import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const StyledCheckbox = styled(Checkbox)`
   margin: 1rem 0;
@@ -21,6 +22,8 @@ const BarnMedISøknad: FC<Props> = ({
   id,
 }) => {
   const intl = useLokalIntlContext();
+
+  consoleLogLokaltOgDev(id, 'id toggleSkalHaBarnepass');
 
   return (
     <StyledCheckbox

@@ -27,6 +27,7 @@ import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
+import { consoleLogLokaltOgDev } from '../utils/logLokaltOgDev';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -110,7 +111,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     useEffect(() => {
-      console.log('søknad barnetilsynContext: ', søknad);
+      consoleLogLokaltOgDev(søknad, 'søknad barnetilsynContext');
     }, [søknad]);
 
     const mellomlagreBarnetilsyn = (steg: string) => {
