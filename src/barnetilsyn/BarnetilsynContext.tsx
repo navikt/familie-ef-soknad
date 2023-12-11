@@ -29,7 +29,6 @@ import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { consoleLogLokaltOgDev } from '../utils/logLokaltOgDev';
 
-// -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
     person: tomPerson,

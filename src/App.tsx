@@ -20,6 +20,7 @@ import { ESkjemanavn } from './utils/skjemanavn';
 import { useLokalIntlContext } from './context/LokalIntlContext';
 import { Alert, Loader } from '@navikt/ds-react';
 import { IBarn } from './models/steg/barn';
+import { consoleLogLokaltOgDev } from './utils/logLokaltOgDev';
 
 const App = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -44,6 +45,7 @@ const App = () => {
   const fetchPersonData = () => {
     return hentPersonData()
       .then((response) => {
+        consoleLogLokaltOgDev(response, 'App.tsx response');
         settPerson({
           type: PersonActionTypes.HENT_PERSON,
           payload: response,
@@ -71,7 +73,7 @@ const App = () => {
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
-
+    consoleLogLokaltOgDev(barnMedLabels, 'App.tsx barnMedLabels');
     settSøknad((prevSøknad) => ({
       ...prevSøknad,
       person: { ...person, barn: barnMedLabels },
