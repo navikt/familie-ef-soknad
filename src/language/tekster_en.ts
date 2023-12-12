@@ -72,8 +72,6 @@ export default {
   'banner.tittel.overgangsstønad': 'Apply for transitional benefit',
   'side.bekreftelse':
     'I, [0], hereby confirm that the information I provide is correct and complete',
-  'side.info.overgangsstønad':
-    'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
     'You have an ongoing application form. Would you like to continue applying on this one or begin a new one?',
   'side.fortsettSøknad.knapp.startPåNytt': 'Start over',
@@ -122,15 +120,13 @@ export default {
   'sivilstatus.kode.SKILT_PARTNER': 'Divorced',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Surviving partner',
   'sivilstatus.kode.ANNET':
-    'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
+    'Other Marital status than GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon':
     'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
     'You must submit confirmation from the County Governor or court',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
-  'sivilstatus.alert.samlivsbruddForeldre':
-    'Du må legge ved erklæring om samlivsbrudd',
   'sivilstatus.datovelger.søktSeparasjon':
     'When did you apply or start legal proceedings?',
   'sivilstatus.datovelger.samlivsbrudd': 'Date of end of relationship',
@@ -141,11 +137,6 @@ export default {
     'Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
     'You must provide documentation of your marriage',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Why are we asking this?',
-  'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
-    'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
-  'sivilstatus.dok.søkerGiftIUtlandet':
-    'Du må legge ved dokumentasjon på inngått ekteskap',
   'sivilstatus.lesmer-åpne.erUformeltGift': 'The reason we ask about this',
   'sivilstatus.lesmer-innhold.erUformeltGift':
     'We obtain our information from the National Registry. If you got married according to religious or cultural traditions and the marriage is not approved pursuant to Norwegian Marriage Act, this marriage will not be registered in the National Registry. ',
@@ -185,6 +176,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Have you spent more periods abroad during the last five years?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Add a period spent abroad',
+  'landVelger.alternativ': 'Select an option',
   'stegtittel.bosituasjon': 'Your living situation',
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
     'Do you share your home with other adults?',
@@ -373,8 +365,8 @@ export default {
   'barnasbosted.feilmelding.adressebeskyttelse':
     'One or several of your children, or other parent, are registered with address protection and applying electronically is therefore not available. You have to use this <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a> to apply.',
   'barnasbosted.oppsummering.navn.label': 'Name of the other parent',
-  'barnasbosted.medforelder.navn': 'Navn',
-  'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.navn': 'Name',
+  'barnasbosted.medforelder.alder': 'Age',
   'barnasbosted.medforelder.gjenbrukt':
     'You have answered the questions regarding your relationship with the other parent for another child. Because you have multiple children with the same parent, you only need to answer the questions once. Go to the child where the questions were answered in order to change your answers.',
   'stegtittel.arbeidssituasjon': 'Work, education and other activities',
@@ -884,7 +876,7 @@ export default {
   'skolepenger.overskrift': 'Application for support for school fees',
   'banner.tittel.skolepenger': 'Application for support for school fees',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">form</a> to apply.',
   'banner.tittel.arbeidssøker': 'Single parent who is a job seeker',
   'skjema.hei': 'Hello, [0]!',
   'skjema.knapp.start': 'Start',

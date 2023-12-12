@@ -6,6 +6,7 @@ import { logSpørsmålBesvart } from '../../utils/amplitude';
 import { skjemanavnTilId, urlTilSkjemanavn } from '../../utils/skjemanavn';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Select } from '@navikt/ds-react';
+import { hentTekst } from '../../utils/søknad';
 
 interface Props {
   spørsmål: ISpørsmål;
@@ -21,12 +22,9 @@ const SelectSpørsmål: FC<Props> = ({
   skalLogges = true,
 }) => {
   const intl = useLokalIntlContext();
-
   const url = window.location.href;
-
   const skjemanavn = urlTilSkjemanavn(url);
   const skjemaId = skjemanavnTilId(skjemanavn);
-
   const legend = intl.formatMessage({ id: spørsmål.tekstid });
 
   const håndterSelectChange = (valgtVerdi: string) => {
@@ -66,7 +64,7 @@ const SelectSpørsmål: FC<Props> = ({
       value={valgtSvarId}
     >
       <option value="" disabled selected>
-        Velg et alternativ
+        {hentTekst('landVelger.alternativ', intl)}
       </option>
       {spørsmål.svaralternativer.map((svar: ISvar) => (
         <option key={svar.id} value={svar.id}>

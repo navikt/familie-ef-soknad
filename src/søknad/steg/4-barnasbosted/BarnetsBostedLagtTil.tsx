@@ -100,7 +100,11 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
                 intl.formatMessage({ id: 'barnasbosted.borinorge' })
               )}
             </Label>
-            <BodyShort>{forelder.borINorge?.verdi ? 'Ja' : 'Nei'}</BodyShort>
+            <BodyShort>
+              {forelder.borINorge?.verdi
+                ? hentTekst(ESvarTekstid.JA, intl)
+                : hentTekst(ESvarTekstid.NEI, intl)}
+            </BodyShort>
           </div>
         )}
         {forelder.land && (
