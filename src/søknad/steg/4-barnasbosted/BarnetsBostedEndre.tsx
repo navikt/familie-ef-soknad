@@ -30,6 +30,7 @@ import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
+import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -186,6 +187,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
     harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
     !forelder.borINorge?.verdi;
+  consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
+  consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
 
   return (
     <div className="barnas-bosted">
@@ -285,7 +288,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settForelder={settForelder}
                 />
               )}
-              {(boddSammenFør?.svarid === ESvar.NEI ||
+              {(boddSammenFør?.verdi === false ||
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}
