@@ -35,7 +35,6 @@ const App = () => {
   const { settToggles, toggles } = useToggles();
 
   const intl = useLokalIntlContext();
-
   autentiseringsInterceptor();
 
   useEffect(() => {

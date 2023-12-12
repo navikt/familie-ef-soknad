@@ -43,7 +43,7 @@ export const hentSivilstatus = (statuskode?: string) => {
       return `sivilstatus.kode.${statuskode}`;
 
     default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
+      return 'sivilstatus.kode.ANNET';
   }
 };
 

@@ -2,7 +2,6 @@ import FeltGruppe from '../components/gruppe/FeltGruppe';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
-import { OversettelseAlert } from '../components/forside/AlertOversettelse';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Tekst } from '../components/forside/Tekst';
@@ -26,8 +25,6 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
       <FeltGruppe>
         <Språkvelger />
       </FeltGruppe>
-
-      <OversettelseAlert />
 
       <Seksjon>
         <Tekst tekst="forside.barnetilsyn.info" />
