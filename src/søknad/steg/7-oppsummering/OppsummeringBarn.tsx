@@ -55,14 +55,18 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {født?.verdi && lagtTil && (
         <div className={'spørsmål-og-svar'}>
-          <Label as="p">{født?.label}</Label>
-          <BodyShort>{verdiTilTekstsvar(født.verdi)}</BodyShort>
+          <Label as="p">
+            <LocaleTekst tekst="barnekort.spm.født" />
+          </Label>
+          <BodyShort>{verdiTilTekstsvar(født.verdi, intl)}</BodyShort>
         </div>
       )}
 
       {stønadstype === Stønadstype.barnetilsyn && skalHaBarnepass && (
         <div className={'spørsmål-og-svar'}>
-          <Label as="p">{skalHaBarnepass?.label}</Label>
+          <Label as="p">
+            <LocaleTekst tekst="barnekort.skalHaBarnepass" />
+          </Label>
           <BodyShort>
             {verdiTilTekstsvar(skalHaBarnepass?.verdi, intl)}
           </BodyShort>
@@ -71,8 +75,12 @@ const OppsummeringBarn: FC<Props> = ({ stønadstype, barn }) => {
 
       {!harAdressesperre && harSammeAdresse && (
         <div className={'spørsmål-og-svar'}>
-          <Label as="p">{harSammeAdresse.label}</Label>
-          <BodyShort>{verdiTilTekstsvar(harSammeAdresse.verdi)}</BodyShort>
+          <Label as="p">
+            <LocaleTekst tekst="barnekort.spm.sammeAdresse" />
+          </Label>
+          <BodyShort>
+            {verdiTilTekstsvar(harSammeAdresse.verdi, intl)}
+          </BodyShort>
         </div>
       )}
     </>

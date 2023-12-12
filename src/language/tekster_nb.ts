@@ -71,8 +71,6 @@ export default {
   'banner.tittel.overgangsstønad': 'Søknad om overgangsstønad',
   'side.bekreftelse':
     'Jeg, [0], bekrefter at jeg vil gi riktige og fullstendige opplysninger',
-  'side.info.overgangsstønad':
-    'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
     'Du har en påbegynt søknad. Vil du fortsette på denne eller starte en ny?',
   'side.fortsettSøknad.knapp.startPåNytt': 'Start på nytt',
@@ -128,8 +126,6 @@ export default {
     'Du må legge ved bekreftelse fra Statsforvalteren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'Når du er gift, har du ikke rett til stønad til enslig mor eller far',
-  'sivilstatus.alert.samlivsbruddForeldre':
-    'Du må legge ved erklæring om samlivsbrudd',
   'sivilstatus.datovelger.søktSeparasjon': 'Når søkte dere eller reiste sak?',
   'sivilstatus.datovelger.samlivsbrudd': 'Dato for samlivsbrudd',
   'sivilstatus.datovelger.flyttetFraHverandre':
@@ -139,11 +135,6 @@ export default {
   'sivilstatus.spm.erUformeltGift':
     'Er du gift uten at det er registrert i folkeregisteret i Norge?',
   'sivilstatus.alert.erUformeltGift':
-    'Du må legge ved dokumentasjon på inngått ekteskap',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Hvorfor spør vi om dette?',
-  'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
-    'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
-  'sivilstatus.dok.søkerGiftIUtlandet':
     'Du må legge ved dokumentasjon på inngått ekteskap',
   'sivilstatus.lesmer-åpne.erUformeltGift': 'Hvorfor spør vi om dette?',
   'sivilstatus.lesmer-innhold.erUformeltGift':
@@ -181,6 +172,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Har du hatt flere utenlandsopphold de siste 5 årene?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
+  'landVelger.alternativ': 'Velg et alternativ',
   'stegtittel.bosituasjon': 'Bosituasjonen din',
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
     'Deler du bolig med andre voksne?',
