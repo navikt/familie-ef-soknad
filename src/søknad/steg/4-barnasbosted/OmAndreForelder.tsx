@@ -29,7 +29,6 @@ const OmAndreForelder: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
   const { fødselsdato, ident } = forelder;
-  const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);
   const jegKanIkkeOppgiLabel = hentTekst(
@@ -104,7 +103,6 @@ const OmAndreForelder: React.FC<Props> = ({
       delete nyForelder.id;
       settFeilmeldingNavn(false);
     } else {
-      settBegyntÅSkrive(false);
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
@@ -122,14 +120,8 @@ const OmAndreForelder: React.FC<Props> = ({
   };
 
   const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
-    settBegyntÅSkrive(false);
-
-    const nyForelder = {
+    let nyForelder = {
       ...forelder,
-      ikkeOppgittAnnenForelderBegrunnelse: {
-        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
-        verdi: svar.svar_tekst,
-      },
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
@@ -140,14 +132,17 @@ const OmAndreForelder: React.FC<Props> = ({
 
     if (svar.id === EHvorforIkkeOppgi.donorbarn) {
       delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
+
+      nyForelder = {
+        ...nyForelder,
+        ikkeOppgittAnnenForelderBegrunnelse: null,
+      };
     }
 
     settForelder(nyForelder);
   };
 
   const settIkkeOppgittAnnenForelderBegrunnelse = (begrunnelse: string) => {
-    settBegyntÅSkrive(true);
-
     settForelder({
       ...forelder,
       ikkeOppgittAnnenForelderBegrunnelse: {
@@ -225,16 +220,11 @@ const OmAndreForelder: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
+      {forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet && (
         <FeltGruppe aria-live="polite">
           <Textarea
             autoComplete={'off'}
-            value={
-              forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
-              begyntÅSkrive
-                ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
-                : ''
-            }
+            value={forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi}
             onChange={(e) =>
               settIkkeOppgittAnnenForelderBegrunnelse(e.target.value)
             }

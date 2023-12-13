@@ -31,4 +31,5 @@ export enum ESkalBarnetBoHosSøker {
 export enum EHvorforIkkeOppgi {
   donorbarn = 'donorbarn',
   annet = 'annet',
+  Annet = 'Annet',
 }
