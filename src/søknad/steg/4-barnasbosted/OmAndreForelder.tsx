@@ -131,11 +131,12 @@ const OmAndreForelder: React.FC<Props> = ({
     };
 
     if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
-
       nyForelder = {
         ...nyForelder,
-        ikkeOppgittAnnenForelderBegrunnelse: null,
+        ikkeOppgittAnnenForelderBegrunnelse: {
+          label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+          verdi: 'Donor',
+        },
       };
     }
 
