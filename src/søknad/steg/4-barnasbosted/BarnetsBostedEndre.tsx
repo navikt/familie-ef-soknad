@@ -189,7 +189,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     !forelder.borINorge?.verdi;
   consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
   consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
-
+  consoleLogLokaltOgDev(forelder, 'BarnetsBostedEndre.tsx forelder:');
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>

@@ -10,6 +10,7 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
+import { consoleLogLokaltOgDev } from '../../utils/logLokaltOgDev';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
@@ -41,12 +42,12 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
     kanIkkeOppgiAnnenForelderFar,
   } = forelder;
 
-  const pgaDonorBarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
+  const pgaDonorBarn = hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.donor;
   const pgaAnnet =
-    hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
+    hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
-
+  consoleLogLokaltOgDev(forelder, 'Forelder.ts');
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 

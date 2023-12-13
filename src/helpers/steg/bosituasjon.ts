@@ -105,7 +105,5 @@ export const erFerdigUtfylt = (bosituasjon: IBosituasjon) => {
         harSattDatoFlyttetFraHverandre(bosituasjon) &&
         harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift(bosituasjon)
       );
-    default:
-      return true;
   }
 };
