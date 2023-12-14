@@ -130,15 +130,18 @@ const OmAndreForelder: React.FC<Props> = ({
       },
     };
 
+    let verdi = '';
     if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      nyForelder = {
-        ...nyForelder,
-        ikkeOppgittAnnenForelderBegrunnelse: {
-          label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
-          verdi: 'Donor',
-        },
-      };
+      verdi = 'Donor';
     }
+
+    nyForelder = {
+      ...nyForelder,
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: verdi,
+      },
+    };
 
     settForelder(nyForelder);
   };
