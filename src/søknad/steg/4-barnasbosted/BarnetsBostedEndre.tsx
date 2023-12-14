@@ -21,16 +21,25 @@ import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { erGyldigDato } from '../../../utils/dato';
-import { EBorAnnenForelderISammeHus } from '../../../models/steg/barnasbosted';
+import {
+  EBorAnnenForelderISammeHus,
+  TypeBarn,
+} from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
-import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
 import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
+import {
+  erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
+  erIdentUtfyltOgGyldig,
+  finnFørsteBarnTilHverForelder,
+  finnTypeBarnForMedForelder,
+  finnVisOmAndreForelder,
+} from '../../../helpers/steg/barnetsBostedEndre';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -48,12 +57,6 @@ const visBostedOgSamværSeksjon = (
     ? borForelderINorgeSpm
     : erGyldigDato(forelder.fødselsdato?.verdi);
 };
-
-enum TypeBarn {
-  BARN_MED_OPPRINNELIG_FORELDERINFORMASJON = 'BARN_MED_OPPRINNELIG_FORELDERINFORMASJON',
-  BARN_MED_KOPIERT_FORELDERINFORMASJON = 'BARN_MED_KOPIERT_FORELDERINFORMASJON',
-  BARN_UTEN_FELLES_FORELDERINFORMASJON = 'BARN_UTEN_FELLES_FORELDERINFORMASJON',
-}
 
 interface Props {
   barn: IBarn;
@@ -79,7 +82,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   forelderidenterMedBarn,
 }) => {
   const intl = useLokalIntlContext();
-
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? {
@@ -106,39 +108,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     ident,
   } = forelder;
 
-  const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
-    !!ident && erGyldigFødselsnummer(ident);
-  const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (fødselsdato?: string) =>
-    erGyldigDato(fødselsdato) || fødselsdato === '';
   const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
 
-  const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
-    return b !== barn && b.forelder;
-  });
-
-  const unikeForeldreIDer = Array.from(
-    new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
+  const førsteBarnTilHverForelder = finnFørsteBarnTilHverForelder(
+    barneListe,
+    barn
   );
 
-  const førsteBarnTilHverForelder = unikeForeldreIDer
-    .map((id) => {
-      if (!id) return null;
-      return andreBarnMedForelder.find((b) => b.forelder?.id === id);
-    })
-    .filter(Boolean) as IBarn[];
-
-  const alleBarnMedBarnetsForeldre = barn.forelder?.ident?.verdi
-    ? forelderidenterMedBarn.get(barn.forelder?.ident?.verdi)
-    : [];
-
-  const harBarnetsMedforelderFlereBarn =
-    !!alleBarnMedBarnetsForeldre && alleBarnMedBarnetsForeldre.length > 1;
-
-  const typeBarn = harBarnetsMedforelderFlereBarn
-    ? alleBarnMedBarnetsForeldre.findIndex((b) => b.id === barn.id) === 0
-      ? TypeBarn.BARN_MED_OPPRINNELIG_FORELDERINFORMASJON
-      : TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON
-    : TypeBarn.BARN_UTEN_FELLES_FORELDERINFORMASJON;
+  const typeBarn = finnTypeBarnForMedForelder(barn, forelderidenterMedBarn);
 
   const [barnHarSammeForelder, settBarnHarSammeForelder] = useState<
     boolean | undefined
@@ -166,13 +143,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
-  const visOmAndreForelder =
-    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
-    barn.annenForelderId === lagtTilAnnenForelderId ||
-    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
-    (barnHarSammeForelder === false &&
-      (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)));
+  const visOmAndreForelder = finnVisOmAndreForelder(
+    barn,
+    førsteBarnTilHverForelder,
+    lagtTilAnnenForelderId,
+    barnHarSammeForelder,
+    forelder
+  );
 
   const visBorAnnenForelderINorge =
     (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
@@ -187,9 +164,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
     harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
     !forelder.borINorge?.verdi;
+
   consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
   consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
   consoleLogLokaltOgDev(forelder, 'BarnetsBostedEndre.tsx forelder:');
+
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -204,6 +183,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             settDokumentasjonsbehovForBarn={settDokumentasjonsbehovForBarn}
           />
         )}
+
         {(barn.harSammeAdresse?.verdi ||
           harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) && (
           <SeksjonGruppe>
@@ -221,6 +201,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   oppdaterBarn={oppdaterBarnISøknaden}
                 />
               )}
+
             {visOmAndreForelder && (
               <OmAndreForelder
                 settForelder={settForelder}
@@ -230,6 +211,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 settSisteBarnUtfylt={settSisteBarnUtfylt}
               />
             )}
+
             {barn.medforelder?.verdi && (
               <>
                 <Label as="p">{hentTekst('person.navn', intl)}</Label>
@@ -288,6 +270,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                   settForelder={settForelder}
                 />
               )}
+
               {(boddSammenFør?.verdi === false ||
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
