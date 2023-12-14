@@ -1,9 +1,17 @@
 import { erGyldigFødselsnummer } from 'nav-faker/dist/personidentifikator/helpers/fodselsnummer-utils';
 import { erGyldigDato } from '../../utils/dato';
 import { IBarn } from '../../models/steg/barn';
-import { TypeBarn } from '../../models/steg/barnasbosted';
+import {
+  EBorAnnenForelderISammeHus,
+  TypeBarn,
+} from '../../models/steg/barnasbosted';
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
+import {
+  IDatoFelt,
+  ISpørsmålFelt,
+  ITekstFelt,
+} from '../../models/søknad/søknadsfelter';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);
@@ -50,7 +58,7 @@ export const finnFørsteBarnTilHverForelder = (
     .filter(Boolean) as IBarn[];
 };
 
-export const finnVisOmAndreForelder = (
+export const skalOmAndreForelderVises = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[],
   lagtTilAnnenForelderId: 'annen-forelder',
@@ -64,5 +72,36 @@ export const finnVisOmAndreForelder = (
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)))
+  );
+};
+
+export const skalBorAnnenForelderINorgeVises = (
+  barn: IBarn,
+  typeBarn: TypeBarn,
+  barnHarSammeForelder: boolean | undefined,
+  forelder: IForelder,
+  ident: ITekstFelt | undefined,
+  fødselsdato: IDatoFelt | null | undefined,
+  kjennerIkkeIdent: boolean
+) => {
+  return (
+    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
+      !!barn.medforelder?.verdi) ||
+    (!barnHarSammeForelder &&
+      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
+      harValgtSvar(forelder?.navn?.verdi) &&
+      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent))
+  );
+};
+
+export const harValgtBorISammeHusEllerBorIkkeINorge = (
+  borAnnenForelderISammeHus: ISpørsmålFelt | undefined,
+  forelder: IForelder
+) => {
+  return (
+    (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
+      borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
+    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
+    !forelder.borINorge?.verdi
   );
 };

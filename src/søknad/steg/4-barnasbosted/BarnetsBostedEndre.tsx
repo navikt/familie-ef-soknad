@@ -21,10 +21,7 @@ import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { erGyldigDato } from '../../../utils/dato';
-import {
-  EBorAnnenForelderISammeHus,
-  TypeBarn,
-} from '../../../models/steg/barnasbosted';
+import { TypeBarn } from '../../../models/steg/barnasbosted';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
@@ -38,7 +35,9 @@ import {
   erIdentUtfyltOgGyldig,
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
-  finnVisOmAndreForelder,
+  harValgtBorISammeHusEllerBorIkkeINorge,
+  skalBorAnnenForelderINorgeVises,
+  skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
 
 const AlertMedTopMargin = styled(Alert)`
@@ -143,7 +142,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
-  const visOmAndreForelder = finnVisOmAndreForelder(
+  const visOmAndreForelder = skalOmAndreForelderVises(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,
@@ -151,19 +150,20 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     forelder
   );
 
-  const visBorAnnenForelderINorge =
-    (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
-      !!barn.medforelder?.verdi) ||
-    (!barnHarSammeForelder &&
-      !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
-      harValgtSvar(forelder?.navn?.verdi) &&
-      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent));
+  const visBorAnnenForelderINorge = skalBorAnnenForelderINorgeVises(
+    barn,
+    typeBarn,
+    barnHarSammeForelder,
+    forelder,
+    ident,
+    fødselsdato,
+    kjennerIkkeIdent
+  );
 
-  const skalFylleUtHarBoddSammenFør =
-    (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
-      borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
-    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
-    !forelder.borINorge?.verdi;
+  const skalFylleUtHarBoddSammenFør = harValgtBorISammeHusEllerBorIkkeINorge(
+    borAnnenForelderISammeHus,
+    forelder
+  );
 
   consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
   consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
