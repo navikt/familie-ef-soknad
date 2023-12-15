@@ -5,6 +5,7 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
+import { IDatoFelt } from '../../models/søknad/søknadsfelter';
 
 const harPlanerOmÅBliSamboerEllerSkalGifteSeg = (bosituasjon: IBosituasjon) => {
   const { skalGifteSegEllerBliSamboer } = bosituasjon;
@@ -35,6 +36,25 @@ const harFerdigUtfyltOmSamboer = (
     : harSattIdent(samboerDetaljer?.ident?.verdi) ||
       harSattFødselsdato(samboerDetaljer?.fødselsdato?.verdi));
 
+export const erDatoSkalGifteSegEllerBliSamboerFremEllerTilbakeITid = (
+  datoSkalGifteSegEllerBliSamboer: IDatoFelt | undefined
+) => {
+  if (!datoSkalGifteSegEllerBliSamboer) {
+    return false;
+  }
+
+  return (
+    erDatoGyldigOgInnaforBegrensninger(
+      datoSkalGifteSegEllerBliSamboer.verdi,
+      DatoBegrensning.FremtidigeDatoer
+    ) ||
+    erDatoGyldigOgInnaforBegrensninger(
+      datoSkalGifteSegEllerBliSamboer.verdi,
+      DatoBegrensning.TidligereDatoer
+    )
+  );
+};
+
 const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift = (
   bosituasjon: IBosituasjon
 ): boolean => {
@@ -44,15 +64,16 @@ const harFerdigUtfyltPlanerOmÅBliSamboerEllerBliGift = (
     vordendeSamboerEktefelle,
   } = bosituasjon;
 
+  const erSattDatoSkalGifteSegEllerBliSamboerFremEllerTilbakeITid =
+    erDatoSkalGifteSegEllerBliSamboerFremEllerTilbakeITid(
+      datoSkalGifteSegEllerBliSamboer
+    );
+
   return !!(
     (skalGifteSegEllerBliSamboer &&
       skalGifteSegEllerBliSamboer?.verdi === false) ||
     (harPlanerOmÅBliSamboerEllerSkalGifteSeg(bosituasjon) &&
-      datoSkalGifteSegEllerBliSamboer &&
-      erDatoGyldigOgInnaforBegrensninger(
-        datoSkalGifteSegEllerBliSamboer.verdi,
-        DatoBegrensning.FremtidigeDatoer
-      ) &&
+      erSattDatoSkalGifteSegEllerBliSamboerFremEllerTilbakeITid &&
       harFerdigUtfyltOmSamboer(vordendeSamboerEktefelle, false))
   );
 };
