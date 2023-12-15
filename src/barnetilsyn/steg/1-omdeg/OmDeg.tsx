@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
+  erSivilstandSpørsmålBesvart,
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
@@ -20,7 +21,6 @@ import Show from '../../../utils/showIf';
 import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { ISøknad } from '../../models/søknad';
-import { erGyldigDato } from '../../../utils/dato';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 
@@ -38,15 +38,17 @@ const OmDeg: FC = () => {
     settSøknad,
     settDokumentasjonsbehov,
   } = useBarnetilsynSøknad();
-
-  const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
-    søknad.sivilstatus;
+  const { sivilstatus, medlemskap } = søknad;
+  const { søker } = søknad.person;
 
   const settMedlemskap = (medlemskap: IMedlemskap) => {
     settSøknad((prevSoknad: ISøknad) => {
       return {
         ...prevSoknad,
-        medlemskap: medlemskap,
+        medlemskap:
+          Object.keys(medlemskap).length !== 0
+            ? medlemskap
+            : prevSoknad.medlemskap,
       };
     });
   };
@@ -68,11 +70,10 @@ const OmDeg: FC = () => {
         ...prevSoknad,
         adresseopplysninger: undefined,
         søkerBorPåRegistrertAdresse: søkerBorPåRegistrertAdresse,
-        sivilstatus: {},
-        medlemskap: {},
       };
     });
   };
+
   const settHarMeldtAdresseendring = (
     harMeldtAdresseendring: ISpørsmålBooleanFelt
   ) => {
@@ -94,23 +95,17 @@ const OmDeg: FC = () => {
     });
   };
 
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.sivilstatus,
-    søknad.medlemskap
-  );
-
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søknad.person.søker.erStrengtFortrolig ||
+    søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
 
-  const harFyltUtSeparasjonSpørsmålet =
-    harSøktSeparasjon !== undefined
-      ? harSøktSeparasjon.verdi
-        ? erGyldigDato(datoSøktSeparasjon?.verdi) &&
-          erGyldigDato(datoFlyttetFraHverandre?.verdi)
-        : true
-      : false;
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    sivilstatus,
+    søker.sivilstand,
+    medlemskap,
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+  );
 
   return (
     <Side
@@ -123,7 +118,7 @@ const OmDeg: FC = () => {
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
     >
       <Personopplysninger
-        søker={søknad.person.søker}
+        søker={søker}
         settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
@@ -145,14 +140,11 @@ const OmDeg: FC = () => {
 
         <Show
           if={
-            harFyltUtSeparasjonSpørsmålet ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
+            erSivilstandSpørsmålBesvart(søker.sivilstand, sivilstatus) &&
+            erÅrsakEnsligBesvart(sivilstatus)
           }
         >
-          <Medlemskap
-            medlemskap={søknad.medlemskap}
-            settMedlemskap={settMedlemskap}
-          />
+          <Medlemskap medlemskap={medlemskap} settMedlemskap={settMedlemskap} />
         </Show>
       </Show>
     </Side>

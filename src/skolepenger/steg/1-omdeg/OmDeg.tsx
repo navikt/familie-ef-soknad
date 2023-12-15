@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 import {
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
@@ -40,6 +40,8 @@ const OmDeg: FC = () => {
 
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
     søknad.sivilstatus;
+
+  const { søker } = søknad.person;
 
   useMount(() => logSidevisningSkolepenger('OmDeg'));
 
@@ -95,15 +97,17 @@ const OmDeg: FC = () => {
     });
   };
 
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.sivilstatus,
-    søknad.medlemskap
-  );
-
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søknad.person.søker.erStrengtFortrolig ||
+    søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.sivilstatus,
+    søker.sivilstand,
+    søknad.medlemskap,
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+  );
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -123,7 +127,7 @@ const OmDeg: FC = () => {
       tilbakeTilOppsummeringPath={hentPathSkolepengerOppsummering}
     >
       <Personopplysninger
-        søker={søknad.person.søker}
+        søker={søker}
         settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
@@ -146,7 +150,7 @@ const OmDeg: FC = () => {
         <Show
           if={
             harFyltUtSeparasjonSpørsmålet ||
-            erSøknadsBegrunnelseBesvart(søknad.sivilstatus)
+            erÅrsakEnsligBesvart(søknad.sivilstatus)
           }
         >
           <Medlemskap

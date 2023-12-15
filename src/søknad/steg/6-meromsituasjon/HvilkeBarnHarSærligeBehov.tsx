@@ -67,6 +67,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
         valgteSvar={valgteSvar}
         settValgteSvar={settBarnTrengerSærligBehov}
         skalLogges={false}
+        brukSvarIdSomVerdi={true}
       />
     </KomponentGruppe>
   );

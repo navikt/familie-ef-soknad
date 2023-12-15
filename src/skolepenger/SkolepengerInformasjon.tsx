@@ -3,7 +3,6 @@ import { InformasjonProps } from '../components/forside/typer';
 import { hentPath } from '../utils/routing';
 import { RoutesSkolepenger, ERouteSkolepenger } from './routing/routes';
 import { isIE } from 'react-device-detect';
-import { OversettelseAlert } from '../components/forside/AlertOversettelse';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Overskrift } from '../components/forside/Overskrift';
@@ -25,8 +24,6 @@ export const SkolepengerInformasjon: React.FC<InformasjonProps> = ({
       <FeltGruppe>
         <Språkvelger />
       </FeltGruppe>
-
-      <OversettelseAlert />
 
       <Seksjon>
         <Tekst tekst="forside.skolepenger.innledning" />

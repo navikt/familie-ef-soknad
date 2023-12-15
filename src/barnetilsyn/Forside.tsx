@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';
@@ -42,11 +42,12 @@ const Forside: React.FC = () => {
     søknad,
     settSøknad,
   } = useBarnetilsynSøknad();
+
   const settBekreftelse = (bekreftelse: boolean) => {
-    settSøknad({
-      ...søknad,
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
       harBekreftet: bekreftelse,
-    });
+    }));
   };
 
   const alder = FnrOgDnrTilAlder(person.søker.fnr);

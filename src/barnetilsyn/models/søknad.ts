@@ -24,3 +24,9 @@ export interface ISøknad {
   dokumentasjonsbehov: IDokumentasjon[];
   harBekreftet: boolean;
 }
+
+export interface ForrigeSøknad {
+  sivilstatus: ISivilstatus;
+  medlemskap: IMedlemskap;
+  bositusjon: IBosituasjon;
+}

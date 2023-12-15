@@ -30,11 +30,10 @@ const App = () => {
     EAlvorlighetsgrad | undefined
   >(undefined);
   const { settPerson } = usePersonContext();
-  const { søknad, settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
+  const { settSøknad, hentMellomlagretOvergangsstønad } = useSøknad();
   const { settToggles, toggles } = useToggles();
 
   const intl = useLokalIntlContext();
-
   autentiseringsInterceptor();
 
   useEffect(() => {
@@ -72,7 +71,10 @@ const App = () => {
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
-    settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });
+    settSøknad((prevSøknad) => ({
+      ...prevSøknad,
+      person: { ...person, barn: barnMedLabels },
+    }));
   };
 
   const fetchToggles = () => {
