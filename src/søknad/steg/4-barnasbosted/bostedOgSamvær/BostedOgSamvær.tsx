@@ -77,7 +77,6 @@ const BostedOgSamvær: React.FC<Props> = ({
     }
 
     if (harSkriftligAvtaleOmDeltBosted(spørsmål, svar)) {
-      delete nyForelder.harAnnenForelderSamværMedBarn;
       delete nyForelder.harDereSkriftligSamværsavtale;
     }
 

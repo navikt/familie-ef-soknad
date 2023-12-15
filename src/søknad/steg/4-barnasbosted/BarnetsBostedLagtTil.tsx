@@ -185,7 +185,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <BodyShort>{forelder.borAnnenForelderISammeHus.verdi}</BodyShort>
           </div>
         ) : null}
-        {forelder?.boddSammenFør?.svarid ? (
+        {forelder?.boddSammenFør?.verdi ? (
           <div className="spørsmål-og-svar">
             <Label as="p">
               {hentBeskjedMedNavn(
@@ -196,7 +196,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               )}
             </Label>
             <BodyShort>
-              {forelder.boddSammenFør.svarid === ESvar.JA
+              {forelder.boddSammenFør.verdi
                 ? hentTekst(ESvarTekstid.JA, intl)
                 : hentTekst(ESvarTekstid.NEI, intl)}
             </BodyShort>

@@ -49,7 +49,7 @@ const visBostedOgSamværSeksjon = (
   visesBorINorgeSpørsmål: boolean
 ) => {
   const borForelderINorgeSpm =
-    forelder.borINorge?.svarid === ESvar.JA ||
+    forelder.borINorge?.verdi === true ||
     (forelder.land && forelder.land?.verdi !== '');
 
   return visesBorINorgeSpørsmål

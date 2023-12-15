@@ -58,7 +58,7 @@ export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
     harDereSkriftligSamværsavtale,
     hvordanPraktiseresSamværet,
   } = forelder;
-  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.svarid === ESvar.NEI;
+  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.verdi === false;
 
   if (
     harIkkeAvtaleOmDeltBosted &&
@@ -94,7 +94,7 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
       : false;
 
   const utfyltBoddSammenFør =
-    forelder?.boddSammenFør?.svarid === ESvar.JA
+    forelder?.boddSammenFør?.verdi === true
       ? harValgtSvar(forelder?.boddSammenFør?.verdi) && harFlyttetFraDato
       : harValgtSvar(forelder?.boddSammenFør?.verdi);
   const utfyltHvorMyeSammen =

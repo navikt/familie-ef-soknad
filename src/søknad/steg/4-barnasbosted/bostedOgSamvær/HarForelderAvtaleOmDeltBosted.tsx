@@ -40,7 +40,7 @@ const HarForelderAvtaleOmDeltBosted: FC<Props> = ({
         onChange={settBostedOgSamværFelt}
         valgtSvar={forelder.avtaleOmDeltBosted?.verdi}
       />
-      {forelder.avtaleOmDeltBosted?.svarid === ESvar.JA && (
+      {forelder.avtaleOmDeltBosted?.verdi === true && (
         <>
           <AlertStripeDokumentasjon>
             <LocaleTekst tekst={'barnasbosted.alert-info.avtaleOmDeltBosted'} />
