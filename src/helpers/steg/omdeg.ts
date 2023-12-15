@@ -43,7 +43,7 @@ export const hentSivilstatus = (statuskode?: string) => {
       return `sivilstatus.kode.${statuskode}`;
 
     default:
-      return 'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR';
+      return 'sivilstatus.kode.ANNET';
   }
 };
 
@@ -102,12 +102,11 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
   if (perioderBoddIUtlandet !== null) {
-    const finnesUtenlandsperiodeUtenBegrunnelse =
-      perioderBoddIUtlandet?.some(
-        (utenlandsopphold) =>
-          utenlandsopphold.begrunnelse.verdi === '' ||
-          !utenlandsopphold.begrunnelse
-      );
+    const finnesUtenlandsperiodeUtenBegrunnelse = perioderBoddIUtlandet?.some(
+      (utenlandsopphold) =>
+        utenlandsopphold.begrunnelse.verdi === '' ||
+        !utenlandsopphold.begrunnelse
+    );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false
       ? finnesUtenlandsperiodeUtenBegrunnelse

@@ -114,8 +114,6 @@ export default {
 
   'side.bekreftelse':
     'I, [0], hereby confirm that the information I provide is correct and complete',
-  'side.info.overgangsstønad':
-    'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
     'You have an ongoing application form. Would you like to continue applying on this one or begin a new one?',
   'side.fortsettSøknad.knapp.startPåNytt': 'Start over',
@@ -203,8 +201,6 @@ export default {
     'Du må leggje ved stadfesting frå Statsforvaltaren eller domstolen.',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
-  'sivilstatus.alert.samlivsbruddForeldre':
-    'Du må legge ved erklæring om samlivsbrudd',
   'sivilstatus.datovelger.søktSeparasjon':
     'When did you apply or start legal proceedings?',
   'sivilstatus.datovelger.samlivsbrudd': 'Date of end of relationship',
@@ -215,11 +211,6 @@ export default {
     'Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
     'You must provide documentation of your marriage',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'The reason we ask about this',
-  'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
-    'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
-  'sivilstatus.dok.søkerGiftIUtlandet':
-    'Du må legge ved dokumentasjon på inngått ekteskap',
   'sivilstatus.lesmer-åpne.erUformeltGift': 'The reason we ask about this',
   'sivilstatus.lesmer-innhold.erUformeltGift':
     'We obtain our information from the National Registry. If you got married according to religious or cultural traditions and the marriage is not approved pursuant to Norwegian Marriage Act, this marriage will not be registered in the National Registry. ',

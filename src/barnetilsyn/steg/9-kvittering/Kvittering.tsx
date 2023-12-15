@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { formatDateHour } from '../../../utils/dato';
