@@ -424,7 +424,7 @@ export default {
   'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
   'firma.label.arbeidsuke': 'Beskriv arbeidsuken i virksomheten din',
   'firma.lesmer-innhold.arbeidsuke':
-    'Vi trenger konkrete opplysninger om arbeidsoppgavene dine og hvor mange timer du jobber i snitt per uke',
+    'Vi trenger konkrete opplysninger om arbeidsoppgavene dine og hvor mange timer du jobber i snitt per uke.',
   'firma.label.overskudd':
     'Hva forventer du at overskuddet i virksomheten din blir før skatt i [0]?',
   'firma.lesmer-åpne.overskudd': '',
