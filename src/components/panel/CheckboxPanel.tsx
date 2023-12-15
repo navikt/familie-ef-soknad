@@ -2,6 +2,13 @@ import React, { PropsWithChildren } from 'react';
 import { Checkbox } from '@navikt/ds-react';
 import classnames from 'classnames';
 import styled from 'styled-components';
+import {
+  ABlue100,
+  ABlue500,
+  ABorderActionSelected,
+  ABorderDefault,
+  AShadowMedium,
+} from '@navikt/ds-tokens/dist/tokens';
 
 interface Properties extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string | undefined;
@@ -14,7 +21,7 @@ const StyledCheckbox = styled(Checkbox)`
   &.checkbox-panel {
     width: 100%;
     background-color: #fff;
-    border: 1px solid #6a6a6a;
+    border: 1px solid ${ABorderDefault};
     border-radius: 0.25rem;
     display: block;
     position: relative;
@@ -24,18 +31,18 @@ const StyledCheckbox = styled(Checkbox)`
     font-weight: 400;
 
     &.active {
-      background-color: #cce1ff;
+      background-color: ${ABlue100};
       border: 1px solid transparent;
     }
 
     &:hover {
-      border: 1px solid #0067c5;
-      box-shadow: #a0a0a0 0 2px 1px 0;
+      border: 1px solid ${ABlue500};
+      box-shadow: ${AShadowMedium};
       cursor: pointer;
     }
 
     &:focus-visible {
-      outline: rgba(0, 52, 125, 1) solid 1px;
+      outline: ${ABorderActionSelected} solid 1px;
     }
 
     .navds-checkbox__label {
