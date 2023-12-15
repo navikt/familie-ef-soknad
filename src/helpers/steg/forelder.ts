@@ -25,7 +25,8 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
-    utfyltNødvendigBostedSpørsmål(forelder);
+    utfyltNødvendigBostedSpørsmål(forelder) &&
+    visSpørsmålHvisIkkeSammeForelder(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt =
     utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder);
