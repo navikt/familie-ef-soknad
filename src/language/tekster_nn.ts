@@ -511,7 +511,7 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
   'arbeidssituasjon.spm.hjelpetekst-innhold':
-    'We need information about your work situation in order to assess whether you are entitled to receive transitional benefits for single parents. As a general rule you are requried to be at least 50 per cent engaged in some form of occupational activity. In some cases we make exceptions to this rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
+    'We need information about your work situation in order to assess whether you are entitled to receive transitional benefits for single parents. As a general rule you are requried to be at least 50 per cent engaged in some form of occupational activity after your youngest child has turned 1 year. In some cases we make exceptions to this rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
