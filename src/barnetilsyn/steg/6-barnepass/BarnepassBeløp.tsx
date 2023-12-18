@@ -43,7 +43,7 @@ const BarnepassBeløp: FC<Props> = ({ barnepassOrdning, settInputFelt }) => {
             innholdTekstid: 'barnepass.hjelpetekst-innhold.beløp',
             headerTekstid: 'barnepass.hjelpetekst-åpne.beløp',
           }}
-          bredde={'S'}
+          bredde={'XS'}
           settInputFelt={(e) => settInputFelt(e, EBarnepass.belop, beløpLabel)}
           beskrivendeTekst={hentTekst('input.kroner', intl)}
           value={beløp}

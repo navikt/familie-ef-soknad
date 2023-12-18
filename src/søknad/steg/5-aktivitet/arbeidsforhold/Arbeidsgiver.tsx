@@ -156,7 +156,7 @@ const Arbeidsgiver: React.FC<Props> = ({
               'arbeidsforhold.label.arbeidsmengde.beskrivelse'
             }
             type={'number'}
-            bredde={'XS'}
+            bredde={'XXS'}
             settInputFelt={(e) =>
               settTekstInputFelt(
                 e,
