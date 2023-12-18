@@ -160,11 +160,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     kjennerIkkeIdent
   );
 
-  const skalFylleUtHarBoddSammenFør = harValgtBorISammeHusEllerBorIkkeINorge(
-    borAnnenForelderISammeHus,
-    forelder
-  );
+  const skalFylleUtHarBoddSammenFør =
+    harValgtBorISammeHusEllerBorIkkeINorge(forelder);
 
+  consoleLogLokaltOgDev(
+    skalFylleUtHarBoddSammenFør,
+    'skalFylleUtHarBoddSammenFør'
+  );
   consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
   consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
   consoleLogLokaltOgDev(forelder, 'BarnetsBostedEndre.tsx forelder:');
@@ -271,7 +273,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
                 />
               )}
 
-              {(boddSammenFør?.verdi === false ||
+              {((skalFylleUtHarBoddSammenFør &&
+                boddSammenFør?.verdi === false) ||
                 erGyldigDato(flyttetFra?.verdi)) && (
                 <HvorMyeSammen
                   forelder={forelder}

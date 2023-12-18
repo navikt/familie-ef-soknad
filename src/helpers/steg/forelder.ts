@@ -11,6 +11,7 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { consoleLogLokaltOgDev } from '../../utils/logLokaltOgDev';
+import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
@@ -21,11 +22,13 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
+
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
     utfyltBorINorge &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder) &&
+    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
     visSpørsmålHvisIkkeSammeForelder(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt =
