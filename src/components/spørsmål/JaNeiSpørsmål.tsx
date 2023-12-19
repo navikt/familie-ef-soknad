@@ -57,14 +57,15 @@ const JaNeiSpørsmål: React.FC<Props> = ({ spørsmål, onChange, valgtSvar }) =
       (svar.id === ESvar.NEI && valgtSvar === false)
     );
   };
-  const svar = (): ESvar | undefined => {
+
+  const svar = (): ESvar | null => {
     switch (valgtSvar) {
       case true:
         return ESvar.JA;
       case false:
         return ESvar.NEI;
       default:
-        return undefined;
+        return null;
     }
   };
 
