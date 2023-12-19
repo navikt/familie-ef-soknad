@@ -177,7 +177,13 @@ const OmAndreForelder: React.FC<Props> = ({
                 ? settFeilmeldingNavn(true)
                 : settFeilmeldingNavn(false)
             }
-            value={forelder.navn ? forelder.navn?.verdi : ''}
+            value={
+              forelder.navn
+                ? forelder.navn?.verdi === 'ikke oppgitt'
+                  ? ''
+                  : forelder.navn?.verdi
+                : ''
+            }
             label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
