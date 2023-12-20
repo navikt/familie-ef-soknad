@@ -12,6 +12,7 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
 import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
+import { slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder } from '../../../helpers/steg/forelder';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -98,19 +99,7 @@ const OmAndreForelder: React.FC<Props> = ({
     const nyForelder = { ...forelder };
 
     if (avhuket) {
-      delete nyForelder.navn;
-      delete nyForelder.fødselsdato;
-      delete nyForelder.ident;
-      delete nyForelder.id;
-      delete nyForelder.borAnnenForelderISammeHus;
-      delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
-      delete nyForelder.harAnnenForelderSamværMedBarn;
-      delete nyForelder.avtaleOmDeltBosted;
-      delete nyForelder.borINorge;
-      delete nyForelder.boddSammenFør;
-      delete nyForelder.flyttetFra;
-      delete nyForelder.hvorMyeSammen;
-      delete nyForelder.beskrivSamværUtenBarn;
+      slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder(nyForelder);
       settFeilmeldingNavn(false);
     } else {
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;

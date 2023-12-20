@@ -122,6 +122,7 @@ export const harForelderSamværMedBarn = (svarid: string | undefined) => {
       return false;
   }
 };
+
 export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
   switch (svarid) {
     case EHarSkriftligSamværsavtale.jaKonkreteTidspunkter:
@@ -183,4 +184,22 @@ export const harSkriftligAvtaleOmDeltBosted = (
   return (
     spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
   );
+};
+
+export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
+  nyForelder: IForelder
+) => {
+  delete nyForelder.navn;
+  delete nyForelder.fødselsdato;
+  delete nyForelder.ident;
+  delete nyForelder.id;
+  delete nyForelder.borAnnenForelderISammeHus;
+  delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
+  delete nyForelder.harAnnenForelderSamværMedBarn;
+  delete nyForelder.avtaleOmDeltBosted;
+  delete nyForelder.borINorge;
+  delete nyForelder.boddSammenFør;
+  delete nyForelder.flyttetFra;
+  delete nyForelder.hvorMyeSammen;
+  delete nyForelder.beskrivSamværUtenBarn;
 };
