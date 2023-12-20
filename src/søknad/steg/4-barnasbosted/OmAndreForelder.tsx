@@ -11,6 +11,7 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
+import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -101,6 +102,15 @@ const OmAndreForelder: React.FC<Props> = ({
       delete nyForelder.fødselsdato;
       delete nyForelder.ident;
       delete nyForelder.id;
+      delete nyForelder.borAnnenForelderISammeHus;
+      delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
+      delete nyForelder.harAnnenForelderSamværMedBarn;
+      delete nyForelder.avtaleOmDeltBosted;
+      delete nyForelder.borINorge;
+      delete nyForelder.boddSammenFør;
+      delete nyForelder.flyttetFra;
+      delete nyForelder.hvorMyeSammen;
+      delete nyForelder.beskrivSamværUtenBarn;
       settFeilmeldingNavn(false);
     } else {
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
@@ -109,6 +119,8 @@ const OmAndreForelder: React.FC<Props> = ({
       nyForelder.id = hentUid();
       settFeilmeldingNavn(true);
     }
+
+    consoleLogLokaltOgDev(nyForelder, 'nyForelder');
 
     settForelder({
       ...nyForelder,
