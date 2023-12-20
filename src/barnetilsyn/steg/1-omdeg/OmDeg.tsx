@@ -4,12 +4,12 @@ import {
   erSivilstandSpørsmålBesvart,
   erStegFerdigUtfylt,
   erÅrsakEnsligBesvart,
+  søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring,
 } from '../../../helpers/steg/omdeg';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import Medlemskap from '../../../søknad/steg/1-omdeg/medlemskap/Medlemskap';
 import Personopplysninger from '../../../søknad/steg/1-omdeg/personopplysninger/Personopplysninger';
-import { ISøker } from '../../../models/søknad/person';
 import { ISpørsmålBooleanFelt } from '../../../models/søknad/søknadsfelter';
 import Sivilstatus from '../../../søknad/steg/1-omdeg/sivilstatus/Sivilstatus';
 import { ISivilstatus } from '../../../models/steg/omDeg/sivilstatus';
@@ -86,16 +86,14 @@ const OmDeg: FC = () => {
     });
   };
 
-  const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søker.erStrengtFortrolig ||
-    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+  const erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søker, søknad);
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     sivilstatus,
     søker.sivilstand,
     medlemskap,
-    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+    erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
   );
 
   return (
@@ -120,7 +118,7 @@ const OmDeg: FC = () => {
         stønadstype={Stønadstype.barnetilsyn}
       />
 
-      <Show if={søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring}>
+      <Show if={erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}
