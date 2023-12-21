@@ -20,6 +20,7 @@ import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
 import Environment from '../Environment';
+import { consoleLogLokaltOgDev } from '../utils/logLokaltOgDev';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -50,6 +51,7 @@ const BarnetilsynApp = () => {
           type: PersonActionTypes.HENT_PERSON,
           payload: response,
         });
+        consoleLogLokaltOgDev(response, 'response fra fetchPersonData');
         oppdaterSøknadMedBarn(response, response.barn);
       })
       .catch((e) => {
@@ -95,7 +97,6 @@ const BarnetilsynApp = () => {
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
