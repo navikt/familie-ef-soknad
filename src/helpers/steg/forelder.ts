@@ -198,6 +198,7 @@ export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   delete nyForelder.harAnnenForelderSamværMedBarn;
   delete nyForelder.avtaleOmDeltBosted;
   delete nyForelder.borINorge;
+  delete nyForelder.land;
   delete nyForelder.boddSammenFør;
   delete nyForelder.flyttetFra;
   delete nyForelder.hvorMyeSammen;
