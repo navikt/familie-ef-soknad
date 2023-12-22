@@ -96,6 +96,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      consoleLogLokaltOgPreprod(forrigeSøknad, 'forrigeSøknad');
       if (forrigeSøknad) {
         settSøknad((prevSøknad) => ({
           ...prevSøknad,
@@ -103,13 +104,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
+              ...forrigeSøknad.person.barn,
               ...prevSøknad.person.barn.filter(
                 (barn) =>
                   !forrigeSøknad.person.barn.some(
                     (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                   )
               ),
-              ...prevSøknad.person.barn,
             ],
           },
         }));

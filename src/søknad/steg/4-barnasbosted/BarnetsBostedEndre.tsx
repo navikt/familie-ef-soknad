@@ -97,13 +97,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     forelder.fødselsdato?.verdi ? true : false
   );
 
-  const {
-    borAnnenForelderISammeHus,
-    boddSammenFør,
-    flyttetFra,
-    fødselsdato,
-    ident,
-  } = forelder;
+  const { boddSammenFør, flyttetFra, fødselsdato, ident } = forelder;
 
   const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
 
