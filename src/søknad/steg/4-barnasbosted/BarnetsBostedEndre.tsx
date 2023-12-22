@@ -29,7 +29,7 @@ import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
-import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
+import { consoleLogLokaltOgDev } from '../../../utils/consoleLogLokaltOgPreprod';
 import {
   erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
   erIdentUtfyltOgGyldig,

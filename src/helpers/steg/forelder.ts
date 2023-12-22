@@ -10,7 +10,7 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { consoleLogLokaltOgDev } from '../../utils/logLokaltOgDev';
+import { consoleLogLokaltOgDev } from '../../utils/consoleLogLokaltOgPreprod';
 import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>

@@ -20,7 +20,7 @@ import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
 import Environment from '../Environment';
-import { consoleLogLokaltOgDev } from '../utils/logLokaltOgDev';
+import { consoleLogLokaltOgPreprod } from '../utils/consoleLogLokaltOgPreprod';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -51,7 +51,6 @@ const BarnetilsynApp = () => {
           type: PersonActionTypes.HENT_PERSON,
           payload: response,
         });
-        consoleLogLokaltOgDev(response, 'response fra fetchPersonData');
         oppdaterSøknadMedBarn(response, response.barn);
       })
       .catch((e) => {
@@ -76,11 +75,21 @@ const BarnetilsynApp = () => {
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
-    settSøknad &&
-      settSøknad((prevSøknad) => ({
+    consoleLogLokaltOgPreprod(
+      barnMedLabels,
+      'oppdaterSøknadMedBarn barnMedLabels'
+    );
+
+    settSøknad((prevSøknad) => {
+      const prevBarn = prevSøknad.person.barn;
+
+      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
+
+      return {
         ...prevSøknad,
-        person: { ...person, barn: barnMedLabels },
-      }));
+        person: { ...person, barn: oppdatertBarn },
+      };
+    });
   };
 
   const fetchToggles = () => {

@@ -19,7 +19,6 @@ import {
   BarnaDineContainer,
   BarneKortWrapper,
 } from '../../../søknad/steg/3-barnadine/BarnaDineInnhold';
-import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -54,8 +53,6 @@ const BarnaDine: React.FC = () => {
   const harValgtMinstEttBarn = søknad.person.barn.some(
     (b: IBarn) => b.skalHaBarnepass?.verdi
   );
-
-  consoleLogLokaltOgDev(søknad, 'BarnaDine steg 3 søknad');
 
   return (
     <Side

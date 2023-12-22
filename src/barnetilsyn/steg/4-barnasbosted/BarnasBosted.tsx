@@ -13,7 +13,6 @@ import { useMount } from '../../../utils/hooks';
 import { antallBarnMedForeldreUtfylt } from '../../../utils/barn';
 import { kommerFraOppsummeringen } from '../../../utils/locationState';
 import BarnasBostedInnhold from '../../../søknad/steg/4-barnasbosted/BarnasBostedInnhold';
-import { consoleLogLokaltOgDev } from '../../../utils/logLokaltOgDev';
 
 const BarnasBosted: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -45,8 +44,6 @@ const BarnasBosted: React.FC = () => {
     antallBarnMedForeldreUtfylt(barnMedLevendeForeldre) ===
       barnMedLevendeForeldre.length
   );
-
-  consoleLogLokaltOgDev(sisteBarnUtfylt, 'sisteBarnUtfylt');
 
   return (
     <Side
