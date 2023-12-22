@@ -33,6 +33,7 @@ export enum EHvorforIkkeOppgi {
   donorbarn = 'donorbarn',
   annet = 'annet',
   Annet = 'Annet',
+  Other = 'Other',
 }
 
 export enum TypeBarn {

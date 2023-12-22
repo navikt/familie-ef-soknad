@@ -118,7 +118,9 @@ const OmAndreForelder: React.FC<Props> = ({
   };
 
   const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
-    let nyForelder = {
+    const verdi = svar.id === EHvorforIkkeOppgi.donorbarn ? 'Donor' : '';
+
+    const nyForelder = {
       ...forelder,
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
@@ -126,15 +128,6 @@ const OmAndreForelder: React.FC<Props> = ({
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar.svar_tekst,
       },
-    };
-
-    let verdi = '';
-    if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      verdi = 'Donor';
-    }
-
-    nyForelder = {
-      ...nyForelder,
       ikkeOppgittAnnenForelderBegrunnelse: {
         label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
         verdi: verdi,
@@ -153,6 +146,10 @@ const OmAndreForelder: React.FC<Props> = ({
       },
     });
   };
+
+  const hvorforIkkeOppgiÅrsakErAnnet =
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other;
 
   return (
     <>
@@ -228,7 +225,7 @@ const OmAndreForelder: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      {forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet && (
+      {hvorforIkkeOppgiÅrsakErAnnet && (
         <FeltGruppe aria-live="polite">
           <Textarea
             autoComplete={'off'}
