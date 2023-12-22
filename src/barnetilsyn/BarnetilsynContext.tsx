@@ -103,9 +103,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...forrigeSøknad.person.barn.filter(
+              ...prevSøknad.person.barn.filter(
                 (barn) =>
-                  !prevSøknad.person.barn.some(
+                  !forrigeSøknad.person.barn.some(
                     (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                   )
               ),
