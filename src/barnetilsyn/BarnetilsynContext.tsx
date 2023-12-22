@@ -28,6 +28,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
+import { consoleLogLokaltOgPreprod } from '../utils/consoleLogLokaltOgPreprod';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -109,6 +110,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         }
       );
     };
+
+    useEffect(() => {
+      consoleLogLokaltOgPreprod(søknad, 'søknad i barnetilsynContext');
+    }, [søknad]);
 
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {
