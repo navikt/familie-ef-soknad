@@ -15,7 +15,6 @@ import {
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
-import { ESvar } from '../../../models/felles/spørsmålogsvar';
 import BorAnnenForelderISammeHus from './ikkesammeforelder/BorAnnenForelderISammeHus';
 import BoddSammenFør from './ikkesammeforelder/BoddSammenFør';
 import HvorMyeSammen from './ikkesammeforelder/HvorMyeSammen';
@@ -29,7 +28,6 @@ import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
-import { consoleLogLokaltOgDev } from '../../../utils/consoleLogLokaltOgPreprod';
 import {
   erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
   erIdentUtfyltOgGyldig,
@@ -162,14 +160,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalFylleUtHarBoddSammenFør =
     harValgtBorISammeHusEllerBorIkkeINorge(forelder);
-
-  consoleLogLokaltOgDev(
-    skalFylleUtHarBoddSammenFør,
-    'skalFylleUtHarBoddSammenFør'
-  );
-  consoleLogLokaltOgDev(barn, 'BarnetsBostedEndre.tsx Barn:');
-  consoleLogLokaltOgDev(barneListe, 'BarnetsBostedEndre.tsx Barneliste:');
-  consoleLogLokaltOgDev(forelder, 'BarnetsBostedEndre.tsx forelder:');
 
   return (
     <div className="barnas-bosted">

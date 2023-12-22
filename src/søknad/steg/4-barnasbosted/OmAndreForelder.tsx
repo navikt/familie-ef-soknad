@@ -11,7 +11,6 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
-import { consoleLogLokaltOgDev } from '../../../utils/consoleLogLokaltOgPreprod';
 import { slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder } from '../../../helpers/steg/forelder';
 
 interface Props {
@@ -108,8 +107,6 @@ const OmAndreForelder: React.FC<Props> = ({
       nyForelder.id = hentUid();
       settFeilmeldingNavn(true);
     }
-
-    consoleLogLokaltOgDev(nyForelder, 'nyForelder');
 
     settForelder({
       ...nyForelder,
