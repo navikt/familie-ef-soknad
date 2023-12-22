@@ -95,23 +95,25 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
-      return hentDataFraForrigeBarnetilsynSøknad().then(
-        (tidligereVersjon?: ForrigeSøknad) => {
-          if (tidligereVersjon) {
-            settSøknad((prevSøknad) => ({
-              ...prevSøknad,
-              ...tidligereVersjon,
-              person: {
-                ...prevSøknad.person,
-                barn: [
-                  ...tidligereVersjon.person.barn,
-                  ...prevSøknad.person.barn,
-                ],
-              },
-            }));
-          }
-        }
-      );
+      const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      if (forrigeSøknad) {
+        settSøknad((prevSøknad) => ({
+          ...prevSøknad,
+          ...forrigeSøknad,
+          person: {
+            ...prevSøknad.person,
+            barn: [
+              ...forrigeSøknad.person.barn.filter(
+                (barn) =>
+                  !prevSøknad.person.barn.some(
+                    (prevBarn) => prevBarn.id === barn.id
+                  )
+              ),
+              ...prevSøknad.person.barn,
+            ],
+          },
+        }));
+      }
     };
 
     useEffect(() => {
