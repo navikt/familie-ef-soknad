@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
@@ -9,14 +10,16 @@ import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { ErrorMessage, Heading, Textarea } from '@navikt/ds-react';
+import { ErrorMessage, Heading, Label, Textarea } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
+import { hentBeskjedMedNavn } from '../../../../utils/språk';
+import LesMerTekst from '../../../../components/LesMerTekst';
 
 const StyledFirma = styled.div`
   display: flex;
@@ -28,6 +31,7 @@ interface Props {
   firmanr: number;
   settFirmaer: (firmaer: IFirma[]) => void;
   inkludertArbeidsmengde?: boolean;
+  overskuddsår: number;
 }
 
 const OmFirmaetDitt: React.FC<Props> = ({
@@ -35,6 +39,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
   firmanr,
   settFirmaer,
   inkludertArbeidsmengde = true,
+  overskuddsår,
 }) => {
   const intl = useLokalIntlContext();
   const firmaFraSøknad = firmaer?.find((firma, index) => index === firmanr);
@@ -98,6 +103,10 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
   const labelArbeidsmengde = hentTekst('firma.label.arbeidsmengde', intl);
   const labelArbeidsuke = hentTekst('firma.label.arbeidsuke', intl);
+  const labelOverskudd = hentBeskjedMedNavn(
+    `${overskuddsår}`,
+    hentTekst('firma.label.overskudd', intl)
+  );
   const labelOrganisasjonsnr = hentTekst('firma.label.organisasjonnr', intl);
   const labelNavn = hentTekst('firma.label.navn', intl);
   const firmaTittel = hentTittelMedNr(
@@ -139,7 +148,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
           <FeltGruppe>
             <TextFieldMedBredde
               label={labelOrganisasjonsnr}
-              bredde={'L'}
+              bredde={'XS'}
               type={'text'}
               onChange={(e) => settOrganisasjonsnr(e.target.value)}
               onBlur={(e) =>
@@ -170,7 +179,6 @@ const OmFirmaetDitt: React.FC<Props> = ({
             tekstid={'firma.datovelger.etablering'}
             datobegrensning={DatoBegrensning.TidligereDatoer}
             settDato={(e) => settDatoFelt(e)}
-            fetSkrift={true}
           />
         </FeltGruppe>
       )}
@@ -186,7 +194,7 @@ const OmFirmaetDitt: React.FC<Props> = ({
               label={labelArbeidsmengde}
               nøkkel={labelArbeidsmengde}
               type={'number'}
-              bredde={'XS'}
+              bredde={'XXS'}
               settInputFelt={(e) =>
                 settInputTekstFelt(e, EFirma.arbeidsmengde, labelArbeidsmengde)
               }
@@ -200,16 +208,43 @@ const OmFirmaetDitt: React.FC<Props> = ({
 
       {(firma.arbeidsmengde?.verdi ||
         (!inkludertArbeidsmengde && firma.etableringsdato?.verdi)) && (
-        <FeltGruppe>
-          <Textarea
-            autoComplete={'off'}
-            key={labelArbeidsuke}
-            label={labelArbeidsuke}
-            value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
-            maxLength={1000}
-            onChange={(e) => settArbeidsukeTekst(e)}
-          />
-        </FeltGruppe>
+        <>
+          <FeltGruppe>
+            <Label as={'label'} htmlFor={labelArbeidsuke}>
+              {labelArbeidsuke}
+            </Label>
+            <LesMerTekst
+              åpneTekstid={''}
+              innholdTekstid={'firma.lesmer-innhold.arbeidsuke'}
+            />
+            <Textarea
+              autoComplete={'off'}
+              key={labelArbeidsuke}
+              label={labelArbeidsuke}
+              hideLabel={true}
+              value={firma.arbeidsuke?.verdi ? firma.arbeidsuke?.verdi : ''}
+              maxLength={1000}
+              onChange={(e) => settArbeidsukeTekst(e)}
+            />
+          </FeltGruppe>
+          <FeltGruppe>
+            <InputLabelGruppe
+              hjelpetekst={{
+                headerTekstid: '',
+                innholdTekstid: 'firma.lesmer-innhold.overskudd',
+              }}
+              label={labelOverskudd}
+              nøkkel={labelOverskudd}
+              type={'number'}
+              bredde={'XS'}
+              settInputFelt={(e) =>
+                settInputTekstFelt(e, EFirma.overskudd, labelOverskudd)
+              }
+              beskrivendeTekst={'kroner'}
+              value={firma?.overskudd?.verdi ? firma?.overskudd?.verdi : ''}
+            />
+          </FeltGruppe>
+        </>
       )}
     </StyledFirma>
   );

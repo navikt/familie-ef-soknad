@@ -1,0 +1,76 @@
+import React from 'react';
+import { InformasjonProps } from '../components/forside/typer';
+import { hentPath } from '../utils/routing';
+import { RoutesSkolepenger, ERouteSkolepenger } from './routing/routes';
+import { isIE } from 'react-device-detect';
+import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
+import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
+import { Overskrift } from '../components/forside/Overskrift';
+import { Seksjon } from '../components/forside/Seksjon';
+import { Tekst } from '../components/forside/Tekst';
+import FeltGruppe from '../components/gruppe/FeltGruppe';
+import Språkvelger from '../components/språkvelger/Språkvelger';
+import LocaleTekst from '../language/LocaleTekst';
+
+export const SkolepengerInformasjon: React.FC<InformasjonProps> = ({
+  person,
+  harBekreftet,
+  settBekreftelse,
+}) => {
+  const nesteSide = hentPath(RoutesSkolepenger, ERouteSkolepenger.OmDeg) || '';
+
+  return (
+    <>
+      <FeltGruppe>
+        <Språkvelger />
+      </FeltGruppe>
+
+      <Seksjon>
+        <Tekst tekst="forside.skolepenger.innledning" />
+        <LocaleTekst tekst="forside.skolepenger.merInfoLenke" />
+      </Seksjon>
+
+      <Seksjon>
+        <Overskrift tekst="forside.skolepenger.overskrift.riktigeOpplysninger" />
+        <Tekst tekst="forside.skolepenger.riktigeOpplysninger" />
+        <Tekst tekst="forside.skolepenger.meldeEndringer" />
+      </Seksjon>
+
+      <Seksjon>
+        <Overskrift tekst="forside.skolepenger.overskrift.sendeDokumentasjon" />
+        <Tekst tekst="forside.skolepenger.beskjedDokumentere" />
+        <Tekst tekst="forside.skolepenger.merInformasjon" />
+        <LocaleTekst tekst="forside.skolepenger.dokumentasjonsOversiktLenke" />
+      </Seksjon>
+
+      <Seksjon>
+        <Overskrift tekst="forside.skolepenger.overskrift.henteInformasjon" />
+        <Tekst tekst="forside.skolepenger.henteInformasjon" />
+        <Tekst tekst="forside.skolepenger.viHenter" />
+        <LocaleTekst tekst="forside.skolepenger.informasjonHentet" />
+        <Tekst tekst="forside.skolepenger.tidligereOpplysninger" />
+        <LocaleTekst tekst="forside.skolepenger.personopplysningeneDineLenke" />
+      </Seksjon>
+
+      <Seksjon>
+        <Overskrift tekst="forside.skolepenger.overskrift.slikSøkerDu" />
+        <Tekst tekst="forside.skolepenger.slikSøkerDu" />
+        <Tekst tekst="forside.skolepenger.lagringSøknad" />
+        <Tekst tekst="forside.skolepenger.manglerDuDokumentasjon" />
+      </Seksjon>
+
+      {!isIE && (
+        <DisclaimerBoks
+          navn={person.søker.forkortetNavn}
+          tekst={'forside.skolepenger.disclaimerTekst'}
+          harBekreftet={harBekreftet}
+          settBekreftelse={settBekreftelse}
+        />
+      )}
+
+      {harBekreftet && <StartSøknadKnapp nesteSide={nesteSide} />}
+    </>
+  );
+};
+
+export default SkolepengerInformasjon;

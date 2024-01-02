@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import LesMerTekst from '../LesMerTekst';
 import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import { BodyShort, Label } from '@navikt/ds-react';
@@ -66,6 +66,9 @@ const InputLabelGruppe: React.FC<Props> = ({
   placeholder,
   utvidetTekstNøkkel,
 }) => {
+  // @ts-ignore
+  const ignorerScrollForTallInput = (e) => e.target.blur();
+
   return (
     <StyledComponent aria-live="polite">
       <Label as={'label'} htmlFor={label}>
@@ -98,6 +101,7 @@ const InputLabelGruppe: React.FC<Props> = ({
         value={value}
         error={feil}
         placeholder={placeholder}
+        onWheel={ignorerScrollForTallInput}
       />
       <BodyShort className={'beskrivendeTekst'}>{beskrivendeTekst}</BodyShort>
     </StyledComponent>

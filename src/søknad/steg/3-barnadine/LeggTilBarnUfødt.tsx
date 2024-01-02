@@ -1,17 +1,18 @@
 import React from 'react';
-import Datovelger, {
-  DatoBegrensning,
-} from '../../../components/dato/Datovelger';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
-import { RadioPanel } from 'nav-frontend-skjema';
 import { hentTekst } from '../../../utils/søknad';
 import AlertStripeDokumentasjon from '../../../components/AlertstripeDokumentasjon';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import FormattedMessage from '../../../language/FormattedMessage';
-import { Alert, Label } from '@navikt/ds-react';
+import { Alert, RadioGroup } from '@navikt/ds-react';
 import styled from 'styled-components';
+import {
+  Datovelger,
+  DatoBegrensning,
+} from '../../../components/dato/Datovelger';
+import RadioPanelCustom from '../../../components/panel/RadioPanel';
 
 interface Props {
   settBo: (nyttBo: string) => void;
@@ -21,13 +22,19 @@ interface Props {
 }
 
 const RadiopanelWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  margin-top: 1rem;
+  .navds-fieldset .navds-radio-buttons {
+    margin-top: 0;
+  }
+  .navds-radio-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+    padding-top: 1rem;
 
-  @media (max-width: 767px) {
-    grid-template-columns: 1fr;
+    @media all and (max-width: 767px) {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 
@@ -47,7 +54,6 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           valgtDato={barnDato}
           tekstid={'barnadine.termindato'}
           datobegrensning={DatoBegrensning.FremtidigeDatoer}
-          fetSkrift={true}
         />
         <AlertStripeDokumentasjon>
           <FormattedMessage id="barnadine.info.terminbekreftelse" />
@@ -59,26 +65,32 @@ const LeggTilBarnUfødt: React.FC<Props> = ({
           DatoBegrensning.FremtidigeDatoer
         ) && (
           <KomponentGruppe>
-            <Label>
-              {intl.formatMessage({ id: 'barnekort.spm.skalBarnetBoHosSøker' })}
-            </Label>
             <RadiopanelWrapper>
-              <RadioPanel
-                key={ESvar.JA}
-                name={'radio-bosted'}
-                label={hentTekst(ESvarTekstid.JA, intl)}
-                value={ESvar.JA}
-                checked={boHosDeg === ESvar.JA}
-                onChange={(e) => settBo(e.target.value)}
-              />
-              <RadioPanel
-                key={ESvar.NEI}
-                name={'radio-bosted'}
-                label={hentTekst(ESvarTekstid.NEI, intl)}
-                value={ESvar.NEI}
-                checked={boHosDeg === ESvar.NEI}
-                onChange={(e) => settBo(e.target.value)}
-              />
+              <RadioGroup
+                legend={intl.formatMessage({
+                  id: 'barnekort.spm.skalBarnetBoHosSøker',
+                })}
+                value={boHosDeg}
+              >
+                <RadioPanelCustom
+                  key={ESvar.JA}
+                  name={'radio-bosted'}
+                  value={ESvar.JA}
+                  checked={boHosDeg === ESvar.JA}
+                  onChange={(e) => settBo(e.target.value)}
+                >
+                  {hentTekst(ESvarTekstid.JA, intl)}
+                </RadioPanelCustom>
+                <RadioPanelCustom
+                  key={ESvar.NEI}
+                  name={'radio-bosted'}
+                  value={ESvar.NEI}
+                  checked={boHosDeg === ESvar.NEI}
+                  onChange={(e) => settBo(e.target.value)}
+                >
+                  {hentTekst(ESvarTekstid.NEI, intl)}
+                </RadioPanelCustom>
+              </RadioGroup>
             </RadiopanelWrapper>
             {boHosDeg === ESvar.NEI && (
               <Alert size="small" variant="warning" inline>

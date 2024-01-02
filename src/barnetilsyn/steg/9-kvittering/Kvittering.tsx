@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-
 import Feilside from '../../../components/feil/Feilside';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { formatDateHour } from '../../../utils/dato';
@@ -26,7 +25,7 @@ import { Alert } from '@navikt/ds-react';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
   const {
     søknad,
     nullstillMellomlagretBarnetilsyn,

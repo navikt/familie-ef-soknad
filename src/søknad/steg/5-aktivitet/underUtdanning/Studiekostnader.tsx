@@ -6,7 +6,7 @@ import { hentTekst } from '../../../../utils/søknad';
 import { IDetaljertUtdanning } from '../../../../skolepenger/models/detaljertUtdanning';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../../language/LocaleTekst';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokumentasjon';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import FormattedHtmlMessage from '../../../../language/FormattedHtmlMessage';
@@ -55,7 +55,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={semesteravgiftLabel}
           nøkkel={EUtdanning.semesteravgift}
           type={'number'}
-          bredde={'XS'}
+          bredde={'XXS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.semesteravgift, semesteravgiftLabel, e)
           }
@@ -72,7 +72,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={studieavgiftLabel}
           nøkkel={EUtdanning.studieavgift}
           type={'number'}
-          bredde={'XS'}
+          bredde={'XXS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.studieavgift, studieavgiftLabel, e)
           }
@@ -87,7 +87,7 @@ const Studiekostnader: React.FC<Props> = ({ utdanning, oppdaterUtdanning }) => {
           label={eksamensgebyrLabel}
           nøkkel={EUtdanning.eksamensgebyr}
           type={'number'}
-          bredde={'XS'}
+          bredde={'XXS'}
           settInputFelt={(e) =>
             settInputFelt(EUtdanning.eksamensgebyr, eksamensgebyrLabel, e)
           }

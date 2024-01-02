@@ -11,7 +11,6 @@ metadata:
 
 spec:
   image:  {{ image }}
-  team: teamfamilie
   replicas:
     min: 1
     max: 2
@@ -32,6 +31,7 @@ spec:
       autoLogin: true
       autoLoginIgnorePaths:
         - /familie/alene-med-barn/soknad/**/*.css
+        - /familie/alene-med-barn/soknad/**/manifest.json
       level: Level4
   tokenx:
     enabled: true

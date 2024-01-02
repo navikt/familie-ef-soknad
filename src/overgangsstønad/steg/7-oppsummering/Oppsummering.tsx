@@ -27,7 +27,9 @@ import { useNavigationType } from 'react-router-dom';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import {
   aktivitetSchema,
-  bosituasjonSchema,
+  datoSkalGifteSegEllerBliSamboerSchema,
+  fødselsdatoSchema,
+  identSchema,
   listManglendeFelter,
   ManglendeFelter,
   manglendeFelterTilTekst,
@@ -36,8 +38,11 @@ import {
   sivilstatusSchema,
 } from '../../../utils/validering/validering';
 import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
+import { ToggleName } from '../../../models/søknad/toggles';
+import { useToggles } from '../../../context/TogglesContext';
 
 const Oppsummering: React.FC = () => {
+  const { toggles } = useToggles();
   const intl = useLokalIntlContext();
   const { mellomlagreOvergangsstønad, søknad } = useSøknad();
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
@@ -58,24 +63,52 @@ const Oppsummering: React.FC = () => {
     // eslint-disable-next-line
   }, []);
 
-  useEffect(() => {
-    bosituasjonSchema
-      .validate(søknad.bosituasjon)
-      .then()
-      .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.BOSITUASJONEN_DIN],
-          ]);
-        }
+  const feilIkkeRegistrertFor = (felt: ManglendeFelter) => {
+    return !manglendeFelter.includes(manglendeFelterTilTekst[felt]);
+  };
 
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
-      });
+  const oppdaterManglendeFelter = (manglendeFelt: ManglendeFelter) => {
+    settManglendeFelter((prev: string[]): string[] => [
+      ...prev,
+      manglendeFelterTilTekst[manglendeFelt],
+    ]);
+  };
+
+  const validerHvisSøkerSkalGifteSeg = () => {
+    if (søknad.bosituasjon.skalGifteSegEllerBliSamboer?.verdi) {
+      const harGyldigDatoForGiftemål =
+        datoSkalGifteSegEllerBliSamboerSchema.isValidSync(
+          søknad.bosituasjon.datoSkalGifteSegEllerBliSamboer
+        );
+      const harGyldigIdent =
+        søknad.bosituasjon.vordendeSamboerEktefelle &&
+        identSchema.isValidSync(
+          søknad.bosituasjon.vordendeSamboerEktefelle.ident
+        );
+      const harGyldigFødselsdato =
+        søknad.bosituasjon.vordendeSamboerEktefelle &&
+        fødselsdatoSchema.isValidSync(
+          søknad.bosituasjon.vordendeSamboerEktefelle.fødselsdato
+        );
+      const harGyldigIdentEllerDatoPåVordende =
+        harGyldigFødselsdato || harGyldigIdent;
+      if (!harGyldigIdentEllerDatoPåVordende || !harGyldigDatoForGiftemål) {
+        if (feilIkkeRegistrertFor(ManglendeFelter.BOSITUASJONEN_DIN)) {
+          oppdaterManglendeFelter(ManglendeFelter.BOSITUASJONEN_DIN);
+        }
+        logManglendeFelter(
+          ESkjemanavn.Overgangsstønad,
+          skjemaId,
+          'ValidationError: vordendeSamboerEktefelle mangler gyldig ident eller fødselsdato'
+        );
+      }
+    }
+  };
+
+  useEffect(() => {
+    {
+      toggles[ToggleName.validerBosituasjon] && validerHvisSøkerSkalGifteSeg();
+    }
 
     aktivitetSchema
       .validate(søknad.aktivitet)
@@ -86,12 +119,8 @@ const Oppsummering: React.FC = () => {
             manglendeFelterTilTekst[ManglendeFelter.AKTIVITET]
           )
         ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.AKTIVITET],
-          ]);
+          oppdaterManglendeFelter(ManglendeFelter.AKTIVITET);
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -99,17 +128,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.sivilstatus)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -117,17 +138,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.merOmDinSituasjon)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.MER_OM_DIN_SITUASJON],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.MER_OM_DIN_SITUASJON)) {
+          oppdaterManglendeFelter(ManglendeFelter.MER_OM_DIN_SITUASJON);
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
 
@@ -135,17 +148,9 @@ const Oppsummering: React.FC = () => {
       .validate(søknad.medlemskap)
       .then()
       .catch((e) => {
-        if (
-          !manglendeFelter.includes(
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG]
-          )
-        ) {
-          settManglendeFelter((prev: string[]): string[] => [
-            ...prev,
-            manglendeFelterTilTekst[ManglendeFelter.OM_DEG],
-          ]);
+        if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
+          oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
-
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
   }, [søknad, manglendeFelter, skjemaId]);

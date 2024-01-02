@@ -1,5 +1,6 @@
 import React from 'react';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../../components/dato/Datovelger';
 import LocaleTekst from '../../../../../language/LocaleTekst';
@@ -23,7 +24,7 @@ const DatoForSamlivsbrudd: React.FC<Props> = ({
       <KomponentGruppe>
         <Datovelger
           settDato={(e) => settDato(e, 'datoForSamlivsbrudd', datovelgerLabel)}
-          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd.verdi : ''}
+          valgtDato={datoForSamlivsbrudd ? datoForSamlivsbrudd?.verdi : ''}
           tekstid={datovelgerLabel}
           datobegrensning={DatoBegrensning.TidligereDatoer}
         />

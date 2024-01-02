@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import download from '../../../assets/download.svg';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -25,7 +25,7 @@ const StyledLenke = styled.div`
 
 const ErklæringSamlivsbrudd: FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
 
   const hentÆrklæringBasertPåSpråk = (): string => {
     return hentFilePath(locale, {

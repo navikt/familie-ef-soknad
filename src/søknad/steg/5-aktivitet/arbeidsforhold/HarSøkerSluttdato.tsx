@@ -3,8 +3,8 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import { harDuSluttdato } from './ArbeidsgiverConfig';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../../components/dato/Datovelger';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
@@ -80,7 +80,6 @@ const HarSøkerSluttdato: React.FC<Props> = ({
               tekstid={sluttdatoTekstid}
               datobegrensning={DatoBegrensning.FremtidigeDatoer}
               settDato={(e) => settDato(e)}
-              fetSkrift={true}
             />
           </FeltGruppe>
         )}

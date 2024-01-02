@@ -45,7 +45,7 @@ const StudieArbeidsmengde: React.FC<Props> = ({
         label={arbeidsmengdeLabel}
         nøkkel={EUtdanning.arbeidsmengde}
         type={'number'}
-        bredde={'XS'}
+        bredde={'XXS'}
         settInputFelt={(e) =>
           settInputFelt(EUtdanning.arbeidsmengde, arbeidsmengdeLabel, e)
         }

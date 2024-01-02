@@ -10,15 +10,22 @@ import FeltGruppe from '../gruppe/FeltGruppe';
 import LocaleTekst from '../../language/LocaleTekst';
 import { tilDato } from '../../utils/dato';
 import { hentUid } from '../../utils/autentiseringogvalidering/uuid';
-import { DatoBegrensning, StyledLabel } from './Datovelger';
-import styled from 'styled-components/macro';
+import { DatoBegrensning } from './Datovelger';
+import styled from 'styled-components';
 import KalenderKnapp from './KalenderKnapp';
 import { addYears, subYears, addMonths } from 'date-fns';
+import { Label } from '@navikt/ds-react';
 
 const InputContainer = styled.div`
-  display: inline-block;
-  width: 10rem;
   position: relative;
+  display: flex;
+  .datovelger-input {
+    padding: 0.5rem;
+  }
+`;
+
+const StyledLabel = styled(Label)<{ fetSkrift?: boolean }>`
+  font-weight: ${(props) => (props.fetSkrift ? 'bold' : 'normal')};
 `;
 
 const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
@@ -98,20 +105,15 @@ const ÅrMånedVelger: React.FC<Props> = ({
           <LocaleTekst tekst={tekstid} />
         </StyledLabel>
       </FeltGruppe>
-      <FeltGruppe classname="nav-datovelger">
-        <InputContainer className="nav-datovelger__inputContainer">
-          <KalenderKnapp
-            onClick={handleFocus}
-            isOpen={false}
-            disabled={disabled}
-          />
+      <FeltGruppe>
+        <InputContainer>
           {datobegrensning === DatoBegrensning.AlleDatoer &&
           Object.entries(begrensninger).length === 0 ? (
             <DatePicker
               name="dateInput"
               id={datolabelid}
               disabled={disabled}
-              className={'nav-datovelger__input'}
+              className={'datovelger-input'}
               onChange={(e: Date | null) => {
                 settDato(e);
               }}
@@ -128,7 +130,7 @@ const ÅrMånedVelger: React.FC<Props> = ({
               name="dateInput"
               id={datolabelid}
               disabled={disabled}
-              className={'nav-datovelger__input'}
+              className={'datovelger-input'}
               onChange={(e: Date | null) => {
                 settDato(e);
               }}
@@ -143,6 +145,11 @@ const ÅrMånedVelger: React.FC<Props> = ({
               placeholderText={'MM.yyyy'}
             />
           )}
+          <KalenderKnapp
+            onClick={handleFocus}
+            isOpen={false}
+            disabled={disabled}
+          />
         </InputContainer>
       </FeltGruppe>
     </div>

@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad } from './models/søknad';
+import { ISøknad, ForrigeSøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -13,6 +13,7 @@ import { IMellomlagretBarnetilsynSøknad } from './models/mellomlagretSøknad';
 import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
+  hentDataFraForrigeBarnetilsynSøknad,
   hentMellomlagretSøknadFraDokument,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
@@ -25,6 +26,8 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
+import { LocaleType } from '../language/typer';
+import { dagensDato, formatIsoDate } from '../utils/dato';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -53,6 +56,7 @@ const initialState = (intl: LokalIntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
+    datoPåbegyntSøknad: formatIsoDate(dagensDato),
   };
 };
 
@@ -70,7 +74,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         mellomlagretBarnetilsyn?.locale &&
         mellomlagretBarnetilsyn?.locale !== locale
       ) {
-        setLocale(mellomlagretBarnetilsyn.locale);
+        setLocale(mellomlagretBarnetilsyn.locale as LocaleType);
       }
     }, [mellomlagretBarnetilsyn, locale, setLocale]);
 
@@ -88,6 +92,19 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       if (mellomlagretBarnetilsyn) {
         settSøknad(mellomlagretBarnetilsyn.søknad);
       }
+    };
+
+    const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
+      return hentDataFraForrigeBarnetilsynSøknad().then(
+        (tidligereVersjon?: ForrigeSøknad) => {
+          if (tidligereVersjon) {
+            settSøknad((prevSøknad) => ({
+              ...prevSøknad,
+              ...tidligereVersjon,
+            }));
+          }
+        }
+      );
     };
 
     const mellomlagreBarnetilsyn = (steg: string) => {
@@ -210,6 +227,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       hentMellomlagretBarnetilsyn,
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
+      hentForrigeSøknadBarnetilsyn,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import download from '../../../assets/download.svg';
 import { StyledUndertittel } from '../../../components/gruppe/Spacing';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { hentFilePath } from '../../../utils/språk';
@@ -25,7 +25,7 @@ const StyledLenke = styled.div`
 
 const SyktBarn: FC = () => {
   const intl = useLokalIntlContext();
-  const { locale } = useSpråkContext();
+  const [locale] = useSpråkContext();
 
   const hentSøknadBasertPåBrukerSpråk = (): string => {
     return hentFilePath(locale, {

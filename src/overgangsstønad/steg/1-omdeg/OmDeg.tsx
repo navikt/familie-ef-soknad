@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
-  erSøknadsBegrunnelseBesvart,
+  erÅrsakEnsligBesvart,
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
@@ -39,6 +39,8 @@ const OmDeg: FC = () => {
 
   const { harSøktSeparasjon, datoSøktSeparasjon, datoFlyttetFraHverandre } =
     søknad.sivilstatus;
+
+  const { søker } = søknad.person;
 
   useMount(() => logSidevisningOvergangsstonad('OmDeg'));
 
@@ -94,15 +96,18 @@ const OmDeg: FC = () => {
       };
     });
   };
-  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
-    søknad.sivilstatus,
-    søknad.medlemskap
-  );
 
   const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søknad.person.søker.erStrengtFortrolig ||
+    søker.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+
+  const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
+    søknad.sivilstatus,
+    søker.sivilstand,
+    søknad.medlemskap,
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+  );
 
   const harFyltUtSeparasjonSpørsmålet =
     harSøktSeparasjon !== undefined
@@ -112,8 +117,7 @@ const OmDeg: FC = () => {
       : false;
 
   const skalViseMedlemskapDialog =
-    harFyltUtSeparasjonSpørsmålet ||
-    erSøknadsBegrunnelseBesvart(søknad.sivilstatus);
+    harFyltUtSeparasjonSpørsmålet || erÅrsakEnsligBesvart(søknad.sivilstatus);
 
   return (
     <Side

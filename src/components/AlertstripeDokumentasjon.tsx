@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { ReactComponent as FilIkon } from '../assets/fil.svg';
 import { BodyShort } from '@navikt/ds-react';
 

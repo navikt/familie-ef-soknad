@@ -3,7 +3,7 @@ import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
-import { SeparasjonSpørsmål } from './SivilstatusConfig';
+import { harSøktSeparasjonSpørsmål } from './SivilstatusConfig';
 import SøkerHarSøktSeparasjon from './SøkerHarSøktSeparasjon';
 import { ISivilstatus } from '../../../../models/steg/omDeg/sivilstatus';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ const SøkerErGift: React.FC<Props> = ({
   settDato,
   sivilstatus,
 }) => {
-  const separasjonsSpørsmål: ISpørsmål = SeparasjonSpørsmål(
+  const separasjonsSpørsmål: ISpørsmål = harSøktSeparasjonSpørsmål(
     useLokalIntlContext()
   );
   const { harSøktSeparasjon } = sivilstatus;

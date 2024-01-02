@@ -1,6 +1,7 @@
 import React from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-import Datovelger, {
+import {
+  Datovelger,
   DatoBegrensning,
 } from '../../../components/dato/Datovelger';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
@@ -45,7 +46,6 @@ const FåttJobbTilbud: React.FC<Props> = ({
         tekstid={'dinSituasjon.datovelger.jobb'}
         datobegrensning={DatoBegrensning.FremtidigeDatoer}
         settDato={settDato}
-        fetSkrift={true}
       />
     </KomponentGruppe>
   );

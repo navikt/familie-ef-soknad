@@ -72,8 +72,6 @@ export default {
   'banner.tittel.overgangsstønad': 'Apply for transitional benefit',
   'side.bekreftelse':
     'I, [0], hereby confirm that the information I provide is correct and complete',
-  'side.info.overgangsstønad':
-    'Overgangsstønaden skal bidra til å sikre inntekt i en tidsbegrenset periode. Vi vil beregne overgangsstønaden din ut i fra den arbeidsinntekten du har eller kan forventes å få.',
   'side.fortsettSøknad.påbegyntSøknad':
     'You have an ongoing application form. Would you like to continue applying on this one or begin a new one?',
   'side.fortsettSøknad.knapp.startPåNytt': 'Start over',
@@ -122,30 +120,23 @@ export default {
   'sivilstatus.kode.SKILT_PARTNER': 'Divorced',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Surviving partner',
   'sivilstatus.kode.ANNET':
-    'Annen sivilstatus enn GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
+    'Other Marital status than GIFT, UGIF, SAMB, SEPA, SKIL, SEPR',
   'sivilstatus.spm.søktSeparasjon':
     'Have you applied for a separation, applied for a divorce or filed for a divorce case in court?',
   'sivilstatus.alert-info.søktSeparasjon':
     'You must submit confirmation from the County Governor or court',
   'sivilstatus.alert-advarsel.søktSeparasjon':
     'If you are married, you are not entitled to benefit for single parents',
-  'sivilstatus.alert.samlivsbruddForeldre':
-    'Du må legge ved erklæring om samlivsbrudd',
   'sivilstatus.datovelger.søktSeparasjon':
     'When did you apply or start legal proceedings?',
   'sivilstatus.datovelger.samlivsbrudd': 'Date of end of relationship',
   'sivilstatus.datovelger.flyttetFraHverandre': 'When did you move apart?',
   'sivilstatus.datovelger.endring':
-    'Når skjedde endringen / når skal endringen skje?',
+    'When did the change happen / when will the change happen?',
   'sivilstatus.spm.erUformeltGift':
     'Are you married without this having been registered in the Norwegian National Registry?',
   'sivilstatus.alert.erUformeltGift':
     'You must provide documentation of your marriage',
-  'sivilstatus.lesmer-åpne.søkerGiftIUtlandet': 'Why are we asking this?',
-  'sivilstatus.lesmer-innhold.søkerGiftIUtlandet':
-    'Vi henter opplysningene våre fra Folkeregisteret. Hvis du har giftet deg etter religiøse eller kulturelle tradisjoner og ekteskapet ikke er godkjent etter norsk ekteskapslov, er ikke giftemålet registrert i Folkeregisteret.',
-  'sivilstatus.dok.søkerGiftIUtlandet':
-    'Du må legge ved dokumentasjon på inngått ekteskap',
   'sivilstatus.lesmer-åpne.erUformeltGift': 'The reason we ask about this',
   'sivilstatus.lesmer-innhold.erUformeltGift':
     'We obtain our information from the National Registry. If you got married according to religious or cultural traditions and the marriage is not approved pursuant to Norwegian Marriage Act, this marriage will not be registered in the National Registry. ',
@@ -185,6 +176,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Have you spent more periods abroad during the last five years?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Add a period spent abroad',
+  'landVelger.alternativ': 'Select an option',
   'stegtittel.bosituasjon': 'Your living situation',
   'bosituasjon.spm.delerSøkerBoligMedAndreVoksne':
     'Do you share your home with other adults?',
@@ -373,8 +365,8 @@ export default {
   'barnasbosted.feilmelding.adressebeskyttelse':
     'One or several of your children, or other parent, are registered with address protection and applying electronically is therefore not available. You have to use this <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a> to apply.',
   'barnasbosted.oppsummering.navn.label': 'Name of the other parent',
-  'barnasbosted.medforelder.navn': 'Navn',
-  'barnasbosted.medforelder.alder': 'Alder',
+  'barnasbosted.medforelder.navn': 'Name',
+  'barnasbosted.medforelder.alder': 'Age',
   'barnasbosted.medforelder.gjenbrukt':
     'You have answered the questions regarding your relationship with the other parent for another child. Because you have multiple children with the same parent, you only need to answer the questions once. Go to the child where the questions were answered in order to change your answers.',
   'stegtittel.arbeidssituasjon': 'Work, education and other activities',
@@ -391,7 +383,7 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
   'arbeidssituasjon.spm.hjelpetekst-innhold':
-  'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity to qualify. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
+    'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity after your youngest child has turned 1 year. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -445,7 +437,13 @@ export default {
     'The organisation number must have 9 digits',
   'firma.datovelger.etablering': 'When did you set up the company?',
   'firma.label.arbeidsmengde': 'How much do you work?',
-  'firma.label.arbeidsuke': 'What does your average work week look like?',
+  'firma.label.arbeidsuke': 'Describe the work week in your company',
+  'firma.lesmer-innhold.arbeidsuke':
+    'We need specific information about your tasks and how many hours you work on average per week.',
+  'firma.label.overskudd':
+    'What do you expect the pre-tax profit of your business to be in [0]?',
+  'firma.lesmer-innhold.overskudd':
+    'The profit is the sum of your income minus your expenses. If you do not expect a profit, enter NOK 0 in the input field.',
   'firma.knapp.slett': 'Remove company',
   'firmaer.label.flereFirmaer': 'Do you work elsewhere?',
   'firmaer.knapp.leggTilFirma': 'Add a company',
@@ -837,7 +835,7 @@ export default {
     'The main rule is that you can receive child care benefit until your child has completed their fourth year at school. <br/><br/>At this stage, children have normally become sufficiently self-reliant and mature that they can cope on their own outside school hours both at home and in their usual local environment while you are absent due to work.<br/><br/>In some cases, you may be entitled to receive child care benefit after your child has completed their fourth year of school:<ul><li>If you have children who need significantly more looking after than other children of the same age. You must provide documentation of this need in the form of a statement from a doctor, specialist or other health care professional.</li><li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li><li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li></ul>',
   'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0] need for special supervision',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">form</a> to apply.',
   'barnepass.sidetittel': 'About the child minding arrangements',
   'barnepass.spm.årsak': 'Why does [0] need looking after?',
   'barnepass.alert-advarsel.årsak':
@@ -884,7 +882,7 @@ export default {
   'skolepenger.overskrift': 'Application for support for school fees',
   'banner.tittel.skolepenger': 'Application for support for school fees',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">form</a> to apply.',
   'banner.tittel.arbeidssøker': 'Single parent who is a job seeker',
   'skjema.hei': 'Hello, [0]!',
   'skjema.knapp.start': 'Start',
@@ -908,4 +906,138 @@ export default {
   'skjema.takk': 'Thank you',
   'skjema.alert.mottatt':
     'Information about you as a job seeker has been received',
+  'alert.warning.oversettingUnderArbeid':
+    "We are in the process of translating this application. The few missingtranslations will appear in Norwegian until we've translated them.",
+
+  'forside.overgangsstønad.erDuEnsligMorEllerFar':
+    'If you are a single parent and have children under the age of 8 years, transitional benefit will ensure you have income for up to three years. In some cases, this period can be extended.\n\nYour income determines how much benefit you are entitled to.',
+  'forside.overgangsstønad.sammeSøknad':
+    'You use the same application whether you are applying for the first time or seeking an extension or an increase in your benefit period.',
+  'forside.overgangsstønad.merOmOvergangsstønad':
+    '<a className="lenkte-tekst" href="https://www.nav.no/overgangsstonad-enslig/en">Transitional Benefit in more detail</a>',
+  'forside.overgangsstønad.overskrift.riktigeOpplysninger':
+    'It is important that the information you give us is correct',
+  'forside.overgangsstønad.riktigeOpplysninger':
+    'In order for us to be able to process your application, you must provide us with the correct information.',
+  'forside.overgangsstønad.meldeEndringer':
+    'If you receive transitional benefit, you must inform us of any major changes in your life, such as changes in your living and family situation, or changes in your work or education. The same applies if there are any changes in your income.',
+  'forside.overgangsstønad.overskrift.sendeDokumentasjon':
+    'You may need to submit documentation',
+  'forside.overgangsstønad.beskjedDokumentere':
+    'You will be notified as you fill in the application if you need to provide documentation of any of the information you have provided. In some cases, we may also need more information. We will let you know if we do.',
+  'forside.overgangsstønad.merInformasjon': '',
+  'forside.overgangsstønad.oversiktDokumentasjon':
+    '<a href="https://www.nav.no/overgangsstonad-enslig/en#apply">Overview of what must be documented</a>',
+  'forside.overgangsstønad.overskrift.henteInformasjon':
+    'We will collect information about you',
+  'forside.overgangsstønad.henteInformasjon':
+    'In addition to the information you provide in the application, we collect information about you in order to determine whether you are entitled to benefit.',
+  'forside.overgangsstønad.viHenter': 'We collect:',
+  'forside.overgangsstønad.henterPunktliste':
+    '<ul><li><strong>personal information</strong> about you, your child(ren) and the other parent of your children from the National Registry</li><li><strong>ininformation about your income</strong> from the Norwegian Tax Administration</li><li><strong>information about your work situation</strong> from the State Register of Employers and Employees</li></ul>',
+  'forside.overgangsstønad.tidligereOpplysninger':
+    'We may also use information you have given us in the past, or information you have given us in other contexts, if this is relevant and necessary.',
+  'forside.overgangsstønad.personopplysningeneDine':
+    '<span><a href="https://www.nav.no/personvernerklaering/en">About how we process your personal data</a></span>',
+  'forside.overgangsstønad.overskrift.slikSøkerDu': 'How to apply',
+  'forside.overgangsstønad.slikSøkerDu':
+    'We will save your application until the end of tomorrow. This means you can take breaks while filling it in. You can also delete information during this period.',
+  'forside.overgangsstønad.viLagrerSøknadenDin': '',
+  'forside.overgangsstønad.manglerDuDokumentasjon':
+    'If you do not have all the documentation you need, you can submit it later.',
+  'forside.overgangsstønad.disclaimerTekst':
+    'I am aware that I may lose my right to transitional benefit if I have not provided the correct information. I am also aware that I will have to pay back any money I receive that I am not entitled to and that I have received because I have failed to provide information or have provided incorrect information.',
+
+  'forside.barnetilsyn.info':
+    'This benefit covers part of the cost of child minding for working single parents who have sole care of a child.',
+  'forside.barnetilsyn.fåStønadSkoleår':
+    'You can receive this benefit until the child finishes their fourth year of school. In some cases, you may be entitled to receive it after the child has completed their fourth year of school.',
+  'forside.barnetilsyn.merOmStønad':
+    '<a className="lenkte-tekst" href="https://www.nav.no/barnetilsyn-enslig/en">Child minding benefit in more detail</a>',
+  'forside.barnetilsyn.arbeidssøkerUtdanning':
+    'If you are currently not in work, but are registered with NAV as a job seeker or taking education that NAV has approved, as a general rule you will not be entitled to this benefit. In this case, you can apply for <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig/en">benefit for child minding.</a>',
+  'forside.barnetilsyn.overskrift.riktigeOpplysninger':
+    'It is important that the information you give us is correct',
+  'forside.barnetilsyn.riktigeOpplysninger':
+    'In order for us to be able to process your application, you must provide us with the correct information.',
+  'forside.barnetilsyn.meldeEndringer':
+    'If you receive child care benefit, you must inform us of any major changes in your life, such as changes in your living and family situation or changes in your work situation. The same applies if there are any changes in your child minding expenses or your income.',
+  'forside.barnetilsyn.overskrift.sendeDokumentasjon':
+    'You may need to submit documentation',
+  'forside.barnetilsyn.beskjedDokumentere':
+    'You will be notified as you fill in the application if you need to provide documentation of any of the information you have provided. In some cases, we may also need more information. We will let you know if we do.',
+  'forside.barnetilsyn.merInformasjon': '',
+  'forside.barnetilsyn.oversiktDokumentasjon':
+    '<a href="https://www.nav.no/barnetilsyn-enslig/en"> Overview of what must be documented </a>',
+  'forside.barnetilsyn.overskrift.henteInformasjon':
+    'We will collect information about you',
+  'forside.barnetilsyn.henteInformasjon':
+    'In addition to the information you provide in the application, we collect information about you in order to determine whether you are entitled to benefit.',
+  'forside.barnetilsyn.viHenter': 'We collect:',
+  'forside.barnetilsyn.henterPunktliste':
+    '<ul><li><strong>personal information</strong> about you, your child(ren) and the other parent of your children from the National Registry</li><li><strong>information about your income</strong> from the Norwegian Tax Administration</li><li><strong>information about your work situation</strong> from the State Register of Employers and Employees</li></ul>',
+  'forside.barnetilsyn.tidligereOpplysninger':
+    'We may also use information you have given us in the past, or information you have given us in other contexts, if this is relevant and necessary.',
+  'forside.barnetilsyn.personopplysningeneDine':
+    '<span><a href="https://www.nav.no/personvernerklaering/en">About how we process your personal data</a></span>',
+  'forside.barnetilsyn.overskrift.slikSøkerDu': 'How to apply',
+  'forside.barnetilsyn.slikSøkerDu':
+    'We will save your application until the end of tomorrow. This means you can take breaks while filling it in. You can also delete information during this period.',
+  'forside.barnetilsyn.slikSøkerDu2':
+    'If you do not have all the documentation you need, you can submit it later.',
+  'forside.barnetilsyn.slikSøkerDu3': '',
+  'forside.barnetilsyn.slikSøkerDu4': '',
+  'forside.barnetilsyn.disclaimerTekst':
+    'I am aware that I may lose my right to child care benefit if I have not provided the correct information. I am also aware that I will have to pay back any money I receive that I am not entitled to and that I have received because I have failed to provide information or have provided incorrect information.',
+
+  'forside.skolepenger.innledning':
+    'This benefit covers actual expenses related to tuition fees, semester fees and examination fees for single parents taking education. The benefit covers your expenses up to a defined upper limit.',
+  'forside.skolepenger.merInfoLenke':
+    '<a className="lenkte-tekst" href="https://www.nav.no/skolepenger-enslig">Support for school fees in more detail</a>',
+  'forside.skolepenger.overskrift.riktigeOpplysninger':
+    'It is important that the information you give us is correct',
+  'forside.skolepenger.riktigeOpplysninger':
+    'In order for us to be able to process your application, you must provide us with the correct information.',
+  'forside.skolepenger.meldeEndringer':
+    'If you receive support for school fees, you must inform us of any major changes in your life, such as changes in your living and family situation or changes in your education situation.',
+  'forside.skolepenger.overskrift.sendeDokumentasjon':
+    'You may need to submit documentation',
+  'forside.skolepenger.beskjedDokumentere':
+    'You will be notified as you fill in the application if you need to provide documentation of any of the information you have provided. In some cases, we may also need more information. We will let you know if we do.',
+  'forside.skolepenger.dokumentasjonsOversiktLenke':
+    '<a href="https://www.nav.no/skolepenger-enslig#soke">Overview of what must be documented</a>',
+  'forside.skolepenger.overskrift.henteInformasjon':
+    'We will collect information about you',
+  'forside.skolepenger.henteInformasjon':
+    'In addition to the information you provide in the application, we collect information about you in order to determine whether you are entitled to benefit.',
+  'forside.skolepenger.viHenter': 'We collect:',
+  'forside.skolepenger.informasjonHentet':
+    '<ul><li><strong>personal information</strong> about you, your child(ren) and the other parent of your children from the National Registry</li></ul>',
+  'forside.skolepenger.tidligereOpplysninger':
+    'We may also use information you have given us in the past, or information you have given us in other contexts, if this is relevant and necessary.',
+  'forside.skolepenger.personopplysningeneDineLenke':
+    '<span><a href="https://www.nav.no/personvernerklaering">About how we process your personal data</a></span>',
+  'forside.skolepenger.overskrift.slikSøkerDu': 'How to apply',
+  'forside.skolepenger.slikSøkerDu':
+    'We will save your application until the end of tomorrow. This means you can take breaks while filling it in. You can also delete information during this period.',
+  'forside.skolepenger.lagringSøknad': '',
+  'forside.skolepenger.manglerDuDokumentasjon':
+    'If you do not have all the documentation you need, you can submit it later.',
+  'forside.skolepenger.disclaimerTekst':
+    'I am aware that I may lose my right to support for school fees if I have not provided the correct information. I am also aware that I will have to pay back any money I receive that I am not entitled to and that I have received because I have failed to provide information or have provided incorrect information.',
+
+  'forside.arbeidssøker.info':
+    'If you are applying for jobs at the same time as you are applying for or receiving transitional benefit, you must provide information about your ability to work so that we can assess you as a job seeker.',
+  'forside.arbeidssøker.krav':
+    'We may require that you are either in work, registered with NAV as a job seeker, or in education while you are receiving transitional benefit.',
+  'forside.arbeidssøker.lerMer':
+    '<span><a href="https://www.nav.no/overgangsstonad-enslig#aktivitet/en">Read more about receiving transitional benefit while you are a job seeker</a></span>',
+  'forside.arbeidssøker.overskrift.riktigeOpplysninger':
+    'It is important that the information you give us is correct',
+  'forside.arbeidssøker.riktigeOpplysninger':
+    'In order for us to be able to process your application, you must provide us with the correct information.',
+  'forside.arbeidssøker.meldeEndringer':
+    'If you receive transitional benefit, you must inform us of any major changes in your life, such as changes in your living and family situation, or changes in your work or education. The same applies if there are any changes in your income.',
+  'forside.arbeidssøker.personopplysningeneDineLenke':
+    '<span><a href="https://www.nav.no/personvernerklaering/en">About how we process your personal data</a></span>',
 };

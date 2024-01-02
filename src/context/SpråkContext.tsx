@@ -1,9 +1,18 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import { getMessages } from '../language/utils';
 import { LocaleType } from '../language/typer';
 import { LokalIntlProvider } from './LokalIntlContext';
 
-const SpråkContext = createContext<any>(['', () => {}]);
+const SpråkContext = createContext<
+  [LocaleType, Dispatch<SetStateAction<LocaleType>>]
+>([LocaleType.nb, () => {}]);
+
 const useSpråkContext = () => useContext(SpråkContext);
 
 const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({

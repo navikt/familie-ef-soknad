@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import classnames from 'classnames';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
@@ -156,7 +156,7 @@ const Arbeidsgiver: React.FC<Props> = ({
               'arbeidsforhold.label.arbeidsmengde.beskrivelse'
             }
             type={'number'}
-            bredde={'XS'}
+            bredde={'XXS'}
             settInputFelt={(e) =>
               settTekstInputFelt(
                 e,

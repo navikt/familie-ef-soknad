@@ -45,26 +45,25 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-    const endretMedlemskap = medlemskap;
 
     if (
       spørsmål.søknadid === EMedlemskap.søkerOppholderSegINorge &&
       valgtSvar.id === ESvar.JA &&
-      endretMedlemskap.oppholdsland
+      medlemskap.oppholdsland
     ) {
-      delete endretMedlemskap.oppholdsland;
+      delete medlemskap.oppholdsland;
     }
 
     if (
       spørsmål.søknadid === EMedlemskap.søkerBosattINorgeSisteTreÅr &&
       valgtSvar.id === ESvar.JA &&
-      endretMedlemskap.perioderBoddIUtlandet
+        medlemskap.perioderBoddIUtlandet
     ) {
-      delete endretMedlemskap.perioderBoddIUtlandet;
+      delete medlemskap.perioderBoddIUtlandet;
     }
 
     settMedlemskap({
-      ...endretMedlemskap,
+      ...medlemskap,
       [spørsmål.søknadid]: {
         label: intl.formatMessage({ id: spørsmål.tekstid }),
         verdi: svar,
@@ -73,10 +72,9 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   };
 
   const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-    const endretMedlemskap = medlemskap;
 
     settMedlemskap({
-      ...endretMedlemskap,
+      ...medlemskap,
       oppholdsland: {
         spørsmålid: spørsmål.søknadid,
         svarid: valgtSvar.id,
@@ -88,7 +86,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
   const hentValgtSvar = (spørsmål: ISpørsmål, medlemskap: IMedlemskap) => {
     for (const [key, value] of Object.entries(medlemskap)) {
-      if (key === spørsmål.søknadid && value !== undefined) {
+      if (key === spørsmål.søknadid && value !== undefined && value !== null) {
         return value.verdi;
       }
     }
@@ -120,7 +118,8 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
       )}
 
       {(søkerOppholderSegINorge?.verdi === true ||
-        oppholdsland?.hasOwnProperty('verdi')) && (
+        (søkerOppholderSegINorge?.verdi === false &&
+          oppholdsland?.hasOwnProperty('verdi'))) && (
         <>
           <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>
             <JaNeiSpørsmål

@@ -1,6 +1,5 @@
 import React, { SyntheticEvent } from 'react';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { RadioPanel } from 'nav-frontend-skjema';
 import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
@@ -11,6 +10,9 @@ import {
 } from '../../../utils/barn';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { cloneDeep } from 'lodash';
+import RadioPanelCustom from '../../../components/panel/RadioPanel';
+import { RadioGroup } from '@navikt/ds-react';
+import styled from 'styled-components';
 
 interface Props {
   barn: IBarn;
@@ -24,6 +26,21 @@ interface Props {
   oppdaterBarn: (barn: IBarn, erFørsteAvflereBarn: boolean) => void;
 }
 
+const StyledAnnenForelderSpørsmål = styled.div`
+  legend {
+    display: none;
+  }
+  .navds-fieldset .navds-radio-buttons {
+    margin-top: 0;
+  }
+  .navds-radio-buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: min-content;
+    grid-gap: 1rem;
+    padding-top: 1rem;
+  }
+`;
 const AnnenForelderKnapper: React.FC<Props> = ({
   barn,
   forelder,
@@ -93,36 +110,41 @@ const AnnenForelderKnapper: React.FC<Props> = ({
 
   return (
     <KomponentGruppe>
-      <div className="andre-forelder-valg">
-        {førsteBarnTilHverForelder.map((b) => {
-          if (
-            !b.forelder?.borINorge &&
-            !b.forelder?.kanIkkeOppgiAnnenForelderFar
-          )
-            return null;
+      <StyledAnnenForelderSpørsmål>
+        <RadioGroup legend={null} value={barn.annenForelderId}>
+          {førsteBarnTilHverForelder.map((b) => {
+            if (
+              !b.forelder?.borINorge &&
+              !b.forelder?.kanIkkeOppgiAnnenForelderFar
+            )
+              return null;
 
-          return (
-            <RadioPanel
-              key={`${andreForelder}${b.id}`}
-              name={`${andreForelder}${b.id}`}
-              label={`${intl.formatMessage({
+            return (
+              <RadioPanelCustom
+                key={`${andreForelder}${b.id}`}
+                name={`${andreForelder}${b.id}`}
+                value={b.id}
+                checked={barn.annenForelderId === b.id}
+                onChange={(e) => leggTilSammeForelder(e, b)}
+              >{`${intl.formatMessage({
                 id: 'barnasbosted.forelder.sammesom',
-              })} ${hentBarnetsNavnEllerBeskrivelse(b, intl)}`}
-              value={`${andreForelder}${b.id}`}
-              checked={barn.annenForelderId === b.id}
-              onChange={(e) => leggTilSammeForelder(e, b)}
-            />
-          );
-        })}
-        <RadioPanel
-          key={andreForelderAnnen}
-          name={`${andreForelder}${barn.navn}`}
-          label={intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
-          value={andreForelderAnnen}
-          checked={barn.annenForelderId === lagtTilAnnenForelderId}
-          onChange={() => leggTilAnnenForelder()}
-        />
-      </div>
+              })} ${hentBarnetsNavnEllerBeskrivelse(
+                b,
+                intl
+              )}`}</RadioPanelCustom>
+            );
+          })}
+          <RadioPanelCustom
+            key={andreForelderAnnen}
+            name={`${andreForelder}${barn.navn}`}
+            value={lagtTilAnnenForelderId}
+            checked={barn.annenForelderId === lagtTilAnnenForelderId}
+            onChange={() => leggTilAnnenForelder()}
+          >
+            {intl.formatMessage({ id: 'barnasbosted.forelder.annen' })}
+          </RadioPanelCustom>
+        </RadioGroup>
+      </StyledAnnenForelderSpørsmål>
     </KomponentGruppe>
   );
 };

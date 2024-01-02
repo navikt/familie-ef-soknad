@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button, Heading, Modal } from '@navikt/ds-react';
+import { Button, Modal } from '@navikt/ds-react';
 import React from 'react';
 
 const ModalContainer = styled(Modal)<{ maxWidth?: number }>`
