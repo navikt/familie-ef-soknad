@@ -371,7 +371,7 @@ export default {
   'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'Grunnen til at vi spør om dette',
-  'arbeidssituasjon.spm.hjelpetekst-innhold': `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
+  'arbeidssituasjon.spm.hjelpetekst-innhold': `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet etter at det yngste barnet ditt har fylt 1 år. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
