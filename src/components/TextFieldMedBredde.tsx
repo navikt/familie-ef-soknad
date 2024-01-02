@@ -7,11 +7,11 @@ interface Props {
   bredde?: bredde;
 }
 
-export const TextFieldMedBredde = styled(TextField)<Props>((
-  props: Props
-): CSSProp => {
-  return props.bredde ? breddeTilStyle[props.bredde] : {};
-});
+export const TextFieldMedBredde = styled(TextField)<Props>`
+  input {
+    ${(props) => (props.bredde ? breddeTilStyle[props.bredde] : '')}
+  }
+`;
 
 const breddeTilStyle: Record<bredde, CSSProp> = {
   L: {
@@ -30,14 +30,14 @@ const breddeTilStyle: Record<bredde, CSSProp> = {
     maxWidth: '400px',
   },
   XS: {
-    width: '80px',
+    width: '110px',
   },
   XXL: {
     width: '100%',
     maxWidth: '470px',
   },
   XXS: {
-    width: '75px',
+    width: '80px',
   },
   fullbredde: {
     width: '100%',

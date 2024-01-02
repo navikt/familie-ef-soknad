@@ -371,7 +371,7 @@ export default {
   'arbeidssituasjon.spm': 'Hvordan er situasjonen din?',
   'arbeidssituasjon.spm.hjelpetekst': 'Du kan velge flere alternativer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'Grunnen til at vi spør om dette',
-  'arbeidssituasjon.spm.hjelpetekst-innhold': `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
+  'arbeidssituasjon.spm.hjelpetekst-innhold': `Vi trenger opplysninger om hvilken aktivitet du er i for å vurdere om du har rett til stønad. Du må som hovedregel være i minst 50 prosent yrkesrettet aktivitet etter at det yngste barnet ditt har fylt 1 år. I noen tilfeller kan vi gjøre unntak fra aktivitetsplikten.<br/><br/>Du kan lese mer om aktivitetsplikten på <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">nav.no/overgangsstonad-enslig#aktivitet</a>.`,
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'Jeg er hjemme med barn under 1 år',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -422,7 +422,14 @@ export default {
   'firma.feilmelding.organisasjonnr': 'Organisasjonsnummeret må ha 9 siffer',
   'firma.datovelger.etablering': 'Når etablerte du firmaet?',
   'firma.label.arbeidsmengde': 'Hvor mye jobber du?',
-  'firma.label.arbeidsuke': 'Hvordan ser arbeidsuken din ut?',
+  'firma.label.arbeidsuke': 'Beskriv arbeidsuken i virksomheten din',
+  'firma.lesmer-innhold.arbeidsuke':
+    'Vi trenger konkrete opplysninger om arbeidsoppgavene dine og hvor mange timer du jobber i snitt per uke.',
+  'firma.label.overskudd':
+    'Hva forventer du at overskuddet i virksomheten din blir før skatt i [0]?',
+  'firma.lesmer-åpne.overskudd': '',
+  'firma.lesmer-innhold.overskudd':
+    'Overskuddet er summen av inntektene dine, minus de utgiftene du har. Hvis du ikke forventer et overskudd, oppgir du 0 kroner i feltet.',
   'firma.knapp.slett': 'Fjern firma',
   'firmaer.label.flereFirmaer': 'Har du flere firmaer?',
   'firmaer.knapp.leggTilFirma': 'Legg til firma',

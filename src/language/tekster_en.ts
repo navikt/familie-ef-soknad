@@ -383,7 +383,7 @@ export default {
   'arbeidssituasjon.spm.hjelpetekst': 'You can select more than one answer',
   'arbeidssituasjon.spm.hjelpetekst-åpne': 'The reason we ask about this',
   'arbeidssituasjon.spm.hjelpetekst-innhold':
-    'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity to qualify. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
+    'We need information about your work situation in order to assess whether you are qualified to receive transitional benefit for single parents. You must be at least 50 per cent engaged in some form of occupational activity after your youngest child has turned 1 year. However, there are some exceptions to the general rule.<br/><br/>Read more about these requirements <a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">here</a>.',
   'arbeidssituasjon.svar.erHjemmeMedBarnUnderEttÅr':
     'I am at home with children under the age of 1 year',
   'arbeidssituasjon.svar.erArbeidstakerOgEllerLønnsmottakerFrilanser':
@@ -437,7 +437,13 @@ export default {
     'The organisation number must have 9 digits',
   'firma.datovelger.etablering': 'When did you set up the company?',
   'firma.label.arbeidsmengde': 'How much do you work?',
-  'firma.label.arbeidsuke': 'What does your average work week look like?',
+  'firma.label.arbeidsuke': 'Describe the work week in your company',
+  'firma.lesmer-innhold.arbeidsuke':
+    'We need specific information about your tasks and how many hours you work on average per week.',
+  'firma.label.overskudd':
+    'What do you expect the pre-tax profit of your business to be in [0]?',
+  'firma.lesmer-innhold.overskudd':
+    'The profit is the sum of your income minus your expenses. If you do not expect a profit, enter NOK 0 in the input field.',
   'firma.knapp.slett': 'Remove company',
   'firmaer.label.flereFirmaer': 'Do you work elsewhere?',
   'firmaer.knapp.leggTilFirma': 'Add a company',

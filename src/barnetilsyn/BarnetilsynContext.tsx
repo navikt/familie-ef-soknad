@@ -27,6 +27,7 @@ import { LokalIntlShape } from '../language/typer';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
+import { dagensDato, formatIsoDate } from '../utils/dato';
 
 // -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -55,6 +56,7 @@ const initialState = (intl: LokalIntlShape): ISøknad => {
     },
     dokumentasjonsbehov: [],
     harBekreftet: false,
+    datoPåbegyntSøknad: formatIsoDate(dagensDato),
   };
 };
 

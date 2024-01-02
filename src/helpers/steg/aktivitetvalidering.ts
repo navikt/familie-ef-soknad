@@ -43,7 +43,8 @@ export const erSisteFirmaUtfylt = (firmaer: IFirma[]) => {
         firma?.etableringsdato?.verdi,
         DatoBegrensning.TidligereDatoer
       ) &&
-      firma.arbeidsuke?.verdi
+      firma.arbeidsuke?.verdi &&
+      firma.overskudd?.verdi
     );
   });
 };
