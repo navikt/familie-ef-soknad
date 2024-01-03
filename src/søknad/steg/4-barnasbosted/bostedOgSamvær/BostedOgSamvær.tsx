@@ -1,7 +1,6 @@
 import React from 'react';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import { harAnnenForelderSamværMedBarn } from '../ForeldreConfig';
-
 import HvordanPraktiseresSamværet from '../HvordanPraktiseresSamværet';
 import {
   ESvar,
@@ -14,7 +13,6 @@ import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
-
 import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
 import {

@@ -11,6 +11,7 @@ import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { hentTekst } from '../../../utils/søknad';
 import {
   erForelderUtfylt,
+  utfyltBorINorge,
   utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
@@ -37,7 +38,6 @@ import {
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
-import { consoleLogLokaltOgPreprod } from '../../../utils/consoleLogLokaltOgPreprod';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -47,12 +47,8 @@ const visBostedOgSamværSeksjon = (
   forelder: IForelder,
   visesBorINorgeSpørsmål: boolean
 ) => {
-  const borForelderINorgeSpm =
-    forelder.borINorge?.verdi === true ||
-    (forelder.land && forelder.land?.verdi !== '');
-
   return visesBorINorgeSpørsmål
-    ? borForelderINorgeSpm
+    ? utfyltBorINorge(forelder)
     : erGyldigDato(forelder.fødselsdato?.verdi);
 };
 
@@ -154,7 +150,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   const skalFylleUtHarBoddSammenFør =
-    harValgtBorISammeHusEllerBorIkkeINorge(forelder);
+    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
+    utfyltBorINorge(forelder);
 
   return (
     <div className="barnas-bosted">
@@ -242,7 +239,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         {!barnHarSammeForelder &&
           visSpørsmålHvisIkkeSammeForelder(forelder) && (
             <>
-              {forelder.borINorge?.verdi && (
+              {utfyltBorINorge(forelder) && (
                 <BorAnnenForelderISammeHus
                   forelder={forelder}
                   settForelder={settForelder}

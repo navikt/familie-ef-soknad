@@ -11,19 +11,26 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
 
+export const utfyltBorINorge = (forelder: IForelder) => {
+  const { borINorge, land } = forelder;
+  return (
+    borINorge?.verdi === true ||
+    (borINorge?.verdi === false && stringHarVerdiOgErIkkeTom(land?.verdi))
+  );
+};
+
 export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
-  const { borINorge, land, avtaleOmDeltBosted } = forelder;
-  const utfyltBorINorge =
-    borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
+  const { avtaleOmDeltBosted } = forelder;
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
 
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
-    utfyltBorINorge &&
+    utfyltBorINorge(forelder) &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder) &&
@@ -78,7 +85,7 @@ export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
   else return true;
 };
 
-export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
+export const utfyltNødvendigBostedSpørsmål = (forelder: IForelder) => {
   const utfyltBorISammeHus =
     forelder?.borINorge?.verdi &&
     forelder?.borAnnenForelderISammeHus?.svarid ===
@@ -99,6 +106,7 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
     forelder?.boddSammenFør?.verdi === true
       ? harValgtSvar(forelder?.boddSammenFør?.verdi) && harFlyttetFraDato
       : harValgtSvar(forelder?.boddSammenFør?.verdi);
+
   const utfyltHvorMyeSammen =
     forelder?.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom
       ? harValgtSvar(forelder.beskrivSamværUtenBarn?.verdi)
