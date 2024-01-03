@@ -115,6 +115,7 @@ export default {
   'sivilstatus.kode.SKILT': 'Skilt',
   'sivilstatus.kode.SEPARERT': 'Separert',
   'sivilstatus.kode.PARTNER': 'Partner',
+  'sivilstatus.kode.REGISTRERT_PARTNER': 'Registrert partner',
   'sivilstatus.kode.SEPARERT_PARTNER': 'Separert',
   'sivilstatus.kode.SKILT_PARTNER': 'Skilt',
   'sivilstatus.kode.GJENLEVENDE_PARTNER': 'Gjenlevende partner',
