@@ -37,6 +37,7 @@ import {
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
+import { consoleLogLokaltOgPreprod } from '../../../utils/consoleLogLokaltOgPreprod';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -259,7 +260,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
               {((skalFylleUtHarBoddSammenFør &&
                 boddSammenFør?.verdi === false) ||
-                erGyldigDato(flyttetFra?.verdi)) && (
+                (skalFylleUtHarBoddSammenFør &&
+                  erGyldigDato(flyttetFra?.verdi))) && (
                 <HvorMyeSammen
                   forelder={forelder}
                   barn={barn}
