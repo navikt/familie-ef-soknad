@@ -26,7 +26,7 @@ const NårSkalDuVæreElevEllerStudent: React.FC<Props> = ({
     // eslint-disable-next-line
   }, []);
 
-  const settPeriode = (dato: string, nøkkel: EPeriode): void => {
+  const settPeriode = (nøkkel: EPeriode, dato?: string): void => {
     utdanning.periode &&
       settUtdanning({
         ...utdanning,

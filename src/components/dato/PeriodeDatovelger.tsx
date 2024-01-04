@@ -43,7 +43,7 @@ interface Props {
   periode: IPeriode;
   fomTekstid?: string;
   tomTekstid?: string;
-  settDato: (dato: string, objektnøkkel: EPeriode) => void;
+  settDato: (objektnøkkel: EPeriode, dato?: string) => void;
   datobegrensning: DatoBegrensning;
   onValidate?: (isValid: boolean) => void;
 }
@@ -113,8 +113,8 @@ const PeriodeDatovelgere: FC<Props> = ({
     if (onValidate && feilmelding === '') onValidate(false);
   }, [feilmelding, onValidate, periode, datobegrensning]);
 
-  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
-    dato !== '' && settDato(dato, objektnøkkel);
+  const settPeriode = (objektnøkkel: EPeriode, dato?: string) => {
+    settDato(objektnøkkel, dato);
   };
 
   return (
@@ -130,14 +130,14 @@ const PeriodeDatovelgere: FC<Props> = ({
       </FeltGruppe>
       <PeriodeGruppe className="periodegruppe" aria-live="polite">
         <Datovelger
-          settDato={(e) => settPeriode(e, EPeriode.fra)}
+          settDato={(e) => settPeriode(EPeriode.fra, e)}
           valgtDato={periode.fra.verdi}
           tekstid={fomTekstid ? fomTekstid : 'periode.fra'}
           datobegrensning={datobegrensning}
         />
 
         <Datovelger
-          settDato={(e) => settPeriode(e, EPeriode.til)}
+          settDato={(e) => settPeriode(EPeriode.til, e)}
           valgtDato={periode.til.verdi}
           tekstid={tomTekstid ? tomTekstid : 'periode.til'}
           datobegrensning={datobegrensning}

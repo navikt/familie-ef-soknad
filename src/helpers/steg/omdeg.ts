@@ -106,14 +106,17 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
   if (perioderBoddIUtlandet !== null) {
-    const finnesUtenlandsperiodeUtenBegrunnelse = perioderBoddIUtlandet?.some(
-      (utenlandsopphold) =>
-        utenlandsopphold.begrunnelse.verdi === '' ||
-        !utenlandsopphold.begrunnelse
-    );
+    const finnesUtenlandsperiodeUtenBegrunnelseEllerDato =
+      perioderBoddIUtlandet?.some(
+        (utenlandsopphold) =>
+          utenlandsopphold.begrunnelse.verdi === '' ||
+          !utenlandsopphold.begrunnelse ||
+          utenlandsopphold.periode.fra.verdi === '' ||
+          utenlandsopphold.periode.til.verdi === ''
+      );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false
-      ? finnesUtenlandsperiodeUtenBegrunnelse
+      ? finnesUtenlandsperiodeUtenBegrunnelseEllerDato
         ? false
         : true
       : søkerBosattINorgeSisteTreÅr?.verdi

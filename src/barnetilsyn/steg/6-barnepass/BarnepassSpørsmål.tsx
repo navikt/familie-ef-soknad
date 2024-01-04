@@ -110,7 +110,7 @@ const BarnepassSpørsmål: FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
+  const settPeriode = (objektnøkkel: EPeriode, dato?: string) => {
     const periode = barnepassOrdning.periode
       ? barnepassOrdning.periode
       : tomPeriode;
