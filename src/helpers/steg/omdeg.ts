@@ -191,6 +191,12 @@ export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (
   );
 };
 
+export const validerSøkerBosattINorgeSisteFemÅr = (
+  søknad: ISøknad | ISøknadBT | ISøknadSK
+) => {
+  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
+};
+
 export const erStegFerdigUtfylt = (
   sivilstatus: ISivilstatus,
   sivilstand: string,

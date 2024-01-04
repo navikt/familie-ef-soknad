@@ -30,16 +30,13 @@ import {
 } from '../../../utils/amplitude';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
+import { validerSøkerBosattINorgeSisteFemÅr } from '../../../helpers/steg/omdeg';
 
 interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
 }
-
-const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
-  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
-};
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSøknad();
@@ -117,7 +114,7 @@ const SendSøknadKnapper: FC = () => {
           </Alert>
         </KomponentGruppe>
       )}
-      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+      {!validerSøkerBosattINorgeSisteFemÅr(søknad) && (
         <KomponentGruppe>
           <Alert size="small" variant="warning" inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
@@ -146,7 +143,7 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </Button>
 
-          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+          {validerSøkerBosattINorgeSisteFemÅr(søknad) && (
             <Button
               variant="primary"
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}

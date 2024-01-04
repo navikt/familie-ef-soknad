@@ -22,7 +22,7 @@ export const søkersOppholdsland = (land: ILandMedKode[]): ISpørsmål => ({
   svaralternativer: land,
 });
 
-export const bosattINorgeDeSisteTreÅr = (intl: LokalIntlShape): ISpørsmål => ({
+export const bosattINorgeDeSisteFemÅr = (intl: LokalIntlShape): ISpørsmål => ({
   søknadid: EMedlemskap.søkerBosattINorgeSisteTreÅr,
   tekstid: 'medlemskap.spm.bosatt',
   flersvar: false,

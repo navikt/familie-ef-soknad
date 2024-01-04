@@ -41,7 +41,7 @@ interface Innsending {
   venter: boolean;
 }
 
-const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
+const validerSøkerBosattINorgeSisteFemÅr = (søknad: ISøknad) => {
   return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
 };
 
@@ -120,7 +120,7 @@ const SendSøknadKnapper: FC = () => {
           </Alert>
         </KomponentGruppe>
       )}
-      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+      {!validerSøkerBosattINorgeSisteFemÅr(søknad) && (
         <KomponentGruppe>
           <Alert size="small" variant={'warning'} inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
@@ -146,7 +146,7 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </Button>
 
-          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+          {validerSøkerBosattINorgeSisteFemÅr(søknad) && (
             <Button
               variant={'primary'}
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}

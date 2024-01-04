@@ -21,7 +21,6 @@ import { oppdaterBarnLabels } from '../../../utils/barn';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
-
 import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
@@ -30,16 +29,13 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
+import { validerSøkerBosattINorgeSisteFemÅr } from '../../../helpers/steg/omdeg';
 
 interface Innsending {
   status: string;
   melding: string;
   venter: boolean;
 }
-
-const validerSøkerBosattINorgeSisteTreÅr = (søknad: ISøknad) => {
-  return søknad.medlemskap.søkerBosattINorgeSisteTreÅr;
-};
 
 const SendSøknadKnapper: FC = () => {
   const { søknad, settSøknad } = useSkolepengerSøknad();
@@ -112,7 +108,7 @@ const SendSøknadKnapper: FC = () => {
           </Alert>
         </KomponentGruppe>
       )}
-      {!validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+      {!validerSøkerBosattINorgeSisteFemÅr(søknad) && (
         <KomponentGruppe>
           <Alert size="small" variant="warning" inline>
             <LocaleTekst tekst="dokumentasjon.alert.gåTilbake" />{' '}
@@ -138,7 +134,7 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.tilbake'} />
           </Button>
 
-          {validerSøkerBosattINorgeSisteTreÅr(søknad) && (
+          {validerSøkerBosattINorgeSisteFemÅr(søknad) && (
             <Button
               variant="primary"
               onClick={() => !innsendingState.venter && sendSøknad(søknad)}
