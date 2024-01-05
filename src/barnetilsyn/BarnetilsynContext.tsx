@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad } from './models/søknad';
+import { ForrigeSøknad, ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -103,16 +103,23 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...prevSøknad.person,
             barn: [
               ...forrigeSøknad.person.barn,
-              ...prevSøknad.person.barn.filter(
-                (barn) =>
-                  !forrigeSøknad.person.barn.some(
-                    (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                  )
-              ),
+              ...leggTilNyttBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
         }));
       }
+    };
+
+    const leggTilNyttBarnSidenForrigeSøknad = (
+      prevSøknad: ISøknad,
+      forrigeSøknad: ForrigeSøknad
+    ) => {
+      return prevSøknad.person.barn.filter(
+        (barn) =>
+          !forrigeSøknad.person.barn.some(
+            (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+          )
+      );
     };
 
     useEffect(() => {
