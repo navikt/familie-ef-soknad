@@ -103,14 +103,14 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...prevSøknad.person,
             barn: [
               ...forrigeSøknad.person.barn,
-              ...leggTilNyttBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
         }));
       }
     };
 
-    const leggTilNyttBarnSidenForrigeSøknad = (
+    const finnNyeBarnSidenForrigeSøknad = (
       prevSøknad: ISøknad,
       forrigeSøknad: ForrigeSøknad
     ) => {
