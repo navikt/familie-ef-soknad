@@ -6,7 +6,7 @@ import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
 import {
   byteTilKilobyte,
-  filTypeOgFilStørrelseStreng,
+  filtypeOgFilstørrelseStreng,
 } from './nedlastningFilformater';
 
 export const usePrevious = (value: any) => {
@@ -49,7 +49,6 @@ export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
 export const useMount = (fn: () => void) => {
   useEffect(() => {
     fn();
-    //eslint-disable-next-line
   }, []);
 };
 
@@ -64,7 +63,7 @@ export const useHentFilInformasjon = (path: string) => {
         );
         const filType = res.headers.get('Content-Type') ?? '';
         settFilInformasjon(
-          filTypeOgFilStørrelseStreng(filType, Number(filStørrelse))
+          filtypeOgFilstørrelseStreng(filType, Number(filStørrelse))
         );
       });
     };
