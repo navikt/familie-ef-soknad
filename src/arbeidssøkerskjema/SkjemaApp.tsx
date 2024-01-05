@@ -43,7 +43,7 @@ const App = () => {
             settError(false);
             settFeilmelding('');
           })
-          .catch((e) => {
+          .catch(() => {
             settError(true);
             settFeilmelding('skjema.feilmelding.uthenting');
           });
@@ -52,7 +52,6 @@ const App = () => {
       settFetching(false);
     };
     fetchData();
-    // eslint-disable-next-line
   }, []);
 
   if (!fetching && autentisert) {

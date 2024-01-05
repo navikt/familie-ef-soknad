@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad, ForrigeSøknad } from './models/søknad';
+import { ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
