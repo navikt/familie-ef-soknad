@@ -50,6 +50,8 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     spørsmål: ISpørsmål,
     valgtSvar: ISvar
   ) => {
+    console.log('valgtSvar', valgtSvar);
+    console.log('bosituasjon', bosituasjon);
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
     const nullstilltBosituasjon: IBosituasjon = {
       delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
@@ -61,7 +63,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
       },
     };
 
-    if (skalGifteSegEllerBliSamboer?.verdi === false) {
+    if (harValgtSvar(svar) === false) {
       delete bosituasjon.datoSkalGifteSegEllerBliSamboer;
     }
 
