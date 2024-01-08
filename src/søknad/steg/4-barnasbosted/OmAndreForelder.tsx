@@ -11,6 +11,7 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
+import { slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder } from '../../../helpers/steg/forelder';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -29,7 +30,6 @@ const OmAndreForelder: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
   const { fødselsdato, ident } = forelder;
-  const [begyntÅSkrive, settBegyntÅSkrive] = useState<boolean>(false);
   const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);
   const jegKanIkkeOppgiLabel = hentTekst(
@@ -98,13 +98,9 @@ const OmAndreForelder: React.FC<Props> = ({
     const nyForelder = { ...forelder };
 
     if (avhuket) {
-      delete nyForelder.navn;
-      delete nyForelder.fødselsdato;
-      delete nyForelder.ident;
-      delete nyForelder.id;
+      slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder(nyForelder);
       settFeilmeldingNavn(false);
     } else {
-      settBegyntÅSkrive(false);
       delete nyForelder.ikkeOppgittAnnenForelderBegrunnelse;
       delete nyForelder.hvorforIkkeOppgi;
       delete nyForelder.kanIkkeOppgiAnnenForelderFar;
@@ -122,32 +118,26 @@ const OmAndreForelder: React.FC<Props> = ({
   };
 
   const settHvorforIkkeOppgi = (spørsmål: ISpørsmål, svar: ISvar) => {
-    settBegyntÅSkrive(false);
+    const verdi = svar.id === EHvorforIkkeOppgi.donorbarn ? 'Donor' : '';
 
     const nyForelder = {
       ...forelder,
-      ikkeOppgittAnnenForelderBegrunnelse: {
-        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
-        verdi: svar.svar_tekst,
-      },
       [spørsmål.søknadid]: {
         spørsmålid: spørsmål.søknadid,
         svarid: svar.id,
         label: hentTekst(spørsmål.tekstid, intl),
         verdi: svar.svar_tekst,
       },
+      ikkeOppgittAnnenForelderBegrunnelse: {
+        label: hentTekst('barnasbosted.spm.hvorforikkeoppgi', intl),
+        verdi: verdi,
+      },
     };
-
-    if (svar.id === EHvorforIkkeOppgi.donorbarn) {
-      delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
-    }
 
     settForelder(nyForelder);
   };
 
   const settIkkeOppgittAnnenForelderBegrunnelse = (begrunnelse: string) => {
-    settBegyntÅSkrive(true);
-
     settForelder({
       ...forelder,
       ikkeOppgittAnnenForelderBegrunnelse: {
@@ -156,6 +146,10 @@ const OmAndreForelder: React.FC<Props> = ({
       },
     });
   };
+
+  const hvorforIkkeOppgiÅrsakErAnnet =
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other;
 
   return (
     <>
@@ -178,7 +172,13 @@ const OmAndreForelder: React.FC<Props> = ({
                 ? settFeilmeldingNavn(true)
                 : settFeilmeldingNavn(false)
             }
-            value={forelder.navn ? forelder.navn?.verdi : ''}
+            value={
+              forelder.navn
+                ? forelder.navn?.verdi === 'ikke oppgitt'
+                  ? ''
+                  : forelder.navn?.verdi
+                : ''
+            }
             label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
@@ -225,16 +225,11 @@ const OmAndreForelder: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      {forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet && (
+      {hvorforIkkeOppgiÅrsakErAnnet && (
         <FeltGruppe aria-live="polite">
           <Textarea
             autoComplete={'off'}
-            value={
-              forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi &&
-              begyntÅSkrive
-                ? forelder.ikkeOppgittAnnenForelderBegrunnelse.verdi
-                : ''
-            }
+            value={forelder.ikkeOppgittAnnenForelderBegrunnelse?.verdi}
             onChange={(e) =>
               settIkkeOppgittAnnenForelderBegrunnelse(e.target.value)
             }

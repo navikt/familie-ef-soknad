@@ -8,6 +8,7 @@ import { logSidevisningOvergangsstonad } from '../../../utils/amplitude';
 import {
   erStegFerdigUtfylt,
   erÅrsakEnsligBesvart,
+  søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring,
 } from '../../../helpers/steg/omdeg';
 import { IMedlemskap } from '../../../models/steg/omDeg/medlemskap';
 import { ISøker } from '../../../models/søknad/person';
@@ -97,16 +98,14 @@ const OmDeg: FC = () => {
     });
   };
 
-  const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søker.erStrengtFortrolig ||
-    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
-    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true;
+  const erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søker, søknad);
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,
     søker.sivilstand,
     søknad.medlemskap,
-    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
+    erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring
   );
 
   const harFyltUtSeparasjonSpørsmålet =
@@ -131,7 +130,6 @@ const OmDeg: FC = () => {
     >
       <Personopplysninger
         søker={søknad.person.søker}
-        settSøker={settSøker}
         settDokumentasjonsbehov={settDokumentasjonsbehov}
         søkerBorPåRegistrertAdresse={søknad.søkerBorPåRegistrertAdresse}
         settSøkerBorPåRegistrertAdresse={settSøkerBorPåRegistrertAdresse}
@@ -141,7 +139,7 @@ const OmDeg: FC = () => {
         settHarMeldtAdresseendring={settHarMeldtAdresseendring}
         stønadstype={Stønadstype.overgangsstønad}
       />
-      <Show if={søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring}>
+      <Show if={erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring}>
         <Sivilstatus
           sivilstatus={søknad.sivilstatus}
           settSivilstatus={settSivilstatus}

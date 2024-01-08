@@ -3,7 +3,7 @@ import createUseContext from 'constate';
 import tomPerson from '../mock/initialState.json';
 import { EBosituasjon } from '../models/steg/bosituasjon';
 import { ISpørsmål, ISvar } from '../models/felles/spørsmålogsvar';
-import { ISøknad, ForrigeSøknad } from './models/søknad';
+import { ForrigeSøknad, ISøknad } from './models/søknad';
 import {
   hentDokumentasjonTilFlersvarSpørsmål,
   oppdaterDokumentasjonTilEtSvarSpørsmål,
@@ -29,7 +29,6 @@ import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
 
-// -----------  CONTEXT  -----------
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
     person: tomPerson,
@@ -95,17 +94,37 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     };
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
-      return hentDataFraForrigeBarnetilsynSøknad().then(
-        (tidligereVersjon?: ForrigeSøknad) => {
-          if (tidligereVersjon) {
-            settSøknad((prevSøknad) => ({
-              ...prevSøknad,
-              ...tidligereVersjon,
-            }));
-          }
-        }
+      const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      if (forrigeSøknad) {
+        settSøknad((prevSøknad) => ({
+          ...prevSøknad,
+          ...forrigeSøknad,
+          person: {
+            ...prevSøknad.person,
+            barn: [
+              ...forrigeSøknad.person.barn,
+              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+            ],
+          },
+        }));
+      }
+    };
+
+    const finnNyeBarnSidenForrigeSøknad = (
+      prevSøknad: ISøknad,
+      forrigeSøknad: ForrigeSøknad
+    ) => {
+      return prevSøknad.person.barn.filter(
+        (barn) =>
+          !forrigeSøknad.person.barn.some(
+            (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+          )
       );
     };
+
+    useEffect(() => {
+      console.log('søknad i barnetilsynContext: ', søknad);
+    }, [søknad]);
 
     const mellomlagreBarnetilsyn = (steg: string) => {
       const utfyltSøknad = {

@@ -10,21 +10,32 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
+import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
 
+export const utfyltBorINorge = (forelder: IForelder) => {
+  const { borINorge, land } = forelder;
+  return (
+    borINorge?.verdi === true ||
+    (borINorge?.verdi === false && stringHarVerdiOgErIkkeTom(land?.verdi))
+  );
+};
+
 export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
-  const { borINorge, land, avtaleOmDeltBosted } = forelder;
-  const utfyltBorINorge =
-    borINorge?.verdi || (borINorge?.verdi === false && land?.verdi !== '');
+  const { avtaleOmDeltBosted } = forelder;
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
+
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
-    utfyltBorINorge &&
+    utfyltBorINorge(forelder) &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
-    utfyltNødvendigBostedSpørsmål(forelder);
+    utfyltNødvendigBostedSpørsmål(forelder) &&
+    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
+    visSpørsmålHvisIkkeSammeForelder(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt =
     utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder);
@@ -41,12 +52,11 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
     kanIkkeOppgiAnnenForelderFar,
   } = forelder;
 
-  const pgaDonorBarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
+  const pgaDonorBarn = hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.donor;
   const pgaAnnet =
-    hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet &&
+    hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
-
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 
@@ -57,7 +67,7 @@ export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
     harDereSkriftligSamværsavtale,
     hvordanPraktiseresSamværet,
   } = forelder;
-  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.svarid === ESvar.NEI;
+  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.verdi === false;
 
   if (
     harIkkeAvtaleOmDeltBosted &&
@@ -75,7 +85,7 @@ export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
   else return true;
 };
 
-export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
+export const utfyltNødvendigBostedSpørsmål = (forelder: IForelder) => {
   const utfyltBorISammeHus =
     forelder?.borINorge?.verdi &&
     forelder?.borAnnenForelderISammeHus?.svarid ===
@@ -93,9 +103,10 @@ export const utfyltNødvendigBostedSpørsmål = (forelder?: IForelder) => {
       : false;
 
   const utfyltBoddSammenFør =
-    forelder?.boddSammenFør?.svarid === ESvar.JA
+    forelder?.boddSammenFør?.verdi === true
       ? harValgtSvar(forelder?.boddSammenFør?.verdi) && harFlyttetFraDato
       : harValgtSvar(forelder?.boddSammenFør?.verdi);
+
   const utfyltHvorMyeSammen =
     forelder?.hvorMyeSammen?.svarid === EHvorMyeSammen.møtesUtenom
       ? harValgtSvar(forelder.beskrivSamværUtenBarn?.verdi)
@@ -117,6 +128,7 @@ export const harForelderSamværMedBarn = (svarid: string | undefined) => {
       return false;
   }
 };
+
 export const harSkriftligSamværsavtale = (svarid: string | undefined) => {
   switch (svarid) {
     case EHarSkriftligSamværsavtale.jaKonkreteTidspunkter:
@@ -178,4 +190,23 @@ export const harSkriftligAvtaleOmDeltBosted = (
   return (
     spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
   );
+};
+
+export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
+  nyForelder: IForelder
+) => {
+  delete nyForelder.navn;
+  delete nyForelder.fødselsdato;
+  delete nyForelder.ident;
+  delete nyForelder.id;
+  delete nyForelder.borAnnenForelderISammeHus;
+  delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
+  delete nyForelder.harAnnenForelderSamværMedBarn;
+  delete nyForelder.avtaleOmDeltBosted;
+  delete nyForelder.borINorge;
+  delete nyForelder.land;
+  delete nyForelder.boddSammenFør;
+  delete nyForelder.flyttetFra;
+  delete nyForelder.hvorMyeSammen;
+  delete nyForelder.beskrivSamværUtenBarn;
 };

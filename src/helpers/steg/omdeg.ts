@@ -16,6 +16,10 @@ import {
   erSøkerSkilt,
   erSøkerUgift,
 } from '../../utils/sivilstatus';
+import { ISøker } from '../../models/søknad/person';
+import { ISøknad } from '../../models/søknad/søknad';
+import { ISøknad as ISøknadBT } from '../../barnetilsyn/models/søknad';
+import { ISøknad as ISøknadSK } from '../../skolepenger/models/søknad';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -174,6 +178,17 @@ export const erSivilstandSpørsmålBesvart = (
   }
 
   return true;
+};
+
+export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (
+  søker: ISøker,
+  søknad: ISøknad | ISøknadBT | ISøknadSK
+) => {
+  return (
+    søker?.erStrengtFortrolig ||
+    søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
+    søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true
+  );
 };
 
 export const erStegFerdigUtfylt = (

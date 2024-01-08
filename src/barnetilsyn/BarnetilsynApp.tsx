@@ -74,11 +74,16 @@ const BarnetilsynApp = () => {
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
-    settSøknad &&
-      settSøknad((prevSøknad) => ({
+    settSøknad((prevSøknad) => {
+      const prevBarn = prevSøknad.person.barn;
+
+      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
+
+      return {
         ...prevSøknad,
-        person: { ...person, barn: barnMedLabels },
-      }));
+        person: { ...person, barn: oppdatertBarn },
+      };
+    });
   };
 
   const fetchToggles = () => {
@@ -95,7 +100,6 @@ const BarnetilsynApp = () => {
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
-    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { usePersonContext } from '../context/PersonContext';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import Environment from '../Environment';

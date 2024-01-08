@@ -29,6 +29,15 @@ export enum ESkalBarnetBoHosSøker {
 }
 
 export enum EHvorforIkkeOppgi {
+  donor = 'Donor',
   donorbarn = 'donorbarn',
   annet = 'annet',
+  Annet = 'Annet',
+  Other = 'Other',
+}
+
+export enum TypeBarn {
+  BARN_MED_OPPRINNELIG_FORELDERINFORMASJON = 'BARN_MED_OPPRINNELIG_FORELDERINFORMASJON',
+  BARN_MED_KOPIERT_FORELDERINFORMASJON = 'BARN_MED_KOPIERT_FORELDERINFORMASJON',
+  BARN_UTEN_FELLES_FORELDERINFORMASJON = 'BARN_UTEN_FELLES_FORELDERINFORMASJON',
 }

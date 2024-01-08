@@ -22,7 +22,6 @@ import { hentTekst } from '../../../../utils/søknad';
 
 interface Props {
   søker: ISøker;
-  settSøker: (søker: ISøker) => void;
   settDokumentasjonsbehov: (
     spørsmål: ISpørsmål,
     valgtSvar: ISvar,
@@ -73,7 +72,6 @@ const Personopplysninger: React.FC<Props> = ({
     });
     settDokumentasjonsbehov(spørsmål, valgtSvar);
   };
-
   return (
     <SeksjonGruppe aria-live={'polite'}>
       <KomponentGruppe>
@@ -117,7 +115,7 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
 
-      {!søker.erStrengtFortrolig && (
+      {!søker?.erStrengtFortrolig && (
         <>
           <KomponentGruppe aria-live="polite">
             <JaNeiSpørsmål

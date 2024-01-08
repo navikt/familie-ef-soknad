@@ -7,9 +7,10 @@ import LenkeMedIkon from '../../../components/knapper/LenkeMedIkon';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { IBarn } from '../../../models/steg/barn';
 import { hentTekst } from '../../../utils/søknad';
-import { ESvar, ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
+import { ESvarTekstid } from '../../../models/felles/spørsmålogsvar';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
 import { Label, BodyShort } from '@navikt/ds-react';
+import { harVerdi } from '../../../utils/typer';
 
 interface Props {
   barn: IBarn;
@@ -185,7 +186,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <BodyShort>{forelder.borAnnenForelderISammeHus.verdi}</BodyShort>
           </div>
         ) : null}
-        {forelder?.boddSammenFør?.svarid ? (
+        {harVerdi(forelder?.boddSammenFør?.verdi) ? (
           <div className="spørsmål-og-svar">
             <Label as="p">
               {hentBeskjedMedNavn(
@@ -196,7 +197,7 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               )}
             </Label>
             <BodyShort>
-              {forelder.boddSammenFør.svarid === ESvar.JA
+              {forelder.boddSammenFør?.verdi
                 ? hentTekst(ESvarTekstid.JA, intl)
                 : hentTekst(ESvarTekstid.NEI, intl)}
             </BodyShort>

@@ -41,7 +41,6 @@ const Sivilstatus: React.FC<Props> = ({
   const intl = useLokalIntlContext();
   const { person } = usePersonContext();
   const sivilstand = person.søker.sivilstand;
-
   const { erUformeltGift, datoFlyttetFraHverandre, datoSøktSeparasjon } =
     sivilstatus;
 
@@ -80,7 +79,6 @@ const Sivilstatus: React.FC<Props> = ({
       },
     });
   };
-
   return (
     <SeksjonGruppe aria-live="polite">
       {erSøkerGift(sivilstand) && (

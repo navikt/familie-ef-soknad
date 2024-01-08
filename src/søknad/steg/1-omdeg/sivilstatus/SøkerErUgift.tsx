@@ -38,8 +38,8 @@ const SøkerErUgift: React.FC<Props> = ({
   const harSvartJaUformeltSeparertEllerSkilt =
     sivilstatus.erUformeltSeparertEllerSkilt?.svarid === ESvar.JA;
 
-  const harSvartPåUformeltGiftSpørsmålet =
-    erUformeltGift?.hasOwnProperty('verdi');
+  const harSvartPåUformeltGiftSpørsmålet = erUformeltGift?.verdi !== undefined;
+
   return (
     <>
       <KomponentGruppe>

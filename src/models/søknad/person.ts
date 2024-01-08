@@ -7,6 +7,10 @@ export interface IPerson {
   barn: IBarn[];
 }
 
+export interface IPersonTilGjenbruk {
+  barn: IBarn[];
+}
+
 export interface ISøker {
   fnr: string;
   forkortetNavn: string;

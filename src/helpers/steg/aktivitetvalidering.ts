@@ -160,6 +160,7 @@ export const erAktivitetSeksjonFerdigUtfylt = (
     case EAktivitet.etablererEgenVirksomhet:
       return (
         etablererEgenVirksomhet !== undefined &&
+        etablererEgenVirksomhet !== null &&
         harValgtSvar(etablererEgenVirksomhet.verdi)
       );
 

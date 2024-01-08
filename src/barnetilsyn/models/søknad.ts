@@ -7,7 +7,7 @@ import { ISivilstatus } from '../../models/steg/omDeg/sivilstatus';
 import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { IDokumentasjon } from '../../models/steg/dokumentasjon';
 import { IAktivitet } from '../../models/steg/aktivitet/aktivitet';
-import { IPerson } from '../../models/søknad/person';
+import { IPerson, IPersonTilGjenbruk } from '../../models/søknad/person';
 import { IAdresseopplysninger } from '../../models/steg/adresseopplysninger';
 
 export interface ISøknad {
@@ -30,4 +30,5 @@ export interface ForrigeSøknad {
   sivilstatus: ISivilstatus;
   medlemskap: IMedlemskap;
   bositusjon: IBosituasjon;
+  person: IPersonTilGjenbruk;
 }
