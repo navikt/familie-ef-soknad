@@ -110,6 +110,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
+    useEffect(() => {
+      console.log('søknad i BarnetilsynContext', søknad);
+    }, [søknad]);
+
     const finnNyeBarnSidenForrigeSøknad = (
       prevSøknad: ISøknad,
       forrigeSøknad: ForrigeSøknad
