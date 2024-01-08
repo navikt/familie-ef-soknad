@@ -2,20 +2,12 @@ import { FC } from 'react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import styled from 'styled-components';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { Stønadstype } from '../../../models/søknad/stønadstyper';
 import { BodyShort, Heading, Link } from '@navikt/ds-react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
-
-const StyledBeskrivelse = styled.div`
-  .navds-body-short {
-    li {
-      padding-bottom: 0.5rem;
-    }
-  }
-`;
+import { StyledBeskrivelse } from '../../../components/StyledBeskrivelse';
 
 const RegistrerDegSomArbeidssøker: FC<{ stønadstype: Stønadstype }> = ({
   stønadstype,

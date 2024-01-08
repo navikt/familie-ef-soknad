@@ -5,7 +5,7 @@ import { parseISO } from 'date-fns';
 import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
+import { StyledKnapper } from '../../../components/knapper/StyledKnapper';
 import { ERouteSkolepenger, RoutesSkolepenger } from '../../routing/routes';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
@@ -21,7 +21,6 @@ import { oppdaterBarnLabels } from '../../../utils/barn';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
 import { ISøknad } from '../../models/søknad';
 import { useSkolepengerSøknad } from '../../SkolepengerContext';
-
 import {
   logDokumetasjonsbehov,
   logInnsendingFeilet,
