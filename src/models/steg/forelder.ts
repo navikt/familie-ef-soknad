@@ -14,7 +14,7 @@ export interface IForelder {
   ident?: ITekstFelt;
   kanIkkeOppgiAnnenForelderFar?: IBooleanFelt;
   hvorforIkkeOppgi?: ISpørsmålFelt;
-  ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt | null;
+  ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: ISpørsmålBooleanFelt;
   land?: ISpørsmålFelt;
   avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
