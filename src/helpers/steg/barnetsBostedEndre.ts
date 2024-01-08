@@ -7,7 +7,10 @@ import {
 } from '../../models/steg/barnasbosted';
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
-import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
+import {
+  IDatoFelt,
+  ITekstFelt,
+} from '../../models/søknad/søknadsfelter';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);

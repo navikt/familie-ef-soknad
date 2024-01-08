@@ -17,7 +17,7 @@ import { IStatus } from '../innsending/typer';
 import LocaleTekst from '../../language/LocaleTekst';
 import SeksjonGruppe from '../../components/gruppe/SeksjonGruppe';
 import KomponentGruppe from '../../components/gruppe/KomponentGruppe';
-import { StyledKnapper } from '../komponenter/StyledKnapper';
+import { StyledKnapper } from '../../components/knapper/StyledKnapper';
 import { parseISO } from 'date-fns';
 import {
   hentForrigeRoute,

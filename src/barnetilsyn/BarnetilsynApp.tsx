@@ -20,7 +20,6 @@ import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
 import Environment from '../Environment';
-import { consoleLogLokaltOgPreprod } from '../utils/consoleLogLokaltOgPreprod';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -74,11 +73,6 @@ const BarnetilsynApp = () => {
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
-
-    consoleLogLokaltOgPreprod(
-      barnMedLabels,
-      'oppdaterSøknadMedBarn barnMedLabels'
-    );
 
     settSøknad((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;

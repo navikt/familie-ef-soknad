@@ -22,7 +22,6 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { IBarn } from '../../../models/steg/barn';
 import { Alert } from '@navikt/ds-react';
-import { consoleLogLokaltOgPreprod } from '../../../utils/consoleLogLokaltOgPreprod';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -61,8 +60,6 @@ const Kvittering: React.FC = () => {
   const erklæringSamlivsbrudd =
     søknad.sivilstatus.årsakEnslig?.svarid ===
     EBegrunnelse.samlivsbruddForeldre;
-
-  consoleLogLokaltOgPreprod(søknad, 'kvittering søknad');
 
   return søknad.innsendingsdato ? (
     <Side

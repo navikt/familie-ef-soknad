@@ -13,7 +13,7 @@ import {
   ERouteOvergangsstønad,
 } from '../../routing/routesOvergangsstonad';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
+import { StyledKnapper } from '../../../components/knapper/StyledKnapper';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,

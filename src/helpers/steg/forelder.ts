@@ -68,6 +68,7 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
     hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
+
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 
