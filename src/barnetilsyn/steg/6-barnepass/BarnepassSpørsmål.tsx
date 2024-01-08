@@ -71,7 +71,7 @@ const BarnepassSpørsmål: FC<Props> = ({
   const barnepassordningTittel =
     barnepassordningNummer !== undefined &&
     hentTittelMedNr(
-      barn.barnepass?.barnepassordninger!,
+      barn.barnepass?.barnepassordninger ?? [],
       barnepassordningNummer,
       intl.formatMessage({ id: 'barnepass.tittel.ordning' })
     );
@@ -110,7 +110,7 @@ const BarnepassSpørsmål: FC<Props> = ({
     });
   };
 
-  const settPeriode = (dato: string, objektnøkkel: EPeriode) => {
+  const settPeriode = (objektnøkkel: EPeriode, dato?: string) => {
     const periode = barnepassOrdning.periode
       ? barnepassOrdning.periode
       : tomPeriode;

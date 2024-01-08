@@ -147,7 +147,7 @@ const Filopplaster: React.FC<Props> = ({
                 'Content-Type': 'multipart/form-data',
                 accept: 'application/json',
               },
-              transformRequest: (data, headers) => {
+              transformRequest: () => {
                 return requestData;
               },
             }

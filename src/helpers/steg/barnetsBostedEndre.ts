@@ -9,7 +9,6 @@ import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import {
   IDatoFelt,
-  ISpørsmålFelt,
   ITekstFelt,
 } from '../../models/søknad/søknadsfelter';
 

@@ -16,7 +16,6 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
   const { søknad, oppdaterBarnISøknaden } = useSøknad();
   const intl = useLokalIntlContext();
 
-  //Hvis det kun er ett barn i søknaden, ska vi ikke å spørre hvilket barn det gjelder
   if (søknad.person.barn.length === 1) {
     return null;
   }

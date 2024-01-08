@@ -6,7 +6,7 @@ import {
 } from '../../../../models/felles/spørsmålogsvar';
 import {
   oppholderSegINorge,
-  bosattINorgeDeSisteTreÅr,
+  bosattINorgeDeSisteFemÅr,
   søkersOppholdsland,
   hentLand,
 } from './MedlemskapConfig';
@@ -41,7 +41,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   const land = hentLand(locale);
   const oppholdslandConfig = søkersOppholdsland(land);
 
-  const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteTreÅr(intl);
+  const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteFemÅr(intl);
 
   const settMedlemskapBooleanFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
@@ -57,7 +57,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
     if (
       spørsmål.søknadid === EMedlemskap.søkerBosattINorgeSisteTreÅr &&
       valgtSvar.id === ESvar.JA &&
-        medlemskap.perioderBoddIUtlandet
+      medlemskap.perioderBoddIUtlandet
     ) {
       delete medlemskap.perioderBoddIUtlandet;
     }
@@ -72,7 +72,6 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
   };
 
   const settOppholdsland = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
-
     settMedlemskap({
       ...medlemskap,
       oppholdsland: {

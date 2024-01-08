@@ -12,6 +12,7 @@ import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils'
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
+import { erGyldigDato } from '../../utils/dato';
 
 export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
   foreldre.every((forelder) => erForelderUtfylt(forelder));
@@ -35,12 +36,22 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder) &&
     harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
-    visSpørsmålHvisIkkeSammeForelder(forelder);
+    visSpørsmålHvisIkkeSammeForelder(forelder) &&
+    utfyltBoddSammenAnnenForelder(forelder);
 
   const kanIkkeOppgiAnnenForelderRuteUtfylt =
     utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder);
 
   return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
+};
+
+export const utfyltBoddSammenAnnenForelder = (forelder: IForelder) => {
+  return (
+    forelder.boddSammenFør &&
+    ((forelder.boddSammenFør.verdi &&
+      erGyldigDato(forelder.flyttetFra?.verdi)) ||
+      forelder.boddSammenFør?.verdi === false)
+  );
 };
 
 export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
@@ -57,6 +68,7 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
     hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
+
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 

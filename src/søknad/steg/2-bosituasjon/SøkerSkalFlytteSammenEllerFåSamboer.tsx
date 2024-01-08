@@ -51,9 +51,6 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
     valgtSvar: ISvar
   ) => {
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
-    console.log('svar', svar);
-    console.log('valgtSvar', valgtSvar);
-    console.log('bosituasjon', bosituasjon);
     const nullstilltBosituasjon: IBosituasjon = {
       delerBoligMedAndreVoksne: delerBoligMedAndreVoksne,
       skalGifteSegEllerBliSamboer: {
@@ -109,7 +106,6 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
       datoSkalGifteSegEllerBliSamboer
     );
 
-  console.log('bosituasjon component', bosituasjon);
   return (
     <>
       <KomponentGruppe>

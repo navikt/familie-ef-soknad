@@ -90,7 +90,7 @@ const Utenlandsopphold: FC<Props> = ({
     perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
   };
 
-  const settPeriode = (date: string, objektnøkkel: EPeriode): void => {
+  const settPeriode = (objektnøkkel: EPeriode, date?: string): void => {
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
@@ -101,7 +101,7 @@ const Utenlandsopphold: FC<Props> = ({
               label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
               [objektnøkkel]: {
                 label: hentTekst('periode.' + objektnøkkel, intl),
-                verdi: date,
+                verdi: date ? date : '',
               },
             },
           };

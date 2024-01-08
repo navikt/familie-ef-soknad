@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import download from '../../../assets/download.svg';
 import styled from 'styled-components';
