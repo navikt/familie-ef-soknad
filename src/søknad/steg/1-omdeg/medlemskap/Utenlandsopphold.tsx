@@ -91,7 +91,6 @@ const Utenlandsopphold: FC<Props> = ({
   };
 
   const settPeriode = (objektnøkkel: EPeriode, date?: string): void => {
-    console.log('date: ', date);
     const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet.map(
       (utenlandsopphold, index) => {
         if (index === oppholdsnr) {
