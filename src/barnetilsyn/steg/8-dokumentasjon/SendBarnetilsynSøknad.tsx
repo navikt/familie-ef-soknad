@@ -5,7 +5,7 @@ import { parseISO } from 'date-fns';
 import { useLocation } from 'react-router';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
-import { StyledKnapper } from '../../../arbeidssøkerskjema/komponenter/StyledKnapper';
+import { StyledKnapper } from '../../../components/knapper/StyledKnapper';
 import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
