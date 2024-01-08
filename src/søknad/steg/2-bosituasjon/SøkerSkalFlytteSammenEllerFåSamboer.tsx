@@ -66,6 +66,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
 
     if (svar === false) {
       delete bosituasjon.datoSkalGifteSegEllerBliSamboer;
+      delete bosituasjon.vordendeSamboerEktefelle;
     }
 
     harValgtSvar(svar) &&
@@ -108,6 +109,7 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
       datoSkalGifteSegEllerBliSamboer
     );
 
+  console.log('bosituasjon component', bosituasjon);
   return (
     <>
       <KomponentGruppe>
