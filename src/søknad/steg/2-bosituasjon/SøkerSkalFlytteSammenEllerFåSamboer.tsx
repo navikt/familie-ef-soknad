@@ -60,6 +60,11 @@ const SøkerSkalFlytteSammenEllerFåSamboer: FC<Props> = ({
         verdi: svar,
       },
     };
+
+    if (skalGifteSegEllerBliSamboer?.verdi === false) {
+      delete bosituasjon.datoSkalGifteSegEllerBliSamboer;
+    }
+
     harValgtSvar(svar) &&
     bosituasjon.delerBoligMedAndreVoksne.svarid ===
       ESøkerDelerBolig.tidligereSamboerFortsattRegistrertPåAdresse
