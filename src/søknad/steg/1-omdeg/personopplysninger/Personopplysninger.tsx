@@ -115,7 +115,7 @@ const Personopplysninger: React.FC<Props> = ({
         </FeltGruppe>
       </KomponentGruppe>
 
-      {!søker.erStrengtFortrolig && (
+      {!søker?.erStrengtFortrolig && (
         <>
           <KomponentGruppe aria-live="polite">
             <JaNeiSpørsmål
