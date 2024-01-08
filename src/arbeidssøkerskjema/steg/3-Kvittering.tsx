@@ -7,19 +7,11 @@ import LocaleTekst from '../../language/LocaleTekst';
 import { useSkjema } from '../SkjemaContext';
 import Feilside from '../../components/feil/Feilside';
 import FeltGruppe from '../../components/gruppe/FeltGruppe';
-import styled from 'styled-components';
 import { logSidevisningArbeidssokerskjema } from '../../utils/amplitude';
 import { useMount } from '../../utils/hooks';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, BodyShort, Link } from '@navikt/ds-react';
-
-const StyledBeskrivelse = styled.div`
-  .navds-body-short {
-    li {
-      padding-bottom: 0.5rem;
-    }
-  }
-`;
+import { StyledBeskrivelse } from '../../components/StyledBeskrivelse';
 
 const Kvittering: React.FC = () => {
   const intl = useLokalIntlContext();
