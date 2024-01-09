@@ -291,6 +291,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     return {
       søknad,
       settSøknad,
+      settSøknadV2,
+      settSøknadV3,
       settDokumentasjonsbehov,
       settDokumentasjonsbehovForBarn,
       mellomlagretBarnetilsyn,

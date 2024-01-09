@@ -31,6 +31,8 @@ const BarnetilsynApp = () => {
   const { settPerson } = usePersonContext();
   const {
     settSøknad,
+    settSøknadV2,
+    settSøknadV3,
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
     hentForrigeSøknadBarnetilsynV2,
@@ -77,6 +79,28 @@ const BarnetilsynApp = () => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
 
     settSøknad((prevSøknad) => {
+      const prevBarn = prevSøknad.person.barn;
+
+      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
+
+      return {
+        ...prevSøknad,
+        person: { ...person, barn: oppdatertBarn },
+      };
+    });
+
+    settSøknadV2((prevSøknad) => {
+      const prevBarn = prevSøknad.person.barn;
+
+      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
+
+      return {
+        ...prevSøknad,
+        person: { ...person, barn: oppdatertBarn },
+      };
+    });
+
+    settSøknadV3((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;
 
       const oppdatertBarn = [...prevBarn, ...barnMedLabels];
