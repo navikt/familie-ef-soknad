@@ -15,6 +15,7 @@ import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentDataFraForrigeBarnetilsynSøknad,
   hentMellomlagretSøknadFraDokument,
+  hentPersonData,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
@@ -65,6 +66,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     BarnetilsynSøknadProvider.displayName = 'BARNETILSYN_PROVIDER';
     const [locale, setLocale] = useSpråkContext();
     const [søknad, settSøknad] = useState<ISøknad>(initialState(intl));
+    const [søknadV2, settSøknadV2] = useState<ISøknad>(initialState(intl));
+    const [søknadV3, settSøknadV3] = useState<ISøknad>(initialState(intl));
     const [mellomlagretBarnetilsyn, settMellomlagretBarnetilsyn] =
       useState<IMellomlagretBarnetilsynSøknad>();
 
@@ -110,8 +113,56 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
+    const hentForrigeSøknadBarnetilsynV2 = async (): Promise<void> => {
+      const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      const personData = await hentPersonData();
+
+      if (forrigeSøknad) {
+        settSøknadV2((prevSøknad) => ({
+          ...prevSøknad,
+          ...forrigeSøknad,
+          person: {
+            ...prevSøknad.person,
+            barn: [
+              ...prevSøknad.person.barn.map((barn, index) => ({
+                ...barn,
+                fraFolkeregister:
+                  personData.barn[index]?.forelder?.fraFolkeregister ?? false,
+              })),
+              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+            ],
+          },
+        }));
+      }
+    };
+
+    const hentForrigeSøknadBarnetilsynV3 = async (): Promise<void> => {
+      const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      const personData = await hentPersonData();
+
+      if (forrigeSøknad) {
+        settSøknadV3((prevSøknad) => ({
+          ...prevSøknad,
+          ...forrigeSøknad,
+          person: {
+            ...prevSøknad.person,
+            barn: [
+              ...forrigeSøknad.person.barn.map((barn, index) => ({
+                ...barn,
+                fraFolkeregister:
+                  personData.barn[index]?.forelder?.fraFolkeregister ?? false,
+              })),
+              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+            ],
+          },
+        }));
+      }
+    };
+
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);
+      console.log('søknadV2 i BarnetilsynContext', søknadV2);
+      console.log('søknadV3 i BarnetilsynContext', søknadV3);
     }, [søknad]);
 
     const finnNyeBarnSidenForrigeSøknad = (
