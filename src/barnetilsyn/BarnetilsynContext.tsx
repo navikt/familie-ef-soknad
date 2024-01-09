@@ -99,6 +99,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
       const personData = await hentPersonData();
+      console.log('personData', personData);
 
       if (forrigeSøknad) {
         settSøknad((prevSøknad) => ({
@@ -107,14 +108,19 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...prevSøknad.person.barn.map((barn, index) => ({
-                ...barn,
-                forelder: {
-                  ...barn.forelder,
-                  fraFolkeregister:
-                    personData.barn[index]?.forelder?.fraFolkeregister ?? false,
-                },
-              })),
+              ...prevSøknad.person.barn.map((barn) => {
+                const gjeldendeBarn = personData.barn.find(
+                  (personBarn) => personBarn.id === barn.id
+                );
+                return {
+                  ...barn,
+                  forelder: {
+                    ...barn.forelder,
+                    fraFolkeregister:
+                      gjeldendeBarn?.forelder?.fraFolkeregister ?? false,
+                  },
+                };
+              }),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
