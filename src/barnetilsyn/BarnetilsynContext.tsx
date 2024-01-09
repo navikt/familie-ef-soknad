@@ -98,6 +98,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      const personData = await hentPersonData();
+
       if (forrigeSøknad) {
         settSøknad((prevSøknad) => ({
           ...prevSøknad,
@@ -105,7 +107,14 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...forrigeSøknad.person.barn,
+              ...prevSøknad.person.barn.map((barn, index) => ({
+                ...barn,
+                forelder: {
+                  ...barn.forelder,
+                  fraFolkeregister:
+                    personData.barn[index]?.forelder?.fraFolkeregister ?? false,
+                },
+              })),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
@@ -126,8 +135,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             barn: [
               ...prevSøknad.person.barn.map((barn, index) => ({
                 ...barn,
-                fraFolkeregister:
-                  personData.barn[index]?.forelder?.fraFolkeregister ?? false,
+                forelder: {
+                  ...barn.forelder,
+                  fraFolkeregister:
+                    personData.barn[index]?.forelder?.fraFolkeregister ?? false,
+                },
               })),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
@@ -161,8 +173,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);
-      console.log('søknadV2 i BarnetilsynContext', søknadV2);
-      console.log('søknadV3 i BarnetilsynContext', søknadV3);
+      // console.log('søknadV2 i BarnetilsynContext', søknadV2);
+      // console.log('søknadV3 i BarnetilsynContext', søknadV3);
     }, [søknad]);
 
     const finnNyeBarnSidenForrigeSøknad = (
