@@ -31,12 +31,8 @@ const BarnetilsynApp = () => {
   const { settPerson } = usePersonContext();
   const {
     settSøknad,
-    settSøknadV2,
-    settSøknadV3,
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
-    hentForrigeSøknadBarnetilsynV2,
-    hentForrigeSøknadBarnetilsynV3,
   } = useBarnetilsynSøknad();
   const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
@@ -88,28 +84,6 @@ const BarnetilsynApp = () => {
         person: { ...person, barn: oppdatertBarn },
       };
     });
-
-    settSøknadV2((prevSøknad) => {
-      const prevBarn = prevSøknad.person.barn;
-
-      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
-
-      return {
-        ...prevSøknad,
-        person: { ...person, barn: oppdatertBarn },
-      };
-    });
-
-    settSøknadV3((prevSøknad) => {
-      const prevBarn = prevSøknad.person.barn;
-
-      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
-
-      return {
-        ...prevSøknad,
-        person: { ...person, barn: oppdatertBarn },
-      };
-    });
   };
 
   const fetchToggles = () => {
@@ -134,8 +108,6 @@ const BarnetilsynApp = () => {
       Environment().miljø === 'local'
     ) {
       hentForrigeSøknadBarnetilsyn();
-      hentForrigeSøknadBarnetilsynV2();
-      hentForrigeSøknadBarnetilsynV3();
     }
   }, [fetching]);
 
