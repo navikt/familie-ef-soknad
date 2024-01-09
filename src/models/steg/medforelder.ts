@@ -10,11 +10,3 @@ export interface IMedforelderFelt {
   label: string;
   verdi: IMedforelder;
 }
-
-export interface IMedforelderPersonData {
-  harAdressesperre: boolean;
-  død: boolean;
-  ident: string;
-  navn: string;
-  alder: number;
-}

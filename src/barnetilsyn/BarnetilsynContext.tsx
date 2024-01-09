@@ -109,13 +109,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             barn: [
               ...forrigeSøknad.person.barn.map((barn) => {
                 const matchingChild = personData.barn.find(
-                  (personBarn) => personBarn.fnr === barn.ident.verdi
+                  (personBarn: { fnr: string }) =>
+                    personBarn.fnr === barn.ident.verdi
                 );
-                const medforelderData: IMedforelderFelt = {
-                  label: matchingChild?.medforelder?.label ?? 'Annen forelder',
-                  verdi: matchingChild?.medforelder?.verdi ?? {
-                    harAdressesperre: false,
-                  },
+                const medforelderData = {
+                  label: 'Annen forelder',
+                  verdi: matchingChild?.medforelder,
                 };
                 return {
                   ...barn,

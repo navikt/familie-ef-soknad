@@ -22,7 +22,7 @@ const axiosConfig = {
   },
 };
 
-export const hentPersonData = async (): Promise<IPerson> => {
+export const hentPersonData = async (): Promise<any> => {
   const response = await axios.get(
     `${Environment().apiProxyUrl}/api/oppslag/sokerinfo`,
     axiosConfig
