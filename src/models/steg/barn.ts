@@ -9,6 +9,7 @@ import { IBarnepass } from '../../barnetilsyn/models/barnepass';
 
 export interface IBarn {
   id: string;
+  fnr?: string;
   alder: ITekstFelt;
   fødselsdato: ITekstFelt;
   ident: ITekstFelt;

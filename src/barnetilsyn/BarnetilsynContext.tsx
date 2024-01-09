@@ -109,7 +109,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...forrigeSøknad.person.barn.map((barn) => ({
                 ...barn,
                 medforelder: personData.barn.find(
-                  (personBarn) => personBarn.ident.verdi === barn.ident.verdi
+                  (personBarn) => personBarn.fnr === barn.ident.verdi
                 )?.medforelder,
                 forelder: {
                   ...barn.forelder,
