@@ -12,7 +12,7 @@ import {
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
 import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
-import { IPerson } from '../models/søknad/person';
+import { IPerson, IPersonXX } from '../models/søknad/person';
 
 const axiosConfig = {
   withCredentials: true,

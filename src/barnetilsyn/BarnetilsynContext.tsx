@@ -29,6 +29,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
+import { IMedforelderFelt } from '../models/steg/medforelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -106,25 +107,33 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...forrigeSøknad.person.barn.map((barn) => ({
-                ...barn,
-                medforelder: personData.barn.find(
+              ...forrigeSøknad.person.barn.map((barn) => {
+                const matchingChild = personData.barn.find(
                   (personBarn) => personBarn.fnr === barn.ident.verdi
-                )?.medforelder,
-                forelder: {
-                  ...barn.forelder,
-                  fraFolkeregister: prevSøknad.person.barn.find(
-                    (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                  )?.forelder?.fraFolkeregister,
-                },
-              })),
+                );
+                const medforelderData: IMedforelderFelt = {
+                  label: matchingChild?.medforelder?.label ?? 'Annen forelder',
+                  verdi: matchingChild?.medforelder?.verdi ?? {
+                    harAdressesperre: false,
+                  },
+                };
+                return {
+                  ...barn,
+                  medforelder: medforelderData,
+                  forelder: {
+                    ...barn.forelder,
+                    fraFolkeregister: prevSøknad.person.barn.find(
+                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+                    )?.forelder?.fraFolkeregister,
+                  },
+                };
+              }),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
         }));
       }
     };
-
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);
     }, [søknad]);

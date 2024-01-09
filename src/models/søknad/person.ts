@@ -7,6 +7,12 @@ export interface IPerson {
   barn: IBarn[];
 }
 
+export interface IPersonXX {
+  hash: string;
+  søker: ISøker;
+  barn: IBarn[];
+}
+
 export interface IPersonTilGjenbruk {
   barn: IBarn[];
 }
