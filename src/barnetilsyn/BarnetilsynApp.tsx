@@ -33,6 +33,8 @@ const BarnetilsynApp = () => {
     settSøknad,
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
+    hentForrigeSøknadBarnetilsynV2,
+    hentForrigeSøknadBarnetilsynV3,
   } = useBarnetilsynSøknad();
   const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
@@ -108,6 +110,8 @@ const BarnetilsynApp = () => {
       Environment().miljø === 'local'
     ) {
       hentForrigeSøknadBarnetilsyn();
+      hentForrigeSøknadBarnetilsynV2();
+      hentForrigeSøknadBarnetilsynV3();
     }
   }, [fetching]);
 

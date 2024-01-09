@@ -298,6 +298,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       mellomlagreBarnetilsyn,
       brukMellomlagretBarnetilsyn,
       hentForrigeSøknadBarnetilsyn,
+      hentForrigeSøknadBarnetilsynV2,
+      hentForrigeSøknadBarnetilsynV3,
       nullstillMellomlagretBarnetilsyn,
       nullstillSøknadBarnetilsyn,
       oppdaterBarnISøknaden,
