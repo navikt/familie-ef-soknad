@@ -108,19 +108,14 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...prevSøknad.person.barn.map((barn) => {
-                const gjeldendeBarn = personData.barn.find(
-                  (personBarn) => personBarn.id === barn.id
-                );
-                return {
-                  ...barn,
-                  forelder: {
-                    ...barn.forelder,
-                    fraFolkeregister:
-                      gjeldendeBarn?.forelder?.fraFolkeregister ?? false,
-                  },
-                };
-              }),
+              ...forrigeSøknad.person.barn.map((barn) => ({
+                ...barn,
+                foreldre: {
+                  fraFolkeregister: prevSøknad.person.barn.find(
+                    (prevBarn) => prevBarn.id === barn.id
+                  )?.forelder?.fraFolkeregister,
+                },
+              })),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
