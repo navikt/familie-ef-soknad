@@ -50,10 +50,12 @@ const BarnetilsynApp = () => {
       const prevBarn = prevSøknad.person.barn;
 
       const oppdatertBarn = [...prevBarn, ...barnMedLabels];
-
+      const sortertBarnelistePåMedforelder = oppdatertBarn.sort((a, b) =>
+        b.medforelder.verdi ? 1 : -1
+      );
       return {
         ...prevSøknad,
-        person: { ...person, barn: oppdatertBarn },
+        person: { ...person, barn: sortertBarnelistePåMedforelder },
       };
     });
   };
