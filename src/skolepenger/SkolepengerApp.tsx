@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import {
-  hentPersonData,
-  hentTekst,
-  oppdaterBarnMedLabel,
-} from '../utils/søknad';
-import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
+import { hentTekst, oppdaterBarnMedLabel } from '../utils/søknad';
+import { usePersonContext } from '../context/PersonContext';
 import {
   autentiseringsInterceptor,
   verifiserAtBrukerErAutentisert,
@@ -16,8 +12,6 @@ import { useToggles } from '../context/TogglesContext';
 import { IPerson } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
 import SøknadsdialogSkolepenger from './Søknadsdialog';
-import { logAdressesperre } from '../utils/amplitude';
-import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
@@ -26,11 +20,8 @@ import { IBarn } from '../models/steg/barn';
 const SkolepengerApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
-  const [error, settError] = useState<boolean>(false);
-  const [feilmelding, settFeilmelding] = useState<string>('');
-  const [alvorlighetsgrad, settAlvorlighetsgrad] =
-    useState<EAlvorlighetsgrad>();
-  const { settPerson } = usePersonContext();
+  const { fetchPersonData, error, settError, feilmelding, alvorlighetsgrad } =
+    usePersonContext();
   const { søknad, settSøknad, hentMellomlagretSkolepenger } =
     useSkolepengerSøknad();
   const { settToggles } = useToggles();
@@ -41,34 +32,6 @@ const SkolepengerApp = () => {
   useEffect(() => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
-
-  const fetchPersonData = () => {
-    return hentPersonData()
-      .then((response) => {
-        settPerson({
-          type: PersonActionTypes.HENT_PERSON,
-          payload: response,
-        });
-        oppdaterSøknadMedBarn(response, response.barn);
-      })
-      .catch((e) => {
-        const feil = e.response?.data?.feil;
-
-        if (feil === 'adressesperre') {
-          logAdressesperre(ESkjemanavn.Skolepenger);
-          settAlvorlighetsgrad(EAlvorlighetsgrad.INFO);
-          settFeilmelding(
-            intl.formatMessage({
-              id: 'barnasbosted.feilmelding.adressebeskyttelse',
-            })
-          );
-        } else {
-          settFeilmelding(feil);
-        }
-
-        settError(true);
-      });
-  };
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
@@ -86,12 +49,11 @@ const SkolepengerApp = () => {
   useEffect(() => {
     Promise.all([
       fetchToggles(),
-      fetchPersonData(),
+      fetchPersonData(oppdaterSøknadMedBarn, ESkjemanavn.Skolepenger),
       hentMellomlagretSkolepenger(),
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
-    // eslint-disable-next-line
   }, []);
 
   if (!fetching && autentisert) {

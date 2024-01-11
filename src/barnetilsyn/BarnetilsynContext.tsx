@@ -29,7 +29,6 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
-import { IMedforelderFelt } from '../models/steg/medforelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -108,14 +107,21 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...prevSøknad.person,
             barn: [
               ...forrigeSøknad.person.barn.map((barn) => {
-                const matchingChild = personData.barn.find(
-                  (personBarn: { fnr: string }) =>
-                    personBarn.fnr === barn.ident.verdi
+                const gjeldendeBarn = personData.barn.find(
+                  (personBarn) => personBarn.fnr === barn.ident.verdi
                 );
+
+                console.log('gjeldendeBarn', gjeldendeBarn);
+
                 const medforelderData = {
                   label: 'Annen forelder',
-                  verdi: matchingChild?.medforelder,
+                  verdi: gjeldendeBarn?.medforelder ?? {
+                    harAdressesperre: true,
+                  },
                 };
+
+                console.log('medforelderData', medforelderData);
+
                 return {
                   ...barn,
                   medforelder: medforelderData,
@@ -133,6 +139,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         }));
       }
     };
+
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);
     }, [søknad]);

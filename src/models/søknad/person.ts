@@ -7,12 +7,6 @@ export interface IPerson {
   barn: IBarn[];
 }
 
-export interface IPersonXX {
-  hash: string;
-  søker: ISøker;
-  barn: IBarn[];
-}
-
 export interface IPersonTilGjenbruk {
   barn: IBarn[];
 }
@@ -45,3 +39,34 @@ export enum EPersonDetaljer {
   fødselsdato = 'fødselsdato',
   kjennerIkkeIdent = 'kjennerIkkeIdent',
 }
+
+type Medforelder = {
+  harAdressesperre: boolean;
+  død: boolean;
+  ident: string;
+  navn: string;
+  alder: number;
+};
+
+type Barn = Omit<IBarn, 'medforelder'> & {
+  medforelder: Medforelder;
+};
+
+export type PersonData = {
+  søker: ISøker;
+  barn: Barn[];
+  hash: string;
+};
+
+export const castPersonDataTilIPerson = (personData: PersonData): IPerson => {
+  return {
+    ...personData,
+    barn: personData.barn.map((barn) => ({
+      ...barn,
+      medforelder: {
+        label: 'Annen forelder',
+        verdi: barn.medforelder,
+      },
+    })),
+  };
+};

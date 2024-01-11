@@ -12,7 +12,7 @@ import {
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
 import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
-import { IPerson, IPersonXX } from '../models/søknad/person';
+import { PersonData } from '../models/søknad/person';
 
 const axiosConfig = {
   withCredentials: true,
@@ -22,7 +22,7 @@ const axiosConfig = {
   },
 };
 
-export const hentPersonData = async (): Promise<any> => {
+export const hentPersonData = async (): Promise<PersonData> => {
   const response = await axios.get(
     `${Environment().apiProxyUrl}/api/oppslag/sokerinfo`,
     axiosConfig
