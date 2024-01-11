@@ -39,7 +39,9 @@ const BarnetilsynApp = () => {
   }, [autentisert]);
 
   const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
+    console.log('barneliste', barneliste);
     const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+    console.log('barnMedLabels', barnMedLabels);
 
     settSøknad((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;

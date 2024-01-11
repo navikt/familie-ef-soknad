@@ -180,11 +180,16 @@ export const oppdaterBarnMedLabel = (
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;
 
+    console.log(
+      'barnMedLabel.medforelder?.verdi',
+      barnMedLabel.medforelder?.verdi
+    );
     if (barnMedLabel.medforelder?.verdi) {
       barnMedLabel['forelder'] = medforelderMedLabel(
         barnMedLabel.medforelder,
         intl
       );
+      console.log("barnMedLabel['forelder']", barnMedLabel['forelder']);
     }
 
     return barnMedLabel;
