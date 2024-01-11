@@ -135,7 +135,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               }),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ].sort(function (a, b) {
-              if (a.medforelder?.verdi) {
+              if (
+                a.medforelder?.verdi !== null &&
+                a.medforelder?.verdi !== undefined
+              ) {
                 return -1;
               }
               if (
