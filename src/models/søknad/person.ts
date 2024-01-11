@@ -48,7 +48,7 @@ type Medforelder = {
   alder: number;
 };
 
-type Barn = Omit<IBarn, 'medforelder'> & {
+export type Barn = Omit<IBarn, 'medforelder'> & {
   medforelder: Medforelder;
 };
 

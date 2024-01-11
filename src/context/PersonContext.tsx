@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useReducer, useState } from 'react';
-import { IPerson, castPersonDataTilIPerson } from '../models/søknad/person';
+import { Barn, IPerson, PersonData } from '../models/søknad/person';
 import tomPerson from '../mock/initialState.json';
 import { hentPersonData } from '../utils/søknad';
 import { logAdressesperre } from '../utils/amplitude';
@@ -25,7 +25,10 @@ type PersonContextType = {
   feilmelding: string;
   alvorlighetsgrad: EAlvorlighetsgrad | undefined;
   fetchPersonData: (
-    oppdaterSøknadMedBarn: (person: IPerson, barneliste: IBarn[]) => void,
+    oppdaterSøknadMedBarn: (
+      person: PersonData,
+      barneliste: Barn[] | IBarn[]
+    ) => void,
     skjemanavn: ESkjemanavn
   ) => Promise<void>;
 };
@@ -88,23 +91,18 @@ const PersonProvider: React.FC<{ children?: React.ReactNode }> = ({
   };
 
   const fetchPersonData = (
-    oppdaterSøknadMedBarn: (person: IPerson, barneliste: IBarn[]) => void,
+    oppdaterSøknadMedBarn: (person: PersonData, barneliste: Barn[]) => void,
     skjemanavn: ESkjemanavn
   ) => {
     return hentPersonData()
       .then((response) => {
         console.log('response', response);
-        const hentPersonDataResponse = castPersonDataTilIPerson(response);
-        console.log('hentPersonDataResponse', hentPersonDataResponse);
         settPerson({
           type: PersonActionTypes.HENT_PERSON,
-          payload: hentPersonDataResponse,
+          payload: response as unknown as IPerson,
         });
 
-        oppdaterSøknadMedBarn(
-          hentPersonDataResponse,
-          hentPersonDataResponse.barn
-        );
+        oppdaterSøknadMedBarn(response, response.barn);
       })
       .catch((e) => håndterError(e, skjemanavn));
   };

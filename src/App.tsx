@@ -11,7 +11,7 @@ import {
 } from './utils/autentiseringogvalidering/autentisering';
 import { useSøknad } from './context/SøknadContext';
 import { useToggles } from './context/TogglesContext';
-import { IPerson } from './models/søknad/person';
+import { Barn, PersonData } from './models/søknad/person';
 import { Helmet } from 'react-helmet';
 import LocaleTekst from './language/LocaleTekst';
 import { useLokalIntlContext } from './context/LokalIntlContext';
@@ -34,8 +34,11 @@ const App = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
-    const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+  const oppdaterSøknadMedBarn = (
+    person: PersonData,
+    barneliste: Barn[] | IBarn[]
+  ) => {
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste as IBarn[], intl);
 
     settSøknad((prevSøknad) => ({
       ...prevSøknad,

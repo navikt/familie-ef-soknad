@@ -9,7 +9,7 @@ import {
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useSkolepengerSøknad } from './SkolepengerContext';
 import { useToggles } from '../context/TogglesContext';
-import { IPerson } from '../models/søknad/person';
+import { Barn, PersonData } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
 import SøknadsdialogSkolepenger from './Søknadsdialog';
 import { ESkjemanavn } from '../utils/skjemanavn';
@@ -33,8 +33,11 @@ const SkolepengerApp = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
-    const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+  const oppdaterSøknadMedBarn = (
+    person: PersonData,
+    barneliste: Barn[] | IBarn[]
+  ) => {
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste as IBarn[], intl);
 
     settSøknad &&
       settSøknad({ ...søknad, person: { ...person, barn: barnMedLabels } });

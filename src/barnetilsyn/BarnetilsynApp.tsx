@@ -9,7 +9,7 @@ import {
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
-import { IPerson } from '../models/søknad/person';
+import { Barn, PersonData } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
 import SøknadsdialogBarnetilsyn from './Søknadsdialog';
 import { ESkjemanavn } from '../utils/skjemanavn';
@@ -38,9 +38,12 @@ const BarnetilsynApp = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
+  const oppdaterSøknadMedBarn = (
+    person: PersonData,
+    barneliste: Barn[] | IBarn[]
+  ) => {
     console.log('barneliste', barneliste);
-    const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste as IBarn[], intl);
     console.log('barnMedLabels', barnMedLabels);
 
     settSøknad((prevSøknad) => {
