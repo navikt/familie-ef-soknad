@@ -20,7 +20,7 @@ import {
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
-import { IPerson } from '../models/søknad/person';
+import { IPerson, PersonData } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
@@ -29,6 +29,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
+import { IMedforelderFelt } from '../models/steg/medforelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -107,20 +108,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...prevSøknad.person,
             barn: [
               ...forrigeSøknad.person.barn.map((barn) => {
-                const gjeldendeBarn = personData.barn.find(
-                  (personBarn) => personBarn.fnr === barn.ident.verdi
-                );
-
-                const medforelderData = {
-                  label: 'Annen forelder',
-                  verdi: gjeldendeBarn?.medforelder ?? {
-                    harAdressesperre: true,
-                  },
-                };
-
                 return {
                   ...barn,
-                  medforelder: medforelderData,
+                  medforelder: finnGjeldeneBarnOgLagMedforelderFelt(
+                    barn,
+                    personData
+                  ),
                   forelder: {
                     ...barn.forelder,
                     fraFolkeregister: prevSøknad.person.barn.find(
@@ -134,6 +127,22 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           },
         }));
       }
+    };
+
+    const finnGjeldeneBarnOgLagMedforelderFelt = (
+      barn: IBarn,
+      personData: PersonData
+    ): IMedforelderFelt => {
+      const gjeldendeBarn = personData.barn.find(
+        (personBarn) => personBarn.fnr === barn.ident.verdi
+      );
+
+      return {
+        label: 'Annen forelder',
+        verdi: gjeldendeBarn?.medforelder ?? {
+          harAdressesperre: true,
+        },
+      };
     };
 
     useEffect(() => {
