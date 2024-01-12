@@ -96,7 +96,6 @@ const PersonProvider: React.FC<{ children?: React.ReactNode }> = ({
   ) => {
     return hentPersonData()
       .then((response) => {
-        console.log('response', response);
         settPerson({
           type: PersonActionTypes.HENT_PERSON,
           payload: response as unknown as IPerson,
