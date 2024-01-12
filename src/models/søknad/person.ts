@@ -57,16 +57,3 @@ export type PersonData = {
   barn: Barn[];
   hash: string;
 };
-
-export const castPersonDataTilIPerson = (personData: PersonData): IPerson => {
-  return {
-    ...personData,
-    barn: personData.barn.map((barn) => ({
-      ...barn,
-      medforelder: {
-        label: 'Annen forelder',
-        verdi: barn.medforelder,
-      },
-    })),
-  };
-};
