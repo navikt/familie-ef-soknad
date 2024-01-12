@@ -42,9 +42,7 @@ const BarnetilsynApp = () => {
     person: PersonData,
     barneliste: Barn[] | IBarn[]
   ) => {
-    console.log('barneliste', barneliste);
     const barnMedLabels = oppdaterBarnMedLabel(barneliste as IBarn[], intl);
-    console.log('barnMedLabels', barnMedLabels);
 
     settSøknad((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;

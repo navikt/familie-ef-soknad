@@ -111,16 +111,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   (personBarn) => personBarn.fnr === barn.ident.verdi
                 );
 
-                console.log('gjeldendeBarn', gjeldendeBarn);
-
                 const medforelderData = {
                   label: 'Annen forelder',
                   verdi: gjeldendeBarn?.medforelder ?? {
                     harAdressesperre: true,
                   },
                 };
-
-                console.log('medforelderData', medforelderData);
 
                 return {
                   ...barn,
