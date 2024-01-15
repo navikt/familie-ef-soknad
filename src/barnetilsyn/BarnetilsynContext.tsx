@@ -30,6 +30,7 @@ import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
+import { IForelder } from '../models/steg/forelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -108,18 +109,33 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             ...prevSøknad.person,
             barn: [
               ...forrigeSøknad.person.barn.map((barn) => {
+                const medforelder = finnGjeldeneBarnOgLagMedforelderFelt(
+                  barn,
+                  personData
+                );
+
+                const forelder =
+                  finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+                    barn,
+                    personData,
+                    barn.forelder!
+                  );
+                console.log('forelder', forelder);
+                console.log(
+                  'finnGjeldeneBarnOgNullstillForelderHvisDenErDdød()',
+                  finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+                    barn,
+                    personData,
+                    barn.forelder!
+                  )
+                );
                 return {
                   ...barn,
-                  medforelder: finnGjeldeneBarnOgLagMedforelderFelt(
-                    barn,
-                    personData
-                  ),
-                  forelder: {
-                    ...barn.forelder,
-                    fraFolkeregister: prevSøknad.person.barn.find(
-                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                    )?.forelder?.fraFolkeregister,
-                  },
+                  medforelder,
+                  forelder,
+                  fraFolkeregister: prevSøknad.person.barn.find(
+                    (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+                  )?.forelder?.fraFolkeregister,
                 };
               }),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
@@ -143,6 +159,40 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           harAdressesperre: true,
         },
       };
+    };
+
+    const finnGjeldeneBarnOgNullstillForelderHvisDenErDdød = (
+      barn: IBarn,
+      personData: PersonData,
+      forelder: IForelder
+    ): IForelder => {
+      const gjeldendeBarn = personData.barn.find(
+        (personBarn) => personBarn.fnr === barn.ident.verdi
+      );
+
+      if (gjeldendeBarn?.medforelder?.død === true) {
+        return {
+          ...forelder,
+          ikkeOppgittAnnenForelderBegrunnelse: undefined,
+          hvorforIkkeOppgi: undefined,
+          fødselsdato: undefined,
+          borINorge: undefined,
+          land: undefined,
+          avtaleOmDeltBosted: undefined,
+          harAnnenForelderSamværMedBarn: undefined,
+          harDereSkriftligSamværsavtale: undefined,
+          hvordanPraktiseresSamværet: undefined,
+          borAnnenForelderISammeHus: undefined,
+          borAnnenForelderISammeHusBeskrivelse: undefined,
+          boddSammenFør: undefined,
+          flyttetFra: undefined,
+          hvorMyeSammen: undefined,
+          beskrivSamværUtenBarn: undefined,
+          skalBarnetBoHosSøker: undefined,
+        };
+      } else {
+        return forelder;
+      }
     };
 
     useEffect(() => {
