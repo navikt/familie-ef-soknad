@@ -51,6 +51,8 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     (barn: IBarn) =>
       !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false
   );
+  console.log('barnMedLevendeMedforelder: ', barnMedLevendeMedforelder);
+  console.log('aktuelle barn', aktuelleBarn);
 
   const barnMedDødMedforelder = aktuelleBarn.filter((barn: IBarn) => {
     return barn.medforelder?.verdi?.død === true;
@@ -141,6 +143,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
           );
         }
       })}
+      <h1>Test</h1>
       {sisteBarnUtfylt &&
         barnMedDødMedforelder.map((barn: IBarn) => (
           <SeksjonGruppe key={barn.id}>
