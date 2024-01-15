@@ -12,6 +12,7 @@ import {
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
 import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
+import { PersonData } from '../models/søknad/person';
 
 const axiosConfig = {
   withCredentials: true,
@@ -21,12 +22,12 @@ const axiosConfig = {
   },
 };
 
-export const hentPersonData = () => {
-  return axios
-    .get(`${Environment().apiProxyUrl}/api/oppslag/sokerinfo`, axiosConfig)
-    .then((response) => {
-      return response && response.data;
-    });
+export const hentPersonData = async (): Promise<PersonData> => {
+  const response = await axios.get(
+    `${Environment().apiProxyUrl}/api/oppslag/sokerinfo`,
+    axiosConfig
+  );
+  return response && response.data;
 };
 
 export const hentPersonDataArbeidssoker = () => {
@@ -174,7 +175,7 @@ export const oppdaterBarnMedLabel = (
   barneliste: IBarn[],
   intl: LokalIntlShape
 ) =>
-  barneliste.map((barn: any) => {
+  barneliste.map((barn: IBarn) => {
     const barnMedLabel = settBarnMedLabelOgVerdi(barn);
     barnMedLabel['ident'] = barnMedLabel['fnr'];
     delete barnMedLabel.fnr;

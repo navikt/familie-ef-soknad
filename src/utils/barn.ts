@@ -113,13 +113,16 @@ export const formatterBarnetsNavn = (barn: IBarn) => {
 
 export const hentIndexFørsteBarnSomIkkeErUtfylt = (barna: IBarn[]): number => {
   return barna.findIndex(
-    (barn) => barn.forelder === undefined || !erForelderUtfylt(barn.forelder)
+    (barn) =>
+      barn.forelder === undefined ||
+      !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
   );
 };
 
 export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
   return barna.filter(
-    (barn) => barn.forelder && erForelderUtfylt(barn.forelder)
+    (barn) =>
+      barn.forelder && erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
   ).length;
 };
 

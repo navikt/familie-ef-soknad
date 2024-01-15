@@ -1,19 +1,17 @@
 import { useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
-import { hentPersonData, oppdaterBarnMedLabel } from '../utils/søknad';
-import { PersonActionTypes, usePersonContext } from '../context/PersonContext';
+import { oppdaterBarnMedLabel } from '../utils/søknad';
+import { usePersonContext } from '../context/PersonContext';
 import {
   verifiserAtBrukerErAutentisert,
   autentiseringsInterceptor,
 } from '../utils/autentiseringogvalidering/autentisering';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { useToggles } from '../context/TogglesContext';
-import { IPerson } from '../models/søknad/person';
+import { Barn, PersonData } from '../models/søknad/person';
 import { Helmet } from 'react-helmet';
 import SøknadsdialogBarnetilsyn from './Søknadsdialog';
-import { EAlvorlighetsgrad } from '../models/felles/feilmelding';
-import { logAdressesperre } from '../utils/amplitude';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
@@ -24,11 +22,8 @@ import Environment from '../Environment';
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
   const [fetching, settFetching] = useState<boolean>(true);
-  const [error, settError] = useState<boolean>(false);
-  const [feilmelding, settFeilmelding] = useState<string>('');
-  const [alvorlighetsgrad, settAlvorlighetsgrad] =
-    useState<EAlvorlighetsgrad>();
-  const { settPerson } = usePersonContext();
+  const { fetchPersonData, error, settError, feilmelding, alvorlighetsgrad } =
+    usePersonContext();
   const {
     settSøknad,
     hentMellomlagretBarnetilsyn,
@@ -43,45 +38,23 @@ const BarnetilsynApp = () => {
     verifiserAtBrukerErAutentisert(settAutentisering);
   }, [autentisert]);
 
-  const fetchPersonData = () => {
-    return hentPersonData()
-      .then((response) => {
-        settPerson({
-          type: PersonActionTypes.HENT_PERSON,
-          payload: response,
-        });
-        oppdaterSøknadMedBarn(response, response.barn);
-      })
-      .catch((e) => {
-        const feil = e.response?.data?.feil;
-
-        if (feil === 'adressesperre') {
-          logAdressesperre(ESkjemanavn.Barnetilsyn);
-          settAlvorlighetsgrad(EAlvorlighetsgrad.INFO);
-          settFeilmelding(
-            intl.formatMessage({
-              id: 'barnasbosted.feilmelding.adressebeskyttelse',
-            })
-          );
-        } else {
-          settFeilmelding(feil);
-        }
-
-        settError(true);
-      });
-  };
-
-  const oppdaterSøknadMedBarn = (person: IPerson, barneliste: IBarn[]) => {
-    const barnMedLabels = oppdaterBarnMedLabel(barneliste, intl);
+  const oppdaterSøknadMedBarn = (
+    person: PersonData,
+    barneliste: Barn[] | IBarn[]
+  ) => {
+    const barnMedLabels = oppdaterBarnMedLabel(barneliste as IBarn[], intl);
 
     settSøknad((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;
 
-      const oppdatertBarn = [...prevBarn, ...barnMedLabels];
+      const sortertBarnelistePåMedforelder = [
+        ...prevBarn,
+        ...barnMedLabels,
+      ].sort((_, b) => (b.medforelder.verdi ? 1 : -1));
 
       return {
         ...prevSøknad,
-        person: { ...person, barn: oppdatertBarn },
+        person: { ...person, barn: sortertBarnelistePåMedforelder },
       };
     });
   };
@@ -95,7 +68,7 @@ const BarnetilsynApp = () => {
   useEffect(() => {
     Promise.all([
       fetchToggles(),
-      fetchPersonData(),
+      fetchPersonData(oppdaterSøknadMedBarn, ESkjemanavn.Barnetilsyn),
       hentMellomlagretBarnetilsyn(),
     ])
       .then(() => settFetching(false))
@@ -116,7 +89,9 @@ const BarnetilsynApp = () => {
       return (
         <>
           <Helmet>
-            <title>Søknad om barnetilsyn</title>
+            <title>
+              {intl.formatMessage({ id: 'banner.tittel.barnetilsyn' })}
+            </title>
           </Helmet>
 
           <SøknadsdialogBarnetilsyn />
