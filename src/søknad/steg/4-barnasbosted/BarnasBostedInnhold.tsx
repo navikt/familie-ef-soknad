@@ -48,7 +48,8 @@ const BarnasBostedInnhold: React.FC<Props> = ({
   const intl = useLokalIntlContext();
 
   const barnMedLevendeMedforelder = aktuelleBarn.filter(
-    (barn: IBarn) => barn.medforelder?.verdi?.død === false
+    (barn: IBarn) =>
+      !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false
   );
   console.log('barnMedLevendeMedforelder: ', barnMedLevendeMedforelder);
   console.log('aktuelle barn', aktuelleBarn);
