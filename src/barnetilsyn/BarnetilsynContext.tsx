@@ -15,11 +15,12 @@ import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentDataFraForrigeBarnetilsynSøknad,
   hentMellomlagretSøknadFraDokument,
+  hentPersonData,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
-import { IPerson } from '../models/søknad/person';
+import { IPerson, PersonData } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
@@ -28,6 +29,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { oppdaterBarneliste, oppdaterBarnIBarneliste } from '../utils/barn';
 import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
+import { IMedforelderFelt } from '../models/steg/medforelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -95,6 +97,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+      const personData = await hentPersonData();
+      console.log('personData', personData);
+
       if (forrigeSøknad) {
         settSøknad((prevSøknad) => ({
           ...prevSøknad,
@@ -102,13 +107,47 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           person: {
             ...prevSøknad.person,
             barn: [
-              ...forrigeSøknad.person.barn,
+              ...forrigeSøknad.person.barn.map((barn) => {
+                return {
+                  ...barn,
+                  medforelder: finnGjeldeneBarnOgLagMedforelderFelt(
+                    barn,
+                    personData
+                  ),
+                  forelder: {
+                    ...barn.forelder,
+                    fraFolkeregister: prevSøknad.person.barn.find(
+                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+                    )?.forelder?.fraFolkeregister,
+                  },
+                };
+              }),
               ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
             ],
           },
         }));
       }
     };
+
+    const finnGjeldeneBarnOgLagMedforelderFelt = (
+      barn: IBarn,
+      personData: PersonData
+    ): IMedforelderFelt => {
+      const gjeldendeBarn = personData.barn.find(
+        (personBarn) => personBarn.fnr === barn.ident.verdi
+      );
+
+      return {
+        label: 'Annen forelder',
+        verdi: gjeldendeBarn?.medforelder ?? {
+          harAdressesperre: true,
+        },
+      };
+    };
+
+    useEffect(() => {
+      console.log('søknad i BarnetilsynContext', søknad);
+    }, [søknad]);
 
     const finnNyeBarnSidenForrigeSøknad = (
       prevSøknad: ISøknad,

@@ -13,9 +13,7 @@ import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 import { erGyldigDato } from '../../utils/dato';
-
-export const erAlleForeldreUtfylt = (foreldre: IForelder[]) =>
-  foreldre.every((forelder) => erForelderUtfylt(forelder));
+import { IBooleanFelt } from '../../models/søknad/søknadsfelter';
 
 export const utfyltBorINorge = (forelder: IForelder) => {
   const { borINorge, land } = forelder;
@@ -25,12 +23,16 @@ export const utfyltBorINorge = (forelder: IForelder) => {
   );
 };
 
-export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
+export const erForelderUtfylt = (
+  forelder: IForelder,
+  harSammeAdresse: IBooleanFelt
+): boolean | undefined => {
   const { avtaleOmDeltBosted } = forelder;
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
 
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
+    utfyltSkalBarnetBoHosSøker(forelder, harSammeAdresse) &&
     utfyltBorINorge(forelder) &&
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
@@ -43,6 +45,15 @@ export const erForelderUtfylt = (forelder: IForelder): boolean | undefined => {
     utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder);
 
   return forelderInfoOgSpørsmålBesvart || kanIkkeOppgiAnnenForelderRuteUtfylt;
+};
+
+export const utfyltSkalBarnetBoHosSøker = (
+  forelder: IForelder,
+  harSammeAdresse: IBooleanFelt
+) => {
+  return (
+    harSammeAdresse.verdi || harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
+  );
 };
 
 export const utfyltBoddSammenAnnenForelder = (forelder: IForelder) => {

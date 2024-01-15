@@ -39,3 +39,21 @@ export enum EPersonDetaljer {
   fødselsdato = 'fødselsdato',
   kjennerIkkeIdent = 'kjennerIkkeIdent',
 }
+
+type Medforelder = {
+  harAdressesperre: boolean;
+  død: boolean;
+  ident: string;
+  navn: string;
+  alder: number;
+};
+
+export type Barn = Omit<IBarn, 'medforelder'> & {
+  medforelder: Medforelder;
+};
+
+export type PersonData = {
+  søker: ISøker;
+  barn: Barn[];
+  hash: string;
+};

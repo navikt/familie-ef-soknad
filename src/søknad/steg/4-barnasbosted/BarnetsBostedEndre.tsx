@@ -268,7 +268,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-        {erForelderUtfylt(forelder) &&
+        {erForelderUtfylt(forelder, barn.harSammeAdresse) &&
           (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
             erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
               forelder?.fødselsdato?.verdi
