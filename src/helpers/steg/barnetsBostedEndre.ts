@@ -59,7 +59,8 @@ export const skalOmAndreForelderVises = (
   førsteBarnTilHverForelder: IBarn[],
   lagtTilAnnenForelderId: 'annen-forelder',
   barnHarSammeForelder: boolean | undefined,
-  forelder: IForelder
+  forelder: IForelder,
+  finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass: boolean
 ) => {
   return (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
@@ -67,7 +68,9 @@ export const skalOmAndreForelderVises = (
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)))
+        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass ===
+      false
   );
 };
 

@@ -131,12 +131,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
+  const finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass =
+    barneListe.some(
+      (b) =>
+        b.skalHaBarnepass?.verdi &&
+        b.medforelder?.verdi?.ident &&
+        b.medforelder?.verdi?.navn
+    );
+
   const visOmAndreForelder = skalOmAndreForelderVises(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,
     barnHarSammeForelder,
-    forelder
+    forelder,
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass
   );
 
   const visBorAnnenForelderINorge = skalBorAnnenForelderINorgeVises(
@@ -153,14 +162,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
     utfyltBorINorge(forelder);
 
-  const finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass =
-    barneListe.some(
-      (b) =>
-        b.skalHaBarnepass?.verdi &&
-        b.medforelder?.verdi?.ident &&
-        b.medforelder?.verdi?.navn
-    );
-
   const skalViseAnnenForelderValg =
     // (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||
     finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass;
@@ -170,6 +171,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     'finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass',
     finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass
   );
+
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
