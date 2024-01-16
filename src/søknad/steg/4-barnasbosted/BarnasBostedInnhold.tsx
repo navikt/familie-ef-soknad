@@ -105,11 +105,15 @@ const BarnasBostedInnhold: React.FC<Props> = ({
     }
   };
 
+  console.log('barnMedLevendeMedforelder', barnMedLevendeMedforelder);
   return (
     <>
       {barnMedLevendeMedforelder.map((barn: IBarn, index: number) => {
         const key = barn.fødselsdato.verdi + index;
         if (index === aktivIndex) {
+          {
+            console.log('index === aktivIndex', index === aktivIndex);
+          }
           return (
             <BarnetsBostedEndre
               barn={barn}
