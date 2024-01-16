@@ -157,12 +157,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barneListe.some(
       (b) =>
         b.skalHaBarnepass?.verdi &&
-        b.medforelder?.verdi.ident &&
-        b.medforelder.verdi.navn
+        b.medforelder?.verdi?.ident &&
+        b.medforelder?.verdi?.navn
     );
 
   const skalViseAnnenForelderValg =
-    (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||
+    // (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||
     finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass;
 
   console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
