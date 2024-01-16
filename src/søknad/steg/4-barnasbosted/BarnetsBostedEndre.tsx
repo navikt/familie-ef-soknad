@@ -164,7 +164,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalViseAnnenForelderValg =
     // (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||
-    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass;
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass &&
+    !barn.medforelder?.verdi;
 
   console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
   console.log(
