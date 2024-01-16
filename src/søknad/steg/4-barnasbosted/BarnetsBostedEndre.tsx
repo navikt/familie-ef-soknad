@@ -153,6 +153,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
     utfyltBorINorge(forelder);
 
+  console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
