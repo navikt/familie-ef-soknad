@@ -153,7 +153,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
     utfyltBorINorge(forelder);
 
+  const finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass =
+    barneListe.some(
+      (b) =>
+        b.skalHaBarnepass?.verdi &&
+        b.medforelder?.verdi.ident &&
+        b.medforelder.verdi.navn
+    );
+
+  const skalViseAnnenForelderValg =
+    (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass;
+
   console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
+  console.log(
+    'finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass',
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass
+  );
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -174,18 +190,17 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           <SeksjonGruppe>
             <BarnetsAndreForelderTittel barn={barn} />
 
-            {førsteBarnTilHverForelder.length > 0 &&
-              !barn.medforelder?.verdi && (
-                <AnnenForelderKnapper
-                  barn={barn}
-                  forelder={forelder}
-                  oppdaterAnnenForelder={leggTilAnnenForelderId}
-                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                  settBarnHarSammeForelder={settBarnHarSammeForelder}
-                  settForelder={settForelder}
-                  oppdaterBarn={oppdaterBarnISøknaden}
-                />
-              )}
+            {skalViseAnnenForelderValg && (
+              <AnnenForelderKnapper
+                barn={barn}
+                forelder={forelder}
+                oppdaterAnnenForelder={leggTilAnnenForelderId}
+                førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                settBarnHarSammeForelder={settBarnHarSammeForelder}
+                settForelder={settForelder}
+                oppdaterBarn={oppdaterBarnISøknaden}
+              />
+            )}
 
             {visOmAndreForelder && (
               <OmAndreForelder
