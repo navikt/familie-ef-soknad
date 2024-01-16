@@ -34,7 +34,7 @@ import {
   erIdentUtfyltOgGyldig,
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
-  harValgtBorISammeHusEllerBorIkkeINorge,
+  harValgtBorISammeHus,
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
@@ -159,8 +159,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   const skalFylleUtHarBoddSammenFør =
-    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
-    utfyltBorINorge(forelder);
+    harValgtBorISammeHus(forelder) && utfyltBorINorge(forelder);
 
   const skalViseAnnenForelderValg =
     // (førsteBarnTilHverForelder.length > 0 && !barn.medforelder?.verdi) ||

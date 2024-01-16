@@ -93,12 +93,11 @@ export const skalBorAnnenForelderINorgeVises = (
   );
 };
 
-export const harValgtBorISammeHusEllerBorIkkeINorge = (forelder: IForelder) => {
+export const harValgtBorISammeHus = (forelder: IForelder) => {
   const { borAnnenForelderISammeHus } = forelder;
   return (
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
-    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
-    !forelder.borINorge?.verdi
+    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi)
   );
 };

@@ -10,7 +10,7 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { harValgtBorISammeHusEllerBorIkkeINorge } from './barnetsBostedEndre';
+import { harValgtBorISammeHus } from './barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 import { erGyldigDato } from '../../utils/dato';
 import { IBooleanFelt } from '../../models/søknad/søknadsfelter';
@@ -37,7 +37,7 @@ export const erForelderUtfylt = (
     utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder) &&
-    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
+    harValgtBorISammeHus(forelder) &&
     visSpørsmålHvisIkkeSammeForelder(forelder) &&
     utfyltBoddSammenAnnenForelder(forelder);
 
