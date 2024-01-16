@@ -120,15 +120,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     personData,
                     barn.forelder!
                   );
-                console.log('forelder', forelder);
-                console.log(
-                  'finnGjeldeneBarnOgNullstillForelderHvisDenErDdød()',
-                  finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
-                    barn,
-                    personData,
-                    barn.forelder!
-                  )
-                );
+
                 return {
                   ...barn,
                   medforelder,
