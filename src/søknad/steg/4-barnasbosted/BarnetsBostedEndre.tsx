@@ -163,7 +163,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalViseAnnenForelderValg =
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
-    !barn.medforelder?.verdi;
+    !barn.medforelder?.verdi &&
+    barn.forelder &&
+    !erForelderUtfylt(barn.forelder, barn.harSammeAdresse);
 
   return (
     <div className="barnas-bosted">
