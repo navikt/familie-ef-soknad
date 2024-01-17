@@ -102,38 +102,46 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       console.log('personData', personData);
 
       if (forrigeSøknad) {
-        settSøknad((prevSøknad) => ({
-          ...prevSøknad,
-          ...forrigeSøknad,
-          person: {
-            ...prevSøknad.person,
-            barn: [
-              ...forrigeSøknad.person.barn.map((barn) => {
-                const medforelder = finnGjeldeneBarnOgLagMedforelderFelt(
-                  barn,
-                  personData
-                );
+        settSøknad((prevSøknad) => {
+          const aktuelleBarn = forrigeSøknad.person.barn.filter((barn) =>
+            personData.barn.some(
+              (personBarn) => personBarn.fnr === barn.ident.verdi
+            )
+          );
 
-                const forelder =
-                  finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+          return {
+            ...prevSøknad,
+            ...forrigeSøknad,
+            person: {
+              ...prevSøknad.person,
+              barn: [
+                ...aktuelleBarn.map((barn) => {
+                  const medforelder = finnGjeldeneBarnOgLagMedforelderFelt(
                     barn,
-                    personData,
-                    barn.forelder!
+                    personData
                   );
 
-                return {
-                  ...barn,
-                  medforelder,
-                  forelder,
-                  fraFolkeregister: prevSøknad.person.barn.find(
-                    (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                  )?.forelder?.fraFolkeregister,
-                };
-              }),
-              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
-            ],
-          },
-        }));
+                  const forelder =
+                    finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+                      barn,
+                      personData,
+                      barn.forelder!
+                    );
+
+                  return {
+                    ...barn,
+                    medforelder,
+                    forelder,
+                    fraFolkeregister: prevSøknad.person.barn.find(
+                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+                    )?.forelder?.fraFolkeregister,
+                  };
+                }),
+                ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+              ],
+            },
+          };
+        });
       }
     };
 
