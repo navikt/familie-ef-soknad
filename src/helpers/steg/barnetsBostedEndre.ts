@@ -7,10 +7,7 @@ import {
 } from '../../models/steg/barnasbosted';
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
-import {
-  IDatoFelt,
-  ITekstFelt,
-} from '../../models/søknad/søknadsfelter';
+import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);
@@ -62,7 +59,8 @@ export const skalOmAndreForelderVises = (
   førsteBarnTilHverForelder: IBarn[],
   lagtTilAnnenForelderId: 'annen-forelder',
   barnHarSammeForelder: boolean | undefined,
-  forelder: IForelder
+  forelder: IForelder,
+  finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass: boolean
 ) => {
   return (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
@@ -70,7 +68,9 @@ export const skalOmAndreForelderVises = (
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
     (barnHarSammeForelder === false &&
       (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)))
+        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
+    finnesRegistrertAnnenForelderBlantValgteBarnOgBarnSomSkalHaBarnepass ===
+      false
   );
 };
 
@@ -93,12 +93,11 @@ export const skalBorAnnenForelderINorgeVises = (
   );
 };
 
-export const harValgtBorISammeHusEllerBorIkkeINorge = (forelder: IForelder) => {
+export const harValgtBorISammeHus = (forelder: IForelder) => {
   const { borAnnenForelderISammeHus } = forelder;
   return (
     (harValgtSvar(borAnnenForelderISammeHus?.verdi) &&
       borAnnenForelderISammeHus?.svarid !== EBorAnnenForelderISammeHus.ja) ||
-    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi) ||
-    !forelder.borINorge?.verdi
+    harValgtSvar(forelder.borAnnenForelderISammeHusBeskrivelse?.verdi)
   );
 };

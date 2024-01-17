@@ -1,5 +1,6 @@
 import { IBarn } from '../steg/barn';
 import { IDatoFelt, ITekstFelt } from './søknadsfelter';
+import { hentTekst } from '../../utils/søknad';
 
 export interface IPerson {
   hash: string;

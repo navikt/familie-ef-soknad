@@ -34,7 +34,7 @@ import {
   erIdentUtfyltOgGyldig,
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
-  harValgtBorISammeHusEllerBorIkkeINorge,
+  harValgtBorISammeHus,
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
@@ -131,12 +131,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
+  const finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn =
+    barneListe.some(
+      (b) =>
+        b.skalHaBarnepass?.verdi &&
+        b.medforelder?.verdi?.ident &&
+        b.medforelder?.verdi?.navn
+    );
+
   const visOmAndreForelder = skalOmAndreForelderVises(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,
     barnHarSammeForelder,
-    forelder
+    forelder,
+    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn
   );
 
   const visBorAnnenForelderINorge = skalBorAnnenForelderINorgeVises(
@@ -150,8 +159,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   const skalFylleUtHarBoddSammenFør =
-    harValgtBorISammeHusEllerBorIkkeINorge(forelder) &&
-    utfyltBorINorge(forelder);
+    harValgtBorISammeHus(forelder) && utfyltBorINorge(forelder);
+
+  const skalViseAnnenForelderValg =
+    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    !barn.medforelder?.verdi;
 
   return (
     <div className="barnas-bosted">
@@ -173,18 +185,17 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           <SeksjonGruppe>
             <BarnetsAndreForelderTittel barn={barn} />
 
-            {førsteBarnTilHverForelder.length > 0 &&
-              !barn.medforelder?.verdi && (
-                <AnnenForelderKnapper
-                  barn={barn}
-                  forelder={forelder}
-                  oppdaterAnnenForelder={leggTilAnnenForelderId}
-                  førsteBarnTilHverForelder={førsteBarnTilHverForelder}
-                  settBarnHarSammeForelder={settBarnHarSammeForelder}
-                  settForelder={settForelder}
-                  oppdaterBarn={oppdaterBarnISøknaden}
-                />
-              )}
+            {skalViseAnnenForelderValg && (
+              <AnnenForelderKnapper
+                barn={barn}
+                forelder={forelder}
+                oppdaterAnnenForelder={leggTilAnnenForelderId}
+                førsteBarnTilHverForelder={førsteBarnTilHverForelder}
+                settBarnHarSammeForelder={settBarnHarSammeForelder}
+                settForelder={settForelder}
+                oppdaterBarn={oppdaterBarnISøknaden}
+              />
+            )}
 
             {visOmAndreForelder && (
               <OmAndreForelder

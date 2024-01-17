@@ -4,7 +4,6 @@ import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import BarnetsBostedLagtTil from '../../../søknad/steg/4-barnasbosted/BarnetsBostedLagtTil';
 import BarnetsBostedEndre from '../../../søknad/steg/4-barnasbosted/BarnetsBostedEndre';
 import { IBarn } from '../../../models/steg/barn';
-
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarneHeader from '../../../components/BarneHeader';
 import {
@@ -49,7 +48,8 @@ const BarnasBostedInnhold: React.FC<Props> = ({
 
   const barnMedLevendeMedforelder = aktuelleBarn.filter(
     (barn: IBarn) =>
-      !barn.medforelder?.verdi || barn.medforelder?.verdi?.død === false
+      !barn.medforelder?.verdi ||
+      (barn.medforelder?.verdi && barn.medforelder?.verdi?.død !== true)
   );
 
   const barnMedDødMedforelder = aktuelleBarn.filter((barn: IBarn) => {
