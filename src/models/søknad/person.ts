@@ -50,7 +50,7 @@ type Medforelder = {
 };
 
 export type Barn = Omit<IBarn, 'medforelder'> & {
-  medforelder: Medforelder;
+  medforelder?: Medforelder;
 };
 
 export type PersonData = {

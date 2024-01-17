@@ -140,17 +140,17 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const finnGjeldeneBarnOgLagMedforelderFelt = (
       barn: IBarn,
       personData: PersonData
-    ): IMedforelderFelt => {
+    ): IMedforelderFelt | undefined => {
       const gjeldendeBarn = personData.barn.find(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
 
-      return {
-        label: 'Annen forelder',
-        verdi: gjeldendeBarn?.medforelder ?? {
-          harAdressesperre: true,
-        },
-      };
+      return gjeldendeBarn?.medforelder
+        ? {
+            label: 'Annen forelder',
+            verdi: gjeldendeBarn?.medforelder,
+          }
+        : undefined;
     };
 
     const finnGjeldeneBarnOgNullstillForelderHvisDenErDdød = (
