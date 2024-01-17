@@ -8,6 +8,7 @@ import {
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);
@@ -85,7 +86,7 @@ export const skalBorAnnenForelderINorgeVises = (
 ) => {
   return (
     (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
-      !!barn.medforelder?.verdi) ||
+      stringHarVerdiOgErIkkeTom(barn.medforelder?.verdi.navn)) ||
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&

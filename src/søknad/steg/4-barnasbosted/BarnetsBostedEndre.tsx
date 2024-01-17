@@ -38,6 +38,7 @@ import {
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
+import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -207,18 +208,20 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               />
             )}
 
-            {barn.medforelder?.verdi && (
-              <>
-                <Label as="p">{hentTekst('person.navn', intl)}</Label>
-                <BodyShort>
-                  {barn.medforelder.verdi.navn
-                    ? barn.medforelder.verdi.navn
-                    : `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
-                        barn.medforelder.verdi.alder
-                      }`}
-                </BodyShort>
-              </>
-            )}
+            {barn.medforelder?.verdi &&
+              stringHarVerdiOgErIkkeTom(barn.medforelder.verdi.navn) && (
+                <>
+                  <Label as="p">{hentTekst('person.navn', intl)}</Label>
+                  <BodyShort>
+                    {barn.medforelder.verdi.navn
+                      ? barn.medforelder.verdi.navn
+                      : `${hentTekst(
+                          'barnekort.medforelder.hemmelig',
+                          intl
+                        )}, ${barn.medforelder.verdi.alder}`}
+                  </BodyShort>
+                </>
+              )}
 
             {barnHarSammeForelder && (
               <AlertMedTopMargin variant={'info'} inline>
