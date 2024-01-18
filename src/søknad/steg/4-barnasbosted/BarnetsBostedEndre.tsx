@@ -167,6 +167,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barn.forelder &&
     !erForelderUtfylt(barn.forelder, barn.harSammeAdresse);
 
+  console.log('skalViseAnnenForelderValg', skalViseAnnenForelderValg);
+  console.log(
+    'finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn',
+    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn
+  );
+  console.log(
+    'barn.forelder && !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)',
+    barn.forelder && !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
+  );
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
