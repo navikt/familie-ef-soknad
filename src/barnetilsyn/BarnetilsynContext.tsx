@@ -31,6 +31,7 @@ import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
+import { hentUid } from '../utils/autentiseringogvalidering/uuid';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -131,7 +132,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   return {
                     ...barn,
                     medforelder,
-                    forelder,
+                    forelder: {
+                      ...forelder,
+                      id: hentUid(),
+                    },
                     fraFolkeregister: prevSøknad.person.barn.find(
                       (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                     )?.forelder?.fraFolkeregister,
