@@ -42,10 +42,13 @@ export const finnFørsteBarnTilHverForelder = (
     return b !== barn && b.forelder;
   });
 
+  console.log('andreBarnMedForelder', andreBarnMedForelder);
+
   const unikeForeldreIDer = Array.from(
     new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
   );
 
+  console.log('unikeForeldreIDer', unikeForeldreIDer);
   return unikeForeldreIDer
     .map((id) => {
       if (!id) return null;
