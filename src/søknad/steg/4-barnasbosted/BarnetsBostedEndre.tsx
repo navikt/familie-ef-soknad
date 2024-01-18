@@ -184,6 +184,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
   console.log('skalViseAnnenForelderValg', skalViseAnnenForelderValg);
 
+  console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
