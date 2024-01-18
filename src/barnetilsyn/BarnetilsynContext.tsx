@@ -122,7 +122,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   const forelder =
-                    finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+                    finnGjeldeneBarnOgNullstillAnnenForelderHvisDød(
                       barn,
                       personData,
                       barn.forelder!
@@ -152,7 +152,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       const gjeldendeBarn = personData.barn.find(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
-
+      console.log('gjeldendeBarn', barn.navn);
+      console.log('gjeldendeBarn?.medforelder', gjeldendeBarn?.medforelder);
       return gjeldendeBarn?.medforelder
         ? {
             label: 'Annen forelder',
@@ -161,7 +162,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const finnGjeldeneBarnOgNullstillForelderHvisDenErDdød = (
+    const finnGjeldeneBarnOgNullstillAnnenForelderHvisDød = (
       barn: IBarn,
       personData: PersonData,
       forelder: IForelder
