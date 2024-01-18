@@ -116,7 +116,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...prevSøknad.person,
               barn: [
                 ...aktuelleBarn.map((barn) => {
-                  const medforelder = finnGjeldeneBarnOgLagMedforelderFelt(
+                  const medforelder = finnGjeldendeBarnOgLagMedforelderFelt(
                     barn,
                     personData
                   );
@@ -145,15 +145,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
-    const finnGjeldeneBarnOgLagMedforelderFelt = (
+    const finnGjeldendeBarnOgLagMedforelderFelt = (
       barn: IBarn,
       personData: PersonData
     ): IMedforelderFelt | undefined => {
       const gjeldendeBarn = personData.barn.find(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
-      console.log('gjeldendeBarn', barn.navn);
-      console.log('gjeldendeBarn?.medforelder', gjeldendeBarn?.medforelder);
       return gjeldendeBarn?.medforelder
         ? {
             label: 'Annen forelder',
