@@ -161,19 +161,29 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const skalFylleUtHarBoddSammenFør =
     harValgtBorISammeHus(forelder) && utfyltBorINorge(forelder);
 
-  const skalViseAnnenForelderValg =
+  const barnErFraForrigSøknadOgSkalViseAnnenForelderValg =
+    barn.erFraForrigeSøknad &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
-    (!barn.medforelder?.verdi || !barn.forelder);
+    !barn.medforelder?.verdi &&
+    barn.forelder &&
+    !erForelderUtfylt(barn.forelder, barn.harSammeAdresse);
 
+  const skalViseAnnenForelderValg =
+    barn.erFraForrigeSøknad !== true &&
+    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    !barn.medforelder?.verdi &&
+    !barn.forelder;
+
+  const visAnnenForelderValg =
+    barnErFraForrigSøknadOgSkalViseAnnenForelderValg ||
+    skalViseAnnenForelderValg;
+
+  console.log(
+    'barnErFraForrigSøknadOgSkalViseAnnenForelderValg',
+    barnErFraForrigSøknadOgSkalViseAnnenForelderValg
+  );
   console.log('skalViseAnnenForelderValg', skalViseAnnenForelderValg);
-  console.log(
-    'finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn',
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn
-  );
-  console.log(
-    'barn.forelder && !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)',
-    barn.forelder && !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
-  );
+
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -194,7 +204,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           <SeksjonGruppe>
             <BarnetsAndreForelderTittel barn={barn} />
 
-            {skalViseAnnenForelderValg && (
+            {visAnnenForelderValg && (
               <AnnenForelderKnapper
                 barn={barn}
                 forelder={forelder}

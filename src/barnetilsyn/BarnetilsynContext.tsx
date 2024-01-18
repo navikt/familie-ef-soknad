@@ -135,6 +135,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     fraFolkeregister: prevSøknad.person.barn.find(
                       (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                     )?.forelder?.fraFolkeregister,
+                    erFraForrigeSøknad: true,
                   };
                 }),
                 ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
