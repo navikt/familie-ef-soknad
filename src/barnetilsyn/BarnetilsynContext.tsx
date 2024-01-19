@@ -121,13 +121,16 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     barn,
                     personData
                   );
+                  const erAnnenForelderEndret =
+                    medforelder?.verdi.navn !== barn.forelder?.navn;
 
-                  const forelder =
-                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
-                      barn,
-                      personData,
-                      barn.forelder!
-                    );
+                  const forelder = erAnnenForelderEndret
+                    ? undefined
+                    : finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
+                        barn,
+                        personData,
+                        barn.forelder!
+                      );
 
                   return {
                     ...barn,
