@@ -175,17 +175,27 @@ export const oppdaterBarnMedLabel = (
   barneliste: IBarn[],
   intl: LokalIntlShape
 ) =>
-  barneliste.map((barn: IBarn) => {
-    const barnMedLabel = settBarnMedLabelOgVerdi(barn);
-    barnMedLabel['ident'] = barnMedLabel['fnr'];
-    delete barnMedLabel.fnr;
+  barneliste
+    .map((barn: IBarn) => {
+      const barnMedLabel = settBarnMedLabelOgVerdi(barn);
+      barnMedLabel['ident'] = barnMedLabel['fnr'];
+      delete barnMedLabel.fnr;
 
-    if (barnMedLabel.medforelder?.verdi) {
-      barnMedLabel['forelder'] = medforelderMedLabel(
-        barnMedLabel.medforelder,
-        intl
-      );
-    }
+      if (barnMedLabel.medforelder?.verdi) {
+        barnMedLabel['forelder'] = medforelderMedLabel(
+          barnMedLabel.medforelder,
+          intl
+        );
+      }
 
-    return barnMedLabel;
-  });
+      return barnMedLabel;
+    })
+    .sort((a, b) => {
+      if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+        return -1;
+      }
+      if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+        return 1;
+      }
+      return 0;
+    });

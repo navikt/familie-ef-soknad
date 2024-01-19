@@ -92,14 +92,32 @@ export const oppdaterBarnIBarneliste = (
       barn.id === nyttBarn.id ? nyttBarn : barn
     );
   }
-  return [...barneListe, nyttBarn];
+  return [...barneListe, nyttBarn].sort((a, b) => {
+    if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+      return -1;
+    }
+    if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+      return 1;
+    }
+    return 0;
+  });
 };
 
 export const oppdaterBarneliste = (barneListe: IBarn[], nyeBarn: IBarn[]) => {
-  return barneListe.map(
-    (barn) =>
-      nyeBarn.find((oppdatertBarn) => oppdatertBarn.id === barn.id) || barn
-  );
+  return barneListe
+    .map(
+      (barn) =>
+        nyeBarn.find((oppdatertBarn) => oppdatertBarn.id === barn.id) || barn
+    )
+    .sort((a, b) => {
+      if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+        return -1;
+      }
+      if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+        return 1;
+      }
+      return 0;
+    });
 };
 
 export const formatterBarnetsNavn = (barn: IBarn) => {

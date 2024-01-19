@@ -148,7 +148,15 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   };
                 }),
                 ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
-              ],
+              ].sort((a, b) => {
+                if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+                  return -1;
+                }
+                if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+                  return 1;
+                }
+                return 0;
+              }),
             },
           };
         });
