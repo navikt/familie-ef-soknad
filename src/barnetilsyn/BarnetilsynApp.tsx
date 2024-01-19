@@ -50,7 +50,15 @@ const BarnetilsynApp = () => {
       const sortertBarnelistePåMedforelder = [
         ...prevBarn,
         ...barnMedLabels,
-      ].sort((_, b) => (b.medforelder.verdi ? 1 : -1));
+      ].sort((a, b) => {
+        if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+          return -1;
+        }
+        if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+          return 1;
+        }
+        return 0;
+      });
 
       return {
         ...prevSøknad,
