@@ -181,10 +181,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const erForelderUtfyltForKopiertBarn =
     finnTypeBarnForMedForelder(barn, forelderidenterMedBarn) ===
       TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
-    harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) &&
-    utfyltNødvendigeSamværSpørsmål(forelder);
+    harValgtSvar(barn?.forelder?.avtaleOmDeltBosted?.verdi) &&
+    utfyltNødvendigeSamværSpørsmål(barn?.forelder);
 
-  console.log('typeBarn', typeBarn);
+  console.log('forelder', forelder);
+  console.log('barn', barn);
+  console.log('forelderidenterMedBarn', forelderidenterMedBarn);
+  console.log(
+    'finnTypeBarnForMedForelder(barn, forelderidenterMedBarn)',
+    finnTypeBarnForMedForelder(barn, forelderidenterMedBarn)
+  );
   console.log(
     'harValgtSvar(forelder.avtaleOmDeltBosted?.verdi)',
     harValgtSvar(barn.forelder?.avtaleOmDeltBosted?.verdi)
@@ -193,7 +199,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     'utfyltNødvendigeSamværSpørsmål(forelder)',
     utfyltNødvendigeSamværSpørsmål(barn?.forelder)
   );
-
   console.log('erForelderUtfyltForKopiertBarn', erForelderUtfyltForKopiertBarn);
   return (
     <div className="barnas-bosted">
