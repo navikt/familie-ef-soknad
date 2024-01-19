@@ -161,30 +161,23 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const skalFylleUtHarBoddSammenFør =
     harValgtBorISammeHus(forelder) && utfyltBorINorge(forelder);
 
-  const barnErFraForrigSøknadOgSkalViseAnnenForelderValg =
+  const skalViseAnnenForelderKnapperForGjenbruk =
     barn.erFraForrigeSøknad &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
     !barn.medforelder?.verdi &&
     barn.forelder &&
     !erForelderUtfylt(barn.forelder, barn.harSammeAdresse);
 
-  const skalViseAnnenForelderValg =
+  const skalViseAnnenForelderKnapperForFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
     !barn.medforelder?.verdi &&
     !barn.forelder;
 
-  const visAnnenForelderValg =
-    barnErFraForrigSøknadOgSkalViseAnnenForelderValg ||
-    skalViseAnnenForelderValg;
+  const skalViseAnnenForelderKnapper =
+    skalViseAnnenForelderKnapperForGjenbruk ||
+    skalViseAnnenForelderKnapperForFørstegangssøknad;
 
-  console.log(
-    'barnErFraForrigSøknadOgSkalViseAnnenForelderValg',
-    barnErFraForrigSøknadOgSkalViseAnnenForelderValg
-  );
-  console.log('skalViseAnnenForelderValg', skalViseAnnenForelderValg);
-
-  console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -205,7 +198,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           <SeksjonGruppe>
             <BarnetsAndreForelderTittel barn={barn} />
 
-            {visAnnenForelderValg && (
+            {skalViseAnnenForelderKnapper && (
               <AnnenForelderKnapper
                 barn={barn}
                 forelder={forelder}

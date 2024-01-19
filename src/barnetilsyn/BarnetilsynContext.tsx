@@ -123,7 +123,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   const forelder =
-                    finnGjeldeneBarnOgNullstillAnnenForelderHvisDød(
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
                       barn,
                       personData,
                       barn.forelder!
@@ -165,7 +165,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const finnGjeldeneBarnOgNullstillAnnenForelderHvisDød = (
+    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDød = (
       barn: IBarn,
       personData: PersonData,
       forelder: IForelder
