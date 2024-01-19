@@ -106,6 +106,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
 
+  console.log('førsteBarnTilHverForelder', førsteBarnTilHverForelder);
   if (!førsteBarnTilHverForelder) return null;
 
   return (

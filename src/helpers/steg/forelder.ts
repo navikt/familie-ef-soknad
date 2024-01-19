@@ -87,7 +87,8 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 
-export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
+export const utfyltNødvendigeSamværSpørsmål = (forelder?: IForelder) => {
+  if (!forelder) return;
   const {
     avtaleOmDeltBosted,
     harAnnenForelderSamværMedBarn,
