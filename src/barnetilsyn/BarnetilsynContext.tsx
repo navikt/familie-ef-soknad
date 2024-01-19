@@ -135,10 +135,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   return {
                     ...barn,
                     medforelder,
-                    forelder: {
-                      ...forelder,
-                      id: hentUid(),
-                    },
+                    forelder: forelder
+                      ? {
+                          ...forelder,
+                          id: hentUid(),
+                        }
+                      : undefined,
                     fraFolkeregister: prevSøknad.person.barn.find(
                       (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                     )?.forelder?.fraFolkeregister,
