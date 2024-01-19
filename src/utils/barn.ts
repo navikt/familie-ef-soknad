@@ -115,14 +115,14 @@ export const hentIndexFørsteBarnSomIkkeErUtfylt = (barna: IBarn[]): number => {
   return barna.findIndex(
     (barn) =>
       barn.forelder === undefined ||
-      !erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
+      !erForelderUtfylt(barn.harSammeAdresse, barn.forelder)
   );
 };
 
 export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
   return barna.filter(
     (barn) =>
-      barn.forelder && erForelderUtfylt(barn.forelder, barn.harSammeAdresse)
+      barn.forelder && erForelderUtfylt(barn.harSammeAdresse, barn.forelder)
   ).length;
 };
 

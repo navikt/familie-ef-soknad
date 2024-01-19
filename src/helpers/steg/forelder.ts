@@ -24,9 +24,10 @@ export const utfyltBorINorge = (forelder: IForelder) => {
 };
 
 export const erForelderUtfylt = (
-  forelder: IForelder,
-  harSammeAdresse: IBooleanFelt
+  harSammeAdresse: IBooleanFelt,
+  forelder?: IForelder
 ): boolean | undefined => {
+  if (forelder === undefined) return false;
   const { avtaleOmDeltBosted } = forelder;
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
