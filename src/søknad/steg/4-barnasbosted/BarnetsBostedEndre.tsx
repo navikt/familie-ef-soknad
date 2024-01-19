@@ -168,7 +168,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barn.forelder &&
     !erForelderUtfylt(barn.forelder, barn.harSammeAdresse);
 
-  const skalViseAnnenForelderKnapperForFørstegangssøknad =
+  const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
     !barn.medforelder?.verdi &&
@@ -176,7 +176,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalViseAnnenForelderKnapper =
     skalViseAnnenForelderKnapperForGjenbruk ||
-    skalViseAnnenForelderKnapperForFørstegangssøknad;
+    skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad;
 
   return (
     <div className="barnas-bosted">
