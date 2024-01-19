@@ -183,6 +183,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) &&
     utfyltNødvendigeSamværSpørsmål(forelder);
 
+  console.log('typeBarn', typeBarn);
+  console.log(
+    'harValgtSvar(forelder.avtaleOmDeltBosted?.verdi)',
+    harValgtSvar(forelder.avtaleOmDeltBosted?.verdi)
+  );
+  console.log(
+    'utfyltNødvendigeSamværSpørsmål(forelder)',
+    utfyltNødvendigeSamværSpørsmål(forelder)
+  );
+
   console.log('erForelderUtfyltForKopiertBarn', erForelderUtfyltForKopiertBarn);
   return (
     <div className="barnas-bosted">
