@@ -79,21 +79,19 @@ const BarnaDine: React.FC = () => {
           {hentTekst('barnadine.infohentet', intl)}
         </Alert>
         <BarneKortWrapper>
-          {søknad.person.barn
-            ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
-            .map((barn: IBarn) => (
-              <Barnekort
-                key={barn.id}
-                gjeldendeBarn={barn}
-                footer={
-                  <BarnMedISøknad
-                    id={barn.id ? barn.id : ''}
-                    toggleSkalHaBarnepass={toggleSkalHaBarnepass}
-                    skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
-                  />
-                }
-              />
-            ))}
+          {søknad.person.barn.map((barn: IBarn) => (
+            <Barnekort
+              key={barn.id}
+              gjeldendeBarn={barn}
+              footer={
+                <BarnMedISøknad
+                  id={barn.id ? barn.id : ''}
+                  toggleSkalHaBarnepass={toggleSkalHaBarnepass}
+                  skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
+                />
+              }
+            />
+          ))}
         </BarneKortWrapper>
       </BarnaDineContainer>
     </Side>
