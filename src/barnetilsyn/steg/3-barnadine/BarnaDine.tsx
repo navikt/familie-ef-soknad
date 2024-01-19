@@ -79,19 +79,29 @@ const BarnaDine: React.FC = () => {
           {hentTekst('barnadine.infohentet', intl)}
         </Alert>
         <BarneKortWrapper>
-          {søknad.person.barn.map((barn: IBarn) => (
-            <Barnekort
-              key={barn.id}
-              gjeldendeBarn={barn}
-              footer={
-                <BarnMedISøknad
-                  id={barn.id ? barn.id : ''}
-                  toggleSkalHaBarnepass={toggleSkalHaBarnepass}
-                  skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
-                />
+          {søknad.person.barn
+            ?.sort((a: IBarn, b: IBarn) => {
+              if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+                return -1;
               }
-            />
-          ))}
+              if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+                return 1;
+              }
+              return 0;
+            })
+            .map((barn: IBarn) => (
+              <Barnekort
+                key={barn.id}
+                gjeldendeBarn={barn}
+                footer={
+                  <BarnMedISøknad
+                    id={barn.id ? barn.id : ''}
+                    toggleSkalHaBarnepass={toggleSkalHaBarnepass}
+                    skalHaBarnepass={!!barn.skalHaBarnepass?.verdi}
+                  />
+                }
+              />
+            ))}
         </BarneKortWrapper>
       </BarnaDineContainer>
     </Side>
