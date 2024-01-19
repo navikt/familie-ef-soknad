@@ -179,7 +179,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad;
 
   const erForelderUtfyltForKopiertBarn =
-    typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
+    finnTypeBarnForMedForelder(barn, forelderidenterMedBarn) ===
+      TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
     harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) &&
     utfyltNødvendigeSamværSpørsmål(forelder);
 
