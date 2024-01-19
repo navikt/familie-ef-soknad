@@ -10,7 +10,10 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { harValgtBorISammeHus } from './barnetsBostedEndre';
+import {
+  finnTypeBarnForMedForelder,
+  harValgtBorISammeHus,
+} from './barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 import { erGyldigDato } from '../../utils/dato';
 import { IBooleanFelt } from '../../models/søknad/søknadsfelter';

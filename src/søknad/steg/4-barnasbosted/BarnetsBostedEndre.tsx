@@ -13,6 +13,7 @@ import {
   erForelderUtfylt,
   utfyltBorINorge,
   utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
+  utfyltNødvendigeSamværSpørsmål,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
@@ -177,6 +178,12 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     skalViseAnnenForelderKnapperForGjenbruk ||
     skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad;
 
+  const erForelderUtfyltForKopiertBarn =
+    typeBarn === TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
+    harValgtSvar(forelder.avtaleOmDeltBosted?.verdi) &&
+    utfyltNødvendigeSamværSpørsmål(forelder);
+
+  console.log('erForelderUtfyltForKopiertBarn', erForelderUtfyltForKopiertBarn);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -291,17 +298,18 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-        {erForelderUtfylt(barn.harSammeAdresse, forelder) &&
-          (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
-            erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-              forelder?.fødselsdato?.verdi
-            ) ||
-            utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
-            harForelderFraPdl) && (
-            <Button variant="secondary" onClick={leggTilForelder}>
-              <LocaleTekst tekst={'knapp.neste'} />
-            </Button>
-          )}
+        {erForelderUtfyltForKopiertBarn ||
+          (erForelderUtfylt(barn.harSammeAdresse, forelder) &&
+            (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
+              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+                forelder?.fødselsdato?.verdi
+              ) ||
+              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
+              harForelderFraPdl) && (
+              <Button variant="secondary" onClick={leggTilForelder}>
+                <LocaleTekst tekst={'knapp.neste'} />
+              </Button>
+            ))}
       </div>
     </div>
   );
