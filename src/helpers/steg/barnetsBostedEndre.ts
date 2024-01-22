@@ -89,7 +89,9 @@ export const skalBorAnnenForelderINorgeVises = (
     (!barnHarSammeForelder &&
       !forelder.kanIkkeOppgiAnnenForelderFar?.verdi &&
       harValgtSvar(forelder?.navn?.verdi) &&
-      (harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent))
+      (barn.erFraForrigeSøknad ||
+        harValgtSvar(ident?.verdi || fødselsdato?.verdi) ||
+        kjennerIkkeIdent))
   );
 };
 
