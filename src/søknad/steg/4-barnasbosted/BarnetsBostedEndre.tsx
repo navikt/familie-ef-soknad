@@ -39,6 +39,7 @@ import {
   skalBorAnnenForelderINorgeVises,
   skalOmAndreForelderVises,
 } from '../../../helpers/steg/barnetsBostedEndre';
+import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -92,7 +93,8 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
-    forelder.fødselsdato?.verdi ? true : false
+    stringHarVerdiOgErIkkeTom(forelder.navn?.verdi) &&
+      !stringHarVerdiOgErIkkeTom(forelder.ident?.verdi)
   );
 
   const { boddSammenFør, flyttetFra, fødselsdato, ident } = forelder;
