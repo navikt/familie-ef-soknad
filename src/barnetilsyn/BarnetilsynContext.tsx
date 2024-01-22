@@ -125,11 +125,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   console.log(
-                    `${barn.navn} medforelder?.verdi.navn`,
+                    `${barn.navn.verdi} medforelder?.verdi.navn`,
                     medforelder?.verdi.navn
                   );
                   console.log(
-                    `${barn.navn} barn?.forelder?.navn`,
+                    `${barn.navn.verdi} barn?.forelder?.navn`,
                     barn?.forelder?.navn
                   );
 
@@ -139,7 +139,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     medforelder?.verdi.navn !== barn.forelder?.navn?.verdi;
 
                   const forelder = erAnnenForelderEndret
-                    ? undefined
+                    ? oppdaterBarnForelderIdentOgNavn(
+                        barn.forelder,
+                        medforelder
+                      )
                     : finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
                         barn,
                         personData,
@@ -153,18 +156,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     medforelder,
                     forelder: forelder
                       ? {
-                          ...forelder,
-                          navn: hentFeltObjekt(
-                            'person.navn',
-                            medforelder?.verdi?.navn,
-                            intl
+                          forelder,
+                          ...oppdaterBarnForelderIdentOgNavn(
+                            forelder,
+                            medforelder
                           ),
-                          ident: hentFeltObjekt(
-                            'person.ident.visning',
-                            medforelder?.verdi?.ident,
-                            intl
-                          ),
-                          id: hentUid(),
                         }
                       : undefined,
                     fraFolkeregister: prevSøknad.person.barn.find(
@@ -178,6 +174,28 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             },
           };
         });
+      }
+    };
+
+    const oppdaterBarnForelderIdentOgNavn = (
+      forelder: IForelder | undefined,
+      medforelder: IMedforelderFelt | undefined
+    ): IForelder => {
+      if (medforelder) {
+        return {
+          ...forelder,
+          navn: hentFeltObjekt('person.navn', medforelder.verdi.navn, intl),
+          ident: hentFeltObjekt(
+            'person.ident.visning',
+            medforelder.verdi.ident,
+            intl
+          ),
+          id: hentUid(),
+        };
+      } else {
+        return {
+          ...forelder,
+        };
       }
     };
 
