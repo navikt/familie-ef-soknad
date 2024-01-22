@@ -132,9 +132,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     `${barn.navn} barn?.forelder?.navn`,
                     barn?.forelder?.navn
                   );
+
                   const erAnnenForelderEndret =
-                    // stringHarVerdiOgErIkkeTom(medforelder?.verdi.navn) &&
-                    // stringHarVerdiOgErIkkeTom(barn?.forelder?.navn) &&
+                    stringHarVerdiOgErIkkeTom(medforelder?.verdi.navn) &&
+                    stringHarVerdiOgErIkkeTom(barn?.forelder?.navn) &&
                     medforelder?.verdi.navn !== barn.forelder?.navn?.verdi;
 
                   const forelder = erAnnenForelderEndret
