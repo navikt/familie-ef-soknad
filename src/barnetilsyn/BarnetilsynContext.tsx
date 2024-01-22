@@ -138,6 +138,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     forelder: forelder
                       ? {
                           ...forelder,
+                          navn: medforelder?.verdi?.navn,
+                          ident: medforelder?.verdi?.ident,
                           id: hentUid(),
                         }
                       : undefined,
