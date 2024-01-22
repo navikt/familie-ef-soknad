@@ -33,6 +33,7 @@ import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
+import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -122,8 +123,19 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     barn,
                     personData
                   );
+
+                  console.log(
+                    `${barn.navn} medforelder?.verdi.navn`,
+                    medforelder?.verdi.navn
+                  );
+                  console.log(
+                    `${barn.navn} barn?.forelder?.navn`,
+                    barn?.forelder?.navn
+                  );
                   const erAnnenForelderEndret =
-                    medforelder?.verdi.navn !== barn.forelder?.navn;
+                    // stringHarVerdiOgErIkkeTom(medforelder?.verdi.navn) &&
+                    // stringHarVerdiOgErIkkeTom(barn?.forelder?.navn) &&
+                    medforelder?.verdi.navn !== barn.forelder?.navn?.verdi;
 
                   const forelder = erAnnenForelderEndret
                     ? undefined
@@ -132,6 +144,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                         personData,
                         barn.forelder!
                       );
+
+                  console.log(`${barn.navn} forelder`, forelder);
 
                   return {
                     ...barn,
