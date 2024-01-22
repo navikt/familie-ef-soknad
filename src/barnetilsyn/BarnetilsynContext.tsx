@@ -14,6 +14,7 @@ import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentDataFraForrigeBarnetilsynSøknad,
+  hentFeltObjekt,
   hentMellomlagretSøknadFraDokument,
   hentPersonData,
   mellomlagreSøknadTilDokument,
@@ -138,8 +139,16 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     forelder: forelder
                       ? {
                           ...forelder,
-                          navn: medforelder?.verdi?.navn,
-                          ident: medforelder?.verdi?.ident,
+                          navn: hentFeltObjekt(
+                            'person.navn',
+                            medforelder?.verdi?.navn,
+                            intl
+                          ),
+                          ident: hentFeltObjekt(
+                            'person.ident.visning',
+                            medforelder?.verdi?.ident,
+                            intl
+                          ),
                           id: hentUid(),
                         }
                       : undefined,
