@@ -203,6 +203,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
   console.log('erForelderUtfyltForKopiertBarn', erForelderUtfyltForKopiertBarn);
   console.log('visBorAnnenForelderINorge', visBorAnnenForelderINorge);
+  console.log('visOmAndreForelder', visOmAndreForelder);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>

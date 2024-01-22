@@ -62,11 +62,16 @@ export const skalOmAndreForelderVises = (
   forelder: IForelder,
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
 ) => {
+  console.log(
+    'skalOmAndreForelderVises førsteBarnTilHverForelder',
+    førsteBarnTilHverForelder
+  );
+  console.log('barnHarSammeForelder !== true', barnHarSammeForelder !== true);
   return (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
-    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder === false) ||
-    (barnHarSammeForelder === false &&
+    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder !== true) ||
+    (barnHarSammeForelder !== true &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
