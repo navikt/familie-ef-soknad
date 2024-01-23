@@ -24,6 +24,7 @@ export interface IBarn {
   harAdressesperre?: boolean;
   medforelder?: IMedforelderFelt;
   annenForelderId?: string; // Gjelder kun for visning av avhuking i frontend
+  erFraForrigeSøknad?: boolean;
 }
 
 export enum EBarn {

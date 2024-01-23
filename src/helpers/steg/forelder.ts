@@ -10,8 +10,15 @@ import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar'
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
-import { harValgtBorISammeHus } from './barnetsBostedEndre';
-import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
+import {
+  erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
+  erIdentUtfyltOgGyldig,
+  harValgtBorISammeHus,
+} from './barnetsBostedEndre';
+import {
+  stringErNullEllerTom,
+  stringHarVerdiOgErIkkeTom,
+} from '../../utils/typer';
 import { erGyldigDato } from '../../utils/dato';
 import { IBooleanFelt } from '../../models/søknad/søknadsfelter';
 
@@ -24,14 +31,17 @@ export const utfyltBorINorge = (forelder: IForelder) => {
 };
 
 export const erForelderUtfylt = (
-  forelder: IForelder,
-  harSammeAdresse: IBooleanFelt
+  harSammeAdresse: IBooleanFelt,
+  forelder?: IForelder,
+  harForelderFraPdl?: boolean
 ): boolean | undefined => {
+  if (forelder === undefined) return false;
   const { avtaleOmDeltBosted } = forelder;
 
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
 
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
+    utfyltNavnOgIdent(forelder, harForelderFraPdl) &&
     utfyltSkalBarnetBoHosSøker(forelder, harSammeAdresse) &&
     utfyltBorINorge(forelder) &&
     utfyltAvtaleDeltBosted &&
@@ -53,6 +63,25 @@ export const utfyltSkalBarnetBoHosSøker = (
 ) => {
   return (
     harSammeAdresse.verdi || harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
+  );
+};
+
+export const utfyltNavnOgIdent = (
+  forelder: IForelder,
+  harForelderFraPdl: boolean | undefined
+) => {
+  const kjennerIkkeIdent =
+    stringHarVerdiOgErIkkeTom(forelder.navn?.verdi) &&
+    !stringHarVerdiOgErIkkeTom(forelder.ident?.verdi);
+
+  return (
+    (stringHarVerdiOgErIkkeTom(forelder.navn) &&
+      (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
+        (erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+          forelder?.fødselsdato?.verdi
+        ) &&
+          kjennerIkkeIdent))) ||
+    harForelderFraPdl
   );
 };
 
@@ -83,7 +112,8 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
   return kanIkkeOppgiAnnenForelderFar?.verdi && (pgaDonorBarn || pgaAnnet);
 };
 
-export const utfyltNødvendigeSamværSpørsmål = (forelder: IForelder) => {
+export const utfyltNødvendigeSamværSpørsmål = (forelder?: IForelder) => {
+  if (!forelder) return;
   const {
     avtaleOmDeltBosted,
     harAnnenForelderSamværMedBarn,

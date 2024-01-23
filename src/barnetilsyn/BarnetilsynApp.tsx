@@ -47,11 +47,7 @@ const BarnetilsynApp = () => {
     settSøknad((prevSøknad) => {
       const prevBarn = prevSøknad.person.barn;
 
-      const sortertBarnelistePåMedforelder = [
-        ...prevBarn,
-        ...barnMedLabels,
-      ].sort((_, b) => (b.medforelder.verdi ? 1 : -1));
-
+      const sortertBarnelistePåMedforelder = [...prevBarn, ...barnMedLabels];
       return {
         ...prevSøknad,
         person: { ...person, barn: sortertBarnelistePåMedforelder },

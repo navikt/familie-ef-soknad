@@ -58,6 +58,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
   ) => {
     settBarnHarSammeForelder(true);
     const oppdatertForelder = cloneDeep(detAndreBarnet.forelder);
+
     oppdaterAnnenForelder(detAndreBarnet.id);
 
     settForelder({
