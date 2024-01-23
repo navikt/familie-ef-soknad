@@ -182,12 +182,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     skalViseAnnenForelderKnapperForGjenbruk ||
     skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad;
 
-  const erForelderUtfyltForKopiertBarn =
-    finnTypeBarnForMedForelder(barn, forelderidenterMedBarn) ===
-      TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
-    harValgtSvar(barn?.forelder?.avtaleOmDeltBosted?.verdi) &&
-    utfyltNødvendigeSamværSpørsmål(barn?.forelder);
-
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>
@@ -302,16 +296,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-        {erForelderUtfyltForKopiertBarn ||
-          (erForelderUtfylt(
-            barn.harSammeAdresse,
-            forelder,
-            harForelderFraPdl
-          ) && (
-            <Button variant="secondary" onClick={leggTilForelder}>
-              <LocaleTekst tekst={'knapp.neste'} />
-            </Button>
-          ))}
+        {erForelderUtfylt(
+          barn.harSammeAdresse,
+          forelder,
+          harForelderFraPdl
+        ) && (
+          <Button variant="secondary" onClick={leggTilForelder}>
+            <LocaleTekst tekst={'knapp.neste'} />
+          </Button>
+        )}
       </div>
     </div>
   );
