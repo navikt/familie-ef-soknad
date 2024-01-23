@@ -8,13 +8,14 @@ import {
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
+import { stringErNullEllerTom } from '../../utils/typer';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);
 
 export const erFødselsdatoUtfyltOgGyldigEllerTomtFelt = (
   fødselsdato?: string
-) => erGyldigDato(fødselsdato) || fødselsdato === '';
+) => erGyldigDato(fødselsdato) || stringErNullEllerTom(fødselsdato);
 
 export const finnTypeBarnForMedForelder = (
   barn: IBarn,
