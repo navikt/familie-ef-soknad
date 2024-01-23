@@ -124,37 +124,21 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     personData
                   );
 
-                  console.log(
-                    `${barn.navn.verdi} medforelder?.verdi.navn`,
-                    medforelder?.verdi.navn
+                  const forelder = oppdaterBarnForelderIdentOgNavn(
+                    barn.forelder,
+                    medforelder
                   );
-                  console.log(
-                    `${barn.navn.verdi} barn?.forelder?.navn`,
-                    barn?.forelder?.navn
-                  );
-
-                  const erAnnenForelderEndret =
-                    stringHarVerdiOgErIkkeTom(medforelder?.verdi.navn) &&
-                    stringHarVerdiOgErIkkeTom(barn?.forelder?.navn) &&
-                    medforelder?.verdi.navn !== barn.forelder?.navn?.verdi;
-
-                  const forelder = erAnnenForelderEndret
-                    ? oppdaterBarnForelderIdentOgNavn(
-                        barn.forelder,
-                        medforelder
-                      )
-                    : finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
-                        barn,
-                        personData,
-                        barn.forelder!
-                      );
-
-                  console.log(`${barn.navn} forelder`, forelder);
+                  const oppdatertForelder =
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
+                      barn,
+                      personData,
+                      forelder
+                    );
 
                   return {
                     ...barn,
                     medforelder,
-                    forelder: forelder,
+                    forelder: oppdatertForelder,
                     fraFolkeregister: prevSøknad.person.barn.find(
                       (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
                     )?.forelder?.fraFolkeregister,

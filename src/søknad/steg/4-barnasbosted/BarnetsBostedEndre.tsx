@@ -37,7 +37,7 @@ import {
   finnTypeBarnForMedForelder,
   harValgtBorISammeHus,
   skalBorAnnenForelderINorgeVises,
-  skalOmAndreForelderVises,
+  skalAnnenForelderRedigeres,
 } from '../../../helpers/steg/barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
 
@@ -144,7 +144,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         b.medforelder?.verdi?.navn
     );
 
-  const visOmAndreForelder = skalOmAndreForelderVises(
+  const visOmAndreForelder = skalAnnenForelderRedigeres(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,

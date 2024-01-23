@@ -42,11 +42,12 @@ export const finnFørsteBarnTilHverForelder = (
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
   });
-
+  console.log('andreBarnMedForelder', andreBarnMedForelder);
   const unikeForeldreIDer = Array.from(
     new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
   );
 
+  console.log('unikeForeldreIDer', unikeForeldreIDer);
   return unikeForeldreIDer
     .map((id) => {
       if (!id) return null;
@@ -55,7 +56,26 @@ export const finnFørsteBarnTilHverForelder = (
     .filter(Boolean) as IBarn[];
 };
 
-export const skalOmAndreForelderVises = (
+export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
+  barn: IBarn,
+  førsteBarnTilHverForelder: IBarn[]
+) => {
+  return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
+};
+
+export const barnUtenForelderFraPdlOgErIkkeKopiert = (
+  førsteBarnTilHverForelder: IBarn[],
+  barnHarSammeForelder: boolean | undefined,
+  barn: IBarn
+) => {
+  return (
+    førsteBarnTilHverForelder.length > 0 &&
+    barnHarSammeForelder !== true &&
+    !barn.medforelder
+  );
+};
+
+export const skalAnnenForelderRedigeres = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[],
   lagtTilAnnenForelderId: 'annen-forelder',
@@ -64,11 +84,16 @@ export const skalOmAndreForelderVises = (
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
 ) => {
   return (
-    (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
+    barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra(
+      barn,
+      førsteBarnTilHverForelder
+    ) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
-    (førsteBarnTilHverForelder.length > 0 &&
-      barnHarSammeForelder !== true &&
-      !barn.medforelder) ||
+    barnUtenForelderFraPdlOgErIkkeKopiert(
+      førsteBarnTilHverForelder,
+      barnHarSammeForelder,
+      barn
+    ) ||
     (barn.erFraForrigeSøknad === false &&
       barnHarSammeForelder !== true &&
       (barn.harSammeAdresse.verdi ||
