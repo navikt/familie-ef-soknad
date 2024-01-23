@@ -71,7 +71,8 @@ export const skalOmAndreForelderVises = (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
     (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder !== true) ||
-    (barnHarSammeForelder !== true &&
+    (barn.erFraForrigeSøknad === false &&
+      barnHarSammeForelder !== true &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
