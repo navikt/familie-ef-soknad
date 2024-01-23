@@ -11,7 +11,8 @@ import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import {
-  finnTypeBarnForMedForelder,
+  erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
+  erIdentUtfyltOgGyldig,
   harValgtBorISammeHus,
 } from './barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
@@ -28,7 +29,8 @@ export const utfyltBorINorge = (forelder: IForelder) => {
 
 export const erForelderUtfylt = (
   harSammeAdresse: IBooleanFelt,
-  forelder?: IForelder
+  forelder?: IForelder,
+  harForelderFraPdl?: boolean
 ): boolean | undefined => {
   if (forelder === undefined) return false;
   const { avtaleOmDeltBosted } = forelder;
@@ -36,6 +38,7 @@ export const erForelderUtfylt = (
   const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
 
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
+    utfyltNavnOgIdent(forelder, harForelderFraPdl) &&
     utfyltSkalBarnetBoHosSøker(forelder, harSammeAdresse) &&
     utfyltBorINorge(forelder) &&
     utfyltAvtaleDeltBosted &&
@@ -57,6 +60,25 @@ export const utfyltSkalBarnetBoHosSøker = (
 ) => {
   return (
     harSammeAdresse.verdi || harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)
+  );
+};
+
+export const utfyltNavnOgIdent = (
+  forelder: IForelder,
+  harForelderFraPdl: boolean | undefined
+) => {
+  const kjennerIkkeIdent =
+    stringHarVerdiOgErIkkeTom(forelder.navn?.verdi) &&
+    !stringHarVerdiOgErIkkeTom(forelder.ident?.verdi);
+  console.log('kjennerIkkeIdent: ', kjennerIkkeIdent);
+  return (
+    (stringHarVerdiOgErIkkeTom(forelder.navn) &&
+      (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
+        (erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+          forelder?.fødselsdato?.verdi
+        ) &&
+          kjennerIkkeIdent))) ||
+    harForelderFraPdl
   );
 };
 

@@ -7,7 +7,7 @@ import { storeForbokstaver } from './tekst';
 import { erForelderUtfylt } from '../helpers/steg/forelder';
 import { LokalIntlShape } from '../language/typer';
 import { IForelder } from '../models/steg/forelder';
-import { harVerdi } from './typer';
+import { harVerdi, stringHarVerdiOgErIkkeTom } from './typer';
 
 export const hentSpørsmålTekstMedNavnEllerBarn = (
   spørsmålTekstid: string,
@@ -115,14 +115,23 @@ export const hentIndexFørsteBarnSomIkkeErUtfylt = (barna: IBarn[]): number => {
   return barna.findIndex(
     (barn) =>
       barn.forelder === undefined ||
-      !erForelderUtfylt(barn.harSammeAdresse, barn.forelder)
+      !erForelderUtfylt(
+        barn.harSammeAdresse,
+        barn.forelder,
+        stringHarVerdiOgErIkkeTom(barn.medforelder?.verdi)
+      )
   );
 };
 
 export const antallBarnMedForeldreUtfylt = (barna: IBarn[]): number => {
   return barna.filter(
     (barn) =>
-      barn.forelder && erForelderUtfylt(barn.harSammeAdresse, barn.forelder)
+      barn.forelder &&
+      erForelderUtfylt(
+        barn.harSammeAdresse,
+        barn.forelder,
+        stringHarVerdiOgErIkkeTom(barn.medforelder?.verdi)
+      )
   ).length;
 };
 

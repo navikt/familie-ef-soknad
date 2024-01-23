@@ -99,7 +99,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const { boddSammenFør, flyttetFra, fødselsdato, ident } = forelder;
 
-  const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
+  const harForelderFraPdl = stringHarVerdiOgErIkkeTom(
+    barn?.medforelder?.verdi?.navn
+  );
 
   const førsteBarnTilHverForelder = finnFørsteBarnTilHverForelder(
     barneListe,
@@ -168,7 +170,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     barn.erFraForrigeSøknad &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
     !barn.medforelder?.verdi &&
-    !erForelderUtfylt(barn.harSammeAdresse, barn.forelder);
+    !erForelderUtfylt(barn.harSammeAdresse, barn.forelder, harForelderFraPdl);
 
   const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
@@ -319,18 +321,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           )}
 
         {erForelderUtfyltForKopiertBarn ||
-          (erForelderUtfylt(barn.harSammeAdresse, forelder) &&
-            (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
-              (erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-                forelder?.fødselsdato?.verdi
-              ) &&
-                kjennerIkkeIdent) ||
-              utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
-              harForelderFraPdl) && (
-              <Button variant="secondary" onClick={leggTilForelder}>
-                <LocaleTekst tekst={'knapp.neste'} />
-              </Button>
-            ))}
+          (erForelderUtfylt(
+            barn.harSammeAdresse,
+            forelder,
+            kjennerIkkeIdent
+          ) && (
+            <Button variant="secondary" onClick={leggTilForelder}>
+              <LocaleTekst tekst={'knapp.neste'} />
+            </Button>
+          ))}
       </div>
     </div>
   );
