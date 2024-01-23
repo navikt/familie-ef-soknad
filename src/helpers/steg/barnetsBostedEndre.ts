@@ -63,11 +63,6 @@ export const skalOmAndreForelderVises = (
   forelder: IForelder,
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
 ) => {
-  console.log(
-    'skalOmAndreForelderVises førsteBarnTilHverForelder',
-    førsteBarnTilHverForelder
-  );
-  console.log('barnHarSammeForelder !== true', barnHarSammeForelder !== true);
   return (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
@@ -92,11 +87,6 @@ export const skalBorAnnenForelderINorgeVises = (
   fødselsdato: IDatoFelt | null | undefined,
   kjennerIkkeIdent: boolean
 ) => {
-  console.log('!!barn.medforelder?.verdi', !!barn.medforelder?.verdi);
-  console.log(
-    'harValgtSvar(ident?.verdi || fødselsdato?.verdi) ||kjennerIkkeIdent))',
-    harValgtSvar(ident?.verdi || fødselsdato?.verdi) || kjennerIkkeIdent
-  );
   return (
     (typeBarn !== TypeBarn.BARN_MED_KOPIERT_FORELDERINFORMASJON &&
       !!barn.medforelder?.verdi) ||

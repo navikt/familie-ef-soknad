@@ -188,24 +188,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     harValgtSvar(barn?.forelder?.avtaleOmDeltBosted?.verdi) &&
     utfyltNødvendigeSamværSpørsmål(barn?.forelder);
 
-  console.log('forelder', forelder);
-  console.log('barn', barn);
-  console.log('forelderidenterMedBarn', forelderidenterMedBarn);
-  console.log(
-    'finnTypeBarnForMedForelder(barn, forelderidenterMedBarn)',
-    finnTypeBarnForMedForelder(barn, forelderidenterMedBarn)
-  );
-  console.log(
-    'harValgtSvar(forelder.avtaleOmDeltBosted?.verdi)',
-    harValgtSvar(barn.forelder?.avtaleOmDeltBosted?.verdi)
-  );
-  console.log(
-    'utfyltNødvendigeSamværSpørsmål(forelder)',
-    utfyltNødvendigeSamværSpørsmål(barn?.forelder)
-  );
-  console.log('erForelderUtfyltForKopiertBarn', erForelderUtfyltForKopiertBarn);
-  console.log('visBorAnnenForelderINorge', visBorAnnenForelderINorge);
-  console.log('visOmAndreForelder', visOmAndreForelder);
   return (
     <div className="barnas-bosted">
       <SeksjonGruppe>

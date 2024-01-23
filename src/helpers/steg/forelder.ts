@@ -73,7 +73,7 @@ export const utfyltNavnOgIdent = (
   const kjennerIkkeIdent =
     stringHarVerdiOgErIkkeTom(forelder.navn?.verdi) &&
     !stringHarVerdiOgErIkkeTom(forelder.ident?.verdi);
-  console.log('kjennerIkkeIdent: ', kjennerIkkeIdent);
+
   return (
     (stringHarVerdiOgErIkkeTom(forelder.navn) &&
       (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
