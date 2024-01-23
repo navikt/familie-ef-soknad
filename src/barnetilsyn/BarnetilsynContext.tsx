@@ -124,15 +124,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     personData
                   );
 
-                  console.log(
-                    `${barn.navn.verdi} medforelder?.verdi.navn`,
-                    medforelder?.verdi.navn
-                  );
-                  console.log(
-                    `${barn.navn.verdi} barn?.forelder?.navn`,
-                    barn?.forelder?.navn
-                  );
-
                   const forelder = oppdaterBarnForelderIdentOgNavn(
                     barn.forelder,
                     medforelder

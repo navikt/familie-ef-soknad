@@ -56,24 +56,24 @@ export const finnFørsteBarnTilHverForelder = (
     .filter(Boolean) as IBarn[];
 };
 
-function barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra(
+export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[]
-) {
+) => {
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
-}
+};
 
-function barnUtenForelderFraPDL(
+export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   førsteBarnTilHverForelder: IBarn[],
   barnHarSammeForelder: boolean | undefined,
   barn: IBarn
-) {
+) => {
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
     !barn.medforelder
   );
-}
+};
 
 export const skalAnnenForelderRedigeres = (
   barn: IBarn,
@@ -89,7 +89,7 @@ export const skalAnnenForelderRedigeres = (
       førsteBarnTilHverForelder
     ) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
-    barnUtenForelderFraPDL(
+    barnUtenForelderFraPdlOgErIkkeKopiert(
       førsteBarnTilHverForelder,
       barnHarSammeForelder,
       barn
