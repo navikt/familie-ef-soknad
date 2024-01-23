@@ -103,7 +103,7 @@ const AnnenForelderKnapper: React.FC<Props> = ({
     );
     settForelder(annenForelder);
   };
-
+  console.log('Første barn til hver forelder: ', førsteBarnTilHverForelder);
   const andreForelder = 'andre-forelder-';
   const andreForelderAnnen = 'andre-forelder-annen';
 
