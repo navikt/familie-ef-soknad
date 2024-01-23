@@ -321,9 +321,10 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         {erForelderUtfyltForKopiertBarn ||
           (erForelderUtfylt(barn.harSammeAdresse, forelder) &&
             (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
-              erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
+              (erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
                 forelder?.fødselsdato?.verdi
-              ) ||
+              ) &&
+                kjennerIkkeIdent) ||
               utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
               harForelderFraPdl) && (
               <Button variant="secondary" onClick={leggTilForelder}>
