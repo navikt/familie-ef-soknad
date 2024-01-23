@@ -70,7 +70,9 @@ export const skalOmAndreForelderVises = (
   return (
     (!barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0) ||
     barn.annenForelderId === lagtTilAnnenForelderId ||
-    (førsteBarnTilHverForelder.length > 0 && barnHarSammeForelder !== true) ||
+    (førsteBarnTilHverForelder.length > 0 &&
+      barnHarSammeForelder !== true &&
+      barn.medforelder) ||
     (barn.erFraForrigeSøknad === false &&
       barnHarSammeForelder !== true &&
       (barn.harSammeAdresse.verdi ||
