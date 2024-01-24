@@ -98,8 +98,9 @@ export const skalAnnenForelderRedigeres = (
       barnHarSammeForelder !== true &&
       (barn.harSammeAdresse.verdi ||
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
-      false
+    (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
+      false &&
+      !barn.medforelder)
   );
 };
 
