@@ -14,6 +14,7 @@ import Environment from '../Environment';
 import { EArbeidssituasjon } from '../models/steg/aktivitet/aktivitet';
 import {
   hentDataFraForrigeBarnetilsynSøknad,
+  hentFeltObjekt,
   hentMellomlagretSøknadFraDokument,
   hentPersonData,
   mellomlagreSøknadTilDokument,
@@ -31,6 +32,8 @@ import { LocaleType } from '../language/typer';
 import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
+import { hentUid } from '../utils/autentiseringogvalidering/uuid';
+import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -102,58 +105,92 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       console.log('personData', personData);
 
       if (forrigeSøknad) {
-        settSøknad((prevSøknad) => ({
-          ...prevSøknad,
-          ...forrigeSøknad,
-          person: {
-            ...prevSøknad.person,
-            barn: [
-              ...forrigeSøknad.person.barn.map((barn) => {
-                const medforelder = finnGjeldeneBarnOgLagMedforelderFelt(
-                  barn,
-                  personData
-                );
+        settSøknad((prevSøknad) => {
+          const aktuelleBarn = forrigeSøknad.person.barn.filter((barn) =>
+            personData.barn.some(
+              (personBarn) => personBarn.fnr === barn.ident.verdi
+            )
+          );
 
-                const forelder =
-                  finnGjeldeneBarnOgNullstillForelderHvisDenErDdød(
+          return {
+            ...prevSøknad,
+            ...forrigeSøknad,
+            person: {
+              ...prevSøknad.person,
+              barn: [
+                ...aktuelleBarn.map((barn) => {
+                  const medforelder = finnGjeldendeBarnOgLagMedforelderFelt(
                     barn,
-                    personData,
-                    barn.forelder!
+                    personData
                   );
 
-                return {
-                  ...barn,
-                  medforelder,
-                  forelder,
-                  fraFolkeregister: prevSøknad.person.barn.find(
-                    (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                  )?.forelder?.fraFolkeregister,
-                };
-              }),
-              ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
-            ],
-          },
-        }));
+                  const forelder = oppdaterBarnForelderIdentOgNavn(
+                    barn.forelder,
+                    medforelder
+                  );
+                  const oppdatertForelder =
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
+                      barn,
+                      personData,
+                      forelder
+                    );
+
+                  return {
+                    ...barn,
+                    medforelder,
+                    forelder: oppdatertForelder,
+                    fraFolkeregister: prevSøknad.person.barn.find(
+                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+                    )?.forelder?.fraFolkeregister,
+                    erFraForrigeSøknad: true,
+                  };
+                }),
+                ...finnNyeBarnSidenForrigeSøknad(prevSøknad, forrigeSøknad),
+              ],
+            },
+          };
+        });
       }
     };
 
-    const finnGjeldeneBarnOgLagMedforelderFelt = (
+    const oppdaterBarnForelderIdentOgNavn = (
+      forelder: IForelder | undefined,
+      medforelder: IMedforelderFelt | undefined
+    ): IForelder => {
+      if (medforelder) {
+        return {
+          ...forelder,
+          navn: hentFeltObjekt('person.navn', medforelder.verdi.navn, intl),
+          ident: hentFeltObjekt(
+            'person.ident.visning',
+            medforelder.verdi.ident,
+            intl
+          ),
+          id: hentUid(),
+        };
+      } else {
+        return {
+          ...forelder,
+        };
+      }
+    };
+
+    const finnGjeldendeBarnOgLagMedforelderFelt = (
       barn: IBarn,
       personData: PersonData
-    ): IMedforelderFelt => {
+    ): IMedforelderFelt | undefined => {
       const gjeldendeBarn = personData.barn.find(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
-
-      return {
-        label: 'Annen forelder',
-        verdi: gjeldendeBarn?.medforelder ?? {
-          harAdressesperre: true,
-        },
-      };
+      return gjeldendeBarn?.medforelder
+        ? {
+            label: 'Annen forelder',
+            verdi: gjeldendeBarn?.medforelder,
+          }
+        : undefined;
     };
 
-    const finnGjeldeneBarnOgNullstillForelderHvisDenErDdød = (
+    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDød = (
       barn: IBarn,
       personData: PersonData,
       forelder: IForelder

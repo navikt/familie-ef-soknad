@@ -13,6 +13,7 @@ import {
   erForelderUtfylt,
   utfyltBorINorge,
   utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
+  utfyltNødvendigeSamværSpørsmål,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
@@ -36,8 +37,9 @@ import {
   finnTypeBarnForMedForelder,
   harValgtBorISammeHus,
   skalBorAnnenForelderINorgeVises,
-  skalOmAndreForelderVises,
+  skalAnnenForelderRedigeres,
 } from '../../../helpers/steg/barnetsBostedEndre';
+import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -91,12 +93,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   );
 
   const [kjennerIkkeIdent, settKjennerIkkeIdent] = useState<boolean>(
-    forelder.fødselsdato?.verdi ? true : false
+    stringHarVerdiOgErIkkeTom(forelder.navn?.verdi) &&
+      !stringHarVerdiOgErIkkeTom(forelder.ident?.verdi)
   );
 
   const { boddSammenFør, flyttetFra, fødselsdato, ident } = forelder;
 
-  const harForelderFraPdl = barn?.medforelder?.verdi?.navn || false;
+  const harForelderFraPdl = stringHarVerdiOgErIkkeTom(
+    barn?.medforelder?.verdi?.navn
+  );
 
   const førsteBarnTilHverForelder = finnFørsteBarnTilHverForelder(
     barneListe,
@@ -139,7 +144,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         b.medforelder?.verdi?.navn
     );
 
-  const visOmAndreForelder = skalOmAndreForelderVises(
+  const visOmAndreForelder = skalAnnenForelderRedigeres(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,
@@ -161,9 +166,21 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const skalFylleUtHarBoddSammenFør =
     harValgtBorISammeHus(forelder) && utfyltBorINorge(forelder);
 
-  const skalViseAnnenForelderValg =
+  const skalViseAnnenForelderKnapperForGjenbruk =
+    barn.erFraForrigeSøknad &&
     finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
-    !barn.medforelder?.verdi;
+    !barn.medforelder?.verdi &&
+    !erForelderUtfylt(barn.harSammeAdresse, barn.forelder, harForelderFraPdl);
+
+  const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
+    barn.erFraForrigeSøknad !== true &&
+    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    !barn.medforelder?.verdi &&
+    !barn.forelder;
+
+  const skalViseAnnenForelderKnapper =
+    skalViseAnnenForelderKnapperForGjenbruk ||
+    skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad;
 
   return (
     <div className="barnas-bosted">
@@ -185,7 +202,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
           <SeksjonGruppe>
             <BarnetsAndreForelderTittel barn={barn} />
 
-            {skalViseAnnenForelderValg && (
+            {skalViseAnnenForelderKnapper && (
               <AnnenForelderKnapper
                 barn={barn}
                 forelder={forelder}
@@ -279,17 +296,15 @@ const BarnetsBostedEndre: React.FC<Props> = ({
             </>
           )}
 
-        {erForelderUtfylt(forelder, barn.harSammeAdresse) &&
-          (erIdentUtfyltOgGyldig(forelder.ident?.verdi) ||
-            erFødselsdatoUtfyltOgGyldigEllerTomtFelt(
-              forelder?.fødselsdato?.verdi
-            ) ||
-            utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(forelder) ||
-            harForelderFraPdl) && (
-            <Button variant="secondary" onClick={leggTilForelder}>
-              <LocaleTekst tekst={'knapp.neste'} />
-            </Button>
-          )}
+        {erForelderUtfylt(
+          barn.harSammeAdresse,
+          forelder,
+          harForelderFraPdl
+        ) && (
+          <Button variant="secondary" onClick={leggTilForelder}>
+            <LocaleTekst tekst={'knapp.neste'} />
+          </Button>
+        )}
       </div>
     </div>
   );

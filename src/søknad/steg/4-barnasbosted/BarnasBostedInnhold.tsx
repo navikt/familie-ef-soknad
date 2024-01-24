@@ -19,6 +19,7 @@ import {
 } from '../../../models/søknad/søknad';
 import { ISøknad as SøknadBarnetilsyn } from '../../../barnetilsyn/models/søknad';
 import { ISøknad as SøknadSkolepenger } from '../../../skolepenger/models/søknad';
+import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
 
 const scrollTilRef = (ref: RefObject<HTMLDivElement>) => {
   if (!ref || !ref.current) return;

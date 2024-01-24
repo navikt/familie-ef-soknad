@@ -80,7 +80,15 @@ const BarnaDine: React.FC = () => {
         </Alert>
         <BarneKortWrapper>
           {søknad.person.barn
-            ?.sort((a: IBarn, b: IBarn) => parseInt(a.id) - parseInt(b.id))
+            ?.sort((a: IBarn, b: IBarn) => {
+              if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+                return -1;
+              }
+              if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+                return 1;
+              }
+              return 0;
+            })
             .map((barn: IBarn) => (
               <Barnekort
                 key={barn.id}
