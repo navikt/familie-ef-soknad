@@ -51,25 +51,35 @@ export const BarnaDineInnhold: React.FC<Props> = ({
         {hentTekst('barnadine.infohentet', intl)}
       </Alert>
       <BarneKortWrapper>
-        {barneliste.map((barn: IBarn) => (
-          <Barnekort
-            key={barn.id}
-            gjeldendeBarn={barn}
-            footer={
-              barn.lagtTil && (
-                <EndreEllerSlettBarn
-                  fjernBarnFraSøknad={fjernBarnFraSøknad}
-                  id={barn.id}
-                  settDokumentasjonsbehovForBarn={
-                    settDokumentasjonsbehovForBarn
-                  }
-                  barneListe={barneliste}
-                  oppdaterBarnISøknaden={oppdaterBarnISøknaden}
-                />
-              )
+        {barneliste
+          ?.sort((a: IBarn, b: IBarn) => {
+            if (a.medforelder?.verdi && !b.medforelder?.verdi) {
+              return -1;
             }
-          />
-        ))}
+            if (!a.medforelder?.verdi && b.medforelder?.verdi) {
+              return 1;
+            }
+            return 0;
+          })
+          .map((barn: IBarn) => (
+            <Barnekort
+              key={barn.id}
+              gjeldendeBarn={barn}
+              footer={
+                barn.lagtTil && (
+                  <EndreEllerSlettBarn
+                    fjernBarnFraSøknad={fjernBarnFraSøknad}
+                    id={barn.id}
+                    settDokumentasjonsbehovForBarn={
+                      settDokumentasjonsbehovForBarn
+                    }
+                    barneListe={barneliste}
+                    oppdaterBarnISøknaden={oppdaterBarnISøknaden}
+                  />
+                )
+              }
+            />
+          ))}
         <LeggTilBarnKort settÅpenModal={settÅpenModal} />
       </BarneKortWrapper>
       {åpenModal && (
