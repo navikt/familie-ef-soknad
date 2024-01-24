@@ -12,8 +12,6 @@ import { hentTekst } from '../../../utils/søknad';
 import {
   erForelderUtfylt,
   utfyltBorINorge,
-  utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
-  utfyltNødvendigeSamværSpørsmål,
   visSpørsmålHvisIkkeSammeForelder,
 } from '../../../helpers/steg/forelder';
 import BorForelderINorge from './bostedOgSamvær/BorForelderINorge';
@@ -31,8 +29,6 @@ import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import { lagtTilAnnenForelderId } from '../../../utils/barn';
 import {
-  erFødselsdatoUtfyltOgGyldigEllerTomtFelt,
-  erIdentUtfyltOgGyldig,
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
   harValgtBorISammeHus,
@@ -144,7 +140,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
         b.medforelder?.verdi?.navn
     );
 
-  const visOmAndreForelder = skalAnnenForelderRedigeres(
+  const visAnnenForelderRedigering = skalAnnenForelderRedigeres(
     barn,
     førsteBarnTilHverForelder,
     lagtTilAnnenForelderId,
@@ -214,7 +210,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
               />
             )}
 
-            {visOmAndreForelder && (
+            {visAnnenForelderRedigering && (
               <OmAndreForelder
                 settForelder={settForelder}
                 forelder={forelder}
