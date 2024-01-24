@@ -132,16 +132,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
+  const erBarnMedISøknad = (barn: IBarn): boolean => {
+    return barn.skalHaBarnepass ? barn.skalHaBarnepass?.verdi : true;
+  };
+
   const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
     (b) =>
       erBarnMedISøknad(b) &&
       b.medforelder?.verdi?.ident &&
       b.medforelder?.verdi?.navn
   );
-
-  const erBarnMedISøknad = (barn: IBarn) => {
-    return barn.barnepass !== null ? barn.skalHaBarnepass : true;
-  };
 
   const visAnnenForelderRedigering = skalAnnenForelderRedigeres(
     barn,
