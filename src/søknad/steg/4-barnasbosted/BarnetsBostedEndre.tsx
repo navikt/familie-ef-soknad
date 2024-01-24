@@ -132,13 +132,16 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
-  const finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn =
-    barneListe.some(
-      (b) =>
-        b.skalHaBarnepass?.verdi &&
-        b.medforelder?.verdi?.ident &&
-        b.medforelder?.verdi?.navn
-    );
+  const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
+    (b) =>
+      erBarnMedISøknad(b) &&
+      b.medforelder?.verdi?.ident &&
+      b.medforelder?.verdi?.navn
+  );
+
+  const erBarnMedISøknad = (barn: IBarn) => {
+    return barn.barnepass !== null ? barn.skalHaBarnepass : true;
+  };
 
   const visAnnenForelderRedigering = skalAnnenForelderRedigeres(
     barn,
@@ -146,7 +149,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     lagtTilAnnenForelderId,
     barnHarSammeForelder,
     forelder,
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn
+    finnesBarnISøknadMedRegistrertAnnenForelder
   );
 
   const visBorAnnenForelderINorge = skalBorAnnenForelderINorgeVises(
@@ -164,13 +167,13 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalViseAnnenForelderKnapperForGjenbruk =
     barn.erFraForrigeSøknad &&
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    finnesBarnISøknadMedRegistrertAnnenForelder &&
     !barn.medforelder?.verdi &&
     !erForelderUtfylt(barn.harSammeAdresse, barn.forelder, harForelderFraPdl);
 
   const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    finnesBarnISøknadMedRegistrertAnnenForelder &&
     !barn.medforelder?.verdi &&
     !barn.forelder;
 
