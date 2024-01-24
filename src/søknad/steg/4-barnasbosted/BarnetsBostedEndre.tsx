@@ -133,7 +133,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const erBarnMedISøknad = (barn: IBarn): boolean => {
-    return barn.skalHaBarnepass ? barn.skalHaBarnepass?.verdi : true;
+    if (barn.barnepass === undefined) {
+      return true;
+    }
+
+    return barn.skalHaBarnepass?.verdi === true;
   };
 
   const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
