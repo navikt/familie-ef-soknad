@@ -8,7 +8,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { hentTekst } from '../../../utils/søknad';
+import { erBarnetilsynSøknad, hentTekst } from '../../../utils/søknad';
 import {
   erForelderUtfylt,
   utfyltBorINorge,
@@ -36,6 +36,7 @@ import {
   skalAnnenForelderRedigeres,
 } from '../../../helpers/steg/barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -74,6 +75,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   forelderidenterMedBarn,
 }) => {
   const intl = useLokalIntlContext();
+  const { søknad } = useSøknad();
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? {
@@ -133,11 +135,11 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const erBarnMedISøknad = (barn: IBarn): boolean => {
-    if (barn.barnepass === undefined) {
-      return true;
+    if (erBarnetilsynSøknad(søknad)) {
+      return barn.skalHaBarnepass?.verdi === true;
     }
 
-    return barn.skalHaBarnepass?.verdi === true;
+    return true;
   };
 
   const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
