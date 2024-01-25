@@ -42,16 +42,16 @@ export const finnFørsteBarnTilHverForelder = (
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
   });
-  console.log('andreBarnMedForelder', andreBarnMedForelder);
   const unikeForeldreIDer = Array.from(
-    new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
+    new Set(andreBarnMedForelder.map((b) => b.medforelder?.verdi?.ident))
   );
 
-  console.log('unikeForeldreIDer', unikeForeldreIDer);
   return unikeForeldreIDer
-    .map((id) => {
-      if (!id) return null;
-      return andreBarnMedForelder.find((b) => b.forelder?.id === id);
+    .map((ident) => {
+      if (!ident) return null;
+      return andreBarnMedForelder.find(
+        (b) => b.medforelder?.verdi?.ident === ident
+      );
     })
     .filter(Boolean) as IBarn[];
 };
@@ -71,7 +71,7 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
-    !barn.medforelder
+    !barn.medforelder?.verdi
   );
 };
 
@@ -100,7 +100,7 @@ export const skalAnnenForelderRedigeres = (
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
     (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
       false &&
-      !barn.medforelder)
+      !barn.medforelder?.verdi)
   );
 };
 
