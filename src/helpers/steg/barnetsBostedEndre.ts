@@ -71,8 +71,7 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
-    !barn.medforelder?.verdi &&
-    barn.annenForelderId === 'annen-forelder'
+    !barn.medforelder?.verdi
   );
 };
 
