@@ -42,12 +42,10 @@ export const finnFørsteBarnTilHverForelder = (
   const andreBarnMedForelder: IBarn[] = barneListe.filter((b) => {
     return b !== barn && b.forelder;
   });
-  console.log('andreBarnMedForelder', andreBarnMedForelder);
   const unikeForeldreIDer = Array.from(
     new Set(andreBarnMedForelder.map((b) => b.medforelder?.verdi?.ident))
   );
 
-  console.log('unikeForeldreIDer', unikeForeldreIDer);
   return unikeForeldreIDer
     .map((ident) => {
       if (!ident) return null;
@@ -62,10 +60,6 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[]
 ) => {
-  console.log(
-    'førsteBarnTilHverForelder.length === 0',
-    førsteBarnTilHverForelder.length === 0
-  );
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
