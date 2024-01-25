@@ -44,14 +44,16 @@ export const finnFørsteBarnTilHverForelder = (
   });
   console.log('andreBarnMedForelder', andreBarnMedForelder);
   const unikeForeldreIDer = Array.from(
-    new Set(andreBarnMedForelder.map((b) => b.forelder?.id))
+    new Set(andreBarnMedForelder.map((b) => b.medforelder?.verdi.ident))
   );
 
   console.log('unikeForeldreIDer', unikeForeldreIDer);
   return unikeForeldreIDer
-    .map((id) => {
-      if (!id) return null;
-      return andreBarnMedForelder.find((b) => b.forelder?.id === id);
+    .map((ident) => {
+      if (!ident) return null;
+      return andreBarnMedForelder.find(
+        (b) => b.medforelder?.verdi.ident === ident
+      );
     })
     .filter(Boolean) as IBarn[];
 };
