@@ -44,7 +44,7 @@ export const finnFørsteBarnTilHverForelder = (
   });
   console.log('andreBarnMedForelder', andreBarnMedForelder);
   const unikeForeldreIDer = Array.from(
-    new Set(andreBarnMedForelder.map((b) => b.medforelder?.verdi.ident))
+    new Set(andreBarnMedForelder.map((b) => b.medforelder?.verdi?.ident))
   );
 
   console.log('unikeForeldreIDer', unikeForeldreIDer);
@@ -52,7 +52,7 @@ export const finnFørsteBarnTilHverForelder = (
     .map((ident) => {
       if (!ident) return null;
       return andreBarnMedForelder.find(
-        (b) => b.medforelder?.verdi.ident === ident
+        (b) => b.medforelder?.verdi?.ident === ident
       );
     })
     .filter(Boolean) as IBarn[];
