@@ -60,6 +60,10 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[]
 ) => {
+  console.log(
+    'førsteBarnTilHverForelder.length === 0',
+    førsteBarnTilHverForelder.length === 0
+  );
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
@@ -71,7 +75,7 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
-    !barn.medforelder
+    !barn.medforelder?.verdi
   );
 };
 
@@ -100,7 +104,7 @@ export const skalAnnenForelderRedigeres = (
         harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
     (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
       false &&
-      !barn.medforelder)
+      !barn.medforelder?.verdi)
   );
 };
 
