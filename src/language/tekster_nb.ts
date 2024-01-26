@@ -1008,4 +1008,7 @@ export default {
     'Hvis du får overgangsstønad, må du melde fra når det skjer viktige endringer i livet ditt, for eksempel bo- og familiesituasjonen eller arbeid og utdanning. Det samme gjelder dersom inntekten din endrer seg.',
   'forside.arbeidssøker.personopplysningeneDineLenke':
     '<span><a href="https://www.nav.no/personvernerklaering">Slik behandler vi personopplysningene dine</a></span>',
+
+  'utdanning.alert.arbeidsmengde':
+    'Prosent må være mindre enn 100 hvis det er deltid.',
 };
