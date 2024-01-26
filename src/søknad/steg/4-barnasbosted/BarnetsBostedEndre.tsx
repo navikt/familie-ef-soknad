@@ -27,7 +27,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
-import { lagtTilAnnenForelderId } from '../../../utils/barn';
 import {
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
@@ -152,7 +151,6 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const visAnnenForelderRedigering = skalAnnenForelderRedigeres(
     barn,
     førsteBarnTilHverForelder,
-    lagtTilAnnenForelderId,
     barnHarSammeForelder,
     forelder,
     finnesBarnISøknadMedRegistrertAnnenForelder
@@ -180,8 +178,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
     finnesBarnISøknadMedRegistrertAnnenForelder &&
-    !barn.medforelder?.verdi &&
-    !barn.forelder;
+    !barn.medforelder?.verdi;
 
   const skalViseAnnenForelderKnapper =
     skalViseAnnenForelderKnapperForGjenbruk ||

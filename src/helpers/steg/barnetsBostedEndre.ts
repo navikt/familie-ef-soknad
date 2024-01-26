@@ -71,14 +71,32 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
-    !barn.medforelder?.verdi
+    !barn.medforelder?.verdi &&
+    barn.annenForelderId === 'annen-forelder'
+  );
+};
+
+export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
+  annenForelderId && annenForelderId === 'annen-forelder';
+};
+
+export const nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted = (
+  barn: IBarn,
+  barnHarSammeForelder: boolean | undefined,
+  forelder: IForelder
+) => {
+  return (
+    barn.erFraForrigeSøknad === false &&
+    barnHarSammeForelder !== true &&
+    (barn.harSammeAdresse.verdi ||
+      harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) &&
+    barn.annenForelderId === 'annen-forelder'
   );
 };
 
 export const skalAnnenForelderRedigeres = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[],
-  lagtTilAnnenForelderId: 'annen-forelder',
   barnHarSammeForelder: boolean | undefined,
   forelder: IForelder,
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
@@ -88,16 +106,17 @@ export const skalAnnenForelderRedigeres = (
       barn,
       førsteBarnTilHverForelder
     ) ||
-    barn.annenForelderId === lagtTilAnnenForelderId ||
+    erAnnenForelderValgt(barn.annenForelderId) ||
     barnUtenForelderFraPdlOgErIkkeKopiert(
       førsteBarnTilHverForelder,
       barnHarSammeForelder,
       barn
     ) ||
-    (barn.erFraForrigeSøknad === false &&
-      barnHarSammeForelder !== true &&
-      (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
+    nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted(
+      barn,
+      barnHarSammeForelder,
+      forelder
+    ) ||
     (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
       false &&
       !barn.medforelder?.verdi)
