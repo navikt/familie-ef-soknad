@@ -8,7 +8,7 @@ import { IBarn } from '../../../models/steg/barn';
 import { IForelder } from '../../../models/steg/forelder';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { harValgtSvar } from '../../../utils/spørsmålogsvar';
-import { hentTekst } from '../../../utils/søknad';
+import { erBarnetilsynSøknad, hentTekst } from '../../../utils/søknad';
 import {
   erForelderUtfylt,
   utfyltBorINorge,
@@ -27,7 +27,6 @@ import LocaleTekst from '../../../language/LocaleTekst';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import styled from 'styled-components';
-import { lagtTilAnnenForelderId } from '../../../utils/barn';
 import {
   finnFørsteBarnTilHverForelder,
   finnTypeBarnForMedForelder,
@@ -36,6 +35,7 @@ import {
   skalAnnenForelderRedigeres,
 } from '../../../helpers/steg/barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
+import { useSøknad } from '../../../context/SøknadContext';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -74,6 +74,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   forelderidenterMedBarn,
 }) => {
   const intl = useLokalIntlContext();
+  const { søknad } = useSøknad();
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? {
@@ -132,21 +133,27 @@ const BarnetsBostedEndre: React.FC<Props> = ({
     );
   };
 
-  const finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn =
-    barneListe.some(
-      (b) =>
-        b.skalHaBarnepass?.verdi &&
-        b.medforelder?.verdi?.ident &&
-        b.medforelder?.verdi?.navn
-    );
+  const erBarnMedISøknad = (barn: IBarn): boolean => {
+    if (erBarnetilsynSøknad(søknad)) {
+      return barn.skalHaBarnepass?.verdi === true;
+    }
+
+    return true;
+  };
+
+  const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
+    (b) =>
+      erBarnMedISøknad(b) &&
+      b.medforelder?.verdi?.ident &&
+      b.medforelder?.verdi?.navn
+  );
 
   const visAnnenForelderRedigering = skalAnnenForelderRedigeres(
     barn,
     førsteBarnTilHverForelder,
-    lagtTilAnnenForelderId,
     barnHarSammeForelder,
     forelder,
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn
+    finnesBarnISøknadMedRegistrertAnnenForelder
   );
 
   const visBorAnnenForelderINorge = skalBorAnnenForelderINorgeVises(
@@ -164,15 +171,14 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const skalViseAnnenForelderKnapperForGjenbruk =
     barn.erFraForrigeSøknad &&
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
+    finnesBarnISøknadMedRegistrertAnnenForelder &&
     !barn.medforelder?.verdi &&
     !erForelderUtfylt(barn.harSammeAdresse, barn.forelder, harForelderFraPdl);
 
   const skalViseAnnenForelderKnapperForNyttBarnEllerFørstegangssøknad =
     barn.erFraForrigeSøknad !== true &&
-    finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn &&
-    !barn.medforelder?.verdi &&
-    !barn.forelder;
+    finnesBarnISøknadMedRegistrertAnnenForelder &&
+    !barn.medforelder?.verdi;
 
   const skalViseAnnenForelderKnapper =
     skalViseAnnenForelderKnapperForGjenbruk ||

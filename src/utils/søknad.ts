@@ -189,3 +189,11 @@ export const oppdaterBarnMedLabel = (
 
     return barnMedLabel;
   });
+
+export const erBarnetilsynSøknad = (søknad: any): boolean => {
+  return (
+    'søkerFraBestemtMåned' in søknad &&
+    'søknadsdato' in søknad &&
+    'aktivitet' in søknad
+  );
+};
