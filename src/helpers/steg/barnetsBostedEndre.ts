@@ -119,7 +119,8 @@ export const skalAnnenForelderRedigeres = (
     ) ||
     (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
       false &&
-      !barn.medforelder?.verdi)
+      !barn.medforelder?.verdi) ||
+    (barn.erFraForrigeSøknad && barn.forelder?.hvorforIkkeOppgi?.verdi)
   );
 };
 
