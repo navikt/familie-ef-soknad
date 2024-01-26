@@ -237,6 +237,7 @@ const Oppsummering: React.FC = () => {
                       RoutesOvergangsstonad,
                       ERouteOvergangsstønad.BarnasBosted
                     )}
+                    stønadstype={Stønadstype.overgangsstønad}
                   />
                 </Accordion.Content>
               </Accordion.Item>

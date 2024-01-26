@@ -101,6 +101,7 @@ const Oppsummering: React.FC = () => {
                       RoutesSkolepenger,
                       ERouteSkolepenger.BostedOgSamvær
                     )}
+                    stønadstype={Stønadstype.skolepenger}
                   />
                 </Accordion.Content>
               </Accordion.Item>
