@@ -63,6 +63,10 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
+export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
+  annenForelderId && annenForelderId === 'annen-forelder';
+};
+
 export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   førsteBarnTilHverForelder: IBarn[],
   barnHarSammeForelder: boolean | undefined,
@@ -72,12 +76,8 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
     !barn.medforelder?.verdi &&
-    barn.annenForelderId === 'annen-forelder'
+    erAnnenForelderValgt(barn.annenForelderId)
   );
-};
-
-export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
-  annenForelderId && annenForelderId === 'annen-forelder';
 };
 
 export const nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted = (
@@ -90,7 +90,7 @@ export const nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted = (
     barnHarSammeForelder !== true &&
     (barn.harSammeAdresse.verdi ||
       harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) &&
-    barn.annenForelderId === 'annen-forelder'
+    erAnnenForelderValgt(barn.annenForelderId)
   );
 };
 
