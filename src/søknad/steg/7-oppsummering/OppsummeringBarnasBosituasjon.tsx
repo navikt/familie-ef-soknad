@@ -9,21 +9,28 @@ import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { useNavigate } from 'react-router-dom';
+import { Stønadstype } from '../../../models/søknad/stønadstyper';
 
 interface Props {
   barn: IBarn[];
   endreInformasjonPath?: string;
+  stønadstype: Stønadstype;
 }
 
 const OppsummeringBarnasBosituasjon: FC<Props> = ({
   barn,
   endreInformasjonPath,
+  stønadstype,
 }) => {
   const navigate = useNavigate();
   const intl = useLokalIntlContext();
 
   const felterAlleForeldrene = barn
-    .filter((barn) => barn.forelder)
+    .filter((barn) =>
+      stønadstype == Stønadstype.barnetilsyn
+        ? barn.skalHaBarnepass?.verdi
+        : true
+    )
     .map((barn) => {
       if (!barn.forelder) return null;
 
