@@ -64,7 +64,7 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
 };
 
 export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
-  annenForelderId && annenForelderId === 'annen-forelder';
+  return annenForelderId && annenForelderId === 'annen-forelder';
 };
 
 export const barnUtenForelderFraPdlOgErIkkeKopiert = (
