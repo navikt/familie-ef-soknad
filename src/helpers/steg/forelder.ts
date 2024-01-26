@@ -15,10 +15,7 @@ import {
   erIdentUtfyltOgGyldig,
   harValgtBorISammeHus,
 } from './barnetsBostedEndre';
-import {
-  stringErNullEllerTom,
-  stringHarVerdiOgErIkkeTom,
-} from '../../utils/typer';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 import { erGyldigDato } from '../../utils/dato';
 import { IBooleanFelt } from '../../models/søknad/søknadsfelter';
 

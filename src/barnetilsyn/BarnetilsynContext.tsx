@@ -128,6 +128,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     barn.forelder,
                     medforelder
                   );
+
                   const oppdatertForelder =
                     finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
                       barn,
@@ -135,13 +136,16 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                       forelder
                     );
 
+                  const fraFolkeregister = lagFraFolkeregisterVerdi(
+                    prevSøknad,
+                    barn
+                  );
+
                   return {
                     ...barn,
                     medforelder,
                     forelder: oppdatertForelder,
-                    fraFolkeregister: prevSøknad.person.barn.find(
-                      (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-                    )?.forelder?.fraFolkeregister,
+                    fraFolkeregister: fraFolkeregister,
                     erFraForrigeSøknad: true,
                   };
                 }),
@@ -151,6 +155,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           };
         });
       }
+    };
+
+    const lagFraFolkeregisterVerdi = (søknad: ISøknad, barn: IBarn) => {
+      return søknad.person.barn.find(
+        (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
+      )?.forelder?.fraFolkeregister;
     };
 
     const oppdaterBarnForelderIdentOgNavn = (
