@@ -93,6 +93,7 @@
     "@types/jest": "^29.5.11",
     "@types/node": "^20.11.5",
     "@types/react-helmet": "^6.1.11",
+    "@types/webpack-hot-middleware": "^2.25.9",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "autoprefixer": "^10.4.17",
@@ -132,7 +133,9 @@
     "url-loader": "^4.1.1",
     "util": "^0.12.5",
     "webpack": "^5.90.0",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-middleware": "^7.0.0",
+    "webpack-hot-middleware": "^2.26.0"
   },
   "overrides": {
     "react-day-picker": {
