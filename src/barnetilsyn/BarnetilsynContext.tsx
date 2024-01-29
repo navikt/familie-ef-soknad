@@ -17,6 +17,7 @@ import {
   hentFeltObjekt,
   hentMellomlagretSøknadFraDokument,
   hentPersonData,
+  hentTekst,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
@@ -34,6 +35,7 @@ import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
 import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
+import { resetForelder } from '../helpers/steg/forelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -130,7 +132,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   const oppdatertForelder =
-                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNy(
                       barn,
                       personData,
                       forelder
@@ -200,7 +202,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDød = (
+    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNy = (
       barn: IBarn,
       personData: PersonData,
       forelder: IForelder
@@ -209,26 +211,31 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
 
-      if (gjeldendeBarn?.medforelder?.død === true) {
-        return {
-          ...forelder,
-          ikkeOppgittAnnenForelderBegrunnelse: undefined,
-          hvorforIkkeOppgi: undefined,
-          fødselsdato: undefined,
-          borINorge: undefined,
-          land: undefined,
-          avtaleOmDeltBosted: undefined,
-          harAnnenForelderSamværMedBarn: undefined,
-          harDereSkriftligSamværsavtale: undefined,
-          hvordanPraktiseresSamværet: undefined,
-          borAnnenForelderISammeHus: undefined,
-          borAnnenForelderISammeHusBeskrivelse: undefined,
-          boddSammenFør: undefined,
-          flyttetFra: undefined,
-          hvorMyeSammen: undefined,
-          beskrivSamværUtenBarn: undefined,
-          skalBarnetBoHosSøker: undefined,
-        };
+      const nyForelder = gjeldendeBarn?.medforelder?.ident !== forelder?.ident;
+
+      const nyForelderIdentOgNavn = {
+        ident: {
+          label: hentTekst('person.fnr', intl),
+          verdi: gjeldendeBarn?.medforelder?.ident
+            ? gjeldendeBarn?.medforelder?.ident
+            : '',
+        },
+        navn: {
+          label: hentTekst('person.navn', intl),
+          verdi: gjeldendeBarn?.medforelder?.navn
+            ? gjeldendeBarn?.medforelder?.navn
+            : '',
+        },
+      };
+
+      if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
+        resetForelder(forelder);
+        if (nyForelder) {
+          return {
+            ...nyForelderIdentOgNavn,
+          };
+        }
+        return {};
       } else {
         return forelder;
       }

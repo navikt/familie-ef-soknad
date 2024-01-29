@@ -260,3 +260,27 @@ export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   delete nyForelder.hvorMyeSammen;
   delete nyForelder.beskrivSamværUtenBarn;
 };
+
+export const resetForelder = (forelder: IForelder) => {
+  delete forelder.id;
+  delete forelder.navn;
+  delete forelder.skalBarnetBoHosSøker;
+  delete forelder.fødselsdato;
+  delete forelder.ident;
+  delete forelder.kanIkkeOppgiAnnenForelderFar;
+  delete forelder.hvorforIkkeOppgi;
+  delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
+  delete forelder.borINorge;
+  delete forelder.land;
+  delete forelder.avtaleOmDeltBosted;
+  delete forelder.harAnnenForelderSamværMedBarn;
+  delete forelder.harDereSkriftligSamværsavtale;
+  delete forelder.hvordanPraktiseresSamværet;
+  delete forelder.borAnnenForelderISammeHus;
+  delete forelder.borAnnenForelderISammeHusBeskrivelse;
+  delete forelder.boddSammenFør;
+  delete forelder.flyttetFra;
+  delete forelder.hvorMyeSammen;
+  delete forelder.beskrivSamværUtenBarn;
+  delete forelder.fraFolkeregister;
+};
