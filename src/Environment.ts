@@ -1,4 +1,4 @@
-import { erLokaltMedMock, erLokaltMotPreprod } from './utils/miljø';
+import { erLokaltMedMock } from './utils/miljø';
 
 interface EnvironmentProps {
   veiviserUrl: string;
@@ -58,23 +58,13 @@ const Environment = (): EnvironmentProps => {
       miljø: 'local',
       modellVersjon: modellVersjon,
     };
-  } else if (erLokaltMotPreprod()) {
-    return {
-      veiviserUrl: '',
-      apiProxyUrl: 'http://localhost:3000/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: `https://tokenx-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:teamfamilie:familie-ef-soknad-api&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`,
-      mellomlagerProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/soknad/`,
-      miljø: 'local',
-      modellVersjon: modellVersjon,
-    };
   } else {
     return {
       veiviserUrl: '',
-      apiProxyUrl: 'http://localhost:3000/familie/alene-med-barn/soknad/api',
+      apiProxyUrl: 'http://localhost:8091',
       wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`,
-      mellomlagerProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/soknad/`,
+      dokumentProxyUrl: `http://localhost:8082/api/mapper/ANYTHING`,
+      mellomlagerProxyUrl: `http://localhost:8082/api/soknad/`,
       miljø: 'local',
       modellVersjon: modellVersjon,
     };

@@ -6,31 +6,36 @@ Frontend - søknad for enslig forsørger.
 
 1. `npm install`
 2. `npm run start`
-3. Kjør opp `familie-ef-soknad-api`
-4. Hvis du mangler token må du få cookie fra søknad-api
-   `http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad&issuerId=tokenx&audience=familie-app`
-
-
-### Mot preprod:
-1. Hent token fra 
-   - `https://tokenx-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:teamfamilie:familie-ef-soknad-api`
-   - `https://tokenx-token-generator.intern.dev.nav.no/api/obo?aud=dev-gcp:teamfamilie:familie-dokument`
-2. `.env` må inneholde følgende
- ``` 
-TOKENX_API=...
-TOKENX_DOKUMENT=...
-```
-3. `npm install` 
-4. `npm run start:preprod` 
 
 * Hvis man ønsker å kjøre med mock-api
 1. `node mock/mock-server.js`
 2. `npm run start:mock`
 
+Med api må du sette cookie første gang:
+`http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad&issuerId=tokenx&audience=familie-app`
 ## Kjør lokalt med mellomlagring
 1. Last ned [familie-dokument](https://github.com/navikt/familie-dokument) og [familie-ef-soknad-api](https://github.com/navikt/familie-ef-soknad-api)
 2. Kjør `mvn clean install` i begge prosjektene
 2. Kjør opp appene lokalt ved å kjøre familie-dokument din `DevLauncher` og familie-ef-soknad-api sin `ApplicationLocalLauncher` 
+
+
+## Kjøre opp med node-server lokalt
+I noen få tilfeller kan det være nyttig å kjøre opp node-serverne lokalt, slik som det gjøres i preprod
+1. `npm run build`
+2. `kubectl -n teamfamilie get secret tokenx-familie-ef-soknad-[PODID] -o json | jq '.data | map_values(@base64d)'`
+3. Legg inn dette istedenfor `tokenxConfig i `server/tokenx.ts`;
+``` 
+const tokenxConfig = {
+  discoveryUrl:
+    'https://tokendings.dev-gcp.nais.io/.well-known/oauth-authorization-server',
+  clientId: 'dev-gcp:teamfamilie:familie-ef-soknad',
+  privateJwk: '', // Kopier fra kubernetes
+  redirectUri: miljø.oauthCallbackUri,
+  clusterName: 'dev-gcp',
+};
+```
+4. I `server`-mappa: `npm run build`
+5. I `server`-mappa: `npm run start:dev`
 
 ## Kjør testcafe lokalt
 1. Kjør `familie-ef-soknad-api` lokalt

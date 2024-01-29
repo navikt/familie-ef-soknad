@@ -1,15 +1,8 @@
 import logger from './logger';
-import 'dotenv/config';
 
-const brukDevApi = process.env.BRUK_DEV_API === 'true';
-const erLokalt = process.env.ENV === 'localhost';
 const lokaltMiljø = {
-  dokumentUrl: brukDevApi
-    ? 'https://familie-dokument.intern.dev.nav.no/familie/dokument'
-    : 'http://localhost:8082',
-  apiUrl: brukDevApi
-    ? 'https://familie-ef-soknad-api.intern.dev.nav.no/familie/alene-med-barn/soknad-api'
-    : 'http://localhost:8091',
+  dokumentUrl: 'http://localhost:8082',
+  apiUrl: 'http://localhost:8091',
   oauthCallbackUri:
     'https://localhost:8080/familie/alene-med-barn/soknad/oauth2/callback',
 };
@@ -42,10 +35,4 @@ const initierMiljøvariabler = () => {
   }
 };
 
-export const miljø = {
-  ...initierMiljøvariabler(),
-  lokaltTokenxApi: process.env.TOKENX_API,
-  lokaltTokenxDokument: process.env.TOKENX_DOKUMENT,
-  brukDevApi: brukDevApi,
-  erLokalt: erLokalt,
-};
+export const miljø = initierMiljøvariabler();

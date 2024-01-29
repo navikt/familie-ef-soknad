@@ -1,6 +1,5 @@
 import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr';
 import logger from './logger';
-import { miljø } from './miljø';
 
 type NaisEnv = 'prod' | 'dev';
 
@@ -12,7 +11,7 @@ const getHtmlWithDecorator = (filePath: string) => {
   }
 
   const dekoratørConfig = {
-    env: miljø.erLokalt ? 'dev' : (env as NaisEnv),
+    env: env === 'localhost' ? 'dev' : (env as NaisEnv),
     filePath: filePath,
     params: {
       simple: true,
