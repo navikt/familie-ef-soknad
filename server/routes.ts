@@ -8,7 +8,7 @@ import { miljø } from './miljø';
 
 const buildPath =
   process.env.NODE_ENV !== 'development'
-    ? path.join(process.cwd(), 'build')
+    ? path.join(process.cwd(), '../build')
     : path.join(process.cwd(), 'dev-build');
 const EF_BASE_PATH = '/familie/alene-med-barn';
 const BASE_PATH = `${EF_BASE_PATH}/soknad`;
