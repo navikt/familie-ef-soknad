@@ -1041,4 +1041,7 @@ export default {
     'If you receive transitional benefit, you must inform us of any major changes in your life, such as changes in your living and family situation, or changes in your work or education. The same applies if there are any changes in your income.',
   'forside.arbeidssøker.personopplysningeneDineLenke':
     '<span><a href="https://www.nav.no/personvernerklaering/en">About how we process your personal data</a></span>',
+
+  'utdanning.alert.arbeidsmengde':
+    'Percent must be less than 100 if part-time.',
 };

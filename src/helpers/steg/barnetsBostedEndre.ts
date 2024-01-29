@@ -63,6 +63,10 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
+export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
+  return annenForelderId && annenForelderId === 'annen-forelder';
+};
+
 export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   førsteBarnTilHverForelder: IBarn[],
   barnHarSammeForelder: boolean | undefined,
@@ -71,14 +75,28 @@ export const barnUtenForelderFraPdlOgErIkkeKopiert = (
   return (
     førsteBarnTilHverForelder.length > 0 &&
     barnHarSammeForelder !== true &&
-    !barn.medforelder?.verdi
+    !barn.medforelder?.verdi &&
+    erAnnenForelderValgt(barn.annenForelderId)
+  );
+};
+
+export const nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted = (
+  barn: IBarn,
+  barnHarSammeForelder: boolean | undefined,
+  forelder: IForelder
+) => {
+  return (
+    barn.erFraForrigeSøknad === false &&
+    barnHarSammeForelder !== true &&
+    (barn.harSammeAdresse.verdi ||
+      harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi)) &&
+    erAnnenForelderValgt(barn.annenForelderId)
   );
 };
 
 export const skalAnnenForelderRedigeres = (
   barn: IBarn,
   førsteBarnTilHverForelder: IBarn[],
-  lagtTilAnnenForelderId: 'annen-forelder',
   barnHarSammeForelder: boolean | undefined,
   forelder: IForelder,
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
@@ -88,19 +106,21 @@ export const skalAnnenForelderRedigeres = (
       barn,
       førsteBarnTilHverForelder
     ) ||
-    barn.annenForelderId === lagtTilAnnenForelderId ||
+    erAnnenForelderValgt(barn.annenForelderId) ||
     barnUtenForelderFraPdlOgErIkkeKopiert(
       førsteBarnTilHverForelder,
       barnHarSammeForelder,
       barn
     ) ||
-    (barn.erFraForrigeSøknad === false &&
-      barnHarSammeForelder !== true &&
-      (barn.harSammeAdresse.verdi ||
-        harValgtSvar(forelder.skalBarnetBoHosSøker?.verdi))) ||
+    nyttBarnISøknadUtenSammeForelderOgUtfyltBarnetsBosted(
+      barn,
+      barnHarSammeForelder,
+      forelder
+    ) ||
     (finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn ===
       false &&
-      !barn.medforelder?.verdi)
+      !barn.medforelder?.verdi) ||
+    (barn.erFraForrigeSøknad && barn.forelder?.hvorforIkkeOppgi?.verdi)
   );
 };
 

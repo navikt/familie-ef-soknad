@@ -54,11 +54,11 @@ const StudieArbeidsmengde: React.FC<Props> = ({
           utdanning?.arbeidsmengde?.verdi ? utdanning?.arbeidsmengde?.verdi : ''
         }
       />
-      {erIkkeUndefinedOgMerEnnNittiNiProsent ? (
+      {erIkkeUndefinedOgMerEnnNittiNiProsent && (
         <StudereProsentVarsel size="small" variant="error">
-          Prosent må være mindre enn 100 hvis det er deltid.
+          {hentTekst('utdanning.alert.arbeidsmengde', intl)}
         </StudereProsentVarsel>
-      ) : null}
+      )}
     </KomponentGruppe>
   );
 };
