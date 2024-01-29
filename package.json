@@ -6,9 +6,12 @@
   "scripts": {
     "build": "tsc & NODE_ENV=production PUBLIC_URL=/familie/alene-med-barn/soknad webpack --config ./config/webpack.build.js",
     "build:dev": "tsc & NODE_ENV=development PUBLIC_URL=/familie/alene-med-barn/soknad webpack --config ./config/webpack.run.js",
-    "start": "NODE_ENV=development PUBLIC_URL=/familie/alene-med-barn/soknad node dev-server/dev-server.js",
+    "start": "npm run build:dev-server && NODE_ENV=development ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
+    "start:preprod": "npm run build:dev-server && NODE_ENV=development BRUK_DEV_API=true ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
     "start:mock": "NODE_ENV=development BRUK_MOCK_LOKALT=true PUBLIC_URL=/familie/alene-med-barn/soknad node dev-server/dev-server.js",
-    "test-ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+    "test-ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build:dev-server": "cd server && tsc --build --verbose && cd ..",
+    "postinstall": "cd server && npm ci && cd .."
   },
   "husky": {
     "hooks": {
@@ -90,6 +93,7 @@
     "@types/jest": "^29.5.11",
     "@types/node": "^20.11.5",
     "@types/react-helmet": "^6.1.11",
+    "@types/webpack-hot-middleware": "^2.25.9",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",
     "autoprefixer": "^10.4.17",
@@ -128,9 +132,10 @@
     "typescript": "^5.3.3",
     "url-loader": "^4.1.1",
     "util": "^0.12.5",
-    "webpack": "^5.89.0",
+    "webpack": "^5.90.0",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "webpack-dev-middleware": "^7.0.0",
+    "webpack-hot-middleware": "^2.26.0"
   },
   "overrides": {
     "react-day-picker": {

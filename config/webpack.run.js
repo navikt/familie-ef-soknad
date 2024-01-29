@@ -27,9 +27,7 @@ const config = {
           : 'http://localhost:8091',
     },
     devMiddleware: { publicPath: publicPath },
-    historyApiFallback: {
-      index: publicPath,
-    },
+    historyApiFallback: true,
   },
   entry: {
     'familie-ef-soknad': ['./src/index.tsx'],
@@ -97,10 +95,14 @@ const config = {
     ],
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.PUBLIC_URL': JSON.stringify(publicPath),
       'process.env.BRUK_MOCK_LOKALT': JSON.stringify(brukMockLokalt),
+      'process.env.BRUK_DEV_API': JSON.stringify(
+        process.env.BRUK_DEV_API || false
+      ),
     }),
     new ReactRefreshWebpackPlugin({
       overlay: false,
