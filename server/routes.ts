@@ -6,7 +6,10 @@ import { addRequestInfo, doProxy } from './proxy';
 import attachToken from './tokenProxy';
 import { miljø } from './miljø';
 
-const buildPath = path.resolve(process.cwd(), '../build');
+const buildPath =
+  process.env.NODE_ENV !== 'development'
+    ? path.join(process.cwd(), '../build')
+    : path.join(process.cwd(), 'dev-build');
 const EF_BASE_PATH = '/familie/alene-med-barn';
 const BASE_PATH = `${EF_BASE_PATH}/soknad`;
 const ETTERSENDING_PATH = `${EF_BASE_PATH}/ettersending`;

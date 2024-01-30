@@ -12,7 +12,10 @@ class TokenXClient {
 
   constructor() {
     logger.info('Setter opp TokenX');
-
+    if (process.env.ENV === 'localhost') {
+      logger.info('Setter IKKE opp tokenx lokalt!');
+      return;
+    }
     this.init()
       .then((client: any) => {
         this.tokenxClient = client;
