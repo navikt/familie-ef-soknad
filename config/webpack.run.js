@@ -13,24 +13,8 @@ const kopieresOver = ['filer', 'favicon.ico', 'manifest.json', 'robots.txt'];
 const config = {
   mode: 'development',
   cache: true,
-  devServer: {
-    port: 3000,
-    hot: true,
-    client: {
-      overlay: false,
-    },
-    open: publicPath,
-    proxy: {
-      '/api':
-        brukMockLokalt === 'true'
-          ? 'http://localhost:8092'
-          : 'http://localhost:8091',
-    },
-    devMiddleware: { publicPath: publicPath },
-    historyApiFallback: true,
-  },
   entry: {
-    'familie-ef-soknad': ['./src/index.tsx'],
+    'familie-ef-soknad': ['webpack-hot-middleware/client', './src/index.tsx'],
   },
   output: {
     path: path.join(process.cwd(), 'dev-build'),
