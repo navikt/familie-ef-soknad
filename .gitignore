@@ -22,9 +22,12 @@
 .env.production.local
 .idea
 .vscode
+.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 *.iml
+
+.env
