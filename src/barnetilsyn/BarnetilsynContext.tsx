@@ -34,7 +34,6 @@ import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
-import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 import { resetForelder } from '../helpers/steg/forelder';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
@@ -121,6 +120,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...prevSøknad.person,
               barn: [
                 ...aktuelleBarn.map((barn) => {
+                  const personDataBarn =
+                    overskrivBarnFraForrigeSøknadHvisEndringerIPersonData(
+                      barn,
+                      personData
+                    );
+
                   const medforelder = finnGjeldendeBarnOgLagMedforelderFelt(
                     barn,
                     personData
@@ -145,6 +150,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
                   return {
                     ...barn,
+                    ...personDataBarn,
                     medforelder,
                     forelder: oppdatertForelder,
                     fraFolkeregister: fraFolkeregister,
@@ -185,6 +191,43 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           ...forelder,
         };
       }
+    };
+
+    const overskrivBarnFraForrigeSøknadHvisEndringerIPersonData = (
+      barn: IBarn,
+      personData: PersonData
+    ): IBarn | undefined => {
+      const gjeldendeBarn = personData.barn.find(
+        (personBarn) => personBarn.fnr === barn.ident.verdi
+      );
+
+      if (!gjeldendeBarn) return undefined;
+
+      return {
+        id: hentUid(),
+        fnr: gjeldendeBarn.fnr,
+        fødselsdato: {
+          label: hentTekst('barnekort.fødselsdato', intl),
+          verdi: gjeldendeBarn.fødselsdato.verdi,
+        },
+        harAdressesperre: gjeldendeBarn.harAdressesperre,
+        harSammeAdresse: {
+          label: hentTekst('barnekort.spm.sammeAdresse', intl),
+          verdi: gjeldendeBarn.harSammeAdresse.verdi,
+        },
+        ident: {
+          label: hentTekst('barn.ident', intl),
+          verdi: gjeldendeBarn.ident.verdi,
+        },
+        navn: {
+          label: hentTekst('person.navn', intl),
+          verdi: gjeldendeBarn.navn.verdi,
+        },
+        alder: {
+          label: hentTekst('barnekort.alder', intl),
+          verdi: gjeldendeBarn.alder.verdi,
+        },
+      };
     };
 
     const finnGjeldendeBarnOgLagMedforelderFelt = (
