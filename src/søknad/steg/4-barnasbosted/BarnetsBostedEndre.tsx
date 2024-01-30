@@ -96,9 +96,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
 
   const { boddSammenFør, flyttetFra, fødselsdato, ident } = forelder;
 
-  const harForelderFraPdl = stringHarVerdiOgErIkkeTom(
-    barn?.medforelder?.verdi?.navn
-  );
+  const harForelderFraPdl =
+    stringHarVerdiOgErIkkeTom(barn?.medforelder?.verdi?.navn) ||
+    barn?.medforelder?.verdi?.harAdressesperre === true;
 
   const førsteBarnTilHverForelder = finnFørsteBarnTilHverForelder(
     barneListe,
