@@ -165,7 +165,6 @@ const medforelderMedLabel = (medforelder: any, intl: LokalIntlShape) => {
       verdi: medforelder.verdi?.alder,
     },
     død: medforelder.død,
-    harAdressesperre: medforelder.harAdressesperre,
     id: hentUid(),
     fraFolkeregister: true,
   };
