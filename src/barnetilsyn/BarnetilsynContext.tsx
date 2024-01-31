@@ -120,8 +120,8 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...prevSøknad.person,
               barn: [
                 ...aktuelleBarn.map((barn) => {
-                  const personDataBarn =
-                    overskrivBarnFraForrigeSøknadHvisEndringerIPersonData(
+                  const barnFraPersonData =
+                    overskrivBarnFraForrigeSøknadMedPersonData(
                       barn,
                       personData
                     );
@@ -150,7 +150,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
                   return {
                     ...barn,
-                    ...personDataBarn,
+                    ...barnFraPersonData,
                     medforelder,
                     forelder: oppdatertForelder,
                     fraFolkeregister: fraFolkeregister,
@@ -193,7 +193,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
-    const overskrivBarnFraForrigeSøknadHvisEndringerIPersonData = (
+    const overskrivBarnFraForrigeSøknadMedPersonData = (
       barn: IBarn,
       personData: PersonData
     ): IBarn | undefined => {
@@ -208,24 +208,24 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         fnr: gjeldendeBarn.fnr,
         fødselsdato: {
           label: hentTekst('barnekort.fødselsdato', intl),
-          verdi: gjeldendeBarn.fødselsdato.verdi,
+          verdi: gjeldendeBarn.fødselsdato,
         },
         harAdressesperre: gjeldendeBarn.harAdressesperre,
         harSammeAdresse: {
           label: hentTekst('barnekort.spm.sammeAdresse', intl),
-          verdi: gjeldendeBarn.harSammeAdresse.verdi,
+          verdi: gjeldendeBarn.harSammeAdresse,
         },
         ident: {
           label: hentTekst('barn.ident', intl),
-          verdi: gjeldendeBarn.ident.verdi,
+          verdi: gjeldendeBarn.fnr,
         },
         navn: {
           label: hentTekst('person.navn', intl),
-          verdi: gjeldendeBarn.navn.verdi,
+          verdi: gjeldendeBarn.navn,
         },
         alder: {
           label: hentTekst('barnekort.alder', intl),
-          verdi: gjeldendeBarn.alder.verdi,
+          verdi: gjeldendeBarn.alder.toString(),
         },
       };
     };
