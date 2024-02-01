@@ -250,7 +250,9 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const hentForelderIdentOgNavn = (gjeldendeBarn: Barn | undefined) => ({
+    const settForelderIdentOgNavnMedLabel = (
+      gjeldendeBarn: Barn | undefined
+    ) => ({
       ident: {
         label: hentTekst('person.fnr', intl),
         verdi: gjeldendeBarn?.medforelder?.ident || '',
@@ -261,12 +263,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       },
     });
 
-    const resetOgReturnerForelder = (
+    const resetForelderOgSettNavnOgIdentMedLabel = (
       forelder: IForelder,
       gjeldendeBarn: Barn | undefined
     ) => {
       resetForelder(forelder);
-      return hentForelderIdentOgNavn(gjeldendeBarn);
+      return settForelderIdentOgNavnMedLabel(gjeldendeBarn);
     };
 
     const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig =
@@ -309,7 +311,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           gjeldendeBarn?.medforelder?.død === true ||
           nyForelder
         ) {
-          return resetOgReturnerForelder(forelder, gjeldendeBarn);
+          return resetForelderOgSettNavnOgIdentMedLabel(
+            forelder,
+            gjeldendeBarn
+          );
         } else {
           return forelder;
         }
