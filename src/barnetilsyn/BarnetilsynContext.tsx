@@ -22,7 +22,7 @@ import {
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
-import { IPerson, PersonData } from '../models/søknad/person';
+import { Barn, IPerson, PersonData } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
@@ -38,10 +38,7 @@ import {
   resetForelder,
   utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
 } from '../helpers/steg/forelder';
-import {
-  stringErNullEllerTom,
-  stringHarVerdiOgErIkkeTom,
-} from '../utils/typer';
+import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -253,6 +250,25 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
+    const hentForelderIdentOgNavn = (gjeldendeBarn: Barn | undefined) => ({
+      ident: {
+        label: hentTekst('person.fnr', intl),
+        verdi: gjeldendeBarn?.medforelder?.ident || '',
+      },
+      navn: {
+        label: hentTekst('person.navn', intl),
+        verdi: gjeldendeBarn?.medforelder?.ident || '',
+      },
+    });
+
+    const resetOgReturnerForelder = (
+      forelder: IForelder,
+      gjeldendeBarn: Barn | undefined
+    ) => {
+      resetForelder(forelder);
+      return hentForelderIdentOgNavn(gjeldendeBarn);
+    };
+
     const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig =
       (
         barn: IBarn,
@@ -286,47 +302,14 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
           barn.medforelder === undefined;
 
-        const forelderIdentOgNavnFraPersonData = {
-          ident: {
-            label: hentTekst('person.fnr', intl),
-            verdi: gjeldendeBarn?.medforelder?.ident
-              ? gjeldendeBarn?.medforelder?.ident
-              : '',
-          },
-          navn: {
-            label: hentTekst('person.navn', intl),
-            verdi: gjeldendeBarn?.medforelder?.navn
-              ? gjeldendeBarn?.medforelder?.navn
-              : '',
-          },
-        };
-
-        if (fortrolig) {
-          resetForelder(forelder);
-          return {
-            ident: {
-              label: hentTekst('person.fnr', intl),
-              verdi: '',
-            },
-            navn: {
-              label: hentTekst('person.navn', intl),
-              verdi: '',
-            },
-          };
-        }
-
-        if (donorOgAnnet === false || skalBeholdeKopiertForelder === false) {
-          resetForelder(forelder);
-          return {
-            ...forelderIdentOgNavnFraPersonData,
-          };
-        }
-
-        if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
-          resetForelder(forelder);
-          return {
-            ...forelderIdentOgNavnFraPersonData,
-          };
+        if (
+          fortrolig ||
+          donorOgAnnet === false ||
+          skalBeholdeKopiertForelder === false ||
+          gjeldendeBarn?.medforelder?.død === true ||
+          nyForelder
+        ) {
+          return resetOgReturnerForelder(forelder, gjeldendeBarn);
         } else {
           return forelder;
         }
