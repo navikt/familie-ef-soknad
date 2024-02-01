@@ -144,10 +144,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   const oppdatertForelder =
-                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNy(
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig(
                       barn,
                       personData,
-                      forelder
+                      forelder,
+                      forrigeSøknad
                     );
 
                   const fraFolkeregister = lagFraFolkeregisterVerdi(
@@ -252,65 +253,84 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNy = (
-      barn: IBarn,
-      personData: PersonData,
-      forelder: IForelder
-    ): IForelder => {
-      const gjeldendeBarn = personData.barn.find(
-        (personBarn) => personBarn.fnr === barn.ident.verdi
-      );
+    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig =
+      (
+        barn: IBarn,
+        personData: PersonData,
+        forelder: IForelder,
+        forrigeSøknad: ForrigeSøknad
+      ): IForelder => {
+        const barnFraForrigeSøknad = forrigeSøknad.person.barn.find(
+          (b) => b.ident.verdi === barn.ident.verdi
+        );
 
-      const nyForelder =
-        gjeldendeBarn?.medforelder?.ident !== forelder?.ident?.verdi &&
-        barn.medforelder !== undefined &&
-        stringErNullEllerTom(barn.medforelder?.verdi?.ident);
+        const gjeldendeBarn = personData.barn.find(
+          (personBarn) => personBarn.fnr === barn.ident.verdi
+        );
 
-      const skalBeholdeKopiertForelder =
-        barn.erFraForrigeSøknad &&
-        stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.verdi) &&
-        barn.medforelder === undefined;
+        const nyForelder =
+          stringHarVerdiOgErIkkeTom(gjeldendeBarn?.medforelder?.ident) &&
+          gjeldendeBarn?.medforelder?.ident !==
+            barnFraForrigeSøknad?.forelder?.ident?.verdi;
 
-      const donorOgAnnet =
-        barn.erFraForrigeSøknad &&
-        barn.forelder &&
-        utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
-        barn.medforelder === undefined;
+        const fortrolig = barn.medforelder?.verdi.harAdressesperre;
 
-      const nyForelderIdentOgNavn = {
-        ident: {
-          label: hentTekst('person.fnr', intl),
-          verdi: gjeldendeBarn?.medforelder?.ident
-            ? gjeldendeBarn?.medforelder?.ident
-            : '',
-        },
-        navn: {
-          label: hentTekst('person.navn', intl),
-          verdi: gjeldendeBarn?.medforelder?.navn
-            ? gjeldendeBarn?.medforelder?.navn
-            : '',
-        },
-      };
+        const skalBeholdeKopiertForelder =
+          barn.erFraForrigeSøknad &&
+          stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.verdi) &&
+          barn.medforelder === undefined;
 
-      if (donorOgAnnet === false || skalBeholdeKopiertForelder === false) {
-        resetForelder(forelder);
-        return {
-          ...nyForelderIdentOgNavn,
+        const donorOgAnnet =
+          barn.erFraForrigeSøknad &&
+          barn.forelder &&
+          utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
+          barn.medforelder === undefined;
+
+        const forelderIdentOgNavnFraPersonData = {
+          ident: {
+            label: hentTekst('person.fnr', intl),
+            verdi: gjeldendeBarn?.medforelder?.ident
+              ? gjeldendeBarn?.medforelder?.ident
+              : '',
+          },
+          navn: {
+            label: hentTekst('person.navn', intl),
+            verdi: gjeldendeBarn?.medforelder?.navn
+              ? gjeldendeBarn?.medforelder?.navn
+              : '',
+          },
         };
-      }
 
-      if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
-        resetForelder(forelder);
-        if (nyForelder) {
+        if (fortrolig) {
+          resetForelder(forelder);
           return {
-            ...nyForelderIdentOgNavn,
+            ident: {
+              label: hentTekst('person.fnr', intl),
+              verdi: '',
+            },
+            navn: {
+              label: hentTekst('person.navn', intl),
+              verdi: '',
+            },
           };
         }
-        return {};
-      } else {
-        return forelder;
-      }
-    };
+
+        if (donorOgAnnet === false || skalBeholdeKopiertForelder === false) {
+          resetForelder(forelder);
+          return {
+            ...forelderIdentOgNavnFraPersonData,
+          };
+        }
+
+        if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
+          resetForelder(forelder);
+          return {
+            ...forelderIdentOgNavnFraPersonData,
+          };
+        } else {
+          return forelder;
+        }
+      };
 
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);
