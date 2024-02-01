@@ -34,7 +34,14 @@ import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
-import { resetForelder } from '../helpers/steg/forelder';
+import {
+  resetForelder,
+  utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
+} from '../helpers/steg/forelder';
+import {
+  stringErNullEllerTom,
+  stringHarVerdiOgErIkkeTom,
+} from '../utils/typer';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -254,7 +261,21 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         (personBarn) => personBarn.fnr === barn.ident.verdi
       );
 
-      const nyForelder = gjeldendeBarn?.medforelder?.ident !== forelder?.ident;
+      const nyForelder =
+        gjeldendeBarn?.medforelder?.ident !== forelder?.ident?.verdi &&
+        barn.medforelder !== undefined &&
+        stringErNullEllerTom(barn.medforelder?.verdi?.ident);
+
+      const skalBeholdeKopiertForelder =
+        barn.erFraForrigeSøknad &&
+        stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.verdi) &&
+        barn.medforelder === undefined;
+
+      const donorOgAnnet =
+        barn.erFraForrigeSøknad &&
+        barn.forelder &&
+        utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
+        barn.medforelder === undefined;
 
       const nyForelderIdentOgNavn = {
         ident: {
@@ -270,6 +291,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
             : '',
         },
       };
+
+      if (donorOgAnnet === false || skalBeholdeKopiertForelder === false) {
+        resetForelder(forelder);
+        return {
+          ...nyForelderIdentOgNavn,
+        };
+      }
 
       if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
         resetForelder(forelder);
