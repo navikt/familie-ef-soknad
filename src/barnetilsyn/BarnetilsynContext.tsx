@@ -259,7 +259,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       },
       navn: {
         label: hentTekst('person.navn', intl),
-        verdi: gjeldendeBarn?.medforelder?.ident || '',
+        verdi: gjeldendeBarn?.medforelder?.navn || '',
       },
     });
 
@@ -291,20 +291,25 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           gjeldendeBarn?.medforelder?.ident !==
             barnFraForrigeSøknad?.forelder?.ident?.verdi;
 
-        const fortrolig = barn.medforelder?.verdi.harAdressesperre;
+        const fortrolig = gjeldendeBarn?.medforelder?.harAdressesperre;
+
+        const harIkkeMedForelderLenger =
+          !gjeldendeBarn?.medforelder &&
+          stringHarVerdiOgErIkkeTom(
+            barnFraForrigeSøknad?.forelder?.navn?.verdi
+          );
 
         const skalBeholdeKopiertForelder =
-          barn.erFraForrigeSøknad &&
           stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.verdi) &&
-          barn.medforelder === undefined;
+          !barn.medforelder;
 
         const donorOgAnnet =
-          barn.erFraForrigeSøknad &&
           barn.forelder &&
           utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
-          barn.medforelder === undefined;
+          !barn.medforelder;
 
         if (
+          harIkkeMedForelderLenger ||
           fortrolig ||
           donorOgAnnet === false ||
           skalBeholdeKopiertForelder === false ||
