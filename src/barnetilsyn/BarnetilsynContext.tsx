@@ -287,14 +287,15 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         );
 
         const nyForelder =
-          stringHarVerdiOgErIkkeTom(gjeldendeBarn?.medforelder?.ident) &&
+          !gjeldendeBarn?.medforelder?.ident &&
           gjeldendeBarn?.medforelder?.ident !==
             barnFraForrigeSøknad?.forelder?.ident?.verdi;
 
-        const fortrolig = gjeldendeBarn?.medforelder?.harAdressesperre;
+        const fortrolig = !!gjeldendeBarn?.medforelder?.harAdressesperre;
 
         const harIkkeMedForelderLenger =
           !gjeldendeBarn?.medforelder &&
+          !!barnFraForrigeSøknad?.medforelder &&
           stringHarVerdiOgErIkkeTom(
             barnFraForrigeSøknad?.forelder?.navn?.verdi
           );
@@ -303,16 +304,27 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.verdi) &&
           !barn.medforelder;
 
-        const donorOgAnnet =
-          barn.forelder &&
-          utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
-          !barn.medforelder;
+        // const donorOgAnnet =
+        //   !barn.forelder &&
+        //   utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn) &&
+        //   barnFraForrigeSøknad?.medforelder &&
+        //   !!barn.medforelder;
+
+        console.log('Barn', barn.navn.verdi);
+        console.log('fortrolig', fortrolig);
+        // console.log('donorOgAnnet', donorOgAnnet);
+        console.log('nyForelder', nyForelder);
+        console.log('skalBeholdeKopiertForelder', skalBeholdeKopiertForelder);
+        console.log('harIkkeMedForelderLenger', harIkkeMedForelderLenger);
+
+        if (skalBeholdeKopiertForelder) {
+          return forelder;
+        }
 
         if (
           harIkkeMedForelderLenger ||
           fortrolig ||
-          donorOgAnnet === false ||
-          skalBeholdeKopiertForelder === false ||
+          // donorOgAnnet === false ||
           gjeldendeBarn?.medforelder?.død === true ||
           nyForelder
         ) {
