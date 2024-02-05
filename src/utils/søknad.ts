@@ -164,7 +164,7 @@ const medforelderMedLabel = (medforelder: any, intl: LokalIntlShape) => {
       label: hentTekst('barnasbosted.medforelder.alder', intl),
       verdi: medforelder.verdi?.alder,
     },
-    død: medforelder.død,
+    død: medforelder.verdi?.død,
     id: hentUid(),
     fraFolkeregister: true,
   };
