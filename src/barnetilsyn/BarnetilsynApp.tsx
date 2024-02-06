@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Feilside from '../components/feil/Feilside';
 import hentToggles from '../toggles/api';
 import { oppdaterBarnMedLabel } from '../utils/søknad';
@@ -18,6 +18,7 @@ import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
 import Environment from '../Environment';
+import { GjenbrukContext } from '../context/GjenbrukContext';
 
 const BarnetilsynApp = () => {
   const [autentisert, settAutentisering] = useState<boolean>(false);
@@ -31,6 +32,8 @@ const BarnetilsynApp = () => {
   } = useBarnetilsynSøknad();
   const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
+  const { skalGjenbrukeSøknad, settSkalGjenbrukeSøknad } =
+    useContext(GjenbrukContext);
 
   autentiseringsInterceptor();
 
@@ -72,13 +75,10 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
-    if (
-      toggles[ToggleName.hentBarnetilsynSøknad] ||
-      Environment().miljø === 'local'
-    ) {
+    if (toggles[ToggleName.hentBarnetilsynSøknad] && skalGjenbrukeSøknad) {
       hentForrigeSøknadBarnetilsyn();
     }
-  }, [fetching]);
+  }, [fetching, skalGjenbrukeSøknad]);
 
   if (!fetching && autentisert) {
     if (!error) {

@@ -8,9 +8,10 @@ import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, GuidePanel } from '@navikt/ds-react';
-import { KnappNesteSide } from './KnappNesteSide';
 import { hentPath } from '../../../utils/routing';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
+import { GjenbrukKnapp } from './GjenbrukKnapp';
+import { KnappNesteSide } from './KnappNesteSide';
 
 const Gjenbruk: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -36,7 +37,7 @@ const Gjenbruk: FC = () => {
           påser at disse fortsatt er korrekte.
         </BodyShort>
       </GuidePanel>
-      <KnappNesteSide nesteSide={nesteSide} tekst="Gjenbruk fra forrige" />
+      <GjenbrukKnapp nesteSide={nesteSide} tekst="Gjenbruk fra forrige" />
       <KnappNesteSide nesteSide={nesteSide} tekst="Start med tom søknad" />
     </>
   );
