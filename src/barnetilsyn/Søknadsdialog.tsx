@@ -11,6 +11,7 @@ import Dokumentasjon from './steg/8-dokumentasjon/Dokumentasjon';
 import Kvittering from './steg/9-kvittering/Kvittering';
 import Barnepass from './steg/6-barnepass/Barnepass';
 import RedirectTilStart from './RedirectTilStart';
+import Gjenbruk from './steg/0.5-gjenbruk/Gjenbruk';
 
 const SøknadsdialogBarnetilsyn: FC = () => {
   return (
@@ -84,6 +85,14 @@ const SøknadsdialogBarnetilsyn: FC = () => {
         element={
           <RedirectTilStart>
             <OmDeg />
+          </RedirectTilStart>
+        }
+      />
+      <Route
+        path={'/gjenbruk'}
+        element={
+          <RedirectTilStart>
+            <Gjenbruk />
           </RedirectTilStart>
         }
       />

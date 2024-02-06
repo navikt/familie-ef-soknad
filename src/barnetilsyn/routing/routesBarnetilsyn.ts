@@ -4,6 +4,7 @@ const PUBLIC_URL = process.env.PUBLIC_URL || '/';
 
 export enum ERouteBarnetilsyn {
   Forside = 'Forside',
+  Gjenbruk = 'Gjenbruk',
   OmDeg = 'OmDeg',
   BosituasjonenDin = 'BosituasjonenDin',
   BarnaDine = 'BarnaDine',
@@ -17,6 +18,11 @@ export enum ERouteBarnetilsyn {
 
 export const RoutesBarnetilsyn: IRoute[] = [
   { path: '/barnetilsyn', label: 'Forside', route: ERouteBarnetilsyn.Forside },
+  {
+    path: '/barnetilsyn/gjenbruk',
+    label: 'Gjenbruk',
+    route: ERouteBarnetilsyn.Gjenbruk,
+  },
   {
     path: '/barnetilsyn/om-deg',
     label: 'Om deg',
