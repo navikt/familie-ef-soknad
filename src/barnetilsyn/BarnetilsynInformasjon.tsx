@@ -3,7 +3,6 @@ import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
-import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Tekst } from '../components/forside/Tekst';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Overskrift } from '../components/forside/Overskrift';
@@ -18,7 +17,7 @@ import { useContext, useEffect, useState } from 'react';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { ForrigeSøknad } from './models/søknad';
-import { KnappNesteSide } from './steg/0.5-gjenbruk/KnappNesteSide';
+import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -123,12 +122,11 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
           settBekreftelse={settBekreftelse}
         />
       )}
-      {harBekreftet &&
-        (kanGjenbrukeForrigeSøknad ? (
-          <KnappNesteSide nesteSide={gjenbrukSide} tekst="Gjenbruk" />
-        ) : (
-          <StartSøknadKnapp nesteSide={nesteSide} />
-        ))}
+      {harBekreftet && (
+        <KnappLocaleTekstOgNavigate
+          nesteSide={kanGjenbrukeForrigeSøknad ? gjenbrukSide : nesteSide}
+        />
+      )}
     </>
   );
 };

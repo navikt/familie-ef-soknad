@@ -12,6 +12,8 @@ export default {
   'knapp.neste': 'Neste',
   'knapp.avbryt': 'Avbryt',
   'knapp.start': 'Start søknad',
+  'knapp.startTom': 'Start med tom søknad',
+  'knapp.startGjenbruk': 'Gjenbruk fra forrige søknad',
   'knapp.sendSøknad': 'Send søknad',
   'knapp.lukk': 'Lukk',
   'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',

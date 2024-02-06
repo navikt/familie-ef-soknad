@@ -7,11 +7,10 @@ import { GjenbrukContext } from '../../../context/GjenbrukContext';
 
 export const GjenbrukKnapp: React.FC<{
   nesteSide: string;
-  tekst: string;
-}> = ({ nesteSide, tekst }) => {
+}> = ({ nesteSide }) => {
   const navigate = useNavigate();
-  const { skalGjenbrukeSøknad, settSkalGjenbrukeSøknad } =
-    useContext(GjenbrukContext);
+  const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
+
   const handleButtonClick = () => {
     settSkalGjenbrukeSøknad();
     navigate(nesteSide);
@@ -20,8 +19,7 @@ export const GjenbrukKnapp: React.FC<{
   return (
     <FeltGruppe classname={'sentrert'} aria-live="polite">
       <Button onClick={() => handleButtonClick()} variant="primary">
-        {/* <LocaleTekst tekst={'knapp.start'} /> */}
-        {tekst}
+        <LocaleTekst tekst={'knapp.startGjenbruk'} />
       </Button>
     </FeltGruppe>
   );

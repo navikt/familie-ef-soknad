@@ -12,6 +12,8 @@ export default {
   'knapp.neste': 'Next',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
+  'knapp.startTom': 'Start with a blank application',
+  'knapp.startGjenbruk': 'Reuse from previous application',
   'knapp.sendSøknad': 'Submit application',
   'knapp.lukk': 'Close',
   'feil.ingentekst.sanity': 'No dynamic text found in Sanity',

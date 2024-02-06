@@ -3,7 +3,6 @@ import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
-import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Tekst } from '../components/forside/Tekst';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Overskrift } from '../components/forside/Overskrift';
@@ -13,6 +12,7 @@ import {
   RoutesOvergangsstonad,
   ERouteOvergangsstønad,
 } from './routing/routesOvergangsstonad';
+import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 
 export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -72,7 +72,7 @@ export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
         />
       )}
 
-      {harBekreftet && <StartSøknadKnapp nesteSide={nesteSide} />}
+      {harBekreftet && <KnappLocaleTekstOgNavigate nesteSide={nesteSide} />}
     </>
   );
 };

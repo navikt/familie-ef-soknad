@@ -12,12 +12,12 @@ import Språkvelger from '../components/språkvelger/Språkvelger';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { Heading, Panel } from '@navikt/ds-react';
 import { VeilederBoks } from '../components/forside/VeilederBoks';
-import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Overskrift } from '../components/forside/Overskrift';
 import { Tekst } from '../components/forside/Tekst';
 import { isIE } from 'react-device-detect';
+import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 
 const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
   const { skjema, settSkjema } = useSkjema();
@@ -72,7 +72,9 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
             />
           )}
 
-          {skjema.harBekreftet && <StartSøknadKnapp nesteSide={nesteSide} />}
+          {skjema.harBekreftet && (
+            <KnappLocaleTekstOgNavigate nesteSide={nesteSide} />
+          )}
         </Panel>
       </div>
     </div>
