@@ -153,6 +153,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     barn
                   );
 
+                  if (barnFraPersonData?.harSammeAdresse?.verdi) {
+                    delete oppdatertForelder.skalBarnetBoHosSøker;
+                  }
+
                   return {
                     ...barn,
                     ...barnFraPersonData,

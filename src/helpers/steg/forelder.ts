@@ -262,7 +262,6 @@ export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   delete nyForelder.flyttetFra;
   delete nyForelder.hvorMyeSammen;
   delete nyForelder.beskrivSamværUtenBarn;
-  delete nyForelder.skalBarnetBoHosSøker;
   delete nyForelder.harDereSkriftligSamværsavtale;
 };
 
