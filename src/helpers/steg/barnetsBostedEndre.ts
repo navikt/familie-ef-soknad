@@ -66,17 +66,15 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
-export const manueltUtfyltForelder = (
-  barn: IBarn,
-  barnHarSammeForelder: boolean | undefined
-) => {
-  return (
-    !barn.medforelder?.verdi &&
-    !barnHarSammeForelder &&
-    barn.erFraForrigeSøknad &&
-    stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.label)
-  );
-};
+export const harManueltUtfyltMedforelderFraForrigeSøknadUtenForelderRegisterdata =
+  (barn: IBarn, barnHarSammeForelder: boolean | undefined) => {
+    return (
+      !barn.medforelder?.verdi &&
+      !barnHarSammeForelder &&
+      barn.erFraForrigeSøknad &&
+      stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.label)
+    );
+  };
 
 export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
   return annenForelderId && annenForelderId === 'annen-forelder';
@@ -117,7 +115,10 @@ export const skalAnnenForelderRedigeres = (
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
 ) => {
   return (
-    manueltUtfyltForelder(barn, barnHarSammeForelder) ||
+    harManueltUtfyltMedforelderFraForrigeSøknadUtenForelderRegisterdata(
+      barn,
+      barnHarSammeForelder
+    ) ||
     barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra(
       barn,
       førsteBarnTilHverForelder

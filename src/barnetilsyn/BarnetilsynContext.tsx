@@ -290,12 +290,14 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           (personBarn) => personBarn.fnr === barn.ident.verdi
         );
 
-        const nyForelder =
+        const erAnnenForelderDød = gjeldendeBarn?.medforelder?.død === true;
+
+        const harNyForelder =
           stringHarVerdiOgErIkkeTom(gjeldendeBarn?.medforelder?.ident) &&
           gjeldendeBarn?.medforelder?.ident !==
             barnFraForrigeSøknad?.forelder?.ident?.verdi;
 
-        const fortrolig = !!gjeldendeBarn?.medforelder?.harAdressesperre;
+        const erFortrolig = !!gjeldendeBarn?.medforelder?.harAdressesperre;
 
         const annenForelderErDonorEllerAnnet =
           barnFraForrigeSøknad?.forelder &&
@@ -306,18 +308,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
           !barn.medforelder;
 
-        if (fortrolig) {
-          return resetForelderOgSettNavnOgIdentMedLabel(
-            forelder,
-            gjeldendeBarn
-          );
-        }
-
         if (annenForelderErDonorEllerAnnet) {
           return forelder;
         }
 
-        if (gjeldendeBarn?.medforelder?.død === true || nyForelder) {
+        if (erAnnenForelderDød || harNyForelder || erFortrolig) {
           return resetForelderOgSettNavnOgIdentMedLabel(
             forelder,
             gjeldendeBarn
