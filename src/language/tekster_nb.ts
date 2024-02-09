@@ -1013,4 +1013,8 @@ export default {
 
   'utdanning.alert.arbeidsmengde':
     'Prosent må være mindre enn 100 hvis det er deltid.',
+  'tidligere.barnetilsyn.søknad.finnes':
+    'Vi ser at du har søkt om stønad til Barnetilsyn tidligere. Om du ønsker kan vi fylle ut din nye søknad med de samme opplysningen du oppga i søknaden du sendte inn sist.',
+  'gjenbruk.tidligere.barnetilsyn.søknad':
+    'Før vi kan fylle ut søknaden må du svare på noen generelle spørsmål. Når det er gjort fyller vi ut søknaden for deg. Det er viktig at du går igjennom opplysningen som står i søknaden vi fyller ut for deg og påser at disse fortsatt er korrekte.',
 };

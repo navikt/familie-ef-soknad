@@ -14,6 +14,7 @@ import { GjenbrukKnapp } from './GjenbrukKnapp';
 import styled from 'styled-components';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { KnappLocaleTekstOgNavigate } from '../../../components/knapper/KnappLocaleTekstOgNavigate';
+import { hentTekst } from '../../../utils/søknad';
 
 const Gjenbruk: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('OmDeg'));
@@ -55,16 +56,11 @@ const Gjenbruk: FC = () => {
               </BodyShort>
 
               <BodyShort>
-                Vi ser at du har søkt om stønad til Barnetilsyn tidligere. Om du
-                ønsker kan vi fylle ut din nye søknad med de samme opplysningen
-                du oppga i søknaden du sendte inn sist.
+                {hentTekst('tidligere.barnetilsyn.søknad.finnes', intl)}
               </BodyShort>
 
               <BodyShort>
-                Før vi kan fylle ut søknaden må du svare på noen generelle
-                spørsmål. Når det er gjort fyller vi ut søknaden for deg. Det er
-                viktig at du går igjennom opplysningen som står i søknaden vi
-                fyller ut for deg og påser at disse fortsatt er korrekte.
+                {hentTekst('gjenbruk.tidligere.barnetilsyn.søknad', intl)}
               </BodyShort>
             </BodyShortContainer>
             <SenterContainer>

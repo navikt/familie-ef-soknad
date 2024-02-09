@@ -1046,4 +1046,8 @@ export default {
 
   'utdanning.alert.arbeidsmengde':
     'Percent must be less than 100 if part-time.',
+  'tidligere.barnetilsyn.søknad.finnes':
+    'We have noticed that you have previously applied for child care benefit. If you wish, we can fill in your new application with the same information you provided in your previous application.',
+  'gjenbruk.tidligere.barnetilsyn.søknad':
+    'Before we can fill out parts of the application for you, you must answer some general questions. It is important that you review the information in the application we fill in for you and ensure that it is still correct.',
 };
