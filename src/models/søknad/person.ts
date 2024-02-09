@@ -1,6 +1,5 @@
 import { IBarn } from '../steg/barn';
 import { IDatoFelt, ITekstFelt } from './søknadsfelter';
-import { hentTekst } from '../../utils/søknad';
 
 export interface IPerson {
   hash: string;
@@ -49,8 +48,14 @@ type Medforelder = {
   alder: number;
 };
 
-export type Barn = Omit<IBarn, 'medforelder'> & {
+export type Barn = {
+  alder: number;
+  fnr: string;
+  fødselsdato: string;
+  harAdressesperre: boolean;
+  harSammeAdresse: boolean;
   medforelder?: Medforelder;
+  navn: string;
 };
 
 export type PersonData = {
