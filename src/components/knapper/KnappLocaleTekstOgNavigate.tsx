@@ -9,13 +9,25 @@ export const KnappLocaleTekstOgNavigate: React.FC<{
     | 'knapp.start'
     | 'knapp.neste'
     | 'knapp.startTom'
-    | 'knapp.startGjenbruk';
+    | 'knapp.startGjenbruk'
+    | 'knapp.tilbake'
+    | 'knapp.avbryt';
   variant?: 'primary' | 'secondary' | 'tertiary';
-}> = ({ nesteSide, tekst = 'knapp.start', variant = 'primary' }) => {
+  disabled?: boolean;
+}> = ({
+  nesteSide,
+  tekst = 'knapp.start',
+  variant = 'primary',
+  disabled = false,
+}) => {
   const navigate = useNavigate();
   return (
     <FeltGruppe classname={'sentrert'} aria-live="polite">
-      <Button onClick={() => navigate(nesteSide)} variant={variant}>
+      <Button
+        onClick={() => navigate(nesteSide)}
+        variant={variant}
+        disabled={disabled}
+      >
         <LocaleTekst tekst={tekst} />
       </Button>
     </FeltGruppe>
