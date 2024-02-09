@@ -17,11 +17,12 @@ import {
   hentFeltObjekt,
   hentMellomlagretSøknadFraDokument,
   hentPersonData,
+  hentTekst,
   mellomlagreSøknadTilDokument,
   nullstillMellomlagretSøknadTilDokument,
 } from '../utils/søknad';
 import { MellomlagredeStønadstyper } from '../models/søknad/stønadstyper';
-import { IPerson, PersonData } from '../models/søknad/person';
+import { Barn, IPerson, PersonData } from '../models/søknad/person';
 import { IBarn } from '../models/steg/barn';
 import { hvaErDinArbeidssituasjonSpm } from './steg/5-aktivitet/AktivitetConfig';
 import { useSpråkContext } from '../context/SpråkContext';
@@ -33,6 +34,11 @@ import { dagensDato, formatIsoDate } from '../utils/dato';
 import { IMedforelderFelt } from '../models/steg/medforelder';
 import { IForelder } from '../models/steg/forelder';
 import { hentUid } from '../utils/autentiseringogvalidering/uuid';
+import {
+  resetForelder,
+  utfyltNødvendigSpørsmålUtenOppgiAnnenForelder,
+} from '../helpers/steg/forelder';
+import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 
 const initialState = (intl: LokalIntlShape): ISøknad => {
   return {
@@ -118,6 +124,12 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
               ...prevSøknad.person,
               barn: [
                 ...aktuelleBarn.map((barn) => {
+                  const barnFraPersonData =
+                    overskrivBarnFraForrigeSøknadMedPersonData(
+                      barn,
+                      personData
+                    );
+
                   const medforelder = finnGjeldendeBarnOgLagMedforelderFelt(
                     barn,
                     personData
@@ -129,10 +141,11 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                   );
 
                   const oppdatertForelder =
-                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDød(
+                    finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig(
                       barn,
                       personData,
-                      forelder
+                      forelder,
+                      forrigeSøknad
                     );
 
                   const fraFolkeregister = lagFraFolkeregisterVerdi(
@@ -140,8 +153,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     barn
                   );
 
+                  if (barnFraPersonData?.harSammeAdresse?.verdi) {
+                    delete oppdatertForelder.skalBarnetBoHosSøker;
+                  }
+
                   return {
                     ...barn,
+                    ...barnFraPersonData,
                     medforelder,
                     forelder: oppdatertForelder,
                     fraFolkeregister: fraFolkeregister,
@@ -184,6 +202,43 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
+    const overskrivBarnFraForrigeSøknadMedPersonData = (
+      barn: IBarn,
+      personData: PersonData
+    ): IBarn | undefined => {
+      const gjeldendeBarn = personData.barn.find(
+        (personBarn) => personBarn.fnr === barn.ident.verdi
+      );
+
+      if (!gjeldendeBarn) return undefined;
+
+      return {
+        id: hentUid(),
+        fnr: gjeldendeBarn.fnr,
+        fødselsdato: {
+          label: hentTekst('barnekort.fødselsdato', intl),
+          verdi: gjeldendeBarn.fødselsdato,
+        },
+        harAdressesperre: gjeldendeBarn.harAdressesperre,
+        harSammeAdresse: {
+          label: hentTekst('barnekort.spm.sammeAdresse', intl),
+          verdi: gjeldendeBarn.harSammeAdresse,
+        },
+        ident: {
+          label: hentTekst('barn.ident', intl),
+          verdi: gjeldendeBarn.fnr,
+        },
+        navn: {
+          label: hentTekst('person.navn', intl),
+          verdi: gjeldendeBarn.navn,
+        },
+        alder: {
+          label: hentTekst('barnekort.alder', intl),
+          verdi: gjeldendeBarn.alder.toString(),
+        },
+      };
+    };
+
     const finnGjeldendeBarnOgLagMedforelderFelt = (
       barn: IBarn,
       personData: PersonData
@@ -199,39 +254,73 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         : undefined;
     };
 
-    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDød = (
-      barn: IBarn,
-      personData: PersonData,
-      forelder: IForelder
-    ): IForelder => {
-      const gjeldendeBarn = personData.barn.find(
-        (personBarn) => personBarn.fnr === barn.ident.verdi
-      );
+    const settForelderIdentOgNavnMedLabel = (
+      gjeldendeBarn: Barn | undefined
+    ) => ({
+      ident: {
+        label: hentTekst('person.fnr', intl),
+        verdi: gjeldendeBarn?.medforelder?.ident || '',
+      },
+      navn: {
+        label: hentTekst('person.navn', intl),
+        verdi: gjeldendeBarn?.medforelder?.navn || '',
+      },
+    });
 
-      if (gjeldendeBarn?.medforelder?.død === true) {
-        return {
-          ...forelder,
-          ikkeOppgittAnnenForelderBegrunnelse: undefined,
-          hvorforIkkeOppgi: undefined,
-          fødselsdato: undefined,
-          borINorge: undefined,
-          land: undefined,
-          avtaleOmDeltBosted: undefined,
-          harAnnenForelderSamværMedBarn: undefined,
-          harDereSkriftligSamværsavtale: undefined,
-          hvordanPraktiseresSamværet: undefined,
-          borAnnenForelderISammeHus: undefined,
-          borAnnenForelderISammeHusBeskrivelse: undefined,
-          boddSammenFør: undefined,
-          flyttetFra: undefined,
-          hvorMyeSammen: undefined,
-          beskrivSamværUtenBarn: undefined,
-          skalBarnetBoHosSøker: undefined,
-        };
-      } else {
-        return forelder;
-      }
+    const resetForelderOgSettNavnOgIdentMedLabel = (
+      forelder: IForelder,
+      gjeldendeBarn: Barn | undefined
+    ) => {
+      resetForelder(forelder);
+      return settForelderIdentOgNavnMedLabel(gjeldendeBarn);
     };
+
+    const finnGjeldendeBarnOgNullstillAnnenForelderHvisDødEllerNyEllerFortrolig =
+      (
+        barn: IBarn,
+        personData: PersonData,
+        forelder: IForelder,
+        forrigeSøknad: ForrigeSøknad
+      ): IForelder => {
+        const barnFraForrigeSøknad = forrigeSøknad.person.barn.find(
+          (b) => b.ident.verdi === barn.ident.verdi
+        );
+
+        const gjeldendeBarn = personData.barn.find(
+          (personBarn) => personBarn.fnr === barn.ident.verdi
+        );
+
+        const erAnnenForelderDød = gjeldendeBarn?.medforelder?.død === true;
+
+        const harNyForelder =
+          stringHarVerdiOgErIkkeTom(gjeldendeBarn?.medforelder?.ident) &&
+          gjeldendeBarn?.medforelder?.ident !==
+            barnFraForrigeSøknad?.forelder?.ident?.verdi;
+
+        const erFortrolig = !!gjeldendeBarn?.medforelder?.harAdressesperre;
+
+        const annenForelderErDonorEllerAnnet =
+          barnFraForrigeSøknad?.forelder &&
+          utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(
+            barnFraForrigeSøknad?.forelder
+          ) &&
+          barn.forelder &&
+          utfyltNødvendigSpørsmålUtenOppgiAnnenForelder(barn.forelder) &&
+          !barn.medforelder;
+
+        if (annenForelderErDonorEllerAnnet) {
+          return forelder;
+        }
+
+        if (erAnnenForelderDød || harNyForelder || erFortrolig) {
+          return resetForelderOgSettNavnOgIdentMedLabel(
+            forelder,
+            gjeldendeBarn
+          );
+        } else {
+          return forelder;
+        }
+      };
 
     useEffect(() => {
       console.log('søknad i BarnetilsynContext', søknad);

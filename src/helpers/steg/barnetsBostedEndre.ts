@@ -8,7 +8,10 @@ import {
 import { IForelder } from '../../models/steg/forelder';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
-import { stringErNullEllerTom } from '../../utils/typer';
+import {
+  stringErNullEllerTom,
+  stringHarVerdiOgErIkkeTom,
+} from '../../utils/typer';
 
 export const erIdentUtfyltOgGyldig = (ident?: string): boolean =>
   !!ident && erGyldigFødselsnummer(ident);
@@ -63,6 +66,16 @@ export const barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra = (
   return !barn.medforelder?.verdi && førsteBarnTilHverForelder.length === 0;
 };
 
+export const harManueltUtfyltMedforelderFraForrigeSøknadUtenForelderRegisterdata =
+  (barn: IBarn, barnHarSammeForelder: boolean | undefined) => {
+    return (
+      !barn.medforelder?.verdi &&
+      !barnHarSammeForelder &&
+      barn.erFraForrigeSøknad &&
+      stringHarVerdiOgErIkkeTom(barn.forelder?.navn?.label)
+    );
+  };
+
 export const erAnnenForelderValgt = (annenForelderId: string | undefined) => {
   return annenForelderId && annenForelderId === 'annen-forelder';
 };
@@ -102,6 +115,10 @@ export const skalAnnenForelderRedigeres = (
   finnesBarnSomSkalHaBarnepassOgRegistrertAnnenForelderBlantValgteBarn: boolean
 ) => {
   return (
+    harManueltUtfyltMedforelderFraForrigeSøknadUtenForelderRegisterdata(
+      barn,
+      barnHarSammeForelder
+    ) ||
     barnUtenForelderFraPDLOgIngenAndreForeldreDetKanKopieresFra(
       barn,
       førsteBarnTilHverForelder
