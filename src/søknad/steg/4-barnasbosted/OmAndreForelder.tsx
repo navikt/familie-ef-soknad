@@ -11,7 +11,10 @@ import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
 import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
-import { slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder } from '../../../helpers/steg/forelder';
+import {
+  erIkkeOppgittPgaAnnet,
+  slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
+} from '../../../helpers/steg/forelder';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -147,10 +150,6 @@ const OmAndreForelder: React.FC<Props> = ({
     });
   };
 
-  const hvorforIkkeOppgiÅrsakErAnnet =
-    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
-    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other;
-
   return (
     <>
       <KomponentGruppe>
@@ -225,7 +224,7 @@ const OmAndreForelder: React.FC<Props> = ({
           />
         </KomponentGruppe>
       )}
-      {hvorforIkkeOppgiÅrsakErAnnet && (
+      {erIkkeOppgittPgaAnnet(forelder) && (
         <FeltGruppe aria-live="polite">
           <Textarea
             autoComplete={'off'}
