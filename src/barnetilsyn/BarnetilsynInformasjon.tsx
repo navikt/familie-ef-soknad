@@ -50,9 +50,7 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
       settKanGjenbrukeForrigeSøknad(true);
     } else {
       settKanGjenbrukeForrigeSøknad(false);
-      if (skalGjenbrukeSøknad) {
-        settSkalGjenbrukeSøknad(false);
-      }
+      settSkalGjenbrukeSøknad(false);
     }
   };
 

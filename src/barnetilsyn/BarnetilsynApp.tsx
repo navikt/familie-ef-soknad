@@ -17,7 +17,6 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
 import { ToggleName } from '../models/søknad/toggles';
-import Environment from '../Environment';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 
 const BarnetilsynApp = () => {
@@ -32,8 +31,7 @@ const BarnetilsynApp = () => {
   } = useBarnetilsynSøknad();
   const { toggles, settToggles } = useToggles();
   const intl = useLokalIntlContext();
-  const { skalGjenbrukeSøknad, settSkalGjenbrukeSøknad } =
-    useContext(GjenbrukContext);
+  const { skalGjenbrukeSøknad } = useContext(GjenbrukContext);
 
   autentiseringsInterceptor();
 
