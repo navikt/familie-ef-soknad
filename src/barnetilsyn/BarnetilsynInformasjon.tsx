@@ -12,16 +12,11 @@ import {
   RoutesBarnetilsyn,
   ERouteBarnetilsyn,
 } from './routing/routesBarnetilsyn';
-import {
-  hentDataFraForrigeBarnetilsynSøknad,
-  hentTekst,
-} from '../utils/søknad';
+import { hentDataFraForrigeBarnetilsynSøknad } from '../utils/søknad';
 import { useContext, useEffect, useState } from 'react';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 import { useSpråkContext } from '../context/SpråkContext';
-import { ForrigeSøknad } from './models/søknad';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
-import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -30,8 +25,7 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
 }) => {
   const [kanGjenbrukeForrigeSøknad, settKanGjenbrukeForrigeSøknad] =
     useState(false);
-  const { skalGjenbrukeSøknad, settSkalGjenbrukeSøknad } =
-    useContext(GjenbrukContext);
+  const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
   const [locale] = useSpråkContext();
 
   const hentOgSjekkForrigeSøknad = async () => {
@@ -51,7 +45,7 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
     };
 
     fetchHentOgSjekkForrigeSøknad();
-  }, [locale, skalGjenbrukeSøknad, kanGjenbrukeForrigeSøknad]);
+  }, [locale]);
 
   const nesteSide = hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.OmDeg) || '';
   const gjenbrukSide =

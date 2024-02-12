@@ -12,7 +12,7 @@ export const GjenbrukKnapp: React.FC<{
   const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
 
   const handleButtonClick = () => {
-    settSkalGjenbrukeSøknad();
+    settSkalGjenbrukeSøknad(true);
     navigate(nesteSide);
   };
 
