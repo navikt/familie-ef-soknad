@@ -30,23 +30,10 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
     useContext(GjenbrukContext);
   const [locale] = useSpråkContext();
 
-  const erForrigeSøknadBesvartPåSammeSpråkSomErValgt = (
-    forrigeSøknad: ForrigeSøknad
-  ) => {
-    return (
-      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
-        'Hvorfor er du alene med barn?' &&
-        locale === 'nb') ||
-      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
-        'Why are you a sole caregiver?' &&
-        locale === 'en')
-    );
-  };
-
   const hentOgSjekkForrigeSøknad = async () => {
     const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
 
-    if (erForrigeSøknadBesvartPåSammeSpråkSomErValgt(forrigeSøknad)) {
+    if (forrigeSøknad.locale === locale) {
       settKanGjenbrukeForrigeSøknad(true);
     } else {
       settKanGjenbrukeForrigeSøknad(false);
