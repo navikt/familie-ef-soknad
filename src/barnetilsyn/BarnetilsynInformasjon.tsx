@@ -12,12 +12,16 @@ import {
   RoutesBarnetilsyn,
   ERouteBarnetilsyn,
 } from './routing/routesBarnetilsyn';
-import { hentDataFraForrigeBarnetilsynSøknad } from '../utils/søknad';
+import {
+  hentDataFraForrigeBarnetilsynSøknad,
+  hentTekst,
+} from '../utils/søknad';
 import { useContext, useEffect, useState } from 'react';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { ForrigeSøknad } from './models/søknad';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
