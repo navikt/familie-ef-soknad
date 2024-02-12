@@ -12,12 +12,16 @@ import {
   RoutesBarnetilsyn,
   ERouteBarnetilsyn,
 } from './routing/routesBarnetilsyn';
-import { hentDataFraForrigeBarnetilsynSøknad } from '../utils/søknad';
+import {
+  hentDataFraForrigeBarnetilsynSøknad,
+  hentTekst,
+} from '../utils/søknad';
 import { useContext, useEffect, useState } from 'react';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { ForrigeSøknad } from './models/søknad';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -30,29 +34,14 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
     useContext(GjenbrukContext);
   const [locale] = useSpråkContext();
 
-  const erForrigeSøknadBesvartPåSammeSpråkSomErValgt = (
-    forrigeSøknad: ForrigeSøknad
-  ) => {
-    return (
-      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
-        'Hvorfor er du alene med barn?' &&
-        locale === 'nb') ||
-      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
-        'Why are you a sole caregiver?' &&
-        locale === 'en')
-    );
-  };
-
   const hentOgSjekkForrigeSøknad = async () => {
     const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
 
-    if (erForrigeSøknadBesvartPåSammeSpråkSomErValgt(forrigeSøknad)) {
+    if (forrigeSøknad.locale === locale) {
       settKanGjenbrukeForrigeSøknad(true);
     } else {
       settKanGjenbrukeForrigeSøknad(false);
-      if (skalGjenbrukeSøknad) {
-        settSkalGjenbrukeSøknad(false);
-      }
+      settSkalGjenbrukeSøknad(false);
     }
   };
 
