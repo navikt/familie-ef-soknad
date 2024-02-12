@@ -257,6 +257,7 @@ export default {
   'barnadine.info.brukpdf':
     'If you are applying for child care benefit for children whom you have taken over child care because of death or children with address protection, please do not use this digital application. Use this<a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a>  to apply.',
   'barnasbosted.sidetittel': 'The other parent and access',
+  'barnasbosted.forelder.uoppgitt': 'Not registered',
   'barnasbosted.kanikkeoppgiforelder':
     'I am unable to provide the name of the other parent',
   'barnasbosted.borinorge': 'Does [0]’s other parent live in Norway?',

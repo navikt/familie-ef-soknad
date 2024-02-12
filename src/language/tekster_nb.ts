@@ -251,6 +251,7 @@ export default {
   'barnadine.info.brukpdf':
     'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
+  'barnasbosted.forelder.uoppgitt': 'Ikke oppgitt',
   'barnasbosted.kanikkeoppgiforelder':
     'Jeg kan ikke oppgi den andre forelderen',
   'barnasbosted.borinorge': 'Bor [0]s andre forelder i Norge?',
