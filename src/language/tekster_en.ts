@@ -42,7 +42,7 @@ export default {
     'Selected month and date has to be before todays month and date',
   'datovelger.fødselsdato': 'Date of birth',
   'datovelger.nårSkalDetteSkje': 'When will this happen?',
-  'input.kroner': 'kroner',
+  'input.kroner': 'Norwegian krone (NOK)',
   'periode.fra': 'From',
   'periode.til': 'To',
   'periode.startdato': 'Start date',
