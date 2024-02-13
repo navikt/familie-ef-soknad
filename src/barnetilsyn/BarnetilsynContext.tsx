@@ -135,15 +135,10 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     personData
                   );
 
-                  const fraFolkeregister = erAnnenForelderFraFolkeregister(
-                    prevSøknad,
-                    barn
-                  );
-
                   const forelder = oppdaterBarnForelderIdentOgNavn(
                     barn.forelder,
                     medforelder,
-                    fraFolkeregister
+                    prevSøknad
                   );
 
                   const oppdatertForelder =
@@ -174,21 +169,38 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
-    const erAnnenForelderFraFolkeregister = (søknad: ISøknad, barn: IBarn) => {
-      return søknad.person.barn.find(
-        (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
-      )?.forelder?.fraFolkeregister;
+    const erForelderEllerKopiertForelderFraFolkeRegister = (
+      forrigeSøknad: ISøknad,
+      forelder: IForelder | undefined
+    ) => {
+      return (
+        forelder?.fraFolkeregister ||
+        forrigeSøknad.person.barn.some(
+          (annetBarn) =>
+            annetBarn.forelder &&
+            annetBarn.forelder.ident &&
+            annetBarn.forelder.ident.verdi === forelder?.ident?.verdi &&
+            annetBarn.forelder.fraFolkeregister
+        )
+      );
     };
 
     const oppdaterBarnForelderIdentOgNavn = (
       forelder: IForelder | undefined,
       medforelder: IMedforelderFelt | undefined,
-      fraFolkeregister: boolean | undefined
+      prevSøknad: ISøknad
     ): IForelder => {
+      const erFraFolkeRegister = erForelderEllerKopiertForelderFraFolkeRegister(
+        prevSøknad,
+        forelder
+      );
+
+      console.log('erFraFolkeRegister', erFraFolkeRegister);
+
       if (medforelder) {
         return {
           ...forelder,
-          fraFolkeregister,
+          fraFolkeregister: erFraFolkeRegister,
           navn: hentFeltObjekt('person.navn', medforelder.verdi.navn, intl),
           ident: hentFeltObjekt(
             'person.ident.visning',
@@ -200,7 +212,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       } else {
         return {
           ...forelder,
-          fraFolkeregister,
+          fraFolkeregister: erFraFolkeRegister,
         };
       }
     };
