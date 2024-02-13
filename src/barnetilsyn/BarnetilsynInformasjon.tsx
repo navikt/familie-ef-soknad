@@ -3,7 +3,6 @@ import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
-import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Tekst } from '../components/forside/Tekst';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Overskrift } from '../components/forside/Overskrift';
@@ -13,13 +12,61 @@ import {
   RoutesBarnetilsyn,
   ERouteBarnetilsyn,
 } from './routing/routesBarnetilsyn';
+import {
+  hentDataFraForrigeBarnetilsynSøknad,
+  hentTekst,
+} from '../utils/søknad';
+import { useContext, useEffect, useState } from 'react';
+import { GjenbrukContext } from '../context/GjenbrukContext';
+import { useSpråkContext } from '../context/SpråkContext';
+import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
+import { ForrigeSøknad } from './models/søknad';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
   harBekreftet,
   settBekreftelse,
 }) => {
+  const [kanGjenbrukeForrigeSøknad, settKanGjenbrukeForrigeSøknad] =
+    useState(false);
+  const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
+  const [locale] = useSpråkContext();
+  const intl = useLokalIntlContext();
+
+  const erForrigeSøknadBesvartPåSammeSpråkSomErValgt = (
+    forrigeSøknad: ForrigeSøknad
+  ) => {
+    return (
+      locale === 'nb' &&
+      forrigeSøknad.sivilstatus.årsakEnslig?.label ===
+        hentTekst('sivilstatus.spm.begrunnelse', intl)
+    );
+  };
+
+  const hentOgSjekkForrigeSøknad = async () => {
+    const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
+
+    if (erForrigeSøknadBesvartPåSammeSpråkSomErValgt(forrigeSøknad)) {
+      settKanGjenbrukeForrigeSøknad(true);
+    } else {
+      settKanGjenbrukeForrigeSøknad(false);
+      settSkalGjenbrukeSøknad(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchHentOgSjekkForrigeSøknad = async () => {
+      await hentOgSjekkForrigeSøknad();
+    };
+
+    fetchHentOgSjekkForrigeSøknad();
+  }, [locale]);
+
   const nesteSide = hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.OmDeg) || '';
+  const gjenbrukSide =
+    hentPath(RoutesBarnetilsyn, ERouteBarnetilsyn.Gjenbruk) || '';
+
   return (
     <>
       <FeltGruppe>
@@ -74,8 +121,11 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
           settBekreftelse={settBekreftelse}
         />
       )}
-
-      {harBekreftet && <StartSøknadKnapp nesteSide={nesteSide} />}
+      {harBekreftet && (
+        <KnappLocaleTekstOgNavigate
+          nesteSide={kanGjenbrukeForrigeSøknad ? gjenbrukSide : nesteSide}
+        />
+      )}
     </>
   );
 };

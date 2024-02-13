@@ -12,6 +12,8 @@ export default {
   'knapp.neste': 'Next',
   'knapp.avbryt': 'Cancel',
   'knapp.start': 'Start the application',
+  'knapp.startTom': 'Start with a blank application',
+  'knapp.startGjenbruk': 'Reuse from previous application',
   'knapp.sendSøknad': 'Submit application',
   'knapp.lukk': 'Close',
   'feil.ingentekst.sanity': 'No dynamic text found in Sanity',
@@ -1044,4 +1046,8 @@ export default {
 
   'utdanning.alert.arbeidsmengde':
     'Percent must be less than 100 if part-time.',
+  'tidligere.barnetilsyn.søknad.finnes':
+    'You have previously applied for child care benefit. If you wish, we can fill in the new application with the information from the previous application. You must answer some of the questions each time.',
+  'gjenbruk.tidligere.barnetilsyn.søknad':
+    'It is important that you review the information to see if it is still correct. If anything has changed, you must update the application with the new information.',
 };

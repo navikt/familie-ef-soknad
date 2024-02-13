@@ -1,13 +1,12 @@
 import React from 'react';
 import Banner from '../../components/Banner';
-import classNames from 'classnames';
-import LocaleTekst from '../../language/LocaleTekst';
 import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Button, Panel, Heading, BodyShort } from '@navikt/ds-react';
+import { Panel, Heading, BodyShort } from '@navikt/ds-react';
 import { Stegindikator } from '../../components/stegindikator/Stegindikator';
+import { KnappLocaleTekstOgNavigate } from '../../components/knapper/KnappLocaleTekstOgNavigate';
 
 interface ISide {
   tittel: string;
@@ -23,7 +22,6 @@ const Side: React.FC<ISide> = ({
   erSpørsmålBesvart,
 }) => {
   const location = useLocation();
-  const navigate = useNavigate();
   const intl = useLokalIntlContext();
 
   const routes = Object.values(RoutesArbeidssokerskjema);
@@ -45,9 +43,6 @@ const Side: React.FC<ISide> = ({
     RoutesArbeidssokerskjema,
     location.pathname
   );
-  const nesteKnappStyling = classNames('neste', {
-    hideButton: nesteRoute === undefined,
-  });
 
   return (
     <div className={'skjema'}>
@@ -74,30 +69,23 @@ const Side: React.FC<ISide> = ({
                 erSpørsmålBesvart ? 'side__knapper treKnapper' : 'side__knapper'
               }
             >
-              <Button
-                className={'tilbake'}
-                variant="primary"
-                onClick={() => navigate(forrigeRoute.path)}
-              >
-                <LocaleTekst tekst={'knapp.tilbake'} />
-              </Button>
+              <KnappLocaleTekstOgNavigate
+                nesteSide={forrigeRoute.path}
+                tekst={'knapp.tilbake'}
+              />
               {erSpørsmålBesvart && (
-                <Button
+                <KnappLocaleTekstOgNavigate
                   variant="secondary"
-                  onClick={() => navigate(nesteRoute.path)}
-                  className={nesteKnappStyling}
-                >
-                  <LocaleTekst tekst={'knapp.neste'} />
-                </Button>
+                  nesteSide={nesteRoute.path}
+                  tekst={'knapp.neste'}
+                />
               )}
 
-              <Button
-                className={'avbryt'}
+              <KnappLocaleTekstOgNavigate
                 variant="tertiary"
-                onClick={() => navigate(RoutesArbeidssokerskjema[0].path)}
-              >
-                <LocaleTekst tekst={'knapp.avbryt'} />
-              </Button>
+                nesteSide={RoutesArbeidssokerskjema[0].path}
+                tekst={'knapp.avbryt'}
+              />
             </div>
           </>
         )}

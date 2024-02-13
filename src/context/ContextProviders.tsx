@@ -4,6 +4,7 @@ import { SøknadProvider } from './SøknadContext';
 import { TogglesProvider } from './TogglesContext';
 import { BarnetilsynSøknadProvider } from '../barnetilsyn/BarnetilsynContext';
 import { SkolepengerSøknadProvider } from '../skolepenger/SkolepengerContext';
+import { GjenbrukProvider } from './GjenbrukContext';
 
 const ContextProviders: React.FC<{ children?: React.ReactNode }> = ({
   children,
@@ -11,13 +12,15 @@ const ContextProviders: React.FC<{ children?: React.ReactNode }> = ({
   ContextProviders.displayName = 'CONTEXT_PROVIDERS';
   return (
     <TogglesProvider>
-      <PersonProvider>
-        <SøknadProvider>
-          <BarnetilsynSøknadProvider>
-            <SkolepengerSøknadProvider>{children}</SkolepengerSøknadProvider>
-          </BarnetilsynSøknadProvider>
-        </SøknadProvider>
-      </PersonProvider>
+      <GjenbrukProvider>
+        <PersonProvider>
+          <SøknadProvider>
+            <BarnetilsynSøknadProvider>
+              <SkolepengerSøknadProvider>{children}</SkolepengerSøknadProvider>
+            </BarnetilsynSøknadProvider>
+          </SøknadProvider>
+        </PersonProvider>
+      </GjenbrukProvider>
     </TogglesProvider>
   );
 };

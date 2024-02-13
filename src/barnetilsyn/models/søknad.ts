@@ -31,4 +31,5 @@ export interface ForrigeSøknad {
   medlemskap: IMedlemskap;
   bositusjon: IBosituasjon;
   person: IPersonTilGjenbruk;
+  locale: string;
 }

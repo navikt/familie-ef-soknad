@@ -12,6 +12,8 @@ export default {
   'knapp.neste': 'Neste',
   'knapp.avbryt': 'Avbryt',
   'knapp.start': 'Start søknad',
+  'knapp.startTom': 'Start med tom søknad',
+  'knapp.startGjenbruk': 'Gjenbruk fra forrige søknad',
   'knapp.sendSøknad': 'Send søknad',
   'knapp.lukk': 'Lukk',
   'feil.ingentekst.sanity': 'Ingen dynamisk tekst funnet i Sanity.',
@@ -1011,4 +1013,8 @@ export default {
 
   'utdanning.alert.arbeidsmengde':
     'Prosent må være mindre enn 100 hvis det er deltid.',
+  'tidligere.barnetilsyn.søknad.finnes':
+    'Du har søkt om stønad til barnetilsyn tidligere. Hvis du ønsker, kan vi fylle ut den nye søknaden med opplysningene fra den forrige søknaden din. Noen av spørsmålene må du svare på hver gang.',
+  'gjenbruk.tidligere.barnetilsyn.søknad':
+    'Det er viktig at du leser gjennom opplysningene for å se om de fortsatt er riktige. Hvis noe er endret, må du oppdatere søknaden med de nye opplysningene.',
 };

@@ -4,13 +4,13 @@ import { hentPath } from '../utils/routing';
 import { RoutesSkolepenger, ERouteSkolepenger } from './routing/routes';
 import { isIE } from 'react-device-detect';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
-import { StartSøknadKnapp } from '../components/forside/KnappStartSøknad';
 import { Overskrift } from '../components/forside/Overskrift';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Tekst } from '../components/forside/Tekst';
 import FeltGruppe from '../components/gruppe/FeltGruppe';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
+import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 
 export const SkolepengerInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -68,7 +68,7 @@ export const SkolepengerInformasjon: React.FC<InformasjonProps> = ({
         />
       )}
 
-      {harBekreftet && <StartSøknadKnapp nesteSide={nesteSide} />}
+      {harBekreftet && <KnappLocaleTekstOgNavigate nesteSide={nesteSide} />}
     </>
   );
 };

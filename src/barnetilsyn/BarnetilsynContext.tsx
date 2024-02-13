@@ -135,9 +135,15 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     personData
                   );
 
+                  const fraFolkeregister = erAnnenForelderFraFolkeregister(
+                    prevSøknad,
+                    barn
+                  );
+
                   const forelder = oppdaterBarnForelderIdentOgNavn(
                     barn.forelder,
-                    medforelder
+                    medforelder,
+                    fraFolkeregister
                   );
 
                   const oppdatertForelder =
@@ -148,11 +154,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                       forrigeSøknad
                     );
 
-                  const fraFolkeregister = lagFraFolkeregisterVerdi(
-                    prevSøknad,
-                    barn
-                  );
-
                   if (barnFraPersonData?.harSammeAdresse?.verdi) {
                     delete oppdatertForelder.skalBarnetBoHosSøker;
                   }
@@ -162,7 +163,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
                     ...barnFraPersonData,
                     medforelder,
                     forelder: oppdatertForelder,
-                    fraFolkeregister: fraFolkeregister,
                     erFraForrigeSøknad: true,
                   };
                 }),
@@ -174,7 +174,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       }
     };
 
-    const lagFraFolkeregisterVerdi = (søknad: ISøknad, barn: IBarn) => {
+    const erAnnenForelderFraFolkeregister = (søknad: ISøknad, barn: IBarn) => {
       return søknad.person.barn.find(
         (prevBarn) => prevBarn.ident.verdi === barn.ident.verdi
       )?.forelder?.fraFolkeregister;
@@ -182,11 +182,13 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
 
     const oppdaterBarnForelderIdentOgNavn = (
       forelder: IForelder | undefined,
-      medforelder: IMedforelderFelt | undefined
+      medforelder: IMedforelderFelt | undefined,
+      fraFolkeregister: boolean | undefined
     ): IForelder => {
       if (medforelder) {
         return {
           ...forelder,
+          fraFolkeregister,
           navn: hentFeltObjekt('person.navn', medforelder.verdi.navn, intl),
           ident: hentFeltObjekt(
             'person.ident.visning',
@@ -198,6 +200,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       } else {
         return {
           ...forelder,
+          fraFolkeregister,
         };
       }
     };
