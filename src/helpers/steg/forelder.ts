@@ -293,5 +293,4 @@ export const resetForelder = (forelder: IForelder) => {
   delete forelder.flyttetFra;
   delete forelder.hvorMyeSammen;
   delete forelder.beskrivSamværUtenBarn;
-  delete forelder.fraFolkeregister;
 };
