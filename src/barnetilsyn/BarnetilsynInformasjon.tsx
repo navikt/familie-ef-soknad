@@ -38,9 +38,7 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   const finnesForrigeSøknadOgErBesvartPåSammeSpråkSomErValgt = (
     forrigeSøknad: ForrigeSøknad
   ) => {
-    if (
-      stringHarVerdiOgErIkkeTom(forrigeSøknad.sivilstatus?.årsakEnslig?.label)
-    ) {
+    if (forrigeSøknad) {
       return (
         locale === 'nb' &&
         forrigeSøknad.sivilstatus?.årsakEnslig?.label ===
