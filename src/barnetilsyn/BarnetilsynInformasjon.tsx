@@ -12,11 +12,16 @@ import {
   RoutesBarnetilsyn,
   ERouteBarnetilsyn,
 } from './routing/routesBarnetilsyn';
-import { hentDataFraForrigeBarnetilsynSøknad } from '../utils/søknad';
+import {
+  hentDataFraForrigeBarnetilsynSøknad,
+  hentTekst,
+} from '../utils/søknad';
 import { useContext, useEffect, useState } from 'react';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 import { useSpråkContext } from '../context/SpråkContext';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
+import { ForrigeSøknad } from './models/søknad';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -27,11 +32,25 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
     useState(false);
   const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
   const [locale] = useSpråkContext();
+  const intl = useLokalIntlContext();
+
+  const erForrigeSøknadBesvartPåSammeSpråkSomErValgt = (
+    forrigeSøknad: ForrigeSøknad
+  ) => {
+    return (
+      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
+        hentTekst('sivilstatus.spm.begrunnelse', intl) &&
+        locale === 'nb') ||
+      (forrigeSøknad.sivilstatus.årsakEnslig?.label ===
+        hentTekst('sivilstatus.spm.begrunnelse', intl) &&
+        locale === 'en')
+    );
+  };
 
   const hentOgSjekkForrigeSøknad = async () => {
     const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
 
-    if (forrigeSøknad.locale === locale) {
+    if (erForrigeSøknadBesvartPåSammeSpråkSomErValgt(forrigeSøknad)) {
       settKanGjenbrukeForrigeSøknad(true);
     } else {
       settKanGjenbrukeForrigeSøknad(false);
