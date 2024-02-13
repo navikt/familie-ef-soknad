@@ -105,7 +105,8 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
 
   const pgaDonorBarn = hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.donor;
   const pgaAnnet =
-    hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet &&
+    (hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
+      hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other) &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
 
