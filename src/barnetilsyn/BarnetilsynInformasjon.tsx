@@ -36,7 +36,7 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   const intl = useLokalIntlContext();
 
   const finnesForrigeSøknadOgErBesvartPåSammeSpråkSomErValgt = (
-    forrigeSøknad: ForrigeSøknad
+    forrigeSøknad?: ForrigeSøknad
   ) => {
     if (forrigeSøknad) {
       return (
