@@ -195,8 +195,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
         forelder
       );
 
-      console.log('erFraFolkeRegister', erFraFolkeRegister);
-
       if (medforelder) {
         return {
           ...forelder,
