@@ -16,6 +16,7 @@ import {
   slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
 } from '../../../helpers/steg/forelder';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { LocaleType } from '../../../language/typer';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -224,8 +225,9 @@ const OmAndreForelder: React.FC<Props> = ({
             spørsmål={hvorforIkkeOppgi(intl)}
             settSpørsmålOgSvar={settHvorforIkkeOppgi}
             valgtSvar={
-              locale === 'en' && forelder.hvorforIkkeOppgi?.verdi === 'Annet'
-                ? 'Other'
+              locale === LocaleType.en &&
+              forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet
+                ? EHvorforIkkeOppgi.Other
                 : forelder.hvorforIkkeOppgi?.verdi
             }
           />
