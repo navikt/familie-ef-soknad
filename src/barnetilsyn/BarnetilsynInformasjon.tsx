@@ -39,7 +39,6 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   ) => {
     if (forrigeSøknad) {
       return (
-        // locale === 'nb' &&
         forrigeSøknad.sivilstatus?.årsakEnslig?.label ===
         hentTekst('sivilstatus.spm.begrunnelse', intl)
       );
