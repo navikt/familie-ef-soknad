@@ -15,6 +15,7 @@ import {
   erIkkeOppgittPgaAnnet,
   slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
 } from '../../../helpers/steg/forelder';
+import { useSpråkContext } from '../../../context/SpråkContext';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -32,6 +33,7 @@ const OmAndreForelder: React.FC<Props> = ({
   settSisteBarnUtfylt,
 }) => {
   const intl = useLokalIntlContext();
+  const [locale] = useSpråkContext();
   const { fødselsdato, ident } = forelder;
   const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);
@@ -221,7 +223,11 @@ const OmAndreForelder: React.FC<Props> = ({
           <MultiSvarSpørsmål
             spørsmål={hvorforIkkeOppgi(intl)}
             settSpørsmålOgSvar={settHvorforIkkeOppgi}
-            valgtSvar={forelder.hvorforIkkeOppgi?.verdi}
+            valgtSvar={
+              locale === 'en' && forelder.hvorforIkkeOppgi?.verdi === 'Annet'
+                ? 'Other'
+                : forelder.hvorforIkkeOppgi?.verdi
+            }
           />
         </KomponentGruppe>
       )}
