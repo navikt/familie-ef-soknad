@@ -94,6 +94,13 @@ export const utfyltBoddSammenAnnenForelder = (forelder: IForelder) => {
   );
 };
 
+export const erIkkeOppgittPgaAnnet = (forelder: IForelder) => {
+  return (
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
+    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other
+  );
+};
+
 export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
   forelder: IForelder
 ) => {
@@ -105,8 +112,7 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
 
   const pgaDonorBarn = hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.donor;
   const pgaAnnet =
-    (hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
-      hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other) &&
+    erIkkeOppgittPgaAnnet(forelder) &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&
     ikkeOppgittAnnenForelderBegrunnelse?.verdi !== hvorforIkkeOppgi?.verdi;
 
