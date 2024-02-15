@@ -226,8 +226,8 @@ const OmAndreForelder: React.FC<Props> = ({
             settSpørsmålOgSvar={settHvorforIkkeOppgi}
             valgtSvar={
               locale === LocaleType.en &&
-              forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet
-                ? EHvorforIkkeOppgi.Other
+              forelder.hvorforIkkeOppgi?.verdi === 'Annet'
+                ? 'Other'
                 : forelder.hvorforIkkeOppgi?.verdi
             }
           />
