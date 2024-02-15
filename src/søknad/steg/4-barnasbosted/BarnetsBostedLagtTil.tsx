@@ -54,9 +54,9 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
               {intl.formatMessage({ id: 'barnasbosted.element.andreforelder' })}
             </Label>
             <BodyShort>
-              {forelder.navn?.verdi
-                ? forelder.navn.verdi
-                : hentTekst('barnasbosted.kanikkeoppgiforelder', intl)}
+              {forelder.navn?.verdi === 'Ikke oppgitt'
+                ? hentTekst('barnasbosted.kanikkeoppgiforelder', intl)
+                : forelder.navn?.verdi}
             </BodyShort>
           </div>
         )}

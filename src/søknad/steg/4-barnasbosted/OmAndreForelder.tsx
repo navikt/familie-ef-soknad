@@ -176,8 +176,7 @@ const OmAndreForelder: React.FC<Props> = ({
             }
             value={
               forelder.navn
-                ? forelder.navn?.verdi ===
-                  hentTekst('barnasbosted.forelder.uoppgitt', intl)
+                ? forelder.navn?.verdi === 'Ikke oppgitt'
                   ? ''
                   : forelder.navn?.verdi
                 : ''
