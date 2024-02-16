@@ -14,6 +14,7 @@ import styled from 'styled-components';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { KnappLocaleTekstOgNavigate } from '../../../components/knapper/KnappLocaleTekstOgNavigate';
 import { hentTekst } from '../../../utils/søknad';
+import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 const Gjenbruk: FC = () => {
   useMount(() => logSidevisningBarnetilsyn('Gjenbruk'));
@@ -70,6 +71,7 @@ const Gjenbruk: FC = () => {
                   tekst="knapp.startTom"
                   variant="secondary"
                   logEventNavn="Klikker på start tom søknad"
+                  skjemanavn={ESkjemanavn.Barnetilsyn}
                 />
               </KnappContainer>
             </SenterContainer>
