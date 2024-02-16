@@ -16,7 +16,6 @@ import {
   slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
 } from '../../../helpers/steg/forelder';
 import { useSpråkContext } from '../../../context/SpråkContext';
-import { LocaleType } from '../../../language/typer';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -174,13 +173,7 @@ const OmAndreForelder: React.FC<Props> = ({
                 ? settFeilmeldingNavn(true)
                 : settFeilmeldingNavn(false)
             }
-            value={
-              forelder.navn
-                ? forelder.navn?.verdi === 'Ikke oppgitt'
-                  ? ''
-                  : forelder.navn?.verdi
-                : ''
-            }
+            value={forelder.navn ? forelder.navn?.verdi : ''}
             label={hentTekst('person.navn', intl)}
             disabled={forelder.kanIkkeOppgiAnnenForelderFar?.verdi}
           />
@@ -224,9 +217,8 @@ const OmAndreForelder: React.FC<Props> = ({
             spørsmål={hvorforIkkeOppgi(intl)}
             settSpørsmålOgSvar={settHvorforIkkeOppgi}
             valgtSvar={
-              locale === LocaleType.en &&
-              forelder.hvorforIkkeOppgi?.verdi === 'Annet'
-                ? 'Other'
+              forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet
+                ? hentTekst('barnasbosted.spm.annet', intl)
                 : forelder.hvorforIkkeOppgi?.verdi
             }
           />
