@@ -4,7 +4,7 @@ import { Button } from '@navikt/ds-react';
 import FeltGruppe from '../../../components/gruppe/FeltGruppe';
 import { useContext } from 'react';
 import { GjenbrukContext } from '../../../context/GjenbrukContext';
-import { Events, logEvent } from '../../../utils/amplitude';
+import { EEventsnavn, logEvent } from '../../../utils/amplitude';
 import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 export const GjenbrukKnapp: React.FC<{
@@ -14,7 +14,7 @@ export const GjenbrukKnapp: React.FC<{
   const { settSkalGjenbrukeSøknad } = useContext(GjenbrukContext);
 
   const handleButtonClick = () => {
-    logEvent(Events.GjenbrukSøknad, {
+    logEvent(EEventsnavn.GjenbrukSøknad, {
       skjemanavn: ESkjemanavn.Barnetilsyn,
     });
 

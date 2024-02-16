@@ -3,7 +3,10 @@ import {
   ERouteBarnetilsyn,
   RoutesBarnetilsyn,
 } from '../../routing/routesBarnetilsyn';
-import { Events, logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import {
+  EEventsnavn,
+  logSidevisningBarnetilsyn,
+} from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, GuidePanel, Panel } from '@navikt/ds-react';
@@ -70,7 +73,7 @@ const Gjenbruk: FC = () => {
                   nesteSide={nesteSide}
                   tekst="knapp.startTom"
                   variant="secondary"
-                  logEventNavn={Events.TomSøknad}
+                  logEventNavn={EEventsnavn.TomSøknad}
                   skjemanavn={ESkjemanavn.Barnetilsyn}
                 />
               </KnappContainer>

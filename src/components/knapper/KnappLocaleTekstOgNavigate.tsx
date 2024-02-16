@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@navikt/ds-react';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { ESkjemanavn } from '../../utils/skjemanavn';
-import { logEvent } from '../../utils/amplitude';
+import { EEventsnavn, logEvent } from '../../utils/amplitude';
 
 export const KnappLocaleTekstOgNavigate: React.FC<{
   nesteSide: string;
@@ -16,7 +16,7 @@ export const KnappLocaleTekstOgNavigate: React.FC<{
     | 'knapp.avbryt';
   variant?: 'primary' | 'secondary' | 'tertiary';
   disabled?: boolean;
-  logEventNavn?: string;
+  logEventNavn?: EEventsnavn;
   skjemanavn?: ESkjemanavn;
 }> = ({
   nesteSide,

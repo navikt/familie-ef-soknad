@@ -2,7 +2,7 @@ import { ESkjemanavn, skjemanavnIdMapping } from './skjemanavn';
 import amplitude from 'amplitude-js';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
-export enum Events {
+export enum EEventsnavn {
   Mellomlagret = 'klikk_mellomlagret',
   GjenbrukSøknad = 'Forside',
   TomSøknad = 'Klikker på start tom søknad',
