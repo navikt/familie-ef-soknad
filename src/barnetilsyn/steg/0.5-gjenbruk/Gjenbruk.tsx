@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { useLocation } from 'react-router-dom';
 import {
   ERouteBarnetilsyn,
   RoutesBarnetilsyn,
@@ -17,7 +16,7 @@ import { KnappLocaleTekstOgNavigate } from '../../../components/knapper/KnappLoc
 import { hentTekst } from '../../../utils/søknad';
 
 const Gjenbruk: FC = () => {
-  useMount(() => logSidevisningBarnetilsyn('OmDeg'));
+  useMount(() => logSidevisningBarnetilsyn('Gjenbruk'));
   const intl = useLokalIntlContext();
   const { søknad } = useBarnetilsynSøknad();
 
@@ -70,6 +69,7 @@ const Gjenbruk: FC = () => {
                   nesteSide={nesteSide}
                   tekst="knapp.startTom"
                   variant="secondary"
+                  logEventNavn="Klikker på start tom søknad"
                 />
               </KnappContainer>
             </SenterContainer>
