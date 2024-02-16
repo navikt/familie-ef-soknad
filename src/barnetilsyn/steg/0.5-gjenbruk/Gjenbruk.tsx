@@ -3,7 +3,7 @@ import {
   ERouteBarnetilsyn,
   RoutesBarnetilsyn,
 } from '../../routing/routesBarnetilsyn';
-import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import { Events, logSidevisningBarnetilsyn } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, GuidePanel, Panel } from '@navikt/ds-react';
@@ -30,7 +30,7 @@ const Gjenbruk: FC = () => {
   const KnappContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start; // Aligns items to the start of the container
+    align-items: flex-start;
   `;
 
   const SenterContainer = styled.div`
@@ -70,7 +70,7 @@ const Gjenbruk: FC = () => {
                   nesteSide={nesteSide}
                   tekst="knapp.startTom"
                   variant="secondary"
-                  logEventNavn="Klikker på start tom søknad"
+                  logEventNavn={Events.TomSøknad}
                   skjemanavn={ESkjemanavn.Barnetilsyn}
                 />
               </KnappContainer>
