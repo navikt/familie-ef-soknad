@@ -20,7 +20,6 @@ import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SøkerErSkilt from './SøkerErSkilt';
 import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
 import { erSivilstandSpørsmålBesvart } from '../../../../helpers/steg/omdeg';
-import { useSøknad } from '../../../../context/SøknadContext';
 import { GjenbrukContext } from '../../../../context/GjenbrukContext';
 
 interface Props {
