@@ -1,10 +1,12 @@
 import React, { FC } from 'react';
-import { useLocation } from 'react-router-dom';
 import {
   ERouteBarnetilsyn,
   RoutesBarnetilsyn,
 } from '../../routing/routesBarnetilsyn';
-import { logSidevisningBarnetilsyn } from '../../../utils/amplitude';
+import {
+  EEventsnavn,
+  logSidevisningBarnetilsyn,
+} from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { BodyShort, GuidePanel, Panel } from '@navikt/ds-react';
@@ -15,9 +17,10 @@ import styled from 'styled-components';
 import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { KnappLocaleTekstOgNavigate } from '../../../components/knapper/KnappLocaleTekstOgNavigate';
 import { hentTekst } from '../../../utils/søknad';
+import { ESkjemanavn } from '../../../utils/skjemanavn';
 
 const Gjenbruk: FC = () => {
-  useMount(() => logSidevisningBarnetilsyn('OmDeg'));
+  useMount(() => logSidevisningBarnetilsyn('Gjenbruk'));
   const intl = useLokalIntlContext();
   const { søknad } = useBarnetilsynSøknad();
 
@@ -30,7 +33,7 @@ const Gjenbruk: FC = () => {
   const KnappContainer = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start; // Aligns items to the start of the container
+    align-items: flex-start;
   `;
 
   const SenterContainer = styled.div`
@@ -70,6 +73,8 @@ const Gjenbruk: FC = () => {
                   nesteSide={nesteSide}
                   tekst="knapp.startTom"
                   variant="secondary"
+                  logEventNavn={EEventsnavn.TomSøknad}
+                  skjemanavn={ESkjemanavn.Barnetilsyn}
                 />
               </KnappContainer>
             </SenterContainer>
