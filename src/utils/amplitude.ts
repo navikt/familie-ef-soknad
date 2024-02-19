@@ -2,6 +2,12 @@ import { ESkjemanavn, skjemanavnIdMapping } from './skjemanavn';
 import amplitude from 'amplitude-js';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
+export enum EEventsnavn {
+  Mellomlagret = 'klikk_mellomlagret',
+  GjenbrukSøknad = 'Klikker på gjenbruk søknad',
+  TomSøknad = 'Klikker på start tom søknad',
+}
+
 const amplitudeInstance = amplitude.getInstance();
 
 amplitudeInstance.init('default', '', {

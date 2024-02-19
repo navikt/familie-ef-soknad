@@ -2,7 +2,7 @@ import React from 'react';
 import LocaleTekst from '../../language/LocaleTekst';
 import SeksjonGruppe from '../gruppe/SeksjonGruppe';
 import { FortsettSøknadKnappWrapper } from './FortsettSøknadKnapper';
-import { logEvent } from '../../utils/amplitude';
+import { EEventsnavn, logEvent } from '../../utils/amplitude';
 import { useNavigate } from 'react-router-dom';
 import { LokalIntlShape } from '../../language/typer';
 import { BodyShort, Button } from '@navikt/ds-react';
@@ -35,7 +35,7 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
         <FortsettSøknadKnappWrapper>
           <Button
             onClick={() => {
-              logEvent('klikk_mellomlagret', {
+              logEvent(EEventsnavn.Mellomlagret, {
                 type: 'fortsett',
                 skjemanavn,
                 gjeldendeSteg,
@@ -50,7 +50,7 @@ const FortsettSøknad: React.FC<FortsettSøknadProps> = ({
           </Button>
           <Button
             onClick={() => {
-              logEvent('klikk_mellomlagret', {
+              logEvent(EEventsnavn.Mellomlagret, {
                 type: 'nullstill',
                 skjemanavn,
                 gjeldendeSteg,
