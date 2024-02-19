@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SeksjonGruppe from '../../../../components/gruppe/SeksjonGruppe';
 import SøkerErGift from './SøkerErGift';
 import { hentBooleanFraValgtSvar } from '../../../../utils/spørsmålogsvar';
@@ -20,6 +20,8 @@ import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import SøkerErSkilt from './SøkerErSkilt';
 import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
 import { erSivilstandSpørsmålBesvart } from '../../../../helpers/steg/omdeg';
+import { useSøknad } from '../../../../context/SøknadContext';
+import { GjenbrukContext } from '../../../../context/GjenbrukContext';
 
 interface Props {
   sivilstatus: ISivilstatus;
@@ -43,6 +45,7 @@ const Sivilstatus: React.FC<Props> = ({
   const sivilstand = person.søker.sivilstand;
   const { erUformeltGift, datoFlyttetFraHverandre, datoSøktSeparasjon } =
     sivilstatus;
+  const { skalGjenbrukeSøknad } = useContext(GjenbrukContext);
 
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
@@ -57,7 +60,10 @@ const Sivilstatus: React.FC<Props> = ({
         verdi: svar,
       },
     };
-    if (spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon) {
+    if (
+      spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
+      !skalGjenbrukeSøknad
+    ) {
       datoSøktSeparasjon && delete nySivilstatus.datoSøktSeparasjon;
       datoFlyttetFraHverandre && delete nySivilstatus.datoFlyttetFraHverandre;
     }
