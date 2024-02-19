@@ -4,7 +4,7 @@ import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
 export enum EEventsnavn {
   Mellomlagret = 'klikk_mellomlagret',
-  GjenbrukSøknad = 'Forside',
+  GjenbrukSøknad = 'Klikker på gjenbruk søknad',
   TomSøknad = 'Klikker på start tom søknad',
 }
 
