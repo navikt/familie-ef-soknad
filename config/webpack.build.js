@@ -124,7 +124,7 @@ const config = {
             name: process.env.SENTRY_RELEASE,
             uploadLegacySourcemaps: {
               paths: ['build'],
-              urlPrefix: publicPath,
+              urlPrefix: `~${publicPath}`,
             },
           },
           errorHandler: (err) => {
