@@ -116,12 +116,17 @@ const config = {
     }),
     process.env.SENTRY_AUTH_TOKEN
       ? sentryWebpackPlugin({
-          include: 'build',
           org: 'nav',
           url: 'https://sentry.gc.nav.no/',
           project: 'familie-ef-soknad',
           authToken: process.env.SENTRY_AUTH_TOKEN,
-          release: process.env.SENTRY_RELEASE,
+          release: {
+            name: 'lokal-test',
+            uploadLegacySourcemaps: {
+              paths: ['build'],
+              urlPrefix: publicPath,
+            },
+          },
           errorHandler: (err) => {
             // eslint-disable-next-line no-console
             console.warn('Sentry CLI Plugin: ' + err.message);
