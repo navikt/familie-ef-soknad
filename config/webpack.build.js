@@ -121,7 +121,7 @@ const config = {
           project: 'familie-ef-soknad',
           authToken: process.env.SENTRY_AUTH_TOKEN,
           release: {
-            name: 'lokal-test',
+            name: process.env.SENTRY_RELEASE,
             uploadLegacySourcemaps: {
               paths: ['build'],
               urlPrefix: publicPath,
