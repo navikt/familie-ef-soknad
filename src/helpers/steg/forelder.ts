@@ -2,8 +2,8 @@ import {
   EBorAnnenForelderISammeHus,
   EHarSamværMedBarn,
   EHarSkriftligSamværsavtale,
-  EHvorforIkkeOppgi,
   EHvorMyeSammen,
+  EHvorforIkkeOppgi,
 } from '../../models/steg/barnasbosted';
 import { EForelder, IForelder } from '../../models/steg/forelder';
 import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
@@ -95,10 +95,7 @@ export const utfyltBoddSammenAnnenForelder = (forelder: IForelder) => {
 };
 
 export const erIkkeOppgittPgaAnnet = (forelder: IForelder) => {
-  return (
-    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Annet ||
-    forelder.hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.Other
-  );
+  return forelder.hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.annet;
 };
 
 export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
@@ -110,7 +107,7 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
     kanIkkeOppgiAnnenForelderFar,
   } = forelder;
 
-  const pgaDonorBarn = hvorforIkkeOppgi?.verdi === EHvorforIkkeOppgi.donor;
+  const pgaDonorBarn = hvorforIkkeOppgi?.svarid === EHvorforIkkeOppgi.donorbarn;
   const pgaAnnet =
     erIkkeOppgittPgaAnnet(forelder) &&
     harValgtSvar(forelder?.ikkeOppgittAnnenForelderBegrunnelse?.verdi) &&

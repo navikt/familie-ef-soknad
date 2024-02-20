@@ -29,11 +29,8 @@ export enum ESkalBarnetBoHosSøker {
 }
 
 export enum EHvorforIkkeOppgi {
-  donor = 'Donor',
   donorbarn = 'donorbarn',
   annet = 'annet',
-  Annet = 'Annet',
-  Other = 'Other',
 }
 
 export enum TypeBarn {

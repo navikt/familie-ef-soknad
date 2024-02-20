@@ -22,7 +22,6 @@ import { useSpråkContext } from '../context/SpråkContext';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 import { ForrigeSøknad } from './models/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { stringHarVerdiOgErIkkeTom } from '../utils/typer';
 
 export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   person,
@@ -40,9 +39,8 @@ export const BarnetilsynInformasjon: React.FC<InformasjonProps> = ({
   ) => {
     if (forrigeSøknad) {
       return (
-        locale === 'nb' &&
         forrigeSøknad.sivilstatus?.årsakEnslig?.label ===
-          hentTekst('sivilstatus.spm.begrunnelse', intl)
+        hentTekst('sivilstatus.spm.begrunnelse', intl)
       );
     }
     return false;
