@@ -27,9 +27,6 @@ const MånedÅrVelger: React.FC<Props> = ({
 
   const handleSettDato = (dato: Date | undefined): void => {
     if (dato) {
-      console.log(
-        `satt måned ${dato?.getMonth()} og år ${dato?.getFullYear()}`
-      );
       settDato(dato as Date | null);
     } else {
       settDato(null);
@@ -45,15 +42,13 @@ const MånedÅrVelger: React.FC<Props> = ({
   });
 
   return (
-    <div>
-      <MonthPicker {...monthpickerProps} id={datolabelid} locale={locale}>
-        <MonthPicker.Input
-          {...inputProps}
-          label={hentTekst(tekstid, intl)}
-          placeholder={hentTekst('datovelger.månedÅrPlaceholder', intl)}
-        />
-      </MonthPicker>
-    </div>
+    <MonthPicker {...monthpickerProps} id={datolabelid} locale={locale}>
+      <MonthPicker.Input
+        {...inputProps}
+        label={hentTekst(tekstid, intl)}
+        placeholder={hentTekst('datovelger.månedÅrPlaceholder', intl)}
+      />
+    </MonthPicker>
   );
 };
 
