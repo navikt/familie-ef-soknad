@@ -107,7 +107,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const hentForrigeSøknadBarnetilsyn = async (): Promise<void> => {
       const forrigeSøknad = await hentDataFraForrigeBarnetilsynSøknad();
       const personData = await hentPersonData();
-      console.log('personData', personData);
 
       if (forrigeSøknad) {
         settSøknad((prevSøknad) => {
@@ -334,10 +333,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
           return forelder;
         }
       };
-
-    useEffect(() => {
-      console.log('søknad i BarnetilsynContext', søknad);
-    }, [søknad]);
 
     const finnNyeBarnSidenForrigeSøknad = (
       prevSøknad: ISøknad,

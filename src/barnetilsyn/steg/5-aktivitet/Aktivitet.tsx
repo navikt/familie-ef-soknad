@@ -127,7 +127,7 @@ const Aktivitet: React.FC = () => {
   );
 
   const erSisteSpørsmålBesvartOgMinstEttAlternativValgt =
-    (hvaErDinArbeidssituasjon?.svarid.length !== 0 && erAlleFelterUtfylt) ||
+    (hvaErDinArbeidssituasjon?.svarid?.length !== 0 && erAlleFelterUtfylt) ||
     erIArbeid?.svarid === ErIArbeid.NeiFordiJegErSyk;
 
   const erSpørsmålFørAktivitetBesvart = (
