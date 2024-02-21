@@ -10,7 +10,7 @@ import { Stønadstype } from '../../models/søknad/stønadstyper';
 import { hentBannertittel } from '../../utils/stønadstype';
 import LocaleTekst from '../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Panel, Alert, Button, BodyShort, Heading } from '@navikt/ds-react';
+import { Alert, Button, BodyShort, Heading, Box } from '@navikt/ds-react';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -70,14 +70,14 @@ const Side: React.FC<ISide> = ({
           </div>
         )}
 
-        <Panel className={'side__innhold'}>
+        <Box padding="4" className={'side__innhold'}>
           <div className={'innholdscontainer'}>
             <Heading size="medium" className="hoved" level={'2'}>
               {stegtittel}
             </Heading>
             {children}
           </div>
-        </Panel>
+        </Box>
 
         {informasjonstekstId && (
           <Alert

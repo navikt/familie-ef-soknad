@@ -4,7 +4,7 @@ import { RoutesArbeidssokerskjema } from '../routes/routesArbeidssokerskjema';
 import { useLocation } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
-import { Panel, Heading, BodyShort } from '@navikt/ds-react';
+import { Heading, BodyShort, Box } from '@navikt/ds-react';
 import { Stegindikator } from '../../components/stegindikator/Stegindikator';
 import { KnappLocaleTekstOgNavigate } from '../../components/knapper/KnappLocaleTekstOgNavigate';
 
@@ -49,14 +49,14 @@ const Side: React.FC<ISide> = ({
       <Banner tekstid={'banner.tittel.arbeidssøker'} />
       <div className={'side'}>
         <Stegindikator aktivtSteg={aktivtSteg} stegListe={stegobjekter} />
-        <Panel className={'side__innhold'}>
+        <Box padding="4" className={'side__innhold'}>
           <div className={'innholdscontainer'}>
             <Heading size="medium" className="hoved">
               {tittel}
             </Heading>
             {children}
           </div>
-        </Panel>
+        </Box>
         {skalViseKnapper && (
           <>
             {!erSpørsmålBesvart && (

@@ -10,7 +10,7 @@ import { useMount } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { Panel, Heading } from '@navikt/ds-react';
+import { Heading, Box } from '@navikt/ds-react';
 import { OvergangsstønadInformasjon } from './OvergangsstønadInformasjon';
 import { AlertIE } from '../components/forside/AlertIE';
 import { AlertUnderAtten } from '../components/forside/AlertUnderAtten';
@@ -53,7 +53,7 @@ const Forside: React.FC = () => {
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
-        <Panel className={'forside__panel'}>
+        <Box padding="4" className={'forside__panel'}>
           <VeilederBoks />
 
           {alder < 18 && <AlertUnderAtten />}
@@ -80,7 +80,7 @@ const Forside: React.FC = () => {
               />
             )
           )}
-        </Panel>
+        </Box>
       </div>
     </div>
   );
