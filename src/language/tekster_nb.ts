@@ -23,6 +23,7 @@ export default {
   'feil.alert.oppsummering':
     'For å kunne sende inn søknaden, er du nødt til å rette opp i følgende: ',
   'feil.ugyldigTall.beløp': 'Beløpet må være et gyldig tall',
+  'datovelger.månedÅrPlaceholder': 'mm.åååå',
   'datovelger.ugyldigDato':
     'Ugyldig dato. Vennligst skriv dato med format DD.MM.yyyy',
   'datovelger.ugyldigDato.optional':

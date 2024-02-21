@@ -9,7 +9,7 @@ import {
 } from '../../../utils/amplitude';
 import { useMount } from '../../../utils/hooks';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { BodyShort, GuidePanel, Panel } from '@navikt/ds-react';
+import { BodyShort, Box, GuidePanel } from '@navikt/ds-react';
 import { hentPath } from '../../../utils/routing';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { GjenbrukKnapp } from './GjenbrukKnapp';
@@ -48,7 +48,7 @@ const Gjenbruk: FC = () => {
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
-        <Panel className={'forside__panel'}>
+        <Box padding="4" className={'forside__panel'}>
           <GuidePanel poster>
             <BodyShortContainer>
               <BodyShort>
@@ -79,7 +79,7 @@ const Gjenbruk: FC = () => {
               </KnappContainer>
             </SenterContainer>
           </GuidePanel>
-        </Panel>
+        </Box>
       </div>
     </div>
   );

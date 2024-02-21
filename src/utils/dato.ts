@@ -10,20 +10,17 @@ import {
   addMonths,
   startOfDay,
   startOfToday,
+  addYears,
+  subYears,
 } from 'date-fns';
 import subMonths from 'date-fns/subMonths';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
+import { DatoBegrensning } from '../components/dato/Datovelger';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
 export const DATO_OG_TIME = 'HH:mm, dd.MM.yyyy';
-export const GYLDIGE_DATOFORMAT = [
-  'dd.MM.yyyy',
-  'ddMMyyyy',
-  'dd.MM.yy',
-  'ddMMyy',
-];
 
 const erGyldigFormat = (verdi: string) => {
   const YYYYMMDD = /^\d{4}-\d{2}-\d{2}$/;
@@ -118,5 +115,27 @@ export const erNåværendeMånedMellomMåneder = (
     );
   } else {
     return nåværendeMåned >= startMåned && nåværendeMåned <= sluttMåned;
+  }
+};
+
+export const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
+  switch (datobegrensning) {
+    case DatoBegrensning.AlleDatoer:
+      return {};
+    case DatoBegrensning.FremtidigeDatoer:
+      return {
+        minDate: new Date(),
+        maxDate: addYears(new Date(), 100),
+      };
+    case DatoBegrensning.TidligereDatoer:
+      return {
+        minDate: subYears(new Date(), 100),
+        maxDate: new Date(),
+      };
+    case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
+      return {
+        minDate: subYears(new Date(), 100),
+        maxDate: addMonths(new Date(), 6),
+      };
   }
 };
