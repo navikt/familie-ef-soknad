@@ -12,10 +12,6 @@
   margin-left: 2rem;
   margin-right: 2rem;
 }
-.barnas-bosted .foreldre-navn-input {
-  width: 400px;
-  font-weight: normal;
-}
 .barnas-bosted .fødselsnummer {
   display: flex;
   flex-direction: row;
