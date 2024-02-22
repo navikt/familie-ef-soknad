@@ -169,6 +169,12 @@ export default {
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet.slett': 'Fjern utenlandsperiode',
   'medlemskap.periodeBoddIUtlandet': 'Når oppholdt du deg i utlandet?',
+  'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer': 'Hva er id-nummeret ditt i',
+  'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer': 'Jeg har ikke id-nummer i',
+  'medlemskap.hjelpetekst-åpne.begrunnelse': 'Grunnen til at vi spør om dette',
+  'medlemskap.hjelpetekst-innhold.begrunnelse':
+      'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
+  'medlemskap.periodeBoddIUtlandet.sisteAdresse': 'Hva er den siste adressen du bodde på i',
   'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse':
     'Hvorfor oppholdt du deg i utlandet?',
