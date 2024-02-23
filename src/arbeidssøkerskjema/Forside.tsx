@@ -10,7 +10,7 @@ import { useMount } from '../utils/hooks';
 import { hentPath } from '../utils/routing';
 import Språkvelger from '../components/språkvelger/Språkvelger';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
-import { Heading, Panel } from '@navikt/ds-react';
+import { Heading, Box } from '@navikt/ds-react';
 import { VeilederBoks } from '../components/forside/VeilederBoks';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { Seksjon } from '../components/forside/Seksjon';
@@ -37,7 +37,7 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
-        <Panel className={'forside__panel'}>
+        <Box paddineg="4" className={'forside__panel'}>
           <VeilederBoks navn={visningsnavn} />
 
           <FeltGruppe>
@@ -75,7 +75,7 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
           {skjema.harBekreftet && (
             <KnappLocaleTekstOgNavigate nesteSide={nesteSide} />
           )}
-        </Panel>
+        </Box>
       </div>
     </div>
   );

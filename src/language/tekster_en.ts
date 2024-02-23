@@ -23,6 +23,7 @@ export default {
   'feil.alert.oppsummering':
     'To be able to send the application, you need to go back and fix this information:',
   'feil.ugyldigTall.beløp': 'The amount must be a valid number',
+  'datovelger.månedÅrPlaceholder': 'mm / yyyy',
   'datovelger.ugyldigDato': 'The date is in wrong format',
   'datovelger.ugyldigDato.optional':
     'Start or/and end date is invalid format. Please use date in format DD.MM.yyyy or leave the input field empty',

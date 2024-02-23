@@ -7,6 +7,7 @@ import CompressionPlugin from 'compression-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { sentryWebpackPlugin } from '@sentry/webpack-plugin';
 
 const publicPath = process.env.PUBLIC_URL || '/';
 const kopieresOver = ['filer', 'favicon.ico', 'manifest.json', 'robots.txt'];
@@ -113,6 +114,25 @@ const config = {
         },
       },
     }),
+    process.env.SENTRY_AUTH_TOKEN
+      ? sentryWebpackPlugin({
+          org: 'nav',
+          url: 'https://sentry.gc.nav.no/',
+          project: 'familie-ef-soknad',
+          authToken: process.env.SENTRY_AUTH_TOKEN,
+          release: {
+            name: process.env.SENTRY_RELEASE,
+            uploadLegacySourcemaps: {
+              paths: ['build'],
+              urlPrefix: `~${publicPath}`,
+            },
+          },
+          errorHandler: (err) => {
+            // eslint-disable-next-line no-console
+            console.warn('Sentry CLI Plugin: ' + err.message);
+          },
+        })
+      : undefined,
   ],
   optimization: {
     minimizer: [new TerserPlugin()],

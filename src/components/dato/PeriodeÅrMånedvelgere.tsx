@@ -7,7 +7,7 @@ import { IHjelpetekst } from '../../models/felles/hjelpetekst';
 import LesMerTekst from '../LesMerTekst';
 import styled from 'styled-components';
 import FeltGruppe from '../gruppe/FeltGruppe';
-import ÅrMånedVelger from './ÅrMånedvelger';
+import MånedÅrVelger from './MånedÅrVelger';
 import {
   erDatoerLike,
   erDatoInnaforBegrensinger,
@@ -129,7 +129,7 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
       </FeltGruppe>
       <PeriodeGruppe aria-live="polite">
         <>
-          <ÅrMånedVelger
+          <MånedÅrVelger
             settDato={(e) => settPeriode(e, EPeriode.fra)}
             valgtDato={
               periode.fra.verdi && periode.fra.verdi !== ''
@@ -140,7 +140,7 @@ const PeriodeÅrMånedvelgere: FC<Props> = ({
             datobegrensning={datobegrensing}
           />
 
-          <ÅrMånedVelger
+          <MånedÅrVelger
             settDato={(e) => settPeriode(e, EPeriode.til)}
             valgtDato={
               periode.til.verdi && periode.til.verdi !== ''
