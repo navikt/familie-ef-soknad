@@ -27,19 +27,11 @@ const TextFieldMedReadme: React.FC<Props> = ({
                                              }) => {
     const [harIkkeIdNummer, settHarIkkeIdNummer] = useState<boolean>(false);
     const intl = useLokalIntlContext();
-    const idNummerIAnnetLandTekst = () => {
+    const tekstMedLandVerdi = (tekst: string) => {
         return (
-            hentTekst('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer', intl) +
-            ' ' +
-            land.verdi +
-            '?'
-        );
-    };
-    const harIkkeIDNummerTekst = () => {
-        return (
-            hentTekst('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer', intl) +
-            ' ' +
-            land.verdi
+            hentTekst(tekst, intl) +
+        ' ' +
+        land.verdi
         );
     };
     const settUtenlandskPersonId = (
@@ -62,7 +54,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
     };
     return (
         <div>
-            <Label>{idNummerIAnnetLandTekst()}</Label>
+            <Label>{tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?'}</Label>
             <ReadMore size={'small'} header={halvåpenTekstid}>
                 {åpneTekstid}
             </ReadMore>
@@ -81,7 +73,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
                 checked={harIkkeIdNummer}
                 onChange={() => settHarIkkeIdNummer(!harIkkeIdNummer)}
             >
-                {harIkkeIDNummerTekst()}
+                {tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer')}
             </Checkbox>
         </div>
     );
