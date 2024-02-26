@@ -52,7 +52,7 @@ const Utenlandsopphold: FC<Props> = ({
                                          utenlandsopphold,
                                          land,
                                      }) => {
-    const {periode, begrunnelse} = utenlandsopphold;
+    const {periode, begrunnelse, personIdentUtland} = utenlandsopphold;
     const intl = useLokalIntlContext();
     const begrunnelseTekst = intl.formatMessage({
         id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
@@ -198,8 +198,10 @@ const Utenlandsopphold: FC<Props> = ({
                         halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
                         åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
                         land={utenlandsopphold.land}
-                        ident={ident}
-                        settIdent={settIdent}
+                        ident={personIdentUtland}
+                        perioderBoddIUtlandet={perioderBoddIUtlandet}
+                        settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
+                        oppholdsnr={oppholdsnr}
                     />
                     <TextFieldMedBredde
                         className={'inputfelt-tekst'}
