@@ -191,8 +191,8 @@ export const oppdaterBarnMedLabel = (
 
 export const erBarnetilsynSøknad = (søknad: any): boolean => {
   return (
-    'søkerFraBestemtMåned' in søknad &&
-    'søknadsdato' in søknad &&
+    !('merOmDinSituasjon' in søknad) &&
+    !('utdanning' in søknad) &&
     'aktivitet' in søknad
   );
 };

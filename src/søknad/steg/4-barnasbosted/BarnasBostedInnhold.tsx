@@ -122,6 +122,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
               oppdaterBarnISøknaden={oppdaterBarnMedNyForelderInformasjon}
               barneListe={søknad.person.barn}
               forelderidenterMedBarn={forelderIdenterMedBarn}
+              søknad={søknad}
             />
           );
         } else {
