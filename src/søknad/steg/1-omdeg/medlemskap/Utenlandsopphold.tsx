@@ -52,14 +52,13 @@ const Utenlandsopphold: FC<Props> = ({
                                          utenlandsopphold,
                                          land,
                                      }) => {
-    const {periode, begrunnelse, personIdentUtland} = utenlandsopphold;
+    const {periode, begrunnelse, personIdentUtland, tidligereAdresseIUtland} = utenlandsopphold;
     const intl = useLokalIntlContext();
     const begrunnelseTekst = intl.formatMessage({
         id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
     });
 
     const [ident, settIdent] = useState<string>('');
-    const [adresse, settAdresse] = useState<string>('');
 
     const periodeTittel = hentTittelMedNr(
         perioderBoddIUtlandet!,
@@ -141,7 +140,24 @@ const Utenlandsopphold: FC<Props> = ({
         );
         perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
     };
-
+    const settTidligereAdresseIUtland = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ): void => {
+        const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
+            (utenlandsopphold, index) => {
+                if (index === oppholdsnr) {
+                    return {
+                        ...utenlandsopphold,
+                        tidligereAdresseIUtland: e.target.value,
+                    };
+                } else {
+                    return utenlandsopphold;
+                }
+            }
+        );
+        perioderBoddIUtlandet &&
+        settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
+    };
     const sisteAdresseTekst = (land: ISpørsmålFelt) => {
         return hentTekst('medlemskap.periodeBoddIUtlandet.sisteAdresse', intl) + ' ' + land.verdi + '?';
     }
@@ -209,8 +225,8 @@ const Utenlandsopphold: FC<Props> = ({
                         label={sisteAdresseTekst(utenlandsopphold.land)}
                         type="text"
                         bredde={'L'}
-                        onChange={(e) => settAdresse(e.target.value)}
-                        value={adresse}
+                        onChange={(e) => settTidligereAdresseIUtland(e)}
+                        value={tidligereAdresseIUtland}
                     />
                 </>
             }

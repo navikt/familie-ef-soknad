@@ -17,7 +17,7 @@ export interface IUtenlandsopphold {
   periode: IPeriode;
   land?: ISpørsmålFelt;
   personIdentUtland?: string;
-  tidligereAdresse?: string;
+  tidligereAdresseIUtland?: string;
   begrunnelse: ITekstFelt;
 }
 
