@@ -37,7 +37,7 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
-        <Box paddineg="4" className={'forside__panel'}>
+        <Box padding="4" className={'forside__panel'}>
           <VeilederBoks navn={visningsnavn} />
 
           <FeltGruppe>
