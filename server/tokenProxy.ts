@@ -17,9 +17,11 @@ const attachToken = (applicationName: ApplicationName): RequestHandler => {
         req,
         applicationName
       );
-      req.headers[AUTHORIZATION_HEADER] = brukCookie()
-        ? ''
-        : authenticationHeader.authorization;
+      const cookieValue = req.cookies['localhost-idtoken'];
+      req.headers[AUTHORIZATION_HEADER] =
+        brukCookie() && cookieValue
+          ? 'Bearer ' + cookieValue
+          : authenticationHeader.authorization;
       req.headers[WONDERWALL_ID_TOKEN_HEADER] = '';
       next();
     } catch (error) {
