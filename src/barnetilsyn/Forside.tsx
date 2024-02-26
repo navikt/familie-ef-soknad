@@ -1,22 +1,22 @@
+import { Alert, Box, Heading } from '@navikt/ds-react';
 import React from 'react';
-import { usePersonContext } from '../context/PersonContext';
-import { useBarnetilsynSøknad } from './BarnetilsynContext';
-import Environment from '../Environment';
-import FortsettSøknad from '../components/forside/FortsettSøknad';
-import { useMount } from '../utils/hooks';
-import LocaleTekst from '../language/LocaleTekst';
-import { logSidevisningBarnetilsyn } from '../utils/amplitude';
-import { ESkjemanavn } from '../utils/skjemanavn';
-import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { isIE } from 'react-device-detect';
-import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { Alert, Panel, Heading } from '@navikt/ds-react';
 import styled from 'styled-components';
-import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
-import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';
+import Environment from '../Environment';
 import { AlertIE } from '../components/forside/AlertIE';
 import { AlertUnderAtten } from '../components/forside/AlertUnderAtten';
+import FortsettSøknad from '../components/forside/FortsettSøknad';
 import { VeilederBoks } from '../components/forside/VeilederBoks';
+import { useLokalIntlContext } from '../context/LokalIntlContext';
+import { usePersonContext } from '../context/PersonContext';
+import LocaleTekst from '../language/LocaleTekst';
+import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
+import { logSidevisningBarnetilsyn } from '../utils/amplitude';
+import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
+import { useMount } from '../utils/hooks';
+import { ESkjemanavn } from '../utils/skjemanavn';
+import { useBarnetilsynSøknad } from './BarnetilsynContext';
+import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';
 
 const StyledAlert = styled(Alert)`
   margin-bottom: 2rem;
@@ -61,7 +61,7 @@ const Forside: React.FC = () => {
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
-        <Panel className={'forside__panel'}>
+        <Box padding="4" className={'forside__panel'}>
           <VeilederBoks />
 
           {alder < 18 && <AlertUnderAtten />}
@@ -100,7 +100,7 @@ const Forside: React.FC = () => {
               />
             )
           )}
-        </Panel>
+        </Box>
       </div>
     </div>
   );

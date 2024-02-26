@@ -10,12 +10,13 @@ import { ISpørsmål, ISvar } from '../../../models/felles/spørsmålogsvar';
 import { hentUid } from '../../../utils/autentiseringogvalidering/uuid';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import IdentEllerFødselsdatoGruppe from '../../../components/gruppe/IdentEllerFødselsdatoGruppe';
-import { Checkbox, ErrorMessage, Textarea, TextField } from '@navikt/ds-react';
+import { Checkbox, ErrorMessage, Textarea } from '@navikt/ds-react';
 import {
   erIkkeOppgittPgaAnnet,
   slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
 } from '../../../helpers/steg/forelder';
 import { useSpråkContext } from '../../../context/SpråkContext';
+import { TextFieldMedBredde } from '../../../components/TextFieldMedBredde';
 
 interface Props {
   settForelder: (verdi: IForelder) => void;
@@ -156,9 +157,9 @@ const OmAndreForelder: React.FC<Props> = ({
     <>
       <KomponentGruppe>
         <FeltGruppe>
-          <TextField
-            className="foreldre-navn-input"
-            onChange={(e) => {
+          <TextFieldMedBredde
+            bredde={'L'}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               settForelder({
                 ...forelder,
                 navn: {
@@ -168,7 +169,7 @@ const OmAndreForelder: React.FC<Props> = ({
               });
               e.target.value === '' && settSisteBarnUtfylt(false);
             }}
-            onBlur={(e) =>
+            onBlur={(e: React.ChangeEvent<HTMLInputElement>) =>
               e.target.value === ''
                 ? settFeilmeldingNavn(true)
                 : settFeilmeldingNavn(false)

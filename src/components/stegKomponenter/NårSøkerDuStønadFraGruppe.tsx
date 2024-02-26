@@ -9,7 +9,7 @@ import {
 } from '../../models/søknad/søknadsfelter';
 import LocaleTekst from '../../language/LocaleTekst';
 import AlertStripeDokumentasjon from '../AlertstripeDokumentasjon';
-import ÅrMånedVelger from '../dato/ÅrMånedvelger';
+import MånedÅrVelger from '../dato/MånedÅrVelger';
 import { strengTilDato } from '../../utils/dato';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Label, RadioGroup } from '@navikt/ds-react';
@@ -98,14 +98,13 @@ const NårSøkerDuStønadFra: React.FC<Props> = ({
             <LocaleTekst tekst={'søkerFraBestemtMåned.datovelger'} />
           </Label>
           <StyledDatovelger>
-            <ÅrMånedVelger
+            <MånedÅrVelger
               valgtDato={
                 valgtDato?.verdi ? strengTilDato(valgtDato?.verdi) : undefined
               }
               tekstid={datovelgerLabel}
               datobegrensning={DatoBegrensning.TidligereDatoerOgSeksMånederFrem}
               settDato={settDato}
-              fetSkrift={false}
             />
           </StyledDatovelger>
           {alertTekst && (
