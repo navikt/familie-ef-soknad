@@ -148,7 +148,7 @@ const Utenlandsopphold: FC<Props> = ({
                 if (index === oppholdsnr) {
                     return {
                         ...utenlandsopphold,
-                        tidligereAdresseIUtland: e.target.value,
+                        adresseUtland: e.target.value,
                     };
                 } else {
                     return utenlandsopphold;
