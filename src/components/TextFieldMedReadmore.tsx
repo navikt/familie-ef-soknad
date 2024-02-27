@@ -42,7 +42,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
                 if (index === oppholdsnr) {
                     return {
                         ...utenlandsopphold,
-                        personIdentUtland: e.target.value,
+                        personidentUtland: e.target.value,
                     };
                 } else {
                     return utenlandsopphold;
