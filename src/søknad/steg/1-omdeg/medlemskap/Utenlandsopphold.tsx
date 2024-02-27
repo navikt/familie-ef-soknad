@@ -52,7 +52,7 @@ const Utenlandsopphold: FC<Props> = ({
                                          utenlandsopphold,
                                          land,
                                      }) => {
-    const {periode, begrunnelse, personIdentUtland, tidligereAdresseIUtland} = utenlandsopphold;
+    const {periode, begrunnelse, personidentUtland, adresseUtland} = utenlandsopphold;
     const intl = useLokalIntlContext();
     const begrunnelseTekst = intl.formatMessage({
         id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
@@ -214,7 +214,7 @@ const Utenlandsopphold: FC<Props> = ({
                         halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
                         åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
                         land={utenlandsopphold.land}
-                        ident={personIdentUtland}
+                        ident={personidentUtland}
                         perioderBoddIUtlandet={perioderBoddIUtlandet}
                         settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
                         oppholdsnr={oppholdsnr}
@@ -226,7 +226,7 @@ const Utenlandsopphold: FC<Props> = ({
                         type="text"
                         bredde={'L'}
                         onChange={(e) => settTidligereAdresseIUtland(e)}
-                        value={tidligereAdresseIUtland}
+                        value={adresseUtland}
                     />
                 </>
             }
