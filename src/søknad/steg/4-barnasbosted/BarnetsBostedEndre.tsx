@@ -25,7 +25,10 @@ import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import BarnetsAndreForelderTittel from './BarnetsAndreForelderTittel';
 import LocaleTekst from '../../../language/LocaleTekst';
 import { Alert, BodyShort, Button, Label } from '@navikt/ds-react';
-import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import {
+  ISøknad as SøknadOvergangsstønad,
+  SettDokumentasjonsbehovBarn,
+} from '../../../models/søknad/søknad';
 import styled from 'styled-components';
 import {
   finnFørsteBarnTilHverForelder,
@@ -35,7 +38,8 @@ import {
   skalAnnenForelderRedigeres,
 } from '../../../helpers/steg/barnetsBostedEndre';
 import { stringHarVerdiOgErIkkeTom } from '../../../utils/typer';
-import { useSøknad } from '../../../context/SøknadContext';
+import { ISøknad as SøknadBarnetilsyn } from '../../../barnetilsyn/models/søknad';
+import { ISøknad as SøknadSkolepenger } from '../../../skolepenger/models/søknad';
 
 const AlertMedTopMargin = styled(Alert)`
   margin-top: 1rem;
@@ -60,6 +64,7 @@ interface Props {
   barneListe: IBarn[];
   oppdaterBarnISøknaden: (endretBarn: IBarn, erFørstebarn: boolean) => void;
   forelderidenterMedBarn: Map<string, IBarn[]>;
+  søknad: SøknadOvergangsstønad | SøknadBarnetilsyn | SøknadSkolepenger;
 }
 
 const BarnetsBostedEndre: React.FC<Props> = ({
@@ -72,9 +77,9 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   oppdaterBarnISøknaden,
   settDokumentasjonsbehovForBarn,
   forelderidenterMedBarn,
+  søknad,
 }) => {
   const intl = useLokalIntlContext();
-  const { søknad } = useSøknad();
   const [forelder, settForelder] = useState<IForelder>(
     barn.forelder
       ? {
@@ -134,11 +139,7 @@ const BarnetsBostedEndre: React.FC<Props> = ({
   };
 
   const erBarnMedISøknad = (barn: IBarn): boolean => {
-    if (erBarnetilsynSøknad(søknad)) {
-      return barn.skalHaBarnepass?.verdi === true;
-    }
-
-    return true;
+    return !erBarnetilsynSøknad(søknad) || barn.skalHaBarnepass?.verdi === true;
   };
 
   const finnesBarnISøknadMedRegistrertAnnenForelder = barneListe.some(
