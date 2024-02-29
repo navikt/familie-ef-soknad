@@ -52,6 +52,23 @@ const TextFieldMedReadme: React.FC<Props> = ({
         perioderBoddIUtlandet &&
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
+    const settHarPersonidUtland = (): void => {
+        settHarIkkeIdNummer(!harIkkeIdNummer)
+        const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
+            (utenlandsopphold, index) => {
+                if (index === oppholdsnr) {
+                    return {
+                        ...utenlandsopphold,
+                        harPersonidentUtland: harIkkeIdNummer
+                    };
+                } else {
+                    return utenlandsopphold;
+                }
+            }
+        );
+        perioderBoddIUtlandet &&
+        settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
+    };
     return (
         <div>
             <Label>{tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?'}</Label>
@@ -71,7 +88,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
             />
             <Checkbox
                 checked={harIkkeIdNummer}
-                onChange={() => settHarIkkeIdNummer(!harIkkeIdNummer)}
+                onChange={() => settHarPersonidUtland()}
             >
                 {tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer')}
             </Checkbox>

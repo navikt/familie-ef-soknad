@@ -20,6 +20,7 @@ import { ISøker } from '../../models/søknad/person';
 import { ISøknad } from '../../models/søknad/søknad';
 import { ISøknad as ISøknadBT } from '../../barnetilsyn/models/søknad';
 import { ISøknad as ISøknadSK } from '../../skolepenger/models/søknad';
+import utenlandsopphold from "../../søknad/steg/1-omdeg/medlemskap/Utenlandsopphold";
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -112,7 +113,9 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           utenlandsopphold.begrunnelse.verdi === '' ||
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
-          utenlandsopphold.periode.til.verdi === ''
+          utenlandsopphold.periode.til.verdi === '' ||
+          (utenlandsopphold.personidentUtland === '' && utenlandsopphold.harPersonidentUtland) ||
+          utenlandsopphold.adresseUtland === ''
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false

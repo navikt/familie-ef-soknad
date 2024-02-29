@@ -18,6 +18,7 @@ export interface IUtenlandsopphold {
   land?: ISpørsmålFelt;
   begrunnelse: ITekstFelt;
   personidentUtland?: string;
+  harPersonidentUtland?: boolean;
   adresseUtland?: string;
 }
 
