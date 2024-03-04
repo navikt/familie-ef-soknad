@@ -145,10 +145,10 @@ const Utenlandsopphold: FC<Props> = ({
     ): void => {
         const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
-                if (index === oppholdsnr) {
+                if (index === oppholdsnr && utenlandsopphold.land !== undefined) {
                     return {
                         ...utenlandsopphold,
-                        adresseUtland: {label: begrunnelseTekst, verdi: e.target.value},
+                        adresseUtland: {label: sisteAdresseTekst(utenlandsopphold.land), verdi: e.target.value},
                     };
                 } else {
                     return utenlandsopphold;
