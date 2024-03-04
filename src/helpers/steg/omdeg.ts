@@ -114,8 +114,8 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
-          (utenlandsopphold.personidentUtland === '' && utenlandsopphold.harPersonidentUtland) ||
-          utenlandsopphold.adresseUtland === ''
+          (utenlandsopphold.personidentUtland?.verdi   === '' && utenlandsopphold.harPersonidentUtland) ||
+          utenlandsopphold.adresseUtland?.verdi === ''
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false

@@ -27,13 +27,14 @@ const TextFieldMedReadme: React.FC<Props> = ({
                                              }) => {
     const [harIkkeIdNummer, settHarIkkeIdNummer] = useState<boolean>(false);
     const intl = useLokalIntlContext();
-    const tekstMedLandVerdi = (tekst: string) => {
+    const hentTekstMedLandVerdi = (tekst: string) => {
         return (
             hentTekst(tekst, intl) +
         ' ' +
         land.verdi
         );
     };
+    const tekstMedLandVerdi = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?'
     const settUtenlandskPersonId = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
@@ -42,7 +43,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
                 if (index === oppholdsnr) {
                     return {
                         ...utenlandsopphold,
-                        personidentUtland: e.target.value,
+                        personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value}
                     };
                 } else {
                     return utenlandsopphold;
@@ -71,7 +72,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
     };
     return (
         <div>
-            <Label>{tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?'}</Label>
+            <Label>{tekstMedLandVerdi}</Label>
             <ReadMore size={'small'} header={halvåpenTekstid}>
                 {åpneTekstid}
             </ReadMore>
@@ -90,7 +91,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
                 checked={harIkkeIdNummer}
                 onChange={() => settHarPersonidUtland()}
             >
-                {tekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer')}
+                {tekstMedLandVerdi}
             </Checkbox>
         </div>
     );

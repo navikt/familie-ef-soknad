@@ -174,7 +174,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer': 'Jeg har ikke id-nummer i',
   'medlemskap.hjelpetekst-åpne.begrunnelse': 'Grunnen til at vi spør om dette',
   'medlemskap.hjelpetekst-innhold.begrunnelse':
-      'Vi spør om dette for å vite hvilken informasjon vi trenger fra deg.',
+      'Når du har oppholdt deg i et annet EØS-land i løpet av de siste 5 årene, må vi noen ganger innhente opplysninger fra dette landet. Det er fordi vi trenger opplysninger for å vurdere om du har rett til stønad.',
   'medlemskap.periodeBoddIUtlandet.sisteAdresse': 'Hva er den siste adressen du bodde på i',
   'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
   'medlemskap.periodeBoddIUtlandet.begrunnelse':

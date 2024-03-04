@@ -54,9 +54,6 @@ const Utenlandsopphold: FC<Props> = ({
                                      }) => {
     const {periode, begrunnelse, personidentUtland, adresseUtland} = utenlandsopphold;
     const intl = useLokalIntlContext();
-    const begrunnelseTekst = intl.formatMessage({
-        id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
-    });
 
     const [ident, settIdent] = useState<string>('');
 
@@ -67,6 +64,9 @@ const Utenlandsopphold: FC<Props> = ({
             id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
         })
     );
+    const begrunnelseTekst = intl.formatMessage({
+        id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
+    });
 
     const landConfig = utenlandsoppholdLand(land);
 
@@ -148,7 +148,7 @@ const Utenlandsopphold: FC<Props> = ({
                 if (index === oppholdsnr) {
                     return {
                         ...utenlandsopphold,
-                        adresseUtland: e.target.value,
+                        adresseUtland: {label: begrunnelseTekst, verdi: e.target.value},
                     };
                 } else {
                     return utenlandsopphold;
@@ -208,17 +208,18 @@ const Utenlandsopphold: FC<Props> = ({
                     />
                 )}
 
-            {utenlandsopphold.land &&
-                <>
+            {begrunnelse.verdi && utenlandsopphold.land &&
                     <TextFieldMedReadmore
                         halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
                         åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
                         land={utenlandsopphold.land}
-                        ident={personidentUtland}
+                        ident={personidentUtland?.verdi}
                         perioderBoddIUtlandet={perioderBoddIUtlandet}
                         settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
                         oppholdsnr={oppholdsnr}
                     />
+            }
+            {personidentUtland?.verdi && utenlandsopphold.land &&
                     <TextFieldMedBredde
                         className={'inputfelt-tekst'}
                         key={'navn'}
@@ -226,9 +227,8 @@ const Utenlandsopphold: FC<Props> = ({
                         type="text"
                         bredde={'L'}
                         onChange={(e) => settTidligereAdresseIUtland(e)}
-                        value={adresseUtland}
+                        value={adresseUtland?.verdi}
                     />
-                </>
             }
         </Container>
     );
