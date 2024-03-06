@@ -16,7 +16,6 @@ import { ESkjemanavn } from '../utils/skjemanavn';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Loader } from '@navikt/ds-react';
 import { IBarn } from '../models/steg/barn';
-import { ToggleName } from '../models/søknad/toggles';
 import { GjenbrukContext } from '../context/GjenbrukContext';
 
 const BarnetilsynApp = () => {
@@ -73,7 +72,7 @@ const BarnetilsynApp = () => {
   }, []);
 
   useEffect(() => {
-    if (toggles[ToggleName.hentBarnetilsynSøknad] && skalGjenbrukeSøknad) {
+    if (skalGjenbrukeSøknad) {
       hentForrigeSøknadBarnetilsyn();
     }
   }, [fetching, skalGjenbrukeSøknad]);

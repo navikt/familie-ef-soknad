@@ -10,11 +10,8 @@ import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { IDatoFelt } from '../../models/søknad/søknadsfelter';
 import {
-  erSøkerEnke,
   erSøkerGift,
-  erSøkerSeparert,
-  erSøkerSkilt,
-  erSøkerUgift,
+  erSøkerUGiftSkiltSeparertEllerEnke,
 } from '../../utils/sivilstatus';
 import { ISøker } from '../../models/søknad/person';
 import { ISøknad } from '../../models/søknad/søknad';
@@ -120,8 +117,8 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
         ? false
         : true
       : søkerBosattINorgeSisteTreÅr?.verdi
-      ? true
-      : false;
+        ? true
+        : false;
   } else return false;
 };
 
@@ -167,17 +164,13 @@ export const erSivilstandSpørsmålBesvart = (
   sivilstand: string,
   sivilstatus: ISivilstatus
 ): boolean => {
-  if (erSøkerUgift(sivilstand)) {
+  if (erSøkerUGiftSkiltSeparertEllerEnke(sivilstand)) {
     return (
       erSpørsmålOmUformeltGiftBesvart(sivilstatus) &&
       erSpørsmålOmUformeltSeparertEllerSkiltBesvart(sivilstatus)
     );
-  } else if (erSøkerSkilt(sivilstand)) {
-    return erSpørsmålOmUformeltGiftBesvart(sivilstatus);
   } else if (erSøkerGift(sivilstand)) {
     return erSpørsmålOmSøktSeparasjonUtfylt(sivilstatus);
-  } else if (erSøkerEnke(sivilstand) || erSøkerSeparert(sivilstand)) {
-    return true;
   }
 
   return true;
