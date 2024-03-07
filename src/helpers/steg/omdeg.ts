@@ -110,7 +110,7 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
-          (utenlandsopphold.personidentUtland?.verdi   === '' && utenlandsopphold.harPersonidentUtland) ||
+          (utenlandsopphold.personidentUtland?.verdi === '' && utenlandsopphold.harPersonidentUtland) ||
           utenlandsopphold.adresseUtland?.verdi === ''
       );
 
