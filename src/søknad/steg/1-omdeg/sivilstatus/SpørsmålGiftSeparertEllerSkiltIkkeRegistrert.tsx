@@ -25,7 +25,7 @@ interface Props {
   erUformeltGift: ISpørsmålBooleanFelt | undefined;
 }
 
-const SøkerErUgift: React.FC<Props> = ({
+const SpørsmålGiftSeparertEllerSkiltIkkeRegistrert: React.FC<Props> = ({
   sivilstatus,
   settSivilstatusFelt,
   erUformeltGift,
@@ -85,4 +85,4 @@ const SøkerErUgift: React.FC<Props> = ({
   );
 };
 
-export default SøkerErUgift;
+export default SpørsmålGiftSeparertEllerSkiltIkkeRegistrert;

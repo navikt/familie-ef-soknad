@@ -51,6 +51,15 @@ export const erSøkerSeparert = (sivilstand?: string) =>
 export const erSøkerSkilt = (sivilstand?: string) =>
   sivilstandSkilt.some((s) => s === sivilstand);
 
+export const erSøkerUGiftSkiltSeparertEllerEnke = (sivilstand?: string) => {
+  return (
+    erSøkerUgift(sivilstand) ||
+    erSøkerSkilt(sivilstand) ||
+    erSøkerSeparert(sivilstand) ||
+    erSøkerEnke(sivilstand)
+  );
+};
+
 export const hentValgtSvar = (
   spørsmål: ISpørsmål,
   sivilstatus: ISivilstatus

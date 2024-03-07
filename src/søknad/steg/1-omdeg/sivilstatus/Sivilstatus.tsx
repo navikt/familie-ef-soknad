@@ -9,15 +9,13 @@ import {
   ESivilstatusSøknadid,
   ISivilstatus,
 } from '../../../../models/steg/omDeg/sivilstatus';
-import SøkerErUgift from './SøkerErUgift';
+import SpørsmålGiftSeparertEllerSkiltIkkeRegistrert from './SpørsmålGiftSeparertEllerSkiltIkkeRegistrert';
 import {
   erSøkerGift,
-  erSøkerSkilt,
-  erSøkerUgift,
+  erSøkerUGiftSkiltSeparertEllerEnke,
 } from '../../../../utils/sivilstatus';
 import { IMedlemskap } from '../../../../models/steg/omDeg/medlemskap';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import SøkerErSkilt from './SøkerErSkilt';
 import ÅrsakEnslig from './begrunnelse/ÅrsakEnslig';
 import { erSivilstandSpørsmålBesvart } from '../../../../helpers/steg/omdeg';
 import { GjenbrukContext } from '../../../../context/GjenbrukContext';
@@ -84,6 +82,7 @@ const Sivilstatus: React.FC<Props> = ({
       },
     });
   };
+
   return (
     <SeksjonGruppe aria-live="polite">
       {erSøkerGift(sivilstand) && (
@@ -94,16 +93,9 @@ const Sivilstatus: React.FC<Props> = ({
         />
       )}
 
-      {erSøkerUgift(sivilstand) && (
-        <SøkerErUgift
+      {erSøkerUGiftSkiltSeparertEllerEnke(sivilstand) && (
+        <SpørsmålGiftSeparertEllerSkiltIkkeRegistrert
           erUformeltGift={erUformeltGift}
-          settSivilstatusFelt={settSivilstatusFelt}
-          sivilstatus={sivilstatus}
-        />
-      )}
-
-      {erSøkerSkilt(sivilstand) && (
-        <SøkerErSkilt
           settSivilstatusFelt={settSivilstatusFelt}
           sivilstatus={sivilstatus}
         />
