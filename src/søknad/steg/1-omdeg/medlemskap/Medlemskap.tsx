@@ -9,6 +9,7 @@ import {
   bosattINorgeDeSisteFemÅr,
   søkersOppholdsland,
   hentLand,
+  hentEØSLand,
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
@@ -39,6 +40,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
   const [locale] = useSpråkContext();
   const land = hentLand(locale);
+  const eøsLand = hentEØSLand(locale);
   const oppholdslandConfig = søkersOppholdsland(land);
 
   const bosattINorgeDeSisteTreÅrConfig = bosattINorgeDeSisteFemÅr(intl);
@@ -136,6 +138,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
               medlemskap={medlemskap}
               settMedlemskap={settMedlemskap}
               land={land}
+              eøsLand={eøsLand}
             />
           )}
         </>

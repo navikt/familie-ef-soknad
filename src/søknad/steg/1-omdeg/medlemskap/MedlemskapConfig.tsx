@@ -51,3 +51,18 @@ export const hentLand = (språk: LocaleType): ILandMedKode[] => {
     })
     .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
 };
+
+export const hentEØSLand = (språk: LocaleType): ILandMedKode[] => {
+  const landFilter = CountryFilter.EEA({});
+  const filtrertLandliste: Countries =
+      CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
+
+  return filtrertLandliste
+      .map((land: { alpha3: string; label: string }) => {
+        return {
+          id: land.alpha3,
+          svar_tekst: land.label,
+        };
+      })
+      .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
+};

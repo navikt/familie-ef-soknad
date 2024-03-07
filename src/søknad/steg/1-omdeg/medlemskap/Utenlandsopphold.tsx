@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import {hentTittelMedNr} from '../../../../language/utils';
@@ -15,13 +15,12 @@ import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnap
 import {DatoBegrensning} from '../../../../components/dato/Datovelger';
 import {erPeriodeGyldigOgInnaforBegrensninger} from '../../../../components/dato/utils';
 import {useLokalIntlContext} from '../../../../context/LokalIntlContext';
-import {Heading, Label, ReadMore, Textarea, TextField} from '@navikt/ds-react';
+import {Heading, Textarea} from '@navikt/ds-react';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
 import {ISpørsmål, ISvar} from '../../../../models/felles/spørsmålogsvar';
 import {utenlandsoppholdLand} from './MedlemskapConfig';
 import {TextFieldMedBredde} from "../../../../components/TextFieldMedBredde";
 import TextFieldMedReadmore from "../../../../components/TextFieldMedReadmore";
-import {ISpørsmålFelt} from "../../../../models/søknad/søknadsfelter";
 
 const StyledTextarea = styled(Textarea)`
     width: 100%;
@@ -43,6 +42,7 @@ interface Props {
     utenlandsopphold: IUtenlandsopphold;
     oppholdsnr: number;
     land: ILandMedKode[];
+    eøsLand: ILandMedKode[];
 }
 
 const Utenlandsopphold: FC<Props> = ({
@@ -51,12 +51,10 @@ const Utenlandsopphold: FC<Props> = ({
                                          oppholdsnr,
                                          utenlandsopphold,
                                          land,
+                                         eøsLand,
                                      }) => {
     const {periode, begrunnelse, personidentUtland, adresseUtland} = utenlandsopphold;
     const intl = useLokalIntlContext();
-
-    const [ident, settIdent] = useState<string>('');
-
     const periodeTittel = hentTittelMedNr(
         perioderBoddIUtlandet!,
         oppholdsnr,
@@ -66,6 +64,9 @@ const Utenlandsopphold: FC<Props> = ({
     );
     const begrunnelseTekst = intl.formatMessage({
         id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
+    });
+    const sisteAdresseTekst = intl.formatMessage({
+        id: 'medlemskap.periodeBoddIUtlandet.sisteAdresse',
     });
 
     const landConfig = utenlandsoppholdLand(land);
@@ -77,22 +78,6 @@ const Utenlandsopphold: FC<Props> = ({
             );
             settPeriodeBoddIUtlandet(utenlandsopphold);
         }
-    };
-
-    const settBegrunnelse = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-        const perioderMedNyBegrunnelse = perioderBoddIUtlandet.map(
-            (utenlandsopphold, index) => {
-                if (index === oppholdsnr) {
-                    return {
-                        ...utenlandsopphold,
-                        begrunnelse: {label: begrunnelseTekst, verdi: e.target.value},
-                    };
-                } else {
-                    return utenlandsopphold;
-                }
-            }
-        );
-        perioderBoddIUtlandet && settPeriodeBoddIUtlandet(perioderMedNyBegrunnelse);
     };
 
     const settPeriode = (objektnøkkel: EPeriode, date?: string): void => {
@@ -140,15 +125,26 @@ const Utenlandsopphold: FC<Props> = ({
         );
         perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
     };
-    const settTidligereAdresseIUtland = (
-        e: React.ChangeEvent<HTMLInputElement>
+
+    const tekstMedLandVerdi = (tekst: string): string => {
+        for (let i = 0; i < perioderBoddIUtlandet.length; i++) {
+            const utenlandsopphold = perioderBoddIUtlandet[i];
+            if (i === oppholdsnr && utenlandsopphold.land !== undefined) {
+                return tekst + " " + utenlandsopphold.land.verdi;
+            }
+        }
+        return "";
+    };
+
+    const settFeltNavn = (
+        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, feltnavn: string, label: string,
     ): void => {
         const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
                 if (index === oppholdsnr && utenlandsopphold.land !== undefined) {
                     return {
                         ...utenlandsopphold,
-                        adresseUtland: {label: sisteAdresseTekst(utenlandsopphold.land), verdi: e.target.value},
+                        [feltnavn]: {label: label, verdi: e.target.value},
                     };
                 } else {
                     return utenlandsopphold;
@@ -158,8 +154,8 @@ const Utenlandsopphold: FC<Props> = ({
         perioderBoddIUtlandet &&
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
-    const sisteAdresseTekst = (land: ISpørsmålFelt) => {
-        return hentTekst('medlemskap.periodeBoddIUtlandet.sisteAdresse', intl) + ' ' + land.verdi + '?';
+    const erEøsLand = (landId: string): boolean => {
+        return eøsLand.some(land => land.id === landId);
     }
 
     return (
@@ -203,32 +199,31 @@ const Utenlandsopphold: FC<Props> = ({
                         maxLength={1000}
                         autoComplete={'off'}
                         onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                            settBegrunnelse(e)
+                            settFeltNavn(e, "begrunnelse", begrunnelseTekst)
                         }
                     />
                 )}
 
-            {begrunnelse.verdi && utenlandsopphold.land &&
-                    <TextFieldMedReadmore
-                        halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
-                        åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
-                        land={utenlandsopphold.land}
-                        ident={personidentUtland?.verdi}
-                        perioderBoddIUtlandet={perioderBoddIUtlandet}
-                        settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
-                        oppholdsnr={oppholdsnr}
-                    />
+            {begrunnelse.verdi && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+                <TextFieldMedReadmore
+                    halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
+                    åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
+                    land={utenlandsopphold.land}
+                    perioderBoddIUtlandet={perioderBoddIUtlandet}
+                    settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
+                    oppholdsnr={oppholdsnr}
+                />
             }
             {personidentUtland?.verdi && utenlandsopphold.land &&
-                    <TextFieldMedBredde
-                        className={'inputfelt-tekst'}
-                        key={'navn'}
-                        label={sisteAdresseTekst(utenlandsopphold.land)}
-                        type="text"
-                        bredde={'L'}
-                        onChange={(e) => settTidligereAdresseIUtland(e)}
-                        value={adresseUtland?.verdi}
-                    />
+                <TextFieldMedBredde
+                    className={'inputfelt-tekst'}
+                    key={'navn'}
+                    label={tekstMedLandVerdi(sisteAdresseTekst)}
+                    type="text"
+                    bredde={'L'}
+                    onChange={(e) => settFeltNavn(e, "adresseUtland", tekstMedLandVerdi(sisteAdresseTekst))}
+                    value={adresseUtland?.verdi}
+                />
             }
         </Container>
     );

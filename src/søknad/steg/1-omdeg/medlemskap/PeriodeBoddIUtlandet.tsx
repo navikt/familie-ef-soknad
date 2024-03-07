@@ -20,7 +20,8 @@ const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
   land: ILandMedKode[];
-}> = ({ medlemskap, settMedlemskap, land }) => {
+  eøsLand: ILandMedKode[];
+}> = ({ medlemskap, settMedlemskap, land, eøsLand }) => {
   const intl = useLokalIntlContext();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
@@ -72,6 +73,7 @@ const PeriodeBoddIUtlandet: FC<{
               utenlandsopphold={periode}
               oppholdsnr={index}
               land={land}
+              eøsLand={eøsLand}
             />
           </KomponentGruppe>
         );

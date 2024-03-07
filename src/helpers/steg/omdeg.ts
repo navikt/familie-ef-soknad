@@ -20,7 +20,6 @@ import { ISøker } from '../../models/søknad/person';
 import { ISøknad } from '../../models/søknad/søknad';
 import { ISøknad as ISøknadBT } from '../../barnetilsyn/models/søknad';
 import { ISøknad as ISøknadSK } from '../../skolepenger/models/søknad';
-import utenlandsopphold from "../../søknad/steg/1-omdeg/medlemskap/Utenlandsopphold";
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {

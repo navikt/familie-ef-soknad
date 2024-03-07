@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Checkbox, Label, ReadMore} from '@navikt/ds-react';
 import {TextFieldMedBredde} from "./TextFieldMedBredde";
 import {hentTekst} from "../utils/søknad";
@@ -10,7 +10,6 @@ interface Props {
     halvåpenTekstid: string;
     åpneTekstid: string;
     land: ISpørsmålFelt;
-    ident: string | undefined;
     perioderBoddIUtlandet: IUtenlandsopphold[];
     settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
     oppholdsnr: number;
@@ -20,13 +19,20 @@ const TextFieldMedReadme: React.FC<Props> = ({
                                                  halvåpenTekstid,
                                                  åpneTekstid,
                                                  land,
-                                                 ident,
                                                  perioderBoddIUtlandet,
                                                  settPeriodeBoddIUtlandet,
                                                  oppholdsnr,
                                              }) => {
     const [harIkkeIdNummer, settHarIkkeIdNummer] = useState<boolean>(false);
+    const [ident, settIdent] = useState<string | undefined>('');
+
     const intl = useLokalIntlContext();
+    useEffect(() => {
+        if (harIkkeIdNummer) {
+            settIdent('');
+        }
+    }, [harIkkeIdNummer]);
+
     const hentTekstMedLandVerdi = (tekst: string) => {
         return (
             hentTekst(tekst, intl) +
@@ -34,13 +40,15 @@ const TextFieldMedReadme: React.FC<Props> = ({
         land.verdi
         );
     };
-    const tekstMedLandVerdi = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?'
+    const tekstMedLandVerdi = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?';
+    const harIkkeUtenlandsPersonIdTekst = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer');
     const settUtenlandskPersonId = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
         const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
                 if (index === oppholdsnr) {
+                    settIdent(e.target.value);
                     return {
                         ...utenlandsopphold,
                         personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value}
@@ -54,13 +62,14 @@ const TextFieldMedReadme: React.FC<Props> = ({
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
     const settHarPersonidUtland = (): void => {
-        settHarIkkeIdNummer(!harIkkeIdNummer)
+        settHarIkkeIdNummer(prevState => !prevState);
         const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
                 if (index === oppholdsnr) {
                     return {
                         ...utenlandsopphold,
-                        harPersonidentUtland: harIkkeIdNummer
+                        harPersonidentUtland: harIkkeIdNummer,
+                        personidentUtland: harIkkeIdNummer ? { label: '', verdi: '' } : utenlandsopphold.personidentUtland,
                     };
                 } else {
                     return utenlandsopphold;
@@ -70,6 +79,8 @@ const TextFieldMedReadme: React.FC<Props> = ({
         perioderBoddIUtlandet &&
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
+
+
     return (
         <div>
             <Label>{tekstMedLandVerdi}</Label>
@@ -86,12 +97,13 @@ const TextFieldMedReadme: React.FC<Props> = ({
                 onChange={(e) => settUtenlandskPersonId(e)}
                 value={ident}
                 disabled={harIkkeIdNummer}
+                maxLength={32}
             />
             <Checkbox
                 checked={harIkkeIdNummer}
                 onChange={() => settHarPersonidUtland()}
             >
-                {tekstMedLandVerdi}
+                {harIkkeUtenlandsPersonIdTekst}
             </Checkbox>
         </div>
     );
