@@ -154,6 +154,7 @@ const Utenlandsopphold: FC<Props> = ({
         perioderBoddIUtlandet &&
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
+
     const erEøsLand = (landId: string): boolean => {
         return eøsLand.some(land => land.id === landId);
     }
