@@ -72,7 +72,7 @@ const getFakedingsToken = async (applicationName: string): Promise<string> => {
   const url = `https://fakedings.intern.dev.nav.no/fake/tokenx?client_id=${clientId}&aud=${audience}&acr=Level4&pid=31458931375`;
   const token = await axios.get(url);
 
-  return 'Bearer ' + token.data;
+  return `Bearer ${token.data}`;
 };
 
 export default attachToken;
