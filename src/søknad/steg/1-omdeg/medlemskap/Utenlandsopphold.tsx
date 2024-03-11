@@ -71,6 +71,7 @@ const Utenlandsopphold: FC<Props> = ({
 
     const landConfig = utenlandsoppholdLand(land);
 
+
     const fjernUtenlandsperiode = () => {
         if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
             const utenlandsopphold = perioderBoddIUtlandet?.filter(
@@ -109,7 +110,7 @@ const Utenlandsopphold: FC<Props> = ({
         const periodeMedNyttLand = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
                 if (index === oppholdsnr) {
-                    return {
+                    const oppdatertUtenlandsopphold = {
                         ...utenlandsopphold,
                         land: {
                             spørsmålid: spørsmål.søknadid,
@@ -118,6 +119,15 @@ const Utenlandsopphold: FC<Props> = ({
                             verdi: svar.svar_tekst,
                         },
                     };
+
+                    if (!erEøsLand(svar.id)) {
+                        oppdatertUtenlandsopphold.adresseUtland = {
+                            ...oppdatertUtenlandsopphold.adresseUtland,
+                            verdi: '',
+                            label: oppdatertUtenlandsopphold.adresseUtland?.label || '',
+                        };
+                    }
+                    return oppdatertUtenlandsopphold;
                 } else {
                     return utenlandsopphold;
                 }
@@ -215,7 +225,7 @@ const Utenlandsopphold: FC<Props> = ({
                     oppholdsnr={oppholdsnr}
                 />
             }
-            {personidentUtland?.verdi && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {(personidentUtland?.verdi || !utenlandsopphold.harPersonidentUtland) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
                 <TextFieldMedBredde
                     className={'inputfelt-tekst'}
                     key={'navn'}
