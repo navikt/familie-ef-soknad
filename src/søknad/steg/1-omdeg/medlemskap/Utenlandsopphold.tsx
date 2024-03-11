@@ -225,7 +225,8 @@ const Utenlandsopphold: FC<Props> = ({
                     oppholdsnr={oppholdsnr}
                 />
             }
-            {(personidentUtland?.verdi || !utenlandsopphold.harPersonidentUtland) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {(begrunnelse.verdi && personidentUtland?.verdi || !utenlandsopphold.harPersonidentUtland)
+                && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
                 <TextFieldMedBredde
                     className={'inputfelt-tekst'}
                     key={'navn'}
