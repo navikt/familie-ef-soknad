@@ -8,7 +8,7 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
-import { IDatoFelt } from '../../models/søknad/søknadsfelter';
+import {IDatoFelt, ITekstFelt} from '../../models/søknad/søknadsfelter';
 import {
   erSøkerGift,
   erSøkerUGiftSkiltSeparertEllerEnke,
@@ -98,6 +98,11 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
   const tom = periode.til.verdi && periode.til.verdi !== '';
   return fom && tom;
 };
+
+const tomtTekstfelt = (personident?: ITekstFelt): boolean => {
+    return personident === undefined || personident.verdi === '';
+}
+
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
@@ -109,11 +114,10 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
-          (utenlandsopphold.erEøsLand && (utenlandsopphold.personidentUtland === undefined
-              || utenlandsopphold.personidentUtland?.verdi === ''
-              && utenlandsopphold.harPersonidentUtland
-              && utenlandsopphold.adresseUtland === undefined
-              || utenlandsopphold.adresseUtland?.verdi === ''))
+            (utenlandsopphold.erEøsLand
+                && (tomtTekstfelt(utenlandsopphold.personidentUtland)
+                    && utenlandsopphold.harPersonidentUtland
+                    || tomtTekstfelt(utenlandsopphold.adresseUtland)))
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false
