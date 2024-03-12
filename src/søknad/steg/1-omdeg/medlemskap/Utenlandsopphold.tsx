@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import {hentTittelMedNr} from '../../../../language/utils';
@@ -72,6 +72,15 @@ const Utenlandsopphold: FC<Props> = ({
 
     const landConfig = utenlandsoppholdLand(land);
 
+    const tekstMedLandVerdi = (tekst: string): string => {
+        for (let i = 0; i < perioderBoddIUtlandet.length; i++) {
+            const utenlandsopphold = perioderBoddIUtlandet[i];
+            if (i === oppholdsnr && utenlandsopphold.land !== undefined) {
+                return tekst + " " + utenlandsopphold.land.verdi;
+            }
+        }
+        return "";
+    };
 
     const fjernUtenlandsperiode = () => {
         if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
@@ -132,16 +141,6 @@ const Utenlandsopphold: FC<Props> = ({
         perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
     };
 
-    const tekstMedLandVerdi = (tekst: string): string => {
-        for (let i = 0; i < perioderBoddIUtlandet.length; i++) {
-            const utenlandsopphold = perioderBoddIUtlandet[i];
-            if (i === oppholdsnr && utenlandsopphold.land !== undefined) {
-                return tekst + " " + utenlandsopphold.land.verdi;
-            }
-        }
-        return "";
-    };
-
     const settFeltNavn = (
         e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, feltnavn: string, label: string,
     ): void => {
@@ -164,18 +163,38 @@ const Utenlandsopphold: FC<Props> = ({
     const erEøsLand = (landId: string): boolean => {
         return eøsLand.some(land => land.id === landId);
     }
+
     const harVerdi = (tekstfelt?: ITekstFelt): boolean => {
         if (tekstfelt === undefined) {
             return false; 
         }
         return tekstfelt.verdi !== '';
     }
+
     const harPersonIdentUtland = (utenlandsopphold?: IUtenlandsopphold): boolean => {
         if (utenlandsopphold?.harPersonidentUtland === undefined) {
             return true;
         }
         return utenlandsopphold.harPersonidentUtland;
     }
+
+    const skalVisePersonidentTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
+        return utenlandsopphold.land
+            && (harVerdi(utenlandsopphold.personidentUtland)
+                || (harVerdi(utenlandsopphold.begrunnelse)
+                    && erEøsLand(utenlandsopphold.land.svarid))
+            );
+    }
+
+    const skalViseAdresseTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
+        return utenlandsopphold.land
+            && erEøsLand(utenlandsopphold.land.svarid)
+            && (harVerdi(utenlandsopphold.adresseUtland)
+                || (harVerdi(utenlandsopphold.personidentUtland)
+                    || !harPersonIdentUtland(utenlandsopphold))
+            );
+    }
+
     return (
         <Container aria-live="polite">
             <TittelOgSlettKnapp>
@@ -222,7 +241,7 @@ const Utenlandsopphold: FC<Props> = ({
                     />
                 )}
 
-            {harVerdi(utenlandsopphold.begrunnelse) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {utenlandsopphold.land && skalVisePersonidentTekstfelt(utenlandsopphold) &&
                 <TextFieldMedReadmore
                     halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
                     åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
@@ -232,7 +251,7 @@ const Utenlandsopphold: FC<Props> = ({
                     oppholdsnr={oppholdsnr}
                 />
             }
-            {(harVerdi(utenlandsopphold.personidentUtland) || !harPersonIdentUtland(utenlandsopphold)) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {utenlandsopphold.land && skalViseAdresseTekstfelt(utenlandsopphold) &&
                 <TextFieldMedBredde
                     className={'inputfelt-tekst'}
                     key={'navn'}

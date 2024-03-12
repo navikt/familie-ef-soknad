@@ -19,7 +19,7 @@ export interface IUtenlandsopphold {
   erEøsLand: boolean;
   begrunnelse: ITekstFelt;
   personidentUtland?: ITekstFelt;
-  harPersonidentUtland?: boolean;
+  harPersonidentUtland: boolean;
   adresseUtland?: ITekstFelt;
 }
 

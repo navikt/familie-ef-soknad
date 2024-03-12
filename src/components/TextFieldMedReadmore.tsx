@@ -52,7 +52,6 @@ const TextFieldMedReadme: React.FC<Props> = ({
                     return {
                         ...utenlandsopphold,
                         personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value},
-                        adresseUtland: e.target.value === '' ? {label: '', verdi: ''} : utenlandsopphold.adresseUtland,
                     };
                 } else {
                     return utenlandsopphold;

@@ -99,8 +99,8 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
   return fom && tom;
 };
 
-const tomtTekstfelt = (personident?: ITekstFelt): boolean => {
-    return personident === undefined || personident.verdi === '';
+const tomtTekstfelt = (tomVerdi?: ITekstFelt): boolean => {
+    return tomVerdi === undefined || tomVerdi.verdi === '';
 }
 
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
@@ -115,9 +115,9 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
             (utenlandsopphold.erEøsLand
-                && (tomtTekstfelt(utenlandsopphold.personidentUtland)
-                    && utenlandsopphold.harPersonidentUtland
-                    || tomtTekstfelt(utenlandsopphold.adresseUtland)))
+                && (tomtTekstfelt(utenlandsopphold.adresseUtland)
+                    ||(tomtTekstfelt(utenlandsopphold.personidentUtland)
+                      && utenlandsopphold.harPersonidentUtland)))
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false
