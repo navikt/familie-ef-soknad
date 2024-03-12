@@ -100,7 +100,7 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
 };
 
 const tomtTekstfelt = (tomVerdi?: ITekstFelt): boolean => {
-    return tomVerdi === undefined || tomVerdi.verdi === '';
+    return tomVerdi === undefined || tomVerdi.verdi.trim() === '';
 }
 
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
@@ -115,9 +115,11 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
             (utenlandsopphold.erEøsLand
-                && (tomtTekstfelt(utenlandsopphold.adresseUtland)
-                    ||(tomtTekstfelt(utenlandsopphold.personidentUtland)
-                      && utenlandsopphold.harPersonidentUtland)))
+                && ((utenlandsopphold.harPersonidentUtland && (tomtTekstfelt(utenlandsopphold.personidentUtland)
+                  || tomtTekstfelt(utenlandsopphold.adresseUtland)))
+                || !utenlandsopphold.harPersonidentUtland && tomtTekstfelt(utenlandsopphold.adresseUtland))
+
+            )
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false

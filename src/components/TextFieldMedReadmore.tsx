@@ -27,21 +27,22 @@ const TextFieldMedReadme: React.FC<Props> = ({
     const [ident, settIdent] = useState<string | undefined>('');
 
     const intl = useLokalIntlContext();
-    useEffect(() => {
-        if (harIkkeIdNummer) {
-            settIdent('');
-        }
-    }, [harIkkeIdNummer]);
 
-    const hentTekstMedLandVerdi = (tekst: string) => {
+    useEffect(() => {
+        settIdent('');
+    }, [harIkkeIdNummer, land]);
+
+    const hentTekstMedLandverdi = (tekst: string) => {
         return (
             hentTekst(tekst, intl) +
         ' ' +
         land.verdi
         );
     };
-    const tekstMedLandVerdi = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?';
-    const harIkkeUtenlandsPersonIdTekst = hentTekstMedLandVerdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer');
+
+    const tekstMedLandVerdi = hentTekstMedLandverdi('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer') + '?';
+    const harIkkeUtenlandsPersonIdTekst = hentTekstMedLandverdi('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer');
+
     const settUtenlandskPersonId = (
         e: React.ChangeEvent<HTMLInputElement>
     ): void => {
@@ -52,6 +53,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
                     return {
                         ...utenlandsopphold,
                         personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value},
+                        adresseUtland: e.target.value === '' ? {label: '', verdi: ''} : utenlandsopphold.adresseUtland,
                     };
                 } else {
                     return utenlandsopphold;
@@ -61,7 +63,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
         perioderBoddIUtlandet &&
         settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
     };
-    const settHarPersonidUtland = (): void => {
+    const toggleHarUtenlandskPersonId = (): void => {
         settHarIkkeIdNummer(prevState => !prevState);
         const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
@@ -101,7 +103,7 @@ const TextFieldMedReadme: React.FC<Props> = ({
             />
             <Checkbox
                 checked={harIkkeIdNummer}
-                onChange={() => settHarPersonidUtland()}
+                onChange={() => toggleHarUtenlandskPersonId()}
             >
                 {harIkkeUtenlandsPersonIdTekst}
             </Checkbox>

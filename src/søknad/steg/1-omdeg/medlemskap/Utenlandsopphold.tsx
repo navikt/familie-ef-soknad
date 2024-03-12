@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
 import {hentTittelMedNr} from '../../../../language/utils';
@@ -120,7 +120,7 @@ const Utenlandsopphold: FC<Props> = ({
         const periodeMedNyttLand = perioderBoddIUtlandet.map(
             (utenlandsopphold, index) => {
                 if (index === oppholdsnr) {
-                    const oppdatertUtenlandsopphold = {
+                    return {
                         ...utenlandsopphold,
                         land: {
                             spørsmålid: spørsmål.søknadid,
@@ -129,10 +129,10 @@ const Utenlandsopphold: FC<Props> = ({
                             verdi: svar.svar_tekst,
                         },
                         erEøsLand: erEøsLand(svar.id),
-                        personidentUtland: erEøsLand(svar.id) ? utenlandsopphold.personidentUtland : {label: '', verdi: ''},
-                        adresseUtland: erEøsLand(svar.id) ? utenlandsopphold.adresseUtland : {label: '', verdi: ''},
+                        personidentUtland: {label: '', verdi: ''},
+                        adresseUtland: {label: '', verdi: ''},
+                        harPersonIdentUtland: true,
                     };
-                    return oppdatertUtenlandsopphold;
                 } else {
                     return utenlandsopphold;
                 }
@@ -165,17 +165,11 @@ const Utenlandsopphold: FC<Props> = ({
     }
 
     const harVerdi = (tekstfelt?: ITekstFelt): boolean => {
-        if (tekstfelt === undefined) {
-            return false; 
-        }
-        return tekstfelt.verdi !== '';
+        return tekstfelt !== undefined && tekstfelt.verdi.trim() !== '';
     }
 
     const harPersonIdentUtland = (utenlandsopphold?: IUtenlandsopphold): boolean => {
-        if (utenlandsopphold?.harPersonidentUtland === undefined) {
-            return true;
-        }
-        return utenlandsopphold.harPersonidentUtland;
+        return (utenlandsopphold?.harPersonidentUtland !== undefined) && utenlandsopphold.harPersonidentUtland;
     }
 
     const skalVisePersonidentTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
@@ -189,10 +183,9 @@ const Utenlandsopphold: FC<Props> = ({
     const skalViseAdresseTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
         return utenlandsopphold.land
             && erEøsLand(utenlandsopphold.land.svarid)
-            && (harVerdi(utenlandsopphold.adresseUtland)
-                || (harVerdi(utenlandsopphold.personidentUtland)
-                    || !harPersonIdentUtland(utenlandsopphold))
-            );
+            && ((harVerdi(utenlandsopphold.personidentUtland)
+                && harPersonIdentUtland(utenlandsopphold))
+                || !harPersonIdentUtland(utenlandsopphold));
     }
 
     return (
