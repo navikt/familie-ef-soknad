@@ -98,7 +98,6 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
   const tom = periode.til.verdi && periode.til.verdi !== '';
   return fom && tom;
 };
-
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
@@ -110,8 +109,11 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
-          (utenlandsopphold.personidentUtland?.verdi === '' || utenlandsopphold.harPersonidentUtland) ||
-          utenlandsopphold.adresseUtland?.verdi === ''
+          (utenlandsopphold.erEøsLand && (utenlandsopphold.personidentUtland === undefined
+              || utenlandsopphold.personidentUtland?.verdi === ''
+              && utenlandsopphold.harPersonidentUtland
+              && utenlandsopphold.adresseUtland === undefined
+              || utenlandsopphold.adresseUtland?.verdi === ''))
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false

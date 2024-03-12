@@ -21,6 +21,8 @@ import {ISpørsmål, ISvar} from '../../../../models/felles/spørsmålogsvar';
 import {utenlandsoppholdLand} from './MedlemskapConfig';
 import {TextFieldMedBredde} from "../../../../components/TextFieldMedBredde";
 import TextFieldMedReadmore from "../../../../components/TextFieldMedReadmore";
+import {ITekstFelt} from "../../../../models/søknad/søknadsfelter";
+
 
 const StyledTextarea = styled(Textarea)`
     width: 100%;
@@ -44,7 +46,6 @@ interface Props {
     land: ILandMedKode[];
     eøsLand: ILandMedKode[];
 }
-
 const Utenlandsopphold: FC<Props> = ({
                                          perioderBoddIUtlandet,
                                          settPeriodeBoddIUtlandet,
@@ -118,15 +119,10 @@ const Utenlandsopphold: FC<Props> = ({
                             label: intl.formatMessage({id: spørsmål.tekstid}),
                             verdi: svar.svar_tekst,
                         },
+                        erEøsLand: erEøsLand(svar.id),
+                        personidentUtland: erEøsLand(svar.id) ? utenlandsopphold.personidentUtland : {label: '', verdi: ''},
+                        adresseUtland: erEøsLand(svar.id) ? utenlandsopphold.adresseUtland : {label: '', verdi: ''},
                     };
-
-                    if (!erEøsLand(svar.id)) {
-                        oppdatertUtenlandsopphold.adresseUtland = {
-                            ...oppdatertUtenlandsopphold.adresseUtland,
-                            verdi: '',
-                            label: oppdatertUtenlandsopphold.adresseUtland?.label || '',
-                        };
-                    }
                     return oppdatertUtenlandsopphold;
                 } else {
                     return utenlandsopphold;
@@ -168,7 +164,18 @@ const Utenlandsopphold: FC<Props> = ({
     const erEøsLand = (landId: string): boolean => {
         return eøsLand.some(land => land.id === landId);
     }
-
+    const harVerdi = (tekstfelt?: ITekstFelt): boolean => {
+        if (tekstfelt === undefined) {
+            return false; 
+        }
+        return tekstfelt.verdi !== '';
+    }
+    const harPersonIdentUtland = (utenlandsopphold?: IUtenlandsopphold): boolean => {
+        if (utenlandsopphold?.harPersonidentUtland === undefined) {
+            return true;
+        }
+        return utenlandsopphold.harPersonidentUtland;
+    }
     return (
         <Container aria-live="polite">
             <TittelOgSlettKnapp>
@@ -215,7 +222,7 @@ const Utenlandsopphold: FC<Props> = ({
                     />
                 )}
 
-            {begrunnelse.verdi && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {harVerdi(utenlandsopphold.begrunnelse) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
                 <TextFieldMedReadmore
                     halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
                     åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
@@ -225,8 +232,7 @@ const Utenlandsopphold: FC<Props> = ({
                     oppholdsnr={oppholdsnr}
                 />
             }
-            {begrunnelse.verdi && (personidentUtland?.verdi || !utenlandsopphold.harPersonidentUtland)
-                && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
+            {(harVerdi(utenlandsopphold.personidentUtland) || !harPersonIdentUtland(utenlandsopphold)) && utenlandsopphold.land && erEøsLand(utenlandsopphold.land.svarid) &&
                 <TextFieldMedBredde
                     className={'inputfelt-tekst'}
                     key={'navn'}

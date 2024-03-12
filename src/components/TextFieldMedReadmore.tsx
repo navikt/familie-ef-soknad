@@ -51,7 +51,8 @@ const TextFieldMedReadme: React.FC<Props> = ({
                     settIdent(e.target.value);
                     return {
                         ...utenlandsopphold,
-                        personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value}
+                        personidentUtland: {label: tekstMedLandVerdi, verdi: e.target.value},
+                        adresseUtland: e.target.value === '' ? {label: '', verdi: ''} : utenlandsopphold.adresseUtland,
                     };
                 } else {
                     return utenlandsopphold;
