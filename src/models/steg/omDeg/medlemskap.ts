@@ -18,9 +18,9 @@ export interface IUtenlandsopphold {
   land?: ISpørsmålFelt;
   erEøsLand: boolean;
   begrunnelse: ITekstFelt;
-  personidentUtland?: ITekstFelt;
+  personidentEøsLand?: ITekstFelt;
   kanIkkeOppgiPersonident?: boolean;
-  adresseUtland?: ITekstFelt;
+  adresseEøsLand?: ITekstFelt;
 }
 
 export enum EMedlemskap {

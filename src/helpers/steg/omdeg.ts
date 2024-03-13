@@ -113,11 +113,11 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           utenlandsopphold.periode.til.verdi === '' ||
           (utenlandsopphold.erEøsLand &&
             (!stringHarVerdiOgErIkkeTom(
-              utenlandsopphold.adresseUtland?.verdi
+              utenlandsopphold.adresseEøsLand?.verdi
             ) ||
               (utenlandsopphold.kanIkkeOppgiPersonident !== true &&
                 !stringHarVerdiOgErIkkeTom(
-                  utenlandsopphold.personidentUtland?.verdi
+                  utenlandsopphold.personidentEøsLand?.verdi
                 )))) // TODO: Refaktorer hele funksjonen
       );
 

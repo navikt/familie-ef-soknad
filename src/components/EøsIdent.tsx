@@ -42,7 +42,7 @@ const EøsIdent: React.FC<Props> = ({
   ): void => {
     const oppdatertUtenlandsopphold = {
       ...utenlandsopphold,
-      personidentUtland: {
+      personidentEøsLand: {
         label: tekstMedLandVerdi,
         verdi: e.target.value,
       },
@@ -56,9 +56,9 @@ const EøsIdent: React.FC<Props> = ({
     const oppdatertUtenlandsopphold = {
       ...utenlandsopphold,
       kanIkkeOppgiPersonident: kanIkkeOppgiPersonident,
-      personidentUtland: kanIkkeOppgiPersonident
+      personidentEøsLand: kanIkkeOppgiPersonident
         ? { label: '', verdi: '' }
-        : utenlandsopphold.personidentUtland,
+        : utenlandsopphold.personidentEøsLand,
     };
     settUtenlandsopphold(oppdatertUtenlandsopphold);
   };
@@ -77,7 +77,7 @@ const EøsIdent: React.FC<Props> = ({
         type="text"
         bredde={'L'}
         onChange={(e) => settUtenlandskPersonId(e)}
-        value={utenlandsopphold.personidentUtland?.verdi}
+        value={utenlandsopphold.personidentEøsLand?.verdi}
         disabled={utenlandsopphold.kanIkkeOppgiPersonident}
         maxLength={32}
       />

@@ -52,8 +52,7 @@ const Utenlandsopphold: FC<Props> = ({
   utenlandsopphold,
   land,
 }) => {
-  const { periode, begrunnelse, personidentUtland, adresseUtland } =
-    utenlandsopphold;
+  const { periode, begrunnelse, adresseEøsLand } = utenlandsopphold;
   const intl = useLokalIntlContext();
   const periodeTittel = hentTittelMedNr(
     perioderBoddIUtlandet!,
@@ -113,8 +112,8 @@ const Utenlandsopphold: FC<Props> = ({
         verdi: svar.svar_tekst,
       },
       erEøsLand: land.find((l) => l.id === svar.id)?.erEøsland || false,
-      personidentUtland: { label: '', verdi: '' },
-      adresseUtland: { label: '', verdi: '' },
+      personidentEøsLand: { label: '', verdi: '' },
+      adresseEøsLand: { label: '', verdi: '' },
       kanIkkeOppgiPersonident: undefined,
     };
 
@@ -159,7 +158,7 @@ const Utenlandsopphold: FC<Props> = ({
     return (
       skalVisePersonidentTekstfelt(utenlandsopphold) &&
       (stringHarVerdiOgErIkkeTom(
-        utenlandsopphold.personidentUtland?.verdi.trim()
+        utenlandsopphold.personidentEøsLand?.verdi.trim()
       ) ||
         utenlandsopphold.kanIkkeOppgiPersonident)
     );
@@ -240,11 +239,11 @@ const Utenlandsopphold: FC<Props> = ({
           onChange={(e) =>
             settFeltNavn(
               e,
-              'adresseUtland',
+              'adresseEøsLand',
               tekstMedLandVerdi(sisteAdresseTekst)
             )
           }
-          value={adresseUtland?.verdi}
+          value={adresseEøsLand?.verdi}
         />
       )}
     </Container>
