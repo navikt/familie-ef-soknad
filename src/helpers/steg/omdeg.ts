@@ -176,12 +176,9 @@ export const erSivilstandSpørsmålBesvart = (
   return true;
 };
 
-export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (
-  søker: ISøker,
-  søknad: ISøknad | ISøknadBT | ISøknadSK
-) => {
+export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (søknad: ISøknad | ISøknadBT | ISøknadSK) => {
   return (
-    søker?.erStrengtFortrolig ||
+    søknad.person.søker?.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
     søknad.adresseopplysninger?.harMeldtAdresseendring?.verdi === true
   );
