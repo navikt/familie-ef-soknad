@@ -9,6 +9,8 @@
     "start": "npm run build:dev-server && NODE_ENV=development ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
     "start:preprod": "npm run build:dev-server && NODE_ENV=development BRUK_DEV_API=true ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
     "start:mock": "NODE_ENV=development BRUK_MOCK_LOKALT=true PUBLIC_URL=/familie/alene-med-barn/soknad node dev-server/dev-server.js",
+    "test": "vitest run --exclude 'src/søknad/DokumentasjonsConfig.test.ts'",
+    "vitest": "vitest --exclude 'src/søknad/DokumentasjonsConfig.test.ts'",
     "test-ci": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "build:dev-server": "cd server && tsc --build --verbose && cd ..",
     "postinstall": "cd server && npm ci && cd .."
@@ -128,6 +130,7 @@
     "typescript": "^5.3.3",
     "url-loader": "^4.1.1",
     "util": "^0.12.5",
+    "vitest": "^1.3.1",
     "webpack": "^5.90.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-middleware": "^7.0.0",
