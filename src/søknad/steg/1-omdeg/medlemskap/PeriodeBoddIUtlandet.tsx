@@ -20,14 +20,13 @@ const PeriodeBoddIUtlandet: FC<{
   medlemskap: IMedlemskap;
   settMedlemskap: (medlemskap: IMedlemskap) => void;
   land: ILandMedKode[];
-  eøsLand: ILandMedKode[];
-}> = ({ medlemskap, settMedlemskap, land, eøsLand }) => {
+}> = ({ medlemskap, settMedlemskap, land }) => {
   const intl = useLokalIntlContext();
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
     periode: tomPeriode,
     erEøsLand: false,
-    harPersonidentUtland: true,
+    kanIkkeOppgiPersonident: true,
     begrunnelse: {
       label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),
       verdi: '',
@@ -36,7 +35,7 @@ const PeriodeBoddIUtlandet: FC<{
   const [perioderBoddIUtlandet, settPerioderBoddIUtlandet] = useState<
     IUtenlandsopphold[]
   >(
-      medlemskap?.perioderBoddIUtlandet &&
+    medlemskap?.perioderBoddIUtlandet &&
       medlemskap.perioderBoddIUtlandet.length > 0
       ? medlemskap.perioderBoddIUtlandet
       : [tomtUtenlandsopphold]
@@ -75,7 +74,6 @@ const PeriodeBoddIUtlandet: FC<{
               utenlandsopphold={periode}
               oppholdsnr={index}
               land={land}
-              eøsLand={eøsLand}
             />
           </KomponentGruppe>
         );

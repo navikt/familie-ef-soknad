@@ -41,28 +41,19 @@ export const hentLand = (språk: LocaleType): ILandMedKode[] => {
   const landFilter = CountryFilter.STANDARD({});
   const filtrertLandliste: Countries =
     CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
-
+  const eøsLand = hentEØSLand(språk);
   return filtrertLandliste
     .map((land: { alpha3: string; label: string }) => {
       return {
         id: land.alpha3,
         svar_tekst: land.label,
+        erEøsland: eøsLand.some(eøs => eøs.alpha3 === land.alpha3),
       };
     })
     .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
 };
 
-export const hentEØSLand = (språk: LocaleType): ILandMedKode[] => {
+export const hentEØSLand = (språk: LocaleType): Countries => {
   const landFilter = CountryFilter.EEA({});
-  const filtrertLandliste: Countries =
-      CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
-
-  return filtrertLandliste
-      .map((land: { alpha3: string; label: string }) => {
-        return {
-          id: land.alpha3,
-          svar_tekst: land.label,
-        };
-      })
-      .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
+  return CountryData.getCountryInstance(språk).filterByValueOnArray(landFilter);
 };

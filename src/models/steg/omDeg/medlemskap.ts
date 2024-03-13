@@ -19,7 +19,7 @@ export interface IUtenlandsopphold {
   erEøsLand: boolean;
   begrunnelse: ITekstFelt;
   personidentUtland?: ITekstFelt;
-  harPersonidentUtland: boolean;
+  kanIkkeOppgiPersonident?: boolean;
   adresseUtland?: ITekstFelt;
 }
 
@@ -34,4 +34,5 @@ export enum EMedlemskap {
 export interface ILandMedKode {
   id: string; // Bruker Alpha3 landkode som id
   svar_tekst: string;
+  erEøsland: boolean;
 }

@@ -1,262 +1,254 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import classnames from 'classnames';
 import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import {hentTittelMedNr} from '../../../../language/utils';
+import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
-import {hentTekst} from '../../../../utils/søknad';
+import { hentTekst } from '../../../../utils/søknad';
 import {
-    ILandMedKode,
-    IUtenlandsopphold,
+  ILandMedKode,
+  IUtenlandsopphold,
 } from '../../../../models/steg/omDeg/medlemskap';
-import {erPeriodeDatoerValgt} from '../../../../helpers/steg/omdeg';
-import {EPeriode} from '../../../../models/felles/periode';
+import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
+import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components';
 import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
-import {DatoBegrensning} from '../../../../components/dato/Datovelger';
-import {erPeriodeGyldigOgInnaforBegrensninger} from '../../../../components/dato/utils';
-import {useLokalIntlContext} from '../../../../context/LokalIntlContext';
-import {Heading, Textarea} from '@navikt/ds-react';
+import { DatoBegrensning } from '../../../../components/dato/Datovelger';
+import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
+import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
+import { Heading, Textarea } from '@navikt/ds-react';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
-import {ISpørsmål, ISvar} from '../../../../models/felles/spørsmålogsvar';
-import {utenlandsoppholdLand} from './MedlemskapConfig';
-import {TextFieldMedBredde} from "../../../../components/TextFieldMedBredde";
-import TextFieldMedReadmore from "../../../../components/TextFieldMedReadmore";
-import {ITekstFelt} from "../../../../models/søknad/søknadsfelter";
-
+import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
+import { utenlandsoppholdLand } from './MedlemskapConfig';
+import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
+import EøsIdent from '../../../../components/EøsIdent';
+import { ITekstFelt } from '../../../../models/søknad/søknadsfelter';
+import { stringHarVerdiOgErIkkeTom } from '../../../../utils/typer';
 
 const StyledTextarea = styled(Textarea)`
-    width: 100%;
+  width: 100%;
 `;
 
 const StyledPeriodeDatovelgere = styled(PeriodeDatovelgere)`
-    padding-bottom: 0;
+  padding-bottom: 0;
 `;
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 `;
 
 interface Props {
-    perioderBoddIUtlandet: IUtenlandsopphold[];
-    settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
-    utenlandsopphold: IUtenlandsopphold;
-    oppholdsnr: number;
-    land: ILandMedKode[];
-    eøsLand: ILandMedKode[];
+  perioderBoddIUtlandet: IUtenlandsopphold[];
+  settPeriodeBoddIUtlandet: (periodeBoddIUtlandet: IUtenlandsopphold[]) => void;
+  utenlandsopphold: IUtenlandsopphold;
+  oppholdsnr: number;
+  land: ILandMedKode[];
 }
 const Utenlandsopphold: FC<Props> = ({
-                                         perioderBoddIUtlandet,
-                                         settPeriodeBoddIUtlandet,
-                                         oppholdsnr,
-                                         utenlandsopphold,
-                                         land,
-                                         eøsLand,
-                                     }) => {
-    const {periode, begrunnelse, personidentUtland, adresseUtland} = utenlandsopphold;
-    const intl = useLokalIntlContext();
-    const periodeTittel = hentTittelMedNr(
-        perioderBoddIUtlandet!,
-        oppholdsnr,
-        intl.formatMessage({
-            id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
-        })
+  perioderBoddIUtlandet,
+  settPeriodeBoddIUtlandet,
+  oppholdsnr,
+  utenlandsopphold,
+  land,
+}) => {
+  const { periode, begrunnelse, personidentUtland, adresseUtland } =
+    utenlandsopphold;
+  const intl = useLokalIntlContext();
+  const periodeTittel = hentTittelMedNr(
+    perioderBoddIUtlandet!,
+    oppholdsnr,
+    intl.formatMessage({
+      id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
+    })
+  );
+  const begrunnelseTekst = intl.formatMessage({
+    id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
+  });
+  const sisteAdresseTekst = intl.formatMessage({
+    id: 'medlemskap.periodeBoddIUtlandet.sisteAdresse',
+  });
+
+  const landConfig = utenlandsoppholdLand(land);
+
+  const tekstMedLandVerdi = (tekst: string): string => {
+    if (utenlandsopphold.land) {
+      return tekst + ' ' + utenlandsopphold.land.verdi;
+    }
+    return '';
+  };
+
+  const fjernUtenlandsperiode = () => {
+    if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
+      const utenlandsopphold = perioderBoddIUtlandet?.filter(
+        (periode, index) => index !== oppholdsnr
+      );
+      settPeriodeBoddIUtlandet(utenlandsopphold);
+    }
+  };
+
+  const settPeriode = (objektnøkkel: EPeriode, date?: string): void => {
+    const oppdatertUtenlandsopphold = {
+      ...utenlandsopphold,
+      periode: {
+        ...periode,
+        label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
+        [objektnøkkel]: {
+          label: hentTekst('periode.' + objektnøkkel, intl),
+          verdi: date ? date : '',
+        },
+      },
+    };
+
+    oppdaterUtenlandsopphold(oppdatertUtenlandsopphold);
+  };
+
+  const settLand = (spørsmål: ISpørsmål, svar: ISvar) => {
+    const oppdatertUtenlandsopphold = {
+      ...utenlandsopphold,
+      land: {
+        spørsmålid: spørsmål.søknadid,
+        svarid: svar.id,
+        label: intl.formatMessage({ id: spørsmål.tekstid }),
+        verdi: svar.svar_tekst,
+      },
+      erEøsLand: land.find((l) => l.id === svar.id)?.erEøsland || false,
+      personidentUtland: { label: '', verdi: '' },
+      adresseUtland: { label: '', verdi: '' },
+      kanIkkeOppgiPersonident: undefined,
+    };
+
+    oppdaterUtenlandsopphold(oppdatertUtenlandsopphold);
+  };
+
+  const settFeltNavn = (
+    e:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
+    feltnavn: string,
+    label: string
+  ): void => {
+    const oppdatertUtenlandsopphold: IUtenlandsopphold = {
+      ...utenlandsopphold,
+      [feltnavn]: { label: label, verdi: e.target.value },
+    };
+    oppdaterUtenlandsopphold(oppdatertUtenlandsopphold);
+  };
+
+  const oppdaterUtenlandsopphold = (
+    oppdatertUtenlandsopphold: IUtenlandsopphold
+  ) => {
+    const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
+      (utenlandsopphold, index) =>
+        index === oppholdsnr ? oppdatertUtenlandsopphold : utenlandsopphold
     );
-    const begrunnelseTekst = intl.formatMessage({
-        id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
-    });
-    const sisteAdresseTekst = intl.formatMessage({
-        id: 'medlemskap.periodeBoddIUtlandet.sisteAdresse',
-    });
+    settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
+  };
 
-    const landConfig = utenlandsoppholdLand(land);
-
-    const tekstMedLandVerdi = (tekst: string): string => {
-        for (let i = 0; i < perioderBoddIUtlandet.length; i++) {
-            const utenlandsopphold = perioderBoddIUtlandet[i];
-            if (i === oppholdsnr && utenlandsopphold.land !== undefined) {
-                return tekst + " " + utenlandsopphold.land.verdi;
-            }
-        }
-        return "";
-    };
-
-    const fjernUtenlandsperiode = () => {
-        if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
-            const utenlandsopphold = perioderBoddIUtlandet?.filter(
-                (periode, index) => index !== oppholdsnr
-            );
-            settPeriodeBoddIUtlandet(utenlandsopphold);
-        }
-    };
-
-    const settPeriode = (objektnøkkel: EPeriode, date?: string): void => {
-        const endretPeriodeIUtenlandsopphold = perioderBoddIUtlandet.map(
-            (utenlandsopphold, index) => {
-                if (index === oppholdsnr) {
-                    return {
-                        ...utenlandsopphold,
-                        periode: {
-                            ...periode,
-                            label: hentTekst('medlemskap.periodeBoddIUtlandet', intl),
-                            [objektnøkkel]: {
-                                label: hentTekst('periode.' + objektnøkkel, intl),
-                                verdi: date ? date : '',
-                            },
-                        },
-                    };
-                } else {
-                    return utenlandsopphold;
-                }
-            }
-        );
-        perioderBoddIUtlandet &&
-        endretPeriodeIUtenlandsopphold &&
-        settPeriodeBoddIUtlandet(endretPeriodeIUtenlandsopphold);
-    };
-
-    const settLand = (spørsmål: ISpørsmål, svar: ISvar) => {
-        const periodeMedNyttLand = perioderBoddIUtlandet.map(
-            (utenlandsopphold, index) => {
-                if (index === oppholdsnr) {
-                    return {
-                        ...utenlandsopphold,
-                        land: {
-                            spørsmålid: spørsmål.søknadid,
-                            svarid: svar.id,
-                            label: intl.formatMessage({id: spørsmål.tekstid}),
-                            verdi: svar.svar_tekst,
-                        },
-                        erEøsLand: erEøsLand(svar.id),
-                        personidentUtland: {label: '', verdi: ''},
-                        adresseUtland: {label: '', verdi: ''},
-                        harPersonIdentUtland: true,
-                    };
-                } else {
-                    return utenlandsopphold;
-                }
-            }
-        );
-        perioderBoddIUtlandet && settPeriodeBoddIUtlandet(periodeMedNyttLand);
-    };
-
-    const settFeltNavn = (
-        e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, feltnavn: string, label: string,
-    ): void => {
-        const perioderMedUtenlandskPersonId = perioderBoddIUtlandet.map(
-            (utenlandsopphold, index) => {
-                if (index === oppholdsnr && utenlandsopphold.land !== undefined) {
-                    return {
-                        ...utenlandsopphold,
-                        [feltnavn]: {label: label, verdi: e.target.value},
-                    };
-                } else {
-                    return utenlandsopphold;
-                }
-            }
-        );
-        perioderBoddIUtlandet &&
-        settPeriodeBoddIUtlandet(perioderMedUtenlandskPersonId);
-    };
-
-    const erEøsLand = (landId: string): boolean => {
-        return eøsLand.some(land => land.id === landId);
-    }
-
-    const harVerdi = (tekstfelt?: ITekstFelt): boolean => {
-        return tekstfelt !== undefined && tekstfelt.verdi.trim() !== '';
-    }
-
-    const harPersonIdentUtland = (utenlandsopphold?: IUtenlandsopphold): boolean => {
-        return (utenlandsopphold?.harPersonidentUtland !== undefined) && utenlandsopphold.harPersonidentUtland;
-    }
-
-    const skalVisePersonidentTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
-        return utenlandsopphold.land
-            && (harVerdi(utenlandsopphold.personidentUtland)
-                || (harVerdi(utenlandsopphold.begrunnelse)
-                    && erEøsLand(utenlandsopphold.land.svarid))
-            );
-    }
-
-    const skalViseAdresseTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
-        return utenlandsopphold.land
-            && erEøsLand(utenlandsopphold.land.svarid)
-            && ((harVerdi(utenlandsopphold.personidentUtland)
-                && harPersonIdentUtland(utenlandsopphold))
-                || !harPersonIdentUtland(utenlandsopphold));
-    }
-
+  const skalVisePersonidentTekstfelt = (
+    utenlandsopphold: IUtenlandsopphold
+  ) => {
     return (
-        <Container aria-live="polite">
-            <TittelOgSlettKnapp>
-                <Heading size="small" level="3" className={'tittel'}>
-                    {periodeTittel}
-                </Heading>
-                <SlettKnapp
-                    className={classnames('slettknapp', {
-                        kunEn: perioderBoddIUtlandet?.length === 1,
-                    })}
-                    onClick={() => fjernUtenlandsperiode()}
-                    tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
-                />
-            </TittelOgSlettKnapp>
-
-            <StyledPeriodeDatovelgere
-                className={'periodegruppe'}
-                settDato={settPeriode}
-                periode={utenlandsopphold.periode}
-                tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
-                datobegrensning={DatoBegrensning.TidligereDatoer}
-            />
-            <SelectSpørsmål
-                spørsmål={landConfig}
-                settSpørsmålOgSvar={settLand}
-                valgtSvarId={perioderBoddIUtlandet[oppholdsnr].land?.svarid}
-                skalLogges={false}
-            />
-            {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
-                erPeriodeGyldigOgInnaforBegrensninger(
-                    utenlandsopphold.periode,
-                    DatoBegrensning.TidligereDatoer
-                ) &&
-                utenlandsopphold.land?.hasOwnProperty('verdi') && (
-                    <StyledTextarea
-                        label={begrunnelseTekst}
-                        placeholder={'...'}
-                        value={begrunnelse.verdi}
-                        maxLength={1000}
-                        autoComplete={'off'}
-                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                            settFeltNavn(e, "begrunnelse", begrunnelseTekst)
-                        }
-                    />
-                )}
-
-            {utenlandsopphold.land && skalVisePersonidentTekstfelt(utenlandsopphold) &&
-                <TextFieldMedReadmore
-                    halvåpenTekstid={hentTekst('medlemskap.hjelpetekst-åpne.begrunnelse', intl)}
-                    åpneTekstid={hentTekst('medlemskap.hjelpetekst-innhold.begrunnelse', intl)}
-                    land={utenlandsopphold.land}
-                    perioderBoddIUtlandet={perioderBoddIUtlandet}
-                    settPeriodeBoddIUtlandet={settPeriodeBoddIUtlandet}
-                    oppholdsnr={oppholdsnr}
-                />
-            }
-            {utenlandsopphold.land && skalViseAdresseTekstfelt(utenlandsopphold) &&
-                <TextFieldMedBredde
-                    className={'inputfelt-tekst'}
-                    key={'navn'}
-                    label={tekstMedLandVerdi(sisteAdresseTekst)}
-                    type="text"
-                    bredde={'L'}
-                    onChange={(e) => settFeltNavn(e, "adresseUtland", tekstMedLandVerdi(sisteAdresseTekst))}
-                    value={adresseUtland?.verdi}
-                />
-            }
-        </Container>
+      utenlandsopphold.land &&
+      utenlandsopphold.erEøsLand &&
+      stringHarVerdiOgErIkkeTom(utenlandsopphold.begrunnelse.verdi)
     );
+  };
+
+  const skalViseAdresseTekstfelt = (utenlandsopphold: IUtenlandsopphold) => {
+    return (
+      skalVisePersonidentTekstfelt(utenlandsopphold) &&
+      (stringHarVerdiOgErIkkeTom(
+        utenlandsopphold.personidentUtland?.verdi.trim()
+      ) ||
+        utenlandsopphold.kanIkkeOppgiPersonident)
+    );
+  };
+
+  return (
+    <Container aria-live="polite">
+      <TittelOgSlettKnapp>
+        <Heading size="small" level="3" className={'tittel'}>
+          {periodeTittel}
+        </Heading>
+        <SlettKnapp
+          className={classnames('slettknapp', {
+            kunEn: perioderBoddIUtlandet?.length === 1,
+          })}
+          onClick={() => fjernUtenlandsperiode()}
+          tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
+        />
+      </TittelOgSlettKnapp>
+
+      <StyledPeriodeDatovelgere
+        className={'periodegruppe'}
+        settDato={settPeriode}
+        periode={utenlandsopphold.periode}
+        tekst={hentTekst('medlemskap.periodeBoddIUtlandet', intl)}
+        datobegrensning={DatoBegrensning.TidligereDatoer}
+      />
+      <SelectSpørsmål
+        spørsmål={landConfig}
+        settSpørsmålOgSvar={settLand}
+        valgtSvarId={perioderBoddIUtlandet[oppholdsnr].land?.svarid}
+        skalLogges={false}
+      />
+      {erPeriodeDatoerValgt(utenlandsopphold.periode) &&
+        erPeriodeGyldigOgInnaforBegrensninger(
+          utenlandsopphold.periode,
+          DatoBegrensning.TidligereDatoer
+        ) &&
+        utenlandsopphold.land?.hasOwnProperty('verdi') && (
+          <StyledTextarea
+            label={begrunnelseTekst}
+            placeholder={'...'}
+            value={begrunnelse.verdi}
+            maxLength={1000}
+            autoComplete={'off'}
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+              settFeltNavn(e, 'begrunnelse', begrunnelseTekst)
+            }
+          />
+        )}
+
+      {utenlandsopphold.land &&
+        skalVisePersonidentTekstfelt(utenlandsopphold) && (
+          <EøsIdent
+            halvåpenTekstid={hentTekst(
+              'medlemskap.hjelpetekst-åpne.begrunnelse',
+              intl
+            )}
+            åpneTekstid={hentTekst(
+              'medlemskap.hjelpetekst-innhold.begrunnelse',
+              intl
+            )}
+            land={utenlandsopphold.land}
+            utenlandsopphold={utenlandsopphold}
+            settUtenlandsopphold={(oppdatertUtenlandsopphold) =>
+              oppdaterUtenlandsopphold(oppdatertUtenlandsopphold)
+            }
+            oppholdsnr={oppholdsnr}
+          />
+        )}
+      {skalViseAdresseTekstfelt(utenlandsopphold) && (
+        <TextFieldMedBredde
+          className={'inputfelt-tekst'}
+          key={'navn'}
+          label={tekstMedLandVerdi(sisteAdresseTekst)}
+          type="text"
+          bredde={'L'}
+          onChange={(e) =>
+            settFeltNavn(
+              e,
+              'adresseUtland',
+              tekstMedLandVerdi(sisteAdresseTekst)
+            )
+          }
+          value={adresseUtland?.verdi}
+        />
+      )}
+    </Container>
+  );
 };
 
 export default Utenlandsopphold;

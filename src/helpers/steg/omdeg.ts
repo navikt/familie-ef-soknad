@@ -8,7 +8,7 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
-import {IDatoFelt, ITekstFelt} from '../../models/søknad/søknadsfelter';
+import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
 import {
   erSøkerGift,
   erSøkerUGiftSkiltSeparertEllerEnke,
@@ -17,6 +17,7 @@ import { ISøker } from '../../models/søknad/person';
 import { ISøknad } from '../../models/søknad/søknad';
 import { ISøknad as ISøknadBT } from '../../barnetilsyn/models/søknad';
 import { ISøknad as ISøknadSK } from '../../skolepenger/models/søknad';
+import { stringHarVerdiOgErIkkeTom } from '../../utils/typer';
 
 export const hentSivilstatus = (statuskode?: string) => {
   switch (statuskode) {
@@ -99,10 +100,6 @@ export const erPeriodeDatoerValgt = (periode: IPeriode) => {
   return fom && tom;
 };
 
-const tomtTekstfelt = (tomVerdi?: ITekstFelt): boolean => {
-    return tomVerdi === undefined || tomVerdi.verdi.trim() === '';
-}
-
 const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
   const { søkerBosattINorgeSisteTreÅr, perioderBoddIUtlandet } = medlemskap;
 
@@ -114,12 +111,14 @@ const erMedlemskapSpørsmålBesvart = (medlemskap: IMedlemskap): boolean => {
           !utenlandsopphold.begrunnelse ||
           utenlandsopphold.periode.fra.verdi === '' ||
           utenlandsopphold.periode.til.verdi === '' ||
-            (utenlandsopphold.erEøsLand
-                && ((utenlandsopphold.harPersonidentUtland && (tomtTekstfelt(utenlandsopphold.personidentUtland)
-                  || tomtTekstfelt(utenlandsopphold.adresseUtland)))
-                || !utenlandsopphold.harPersonidentUtland && tomtTekstfelt(utenlandsopphold.adresseUtland))
-
-            )
+          (utenlandsopphold.erEøsLand &&
+            (!stringHarVerdiOgErIkkeTom(
+              utenlandsopphold.adresseUtland?.verdi
+            ) ||
+              (utenlandsopphold.kanIkkeOppgiPersonident !== true &&
+                !stringHarVerdiOgErIkkeTom(
+                  utenlandsopphold.personidentUtland?.verdi
+                )))) // TODO: Refaktorer hele funksjonen
       );
 
     return søkerBosattINorgeSisteTreÅr?.verdi === false
