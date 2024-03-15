@@ -9,7 +9,6 @@ import {
   bosattINorgeDeSisteFemÅr,
   søkersOppholdsland,
   hentLand,
-  hentEØSLand,
 } from './MedlemskapConfig';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
 import JaNeiSpørsmål from '../../../../components/spørsmål/JaNeiSpørsmål';
