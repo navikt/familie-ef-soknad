@@ -39,6 +39,10 @@ TOKENX_DOKUMENT=...
 
 Hvis testcafe ikke er installert, kjør en `npm install` ev. installer testcafe globalt hos deg `npm install -g testcafe`
 
+## Testing
+Appen benytter [vitest](https://vitest.dev/) til enhetstesting. Legg gjerne til nye tester etter oppdateringer av appen.
+For å kjøre opp tester lokalt kan man kjøre `npm run test`. For å kjøre opp testene i interaktiv modus kan man kjøre `npm run vitest`.
+
 ## Tekstinnhold
 I appen har vi tekstinnhold på norsk bokmål, engelsk og nynorsk. 
 Ønsker du å legge til eller redigere på en tekst, skal dette gjøres i exceldokumentet "EF Tekstinnhold App Søknadsdialog" som du finner på Teams under Team Familie > Enslig forsørger > Filer > Søknadsdialog > "EF Tekstinnhold App Søknadsdialog". 

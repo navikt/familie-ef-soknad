@@ -55,15 +55,6 @@ const OmDeg: FC = () => {
     });
   };
 
-  const settSøker = (søker: ISøker) => {
-    settSøknad((prevSoknad: ISøknad) => {
-      return {
-        ...prevSoknad,
-        person: { ...søknad.person, søker: søker },
-      };
-    });
-  };
-
   const settSøkerBorPåRegistrertAdresse = (
     søkerBorPåRegistrertAdresse: ISpørsmålBooleanFelt
   ) => {
@@ -99,7 +90,7 @@ const OmDeg: FC = () => {
   };
 
   const erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søker, søknad);
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søknad);
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     søknad.sivilstatus,
