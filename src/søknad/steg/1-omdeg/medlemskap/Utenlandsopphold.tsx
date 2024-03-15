@@ -157,7 +157,7 @@ const Utenlandsopphold: FC<Props> = ({
     return (
       skalVisePersonidentTekstfelt(utenlandsopphold) &&
       (stringHarVerdiOgErIkkeTom(
-        utenlandsopphold.personidentEøsLand?.verdi.trim()
+        utenlandsopphold.personidentEøsLand?.verdi?.trim()
       ) ||
         utenlandsopphold.kanIkkeOppgiPersonident)
     );
@@ -220,7 +220,6 @@ const Utenlandsopphold: FC<Props> = ({
               'medlemskap.hjelpetekst-innhold.begrunnelse',
               intl
             )}
-            land={utenlandsopphold.land}
             utenlandsopphold={utenlandsopphold}
             settUtenlandsopphold={(oppdatertUtenlandsopphold) =>
               oppdaterUtenlandsopphold(oppdatertUtenlandsopphold)

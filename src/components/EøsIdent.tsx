@@ -3,13 +3,11 @@ import { Checkbox, Label, ReadMore } from '@navikt/ds-react';
 import { TextFieldMedBredde } from './TextFieldMedBredde';
 import { hentTekst } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
-import { ISpørsmålFelt } from '../models/søknad/søknadsfelter';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 
 interface Props {
   halvåpenTekstid: string;
   åpneTekstid: string;
-  land: ISpørsmålFelt;
   utenlandsopphold: IUtenlandsopphold;
   settUtenlandsopphold: (utenlandsopphold: IUtenlandsopphold) => void;
   oppholdsnr: number;
@@ -18,15 +16,13 @@ interface Props {
 const EøsIdent: React.FC<Props> = ({
   halvåpenTekstid,
   åpneTekstid,
-  land,
   utenlandsopphold,
   settUtenlandsopphold,
-  oppholdsnr,
 }) => {
   const intl = useLokalIntlContext();
 
   const hentTekstMedLandverdi = (tekst: string) => {
-    return hentTekst(tekst, intl) + ' ' + land.verdi;
+    return hentTekst(tekst, intl) + ' ' + utenlandsopphold.land?.verdi;
   };
 
   const tekstMedLandVerdi =
