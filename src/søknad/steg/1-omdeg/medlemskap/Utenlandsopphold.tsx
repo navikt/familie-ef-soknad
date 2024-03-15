@@ -21,7 +21,6 @@ import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utenlandsoppholdLand } from './MedlemskapConfig';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 import EøsIdent from '../../../../components/EøsIdent';
-import { ITekstFelt } from '../../../../models/søknad/søknadsfelter';
 import { stringHarVerdiOgErIkkeTom } from '../../../../utils/typer';
 
 const StyledTextarea = styled(Textarea)`

@@ -25,8 +25,7 @@ const PeriodeBoddIUtlandet: FC<{
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
     periode: tomPeriode,
-    erEøsLand: false,
-    kanIkkeOppgiPersonident: true,
+    erEøsLand: true,
     begrunnelse: {
       label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),
       verdi: '',
