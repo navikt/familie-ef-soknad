@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Checkbox, Label, ReadMore } from '@navikt/ds-react';
 import { TextFieldMedBredde } from './TextFieldMedBredde';
 import { hentTekst } from '../utils/søknad';
@@ -10,7 +10,6 @@ interface Props {
   åpneTekstid: string;
   utenlandsopphold: IUtenlandsopphold;
   settUtenlandsopphold: (utenlandsopphold: IUtenlandsopphold) => void;
-  oppholdsnr: number;
 }
 
 const EøsIdent: React.FC<Props> = ({

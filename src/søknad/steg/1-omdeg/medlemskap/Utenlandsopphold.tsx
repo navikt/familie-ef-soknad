@@ -224,7 +224,6 @@ const Utenlandsopphold: FC<Props> = ({
             settUtenlandsopphold={(oppdatertUtenlandsopphold) =>
               oppdaterUtenlandsopphold(oppdatertUtenlandsopphold)
             }
-            oppholdsnr={oppholdsnr}
           />
         )}
       {skalViseAdresseTekstfelt(utenlandsopphold) && (
