@@ -87,7 +87,7 @@ const OmDeg: FC = () => {
   };
 
   const erSøkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring =
-    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søker, søknad);
+    søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring(søknad);
 
   const erAlleSpørsmålBesvart = erStegFerdigUtfylt(
     sivilstatus,

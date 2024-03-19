@@ -13,13 +13,14 @@ jobs:
           node-version: '18'
           cache: npm
           registry-url: "https://npm.pkg.github.com"
-      - name: Build and test
+      - name: Npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
-        run: |
-          npm ci
-          npm run test-ci
-          npm run build
+        run: npm ci
+      - name: Npm run test
+        run: npm run test
+      - name: Npm run build
+        run: npm run build
       - name: Npm build server
         working-directory: ./server
         env:
