@@ -8,7 +8,7 @@
     "build:dev": "tsc & NODE_ENV=development PUBLIC_URL=/familie/alene-med-barn/soknad webpack --config ./config/webpack.run.js",
     "start": "npm run build:dev-server && NODE_ENV=development ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
     "start:preprod": "npm run build:dev-server && NODE_ENV=development BRUK_DEV_API=true ENV=localhost PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
-    "start:mock": "NODE_ENV=development BRUK_MOCK_LOKALT=true PUBLIC_URL=/familie/alene-med-barn/soknad node dev-server/dev-server.js",
+    "start:mock": "npm run build:dev-server && NODE_ENV=development ENV=localhost BRUK_MOCK_LOKALT=true PUBLIC_URL=/familie/alene-med-barn/soknad node --es-module-specifier-resolution=node --trace-deprecation server/build/server-lokal.js",
     "test": "vitest run",
     "vitest": "vitest",
     "build:dev-server": "cd server && tsc --build --verbose && cd ..",

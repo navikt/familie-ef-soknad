@@ -48,16 +48,6 @@ const Environment = (): EnvironmentProps => {
       miljø: 'production',
       modellVersjon: modellVersjon,
     };
-  } else if (erLokaltMedMock()) {
-    return {
-      veiviserUrl: '',
-      apiProxyUrl: '',
-      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
-      dokumentProxyUrl: `/api/dokument`,
-      mellomlagerProxyUrl: `/api/mellomlager/`,
-      miljø: 'local',
-      modellVersjon: modellVersjon,
-    };
   } else if (erLokaltMotPreprod()) {
     return {
       veiviserUrl: '',
@@ -72,7 +62,7 @@ const Environment = (): EnvironmentProps => {
     return {
       veiviserUrl: '',
       apiProxyUrl: 'http://localhost:3000/familie/alene-med-barn/soknad/api',
-      wonderwallUrl: `http://localhost:8091/local/cookie?subject=21057822284&issuerId=tokenx&audience=familie-app&redirect=`, // forventet i api ved innsending (local) - syntetisk fnr
+      wonderwallUrl: '',
       dokumentProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/mapper/ANYTHING`,
       mellomlagerProxyUrl: `http://localhost:3000/familie/alene-med-barn/soknad/dokument/api/soknad/`,
       miljø: 'local',
