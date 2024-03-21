@@ -251,7 +251,12 @@ export default {
   'medlemskap.spm.bosatt': 'Have you lived in Norway for the past five years?',
 
   'medlemskap.periodeBoddIUtlandet.utenlandsopphold': 'Period spent abroad ',
-
+  'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer': 'What is your ID number in',
+  'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer': 'I do not have an ID number in',
+  'medlemskap.hjelpetekst-åpne.begrunnelse': 'The reason we ask about this',
+  'medlemskap.hjelpetekst-innhold.begrunnelse':
+      'When you have stayed in another EEA country during the last 5 years, we sometimes need to obtain information from that country. This is because we need information to assess whether you are entitled to benefits.',
+  'medlemskap.periodeBoddIUtlandet.sisteAdresse': 'What is the last address you lived at in',
   'medlemskap.periodeBoddIUtlandet.slett': 'Remove period spent abroad',
   'medlemskap.periodeBoddIUtlandet': 'When did you live overseas?',
   'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
