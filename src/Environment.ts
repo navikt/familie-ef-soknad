@@ -48,16 +48,6 @@ const Environment = (): EnvironmentProps => {
       miljø: 'production',
       modellVersjon: modellVersjon,
     };
-  } else if (erLokaltMedMock()) {
-    return {
-      veiviserUrl: '',
-      apiProxyUrl: '',
-      wonderwallUrl: '',
-      dokumentProxyUrl: `/api/dokument`,
-      mellomlagerProxyUrl: `/api/mellomlager/`,
-      miljø: 'local',
-      modellVersjon: modellVersjon,
-    };
   } else if (erLokaltMotPreprod()) {
     return {
       veiviserUrl: '',

@@ -37,7 +37,7 @@ app.post('/api/soknad', (req, res) => {
 
 let mellomlager = {};
 
-app.get('/api/mellomlager/:stonadstype', (req, res) => {
+app.get('/api/soknad/:stonadstype', (req, res) => {
   const stonadstype = req.params.stonadstype;
   const mellomlagretData = mellomlager[stonadstype];
   if (mellomlagretData) {
@@ -51,16 +51,16 @@ app.get('/api/mellomlager/:stonadstype', (req, res) => {
   }
 });
 
-app.post('/api/mellomlager/:stonadstype', (req, res) => {
+app.post('/api/soknad/:stonadstype', (req, res) => {
   mellomlager[req.params.stonadstype] = req.body;
   res.status(200).json({});
 });
 
-app.delete('/api/mellomlager/:stonadstype', (req, res) => {
+app.delete('/api/soknad/:stonadstype', (req, res) => {
   delete mellomlager[req.params.stonadstype];
   res.status(200).json({});
 });
-app.post('/api/dokument', (req, res) => {
+app.post('/api/mapper/:noe', (req, res) => {
   res.status(200).json({
     dokumentId: new Date().toISOString(),
     filnavn: `filnavn-${new Date().toISOString()}`,

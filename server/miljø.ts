@@ -3,6 +3,13 @@ import 'dotenv/config';
 
 const brukDevApi = process.env.BRUK_DEV_API === 'true';
 const erLokalt = process.env.ENV === 'localhost';
+const erMockLokalt = process.env.BRUK_MOCK_LOKALT === 'true';
+const lokaltMockMiljø = {
+  dokumentUrl: 'http://localhost:8092',
+  apiUrl: 'http://localhost:8092',
+  oauthCallbackUri:
+    'https://localhost:8080/familie/alene-med-barn/soknad/oauth2/callback',
+};
 const lokaltMiljø = {
   dokumentUrl: brukDevApi
     ? 'https://familie-dokument.intern.dev.nav.no/familie/dokument'
@@ -29,6 +36,9 @@ const prodMiljø = {
 };
 
 const initierMiljøvariabler = () => {
+  if (erMockLokalt) {
+    return lokaltMockMiljø;
+  }
   switch (process.env.ENV) {
     case 'localhost':
       return lokaltMiljø;
