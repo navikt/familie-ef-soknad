@@ -69,9 +69,9 @@ const Utenlandsopphold: FC<Props> = ({
 
   const landConfig = utenlandsoppholdLand(land);
 
-  const tekstMedLandVerdi = (tekst: string): string => {
+  const tekstMedLandVerdi = (tekst: string, spørsmålstegn: boolean): string => {
     if (utenlandsopphold.land) {
-      return tekst + ' ' + utenlandsopphold.land.verdi;
+      return tekst + ' ' + utenlandsopphold.land.verdi + '?';
     }
     return '';
   };
@@ -198,7 +198,7 @@ const Utenlandsopphold: FC<Props> = ({
         ) &&
         utenlandsopphold.land?.hasOwnProperty('verdi') && (
           <StyledTextarea
-            label={begrunnelseTekst}
+            label={tekstMedLandVerdi(begrunnelseTekst, true)}
             placeholder={'...'}
             value={begrunnelse.verdi}
             maxLength={1000}
@@ -230,14 +230,14 @@ const Utenlandsopphold: FC<Props> = ({
         <TextFieldMedBredde
           className={'inputfelt-tekst'}
           key={'navn'}
-          label={tekstMedLandVerdi(sisteAdresseTekst)}
+          label={tekstMedLandVerdi(sisteAdresseTekst, true)}
           type="text"
           bredde={'L'}
           onChange={(e) =>
             settFeltNavn(
               e,
               'adresseEøsLand',
-              tekstMedLandVerdi(sisteAdresseTekst)
+              tekstMedLandVerdi(sisteAdresseTekst, false)
             )
           }
           value={adresseEøsLand?.verdi}
