@@ -179,8 +179,7 @@ export default {
   'medlemskap.periodeBoddIUtlandet.sisteAdresse':
     'Hva er den siste adressen du bodde på i',
   'medlemskap.periodeBoddIUtlandet.land': 'I hvilket land oppholdt du deg i?',
-  'medlemskap.periodeBoddIUtlandet.begrunnelse':
-    'Hvorfor oppholdt du deg i utlandet?',
+  'medlemskap.periodeBoddIUtlandet.begrunnelse': 'Hvorfor oppholdt du deg i',
   'medlemskap.periodeBoddIUtlandet.flereutenlandsopphold':
     'Har du hatt flere utenlandsopphold de siste 5 årene?',
   'medlemskap.periodeBoddIUtlandet.knapp': 'Legg til et utenlandsopphold',
