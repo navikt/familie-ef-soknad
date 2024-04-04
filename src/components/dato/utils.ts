@@ -39,6 +39,20 @@ export const erDatoInnaforBegrensinger = (
         strengTilDato(dato) >= subYears(dagensDato, 100) &&
         strengTilDato(dato) <= addMonths(dagensDato, 6)
       );
+
+    case DatoBegrensning.FemÅrTidligereOgSeksMånederFrem:
+      return (
+        dato !== '' &&
+        strengTilDato(dato) >= subYears(dagensDato, 5) &&
+        strengTilDato(dato) <= addMonths(dagensDato, 6)
+      );
+
+    case DatoBegrensning.FemtiÅrTidligereOgSeksMånederFrem:
+      return (
+        dato !== '' &&
+        strengTilDato(dato) >= subYears(dagensDato, 50) &&
+        strengTilDato(dato) <= addMonths(dagensDato, 6)
+      );
   }
 };
 
