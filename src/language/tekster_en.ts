@@ -177,6 +177,7 @@ export default {
     'What is your ID number in',
   'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer':
     'I do not have an ID number in',
+  'medlemskap.hjelpetekst-åpne.begrunnelse': 'The reason we ask about this',
   'medlemskap.hjelpetekst-innhold.begrunnelse':
     'When you have stayed in another EEA country during the last 5 years, we sometimes need to obtain information from that country. This is because we need information to assess whether you are entitled to benefits.',
   'medlemskap.periodeBoddIUtlandet.sisteAdresse':
