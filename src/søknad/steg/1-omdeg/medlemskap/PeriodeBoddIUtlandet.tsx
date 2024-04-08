@@ -25,6 +25,7 @@ const PeriodeBoddIUtlandet: FC<{
   const tomtUtenlandsopphold: IUtenlandsopphold = {
     id: hentUid(),
     periode: tomPeriode,
+    erEøsLand: true,
     begrunnelse: {
       label: hentTekst('medlemskap.periodeBoddIUtlandet.begrunnelse', intl),
       verdi: '',
@@ -33,7 +34,7 @@ const PeriodeBoddIUtlandet: FC<{
   const [perioderBoddIUtlandet, settPerioderBoddIUtlandet] = useState<
     IUtenlandsopphold[]
   >(
-      medlemskap?.perioderBoddIUtlandet &&
+    medlemskap?.perioderBoddIUtlandet &&
       medlemskap.perioderBoddIUtlandet.length > 0
       ? medlemskap.perioderBoddIUtlandet
       : [tomtUtenlandsopphold]
