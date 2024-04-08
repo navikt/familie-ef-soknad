@@ -13,7 +13,7 @@ import {
   addYears,
   subYears,
 } from 'date-fns';
-import subMonths from 'date-fns/subMonths';
+import { subMonths } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
 import { DatoBegrensning } from '../components/dato/Datovelger';
