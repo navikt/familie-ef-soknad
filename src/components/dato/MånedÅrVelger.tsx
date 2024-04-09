@@ -38,7 +38,6 @@ const MånedÅrVelger: React.FC<Props> = ({
     onMonthChange: handleSettDato,
     fromDate: begrensninger?.minDate,
     toDate: begrensninger?.maxDate,
-    openOnFocus: false,
   });
 
   return (
