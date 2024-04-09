@@ -45,7 +45,9 @@ const MånedÅrVelger: React.FC<Props> = ({
       {...monthpickerProps}
       id={datolabelid}
       locale={locale}
-      dropdownCaption={true}
+      dropdownCaption={
+        begrensninger.minDate && begrensninger.maxDate ? true : false
+      }
       fromDate={begrensninger?.minDate}
       toDate={begrensninger?.maxDate}
     >
