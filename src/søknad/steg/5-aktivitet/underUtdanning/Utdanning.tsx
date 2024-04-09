@@ -121,7 +121,7 @@ const Utdanning: React.FC<Props> = ({
             periode={utdanning.periode ? utdanning.periode : tomPeriode}
             settDato={settPeriode}
             aria-live="polite"
-            datobegrensing={DatoBegrensning.TidligereDatoer}
+            datobegrensing={DatoBegrensning.FemtiÅrTidligereOgSeksMånederFrem}
           />
         </KomponentGruppe>
       )}
