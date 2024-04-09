@@ -12,6 +12,8 @@ export enum DatoBegrensning {
   FremtidigeDatoer = 'FremtidigeDatoer',
   TidligereDatoer = 'TidligereDatoer',
   TidligereDatoerOgSeksMånederFrem = 'TidligereDatoerOgSeksMånederFrem',
+  FemÅrTidligereOgSeksMånederFrem = 'FemÅrTidligereOgSeksMånederFrem',
+  FemtiÅrTidligereOgSeksMånederFrem = 'FemtiÅrTidligereOgSeksMånederFrem',
 }
 
 interface Props {
@@ -81,6 +83,16 @@ const Datovelger: React.FC<Props> = ({
       case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
         return {
           minDato: formatIsoDate(subYears(dagensDato, 100)),
+          maksDato: formatIsoDate(addMonths(dagensDato, 6)),
+        };
+      case DatoBegrensning.FemÅrTidligereOgSeksMånederFrem:
+        return {
+          minDato: formatIsoDate(subYears(dagensDato, 5)),
+          maksDato: formatIsoDate(addMonths(dagensDato, 6)),
+        };
+      case DatoBegrensning.FemtiÅrTidligereOgSeksMånederFrem:
+        return {
+          minDato: formatIsoDate(subYears(dagensDato, 50)),
           maksDato: formatIsoDate(addMonths(dagensDato, 6)),
         };
     }

@@ -41,7 +41,14 @@ const MånedÅrVelger: React.FC<Props> = ({
   });
 
   return (
-    <MonthPicker {...monthpickerProps} id={datolabelid} locale={locale}>
+    <MonthPicker
+      {...monthpickerProps}
+      id={datolabelid}
+      locale={locale}
+      dropdownCaption={true}
+      fromDate={begrensninger?.minDate}
+      toDate={begrensninger?.maxDate}
+    >
       <MonthPicker.Input
         {...inputProps}
         label={hentTekst(tekstid, intl)}
