@@ -17,6 +17,7 @@ import { subMonths } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
 import { DatoBegrensning } from '../components/dato/Datovelger';
+import { min } from 'lodash';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';
@@ -135,6 +136,18 @@ export const hentDatobegrensninger = (datobegrensning: DatoBegrensning) => {
     case DatoBegrensning.TidligereDatoerOgSeksMånederFrem:
       return {
         minDate: subYears(new Date(), 100),
+        maxDate: addMonths(new Date(), 6),
+      };
+
+    case DatoBegrensning.FemÅrTidligereOgSeksMånederFrem:
+      return {
+        minDate: subYears(new Date(), 5),
+        maxDate: addMonths(new Date(), 6),
+      };
+
+    case DatoBegrensning.FemtiÅrTidligereOgSeksMånederFrem:
+      return {
+        minDate: subYears(new Date(), 50),
         maxDate: addMonths(new Date(), 6),
       };
   }
