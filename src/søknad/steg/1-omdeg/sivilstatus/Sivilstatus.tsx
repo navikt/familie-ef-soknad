@@ -57,7 +57,6 @@ const Sivilstatus: React.FC<Props> = ({
         verdi: svar,
       },
     };
-    // TODO: Dersom man setter Ja og deretter Nei på _harSøktSeparasjon_ i en gjenbrukssøknad så kan man ikke sende inn, fordi datoen nulles ikke ut
     if (
       spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
       !skalGjenbrukeSøknad
