@@ -28,16 +28,13 @@ const restream = (proxyReq: ClientRequest, req: IncomingMessage) => {
 };
 
 export const doProxy = (targetUrl: string, context: string): RequestHandler => {
-  return createProxyMiddleware(context, {
+  return createProxyMiddleware({
     changeOrigin: true,
-    logLevel: 'info',
-    logProvider: () => {
-      return logger;
+    logger,
+    on: {
+      proxyReq: restream,
     },
-    onProxyReq: restream,
-    pathRewrite: (path: string) => {
-      return path.replace(context, '');
-    },
+    pathRewrite: (path: string) => path.replace(context, ''),
     secure: true,
     target: `${targetUrl}`,
   });
