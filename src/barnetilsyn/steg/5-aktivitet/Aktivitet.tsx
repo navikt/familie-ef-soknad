@@ -196,7 +196,7 @@ const Aktivitet: React.FC = () => {
           </KomponentGruppe>
         )}
 
-        {arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid.map(
+        {arbeidssituasjon.hvaErDinArbeidssituasjon?.svarid?.map(
           (svarid, index) => {
             const harValgtMinstEnAktivitet =
               hvaErDinArbeidssituasjon?.svarid.length !== 0;
