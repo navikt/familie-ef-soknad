@@ -44,6 +44,8 @@ const Sivilstatus: React.FC<Props> = ({
     sivilstatus;
   const { skalGjenbrukeSøknad } = useContext(GjenbrukContext);
 
+  const gjenbrukerSøknadOgHarUbesvartSeparsjonsspørsmål = () =>
+    skalGjenbrukeSøknad && sivilstatus.harSøktSeparasjon === undefined;
   const settSivilstatusFelt = (spørsmål: ISpørsmål, valgtSvar: ISvar) => {
     const spørsmålLabel = hentTekst(spørsmål.tekstid, intl);
     const svar: boolean = hentBooleanFraValgtSvar(valgtSvar);
@@ -59,7 +61,7 @@ const Sivilstatus: React.FC<Props> = ({
     };
     if (
       spørsmål.søknadid === ESivilstatusSøknadid.harSøktSeparasjon &&
-      !skalGjenbrukeSøknad
+      !gjenbrukerSøknadOgHarUbesvartSeparsjonsspørsmål()
     ) {
       datoSøktSeparasjon && delete nySivilstatus.datoSøktSeparasjon;
       datoFlyttetFraHverandre && delete nySivilstatus.datoFlyttetFraHverandre;
