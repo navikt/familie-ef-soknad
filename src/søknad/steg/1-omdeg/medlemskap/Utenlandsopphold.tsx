@@ -203,9 +203,11 @@ const Utenlandsopphold: FC<Props> = ({
             value={begrunnelse.verdi}
             maxLength={1000}
             autoComplete={'off'}
-            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-              settFeltNavn(e, 'begrunnelse', begrunnelseTekst)
-            }
+            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
+              if (e.target.value.length <= 1000) {
+                settFeltNavn(e, 'begrunnelse', begrunnelseTekst);
+              }
+            }}
           />
         )}
 
