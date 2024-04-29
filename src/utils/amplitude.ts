@@ -1,5 +1,5 @@
 import { ESkjemanavn, skjemanavnIdMapping } from './skjemanavn';
-import amplitude from 'amplitude-js';
+import * as amplitude from '@amplitude/analytics-browser';
 import { IDokumentasjon } from '../models/steg/dokumentasjon';
 
 export enum EEventsnavn {
@@ -8,19 +8,17 @@ export enum EEventsnavn {
   TomSøknad = 'Klikker på start tom søknad',
 }
 
-const amplitudeInstance = amplitude.getInstance();
-
-amplitudeInstance.init('default', '', {
-  apiEndpoint: 'amplitude.nav.no/collect-auto',
-  saveEvents: false,
-  includeUtm: true,
-  includeReferrer: true,
-  platform: window.location.toString(),
+amplitude.init('default', undefined, {
+  serverUrl: 'https://amplitude.nav.no/collect-auto',
+  defaultTracking: false,
+  ingestionMetadata: {
+    sourceName: window.location.toString(),
+  },
 });
 
 // eslint-disable-next-line
 export function logEvent(eventName: string, eventProperties: any) {
-  amplitudeInstance.logEvent(eventName, eventProperties);
+  amplitude.track(eventName, eventProperties);
 }
 
 export const logSpørsmålBesvart = (
