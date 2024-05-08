@@ -10,6 +10,9 @@ import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { getMessages } from '../language/utils';
 import { LocaleType } from '../language/typer';
 import { LokalIntlProvider } from './LokalIntlContext';
+import { useCookies } from 'react-cookie';
+
+const dekoratorLanguageCookieName = 'decorator-language';
 
 const SpråkContext = createContext<
   [LocaleType, Dispatch<SetStateAction<LocaleType>>]
@@ -20,9 +23,12 @@ const useSpråkContext = () => useContext(SpråkContext);
 const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const defaultSpråk = LocaleType.nb;
+  const [cookies] = useCookies([dekoratorLanguageCookieName]);
+  const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
+  const defaultSpråk = (dekoratørSpråk as LocaleType) ?? LocaleType.nb;
   const [locale, setLocale] = useState(defaultSpråk);
   const tekster = getMessages(locale);
+
   SpråkContext.displayName = 'SPRÅK_CONTEXT';
 
   useEffect(() => {
