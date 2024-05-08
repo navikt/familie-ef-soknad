@@ -38,6 +38,7 @@
     "@navikt/ds-tokens": "^6.6.1",
     "@navikt/fnrvalidator": "^2.0.7",
     "@navikt/land-verktoy": "4.0.1",
+    "@navikt/nav-dekoratoren-moduler": "^2.1.6",
     "@portabletext/react": "^3.0.18",
     "@sentry/browser": "^7.113.0",
     "@types/body-parser": "^1.19.5",
