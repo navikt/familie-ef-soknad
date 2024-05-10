@@ -1,5 +1,3 @@
-import FeltGruppe from '../components/gruppe/FeltGruppe';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { isIE } from 'react-device-detect';
 import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
@@ -24,10 +22,6 @@ export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
 
   return (
     <>
-      <FeltGruppe>
-        <Språkvelger />
-      </FeltGruppe>
-
       <Seksjon>
         <Tekst tekst="forside.overgangsstønad.erDuEnsligMorEllerFar" />
         <Tekst tekst="forside.overgangsstønad.sammeSøknad" />
