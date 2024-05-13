@@ -9,6 +9,7 @@ import FormattedMessage from './FormattedMessage';
 interface Props {
   tekst: LocaleString | string;
   replaceArgument0?: string;
+  variabel?: string;
 }
 
 const StyledLocaleTekst = styled.div`
@@ -17,7 +18,7 @@ const StyledLocaleTekst = styled.div`
   }
 `;
 
-const LocaleTekst = ({ tekst, replaceArgument0 }: Props) => {
+const LocaleTekst = ({ tekst, replaceArgument0, variabel }: Props) => {
   const [locale] = useSpråkContext();
   return (
     <StyledLocaleTekst>
@@ -33,6 +34,7 @@ const LocaleTekst = ({ tekst, replaceArgument0 }: Props) => {
           <FormattedHtmlMessage
             id={tekst}
             replaceArgument0={replaceArgument0}
+            variabel={variabel}
           />
         )
       ) : (

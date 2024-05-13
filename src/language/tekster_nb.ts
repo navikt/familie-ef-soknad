@@ -808,6 +808,10 @@ export default {
     'Du er under 18 år og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'banner.tittel.barnetilsyn': 'Søknad om barnetilsyn',
   'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
+  'barnetilsyn.søkerFraAugustTittel':
+    'Søker du om stønad til barnetilsyn fra august ',
+  'barnetilsyn.søkerFraAugustInnhold':
+    'For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.',
   'barnetilsyn.tekst.hvilke': 'Hvilke barn skal være med i søknaden?',
   'barnetilsyn.hjelpetekst-åpne.hvilke':
     'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
