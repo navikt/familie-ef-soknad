@@ -23,7 +23,7 @@ const useSpråkContext = () => useContext(SpråkContext);
 const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [cookies] = useCookies([dekoratorLanguageCookieName]);
+  const [cookies, setCookie] = useCookies([dekoratorLanguageCookieName]);
   const { [dekoratorLanguageCookieName]: dekoratørSpråk } = cookies;
   const defaultSpråk = (dekoratørSpråk as LocaleType) ?? LocaleType.nb;
   const [locale, setLocale] = useState(defaultSpråk);
@@ -35,12 +35,13 @@ const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
     setParams({
       language: defaultSpråk,
     }).then();
-  }, []);
 
-  onLanguageSelect((language) => {
-    setLocale(language.locale as LocaleType);
-    document.documentElement.lang = language.locale;
-  });
+    onLanguageSelect((language) => {
+      setLocale(language.locale as LocaleType);
+      setCookie(dekoratorLanguageCookieName, language.locale);
+      document.documentElement.lang = language.locale;
+    });
+  }, []);
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>
