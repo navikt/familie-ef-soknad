@@ -58,7 +58,11 @@ const Forside: React.FC = () => {
     mellomlagretBarnetilsyn.modellVersjon ===
       Environment().modellVersjon.barnetilsyn;
 
-  useSpråkValg(kanBrukeMellomlagretSøknad, mellomlagretBarnetilsyn);
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn
+  );
+
+  useSpråkValg(skalViseSpråkValg);
 
   return (
     <div className={'forside'}>

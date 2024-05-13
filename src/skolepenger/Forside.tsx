@@ -5,7 +5,7 @@ import Environment from '../Environment';
 import FortsettSøknad from '../components/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
@@ -56,6 +56,12 @@ const Forside: React.FC = () => {
     mellomlagretSkolepenger.søknad.person.hash === person.hash &&
     mellomlagretSkolepenger.modellVersjon ===
       Environment().modellVersjon.skolepenger;
+
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretSkolepenger
+  );
+
+  useSpråkValg(skalViseSpråkValg);
 
   return (
     <div className={'forside'}>

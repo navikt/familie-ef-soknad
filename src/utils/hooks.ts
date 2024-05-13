@@ -75,12 +75,9 @@ export const useHentFilInformasjon = (path: string) => {
   return { filInformasjon };
 };
 
-export const useSpråkValg = (
-  kanBrukeMellomlagretSøknad: boolean,
-  mellomlagretBarnetilsyn: IMellomlagretBarnetilsynSøknad | undefined
-) => {
+export const useSpråkValg = (skalViseSpråkvalg: boolean) => {
   useEffect(() => {
-    if (!(kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn)) {
+    if (skalViseSpråkvalg) {
       setAvailableLanguages([
         {
           locale: 'nb',
