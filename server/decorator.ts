@@ -7,6 +7,18 @@ import { miljø } from './miljø';
 
 type NaisEnv = 'prod' | 'dev';
 
+type DecoratorLanguageOption =
+  | {
+      url?: string;
+      locale: DecoratorLocale;
+      handleInApp: true;
+    }
+  | {
+      url: string;
+      locale: DecoratorLocale;
+      handleInApp?: false;
+    };
+
 const getHtmlWithDecorator = (filePath: string) => {
   const env = process.env.ENV;
   if (env === undefined) {
@@ -23,8 +35,14 @@ const getHtmlWithDecorator = (filePath: string) => {
       redirectToApp: true,
       level: 'Level4',
       availableLanguages: [
-        { url: '/', locale: 'nb' as DecoratorLocale, handleInApp: true },
-        { url: '/', locale: 'en' as DecoratorLocale, handleInApp: true },
+        {
+          locale: 'nb' as DecoratorLocale,
+          handleInApp: true,
+        } as DecoratorLanguageOption,
+        {
+          locale: 'en' as DecoratorLocale,
+          handleInApp: true,
+        } as DecoratorLanguageOption,
       ],
     },
   };
