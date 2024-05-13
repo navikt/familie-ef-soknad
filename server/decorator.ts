@@ -1,5 +1,4 @@
 import {
-  DecoratorLocale,
   DecoratorParams,
   injectDecoratorServerSide,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
@@ -20,16 +19,6 @@ const getHtmlWithDecorator = (filePath: string) => {
     enforceLogin: false,
     redirectToApp: true,
     level: 'Level4',
-    availableLanguages: [
-      {
-        locale: 'nb',
-        handleInApp: true,
-      },
-      {
-        locale: 'en',
-        handleInApp: true,
-      },
-    ],
   };
 
   const dekoratørConfig = {
