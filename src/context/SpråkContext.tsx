@@ -41,7 +41,7 @@ const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
       setCookie(dekoratorLanguageCookieName, language.locale);
       document.documentElement.lang = language.locale;
     });
-  }, []);
+  }, [defaultSpråk, setCookie]);
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>

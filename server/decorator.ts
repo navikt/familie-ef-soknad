@@ -1,23 +1,12 @@
 import {
   DecoratorLocale,
+  DecoratorParams,
   injectDecoratorServerSide,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import logger from './logger';
 import { miljø } from './miljø';
 
 type NaisEnv = 'prod' | 'dev';
-
-type DecoratorLanguageOption =
-  | {
-      url?: string;
-      locale: DecoratorLocale;
-      handleInApp: true;
-    }
-  | {
-      url: string;
-      locale: DecoratorLocale;
-      handleInApp?: false;
-    };
 
 const getHtmlWithDecorator = (filePath: string) => {
   const env = process.env.ENV;
@@ -26,25 +15,27 @@ const getHtmlWithDecorator = (filePath: string) => {
     throw Error('Miljø kan ikke være undefined');
   }
 
+  const dekoratørParams: DecoratorParams = {
+    simple: true,
+    enforceLogin: false,
+    redirectToApp: true,
+    level: 'Level4',
+    availableLanguages: [
+      {
+        locale: 'nb',
+        handleInApp: true,
+      },
+      {
+        locale: 'en',
+        handleInApp: true,
+      },
+    ],
+  };
+
   const dekoratørConfig = {
     env: miljø.erLokalt ? 'dev' : (env as NaisEnv),
     filePath: filePath,
-    params: {
-      simple: true,
-      enforceLogin: false,
-      redirectToApp: true,
-      level: 'Level4',
-      availableLanguages: [
-        {
-          locale: 'nb' as DecoratorLocale,
-          handleInApp: true,
-        } as DecoratorLanguageOption,
-        {
-          locale: 'en' as DecoratorLocale,
-          handleInApp: true,
-        } as DecoratorLanguageOption,
-      ],
-    },
+    params: dekoratørParams,
   };
 
   return injectDecoratorServerSide(dekoratørConfig);
