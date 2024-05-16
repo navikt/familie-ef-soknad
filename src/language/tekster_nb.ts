@@ -858,6 +858,10 @@ export default {
   'barnepass.tittel.ordning': 'Barnepassordning',
   'barnepass.knapp.slett': 'Fjern barnepassordning',
   'skolepenger.sidetittel': 'Søknad om skolepenger',
+  'skolepenger.søkerFraAugustTittel':
+    'Søker du om stønad til skolepenger fra august [0]?',
+  'skolepenger.søkerFraAugustInnhold':
+    'For å få stønad for nytt skoleår må du kunne dokumentere utgiftene til skolepenger med faktura. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.',
   'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
   'banner.tittel.skolepenger': 'Søknad om skolepenger',
   'barnadine.skolepenger.info.brukpdf':
