@@ -13,7 +13,6 @@ const FormattedHtmlMessage: React.FC<Props> = ({ id, replaceArgument0 }) => {
   if (replaceArgument0) {
     text = hentBeskjedMedNavn(replaceArgument0, text);
   }
-
   return <span dangerouslySetInnerHTML={{ __html: text }} />;
 };
 
