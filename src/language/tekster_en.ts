@@ -842,7 +842,7 @@ export default {
     'Application for child care benefit for working single parents',
   'barnetilsyn.sidetittel': 'Application for child care benefit',
   'barnetilsyn.søkerFraAugustTittel':
-    'Are you applying for childcare benefit from August ',
+    'Are you applying for childcare benefit from August [0]?',
   'barnetilsyn.søkerFraAugustInnhold':
     'To receive benefits from August, you must be able to document your childcare expenses with an invoice for that month. Therefore, we recommend that you wait to apply until you receive the invoice.',
   'barnetilsyn.tekst.hvilke':

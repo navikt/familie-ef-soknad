@@ -809,7 +809,7 @@ export default {
   'banner.tittel.barnetilsyn': 'Søknad om barnetilsyn',
   'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
   'barnetilsyn.søkerFraAugustTittel':
-    'Søker du om stønad til barnetilsyn fra august ',
+    'Søker du om stønad til barnetilsyn fra august [0]?',
   'barnetilsyn.søkerFraAugustInnhold':
     'For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.',
   'barnetilsyn.tekst.hvilke': 'Hvilke barn skal være med i søknaden?',

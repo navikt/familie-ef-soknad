@@ -77,7 +77,7 @@ const Forside: React.FC = () => {
               <Heading spacing size="small" level="3">
                 <LocaleTekst
                   tekst={'barnetilsyn.søkerFraAugustTittel'}
-                  variabel={`${nåværendeÅr}`}
+                  replaceArgument0={`${nåværendeÅr}`}
                 />
               </Heading>
               <LocaleTekst tekst={'barnetilsyn.søkerFraAugustInnhold'} />
