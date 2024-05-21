@@ -1,4 +1,7 @@
-import { injectDecoratorServerSide } from '@navikt/nav-dekoratoren-moduler/ssr';
+import {
+  DecoratorParams,
+  injectDecoratorServerSide,
+} from '@navikt/nav-dekoratoren-moduler/ssr';
 import logger from './logger';
 import { miljø } from './miljø';
 
@@ -11,15 +14,17 @@ const getHtmlWithDecorator = (filePath: string) => {
     throw Error('Miljø kan ikke være undefined');
   }
 
+  const dekoratørParams: DecoratorParams = {
+    simple: true,
+    enforceLogin: false,
+    redirectToApp: true,
+    level: 'Level4',
+  };
+
   const dekoratørConfig = {
     env: miljø.erLokalt ? 'dev' : (env as NaisEnv),
     filePath: filePath,
-    params: {
-      simple: true,
-      enforceLogin: false,
-      redirectToApp: true,
-      level: 'Level4',
-    },
+    params: dekoratørParams,
   };
 
   return injectDecoratorServerSide(dekoratørConfig);

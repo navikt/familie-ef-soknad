@@ -7,8 +7,6 @@ import { DisclaimerBoks } from '../components/forside/DisclaimerBoks';
 import { Overskrift } from '../components/forside/Overskrift';
 import { Seksjon } from '../components/forside/Seksjon';
 import { Tekst } from '../components/forside/Tekst';
-import FeltGruppe from '../components/gruppe/FeltGruppe';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 import LocaleTekst from '../language/LocaleTekst';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
 
@@ -21,10 +19,6 @@ export const SkolepengerInformasjon: React.FC<InformasjonProps> = ({
 
   return (
     <>
-      <FeltGruppe>
-        <Språkvelger />
-      </FeltGruppe>
-
       <Seksjon>
         <Tekst tekst="forside.skolepenger.innledning" />
         <LocaleTekst tekst="forside.skolepenger.merInfoLenke" />

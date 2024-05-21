@@ -13,7 +13,7 @@ import LocaleTekst from '../language/LocaleTekst';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';
@@ -57,6 +57,12 @@ const Forside: React.FC = () => {
     mellomlagretBarnetilsyn.søknad.person.hash === person.hash &&
     mellomlagretBarnetilsyn.modellVersjon ===
       Environment().modellVersjon.barnetilsyn;
+
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn
+  );
+
+  useSpråkValg(skalViseSpråkValg);
 
   return (
     <div className={'forside'}>
