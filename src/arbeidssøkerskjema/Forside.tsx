@@ -5,7 +5,7 @@ import {
   RoutesArbeidssokerskjema,
 } from './routes/routesArbeidssokerskjema';
 import { useSkjema } from './SkjemaContext';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { hentPath } from '../utils/routing';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { Heading, Box } from '@navikt/ds-react';
@@ -31,6 +31,10 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
 
   const nesteSide =
     hentPath(RoutesArbeidssokerskjema, ERouteArbeidssøkerskjema.Spørsmål) || '';
+
+  const skalViseSpråkValg = true;
+
+  useSpråkValg(skalViseSpråkValg);
 
   return (
     <div className={'forside'}>
