@@ -8,6 +8,8 @@ import {
   byteTilKilobyte,
   filtypeOgFilstørrelseStreng,
 } from './nedlastningFilformater';
+import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
+import { IMellomlagretBarnetilsynSøknad } from '../barnetilsyn/models/mellomlagretSøknad';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -71,4 +73,25 @@ export const useHentFilInformasjon = (path: string) => {
   }, []);
 
   return { filInformasjon };
+};
+
+export const useSpråkValg = (skalViseSpråkvalg: boolean) => {
+  useEffect(() => {
+    if (skalViseSpråkvalg) {
+      setAvailableLanguages([
+        {
+          locale: 'nb',
+          handleInApp: true,
+        },
+        {
+          locale: 'en',
+          handleInApp: true,
+        },
+      ]);
+    }
+
+    return () => {
+      setAvailableLanguages([]);
+    };
+  }, []);
 };

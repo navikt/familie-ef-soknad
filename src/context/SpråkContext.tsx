@@ -4,7 +4,9 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  useEffect,
 } from 'react';
+import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 import { getMessages } from '../language/utils';
 import { LocaleType } from '../language/typer';
 import { LokalIntlProvider } from './LokalIntlContext';
@@ -18,9 +20,19 @@ const useSpråkContext = () => useContext(SpråkContext);
 const SpråkProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [locale, setLocale] = useState<LocaleType>(LocaleType.nb);
+  const defaultSpråk = LocaleType.nb;
+  const [locale, setLocale] = useState(defaultSpråk);
   const tekster = getMessages(locale);
+
   SpråkContext.displayName = 'SPRÅK_CONTEXT';
+
+  onLanguageSelect((language) => {
+    setLocale(language.locale as LocaleType);
+  });
+
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
 
   return (
     <SpråkContext.Provider value={[locale, setLocale]}>

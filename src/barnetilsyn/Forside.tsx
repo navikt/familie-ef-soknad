@@ -13,7 +13,7 @@ import LocaleTekst from '../language/LocaleTekst';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { useBarnetilsynSøknad } from './BarnetilsynContext';
 import { BarnetilsynInformasjon } from './BarnetilsynInformasjon';
@@ -58,6 +58,12 @@ const Forside: React.FC = () => {
     mellomlagretBarnetilsyn.modellVersjon ===
       Environment().modellVersjon.barnetilsyn;
 
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretBarnetilsyn
+  );
+
+  useSpråkValg(skalViseSpråkValg);
+
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
@@ -75,11 +81,12 @@ const Forside: React.FC = () => {
           {erDagensDatoMellomMaiOgAugust && (
             <StyledAlert variant="info">
               <Heading spacing size="small" level="3">
-                Søker du om stønad til barnetilsyn fra august {nåværendeÅr}?
+                <LocaleTekst
+                  tekst={'barnetilsyn.søkerFraAugustTittel'}
+                  replaceArgument0={`${nåværendeÅr}`}
+                />
               </Heading>
-              For å få stønad fra august må du kunne dokumentere utgiftene til
-              barnepass med faktura for denne måneden. Vi anbefaler derfor at du
-              venter med å søke frem til du får fakturaen.
+              <LocaleTekst tekst={'barnetilsyn.søkerFraAugustInnhold'} />
             </StyledAlert>
           )}
 

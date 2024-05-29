@@ -808,6 +808,10 @@ export default {
     'Du er under 18 år og digital søknad er ikke tilgjengelig. Du må bruke dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
   'banner.tittel.barnetilsyn': 'Søknad om barnetilsyn',
   'barnetilsyn.sidetittel': 'Søknad om barnetilsyn',
+  'barnetilsyn.søkerFraAugustTittel':
+    'Søker du om stønad til barnetilsyn fra august [0]?',
+  'barnetilsyn.søkerFraAugustInnhold':
+    'For å få stønad fra august må du kunne dokumentere utgiftene til barnepass med faktura for denne måneden. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.',
   'barnetilsyn.tekst.hvilke': 'Hvilke barn skal være med i søknaden?',
   'barnetilsyn.hjelpetekst-åpne.hvilke':
     'Dette sier regelverket om hvilke barn du kan få stønad til barnetilsyn for',
@@ -854,6 +858,10 @@ export default {
   'barnepass.tittel.ordning': 'Barnepassordning',
   'barnepass.knapp.slett': 'Fjern barnepassordning',
   'skolepenger.sidetittel': 'Søknad om skolepenger',
+  'skolepenger.søkerFraAugustTittel':
+    'Søker du om stønad til skolepenger fra august [0]?',
+  'skolepenger.søkerFraAugustInnhold':
+    'For å få stønad for nytt skoleår må du kunne dokumentere utgiftene til skolepenger med faktura. Vi anbefaler derfor at du venter med å søke frem til du får fakturaen.',
   'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
   'banner.tittel.skolepenger': 'Søknad om skolepenger',
   'barnadine.skolepenger.info.brukpdf':

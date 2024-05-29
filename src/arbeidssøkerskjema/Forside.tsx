@@ -1,14 +1,12 @@
 import React from 'react';
-import FeltGruppe from '../components/gruppe/FeltGruppe';
 import LocaleTekst from '../language/LocaleTekst';
 import {
   ERouteArbeidssøkerskjema,
   RoutesArbeidssokerskjema,
 } from './routes/routesArbeidssokerskjema';
 import { useSkjema } from './SkjemaContext';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { hentPath } from '../utils/routing';
-import Språkvelger from '../components/språkvelger/Språkvelger';
 import { logSidevisningArbeidssokerskjema } from '../utils/amplitude';
 import { Heading, Box } from '@navikt/ds-react';
 import { VeilederBoks } from '../components/forside/VeilederBoks';
@@ -34,15 +32,15 @@ const Forside: React.FC<{ visningsnavn: string }> = ({ visningsnavn }) => {
   const nesteSide =
     hentPath(RoutesArbeidssokerskjema, ERouteArbeidssøkerskjema.Spørsmål) || '';
 
+  const skalViseSpråkValg = true;
+
+  useSpråkValg(skalViseSpråkValg);
+
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
         <Box padding="4" className={'forside__panel'}>
           <VeilederBoks navn={visningsnavn} />
-
-          <FeltGruppe>
-            <Språkvelger />
-          </FeltGruppe>
 
           <Heading level="1" size="xlarge">
             <LocaleTekst tekst={'skjema.sidetittel'} />

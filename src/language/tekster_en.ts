@@ -841,6 +841,10 @@ export default {
   'banner.tittel.barnetilsyn':
     'Application for child care benefit for working single parents',
   'barnetilsyn.sidetittel': 'Application for child care benefit',
+  'barnetilsyn.søkerFraAugustTittel':
+    'Are you applying for childcare benefit from August [0]?',
+  'barnetilsyn.søkerFraAugustInnhold':
+    'To receive benefits from August, you must be able to document your childcare expenses with an invoice for that month. Therefore, we recommend that you wait to apply until you receive the invoice.',
   'barnetilsyn.tekst.hvilke':
     'Which children should be included in the application?',
   'barnetilsyn.hjelpetekst-åpne.hvilke':
@@ -893,6 +897,10 @@ export default {
   'barnepass.tittel.ordning': 'Child minding arrangement',
   'barnepass.knapp.slett': 'Remove child minding arrangements',
   'skolepenger.sidetittel': 'Application for school fees',
+  'skolepenger.søkerFraAugustTittel':
+    'Are you applying for a school fee benefit from August [0]?',
+  'skolepenger.søkerFraAugustInnhold':
+    'In order to receive benefits for a new school year, you must be able to document your school fees with an invoice. We recommend that you wait to apply until you receive the invoice.',
   'skolepenger.overskrift': 'Application for support for school fees',
   'banner.tittel.skolepenger': 'Application for support for school fees',
   'barnadine.skolepenger.info.brukpdf':

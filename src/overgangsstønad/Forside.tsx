@@ -6,7 +6,7 @@ import Environment from '../Environment';
 import { isIE } from 'react-device-detect';
 import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
@@ -49,6 +49,12 @@ const Forside: React.FC = () => {
       Environment().modellVersjon.overgangsstønad;
 
   const alder = FnrOgDnrTilAlder(person.søker.fnr);
+
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad
+  );
+
+  useSpråkValg(skalViseSpråkValg);
 
   return (
     <div className={'forside'}>

@@ -5,7 +5,7 @@ import Environment from '../Environment';
 import FortsettSøknad from '../components/forside/FortsettSøknad';
 import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
-import { useMount } from '../utils/hooks';
+import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
 import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
@@ -57,6 +57,12 @@ const Forside: React.FC = () => {
     mellomlagretSkolepenger.modellVersjon ===
       Environment().modellVersjon.skolepenger;
 
+  const skalViseSpråkValg = !(
+    kanBrukeMellomlagretSøknad && mellomlagretSkolepenger
+  );
+
+  useSpråkValg(skalViseSpråkValg);
+
   return (
     <div className={'forside'}>
       <div className={'forside__innhold'}>
@@ -74,11 +80,12 @@ const Forside: React.FC = () => {
           {erDagensDatoMellomMaiOgAugust && (
             <StyledAlert variant="info">
               <Heading spacing size="small" level="3">
-                Søker du om stønad til skolepenger fra august {nåværendeÅr}?
+                <LocaleTekst
+                  tekst={'skolepenger.søkerFraAugustTittel'}
+                  replaceArgument0={`${nåværendeÅr}`}
+                />
               </Heading>
-              For å få stønad for nytt skoleår må du kunne dokumentere utgiftene
-              til skolepenger med faktura. Vi anbefaler derfor at du venter med
-              å søke frem til du får fakturaen.
+              <LocaleTekst tekst={'skolepenger.søkerFraAugustInnhold'} />
             </StyledAlert>
           )}
 
