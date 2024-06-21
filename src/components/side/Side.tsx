@@ -1,5 +1,4 @@
 import React from 'react';
-import { Stegindikator } from '../stegindikator/Stegindikator';
 import Banner from '../Banner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
@@ -11,6 +10,7 @@ import { hentBannertittel } from '../../utils/stønadstype';
 import LocaleTekst from '../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, Button, BodyShort, Heading, Box } from '@navikt/ds-react';
+import Stegindikator from '../stegindikator/Stegindikator';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -49,7 +49,12 @@ const Side: React.FC<ISide> = ({
 
   const routes = Object.values(routesStønad);
   routes.shift();
-  const stegobjekter = routes.map((steg, index) => {
+  const routesSomIkkeSkalMed = ['Gjenbruk'];
+  const routesFiltered = routes.filter(
+    (route) => !routesSomIkkeSkalMed.includes(route.label)
+  );
+
+  const stegobjekter = routesFiltered.map((steg, index) => {
     return {
       ...steg,
       index: index,

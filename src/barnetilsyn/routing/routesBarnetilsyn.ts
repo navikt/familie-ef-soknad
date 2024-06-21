@@ -50,7 +50,7 @@ export const RoutesBarnetilsyn: IRoute[] = [
   },
   {
     path: '/barnetilsyn/barnepass',
-    label: 'barnepass',
+    label: 'Om barnepassordningen',
     route: ERouteBarnetilsyn.Barnepass,
   },
   {

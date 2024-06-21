@@ -5,8 +5,8 @@ import { useLocation } from 'react-router-dom';
 import { hentForrigeRoute, hentNesteRoute } from '../../utils/routing';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Heading, BodyShort, Box } from '@navikt/ds-react';
-import { Stegindikator } from '../../components/stegindikator/Stegindikator';
 import { KnappLocaleTekstOgNavigate } from '../../components/knapper/KnappLocaleTekstOgNavigate';
+import Stegindikator from '../../components/stegindikator/Stegindikator';
 
 interface ISide {
   tittel: string;
