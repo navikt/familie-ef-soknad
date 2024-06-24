@@ -9,7 +9,7 @@ import { LocaleType } from '../../language/typer';
 export interface ISteg {
   label: string;
   index: number;
-  localeTeskt: string;
+  localeTeskt?: string;
 }
 
 interface IStegIndikatorProps {
@@ -49,7 +49,7 @@ const Stegindikator: React.FC<IStegIndikatorProps> = ({
     >
       {stegListe.map((steg) => (
         <FormProgress.Step key={steg.label}>
-          {hentTekst(steg?.localeTeskt, intl)}
+          {steg?.localeTeskt ? hentTekst(steg?.localeTeskt, intl) : steg.label}
         </FormProgress.Step>
       ))}
     </FormProgress>
