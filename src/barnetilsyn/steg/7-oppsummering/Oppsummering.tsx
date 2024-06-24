@@ -81,7 +81,7 @@ const Oppsummering: React.FC = () => {
         if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
           oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
+        logManglendeFelter(ESkjemanavn.Barnetilsyn, skjemaId, e);
       });
 
     medlemskapSchema
@@ -91,7 +91,7 @@ const Oppsummering: React.FC = () => {
         if (feilIkkeRegistrertFor(ManglendeFelter.OM_DEG)) {
           oppdaterManglendeFelter(ManglendeFelter.OM_DEG);
         }
-        logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
+        logManglendeFelter(ESkjemanavn.Barnetilsyn, skjemaId, e);
       });
   }, [søknad, manglendeFelter, skjemaId]);
 
