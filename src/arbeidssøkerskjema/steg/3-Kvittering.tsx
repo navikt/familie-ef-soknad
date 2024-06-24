@@ -29,6 +29,7 @@ const Kvittering: React.FC = () => {
     <Side
       tittel={intl.formatMessage({ id: 'skjema.takk' })}
       skalViseKnapper={false}
+      skalViseStegindikator={false}
     >
       <KomponentGruppe>
         <Alert size="small" variant="success">

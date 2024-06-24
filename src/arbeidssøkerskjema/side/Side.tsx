@@ -7,12 +7,14 @@ import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Heading, BodyShort, Box } from '@navikt/ds-react';
 import { KnappLocaleTekstOgNavigate } from '../../components/knapper/KnappLocaleTekstOgNavigate';
 import Stegindikator from '../../components/stegindikator/Stegindikator';
+import { stegSomSkalVisesPåStegindikator } from '../../utils/stegindikator';
 
 interface ISide {
   tittel: string;
   erSpørsmålBesvart?: boolean;
   skalViseKnapper: boolean;
   children?: React.ReactNode;
+  skalViseStegindikator?: boolean;
 }
 
 const Side: React.FC<ISide> = ({
@@ -20,18 +22,15 @@ const Side: React.FC<ISide> = ({
   children,
   skalViseKnapper,
   erSpørsmålBesvart,
+  skalViseStegindikator = true,
 }) => {
   const location = useLocation();
   const intl = useLokalIntlContext();
 
   const routes = Object.values(RoutesArbeidssokerskjema);
   routes.shift();
-  const stegobjekter = routes.map((steg, index) => {
-    return {
-      ...steg,
-      index: index,
-    };
-  });
+
+  const stegobjekter = stegSomSkalVisesPåStegindikator(routes);
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
@@ -48,7 +47,9 @@ const Side: React.FC<ISide> = ({
     <div className={'skjema'}>
       <Banner tekstid={'banner.tittel.arbeidssøker'} />
       <div className={'side'}>
-        <Stegindikator aktivtSteg={aktivtSteg} stegListe={stegobjekter} />
+        {skalViseStegindikator && (
+          <Stegindikator aktivtSteg={aktivtSteg} stegListe={stegobjekter} />
+        )}
         <Box padding="4" className={'side__innhold'}>
           <div className={'innholdscontainer'}>
             <Heading size="medium" className="hoved">
