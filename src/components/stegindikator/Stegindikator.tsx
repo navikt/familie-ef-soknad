@@ -1,10 +1,15 @@
 import React from 'react';
 import { useState } from 'react';
 import { FormProgress } from '@navikt/ds-react';
+import { useLokalIntlContext } from '../../context/LokalIntlContext';
+import { hentTekst } from '../../utils/søknad';
+import { useSpråkContext } from '../../context/SpråkContext';
+import { LocaleType } from '../../language/typer';
 
 export interface ISteg {
   label: string;
   index: number;
+  localeTeskt: string;
 }
 
 interface IStegIndikatorProps {
@@ -16,7 +21,22 @@ const Stegindikator: React.FC<IStegIndikatorProps> = ({
   stegListe,
   aktivtSteg,
 }) => {
+  const intl = useLokalIntlContext();
   const [activeStep, setActiveStep] = useState(aktivtSteg + 1);
+  const [locale] = useSpråkContext();
+  const erEngelskSpråk = locale === LocaleType.en;
+
+  const translations = erEngelskSpråk
+    ? {
+        step: `Step ${activeStep} of ${stegListe.length}`,
+        showAllSteps: 'Show all steps',
+        hideAllSteps: 'Hide all steps',
+      }
+    : {
+        step: `Steg ${activeStep} av ${stegListe.length}`,
+        showAllSteps: 'Vis alle steg',
+        hideAllSteps: 'Skjul alle steg',
+      };
 
   return (
     <FormProgress
@@ -25,9 +45,12 @@ const Stegindikator: React.FC<IStegIndikatorProps> = ({
       activeStep={activeStep}
       onStepChange={setActiveStep}
       interactiveSteps={false}
+      translations={translations}
     >
       {stegListe.map((steg) => (
-        <FormProgress.Step key={steg.label}>{steg.label}</FormProgress.Step>
+        <FormProgress.Step key={steg.label}>
+          {hentTekst(steg?.localeTeskt, intl)}
+        </FormProgress.Step>
       ))}
     </FormProgress>
   );
