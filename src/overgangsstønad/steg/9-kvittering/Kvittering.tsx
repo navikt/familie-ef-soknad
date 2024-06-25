@@ -84,6 +84,7 @@ const Kvittering: React.FC = () => {
       stegtittel={intl.formatMessage({ id: 'kvittering.takk' })}
       skalViseKnapper={ESide.skjulKnapper}
       routesStønad={RoutesOvergangsstonad}
+      skalViseStegindikator={false}
     >
       <SeksjonGruppe>
         <Alert size="small" variant="success">

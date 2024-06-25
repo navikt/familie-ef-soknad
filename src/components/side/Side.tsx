@@ -1,5 +1,4 @@
 import React from 'react';
-import { Stegindikator } from '../stegindikator/Stegindikator';
 import Banner from '../Banner';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SendBrevSVG from '../../assets/SendSøknadSVG';
@@ -11,6 +10,8 @@ import { hentBannertittel } from '../../utils/stønadstype';
 import LocaleTekst from '../../language/LocaleTekst';
 import { useLokalIntlContext } from '../../context/LokalIntlContext';
 import { Alert, Button, BodyShort, Heading, Box } from '@navikt/ds-react';
+import Stegindikator from '../stegindikator/Stegindikator';
+import { stegSomSkalVisesPåStegindikator } from '../../utils/stegindikator';
 
 export enum ESide {
   visTilbakeNesteAvbrytKnapp = 'visTilbakeNesteAvbrytKnapp',
@@ -29,6 +30,7 @@ interface ISide {
   informasjonstekstId?: string;
   disableNesteKnapp?: boolean;
   children?: React.ReactNode;
+  skalViseStegindikator?: boolean;
 }
 
 const Side: React.FC<ISide> = ({
@@ -42,6 +44,7 @@ const Side: React.FC<ISide> = ({
   tilbakeTilOppsummeringPath,
   informasjonstekstId,
   disableNesteKnapp,
+  skalViseStegindikator = true,
 }) => {
   const intl = useLokalIntlContext();
   const location = useLocation();
@@ -49,12 +52,8 @@ const Side: React.FC<ISide> = ({
 
   const routes = Object.values(routesStønad);
   routes.shift();
-  const stegobjekter = routes.map((steg, index) => {
-    return {
-      ...steg,
-      index: index,
-    };
-  });
+
+  const stegobjekter = stegSomSkalVisesPåStegindikator(routes);
   const aktivtSteg = stegobjekter.findIndex(
     (steg) => steg.path === location.pathname
   );
@@ -63,7 +62,10 @@ const Side: React.FC<ISide> = ({
     <div className={'søknadsdialog'}>
       <Banner tekstid={hentBannertittel(stønadstype)} />
       <div className={'side'}>
-        <Stegindikator stegListe={stegobjekter} aktivtSteg={aktivtSteg} />
+        {skalViseStegindikator && (
+          <Stegindikator stegListe={stegobjekter} aktivtSteg={aktivtSteg} />
+        )}
+
         {!skalViseKnapper && (
           <div className={'brev_ikon'}>
             <SendBrevSVG />
