@@ -1,4 +1,4 @@
-export const standardLabelsBarn: any = {
+export const standardLabelsBarn: Record<string, string> = {
   fnr: 'Fødselsnummer eller d-nummer',
   navn: 'Navn',
   alder: 'Alder',

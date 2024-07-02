@@ -337,7 +337,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     const finnNyeBarnSidenForrigeSøknad = (
       prevSøknad: ISøknad,
       forrigeSøknad: ForrigeSøknad
-    ) => {
+    ): IBarn[] => {
       return prevSøknad.person.barn.filter(
         (barn) =>
           !forrigeSøknad.person.barn.some(
@@ -360,7 +360,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
       settMellomlagretBarnetilsyn(utfyltSøknad);
     };
 
-    const nullstillMellomlagretBarnetilsyn = (): Promise<any> => {
+    const nullstillMellomlagretBarnetilsyn = (): Promise<string> => {
       return nullstillMellomlagretSøknadTilDokument(
         MellomlagredeStønadstyper.barnetilsyn
       );
@@ -385,6 +385,7 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     ) => {
       let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
       if (spørsmål.flersvar) {
+        // eslint-disable-next-line no-console
         console.error('Ikke implementert');
       } else {
         endretDokumentasjonsbehov =

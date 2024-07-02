@@ -12,7 +12,7 @@ import {
 
 interface Properties extends React.InputHTMLAttributes<HTMLInputElement> {
   name?: string | undefined;
-  value: any;
+  value: string | readonly string[] | number | undefined;
   checked?: boolean | undefined;
   onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
 }

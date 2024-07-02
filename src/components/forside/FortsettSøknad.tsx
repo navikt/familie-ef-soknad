@@ -11,7 +11,7 @@ interface FortsettSøknadProps {
   intl: LokalIntlShape;
   gjeldendeSteg: string;
   brukMellomlagretSøknad: () => void;
-  nullstillMellomlagretSøknad: () => Promise<any>;
+  nullstillMellomlagretSøknad: () => Promise<string>;
   skjemanavn?: string;
 }
 

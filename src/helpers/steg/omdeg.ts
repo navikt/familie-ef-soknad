@@ -8,12 +8,11 @@ import { IMedlemskap } from '../../models/steg/omDeg/medlemskap';
 import { harFyltUtSamboerDetaljer } from '../../utils/person';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
-import { IDatoFelt, ITekstFelt } from '../../models/søknad/søknadsfelter';
+import { IDatoFelt } from '../../models/søknad/søknadsfelter';
 import {
   erSøkerGift,
   erSøkerUGiftSkiltSeparertEllerEnke,
 } from '../../utils/sivilstatus';
-import { ISøker } from '../../models/søknad/person';
 import { ISøknad } from '../../models/søknad/søknad';
 import { ISøknad as ISøknadBT } from '../../barnetilsyn/models/søknad';
 import { ISøknad as ISøknadSK } from '../../skolepenger/models/søknad';
@@ -195,7 +194,9 @@ export const erSivilstandSpørsmålBesvart = (
   return true;
 };
 
-export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (søknad: ISøknad | ISøknadBT | ISøknadSK) => {
+export const søkerBorPåRegistrertAdresseEllerHarMeldtAdresseendring = (
+  søknad: ISøknad | ISøknadBT | ISøknadSK
+) => {
   return (
     søknad.person.søker?.erStrengtFortrolig ||
     søknad.søkerBorPåRegistrertAdresse?.verdi === true ||
