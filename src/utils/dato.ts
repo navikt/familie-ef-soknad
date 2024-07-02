@@ -17,7 +17,6 @@ import { subMonths } from 'date-fns';
 import { nb } from 'date-fns/locale';
 import { IPeriode } from '../models/felles/periode';
 import { DatoBegrensning } from '../components/dato/Datovelger';
-import { min } from 'lodash';
 
 export const STANDARD_DATOFORMAT = 'dd.MM.yyyy';
 export const FØDSELSNUMMER_DATOFORMAT = 'ddMMyy';

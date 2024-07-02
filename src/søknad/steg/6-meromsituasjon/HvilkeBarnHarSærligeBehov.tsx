@@ -36,6 +36,7 @@ const HvilkeBarnHarSærligeBehov: React.FC = () => {
       const oppdatertBarn = leggTilSærligeBehov(barnMedSærligeBehov, intl);
       oppdaterBarnISøknaden(oppdatertBarn);
     } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { særligeTilsynsbehov, ...barn } = barnMedSærligeBehov;
       oppdaterBarnISøknaden(barn);
     }

@@ -120,7 +120,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
     settMellomlagretOvergangsstønad(utfyltSøknad);
   };
 
-  const nullstillMellomlagretOvergangsstønad = (): Promise<any> => {
+  const nullstillMellomlagretOvergangsstønad = (): Promise<string> => {
     return nullstillMellomlagretSøknadTilDokument(
       MellomlagredeStønadstyper.overgangsstønad
     );
@@ -145,6 +145,7 @@ const [SøknadProvider, useSøknad] = createUseContext(() => {
   ) => {
     let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
     if (spørsmål.flersvar) {
+      // eslint-disable-next-line no-console
       console.error('Ikke implementert');
     } else {
       endretDokumentasjonsbehov = oppdaterDokumentasjonTilEtSvarSpørsmålForBarn(

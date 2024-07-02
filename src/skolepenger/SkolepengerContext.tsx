@@ -114,7 +114,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
       settMellomlagretSkolepenger(utfyltSøknad);
     };
 
-    const nullstillMellomlagretSkolepenger = (): Promise<any> => {
+    const nullstillMellomlagretSkolepenger = (): Promise<string> => {
       return nullstillMellomlagretSøknadTilDokument(
         MellomlagredeStønadstyper.skolepenger
       );
@@ -139,6 +139,7 @@ const [SkolepengerSøknadProvider, useSkolepengerSøknad] = createUseContext(
     ) => {
       let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
       if (spørsmål.flersvar) {
+        // eslint-disable-next-line no-console
         console.error('Ikke implementert');
       } else {
         endretDokumentasjonsbehov =

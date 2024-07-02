@@ -28,7 +28,7 @@ const BarnetilsynApp = () => {
     hentMellomlagretBarnetilsyn,
     hentForrigeSøknadBarnetilsyn,
   } = useBarnetilsynSøknad();
-  const { toggles, settToggles } = useToggles();
+  const { settToggles } = useToggles();
   const intl = useLokalIntlContext();
   const { skalGjenbrukeSøknad } = useContext(GjenbrukContext);
 

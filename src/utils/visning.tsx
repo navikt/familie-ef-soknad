@@ -16,7 +16,7 @@ import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { BodyShort, Ingress, Label } from '@navikt/ds-react';
 
 export const visListeAvLabelOgSvar = (
-  liste: any[] | undefined,
+  liste: object[] | undefined,
   overskrift: string
 ) => {
   if (!liste) return null;
@@ -109,7 +109,7 @@ const VisPeriode = (objekt: any, tittel?: string) => {
   );
 };
 
-export const VisLabelOgSvar = (objekt: Object | undefined, navn?: string) => {
+export const VisLabelOgSvar = (objekt: object | undefined, navn?: string) => {
   const intl = useLokalIntlContext();
 
   if (!objekt) return null;

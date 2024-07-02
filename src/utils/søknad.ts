@@ -11,8 +11,13 @@ import {
 } from '../helpers/labels';
 import { IBarn } from '../models/steg/barn';
 import { LokalIntlShape } from '../language/typer';
-import { ForrigeSøknad } from '../barnetilsyn/models/søknad';
+import {
+  ForrigeSøknad,
+  ISøknad as SøknadBarnetilsyn,
+} from '../barnetilsyn/models/søknad';
 import { PersonData } from '../models/søknad/person';
+import { ISøknad as SøknadOvergangsstønad } from '../models/søknad/søknad';
+import { ISøknad as SøknadSkolepenger } from '../skolepenger/models/søknad';
 
 const axiosConfig = {
   withCredentials: true,
@@ -70,7 +75,7 @@ export const hentDataFraForrigeBarnetilsynSøknad =
 
 export const nullstillMellomlagretSøknadTilDokument = (
   stønadstype: MellomlagredeStønadstyper
-): Promise<any> => {
+): Promise<string> => {
   return axios.delete(
     `${Environment().mellomlagerProxyUrl + stønadstype}`,
     axiosConfig
@@ -99,7 +104,7 @@ export const settBarnMedLabelOgVerdi = (barn: IBarn) => {
     skalHaBarnepass: { label: 'Med i søknaden', verdi: false },
   };
   for (const [key, verdi] of Object.entries(barn)) {
-    const barnLabel = standardLabelsBarn[key];
+    const barnLabel: string | undefined = standardLabelsBarn[key];
 
     if (barnLabel) {
       nyttObjekt[key] = {
@@ -189,7 +194,9 @@ export const oppdaterBarnMedLabel = (
     return barnMedLabel;
   });
 
-export const erBarnetilsynSøknad = (søknad: any): boolean => {
+export const erBarnetilsynSøknad = (
+  søknad: SøknadOvergangsstønad | SøknadBarnetilsyn | SøknadSkolepenger
+): boolean => {
   return (
     !('merOmDinSituasjon' in søknad) &&
     !('utdanning' in søknad) &&
