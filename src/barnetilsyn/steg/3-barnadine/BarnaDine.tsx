@@ -19,6 +19,13 @@ import {
   BarnaDineContainer,
   BarneKortWrapper,
 } from '../../../søknad/steg/3-barnadine/BarnaDineInnhold';
+import styled from 'styled-components';
+
+const AlertContainer = styled.div`
+  & > *:not(:first-child) {
+    margin-top: 3rem;
+  }
+`;
 
 const BarnaDine: React.FC = () => {
   useMount(() => logSidevisningBarnetilsyn('BarnaDine'));
@@ -54,6 +61,8 @@ const BarnaDine: React.FC = () => {
     (b: IBarn) => b.skalHaBarnepass?.verdi
   );
 
+  const harBarnRegistrertIFolkeregisteret = søknad.person.barn.length > 0;
+
   return (
     <Side
       stønadstype={Stønadstype.barnetilsyn}
@@ -63,7 +72,6 @@ const BarnaDine: React.FC = () => {
       routesStønad={RoutesBarnetilsyn}
       mellomlagreStønad={mellomlagreBarnetilsyn}
       tilbakeTilOppsummeringPath={hentPathBarnetilsynOppsummering}
-      informasjonstekstId={'barnadine.barnetilsyn.info.brukpdf'}
     >
       <BarnaDineContainer>
         <FeltGruppe>
@@ -75,9 +83,23 @@ const BarnaDine: React.FC = () => {
             innholdTekstid={'barnetilsyn.hjelpetekst-innhold.hvilke'}
           />
         </FeltGruppe>
-        <Alert size="small" variant="info" inline>
-          {hentTekst('barnadine.infohentet', intl)}
-        </Alert>
+
+        <AlertContainer>
+          <Alert size="small" variant="info" inline>
+            {hentTekst('barnadine.infohentet', intl)}
+          </Alert>
+
+          {!harBarnRegistrertIFolkeregisteret && (
+            <Alert variant="info" size="small">
+              {hentTekst('barnadine.ingenBarn', intl)}
+            </Alert>
+          )}
+
+          <Alert size="small" variant="info" inline>
+            <LocaleTekst tekst={'barnadine.barnetilsyn.info.brukpdf'} />
+          </Alert>
+        </AlertContainer>
+
         <BarneKortWrapper>
           {søknad.person.barn
             ?.sort((a: IBarn, b: IBarn) => {
