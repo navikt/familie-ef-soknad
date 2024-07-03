@@ -219,6 +219,7 @@ export default {
   'barnadine.sidetittel': 'Barna dine',
   'barnadine.infohentet':
     'Informasjonen er hentet fra Folkeregisteret og viser barna dine under 19 år. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
+  'barnadine.ingenBarn': 'Du har ingen barn registrert i Folkeregisteret.',
   'barnekort.termindato': 'Termindato',
   'barnekort.fødselsdato': 'Fødselsdato',
   'barnekort.fødselsnummer': 'Fødselsnummer',
