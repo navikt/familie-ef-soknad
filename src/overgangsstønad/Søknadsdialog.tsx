@@ -11,6 +11,7 @@ import Dokumentasjon from './steg/8-dokumentasjon/Dokumentasjon';
 import Oppsummering from './steg/7-oppsummering/Oppsummering';
 import Kvittering from './steg/9-kvittering/Kvittering';
 import RedirectTilStart from './RedirectTilStart';
+import { ForsideNy } from './ForsideNy';
 
 const Søknadsdialog: FC = () => {
   return (
@@ -88,6 +89,7 @@ const Søknadsdialog: FC = () => {
             </RedirectTilStart>
           }
         />
+        <Route path={'/ny-forside'} element={<ForsideNy />} />
         <Route path={'*'} element={<Forside />} />
       </Routes>
     </>
