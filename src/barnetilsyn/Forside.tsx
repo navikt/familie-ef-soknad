@@ -10,7 +10,6 @@ import { VeilederBoks } from '../components/forside/VeilederBoks';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { usePersonContext } from '../context/PersonContext';
 import LocaleTekst from '../language/LocaleTekst';
-import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { logSidevisningBarnetilsyn } from '../utils/amplitude';
 import { erNåværendeMånedMellomMåneder, nåværendeÅr } from '../utils/dato';
 import { useMount, useSpråkValg } from '../utils/hooks';
@@ -50,7 +49,7 @@ const Forside: React.FC = () => {
     }));
   };
 
-  const alder = FnrOgDnrTilAlder(person.søker.fnr);
+  const alder = person.søker.alder;
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretBarnetilsyn !== undefined &&

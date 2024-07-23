@@ -8,7 +8,6 @@ import { logSidevisningOvergangsstonad } from '../utils/amplitude';
 import LocaleTekst from '../language/LocaleTekst';
 import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
-import { FnrOgDnrTilAlder } from './utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Heading, Box } from '@navikt/ds-react';
 import { OvergangsstønadInformasjon } from './OvergangsstønadInformasjon';
@@ -48,7 +47,7 @@ const Forside: React.FC = () => {
     mellomlagretOvergangsstønad.modellVersjon ===
       Environment().modellVersjon.overgangsstønad;
 
-  const alder = FnrOgDnrTilAlder(person.søker.fnr);
+  const alder = person.søker.alder;
 
   const skalViseSpråkValg = !(
     kanBrukeMellomlagretSøknad && mellomlagretOvergangsstønad

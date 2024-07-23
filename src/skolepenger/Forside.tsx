@@ -7,7 +7,6 @@ import LocaleTekst from '../language/LocaleTekst';
 import { logSidevisningSkolepenger } from '../utils/amplitude';
 import { useMount, useSpråkValg } from '../utils/hooks';
 import { ESkjemanavn } from '../utils/skjemanavn';
-import { FnrOgDnrTilAlder } from '../overgangsstønad/utils';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { Alert, Heading, Box } from '@navikt/ds-react';
 import { isIE } from 'react-device-detect';
@@ -49,7 +48,7 @@ const Forside: React.FC = () => {
     });
   };
 
-  const alder = FnrOgDnrTilAlder(person.søker.fnr);
+  const alder = person.søker.alder;
 
   const kanBrukeMellomlagretSøknad =
     mellomlagretSkolepenger !== undefined &&
