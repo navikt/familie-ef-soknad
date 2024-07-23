@@ -30,14 +30,14 @@ import {
   datoSkalGifteSegEllerBliSamboerSchema,
   fødselsdatoSchema,
   identSchema,
+  listManglendeFelter,
   ManglendeFelter,
   manglendeFelterTilTekst,
   medlemskapSchema,
   merOmDinSituasjonSchema,
   sivilstatusSchema,
 } from '../../../utils/validering/validering';
-import { Accordion, BodyShort } from '@navikt/ds-react';
-import ManglendeFelterAlert from '../../../components/feil/ManglendeFelterAlert';
+import { Accordion, Alert, BodyShort } from '@navikt/ds-react';
 
 const Oppsummering: React.FC = () => {
   const intl = useLokalIntlContext();
@@ -270,9 +270,12 @@ const Oppsummering: React.FC = () => {
               </Accordion.Item>
             </Accordion>
           </KomponentGruppe>
-
           {harManglendeFelter && (
-            <ManglendeFelterAlert manglendeFelter={manglendeFelter} />
+            <Alert size="small" variant="warning">
+              Det er felter i søknaden som ikke er fylt ut eller har ugyldig
+              verdi. Gå til {listManglendeFelter(manglendeFelter)} for å legge
+              inn gyldige verdier før du sender inn søknaden.
+            </Alert>
           )}
         </div>
       </Side>
