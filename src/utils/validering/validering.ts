@@ -36,52 +36,49 @@ export const listManglendeFelter = (manglendeFelter: string[]) => {
   });
 };
 
-const firmaSchema = object({
-  arbeidsuke: object({
-    verdi: string().required(),
-  }),
-  etableringsdato: object({
-    verdi: string().required(),
-  }),
-  navn: object({
-    verdi: string().required(),
-  }),
-  organisasjonsnummer: object({
-    verdi: string()
-      .required()
-      .length(9, 'Organisasjonsnummer må være 9 siffer langt'),
-  }),
-  overskudd: object({
-    verdi: string().required(),
-  }),
-});
-
-const arbeidsforholdSchema = array()
-  .of(
-    object({
-      sluttdato: object({
-        verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-      }).default(undefined),
-    })
-  )
-  .default(undefined);
-
 export const aktivitetSchema = object({
   firmaer: array()
     .of(
-      firmaSchema.shape({
+      object({
         arbeidsmengde: object({
+          verdi: string().required(),
+        }),
+        arbeidsuke: object({
+          verdi: string().required(),
+        }),
+        etableringsdato: object({
+          verdi: string().required(),
+        }),
+        navn: object({
+          verdi: string().required(),
+        }),
+        organisasjonsnummer: object({
           verdi: string().required(),
         }),
       })
     )
     .default(undefined),
-  arbeidsforhold: arbeidsforholdSchema,
+  arbeidsforhold: array()
+    .of(
+      object({
+        sluttdato: object({
+          verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+        }).default(undefined),
+      })
+    )
+    .default(undefined),
 });
 
 export const aktivitetSchemaBT = object({
-  firmaer: array().of(firmaSchema).default(undefined),
-  arbeidsforhold: arbeidsforholdSchema,
+  arbeidsforhold: array()
+    .of(
+      object({
+        sluttdato: object({
+          verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
+        }).default(undefined),
+      })
+    )
+    .default(undefined),
 });
 
 export const medlemskapSchema = object({
@@ -114,14 +111,6 @@ export const merOmDinSituasjonSchema = object({
 export const sivilstatusSchema = object({
   datoForSamlivsbrudd: object({
     verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).default(undefined),
-  datoEndretSamvær: object({
-    verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-  }).default(undefined),
-  tidligereSamboerDetaljer: object({
-    fødselsdato: object({
-      verdi: string().required().matches(datoRegex, 'Ikke en gyldig dato'),
-    }).default(undefined),
   }).default(undefined),
 });
 
