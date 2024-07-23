@@ -1,4 +1,4 @@
-import { erLokaltMedMock, erLokaltMotPreprod } from './utils/miljø';
+import { erLokaltMotPreprod } from './utils/miljø';
 
 interface EnvironmentProps {
   veiviserUrl: string;

@@ -219,6 +219,7 @@ export default {
   'barnadine.sidetittel': 'Barna dine',
   'barnadine.infohentet':
     'Informasjonen er hentet fra Folkeregisteret og viser barna dine under 19 år. Hvis noe ikke stemmer, kan du endre informasjonen hos Folkeregisteret.',
+  'barnadine.ingenBarn': 'Du har ingen barn registrert i Folkeregisteret.',
   'barnekort.termindato': 'Termindato',
   'barnekort.fødselsdato': 'Fødselsdato',
   'barnekort.fødselsnummer': 'Fødselsnummer',
@@ -889,7 +890,7 @@ export default {
   'skjema.alert.mottatt': 'Opplysningene om deg som arbeidssøker er mottatt',
 
   'forside.overgangsstønad.erDuEnsligMorEllerFar':
-    'Er du enslig mor eller far og har barn under 8 år, vil overgangsstønaden sikre deg inntekt i inntil 3 år. I noen tilfeller kan vi forlenge denne perioden. Inntekten din avgjør hvor mye du harrett til i stønad.',
+    'Er du enslig mor eller far og har barn under 8 år, vil overgangsstønaden sikre deg inntekt i inntil 3 år. I noen tilfeller kan vi forlenge denne perioden. Inntekten din avgjør hvor mye du har rett til i stønad.',
   'forside.overgangsstønad.sammeSøknad':
     'Du bruker samme søknad både hvis du søker for første gang og hvis du søker forlengelse eller utvidelse av stønadstiden din.',
   'forside.overgangsstønad.merOmOvergangsstønad':

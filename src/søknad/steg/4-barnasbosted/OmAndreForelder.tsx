@@ -15,7 +15,6 @@ import {
   erIkkeOppgittPgaAnnet,
   slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder,
 } from '../../../helpers/steg/forelder';
-import { useSpråkContext } from '../../../context/SpråkContext';
 import { TextFieldMedBredde } from '../../../components/TextFieldMedBredde';
 
 interface Props {
@@ -34,7 +33,6 @@ const OmAndreForelder: React.FC<Props> = ({
   settSisteBarnUtfylt,
 }) => {
   const intl = useLokalIntlContext();
-  const [locale] = useSpråkContext();
   const { fødselsdato, ident } = forelder;
   const [feilmeldingNavn, settFeilmeldingNavn] = useState<boolean>(false);
   const hvorforIkkeOppgiLabel = hentTekst(hvorforIkkeOppgi(intl).tekstid, intl);

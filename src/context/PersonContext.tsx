@@ -72,6 +72,7 @@ const PersonProvider: React.FC<{ children?: React.ReactNode }> = ({
   >(undefined);
   const intl = useLokalIntlContext();
 
+  // @ts-ignore
   const håndterError = (e: any, skjemanavn: ESkjemanavn) => {
     const feil = e.response?.data?.feil;
 

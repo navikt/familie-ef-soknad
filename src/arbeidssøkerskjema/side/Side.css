@@ -9,6 +9,10 @@
     '. uu-tekst .'
     'knapper knapper knapper';
 }
+.skjema > .side .stegindikator {
+  grid-area: stegindikator;
+  margin: 1rem 0 1rem;
+}
 .skjema > .side .navds-heading {
   grid-area: tittel;
   justify-self: center;

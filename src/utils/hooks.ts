@@ -9,7 +9,6 @@ import {
   filtypeOgFilstørrelseStreng,
 } from './nedlastningFilformater';
 import { setAvailableLanguages } from '@navikt/nav-dekoratoren-moduler';
-import { IMellomlagretBarnetilsynSøknad } from '../barnetilsyn/models/mellomlagretSøknad';
 
 export const usePrevious = (value: any) => {
   const ref = useRef();
@@ -36,6 +35,7 @@ export const useLeggTilSærligeBehovHvisHarEttBarMedSærligeBehov = (
         oppdaterBarnISoknaden(oppdatertBarn);
       }
       if (barn.særligeTilsynsbehov && !harSvartJaPåAtHarBarnMedSærligeBehov) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { særligeTilsynsbehov, ...rest } = barn;
         oppdaterBarnISoknaden(rest);
       }

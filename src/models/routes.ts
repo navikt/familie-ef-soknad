@@ -13,4 +13,5 @@ export interface IRoute {
   route: RouteType;
   path: string;
   label: string;
+  localeTeskt?: string;
 }
