@@ -3,8 +3,8 @@ name: Build, push, and deploy app to dev
 on:
   workflow_dispatch:
 
-  env:
-    IMAGE: ghcr.io/navikt/familie-ef-soknad:${{ github.sha }}
+env:
+  IMAGE: ghcr.io/navikt/familie-ef-soknad:${{ github.sha }}
 
 jobs:
   build:
