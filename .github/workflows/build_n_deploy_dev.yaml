@@ -3,10 +3,15 @@ name: Build, push, and deploy app to dev
 on:
   workflow_dispatch:
 
+  env:
+    IMAGE: ghcr.io/navikt/familie-ef-soknad:${{ github.sha }}
+
 jobs:
   build:
     name: Build and push Docker container
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -32,17 +37,16 @@ jobs:
         run: |
           npm ci
           npm run build
-      - name: Push docker image to GAR and sign image
-        uses: nais/docker-build-push@v0
-        id: docker-build-push
-        with:
-          team: teamfamilie
-          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
-          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
-    outputs:
-      image: ${{ steps.docker-build-push.outputs.image }}
+      - name: Build and publish Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.READER_TOKEN }}
+        run: |
+          docker build . -t ${IMAGE}
+          echo ${GITHUB_TOKEN} | docker login ghcr.io --username ${GITHUB_REPOSITORY} --password-stdin
+          docker push ${IMAGE}
   deploy:
-    name: Deploy to dev
+    name: Deploy to NAIS
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -55,4 +59,3 @@ jobs:
         env:
           CLUSTER: dev-gcp
           RESOURCE: nais-dev.yaml
-          IMAGE: ${{ needs.build.outputs.image }}
