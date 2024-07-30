@@ -13,6 +13,7 @@ export interface IPersonTilGjenbruk {
 
 export interface ISøker {
   fnr: string;
+  alder: number;
   forkortetNavn: string;
   adresse: IAdresse;
   sivilstand: string;

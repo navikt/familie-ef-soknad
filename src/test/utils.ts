@@ -238,6 +238,7 @@ export const lagPerson = (
 
 export const lagSøker = (
   fnr?: string,
+  alder?: number,
   forkortetNavn?: string,
   adresse?: IAdresse,
   sivilstand?: string,
@@ -246,6 +247,7 @@ export const lagSøker = (
 ): ISøker => {
   return {
     fnr: fnr ?? '',
+    alder: alder ?? 0,
     forkortetNavn: forkortetNavn ?? '',
     adresse: adresse ?? lagAdresse(),
     sivilstand: sivilstand ?? '',
