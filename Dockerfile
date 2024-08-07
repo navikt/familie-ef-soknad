@@ -1,4 +1,4 @@
-FROM gcr.io/distroless/nodejs:18
+FROM gcr.io/distroless/nodejs20-debian12
 
 WORKDIR /app
 COPY ./build build
@@ -8,4 +8,4 @@ WORKDIR /app/server
 ENV NODE_ENV production
 EXPOSE 8080
 
-CMD ["--experimental-modules", "--es-module-specifier-resolution=node", "build/server.js"]
+CMD ["--import=./build/register.js", "--es-module-specifier-resolution=node", "build/server.js"]
