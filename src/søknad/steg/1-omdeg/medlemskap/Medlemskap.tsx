@@ -118,6 +118,7 @@ const Medlemskap: React.FC<Props> = ({ medlemskap, settMedlemskap }) => {
 
       {(søkerOppholderSegINorge?.verdi === true ||
         (søkerOppholderSegINorge?.verdi === false &&
+          // eslint-disable-next-line no-prototype-builtins
           oppholdsland?.hasOwnProperty('verdi'))) && (
         <>
           <KomponentGruppe key={bosattINorgeDeSisteTreÅrConfig.søknadid}>

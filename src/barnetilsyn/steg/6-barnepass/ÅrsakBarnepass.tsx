@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { FC } from 'react';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import LocaleTekst from '../../../language/LocaleTekst';

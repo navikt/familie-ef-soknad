@@ -1,3 +1,4 @@
+import React from 'react';
 import { ReadMore } from '@navikt/ds-react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import styled from 'styled-components';

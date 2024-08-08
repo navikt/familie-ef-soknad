@@ -60,7 +60,7 @@ export const verdiTilTekstsvar = (
         const formattertDato = formatDate(strengTilDato(verdi));
         return <BodyShort>{formattertDato}</BodyShort>;
       }
-    } catch (e) {
+    } catch {
       return <BodyShort>{verdi}</BodyShort>;
     }
     return <BodyShort>{verdi}</BodyShort>;
@@ -165,7 +165,7 @@ export const visLabelOgVerdiForSpørsmålListeFelt = (
       <Label as="p">{feltListeObjekt.label}</Label>
       <ul>
         {feltListeObjekt.verdi.map((svar) => (
-          <li>
+          <li key={svar}>
             <BodyShort>{svar}</BodyShort>
           </li>
         ))}

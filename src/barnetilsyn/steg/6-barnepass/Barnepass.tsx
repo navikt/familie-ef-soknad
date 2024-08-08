@@ -39,14 +39,12 @@ import { hentBeskjedMedNavn } from '../../../utils/språk';
 import { BodyShort } from '@navikt/ds-react';
 import styled from 'styled-components';
 
-interface Props {}
-
 const StyledHjelpetekst = styled.div`
   .navds-body-short {
     padding-bottom: 1rem;
   }
 `;
-const Barnepass: FC<Props> = () => {
+const Barnepass: FC = () => {
   const intl = useLokalIntlContext();
   const location = useLocation();
   const kommerFraOppsummering = kommerFraOppsummeringen(location.state);

@@ -60,6 +60,7 @@ const App = () => {
     ])
       .then(() => settFetching(false))
       .catch(() => settFetching(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!fetching && autentisert) {

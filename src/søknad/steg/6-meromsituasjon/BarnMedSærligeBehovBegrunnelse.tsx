@@ -45,7 +45,7 @@ const BarnMedSærligeBehovBegrunnelse = () => {
       {barnMedSærligeBehov.map((barn: IBarn) => {
         const onChange = settBarnSærligBehovBegrunnelse(barn);
         return (
-          <KomponentGruppe>
+          <KomponentGruppe key={barn.id}>
             <Textarea
               autoComplete={'off'}
               onChange={onChange}

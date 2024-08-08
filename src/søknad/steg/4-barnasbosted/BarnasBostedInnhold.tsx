@@ -75,6 +75,7 @@ const BarnasBostedInnhold: React.FC<Props> = ({
       antallBarnMedForeldreUtfylt(barnMedLevendeMedforelder) ===
         barnMedLevendeMedforelder.length
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [søknad]);
   const forelderIdenterMedBarn = forelderidentMedBarn(
     barnMedLevendeMedforelder

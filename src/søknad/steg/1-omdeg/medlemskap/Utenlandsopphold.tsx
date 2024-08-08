@@ -196,6 +196,7 @@ const Utenlandsopphold: FC<Props> = ({
           utenlandsopphold.periode,
           DatoBegrensning.TidligereDatoer
         ) &&
+        // eslint-disable-next-line no-prototype-builtins
         utenlandsopphold.land?.hasOwnProperty('verdi') && (
           <StyledTextarea
             label={tekstMedLandVerdi(begrunnelseTekst)}

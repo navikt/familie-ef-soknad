@@ -65,9 +65,8 @@ export const erBarnepassStegFerdigUtfylt = (
     (søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.ja &&
       søknadsdato?.verdi !== undefined) ||
     søkerFraBestemtMåned?.svarid === ESøkerFraBestemtMåned.neiNavKanVurdere;
-  const erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart = erBarnepassForAlleBarnUtfylt(
-    barnSomSkalHaBarnepass
-  );
+  const erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart =
+    erBarnepassForAlleBarnUtfylt(barnSomSkalHaBarnepass);
   return (
     erSpørsmålSøkerFraBestemtMånedBesvart &&
     erSpørsmålForAlleBarnSomSkalHaBarnepassBesvart

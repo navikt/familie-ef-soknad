@@ -66,8 +66,7 @@ const InputLabelGruppe: React.FC<Props> = ({
   placeholder,
   utvidetTekstNøkkel,
 }) => {
-  // @ts-ignore
-  const ignorerScrollForTallInput = (e) => e.target.blur();
+  const ignorerScrollForTallInput = (e: any) => e.target.blur();
 
   return (
     <StyledComponent aria-live="polite">

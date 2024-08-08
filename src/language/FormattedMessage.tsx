@@ -1,4 +1,5 @@
 import { useLokalIntlContext } from '../context/LokalIntlContext';
+import React from 'react';
 
 interface Props {
   id: string;
