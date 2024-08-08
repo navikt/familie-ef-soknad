@@ -11,14 +11,14 @@
     "dotenv": "^16.4.5",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
-    "express-http-proxy": "^2.0.0",
+    "express-http-proxy": "^2.1.1",
     "http-proxy-middleware": "^3.0.0",
     "jsdom": "^24.1.0",
     "jsonwebtoken": "9.0.2",
     "node-jose": "2.2.0",
     "openid-client": "5.6.5",
     "uuid": "^10.0.0",
-    "winston": "^3.13.0",
+    "winston": "^3.14.0",
     "typescript": "^5.5.3"
   },
   "devDependencies": {
