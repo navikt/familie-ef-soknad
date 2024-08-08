@@ -72,8 +72,8 @@ const Barnekort: React.FC<Props> = ({ gjeldendeBarn, footer }) => {
         ? hentTekst('barnekort.adresse.bor', intl)
         : hentTekst('barnekort.adresse.borIkke', intl)
       : harSammeAdresse.verdi
-      ? hentTekst('barnekort.adresse.skalBo', intl)
-      : hentTekst('barnekort.adresse.skalIkkeBo', intl);
+        ? hentTekst('barnekort.adresse.skalBo', intl)
+        : hentTekst('barnekort.adresse.skalIkkeBo', intl);
   } else {
     bosted = harSammeAdresse.verdi
       ? intl.formatMessage({ id: 'barnekort.adresse.registrert' })
@@ -127,10 +127,10 @@ const Barnekort: React.FC<Props> = ({ gjeldendeBarn, footer }) => {
                 medforelder?.verdi && medforelder?.verdi.navn
                   ? medforelder?.verdi?.navn
                   : medforelder?.verdi?.alder
-                  ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
-                      medforelder.verdi.alder
-                    }`
-                  : null
+                    ? `${hentTekst('barnekort.medforelder.hemmelig', intl)}, ${
+                        medforelder.verdi.alder
+                      }`
+                    : null
               }
             />
           )}

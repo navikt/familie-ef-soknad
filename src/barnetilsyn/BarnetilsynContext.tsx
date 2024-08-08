@@ -385,7 +385,6 @@ const [BarnetilsynSøknadProvider, useBarnetilsynSøknad] = createUseContext(
     ) => {
       let endretDokumentasjonsbehov = søknad.dokumentasjonsbehov;
       if (spørsmål.flersvar) {
-        // eslint-disable-next-line no-console
         console.error('Ikke implementert');
       } else {
         endretDokumentasjonsbehov =

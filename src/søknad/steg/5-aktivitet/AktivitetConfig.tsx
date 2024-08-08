@@ -33,7 +33,7 @@ export const hvaErDinArbeidssituasjonSpm = (
   tekstid: 'arbeidssituasjon.spm',
   lesmer: {
     headerTekstid: 'arbeidssituasjon.spm.hjelpetekst-åpne',
-    innholdTekstid: 'arbeidssituasjon.spm.hjelpetekst-innhold'
+    innholdTekstid: 'arbeidssituasjon.spm.hjelpetekst-innhold',
   },
   flersvar: true,
   svaralternativer: [

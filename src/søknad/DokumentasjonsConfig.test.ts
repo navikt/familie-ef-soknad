@@ -57,9 +57,9 @@ describe('validerer dokumentasjonsconfig', () => {
   });
 });
 
-// @ts-ignore
+// @ts-expect-error ukjent type
 const groupBy = (xs, key: string): Map<string, IDokumentasjon[]> => {
-  // @ts-ignore
+  // @ts-expect-error ukjent type
   return xs.reduce((rv, x) => {
     (rv[x[key]] = rv[x[key]] || []).push(x);
     return rv;

@@ -17,18 +17,6 @@ const DineSaker: FC = () => {
           <LocaleTekst tekst={'kvittering.tekst.dineSaker'} />
         </BodyShort>
       </KomponentGruppe>
-      {false && (
-        <KomponentGruppe>
-          <a
-            className={'knapp knapp--standard kvittering'}
-            href={
-              'https://www.nav.no/soknader/nb/person/arbeid/tilleggsstonader'
-            }
-          >
-            <LocaleTekst tekst={'kvittering.knapp.dineSaker'} />
-          </a>
-        </KomponentGruppe>
-      )}
     </SeksjonGruppe>
   );
 };

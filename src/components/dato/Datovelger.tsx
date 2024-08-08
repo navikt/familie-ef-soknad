@@ -36,6 +36,7 @@ const Datovelger: React.FC<Props> = ({
 
   useEffect(() => {
     settDato(_dato);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [_dato]);
 
   const datoVisningsverdi = _dato ? new Date(_dato) : undefined;

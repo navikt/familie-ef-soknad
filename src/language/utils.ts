@@ -40,7 +40,7 @@ export const hentValgtSpråk = (locale: LocaleType) => {
   locale === LocaleType.en
     ? (språk = LangType.English)
     : locale === LocaleType.nn
-    ? (språk = LangType.Nynorsk)
-    : (språk = LangType.Bokmål);
+      ? (språk = LangType.Nynorsk)
+      : (språk = LangType.Bokmål);
   return språk;
 };

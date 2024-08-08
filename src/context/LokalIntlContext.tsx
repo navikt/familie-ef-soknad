@@ -26,7 +26,6 @@ const LokalIntlProvider: React.FC<{
   ) => {
     const tekst = tekster[props.id];
     if (tekst === undefined || tekst === null) {
-      // eslint-disable-next-line no-console
       console.warn(`Finner ikke oversettelse for ${props.id}`);
       return props.id as string;
     }

@@ -16,7 +16,6 @@ amplitude.init('default', undefined, {
   },
 });
 
-// eslint-disable-next-line
 export function logEvent(eventName: string, eventProperties: any) {
   amplitude.track(eventName, eventProperties);
 }

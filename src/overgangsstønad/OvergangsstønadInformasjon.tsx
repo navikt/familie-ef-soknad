@@ -11,6 +11,7 @@ import {
   ERouteOvergangsstønad,
 } from './routing/routesOvergangsstonad';
 import { KnappLocaleTekstOgNavigate } from '../components/knapper/KnappLocaleTekstOgNavigate';
+import React from 'react';
 
 export const OvergangsstønadInformasjon: React.FC<InformasjonProps> = ({
   person,

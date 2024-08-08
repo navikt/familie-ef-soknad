@@ -4,6 +4,7 @@ import { Button } from '@navikt/ds-react';
 import FeltGruppe from '../gruppe/FeltGruppe';
 import { ESkjemanavn } from '../../utils/skjemanavn';
 import { EEventsnavn, logEvent } from '../../utils/amplitude';
+import React from 'react';
 
 export const KnappLocaleTekstOgNavigate: React.FC<{
   nesteSide: string;

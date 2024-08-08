@@ -89,6 +89,7 @@ const config = {
       overlay: false,
     }),
     new ESLintPlugin({
+      configType: 'flat',
       extensions: [`ts`, `tsx`],
     }),
     new CopyPlugin({

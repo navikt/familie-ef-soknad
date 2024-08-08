@@ -150,6 +150,7 @@ const Oppsummering: React.FC = () => {
         }
         logManglendeFelter(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [søknad, manglendeFelter, skjemaId]);
 
   const harManglendeFelter = manglendeFelter.length > 0;

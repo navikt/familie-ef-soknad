@@ -2,6 +2,7 @@ import { BodyShort, Button } from '@navikt/ds-react';
 import { hentTekst } from '../../../utils/søknad';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import styled from 'styled-components';
+import React from 'react';
 
 const BarnekortContainer = styled.div`
   width: 276px;

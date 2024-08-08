@@ -47,7 +47,7 @@ export const hentLand = (språk: LocaleType): ILandMedKode[] => {
       return {
         id: land.alpha3,
         svar_tekst: land.label,
-        erEøsland: eøsLand.some(eøs => eøs.alpha3 === land.alpha3),
+        erEøsland: eøsLand.some((eøs) => eøs.alpha3 === land.alpha3),
       };
     })
     .sort((a, b) => a.svar_tekst.localeCompare(b.svar_tekst));
