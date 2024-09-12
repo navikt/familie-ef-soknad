@@ -10,7 +10,7 @@
     "@navikt/nav-dekoratoren-moduler": "^2.1.6",
     "dotenv": "^16.4.5",
     "cookie-parser": "^1.4.6",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "express-http-proxy": "^2.1.1",
     "http-proxy-middleware": "^3.0.0",
     "jsdom": "^25.0.0",
