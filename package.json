@@ -36,12 +36,12 @@
     ]
   },
   "dependencies": {
-    "@navikt/ds-css": "^6.16.3",
-    "@navikt/ds-react": "^6.16.3",
-    "@navikt/ds-tokens": "^6.13.0",
+    "@navikt/ds-css": "^7.0.0",
+    "@navikt/ds-react": "^7.0.0",
+    "@navikt/ds-tokens": "^7.0.0",
     "@navikt/fnrvalidator": "^2.1.2",
     "@navikt/land-verktoy": "4.0.1",
-    "@navikt/nav-dekoratoren-moduler": "^2.1.6",
+    "@navikt/nav-dekoratoren-moduler": "^3.1.0",
     "@portabletext/react": "^3.1.0",
     "@sentry/browser": "^8.28.0",
     "@types/body-parser": "^1.19.5",
