@@ -16,7 +16,6 @@ const getHtmlWithDecorator = (filePath: string) => {
 
   const dekoratørParams: DecoratorParams = {
     simple: true,
-    enforceLogin: false,
     redirectToApp: true,
     level: 'Level4',
   };
