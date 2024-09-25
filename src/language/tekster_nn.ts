@@ -1254,7 +1254,7 @@ export default {
     'As a working single parent, you may be entitled to child care benefit',
   'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
     'This benefit covers 64 per cent of your child minding expenses, such as kindergarten, child care at school outside school hours (SFO), or a babysitter or child minder.  <br/><br/> ' +
-    'If you earn more than NOK 608 106 a year, you are not entitled to this benefit.<br/><br/>' +
+    'If you earn more than NOK 744 168 a year, you are not entitled to this benefit.<br/><br/>' +
     'As a general rule, you can receive this benefit until the child completes their fourth year of school.',
   'kvittering.lenke.tilleggsstønader.aktivitetskrav':
     'Read more about child care benefit',
