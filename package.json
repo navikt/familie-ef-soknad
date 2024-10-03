@@ -43,7 +43,7 @@
     "@navikt/land-verktoy": "4.0.1",
     "@navikt/nav-dekoratoren-moduler": "^3.1.0",
     "@portabletext/react": "^3.1.0",
-    "@sentry/browser": "^8.32.0",
+    "@sentry/browser": "^8.33.0",
     "@types/body-parser": "^1.19.5",
     "@types/lodash": "^4.17.9",
     "@types/react": "^18.3.10",
