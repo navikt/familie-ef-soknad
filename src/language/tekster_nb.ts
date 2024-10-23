@@ -273,8 +273,6 @@ export default {
     'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
   'barnasbosted.avtale.ufødt':
     'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'Du må legge ved avtale om delt fast bosted',
   'barnasbosted.alert.måBoHosDeg':
     '[0] må bo hos deg for at du skal ha rett til stønad',
   'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',

@@ -282,8 +282,6 @@ export default {
     'Do you and the other parent have a written agreement on dual domicile for [0]?',
   'barnasbosted.avtale.ufødt':
     'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'You must submit your agreement on dual domicile',
   'barnasbosted.alert.måBoHosDeg':
     '[0] must live with you in order for you to be entitled to benefit',
   'barnasbosted.spm.skalBarnetBoHosSøker':
