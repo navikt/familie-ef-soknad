@@ -269,10 +269,6 @@ export default {
     'Hvorfor kan du ikke oppgi den andre forelderen?',
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Annet',
-  'barnasbosted.avtale':
-    'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
   'barnasbosted.alert.måBoHosDeg':
     '[0] må bo hos deg for at du skal ha rett til stønad',
   'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
@@ -290,12 +286,6 @@ export default {
   'barnasbosted.element.andreforelder': 's andre forelder',
   'barnasbosted.forelder.annen': 'Annen forelder',
   'barnasbosted.forelder.sammesom': 'Samme som',
-  'barnasbosted.knapp.endre': 'Endre informasjon',
-  'barnasbosted.hjelpetekst.bosted.apne': 'Les mer om delt fast bosted',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/><br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    'Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/><br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/><br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
