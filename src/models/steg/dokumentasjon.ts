@@ -33,7 +33,6 @@ export enum BarnDokumentasjon {
 }
 export enum BarnasBostedDokumentasjon {
   BARN_BOR_HOS_SØKER = 'BARN_BOR_HOS_SØKER',
-  DELT_BOSTED = 'DELT_BOSTED',
   SAMVÆRSAVTALE = 'SAMVÆRSAVTALE',
 }
 

@@ -119,25 +119,6 @@ const BarnetsBostedLagtTil: React.FC<Props> = ({
             <BodyShort>{forelder.land?.verdi}</BodyShort>
           </div>
         )}
-        {forelder.avtaleOmDeltBosted && (
-          <div className="spørsmål-og-svar">
-            <Label as="p">
-              {hentBeskjedMedNavn(
-                barnetsNavn,
-                intl.formatMessage({
-                  id: barn.født?.verdi
-                    ? 'barnasbosted.avtale'
-                    : 'barnasbosted.avtale.ufødt',
-                })
-              )}
-            </Label>
-            <BodyShort>
-              {forelder.avtaleOmDeltBosted?.verdi
-                ? hentTekst(ESvarTekstid.JA, intl)
-                : hentTekst(ESvarTekstid.NEI, intl)}
-            </BodyShort>
-          </div>
-        )}
         {forelder.harAnnenForelderSamværMedBarn?.verdi && (
           <div className="spørsmål-og-svar">
             <Label as="p">

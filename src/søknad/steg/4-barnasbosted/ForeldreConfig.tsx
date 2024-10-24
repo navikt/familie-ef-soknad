@@ -10,7 +10,7 @@ import {
 import { IDokumentasjon } from '../../../models/steg/dokumentasjon';
 import { IBarn } from '../../../models/steg/barn';
 import { EForelder } from '../../../models/steg/forelder';
-import { JaNeiSvar, JaSvar, NeiSvar } from '../../../helpers/svar';
+import { JaNeiSvar } from '../../../helpers/svar';
 import { DokumentasjonsConfig } from '../../DokumentasjonsConfig';
 import { LokalIntlShape } from '../../../language/typer';
 
@@ -18,9 +18,6 @@ import { LokalIntlShape } from '../../../language/typer';
 
 const DokumentasjonBarnBorHosDeg: IDokumentasjon =
   DokumentasjonsConfig.DokumentasjonBarnBorHosDeg;
-
-const AvtaleOmDeltBosted: IDokumentasjon =
-  DokumentasjonsConfig.AvtaleOmDeltBosted;
 
 const SamværsavtaleMedKonkreteTidspunkter: IDokumentasjon =
   DokumentasjonsConfig.SamværsavtaleMedKonkreteTidspunkter;
@@ -34,27 +31,6 @@ export const borINorge = (intl: LokalIntlShape): ISpørsmål => ({
   tekstid: 'barnasbosted.borinorge',
   flersvar: false,
   svaralternativer: JaNeiSvar(intl),
-});
-
-export const avtaleOmDeltBosted = (
-  intl: LokalIntlShape,
-  født: boolean
-): ISpørsmål => ({
-  søknadid: EForelder.avtaleOmDeltBosted,
-  tekstid: født ? 'barnasbosted.avtale' : 'barnasbosted.avtale.ufødt',
-  flersvar: false,
-  lesmer: {
-    halvåpenTekstid: 'barnasbosted.hjelpetekst.halvåpen',
-    headerTekstid: 'barnasbosted.hjelpetekst.bosted.apne',
-    innholdTekstid: 'barnasbosted.hjelpetekst.bosted.innhold',
-  },
-  svaralternativer: [
-    {
-      ...JaSvar(intl),
-      dokumentasjonsbehov: AvtaleOmDeltBosted,
-    },
-    NeiSvar(intl),
-  ],
 });
 
 export const boddSammenFør = (intl: LokalIntlShape): ISpørsmål => ({

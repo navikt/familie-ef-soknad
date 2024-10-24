@@ -6,7 +6,7 @@ import {
   EHvorforIkkeOppgi,
 } from '../../models/steg/barnasbosted';
 import { EForelder, IForelder } from '../../models/steg/forelder';
-import { ESvar, ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
+import { ISpørsmål, ISvar } from '../../models/felles/spørsmålogsvar';
 import { harValgtSvar } from '../../utils/spørsmålogsvar';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../components/dato/utils';
 import { DatoBegrensning } from '../../components/dato/Datovelger';
@@ -36,15 +36,11 @@ export const erForelderUtfylt = (
   harForelderFraPdl?: boolean
 ): boolean | undefined => {
   if (forelder === undefined) return false;
-  const { avtaleOmDeltBosted } = forelder;
-
-  const utfyltAvtaleDeltBosted = harValgtSvar(avtaleOmDeltBosted?.verdi);
 
   const forelderInfoOgSpørsmålBesvart: boolean | undefined =
     utfyltNavnOgIdent(forelder, harForelderFraPdl) &&
     utfyltSkalBarnetBoHosSøker(forelder, harSammeAdresse) &&
     utfyltBorINorge(forelder) &&
-    utfyltAvtaleDeltBosted &&
     utfyltNødvendigeSamværSpørsmål(forelder) &&
     utfyltNødvendigBostedSpørsmål(forelder) &&
     harValgtBorISammeHus(forelder) &&
@@ -119,20 +115,14 @@ export const utfyltNødvendigSpørsmålUtenOppgiAnnenForelder = (
 export const utfyltNødvendigeSamværSpørsmål = (forelder?: IForelder) => {
   if (!forelder) return;
   const {
-    avtaleOmDeltBosted,
     harAnnenForelderSamværMedBarn,
     harDereSkriftligSamværsavtale,
     hvordanPraktiseresSamværet,
   } = forelder;
-  const harIkkeAvtaleOmDeltBosted = avtaleOmDeltBosted?.verdi === false;
 
-  if (
-    harIkkeAvtaleOmDeltBosted &&
-    harForelderSamværMedBarn(harAnnenForelderSamværMedBarn?.svarid)
-  )
+  if (harForelderSamværMedBarn(harAnnenForelderSamværMedBarn?.svarid))
     return harValgtSvar(harAnnenForelderSamværMedBarn?.verdi);
   else if (
-    harIkkeAvtaleOmDeltBosted &&
     måBeskriveSamværet(
       harDereSkriftligSamværsavtale?.svarid,
       harAnnenForelderSamværMedBarn?.svarid
@@ -240,15 +230,6 @@ export const hvisEndretSvarSlettFeltHvordanPraktiseresSamværet = (
   );
 };
 
-export const harSkriftligAvtaleOmDeltBosted = (
-  spørsmål: ISpørsmål,
-  svar: ISvar
-) => {
-  return (
-    spørsmål.søknadid === EForelder.avtaleOmDeltBosted && svar.id === ESvar.JA
-  );
-};
-
 export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   nyForelder: IForelder
 ) => {
@@ -259,7 +240,7 @@ export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   delete nyForelder.borAnnenForelderISammeHus;
   delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
   delete nyForelder.harAnnenForelderSamværMedBarn;
-  delete nyForelder.avtaleOmDeltBosted;
+  delete nyForelder.avtaleOmDeltBosted; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   delete nyForelder.borINorge;
   delete nyForelder.land;
   delete nyForelder.boddSammenFør;
@@ -280,7 +261,7 @@ export const resetForelder = (forelder: IForelder) => {
   delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
   delete forelder.borINorge;
   delete forelder.land;
-  delete forelder.avtaleOmDeltBosted;
+  delete forelder.avtaleOmDeltBosted; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   delete forelder.harAnnenForelderSamværMedBarn;
   delete forelder.harDereSkriftligSamværsavtale;
   delete forelder.hvordanPraktiseresSamværet;

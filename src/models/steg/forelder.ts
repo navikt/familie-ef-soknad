@@ -17,7 +17,7 @@ export interface IForelder {
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: ISpørsmålBooleanFelt;
   land?: ISpørsmålFelt;
-  avtaleOmDeltBosted?: ISpørsmålBooleanFelt;
+  avtaleOmDeltBosted?: ISpørsmålBooleanFelt; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
@@ -33,7 +33,6 @@ export interface IForelder {
 export enum EForelder {
   skalBarnetBoHosSøker = 'skalBarnetBoHosSøker',
   borINorge = 'borINorge',
-  avtaleOmDeltBosted = 'avtaleOmDeltBosted',
   hvorforIkkeOppgi = 'hvorforIkkeOppgi',
 
   harAnnenForelderSamværMedBarn = 'harAnnenForelderSamværMedBarn',
