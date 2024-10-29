@@ -286,6 +286,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.hvisFaktiskBor':
     'If the child actually lives with you, please contact the National Registry for help registering the correct address. <br/>If the National Registry cannot help you, contact the Family Counselling Office for advice and guidance.<br/><br/>You can also document that the child lives with you by submitting, for example:<br/><ul><li>the reason why the child’s change of address has not been reported to the National Registry</li><li>copy of the notification of change of address or tip-off to the National Registry</li><li>confirmation from, for example, the child’s kindergarten / school, the child welfare services, or your child health centre</li></ul>',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':

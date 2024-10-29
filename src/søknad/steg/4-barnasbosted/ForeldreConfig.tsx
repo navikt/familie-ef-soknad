@@ -200,6 +200,12 @@ export const skalBarnetBoHosSøker = (intl: LokalIntlShape): ISpørsmål => ({
       dokumentasjonsbehov: DokumentasjonBarnBorHosDeg,
     },
     {
+      id: ESkalBarnetBoHosSøker.neiMenAvtaleDeltBosted,
+      svar_tekst: intl.formatMessage({
+        id: 'barnasbosted.spm.neiMenAvtaleDeltBosted',
+      }),
+    },
+    {
       id: ESkalBarnetBoHosSøker.nei,
       svar_tekst: intl.formatMessage({ id: ESvarTekstid.NEI }),
     },

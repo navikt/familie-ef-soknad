@@ -387,6 +387,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
     'You must update the address in the National Registry as soon as possible so that we can process your application with the correct information.',
   'barnasbosted.alert.skalBarnetBoHosSøker.nei':
