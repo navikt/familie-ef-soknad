@@ -240,7 +240,6 @@ export const slettIrrelevantPropertiesHvisHuketAvKanIkkeOppgiAnnenForelder = (
   delete nyForelder.borAnnenForelderISammeHus;
   delete nyForelder.borAnnenForelderISammeHusBeskrivelse;
   delete nyForelder.harAnnenForelderSamværMedBarn;
-  delete nyForelder.avtaleOmDeltBosted; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   delete nyForelder.borINorge;
   delete nyForelder.land;
   delete nyForelder.boddSammenFør;
@@ -261,7 +260,6 @@ export const resetForelder = (forelder: IForelder) => {
   delete forelder.ikkeOppgittAnnenForelderBegrunnelse;
   delete forelder.borINorge;
   delete forelder.land;
-  delete forelder.avtaleOmDeltBosted; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   delete forelder.harAnnenForelderSamværMedBarn;
   delete forelder.harDereSkriftligSamværsavtale;
   delete forelder.hvordanPraktiseresSamværet;

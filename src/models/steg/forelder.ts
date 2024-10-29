@@ -17,7 +17,6 @@ export interface IForelder {
   ikkeOppgittAnnenForelderBegrunnelse?: ITekstFelt;
   borINorge?: ISpørsmålBooleanFelt;
   land?: ISpørsmålFelt;
-  avtaleOmDeltBosted?: ISpørsmålBooleanFelt; // TODO: Skal fjernes etter at mellomlagrede verdier ikke lenger eksisterer
   harAnnenForelderSamværMedBarn?: ISpørsmålFelt;
   harDereSkriftligSamværsavtale?: ISpørsmålFelt;
   hvordanPraktiseresSamværet?: ITekstFelt;
