@@ -298,6 +298,7 @@ export default {
   'barnasbosted.element.andreforelder': 's other parent',
   'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
+  'barnasbosted.knapp.endre': 'Change information',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
