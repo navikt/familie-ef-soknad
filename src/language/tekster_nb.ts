@@ -269,12 +269,6 @@ export default {
     'Hvorfor kan du ikke oppgi den andre forelderen?',
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Annet',
-  'barnasbosted.avtale':
-    'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'Du må legge ved avtale om delt fast bosted',
   'barnasbosted.alert.måBoHosDeg':
     '[0] må bo hos deg for at du skal ha rett til stønad',
   'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
@@ -282,6 +276,8 @@ export default {
     'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'Nei, barnet har adresse hos den andre forelderen fordi vi har avtale om delt fast bosted',
   'barnasbosted.alert.hvisFaktiskBor':
     'Hvis barnet faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.<br/>\n<br/>Hvis Folkeregisteret ikke kan hjelpe deg, kan du kontakte Familievernkontoret for råd og veiledning.<br/>\n<br/>Du kan også dokumentere at barnet bor hos deg ved å sende inn for eksempel:<br/>\n <ul><li>grunnen til manglende adresseendring for barnet</li><li>kopi av flyttemelding/tips til Folkeregisteret</li><li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
@@ -293,11 +289,6 @@ export default {
   'barnasbosted.forelder.annen': 'Annen forelder',
   'barnasbosted.forelder.sammesom': 'Samme som',
   'barnasbosted.knapp.endre': 'Endre informasjon',
-  'barnasbosted.hjelpetekst.bosted.apne': 'Les mer om delt fast bosted',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/><br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    'Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/><br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/><br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
@@ -374,7 +365,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Arbeidssituasjonen din',
   'erDuIArbeid.spm': 'Er du i arbeid?',
   'erDuIArbeid.hjelpetekst':
-    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn</a>.',
+    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos Nav eller tar utdanning som Nav har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn</a>.',
   'erDuIArbeid.svar.nei': 'Nei, jeg er ikke i arbeid fordi jeg er syk ',
   'erDuIArbeid.alertsstripe-info':
     'Du kan få stønaden i inntil ett år når du har en sykdom som ikke er varig, og sykdommen gjør at du ikke kan være i arbeid.<br/><br/>At sykdommen ikke er varig betyr i denne sammenhengen at den ikke har vart i mer enn 2 år eller vil vare i mer enn 2 år. <br/><br/>Det er en forutsetning at barnepassordningen ble opprettet fordi du var i eller skulle begynne i arbeid, og at den fortsetter i den perioden du er syk. ',
@@ -400,7 +391,7 @@ export default {
     'Jeg er ikke i arbeid, utdanning eller arbeidssøker',
   'arbeidssituasjon.svar.harFåttJobbTilbud': 'Jeg har fått tilbud om jobb',
   'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-    '<strong>Når barnet ditt er under 1 år kan du motta overgangsstønad uten å jobbe, studere eller søke arbeid.</strong> <br/>\n<br/>For å få overgangsstønad etter at barnet ditt har fylt 1 år, må du jobbe, studere eller søke arbeid.<br/>\n<br/>Du kan fylle aktivitetsplikten på én av disse måtene:<br/>\n <ul><li>være i minst 50 prosent arbeid</li><li>være registrert hos NAV som arbeidssøker</li><li>være i minst 50 prosent utdanning som NAV har vurdert som nødvendig for at du skal kunne komme i jobb og forsørge deg selv</li><li>etablere egen virksomhet</li></ul><br/><br/>Det vil være fornuftig å starte planleggingen av barnepass og arbeid eller utdanning / opplæring så tidlig som mulig.<br/><br/>Du kan likevel få stønad hvis du ikke kan jobbe, studere eller søke arbeid på grunn av egen sykdom. Dette gjelder også hvis du har sykt barn eller mangler barnepass selv om du har søkt. Det samme gjelder dersom barnet ditt trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer.',
+    '<strong>Når barnet ditt er under 1 år kan du motta overgangsstønad uten å jobbe, studere eller søke arbeid.</strong> <br/>\n<br/>For å få overgangsstønad etter at barnet ditt har fylt 1 år, må du jobbe, studere eller søke arbeid.<br/>\n<br/>Du kan fylle aktivitetsplikten på én av disse måtene:<br/>\n <ul><li>være i minst 50 prosent arbeid</li><li>være registrert hos Nav som arbeidssøker</li><li>være i minst 50 prosent utdanning som Nav har vurdert som nødvendig for at du skal kunne komme i jobb og forsørge deg selv</li><li>etablere egen virksomhet</li></ul><br/><br/>Det vil være fornuftig å starte planleggingen av barnepass og arbeid eller utdanning / opplæring så tidlig som mulig.<br/><br/>Du kan likevel få stønad hvis du ikke kan jobbe, studere eller søke arbeid på grunn av egen sykdom. Dette gjelder også hvis du har sykt barn eller mangler barnepass selv om du har søkt. Det samme gjelder dersom barnet ditt trenger særlig tilsyn på grunn av fysiske, psykiske eller store sosiale problemer.',
   'arbeidsforhold.tittel': 'Om arbeidsforholdet ditt',
   'arbeidsforhold.tittel.arbeidsgiver': 'Arbeidssted',
   'arbeidsforhold.tittel.egetAS': 'Eget aksjeselskap',
@@ -452,11 +443,11 @@ export default {
     'Får du ikke dagpenger mens du etablerer egen virksomhet, må du skaffe næringsfaglig vurdering fra kommunen eller fylkeskommunen. Du kan også bruke en annen faglig kompetanse.<br/><br/>Vi trenger denne vurderingen når vi skal ta stilling til om virksomheten kan godkjennes som yrkesrettet aktivitet.',
   'arbeidssituasjon.label.arbeidsmengde': 'Hvor mye jobber du?',
   'arbeidssøker.tittel': 'Når du er arbeidssøker',
-  'arbeidssøker.label.registrert': 'Er du registrert som arbeidssøker hos NAV?',
+  'arbeidssøker.label.registrert': 'Er du registrert som arbeidssøker hos Nav?',
   'arbeidssøker.søknad.alert.forÅHaRett':
     'Du kan registrere deg etter at du har sendt inn denne søknaden. Da hjelper vi deg videre til registreringen.',
   'arbeidssøker.hjelpetekst-åpne.registrert':
-    'Om å være registrert som arbeidssøker hos NAV',
+    'Om å være registrert som arbeidssøker hos Nav',
   'arbeidssøker.hjelpetekst-innhold.registrert':
     'For å ha rett til overgangsstønad, må du registrere deg som arbeidssøker på nav.no. Hvis du ikke er registrert, kan du gjøre dette etter at du har sendt inn denne søknaden.',
   'arbeidssøker.label.villig':
@@ -497,7 +488,7 @@ export default {
   'utdanning.undertittel': 'Utdanning',
   'utdanning.lesmer-åpne.kanFåStønad': 'Utdanning du kan få stønad til',
   'utdanning.lesmer-innhold.kanFåStønad':
-    'For å få rett til overgangsstønad under utdanning, må NAV vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>Da vurderer vi:<ul><li>hva som er målet med utdanningen din</li><li>om det er nødvendig med utdanning for å kunne nå målet ditt</li><li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
+    'For å få rett til overgangsstønad under utdanning, må Nav vurdere utdanningen din som nødvendig for at du skal kunne komme i jobb og forsørge deg selv.<br/><br/>Da vurderer vi:<ul><li>hva som er målet med utdanningen din</li><li>om det er nødvendig med utdanning for å kunne nå målet ditt</li><li>om utdanningen er hensiktsmessig. Da vurderer vi blant annet både arbeidsmarkedets behov og dine muligheter.</li></ul>Når du søker om overgangsstønad vil vi vurdere utdanningen din.',
   'utdanning.lesmer-innhold.kanFåStønad.skolepenger':
     'For å få rett til stønad til skolepenger, må denne utdanningen være nødvendig for at du skal kunne komme i jobb og forsørge deg selv. <br /><br />Vi vurderer:<ul><li>hvilket mål du har for å skaffe eller beholde inntektsgivende arbeid</li><li>om det er nødvendig med utdanning for å kunne nå målet ditt</li><li>om den aktuelle utdanningen er hensiktsmessig. Da vurderer vi blant annet arbeidsmarkedets behov og dine muligheter.</li></ul>Vi vurderer utdanningen du vil ta når du søker om stønad. ',
   'utdanning.label.skoleUtdanningssted': 'Skole / utdanningssted',
@@ -616,7 +607,7 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
     'Selv om du søker fra en bestemt måned vil vi vurdere om du har rett til stønad fra denne måneden eller senere.',
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'Nei, NAV kan vurdere fra hvilken måned jeg har rett til stønad',
+    'Nei, Nav kan vurdere fra hvilken måned jeg har rett til stønad',
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
     'Jeg søker overgangsstønad fra og med',
   'søkerStønadFraBestemtMnd.datovelger.barnepass':
@@ -648,9 +639,9 @@ export default {
     '<li>Last opp bildene her</li></ol>',
   'dokumentasjon.beskrivelseSlutt':
     'Mangler du noe av dokumentasjonen? Da kan du sende inn det du har og ettersende resten. <br/><br />' +
-    'Har du sendt inn denne dokumentasjonen til NAV tidligere? Da trenger du ikke å sende den på nytt.',
+    'Har du sendt inn denne dokumentasjonen til Nav tidligere? Da trenger du ikke å sende den på nytt.',
   'dokumentasjon.checkbox.sendtTidligere':
-    'Jeg har sendt inn denne dokumentasjonen til NAV tidligere',
+    'Jeg har sendt inn denne dokumentasjonen til Nav tidligere',
   'dokumentasjon.knapp.slett': 'Slett',
   'dokumentasjon.inngåttEkteskap.tittel': 'Dokumentasjon på inngått ekteskap',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
@@ -755,7 +746,7 @@ export default {
   'kvittering.barnetilsyn.alert.mottatt':
     'Søknaden din om stønad til barnetilsyn er mottatt',
   'kvittering.tekst.arbeidssøker':
-    'Husk å registrere deg som arbeidssøker hos NAV',
+    'Husk å registrere deg som arbeidssøker hos Nav',
   'kvittering.knapp.arbeidssøker': 'Registrer deg som arbeidssøker',
   'kvittering.tekst.altViTrenger':
     'Spørsmålene i søknaden, sammen med eventuell dokumentasjon, gir oss svar på det vi trenger for å behandle søknaden din. Hvis vi trenger mer informasjon vil vi ta kontakt med deg.',
@@ -871,7 +862,7 @@ export default {
   'skjema.knapp.start': 'Start',
   'skjema.sidetittel': 'Enslig mor eller far som arbeidssøker',
   'skjema.beskrivelse':
-    'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: <ol><li><a  href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos NAV, hvis du ikke allerede har gjort det</li><li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li><li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li><li>sende meldekort hver 14. dag</li></ol>',
+    'Vi kan orientere og veilede deg om utdanning og yrkesvalg. Vi kan også tilby deg for eksempel kurs eller praksisplass, som vil bidra til at du kommer i arbeid.<br/><br/>Når du er arbeidssøker og søker om eller får overgangstønad må du: <ol><li><a  href="https://arbeidssokerregistrering.nav.no/start">registrere deg som arbeidssøker</a> hos Nav, hvis du ikke allerede har gjort det</li><li><a href="https://arbeidsplassen.nav.no/slik-skriver-du-en-god-cv">registrere CV-en din på nav.no</a> og holde den oppdatert</li><li>søke etter ledige jobber. <a href="https://veiviserarbeidssoker.nav.no/?situasjon=mistet-jobben">Vi har gode tips om jobbsøking.</a></li><li>sende meldekort hver 14. dag</li></ol>',
   'skjema.feilmelding.uthenting':
     'En feil oppstod ved uthenting av dine personopplysninger',
   'skjema.tittel.omarbeidssøker': 'Om deg som arbeidssøker',
@@ -936,7 +927,7 @@ export default {
   'forside.barnetilsyn.merOmStønad':
     '<a className="lenkte-tekst" href="https://www.nav.no/barnetilsyn-enslig">Mer om stønad til barnetilsyn</a>',
   'forside.barnetilsyn.arbeidssøkerUtdanning':
-    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos NAV eller tar utdanning som NAV har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn.</a>',
+    'Hvis du ikke er i arbeid, men er registrert som arbeidssøker hos Nav eller tar utdanning som Nav har godkjent, har du som hovedregel ikke rett til denne stønaden. Da kan du i stedet søke om <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig">stønad til pass av barn.</a>',
   'forside.barnetilsyn.overskrift.riktigeOpplysninger':
     'Det er viktig at du gir oss riktige opplysninger',
   'forside.barnetilsyn.riktigeOpplysninger':
@@ -1016,7 +1007,7 @@ export default {
   'forside.arbeidssøker.info':
     'Hvis du søker arbeid samtidig som du søker om eller får overgangsstønad, må du opplyse om mulighetene dine til å ta arbeid slik at vi kan vurdere deg som arbeidssøker.',
   'forside.arbeidssøker.krav':
-    'Vi kan kreve at du enten er i arbeid, registrert som arbeidssøker hos NAV eller utdanner deg når du mottar overgangsstønad.',
+    'Vi kan kreve at du enten er i arbeid, registrert som arbeidssøker hos Nav eller utdanner deg når du mottar overgangsstønad.',
   'forside.arbeidssøker.lerMer':
     '<span><a href="https://www.nav.no/overgangsstonad-enslig#aktivitet">Les mer om å motta overgangsstønad når du er arbeidssøker</a></span>',
   'forside.arbeidssøker.overskrift.riktigeOpplysninger':

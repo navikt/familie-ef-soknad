@@ -278,12 +278,6 @@ export default {
     'Why are you unable to provide the name of the other parent?',
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Other',
-  'barnasbosted.avtale':
-    'Do you and the other parent have a written agreement on dual domicile for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'You must submit your agreement on dual domicile',
   'barnasbosted.alert.måBoHosDeg':
     '[0] must live with you in order for you to be entitled to benefit',
   'barnasbosted.spm.skalBarnetBoHosSøker':
@@ -292,6 +286,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.hvisFaktiskBor':
     'If the child actually lives with you, please contact the National Registry for help registering the correct address. <br/>If the National Registry cannot help you, contact the Family Counselling Office for advice and guidance.<br/><br/>You can also document that the child lives with you by submitting, for example:<br/><ul><li>the reason why the child’s change of address has not been reported to the National Registry</li><li>copy of the notification of change of address or tip-off to the National Registry</li><li>confirmation from, for example, the child’s kindergarten / school, the child welfare services, or your child health centre</li></ul>',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
@@ -303,12 +299,6 @@ export default {
   'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne':
-    'Read more about agreement on dual domicile',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Dual permanent residence means that the child has permanent residence with both parents.<br/>This is not the same as the child having a permanent residence with one parent and possibly staying overnight with the other in connection with access.',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/><br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/><br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
@@ -388,7 +378,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
+    'If you are not working, but are registered with Nav as a jobseeker, or if you are in education or training that Nav has approved, you will not normally have the right to this benefit. In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
     'You can receive this benefit for up to one year if you have a disorder that is not chronic, and this illness prevents you from working.<br/><br/>In this context, “disorder that is not chronic” means a health disorder that has not lasted more than two years or is not expected to last more than two years.  <br/><br/>It is a prerequisite that the child minding arrangements were made because you were working or going to start working and that the arrangements continue during the period you are ill.',
@@ -416,7 +406,7 @@ export default {
     'I am not in work, education or a job seeker',
   'arbeidssituasjon.svar.harFåttJobbTilbud': 'I have been offered a job',
   'arbeidssituasjon.alert.aktivitetspliktFraEttÅr':
-    '<strong>If your child is under the age of 1 year old, you can receive transitional benefit without having to work, study or seek work. </strong> <br/><br/>To receive transitional benefit after your child has turned 1, you must work, study or seek work.<br/><br/>You can meet the duty to be in work-related activity in one of the following ways:<br/><ul><li>be in at least 50 per cent work</li><li>be registered with NAV as a job seeker</li><li>be in at least 50 per cent education that NAV has assessed as necessary in order for you to be able to get a job and support yourself</li><li>set up your own business</li></ul><br/><br/>It is sensible to start planning child minding and work, education or training as early as possible.<br/><br/>You can nevertheless receive benefit if you are unable to work, study or seek work due to your own illness, or if you have a sick child or do not have child minding, despite applying. The same also applies if your child needs extra supervision due to physical, mental or major social problems.',
+    '<strong>If your child is under the age of 1 year old, you can receive transitional benefit without having to work, study or seek work. </strong> <br/><br/>To receive transitional benefit after your child has turned 1, you must work, study or seek work.<br/><br/>You can meet the duty to be in work-related activity in one of the following ways:<br/><ul><li>be in at least 50 per cent work</li><li>be registered with Nav as a job seeker</li><li>be in at least 50 per cent education that Nav has assessed as necessary in order for you to be able to get a job and support yourself</li><li>set up your own business</li></ul><br/><br/>It is sensible to start planning child minding and work, education or training as early as possible.<br/><br/>You can nevertheless receive benefit if you are unable to work, study or seek work due to your own illness, or if you have a sick child or do not have child minding, despite applying. The same also applies if your child needs extra supervision due to physical, mental or major social problems.',
   'arbeidsforhold.tittel': 'About your employment',
   'arbeidsforhold.tittel.arbeidsgiver': 'Your employer',
   'arbeidsforhold.tittel.egetAS': 'Limited liability company',
@@ -470,11 +460,11 @@ export default {
   'arbeidssituasjon.label.arbeidsmengde': 'How much do you work?',
   'arbeidssøker.tittel': 'If you are a job seeker',
   'arbeidssøker.label.registrert':
-    'Are you registered with NAV as a job seeker?',
+    'Are you registered with Nav as a job seeker?',
   'arbeidssøker.søknad.alert.forÅHaRett':
     'You can register after you have submitted this application. We will help you with the registration process.',
   'arbeidssøker.hjelpetekst-åpne.registrert':
-    'About being registered with NAV as a job seeker',
+    'About being registered with Nav as a job seeker',
   'arbeidssøker.hjelpetekst-innhold.registrert':
     'In order to qualify for transitional benefit, you must register as a job seeker at nav.no. If you are not already registered, you can register after you have submitted this application.',
   'arbeidssøker.label.villig':
@@ -516,7 +506,7 @@ export default {
   'utdanning.lesmer-åpne.kanFåStønad':
     'Education for which you can receive support',
   'utdanning.lesmer-innhold.kanFåStønad':
-    'In order to qualify for transitional benefit while taking education, NAV must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>In this context, we will assess:  <ul><li>your goal for taking this particular education  </li><li>whether education is necessary for you to achieve this goal </li><li>whether the education is appropriate. In this context, we will assess, among other things, both the needs on the labour market and the opportunities available to you </li></ul>When you apply for transitional benefit, we will assess the education you are taking.',
+    'In order to qualify for transitional benefit while taking education, Nav must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>In this context, we will assess:  <ul><li>your goal for taking this particular education  </li><li>whether education is necessary for you to achieve this goal </li><li>whether the education is appropriate. In this context, we will assess, among other things, both the needs on the labour market and the opportunities available to you </li></ul>When you apply for transitional benefit, we will assess the education you are taking.',
   'utdanning.lesmer-innhold.kanFåStønad.skolepenger':
     'In order to qualify for support for school fees, the education you are taking must be necessary for you to be able to get a job and support yourself. <br /><br />We assess:<ul><li>your goal for getting or retaining paid work</li><li>whether education is necessary for you to achieve this goal</li><li>whether the education you have chosen is appropriate. In this context, we will assess, among other things, the needs on the labour market and the opportunities available to you</li></ul>We assess the education you want to take when you apply for benefit.',
   'utdanning.label.skoleUtdanningssted': 'School / institution',
@@ -637,7 +627,7 @@ export default {
   'søkerFraBestemtMåned.hjelpetekst-innhold.barnepass-del2':
     'Even if you apply from a specific month, we will determine whether you are entitled to benefit from this month or later.',
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'No, NAV can determine from which month I am entitled to benefit',
+    'No, Nav can determine from which month I am entitled to benefit',
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
     'I am applying for transitional benefit starting from',
   'søkerStønadFraBestemtMnd.datovelger.barnepass':
@@ -668,9 +658,9 @@ export default {
     '<li>Upload the images here </li></ol>',
   'dokumentasjon.beskrivelseSlutt':
     'If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/><br />' +
-    'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
+    'If you have already submitted this documentation to Nav in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
-    'I have already submitted this documentation to NAV in the past',
+    'I have already submitted this documentation to Nav in the past',
   'dokumentasjon.knapp.slett': 'Delete',
   'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
@@ -783,7 +773,7 @@ export default {
   'kvittering.barnetilsyn.alert.mottatt':
     'Your application for child care benefit has been received ',
   'kvittering.tekst.arbeidssøker':
-    'Remember to register with NAV as a job seeker',
+    'Remember to register with Nav as a job seeker',
   'kvittering.knapp.arbeidssøker': 'Register as a job seeker',
   'kvittering.tekst.altViTrenger':
     'The questions in the application, along with any documentation, tell us what we need to know to be able to process your application. We will contact you if we need more information.',
@@ -978,7 +968,7 @@ export default {
   'forside.barnetilsyn.merOmStønad':
     '<a className="lenkte-tekst" href="https://www.nav.no/barnetilsyn-enslig/en">Child minding benefit in more detail</a>',
   'forside.barnetilsyn.arbeidssøkerUtdanning':
-    'If you are currently not in work, but are registered with NAV as a job seeker or taking education that NAV has approved, as a general rule you will not be entitled to this benefit. In this case, you can apply for <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig/en">benefit for child minding.</a>',
+    'If you are currently not in work, but are registered with Nav as a job seeker or taking education that Nav has approved, as a general rule you will not be entitled to this benefit. In this case, you can apply for <a className="lenkte-tekst" href="https://www.nav.no/tilleggsstonader-enslig/en">benefit for child minding.</a>',
   'forside.barnetilsyn.overskrift.riktigeOpplysninger':
     'It is important that the information you give us is correct',
   'forside.barnetilsyn.riktigeOpplysninger':
@@ -1052,7 +1042,7 @@ export default {
   'forside.arbeidssøker.info':
     'If you are applying for jobs at the same time as you are applying for or receiving transitional benefit, you must provide information about your ability to work so that we can assess you as a job seeker.',
   'forside.arbeidssøker.krav':
-    'We may require that you are either in work, registered with NAV as a job seeker, or in education while you are receiving transitional benefit.',
+    'We may require that you are either in work, registered with Nav as a job seeker, or in education while you are receiving transitional benefit.',
   'forside.arbeidssøker.lerMer':
     '<span><a href="https://www.nav.no/overgangsstonad-enslig#aktivitet/en">Read more about receiving transitional benefit while you are a job seeker</a></span>',
   'forside.arbeidssøker.overskrift.riktigeOpplysninger':

@@ -13,12 +13,6 @@ const TestSteg4 = async (t) => {
   );
   await t.click(BorAnnenForelderINorge);
 
-  const SkriftligAvtaleDeltBosted = await RadioPanel(
-    hentNorskTekst('barnasbosted.avtale', barnetsNavn),
-    NeiSvar
-  );
-  await t.click(SkriftligAvtaleDeltBosted);
-
   const AnnenForelderSamvær = await RadioPanel(
     hentNorskTekst(
       'barnasbosted.spm.harAnnenForelderSamværMedBarn',

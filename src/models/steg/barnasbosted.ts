@@ -25,6 +25,7 @@ export enum EHvorMyeSammen {
 export enum ESkalBarnetBoHosSøker {
   ja = 'ja',
   jaMenSamarbeiderIkke = 'jaMenSamarbeiderIkke',
+  neiMenAvtaleDeltBosted = 'neiMenAvtaleDeltBosted',
   nei = 'nei',
 }
 
