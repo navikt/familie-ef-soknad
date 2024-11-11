@@ -278,12 +278,6 @@ export default {
     'Why are you unable to provide the name of the other parent?',
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Other',
-  'barnasbosted.avtale':
-    'Do you and the other parent have a written agreement on dual domicile for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'You must submit your agreement on dual domicile',
   'barnasbosted.alert.måBoHosDeg':
     '[0] must live with you in order for you to be entitled to benefit',
   'barnasbosted.spm.skalBarnetBoHosSøker':
@@ -292,6 +286,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.hvisFaktiskBor':
     'If the child actually lives with you, please contact the National Registry for help registering the correct address. <br/>If the National Registry cannot help you, contact the Family Counselling Office for advice and guidance.<br/><br/>You can also document that the child lives with you by submitting, for example:<br/><ul><li>the reason why the child’s change of address has not been reported to the National Registry</li><li>copy of the notification of change of address or tip-off to the National Registry</li><li>confirmation from, for example, the child’s kindergarten / school, the child welfare services, or your child health centre</li></ul>',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
@@ -303,12 +299,6 @@ export default {
   'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne':
-    'Read more about agreement on dual domicile',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Dual permanent residence means that the child has permanent residence with both parents.<br/>This is not the same as the child having a permanent residence with one parent and possibly staying overnight with the other in connection with access.',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>An agreement on dual domicile is a legal agreement pursuant to section 36 of the Children Act. <br/><br/>A written agreement on dual domicile means that both parents make important decisions on behalf of the child together, such as where the child will go to kindergarten and where in Norway the child will live.<br/><br/>If you and the other parent have a written agreement on dual domicile, neither of you is regarded as having sole care of the child(ren). This is the case even if one of you clearly has more of the daily care of the child(ren).',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':

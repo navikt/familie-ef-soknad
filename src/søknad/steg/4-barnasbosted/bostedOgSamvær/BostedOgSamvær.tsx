@@ -13,12 +13,10 @@ import {
   erJaNeiSvar,
   hentBooleanFraValgtSvar,
 } from '../../../../utils/spørsmålogsvar';
-import HarForelderAvtaleOmDeltBosted from './HarForelderAvtaleOmDeltBosted';
 import HarForelderSkriftligSamværsavtale from './HarForelderSkriftligSamværsavtale';
 import {
   harForelderSamværMedBarn,
   hvisEndretSvarSlettFeltHvordanPraktiseresSamværet,
-  harSkriftligAvtaleOmDeltBosted,
   måBeskriveSamværet,
 } from '../../../../helpers/steg/forelder';
 import { IBarn } from '../../../../models/steg/barn';
@@ -74,47 +72,34 @@ const BostedOgSamvær: React.FC<Props> = ({
       delete nyForelder.land;
     }
 
-    if (harSkriftligAvtaleOmDeltBosted(spørsmål, svar)) {
-      delete nyForelder.harDereSkriftligSamværsavtale;
-    }
-
     settForelder(nyForelder);
     settDokumentasjonsbehovForBarn(spørsmål, svar, barn.id);
   };
 
   return (
     <>
-      <HarForelderAvtaleOmDeltBosted
-        settBostedOgSamværFelt={settBostedOgSamværFelt}
-        forelder={forelder}
-        barn={barn}
-      />
-
-      {forelder.avtaleOmDeltBosted?.verdi !== undefined && (
-        <KomponentGruppe>
-          <MultiSvarSpørsmålMedNavn
-            key={harAnnenForelderSamværMedBarnConfig.søknadid}
-            spørsmål={harAnnenForelderSamværMedBarnConfig}
-            spørsmålTekst={hentBarnNavnEllerBarnet(
-              barn,
-              harAnnenForelderSamværMedBarnConfig.tekstid,
-              intl
-            )}
-            valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
-            settSpørsmålOgSvar={settBostedOgSamværFelt}
-          />
-        </KomponentGruppe>
+      <KomponentGruppe>
+        <MultiSvarSpørsmålMedNavn
+          key={harAnnenForelderSamværMedBarnConfig.søknadid}
+          spørsmål={harAnnenForelderSamværMedBarnConfig}
+          spørsmålTekst={hentBarnNavnEllerBarnet(
+            barn,
+            harAnnenForelderSamværMedBarnConfig.tekstid,
+            intl
+          )}
+          valgtSvar={forelder.harAnnenForelderSamværMedBarn?.verdi}
+          settSpørsmålOgSvar={settBostedOgSamværFelt}
+        />
+      </KomponentGruppe>
+      {harForelderSamværMedBarn(
+        forelder.harAnnenForelderSamværMedBarn?.svarid
+      ) && (
+        <HarForelderSkriftligSamværsavtale
+          forelder={forelder}
+          settBostedOgSamværFelt={settBostedOgSamværFelt}
+          barn={barn}
+        />
       )}
-      {forelder.avtaleOmDeltBosted?.verdi !== undefined &&
-        harForelderSamværMedBarn(
-          forelder.harAnnenForelderSamværMedBarn?.svarid
-        ) && (
-          <HarForelderSkriftligSamværsavtale
-            forelder={forelder}
-            settBostedOgSamværFelt={settBostedOgSamværFelt}
-            barn={barn}
-          />
-        )}
       {måBeskriveSamværet(
         forelder.harDereSkriftligSamværsavtale?.svarid,
         forelder.harAnnenForelderSamværMedBarn?.svarid

@@ -379,14 +379,6 @@ export default {
   'barnasbosted.land': 'Country',
   'barnasbosted.spm.donorbarn': 'The child is a donor child',
   'barnasbosted.spm.annet': 'Other',
-  'barnasbosted.avtale':
-    'Do you and the other parent have a written agreement on dual domicile for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'You must submit your agreement on dual domicile',
-
   'barnasbosted.alert.måBoHosDeg':
     '[0] must live with you in order for you to be entitled to benefit',
   'barnasbosted.spm.skalBarnetBoHosSøker':
@@ -395,6 +387,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
     'You must update the address in the National Registry as soon as possible so that we can process your application with the correct information.',
   'barnasbosted.alert.skalBarnetBoHosSøker.nei':
@@ -414,14 +408,6 @@ export default {
   'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne': 'Les meir om delt fast bustad',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova § 36.  <br/>' +
-    '<br/>Ein slik avtale inneber at begge foreldra i fellesskap tek større avgjerder på vegner av barnet, for eksempel kvar barnet skal gå i barnehage, og kvar i landet barnet skal bu.<br/>' +
-    '<br/>Når de har ein skriftleg avtale om delt bustad, blir ingen av dykk rekna for å ha åleineomsorga for barnet/barna. Dette gjeld sjølv om ein av dykk har klart meir av den daglege omsorga.',
-
   // -- Foreldresamvær
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
