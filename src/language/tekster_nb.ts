@@ -269,12 +269,6 @@ export default {
     'Hvorfor kan du ikke oppgi den andre forelderen?',
   'barnasbosted.spm.donorbarn': 'Donor',
   'barnasbosted.spm.annet': 'Annet',
-  'barnasbosted.avtale':
-    'Har du og den andre forelderen skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Skal du og den andre forelderen ha skriftlig avtale om delt fast bosted for [0]?',
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'Du må legge ved avtale om delt fast bosted',
   'barnasbosted.alert.måBoHosDeg':
     '[0] må bo hos deg for at du skal ha rett til stønad',
   'barnasbosted.spm.skalBarnetBoHosSøker': 'Skal [0] ha adresse hos deg?',
@@ -282,6 +276,8 @@ export default {
     'Ja, og vi har eller skal registrere adressen i Folkeregisteret',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Ja, men den andre forelderen samarbeider ikke om adresseendring',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'Nei, barnet har adresse hos den andre forelderen fordi vi har avtale om delt fast bosted',
   'barnasbosted.alert.hvisFaktiskBor':
     'Hvis barnet faktisk bor hos deg, må du ta kontakt med Folkeregisteret for å få hjelp til å registrere riktig adresse.<br/>\n<br/>Hvis Folkeregisteret ikke kan hjelpe deg, kan du kontakte Familievernkontoret for råd og veiledning.<br/>\n<br/>Du kan også dokumentere at barnet bor hos deg ved å sende inn for eksempel:<br/>\n <ul><li>grunnen til manglende adresseendring for barnet</li><li>kopi av flyttemelding/tips til Folkeregisteret</li><li>bekreftelse fra for eksempel barnehage/skole, barnevern eller helsestasjon</li></ul>',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
@@ -293,11 +289,6 @@ export default {
   'barnasbosted.forelder.annen': 'Annen forelder',
   'barnasbosted.forelder.sammesom': 'Samme som',
   'barnasbosted.knapp.endre': 'Endre informasjon',
-  'barnasbosted.hjelpetekst.bosted.apne': 'Les mer om delt fast bosted',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Delt fast bosted betyr at barnet har fast bosted hos begge foreldrene. <br/><br/>Dette er ikke det samme som at barnet har fast bosted hos den ene forelderen og eventuelt overnatter hos den andre i forbindelse med samvær.<br/>',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    'Avtale om delt fast bosted er en juridisk avtale i henhold til barneloven §36.<br/><br/>En slik avtale innebærer at begge foreldre i fellesskap tar større avgjørelser på vegne av barnet, for eksempel hvor barnet skal gå i barnehage og hvor i landet barnet skal bo.<br/><br/>Når dere har en skriftlig avtale om delt fast bosted, er retten til stønad til enslig mor eller far avhengig av om du har minst 60 prosent av den daglige omsorgen for barnet alene, uavhengig av hvor barnet til enhver tid bor.',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Har den andre forelderen samvær med [0]?',
   'barnasbosted.spm.harAnnenForelderSamværMedBarn.ufødt':
