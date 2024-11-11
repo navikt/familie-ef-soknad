@@ -485,7 +485,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. ' +
+    'If you are not working, but are registered with Nav as a jobseeker, or if you are in education or training that Nav has approved, you will not normally have the right to this benefit. ' +
     'In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
@@ -529,8 +529,8 @@ export default {
     '<br/>You can meet the duty to be in work-related activity in one of the following ways:<br/>' +
     '<ul>' +
     '<li>be in at least 50 per cent work</li>' +
-    '<li>be registered with NAV as a job seeker</li>' +
-    '<li>be in at least 50 per cent education that NAV has assessed as necessary in order for you to be able to get a job and support yourself</li>' +
+    '<li>be registered with Nav as a job seeker</li>' +
+    '<li>be in at least 50 per cent education that Nav has assessed as necessary in order for you to be able to get a job and support yourself</li>' +
     '<li>set up your own business</li>' +
     '</ul>' +
     '<br/><br/>' +
@@ -599,11 +599,11 @@ export default {
   // ARBEIDSSØKER
   'arbeidssøker.tittel': 'If you are a job seeker',
   'arbeidssøker.label.registrert':
-    'Are you registered with NAV as a job seeker?',
+    'Are you registered with Nav as a job seeker?',
   'arbeidssøker.søknad.alert.forÅHaRett':
     'You can register after you have submitted this application. We will help you with the registration process.',
   'arbeidssøker.hjelpetekst-åpne.registrert':
-    'About being registered with NAV as a job seeker',
+    'About being registered with Nav as a job seeker',
   'arbeidssøker.hjelpetekst-innhold.registrert':
     'In order to qualify for transitional benefit, you must register as a job seeker at nav.no. If you are not already registered, you can register after you have submitted this application.',
   'arbeidssøker.label.villig':
@@ -650,7 +650,7 @@ export default {
   'utdanning.lesmer-åpne.kanFåStønad':
     'Education for which you can receive support',
   'utdanning.lesmer-innhold.kanFåStønad':
-    'In order to qualify for transitional benefit while taking education, NAV must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>' +
+    'In order to qualify for transitional benefit while taking education, Nav must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>' +
     'In this context, we will assess:  ' +
     '<ul><li>your goal for taking this particular education  </li>' +
     '<li>whether education is necessary for you to achieve this goal </li>' +
@@ -884,7 +884,7 @@ export default {
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'No, NAV can determine from which month I am entitled to benefit',
+    'No, Nav can determine from which month I am entitled to benefit',
 
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
     'I am applying for transitional benefit starting from',
@@ -981,9 +981,9 @@ export default {
   'dokumentasjon.beskrivelseSlutt':
     'If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/>' +
     '<br />' +
-    'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
+    'If you have already submitted this documentation to Nav in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
-    'I have already submitted this documentation to NAV in the past',
+    'I have already submitted this documentation to Nav in the past',
   'dokumentasjon.knapp.slett': 'Delete',
   'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
@@ -1178,7 +1178,7 @@ export default {
     'Your application for child care benefit has been received ',
 
   'kvittering.tekst.arbeidssøker':
-    'Remember to register with NAV as a job seeker',
+    'Remember to register with Nav as a job seeker',
   'kvittering.knapp.arbeidssøker': 'Register as a job seeker',
   'kvittering.tekst.altViTrenger':
     'The questions in the application, along with any documentation, tell us what we need to know to be able to process your application. We will contact you if we need more information.',
