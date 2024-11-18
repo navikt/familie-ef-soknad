@@ -379,14 +379,6 @@ export default {
   'barnasbosted.land': 'Country',
   'barnasbosted.spm.donorbarn': 'The child is a donor child',
   'barnasbosted.spm.annet': 'Other',
-  'barnasbosted.avtale':
-    'Do you and the other parent have a written agreement on dual domicile for [0]?',
-  'barnasbosted.avtale.ufødt':
-    'Are you and the other parent going to enter into a written agreement on dual domicile for [0]?',
-
-  'barnasbosted.alert-info.avtaleOmDeltBosted':
-    'You must submit your agreement on dual domicile',
-
   'barnasbosted.alert.måBoHosDeg':
     '[0] must live with you in order for you to be entitled to benefit',
   'barnasbosted.spm.skalBarnetBoHosSøker':
@@ -395,6 +387,8 @@ export default {
     'Yes, and we have or are going to register the address in the National Registry',
   'barnasbosted.spm.jaMenSamarbeiderIkke':
     'Yes, but the other parent is not cooperating on registering the change of address',
+  'barnasbosted.spm.neiMenAvtaleDeltBosted':
+    'No, the child has an address with the other parent because we have an agreement on dual permanent residence',
   'barnasbosted.alert.skalBarnetBoHosSøker.ja':
     'You must update the address in the National Registry as soon as possible so that we can process your application with the correct information.',
   'barnasbosted.alert.skalBarnetBoHosSøker.nei':
@@ -414,14 +408,6 @@ export default {
   'barnasbosted.forelder.annen': 'Other parent',
   'barnasbosted.forelder.sammesom': 'The same as',
   'barnasbosted.knapp.endre': 'Change information',
-  'barnasbosted.hjelpetekst.bosted.apne': 'Les meir om delt fast bustad',
-  'barnasbosted.hjelpetekst.halvåpen':
-    'Delt fast bustad betyr at barnet har fast bustad hos begge foreldra. <br/> <br/>Dette er ikkje det same som at barnet har fast bustad hos den eine forelderen og eventuelt overnattar hos den andre i høve samvær.',
-  'barnasbosted.hjelpetekst.bosted.innhold':
-    '<br/>Avtale om delt fast bustad er ein juridisk avtale i samsvar med barnelova § 36.  <br/>' +
-    '<br/>Ein slik avtale inneber at begge foreldra i fellesskap tek større avgjerder på vegner av barnet, for eksempel kvar barnet skal gå i barnehage, og kvar i landet barnet skal bu.<br/>' +
-    '<br/>Når de har ein skriftleg avtale om delt bustad, blir ingen av dykk rekna for å ha åleineomsorga for barnet/barna. Dette gjeld sjølv om ein av dykk har klart meir av den daglege omsorga.',
-
   // -- Foreldresamvær
   'barnasbosted.spm.harAnnenForelderSamværMedBarn':
     'Does the other parent have contact with [0]?',
@@ -499,7 +485,7 @@ export default {
   'stegtittel.arbeidssituasjon.barnetilsyn': 'Your work situation',
   'erDuIArbeid.spm': 'Do you currently work?',
   'erDuIArbeid.hjelpetekst':
-    'If you are not working, but are registered with NAV as a jobseeker, or if you are in education or training that NAV has approved, you will not normally have the right to this benefit. ' +
+    'If you are not working, but are registered with Nav as a jobseeker, or if you are in education or training that Nav has approved, you will not normally have the right to this benefit. ' +
     'In either of these cases, you can apply for <a href="https://www.nav.no/tilleggsstonader-enslig">supplemental benefit for supervision of children</a>.',
   'erDuIArbeid.svar.nei': 'No, I do not work because I am ill',
   'erDuIArbeid.alertsstripe-info':
@@ -543,8 +529,8 @@ export default {
     '<br/>You can meet the duty to be in work-related activity in one of the following ways:<br/>' +
     '<ul>' +
     '<li>be in at least 50 per cent work</li>' +
-    '<li>be registered with NAV as a job seeker</li>' +
-    '<li>be in at least 50 per cent education that NAV has assessed as necessary in order for you to be able to get a job and support yourself</li>' +
+    '<li>be registered with Nav as a job seeker</li>' +
+    '<li>be in at least 50 per cent education that Nav has assessed as necessary in order for you to be able to get a job and support yourself</li>' +
     '<li>set up your own business</li>' +
     '</ul>' +
     '<br/><br/>' +
@@ -613,11 +599,11 @@ export default {
   // ARBEIDSSØKER
   'arbeidssøker.tittel': 'If you are a job seeker',
   'arbeidssøker.label.registrert':
-    'Are you registered with NAV as a job seeker?',
+    'Are you registered with Nav as a job seeker?',
   'arbeidssøker.søknad.alert.forÅHaRett':
     'You can register after you have submitted this application. We will help you with the registration process.',
   'arbeidssøker.hjelpetekst-åpne.registrert':
-    'About being registered with NAV as a job seeker',
+    'About being registered with Nav as a job seeker',
   'arbeidssøker.hjelpetekst-innhold.registrert':
     'In order to qualify for transitional benefit, you must register as a job seeker at nav.no. If you are not already registered, you can register after you have submitted this application.',
   'arbeidssøker.label.villig':
@@ -664,7 +650,7 @@ export default {
   'utdanning.lesmer-åpne.kanFåStønad':
     'Education for which you can receive support',
   'utdanning.lesmer-innhold.kanFåStønad':
-    'In order to qualify for transitional benefit while taking education, NAV must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>' +
+    'In order to qualify for transitional benefit while taking education, Nav must assess your education as necessary in order for you to be able to get a job and support yourself. <br/><br/>' +
     'In this context, we will assess:  ' +
     '<ul><li>your goal for taking this particular education  </li>' +
     '<li>whether education is necessary for you to achieve this goal </li>' +
@@ -898,7 +884,7 @@ export default {
     'We will determine from what point you are entitled to benefit even if you apply from a specific month.',
 
   'søkerFraBestemtMåned.svar.neiNavKanVurdere':
-    'No, NAV can determine from which month I am entitled to benefit',
+    'No, Nav can determine from which month I am entitled to benefit',
 
   'søkerFraBestemtMåned.datovelger.overgangsstønad':
     'I am applying for transitional benefit starting from',
@@ -995,9 +981,9 @@ export default {
   'dokumentasjon.beskrivelseSlutt':
     'If you do not have all the documentation you need, submit what you have now and upload the rest later.<br/>' +
     '<br />' +
-    'If you have already submitted this documentation to NAV in the past, you do not need to submit it again.',
+    'If you have already submitted this documentation to Nav in the past, you do not need to submit it again.',
   'dokumentasjon.checkbox.sendtTidligere':
-    'I have already submitted this documentation to NAV in the past',
+    'I have already submitted this documentation to Nav in the past',
   'dokumentasjon.knapp.slett': 'Delete',
   'dokumentasjon.inngåttEkteskap.tittel': 'Documentation of your marriage',
   'dokumentasjon.separasjonEllerSkilsmisse.tittel':
@@ -1192,7 +1178,7 @@ export default {
     'Your application for child care benefit has been received ',
 
   'kvittering.tekst.arbeidssøker':
-    'Remember to register with NAV as a job seeker',
+    'Remember to register with Nav as a job seeker',
   'kvittering.knapp.arbeidssøker': 'Register as a job seeker',
   'kvittering.tekst.altViTrenger':
     'The questions in the application, along with any documentation, tell us what we need to know to be able to process your application. We will contact you if we need more information.',
@@ -1254,7 +1240,7 @@ export default {
     'As a working single parent, you may be entitled to child care benefit',
   'kvittering.beskrivelse.tilleggsstønader.aktivitetskrav':
     'This benefit covers 64 per cent of your child minding expenses, such as kindergarten, child care at school outside school hours (SFO), or a babysitter or child minder.  <br/><br/> ' +
-    'If you earn more than NOK 608 106 a year, you are not entitled to this benefit.<br/><br/>' +
+    'If you earn more than NOK 744 168 a year, you are not entitled to this benefit.<br/><br/>' +
     'As a general rule, you can receive this benefit until the child completes their fourth year of school.',
   'kvittering.lenke.tilleggsstønader.aktivitetskrav':
     'Read more about child care benefit',

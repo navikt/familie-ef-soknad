@@ -44,9 +44,6 @@ updates:
   open-pull-requests-limit: 10
   registries: "*"
   versioning-strategy: increase
-  ignore:
-    - dependency-name: "*"
-      update-types: [ "version-update:semver-patch" ]
   groups:
     server-minor-and-patch-dependencies:
       patterns:

@@ -63,7 +63,6 @@ type DokumentasjonsConfigKey =
   | 'DokumentasjonMyeBortePgaJobb'
   | 'DokumentasjonBorPåUlikeAdresser'
   | 'DokumentasjonBarnBorHosDeg'
-  | 'AvtaleOmDeltBosted'
   | 'SamværsavtaleMedKonkreteTidspunkter'
   | 'SamværsavtaleUtenKonkreteTidspunkter'
   | 'DokumentasjonSykdom'
@@ -223,14 +222,6 @@ export const DokumentasjonsConfig: IDokumentasjonsConfig = {
     label: '',
     tittel: 'dokumentasjon.barnBorHosSøker.tittel',
     beskrivelse: 'dokumentasjon.barnBorHosSøker.beskrivelse',
-    harSendtInn: false,
-  },
-  AvtaleOmDeltBosted: {
-    id: BarnasBostedDokumentasjon.DELT_BOSTED,
-    spørsmålid: EForelder.avtaleOmDeltBosted,
-    svarid: ESvar.JA,
-    label: '',
-    tittel: 'dokumentasjon.deltBosted.tittel',
     harSendtInn: false,
   },
   SamværsavtaleMedKonkreteTidspunkter: {
