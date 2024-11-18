@@ -24,6 +24,7 @@ import * as Sentry from '@sentry/browser';
 import Environment from './Environment';
 import SkolepengerApp from './skolepenger/SkolepengerApp';
 import { createRoot } from 'react-dom/client';
+import { PdfKvittering } from './overgangsstønad/Pdfkvittering';
 
 if (Environment().sentryUrl) {
   Sentry.init({
@@ -45,6 +46,7 @@ if (container == null) {
             <Route path={'/arbeidssoker/*'} element={<ArbeidssøkerApp />} />
             <Route path={'/barnetilsyn/*'} element={<BarnetilsynApp />} />
             <Route path={'/skolepenger/*'} element={<SkolepengerApp />} />
+            <Route path={'/pdf-kvittering/*'} element={<PdfKvittering />} />
             <Route path={'*'} element={<App />} />
           </Routes>
         </Router>
