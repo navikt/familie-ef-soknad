@@ -72,6 +72,7 @@
     "react-helmet": "^6.1.0",
     "react-modal": "^3.16.1",
     "react-pdf": "^9.1.1",
+    "react-query": "^3.39.3",
     "react-router-dom": "^6.28.0",
     "styled-components": "^6.1.13",
     "use-debounce": "^10.0.4",
