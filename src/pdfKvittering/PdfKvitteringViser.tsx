@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
-import { pdfjs } from 'react-pdf';
+import { useEffect, useState } from 'react';
+import { pdfjs, Page as PdfPage, Document } from 'react-pdf';
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import '@navikt/ds-css';
 import axios from 'axios';
 import Environment from '../Environment';
+import { HStack, VStack, Button, Page } from '@navikt/ds-react';
+import { Box } from 'lucide-react';
+import { CloudDownIcon } from '@navikt/aksel-icons';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -29,60 +32,64 @@ export const hentPdfKvittering = async (): Promise<any> => {
 };
 
 export function PdfKvitteringViser() {
+  const [pdfLenke, settPdfLenke] = useState<string | null>(null);
+  const [sidetall, settSidetall] = useState(1);
+  const [antallSider, settAntallSider] = useState(0);
+
   useEffect(() => {
     hentPdfKvittering().then((pdfKvittering) => {
       //settStandarder(person.standarder);
       console.log('Response: ', pdfKvittering);
+      settPdfLenke(pdfKvittering);
     });
   }, []);
 
-  return <div>Test</div>;
-  // return (
-  //   <Page className="bg-blue-100">
-  //     {pdfLenke && (
-  //       <>
-  //         <HStack margin={'2'} gap={'10'}>
-  //           <Box className="mr-8 overflow-auto w-fit max-w-[60%]">
-  //             <Document
-  //               file={pdfLenke}
-  //               onLoadSuccess={({ numPages }) => settAntallSider(numPages)}
-  //             >
-  //               <PdfPage pageNumber={sidetall}></PdfPage>
-  //             </Document>
-  //           </Box>
+  return (
+    <Page className="bg-blue-100">
+      {pdfLenke && (
+        <>
+          <HStack margin={'2'} gap={'10'}>
+            <Box className="mr-8 overflow-auto w-fit max-w-[60%]">
+              <Document
+                file={pdfLenke}
+                onLoadSuccess={({ numPages }) => settAntallSider(numPages)}
+              >
+                <PdfPage pageNumber={sidetall}></PdfPage>
+              </Document>
+            </Box>
 
-  //           <VStack gap={'3'}>
-  //             <HStack justify={'space-between'}>
-  //               <VStack>
-  //                 <p>
-  //                   Side {sidetall} av {antallSider}
-  //                 </p>
+            <VStack gap={'3'}>
+              <HStack justify={'space-between'}>
+                <VStack>
+                  <p>
+                    Side {sidetall} av {antallSider}
+                  </p>
 
-  //                 <HStack gap={'4'}>
-  //                   <Button
-  //                     disabled={sidetall === 1}
-  //                     onClick={() => settSidetall(sidetall - 1)}
-  //                   >
-  //                     Forrige
-  //                   </Button>
-  //                   f
-  //                   <Button
-  //                     disabled={sidetall === antallSider}
-  //                     onClick={() => settSidetall(sidetall + 1)}
-  //                   >
-  //                     Neste
-  //                   </Button>
-  //                   <Button icon={<CloudDownIcon aria-hidden />}>
-  //                     Last ned Pdf
-  //                   </Button>
-  //                 </HStack>
-  //               </VStack>
-  //             </HStack>
-  //             {/* {standarder && <Standarder standarder={standarder} />} */}
-  //           </VStack>
-  //         </HStack>
-  //       </>
-  //     )}
-  //   </Page>
-  // );
+                  <HStack gap={'4'}>
+                    <Button
+                      disabled={sidetall === 1}
+                      onClick={() => settSidetall(sidetall - 1)}
+                    >
+                      Forrige
+                    </Button>
+                    f
+                    <Button
+                      disabled={sidetall === antallSider}
+                      onClick={() => settSidetall(sidetall + 1)}
+                    >
+                      Neste
+                    </Button>
+                    <Button icon={<CloudDownIcon aria-hidden />}>
+                      Last ned Pdf
+                    </Button>
+                  </HStack>
+                </VStack>
+              </HStack>
+              {/* {standarder && <Standarder standarder={standarder} />} */}
+            </VStack>
+          </HStack>
+        </>
+      )}
+    </Page>
+  );
 }
