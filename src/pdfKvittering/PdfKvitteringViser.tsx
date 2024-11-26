@@ -40,7 +40,8 @@ export function PdfKvitteringViser() {
     hentPdfKvittering().then((pdfKvittering) => {
       //settStandarder(person.standarder);
       console.log('Response: ', pdfKvittering);
-      settPdfLenke(pdfKvittering);
+      const lenkeKilde = `data:application/pdf;base64,${pdfKvittering.pdf}`;
+      settPdfLenke(lenkeKilde);
     });
   }, []);
 
