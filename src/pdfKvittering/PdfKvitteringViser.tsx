@@ -4,6 +4,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import '@navikt/ds-css';
 import axios from 'axios';
+import Environment from '../Environment';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -18,9 +19,8 @@ const axiosConfig = {
   },
 };
 export const hentPdfKvittering = async (): Promise<any> => {
-  /*   ${Environment().apiProxyUrl} */
   const response = await axios.get(
-    `https://familie.ekstern.dev.nav.no/familie/alene-med-barn/soknad/api/soknadskvittering/83def408-b60c-4492-9ef9-75bd06e098b3`,
+    `${Environment().apiProxyUrl}/api/soknadskvittering/a7943223-a851-4e43-a150-2a000d8af05d`,
     axiosConfig
   );
   console.log('Response: ', response);
