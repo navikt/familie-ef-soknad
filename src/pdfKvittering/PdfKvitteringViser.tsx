@@ -84,7 +84,6 @@ export function PdfKvitteringViser() {
                   </HStack>
                 </VStack>
               </HStack>
-              {/* {standarder && <Standarder standarder={standarder} />} */}
             </VStack>
           </HStack>
         </>
