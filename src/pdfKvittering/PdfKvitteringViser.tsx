@@ -37,7 +37,6 @@ export function PdfKvitteringViser() {
 
   useEffect(() => {
     hentPdfKvittering().then((pdfKvittering) => {
-      
       const lenkeKilde = `data:application/pdf;base64,${pdfKvittering.pdf}`;
       settPdfLenke(lenkeKilde);
     });
