@@ -26,7 +26,6 @@ export const hentPdfKvittering = async (): Promise<any> => {
     `${Environment().apiProxyUrl}/api/soknadskvittering/a7943223-a851-4e43-a150-2a000d8af05d`,
     axiosConfig
   );
-  console.log('Response: ', response);
 
   return response && response.data;
 };
