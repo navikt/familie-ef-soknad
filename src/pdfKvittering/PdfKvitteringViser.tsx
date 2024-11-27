@@ -39,7 +39,7 @@ export function PdfKvitteringViser() {
   useEffect(() => {
     hentPdfKvittering().then((pdfKvittering) => {
       //settStandarder(person.standarder);
-      console.log('Response: ', pdfKvittering);
+      
       const lenkeKilde = `data:application/pdf;base64,${pdfKvittering.pdf}`;
       settPdfLenke(lenkeKilde);
     });
