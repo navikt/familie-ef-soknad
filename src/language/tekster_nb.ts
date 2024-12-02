@@ -59,7 +59,6 @@ export default {
   'person.fnr': 'Fødselsnummer',
   'person.ident': 'Fødselsnummer / d-nummer (11 siffer)',
   'person.ident.visning': 'Fødselsnummer eller d-nummer',
-  'medforelder.ident.visning': 'Fødselsnummer eller d-nummer til medforelder',
   'person.checkbox.ident': 'Jeg kjenner ikke fødselsnummer / d-nummer',
   'person.feilmelding.ident': 'Ugyldig fødselsnummer eller d-nummer',
   'person.telefonnr': 'Telefonnummer du kan kontaktes på',
