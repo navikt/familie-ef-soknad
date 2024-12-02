@@ -18,6 +18,7 @@ import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
   sendInnSøknad,
+  sendInnSøknadFamiliePdf,
 } from '../../../innsending/api';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
@@ -56,7 +57,7 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const sendSøknad = (søknad: ISøknad) => {
+  const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
@@ -79,7 +80,10 @@ const SendSøknadKnapper: FC = () => {
     const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
 
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknadKlarForSending)
+
+    (brukFamiliePdf ? sendInnSøknadFamiliePdf : sendInnSøknad)(
+      søknadKlarForSending
+    )
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
@@ -161,6 +165,16 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.avbryt'} />
           </Button>
         </StyledKnapper>
+        <div style={{ marginLeft: '20px' }}>
+          <Button
+            className={'neste'}
+            variant="secondary"
+            loading={innsendingState.venter}
+            onClick={() => !innsendingState.venter && sendSøknad(søknad, true)}
+          >
+            <LocaleTekst tekst={'Familie pdf - Send søknad '} />
+          </Button>
+        </div>
       </SeksjonGruppe>
     </>
   );
