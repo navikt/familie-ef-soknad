@@ -61,7 +61,7 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
-
+  console.log('skalViseNyKnapp', skalViseNyKnapp);
   const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
@@ -109,7 +109,7 @@ const SendSøknadKnapper: FC = () => {
           melding: `Noe gikk galt: ${e}`,
           venter: false,
         });
-
+        console.log(brukFamiliePdf);
         logInnsendingFeilet(ESkjemanavn.Overgangsstønad, skjemaId, e);
       });
   };
