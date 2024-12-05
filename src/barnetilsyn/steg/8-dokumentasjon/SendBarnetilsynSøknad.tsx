@@ -10,6 +10,7 @@ import { RoutesBarnetilsyn } from '../../routing/routesBarnetilsyn';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   sendInnBarnetilsynSøknad,
+  sendInnBarnetilsynSøknadFamiliePdf,
 } from '../../../innsending/api';
 import { useBarnetilsynSøknad } from '../../BarnetilsynContext';
 import { ISøknad } from '../../models/søknad';
@@ -34,6 +35,8 @@ import {
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
 import { oppdaterBarnLabels } from '../../../utils/barn';
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/søknad/toggles';
 
 interface Innsending {
   status: string;
@@ -46,6 +49,7 @@ const validerSøkerBosattINorgeSisteFemÅr = (søknad: ISøknad) => {
 };
 
 const SendSøknadKnapper: FC = () => {
+  const { toggles } = useToggles();
   const { søknad, settSøknad } = useBarnetilsynSøknad();
   const location = useLocation();
   const navigate = useNavigate();
@@ -65,7 +69,8 @@ const SendSøknadKnapper: FC = () => {
 
   const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
 
-  const sendSøknad = (søknad: ISøknad) => {
+  const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+  const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
@@ -85,6 +90,10 @@ const SendSøknadKnapper: FC = () => {
       dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
+
+    (brukFamiliePdf
+      ? sendInnBarnetilsynSøknadFamiliePdf
+      : sendInnBarnetilsynSøknad)(søknadMedFiltrerteBarn);
     sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn)
       .then((kvittering) => {
         settinnsendingState({
@@ -164,6 +173,20 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.avbryt'} />
           </Button>
         </StyledKnapper>
+        {skalViseNyKnapp && (
+          <div style={{ marginLeft: '20px' }}>
+            <Button
+              className={'neste'}
+              variant="secondary"
+              loading={innsendingState.venter}
+              onClick={() =>
+                !innsendingState.venter && sendSøknad(søknad, skalViseNyKnapp)
+              }
+            >
+              <LocaleTekst tekst={'Familie pdf - Send søknad '} />
+            </Button>
+          </div>
+        )}
       </SeksjonGruppe>
     </>
   );

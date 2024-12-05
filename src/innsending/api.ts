@@ -38,6 +38,20 @@ export const sendInnBarnetilsynSøknad = (søknad: object) => {
       return response.data;
     });
 };
+export const sendInnBarnetilsynSøknadFamiliePdf = (søknad: object) => {
+  return axios
+    .post(
+      `${Environment().apiProxyUrl}/api/soknadskvittering/barnetilsyn`,
+      søknad,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        withCredentials: true,
+      }
+    )
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
 
 export const sendInnSkolepengerSøknad = (søknad: object) => {
   return axios
