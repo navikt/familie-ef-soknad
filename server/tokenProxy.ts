@@ -69,7 +69,7 @@ const getAccessToken = async (
 const getFakedingsToken = async (applicationName: string): Promise<string> => {
   const clientId = 'dev-gcp:teamfamilie:familie-ef-soknad';
   const audience = `dev-gcp:teamfamilie:${applicationName}`;
-  const url = `http://localhost:8080/fake/tokenx?client_id=${clientId}&aud=${audience}&acr=Level4&pid=31458931375`;
+  const url = `https://fakedings.intern.dev.nav.no/fake/tokenx?client_id=${clientId}&aud=${audience}&acr=Level4&pid=31458931375`;
   const token = await fetch(url).then(function (body) {
     return body.text();
   });
