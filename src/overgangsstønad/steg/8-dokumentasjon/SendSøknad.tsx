@@ -85,7 +85,7 @@ const SendSøknadKnapper: FC = () => {
 
     settinnsendingState({ ...innsendingState, venter: true });
 
-    (brukFamiliePdf === true ? sendInnSøknadFamiliePdf : sendInnSøknad)(
+    (brukFamiliePdf ? sendInnSøknadFamiliePdf : sendInnSøknad)(
       søknadKlarForSending
     )
       .then((kvittering) => {
