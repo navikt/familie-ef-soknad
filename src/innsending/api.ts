@@ -50,6 +50,21 @@ export const sendInnSkolepengerSøknad = (søknad: object) => {
     });
 };
 
+export const sendInnSkolepengerSøknadFamiliePdf = (søknad: object) => {
+  return axios
+    .post(
+      `${Environment().apiProxyUrl}/api/soknadskvittering/skolepenger`,
+      søknad,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        withCredentials: true,
+      }
+    )
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
+
 export const mapBarnUtenBarnepass = (barneliste: IBarn[]) => {
   return barneliste.map((barn) => {
     const kopiAvBarn = { ...barn };

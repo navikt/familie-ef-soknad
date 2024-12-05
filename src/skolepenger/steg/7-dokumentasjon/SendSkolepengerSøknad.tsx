@@ -11,6 +11,7 @@ import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
   sendInnSkolepengerSøknad,
+  sendInnSkolepengerSøknadFamiliePdf,
 } from '../../../innsending/api';
 import {
   hentForrigeRoute,
@@ -30,6 +31,8 @@ import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Link, useNavigate } from 'react-router-dom';
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
 import { validerSøkerBosattINorgeSisteFemÅr } from '../../../helpers/steg/omdeg';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/søknad/toggles';
 
 interface Innsending {
   status: string;
@@ -38,6 +41,7 @@ interface Innsending {
 }
 
 const SendSøknadKnapper: FC = () => {
+  const { toggles } = useToggles();
   const { søknad, settSøknad } = useSkolepengerSøknad();
   const location = useLocation();
   const navigate = useNavigate();
@@ -52,7 +56,8 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const sendSøknad = (søknad: ISøknad) => {
+  const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+  const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
@@ -73,6 +78,10 @@ const SendSøknadKnapper: FC = () => {
     };
 
     settinnsendingState({ ...innsendingState, venter: true });
+
+    (brukFamiliePdf
+      ? sendInnSkolepengerSøknadFamiliePdf
+      : sendInnSkolepengerSøknad)(søknadMedFiltrerteBarn);
     sendInnSkolepengerSøknad(søknadMedFiltrerteBarn)
       .then((kvittering) => {
         settinnsendingState({
@@ -152,6 +161,20 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.avbryt'} />
           </Button>
         </StyledKnapper>
+        {skalViseNyKnapp && (
+          <div style={{ marginLeft: '20px' }}>
+            <Button
+              className={'neste'}
+              variant="secondary"
+              loading={innsendingState.venter}
+              onClick={() =>
+                !innsendingState.venter && sendSøknad(søknad, skalViseNyKnapp)
+              }
+            >
+              <LocaleTekst tekst={'Familie pdf - Send søknad '} />
+            </Button>
+          </div>
+        )}
       </SeksjonGruppe>
     </>
   );
