@@ -93,8 +93,7 @@ const SendSøknadKnapper: FC = () => {
 
     (brukFamiliePdf
       ? sendInnBarnetilsynSøknadFamiliePdf
-      : sendInnBarnetilsynSøknad)(søknadMedFiltrerteBarn);
-    sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn)
+      : sendInnBarnetilsynSøknad)(søknadMedFiltrerteBarn)
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,

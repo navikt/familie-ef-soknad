@@ -57,6 +57,40 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+
+  const sendSøknadBrukFamiliePdf = async (
+    brukFamiliePdf: boolean = false,
+    søknadMedFiltrerteBarn: ISøknad
+  ) => {
+    try {
+      if (brukFamiliePdf) {
+        await sendInnSkolepengerSøknadFamiliePdf(søknadMedFiltrerteBarn);
+      }
+      const kvittering = await sendInnSkolepengerSøknad(søknadMedFiltrerteBarn);
+
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.SUKSESS,
+        melding: `Vi har kontakt: ${kvittering.text}`,
+        venter: false,
+      });
+      settSøknad({
+        ...søknad,
+        innsendingsdato: parseISO(kvittering.mottattDato),
+      });
+      navigate(nesteRoute.path);
+    } catch (e: any) {
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.FEILET,
+        melding: `Noe gikk galt: ${e}`,
+        venter: false,
+      });
+
+      logInnsendingFeilet(ESkjemanavn.Skolepenger, skjemaId, e);
+    }
+  };
+
   const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
@@ -79,33 +113,7 @@ const SendSøknadKnapper: FC = () => {
 
     settinnsendingState({ ...innsendingState, venter: true });
 
-    (brukFamiliePdf
-      ? sendInnSkolepengerSøknadFamiliePdf
-      : sendInnSkolepengerSøknad)(søknadMedFiltrerteBarn);
-    sendInnSkolepengerSøknad(søknadMedFiltrerteBarn)
-      .then((kvittering) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.SUKSESS,
-          melding: `Vi har kontakt: ${kvittering.text}`,
-          venter: false,
-        });
-        settSøknad({
-          ...søknad,
-          innsendingsdato: parseISO(kvittering.mottattDato),
-        });
-        navigate(nesteRoute.path);
-      })
-      .catch((e) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.FEILET,
-          melding: `Noe gikk galt: ${e}`,
-          venter: false,
-        });
-
-        logInnsendingFeilet(ESkjemanavn.Skolepenger, skjemaId, e);
-      });
+    sendSøknadBrukFamiliePdf(brukFamiliePdf, søknadMedFiltrerteBarn);
   };
 
   return (
