@@ -18,6 +18,7 @@ import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
   sendInnSøknad,
+  sendInnSøknadFamiliePdf,
 } from '../../../innsending/api';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
 import { unikeDokumentasjonsbehov } from '../../../utils/søknad';
@@ -31,6 +32,8 @@ import {
 import { ESkjemanavn, skjemanavnIdMapping } from '../../../utils/skjemanavn';
 import { Alert, BodyShort, Button } from '@navikt/ds-react';
 import { validerSøkerBosattINorgeSisteFemÅr } from '../../../helpers/steg/omdeg';
+import { useToggles } from '../../../context/TogglesContext';
+import { ToggleName } from '../../../models/søknad/toggles';
 
 interface Innsending {
   status: string;
@@ -39,11 +42,13 @@ interface Innsending {
 }
 
 const SendSøknadKnapper: FC = () => {
+  const { toggles } = useToggles();
   const { søknad, settSøknad } = useSøknad();
   const location = useLocation();
   const [locale] = useSpråkContext();
   const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesOvergangsstonad, location.pathname);
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
   const intl = useLokalIntlContext();
   const forrigeRoute = hentForrigeRoute(
     RoutesOvergangsstonad,
@@ -56,7 +61,43 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const sendSøknad = (søknad: ISøknad) => {
+  const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+  console.log('skalViseNyKnapp', skalViseNyKnapp);
+
+  const sendSøknadBrukFamiliePdf = async (
+    brukFamiliePdf: boolean = false,
+    søknadMedFiltrerteBarn: ISøknad
+  ) => {
+    try {
+      if (brukFamiliePdf) {
+        await sendInnSøknadFamiliePdf(søknadMedFiltrerteBarn);
+      }
+      const kvittering = await sendInnSøknad(søknadMedFiltrerteBarn);
+
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.SUKSESS,
+        melding: `Vi har kontakt: ${kvittering.text}`,
+        venter: false,
+      });
+      settSøknad({
+        ...søknad,
+        innsendingsdato: parseISO(kvittering.mottattDato),
+      });
+      navigate(nesteRoute.path);
+    } catch (e: any) {
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.FEILET,
+        melding: `Noe gikk galt: ${e}`,
+        venter: false,
+      });
+
+      logInnsendingFeilet(ESkjemanavn.Overgangsstønad, skjemaId, e);
+    }
+  };
+
+  const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
     );
@@ -76,33 +117,8 @@ const SendSøknadKnapper: FC = () => {
       locale: locale,
     };
 
-    const skjemaId = skjemanavnIdMapping[ESkjemanavn.Overgangsstønad];
-
     settinnsendingState({ ...innsendingState, venter: true });
-    sendInnSøknad(søknadKlarForSending)
-      .then((kvittering) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.SUKSESS,
-          melding: `Vi har kontakt: ${kvittering.text}`,
-          venter: false,
-        });
-        settSøknad({
-          ...søknad,
-          innsendingsdato: parseISO(kvittering.mottattDato),
-        });
-        navigate(nesteRoute.path);
-      })
-      .catch((e) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.FEILET,
-          melding: `Noe gikk galt: ${e}`,
-          venter: false,
-        });
-
-        logInnsendingFeilet(ESkjemanavn.Overgangsstønad, skjemaId, e);
-      });
+    sendSøknadBrukFamiliePdf(brukFamiliePdf, søknadKlarForSending);
   };
 
   return (
@@ -161,6 +177,20 @@ const SendSøknadKnapper: FC = () => {
             <LocaleTekst tekst={'knapp.avbryt'} />
           </Button>
         </StyledKnapper>
+        {skalViseNyKnapp && (
+          <div style={{ marginLeft: '20px' }}>
+            <Button
+              className={'neste'}
+              variant="secondary"
+              loading={innsendingState.venter}
+              onClick={() =>
+                !innsendingState.venter && sendSøknad(søknad, skalViseNyKnapp)
+              }
+            >
+              <LocaleTekst tekst={'Familie pdf - Send søknad '} />
+            </Button>
+          </div>
+        )}
       </SeksjonGruppe>
     </>
   );
