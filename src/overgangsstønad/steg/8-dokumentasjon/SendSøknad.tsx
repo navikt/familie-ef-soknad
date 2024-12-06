@@ -61,6 +61,8 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+  console.log('skalViseNyKnapp', skalViseNyKnapp);
+
   const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = mapBarnUtenBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
@@ -85,9 +87,13 @@ const SendSøknadKnapper: FC = () => {
 
     settinnsendingState({ ...innsendingState, venter: true });
 
-    (brukFamiliePdf ? sendInnSøknadFamiliePdf : sendInnSøknad)(
-      søknadKlarForSending
-    )
+    const sendInnFunksjon = brukFamiliePdf
+      ? sendInnSøknadFamiliePdf(søknadKlarForSending)
+      : sendInnSøknad(søknadKlarForSending);
+
+    console.log('sendInnFunksjon', sendInnFunksjon);
+
+    sendInnFunksjon
       .then((kvittering) => {
         settinnsendingState({
           ...innsendingState,
