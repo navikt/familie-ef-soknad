@@ -112,7 +112,6 @@ const SendSøknadKnapper: FC = () => {
     };
 
     settinnsendingState({ ...innsendingState, venter: true });
-
     sendSøknadBrukFamiliePdf(brukFamiliePdf, søknadMedFiltrerteBarn);
   };
 

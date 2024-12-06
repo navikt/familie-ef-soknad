@@ -55,6 +55,7 @@ const SendSøknadKnapper: FC = () => {
   const navigate = useNavigate();
   const nesteRoute = hentNesteRoute(RoutesBarnetilsyn, location.pathname);
   const forrigeRoute = hentForrigeRoute(RoutesBarnetilsyn, location.pathname);
+  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
   const intl = useLokalIntlContext();
 
   const [innsendingState, settinnsendingState] = React.useState<Innsending>({
@@ -67,9 +68,40 @@ const SendSøknadKnapper: FC = () => {
     return barneliste.filter((barn) => barn.skalHaBarnepass?.verdi === true);
   };
 
-  const skjemaId = skjemanavnIdMapping[ESkjemanavn.Barnetilsyn];
-
   const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+  const sendSøknadBrukFamiliePdf = async (
+    brukFamiliePdf: boolean = false,
+    søknadMedFiltrerteBarn: ISøknad
+  ) => {
+    try {
+      if (brukFamiliePdf) {
+        await sendInnBarnetilsynSøknadFamiliePdf(søknadMedFiltrerteBarn);
+      }
+      const kvittering = await sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn);
+
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.SUKSESS,
+        melding: `Vi har kontakt: ${kvittering.text}`,
+        venter: false,
+      });
+      settSøknad({
+        ...søknad,
+        innsendingsdato: parseISO(kvittering.mottattDato),
+      });
+      navigate(nesteRoute.path);
+    } catch (e: any) {
+      settinnsendingState({
+        ...innsendingState,
+        status: IStatus.FEILET,
+        melding: `Noe gikk galt: ${e}`,
+        venter: false,
+      });
+
+      logInnsendingFeilet(ESkjemanavn.Barnetilsyn, skjemaId, e);
+    }
+  };
+
   const sendSøknad = (søknad: ISøknad, brukFamiliePdf?: boolean) => {
     const barnMedEntenIdentEllerFødselsdato = filtrerBarnSomSkalHaBarnepass(
       mapBarnTilEntenIdentEllerFødselsdato(søknad.person.barn)
@@ -90,33 +122,7 @@ const SendSøknadKnapper: FC = () => {
       dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
-
-    (brukFamiliePdf
-      ? sendInnBarnetilsynSøknadFamiliePdf
-      : sendInnBarnetilsynSøknad)(søknadMedFiltrerteBarn)
-      .then((kvittering) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.SUKSESS,
-          melding: `Vi har kontakt: ${kvittering.text}`,
-          venter: false,
-        });
-        settSøknad({
-          ...søknad,
-          innsendingsdato: parseISO(kvittering.mottattDato),
-        });
-        navigate(nesteRoute.path);
-      })
-      .catch((e) => {
-        settinnsendingState({
-          ...innsendingState,
-          status: IStatus.FEILET,
-          melding: `Noe gikk galt: ${e}`,
-          venter: false,
-        });
-
-        logInnsendingFeilet(ESkjemanavn.Barnetilsyn, skjemaId, e);
-      });
+    sendSøknadBrukFamiliePdf(brukFamiliePdf, søknadMedFiltrerteBarn);
   };
 
   return (
