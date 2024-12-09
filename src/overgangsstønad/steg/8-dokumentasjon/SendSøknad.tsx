@@ -62,7 +62,6 @@ const SendSøknadKnapper: FC = () => {
   });
 
   const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
-  console.log('skalViseNyKnapp', skalViseNyKnapp);
 
   const sendSøknadBrukFamiliePdf = async (
     brukFamiliePdf: boolean = false,
