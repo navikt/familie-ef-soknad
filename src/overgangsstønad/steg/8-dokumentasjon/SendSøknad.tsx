@@ -68,13 +68,16 @@ const SendSøknadKnapper: FC = () => {
     søknadMedFiltrerteBarn: ISøknad
   ) => {
     try {
+      let kvittering;
       if (brukFamiliePdf) {
-        await sendInnSøknadFamiliePdf({
+        await sendInnSøknadFamiliePdf(søknadMedFiltrerteBarn);
+        kvittering = await sendInnSøknad({
           ...søknadMedFiltrerteBarn,
           dokumentasjonsbehov: [],
         });
+      } else {
+        kvittering = await sendInnSøknad(søknadMedFiltrerteBarn);
       }
-      const kvittering = await sendInnSøknad(søknadMedFiltrerteBarn);
 
       settinnsendingState({
         ...innsendingState,
