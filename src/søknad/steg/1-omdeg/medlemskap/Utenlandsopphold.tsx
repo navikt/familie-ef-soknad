@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
-import classnames from 'classnames';
-import SlettKnapp from '../../../../components/knapper/SlettKnapp';
+import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
 import { hentTekst } from '../../../../utils/søknad';
@@ -11,11 +10,10 @@ import {
 import { erPeriodeDatoerValgt } from '../../../../helpers/steg/omdeg';
 import { EPeriode } from '../../../../models/felles/periode';
 import styled from 'styled-components';
-import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { DatoBegrensning } from '../../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
-import { Heading, Textarea } from '@navikt/ds-react';
+import { Heading, HStack, Textarea } from '@navikt/ds-react';
 import SelectSpørsmål from '../../../../components/spørsmål/SelectSpørsmål';
 import { ISpørsmål, ISvar } from '../../../../models/felles/spørsmålogsvar';
 import { utenlandsoppholdLand } from './MedlemskapConfig';
@@ -163,20 +161,21 @@ const Utenlandsopphold: FC<Props> = ({
     );
   };
 
+  const skalViseSlettKnapp = perioderBoddIUtlandet?.length > 1;
+
   return (
     <Container aria-live="polite">
-      <TittelOgSlettKnapp>
+      <HStack justify="space-between" align="center">
         <Heading size="small" level="3" className={'tittel'}>
           {periodeTittel}
         </Heading>
-        <SlettKnapp
-          className={classnames('slettknapp', {
-            kunEn: perioderBoddIUtlandet?.length === 1,
-          })}
-          onClick={() => fjernUtenlandsperiode()}
-          tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
-        />
-      </TittelOgSlettKnapp>
+        {skalViseSlettKnapp && (
+          <SlettKnapp
+            onClick={() => fjernUtenlandsperiode()}
+            tekstid={'medlemskap.periodeBoddIUtlandet.slett'}
+          />
+        )}
+      </HStack>
 
       <StyledPeriodeDatovelgere
         className={'periodegruppe'}

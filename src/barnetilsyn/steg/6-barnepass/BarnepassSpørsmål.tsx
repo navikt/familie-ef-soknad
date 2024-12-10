@@ -1,12 +1,10 @@
 import React, { FC } from 'react';
 import SeksjonGruppe from '../../../components/gruppe/SeksjonGruppe';
 import { IBarn } from '../../../models/steg/barn';
-import classnames from 'classnames';
 import KomponentGruppe from '../../../components/gruppe/KomponentGruppe';
 import MultiSvarSpørsmålMedNavn from '../../../components/spørsmål/MultiSvarSpørsmålMedNavn';
 import PeriodeDatovelgere from '../../../components/dato/PeriodeDatovelger';
-import SlettKnapp from '../../../components/knapper/SlettKnapp';
-import TittelOgSlettKnapp from '../../../components/knapper/TittelOgSlettKnapp';
+import { SlettKnapp } from '../../../components/knapper/SlettKnapp';
 import { hentBarnNavnEllerBarnet } from '../../../utils/barn';
 import { hentTittelMedNr } from '../../../language/utils';
 import { HvaSlagsBarnepassOrdningSpm } from './BarnepassConfig';
@@ -27,6 +25,7 @@ import { DatoBegrensning } from '../../../components/dato/Datovelger';
 import { erPeriodeGyldigOgInnaforBegrensninger } from '../../../components/dato/utils';
 import { Heading, TextField } from '@navikt/ds-react';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
+import { TittelOgSlettKnapp } from '../../../components/knapper/TittelOgSlettKnapp';
 
 interface Props {
   barn: IBarn;
@@ -64,7 +63,7 @@ const BarnepassSpørsmål: FC<Props> = ({
   const barnepassordningNummer = barn.barnepass?.barnepassordninger.findIndex(
     (barnepassordning) => barnepassordning.id === barnepassOrdning.id
   );
-  const flereEnnEnOrdninger =
+  const skalViseSlettKnapp =
     barn?.barnepass?.barnepassordninger !== undefined &&
     barn?.barnepass?.barnepassordninger?.length > 1;
 
@@ -136,20 +135,17 @@ const BarnepassSpørsmål: FC<Props> = ({
 
   return (
     <SeksjonGruppe>
-      {flereEnnEnOrdninger && (
-        <TittelOgSlettKnapp>
-          <Heading size="small" className="tittel">
-            {barnepassordningTittel}
-          </Heading>
+      <TittelOgSlettKnapp justify="space-between" align="center">
+        <Heading size="small" className="tittel">
+          {barnepassordningTittel}
+        </Heading>
+        {skalViseSlettKnapp && (
           <SlettKnapp
-            className={classnames('slettknapp', {
-              kunEn: barn.barnepass?.barnepassordninger?.length === 1,
-            })}
             onClick={() => fjernBarnepassOrdning(barnepassOrdning)}
             tekstid={'barnepass.knapp.slett'}
           />
-        </TittelOgSlettKnapp>
-      )}
+        )}
+      </TittelOgSlettKnapp>
       {erÅrsakBarnepassSpmBesvart(barn) && (
         <KomponentGruppe>
           <MultiSvarSpørsmålMedNavn

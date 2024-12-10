@@ -8,13 +8,12 @@ import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import { EFirma, IFirma } from '../../../../models/steg/aktivitet/firma';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
-import classnames from 'classnames';
-import SlettKnapp from '../../../../components/knapper/SlettKnapp';
+import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
 import styled from 'styled-components';
 import LocaleTekst from '../../../../language/LocaleTekst';
 import { erStrengGyldigOrganisasjonsnummer } from '../../../../utils/autentiseringogvalidering/feltvalidering';
 import { erDatoGyldigOgInnaforBegrensninger } from '../../../../components/dato/utils';
-import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+import { TittelOgSlettKnapp } from '../../../../components/knapper/TittelOgSlettKnapp';
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { ErrorMessage, Heading, Label, Textarea } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
@@ -119,19 +118,20 @@ const OmFirmaetDitt: React.FC<Props> = ({
     firma?.organisasjonsnummer?.verdi &&
     !erStrengGyldigOrganisasjonsnummer(firma?.organisasjonsnummer?.verdi);
 
+  const skalViseSlettKnapp = firmaer?.length > 1;
+
   return (
     <StyledFirma aria-live="polite">
-      <TittelOgSlettKnapp>
+      <TittelOgSlettKnapp justify="space-between" align="center">
         <Heading size="small" level="4" className={'tittel'}>
           {firmaTittel}
         </Heading>
-        <SlettKnapp
-          className={classnames('slettknapp', {
-            kunEn: firmaer?.length === 1,
-          })}
-          onClick={() => fjernFirma()}
-          tekstid={'firma.knapp.slett'}
-        />
+        {skalViseSlettKnapp && (
+          <SlettKnapp
+            onClick={() => fjernFirma()}
+            tekstid={'firma.knapp.slett'}
+          />
+        )}
       </TittelOgSlettKnapp>
       <FeltGruppe>
         <TextFieldMedBredde

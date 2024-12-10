@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import SlettKnapp from '../../../../components/knapper/SlettKnapp';
+import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
-import classnames from 'classnames';
 import styled from 'styled-components';
-import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hvaSlagsStilling } from './ArbeidsgiverConfig';
 import MultiSvarSpørsmål from '../../../../components/spørsmål/MultiSvarSpørsmål';
 import HarSøkerSluttdato from './HarSøkerSluttdato';
@@ -20,6 +18,7 @@ import AlertStripeDokumentasjon from '../../../../components/AlertstripeDokument
 import { useLokalIntlContext } from '../../../../context/LokalIntlContext';
 import { Heading } from '@navikt/ds-react';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
+import { TittelOgSlettKnapp } from '../../../../components/knapper/TittelOgSlettKnapp';
 
 const StyledArbeidsgiver = styled.div`
   display: flex;
@@ -123,19 +122,20 @@ const Arbeidsgiver: React.FC<Props> = ({
     intl
   );
 
+  const skalViseSlettKnapp = arbeidsforhold?.length > 1;
+
   return (
     <StyledArbeidsgiver aria-live="polite">
-      <TittelOgSlettKnapp>
+      <TittelOgSlettKnapp justify="space-between" align="center">
         <Heading size="small" level="4" className={'tittel'}>
           {arbeidsgiverTittel}
         </Heading>
-        <SlettKnapp
-          className={classnames('slettknapp', {
-            kunEn: arbeidsforhold?.length === 1,
-          })}
-          onClick={() => fjernArbeidsgiver()}
-          tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
-        />
+        {skalViseSlettKnapp && (
+          <SlettKnapp
+            onClick={() => fjernArbeidsgiver()}
+            tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
+          />
+        )}
       </TittelOgSlettKnapp>
       <FeltGruppe>
         <TextFieldMedBredde
