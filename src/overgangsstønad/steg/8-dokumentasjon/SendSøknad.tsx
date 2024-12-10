@@ -69,7 +69,10 @@ const SendSøknadKnapper: FC = () => {
   ) => {
     try {
       if (brukFamiliePdf) {
-        await sendInnSøknadFamiliePdf(søknadMedFiltrerteBarn);
+        await sendInnSøknadFamiliePdf({
+          ...søknadMedFiltrerteBarn,
+          dokumentasjonsbehov: [],
+        });
       }
       const kvittering = await sendInnSøknad(søknadMedFiltrerteBarn);
 
