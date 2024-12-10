@@ -13,12 +13,41 @@ export const sendInnSøknad = (søknad: object) => {
     });
 };
 
+export const sendInnSøknadFamiliePdf = (søknad: object) => {
+  return axios
+    .post(
+      `${Environment().apiProxyUrl}/api/soknadskvittering/overgangsstonad`,
+      søknad,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        withCredentials: true,
+      }
+    )
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
+
 export const sendInnBarnetilsynSøknad = (søknad: object) => {
   return axios
     .post(`${Environment().apiProxyUrl}/api/soknadbarnetilsyn`, søknad, {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
+export const sendInnBarnetilsynSøknadFamiliePdf = (søknad: object) => {
+  return axios
+    .post(
+      `${Environment().apiProxyUrl}/api/soknadskvittering/barnetilsyn`,
+      søknad,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        withCredentials: true,
+      }
+    )
     .then((response: { data: any }) => {
       return response.data;
     });
@@ -30,6 +59,21 @@ export const sendInnSkolepengerSøknad = (søknad: object) => {
       headers: { 'Content-Type': 'application/json;charset=utf-8' },
       withCredentials: true,
     })
+    .then((response: { data: any }) => {
+      return response.data;
+    });
+};
+
+export const sendInnSkolepengerSøknadFamiliePdf = (søknad: object) => {
+  return axios
+    .post(
+      `${Environment().apiProxyUrl}/api/soknadskvittering/skolepenger`,
+      søknad,
+      {
+        headers: { 'Content-Type': 'application/json;charset=utf-8' },
+        withCredentials: true,
+      }
+    )
     .then((response: { data: any }) => {
       return response.data;
     });
