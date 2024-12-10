@@ -1,7 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
-import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import classnames from 'classnames';
+import { TittelOgSlettKnapp } from '../../../../components/knapper/TittelOgSlettKnapp';
+import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import InputLabelGruppe from '../../../../components/gruppe/InputLabelGruppe';
 import { hentTittelMedNr } from '../../../../language/utils';
@@ -76,19 +75,20 @@ const Aksjeselskap: FC<Props> = ({
       });
   };
 
+  const skalViseSlettKnapp = egetAS?.length;
+
   return (
     <div aria-live="polite" role="region">
-      <TittelOgSlettKnapp>
+      <TittelOgSlettKnapp justify="space-between" align="center">
         <Heading size="small" level="4" className={'tittel'}>
           {aksjeselskapTittel}
         </Heading>
-        <SlettKnapp
-          className={classnames('slettknapp', {
-            kunEn: egetAS?.length === 1,
-          })}
-          onClick={() => fjernAksjeselskap()}
-          tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
-        />
+        {skalViseSlettKnapp && (
+          <SlettKnapp
+            onClick={() => fjernAksjeselskap()}
+            tekstid={'arbeidsforhold.knapp.slettArbeidsgiver'}
+          />
+        )}
       </TittelOgSlettKnapp>
       <FeltGruppe>
         <TextFieldMedBredde

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import classnames from 'classnames';
 import FeltGruppe from '../../../../components/gruppe/FeltGruppe';
 import KomponentGruppe from '../../../../components/gruppe/KomponentGruppe';
-import SlettKnapp from '../../../../components/knapper/SlettKnapp';
-import TittelOgSlettKnapp from '../../../../components/knapper/TittelOgSlettKnapp';
+import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
+import { TittelOgSlettKnapp } from '../../../../components/knapper/TittelOgSlettKnapp';
 import { hentTekst } from '../../../../utils/søknad';
 import { hentTittelMedNr } from '../../../../language/utils';
 import { IUtdanning } from '../../../../models/steg/aktivitet/utdanning';
@@ -90,19 +89,20 @@ const Utdanning: React.FC<Props> = ({
     intl.formatMessage({ id: 'utdanning.undertittel' })
   );
 
+  const skalViseSlettKnapp = tidligereUtdanninger?.length > 1;
+
   return (
     <KomponentGruppe>
-      <TittelOgSlettKnapp>
+      <TittelOgSlettKnapp justify="space-between" align="center">
         <Heading size="small" level="4" className={'tittel'}>
           {utdanningTittel}
         </Heading>
-        <SlettKnapp
-          className={classnames('slettknapp', {
-            kunEn: tidligereUtdanninger?.length === 1,
-          })}
-          onClick={() => fjernUtdanning()}
-          tekstid={'utdanning.knapp.slett'}
-        />
+        {skalViseSlettKnapp && (
+          <SlettKnapp
+            onClick={() => fjernUtdanning()}
+            tekstid={'utdanning.knapp.slett'}
+          />
+        )}
       </TittelOgSlettKnapp>
       <FeltGruppe aria-live="polite">
         <TextFieldMedBredde
