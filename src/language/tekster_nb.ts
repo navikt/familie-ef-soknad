@@ -257,7 +257,7 @@ export default {
   'barnadine.info.terminbekreftelse': 'Du må legge ved terminbekreftelse',
   'barnadine.termindato': 'Termindato',
   'barnadine.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">skjemaet</a> for å søke.',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/fyllut/nav150001?sub=paper">skjemaet for å søke om overgangsstønad.</a>',
   'barnasbosted.sidetittel': 'Den andre forelderen og samvær',
   'barnasbosted.forelder.uoppgitt': 'Ikke oppgitt',
   'barnasbosted.kanikkeoppgiforelder':
@@ -810,7 +810,7 @@ export default {
     'Hovedregelen er at du kan få stønad til barnetilsyn frem til barnet ditt har fullført 4. skoleår.\n<br/><br/>På dette alderstrinnet er barn normalt blitt tilstrekkelig selvhjulpne og modne slik at de klarer seg utenfor skoletiden både i hjemmet og i sitt vanlige nærmiljø i den tiden du er fraværende på grunn av arbeid.\n<br/><br/>I noen tilfeller kan du få stønad til barnetilsyn etter at barnet ditt er ferdig med 4. skoleår:\n<ul><li>Hvis du har barn som trenger vesentlig mer pass enn jevnaldrende. Du må dokumentere behovet med uttalelse fra lege, spesialist eller annet helsepersonell.</li><li>Hvis du har en jobb som medfører at du må være borte fra hjemmet i lengre perioder. For at fraværet skal anses som mer langvarig enn vanlig, må det overstige 10 timer per dag. Du må dokumentere arbeidstiden.</li><li>Hvis du har uregelmessig arbeidstid, for eksempel om kvelden og natten, skiftarbeid, helgearbeid, turnustjeneste, pendlerforhold og arbeid til sjøs. Du må dokumentere arbeidstiden.</li></ul>',
   'barnetilsyn.OmBarnetsTilsynsbehov': 'Om [0] sitt tilsynsbehov',
   'barnadine.barnetilsyn.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet</a> for å søke.',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">skjemaet for å søke om stønad til barnetilsyn.</a>',
   'barnepass.sidetittel': 'Om barnepassordningen',
   'barnepass.spm.årsak': 'Hvorfor trenger [0] pass?',
   'barnepass.alert-advarsel.årsak':
@@ -856,7 +856,7 @@ export default {
   'skolepenger.overskrift': 'Søknad om stønad til skolepenger',
   'banner.tittel.skolepenger': 'Søknad om skolepenger',
   'barnadine.skolepenger.info.brukpdf':
-    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">skjemaet</a> for å søke.',
+    'Hvis du skal søke stønad for barn du har overtatt foreldreansvaret for på grunn av dødsfall, eller hvis du har barn med adressebeskyttelse, kan du ikke bruke denne digitale søknaden. Bruk dette <a href="https://www.nav.no/fyllut/nav150004?sub=paper">skjemaet for å søke om stønad til skolepenger.</a>',
   'banner.tittel.arbeidssøker': 'Enslig mor eller far som er arbeidssøker',
   'skjema.hei': 'Hei, [0]!',
   'skjema.knapp.start': 'Start',
