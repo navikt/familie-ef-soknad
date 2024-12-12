@@ -266,7 +266,7 @@ export default {
     'You must submit confirmation of your expected date of delivery',
   'barnadine.termindato': 'Expected date of delivery',
   'barnadine.info.brukpdf':
-    'If you are applying for child care benefit for children whom you have taken over child care because of death or children with address protection, please do not use this digital application. Use this<a href="https://www.nav.no/soknader/nb/person/familie/enslig-mor-eller-far/NAV%2015-00.01/brev">application</a>  to apply.',
+    'If you are applying for child care benefit for children whom you have taken over child care because of death or children with address protection, please do not use this digital application. Use this <a href="https://www.nav.no/fyllut/nav150001?sub=paper">form for transitional benefit</a> to apply.',
   'barnasbosted.sidetittel': 'The other parent and access',
   'barnasbosted.forelder.uoppgitt': 'Not registered',
   'barnasbosted.kanikkeoppgiforelder':
@@ -844,7 +844,7 @@ export default {
     'The main rule is that you can receive child care benefit until your child has completed their fourth year at school. <br/><br/>At this stage, children have normally become sufficiently self-reliant and mature that they can cope on their own outside school hours both at home and in their usual local environment while you are absent due to work.<br/><br/>In some cases, you may be entitled to receive child care benefit after your child has completed their fourth year of school:<ul><li>If you have children who need significantly more looking after than other children of the same age. You must provide documentation of this need in the form of a statement from a doctor, specialist or other health care professional.</li><li>If you have a job that entails that you have to be away from home for extended periods of time. In order for an absence to be considered longer than usual, it must exceed ten hours per day. You must provide documentation of your working hours.</li><li>If you have irregular working hours, for example in the evening and at night, shift work, weekend work, work that involves. </li></ul>',
   'barnetilsyn.OmBarnetsTilsynsbehov': 'About [0] need for special supervision',
   'barnadine.barnetilsyn.info.brukpdf':
-    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">form</a> to apply.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.02/brev">form for child care benefit</a> to apply.',
   'barnepass.sidetittel': 'About the child minding arrangements',
   'barnepass.spm.årsak': 'Why does [0] need looking after?',
   'barnepass.alert-advarsel.årsak':
@@ -895,7 +895,7 @@ export default {
   'skolepenger.overskrift': 'Application for support for school fees',
   'banner.tittel.skolepenger': 'Application for support for school fees',
   'barnadine.skolepenger.info.brukpdf':
-    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/soknader/en/person/familie/enslig-mor-eller-far/NAV%2015-00.04/brev">form</a> to apply.',
+    'If you are applying for benefits for children for whom you have assumed parental responsibility due to death, or if you have children with address protection, you cannot use this digital application. Use this <a href="https://www.nav.no/fyllut/nav150004?sub=paper">form for support for school fees</a> to apply.',
   'banner.tittel.arbeidssøker': 'Single parent who is a job seeker',
   'skjema.hei': 'Hello, [0]!',
   'skjema.knapp.start': 'Start',

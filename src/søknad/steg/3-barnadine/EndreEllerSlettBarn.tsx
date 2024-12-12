@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useLokalIntlContext } from '../../../context/LokalIntlContext';
-import { Link } from '@navikt/ds-react';
+import { Button } from '@navikt/ds-react';
 import { IBarn } from '../../../models/steg/barn';
 import { SettDokumentasjonsbehovBarn } from '../../../models/søknad/søknad';
 import LeggTilBarnModal from './LeggTilBarnModal';
@@ -21,10 +21,6 @@ const LenkeContainer = styled.div`
   align-items: center;
 `;
 
-const LinkMedPointer = styled(Link)`
-  cursor: pointer;
-`;
-
 export const EndreEllerSlettBarn: React.FC<Props> = ({
   fjernBarnFraSøknad,
   id,
@@ -39,12 +35,12 @@ export const EndreEllerSlettBarn: React.FC<Props> = ({
   return (
     <>
       <LenkeContainer>
-        <LinkMedPointer onClick={() => settÅpenEndreModal(true)}>
+        <Button variant="secondary" onClick={() => settÅpenEndreModal(true)}>
           {intl.formatMessage({ id: 'barnekort.lenke.endre' })}
-        </LinkMedPointer>
-        <LinkMedPointer onClick={() => fjernBarnFraSøknad(id)}>
+        </Button>
+        <Button variant="tertiary" onClick={() => fjernBarnFraSøknad(id)}>
           {intl.formatMessage({ id: 'barnekort.fjern' })}
-        </LinkMedPointer>
+        </Button>
       </LenkeContainer>
 
       {åpenEndreModal && (
