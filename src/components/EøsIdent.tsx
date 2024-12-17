@@ -4,6 +4,7 @@ import { TextFieldMedBredde } from './TextFieldMedBredde';
 import { hentTekst } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
+import { hentBeskjedMedNavn } from '../utils/språk';
 
 interface Props {
   halvåpenTekstid: string;
@@ -20,16 +21,9 @@ const EøsIdent: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const hentTekstMedLandverdi = (tekst: string) => {
-    return hentTekst(tekst, intl) + ' ' + utenlandsopphold.land?.verdi;
-  };
-
-  const tekstMedLandVerdi =
-    hentTekstMedLandverdi(
-      'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer'
-    ) + '?';
-  const harIkkeUtenlandsPersonIdTekst = hentTekstMedLandverdi(
-    'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer'
+  const tekstMedLand = hentBeskjedMedNavn(
+    utenlandsopphold.land?.verdi || '',
+    hentTekst('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer', intl)
   );
 
   const settUtenlandskPersonId = (
@@ -38,7 +32,7 @@ const EøsIdent: React.FC<Props> = ({
     const oppdatertUtenlandsopphold = {
       ...utenlandsopphold,
       personidentEøsLand: {
-        label: tekstMedLandVerdi,
+        label: tekstMedLand,
         verdi: e.target.value,
       },
     };
@@ -60,7 +54,7 @@ const EøsIdent: React.FC<Props> = ({
 
   return (
     <div>
-      <Label>{tekstMedLandVerdi}</Label>
+      <Label>{tekstMedLand}</Label>
       <ReadMore size={'small'} header={halvåpenTekstid}>
         {åpneTekstid}
       </ReadMore>
@@ -82,7 +76,10 @@ const EøsIdent: React.FC<Props> = ({
           toggleHarUtenlandskPersonId(!utenlandsopphold.kanIkkeOppgiPersonident)
         }
       >
-        {harIkkeUtenlandsPersonIdTekst}
+        {hentBeskjedMedNavn(
+          utenlandsopphold.land?.verdi || '',
+          hentTekst('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer', intl)
+        )}
       </Checkbox>
     </div>
   );

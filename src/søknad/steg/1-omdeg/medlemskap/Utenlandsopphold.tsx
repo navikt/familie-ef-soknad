@@ -20,6 +20,7 @@ import { utenlandsoppholdLand } from './MedlemskapConfig';
 import { TextFieldMedBredde } from '../../../../components/TextFieldMedBredde';
 import EøsIdent from '../../../../components/EøsIdent';
 import { stringHarVerdiOgErIkkeTom } from '../../../../utils/typer';
+import { hentBeskjedMedNavn } from '../../../../utils/språk';
 
 const StyledTextarea = styled(Textarea)`
   width: 100%;
@@ -66,13 +67,6 @@ const Utenlandsopphold: FC<Props> = ({
   });
 
   const landConfig = utenlandsoppholdLand(land);
-
-  const tekstMedLandVerdi = (tekst: string): string => {
-    if (utenlandsopphold.land) {
-      return tekst + ' ' + utenlandsopphold.land.verdi + '?';
-    }
-    return '';
-  };
 
   const fjernUtenlandsperiode = () => {
     if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
@@ -198,7 +192,10 @@ const Utenlandsopphold: FC<Props> = ({
         // eslint-disable-next-line no-prototype-builtins
         utenlandsopphold.land?.hasOwnProperty('verdi') && (
           <StyledTextarea
-            label={tekstMedLandVerdi(begrunnelseTekst)}
+            label={hentBeskjedMedNavn(
+              utenlandsopphold.land?.verdi,
+              begrunnelseTekst
+            )}
             placeholder={'...'}
             value={begrunnelse.verdi}
             maxLength={1000}
@@ -228,18 +225,24 @@ const Utenlandsopphold: FC<Props> = ({
             }
           />
         )}
-      {skalViseAdresseTekstfelt(utenlandsopphold) && (
+      {utenlandsopphold.land && skalViseAdresseTekstfelt(utenlandsopphold) && (
         <TextFieldMedBredde
           className={'inputfelt-tekst'}
           key={'navn'}
-          label={tekstMedLandVerdi(sisteAdresseTekst)}
+          label={hentBeskjedMedNavn(
+            utenlandsopphold.land.verdi,
+            sisteAdresseTekst
+          )}
           type="text"
           bredde={'L'}
           onChange={(e) =>
             settFeltNavn(
               e,
               'adresseEøsLand',
-              tekstMedLandVerdi(sisteAdresseTekst)
+              hentBeskjedMedNavn(
+                utenlandsopphold.land?.verdi || '',
+                sisteAdresseTekst
+              )
             )
           }
           value={adresseEøsLand?.verdi}
