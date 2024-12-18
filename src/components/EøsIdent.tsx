@@ -20,7 +20,7 @@ const EøsIdent: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const tekstMedLand = hentTekstMedVariabel(
+  const utenlandskIDNummerTekst = hentTekstMedVariabel(
     'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer',
     intl,
     { 0: utenlandsopphold.land?.verdi || '' }
@@ -32,7 +32,7 @@ const EøsIdent: React.FC<Props> = ({
     const oppdatertUtenlandsopphold = {
       ...utenlandsopphold,
       personidentEøsLand: {
-        label: tekstMedLand,
+        label: utenlandskIDNummerTekst,
         verdi: e.target.value,
       },
     };
@@ -54,7 +54,7 @@ const EøsIdent: React.FC<Props> = ({
 
   return (
     <div>
-      <Label>{tekstMedLand}</Label>
+      <Label>{utenlandskIDNummerTekst}</Label>
       <ReadMore size={'small'} header={halvåpenTekstid}>
         {åpneTekstid}
       </ReadMore>
