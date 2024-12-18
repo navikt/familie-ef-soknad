@@ -17,7 +17,6 @@ import { StyledKnapper } from '../../../components/knapper/StyledKnapper';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
-  sendInnSøknad,
   sendInnSøknadFamiliePdf,
 } from '../../../innsending/api';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
