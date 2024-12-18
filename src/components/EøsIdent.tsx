@@ -20,10 +20,14 @@ const EøsIdent: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
+  if (!utenlandsopphold.land) {
+    return null;
+  }
+
   const utenlandskIDNummerTekst = hentTekstMedVariabel(
     'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer',
     intl,
-    { 0: utenlandsopphold.land?.verdi || '' }
+    { 0: utenlandsopphold.land.verdi }
   );
 
   const settUtenlandskPersonId = (
@@ -79,7 +83,7 @@ const EøsIdent: React.FC<Props> = ({
         {hentTekstMedVariabel(
           'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer',
           intl,
-          { 0: utenlandsopphold.land?.verdi || '' }
+          { 0: utenlandsopphold.land.verdi }
         )}
       </Checkbox>
     </div>
