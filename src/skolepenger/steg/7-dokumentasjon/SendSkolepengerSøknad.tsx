@@ -56,17 +56,13 @@ const SendSøknadKnapper: FC = () => {
     venter: false,
   });
 
-  const sendSøknadBrukFamiliePdf = async (søknadMedFiltrerteBarn: ISøknad) => {
+  const sendInnSøknad = async (søknadMedFiltrerteBarn: ISøknad) => {
     try {
-      const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
-      let kvittering;
-      if (skalViseNyKnapp) {
-        kvittering = await sendInnSkolepengerSøknadFamiliePdf(
-          søknadMedFiltrerteBarn
-        );
-      } else {
-        kvittering = await sendInnSkolepengerSøknad(søknadMedFiltrerteBarn);
-      }
+      const brukModernisertFlyt = toggles[ToggleName.visNyInnsendingsknapp];
+
+      const kvittering = brukModernisertFlyt
+        ? await sendInnSkolepengerSøknadFamiliePdf(søknadMedFiltrerteBarn)
+        : await sendInnSkolepengerSøknad(søknadMedFiltrerteBarn);
 
       settinnsendingState({
         ...innsendingState,
@@ -112,7 +108,7 @@ const SendSøknadKnapper: FC = () => {
     };
 
     settinnsendingState({ ...innsendingState, venter: true });
-    sendSøknadBrukFamiliePdf(søknadMedFiltrerteBarn);
+    sendInnSøknad(søknadMedFiltrerteBarn);
   };
 
   return (

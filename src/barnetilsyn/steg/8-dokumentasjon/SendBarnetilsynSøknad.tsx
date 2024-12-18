@@ -68,15 +68,14 @@ const SendSøknadKnapper: FC = () => {
     return barneliste.filter((barn) => barn.skalHaBarnepass?.verdi === true);
   };
 
-  const sendSøknadBrukFamiliePdf = async (søknadMedFiltrerteBarn: ISøknad) => {
+  const sendInnSøknad = async (søknadMedFiltrerteBarn: ISøknad) => {
     try {
       const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
-      let kvittering;
-      if (skalViseNyKnapp) {
-        await sendInnBarnetilsynSøknadFamiliePdf(søknadMedFiltrerteBarn);
-      } else {
-        kvittering = await sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn);
-      }
+
+      const kvittering = skalViseNyKnapp
+        ? await sendInnBarnetilsynSøknadFamiliePdf(søknadMedFiltrerteBarn)
+        : await sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn);
+
       settinnsendingState({
         ...innsendingState,
         status: IStatus.SUKSESS,
@@ -120,7 +119,7 @@ const SendSøknadKnapper: FC = () => {
       dokumentasjonsbehov: dokumentasjonsbehov,
     };
     settinnsendingState({ ...innsendingState, venter: true });
-    sendSøknadBrukFamiliePdf(søknadMedFiltrerteBarn);
+    sendInnSøknad(søknadMedFiltrerteBarn);
   };
 
   return (
