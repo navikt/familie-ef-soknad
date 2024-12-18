@@ -1,10 +1,9 @@
 import React from 'react';
 import { Checkbox, Label, ReadMore } from '@navikt/ds-react';
 import { TextFieldMedBredde } from './TextFieldMedBredde';
-import { hentTekst } from '../utils/søknad';
+import { hentTekstMedVariabel } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
-import { hentBeskjedMedNavn } from '../utils/språk';
 
 interface Props {
   halvåpenTekstid: string;
@@ -21,9 +20,10 @@ const EøsIdent: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const tekstMedLand = hentBeskjedMedNavn(
-    utenlandsopphold.land?.verdi || '',
-    hentTekst('medlemskap.periodeBoddIUtlandet.utenlandskIDNummer', intl)
+  const tekstMedLand = hentTekstMedVariabel(
+    'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer',
+    intl,
+    { 0: utenlandsopphold.land?.verdi || '' }
   );
 
   const settUtenlandskPersonId = (
@@ -76,9 +76,10 @@ const EøsIdent: React.FC<Props> = ({
           toggleHarUtenlandskPersonId(!utenlandsopphold.kanIkkeOppgiPersonident)
         }
       >
-        {hentBeskjedMedNavn(
-          utenlandsopphold.land?.verdi || '',
-          hentTekst('medlemskap.periodeBoddIUtlandet.harIkkeIdNummer', intl)
+        {hentTekstMedVariabel(
+          'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer',
+          intl,
+          { 0: utenlandsopphold.land?.verdi || '' }
         )}
       </Checkbox>
     </div>
