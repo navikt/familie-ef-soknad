@@ -63,8 +63,6 @@ const SendSøknadKnapper: FC = () => {
 
   const sendInnSøknad = async (søknadMedFiltrerteBarn: ISøknad) => {
     try {
-      console.log('hei');
-
       const brukModernisertFlyt = toggles[ToggleName.visNyInnsendingsknapp];
 
       const kvittering = brukModernisertFlyt
