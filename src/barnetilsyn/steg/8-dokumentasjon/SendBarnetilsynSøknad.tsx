@@ -70,9 +70,9 @@ const SendSøknadKnapper: FC = () => {
 
   const sendInnSøknad = async (søknadMedFiltrerteBarn: ISøknad) => {
     try {
-      const skalViseNyKnapp = toggles[ToggleName.visNyInnsendingsknapp];
+      const brukModernisertFlyt = toggles[ToggleName.visNyInnsendingsknapp];
 
-      const kvittering = skalViseNyKnapp
+      const kvittering = brukModernisertFlyt
         ? await sendInnBarnetilsynSøknadFamiliePdf(søknadMedFiltrerteBarn)
         : await sendInnBarnetilsynSøknad(søknadMedFiltrerteBarn);
 
