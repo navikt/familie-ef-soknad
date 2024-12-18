@@ -17,6 +17,7 @@ import { StyledKnapper } from '../../../components/knapper/StyledKnapper';
 import {
   mapBarnTilEntenIdentEllerFødselsdato,
   mapBarnUtenBarnepass,
+  sendInnOvergangstønadSøknad,
   sendInnSøknadFamiliePdf,
 } from '../../../innsending/api';
 import { hentForrigeRoute, hentNesteRoute } from '../../../utils/routing';
@@ -62,11 +63,13 @@ const SendSøknadKnapper: FC = () => {
 
   const sendInnSøknad = async (søknadMedFiltrerteBarn: ISøknad) => {
     try {
+      console.log('hei');
+
       const brukModernisertFlyt = toggles[ToggleName.visNyInnsendingsknapp];
 
       const kvittering = brukModernisertFlyt
         ? await sendInnSøknadFamiliePdf(søknadMedFiltrerteBarn)
-        : await sendInnSøknad(søknadMedFiltrerteBarn);
+        : await sendInnOvergangstønadSøknad(søknadMedFiltrerteBarn);
 
       settinnsendingState({
         ...innsendingState,
