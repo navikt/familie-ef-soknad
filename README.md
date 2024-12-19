@@ -3,13 +3,12 @@
 Frontend - søknad for enslig forsørger.
 
 ## Kjør lokalt
+Lokal kjøring krever internett da tokenet hentes fra fakedings: `https://github.com/navikt/fakedings` 
 
 1. `npm install`
 2. `npm run start`
 3. Kjør opp `familie-ef-soknad-api`
-4. Hvis du mangler token må du få cookie fra søknad-api
-   `http://localhost:8091/local/cookie?redirect=http://localhost:3000/familie/alene-med-barn/soknad&issuerId=tokenx&audience=familie-app`
-
+4. Gå til `http://localhost:3000/familie/alene-med-barn/soknad/`
 
 ### Mot preprod:
 1. Hent token fra 
@@ -22,6 +21,7 @@ TOKENX_DOKUMENT=...
 ```
 3. `npm install` 
 4. `npm run start:preprod` 
+5. Gå til url: `http://localhost:3000/familie/alene-med-barn/soknad/`
 
 * Hvis man ønsker å kjøre med mock-api
 1. `node mock/mock-server.js`

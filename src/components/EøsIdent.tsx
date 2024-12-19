@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox, Label, ReadMore } from '@navikt/ds-react';
 import { TextFieldMedBredde } from './TextFieldMedBredde';
-import { hentTekst } from '../utils/søknad';
+import { hentTekstMedVariabel } from '../utils/søknad';
 import { useLokalIntlContext } from '../context/LokalIntlContext';
 import { IUtenlandsopphold } from '../models/steg/omDeg/medlemskap';
 
@@ -20,16 +20,14 @@ const EøsIdent: React.FC<Props> = ({
 }) => {
   const intl = useLokalIntlContext();
 
-  const hentTekstMedLandverdi = (tekst: string) => {
-    return hentTekst(tekst, intl) + ' ' + utenlandsopphold.land?.verdi;
-  };
+  if (!utenlandsopphold.land) {
+    return null;
+  }
 
-  const tekstMedLandVerdi =
-    hentTekstMedLandverdi(
-      'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer'
-    ) + '?';
-  const harIkkeUtenlandsPersonIdTekst = hentTekstMedLandverdi(
-    'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer'
+  const utenlandskIDNummerTekst = hentTekstMedVariabel(
+    'medlemskap.periodeBoddIUtlandet.utenlandskIDNummer',
+    intl,
+    { 0: utenlandsopphold.land.verdi }
   );
 
   const settUtenlandskPersonId = (
@@ -38,7 +36,7 @@ const EøsIdent: React.FC<Props> = ({
     const oppdatertUtenlandsopphold = {
       ...utenlandsopphold,
       personidentEøsLand: {
-        label: tekstMedLandVerdi,
+        label: utenlandskIDNummerTekst,
         verdi: e.target.value,
       },
     };
@@ -60,7 +58,7 @@ const EøsIdent: React.FC<Props> = ({
 
   return (
     <div>
-      <Label>{tekstMedLandVerdi}</Label>
+      <Label>{utenlandskIDNummerTekst}</Label>
       <ReadMore size={'small'} header={halvåpenTekstid}>
         {åpneTekstid}
       </ReadMore>
@@ -82,7 +80,11 @@ const EøsIdent: React.FC<Props> = ({
           toggleHarUtenlandskPersonId(!utenlandsopphold.kanIkkeOppgiPersonident)
         }
       >
-        {harIkkeUtenlandsPersonIdTekst}
+        {hentTekstMedVariabel(
+          'medlemskap.periodeBoddIUtlandet.harIkkeIdNummer',
+          intl,
+          { 0: utenlandsopphold.land.verdi }
+        )}
       </Checkbox>
     </div>
   );
