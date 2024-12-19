@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { SlettKnapp } from '../../../../components/knapper/SlettKnapp';
 import { hentTittelMedNr } from '../../../../language/utils';
 import PeriodeDatovelgere from '../../../../components/dato/PeriodeDatovelger';
-import { hentTekst } from '../../../../utils/søknad';
+import { hentTekst, hentTekstMedVariabel } from '../../../../utils/søknad';
 import {
   ILandMedKode,
   IUtenlandsopphold,
@@ -54,25 +54,20 @@ const Utenlandsopphold: FC<Props> = ({
   const periodeTittel = hentTittelMedNr(
     perioderBoddIUtlandet!,
     oppholdsnr,
-    intl.formatMessage({
-      id: 'medlemskap.periodeBoddIUtlandet.utenlandsopphold',
-    })
+    hentTekst('medlemskap.periodeBoddIUtlandet.utenlandsopphold', intl)
   );
-  const begrunnelseTekst = intl.formatMessage({
-    id: 'medlemskap.periodeBoddIUtlandet.begrunnelse',
-  });
-  const sisteAdresseTekst = intl.formatMessage({
-    id: 'medlemskap.periodeBoddIUtlandet.sisteAdresse',
-  });
+  const begrunnelseTekst = hentTekstMedVariabel(
+    'medlemskap.periodeBoddIUtlandet.begrunnelse',
+    intl,
+    { 0: utenlandsopphold.land?.verdi || '' }
+  );
+  const sisteAdresseTekst = hentTekstMedVariabel(
+    'medlemskap.periodeBoddIUtlandet.sisteAdresse',
+    intl,
+    { 0: utenlandsopphold.land?.verdi || '' }
+  );
 
   const landConfig = utenlandsoppholdLand(land);
-
-  const tekstMedLandVerdi = (tekst: string): string => {
-    if (utenlandsopphold.land) {
-      return tekst + ' ' + utenlandsopphold.land.verdi + '?';
-    }
-    return '';
-  };
 
   const fjernUtenlandsperiode = () => {
     if (perioderBoddIUtlandet && perioderBoddIUtlandet.length > 1) {
@@ -198,7 +193,7 @@ const Utenlandsopphold: FC<Props> = ({
         // eslint-disable-next-line no-prototype-builtins
         utenlandsopphold.land?.hasOwnProperty('verdi') && (
           <StyledTextarea
-            label={tekstMedLandVerdi(begrunnelseTekst)}
+            label={begrunnelseTekst}
             placeholder={'...'}
             value={begrunnelse.verdi}
             maxLength={1000}
@@ -228,20 +223,14 @@ const Utenlandsopphold: FC<Props> = ({
             }
           />
         )}
-      {skalViseAdresseTekstfelt(utenlandsopphold) && (
+      {utenlandsopphold.land && skalViseAdresseTekstfelt(utenlandsopphold) && (
         <TextFieldMedBredde
           className={'inputfelt-tekst'}
           key={'navn'}
-          label={tekstMedLandVerdi(sisteAdresseTekst)}
+          label={sisteAdresseTekst}
           type="text"
           bredde={'L'}
-          onChange={(e) =>
-            settFeltNavn(
-              e,
-              'adresseEøsLand',
-              tekstMedLandVerdi(sisteAdresseTekst)
-            )
-          }
+          onChange={(e) => settFeltNavn(e, 'adresseEøsLand', sisteAdresseTekst)}
           value={adresseEøsLand?.verdi}
         />
       )}

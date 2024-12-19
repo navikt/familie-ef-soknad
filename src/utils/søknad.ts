@@ -86,6 +86,14 @@ export const hentTekst = (id: string, intl: LokalIntlShape) => {
   return intl.formatMessage({ id: id });
 };
 
+export const hentTekstMedVariabel = (
+  id: string,
+  intl: LokalIntlShape,
+  variabel?: Record<string, string>
+) => {
+  return intl.formatMessage({ id: id }, variabel);
+};
+
 export const fraStringTilTall = (tallAvTypenStreng: string) => {
   const parsed = Number.parseInt(tallAvTypenStreng, 10);
   if (Number.isNaN(parsed)) {
